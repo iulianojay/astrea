@@ -5,7 +5,11 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <script src="/webui.js"></script>
-    <title>Astrea Helios</title>
+    <title>Helios</title>
+
+    <link rel="shortcut icon" type="image/png" href="../../../docs/assets/images/astrea-color.png" />
+    <link rel="apple-touch-icon" href="../../../docs/assets/images/astrea-color.png" />
+
     <style>
         :root {
             --bg0: #081226;
@@ -14,9 +18,9 @@
             --muted: #93b6d8;
             --earth: #2e78d8;
             --earth-atmo: #5eb2ff;
-            --point: #d9f1ff;
-            --panel: rgba(3, 16, 33, 0.7);
+            --panel: rgba(3, 16, 33, 0.75);
             --line: rgba(141, 194, 243, 0.35);
+            --accent: #5eb2ff;
         }
 
         * {
@@ -29,8 +33,8 @@
             color: var(--ink);
             font-family: "IBM Plex Sans", "Segoe UI", sans-serif;
             background:
-                radial-gradient(1200px 700px at 15% 10%, #1f4e79 0%, rgba(31, 78, 121, 0.0) 60%),
-                radial-gradient(1000px 600px at 85% 85%, #104667 0%, rgba(16, 70, 103, 0.0) 65%),
+                radial-gradient(1200px 700px at 15% 10%, #1f4e79 0%, rgba(31, 78, 121, 0) 60%),
+                radial-gradient(1000px 600px at 85% 85%, #104667 0%, rgba(16, 70, 103, 0) 65%),
                 linear-gradient(160deg, var(--bg0), var(--bg1));
             overflow: hidden;
         }
@@ -46,35 +50,130 @@
             padding: 12px 14px;
             backdrop-filter: blur(6px);
             box-shadow: 0 12px 24px rgba(0, 0, 0, 0.35);
-            max-width: min(92vw, 420px);
+            max-width: min(92vw, 380px);
         }
 
         .title {
-            margin: 0 0 6px;
-            font-size: clamp(1.0rem, 2.4vw, 1.2rem);
+            margin: 0 0 4px;
+            font-size: clamp(0.95rem, 2.4vw, 1.1rem);
             letter-spacing: 0.04em;
             text-transform: uppercase;
             color: #d7ecff;
         }
 
-        .sub {
-            margin: 0 0 10px;
-            color: var(--muted);
-            font-size: 0.92rem;
-        }
-
         .metrics {
-            margin: 0;
+            margin: 0 0 10px;
             padding: 0;
             list-style: none;
             display: grid;
-            gap: 4px;
-            font-size: 0.95rem;
+            gap: 3px;
+            font-size: 0.88rem;
         }
 
         .metrics strong {
-            color: #ffffff;
+            color: #fff;
             font-weight: 600;
+        }
+
+        .controls {
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+            font-size: 0.85rem;
+            color: var(--muted);
+        }
+
+        .ctrl-row {
+            display: flex;
+            gap: 8px;
+        }
+
+        .ctrl-row.space-around {
+            justify-content: space-around;
+        }
+
+        .ctrl-row.space-between {
+            justify-content: space-between;
+        }
+
+        .ctrl-row label {
+            min-width: 80px;
+            color: var(--muted);
+        }
+
+        .ctrl-row input[type="range"] {
+            flex: 1;
+            accent-color: var(--accent);
+            cursor: pointer;
+        }
+
+        .ctrl-row input[type="number"] {
+            width: 70px;
+            background: rgba(255, 255, 255, 0.07);
+            border: 1px solid var(--line);
+            border-radius: 5px;
+            color: var(--ink);
+            padding: 2px 5px;
+            font-size: 0.85rem;
+        }
+
+        .ctrl-row span {
+            min-width: 34px;
+            text-align: right;
+            color: #fff;
+            font-size: 0.82rem;
+        }
+
+        .sep {
+            height: 1px;
+            background: var(--line);
+            margin: 4px 0;
+        }
+
+        button#repropBtn {
+            width: 100%;
+            padding: 6px 0;
+            background: linear-gradient(135deg, #1a6bb5, #0e4a8a);
+            border: 1px solid rgba(94, 178, 255, 0.4);
+            border-radius: 7px;
+            color: #d7ecff;
+            font-size: 0.88rem;
+            font-weight: 600;
+            letter-spacing: 0.03em;
+            cursor: pointer;
+            transition: opacity 0.15s;
+        }
+
+        button#repropBtn:hover:not(:disabled) {
+            opacity: 0.85;
+        }
+
+        button#repropBtn:disabled {
+            opacity: 0.45;
+            cursor: not-allowed;
+        }
+
+        .legend {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 6px;
+            font-size: 0.78rem;
+            color: var(--muted);
+        }
+
+        .legend-bar {
+            flex: 1;
+            height: 8px;
+            border-radius: 4px;
+            background: linear-gradient(to left,
+                    hsl(240, 100%, 65%), hsl(180, 100%, 65%), hsl(120, 100%, 65%), hsl(60, 100%, 65%), hsl(0, 100%, 65%));
+        }
+
+        .hint {
+            margin: 6px 0 0;
+            font-size: 0.76rem;
+            color: #5a8fba;
         }
 
         canvas {
@@ -87,62 +186,128 @@
 
 <body>
     <section class="hud">
-        <h1 class="title">Astrea Helios Propagation View</h1>
-        <p class="sub">Earth sphere + one rendered point per propagated object.</p>
+        <h1 class="title">Propagation w/ Astrea</h1>
         <ul class="metrics" id="metrics"></ul>
+
+        <div class="controls">
+            <div class="ctrl-row">
+                <label>Speed</label>
+                <input type="range" id="speedSlider" min="0.1" max="10" step="0.1" value="1.0">
+                <span id="speedVal">1.0×</span>
+            </div>
+
+            <div class="sep"></div>
+
+            <div class="ctrl-row space-around">
+                <div class="ctrl-col">
+                    <label>Prop (min)</label>
+                    <input type="number" id="propMin" value="90" min="1" max="2880" step="1">
+                </div>
+                <div class="ctrl-col">
+                    <label>Step (min)</label>
+                    <input type="number" id="stepMin" value="5" min="0.5" max="60" step="0.5">
+                </div>
+            </div>
+
+            <div class="ctrl-row space-around">
+                <div class="ctrl-col">
+                    <label>Oblateness:</label>
+                </div>
+                <div class="ctrl-col">
+                    <label>10×10</label>
+                    <input type="checkbox" id="10x10" value="no">
+                </div>
+                <div class="ctrl-col">
+                    <label>40×40</label>
+                    <input type="checkbox" id="40x40" value="no">
+                </div>
+                <div class="ctrl-col">
+                    <label>80×80</label>
+                    <input type="checkbox" id="80x80" value="no">
+                </div>
+            </div>
+
+            <div class="ctrl-row space-around">
+                <div class="ctrl-col">
+                    <label>Other Perts:</label>
+                </div>
+                <div class="ctrl-col">
+                    <label>SRP</label>
+                    <input type="checkbox" id="srp" value="no">
+                </div>
+                <div class="ctrl-col">
+                    <label>N-Body</label>
+                    <input type="checkbox" id="nbody" value="no">
+                </div>
+                <div class="ctrl-col">
+                    <label>Drag</label>
+                    <input type="checkbox" id="drag" value="no">
+                </div>
+            </div>
+
+            <div class="sep"></div>
+
+            <button id="repropBtn">Repropagate</button>
+        </div>
+
+        <div class="legend">
+            <span>LEO</span>
+            <div class="legend-bar"></div>
+            <span>GEO</span>
+        </div>
+        <p class="hint">drag to rotate &nbsp;·&nbsp; scroll to zoom</p>
     </section>
     <canvas id="scene"></canvas>
 
     <script>
-        const stats = __STATS__;
-        const numeric = __NUMERIC__;
-        const frames = __FRAMES__;
+        let stats = __STATS__;
+        let numeric = __NUMERIC__;
+        let frames = __FRAMES__;
 
-        const metrics = document.getElementById("metrics");
-        metrics.innerHTML = [
-            `<li><strong>${stats.objects.toLocaleString()}</strong> propagated objects</li>`,
-            `<li><strong>${stats.propMinutes.toFixed(1)} min</strong> propagation &nbsp;·&nbsp; <strong>${stats.stepMinutes.toFixed(1)} min</strong> steps &nbsp;·&nbsp; <strong>${stats.numFrames}</strong> frames</li>`,
-            `<li><strong>${stats.elapsedMs.toFixed(1)} ms</strong> backend propagation time</li>`,
-            `<li><strong>${stats.throughput.toLocaleString(undefined, { maximumFractionDigits: 0 })}</strong> objects/sec</li>`,
-            `<li id="simtime"><strong>T+0.0 min</strong></li>`
-        ].join("");
+        // ---------- Metrics ----------
+        function updateMetrics() {
+            const throughputStr = stats.throughput.toLocaleString(undefined, { maximumFractionDigits: 0 });
+            document.getElementById("metrics").innerHTML = [
+                `<li><strong>${stats.objects.toLocaleString()}</strong> propagated objects</li>`,
+                `<li><strong>${stats.propMinutes.toFixed(1)} min</strong> prop &nbsp;·&nbsp; <strong>${stats.stepMinutes.toFixed(1)} min</strong> step &nbsp;·&nbsp; <strong>${stats.nFrames}</strong> frames</li>`,
+                `<li><strong>${stats.elapsedMs.toFixed(1)} ms</strong> propagation &nbsp;·&nbsp; <strong>${throughputStr}</strong> obj/s</li>`,
+                `<li id="simtime"><strong>T+0.0 min</strong></li>`
+            ].join("");
+        }
+        updateMetrics();
 
+        // ---------- Canvas ----------
         const canvas = document.getElementById("scene");
         const ctx = canvas.getContext("2d");
 
         const state = {
-            t: 0,
             simProgress: 0,
-            // Camera: az = azimuth (spin around Z), el = elevation (tilt up/down)
-            az: 0,
-            el: 0,
-            zoom: 1.0,
-            // Drag
-            dragging: false,
-            lastX: 0,
-            lastY: 0,
-            pointColor: "#d9f1ff",
-            earthColor: "#2e78d8",
-            earthGlow: "#5eb2ff",
-            earthRadiusKm: numeric.earthRadiusKm,
-            maxRadiusKm: numeric.maxRadiusKm
+            speed: 1.0,
+            az: 0, el: 0, zoom: 1.0,
+            dragging: false, lastX: 0, lastY: 0,
+            earthColor: "#2e78d8"
         };
 
-        // --- Interaction ---
+        // ---------- Altitude colour ----------
+        function altColor(x, y, z) {
+            const r = Math.sqrt(x * x + y * y + z * z);
+            const alt = r - numeric.earthRadiusKm;
+            const maxAlt = numeric.maxRadiusKm - numeric.earthRadiusKm;
+            const t = Math.max(0, Math.min(1, alt / Math.max(1, maxAlt)));
+            const hue = 240 * t; // blue (LEO) → red (HEO)
+            return `hsl(${hue.toFixed(0)},100%,65%)`;
+        }
+
+        // ---------- Interaction ----------
         canvas.addEventListener("mousedown", (e) => {
-            state.dragging = true;
-            state.lastX = e.clientX;
-            state.lastY = e.clientY;
+            state.dragging = true; state.lastX = e.clientX; state.lastY = e.clientY;
             canvas.style.cursor = "grabbing";
         });
         canvas.addEventListener("mousemove", (e) => {
             if (!state.dragging) return;
-            const dx = e.clientX - state.lastX;
-            const dy = e.clientY - state.lastY;
-            state.az += dx * 0.005;
-            state.el = Math.max(-1.4, Math.min(1.4, state.el - dy * 0.005));
-            state.lastX = e.clientX;
-            state.lastY = e.clientY;
+            state.az += (e.clientX - state.lastX) * 0.005;
+            state.el = Math.max(-1.4, Math.min(1.4, state.el - (e.clientY - state.lastY) * 0.005));
+            state.lastX = e.clientX; state.lastY = e.clientY;
         });
         canvas.addEventListener("mouseup", () => { state.dragging = false; canvas.style.cursor = "grab"; });
         canvas.addEventListener("mouseleave", () => { state.dragging = false; canvas.style.cursor = "grab"; });
@@ -150,26 +315,20 @@
 
         canvas.addEventListener("wheel", (e) => {
             e.preventDefault();
-            const factor = e.deltaY < 0 ? 1.1 : 0.91;
-            state.zoom = Math.max(0.15, Math.min(20.0, state.zoom * factor));
+            state.zoom = Math.max(0.15, Math.min(20.0, state.zoom * (e.deltaY < 0 ? 1.1 : 0.91)));
         }, { passive: false });
 
-        // Touch support
         let lastTouchDist = null;
         canvas.addEventListener("touchstart", (e) => {
-            if (e.touches.length === 1) {
-                state.dragging = true;
-                state.lastX = e.touches[0].clientX; state.lastY = e.touches[0].clientY;
-            } else if (e.touches.length === 2) {
+            if (e.touches.length === 1) { state.dragging = true; state.lastX = e.touches[0].clientX; state.lastY = e.touches[0].clientY; }
+            else if (e.touches.length === 2) {
                 lastTouchDist = Math.hypot(e.touches[0].clientX - e.touches[1].clientX, e.touches[0].clientY - e.touches[1].clientY);
             }
         }, { passive: true });
         canvas.addEventListener("touchmove", (e) => {
             if (e.touches.length === 1 && state.dragging) {
-                const dx = e.touches[0].clientX - state.lastX;
-                const dy = e.touches[0].clientY - state.lastY;
-                state.az += dx * 0.005;
-                state.el = Math.max(-1.4, Math.min(1.4, state.el - dy * 0.005));
+                state.az += (e.touches[0].clientX - state.lastX) * 0.005;
+                state.el = Math.max(-1.4, Math.min(1.4, state.el - (e.touches[0].clientY - state.lastY) * 0.005));
                 state.lastX = e.touches[0].clientX; state.lastY = e.touches[0].clientY;
             } else if (e.touches.length === 2 && lastTouchDist !== null) {
                 const d = Math.hypot(e.touches[0].clientX - e.touches[1].clientX, e.touches[0].clientY - e.touches[1].clientY);
@@ -179,6 +338,58 @@
         }, { passive: true });
         canvas.addEventListener("touchend", () => { state.dragging = false; lastTouchDist = null; }, { passive: true });
 
+        // ---------- Speed slider ----------
+        const speedSlider = document.getElementById("speedSlider");
+        const speedVal = document.getElementById("speedVal");
+        speedSlider.addEventListener("input", () => {
+            state.speed = parseFloat(speedSlider.value);
+            speedVal.textContent = state.speed.toFixed(1) + "×";
+        });
+
+        // ---------- Repropagate button ----------
+        document.getElementById("repropBtn").addEventListener("click", async () => {
+            // Parse the options and send a repropagate request to the backend
+            const btn = document.getElementById("repropBtn");
+            const propMin = parseFloat(document.getElementById("propMin").value);
+            const stepMin = parseFloat(document.getElementById("stepMin").value);
+            const ten = document.getElementById("10x10").checked;
+            const fourty = parseInt(document.getElementById("40x40").value);
+            const eighty = parseInt(document.getElementById("80x80").value);
+            const srp = document.getElementById("srp").checked;
+            const nbody = document.getElementById("nbody").checked;
+            const drag = document.getElementById("drag").checked;
+
+            if (isNaN(propMin) || propMin <= 0 || isNaN(stepMin) || stepMin <= 0) {
+                console.error("[helios] Invalid input: Propagation and step minutes must be positive numbers.");
+                return;
+            }
+
+            btn.disabled = true;
+            btn.textContent = "[helios] Propagating…";
+            try {
+                const raw = await webui.call("repropagate", String(propMin), String(stepMin), String(ten), String(fourty), String(eighty), String(srp), String(nbody), String(drag));
+                const result = JSON.parse(raw);
+                if (!result.error) {
+                    updatePropagation(result.frames, result.numeric, result.stats);
+                } else {
+                    console.error("[helios] Repropagate error:", result.error);
+                }
+            } finally {
+                btn.disabled = false;
+                btn.textContent = "[helios] Repropagate";
+            }
+        });
+
+        // Updates the scene with a new propagation result
+        function updatePropagation(newFrames, newNumeric, newStats) {
+            frames = newFrames;
+            numeric = newNumeric;
+            stats = newStats;
+            state.simProgress = 0;
+            updateMetrics();
+        }
+
+        // ---------- Resize ----------
         function resize() {
             const dpr = Math.max(1, Math.min(2, window.devicePixelRatio || 1));
             canvas.width = Math.floor(window.innerWidth * dpr);
@@ -186,85 +397,77 @@
             ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
         }
 
+        // ---------- Draw ----------
         function draw() {
             if (frames.length > 1) {
-                state.simProgress = (state.simProgress + 1 / 90) % frames.length;
+                state.simProgress = (state.simProgress + state.speed / stats.nFrames) % frames.length;
             }
             const f0 = Math.floor(state.simProgress) % frames.length;
             const f1 = (f0 + 1) % frames.length;
             const blend = state.simProgress - Math.floor(state.simProgress);
-            const el = document.getElementById("simtime");
-            if (el) el.innerHTML = `<strong>T+${(f0 * stats.stepMinutes).toFixed(1)} min</strong>`;
 
-            const w = window.innerWidth;
-            const h = window.innerHeight;
-            const cx = w * 0.5;
-            const cy = h * 0.54;
+            const simEl = document.getElementById("simtime");
+            if (simEl) simEl.innerHTML = `<strong>T+${(f0 * stats.stepMinutes).toFixed(1)} min</strong>`;
+
+            const w = window.innerWidth, h = window.innerHeight;
+            const cx = w * 0.5, cy = h * 0.54;
 
             ctx.clearRect(0, 0, w, h);
 
-            const span = Math.max(state.maxRadiusKm, state.earthRadiusKm * 1.6);
+            const span = Math.max(numeric.maxRadiusKm, numeric.earthRadiusKm * 1.6);
             const scale = Math.min(w, h) * 0.43 / span * state.zoom;
 
-            // Coordinate convention: X out of screen (depth), Y right, Z up.
-            // Azimuth (az): spin around Z axis. Elevation (el): tilt above equatorial plane.
-            // Drag right → az increases (scene spins counter-clockwise from above).
-            // Drag up   → el increases (camera tilts to look more from above).
             const cosA = Math.cos(state.az), sinA = Math.sin(state.az);
             const cosE = Math.cos(state.el), sinE = Math.sin(state.el);
 
+            // Project ECI [x,y,z] → canvas {x, y, z (depth), d (perspective factor)}
             const project = (p) => {
-                // Step 1: rotate around Z by azimuth
                 const rx = p[0] * cosA + p[1] * sinA;
                 const ry = -p[0] * sinA + p[1] * cosA;
                 const rz = p[2];
-                // Step 2: rotate around rotated-Y by elevation
-                // (tilts the camera up/down; positive el = looking from above)
                 const fx = rx * cosE + rz * sinE;
                 const fy = ry;
                 const fz = -rx * sinE + rz * cosE;
-                // Camera looks along -X, screen-right = Y, screen-up = Z.
                 const depth = 1.0 / (1.0 + fx / (span * 2.8));
-                return {
-                    x: cx + fy * scale * depth,
-                    y: cy - fz * scale * depth,
-                    z: fx,
-                    d: depth
-                };
+                return { x: cx + fy * scale * depth, y: cy - fz * scale * depth, z: fx, d: depth };
             };
 
             const earthCenter = project([0, 0, 0]);
-            const earthEdge = project([0, state.earthRadiusKm, 0]);
-            const earthRadiusPx = Math.max(2, Math.abs(earthEdge.x - earthCenter.x));
 
+            // Earth radius in pixels: scale-based only, not perspective-distorted
+            const earthRadiusPx = Math.max(2, numeric.earthRadiusKm * scale);
+
+            // Atmospheric glow
             const glow = ctx.createRadialGradient(
                 earthCenter.x, earthCenter.y, earthRadiusPx * 0.4,
                 earthCenter.x, earthCenter.y, earthRadiusPx * 2.5
             );
-            glow.addColorStop(0, "rgba(94, 178, 255, 0.30)");
-            glow.addColorStop(1, "rgba(94, 178, 255, 0.0)");
+            glow.addColorStop(0, "rgba(94,178,255,0.30)");
+            glow.addColorStop(1, "rgba(94,178,255,0.00)");
             ctx.fillStyle = glow;
             ctx.beginPath();
             ctx.arc(earthCenter.x, earthCenter.y, earthRadiusPx * 2.5, 0, Math.PI * 2);
             ctx.fill();
 
+            // Earth body
             ctx.fillStyle = state.earthColor;
             ctx.beginPath();
             ctx.arc(earthCenter.x, earthCenter.y, earthRadiusPx, 0, Math.PI * 2);
             ctx.fill();
 
-            ctx.strokeStyle = "rgba(208, 235, 255, 0.24)";
+            // Latitude lines
+            ctx.strokeStyle = "rgba(208,235,255,0.24)";
             ctx.lineWidth = 1;
             for (let i = -2; i <= 2; i++) {
-                const y = earthCenter.y + i * earthRadiusPx * 0.32;
-                const rx = earthRadiusPx * Math.sqrt(Math.max(0, 1 - Math.pow((y - earthCenter.y) / earthRadiusPx, 2)));
+                const yOff = i * earthRadiusPx * 0.32;
+                const rx2 = earthRadiusPx * Math.sqrt(Math.max(0, 1 - Math.pow(yOff / earthRadiusPx, 2)));
                 ctx.beginPath();
-                ctx.ellipse(earthCenter.x, y, rx, rx * 0.22, 0, 0, Math.PI * 2);
+                ctx.ellipse(earthCenter.x, earthCenter.y + yOff, rx2, rx2 * 0.22, 0, 0, Math.PI * 2);
                 ctx.stroke();
             }
 
-            const frame0 = frames[f0];
-            const frame1 = frames[f1];
+            // Objects – coloured by current altitude
+            const frame0 = frames[f0], frame1 = frames[f1];
             for (let i = 0; i < frame0.length; i++) {
                 const a = frame0[i], b = frame1[i];
                 const lx = a[0] + blend * (b[0] - a[0]);
@@ -272,13 +475,15 @@
                 const lz = a[2] + blend * (b[2] - a[2]);
                 const p = project([lx, ly, lz]);
                 if (p.z > span * 0.9) continue;
-                const alpha = Math.max(0.12, Math.min(1, 0.18 + 0.85 * p.d));
+                const alpha = Math.max(0.18, Math.min(1, 0.22 + 0.78 * p.d));
                 const r = Math.max(0.7, Math.min(2.3, 1.1 * p.d));
-                ctx.fillStyle = `rgba(217, 241, 255, ${alpha.toFixed(3)})`;
+                ctx.fillStyle = altColor(lx, ly, lz);
+                ctx.globalAlpha = alpha;
                 ctx.beginPath();
                 ctx.arc(p.x, p.y, r, 0, Math.PI * 2);
                 ctx.fill();
             }
+            ctx.globalAlpha = 1.0;
 
             requestAnimationFrame(draw);
         }
@@ -286,12 +491,6 @@
         window.addEventListener("resize", resize);
         resize();
         draw();
-
-        // HUD hint
-        const hint = document.createElement("p");
-        hint.style.cssText = "margin:8px 0 0;font-size:0.78rem;color:#6a9fc0;";
-        hint.textContent = "drag to rotate · scroll to zoom";
-        document.querySelector(".hud").appendChild(hint);
     </script>
 </body>
 

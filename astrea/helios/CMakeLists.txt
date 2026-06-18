@@ -1,4 +1,4 @@
-# Copyright (c) 2026 Jay Iuliano
+# Copyright (c) 2025 Jay Iuliano
 #
 # This file is part of Astrea.
 # Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License
@@ -7,6 +7,17 @@
 # of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details. You should
 # have received a copy of the GNU General Public License along with Astrea. If not, see <https://www.gnu.org/licenses/>.
 
+cmake_minimum_required(VERSION 3.28.3)
+
+project(
+    helios
+    VERSION ${ASTREA_VERSION}
+    DESCRIPTION "Simple Web GUI for Astrea"
+    LANGUAGES CXX
+)
+set(CMAKE_CXX_STANDARD 23)
+
+# Packages only for this
 CPMAddPackage(
     NAME webui
     GITHUB_REPOSITORY webui-dev/webui
@@ -18,21 +29,40 @@ CPMAddPackage(
 
 find_package(OpenMP REQUIRED)
 
-add_executable(helios_app helios/drivers/main.cpp)
+# Objects
+set(HELIOS_BASE ${CMAKE_CURRENT_LIST_DIR}/${PROJECT_NAME})
+set(HELIOS_SOURCES)
 
-target_link_libraries(helios_app PRIVATE astro_shared snapshot_shared webui OpenMP::OpenMP_CXX)
+# Headers
+set(HELIOS_HEADERS
+    ${HELIOS_BASE}/helios.macros.hpp
+)
 
+# Includes
+set(HELIOS_DIRS
+    ${CMAKE_CURRENT_LIST_DIR}
+    ${CMAKE_CURRENT_LIST_DIR}/../math
+    ${CMAKE_CURRENT_LIST_DIR}/../astro
+    ${CMAKE_CURRENT_LIST_DIR}/../snapshot
+    ${CMAKE_CURRENT_LIST_DIR}/../units
+    ${CMAKE_CURRENT_LIST_DIR}/../utilities
+)
+
+# App
+add_executable(${PROJECT_NAME}_app helios/drivers/main.cpp ${HELIOS_SOURCES} ${HELIOS_HEADERS})
+target_link_libraries(${PROJECT_NAME}_app PRIVATE astro_shared snapshot_shared webui OpenMP::OpenMP_CXX)
 if(UNIX AND NOT APPLE)
-    target_link_libraries(helios_app PRIVATE pthread m dl)
+    target_link_libraries(${PROJECT_NAME}_app PRIVATE pthread m dl)
 endif()
-
-set_target_properties(helios_app PROPERTIES
-    OUTPUT_NAME helios
+set_target_properties(${PROJECT_NAME}_app PROPERTIES
+    OUTPUT_NAME ${PROJECT_NAME}
     CLEAN_DIRECT_OUTPUT 1
-    RUNTIME_OUTPUT_DIRECTORY ${CMAKE_INSTALL_PREFIX}/bin/helios
+    RUNTIME_OUTPUT_DIRECTORY ${CMAKE_INSTALL_PREFIX}/bin/${PROJECT_NAME}
 )
+target_include_directories(${PROJECT_NAME}_app PUBLIC ${HELIOS_DIRS})
 
-install(
-    DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/templates/
-    DESTINATION ${CMAKE_INSTALL_PREFIX}/bin/helios/templates
-)
+if(WIN32)
+    target_compile_definitions(${PROJECT_NAME}_app PUBLIC "_HELIOS_ROOT_=\"${CMAKE_CURRENT_LIST_DIR}\"" WIN32_LEAN_AND_MEAN NOMINMAX)
+else()
+    target_compile_definitions(${PROJECT_NAME}_app PUBLIC "_HELIOS_ROOT_=\"${CMAKE_CURRENT_LIST_DIR}\"")
+endif()
