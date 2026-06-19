@@ -346,18 +346,54 @@
             speedVal.textContent = state.speed.toFixed(1) + "×";
         });
 
+        // ---------- Gravity checkboxes ----------
+        document.getElementById("10x10").addEventListener("click", () => {
+            const cb = document.getElementById("10x10");
+            if (cb.checked) {
+                document.getElementById("40x40").checked = false;
+                document.getElementById("80x80").checked = false;
+            }
+        });
+        document.getElementById("40x40").addEventListener("click", () => {
+            const cb = document.getElementById("40x40");
+            if (cb.checked) {
+                document.getElementById("10x10").checked = false;
+                document.getElementById("80x80").checked = false;
+            }
+        });
+        document.getElementById("80x80").addEventListener("click", () => {
+            const cb = document.getElementById("80x80");
+            if (cb.checked) {
+                document.getElementById("10x10").checked = false;
+                document.getElementById("40x40").checked = false;
+            }
+        });
+
         // ---------- Repropagate button ----------
         document.getElementById("repropBtn").addEventListener("click", async () => {
-            // Parse the options and send a repropagate request to the backend
+
             const btn = document.getElementById("repropBtn");
+
+            // Parse the options and send a repropagate request to the backend
             const propMin = parseFloat(document.getElementById("propMin").value);
             const stepMin = parseFloat(document.getElementById("stepMin").value);
             const ten = document.getElementById("10x10").checked;
-            const fourty = parseInt(document.getElementById("40x40").value);
-            const eighty = parseInt(document.getElementById("80x80").value);
+            const fourty = document.getElementById("40x40").checked;
+            const eighty = document.getElementById("80x80").checked;
             const srp = document.getElementById("srp").checked;
             const nbody = document.getElementById("nbody").checked;
             const drag = document.getElementById("drag").checked;
+
+            const settings = JSON.stringify({
+                "propMin": propMin,
+                "stepMin": stepMin,
+                "ten": ten,
+                "fourty": fourty,
+                "eighty": eighty,
+                "srp": srp,
+                "nbody": nbody,
+                "drag": drag
+            });
 
             if (isNaN(propMin) || propMin <= 0 || isNaN(stepMin) || stepMin <= 0) {
                 console.error("[helios] Invalid input: Propagation and step minutes must be positive numbers.");
@@ -367,24 +403,24 @@
             btn.disabled = true;
             btn.textContent = "[helios] Propagating…";
             try {
-                const raw = await webui.call("repropagate", String(propMin), String(stepMin), String(ten), String(fourty), String(eighty), String(srp), String(nbody), String(drag));
+                const raw = await webui.call("repropagate", settings);
                 const result = JSON.parse(raw);
                 if (!result.error) {
-                    updatePropagation(result.frames, result.numeric, result.stats);
+                    updatePropagation(result);
                 } else {
                     console.error("[helios] Repropagate error:", result.error);
                 }
             } finally {
                 btn.disabled = false;
-                btn.textContent = "[helios] Repropagate";
+                btn.textContent = "Repropagate";
             }
         });
 
         // Updates the scene with a new propagation result
-        function updatePropagation(newFrames, newNumeric, newStats) {
-            frames = newFrames;
-            numeric = newNumeric;
-            stats = newStats;
+        function updatePropagation(result) {
+            frames = result.frames;
+            numeric = result.numeric;
+            stats = result.stats;
             state.simProgress = 0;
             updateMetrics();
         }
@@ -474,7 +510,7 @@
                 const ly = a[1] + blend * (b[1] - a[1]);
                 const lz = a[2] + blend * (b[2] - a[2]);
                 const p = project([lx, ly, lz]);
-                if (p.z > span * 0.9) continue;
+                if (p.z > span * 0.9) { continue; }
                 const alpha = Math.max(0.18, Math.min(1, 0.22 + 0.78 * p.d));
                 const r = Math.max(0.7, Math.min(2.3, 1.1 * p.d));
                 ctx.fillStyle = altColor(lx, ly, lz);

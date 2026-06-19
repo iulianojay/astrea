@@ -69,6 +69,10 @@ std::vector<GeneralPerturbations> load_gp_from_db()
     return result;
 }
 
+inline constexpr struct AppFrame
+    : FixedOffsetFrame<frames::primary, Angle(90.0 * deg), Angle::zero(), Angle::zero(), RotationSequence::XYZ> {
+} AppFrame;
+
 PropagationResult propagate_many_objects(const std::vector<GeneralPerturbations>& gpObjects, const PropagationSettings& settings)
 {
     const Time propTime = settings.propTime;
@@ -124,11 +128,13 @@ PropagationResult propagate_many_objects(const std::vector<GeneralPerturbations>
                 std::size_t frameIdx = 0;
                 for (const auto& state : history) {
                     if (frameIdx >= nExpectedFrames) break;
-                    const auto r                = state.get_position();
-                    const double R              = r.norm().numerical_value_in(km);
-                    const double x              = r.get_x().numerical_value_in(km);
-                    const double y              = r.get_y().numerical_value_in(km);
-                    const double z              = r.get_z().numerical_value_in(km);
+                    // TODO: Do this rotation here for speed
+                    const auto rApp = state.get_position();
+                    // const auto rApp             = state.get_position_in_frame<AppFrame>();
+                    const double R              = rApp.norm().numerical_value_in(km);
+                    const double x              = rApp.get_x().numerical_value_in(km);
+                    const double y              = rApp.get_y().numerical_value_in(km);
+                    const double z              = rApp.get_z().numerical_value_in(km);
                     result.frames[frameIdx][ii] = { x, y, z };
                     maxRadius                   = std::max(maxRadius, R);
                     ++frameIdx;
@@ -222,7 +228,7 @@ std::string build_repropagate_json(const PropagationSettings& settings, const Pr
     nums["earthRadiusKm"] = EARTH_RADIUS_KM;
     nums["maxRadiusKm"]   = results.maxRadiusKm;
 
-    std::ostringstream json;
+    std::ostringstream json; // nlohmann::json doesn't work here for some reason
     json << "{\"frames\":" << build_frames_js(results.frames) << ",\"numeric\":" << nums.dump()
          << ",\"stats\":" << stats.dump() << "}";
     return json.str();
@@ -258,16 +264,17 @@ int main(int argc, char* argv[])
     // receives as the resolved promise value and applies directly.
     window.bind("repropagate", [&](webui::window::event* e) {
         try {
-            const PropagationSettings newSettings = { .propTime = minutes(std::stod(e->get_string(0))),
-                                                      .step     = minutes(std::stod(e->get_string(1))),
-                                                      .ten      = e->get_string(2) == "true",
-                                                      .fourty   = e->get_string(3) == "true",
-                                                      .eighty   = e->get_string(4) == "true",
-                                                      .srp      = e->get_string(5) == "true",
-                                                      .nBody    = e->get_string(6) == "true",
-                                                      .drag     = e->get_string(7) == "true" };
+            const nlohmann::json args             = nlohmann::json::parse(e->get_string(0));
+            const PropagationSettings newSettings = { .propTime = minutes(args["propMin"].get<double>()),
+                                                      .step     = minutes(args["stepMin"].get<double>()),
+                                                      .ten      = args["ten"].get<bool>(),
+                                                      .fourty   = args["fourty"].get<bool>(),
+                                                      .eighty   = args["eighty"].get<bool>(),
+                                                      .srp      = args["srp"].get<bool>(),
+                                                      .nBody    = args["nbody"].get<bool>(),
+                                                      .drag     = args["drag"].get<bool>() };
 
-            std::cout << "[helios] Repropagating: " << newSettings.propTime << " / " << newSettings.step << " step...\n";
+            std::cout << "[helios] Repropagating: " << newSettings.propTime.in(min) << " / " << newSettings.step.in(min) << " step...\n";
             const auto results = propagate_many_objects(gpObjects, newSettings);
             std::cout << "[helios] Repropagate complete in " << results.elapsedMs << " ms\n";
 
