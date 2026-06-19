@@ -26,8 +26,17 @@ Astrea is tested and supported on the following platforms:
 | Platform               | Status         |
 |------------------------|----------------|
 | Ubuntu 20.04+          | ✅ Supported   |
-| Windows 10/11          | ❌ In Progress |
-| macOS 11.0+            | ❌ In Progress |
+| Windows 10/11          | ✅ Supported   |
+| macOS 11.0+            | ❌ Not Supported Yet |
+
+Astrea has been tested with the following compilers:
+
+| Compiler               | Version        | Status         |
+|------------------------|----------------|----------------|
+| GCC                    | 14.0+          | ✅ Supported   |
+| Clang                  | 14.0+          | ❌ In Progress |
+| MSVC                   | 19.30+         | ❌ In Progress |
+| Apple Clang            | 14.0+          | ❌ Untested |
 
 ## Installation Methods
 
