@@ -22,7 +22,7 @@ if(MSVC)
     # add_compile_options(/wd4996) # Disable deprecation warnings
 elseif(MINGW)
     # MinGW (Windows GCC) flags
-    set(COMMON_FLAGS "-DWL=64 -m64 -fPIC")
+    set(COMMON_FLAGS "-DWL=64 -m64 -fPIC -Wno-interference-size")
     set(DEBUG_FLAGS "${COMMON_FLAGS} -g -fno-inline -fno-inline-small-functions -fno-default-inline -O0")
     set(RELEASE_FLAGS "${COMMON_FLAGS} -O3 -ffinite-loops")
     set(RELWITHHDEBINFO_FLAGS "${RELEASE_FLAGS} -g")
