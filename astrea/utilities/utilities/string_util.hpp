@@ -64,7 +64,7 @@ std::string replace_all(std::string const& original, std::string const& before, 
  * @return The demangled type name as a string.
  */
 template <typename T>
-std::string get_body_type_name()
+std::string get_type_name()
 {
 #if defined(_MSC_VER)
     static const std::string name(1024);
