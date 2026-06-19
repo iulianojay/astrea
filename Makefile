@@ -14,7 +14,6 @@ cxx_ver := $(shell $(cxx) -dumpversion | cut -d. -f1)
 comp := $(cxx_name)-$(cxx_ver)-$(cxx_std)
 tests_path := tests
 
-# Compiler configuration - can be 'gcc' or 'mingw'
 ifneq (,$(wildcard $(config_path)/.venv/bin/activate))
 	venv_activate := $(config_path)/.venv/bin/activate
 else ifneq (,$(wildcard $(config_path)/.venv/Scripts/activate))
@@ -22,6 +21,7 @@ else ifneq (,$(wildcard $(config_path)/.venv/Scripts/activate))
 else
 	venv_activate :=
 endif
+# Compiler configuration - can be 'gcc' or 'clang' or 'mingw'
 compiler := gcc
 toolchain_file :=
 toolchain_make :=
@@ -114,7 +114,15 @@ relwithdebinfo:
 gcc:
 	$(eval compiler = gcc)
 	$(eval toolchain_file = )
-	$(eval toolchain_make = ")
+	$(eval toolchain_make = )
+	$(eval build_path := $(abspath ./build/$(compiler)/$(comp)/$(build_type)))
+	$(eval install_path := $(abspath ./install/$(compiler)/$(comp)/$(build_type)))
+
+.PHONY: clang
+clang:
+	$(eval compiler = clang)
+	$(eval toolchain_file = )
+	$(eval toolchain_make = )
 	$(eval build_path := $(abspath ./build/$(compiler)/$(comp)/$(build_type)))
 	$(eval install_path := $(abspath ./install/$(compiler)/$(comp)/$(build_type)))
 

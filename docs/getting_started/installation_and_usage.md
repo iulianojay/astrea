@@ -25,18 +25,22 @@ Astrea is tested and supported on the following platforms:
 
 | Platform               | Status         |
 |------------------------|----------------|
-| Ubuntu 20.04+          | ✅ Supported   |
-| Windows 10/11          | ✅ Supported   |
-| macOS 11.0+            | ❌ Not Supported Yet |
+| Ubuntu 20.04+          | ✅ Supported  |
+| Windows 10/11          | ✅ Supported  |
+| macOS 11.0+            | ❓ Untested   |
 
 Astrea has been tested with the following compilers:
 
 | Compiler               | Version        | Status         |
 |------------------------|----------------|----------------|
 | GCC                    | 14.0+          | ✅ Supported   |
-| Clang                  | 14.0+          | ❌ In Progress |
+| Clang                  | 14.0+          | ✅ Supported |
 | MSVC                   | 19.30+         | ❌ In Progress |
-| Apple Clang            | 14.0+          | ❌ Untested |
+| Apple Clang            | 14.0+          | ❓ Untested |
+
+MacOS and Apple Clang is currently untested but I expect it works since linux Clang works fine.
+
+Note: I have not extensively tested every compiler version on every platform, so please make an issue if you encounter any problems or have questions about compatibility.
 
 ## Installation Methods
 

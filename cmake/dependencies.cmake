@@ -88,7 +88,10 @@ CPMFindPackage(
 )
 
 # CPR for HTTP requests
-find_package(CURL REQUIRED)
+if(WIN32)
+    # You need it for both linux and windows but this function breaks the build on linux and is required on windows
+    find_package(CURL REQUIRED)
+endif()
 CPMFindPackage(
     NAME cpr
     GITHUB_REPOSITORY libcpr/cpr
