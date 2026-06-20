@@ -31,24 +31,18 @@
 namespace astrea {
 namespace hermes {
 
-namespace {
-
-using pamgo::vector_double;
-
-}
-
 class SimsFlanaganProblem {
   public:
     SimsFlanaganProblem()  = default;
     ~SimsFlanaganProblem() = default;
 
-    vector_double::size_type get_nic() const;
+    pamgo::vector_double::size_type get_nic() const;
 
-    vector_double::size_type get_nobj() const;
+    pamgo::vector_double::size_type get_nobj() const;
 
-    std::pair<vector_double, vector_double> get_bounds() const;
+    std::pair<pamgo::vector_double, pamgo::vector_double> get_bounds() const;
 
-    vector_double fitness(const vector_double&) const;
+    pamgo::vector_double fitness(const pamgo::vector_double&) const;
 
     std::string get_name() const;
 };

@@ -39,6 +39,10 @@ class Trajectory {
     static Trajectory
         ballistic(astro::Integrator& integrator, astro::Vehicle& vehicle, const State& initialState, const Time& propTime, std::size_t nSegments, std::size_t nSubsegmentsPerSegment);
 
+    static Trajectory from_vector(const std::vector<double>& vec);
+
+    std::vector<double> to_vector() const;
+
     std::size_t get_id() const;
 
     const std::vector<Segment>& get_segments() const;
