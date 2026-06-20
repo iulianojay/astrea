@@ -32,9 +32,12 @@ ifeq ($(compiler),mingw)
 	venv_activate := $(config_path)/.venv/Scripts/activate
 	toolchain_file := -DCMAKE_TOOLCHAIN_FILE=$(abspath cmake/windows_toolchain.cmake)
 	toolchain_make := -G "MinGW Makefiles"
+else ifeq ($(compiler),msvc)
+	venv_activate := $(config_path)/.venv/Scripts/activate
+	toolchain_make := -G "Visual Studio 18 2026" -A x64
 endif
 
-CMAKE := $(venv_activate) && cmake
+CMAKE := source $(venv_activate) && cmake
 build_type := Release
 build_type_lower := $(shell echo $(build_type) | tr A-Z a-z)
 build_path := $(abspath ./build/$(compiler)/$(comp)/$(build_type))

@@ -27,7 +27,9 @@ function(build_tests CURRENT_PROJECT TEST_TYPE TEST_FILES USE_HELPER_HDRS HELPER
         add_executable(${TEST_EXE} ${TEST_FILE})
 
         # Set properties
-        target_compile_options(${TEST_EXE} PUBLIC -Wno-parentheses -Wno-unused-but-set-variable -Wno-unused-variable -Wno-unused-local-typedefs)
+        if (NOT MSVC)
+            target_compile_options(${TEST_EXE} PUBLIC -Wno-parentheses -Wno-unused-but-set-variable -Wno-unused-variable -Wno-unused-local-typedefs)
+        endif()
         set_target_properties(${TEST_EXE} PROPERTIES OUTPUT_NAME ${TEST_EXE})
         set(GTEST_CREATE_SHARED_LIBRARY 1)
         set(BUILD_GMOCK OFF)
@@ -71,7 +73,9 @@ function(build_benchmarks CURRENT_PROJECT BENCHMARK_FILES HELPER_HDRS HELPER_SRC
         add_executable(${BENCHMARK_EXE} ${BENCHMARK_FILE})
 
         # Set properties
-        target_compile_options(${BENCHMARK_EXE} PUBLIC -Wno-parentheses -Wno-unused-but-set-variable -Wno-unused-variable -Wno-unused-local-typedefs)
+        if (NOT MSVC)
+            target_compile_options(${BENCHMARK_EXE} PUBLIC -Wno-parentheses -Wno-unused-but-set-variable -Wno-unused-variable -Wno-unused-local-typedefs)
+        endif()
         set_target_properties(${BENCHMARK_EXE} PROPERTIES OUTPUT_NAME ${BENCHMARK_EXE})
 
         # Helper files
@@ -105,7 +109,9 @@ function(build_examples CURRENT_PROJECT EXAMPLE_FILES)
 
         add_executable         (${EXAMPLE_NAME} ${EXAMPLE_FILE})
         set_target_properties  (${EXAMPLE_NAME} PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${EXAMPLE_DIRECTORY}/bin)
-        target_compile_options (${EXAMPLE_NAME} PUBLIC -Wno-parentheses -Wno-unused-but-set-variable -Wno-unused-variable -Wno-unused-local-typedefs)
+        if (NOT MSVC)
+            target_compile_options (${EXAMPLE_NAME} PUBLIC -Wno-parentheses -Wno-unused-but-set-variable -Wno-unused-variable -Wno-unused-local-typedefs)
+        endif()
         target_link_libraries  (${EXAMPLE_NAME} PUBLIC ${CURRENT_PROJECT}_shared)
 
     endforeach(EXAMPLE_FILE ${EXAMPLE_FILES})
