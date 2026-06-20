@@ -12,6 +12,7 @@
 #pragma once
 
 #include <cmath>
+#include <algorithm>
 
 #include <mp-units/math.h>
 #include <mp-units/systems/angular.h>

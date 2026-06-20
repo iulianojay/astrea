@@ -6291,14 +6291,48 @@ inclusion of Howard Hinnat's date library into the official C++ standard chrono 
 </tr>
 <tr>
 <td>Windows 10/11</td>
-<td>❌ In Progress</td>
+<td>✅ Supported</td>
 </tr>
 <tr>
 <td>macOS 11.0+</td>
-<td>❌ In Progress</td>
+<td>❓ Untested</td>
 </tr>
 </tbody>
 </table>
+<p>Astrea has been tested with the following compilers:</p>
+<table>
+<thead>
+<tr>
+<th>Compiler</th>
+<th>Version</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GCC</td>
+<td>14.0+</td>
+<td>✅ Supported</td>
+</tr>
+<tr>
+<td>Clang</td>
+<td>14.0+</td>
+<td>✅ Supported</td>
+</tr>
+<tr>
+<td>MSVC</td>
+<td>19.30+</td>
+<td>❌ In Progress</td>
+</tr>
+<tr>
+<td>Apple Clang</td>
+<td>14.0+</td>
+<td>❓ Untested</td>
+</tr>
+</tbody>
+</table>
+<p>MacOS and Apple Clang is currently untested but I expect it works since linux Clang works fine.</p>
+<p>Note: I have not extensively tested every compiler version on every platform, so please make an issue if you encounter any problems or have questions about compatibility.</p>
 <h2 id="installation-methods">Installation Methods<a class="headerlink" href="#installation-methods" title="Permanent link">&para;</a></h2>
 <h3 id="method-1-quick-install-recommended">Method 1: Quick Install (Recommended)<a class="headerlink" href="#method-1-quick-install-recommended" title="Permanent link">&para;</a></h3>
 <p>For most users, the quickest way to get started is using the provided Makefile automation:</p>

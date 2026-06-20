@@ -36,7 +36,7 @@ std::string trim(const std::string& str, const std::string& whitespace = " \t");
 std::string replace_all(std::string const& original, std::string const& before, std::string const& after);
 
 template <typename T>
-std::string get_body_type_name()
+std::string get_type_name()
 {
 #if defined(_MSC_VER)
     static const std::string name(1024);

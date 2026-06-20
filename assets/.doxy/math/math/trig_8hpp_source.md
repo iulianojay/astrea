@@ -12,6 +12,7 @@
 #pragma once
 
 #include <cmath>
+#include <numbers>
 
 #include <mp-units/math.h>
 #include <mp-units/systems/angular.h>
@@ -103,7 +104,7 @@ T atan3(T y, T x)
         sx = -1;
     }
 
-    static constexpr T PI_T = static_cast<T>(M_PI);
+    static constexpr T PI_T = static_cast<T>(std::numbers::pi);
     if (std::abs(y) < 1e-10) { return (1 - sx) * PI_T / 2.0; }
     else if (std::abs(x) < 1e-10) {
         return (2.0 - sy) * PI_T / 2.0;

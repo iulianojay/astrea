@@ -69,7 +69,7 @@
 |  std::optional&lt; T &gt; | [**extract\_optional\_from\_json**](#function-extract_optional_from_json) (const nlohmann::json & json, const std::string & key) <br>_Extracts an optional value of type T from a JSON object using the specified key._  |
 |  std::optional&lt; std::string &gt; | [**extract\_optional\_string\_from\_json**](#function-extract_optional_string_from_json) (const nlohmann::json & json, const std::string & key) <br>_Extracts an optional string value from a JSON object using the specified key._  |
 |  std::string | [**extract\_string\_from\_json**](#function-extract_string_from_json) (const nlohmann::json & json, const std::string & key) <br>_Extracts a string value from a JSON object using the specified key._  |
-|  std::string | [**get\_body\_type\_name**](#function-get_body_type_name) () <br>_Gets the demangled(ish) type name of a given type._  |
+|  std::string | [**get\_type\_name**](#function-get_type_name) () <br>_Gets the demangled(ish) type name of a given type._  |
 |  std::string | [**replace\_all**](#function-replace_all) (std::string const & original, std::string const & before, std::string const & after) <br>_Replaces all occurrences of a substring with another substring in a string._  |
 |  std::vector&lt; std::string &gt; | [**split**](#function-split) (std::string s, const std::string & delimiter) <br>_Splits a string into a vector of substrings based on a delimiter._  |
 |  std::string | [**trim**](#function-trim) (const std::string & str, const std::string & whitespace=" \t") <br>_Trims whitespace from both ends of a string._  |
@@ -347,12 +347,12 @@ The extracted string value.
 
 
 
-### function get\_body\_type\_name 
+### function get\_type\_name 
 
 _Gets the demangled(ish) type name of a given type._ 
 ```C++
 template<typename T>
-std::string astrea::utilities::get_body_type_name () 
+std::string astrea::utilities::get_type_name () 
 ```
 
 

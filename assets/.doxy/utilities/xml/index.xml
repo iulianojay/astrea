@@ -52,7 +52,7 @@
     <member refid="string__util_8cpp_1a455229793d7b30219c70666cdb047d1d" kind="function"><name>trim</name></member>
     <member refid="string__util_8cpp_1af336411da30b885e2d9c0bb75e020108" kind="function"><name>replace_all</name></member>
     <member refid="string__util_8cpp_1a3011ed6748a7ac802536103c65071708" kind="function"><name>split</name></member>
-    <member refid="string__util_8hpp_1a87fa822b60e3ee4c47fc285238224f6e" kind="function"><name>get_body_type_name</name></member>
+    <member refid="string__util_8hpp_1a6c60e71575b555b414c005ce01ad7e85" kind="function"><name>get_type_name</name></member>
   </compound>
   <compound refid="IdProvider_8hpp" kind="file"><name>IdProvider.hpp</name>
   </compound>

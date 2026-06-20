@@ -11,6 +11,7 @@
 _Mathematical operations for quantities.._ [More...](#detailed-description)
 
 * `#include <cmath>`
+* `#include <algorithm>`
 * `#include <mp-units/math.h>`
 * `#include <mp-units/systems/angular.h>`
 * `#include <mp-units/systems/si.h>`

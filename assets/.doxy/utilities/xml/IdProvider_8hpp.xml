@@ -4,6 +4,7 @@
     <compoundname>IdProvider.hpp</compoundname>
     <includes local="no">atomic</includes>
     <includes local="no">mp-units/framework/symbol_text.h</includes>
+    <includedby refid="utilities_8hpp" local="no">astrea/utilities/utilities/utilities.hpp</includedby>
     <incdepgraph>
       <node id="1">
         <label>astrea/utilities/utilities/IdProvider.hpp</label>
@@ -20,6 +21,18 @@
         <label>mp-units/framework/symbol_text.h</label>
       </node>
     </incdepgraph>
+    <invincdepgraph>
+      <node id="1">
+        <label>astrea/utilities/utilities/IdProvider.hpp</label>
+        <link refid="IdProvider_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>astrea/utilities/utilities/utilities.hpp</label>
+        <link refid="utilities_8hpp"/>
+      </node>
+    </invincdepgraph>
     <innerclass refid="classastrea_1_1utilities_1_1IdProvider" prot="public">astrea::utilities::IdProvider</innerclass>
     <innernamespace refid="namespaceastrea">astrea</innernamespace>
     <innernamespace refid="namespaceastrea_1_1utilities">astrea::utilities</innernamespace>
