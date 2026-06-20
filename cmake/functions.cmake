@@ -202,6 +202,7 @@ function(generate_ephemeris_files PROJECT_SOURCE_DIRECTORY)
     if(NOT Python3_FOUND)
         message(FATAL_ERROR "Python 3 is required for ephemeris generation but was not found")
     endif()
+    message("Python3 Found. Using exectuable at ${Python3_EXECUTABLE}")
 
     add_custom_command(
         OUTPUT

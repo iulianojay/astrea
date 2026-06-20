@@ -20,7 +20,7 @@ message(STATUS "Configuring Astrea version ${ASTREA_VERSION}")
 project(
     astrea
     VERSION ${ASTREA_VERSION}
-    DESCRIPTION "Astrea: Nebula Back-End Simulation Library"
+    DESCRIPTION "Astrea: Astrodynamics Back-End Simulation Library"
     LANGUAGES CXX C
 )
 

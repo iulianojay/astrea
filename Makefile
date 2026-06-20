@@ -34,7 +34,7 @@ ifeq ($(compiler),mingw)
 	toolchain_make := -G "MinGW Makefiles"
 endif
 
-CMAKE := source $(venv_activate) && cmake
+CMAKE := $(venv_activate) && cmake
 build_type := Release
 build_type_lower := $(shell echo $(build_type) | tr A-Z a-z)
 build_path := $(abspath ./build/$(compiler)/$(comp)/$(build_type))
@@ -80,7 +80,8 @@ build:
 	-DBUILD_PROFILERS=$(build_profilers) \
 	-DBUILD_CHECKCASE_DATABASE=$(build_checkcase_db) \
 	-DRUN_6DOF_CHECKCASES=$(run_6dof_checkcases) \
-	-Wno-dev
+	-DCURL_INCLUDE_DIR="C:\curl-8.20.0_5-win64-mingw\curl-8.20.0_5-win64-mingw\bin" \
+	-DCURL_LIBRARY="C:\curl-8.20.0_5-win64-mingw\curl-8.20.0_5-win64-mingw\lib"
 	
 .PHONY: build-gcc
 build-gcc: gcc build
@@ -130,7 +131,7 @@ clang:
 msvc:
 	$(eval compiler = msvc)
 	$(eval toolchain_file = )
-	$(eval toolchain_make = -G "Visual Studio 17 2022" -A x64)
+	$(eval toolchain_make = -G "Visual Studio 18 2026" -A x64)
 	$(eval build_path := $(abspath ./build/$(compiler)/$(comp)/$(build_type)))
 	$(eval install_path := $(abspath ./install/$(compiler)/$(comp)/$(build_type)))
 

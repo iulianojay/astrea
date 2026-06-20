@@ -4,6 +4,7 @@
 .cpm-cache
 .gcovr
 .venv
+.vs
 .vscode
 .cpm-cache
 CMake*
