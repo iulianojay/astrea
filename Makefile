@@ -82,9 +82,7 @@ build:
 	-DBUILD_STATIC=$(build_static) \
 	-DBUILD_PROFILERS=$(build_profilers) \
 	-DBUILD_CHECKCASE_DATABASE=$(build_checkcase_db) \
-	-DRUN_6DOF_CHECKCASES=$(run_6dof_checkcases) \
-	-DCURL_INCLUDE_DIR="C:\curl-8.20.0_5-win64-mingw\curl-8.20.0_5-win64-mingw\bin" \
-	-DCURL_LIBRARY="C:\curl-8.20.0_5-win64-mingw\curl-8.20.0_5-win64-mingw\lib"
+	-DRUN_6DOF_CHECKCASES=$(run_6dof_checkcases) 
 	
 .PHONY: build-gcc
 build-gcc: gcc build

@@ -45,5 +45,7 @@ target_include_directories(${DRIVER_NAME}_shared PUBLIC ${ASTRO_DIRS} ${CMAKE_CU
 
 add_executable(${DRIVER_NAME} ${BASE}/build_database.cpp)
 set_target_properties(${DRIVER_NAME} PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${BASE}/bin)
-target_compile_options(${DRIVER_NAME} PUBLIC -Wno-unused-but-set-variable -Wno-unused-variable -Wno-unused-local-typedefs)
+if (NOT MSVC)
+    target_compile_options(${DRIVER_NAME} PUBLIC -Wno-parentheses -Wno-unused-but-set-variable -Wno-unused-variable -Wno-unused-local-typedefs)
+endif()
 target_link_libraries(${DRIVER_NAME} PUBLIC ${DRIVER_NAME}_shared ${CHECKCASE_LIBS})
