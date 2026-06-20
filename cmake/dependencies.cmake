@@ -88,6 +88,7 @@ CPMFindPackage(
 )
 
 # CPR for HTTP requests
+find_package(CURL REQUIRED)
 CPMFindPackage(
     NAME cpr
     GITHUB_REPOSITORY libcpr/cpr

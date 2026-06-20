@@ -44,6 +44,7 @@ set(UTILITIES_DIRS
 # Find library
 set(UTILITIES_LIBS
     nlohmann_json::nlohmann_json
+    mp-units::mp-units
 )
 
 # Shared library
