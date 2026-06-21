@@ -42,6 +42,10 @@ class Segment {
     static Segment
         ballistic(astro::Integrator& integrator, astro::Vehicle& vehicle, const State& initialState, const Time& segmentTime, std::size_t nSubsegments);
 
+    void propagate_no_storage(astro::Integrator& integrator, astro::Vehicle& vehicle);
+
+    astro::StateHistory propagate(astro::Integrator& integrator, astro::Vehicle& vehicle);
+
     std::size_t get_id() const;
 
     const std::vector<Subsegment>& get_subsegments() const;

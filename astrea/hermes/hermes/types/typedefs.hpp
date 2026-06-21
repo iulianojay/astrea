@@ -21,11 +21,15 @@
 #include <functional>
 #include <optional>
 
+#include <pagmo/types.hpp>
+
 namespace astrea {
 namespace hermes {
 
 template <typename T>
 using OptionalRef = std::optional<std::reference_wrapper<T>>;
+
+using DoubleVector = pamgo::vector_double;
 
 } // namespace hermes
 } // namespace astrea

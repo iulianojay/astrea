@@ -41,11 +41,18 @@ class Subsegment {
 
     static Subsegment ballistic(astro::Integrator& integrator, astro::Vehicle& vehicle, const State& initialState, const Time& timeOfFlight);
 
+    void propagate_no_storage(astro::Integrator& integrator, astro::Vehicle& vehicle, const State& initialState, const Time& timeOfFlight);
+
+    astro::StateHistory
+        propagate(astro::Integrator& integrator, astro::Vehicle& vehicle, const State& initialState, const Time& timeOfFlight);
+
     std::size_t get_id() const;
 
     void set_initial_node(const Node& node);
 
     void set_final_node(const Node& node);
+
+    void set_direction(bool isForward);
 
     const Node& get_initial_node() const;
 
@@ -69,6 +76,7 @@ class Subsegment {
     std::size_t _id;
     Node _initialNode;
     Node _finalNode;
+    bool _isForward;
 };
 
 } // namespace hermes

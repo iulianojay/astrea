@@ -36,24 +36,51 @@ Segment::Segment(const SegmentSettings& settings)
     else {
         _subsegments.back().set_final_node(startingNode);
     }
+    for (auto& subsegment : _subsegments) {
+        subsegment.set_direction(_isForward);
+    }
 }
 
 Segment Segment::ballistic(astro::Integrator& integrator, astro::Vehicle& vehicle, const State& initialState, const Time& segmentTime, std::size_t nSubsegments)
 {
-    const Time subsegmentTime = segmentTime / nSubsegments;
+    const Time timeOfFlight = segmentTime / nSubsegments;
 
     std::vector<Subsegment> subsegments;
     subsegments.reserve(nSubsegments);
 
     State subsegmentState = initialState;
     for (std::size_t ii = 0; ii < nSubsegments; ++ii) {
-        const Subsegment subsegment = Subsegment::ballistic(integrator, vehicle, subsegmentState, subsegmentTime);
+        const Subsegment subsegment = Subsegment::ballistic(integrator, vehicle, subsegmentState, timeOfFlight);
         subsegmentState             = subsegment.get_final_state();
         subsegments.emplace_back(subsegment);
     }
 
     const Segment segment(subsegments);
     return Segment(subsegments);
+}
+
+void Segment::propagate_no_storage(astro::Integrator& integrator, astro::Vehicle& vehicle)
+{
+    const Time timeOfFlight = _duration / _subsegments.size();
+    State subsegmentState   = get_initial_state();
+    for (auto& subsegment : _subsegments) {
+        subsegment.propagate_no_storage(integrator, vehicle, subsegmentState, timeOfFlight);
+        subsegmentState = subsegment.get_final_state();
+    }
+}
+
+astro::StateHistory Segment::propagate(astro::Integrator& integrator, astro::Vehicle& vehicle)
+{
+    astro::StateHistory history;
+
+    const Time timeOfFlight = _duration / _subsegments.size();
+    State subsegmentState   = get_initial_state();
+    for (auto& subsegment : _subsegments) {
+        const astro::StateHistory subsegmentHistory = subsegment.propagate(integrator, vehicle, subsegmentState, timeOfFlight);
+        history.insert(history.end(), subsegmentHistory.begin(), subsegmentHistory.end());
+        subsegmentState = subsegment.get_final_state();
+    }
+    return history;
 }
 
 std::size_t Segment::get_id() const { return _id; }

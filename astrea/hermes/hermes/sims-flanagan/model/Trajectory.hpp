@@ -43,6 +43,10 @@ class Trajectory {
     static Trajectory
         ballistic(astro::Integrator& integrator, astro::Vehicle& vehicle, const State& initialState, const Time& propTime, std::size_t nSegments, std::size_t nSubsegmentsPerSegment);
 
+    void propagate_no_storage(astro::Integrator& integrator, astro::Vehicle& vehicle);
+
+    astro::StateHistory propagate(astro::Integrator& integrator, astro::Vehicle& vehicle);
+
     std::size_t get_id() const;
 
     const std::vector<Segment>& get_segments() const;
@@ -73,6 +77,7 @@ class Trajectory {
     DeltaV _initialBurn;
     DeltaV _finalBurn;
     std::vector<DeltaV> _burns;
+    astro::Date _epoch;
 };
 
 } // namespace hermes

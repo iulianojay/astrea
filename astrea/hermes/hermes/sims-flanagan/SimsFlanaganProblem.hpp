@@ -21,7 +21,6 @@
 #include <vector>
 
 #include <pagmo/problem.hpp>
-#include <pagmo/types.hpp>
 
 #include <hermes/sims-flanagan/model/DeltaV.hpp>
 #include <hermes/sims-flanagan/model/Segment.hpp>
@@ -31,20 +30,64 @@
 namespace astrea {
 namespace hermes {
 
+struct SimsFlanaganSettings {
+    std::size_t nSegments;
+    std::size_t nSubsegmentsPerSegment;
+    Distance minPosition;
+    Distance maxPosition;
+    Velocity minVelocity;
+    Velocity maxVelocity;
+    Velocity maxDeltaV;
+    astro::Integrator integrator;
+    astro::Vehicle vehicle;
+};
+
 class SimsFlanaganProblem {
   public:
-    SimsFlanaganProblem()  = default;
+    SimsFlanaganProblem() = default;
+
+    SimsFlanaganProblem(const SimsFlanaganSettings& settings) :
+        _nSegments(settings.nSegments),
+        _nSubsegmentsPerSegment(settings.nSubsegmentsPerSegment),
+        _maxDeltaV(settings.maxDeltaV),
+        _integrator(settings.integrator),
+        _vehicle(settings.vehicle),
+        _nBurnsPerSegment(_nSubsegmentsPerSegment - 1),
+        _nDecisionsPerSegment(8 + 3 * _nBurnsPerSegment),
+        _nDecisions(_nDecisionsPerSegment * _nSegments)
+    {
+    }
+
     ~SimsFlanaganProblem() = default;
 
-    pamgo::vector_double::size_type get_nic() const;
+    std::size_t get_nx() const;
 
-    pamgo::vector_double::size_type get_nobj() const;
+    std::size_t get_nic() const;
 
-    std::pair<pamgo::vector_double, pamgo::vector_double> get_bounds() const;
+    std::size_t get_nobj() const;
 
-    pamgo::vector_double fitness(const pamgo::vector_double&) const;
+    std::pair<DoubleVector, DoubleVector> get_bounds() const;
+
+    DoubleVector fitness(const DoubleVector& x) const;
 
     std::string get_name() const;
+
+    Trajectory decode_decision_vector(const DoubleVector& x) const;
+
+  private:
+    std::size_t _nSegments;
+    std::size_t _nSubsegmentsPerSegment;
+    Distance _minPosition;
+    Distance _maxPosition;
+    Velocity _minVelocity;
+    Velocity _maxVelocity;
+    Velocity _maxDeltaV;
+    astro::Integrator _integrator;
+    astro::Vehicle _vehicle;
+
+    const std::size_t _nBurnsPerSegment;
+    const std::size_t _nDecisionsPerSegment;
+    const std::size_t _nDecisions;
 };
 
 } // namespace hermes

@@ -17,6 +17,8 @@
 #include <pagmo/algorithms.hpp>
 #include <pagmo/problem.hpp>
 
+#include <astro/astro.hpp>
+
 #include <hermes/sims-flanagan/SimsFlanaganProblem.hpp>
 
 using namespace astrea;
@@ -24,9 +26,41 @@ using namespace hermes;
 
 int main()
 {
-    SimsFlanaganProblem problem;
-    pagmo::problem pagmo_problem{ problem };
+    // Setup
+    astro::Integrator integrator;
+    astro::J2MeanVop eoms;
+    integrator.set_equations_of_motion(eoms);
+    integrator.set_abs_tol(1e-10);
+    integrator.set_rel_tol(1e-10);
 
+    astro::Spacecraft sat;
+    astro::Vehicle vehicle{ sat };
+
+    SimsFlanaganSettings settings{ .nSegments              = 10,
+                                   .nSubsegmentsPerSegment = 5,
+                                   .minPosition            = -1000.0 * km,
+                                   .maxPosition            = 1000.0 * km,
+                                   .minVelocity            = -10.0 * km / s,
+                                   .maxVelocity            = 10.0 * km / s,
+                                   .maxDeltaV              = 1.0 * km / s,
+                                   .integrator             = integrator,
+                                   .vehicle                = vehicle };
+    SimsFlanaganProblem problem(settings);
+
+    // Build problem, algorithm, and population
+    pagmo::problem pagmoProblem{ problem };
+    pagmo::algorithm algo{ pagmo::de() };
+    pagmo::population pop{ pagmoProblem, 20 };
+
+    // Evolve the population
+    pop = algo.evolve(pop);
+
+    // Output the best solution
+    std::cout << "Best solution found: " << pop.champion_x() << std::endl;
+    std::cout << "Best fitness: " << pop.champion_f() << std::endl;
+
+    Trajectory trajectory = problem.decode_decision_vector(pop.champion_x());
+    astro::StateHistory   = trajectory.propagate(integrator, vehicle);
 
     return 0;
 }

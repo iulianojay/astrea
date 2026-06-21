@@ -13,26 +13,98 @@
 
 #include <hermes/sims-flanagan/SimsFlanaganProblem.hpp>
 
+#include <mp-units/core.hpp>
+#include <mp-units/systems/si.hpp>
+
+#include <units/units.hpp>
+
 namespace astrea {
 namespace hermes {
 
-using pamgo::vector_double;
-
+using mp_units::non_si::day;
+using mp_units::si::unit_symbols::km;
+using mp_units::si::unit_symbols::s;
 
 std::string SimsFlanaganProblem::get_name() const { return "Sims-Flanagan Problem"; }
 
-vector_double::size_type SimsFlanaganProblem::get_nic() const { return 0; }
+std::size_t SimsFlanaganProblem::get_nx() const { return _nDecisions; }
 
-vector_double::size_type SimsFlanaganProblem::get_nobj() const { return 1; }
+std::size_t SimsFlanaganProblem::get_nic() const { return 0; }
+
+std::size_t SimsFlanaganProblem::get_nobj() const { return 4; }
 
 std::pair<vector_double, vector_double> SimsFlanaganProblem::get_bounds() const
 {
-    const vector_double lb{ 0.0 };
-    const vector_double ub{ 1e6 };
+    const vector_double lb(_nDecisions, 0.0);
+    const vector_double ub(_nDecisions, 1.0);
     return { lb, ub };
 }
 
-vector_double SimsFlanaganProblem::fitness(const vector_double&) const {}
+bool convert_decision_value_to_bool(double value) { return value >= 0.5; }
+
+template <typename T>
+T convert_decision_value_to_quantity(double value, T min, T max)
+{
+    return min + value * (max - min);
+}
+
+Trajectory SimsFlanaganProblem::decode_decision_vector(const DoubleVector& x) const
+{
+    // Build out settings blocks from the decision vector
+    TrajectorySettings settings;
+    settings.nSegments = _nSegments;
+    settings.segmentSettings.reserve(_nSegments);
+    for (std::size_t ii = 0; ii < _nSegments; ++ii) {
+        std::size_t idx = _nDecisionsPerSegment * ii;
+
+        SegmentSettings segSettings;
+        segSettings.nSubsegments = _nSubsegmentsPerSegment;
+        segSettings.isForward    = convert_decision_value_to_bool(x[idx]);
+        segSettings.duration     = convert_decision_value_to_quantity(x[idx + 1], Time(0.0), Time(1.0));
+
+        // Build the state
+        segSettings.initialState = astro::Cartesian<astro::frames::primary>{
+            convert_decision_value_to_quantity(x[idx + 2], _minPosition, _maxPosition),
+            convert_decision_value_to_quantity(x[idx + 3], _minPosition, _maxPosition),
+            convert_decision_value_to_quantity(x[idx + 4], _minPosition, _maxPosition),
+            convert_decision_value_to_quantity(x[idx + 5], _minVelocity, _maxVelocity),
+            convert_decision_value_to_quantity(x[idx + 6], _minVelocity, _maxVelocity),
+            convert_decision_value_to_quantity(x[idx + 7], _minVelocity, _maxVelocity)
+        };
+
+        // Build out the burns
+        segSettings.subsegBurns.reserve(_nBurnsPerSegment);
+        for (std::size_t jj = 0; jj < _nBurnsPerSegment; ++jj) {
+            segSettings.subsegBurns.push_back(
+                DeltaV{ convert_decision_value_to_quantity(x[idx + 8 + 3 * jj], Velocity::zero(), _maxDeltaV),
+                        convert_decision_value_to_quantity(x[idx + 9 + 3 * jj], Velocity::zero(), _maxDeltaV),
+                        convert_decision_value_to_quantity(x[idx + 10 + 3 * jj], Velocity::zero(), _maxDeltaV) }
+            );
+        }
+
+        // Store
+        settings.segmentSettings.emplace_back(segSettings);
+    }
+    return Trajectory(settings);
+}
+
+vector_double SimsFlanaganProblem::fitness(const vector_double& x) const
+{
+    // Build the trajectory and propagate
+    Trajectory trajectory = decode_decision_vector(x);
+    trajectory.propagate(_integrator, _vehicle);
+
+    // Compute objectives
+    const Distance positionViolation = compute_position_violation(trajectory);
+    const Velocity velocityViolation = compute_velocity_violation(trajectory);
+    const Velocity totalDeltaV       = compute_total_delta_v(trajectory);
+    const Time totalTimeOfFlight     = compute_total_time_of_flight(trajectory);
+
+    return { positionViolation.numerical_value_in(km),
+             velocityViolation.numerical_value_in(km / s),
+             totalDeltaV.numerical_value_in(km / s),
+             totalTimeOfFlight.numerical_value_in(day) };
+}
 
 } // namespace hermes
 } // namespace astrea

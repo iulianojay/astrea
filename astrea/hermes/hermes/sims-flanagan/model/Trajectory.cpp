@@ -57,6 +57,23 @@ Trajectory Trajectory::ballistic(
     return Trajectory(segments);
 }
 
+void Trajectory::propagate_no_storage(astro::Integrator& integrator, astro::Vehicle& vehicle)
+{
+    for (auto& segment : _segments) {
+        segment.propagate_no_storage(integrator, vehicle);
+    }
+}
+
+astro::StateHistory Trajectory::propagate(astro::Integrator& integrator, astro::Vehicle& vehicle)
+{
+    astro::StateHistory history;
+    for (const auto& segment : _segments) {
+        const auto segmentHistory = segment.propagate(integrator, vehicle);
+        history.insert(history.end(), segmentHistory.begin(), segmentHistory.end());
+    }
+    return history;
+}
+
 std::size_t Trajectory::get_id() const { return _id; }
 
 const std::vector<Segment>& Trajectory::get_segments() const { return _segments; }
