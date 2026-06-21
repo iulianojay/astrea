@@ -25,27 +25,27 @@
 #include <hermes/sims-flanagan/model/DeltaV.hpp>
 #include <hermes/sims-flanagan/model/Segment.hpp>
 #include <hermes/sims-flanagan/model/State.hpp>
+#include <hermes/sims-flanagan/settings.hpp>
 #include <hermes/types/typedefs.hpp>
 
 namespace astrea {
 namespace hermes {
 
-struct SimsFlanaganSettings {
-    std::size_t nSegments;
-    std::size_t nSubsegmentsPerSegment;
-    Distance minPosition;
-    Distance maxPosition;
-    Velocity minVelocity;
-    Velocity maxVelocity;
-    Velocity maxDeltaV;
-    astro::Integrator integrator;
-    astro::Vehicle vehicle;
-};
-
+/**
+ * @brief A class representing the Sims-Flanagan trajectory optimization problem, which can be used with pagmo for optimization
+ */
 class SimsFlanaganProblem {
   public:
+    /**
+     * @brief Default constructor for the SimsFlanaganProblem class
+     */
     SimsFlanaganProblem() = default;
 
+    /**
+     * @brief Construct a new SimsFlanaganProblem object from the given settings
+     *
+     * @param settings The settings for the Sims-Flanagan problem
+     */
     SimsFlanaganProblem(const SimsFlanaganSettings& settings) :
         _nSegments(settings.nSegments),
         _nSubsegmentsPerSegment(settings.nSubsegmentsPerSegment),
@@ -58,36 +58,76 @@ class SimsFlanaganProblem {
     {
     }
 
+    /**
+     * @brief Default destructor for the SimsFlanaganProblem class
+     */
     ~SimsFlanaganProblem() = default;
 
+    /**
+     * @brief Get the number of decision variables for this problem
+     *
+     * @return std::size_t The number of decision variables for this problem
+     */
     std::size_t get_nx() const;
 
+    /**
+     * @brief Get the number of objectives for this problem
+     *
+     * @return std::size_t The number of objectives for this problem
+     */
     std::size_t get_nic() const;
 
+    /**
+     * @brief Get the number of constraints for this problem
+     *
+     * @return std::size_t The number of constraints for this problem
+     */
     std::size_t get_nobj() const;
 
+    /**
+     * @brief Get the bounds for the decision variables of this problem
+     *
+     * @return std::pair<vector_double, vector_double> A pair of vectors representing the lower and upper bounds for the decision variables of this problem
+     */
     std::pair<DoubleVector, DoubleVector> get_bounds() const;
 
+    /**
+     * @brief Evaluate the fitness of a given decision vector
+     *
+     * @param x The decision vector to evaluate
+     * @return vector_double The fitness values for the given decision vector
+     */
     DoubleVector fitness(const DoubleVector& x) const;
 
+    /**
+     * @brief Get the name of this problem
+     *
+     * @return std::string The name of this problem
+     */
     std::string get_name() const;
 
+    /**
+     * @brief Decode a decision vector into a Trajectory object
+     *
+     * @param x The decision vector to decode
+     * @return Trajectory The Trajectory object decoded from the given decision vector
+     */
     Trajectory decode_decision_vector(const DoubleVector& x) const;
 
   private:
-    std::size_t _nSegments;
-    std::size_t _nSubsegmentsPerSegment;
-    Distance _minPosition;
-    Distance _maxPosition;
-    Velocity _minVelocity;
-    Velocity _maxVelocity;
-    Velocity _maxDeltaV;
-    astro::Integrator _integrator;
-    astro::Vehicle _vehicle;
+    std::size_t _nSegments;              //!< The number of segments in the trajectory
+    std::size_t _nSubsegmentsPerSegment; //!< The number of subsegments per segment in the trajectory
+    Distance _minPosition;               //!< The minimum position value for the decision variables
+    Distance _maxPosition;               //!< The maximum position value for the decision variables
+    Velocity _minVelocity;               //!< The minimum velocity value for the decision variables
+    Velocity _maxVelocity;               //!< The maximum velocity value for the decision variables
+    Velocity _maxDeltaV;                 //!< The maximum delta-v value for the decision variables
+    astro::Integrator _integrator;       //!< The integrator to use for propagating the trajectory
+    astro::Vehicle _vehicle;             //!< The vehicle to use for propagating the trajectory
 
-    const std::size_t _nBurnsPerSegment;
-    const std::size_t _nDecisionsPerSegment;
-    const std::size_t _nDecisions;
+    const std::size_t _nBurnsPerSegment; //!< The number of burns per segment in the trajectory (equal to nSubsegmentsPerSegment - 1)
+    const std::size_t _nDecisionsPerSegment; //!< The number of decision variables per segment in the trajectory (equal to 8 + 3 * nBurnsPerSegment)
+    const std::size_t _nDecisions; //!< The total number of decision variables for the trajectory (equal to nDecisionsPerSegment * nSegments)
 };
 
 } // namespace hermes

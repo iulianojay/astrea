@@ -31,52 +31,165 @@
 namespace astrea {
 namespace hermes {
 
+/**
+ * @brief A class representing a subsegment of a Sims-Flanagan trajectory, consisting of an initial node and a final node
+ */
 class Subsegment {
   public:
+    /**
+     * @brief Construct a new Subsegment object
+     *
+     * @param initialNode The initial node of the subsegment
+     * @param finalNode The final node of the subsegment
+     */
     Subsegment() = default;
 
+    /**
+     * @brief Construct a new Subsegment object
+     *
+     * @param initialNode The initial node of the subsegment
+     * @param finalNode The final node of the subsegment
+     */
     Subsegment(const Node& initialNode, const Node& finalNode = {});
 
+    /**
+     * @brief Default destructor for the Subsegment class
+     */
     ~Subsegment() = default;
 
+    /**
+     * @brief Create a new Subsegment object representing a ballistic trajectory
+     *
+     * @param integrator The integrator to use for propagating the trajectory
+     * @param vehicle The vehicle to use for propagating the trajectory
+     * @param initialState The initial state of the subsegment
+     * @param timeOfFlight The time of flight for the subsegment
+     * @return Subsegment A new Subsegment object representing a ballistic trajectory
+     */
     static Subsegment ballistic(astro::Integrator& integrator, astro::Vehicle& vehicle, const State& initialState, const Time& timeOfFlight);
 
+    /**
+     * @brief Propagate the subsegment without storing the state history
+     *
+     * @param integrator The integrator to use for propagating the trajectory
+     * @param vehicle The vehicle to use for propagating the trajectory
+     * @param initialState The initial state of the subsegment
+     * @param timeOfFlight The time of flight for the subsegment
+     */
     void propagate_no_storage(astro::Integrator& integrator, astro::Vehicle& vehicle, const State& initialState, const Time& timeOfFlight);
 
+    /**
+     * @brief Propagate the subsegment and return the state history
+     *
+     * @param integrator The integrator to use for propagating the trajectory
+     * @param vehicle The vehicle to use for propagating the trajectory
+     * @param initialState The initial state of the subsegment
+     * @param timeOfFlight The time of flight for the subsegment
+     * @return astro::StateHistory The state history of the propagated subsegment
+     */
     astro::StateHistory
         propagate(astro::Integrator& integrator, astro::Vehicle& vehicle, const State& initialState, const Time& timeOfFlight);
 
+    /**
+     * @brief Get the unique identifier for this Subsegment instance
+     *
+     * @return std::size_t The unique identifier for this Subsegment instance
+     */
     std::size_t get_id() const;
 
+    /**
+     * @brief Set the initial node of the subsegment
+     *
+     * @param node The initial node to set for the subsegment
+     */
     void set_initial_node(const Node& node);
 
+    /**
+     * @brief Set the final node of the subsegment
+     *
+     * @param node The final node to set for the subsegment
+     */
     void set_final_node(const Node& node);
 
+    /**
+     * @brief Set the direction of the subsegment
+     *
+     * @param isForward Whether the subsegment is forward-propagating (true) or backward-propagating (false)
+     */
     void set_direction(bool isForward);
 
+    /**
+     * @brief Get the initial node of the subsegment
+     *
+     * @return const Node& The initial node of the subsegment
+     */
     const Node& get_initial_node() const;
 
+    /**
+     * @brief Get the final node of the subsegment
+     *
+     * @return const Node& The final node of the subsegment
+     */
     const Node& get_final_node() const;
 
+    /**
+     * @brief Get the subsegment time of flight
+     *
+     * @return const Time& The time of flight for the subsegment
+     */
     const Time& get_time_of_flight() const;
 
+    /**
+     * @brief Get the initial state of the subsegment
+     *
+     * @return const State& The initial state of the subsegment
+     */
     const State& get_initial_state() const;
 
+    /**
+     * @brief Get the final state of the subsegment
+     *
+     * @return const State& The final state of the subsegment
+     */
     const State& get_final_state() const;
 
+    /**
+     * @brief Get the node with the given ID
+     *
+     * @param id The unique identifier of the node to retrieve
+     * @return OptionalRef<const Node> An optional reference to the node with the given ID, or std::nullopt if no such node exists
+     */
     OptionalRef<const Node> get_node(std::size_t id) const;
 
+    /**
+     * @brief Get the node with the given ID
+     *
+     * @param id The unique identifier of the node to retrieve
+     * @return OptionalRef<Node> An optional reference to the node with the given ID, or std::nullopt if no such node exists
+     */
     OptionalRef<Node> get_node(std::size_t id);
 
+    /**
+     * @brief Get the state with the given ID
+     *
+     * @param id The unique identifier of the state to retrieve
+     * @return OptionalRef<const State> An optional reference to the state with the given ID, or std::nullopt if no such state exists
+     */
     OptionalRef<const State> get_state(std::size_t id) const;
 
+    /**
+     * @brief Get the state with the given ID
+     *
+     * @param id The unique identifier of the state to retrieve
+     * @return OptionalRef<State> An optional reference to the state with the given ID, or std::nullopt if no such state exists
+     */
     OptionalRef<State> get_state(std::size_t id);
 
   private:
-    std::size_t _id;
-    Node _initialNode;
-    Node _finalNode;
-    bool _isForward;
+    std::size_t _id;   //!< Unique identifier for this Subsegment instance
+    Node _initialNode; //!< The initial node of the subsegment
+    Node _finalNode;   //!< The final node of the subsegment
+    bool _isForward;   //!< Whether the subsegment is forward-propagating (true) or backward-propagating (false)
 };
 
 } // namespace hermes

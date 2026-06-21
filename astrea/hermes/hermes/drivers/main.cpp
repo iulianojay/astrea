@@ -18,10 +18,13 @@
 #include <pagmo/problem.hpp>
 
 #include <astro/astro.hpp>
+#include <astro/utilities/plotting.hpp>
 
 #include <hermes/sims-flanagan/SimsFlanaganProblem.hpp>
 
 using namespace astrea;
+using namespace astro;
+using namespace astro::plotting;
 using namespace hermes;
 
 int main()
@@ -61,6 +64,8 @@ int main()
 
     Trajectory trajectory = problem.decode_decision_vector(pop.champion_x());
     astro::StateHistory   = trajectory.propagate(integrator, vehicle);
+
+    plot_history(stateHistory);
 
     return 0;
 }

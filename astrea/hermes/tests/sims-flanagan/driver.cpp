@@ -26,12 +26,11 @@ using namespace hermes;
 class SimsFlanaganTest : public testing::Test {
   public:
     SimsFlanaganTest() :
-        mu(sys.get_mu()),
         eom(forces),
         propTime(weeks(1)),
         epoch(J2000)
     {
-        state = astro::State({ Keplerian::LEO() }, epoch, sys);
+        state = astro::State({ Keplerian<frames::primary>::LEO() }, epoch);
         integrator.set_equations_of_motion(eom);
     }
 
@@ -40,8 +39,6 @@ class SimsFlanaganTest : public testing::Test {
     const Unitless REL_TOL = 1.0e-6;
     const Unitless ABS_TOL = 1.0e-2;
 
-    AstrodynamicsSystem sys;
-    GravParam mu;
     CowellsMethod eom;
     ForceModel forces;
     Integrator integrator;

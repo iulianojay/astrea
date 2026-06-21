@@ -77,7 +77,7 @@ astro::StateHistory Segment::propagate(astro::Integrator& integrator, astro::Veh
     State subsegmentState   = get_initial_state();
     for (auto& subsegment : _subsegments) {
         const astro::StateHistory subsegmentHistory = subsegment.propagate(integrator, vehicle, subsegmentState, timeOfFlight);
-        history.insert(history.end(), subsegmentHistory.begin(), subsegmentHistory.end());
+        history.insert(subsegmentHistory);
         subsegmentState = subsegment.get_final_state();
     }
     return history;

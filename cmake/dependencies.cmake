@@ -162,15 +162,17 @@ CPMFindPackage(
 )
 
 # Optimization
-CPMAddPackage(
+CPMFindPackage(
     NAME pagmo
-    SOURCE_DIR ${CMAKE_SOURCE_DIR}/../open-source/pagmo2
+    GITHUB_REPOSITORY iulianojay/pagmo2
+    GIT_SHALLOW TRUE
+    GIT_TAG modernization
     OPTIONS
     "PAGMO_BUILD_TESTS OFF"
     "PAGMO_BUILD_BENCHMARKS OFF"
     "PAGMO_BUILD_TUTORIALS OFF"
     "PAGMO_WITH_EIGEN3 OFF"
-    "PAGMO_WITH_NLOPT OFF"
+    "PAGMO_WITH_NLOPT ON"
     "PAGMO_WITH_IPOPT OFF"
     "PAGMO_WITH_MPI OFF"
     "PAGMO_BUILD_STATIC_LIBRARY OFF"

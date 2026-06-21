@@ -28,28 +28,72 @@
 namespace astrea {
 namespace hermes {
 
+/**
+ * @brief A class representing a node in the Sims-Flanagan trajectory
+ */
 class Node {
   public:
+    /**
+     * @brief Construct a new Node object
+     *
+     * @param state The state of the node
+     */
     Node(const State& state = {});
 
+    /**
+     * @brief Construct a new Node object
+     *
+     * @param stateIn The state of the trajectory entering the node
+     * @param stateOut The state of the trajectory exiting the node
+     */
     Node(const State& stateIn, const State& stateOut);
 
+    /**
+     * @brief Default destructor for the Node class
+     */
     ~Node() = default;
 
+    /**
+     * @brief Get the unique identifier for this Node instance
+     *
+     * @return std::size_t The unique identifier for this Node instance
+     */
     std::size_t get_id() const;
 
+    /**
+     * @brief Get the state of the trajectory entering the node
+     *
+     * @return const State& The state of the trajectory entering the node
+     */
     const State& get_state_in() const;
 
+    /**
+     * @brief Get the state of the trajectory exiting the node
+     *
+     * @return const State& The state of the trajectory exiting the node
+     */
     const State& get_state_out() const;
 
+    /**
+     * @brief Get the state of the node with the given ID
+     *
+     * @param id The unique identifier of the state to retrieve
+     * @return OptionalRef<const State> An optional reference to the state with the given ID, or std::nullopt if no such state exists
+     */
     OptionalRef<const State> get_state(std::size_t id) const;
 
+    /**
+     * @brief Get the state of the node with the given ID
+     *
+     * @param id The unique identifier of the state to retrieve
+     * @return OptionalRef<State> An optional reference to the state with the given ID, or std::nullopt if no such state exists
+     */
     OptionalRef<State> get_state(std::size_t id);
 
   private:
-    std::size_t _id;
-    State _stateIn;
-    State _stateOut;
+    std::size_t _id; //!< Unique identifier for this Node instance
+    State _stateIn;  //!< The state of the trajectory entering the node
+    State _stateOut; //!< The state of the trajectory exiting the node
 };
 
 } // namespace hermes

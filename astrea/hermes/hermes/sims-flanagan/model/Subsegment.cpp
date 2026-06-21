@@ -26,7 +26,7 @@ Subsegment::Subsegment(const Node& initialNode, const Node& finalNode) :
 Subsegment Subsegment::ballistic(astro::Integrator& integrator, astro::Vehicle& vehicle, const State& initialState, const Time& timeOfFlight)
 {
     const State state = integrator.propagate_no_storage(initialState.get_state(), timeOfFlight, vehicle);
-    const Subsegment subsegment({ Node(initialState), Node(state) });
+    Subsegment subsegment({ Node(initialState), Node(state) });
     subsegment.set_direction(true);
     return subsegment;
 }
@@ -51,12 +51,12 @@ astro::StateHistory
     if (_isForward) {
         const astro::StateHistory stateHistory = integrator.propagate(initialState.get_state(), timeOfFlight, vehicle);
         set_initial_node(Node(initialState));
-        set_final_node(Node(stateHistory.back()));
+        set_final_node(Node(stateHistory.last()));
         return stateHistory;
     }
     else {
         const astro::StateHistory stateHistory = integrator.propagate(initialState.get_state(), -timeOfFlight, vehicle);
-        set_initial_node(Node(stateHistory.back()));
+        set_initial_node(Node(stateHistory.last()));
         set_final_node(Node(initialState));
         return stateHistory;
     }

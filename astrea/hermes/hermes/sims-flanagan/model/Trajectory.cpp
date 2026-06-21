@@ -67,9 +67,9 @@ void Trajectory::propagate_no_storage(astro::Integrator& integrator, astro::Vehi
 astro::StateHistory Trajectory::propagate(astro::Integrator& integrator, astro::Vehicle& vehicle)
 {
     astro::StateHistory history;
-    for (const auto& segment : _segments) {
+    for (auto& segment : _segments) {
         const auto segmentHistory = segment.propagate(integrator, vehicle);
-        history.insert(history.end(), segmentHistory.begin(), segmentHistory.end());
+        history.insert(segmentHistory);
     }
     return history;
 }

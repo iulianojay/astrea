@@ -26,10 +26,16 @@
 namespace astrea {
 namespace hermes {
 
+/**
+ * @brief A type alias for an optional reference.
+ */
 template <typename T>
 using OptionalRef = std::optional<std::reference_wrapper<T>>;
 
-using DoubleVector = pamgo::vector_double;
+/**
+ * @brief A type alias for a vector of doubles.
+ */
+using DoubleVector = pagmo::vector_double;
 
 } // namespace hermes
 } // namespace astrea

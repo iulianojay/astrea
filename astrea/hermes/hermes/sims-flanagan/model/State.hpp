@@ -25,19 +25,40 @@
 namespace astrea {
 namespace hermes {
 
+/**
+ * @brief A class representing the state of the trajectory at a given point in time
+ */
 class State {
   public:
+    /**
+     * @brief Construct a new State object
+     *
+     * @param state The state of the trajectory at a given point in time
+     */
     State(const astro::State& state = {});
 
+    /**
+     * @brief Default destructor for the State class
+     */
     ~State() = default;
 
+    /**
+     * @brief Get the unique identifier for this State instance
+     *
+     * @return std::size_t The unique identifier for this State instance
+     */
     std::size_t get_id() const;
 
+    /**
+     * @brief Get the state of the trajectory at a given point in time
+     *
+     * @return const astro::State& The state of the trajectory at a given point in time
+     */
     const astro::State& get_state() const;
 
   private:
-    std::size_t _id;
-    astro::State _state;
+    std::size_t _id;     //!< The unique identifier for this State instance
+    astro::State _state; //!< The state of the trajectory at a given point in time
 };
 
 } // namespace hermes

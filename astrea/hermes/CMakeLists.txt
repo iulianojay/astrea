@@ -12,7 +12,7 @@ cmake_minimum_required(VERSION 3.28.3)
 project(
     hermes
     VERSION ${ASTREA_VERSION}
-    DESCRIPTION "Transfer Optimization Library"
+    DESCRIPTION "Orbit-Transfer Optimization Library"
     LANGUAGES CXX
 )
 
