@@ -60,7 +60,7 @@ Trajectory SimsFlanaganProblem::decode_decision_vector(const DoubleVector& x) co
         SegmentSettings segSettings;
         segSettings.nSubsegments = _nSubsegmentsPerSegment;
         segSettings.isForward    = convert_decision_value_to_bool(x[idx]);
-        segSettings.duration     = convert_decision_value_to_quantity(x[idx + 1], Time(0.0), Time(1.0));
+        segSettings.duration     = convert_decision_value_to_quantity(x[idx + 1], Time::zero(), _maxFlightTime);
 
         // Build the state
         segSettings.initialState = astro::Cartesian<astro::frames::primary>{
@@ -86,6 +86,37 @@ Trajectory SimsFlanaganProblem::decode_decision_vector(const DoubleVector& x) co
         settings.segmentSettings.emplace_back(segSettings);
     }
     return Trajectory(settings);
+}
+
+DoubleVector SimsFlanaganProblem::encode_trajectory(const Trajectory& trajectory) const
+{
+    DoubleVector x(_nDecisions, 0.0);
+    const auto& segments = trajectory.get_segments();
+    for (std::size_t ii = 0; ii < _nSegments; ++ii) {
+        const auto& segment = segments[ii];
+        std::size_t idx     = _nDecisionsPerSegment * ii;
+
+        x[idx]     = segment.is_forward() ? 1.0 : 0.0;
+        x[idx + 1] = segment.get_duration().numerical_value_in(s);
+
+        const auto& initialState = segment.get_initial_state().get<astro::Cartesian<astro::frames::primary>>();
+        x[idx + 2]               = (initialState.x() - _minPosition) / (_maxPosition - _minPosition);
+        x[idx + 3]               = (initialState.y() - _minPosition) / (_maxPosition - _minPosition);
+        x[idx + 4]               = (initialState.z() - _minPosition) / (_maxPosition - _minPosition);
+        x[idx + 5]               = (initialState.vx() - _minVelocity) / (_maxVelocity - _minVelocity);
+        x[idx + 6]               = (initialState.vy() - _minVelocity) / (_maxVelocity - _minVelocity);
+        x[idx + 7]               = (initialState.vz() - _minVelocity) / (_maxVelocity - _minVelocity);
+
+        const auto& burns = segment.get_burns();
+        for (std::size_t jj = 0; jj < burns.size(); ++jj) {
+            const auto& burn     = burns[jj];
+            x[idx + 8 + 3 * jj]  = (burn.dx() / _maxDeltaV).numerical_value_in(one);
+            x[idx + 9 + 3 * jj]  = (burn.dy() / _maxDeltaV).numerical_value_in(one);
+            x[idx + 10 + 3 * jj] = (burn.dz() / _maxDeltaV).numerical_value_in(one);
+        }
+    }
+
+    return x;
 }
 
 vector_double SimsFlanaganProblem::fitness(const vector_double& x) const

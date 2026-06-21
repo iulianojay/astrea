@@ -18,6 +18,9 @@
  */
 #pragma once
 
-#include <hermes/sims-flanagan/SimsFlanaganProblem.hpp>
-#include <hermes/sims-flanagan/model.hpp>
-#include <hermes/sims-flanagan/settings.hpp>
+#include <hermes/sims-flanagan/model/DeltaV.hpp>
+#include <hermes/sims-flanagan/model/Node.hpp>
+#include <hermes/sims-flanagan/model/Segment.hpp>
+#include <hermes/sims-flanagan/model/State.hpp>
+#include <hermes/sims-flanagan/model/Subsegment.hpp>
+#include <hermes/sims-flanagan/model/Trajectory.hpp>

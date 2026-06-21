@@ -1,8 +1,8 @@
 /**
- * @file hermes.hpp
+ * @file hermes.macros.hpp
  * @author Jay Iuliano (iuliano.jay@gmail.com)
- * @brief Header file for the hermes module
- * @date 2026-04-24
+ * @brief Macros for the hermes module
+ * @date 2026-06-01
  *
  * @copyright Copyright (c) 2026 Jay Iuliano
  *
@@ -18,6 +18,9 @@
  */
 #pragma once
 
-#include <hermes/sims-flanagan/SimsFlanaganProblem.hpp>
-#include <hermes/sims-flanagan/model.hpp>
-#include <hermes/sims-flanagan/settings.hpp>
+#ifndef _HERMES_ROOT_
+
+#define _HERMES_ROOT_
+static_assert(false, "HERMES_ROOT environment variable not set or passed to compiler.");
+
+#endif // _HERMES_ROOT_

@@ -56,6 +56,7 @@ struct TrajectorySettings {
 struct SimsFlanaganSettings {
     std::size_t nSegments;              //!< The number of segments in the trajectory
     std::size_t nSubsegmentsPerSegment; //!< The number of subsegments per segment in the trajectory
+    Time maxFlightTime;                 //!< The maximum flight time for the entire trajectory
     Distance minPosition;               //!< The minimum position magnitude for any state in the trajectory
     Distance maxPosition;               //!< The maximum position magnitude for any state in the trajectory
     Velocity minVelocity;               //!< The minimum velocity magnitude for any state in the trajectory

@@ -49,6 +49,11 @@ class SimsFlanaganProblem {
     SimsFlanaganProblem(const SimsFlanaganSettings& settings) :
         _nSegments(settings.nSegments),
         _nSubsegmentsPerSegment(settings.nSubsegmentsPerSegment),
+        _maxFlightTime(settings.maxFlightTime),
+        _minPosition(settings.minPosition),
+        _maxPosition(settings.maxPosition),
+        _minVelocity(settings.minVelocity),
+        _maxVelocity(settings.maxVelocity),
         _maxDeltaV(settings.maxDeltaV),
         _integrator(settings.integrator),
         _vehicle(settings.vehicle),
@@ -62,6 +67,11 @@ class SimsFlanaganProblem {
      * @brief Default destructor for the SimsFlanaganProblem class
      */
     ~SimsFlanaganProblem() = default;
+
+    SimsFlanaganProblem(const SimsFlanaganProblem&)            = default;
+    SimsFlanaganProblem(SimsFlanaganProblem&&)                 = default;
+    SimsFlanaganProblem& operator=(const SimsFlanaganProblem&) = default;
+    SimsFlanaganProblem& operator=(SimsFlanaganProblem&&)      = default;
 
     /**
      * @brief Get the number of decision variables for this problem
@@ -114,9 +124,18 @@ class SimsFlanaganProblem {
      */
     Trajectory decode_decision_vector(const DoubleVector& x) const;
 
+    /**
+     * @brief Encode a Trajectory object into a decision vector
+     *
+     * @param trajectory The Trajectory object to encode
+     * @return DoubleVector The decision vector encoded from the given Trajectory object
+     */
+    DoubleVector encode_trajectory(const Trajectory& trajectory) const;
+
   private:
     std::size_t _nSegments;              //!< The number of segments in the trajectory
     std::size_t _nSubsegmentsPerSegment; //!< The number of subsegments per segment in the trajectory
+    Time _maxFlightTime;                 //!< The maximum flight time for the entire trajectory
     Distance _minPosition;               //!< The minimum position value for the decision variables
     Distance _maxPosition;               //!< The maximum position value for the decision variables
     Velocity _minVelocity;               //!< The minimum velocity value for the decision variables

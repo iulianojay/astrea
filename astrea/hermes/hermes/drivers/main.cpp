@@ -11,16 +11,17 @@
  * have received a copy of the GNU General Public License along with Astrea. If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include <pagmo
-
 #include <pagmo/algorithm.hpp>
-#include <pagmo/algorithms.hpp>
+#include <pagmo/algorithms/de.hpp>
 #include <pagmo/problem.hpp>
 
 #include <astro/astro.hpp>
 #include <astro/utilities/plotting.hpp>
 
+#include <hermes/hermes.macros.hpp>
 #include <hermes/sims-flanagan/SimsFlanaganProblem.hpp>
+#include <hermes/sims-flanagan/model.hpp>
+#include <hermes/sims-flanagan/settings.hpp>
 
 using namespace astrea;
 using namespace astro;
@@ -39,8 +40,12 @@ int main()
     astro::Spacecraft sat;
     astro::Vehicle vehicle{ sat };
 
+    // Problem settings
+    astro::State initialState({ Keplerian<frames::primary>::LEO() }, J2000);
+    Time initialPropTime = weeks(1);
     SimsFlanaganSettings settings{ .nSegments              = 10,
                                    .nSubsegmentsPerSegment = 5,
+                                   .maxFlightTime          = 4 * initialPropTime,
                                    .minPosition            = -1000.0 * km,
                                    .maxPosition            = 1000.0 * km,
                                    .minVelocity            = -10.0 * km / s,
@@ -50,22 +55,32 @@ int main()
                                    .vehicle                = vehicle };
     SimsFlanaganProblem problem(settings);
 
-    // Build problem, algorithm, and population
+    // Build problem, and algorithm
     pagmo::problem pagmoProblem{ problem };
     pagmo::algorithm algo{ pagmo::de() };
+
+    // Use ballistic case as first guess
     pagmo::population pop{ pagmoProblem, 20 };
+    const Trajectory ballisticTrajectory =
+        Trajectory::ballistic(integrator, vehicle, initialState, initialPropTime, settings.nSegments, settings.nSubsegmentsPerSegment);
+    const DoubleVector guess = problem.encode_trajectory(ballisticTrajectory);
+    pop.set_x(0, guess);
 
     // Evolve the population
-    pop = algo.evolve(pop);
+    const std::size_t nEvolutions = 10;
+    for (std::size_t ii = 0; ii < nEvolutions; ++ii) {
+        pop = algo.evolve(pop);
+    }
 
-    // Output the best solution
-    std::cout << "Best solution found: " << pop.champion_x() << std::endl;
-    std::cout << "Best fitness: " << pop.champion_f() << std::endl;
+    // Repropagate the best solution and plot
+    Trajectory trajectory            = problem.decode_decision_vector(pop.champion_x());
+    astro::StateHistory stateHistory = trajectory.propagate(integrator, vehicle);
 
-    Trajectory trajectory = problem.decode_decision_vector(pop.champion_x());
-    astro::StateHistory   = trajectory.propagate(integrator, vehicle);
+    std::filesystem::path guessPath    = std::string(_HERMES_ROOT_) + "/results/guess.png";
+    std::filesystem::path solutionPath = std::string(_HERMES_ROOT_) + "/results/result.png";
 
-    plot_history(stateHistory);
+    plot_trajectory(stateHistory, guessPath);
+    plot_trajectory(stateHistory, solutionPath);
 
     return 0;
 }

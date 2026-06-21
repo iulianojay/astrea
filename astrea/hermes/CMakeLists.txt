@@ -82,6 +82,13 @@ if(${BUILD_STATIC})
     target_compile_definitions(${PROJECT_NAME}_static PUBLIC ${EPHEMERIS_COMPILE_DEFINES} "_HERMES_ROOT_=\"${CMAKE_CURRENT_LIST_DIR}\"")
 endif()
 
+# Executable
+add_executable(${PROJECT_NAME}_exe ${HERMES_BASE}/drivers/main.cpp)
+set_target_properties(${PROJECT_NAME}_exe PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ${PROJECT_NAME} CLEAN_DIRECT_OUTPUT 1 RUNTIME_OUTPUT_DIRECTORY ${CMAKE_INSTALL_PREFIX}/bin/hermes)
+target_include_directories(${PROJECT_NAME}_exe PUBLIC ${HERMES_DIRS})
+target_link_libraries(${PROJECT_NAME}_exe PUBLIC ${PROJECT_NAME}_shared)
+target_compile_options(${PROJECT_NAME}_exe PUBLIC -Wno-unused-local-typedefs -Wno-uninitialized -Wno-maybe-uninitialized)
+
 # Install headers
 install(
     DIRECTORY ${HERMES_BASE}
