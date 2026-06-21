@@ -33,13 +33,19 @@ namespace hermes {
 
 class Subsegment {
   public:
-    Subsegment(const Node& initialNode = {}, const Node& finalNode = {}, const Time& timeOfFlight = {});
+    Subsegment() = default;
+
+    Subsegment(const Node& initialNode, const Node& finalNode = {});
 
     ~Subsegment() = default;
 
-    static Subsegment ballistic(astro::Integrator& integrator, astro::Vehicle& vehicle, const State& initialState, const Time& timOfFlight);
+    static Subsegment ballistic(astro::Integrator& integrator, astro::Vehicle& vehicle, const State& initialState, const Time& timeOfFlight);
 
     std::size_t get_id() const;
+
+    void set_initial_node(const Node& node);
+
+    void set_final_node(const Node& node);
 
     const Node& get_initial_node() const;
 
@@ -61,7 +67,6 @@ class Subsegment {
 
   private:
     std::size_t _id;
-    Time _timeOfFlight;
     Node _initialNode;
     Node _finalNode;
 };

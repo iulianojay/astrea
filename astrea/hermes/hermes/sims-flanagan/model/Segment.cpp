@@ -22,6 +22,22 @@ Segment::Segment(const std::vector<Subsegment>& subsegments) :
     _id = utilities::IdProvider::get_next_id<"SimsFlanagan">();
 }
 
+Segment::Segment(const SegmentSettings& settings)
+{
+    _id = utilities::IdProvider::get_next_id<"SimsFlanagan">();
+
+    _isForward = settings.isForward;
+    _burns     = settings.subsegBurns;
+    _duration  = settings.duration;
+
+    const Node startingNode = Node(settings.initialState);
+    _subsegments.resize(settings.nSubsegments, Node());
+    if (_isForward) { _subsegments.front().set_initial_node(startingNode); }
+    else {
+        _subsegments.back().set_final_node(startingNode);
+    }
+}
+
 Segment Segment::ballistic(astro::Integrator& integrator, astro::Vehicle& vehicle, const State& initialState, const Time& segmentTime, std::size_t nSubsegments)
 {
     const Time subsegmentTime = segmentTime / nSubsegments;
@@ -43,6 +59,8 @@ Segment Segment::ballistic(astro::Integrator& integrator, astro::Vehicle& vehicl
 std::size_t Segment::get_id() const { return _id; }
 
 const std::vector<Subsegment>& Segment::get_subsegments() const { return _subsegments; }
+
+const Time& Segment::get_duration() const { return _duration; }
 
 const State& Segment::get_initial_state() const { return _subsegments.front().get_initial_state(); }
 

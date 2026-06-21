@@ -22,6 +22,19 @@ Trajectory::Trajectory(const std::vector<Segment>& segments) :
     _id = utilities::IdProvider::get_next_id<"SimsFlanagan">();
 }
 
+Trajectory::Trajectory(const TrajectorySettings& settings)
+{
+    _id = utilities::IdProvider::get_next_id<"SimsFlanagan">();
+
+    _segments.reserve(settings.nSegments);
+    for (const auto& segmentSettings : settings.segmentSettings) {
+        _segments.emplace_back(Segment(segmentSettings));
+    }
+    _initialBurn = settings.initialBurn;
+    _finalBurn   = settings.finalBurn;
+    _burns       = settings.segBurns;
+}
+
 Trajectory Trajectory::ballistic(
     astro::Integrator& integrator,
     astro::Vehicle& vehicle,
@@ -43,38 +56,6 @@ Trajectory Trajectory::ballistic(
     }
     return Trajectory(segments);
 }
-
-static Trajectory from_vector(std::size_t nSubsegments, const std::vector<double>& vec)
-{
-    /*
-    Trajectory has n segments, each segment has m subsegments, each subsegment has 2 nodes and a time of flight,
-    each node has 6 state variables. Each trajectory also has n-1 delta-vs, each segment has m-1 delta-vs, each with
-    3 components. So the total number of parameters is :
-    s = n * m * (2 * 6 + 1) + (n - 1) * 3 + n * (m - 1) * 3 = n * (13 * m + 3 + m - 1) - 3 = n * (14 * m + 2) - 3
-
-    Solving for n gives : n = (s + 3) / (14 * m + 2)
-
-    Each Node has 12 variables
-    Each Subsegment has 25 variables (2 nodes + time of flight)
-    Each Segment has m subsegments and m-1 delta-vs, so it has m * 25 + (m - 1) * 3 = 26 * m - 3 variables
-
-    Now we slice the vector in a hard-coded way:
-    x[0 : 14 * m + 2] -> segment 1
-    x[14 * m + 3 : 2 * (14 * m + 2)] -> segment 2
-    ...
-    x[(n - 1) * (14 * m + 2) : n * (14 * m + 2)] -> segment n
-    x[n * (14 * m + 2) : n * (14 * m + 2) + 3] -> delta-vs between segments
-
-    For each segment:
-    x[]
-
-    */
-    const std::size_t nSegments = (vec.size() + 3) / (14 * nSubsegments + 2);
-    std::vector<Segment> segments;
-    segments.reserve(nSegments);
-}
-
-std::vector<double> to_vector() const {}
 
 std::size_t Trajectory::get_id() const { return _id; }
 

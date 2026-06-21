@@ -20,11 +20,13 @@
 
 #include <vector>
 
+#include <astro/astro.hpp>
 #include <utilities/IdProvider.hpp>
 
 #include <hermes/sims-flanagan/model/DeltaV.hpp>
 #include <hermes/sims-flanagan/model/Segment.hpp>
 #include <hermes/sims-flanagan/model/State.hpp>
+#include <hermes/sims-flanagan/model/settings.hpp>
 #include <hermes/types/typedefs.hpp>
 
 namespace astrea {
@@ -34,14 +36,12 @@ class Trajectory {
   public:
     Trajectory(const std::vector<Segment>& segments = {});
 
+    Trajectory(const TrajectorySettings& settings);
+
     ~Trajectory() = default;
 
     static Trajectory
         ballistic(astro::Integrator& integrator, astro::Vehicle& vehicle, const State& initialState, const Time& propTime, std::size_t nSegments, std::size_t nSubsegmentsPerSegment);
-
-    static Trajectory from_vector(const std::vector<double>& vec);
-
-    std::vector<double> to_vector() const;
 
     std::size_t get_id() const;
 
@@ -70,6 +70,8 @@ class Trajectory {
   private:
     std::size_t _id;
     std::vector<Segment> _segments;
+    DeltaV _initialBurn;
+    DeltaV _finalBurn;
     std::vector<DeltaV> _burns;
 };
 

@@ -25,6 +25,7 @@
 #include <hermes/sims-flanagan/model/DeltaV.hpp>
 #include <hermes/sims-flanagan/model/State.hpp>
 #include <hermes/sims-flanagan/model/Subsegment.hpp>
+#include <hermes/sims-flanagan/model/settings.hpp>
 #include <hermes/types/typedefs.hpp>
 
 namespace astrea {
@@ -33,6 +34,8 @@ namespace hermes {
 class Segment {
   public:
     Segment(const std::vector<Subsegment>& subsegments = {});
+
+    Segment(const SegmentSettings& settings);
 
     ~Segment() = default;
 
@@ -63,6 +66,8 @@ class Segment {
     std::size_t _id;
     std::vector<Subsegment> _subsegments;
     std::vector<DeltaV> _burns;
+    bool _isForward;
+    Time _duration;
 };
 
 } // namespace hermes

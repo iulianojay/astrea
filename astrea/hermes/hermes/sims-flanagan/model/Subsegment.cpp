@@ -16,28 +16,29 @@
 namespace astrea {
 namespace hermes {
 
-Subsegment::Subsegment(const Node& initialNode, const Node& finalNode, const Time& timeOfFlight) :
-    _timeOfFlight(timeOfFlight),
+Subsegment::Subsegment(const Node& initialNode, const Node& finalNode) :
     _initialNode(initialNode),
     _finalNode(finalNode)
 {
     _id = utilities::IdProvider::get_next_id<"SimsFlanagan">();
 }
 
-Subsegment Subsegment::ballistic(astro::Integrator& integrator, astro::Vehicle& vehicle, const State& initialState, const Time& timOfFlight)
+Subsegment Subsegment::ballistic(astro::Integrator& integrator, astro::Vehicle& vehicle, const State& initialState, const Time& timeOfFlight)
 {
-    const State state = integrator.propagate(initialState.get_state(), timOfFlight, vehicle).last();
-    const Subsegment subsegment({ Node(initialState), Node(state), timOfFlight });
+    const State state = integrator.propagate(initialState.get_state(), timeOfFlight, vehicle).last();
+    const Subsegment subsegment({ Node(initialState), Node(state) });
     return subsegment;
 }
 
 std::size_t Subsegment::get_id() const { return _id; }
 
+void Subsegment::set_initial_node(const Node& node) { _initialNode = node; }
+
+void Subsegment::set_final_node(const Node& node) { _finalNode = node; }
+
 const Node& Subsegment::get_initial_node() const { return _initialNode; }
 
 const Node& Subsegment::get_final_node() const { return _finalNode; }
-
-const Time& Subsegment::get_time_of_flight() const { return _timeOfFlight; }
 
 const State& Subsegment::get_initial_state() const { return _initialNode.get_state_in(); }
 

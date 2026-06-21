@@ -1,7 +1,7 @@
 /**
- * @file hermes.fwd.hpp
+ * @file Trajectory.hpp
  * @author Jay Iuliano (iuliano.jay@gmail.com)
- * @brief Forward declarations for the hermes module
+ * @brief Header file for the Trajectory module
  * @date 2026-04-24
  *
  * @copyright Copyright (c) 2026 Jay Iuliano
@@ -18,15 +18,33 @@
  */
 #pragma once
 
+#include <vector>
+
+#include <astro/astro.hpp>
+#include <units/units.hpp>
+
+#include <hermes/hermes.fwd.hpp>
+
 namespace astrea {
 namespace hermes {
 
-class DeltaV;
-class Node;
-class Segment;
-class State;
-class Subsegment;
-class Trajectory;
+
+struct SegmentSettings {
+    std::size_t nSubsegments;
+    bool isForward;
+    Time duration;
+    std::vector<DeltaV> subsegBurns;
+    astro::State initialState;
+};
+
+
+struct TrajectorySettings {
+    std::size_t nSegments;
+    std::vector<SegmentSettings> segmentSettings;
+    DeltaV initialBurn;
+    DeltaV finalBurn;
+    std::vector<DeltaV> segBurns;
+};
 
 } // namespace hermes
 } // namespace astrea
