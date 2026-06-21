@@ -43,6 +43,62 @@ using mp_units::si::unit_symbols::s;
 namespace astrea {
 namespace astro {
 
+Integrator::Integrator(const Integrator& other)
+{
+    _ABS_TOL = other._ABS_TOL;
+    _REL_TOL = other._REL_TOL;
+
+    _iteration             = other._iteration;
+    _variableStepIteration = other._variableStepIteration;
+    _MAX_ITER              = other._MAX_ITER;
+
+    _functionEvaluations = other._functionEvaluations;
+
+    _timeStepPrevious = other._timeStepPrevious;
+    _epoch0           = other._epoch0;
+
+    _maxErrorPrevious = other._maxErrorPrevious;
+
+    _nStages = other._nStages;
+    _a       = other._a;
+    _b       = other._b;
+    _bhat    = other._bhat;
+    _db      = other._db;
+    _c       = other._c;
+
+    _kMatrix        = other._kMatrix;
+    _YFinalPrevious = other._YFinalPrevious;
+
+    _timeStepInitial = other._timeStepInitial;
+
+    _printOn = other._printOn;
+    _store   = other._store;
+
+    _stepMethod = other._stepMethod;
+    _eom        = other._eom->clone();
+
+    _useFixedStep  = other._useFixedStep;
+    _fixedTimeStep = other._fixedTimeStep;
+
+    _eventDetector = other._eventDetector;
+    _schedule      = other._schedule;
+    _stepWatchers  = other._stepWatchers;
+}
+
+Integrator::Integrator(Integrator&& other) noexcept { *this = std::move(other); }
+
+Integrator& Integrator::operator=(const Integrator& other)
+{
+    if (this != &other) { *this = Integrator(other); }
+    return *this;
+}
+
+Integrator& Integrator::operator=(Integrator&& other)
+{
+    if (this != &other) { *this = std::move(Integrator(other)); }
+    return *this;
+}
+
 StateHistory Integrator::propagate(const State& state0, const Date& endEpoch, Vehicle vehicle)
 {
     const Time propTime = endEpoch - state0.get_epoch();
