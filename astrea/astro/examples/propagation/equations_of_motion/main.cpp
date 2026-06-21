@@ -80,7 +80,7 @@ int main()
             return partials;
         }
 
-        // Required clone function to help with polymorphic copying of the equations of motion object.
+        // We also add a clone method to allow the integrator to make a copy of the equations of motion when needed
         std::unique_ptr<EquationsOfMotion> clone() const override
         {
             return std::make_unique<MyEquationsOfMotion>(*this);

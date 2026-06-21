@@ -77,9 +77,9 @@ class KeplerianVop : public EquationsOfMotion {
     };
 
     /**
-     * @brief Creates a clone of the current Keplerian VOP object.
+     * @brief Creates a deep copy of this KeplerianVop object.
      *
-     * @return std::unique_ptr<EquationsOfMotion> A unique pointer to the cloned Keplerian VOP object.
+     * @return std::unique_ptr<EquationsOfMotion> A unique pointer to the cloned KeplerianVop object.
      */
     std::unique_ptr<EquationsOfMotion> clone() const override { return std::make_unique<KeplerianVop>(*this); }
 

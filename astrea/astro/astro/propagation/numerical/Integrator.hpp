@@ -91,6 +91,11 @@ class Integrator {
      */
     ~Integrator() = default;
 
+    Integrator(const Integrator&)            = default;
+    Integrator(Integrator&&)                 = default;
+    Integrator& operator=(const Integrator&) = default;
+    Integrator& operator=(Integrator&&)      = default;
+
     /**
      * @brief Propagate the state of a vehicle over a specified time interval using the given equations of motion.
      *

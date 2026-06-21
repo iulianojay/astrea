@@ -52,11 +52,13 @@ class SolarRadiationPressure : public PerturbingForce {
     Perturbation compute_perturbation(const State& state, const Vehicle& vehicle) const override;
 
     /**
-     * @brief Creates a clone of the current SolarRadiationPressure object.
+     * @brief Creates a deep copy of this SolarRadiationPressure object.
      *
      * @return std::unique_ptr<PerturbingForce> A unique pointer to the cloned SolarRadiationPressure object.
      */
     std::unique_ptr<PerturbingForce> clone() const override { return std::make_unique<SolarRadiationPressure>(*this); }
+
+  private:
 };
 
 } // namespace astro

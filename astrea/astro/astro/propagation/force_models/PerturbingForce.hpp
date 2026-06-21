@@ -51,7 +51,7 @@ class PerturbingForce {
     virtual Perturbation compute_perturbation(const State& state, const Vehicle& vehicle) const = 0;
 
     /**
-     * @brief Creates a clone of the current PerturbingForce object.
+     * @brief Creates a deep copy of this PerturbingForce object.
      *
      * @return std::unique_ptr<PerturbingForce> A unique pointer to the cloned PerturbingForce object.
      */

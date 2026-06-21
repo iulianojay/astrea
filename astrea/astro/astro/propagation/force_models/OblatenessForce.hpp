@@ -66,7 +66,7 @@ class OblatenessForce : public PerturbingForce {
     Perturbation compute_perturbation(const State& state, const Vehicle& vehicle) const;
 
     /**
-     * @brief Creates a clone of the current OblatenessForce object.
+     * @brief Creates a deep copy of this OblatenessForce object.
      *
      * @return std::unique_ptr<PerturbingForce> A unique pointer to the cloned OblatenessForce object.
      */

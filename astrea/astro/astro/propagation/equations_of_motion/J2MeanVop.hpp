@@ -71,9 +71,9 @@ class J2MeanVop : public EquationsOfMotion {
     };
 
     /**
-     * @brief Creates a clone of the current J2 Mean VOP object.
+     * @brief Creates a deep copy of this J2MeanVop object.
      *
-     * @return std::unique_ptr<EquationsOfMotion> A unique pointer to the cloned J2 Mean VOP object.
+     * @return std::unique_ptr<EquationsOfMotion> A unique pointer to the cloned J2MeanVop object.
      */
     std::unique_ptr<EquationsOfMotion> clone() const override { return std::make_unique<J2MeanVop>(*this); }
 

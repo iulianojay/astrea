@@ -22,18 +22,26 @@ namespace astro {
 ForceModel::ForceModel(const ForceModel& other)
 {
     for (const auto& [name, force] : other.forces) {
-        forces.emplace(name, force->clone());
+        this->forces[name] = force->clone();
     }
 }
+
+ForceModel::ForceModel(ForceModel&& other) { this->forces = std::move(other.forces); }
 
 ForceModel& ForceModel::operator=(const ForceModel& other)
 {
     if (this != &other) {
-        forces.clear();
+        this->forces.clear();
         for (const auto& [name, force] : other.forces) {
-            forces.emplace(name, force->clone());
+            this->forces[name] = force->clone();
         }
     }
+    return *this;
+}
+
+ForceModel& ForceModel::operator=(ForceModel&& other)
+{
+    if (this != &other) { this->forces = std::move(other.forces); }
     return *this;
 }
 

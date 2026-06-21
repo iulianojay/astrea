@@ -75,9 +75,9 @@ class EquinoctialVop : public EquationsOfMotion {
     };
 
     /**
-     * @brief Creates a clone of the current Equinoctial VOP object.
+     * @brief Creates a deep copy of this EquinoctialVop object.
      *
-     * @return std::unique_ptr<EquationsOfMotion> A unique pointer to the cloned Equinoctial VOP object.
+     * @return std::unique_ptr<EquationsOfMotion> A unique pointer to the cloned EquinoctialVop object.
      */
     std::unique_ptr<EquationsOfMotion> clone() const override { return std::make_unique<EquinoctialVop>(*this); }
 

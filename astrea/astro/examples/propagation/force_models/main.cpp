@@ -63,6 +63,7 @@ int main()
             return { .force = thrustForce, .torque = thrustTorque };
         }
 
+        // We also add a clone method to allow the ForceModel to make copies of the force when needed
         std::unique_ptr<PerturbingForce> clone() const override { return std::make_unique<ContinuousThrust>(*this); }
 
       private:

@@ -69,6 +69,16 @@ class CircularRestrictedThreeBodyProblem : public EquationsOfMotion {
     {
         return OrbitalElements::get_set_id<Cartesian<frames::primary>>();
     };
+
+    /**
+     * @brief Creates a deep copy of this CircularRestrictedThreeBodyProblem object.
+     *
+     * @return std::unique_ptr<EquationsOfMotion> A unique pointer to the cloned CircularRestrictedThreeBodyProblem object.
+     */
+    std::unique_ptr<EquationsOfMotion> clone() const override
+    {
+        return std::make_unique<CircularRestrictedThreeBodyProblem>(*this);
+    }
 };
 
 using CR3BP = CircularRestrictedThreeBodyProblem;

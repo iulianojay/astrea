@@ -80,9 +80,9 @@ class CowellsMethod : public EquationsOfMotion {
     };
 
     /**
-     * @brief Creates a clone of the current Cowell's Method object.
+     * @brief Creates a deep copy of this CowellsMethod object.
      *
-     * @return std::unique_ptr<EquationsOfMotion> A unique pointer to the cloned Cowell's Method object.
+     * @return std::unique_ptr<EquationsOfMotion> A unique pointer to the cloned CowellsMethod object.
      */
     std::unique_ptr<EquationsOfMotion> clone() const override { return std::make_unique<CowellsMethod>(*this); }
 };

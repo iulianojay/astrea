@@ -57,7 +57,7 @@ class AtmosphericForce : public PerturbingForce {
     Perturbation compute_perturbation(const State& state, const Vehicle& vehicle) const override;
 
     /**
-     * @brief Creates a clone of the current AtmosphericForce object.
+     * @brief Creates a deep copy of this AtmosphericForce object.
      *
      * @return std::unique_ptr<PerturbingForce> A unique pointer to the cloned AtmosphericForce object.
      */

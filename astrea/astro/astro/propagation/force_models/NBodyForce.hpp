@@ -98,7 +98,7 @@ class NBodyForce : public PerturbingForce {
     }
 
     /**
-     * @brief Creates a clone of the current NBodyForce object.
+     * @brief Creates a deep copy of this NBodyForce object.
      *
      * @return std::unique_ptr<PerturbingForce> A unique pointer to the cloned NBodyForce object.
      */

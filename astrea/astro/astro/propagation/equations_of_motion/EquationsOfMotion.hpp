@@ -109,7 +109,7 @@ class EquationsOfMotion {
     virtual constexpr std::size_t get_expected_set_id() const = 0;
 
     /**
-     * @brief Creates a clone of the current EquationsOfMotion object.
+     * @brief Creates a deep copy of this EquationsOfMotion object.
      *
      * @return std::unique_ptr<EquationsOfMotion> A unique pointer to the cloned EquationsOfMotion object.
      */

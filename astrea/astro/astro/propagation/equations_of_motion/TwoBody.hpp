@@ -80,9 +80,9 @@ class TwoBody : public EquationsOfMotion {
     };
 
     /**
-     * @brief Creates a clone of the current Two Body object.
+     * @brief Creates a deep copy of this TwoBody object.
      *
-     * @return std::unique_ptr<EquationsOfMotion> A unique pointer to the cloned Two Body object.
+     * @return std::unique_ptr<EquationsOfMotion> A unique pointer to the cloned TwoBody object.
      */
     std::unique_ptr<EquationsOfMotion> clone() const override { return std::make_unique<TwoBody>(*this); }
 };
