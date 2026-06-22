@@ -86,6 +86,10 @@ CPMFindPackage(
     OPTIONS
     "MP_UNITS_BUILD_INSTALL OFF"
 )
+if(DEFINED mp-units_SOURCE_DIR)
+    install(DIRECTORY "${mp-units_SOURCE_DIR}/src/core/include/" DESTINATION include)
+    install(DIRECTORY "${mp-units_SOURCE_DIR}/src/systems/include/" DESTINATION include)
+endif()
 
 # CPR for HTTP requests
 if(WIN32)
@@ -123,6 +127,9 @@ CPMFindPackage(
     "MATPLOTPP_BUILD_TESTS OFF"
     "BUILD_SHARED_LIBS ON"
 )
+if(DEFINED matplotplusplus_SOURCE_DIR)
+    install(DIRECTORY "${matplotplusplus_SOURCE_DIR}/source/matplot" DESTINATION include)
+endif()
 
 # JSON parsing that doesn't suck
 CPMFindPackage(
@@ -131,6 +138,9 @@ CPMFindPackage(
     GITHUB_REPOSITORY nlohmann/json
     GIT_SHALLOW TRUE
 )
+if(DEFINED nlohmann_json_SOURCE_DIR)
+    install(DIRECTORY "${nlohmann_json_SOURCE_DIR}/include/" DESTINATION include)
+endif()
 
 # For fast maps
 CPMFindPackage(
@@ -139,6 +149,9 @@ CPMFindPackage(
     GIT_SHALLOW TRUE
     GIT_TAG v1.2.0
 )
+if(DEFINED gtl_SOURCE_DIR)
+    install(DIRECTORY "${gtl_SOURCE_DIR}/include/" DESTINATION include)
+endif()
 
 # CSV Parsing that sucks less
 # Doesn't follow standard versioning so use FetchContent

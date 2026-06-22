@@ -1,0 +1,76 @@
+# Copyright (c) 2025 Jay Iuliano
+#
+# This file is part of Astrea.
+# Astrea is free software: you can redistribute it and/or modify it under the
+# terms of the GNU Lesser General Public License as published by the Free
+# Software Foundation, either version 3 of the License, or (at your option)
+# any later version.
+
+@PACKAGE_INIT@
+
+# All public headers live under the install prefix include dir (including
+# transitive header-only deps like mp-units, gtl, nlohmann, units, etc.)
+set(ASTREA_INCLUDE_DIR "${PACKAGE_PREFIX_DIR}/include")
+
+# Data roots – these are recorded relative to the install prefix so consumers
+# never need to set _ASTRO_ROOT_ / _TRACE_ROOT_ / _SNAPSHOT_ROOT_ manually.
+set(ASTREA_ASTRO_ROOT     "${PACKAGE_PREFIX_DIR}/share/astrea/astro")
+set(ASTREA_TRACE_ROOT     "${PACKAGE_PREFIX_DIR}/share/astrea/trace")
+set(ASTREA_SNAPSHOT_ROOT  "${PACKAGE_PREFIX_DIR}/share/astrea/snapshot")
+
+# ---- math ----------------------------------------------------------------
+if(NOT TARGET astrea::math)
+    add_library(astrea::math SHARED IMPORTED)
+    set_target_properties(astrea::math PROPERTIES
+        IMPORTED_LOCATION              "${PACKAGE_PREFIX_DIR}/lib/libmath.so"
+        INTERFACE_INCLUDE_DIRECTORIES  "${ASTREA_INCLUDE_DIR}"
+    )
+endif()
+
+# ---- utilities -----------------------------------------------------------
+if(NOT TARGET astrea::utilities)
+    add_library(astrea::utilities SHARED IMPORTED)
+    set_target_properties(astrea::utilities PROPERTIES
+        IMPORTED_LOCATION              "${PACKAGE_PREFIX_DIR}/lib/libutilities.so"
+        INTERFACE_INCLUDE_DIRECTORIES  "${ASTREA_INCLUDE_DIR}"
+    )
+endif()
+
+# ---- astro ---------------------------------------------------------------
+if(NOT TARGET astrea::astro)
+    add_library(astrea::astro SHARED IMPORTED)
+    set_target_properties(astrea::astro PROPERTIES
+        IMPORTED_LOCATION              "${PACKAGE_PREFIX_DIR}/lib/libastro.so"
+        INTERFACE_INCLUDE_DIRECTORIES  "${ASTREA_INCLUDE_DIR}"
+        INTERFACE_COMPILE_DEFINITIONS  "_ASTRO_ROOT_=\"${ASTREA_ASTRO_ROOT}\""
+    )
+endif()
+
+# ---- snapshot ------------------------------------------------------------
+if(NOT TARGET astrea::snapshot)
+    add_library(astrea::snapshot SHARED IMPORTED)
+    set_target_properties(astrea::snapshot PROPERTIES
+        IMPORTED_LOCATION              "${PACKAGE_PREFIX_DIR}/lib/libsnapshot.so"
+        INTERFACE_INCLUDE_DIRECTORIES  "${ASTREA_INCLUDE_DIR}"
+        INTERFACE_COMPILE_DEFINITIONS  "_SNAPSHOT_ROOT_=\"${ASTREA_SNAPSHOT_ROOT}\""
+    )
+endif()
+
+# ---- trace ---------------------------------------------------------------
+if(NOT TARGET astrea::trace)
+    add_library(astrea::trace SHARED IMPORTED)
+    set_target_properties(astrea::trace PROPERTIES
+        IMPORTED_LOCATION              "${PACKAGE_PREFIX_DIR}/lib/libtrace.so"
+        INTERFACE_INCLUDE_DIRECTORIES  "${ASTREA_INCLUDE_DIR}"
+        INTERFACE_COMPILE_DEFINITIONS  "_TRACE_ROOT_=\"${ASTREA_TRACE_ROOT}\""
+    )
+endif()
+
+# ---- astrea (aggregate) --------------------------------------------------
+if(NOT TARGET astrea::astrea)
+    add_library(astrea::astrea INTERFACE IMPORTED)
+    set_target_properties(astrea::astrea PROPERTIES
+        INTERFACE_LINK_LIBRARIES      "astrea::math;astrea::utilities;astrea::astro;astrea::snapshot;astrea::trace"
+        INTERFACE_COMPILE_DEFINITIONS "gsl_FEATURE_GSL_COMPATIBILITY_MODE=1"
+    )
+endif()
