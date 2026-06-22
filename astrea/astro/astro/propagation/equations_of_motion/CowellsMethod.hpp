@@ -35,6 +35,11 @@ class CowellsMethod : public EquationsOfMotion {
 
   public:
     /**
+     * @brief Default constructor for Cowell's Method.
+     */
+    CowellsMethod() = default;
+
+    /**
      * @brief Constructor for Cowell's Method.
      *
      * @param forces The force model to be used in the equations of motion.

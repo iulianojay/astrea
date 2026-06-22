@@ -10,6 +10,7 @@
  * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details. You should
  * have received a copy of the GNU General Public License along with Astrea. If not, see <https://www.gnu.org/licenses/>.
  */
+#include <filesystem>
 
 #include <pagmo/algorithm.hpp>
 #include <pagmo/algorithms/de.hpp>
@@ -17,6 +18,7 @@
 
 #include <astro/astro.hpp>
 #include <astro/utilities/plotting.hpp>
+#include <units/units.hpp>
 
 #include <hermes/hermes.macros.hpp>
 #include <hermes/sims-flanagan/SimsFlanaganProblem.hpp>

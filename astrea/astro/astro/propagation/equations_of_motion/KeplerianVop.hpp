@@ -35,6 +35,11 @@ class KeplerianVop : public EquationsOfMotion {
 
   public:
     /**
+     * @brief Default constructor for the Keplerian VOP class.
+     */
+    KeplerianVop() = default;
+
+    /**
      * @brief Constructor for the Keplerian VOP class.
      *
      * @param forces The force model to be used in the equations of motion.

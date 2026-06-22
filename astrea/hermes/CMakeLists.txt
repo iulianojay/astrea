@@ -21,23 +21,33 @@ set(CMAKE_CXX_STANDARD 23)
 # Objects
 set(HERMES_BASE ${CMAKE_CURRENT_LIST_DIR}/${PROJECT_NAME})
 set(HERMES_SOURCES
-    ${HERMES_BASE}/sims-flanagan/model/State.cpp
     ${HERMES_BASE}/sims-flanagan/model/DeltaV.cpp
     ${HERMES_BASE}/sims-flanagan/model/Node.cpp
+    ${HERMES_BASE}/sims-flanagan/model/State.cpp
     ${HERMES_BASE}/sims-flanagan/model/Subsegment.cpp
     ${HERMES_BASE}/sims-flanagan/model/Segment.cpp
     ${HERMES_BASE}/sims-flanagan/model/Trajectory.cpp
+
+    ${HERMES_BASE}/sims-flanagan/SimsFlanaganProblem.cpp
 )
 
 # Headers
 set(HERMES_HEADERS
     ${HERMES_BASE}/hermes.hpp
     ${HERMES_BASE}/hermes.fwd.hpp
+    ${HERMES_BASE}/hermes.macros.hpp
 
+    ${HERMES_BASE}/sims-flanagan/model/DeltaV.hpp
     ${HERMES_BASE}/sims-flanagan/model/Node.hpp
+    ${HERMES_BASE}/sims-flanagan/model/State.hpp
     ${HERMES_BASE}/sims-flanagan/model/Subsegment.hpp
     ${HERMES_BASE}/sims-flanagan/model/Segment.hpp
     ${HERMES_BASE}/sims-flanagan/model/Trajectory.hpp
+    
+    ${HERMES_BASE}/sims-flanagan/settings.hpp
+    ${HERMES_BASE}/sims-flanagan/SimsFlanaganProblem.hpp
+    
+    ${HERMES_BASE}/types/typedefs.hpp
 )
 
 # Includes

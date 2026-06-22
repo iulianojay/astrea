@@ -22,9 +22,9 @@
 
 #include <pagmo/problem.hpp>
 
-#include <hermes/sims-flanagan/model/DeltaV.hpp>
-#include <hermes/sims-flanagan/model/Segment.hpp>
-#include <hermes/sims-flanagan/model/State.hpp>
+#include <units/units.hpp>
+
+#include <hermes/sims-flanagan/model.hpp>
 #include <hermes/sims-flanagan/settings.hpp>
 #include <hermes/types/typedefs.hpp>
 
@@ -144,9 +144,9 @@ class SimsFlanaganProblem {
     astro::Integrator _integrator;       //!< The integrator to use for propagating the trajectory
     astro::Vehicle _vehicle;             //!< The vehicle to use for propagating the trajectory
 
-    const std::size_t _nBurnsPerSegment; //!< The number of burns per segment in the trajectory (equal to nSubsegmentsPerSegment - 1)
-    const std::size_t _nDecisionsPerSegment; //!< The number of decision variables per segment in the trajectory (equal to 8 + 3 * nBurnsPerSegment)
-    const std::size_t _nDecisions; //!< The total number of decision variables for the trajectory (equal to nDecisionsPerSegment * nSegments)
+    std::size_t _nBurnsPerSegment; //!< The number of burns per segment in the trajectory (equal to nSubsegmentsPerSegment - 1)
+    std::size_t _nDecisionsPerSegment; //!< The number of decision variables per segment in the trajectory (equal to 8 + 3 * nBurnsPerSegment)
+    std::size_t _nDecisions; //!< The total number of decision variables for the trajectory (equal to nDecisionsPerSegment * nSegments)
 };
 
 } // namespace hermes

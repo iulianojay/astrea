@@ -35,6 +35,11 @@ class EquinoctialVop : public EquationsOfMotion {
 
   public:
     /**
+     * @brief Default constructor for the Equinoctial VOP class.
+     */
+    EquinoctialVop() = default;
+
+    /**
      * @brief Constructor for the Equinoctial VOP class.
      *
      * @param forces The force model to be used in the equations of motion.

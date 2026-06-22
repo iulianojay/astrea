@@ -13,8 +13,8 @@
 
 #include <hermes/sims-flanagan/SimsFlanaganProblem.hpp>
 
-#include <mp-units/core.hpp>
-#include <mp-units/systems/si.hpp>
+#include <mp-units/core.h>
+#include <mp-units/systems/si.h>
 
 #include <units/units.hpp>
 
@@ -33,10 +33,10 @@ std::size_t SimsFlanaganProblem::get_nic() const { return 0; }
 
 std::size_t SimsFlanaganProblem::get_nobj() const { return 4; }
 
-std::pair<vector_double, vector_double> SimsFlanaganProblem::get_bounds() const
+std::pair<DoubleVector, DoubleVector> SimsFlanaganProblem::get_bounds() const
 {
-    const vector_double lb(_nDecisions, 0.0);
-    const vector_double ub(_nDecisions, 1.0);
+    const DoubleVector lb(_nDecisions, 0.0);
+    const DoubleVector ub(_nDecisions, 1.0);
     return { lb, ub };
 }
 
@@ -63,14 +63,14 @@ Trajectory SimsFlanaganProblem::decode_decision_vector(const DoubleVector& x) co
         segSettings.duration     = convert_decision_value_to_quantity(x[idx + 1], Time::zero(), _maxFlightTime);
 
         // Build the state
-        segSettings.initialState = astro::Cartesian<astro::frames::primary>{
-            convert_decision_value_to_quantity(x[idx + 2], _minPosition, _maxPosition),
-            convert_decision_value_to_quantity(x[idx + 3], _minPosition, _maxPosition),
-            convert_decision_value_to_quantity(x[idx + 4], _minPosition, _maxPosition),
-            convert_decision_value_to_quantity(x[idx + 5], _minVelocity, _maxVelocity),
-            convert_decision_value_to_quantity(x[idx + 6], _minVelocity, _maxVelocity),
-            convert_decision_value_to_quantity(x[idx + 7], _minVelocity, _maxVelocity)
-        };
+        segSettings.initialState = { astro::Cartesian<astro::frames::primary>{
+                                         convert_decision_value_to_quantity(x[idx + 2], _minPosition, _maxPosition),
+                                         convert_decision_value_to_quantity(x[idx + 3], _minPosition, _maxPosition),
+                                         convert_decision_value_to_quantity(x[idx + 4], _minPosition, _maxPosition),
+                                         convert_decision_value_to_quantity(x[idx + 5], _minVelocity, _maxVelocity),
+                                         convert_decision_value_to_quantity(x[idx + 6], _minVelocity, _maxVelocity),
+                                         convert_decision_value_to_quantity(x[idx + 7], _minVelocity, _maxVelocity) },
+                                     _epoch };
 
         // Build out the burns
         segSettings.subsegBurns.reserve(_nBurnsPerSegment);
@@ -119,7 +119,7 @@ DoubleVector SimsFlanaganProblem::encode_trajectory(const Trajectory& trajectory
     return x;
 }
 
-vector_double SimsFlanaganProblem::fitness(const vector_double& x) const
+DoubleVector SimsFlanaganProblem::fitness(const DoubleVector& x) const
 {
     // Build the trajectory and propagate
     Trajectory trajectory = decode_decision_vector(x);
