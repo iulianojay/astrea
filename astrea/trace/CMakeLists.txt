@@ -24,6 +24,7 @@ set(TRACE_SOURCES
     ${TRACE_BASE}/analysis/AccessAnalyzer.cpp
     ${TRACE_BASE}/analysis/PositionCache.cpp
     ${TRACE_BASE}/analysis/SpatialIndex.cpp
+    ${TRACE_BASE}/analysis/analysis.cpp
 
     ${TRACE_BASE}/analysis/plots/Plotter.cpp
 
@@ -52,6 +53,7 @@ set(TRACE_HEADERS
     ${TRACE_BASE}/analysis/AccessAnalyzer.hpp
     ${TRACE_BASE}/analysis/PositionCache.hpp
     ${TRACE_BASE}/analysis/SpatialIndex.hpp
+    ${TRACE_BASE}/analysis/analysis.hpp
 
     ${TRACE_BASE}/analysis/plots/Plotter.hpp
 

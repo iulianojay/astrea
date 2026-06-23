@@ -31,16 +31,14 @@
 #include <mp-units/systems/si.h>
 
 #include <astro/astro.hpp>
-#include <snapshot/snapshot.hpp>
 
+#include <trace/analysis/analysis.hpp>
 #include <trace/trace.hpp>
 #include <trace/trace.macros.hpp>
 
 using namespace astrea;
 using namespace astro;
 using namespace trace;
-using namespace snapshot;
-using namespace sqlite_orm;
 
 using namespace mp_units;
 using mp_units::angular::unit_symbols::deg;
@@ -48,67 +46,7 @@ using mp_units::si::unit_symbols::km;
 using mp_units::si::unit_symbols::m;
 using mp_units::si::unit_symbols::s;
 
-// ---------------------------------------------------------------------------
-// Configuration
-// ---------------------------------------------------------------------------
-
-struct TraceConfig {
-    // Simulation timing
-    double simTimeDays   = 30.0;
-    double resolutionMin = 1.0;
-
-    // Constellation (3-shell Walker)
-    double altitudeKm          = 560.0;
-    double inclinationDeg      = 97.6316;
-    std::size_t nSats          = 1; // satellites per plane
-    std::size_t nPlanes        = 1; // planes per shell
-    double anchorRaanDeg       = 0.0;
-    double crossTrackOffsetDeg = 0.0; // RAAN offset between shells 1 and 2
-    double phasingDeg          = 0.0; // true-anomaly phasing between shells
-
-    // Sensor
-    double fovHalfAngleDeg = 30.0;
-
-    // Ground grid
-    double gridSpacingDeg = 5.0;
-    double llLon          = -180.0; // LatLon first  arg = longitude (see LatLon convention)
-    double llLat          = -90.0;  // LatLon second arg = latitude
-    double urLon          = 180.0;
-    double urLat          = 90.0;
-
-    // Output
-    std::string outdir = ""; // empty -> default to <TRACE_ROOT>/trace/drivers/results/global
-    std::string dbName = "analysis.db";
-
-    // Flags
-    bool printProgress = false;
-    bool runPlotter    = true;
-
-    TraceConfig() = default;
-
-    explicit TraceConfig(const nlohmann::json& json)
-    {
-        simTimeDays         = json.value("sim_time_days", simTimeDays);
-        resolutionMin       = json.value("resolution_min", resolutionMin);
-        altitudeKm          = json.value("altitude_km", altitudeKm);
-        inclinationDeg      = json.value("inclination_deg", inclinationDeg);
-        nSats               = json.value("n_sats", nSats);
-        nPlanes             = json.value("n_planes", nPlanes);
-        anchorRaanDeg       = json.value("anchor_raan_deg", anchorRaanDeg);
-        crossTrackOffsetDeg = json.value("cross_track_offset_deg", crossTrackOffsetDeg);
-        phasingDeg          = json.value("phasing_deg", phasingDeg);
-        fovHalfAngleDeg     = json.value("fov_half_angle_deg", fovHalfAngleDeg);
-        gridSpacingDeg      = json.value("grid_spacing_deg", gridSpacingDeg);
-        llLon               = json.value("ll_lon", llLon);
-        llLat               = json.value("ll_lat", llLat);
-        urLon               = json.value("ur_lon", urLon);
-        urLat               = json.value("ur_lat", urLat);
-        outdir              = json.value("outdir", outdir);
-        dbName              = json.value("db_name", dbName);
-        printProgress       = json.value("print_progress", printProgress);
-        runPlotter          = json.value("run_plotter", runPlotter);
-    }
-};
+using astrea::trace::TraceConfig;
 
 // ---------------------------------------------------------------------------
 // CLI helpers
@@ -274,22 +212,6 @@ static bool parse_args(int argc, char* argv[], TraceConfig& config, std::string&
 }
 
 // ---------------------------------------------------------------------------
-// Forward declarations
-// ---------------------------------------------------------------------------
-
-int trace_analysis(const TraceConfig& config);
-
-template <typename T, typename U>
-AccessArray propagate_and_run_access_analysis(
-    astro::Constellation<T>& constellation,
-    U& grounds,
-    const Date& startDate,
-    const Time propTime,
-    const Time accessResolution,
-    const bool printProgress
-);
-
-// ---------------------------------------------------------------------------
 // Entry point
 // ---------------------------------------------------------------------------
 
@@ -302,149 +224,9 @@ int main(int argc, char* argv[])
         print_usage(argv[0]);
         return 1;
     }
-    return trace_analysis(config);
-}
 
-// ---------------------------------------------------------------------------
-// Core analysis
-// ---------------------------------------------------------------------------
-
-int trace_analysis(const TraceConfig& config)
-{
-    // Setup system
-    Date startDate = Date::now();
-
-    // Build constellation
-    const Distance altitude      = config.altitudeKm * km;
-    const Distance semimajor     = altitude + get_equitorial_radius<planets::Earth>();
-    const Angle inclination      = config.inclinationDeg * deg;
-    const Angle anchorRaan       = config.anchorRaanDeg * deg;
-    const Angle anchorAnomaly    = 0.0 * deg;
-    const Angle crossTrackOffset = config.crossTrackOffsetDeg * deg;
-    const Angle phasing          = config.phasingDeg * deg;
-
-    Shell<Viewer> shell1(startDate, semimajor, inclination, config.nSats, config.nPlanes, 1.0, anchorRaan, anchorAnomaly);
-    Shell<Viewer> shell2(startDate, semimajor, inclination, config.nSats, config.nPlanes, 1.0, anchorRaan + crossTrackOffset, anchorAnomaly - phasing);
-    Shell<Viewer> shell3(startDate, semimajor, inclination, config.nSats, config.nPlanes, 1.0, anchorRaan, anchorAnomaly - 2.0 * phasing);
-    Constellation<Viewer> constellation({ shell1, shell2, shell3 });
-
-    // Attach sensors
-    CircularFieldOfView fovLeo(config.fovHalfAngleDeg * deg);
-    SensorParameters leoCone(&fovLeo);
-    for (auto& shell : constellation.get_shells()) {
-        for (auto& plane : shell.get_planes()) {
-            for (auto& sat : plane.get_all_spacecraft()) {
-                sat.attach_payload(leoCone);
-                sat.set_name("Sat " + std::to_string(sat.get_id()) + "(Cluster " + std::to_string(sat.get_id() % 3 + 1) + ")");
-            }
-        }
-    }
-
-    // Build grid
-    // LatLon convention: first arg = longitude, second arg = latitude
-    LatLon corner1{ config.llLon * deg, config.llLat * deg };
-    LatLon corner4{ config.urLon * deg, config.urLat * deg };
-    const Angle gridSpacing = config.gridSpacingDeg * deg;
-    Grid<astro::planets::Earth> grid(corner1, corner4, GridType::UNIFORM, gridSpacing);
-
-    // Propagate and find access
-    const Time propTime         = days(config.simTimeDays);
-    const Time accessResolution = minutes(config.resolutionMin);
-
-    const AccessArray accesses =
-        propagate_and_run_access_analysis(constellation, grid, startDate, propTime, accessResolution, config.printProgress);
-    const AccessStats stats(accesses);
-    const FoldsOfCoverage folds(accesses, accessResolution, propTime);
-
-    // Save results
-    const std::filesystem::path outdir =
-        config.outdir.empty() ? std::filesystem::path(std::string(_TRACE_ROOT_) + "/trace/drivers/results/global") :
-                                std::filesystem::path(config.outdir);
-    std::filesystem::create_directories(outdir);
-    const std::filesystem::path dbPath = outdir / config.dbName;
-
-    if (config.printProgress) { std::cout << "Saving results to: " << dbPath << std::endl; }
-    DatabaseOutputManager manager(dbPath, true);
-    manager.save_results(folds, stats, accesses, constellation, grid);
-
-    // Call plotter
-    if (config.runPlotter) {
-        const std::string cmd = "python3 " + std::string(_TRACE_ROOT_) + "/pytrace/tracer.py " + outdir.string();
-        if (config.printProgress) { std::cout << "Plotting: " << cmd << std::endl; }
-        return std::system(cmd.c_str());
-    }
+    // Run analysis
+    const auto result = run_trace_analysis(config);
 
     return 0;
-}
-
-template <typename T, typename U>
-AccessArray propagate_and_run_access_analysis(
-    astro::Constellation<T>& constellation,
-    U& grounds,
-    const Date& startDate,
-    const Time propTime,
-    const Time accessResolution,
-    const bool printProgress
-)
-{
-    // Setup integrator
-    J2MeanVop eom;
-    Integrator integrator;
-    integrator.set_equations_of_motion(eom);
-    integrator.switch_fixed_timestep(true, accessResolution);
-
-    // Propagate
-    auto start = std::chrono::steady_clock::now();
-
-    const Date endDate = startDate + propTime;
-    constellation.propagate(endDate, integrator);
-
-    auto end  = std::chrono::steady_clock::now();
-    auto diff = std::chrono::duration_cast<nanoseconds>(end - start);
-
-    if (printProgress) {
-        std::cout << std::endl << "Propagation Time: " << diff.count() / 1e9 << " (s)" << std::endl << std::endl;
-    }
-    start = std::chrono::steady_clock::now();
-
-    for (auto& shell : constellation.get_shells()) {
-        for (auto& plane : shell.get_planes()) {
-            for (auto& sat : plane.get_all_spacecraft()) {
-                // Check that state history is populated and has correct time frame
-                auto& stateHistory = sat.get_state_history();
-                stateHistory.template convert_to_set<Cartesian<frames::primary>>();
-                if (stateHistory.size() == 0) {
-                    throw std::runtime_error("Error: State history not populated after propagation.");
-                }
-                if (stateHistory.first().get_epoch() > startDate) {
-                    std::ostringstream oss;
-                    oss << "Error: State history starts at the wrong time! Expected: " << startDate
-                        << ", Actual: " << stateHistory.first().get_epoch();
-                    throw std::runtime_error(oss.str());
-                }
-                if (stateHistory.last().get_epoch() != endDate) {
-                    std::ostringstream oss;
-                    oss << "Error: State history ends at the wrong time! Expected: " << endDate
-                        << ", Actual: " << stateHistory.last().get_epoch();
-                    throw std::runtime_error(oss.str());
-                }
-            }
-        }
-    }
-
-    // Find access
-    AccessAnalyzer analyzer(accessResolution, startDate, endDate, true);
-    const auto accesses = analyzer.find_accesses(constellation, grounds, true);
-
-    end  = std::chrono::steady_clock::now();
-    diff = std::chrono::duration_cast<nanoseconds>(end - start);
-
-    if (printProgress) {
-        std::cout << std::endl
-                  << std::endl
-                  << "Access Analysis Time: " << diff.count() / 1.0e9 << " (s)" << std::endl
-                  << std::endl;
-    }
-
-    return accesses;
 }
