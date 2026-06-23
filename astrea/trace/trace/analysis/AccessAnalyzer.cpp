@@ -170,6 +170,8 @@ AccessArray AccessAnalyzer::find_internal_accesses(ViewerConstellation& constel,
 
 AccessArray AccessAnalyzer::find_accesses(ViewerConstellation& constel, GroundArchitecture<astro::planets::Earth>& grounds, const bool includeInternalAccesses)
 {
+    // https://stackoverflow.com/questions/76230522/equation-for-the-intersection-between-a-cone-and-a-sphere
+
     const std::size_t nViewers = constel.size();
     const std::size_t nGrounds = grounds.size();
 

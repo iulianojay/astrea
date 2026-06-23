@@ -183,7 +183,8 @@ AccessArray propagate_and_run_access_analysis(
         for (auto& plane : shell.get_planes()) {
             for (auto& sat : plane.get_all_spacecraft()) {
                 // Check that state history is populated and has correct time frame
-                const auto& stateHistory = sat.get_state_history();
+                auto& stateHistory = sat.get_state_history();
+                stateHistory.template convert_to_set<Cartesian<frames::primary>>();
                 if (stateHistory.size() == 0) {
                     throw std::runtime_error("Error: State history not populated after propagation.");
                 }
