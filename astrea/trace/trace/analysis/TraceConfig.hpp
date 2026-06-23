@@ -63,6 +63,7 @@ struct TraceConfig {
     // Flags  (driver-level; ignored by the library analysis code)
     bool printProgress = true;
     bool runPlotter    = true;
+    bool saveResults   = true;
 
     TraceConfig() = default;
 
@@ -92,6 +93,7 @@ struct TraceConfig {
      * | db_name                 | dbName                 |
      * | print_progress          | printProgress          |
      * | run_plotter             | runPlotter             |
+     * | save_results            | saveResults            |
      */
     explicit TraceConfig(const nlohmann::json& j)
     {
@@ -114,6 +116,7 @@ struct TraceConfig {
         dbName              = j.value("db_name", dbName);
         printProgress       = j.value("print_progress", printProgress);
         runPlotter          = j.value("run_plotter", runPlotter);
+        saveResults         = j.value("save_results", saveResults);
     }
 };
 

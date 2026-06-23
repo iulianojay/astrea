@@ -29,7 +29,7 @@ namespace trace {
 /**
  * @brief Aggregated results returned by run_trace_analysis.
  */
-struct analysisResult {
+struct AnalysisResult {
     AccessArray accesses;
     AccessStats stats;
     FoldsOfCoverage folds;
@@ -42,7 +42,7 @@ struct analysisResult {
  * with J2 mean-element dynamics, runs the access analyzer, and returns the aggregated
  * statistics.  Output (DB write, Python plotting) is the responsibility of the caller.
  */
-analysisResult run_trace_analysis(const TraceConfig& config);
+AnalysisResult run_trace_analysis(const TraceConfig& config);
 
 } // namespace trace
 } // namespace astrea

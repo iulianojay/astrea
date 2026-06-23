@@ -21,21 +21,20 @@
 #include <mp-units/systems/si.h>
 
 #include <astro/astro.hpp>
-#include <snapshot/snapshot.hpp>
 
 #include <trace/analysis/AccessAnalyzer.hpp>
 #include <trace/analysis/stats/AccessStats.hpp>
 #include <trace/analysis/stats/FoldsOfCoverage.hpp>
+#include <trace/io/output.hpp>
 #include <trace/platforms/ground/Grid.hpp>
 #include <trace/platforms/sensors/fov/CircularFieldOfView.hpp>
 #include <trace/platforms/vehicles/Viewer.hpp>
 #include <trace/risesets/AccessArray.hpp>
 #include <trace/trace.macros.hpp>
+#include <trace/types/typedefs.hpp>
 
 using namespace astrea;
 using namespace astro;
-using namespace snapshot;
-using namespace sqlite_orm;
 
 using mp_units::angular::unit_symbols::deg;
 using mp_units::si::unit_symbols::km;
@@ -105,28 +104,10 @@ static AccessArray propagate_and_run_access_analysis(
 
     if (printProgress) { std::cout << "\nAccess Analysis Time: " << diff.count() / 1.0e9 << " (s)\n\n"; }
 
-    // Save results
-    const std::filesystem::path outdir =
-        config.outdir.empty() ? std::filesystem::path(std::string(_TRACE_ROOT_) + "/trace/drivers/results/global") :
-                                std::filesystem::path(config.outdir);
-    std::filesystem::create_directories(outdir);
-    const std::filesystem::path dbPath = outdir / config.dbName;
-
-    if (config.printProgress) { std::cout << "Saving results to: " << dbPath << std::endl; }
-    DatabaseOutputManager manager(dbPath, true);
-    manager.save_results(result.folds, result.stats, result.accesses, satellites, grounds);
-
-    // Call plotter
-    if (config.runPlotter) {
-        const std::string cmd = "python3 " + std::string(_TRACE_ROOT_) + "/pytrace/tracer.py " + outdir.string();
-        if (config.printProgress) { std::cout << "Plotting: " << cmd << std::endl; }
-        return std::system(cmd.c_str());
-    }
-
     return accesses;
 }
 
-analysisResult run_trace_analysis(const TraceConfig& config)
+AnalysisResult run_trace_analysis(const TraceConfig& config)
 {
     const Date startDate = Date::now();
 
@@ -168,7 +149,30 @@ analysisResult run_trace_analysis(const TraceConfig& config)
     const AccessArray accesses =
         propagate_and_run_access_analysis(constellation, grid, startDate, propTime, accessResolution, config.printProgress);
 
-    return analysisResult{ accesses, AccessStats(accesses), FoldsOfCoverage(accesses, accessResolution, propTime) };
+    const AnalysisResult results{ accesses, AccessStats(accesses), FoldsOfCoverage(accesses, accessResolution, propTime) };
+
+    // Save results
+    if (!config.saveResults) { return results; }
+
+    const std::filesystem::path outdir =
+        config.outdir.empty() ? std::filesystem::path(std::string(_TRACE_ROOT_) + "/trace/drivers/results/global") :
+                                std::filesystem::path(config.outdir);
+    std::filesystem::create_directories(outdir);
+    const std::filesystem::path dbPath = outdir / config.dbName;
+
+    if (config.printProgress) { std::cout << "Saving results to: " << dbPath << std::endl; }
+    DatabaseOutputManager manager(dbPath, true);
+    manager.save_results(results.folds, results.stats, results.accesses, constellation, grid);
+
+    // Call plotter
+    if (config.runPlotter) {
+        const std::string cmd = "python3 " + std::string(_TRACE_ROOT_) + "/pytrace/tracer.py " + outdir.string();
+        if (config.printProgress) { std::cout << "Plotting: " << cmd << std::endl; }
+        const auto exitCode = std::system(cmd.c_str());
+        if (exitCode != 0) { std::cerr << "Error: Plotter exited with code " << exitCode << std::endl; }
+    }
+
+    return results;
 }
 
 } // namespace trace
