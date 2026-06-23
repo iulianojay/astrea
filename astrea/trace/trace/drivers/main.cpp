@@ -125,8 +125,8 @@ int trace_analysis(const Time propTime, const Time accessResolution, const bool 
     // Polandish
     // LatLon corner1{ 48.0 * deg, 14.0 * deg };
     // LatLon corner4{ 55.0 * deg, 25.0 * deg };
-    LatLon corner1{ -180.0 * deg, -85.0 * deg };
-    LatLon corner4{ 175.0 * deg, 85.0 * deg };
+    LatLon corner1{ -180.0 * deg, -90.0 * deg };
+    LatLon corner4{ 180.0 * deg, 90.0 * deg };
     Grid<astro::planets::Earth> grid(corner1, corner4, GridType::UNIFORM, gridSpacing);
 
     // Propagate and find access
