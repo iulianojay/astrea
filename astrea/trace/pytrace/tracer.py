@@ -1,5 +1,6 @@
 import argparse
 import os
+from concurrent.futures import ThreadPoolExecutor
 import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
 import matplotlib.colors as mcolors
@@ -14,6 +15,28 @@ from scipy.interpolate import griddata
 from matplotlib.colors import Normalize as norm
 
 ASTREA_ROOT = os.getenv("ASTREA_ROOT")
+
+
+def _interpolate_grid(
+    x: np.ndarray,
+    y: np.ndarray,
+    values: np.ndarray,
+    xi: np.ndarray,
+    yi: np.ndarray,
+    method: str = "linear",
+) -> np.ndarray:
+    """Interpolate scattered values onto a regular grid.
+
+    Thread-safe: only calls scipy (no matplotlib state).
+    Tries the requested method, falls back to linear then nearest.
+    """
+    for m in dict.fromkeys([method, "linear", "nearest"]):
+        try:
+            zi = griddata((x, y), values, (xi, yi), method=m, fill_value=0)
+            return np.clip(zi, 0.0, None)
+        except Exception:
+            continue
+    return np.zeros(xi.shape)
 
 
 class Tracer:
@@ -157,8 +180,8 @@ class Tracer:
             )
             return None
 
-        # NOTE: the database stores longitude in the 'latitude' column and vice-versa;
-        # read them with the correct semantic meaning.
+        # The DB "latitude" column stores the longitude value and vice-versa
+        # (GroundPoint stores Geodetic coords where the first component is longitude).
         lats = ground_locs["longitude"].to_numpy()
         lons = ground_locs["latitude"].to_numpy()
 
@@ -177,7 +200,7 @@ class Tracer:
         urlat = float(np.min([np.round(urlat + extra * latRange), 90.0]))
 
         self.build_base_basemap(
-            float(np.mean(lons)), float(np.mean(lats)), lllon, lllat, urlon, urlat
+            float(np.mean(lats)), float(np.mean(lons)), lllon, lllat, urlon, urlat
         )
 
         # transform lon / lat coordinates to map projection
@@ -201,24 +224,15 @@ class Tracer:
         levels: np.ndarray = None,
         cbar_ticks: List[float] = None,
         cbar_tick_labels: List[str] = None,
+        zi: np.ndarray = None,
     ) -> None:
 
-        # interpolate
         x, y, xi, yi = grid
-        methods = [interpolation_method, "linear", "nearest"]
-        zi = None
-        for method in dict.fromkeys(methods):  # deduplicated, order preserved
-            try:
-                zi = griddata((x, y), values, (xi, yi), method=method, fill_value=0)
-                break
-            except Exception:
-                continue
-        if zi is None:
-            zi = np.zeros((yi.shape[0], xi.shape[1]))
 
-        # Cubic interpolation can overshoot into negatives at sharp boundaries;
-        # clamp to the valid range [0, max] so the colorbar always starts at zero.
-        zi = np.clip(zi, 0.0, None)
+        # Use pre-computed zi if provided (e.g. from parallel pre-pass);
+        # otherwise compute it now.
+        if zi is None:
+            zi = _interpolate_grid(x, y, values, xi, yi, interpolation_method)
 
         # Build default levels anchored at zero when not provided by the caller.
         if levels is None:
@@ -252,20 +266,27 @@ class Tracer:
             return
 
         ground_locs = self.read_ground_locations_data()
+        ground_locs = ground_locs.drop_duplicates(
+            subset=["name"]
+        )  # guard against duplicate DB entries
         grid = self.build_grid(ground_locs)
         if grid is None:
             print("Skipping folds plotting: No geographic data available.")
             return
 
-        # Join folds to ground_locations by extracting base name from formatted object string
-        # folds.object format: "Name [lat°, lon°] (Earth)"  →  base name: "Name"
+        # Join folds to ground_locations; use a left join so ground points with
+        # zero access (absent from the folds table) are still represented.
         earth_folds = df[df["object"].str.contains("Earth", na=False)].copy()
         earth_folds["_base_name"] = (
             earth_folds["object"].str.split(" [", regex=False).str[0]
         )
+        earth_folds = earth_folds.drop_duplicates(subset=["_base_name"])
         merged = ground_locs.merge(
-            earth_folds, left_on="name", right_on="_base_name", how="inner"
+            earth_folds, left_on="name", right_on="_base_name", how="left"
         )
+        merged[["min_folds", "avg_folds", "max_folds"]] = merged[
+            ["min_folds", "avg_folds", "max_folds"]
+        ].fillna(0.0)
 
         metricColumnMap = {"MIN": "min_folds", "AVG": "avg_folds", "MAX": "max_folds"}
 
@@ -292,57 +313,62 @@ class Tracer:
             k: np.array(v) for k, v in percentile_data.items() if len(v) == len(merged)
         }
 
+        # Collect all (metric, folds) pairs that have valid data.
+        render_items: list[tuple[str, np.ndarray]] = []
         for metric in metrics:
             if metric in metricColumnMap:
-                folds = merged[metricColumnMap[metric]].to_numpy()
+                render_items.append(
+                    (metric, merged[metricColumnMap[metric]].to_numpy())
+                )
             elif metric in percentile_data:
-                folds = percentile_data[metric]
-            else:
-                continue
+                render_items.append((metric, percentile_data[metric]))
 
-            # Build figure
+        if not render_items:
+            return
+
+        # --- Parallel griddata pass (scipy releases the GIL; no matplotlib) ---
+        x, y, xi, yi = grid
+        with ThreadPoolExecutor(max_workers=len(render_items)) as pool:
+            zi_arrays = list(
+                pool.map(
+                    lambda f: _interpolate_grid(x, y, f, xi, yi),
+                    [f for _, f in render_items],
+                )
+            )
+
+        # --- Serial render pass (matplotlib is not thread-safe) ---
+        err = 0.999  # maps [k-err, k+1-err) → integer k for discrete levels
+        for (metric, folds), zi in zip(render_items, zi_arrays):
             plt.clf()
             fig = plt.figure(figsize=(12, 9))
             ax = fig.add_subplot(111, facecolor="w", frame_on=False)
-
-            # Get basemap
             self.plot_basemap(ax)
 
-            # Set ineterpolation
-            interpolation_method = "linear"
-
-            # Build out contour levels and labels
             levels = None
             cbar_ticks = None
             cbar_tick_labels = None
             if metric != "AVG":
-                err = 0.999  # error terms categorizes [1-err, 1) into 0 folds, [2, 2-err) into 1 folds, etc.
                 levels = np.arange(1 - err, np.ceil(folds.max()) + 1, 1)
                 levels = np.insert(levels, 0, 0.0)
-
-                cbar_ticks = []
-                for ii in range(len(levels) - 1):
-                    cbar_ticks.append((levels[ii] + levels[ii + 1]) / 2)
-                cbar_tick_labels = [
-                    str(int(np.floor(tick + err))) for tick in cbar_ticks
+                cbar_ticks = [
+                    (levels[i] + levels[i + 1]) / 2 for i in range(len(levels) - 1)
                 ]
+                cbar_tick_labels = [str(int(np.floor(t + err))) for t in cbar_ticks]
 
-            # Plot contour
             title = metric + " Folds of Coverage"
-            cbar_label = "Folds"
             self.plot_contourf(
                 ax,
                 grid,
                 folds,
-                interpolation_method,
+                "linear",
                 title,
-                cbar_label=cbar_label,
+                cbar_label="Folds",
                 levels=levels,
                 cbar_ticks=cbar_ticks,
                 cbar_tick_labels=cbar_tick_labels,
+                zi=zi,
             )
 
-            # Save
             outfile = os.path.join(
                 self.outdir, "_".join(title.lower().split(" ")) + ".png"
             )
@@ -449,6 +475,6 @@ if __name__ == "__main__":
         "95th PCT",
         "99th PCT",
     ]
-    # tracer.plot_number_of_folds(metrics=metrics)
+    tracer.plot_number_of_folds(metrics=metrics)
     tracer.plot_avg_daily_vis()
     tracer.plot_mtta()

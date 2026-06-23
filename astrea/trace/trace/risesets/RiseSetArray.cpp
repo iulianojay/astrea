@@ -191,8 +191,9 @@ Time RiseSetArray::average_daily_vis_time() const
     // good luck parsing this jumbled mess
     Time avgDailyVisTime       = 0.0 * s;
     std::size_t ii             = 0;
-    unsigned iDay              = 0;
+    unsigned iDay              = 1; // 1-indexed: day boundary at days(iDay), start of day at days(iDay-1)
     bool accessCrossesMidnight = false;
+    if (_risesets.size() < 2) { return avgDailyVisTime; }
     while (ii < _risesets.size() - 1) {
         Time dailyVisTime = 0.0 * s;
         for (; ii < _risesets.size() - 1; ii += 2) {

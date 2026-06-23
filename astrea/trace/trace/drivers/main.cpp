@@ -19,6 +19,8 @@
 #include <set>
 #include <sqlite3.h>
 #include <stdio.h>
+#include <string>
+#include <string_view>
 
 #include <nlohmann/json.hpp>
 #include <sqlite_orm/sqlite_orm.h>
@@ -46,7 +48,236 @@ using mp_units::si::unit_symbols::km;
 using mp_units::si::unit_symbols::m;
 using mp_units::si::unit_symbols::s;
 
-int trace_analysis(const Time propTime, const Time accessResolution, const bool printProgress, const Angle gridSpacing);
+// ---------------------------------------------------------------------------
+// Configuration
+// ---------------------------------------------------------------------------
+
+struct TraceConfig {
+    // Simulation timing
+    double simTimeDays   = 30.0;
+    double resolutionMin = 1.0;
+
+    // Constellation (3-shell Walker)
+    double altitudeKm          = 560.0;
+    double inclinationDeg      = 97.6316;
+    std::size_t nSats          = 1; // satellites per plane
+    std::size_t nPlanes        = 1; // planes per shell
+    double anchorRaanDeg       = 0.0;
+    double crossTrackOffsetDeg = 0.0; // RAAN offset between shells 1 and 2
+    double phasingDeg          = 0.0; // true-anomaly phasing between shells
+
+    // Sensor
+    double fovHalfAngleDeg = 30.0;
+
+    // Ground grid
+    double gridSpacingDeg = 5.0;
+    double llLon          = -180.0; // LatLon first  arg = longitude (see LatLon convention)
+    double llLat          = -90.0;  // LatLon second arg = latitude
+    double urLon          = 180.0;
+    double urLat          = 90.0;
+
+    // Output
+    std::string outdir = ""; // empty -> default to <TRACE_ROOT>/trace/drivers/results/global
+    std::string dbName = "analysis.db";
+
+    // Flags
+    bool printProgress = false;
+    bool runPlotter    = true;
+
+    TraceConfig() = default;
+
+    explicit TraceConfig(const nlohmann::json& json)
+    {
+        simTimeDays         = json.value("sim_time_days", simTimeDays);
+        resolutionMin       = json.value("resolution_min", resolutionMin);
+        altitudeKm          = json.value("altitude_km", altitudeKm);
+        inclinationDeg      = json.value("inclination_deg", inclinationDeg);
+        nSats               = json.value("n_sats", nSats);
+        nPlanes             = json.value("n_planes", nPlanes);
+        anchorRaanDeg       = json.value("anchor_raan_deg", anchorRaanDeg);
+        crossTrackOffsetDeg = json.value("cross_track_offset_deg", crossTrackOffsetDeg);
+        phasingDeg          = json.value("phasing_deg", phasingDeg);
+        fovHalfAngleDeg     = json.value("fov_half_angle_deg", fovHalfAngleDeg);
+        gridSpacingDeg      = json.value("grid_spacing_deg", gridSpacingDeg);
+        llLon               = json.value("ll_lon", llLon);
+        llLat               = json.value("ll_lat", llLat);
+        urLon               = json.value("ur_lon", urLon);
+        urLat               = json.value("ur_lat", urLat);
+        outdir              = json.value("outdir", outdir);
+        dbName              = json.value("db_name", dbName);
+        printProgress       = json.value("print_progress", printProgress);
+        runPlotter          = json.value("run_plotter", runPlotter);
+    }
+};
+
+// ---------------------------------------------------------------------------
+// CLI helpers
+// ---------------------------------------------------------------------------
+
+static void print_usage(const char* prog)
+{
+    // clang-format off
+    std::cout <<
+        "Usage: " << prog << " [OPTIONS]\n"
+        "\n"
+        "Timing:\n"
+        "  --sim-time   <days>   Simulation duration            (default: 30)\n"
+        "  --resolution <min>    Access check resolution        (default: 1)\n"
+        "\n"
+        "Constellation (3-shell Walker):\n"
+        "  --altitude    <km>    Orbital altitude               (default: 560)\n"
+        "  --inclination <deg>   Inclination                    (default: 97.6316)\n"
+        "  --n-sats      <n>     Satellites per plane           (default: 1)\n"
+        "  --n-planes    <n>     Planes per shell               (default: 1)\n"
+        "  --raan        <deg>   Anchor RAAN (shell 1)          (default: 0)\n"
+        "  --cross-track <deg>   RAAN offset for shell 2        (default: 0)\n"
+        "  --phasing     <deg>   True-anomaly phasing/shell     (default: 0)\n"
+        "\n"
+        "Sensor:\n"
+        "  --fov <deg>           Half-cone angle                (default: 30)\n"
+        "\n"
+        "Grid:\n"
+        "  --grid-spacing <deg>  Grid resolution                (default: 5)\n"
+        "  --ll-lon <deg>        Lower-left  longitude          (default: -180)\n"
+        "  --ll-lat <deg>        Lower-left  latitude           (default: -90)\n"
+        "  --ur-lon <deg>        Upper-right longitude          (default: 180)\n"
+        "  --ur-lat <deg>        Upper-right latitude           (default: 90)\n"
+        "\n"
+        "Output:\n"
+        "  --outdir  <path>      Results directory              (default: <trace_root>/results/global)\n"
+        "  --db-name <name>      Database filename              (default: analysis.db)\n"
+        "\n"
+        "Config:\n"
+        "  --config  <path>      Load defaults from JSON file (overridden by CLI flags)\n"
+        "\n"
+        "Flags:\n"
+        "  --no-progress         Suppress progress output\n"
+        "  --no-plot             Skip Python plotting step\n"
+        "  --help                Show this message\n";
+    // clang-format on
+}
+
+/// Returns false and sets @p error on bad input; handles --help by printing and exiting.
+static bool parse_args(int argc, char* argv[], TraceConfig& config, std::string& error)
+{
+    auto next_val = [&](int i, int argc_, char* argv_[], std::string_view flag) -> std::string {
+        if (i + 1 >= argc_) {
+            error = std::string(flag) + " requires a value";
+            return "";
+        }
+        return argv_[i + 1];
+    };
+
+    for (int i = 1; i < argc; ++i) {
+        const std::string_view arg = argv[i];
+
+        // --- JSON config file (processed before remaining flags) ---
+        if (arg == "--config") {
+            const std::string path = next_val(i, argc, argv, arg);
+            if (!error.empty()) return false;
+            std::ifstream f(path);
+            if (!f) {
+                error = "Cannot open config file: " + path;
+                return false;
+            }
+            try {
+                config = TraceConfig(nlohmann::json::parse(f));
+            }
+            catch (const std::exception& e) {
+                error = std::string("JSON parse error: ") + e.what();
+                return false;
+            }
+            ++i;
+            continue;
+        }
+
+        // --- boolean flags ---
+        if (arg == "--help" || arg == "-h") {
+            print_usage(argv[0]);
+            std::exit(0);
+        }
+        if (arg == "--no-progress") {
+            config.printProgress = false;
+            continue;
+        }
+        if (arg == "--no-plot") {
+            config.runPlotter = false;
+            continue;
+        }
+
+        // --- key-value options ---
+        const std::string str = next_val(i, argc, argv, arg);
+        if (!error.empty()) return false;
+
+        try {
+            if (arg == "--sim-time") { config.simTimeDays = std::stod(str); }
+            else if (arg == "--resolution") {
+                config.resolutionMin = std::stod(str);
+            }
+            else if (arg == "--altitude") {
+                config.altitudeKm = std::stod(str);
+            }
+            else if (arg == "--inclination") {
+                config.inclinationDeg = std::stod(str);
+            }
+            else if (arg == "--n-sats") {
+                config.nSats = std::stoul(str);
+            }
+            else if (arg == "--n-planes") {
+                config.nPlanes = std::stoul(str);
+            }
+            else if (arg == "--raan") {
+                config.anchorRaanDeg = std::stod(str);
+            }
+            else if (arg == "--cross-track") {
+                config.crossTrackOffsetDeg = std::stod(str);
+            }
+            else if (arg == "--phasing") {
+                config.phasingDeg = std::stod(str);
+            }
+            else if (arg == "--fov") {
+                config.fovHalfAngleDeg = std::stod(str);
+            }
+            else if (arg == "--grid-spacing") {
+                config.gridSpacingDeg = std::stod(str);
+            }
+            else if (arg == "--ll-lon") {
+                config.llLon = std::stod(str);
+            }
+            else if (arg == "--ll-lat") {
+                config.llLat = std::stod(str);
+            }
+            else if (arg == "--ur-lon") {
+                config.urLon = std::stod(str);
+            }
+            else if (arg == "--ur-lat") {
+                config.urLat = std::stod(str);
+            }
+            else if (arg == "--outdir") {
+                config.outdir = str;
+            }
+            else if (arg == "--db-name") {
+                config.dbName = str;
+            }
+            else {
+                error = "Unknown option: " + std::string(arg);
+                return false;
+            }
+            ++i; // consume the value token
+        }
+        catch (const std::exception& e) {
+            error = "Invalid value for " + std::string(arg) + ": " + e.what();
+            return false;
+        }
+    }
+    return true;
+}
+
+// ---------------------------------------------------------------------------
+// Forward declarations
+// ---------------------------------------------------------------------------
+
+int trace_analysis(const TraceConfig& config);
 
 template <typename T, typename U>
 AccessArray propagate_and_run_access_analysis(
@@ -58,97 +289,92 @@ AccessArray propagate_and_run_access_analysis(
     const bool printProgress
 );
 
-int main()
-{
-    const Time propTime         = days(30.0);
-    const Time accessResolution = minutes(1.0);
-    const bool printProgress    = true;
-    const Angle gridSpacing     = 5.0 * deg;
+// ---------------------------------------------------------------------------
+// Entry point
+// ---------------------------------------------------------------------------
 
-    return trace_analysis(propTime, accessResolution, printProgress, gridSpacing);
+int main(int argc, char* argv[])
+{
+    TraceConfig config;
+    std::string error;
+    if (!parse_args(argc, argv, config, error)) {
+        std::cerr << "Error: " << error << "\n";
+        print_usage(argv[0]);
+        return 1;
+    }
+    return trace_analysis(config);
 }
 
-int trace_analysis(const Time propTime, const Time accessResolution, const bool printProgress, const Angle gridSpacing)
+// ---------------------------------------------------------------------------
+// Core analysis
+// ---------------------------------------------------------------------------
+
+int trace_analysis(const TraceConfig& config)
 {
     // Setup system
     Date startDate = Date::now();
 
-    // Query database
-    // auto snapshot = get_snapshot();
-    // auto iceyeSats = snapshot.get_all<GeneralPerturbations>(where(like(&GeneralPerturbations::OBJECT_NAME, "%%ICEYE%%")));
-    // auto iceyeSats = snapshot.get_all<GeneralPerturbations>(where(like(&GeneralPerturbations::OBJECT_NAME, "%%ICEYE-X61%%")));
-    // if (iceyeSats.size() == 0) {
-    //     std::cerr << "No ICEYE satellites found in database!" << std::endl;
-    //     return -1;
-    // }
-
     // Build constellation
-    const Distance altitude      = 560.0 * km;
+    const Distance altitude      = config.altitudeKm * km;
     const Distance semimajor     = altitude + get_equitorial_radius<planets::Earth>();
-    const Angle inclination      = 97.6316 * deg; // roughly sunsync, whatever
-    const std::size_t nSats      = 4;
-    const std::size_t nPlanes    = 4;
-    const Angle anchorRaan       = 20.0 * deg;
+    const Angle inclination      = config.inclinationDeg * deg;
+    const Angle anchorRaan       = config.anchorRaanDeg * deg;
     const Angle anchorAnomaly    = 0.0 * deg;
-    const Angle crossTrackOffset = 7.39 * deg; // 900 km off track
-    const Angle phasing          = 7.39 * deg;
-    Shell<Viewer> shell1(startDate, semimajor, inclination, nSats, nPlanes, 1.0, anchorRaan, anchorAnomaly);
-    Shell<Viewer> shell2(startDate, semimajor, inclination, nSats, nPlanes, 1.0, anchorRaan + crossTrackOffset, anchorAnomaly - phasing);
-    Shell<Viewer> shell3(startDate, semimajor, inclination, nSats, nPlanes, 1.0, anchorRaan, anchorAnomaly - 2.0 * phasing);
+    const Angle crossTrackOffset = config.crossTrackOffsetDeg * deg;
+    const Angle phasing          = config.phasingDeg * deg;
+
+    Shell<Viewer> shell1(startDate, semimajor, inclination, config.nSats, config.nPlanes, 1.0, anchorRaan, anchorAnomaly);
+    Shell<Viewer> shell2(startDate, semimajor, inclination, config.nSats, config.nPlanes, 1.0, anchorRaan + crossTrackOffset, anchorAnomaly - phasing);
+    Shell<Viewer> shell3(startDate, semimajor, inclination, config.nSats, config.nPlanes, 1.0, anchorRaan, anchorAnomaly - 2.0 * phasing);
     Constellation<Viewer> constellation({ shell1, shell2, shell3 });
 
-    // Add sensors
-    CircularFieldOfView fovLeo(30.0 * deg);
+    // Attach sensors
+    CircularFieldOfView fovLeo(config.fovHalfAngleDeg * deg);
     SensorParameters leoCone(&fovLeo);
     for (auto& shell : constellation.get_shells()) {
         for (auto& plane : shell.get_planes()) {
-            // const auto elements = plane.get_elements();
-            // std::cout << "RAAN: " << elements.in_element_set<Keplerian<frames::earth::icrf>>
-            // (get_mu<frames::primary.origin>()).get_right_ascension().in(deg) << std::endl;
             for (auto& sat : plane.get_all_spacecraft()) {
-                // const auto state = sat.get_state_history().first();
-                // std::cout << "\t" << state;
-                // const auto rEci = state.in_element_set<Cartesian>().get_position();
-                // const auto lla  = Geodetic(rEci, startDate.get_central_body().get());
-                // std::cout << "-> Lon: " << lla.get_longitude().in(deg) << std::endl;
                 sat.attach_payload(leoCone);
                 sat.set_name("Sat " + std::to_string(sat.get_id()) + "(Cluster " + std::to_string(sat.get_id() % 3 + 1) + ")");
             }
         }
     }
 
-    // Build out grounds
-    // GroundStation home(sys.get_central_body().get(), 60.1869 * deg, 24.8201 * deg, 0.0 * km, { "ICEYE Oy" });
-    // SensorParameters groundCone(&fovLeo, astro::RADIAL_RIC);
-    // home.attach_payload(groundCone);
-
-    // Polandish
-    // LatLon corner1{ 48.0 * deg, 14.0 * deg };
-    // LatLon corner4{ 55.0 * deg, 25.0 * deg };
-    LatLon corner1{ -180.0 * deg, -90.0 * deg };
-    LatLon corner4{ 180.0 * deg, 90.0 * deg };
+    // Build grid
+    // LatLon convention: first arg = longitude, second arg = latitude
+    LatLon corner1{ config.llLon * deg, config.llLat * deg };
+    LatLon corner4{ config.urLon * deg, config.urLat * deg };
+    const Angle gridSpacing = config.gridSpacingDeg * deg;
     Grid<astro::planets::Earth> grid(corner1, corner4, GridType::UNIFORM, gridSpacing);
 
     // Propagate and find access
+    const Time propTime         = days(config.simTimeDays);
+    const Time accessResolution = minutes(config.resolutionMin);
+
     const AccessArray accesses =
-        propagate_and_run_access_analysis(constellation, grid, startDate, propTime, accessResolution, printProgress);
+        propagate_and_run_access_analysis(constellation, grid, startDate, propTime, accessResolution, config.printProgress);
     const AccessStats stats(accesses);
     const FoldsOfCoverage folds(accesses, accessResolution, propTime);
 
-    // Save
-    std::filesystem::path outdir = std::string(_TRACE_ROOT_) + "/trace/drivers/results/global";
+    // Save results
+    const std::filesystem::path outdir =
+        config.outdir.empty() ? std::filesystem::path(std::string(_TRACE_ROOT_) + "/trace/drivers/results/global") :
+                                std::filesystem::path(config.outdir);
     std::filesystem::create_directories(outdir);
-    std::filesystem::path dbPath = outdir / "poland_analysis.db";
-    if (printProgress) { std::cout << "Saving results to database at: " << dbPath << std::endl; }
+    const std::filesystem::path dbPath = outdir / config.dbName;
 
+    if (config.printProgress) { std::cout << "Saving results to: " << dbPath << std::endl; }
     DatabaseOutputManager manager(dbPath, true);
     manager.save_results(folds, stats, accesses, constellation, grid);
 
     // Call plotter
-    std::filesystem::path plotFile = std::string(_TRACE_ROOT_) + "/pytrace/tracer.py " + outdir.string();
-    const std::string cmd          = "python3 " + plotFile.string();
-    std::cout << "Plotting results with command: \n\t" << cmd << std::endl;
-    return std::system(cmd.c_str());
+    if (config.runPlotter) {
+        const std::string cmd = "python3 " + std::string(_TRACE_ROOT_) + "/pytrace/tracer.py " + outdir.string();
+        if (config.printProgress) { std::cout << "Plotting: " << cmd << std::endl; }
+        return std::system(cmd.c_str());
+    }
+
+    return 0;
 }
 
 template <typename T, typename U>
