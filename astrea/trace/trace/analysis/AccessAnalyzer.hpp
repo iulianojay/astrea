@@ -79,6 +79,15 @@ using GroundPointRefVec = std::vector<std::shared_ptr<GroundPoint<astro::planets
 
 using PairVec = std::vector<std::pair<std::size_t, std::size_t>>;
 
+/**
+ * @brief Pre-computed ECI boresight vectors per sensor per timestep.
+ *
+ * Indexed as BoresightTable[sensor_idx][time_idx].
+ * Computed once per satellite before the ground-point loop to avoid
+ * rebuilding the RIC frame for every (viewer, ground point) pair.
+ */
+using BoresightTable = std::vector<std::vector<EciRadiusVec>>;
+
 
 class AccessAnalyzer {
 
@@ -253,7 +262,34 @@ class AccessAnalyzer {
      * @param id2 The id of the second object.
      * @return std::vector<AccessInfo> A vector of AccessInfo objects containing trace information for the pair of objects.
      */
-    std::vector<AccessInfo> build_access_info(const std::size_t& id1, const std::size_t& id2) const;
+    std::vector<AccessInfo>
+        build_access_info(const std::size_t& id1, const std::size_t& id2, const bool groundPointTarget = false) const;
+
+    /**
+     * @brief Pre-compute ECI boresight vectors for every sensor on a platform at every timestep.
+     *
+     * Hoists the RIC-frame construction and boresight rotation out of the inner
+     * ground-point loop so the cost is O(N_sensors * N_time) instead of
+     * O(N_sensors * N_time * N_groundPoints).
+     *
+     * @param platform The sensor platform.
+     * @return BoresightTable boresights[sensor_idx][time_idx] in ECI.
+     */
+    BoresightTable compute_sensor_boresights(std::shared_ptr<astro::PayloadPlatform<Sensor>> platform) const;
+
+    /**
+     * @brief Find sensor accesses using a pre-computed ECI boresight table.
+     *
+     * Replaces the per-timestep sensor.contains() call (which rebuilds the RIC
+     * frame) with a direct fov->contains() using a pre-computed boresight vector.
+     *
+     * @param accessInfo Per-timestep geometry and occlusion data.
+     * @param boresightEci Pre-computed ECI boresight vector for this sensor, indexed by time.
+     * @param fov Field of view to check against.
+     * @return RiseSetArray Access windows for this sensor.
+     */
+    RiseSetArray
+        find_sensor_accesses_precomputed(const std::vector<AccessInfo>& accessInfo, const std::vector<EciRadiusVec>& boresightEci, const FieldOfView* fov) const;
 };
 
 } // namespace trace

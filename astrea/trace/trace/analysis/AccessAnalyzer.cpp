@@ -15,6 +15,8 @@
 
 #include <algorithm>
 #include <execution>
+#include <numeric>
+#include <unordered_set>
 
 #include <mp-units/math.h>
 #include <mp-units/systems/angular/math.h>
@@ -230,47 +232,178 @@ AccessArray AccessAnalyzer::find_accesses(ViewerConstellation& constel, Grid<ast
     // Internal accesses if requested
     AccessArray allAccesses = includeInternalAccesses ? find_internal_accesses(constel, false) : AccessArray();
 
-    if (_printProgress) { std::cout << std::endl; }
-    utilities::ProgressBar progressBar(nViewers * nGrounds, "\tSat->Grid Access");
-
+    // Pre-compute ECI boresight per viewer/sensor/timestep
+    // Hoists RIC-frame construction out of the O(N_GP) inner loop.
+    std::vector<BoresightTable> viewerBoresights(nViewers);
     for (std::size_t iViewer = 0; iViewer < nViewers; ++iViewer) {
-        for (std::size_t iGround = 0; iGround < nGrounds; ++iGround) {
-            auto& viewer      = viewers[iViewer];
-            auto& groundPoint = groundPoints[iGround];
+        viewerBoresights[iViewer] = compute_sensor_boresights(viewers[iViewer]);
+    }
 
-            const RiseSetArray satAccess = find_platform_to_ground_point_accesses(viewer, groundPoint);
+    // Build SpatialIndex; skip ground points outside sensor footprint
+    SpatialIndex spatialIndex;
+    for (std::size_t iGround = 0; iGround < nGrounds; ++iGround) {
+        spatialIndex.add_ground_point(iGround, groundPoints[iGround]->get_latitude(), groundPoints[iGround]->get_longitude());
+    }
 
-            if (satAccess.size() > 0) {
-                const std::size_t viewerId = viewer->get_id();
-                const std::size_t groundId = groundPoint->get_id();
-
-                viewer->add_access(groundId, satAccess);
-                groundPoint->add_access(viewerId, satAccess);
-                allAccesses[viewerId, groundId] = satAccess;
-            }
-            if (_printProgress) { progressBar(); }
+    // For each viewer, union ground points reachable across all timesteps
+    static const Distance rEqEarth = astrea::astro::get_equitorial_radius<astro::planets::Earth>();
+    std::vector<std::vector<std::size_t>> viewerCandidates(nViewers);
+    for (std::size_t iViewer = 0; iViewer < nViewers; ++iViewer) {
+        Angle maxHalfAngle = 0.0 * deg;
+        for (const auto& sensor : static_cast<SensorPlatform*>(viewers[iViewer].get())->get_payloads()) {
+            const FieldOfView* fov = sensor.get_parameters().get_fov();
+            if (fov) { maxHalfAngle = std::max(maxHalfAngle, fov->max_half_angle()); }
         }
+        if (maxHalfAngle <= 0.0 * deg) { continue; } // no valid sensors
+
+        std::unordered_set<std::size_t> candidateSet;
+        const std::size_t viewerId = viewers[iViewer]->get_id();
+        for (std::size_t iTime = 0; iTime < _dates.size(); ++iTime) {
+            const auto& satPos  = _positionCache.get_position_by_id(viewerId, iTime);
+            const Distance satR = satPos.norm();
+            // Earth central angle of footprint: rho = asin(R_sat*sin(theta)/rEqEarth) - theta
+            const Unitless sinArg       = satR / rEqEarth * sin(maxHalfAngle);
+            const Angle footprintRadius = (sinArg >= 1.0 * mp_units::one) ?
+                                              (std::numbers::pi / 2.0 * mp_units::angular::unit_symbols::rad) :
+                                              (asin(sinArg) - maxHalfAngle);
+            const Angle lat             = asin(satPos.get_z() / satR);
+            const Angle lon             = atan2(satPos.get_y(), satPos.get_x());
+            const auto nearby           = spatialIndex.get_nearby_ground_points(lat, lon, footprintRadius + 1.0 * deg);
+            candidateSet.insert(nearby.begin(), nearby.end());
+        }
+        viewerCandidates[iViewer].assign(candidateSet.begin(), candidateSet.end());
+    }
+
+    // Build flat work-item list from candidate pairs
+    struct PairResult {
+        RiseSetArray platformAccess;
+        std::vector<std::pair<std::size_t, RiseSetArray>> sensorAccesses; // (sensorIdx, access)
+    };
+
+    std::vector<std::pair<std::size_t, std::size_t>> workItems;
+    for (std::size_t iViewer = 0; iViewer < nViewers; ++iViewer) {
+        for (const std::size_t iGround : viewerCandidates[iViewer]) {
+            workItems.emplace_back(iViewer, iGround);
+        }
+    }
+
+    if (_printProgress) { std::cout << std::endl; }
+    utilities::ProgressBar progressBar(workItems.size(), "\tSat->Grid Access");
+
+    // Parallel compute
+    std::vector<PairResult> results(workItems.size());
+    std::vector<std::size_t> indices(workItems.size());
+    std::iota(indices.begin(), indices.end(), 0);
+
+    std::for_each(std::execution::par, indices.begin(), indices.end(), [&](std::size_t idx) {
+        const auto& [iViewer, iGround] = workItems[idx];
+        auto& viewer                   = viewers[iViewer];
+        auto& groundPoint              = groundPoints[iGround];
+
+        // Opt 3: fast ground-point occlusion (dot-product elevation check)
+        const std::vector<AccessInfo> accessInfo = build_access_info(viewer->get_id(), groundPoint->get_id(), true);
+
+        PairResult& result  = results[idx];
+        std::size_t iSensor = 0;
+        for (const auto& sensor : static_cast<SensorPlatform*>(viewer.get())->get_payloads()) {
+            const FieldOfView* fov = sensor.get_parameters().get_fov();
+            if (fov) {
+                // Opt 1 + Opt 4: pre-computed boresight, dot-product FOV check
+                const RiseSetArray sensorAccess =
+                    find_sensor_accesses_precomputed(accessInfo, viewerBoresights[iViewer][iSensor], fov);
+                if (sensorAccess.size() > 0) {
+                    result.platformAccess |= sensorAccess;
+                    result.sensorAccesses.emplace_back(iSensor, sensorAccess);
+                }
+            }
+            ++iSensor;
+        }
+    });
+
+    // ---- Sequential apply: write results to platform objects ----
+    for (std::size_t idx = 0; idx < workItems.size(); ++idx) {
+        const auto& [iViewer, iGround] = workItems[idx];
+        auto& viewer                   = viewers[iViewer];
+        auto& groundPoint              = groundPoints[iGround];
+        PairResult& result             = results[idx];
+
+        if (result.platformAccess.size() > 0) {
+            const std::size_t viewerId = viewer->get_id();
+            const std::size_t groundId = groundPoint->get_id();
+
+            viewer->add_access(groundId, result.platformAccess);
+            groundPoint->add_access(viewerId, result.platformAccess);
+            allAccesses[viewerId, groundId] = result.platformAccess;
+
+            auto& sensors = static_cast<SensorPlatform*>(viewer.get())->get_payloads();
+            for (const auto& [iSensor, sensorAccess] : result.sensorAccesses) {
+                sensors[iSensor].add_access(groundId, sensorAccess);
+                groundPoint->add_access(sensors[iSensor].get_id(), sensorAccess);
+            }
+        }
+        if (_printProgress) { progressBar(); }
     }
 
     return allAccesses;
 }
 
-std::vector<AccessInfo> AccessAnalyzer::build_access_info(const std::size_t& id1, const std::size_t& id2) const
+std::vector<AccessInfo> AccessAnalyzer::build_access_info(const std::size_t& id1, const std::size_t& id2, const bool groundPointTarget) const
 {
     std::vector<AccessInfo> accessInfo;
     accessInfo.reserve(_dates.size());
-    for (std::size_t ii = 0; ii < _dates.size(); ++ii) {
-        const auto& pos1 = _positionCache.get_position_by_id(id1, ii);
-        const auto& pos2 = _positionCache.get_position_by_id(id2, ii);
 
-        AccessInfo info;
-        info.time       = _dates[ii] - _startDate;
-        info.radius1to2 = pos2 - pos1;
-        info.isOcculted = is_central_body_occulting(pos1, pos2, true);
-
-        accessInfo.push_back(info);
+    if (groundPointTarget) {
+        // Fast path for ground points: the position is fixed, so pre-compute the
+        // squared magnitude once and use a dot-product elevation check at each
+        // timestep instead of the expensive asin/acos in is_central_body_occulting.
+        // Satellite is above the local horizon at groundPos iff
+        //   dot(groundPos, satPos) >= dot(groundPos, groundPos)
+        // which is equivalent to elevation angle >= 0.
+        const auto& groundPos = _positionCache.get_position_by_id(id2, 0);
+        const auto gpDotGp    = groundPos.dot(groundPos);
+        for (std::size_t ii = 0; ii < _dates.size(); ++ii) {
+            const auto& satPos = _positionCache.get_position_by_id(id1, ii);
+            AccessInfo info;
+            info.time       = _dates[ii] - _startDate;
+            info.radius1to2 = groundPos - satPos;
+            info.isOcculted = (satPos.dot(groundPos) < gpDotGp);
+            accessInfo.push_back(info);
+        }
+    }
+    else {
+        for (std::size_t ii = 0; ii < _dates.size(); ++ii) {
+            const auto& pos1 = _positionCache.get_position_by_id(id1, ii);
+            const auto& pos2 = _positionCache.get_position_by_id(id2, ii);
+            AccessInfo info;
+            info.time       = _dates[ii] - _startDate;
+            info.radius1to2 = pos2 - pos1;
+            info.isOcculted = is_central_body_occulting(pos1, pos2, true);
+            accessInfo.push_back(info);
+        }
     }
     return accessInfo;
+}
+
+BoresightTable AccessAnalyzer::compute_sensor_boresights(std::shared_ptr<SensorPlatform> platform) const
+{
+    const std::size_t nTimesteps = _dates.size();
+    const std::size_t nSensors   = platform->get_payloads().size();
+    BoresightTable boresights(nSensors, std::vector<EciRadiusVec>(nTimesteps));
+
+    std::size_t iSensor = 0;
+    for (const auto& sensor : platform->get_payloads()) {
+        if (sensor.get_parameters().get_fov()) {
+            for (std::size_t iTime = 0; iTime < nTimesteps; ++iTime) {
+                const auto& date     = _dates[iTime];
+                const auto parentPos = platform->get_position(date);
+                const auto parentVel = platform->get_velocity(date);
+                const auto frame     = astro::frames::dynamic::ric.instantaneous(parentPos, parentVel);
+                boresights[iSensor][iTime] = frame.rotate_out_of_this_frame(sensor.get_parameters().get_boresight(), date);
+            }
+        }
+        ++iSensor;
+    }
+    return boresights;
 }
 
 RiseSetArray
@@ -388,6 +521,61 @@ RiseSetArray
             insideAccessInterval = true;
             rise                 = time;
             set                  = time; // to catch cases where (set - rise) < resolution
+        }
+    }
+    return access;
+}
+
+RiseSetArray AccessAnalyzer::find_sensor_accesses_precomputed(
+    const std::vector<AccessInfo>& accessInfo,
+    const std::vector<EciRadiusVec>& boresightEci,
+    const FieldOfView* fov
+) const
+{
+    if (accessInfo.empty()) { return {}; }
+
+    Time rise, set;
+    bool insideAccessInterval = false;
+    RiseSetArray access;
+    const Time start = accessInfo.front().time;
+    const Time end   = accessInfo.back().time;
+
+    for (std::size_t iTime = 0; iTime < accessInfo.size(); ++iTime) {
+        const auto& specific = accessInfo[iTime];
+        const Time& time     = specific.time;
+        const Date date      = _startDate + time;
+
+        bool sensorsInView = false;
+        if (!specific.isOcculted) {
+            const EciRadiusVec radius1to2 = specific.radius1to2.in_frame<earth::icrf>(date);
+            sensorsInView                 = fov->contains(boresightEci[iTime], radius1to2);
+        }
+
+        if (time == start) {
+            insideAccessInterval = sensorsInView;
+            if (insideAccessInterval) { rise = start; }
+            set = start;
+            continue;
+        }
+        else if (time == end) {
+            if (insideAccessInterval && sensorsInView) {
+                access.append(rise, end);
+                continue;
+            }
+        }
+
+        if (insideAccessInterval && !sensorsInView) {
+            insideAccessInterval = false;
+            if (rise >= set) { continue; }
+            access.append(rise, set);
+        }
+        else if (insideAccessInterval && sensorsInView) {
+            set = time;
+        }
+        else if (!insideAccessInterval && sensorsInView) {
+            insideAccessInterval = true;
+            rise                 = time;
+            set                  = time;
         }
     }
     return access;

@@ -60,10 +60,10 @@ AccessArray propagate_and_run_access_analysis(
 
 int main()
 {
-    const Time propTime         = days(3.0);
+    const Time propTime         = days(30.0);
     const Time accessResolution = minutes(1.0);
     const bool printProgress    = true;
-    const Angle gridSpacing     = 0.25 * deg;
+    const Angle gridSpacing     = 5.0 * deg;
 
     return trace_analysis(propTime, accessResolution, printProgress, gridSpacing);
 }
@@ -123,8 +123,10 @@ int trace_analysis(const Time propTime, const Time accessResolution, const bool 
     // home.attach_payload(groundCone);
 
     // Polandish
-    LatLon corner1{ 48.0 * deg, 14.0 * deg };
-    LatLon corner4{ 55.0 * deg, 25.0 * deg };
+    // LatLon corner1{ 48.0 * deg, 14.0 * deg };
+    // LatLon corner4{ 55.0 * deg, 25.0 * deg };
+    LatLon corner1{ -180.0 * deg, -85.0 * deg };
+    LatLon corner4{ 175.0 * deg, 85.0 * deg };
     Grid<astro::planets::Earth> grid(corner1, corner4, GridType::UNIFORM, gridSpacing);
 
     // Propagate and find access
@@ -134,7 +136,7 @@ int trace_analysis(const Time propTime, const Time accessResolution, const bool 
     const FoldsOfCoverage folds(accesses, accessResolution, propTime);
 
     // Save
-    std::filesystem::path outdir = std::string(_TRACE_ROOT_) + "/trace/drivers/results/poland/4_planes";
+    std::filesystem::path outdir = std::string(_TRACE_ROOT_) + "/trace/drivers/results/global";
     std::filesystem::create_directories(outdir);
     std::filesystem::path dbPath = outdir / "poland_analysis.db";
     if (printProgress) { std::cout << "Saving results to database at: " << dbPath << std::endl; }
