@@ -51,8 +51,8 @@ struct TraceConfig {
 
     // Ground grid
     double gridSpacingDeg = 5.0;
-    double llLon          = -180.0; ///< Lower-left  longitude  (LatLon first  arg)
-    double llLat          = -90.0;  ///< Lower-left  latitude   (LatLon second arg)
+    double llLon          = -180.0; ///< Lower-left  longitude  (LatLon second arg)
+    double llLat          = -90.0;  ///< Lower-left  latitude   (LatLon first  arg)
     double urLon          = 180.0;  ///< Upper-right longitude
     double urLat          = 90.0;   ///< Upper-right latitude
 
@@ -95,28 +95,28 @@ struct TraceConfig {
      * | run_plotter             | runPlotter             |
      * | save_results            | saveResults            |
      */
-    explicit TraceConfig(const nlohmann::json& j)
+    explicit TraceConfig(const nlohmann::json& json)
     {
-        simTimeDays         = j.value("sim_time_days", simTimeDays);
-        resolutionMin       = j.value("resolution_min", resolutionMin);
-        altitudeKm          = j.value("altitude_km", altitudeKm);
-        inclinationDeg      = j.value("inclination_deg", inclinationDeg);
-        nSats               = j.value("n_sats", nSats);
-        nPlanes             = j.value("n_planes", nPlanes);
-        anchorRaanDeg       = j.value("anchor_raan_deg", anchorRaanDeg);
-        crossTrackOffsetDeg = j.value("cross_track_offset_deg", crossTrackOffsetDeg);
-        phasingDeg          = j.value("phasing_deg", phasingDeg);
-        fovHalfAngleDeg     = j.value("fov_half_angle_deg", fovHalfAngleDeg);
-        gridSpacingDeg      = j.value("grid_spacing_deg", gridSpacingDeg);
-        llLon               = j.value("ll_lon", llLon);
-        llLat               = j.value("ll_lat", llLat);
-        urLon               = j.value("ur_lon", urLon);
-        urLat               = j.value("ur_lat", urLat);
-        outdir              = j.value("outdir", outdir);
-        dbName              = j.value("db_name", dbName);
-        printProgress       = j.value("print_progress", printProgress);
-        runPlotter          = j.value("run_plotter", runPlotter);
-        saveResults         = j.value("save_results", saveResults);
+        simTimeDays         = json.value("sim_time_days", simTimeDays);
+        resolutionMin       = json.value("resolution_min", resolutionMin);
+        altitudeKm          = json.value("altitude_km", altitudeKm);
+        inclinationDeg      = json.value("inclination_deg", inclinationDeg);
+        nSats               = json.value("n_sats", nSats);
+        nPlanes             = json.value("n_planes", nPlanes);
+        anchorRaanDeg       = json.value("anchor_raan_deg", anchorRaanDeg);
+        crossTrackOffsetDeg = json.value("cross_track_offset_deg", crossTrackOffsetDeg);
+        phasingDeg          = json.value("phasing_deg", phasingDeg);
+        fovHalfAngleDeg     = json.value("fov_half_angle_deg", fovHalfAngleDeg);
+        gridSpacingDeg      = json.value("grid_spacing_deg", gridSpacingDeg);
+        llLon               = json.value("ll_lon", llLon);
+        llLat               = json.value("ll_lat", llLat);
+        urLon               = json.value("ur_lon", urLon);
+        urLat               = json.value("ur_lat", urLat);
+        outdir              = json.value("outdir", outdir);
+        dbName              = json.value("db_name", dbName);
+        printProgress       = json.value("print_progress", printProgress);
+        runPlotter          = json.value("run_plotter", runPlotter);
+        saveResults         = json.value("save_results", saveResults);
     }
 };
 

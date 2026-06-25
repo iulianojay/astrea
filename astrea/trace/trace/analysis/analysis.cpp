@@ -120,10 +120,10 @@ AnalysisResult run_trace_analysis(const TraceConfig& config)
     const Angle crossTrack    = config.crossTrackOffsetDeg * deg;
     const Angle phasing       = config.phasingDeg * deg;
 
-    Shell<Viewer> shell1(startDate, semimajor, inclination, config.nSats, config.nPlanes, 1.0, anchorRaan, anchorAnomaly);
-    Shell<Viewer> shell2(startDate, semimajor, inclination, config.nSats, config.nPlanes, 1.0, anchorRaan + crossTrack, anchorAnomaly - phasing);
-    Shell<Viewer> shell3(startDate, semimajor, inclination, config.nSats, config.nPlanes, 1.0, anchorRaan, anchorAnomaly - 2.0 * phasing);
-    Constellation<Viewer> constellation({ shell1, shell2, shell3 });
+    // Shell<Viewer> shell1(startDate, semimajor, inclination, config.nSats, config.nPlanes, 1.0, anchorRaan, anchorAnomaly);
+    // Shell<Viewer> shell2(startDate, semimajor, inclination, config.nSats, config.nPlanes, 1.0, anchorRaan + crossTrack, anchorAnomaly - phasing);
+    // Shell<Viewer> shell3(startDate, semimajor, inclination, config.nSats, config.nPlanes, 1.0, anchorRaan, anchorAnomaly - 2.0 * phasing);
+    Constellation<Viewer> constellation(startDate, semimajor, inclination, config.nSats, config.nPlanes, 1.0, anchorRaan, anchorAnomaly);
 
     // Attach sensors
     CircularFieldOfView fovShape(config.fovHalfAngleDeg * deg);
@@ -136,10 +136,9 @@ AnalysisResult run_trace_analysis(const TraceConfig& config)
         }
     }
 
-    // Build grid
-    // LatLon convention: first arg = longitude, second arg = latitude
-    LatLon corner1{ config.llLon * deg, config.llLat * deg };
-    LatLon corner4{ config.urLon * deg, config.urLat * deg };
+    // Build grid — LatLon is (latitude, longitude)
+    LatLon corner1{ config.llLat * deg, config.llLon * deg };
+    LatLon corner4{ config.urLat * deg, config.urLon * deg };
     Grid<astro::planets::Earth> grid(corner1, corner4, GridType::UNIFORM, config.gridSpacingDeg * deg);
 
     // Propagate + access analysis
@@ -163,6 +162,7 @@ AnalysisResult run_trace_analysis(const TraceConfig& config)
     if (config.printProgress) { std::cout << "Saving results to: " << dbPath << std::endl; }
     DatabaseOutputManager manager(dbPath, true);
     manager.save_results(results.folds, results.stats, results.accesses, constellation, grid);
+    manager.save_ground_track(constellation, startDate, startDate + propTime, accessResolution);
 
     // Call plotter
     if (config.runPlotter) {

@@ -4,6 +4,7 @@ from concurrent.futures import ThreadPoolExecutor
 import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
 import matplotlib.colors as mcolors
+from matplotlib.collections import LineCollection
 import pandas as pd
 import numpy as np
 import datetime
@@ -101,16 +102,24 @@ class Tracer:
         projection = "robin"
         if lllon != -180.0:
             projection = "cea"
-        self.map = Basemap(
-            projection=projection,
-            llcrnrlon=self.lllon,
-            llcrnrlat=self.lllat,
-            urcrnrlon=self.urlon,
-            urcrnrlat=self.urlat,
-            lat_0=lat0,
-            lon_0=lon0,
-            resolution="h",
-        )
+
+        if projection == "robin":
+            self.map = Basemap(
+                projection=projection,
+                lon_0=lon0,
+                resolution="h",
+            )
+        else:
+            self.map = Basemap(
+                projection=projection,
+                llcrnrlon=self.lllon,
+                llcrnrlat=self.lllat,
+                urcrnrlon=self.urlon,
+                urcrnrlat=self.urlat,
+                lat_0=lat0,
+                lon_0=lon0,
+                resolution="h",
+            )
 
     def plot_basemap(self, ax: plt.Axes) -> None:
 
@@ -180,10 +189,8 @@ class Tracer:
             )
             return None
 
-        # The DB "latitude" column stores the longitude value and vice-versa
-        # (GroundPoint stores Geodetic coords where the first component is longitude).
-        lats = ground_locs["longitude"].to_numpy()
-        lons = ground_locs["latitude"].to_numpy()
+        lats = ground_locs["latitude"].to_numpy()
+        lons = ground_locs["longitude"].to_numpy()
 
         lllon = float(np.min(lons))
         lllat = float(np.min(lats))
@@ -374,6 +381,169 @@ class Tracer:
             )
             plt.savefig(outfile, format="png", dpi=300, bbox_inches="tight")
 
+    def read_ground_track_data(self) -> pd.DataFrame:
+        """Read ground track data from SQLite database."""
+        conn = sqlite3.connect(self.db_path)
+        try:
+            df = pd.read_sql_query("SELECT * FROM ground_track", conn)
+        except Exception:
+            df = pd.DataFrame()
+        finally:
+            conn.close()
+        return df
+
+    def plot_ground_track(self) -> None:
+        """Plot satellite ground tracks on a world map."""
+        df = self.read_ground_track_data()
+        if df.empty:
+            print("No ground track data found in database.")
+            return
+
+        plt.clf()
+        fig = plt.figure(figsize=(16, 9))
+        ax = fig.add_subplot(111, facecolor="w", frame_on=False)
+
+        m = Basemap(
+            projection="robin",
+            lon_0=0,
+            resolution="l",
+            ax=ax,
+        )
+        m.drawmapboundary(fill_color="lightblue", ax=ax)
+        m.fillcontinents(color="#C0C0C0", lake_color="lightblue", ax=ax)
+        m.drawcoastlines(linewidth=0.5, ax=ax)
+        m.drawparallels(
+            np.arange(-90, 91, 30),
+            linewidth=0.3,
+            color="gray",
+            labels=[1, 0, 0, 0],
+            fontsize=self.fontSize - 4,
+            ax=ax,
+        )
+        m.drawmeridians(
+            np.arange(-180, 181, 60),
+            linewidth=0.3,
+            color="gray",
+            labels=[0, 0, 0, 1],
+            fontsize=self.fontSize - 4,
+            ax=ax,
+        )
+
+        satellites = df["satellite"].unique()
+        cmap = plt.cm.tab10
+        alpha_min, alpha_max = 0.15, 1.0
+        for i, sat in enumerate(satellites):
+            r, g, b, _ = cmap(i % 10)
+            sat_df = df[df["satellite"] == sat].sort_values("time_sec")
+            lons = sat_df["longitude"].to_numpy()
+            lats = sat_df["latitude"].to_numpy()
+            n = len(lons)
+            if n < 2:
+                continue
+            x, y = m(lons, lats)
+
+            # Detect antimeridian wraps (>180° longitude jump) so lines don't
+            # streak across the entire map.
+            wrap = np.abs(np.diff(lons)) > 180
+
+            segments = []
+            colors_rgba = []
+            start = 0
+            for k in range(len(wrap)):
+                if wrap[k]:
+                    # segment k (point k → k+1) is the crossing segment — skip it
+                    for j in range(start, k):
+                        t = j / (n - 1)
+                        a = alpha_min + (alpha_max - alpha_min) * t
+                        segments.append([(x[j], y[j]), (x[j + 1], y[j + 1])])
+                        colors_rgba.append((r, g, b, a))
+                    start = k + 1
+            for j in range(start, n - 1):
+                t = j / (n - 1)
+                a = alpha_min + (alpha_max - alpha_min) * t
+                segments.append([(x[j], y[j]), (x[j + 1], y[j + 1])])
+                colors_rgba.append((r, g, b, a))
+
+            lc = LineCollection(segments, colors=colors_rgba, linewidth=1.5, zorder=5)
+            ax.add_collection(lc)
+
+            # Draw a marker at each point with the same per-point alpha gradient.
+            alphas = np.array(
+                [alpha_min + (alpha_max - alpha_min) * j / (n - 1) for j in range(n)]
+            )
+            marker_colors = [(r, g, b, a) for a in alphas]
+            ax.scatter(x, y, s=10, color=marker_colors, marker="o", zorder=6)
+
+        plt.title(
+            "Satellite Ground Tracks",
+            fontsize=self.fontSize + 4,
+            fontweight=self.fontWeight,
+        )
+
+        outfile = os.path.join(self.outdir, "ground_track.png")
+        plt.savefig(outfile, format="png", dpi=300, bbox_inches="tight")
+        plt.close(fig)
+
+    def plot_relative_access_time(self) -> None:
+        """Plot relative access time per receiver, normalised to [0, 1] against the max."""
+        df = self.read_access_metrics_data()
+        if df.empty:
+            print("No access metrics data found in database.")
+            return
+
+        ground_locs = self.read_ground_locations_data()
+        ground_locs = ground_locs.drop_duplicates(subset=["name"])
+        grid = self.build_grid(ground_locs)
+        if grid is None:
+            print("Skipping relative access time: No geographic data available.")
+            return
+
+        earth_data = df[
+            (df["object"].str.contains("Earth", na=False))
+            & (df["metric_type"] == "AVG_DAILY_VIS")
+        ].copy()
+        if earth_data.empty:
+            print(
+                "Skipping relative access time: No AVG_DAILY_VIS data for Earth points."
+            )
+            return
+
+        earth_data = earth_data.drop_duplicates(subset=["object"])
+        merged = ground_locs.merge(
+            earth_data, left_on="name", right_on="object", how="left"
+        )
+        merged["time_value"] = merged["time_value"].fillna(0.0)
+
+        vals = merged["time_value"].to_numpy(dtype=float)
+        max_val = vals.max()
+        if max_val > 0:
+            vals = vals / max_val
+
+        x, y, xi, yi = grid
+        zi = _interpolate_grid(x, y, vals, xi, yi, "cubic")
+        zi = np.clip(zi, 0.0, 1.0)
+
+        plt.clf()
+        fig = plt.figure(figsize=(12, 9))
+        ax = fig.add_subplot(111, facecolor="w", frame_on=False)
+        self.cmap = "turbo_r"
+        self.plot_basemap(ax)
+
+        levels = np.linspace(0.0, 1.0, 20)
+        self.map.contourf(
+            xi, yi, zi, zorder=4, alpha=0.6, cmap=self.cmap, ax=ax, levels=levels
+        )
+
+        plt.title(
+            "Relative Access Time",
+            fontsize=self.fontSize + 4,
+            fontweight=self.fontWeight,
+        )
+
+        outfile = os.path.join(self.outdir, "relative_access_time.png")
+        plt.savefig(outfile, format="png", dpi=300, bbox_inches="tight")
+        plt.close(fig)
+
     def plot_avg_daily_vis(self) -> None:
         self.plot_access_metric(
             "AVG_DAILY_VIS", "Average Daily Visibility", "Time (hrs)"
@@ -475,6 +645,13 @@ if __name__ == "__main__":
         "95th PCT",
         "99th PCT",
     ]
+    print("Plotting number of folds...")
     tracer.plot_number_of_folds(metrics=metrics)
+    print("Plotting average daily visibility...")
     tracer.plot_avg_daily_vis()
+    print("Plotting mean time to access...")
     tracer.plot_mtta()
+    print("Plotting ground track...")
+    tracer.plot_ground_track()
+    # print("Plotting relative access time...")
+    # tracer.plot_relative_access_time()

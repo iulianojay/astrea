@@ -24,7 +24,7 @@ endif
 # Compiler configuration - can be 'gcc' or 'clang' or 'mingw'
 compiler := gcc
 toolchain_file :=
-toolchain_make :=
+toolchain_make := -G Ninja
 extra_cmake_args :=
 
 # Set toolchain file for mingw cross-compilation
@@ -75,6 +75,7 @@ build:
 	$(toolchain_file) \
 	-DCMAKE_BUILD_TYPE=$(build_type) \
 	-DCMAKE_INSTALL_PREFIX:PATH=$(install_path) \
+	-DCMAKE_CXX_FLAGS=-fdiagnostics-color=always \
 	-DCPM_SOURCE_CACHE=$(config_path)/.cpm-cache \
 	-DBUILD_TESTS=$(build_tests) \
 	-DBUILD_BENCHMARKS=$(build_benchmarks) \
@@ -82,8 +83,8 @@ build:
 	-DBUILD_STATIC=$(build_static) \
 	-DBUILD_PROFILERS=$(build_profilers) \
 	-DBUILD_CHECKCASE_DATABASE=$(build_checkcase_db) \
-	-DRUN_6DOF_CHECKCASES=$(run_6dof_checkcases) 
-	
+	-DRUN_6DOF_CHECKCASES=$(run_6dof_checkcases)
+
 .PHONY: build-gcc
 build-gcc: gcc build
 
@@ -116,7 +117,7 @@ relwithdebinfo:
 gcc:
 	$(eval compiler = gcc)
 	$(eval toolchain_file = )
-	$(eval toolchain_make = )
+	$(eval toolchain_make = -G Ninja)
 	$(eval build_path := $(abspath ./build/$(compiler)/$(comp)/$(build_type)))
 	$(eval install_path := $(abspath ./install/$(compiler)/$(comp)/$(build_type)))
 
@@ -124,7 +125,7 @@ gcc:
 clang:
 	$(eval compiler = clang)
 	$(eval toolchain_file = )
-	$(eval toolchain_make = )
+	$(eval toolchain_make = -G Ninja)
 	$(eval build_path := $(abspath ./build/$(compiler)/$(comp)/$(build_type)))
 	$(eval install_path := $(abspath ./install/$(compiler)/$(comp)/$(build_type)))
 
