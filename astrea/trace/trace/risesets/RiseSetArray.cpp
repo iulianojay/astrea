@@ -91,6 +91,8 @@ const Time& RiseSetArray::operator[](const std::size_t& ind) const { return _ris
 
 std::size_t RiseSetArray::size() const { return _risesets.size(); }
 
+bool RiseSetArray::empty() const { return _risesets.empty(); }
+
 void RiseSetArray::validate_risesets(const std::vector<Time>& risesets) const
 {
     if (risesets.size() % 2) {
@@ -219,6 +221,8 @@ Time RiseSetArray::average_daily_vis_time() const
 
 Time RiseSetArray::mean_time_to_access() const
 {
+    if (_risesets.size() <= 2) { return std::numeric_limits<double>::infinity() * s; }
+
     quantity mtta = 0.0 * s * s;
     for (const auto& gap : get_gap_times()) {
         mtta += gap * gap;
@@ -229,18 +233,18 @@ Time RiseSetArray::mean_time_to_access() const
 
 Time RiseSetArray::calculate_statistic(const StatType& stat, const Unitless& percentile, const RiseSetMetric metric) const
 {
-    // TODO: Is this a good default value? Is it necessarily meaningless or should it be negative or error?
-    Time retval = 0.0 * s;
-
     // Gap measures space between accesses so we can just shift the starting index
     // This value also happens to represent the difference in number of each metric type so we use it to shift
     // the array sizes for each accordingly
     std::size_t idxOffset = metric == RiseSetMetric::GAP ? 1 : 0;
 
     // Empty or not enough risesets for any gap
-    if (_risesets.size() < 2 + idxOffset) { return retval; }
+    if (_risesets.size() < 2 + idxOffset) {
+        return metric == RiseSetMetric::GAP ? std::numeric_limits<double>::infinity() * s : 0.0 * s;
+    }
 
     // Percentile calcs
+    Time retval = 0.0 * s;
     if (stat == StatType::PCT) {
         if (percentile < 0 * one || percentile > 1 * one) {
             throw std::runtime_error("Percentile must be between 0 and 1.");

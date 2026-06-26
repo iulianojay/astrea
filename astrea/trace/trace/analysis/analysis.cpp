@@ -67,7 +67,7 @@ static AccessArray propagate_and_run_access_analysis(
     auto end  = std::chrono::steady_clock::now();
     auto diff = std::chrono::duration_cast<nanoseconds>(end - start);
 
-    if (printProgress) { std::cout << "\nPropagation Time: " << diff.count() / 1e9 << " (s)\n\n"; }
+    if (printProgress) { std::cout << "\nPropagation Time: " << diff.count() / 1e9 << " (s)\n"; }
     start = std::chrono::steady_clock::now();
 
     // Validate state histories
@@ -102,7 +102,7 @@ static AccessArray propagate_and_run_access_analysis(
     end  = std::chrono::steady_clock::now();
     diff = std::chrono::duration_cast<nanoseconds>(end - start);
 
-    if (printProgress) { std::cout << "\nAccess Analysis Time: " << diff.count() / 1.0e9 << " (s)\n\n"; }
+    if (printProgress) { std::cout << "\nAccess Analysis Time: " << diff.count() / 1.0e9 << " (s)\n"; }
 
     return accesses;
 }
@@ -112,21 +112,19 @@ AnalysisResult run_trace_analysis(const TraceConfig& config)
     const Date startDate = Date::now();
 
     // Build 3-shell Walker constellation
-    const Distance altitude   = config.altitudeKm * km;
+    const Distance altitude   = config.constellationSettings.altitude;
     const Distance semimajor  = altitude + get_equitorial_radius<planets::Earth>();
-    const Angle inclination   = config.inclinationDeg * deg;
-    const Angle anchorRaan    = config.anchorRaanDeg * deg;
-    const Angle anchorAnomaly = 0.0 * deg;
-    const Angle crossTrack    = config.crossTrackOffsetDeg * deg;
-    const Angle phasing       = config.phasingDeg * deg;
+    const Angle inclination   = config.constellationSettings.inclination;
+    const std::size_t nSats   = config.constellationSettings.nSats;
+    const std::size_t nPlanes = config.constellationSettings.nPlanes;
+    const Unitless phasing    = config.constellationSettings.phasing;
+    const Angle anchorRaan    = config.constellationSettings.anchorRaan;
+    const Angle anchorAnomaly = config.constellationSettings.anchorTrueAnomaly;
 
-    // Shell<Viewer> shell1(startDate, semimajor, inclination, config.nSats, config.nPlanes, 1.0, anchorRaan, anchorAnomaly);
-    // Shell<Viewer> shell2(startDate, semimajor, inclination, config.nSats, config.nPlanes, 1.0, anchorRaan + crossTrack, anchorAnomaly - phasing);
-    // Shell<Viewer> shell3(startDate, semimajor, inclination, config.nSats, config.nPlanes, 1.0, anchorRaan, anchorAnomaly - 2.0 * phasing);
-    Constellation<Viewer> constellation(startDate, semimajor, inclination, config.nSats, config.nPlanes, 1.0, anchorRaan, anchorAnomaly);
+    Constellation<Viewer> constellation(startDate, semimajor, inclination, nSats, nPlanes, phasing, anchorRaan, anchorAnomaly);
 
     // Attach sensors
-    CircularFieldOfView fovShape(config.fovHalfAngleDeg * deg);
+    CircularFieldOfView fovShape(config.sensorSettings.halfConeAngle);
     SensorParameters sensor(&fovShape);
     for (auto& shell : constellation.get_shells()) {
         for (auto& plane : shell.get_planes()) {
@@ -137,37 +135,38 @@ AnalysisResult run_trace_analysis(const TraceConfig& config)
     }
 
     // Build grid — LatLon is (latitude, longitude)
-    LatLon corner1{ config.llLat * deg, config.llLon * deg };
-    LatLon corner4{ config.urLat * deg, config.urLon * deg };
-    Grid<astro::planets::Earth> grid(corner1, corner4, GridType::UNIFORM, config.gridSpacingDeg * deg);
+    LatLon corner1{ config.groundSettings.gridSettings.llLat, config.groundSettings.gridSettings.llLon };
+    LatLon corner4{ config.groundSettings.gridSettings.urLat, config.groundSettings.gridSettings.urLon };
+    Grid<astro::planets::Earth> grid(corner1, corner4, GridType::UNIFORM, config.groundSettings.gridSettings.spacing);
 
     // Propagate + access analysis
-    const Time propTime         = days(config.simTimeDays);
-    const Time accessResolution = minutes(config.resolutionMin);
+    const Time propTime         = config.analysisSettings.simTime;
+    const Time accessResolution = config.analysisSettings.resolution;
 
-    const AccessArray accesses =
-        propagate_and_run_access_analysis(constellation, grid, startDate, propTime, accessResolution, config.printProgress);
+    const AccessArray accesses = propagate_and_run_access_analysis(
+        constellation, grid, startDate, propTime, accessResolution, config.outputSettings.printProgress
+    );
 
     const AnalysisResult results{ accesses, AccessStats(accesses), FoldsOfCoverage(accesses, accessResolution, propTime) };
 
     // Save results
-    if (!config.saveResults) { return results; }
+    if (!config.outputSettings.saveResults) { return results; }
 
-    const std::filesystem::path outdir =
-        config.outdir.empty() ? std::filesystem::path(std::string(_TRACE_ROOT_) + "/trace/drivers/results/global") :
-                                std::filesystem::path(config.outdir);
+    const std::filesystem::path outdir = config.outputSettings.outdir.empty() ?
+                                             std::filesystem::path(std::string(_TRACE_ROOT_) + "/trace/drivers/results/global") :
+                                             std::filesystem::path(config.outputSettings.outdir);
     std::filesystem::create_directories(outdir);
-    const std::filesystem::path dbPath = outdir / config.dbName;
+    const std::filesystem::path dbPath = outdir / config.outputSettings.dbName;
 
-    if (config.printProgress) { std::cout << "Saving results to: " << dbPath << std::endl; }
+    if (config.outputSettings.printProgress) { std::cout << "Saving results to: " << dbPath << std::endl; }
     DatabaseOutputManager manager(dbPath, true);
     manager.save_results(results.folds, results.stats, results.accesses, constellation, grid);
     manager.save_ground_track(constellation, startDate, startDate + propTime, accessResolution);
 
     // Call plotter
-    if (config.runPlotter) {
+    if (config.outputSettings.runPlotter) {
         const std::string cmd = "python3 " + std::string(_TRACE_ROOT_) + "/pytrace/tracer.py " + outdir.string();
-        if (config.printProgress) { std::cout << "Plotting: " << cmd << std::endl; }
+        if (config.outputSettings.printProgress) { std::cout << "Plotting: " << cmd << std::endl; }
         const auto exitCode = std::system(cmd.c_str());
         if (exitCode != 0) { std::cerr << "Error: Plotter exited with code " << exitCode << std::endl; }
     }

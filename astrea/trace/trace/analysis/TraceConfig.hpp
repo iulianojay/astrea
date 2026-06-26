@@ -20,10 +20,143 @@
 
 #include <string>
 
+#include <mp-units/systems/angular.h>
+#include <mp-units/systems/si.h>
 #include <nlohmann/json.hpp>
+
+#include <astro/astro.hpp>
+#include <units/units.hpp>
 
 namespace astrea {
 namespace trace {
+
+struct AnalysisSettings {
+    Time simTime;    //!< Total simulation time
+    Time resolution; //!< Time resolution of the simulation
+
+    AnalysisSettings() = default;
+
+    AnalysisSettings(const nlohmann::json& json)
+    {
+        using mp_units::non_si::day;
+        using mp_units::si::unit_symbols::min;
+
+        simTime    = json.at("sim_time_days").get<double>() * day;
+        resolution = json.at("resolution_min").get<double>() * min;
+    }
+};
+
+struct ConstellationSettings {
+    Distance altitude;       //!< Altitude of the constellation
+    Angle inclination;       //!< Inclination of the constellation
+    std::size_t nSats;       //!< Number of satellites per plane
+    std::size_t nPlanes;     //!< Number of planes in the constellation
+    Unitless phasing;        //!< Phasing parameter for walkers
+    Angle anchorRaan;        //!< Right ascension of the ascending node for the anchor satellite
+    Angle anchorTrueAnomaly; //!< True anomaly of the anchor satellite
+
+    ConstellationSettings() = default;
+
+    ConstellationSettings(const nlohmann::json& json)
+    {
+        using namespace mp_units;
+        using mp_units::angular::unit_symbols::deg;
+        using mp_units::si::unit_symbols::km;
+
+        altitude          = json.at("altitude_km").get<double>() * km;
+        inclination       = json.at("inclination_deg").get<double>() * deg;
+        nSats             = json.at("n_sats").get<std::size_t>();
+        nPlanes           = json.at("n_planes").get<std::size_t>();
+        phasing           = json.at("phasing").get<double>() * one;
+        anchorRaan        = json.at("anchor_raan_deg").get<double>() * deg;
+        anchorTrueAnomaly = json.at("anchor_true_anomaly_deg").get<double>() * deg;
+    }
+};
+
+struct SensorSettings {
+    std::string name;                                        //!< Name of the sensor
+    std::string type;                                        //!< Type of sensor (e.g., "circular")
+    Angle halfConeAngle;                                     //!< Half-angle of the sensor's field of view
+    astro::Direction<astro::frames::dynamic::ric> boresight; //!< Boresight direction of the sensor in RIC
+
+    SensorSettings() = default;
+
+    SensorSettings(const nlohmann::json& json)
+    {
+        using namespace mp_units;
+        using mp_units::angular::unit_symbols::deg;
+
+        name          = json.at("name").get<std::string>();
+        type          = json.at("fov").at("type").get<std::string>();
+        halfConeAngle = json.at("fov").at("half_cone_angle_deg").get<double>() * deg;
+        if (json.contains("boresight")) {
+            const auto& boresightArray = json.at("boresight");
+            if (boresightArray.is_array() && boresightArray.size() == 3) {
+                boresight = astro::Direction<astro::frames::dynamic::ric>{ boresightArray[0].get<double>() * one,
+                                                                           boresightArray[1].get<double>() * one,
+                                                                           boresightArray[2].get<double>() * one };
+            }
+            else {
+                throw std::runtime_error("Boresight must be an array of 3 elements.");
+            }
+        }
+    }
+};
+
+struct GridSettings {
+    std::string type; //!< Type of grid (e.g., "uniform")
+    Angle spacing;    //!< Spacing of the grid points
+    Angle llLon;      //!< Lower-left longitude of the grid
+    Angle llLat;      //!< Lower-left latitude of the grid
+    Angle urLon;      //!< Upper-right longitude of the grid
+    Angle urLat;      //!< Upper-right latitude of the grid
+
+    GridSettings() = default;
+
+    GridSettings(const nlohmann::json& json)
+    {
+        using namespace mp_units;
+        using mp_units::angular::unit_symbols::deg;
+
+        type    = json.at("type").get<std::string>();
+        spacing = json.at("spacing_deg").get<double>() * deg;
+        if (json.contains("lat_range_deg") && json.at("lat_range_deg").is_array() && json.at("lat_range_deg").size() == 2) {
+            llLat = json.at("lat_range_deg")[0].get<double>() * deg;
+            urLat = json.at("lat_range_deg")[1].get<double>() * deg;
+        }
+        if (json.contains("lon_range_deg") && json.at("lon_range_deg").is_array() && json.at("lon_range_deg").size() == 2) {
+            llLon = json.at("lon_range_deg")[0].get<double>() * deg;
+            urLon = json.at("lon_range_deg")[1].get<double>() * deg;
+        }
+    }
+};
+
+struct GroundSettings {
+    GridSettings gridSettings; //!< Settings for the ground grid
+
+    GroundSettings() = default;
+
+    GroundSettings(const nlohmann::json& json) { gridSettings = GridSettings(json.at("grids")[0]); }
+};
+
+struct OutputSettings {
+    std::string outdir; //!< Output directory for results
+    std::string dbName; //!< Name of the output database
+    bool printProgress; //!< Flag to print progress during analysis
+    bool runPlotter;    //!< Flag to run the plotter after analysis
+    bool saveResults;   //!< Flag to save results to the database
+
+    OutputSettings() = default;
+
+    OutputSettings(const nlohmann::json& json)
+    {
+        outdir        = json.at("outdir").get<std::string>();
+        dbName        = json.at("db_name").get<std::string>();
+        printProgress = json.at("print_progress").get<bool>();
+        runPlotter    = json.at("run_plotter").get<bool>();
+        saveResults   = json.at("save_results").get<bool>();
+    }
+};
 
 /**
  * @brief Configuration for a trace analysis run.
@@ -33,90 +166,24 @@ namespace trace {
  * (see the explicit constructor below).  Any key absent from the JSON retains its default.
  */
 struct TraceConfig {
-    // Simulation timing
-    double simTimeDays   = 30.0;
-    double resolutionMin = 1.0;
-
-    // Constellation (3-shell Walker)
-    double altitudeKm          = 560.0;
-    double inclinationDeg      = 97.6316;
-    std::size_t nSats          = 4; ///< Satellites per plane per shell
-    std::size_t nPlanes        = 4; ///< Planes per shell
-    double anchorRaanDeg       = 20.0;
-    double crossTrackOffsetDeg = 7.39; ///< RAAN offset between shells 1 and 2
-    double phasingDeg          = 7.39; ///< True-anomaly phasing between shells
-
-    // Sensor
-    double fovHalfAngleDeg = 30.0;
-
-    // Ground grid
-    double gridSpacingDeg = 5.0;
-    double llLon          = -180.0; ///< Lower-left  longitude  (LatLon second arg)
-    double llLat          = -90.0;  ///< Lower-left  latitude   (LatLon first  arg)
-    double urLon          = 180.0;  ///< Upper-right longitude
-    double urLat          = 90.0;   ///< Upper-right latitude
-
-    // Output  (used by the trace driver binary; ignored by the library analysis code)
-    std::string outdir = ""; ///< Empty → <TRACE_ROOT>/trace/drivers/results/global
-    std::string dbName = "analysis.db";
-
-    // Flags  (driver-level; ignored by the library analysis code)
-    bool printProgress = true;
-    bool runPlotter    = true;
-    bool saveResults   = true;
+    AnalysisSettings analysisSettings;
+    ConstellationSettings constellationSettings;
+    SensorSettings sensorSettings;
+    GroundSettings groundSettings;
+    OutputSettings outputSettings;
 
     TraceConfig() = default;
 
     /**
      * @brief Construct a TraceConfig from a JSON object.
-     *
-     * Every key is optional; missing keys keep the default value.
-     *
-     * | JSON key                | Field                  |
-     * |-------------------------|------------------------|
-     * | sim_time_days           | simTimeDays            |
-     * | resolution_min          | resolutionMin          |
-     * | altitude_km             | altitudeKm             |
-     * | inclination_deg         | inclinationDeg         |
-     * | n_sats                  | nSats                  |
-     * | n_planes                | nPlanes                |
-     * | anchor_raan_deg         | anchorRaanDeg          |
-     * | cross_track_offset_deg  | crossTrackOffsetDeg    |
-     * | phasing_deg             | phasingDeg             |
-     * | fov_half_angle_deg      | fovHalfAngleDeg        |
-     * | grid_spacing_deg        | gridSpacingDeg         |
-     * | ll_lon                  | llLon                  |
-     * | ll_lat                  | llLat                  |
-     * | ur_lon                  | urLon                  |
-     * | ur_lat                  | urLat                  |
-     * | outdir                  | outdir                 |
-     * | db_name                 | dbName                 |
-     * | print_progress          | printProgress          |
-     * | run_plotter             | runPlotter             |
-     * | save_results            | saveResults            |
      */
-    explicit TraceConfig(const nlohmann::json& json)
+    TraceConfig(const nlohmann::json& json)
     {
-        simTimeDays         = json.value("sim_time_days", simTimeDays);
-        resolutionMin       = json.value("resolution_min", resolutionMin);
-        altitudeKm          = json.value("altitude_km", altitudeKm);
-        inclinationDeg      = json.value("inclination_deg", inclinationDeg);
-        nSats               = json.value("n_sats", nSats);
-        nPlanes             = json.value("n_planes", nPlanes);
-        anchorRaanDeg       = json.value("anchor_raan_deg", anchorRaanDeg);
-        crossTrackOffsetDeg = json.value("cross_track_offset_deg", crossTrackOffsetDeg);
-        phasingDeg          = json.value("phasing_deg", phasingDeg);
-        fovHalfAngleDeg     = json.value("fov_half_angle_deg", fovHalfAngleDeg);
-        gridSpacingDeg      = json.value("grid_spacing_deg", gridSpacingDeg);
-        llLon               = json.value("ll_lon", llLon);
-        llLat               = json.value("ll_lat", llLat);
-        urLon               = json.value("ur_lon", urLon);
-        urLat               = json.value("ur_lat", urLat);
-        outdir              = json.value("outdir", outdir);
-        dbName              = json.value("db_name", dbName);
-        printProgress       = json.value("print_progress", printProgress);
-        runPlotter          = json.value("run_plotter", runPlotter);
-        saveResults         = json.value("save_results", saveResults);
+        analysisSettings      = AnalysisSettings(json.at("analysis"));
+        constellationSettings = ConstellationSettings(json.at("constellation"));
+        sensorSettings        = SensorSettings(json.at("sensors")[0]);
+        groundSettings        = GroundSettings(json.at("grounds"));
+        outputSettings        = OutputSettings(json.at("output"));
     }
 };
 

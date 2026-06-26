@@ -31,7 +31,7 @@ def _interpolate_grid(
     Thread-safe: only calls scipy (no matplotlib state).
     Tries the requested method, falls back to linear then nearest.
     """
-    for m in dict.fromkeys([method, "linear", "nearest"]):
+    for m in dict.fromkeys([method, "cubic", "linear", "nearest"]):
         try:
             zi = griddata((x, y), values, (xi, yi), method=m, fill_value=0)
             return np.clip(zi, 0.0, None)
@@ -584,9 +584,9 @@ class Tracer:
         merged = ground_locs.merge(
             earth_data, left_on="name", right_on="object", how="left"
         )
-        merged["time_value"] = merged["time_value"].fillna(0.0)
-
-        vals = merged["time_value"].to_numpy() / 3600.0  # convert to hours
+        default_value = 0.0 if metric != "MTTA" else np.inf
+        vals = merged["time_value"].fillna(default_value).to_numpy() / 3600.0  # convert to hours
+        vals[np.where(~np.isfinite(vals))] = np.nan
 
         # Build figure
         plt.clf()
@@ -597,7 +597,7 @@ class Tracer:
         self.plot_basemap(ax)
 
         # Set ineterpolation
-        interpolation_method = "cubic"
+        interpolation_method = "nearest" if metric == "MTTA" else "cubic"
         if metric == "MTTA":
             self.cmap = "turbo"
         else:
