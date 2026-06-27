@@ -56,13 +56,13 @@ static AccessArray
     integrator.switch_fixed_timestep(true, accessResolution);
 
     // Propagate
-    if (printProgress) { std::cout << std::endl << "[trace]: Propagating..." << std::endl; }
+    if (printProgress) { std::cout << std::endl << "[trace] Propagating..." << std::endl; }
 
     utilities::StopWatch watch;
     const Date endDate = epoch + propTime;
     constellation.propagate(endDate, integrator);
 
-    if (printProgress) { std::cout << std::endl << "[trace]: Propagation Time: " << watch.measure() << std::endl; }
+    if (printProgress) { std::cout << std::endl << "[trace] Propagation Time: " << watch.measure() << std::endl; }
 
     // Validate state histories
     for (auto& shell : constellation.get_shells()) {
@@ -71,17 +71,17 @@ static AccessArray
                 auto& stateHistory = sat.get_state_history();
                 stateHistory.template convert_to_set<Cartesian<frames::primary>>();
                 if (stateHistory.size() == 0) {
-                    throw std::runtime_error("[trace]: ERROR - State history not populated after propagation.");
+                    throw std::runtime_error("[trace] Error: State history not populated after propagation.");
                 }
                 if (stateHistory.first().get_epoch() > epoch) {
                     std::ostringstream oss;
-                    oss << "[trace]: ERROR - State history starts at the wrong time! Expected: " << epoch
+                    oss << "[trace] Error: State history starts at the wrong time! Expected: " << epoch
                         << ", Actual: " << stateHistory.first().get_epoch();
                     throw std::runtime_error(oss.str());
                 }
                 if (stateHistory.last().get_epoch() != endDate) {
                     std::ostringstream oss;
-                    oss << "[trace]: ERROR - State history ends at the wrong time! Expected: " << endDate
+                    oss << "[trace] Error: State history ends at the wrong time! Expected: " << endDate
                         << ", Actual: " << stateHistory.last().get_epoch();
                     throw std::runtime_error(oss.str());
                 }
@@ -90,13 +90,13 @@ static AccessArray
     }
 
     // Find access
-    if (printProgress) { std::cout << std::endl << "[trace]: Running Access Analysis..." << std::endl; }
+    if (printProgress) { std::cout << std::endl << "[trace] Running Access Analysis..." << std::endl; }
 
     watch.reset();
     AccessAnalyzer analyzer(accessResolution, epoch, endDate, true);
     const AccessArray accesses = analyzer.find_accesses(constellation, grounds, true);
 
-    if (printProgress) { std::cout << "[trace]: Access Analysis Time: " << watch.measure() << std::endl; }
+    if (printProgress) { std::cout << "[trace] Access Analysis Time: " << watch.measure() << std::endl; }
 
     return accesses;
 }
@@ -161,24 +161,24 @@ AnalysisResult run_trace_analysis(const TraceConfig& config)
         std::filesystem::create_directories(outdir);
 
         const std::filesystem::path dbPath = outdir / outputSettings.dbName;
-        if (printProgress) { std::cout << "[trace]: Saving results to: " << dbPath << std::endl; }
+        if (printProgress) { std::cout << "[trace] Saving results to: " << dbPath << std::endl; }
 
         DatabaseOutputManager manager(dbPath, true);
         manager.save_results(results.folds, results.stats, results.accesses, constellation, grid);
         manager.save_ground_track(constellation, epoch, epoch + propTime, accessResolution);
 
-        if (printProgress) { std::cout << "[trace]: Save Time: " << watch.measure() << std::endl; }
+        if (printProgress) { std::cout << "[trace] Save Time: " << watch.measure() << std::endl; }
 
         // Call plotter
         if (outputSettings.runPlotter) {
             watch.reset();
             const std::string cmd = "python3 " + std::string(_TRACE_ROOT_) + "/pytrace/tracer.py " + outdir.string();
-            if (printProgress) { std::cout << "[trace]: Plotting: " << cmd << std::endl; }
+            if (printProgress) { std::cout << "[trace] Plotting: " << cmd << std::endl; }
 
             const auto exitCode = std::system(cmd.c_str());
 
-            if (exitCode != 0) { std::cerr << "[trace]: Error: Plotter exited with code " << exitCode << std::endl; }
-            if (printProgress) { std::cout << "[trace]: Plotting Time: " << watch.measure() << std::endl; }
+            if (exitCode != 0) { std::cerr << "[trace] Error: Plotter exited with code " << exitCode << std::endl; }
+            if (printProgress) { std::cout << "[trace] Plotting Time: " << watch.measure() << std::endl; }
         }
     }
 

@@ -645,13 +645,13 @@ if __name__ == "__main__":
         "95th PCT",
         "99th PCT",
     ]
-    print("Plotting number of folds...")
+    print("\t Plotting number of folds...")
     tracer.plot_number_of_folds(metrics=metrics)
-    print("Plotting average daily visibility...")
+    print("\t Plotting average daily visibility...")
     tracer.plot_avg_daily_vis()
-    print("Plotting mean time to access...")
+    print("\t Plotting mean time to access...")
     tracer.plot_mtta()
-    print("Plotting ground track...")
+    print("\t Plotting ground track...")
     tracer.plot_ground_track()
-    # print("Plotting relative access time...")
+    # print("\t Plotting relative access time...")
     # tracer.plot_relative_access_time()
