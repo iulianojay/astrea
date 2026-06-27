@@ -149,11 +149,6 @@ class InterplanetaryTransfer {
 public:
     static TransferWindow analyze_earth_mars_transfer(const Time& departureWindow) {
 
-        AstrodynamicsSystem solarSystem(
-            CelestialBodyId::SUN,
-            {CelestialBodyId::EARTH, CelestialBodyId::MARS}
-        );
-
         std::vector<TransferOpportunity> opportunities;
 
         // Scan departure window
