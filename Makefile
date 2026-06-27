@@ -83,7 +83,7 @@ build:
 	-DBUILD_STATIC=$(build_static) \
 	-DBUILD_PROFILERS=$(build_profilers) \
 	-DBUILD_CHECKCASE_DATABASE=$(build_checkcase_db) \
-	-DRUN_6DOF_CHECKCASES=$(run_6dof_checkcases)
+	-DBUILD_6DOF_CHECKCASES=$(run_6dof_checkcases)
 
 .PHONY: build-gcc
 build-gcc: gcc build

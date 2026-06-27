@@ -27,6 +27,8 @@
 #include <astro/astro.hpp>
 #include <units/units.hpp>
 
+#include <trace/types/typedefs.hpp>
+
 namespace astrea {
 namespace trace {
 
@@ -104,12 +106,10 @@ struct SensorSettings {
 };
 
 struct GridSettings {
-    std::string type; //!< Type of grid (e.g., "uniform")
-    Angle spacing;    //!< Spacing of the grid points
-    Angle llLon;      //!< Lower-left longitude of the grid
-    Angle llLat;      //!< Lower-left latitude of the grid
-    Angle urLon;      //!< Upper-right longitude of the grid
-    Angle urLat;      //!< Upper-right latitude of the grid
+    std::string type;  //!< Type of grid (e.g., "uniform")
+    Angle spacing;     //!< Spacing of the grid points
+    LatRange latRange; //!< Latitude range of the grid
+    LonRange lonRange; //!< Longitude range of the grid
 
     GridSettings() = default;
 
@@ -121,12 +121,10 @@ struct GridSettings {
         type    = json.at("type").get<std::string>();
         spacing = json.at("spacing_deg").get<double>() * deg;
         if (json.contains("lat_range_deg") && json.at("lat_range_deg").is_array() && json.at("lat_range_deg").size() == 2) {
-            llLat = json.at("lat_range_deg")[0].get<double>() * deg;
-            urLat = json.at("lat_range_deg")[1].get<double>() * deg;
+            latRange = LatRange{ json.at("lat_range_deg")[0].get<double>() * deg, json.at("lat_range_deg")[1].get<double>() * deg };
         }
         if (json.contains("lon_range_deg") && json.at("lon_range_deg").is_array() && json.at("lon_range_deg").size() == 2) {
-            llLon = json.at("lon_range_deg")[0].get<double>() * deg;
-            urLon = json.at("lon_range_deg")[1].get<double>() * deg;
+            lonRange = LonRange{ json.at("lon_range_deg")[0].get<double>() * deg, json.at("lon_range_deg")[1].get<double>() * deg };
         }
     }
 };

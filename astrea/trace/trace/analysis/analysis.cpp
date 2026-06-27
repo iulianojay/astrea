@@ -135,9 +135,12 @@ AnalysisResult run_trace_analysis(const TraceConfig& config)
     }
 
     // Build grid — LatLon is (latitude, longitude)
-    LatLon corner1{ config.groundSettings.gridSettings.llLat, config.groundSettings.gridSettings.llLon };
-    LatLon corner4{ config.groundSettings.gridSettings.urLat, config.groundSettings.gridSettings.urLon };
-    Grid<astro::planets::Earth> grid(corner1, corner4, GridType::UNIFORM, config.groundSettings.gridSettings.spacing);
+    Grid<astro::planets::Earth> grid(
+        config.groundSettings.gridSettings.latRange,
+        config.groundSettings.gridSettings.lonRange,
+        GridType::UNIFORM,
+        config.groundSettings.gridSettings.spacing
+    );
 
     // Propagate + access analysis
     const Time propTime         = config.analysisSettings.simTime;

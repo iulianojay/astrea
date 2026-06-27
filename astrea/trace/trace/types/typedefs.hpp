@@ -42,6 +42,20 @@ using EnumType = uint32_t;
 using LatLon = std::pair<Angle, Angle>;
 
 /**
+ * @brief Latitude range pair.
+ *
+ * This type is used to represent a range of latitudes for ground coverage analysis.
+ */
+using LatRange = std::pair<Angle, Angle>;
+
+/**
+ * @brief Longitude range pair.
+ *
+ * This type is used to represent a range of longitudes for ground coverage analysis.
+ */
+using LonRange = std::pair<Angle, Angle>;
+
+/**
  * @brief Type definition for ECI radius vectors.
  */
 using EciRadiusVec = astro::CartesianVector<Distance, astro::frames::earth::icrf>;
