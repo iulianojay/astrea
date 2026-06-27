@@ -238,6 +238,7 @@ AccessArray AccessAnalyzer::find_internal_accesses(ViewerConstellation& constel,
             if (_printProgress) { progressBar(); }
         }
     }
+    if (_printProgress) { std::cout << std::endl; }
 
     return allAccesses;
 }
@@ -283,6 +284,7 @@ AccessArray AccessAnalyzer::find_accesses(ViewerConstellation& constel, GroundAr
             if (_printProgress) { progressBar(); }
         }
     }
+    if (_printProgress) { std::cout << std::endl; }
 
     return allAccesses;
 }
