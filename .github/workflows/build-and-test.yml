@@ -86,7 +86,6 @@ jobs:
 
     - name: Build and Install Release
       run: |
-        which ninja || (echo "ninja-build not found, installing..." && sudo apt-get update && sudo apt-get install -y ninja-build)
         . .venv/bin/activate && make release all install
 
     - name: Run Tests
@@ -130,7 +129,6 @@ jobs:
 
     - name: Build and Install Debug
       run: |
-        which ninja || (echo "ninja-build not found, installing..." && sudo apt-get update && sudo apt-get install -y ninja-build)
         . .venv/bin/activate && make debug all install
 
     - name: Run Coverage
