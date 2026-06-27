@@ -24,6 +24,7 @@ set(TRACE_SOURCES
     ${TRACE_BASE}/analysis/AccessAnalyzer.cpp
     ${TRACE_BASE}/analysis/PositionCache.cpp
     ${TRACE_BASE}/analysis/SpatialIndex.cpp
+    ${TRACE_BASE}/analysis/analysis.cpp
 
     ${TRACE_BASE}/analysis/plots/Plotter.cpp
 
@@ -52,6 +53,8 @@ set(TRACE_HEADERS
     ${TRACE_BASE}/analysis/AccessAnalyzer.hpp
     ${TRACE_BASE}/analysis/PositionCache.hpp
     ${TRACE_BASE}/analysis/SpatialIndex.hpp
+    ${TRACE_BASE}/analysis/analysis.hpp
+    ${TRACE_BASE}/analysis/TraceConfig.hpp
 
     ${TRACE_BASE}/analysis/plots/Plotter.hpp
 
@@ -103,7 +106,7 @@ set(TRACE_LIBS
 
 # Shared library
 add_library(${PROJECT_NAME}_shared SHARED ${TRACE_SOURCES} ${TRACE_HEADERS})
-set_target_properties(${PROJECT_NAME}_shared PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ${PROJECT_NAME} CLEAN_DIRECT_OUTPUT 1)
+set_target_properties(${PROJECT_NAME}_shared PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ${PROJECT_NAME} CLEAN_DIRECT_OUTPUT 1 INSTALL_RPATH "$ORIGIN")
 target_link_libraries(${PROJECT_NAME}_shared PUBLIC math_shared astro_shared ${TRACE_LIBS})
 target_include_directories(${PROJECT_NAME}_shared PUBLIC ${TRACE_DIRS})
 

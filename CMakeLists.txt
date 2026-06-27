@@ -20,7 +20,7 @@ message(STATUS "Configuring Astrea version ${ASTREA_VERSION}")
 project(
     astrea
     VERSION ${ASTREA_VERSION}
-    DESCRIPTION "Astrea: Nebula Back-End Simulation Library"
+    DESCRIPTION "Astrea: Astrodynamics Back-End Simulation Library"
     LANGUAGES CXX C
 )
 
@@ -45,3 +45,21 @@ include(cmake/standard_project_settings.cmake)
 
 # Get code
 add_subdirectory(astrea)
+
+# Package config
+include(CMakePackageConfigHelpers)
+configure_package_config_file(
+    "${CMAKE_CURRENT_SOURCE_DIR}/cmake/astreaConfig.cmake.in"
+    "${CMAKE_CURRENT_BINARY_DIR}/astreaConfig.cmake"
+    INSTALL_DESTINATION lib/cmake/astrea
+)
+write_basic_package_version_file(
+    "${CMAKE_CURRENT_BINARY_DIR}/astreaConfigVersion.cmake"
+    VERSION ${ASTREA_VERSION}
+    COMPATIBILITY AnyNewerVersion
+)
+install(FILES
+    "${CMAKE_CURRENT_BINARY_DIR}/astreaConfig.cmake"
+    "${CMAKE_CURRENT_BINARY_DIR}/astreaConfigVersion.cmake"
+    DESTINATION lib/cmake/astrea
+)
