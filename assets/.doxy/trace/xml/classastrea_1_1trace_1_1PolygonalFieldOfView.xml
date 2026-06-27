@@ -18,7 +18,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/platforms/sensors/fov/PolygonalFieldOfView.hpp" line="94" column="24" bodyfile="astrea/trace/trace/platforms/sensors/fov/PolygonalFieldOfView.hpp" bodystart="94" bodyend="-1"/>
+        <location file="astrea/trace/trace/platforms/sensors/fov/PolygonalFieldOfView.hpp" line="96" column="24" bodyfile="astrea/trace/trace/platforms/sensors/fov/PolygonalFieldOfView.hpp" bodystart="96" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1trace_1_1PolygonalFieldOfView_1a8909f8e42b015203296905b475a98479" prot="private" static="no" mutable="no">
         <type>Angle</type>
@@ -34,7 +34,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/platforms/sensors/fov/PolygonalFieldOfView.hpp" line="95" column="11" bodyfile="astrea/trace/trace/platforms/sensors/fov/PolygonalFieldOfView.hpp" bodystart="95" bodyend="-1"/>
+        <location file="astrea/trace/trace/platforms/sensors/fov/PolygonalFieldOfView.hpp" line="97" column="11" bodyfile="astrea/trace/trace/platforms/sensors/fov/PolygonalFieldOfView.hpp" bodystart="97" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1trace_1_1PolygonalFieldOfView_1ab630f4158139f02aa84bf2255afa99da" prot="private" static="no" mutable="no">
         <type>Angle</type>
@@ -50,7 +50,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/platforms/sensors/fov/PolygonalFieldOfView.hpp" line="96" column="11" bodyfile="astrea/trace/trace/platforms/sensors/fov/PolygonalFieldOfView.hpp" bodystart="96" bodyend="-1"/>
+        <location file="astrea/trace/trace/platforms/sensors/fov/PolygonalFieldOfView.hpp" line="98" column="11" bodyfile="astrea/trace/trace/platforms/sensors/fov/PolygonalFieldOfView.hpp" bodystart="98" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="public-func">
@@ -241,6 +241,26 @@
         </inbodydescription>
         <location file="astrea/trace/trace/platforms/sensors/fov/PolygonalFieldOfView.hpp" line="83" column="10" bodyfile="astrea/trace/trace/platforms/sensors/fov/PolygonalFieldOfView.cpp" bodystart="68" bodyend="90"/>
       </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1PolygonalFieldOfView_1ac3b66a99fa67b73802346d2693cdcdc7" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type>Angle</type>
+        <definition>Angle astrea::trace::PolygonalFieldOfView::max_half_angle</definition>
+        <argsstring>() const override</argsstring>
+        <name>max_half_angle</name>
+        <qualifiedname>astrea::trace::PolygonalFieldOfView::max_half_angle</qualifiedname>
+        <reimplements refid="classastrea_1_1trace_1_1FieldOfView_1aecfc83f0135def39939cce4108753388">max_half_angle</reimplements>
+        <briefdescription>
+<para>Returns the maximum off-boresight half-angle for this field of view. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Used for spatial index culling to determine the maximum sensor footprint radius. The default returns π/2 rad, a conservative bound covering the full hemisphere.</para>
+<para><simplesect kind="return"><para>Angle Maximum off-boresight half-angle. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/platforms/sensors/fov/PolygonalFieldOfView.hpp" line="88" column="11" bodyfile="astrea/trace/trace/platforms/sensors/fov/PolygonalFieldOfView.hpp" bodystart="88" bodyend="88"/>
+      </memberdef>
     </sectiondef>
     <sectiondef kind="private-func">
       <memberdef kind="function" id="classastrea_1_1trace_1_1PolygonalFieldOfView_1a7c1c848443028ab3115d6886b48571d7" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -256,7 +276,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/platforms/sensors/fov/PolygonalFieldOfView.hpp" line="101" column="10" bodyfile="astrea/trace/trace/platforms/sensors/fov/PolygonalFieldOfView.cpp" bodystart="56" bodyend="65"/>
+        <location file="astrea/trace/trace/platforms/sensors/fov/PolygonalFieldOfView.hpp" line="103" column="10" bodyfile="astrea/trace/trace/platforms/sensors/fov/PolygonalFieldOfView.cpp" bodystart="56" bodyend="65"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1trace_1_1PolygonalFieldOfView_1a31473aee8361b7f92306307fdab8a78b" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>std::vector&lt; std::pair&lt; Unitless, Unitless &gt; &gt;</type>
@@ -274,7 +294,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/platforms/sensors/fov/PolygonalFieldOfView.hpp" line="108" column="17" bodyfile="astrea/trace/trace/platforms/sensors/fov/PolygonalFieldOfView.cpp" bodystart="92" bodyend="104"/>
+        <location file="astrea/trace/trace/platforms/sensors/fov/PolygonalFieldOfView.hpp" line="110" column="17" bodyfile="astrea/trace/trace/platforms/sensors/fov/PolygonalFieldOfView.cpp" bodystart="92" bodyend="104"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
@@ -307,7 +327,7 @@
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="astrea/trace/trace/platforms/sensors/fov/PolygonalFieldOfView.hpp" line="40" column="1" bodyfile="astrea/trace/trace/platforms/sensors/fov/PolygonalFieldOfView.hpp" bodystart="40" bodyend="109"/>
+    <location file="astrea/trace/trace/platforms/sensors/fov/PolygonalFieldOfView.hpp" line="40" column="1" bodyfile="astrea/trace/trace/platforms/sensors/fov/PolygonalFieldOfView.hpp" bodystart="40" bodyend="111"/>
     <listofallmembers>
       <member refid="classastrea_1_1trace_1_1PolygonalFieldOfView_1ab630f4158139f02aa84bf2255afa99da" prot="private" virt="non-virtual"><scope>astrea::trace::PolygonalFieldOfView</scope><name>_maxHalfAngle</name></member>
       <member refid="classastrea_1_1trace_1_1PolygonalFieldOfView_1a8909f8e42b015203296905b475a98479" prot="private" virt="non-virtual"><scope>astrea::trace::PolygonalFieldOfView</scope><name>_minHalfAngle</name></member>
@@ -316,6 +336,7 @@
       <member refid="classastrea_1_1trace_1_1PolygonalFieldOfView_1a94e74f07885ff88b1099a5280eb65b4d" prot="public" virt="virtual"><scope>astrea::trace::PolygonalFieldOfView</scope><name>contains</name></member>
       <member refid="classastrea_1_1trace_1_1FieldOfView_1a81d04b924ac5862bd4b38072237bc3bb" prot="public" virt="non-virtual"><scope>astrea::trace::PolygonalFieldOfView</scope><name>FieldOfView</name></member>
       <member refid="classastrea_1_1trace_1_1PolygonalFieldOfView_1a7c1c848443028ab3115d6886b48571d7" prot="private" virt="non-virtual"><scope>astrea::trace::PolygonalFieldOfView</scope><name>find_min_and_max_angles</name></member>
+      <member refid="classastrea_1_1trace_1_1PolygonalFieldOfView_1ac3b66a99fa67b73802346d2693cdcdc7" prot="public" virt="virtual"><scope>astrea::trace::PolygonalFieldOfView</scope><name>max_half_angle</name></member>
       <member refid="classastrea_1_1trace_1_1PolygonalFieldOfView_1a57bc47f99079c7e580f1ae66b1b63308" prot="public" virt="non-virtual"><scope>astrea::trace::PolygonalFieldOfView</scope><name>PolygonalFieldOfView</name></member>
       <member refid="classastrea_1_1trace_1_1PolygonalFieldOfView_1a398ce6e768a32ffd8c4e497ec2aa1345" prot="public" virt="non-virtual"><scope>astrea::trace::PolygonalFieldOfView</scope><name>PolygonalFieldOfView</name></member>
       <member refid="classastrea_1_1trace_1_1PolygonalFieldOfView_1aed8b1a5d877e7fa808f2fc131fde4e7f" prot="public" virt="non-virtual"><scope>astrea::trace::PolygonalFieldOfView</scope><name>PolygonalFieldOfView</name></member>

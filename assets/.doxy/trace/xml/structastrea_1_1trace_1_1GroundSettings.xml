@@ -1,0 +1,80 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="structastrea_1_1trace_1_1GroundSettings" kind="struct" language="C++" prot="public">
+    <compoundname>astrea::trace::GroundSettings</compoundname>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structastrea_1_1trace_1_1GroundSettings_1a7b3ee6cce05254947f9b554b4d4bc48c" prot="public" static="no" mutable="no">
+        <type><ref refid="structastrea_1_1trace_1_1GridSettings" kindref="compound">GridSettings</ref></type>
+        <definition>GridSettings astrea::trace::GroundSettings::gridSettings</definition>
+        <argsstring></argsstring>
+        <name>gridSettings</name>
+        <qualifiedname>astrea::trace::GroundSettings::gridSettings</qualifiedname>
+        <briefdescription>
+<para>Settings for the ground grid. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/analysis/TraceConfig.hpp" line="135" column="18" bodyfile="astrea/trace/trace/analysis/TraceConfig.hpp" bodystart="135" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="structastrea_1_1trace_1_1GroundSettings_1ada5ba6c9a84c97d6c5671a0ca8e2751b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>astrea::trace::GroundSettings::GroundSettings</definition>
+        <argsstring>()=default</argsstring>
+        <name>GroundSettings</name>
+        <qualifiedname>astrea::trace::GroundSettings::GroundSettings</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/analysis/TraceConfig.hpp" line="137" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="structastrea_1_1trace_1_1GroundSettings_1a199f1804f59c0407feb4ff520773d11a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>astrea::trace::GroundSettings::GroundSettings</definition>
+        <argsstring>(const nlohmann::json &amp;json)</argsstring>
+        <name>GroundSettings</name>
+        <qualifiedname>astrea::trace::GroundSettings::GroundSettings</qualifiedname>
+        <param>
+          <type>const nlohmann::json &amp;</type>
+          <declname>json</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/analysis/TraceConfig.hpp" line="139" column="5" bodyfile="astrea/trace/trace/analysis/TraceConfig.hpp" bodystart="139" bodyend="139"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="2">
+        <label>astrea::trace::GridSettings</label>
+        <link refid="structastrea_1_1trace_1_1GridSettings"/>
+      </node>
+      <node id="1">
+        <label>astrea::trace::GroundSettings</label>
+        <link refid="structastrea_1_1trace_1_1GroundSettings"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>gridSettings</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="astrea/trace/trace/analysis/TraceConfig.hpp" line="134" column="1" bodyfile="astrea/trace/trace/analysis/TraceConfig.hpp" bodystart="134" bodyend="140"/>
+    <listofallmembers>
+      <member refid="structastrea_1_1trace_1_1GroundSettings_1a7b3ee6cce05254947f9b554b4d4bc48c" prot="public" virt="non-virtual"><scope>astrea::trace::GroundSettings</scope><name>gridSettings</name></member>
+      <member refid="structastrea_1_1trace_1_1GroundSettings_1ada5ba6c9a84c97d6c5671a0ca8e2751b" prot="public" virt="non-virtual"><scope>astrea::trace::GroundSettings</scope><name>GroundSettings</name></member>
+      <member refid="structastrea_1_1trace_1_1GroundSettings_1a199f1804f59c0407feb4ff520773d11a" prot="public" virt="non-virtual"><scope>astrea::trace::GroundSettings</scope><name>GroundSettings</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

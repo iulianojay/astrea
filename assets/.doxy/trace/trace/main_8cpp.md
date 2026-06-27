@@ -10,24 +10,12 @@
 
 
 
-* `#include <cstdlib>`
-* `#include <filesystem>`
 * `#include <fstream>`
 * `#include <iostream>`
-* `#include <ranges>`
-* `#include <set>`
-* `#include <sqlite3.h>`
-* `#include <stdio.h>`
+* `#include <string>`
 * `#include <nlohmann/json.hpp>`
-* `#include <sqlite_orm/sqlite_orm.h>`
-* `#include <mp-units/systems/angular.h>`
-* `#include <mp-units/systems/international.h>`
-* `#include <mp-units/systems/isq.h>`
-* `#include <mp-units/systems/si.h>`
-* `#include <astro/astro.hpp>`
-* `#include <snapshot/snapshot.hpp>`
+* `#include <trace/analysis/analysis.hpp>`
 * `#include <trace/trace.hpp>`
-* `#include <trace/trace.macros.hpp>`
 
 
 
@@ -41,13 +29,6 @@
 
 
 
-## Namespaces
-
-| Type | Name |
-| ---: | :--- |
-| namespace | [**astro**](namespaceastro.md) <br> |
-| namespace | [**snapshot**](namespacesnapshot.md) <br> |
-| namespace | [**sqlite\_orm**](namespacesqlite__orm.md) <br> |
 
 
 
@@ -76,9 +57,7 @@
 
 | Type | Name |
 | ---: | :--- |
-|  int | [**main**](#function-main) () <br> |
-|  [**AccessArray**](classastrea_1_1trace_1_1AccessArray.md) | [**propagate\_and\_run\_access\_analysis**](#function-propagate_and_run_access_analysis) (astro::Constellation&lt; T &gt; & constellation, U & grounds, const Date & startDate, const Time propTime, const Time accessResolution, const bool printProgress) <br> |
-|  int | [**trace\_analysis**](#function-trace_analysis) (const Time propTime, const Time accessResolution, const bool printProgress, const Angle gridSpacing) <br> |
+|  int | [**main**](#function-main) (int argc, char \* argv) <br> |
 
 
 
@@ -115,45 +94,9 @@
 ### function main 
 
 ```C++
-int main () 
-```
-
-
-
-
-<hr>
-
-
-
-### function propagate\_and\_run\_access\_analysis 
-
-```C++
-template<typename T, typename U>
-AccessArray propagate_and_run_access_analysis (
-    astro::Constellation< T > & constellation,
-    U & grounds,
-    const Date & startDate,
-    const Time propTime,
-    const Time accessResolution,
-    const bool printProgress
-) 
-```
-
-
-
-
-<hr>
-
-
-
-### function trace\_analysis 
-
-```C++
-int trace_analysis (
-    const Time propTime,
-    const Time accessResolution,
-    const bool printProgress,
-    const Angle gridSpacing
+int main (
+    int argc,
+    char * argv
 ) 
 ```
 

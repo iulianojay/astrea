@@ -3,6 +3,11 @@
 
 
 
+## b
+
+* **BoresightTable** ([**astrea::trace**](namespaceastrea_1_1trace.md))
+
+
 ## d
 
 * **DateVector** ([**astrea::trace**](namespaceastrea_1_1trace.md))
@@ -24,6 +29,8 @@
 ## l
 
 * **LatLon** ([**astrea::trace**](namespaceastrea_1_1trace.md))
+* **LatRange** ([**astrea::trace**](namespaceastrea_1_1trace.md))
+* **LonRange** ([**astrea::trace**](namespaceastrea_1_1trace.md))
 
 
 ## p

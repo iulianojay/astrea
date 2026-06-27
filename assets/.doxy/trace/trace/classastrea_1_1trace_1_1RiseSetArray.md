@@ -69,6 +69,7 @@ _Represents an array of rise and set times._ [More...](#detailed-description)
 |  [**const\_iterator**](classastrea_1_1trace_1_1RiseSetArray.md#typedef-const_iterator) | [**begin**](#function-begin-22) () const<br>_Returns a constant iterator to the beginning of the_ [_**RiseSetArray**_](classastrea_1_1trace_1_1RiseSetArray.md) _._ |
 |  [**const\_iterator**](classastrea_1_1trace_1_1RiseSetArray.md#typedef-const_iterator) | [**cbegin**](#function-cbegin) () const<br>_Returns a constant iterator to the beginning of the_ [_**RiseSetArray**_](classastrea_1_1trace_1_1RiseSetArray.md) _._ |
 |  [**const\_iterator**](classastrea_1_1trace_1_1RiseSetArray.md#typedef-const_iterator) | [**cend**](#function-cend) () const<br>_Returns a constant iterator to the end of the_ [_**RiseSetArray**_](classastrea_1_1trace_1_1RiseSetArray.md) _._ |
+|  bool | [**empty**](#function-empty) () const<br>_Checks if the_ [_**RiseSetArray**_](classastrea_1_1trace_1_1RiseSetArray.md) _is empty._ |
 |  [**iterator**](classastrea_1_1trace_1_1RiseSetArray.md#typedef-iterator) | [**end**](#function-end-12) () <br>_Returns an iterator to the end of the_ [_**RiseSetArray**_](classastrea_1_1trace_1_1RiseSetArray.md) _._ |
 |  [**const\_iterator**](classastrea_1_1trace_1_1RiseSetArray.md#typedef-const_iterator) | [**end**](#function-end-22) () const<br>_Returns a constant iterator to the end of the_ [_**RiseSetArray**_](classastrea_1_1trace_1_1RiseSetArray.md) _._ |
 |  Time | [**gap**](#function-gap) (const [**StatType**](namespaceastrea_1_1trace.md#enum-stattype) & stat=StatType::AVG, const Unitless percentile=0.5) const<br>_Calculates the gap between rise and set times._  |
@@ -449,6 +450,38 @@ const_iterator astrea::trace::RiseSetArray::cend () const
 **Returns:**
 
 const\_iterator A constant iterator to the end of the [**RiseSetArray**](classastrea_1_1trace_1_1RiseSetArray.md). 
+
+
+
+
+
+        
+
+<hr>
+
+
+
+### function empty 
+
+_Checks if the_ [_**RiseSetArray**_](classastrea_1_1trace_1_1RiseSetArray.md) _is empty._
+```C++
+bool astrea::trace::RiseSetArray::empty () const
+```
+
+
+
+
+
+**Returns:**
+
+true If the [**RiseSetArray**](classastrea_1_1trace_1_1RiseSetArray.md) is empty. 
+
+
+
+
+**Returns:**
+
+false If the [**RiseSetArray**](classastrea_1_1trace_1_1RiseSetArray.md) is not empty. 
 
 
 

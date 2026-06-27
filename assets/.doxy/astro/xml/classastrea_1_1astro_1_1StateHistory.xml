@@ -65,7 +65,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/StateHistory.hpp" line="270" column="17" bodyfile="astrea/astro/astro/state/StateHistory.hpp" bodystart="270" bodyend="-1"/>
+        <location file="astrea/astro/astro/state/StateHistory.hpp" line="283" column="17" bodyfile="astrea/astro/astro/state/StateHistory.hpp" bodystart="283" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1StateHistory_1a01d34c9af6f3364f36f03ad182cfb4d5" prot="private" static="no" mutable="no">
         <type>EventTimesMap</type>
@@ -80,7 +80,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/StateHistory.hpp" line="271" column="19" bodyfile="astrea/astro/astro/state/StateHistory.hpp" bodystart="271" bodyend="-1"/>
+        <location file="astrea/astro/astro/state/StateHistory.hpp" line="284" column="19" bodyfile="astrea/astro/astro/state/StateHistory.hpp" bodystart="284" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1StateHistory_1a4b1622c44ea2d2115a0f4149dd99c055" prot="private" static="no" mutable="no">
         <type>std::size_t</type>
@@ -96,7 +96,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/StateHistory.hpp" line="272" column="17" bodyfile="astrea/astro/astro/state/StateHistory.hpp" bodystart="272" bodyend="-1"/>
+        <location file="astrea/astro/astro/state/StateHistory.hpp" line="285" column="17" bodyfile="astrea/astro/astro/state/StateHistory.hpp" bodystart="285" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="public-func">
@@ -733,6 +733,38 @@
         </inbodydescription>
         <location file="astrea/astro/astro/state/StateHistory.hpp" line="267" column="10" bodyfile="astrea/astro/astro/state/StateHistory.cpp" bodystart="134" bodyend="139"/>
       </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1StateHistory_1a26ad7d3785be43762c378e978c67af7b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>IsOrbitalElements</type>
+            <declname>T</declname>
+            <defname>T</defname>
+          </param>
+        </templateparamlist>
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">void</ref></type>
+        <definition>void astrea::astro::StateHistory::convert_to_set</definition>
+        <argsstring>()</argsstring>
+        <name>convert_to_set</name>
+        <qualifiedname>astrea::astro::StateHistory::convert_to_set</qualifiedname>
+        <briefdescription>
+<para>Converts the orbital elements of all states in the history to a different type. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The type to convert the orbital elements to. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/StateHistory.hpp" line="275" column="10" bodyfile="astrea/astro/astro/state/StateHistory.hpp" bodystart="275" bodyend="280"/>
+      </memberdef>
     </sectiondef>
     <briefdescription>
 <para>Class to manage the history of states for an object over date. </para>
@@ -740,7 +772,7 @@
     <detaileddescription>
 <para>This class allows storing, retrieving, and managing the states of an object at different dates, providing functionality to access the closest state to a given date and to convert between different orbital elements. </para>
     </detaileddescription>
-    <location file="astrea/astro/astro/state/StateHistory.hpp" line="36" column="1" bodyfile="astrea/astro/astro/state/StateHistory.hpp" bodystart="36" bodyend="273"/>
+    <location file="astrea/astro/astro/state/StateHistory.hpp" line="36" column="1" bodyfile="astrea/astro/astro/state/StateHistory.hpp" bodystart="36" bodyend="286"/>
     <listofallmembers>
       <member refid="classastrea_1_1astro_1_1StateHistory_1a01d34c9af6f3364f36f03ad182cfb4d5" prot="private" virt="non-virtual"><scope>astrea::astro::StateHistory</scope><name>_eventTimes</name></member>
       <member refid="classastrea_1_1astro_1_1StateHistory_1a4b1622c44ea2d2115a0f4149dd99c055" prot="private" virt="non-virtual"><scope>astrea::astro::StateHistory</scope><name>_objectId</name></member>
@@ -751,6 +783,7 @@
       <member refid="classastrea_1_1astro_1_1StateHistory_1a43ef8d8056b9f7a7b656ba4421bcf4c6" prot="public" virt="non-virtual"><scope>astrea::astro::StateHistory</scope><name>cend</name></member>
       <member refid="classastrea_1_1astro_1_1StateHistory_1a098268c45fa4c22afba375da65521635" prot="public" virt="non-virtual"><scope>astrea::astro::StateHistory</scope><name>clear</name></member>
       <member refid="classastrea_1_1astro_1_1StateHistory_1a913d2401c7503b7ab912d9bf9eed2fde" prot="public" virt="non-virtual"><scope>astrea::astro::StateHistory</scope><name>const_iterator</name></member>
+      <member refid="classastrea_1_1astro_1_1StateHistory_1a26ad7d3785be43762c378e978c67af7b" prot="public" virt="non-virtual"><scope>astrea::astro::StateHistory</scope><name>convert_to_set</name></member>
       <member refid="classastrea_1_1astro_1_1StateHistory_1a9fa6ea754df81dec56de3863a8310c59" prot="public" virt="non-virtual"><scope>astrea::astro::StateHistory</scope><name>empty</name></member>
       <member refid="classastrea_1_1astro_1_1StateHistory_1a25c5c5dd54cc9056e4c7159add4900ce" prot="public" virt="non-virtual"><scope>astrea::astro::StateHistory</scope><name>end</name></member>
       <member refid="classastrea_1_1astro_1_1StateHistory_1a4978e36c550a6f8520798e24be05bd15" prot="public" virt="non-virtual"><scope>astrea::astro::StateHistory</scope><name>end</name></member>

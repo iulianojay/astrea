@@ -89,6 +89,14 @@ class StateHistory {
 
     void sort();
 
+    template <IsOrbitalElements T>
+    void convert_to_set()
+    {
+        for (auto& state : _states) {
+            state.convert_to_set<T>();
+        }
+    }
+
   private:
     std::vector<State> _states; 
     EventTimesMap _eventTimes;  

@@ -32,6 +32,7 @@ namespace trace {
 
 template <astro::IsCelestialBody auto _body_>
 class Grid {
+
     using Point = GroundPoint<_body_>;
 
   public:
@@ -44,13 +45,13 @@ class Grid {
     }
 
     Grid(
-        const LatLon& corner1,
-        const LatLon& corner4,
+        const LatRange& latRange,
+        const LonRange& lonRange,
         const GridType& gridType,
         const Angle& spacing   = 5.0 * mp_units::angular::unit_symbols::deg,
         const Unitless& weight = 0.0 * mp_units::one
     ) :
-        _groundPoints(build_grid(corner1, corner4, gridType, spacing, weight)),
+        _groundPoints(build_grid(latRange, lonRange, gridType, spacing, weight)),
         _gridType(gridType)
     {
     }
@@ -81,33 +82,58 @@ class Grid {
 
     const Point& operator[](std::size_t index) const { return _groundPoints[index]; }
 
+    void push_back(const Point& point)
+    {
+        _gridType = GridType::MANUAL;
+        _groundPoints.push_back(point);
+    }
+
+    void push_back(Point&& point)
+    {
+        _gridType = GridType::MANUAL;
+        _groundPoints.push_back(std::move(point));
+    }
+
+    void emplace_back(const Point& point)
+    {
+        _gridType = GridType::MANUAL;
+        _groundPoints.emplace_back(point);
+    }
+
+    void emplace_back(Point&& point)
+    {
+        _gridType = GridType::MANUAL;
+        _groundPoints.emplace_back(std::move(point));
+    }
+
+    void clear() { _groundPoints.clear(); }
+
+    void reserve(std::size_t n) { _groundPoints.reserve(n); }
+
+    void resize(std::size_t n) { _groundPoints.resize(n); }
+
   private:
     std::vector<Point> _groundPoints; 
-    GridType _gridType{};             
+    GridType _gridType;               
 
     std::vector<Point>
-        build_grid(const LatLon& corner1, const LatLon& corner4, const GridType& gridType, const Angle& spacing, const Unitless& weight) const
+        build_grid(const LatRange& latRange, const LonRange& lonRange, const GridType& gridType, const Angle& spacing, const Unitless& weight) const
     {
         switch (gridType) {
-            case GridType::UNIFORM: return build_uniform_grid(corner1, corner4, spacing);
-            case GridType::EQUAL_AREA: return build_equal_area_grid(corner1, corner4, spacing);
+            case GridType::UNIFORM: return build_uniform_grid(latRange, lonRange, spacing);
+            case GridType::EQUAL_AREA: return build_equal_area_grid(latRange, lonRange, spacing);
             case GridType::WEIGHTED_NS:
-            case GridType::WEIGHTED_EW: return build_weighted_grid(corner1, corner4, gridType, spacing, weight);
+            case GridType::WEIGHTED_EW: return build_weighted_grid(latRange, lonRange, gridType, spacing, weight);
             case GridType::MANUAL:
                 throw std::runtime_error("Manual grids can only be constructed from a vector of GroundPoints.");
             default: throw std::runtime_error("Unrecognized GridType.");
         }
     }
 
-    std::vector<Point> build_uniform_grid(const LatLon& corner1, const LatLon& corner4, const Angle& spacing) const
+    std::vector<Point> build_uniform_grid(const LatRange& latRange, const LonRange& lonRange, const Angle& spacing) const
     {
-        const auto& lat1 = corner1.first;
-        const auto& lon1 = corner1.second;
-        const auto& lat4 = corner4.first;
-        const auto& lon4 = corner4.second;
-
-        std::vector<Angle> lats = create_uniformly_spaced_vector(lat1, lat4, spacing);
-        std::vector<Angle> lons = create_uniformly_spaced_vector(lon1, lon4, spacing);
+        const std::vector<Angle> lats = create_uniformly_spaced_vector(latRange, spacing);
+        const std::vector<Angle> lons = create_uniformly_spaced_vector(lonRange, spacing);
 
         std::vector<Point> grounds;
         for (const auto& [lat, lon] : std::views::cartesian_product(lats, lons)) {
@@ -116,22 +142,26 @@ class Grid {
         return grounds;
     }
 
-    std::vector<Point> build_equal_area_grid(const LatLon& corner1, const LatLon& corner4, const Angle& spacing) const
+    std::vector<Point> build_equal_area_grid(const LatRange& latRange, const LonRange& lonRange, const Angle& spacing) const
     {
         throw std::runtime_error("Equal area grids have not been implemented yet.");
     }
 
     std::vector<Point>
-        build_weighted_grid(const LatLon& corner1, const LatLon& corner4, const GridType& gridType, const Angle& initialSpacing, const Unitless& weight) const
+        build_weighted_grid(const LatRange& latRange, const LonRange& lonRange, const GridType& gridType, const Angle& initialSpacing, const Unitless& weight) const
     {
         throw std::runtime_error("Weighted grids have not been implemented yet.");
     }
 
-    std::vector<Angle> create_uniformly_spaced_vector(const Angle& first, const Angle& second, const Angle& spacing) const
+    std::vector<Angle> create_uniformly_spaced_vector(const std::pair<Angle, Angle>& range, const Angle& spacing) const
     {
-        const std::size_t nAngles = std::ceil((mp_units::abs(second - first) / spacing).numerical_value_in(mp_units::one)) + 1;
+        const auto& minAngle = std::min(range.first, range.second);
+        const auto& maxAngle = std::max(range.first, range.second);
+
+        const std::size_t nAngles =
+            std::ceil((mp_units::abs(maxAngle - minAngle) / spacing).numerical_value_in(mp_units::one)) + 1;
         std::vector<Angle> angles(nAngles);
-        std::generate(angles.begin(), angles.end(), [ii = 0, minAngle = std::min(first, second), maxAngle = std::max(first, second), &spacing]() mutable {
+        std::generate(angles.begin(), angles.end(), [ii = 0, &minAngle, &maxAngle, &spacing]() mutable {
             return std::min(minAngle + (ii++) * spacing, maxAngle);
         });
         return angles;

@@ -13,6 +13,8 @@ _Header file for the access module._ [More...](#detailed-description)
 * `#include <trace/analysis/AccessAnalyzer.hpp>`
 * `#include <trace/analysis/PositionCache.hpp>`
 * `#include <trace/analysis/SpatialIndex.hpp>`
+* `#include <trace/analysis/TraceConfig.hpp>`
+* `#include <trace/analysis/analysis.hpp>`
 * `#include <trace/analysis/plots/Plotter.hpp>`
 * `#include <trace/analysis/stats/AccessStats.hpp>`
 * `#include <trace/analysis/stats/FoldsOfCoverage.hpp>`

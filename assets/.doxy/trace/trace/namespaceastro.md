@@ -77,5 +77,5 @@
 
 
 ------------------------------
-The documentation for this class was generated from the following file `astrea/trace/trace/drivers/main.cpp`
+The documentation for this class was generated from the following file `astrea/trace/trace/analysis/analysis.cpp`
 

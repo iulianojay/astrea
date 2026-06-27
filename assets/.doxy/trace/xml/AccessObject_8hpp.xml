@@ -26,7 +26,7 @@
         </childnode>
         <childnode refid="5" relation="include">
         </childnode>
-        <childnode refid="16" relation="include">
+        <childnode refid="19" relation="include">
         </childnode>
       </node>
       <node id="5">
@@ -59,12 +59,12 @@
         <childnode refid="11" relation="include">
         </childnode>
       </node>
-      <node id="16">
+      <node id="19">
         <label>trace/types/IdPair.hpp</label>
         <link refid="IdPair_8hpp_source"/>
         <childnode refid="15" relation="include">
         </childnode>
-        <childnode refid="17" relation="include">
+        <childnode refid="20" relation="include">
         </childnode>
       </node>
       <node id="12">
@@ -84,9 +84,26 @@
         <link refid="typedefs_8hpp"/>
         <childnode refid="15" relation="include">
         </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
       </node>
       <node id="13">
         <label>array</label>
+      </node>
+      <node id="16">
+        <label>astro/astro.fwd.hpp</label>
+      </node>
+      <node id="17">
+        <label>astro/frames.hpp</label>
+      </node>
+      <node id="18">
+        <label>astro/systems.hpp</label>
       </node>
       <node id="11">
         <label>astro/systems/system_concepts.hpp</label>
@@ -94,7 +111,7 @@
       <node id="15">
         <label>cstdint</label>
       </node>
-      <node id="17">
+      <node id="20">
         <label>functional</label>
       </node>
       <node id="4">

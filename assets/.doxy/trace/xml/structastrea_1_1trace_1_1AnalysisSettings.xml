@@ -1,0 +1,111 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="structastrea_1_1trace_1_1AnalysisSettings" kind="struct" language="C++" prot="public">
+    <compoundname>astrea::trace::AnalysisSettings</compoundname>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structastrea_1_1trace_1_1AnalysisSettings_1a5a4a0be73ac818e5ac83f4c6fa8cfdb8" prot="public" static="no" mutable="no">
+        <type>Time</type>
+        <definition>Time astrea::trace::AnalysisSettings::simTime</definition>
+        <argsstring></argsstring>
+        <name>simTime</name>
+        <qualifiedname>astrea::trace::AnalysisSettings::simTime</qualifiedname>
+        <briefdescription>
+<para>Total simulation time. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/analysis/TraceConfig.hpp" line="36" column="10" bodyfile="astrea/trace/trace/analysis/TraceConfig.hpp" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structastrea_1_1trace_1_1AnalysisSettings_1a6cd58da49e266064a1f853bcfe6fd9cb" prot="public" static="no" mutable="no">
+        <type>Time</type>
+        <definition>Time astrea::trace::AnalysisSettings::resolution</definition>
+        <argsstring></argsstring>
+        <name>resolution</name>
+        <qualifiedname>astrea::trace::AnalysisSettings::resolution</qualifiedname>
+        <briefdescription>
+<para>Time resolution of the simulation. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/analysis/TraceConfig.hpp" line="37" column="10" bodyfile="astrea/trace/trace/analysis/TraceConfig.hpp" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structastrea_1_1trace_1_1AnalysisSettings_1ac191fb12d55563bf85cf85774b1cc317" prot="public" static="no" mutable="no">
+        <type>astro::Date</type>
+        <definition>astro::Date astrea::trace::AnalysisSettings::epoch</definition>
+        <argsstring></argsstring>
+        <name>epoch</name>
+        <qualifiedname>astrea::trace::AnalysisSettings::epoch</qualifiedname>
+        <briefdescription>
+<para>Epoch of the simulation. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/analysis/TraceConfig.hpp" line="38" column="17" bodyfile="astrea/trace/trace/analysis/TraceConfig.hpp" bodystart="38" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="structastrea_1_1trace_1_1AnalysisSettings_1a4410301bf3fad95051932e7b2c1bcd93" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>astrea::trace::AnalysisSettings::AnalysisSettings</definition>
+        <argsstring>()=default</argsstring>
+        <name>AnalysisSettings</name>
+        <qualifiedname>astrea::trace::AnalysisSettings::AnalysisSettings</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/analysis/TraceConfig.hpp" line="40" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="structastrea_1_1trace_1_1AnalysisSettings_1ae7f026162f40462c726317da1577ba53" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>astrea::trace::AnalysisSettings::AnalysisSettings</definition>
+        <argsstring>(const nlohmann::json &amp;json)</argsstring>
+        <name>AnalysisSettings</name>
+        <qualifiedname>astrea::trace::AnalysisSettings::AnalysisSettings</qualifiedname>
+        <param>
+          <type>const nlohmann::json &amp;</type>
+          <declname>json</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/analysis/TraceConfig.hpp" line="42" column="5" bodyfile="astrea/trace/trace/analysis/TraceConfig.hpp" bodystart="42" bodyend="50"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>astrea::trace::AnalysisSettings</label>
+        <link refid="structastrea_1_1trace_1_1AnalysisSettings"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>epoch</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>Date</label>
+      </node>
+    </collaborationgraph>
+    <location file="astrea/trace/trace/analysis/TraceConfig.hpp" line="35" column="1" bodyfile="astrea/trace/trace/analysis/TraceConfig.hpp" bodystart="35" bodyend="51"/>
+    <listofallmembers>
+      <member refid="structastrea_1_1trace_1_1AnalysisSettings_1a4410301bf3fad95051932e7b2c1bcd93" prot="public" virt="non-virtual"><scope>astrea::trace::AnalysisSettings</scope><name>AnalysisSettings</name></member>
+      <member refid="structastrea_1_1trace_1_1AnalysisSettings_1ae7f026162f40462c726317da1577ba53" prot="public" virt="non-virtual"><scope>astrea::trace::AnalysisSettings</scope><name>AnalysisSettings</name></member>
+      <member refid="structastrea_1_1trace_1_1AnalysisSettings_1ac191fb12d55563bf85cf85774b1cc317" prot="public" virt="non-virtual"><scope>astrea::trace::AnalysisSettings</scope><name>epoch</name></member>
+      <member refid="structastrea_1_1trace_1_1AnalysisSettings_1a6cd58da49e266064a1f853bcfe6fd9cb" prot="public" virt="non-virtual"><scope>astrea::trace::AnalysisSettings</scope><name>resolution</name></member>
+      <member refid="structastrea_1_1trace_1_1AnalysisSettings_1a5a4a0be73ac818e5ac83f4c6fa8cfdb8" prot="public" virt="non-virtual"><scope>astrea::trace::AnalysisSettings</scope><name>simTime</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

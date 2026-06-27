@@ -3,10 +3,16 @@
   <compounddef id="typedefs_8hpp" kind="file" language="C++">
     <compoundname>typedefs.hpp</compoundname>
     <includes local="no">cstdint</includes>
+    <includes local="no">astro/astro.fwd.hpp</includes>
+    <includes local="no">astro/frames.hpp</includes>
+    <includes local="no">astro/systems.hpp</includes>
+    <includes refid="trace_8fwd_8hpp" local="no">trace/trace.fwd.hpp</includes>
     <includedby refid="AccessAnalyzer_8cpp" local="no">astrea/trace/trace/analysis/AccessAnalyzer.cpp</includedby>
     <includedby refid="AccessAnalyzer_8hpp" local="no">astrea/trace/trace/analysis/AccessAnalyzer.hpp</includedby>
     <includedby refid="PositionCache_8hpp" local="no">astrea/trace/trace/analysis/PositionCache.hpp</includedby>
-    <includedby refid="SpatialIndex_8cpp" local="no">astrea/trace/trace/analysis/SpatialIndex.cpp</includedby>
+    <includedby refid="SpatialIndex_8hpp" local="no">astrea/trace/trace/analysis/SpatialIndex.hpp</includedby>
+    <includedby refid="TraceConfig_8hpp" local="no">astrea/trace/trace/analysis/TraceConfig.hpp</includedby>
+    <includedby refid="analysis_8cpp" local="no">astrea/trace/trace/analysis/analysis.cpp</includedby>
     <includedby refid="AccessObject_8hpp" local="no">astrea/trace/trace/platforms/AccessObject.hpp</includedby>
     <includedby refid="Grid_8hpp" local="no">astrea/trace/trace/platforms/ground/Grid.hpp</includedby>
     <includedby refid="GroundPoint_8hpp" local="no">astrea/trace/trace/platforms/ground/GroundPoint.hpp</includedby>
@@ -15,11 +21,37 @@
     <includedby refid="trace_8hpp" local="no">astrea/trace/trace/trace.hpp</includedby>
     <includedby refid="enums_8hpp" local="no">astrea/trace/trace/types/enums.hpp</includedby>
     <incdepgraph>
+      <node id="6">
+        <label>trace/trace.fwd.hpp</label>
+        <link refid="trace_8fwd_8hpp"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
       <node id="1">
         <label>astrea/trace/trace/types/typedefs.hpp</label>
         <link refid="typedefs_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>astro/astro.fwd.hpp</label>
+      </node>
+      <node id="4">
+        <label>astro/frames.hpp</label>
+      </node>
+      <node id="5">
+        <label>astro/systems.hpp</label>
+      </node>
+      <node id="7">
+        <label>astro/systems/system_concepts.hpp</label>
       </node>
       <node id="2">
         <label>cstdint</label>
@@ -40,158 +72,186 @@
         <childnode refid="3" relation="include">
         </childnode>
       </node>
-      <node id="15">
-        <label>astrea/trace/trace/analysis/stats/AccessStats.hpp</label>
-        <link refid="AccessStats_8hpp"/>
-        <childnode refid="10" relation="include">
-        </childnode>
-        <childnode refid="3" relation="include">
-        </childnode>
-      </node>
-      <node id="18">
-        <label>astrea/trace/trace/analysis/stats/FoldsOfCoverage.hpp</label>
-        <link refid="FoldsOfCoverage_8hpp"/>
-        <childnode refid="10" relation="include">
-        </childnode>
-        <childnode refid="3" relation="include">
-        </childnode>
-      </node>
-      <node id="16">
-        <label>astrea/trace/trace/analysis/stats/HyperStats.hpp</label>
-        <link refid="HyperStats_8hpp"/>
-        <childnode refid="15" relation="include">
-        </childnode>
-        <childnode refid="3" relation="include">
-        </childnode>
-      </node>
-      <node id="19">
-        <label>astrea/trace/trace/analysis/stats/RiseSetStats.hpp</label>
-        <link refid="RiseSetStats_8hpp"/>
-        <childnode refid="15" relation="include">
-        </childnode>
-        <childnode refid="16" relation="include">
-        </childnode>
-        <childnode refid="10" relation="include">
-        </childnode>
-        <childnode refid="3" relation="include">
-        </childnode>
-      </node>
-      <node id="17">
-        <label>astrea/trace/trace/analysis/stats/Stats.hpp</label>
-        <link refid="Stats_8hpp"/>
-        <childnode refid="15" relation="include">
-        </childnode>
-        <childnode refid="18" relation="include">
-        </childnode>
-        <childnode refid="16" relation="include">
-        </childnode>
-        <childnode refid="19" relation="include">
-        </childnode>
-        <childnode refid="3" relation="include">
-        </childnode>
-      </node>
-      <node id="10">
-        <label>astrea/trace/trace/io/output.hpp</label>
-        <link refid="output_8hpp"/>
-        <childnode refid="3" relation="include">
-        </childnode>
-      </node>
       <node id="5">
-        <label>astrea/trace/trace/platforms/AccessObject.hpp</label>
-        <link refid="AccessObject_8hpp"/>
-        <childnode refid="6" relation="include">
-        </childnode>
-        <childnode refid="11" relation="include">
-        </childnode>
-        <childnode refid="13" relation="include">
-        </childnode>
-      </node>
-      <node id="7">
-        <label>astrea/trace/trace/platforms/ground/Grid.hpp</label>
-        <link refid="Grid_8hpp"/>
-        <childnode refid="3" relation="include">
-        </childnode>
-      </node>
-      <node id="9">
-        <label>astrea/trace/trace/platforms/ground/GroundArchitecture.hpp</label>
-        <link refid="GroundArchitecture_8hpp"/>
-        <childnode refid="10" relation="include">
+        <label>astrea/trace/trace/analysis/SpatialIndex.hpp</label>
+        <link refid="SpatialIndex_8hpp"/>
+        <childnode refid="2" relation="include">
         </childnode>
         <childnode refid="3" relation="include">
         </childnode>
       </node>
       <node id="6">
-        <label>astrea/trace/trace/platforms/ground/GroundPoint.hpp</label>
-        <link refid="GroundPoint_8hpp"/>
+        <label>astrea/trace/trace/analysis/TraceConfig.hpp</label>
+        <link refid="TraceConfig_8hpp"/>
         <childnode refid="7" relation="include">
         </childnode>
-        <childnode refid="8" relation="include">
-        </childnode>
         <childnode refid="3" relation="include">
         </childnode>
       </node>
-      <node id="8">
-        <label>astrea/trace/trace/platforms/ground/GroundStation.hpp</label>
-        <link refid="GroundStation_8hpp"/>
-        <childnode refid="9" relation="include">
-        </childnode>
+      <node id="7">
+        <label>astrea/trace/trace/analysis/analysis.hpp</label>
+        <link refid="analysis_8hpp"/>
         <childnode refid="3" relation="include">
         </childnode>
       </node>
-      <node id="12">
-        <label>astrea/trace/trace/platforms/sensors/Antenna.hpp</label>
-        <link refid="Antenna_8hpp"/>
-        <childnode refid="3" relation="include">
-        </childnode>
-      </node>
-      <node id="11">
-        <label>astrea/trace/trace/platforms/sensors/Sensor.hpp</label>
-        <link refid="Sensor_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="8" relation="include">
-        </childnode>
-        <childnode refid="12" relation="include">
+      <node id="18">
+        <label>astrea/trace/trace/analysis/stats/AccessStats.hpp</label>
+        <link refid="AccessStats_8hpp"/>
+        <childnode refid="7" relation="include">
         </childnode>
         <childnode refid="13" relation="include">
         </childnode>
         <childnode refid="3" relation="include">
         </childnode>
       </node>
-      <node id="13">
-        <label>astrea/trace/trace/platforms/vehicles/Viewer.hpp</label>
-        <link refid="Viewer_8hpp"/>
+      <node id="21">
+        <label>astrea/trace/trace/analysis/stats/FoldsOfCoverage.hpp</label>
+        <link refid="FoldsOfCoverage_8hpp"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="19">
+        <label>astrea/trace/trace/analysis/stats/HyperStats.hpp</label>
+        <link refid="HyperStats_8hpp"/>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="22">
+        <label>astrea/trace/trace/analysis/stats/RiseSetStats.hpp</label>
+        <link refid="RiseSetStats_8hpp"/>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
         <childnode refid="3" relation="include">
         </childnode>
       </node>
       <node id="20">
-        <label>astrea/trace/trace/risesets/AccessArray.hpp</label>
-        <link refid="AccessArray_8hpp"/>
-        <childnode refid="2" relation="include">
+        <label>astrea/trace/trace/analysis/stats/Stats.hpp</label>
+        <link refid="Stats_8hpp"/>
+        <childnode refid="18" relation="include">
         </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>astrea/trace/trace/io/output.hpp</label>
+        <link refid="output_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>astrea/trace/trace/platforms/AccessObject.hpp</label>
+        <link refid="AccessObject_8hpp"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>astrea/trace/trace/platforms/ground/Grid.hpp</label>
+        <link refid="Grid_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>astrea/trace/trace/platforms/ground/GroundArchitecture.hpp</label>
+        <link refid="GroundArchitecture_8hpp"/>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>astrea/trace/trace/platforms/ground/GroundPoint.hpp</label>
+        <link refid="GroundPoint_8hpp"/>
         <childnode refid="10" relation="include">
-        </childnode>
-        <childnode refid="5" relation="include">
         </childnode>
         <childnode refid="11" relation="include">
         </childnode>
         <childnode refid="3" relation="include">
         </childnode>
       </node>
+      <node id="11">
+        <label>astrea/trace/trace/platforms/ground/GroundStation.hpp</label>
+        <link refid="GroundStation_8hpp"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>astrea/trace/trace/platforms/sensors/Antenna.hpp</label>
+        <link refid="Antenna_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
       <node id="14">
-        <label>astrea/trace/trace/risesets/RiseSetArray.hpp</label>
-        <link refid="RiseSetArray_8hpp"/>
+        <label>astrea/trace/trace/platforms/sensors/Sensor.hpp</label>
+        <link refid="Sensor_8hpp"/>
         <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
         </childnode>
         <childnode refid="15" relation="include">
         </childnode>
         <childnode refid="16" relation="include">
         </childnode>
-        <childnode refid="17" relation="include">
+        <childnode refid="3" relation="include">
         </childnode>
-        <childnode refid="10" relation="include">
+      </node>
+      <node id="16">
+        <label>astrea/trace/trace/platforms/vehicles/Viewer.hpp</label>
+        <link refid="Viewer_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="23">
+        <label>astrea/trace/trace/risesets/AccessArray.hpp</label>
+        <link refid="AccessArray_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="17">
+        <label>astrea/trace/trace/risesets/RiseSetArray.hpp</label>
+        <link refid="RiseSetArray_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
         </childnode>
         <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
         </childnode>
         <childnode refid="3" relation="include">
         </childnode>
@@ -200,20 +260,20 @@
         <label>astrea/trace/trace/trace.hpp</label>
         <link refid="trace_8hpp"/>
       </node>
-      <node id="21">
+      <node id="24">
         <label>astrea/trace/trace/types/enums.hpp</label>
         <link refid="enums_8hpp"/>
-        <childnode refid="15" relation="include">
-        </childnode>
-        <childnode refid="16" relation="include">
+        <childnode refid="18" relation="include">
         </childnode>
         <childnode refid="19" relation="include">
         </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
         <childnode refid="17" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
-        <childnode refid="14" relation="include">
         </childnode>
         <childnode refid="3" relation="include">
         </childnode>
@@ -227,17 +287,21 @@
         </childnode>
         <childnode refid="5" relation="include">
         </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
         <childnode refid="6" relation="include">
         </childnode>
-        <childnode refid="12" relation="include">
+        <childnode refid="8" relation="include">
         </childnode>
-        <childnode refid="14" relation="include">
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
         </childnode>
         <childnode refid="3" relation="include">
         </childnode>
-        <childnode refid="21" relation="include">
+        <childnode refid="24" relation="include">
         </childnode>
       </node>
     </invincdepgraph>
@@ -262,16 +326,43 @@ The GNU Lesser General Public License (LGPL)</para>
 <codeline lineno="20"><highlight class="normal"></highlight></codeline>
 <codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;cstdint&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="22"><highlight class="normal"></highlight></codeline>
-<codeline lineno="23"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">astrea<sp/>{</highlight></codeline>
-<codeline lineno="24"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">trace<sp/>{</highlight></codeline>
-<codeline lineno="25"><highlight class="normal"></highlight></codeline>
-<codeline lineno="29" refid="typedefs_8hpp_1a433642ed3c2878bcde24598bdf615893" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="typedefs_8hpp_1a433642ed3c2878bcde24598bdf615893" kindref="member">EnumType</ref><sp/>=<sp/>uint32_t;</highlight></codeline>
-<codeline lineno="30"><highlight class="normal"></highlight></codeline>
-<codeline lineno="36" refid="typedefs_8hpp_1a1f5b508729d8e61c11b9fadb9f101bb4" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="typedefs_8hpp_1a1f5b508729d8e61c11b9fadb9f101bb4" kindref="member">LatLon</ref><sp/>=<sp/>std::pair&lt;Angle,<sp/>Angle&gt;;</highlight></codeline>
-<codeline lineno="37"><highlight class="normal"></highlight></codeline>
-<codeline lineno="38"><highlight class="normal"></highlight></codeline>
-<codeline lineno="39"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>trace</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="40"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>astrea</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;astro/astro.fwd.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;astro/frames.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;astro/systems.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="trace_8fwd_8hpp" kindref="compound">trace/trace.fwd.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">astrea<sp/>{</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">trace<sp/>{</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight></codeline>
+<codeline lineno="35" refid="typedefs_8hpp_1a433642ed3c2878bcde24598bdf615893" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="typedefs_8hpp_1a433642ed3c2878bcde24598bdf615893" kindref="member">EnumType</ref><sp/>=<sp/>uint32_t;</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight></codeline>
+<codeline lineno="42" refid="typedefs_8hpp_1a1f5b508729d8e61c11b9fadb9f101bb4" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="typedefs_8hpp_1a1f5b508729d8e61c11b9fadb9f101bb4" kindref="member">LatLon</ref><sp/>=<sp/>std::pair&lt;Angle,<sp/>Angle&gt;;</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight></codeline>
+<codeline lineno="49" refid="typedefs_8hpp_1adb267a53d491ab1e364558578b7aba52" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="typedefs_8hpp_1adb267a53d491ab1e364558578b7aba52" kindref="member">LatRange</ref><sp/>=<sp/>std::pair&lt;Angle,<sp/>Angle&gt;;</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight></codeline>
+<codeline lineno="56" refid="typedefs_8hpp_1aef2e871664c74fcdae58e1b6db70c9b5" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="typedefs_8hpp_1aef2e871664c74fcdae58e1b6db70c9b5" kindref="member">LonRange</ref><sp/>=<sp/>std::pair&lt;Angle,<sp/>Angle&gt;;</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">EciRadiusVec<sp/>=<sp/>astro::CartesianVector&lt;Distance,<sp/>astro::frames::earth::icrf&gt;;</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight></codeline>
+<codeline lineno="66"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="PositionCache_8hpp_1afe793f30269c8d02fd6e9d89649ff7c9" kindref="member">EcefRadiusVec</ref><sp/>=<sp/>astro::CartesianVector&lt;Distance,<sp/>astro::frames::earth::earth_fixed&gt;;</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"></highlight></codeline>
+<codeline lineno="71" refid="typedefs_8hpp_1aba5ee9c881a98fb1fdd78cce68fdc378" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="typedefs_8hpp_1aba5ee9c881a98fb1fdd78cce68fdc378" kindref="member">DateVector</ref><sp/>=<sp/>std::vector&lt;astro::Date&gt;;</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"></highlight></codeline>
+<codeline lineno="76"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="Plotter_8hpp_1a6577a4b6ee15f2bc01192d4e545278e5" kindref="member">ViewerConstellation</ref><sp/>=<sp/>astro::Constellation&lt;Viewer&gt;;</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"></highlight></codeline>
+<codeline lineno="81" refid="typedefs_8hpp_1a6e01e2965d87fedc35dcd4b9da8bf8fa" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="typedefs_8hpp_1a6e01e2965d87fedc35dcd4b9da8bf8fa" kindref="member">ViewerRefVec</ref><sp/>=<sp/>std::vector&lt;std::shared_ptr&lt;Viewer&gt;&gt;;</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"></highlight></codeline>
+<codeline lineno="86" refid="typedefs_8hpp_1a58a4b43ed97587828db93eab81e2fafb" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="typedefs_8hpp_1a58a4b43ed97587828db93eab81e2fafb" kindref="member">GroundStationRefVec</ref><sp/>=<sp/>std::vector&lt;std::shared_ptr&lt;GroundStation&lt;astro::planets::Earth&gt;&gt;&gt;;</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"></highlight></codeline>
+<codeline lineno="93" refid="typedefs_8hpp_1a343001e7eb8323eb6ee3ff0f3c3a35a4" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="typedefs_8hpp_1a343001e7eb8323eb6ee3ff0f3c3a35a4" kindref="member">GroundPointRefVec</ref><sp/>=<sp/>std::vector&lt;std::shared_ptr&lt;GroundPoint&lt;astro::planets::Earth&gt;&gt;&gt;;</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"></highlight></codeline>
+<codeline lineno="98" refid="typedefs_8hpp_1ad15872bf64dbeccb549ccad1986be66d" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="typedefs_8hpp_1ad15872bf64dbeccb549ccad1986be66d" kindref="member">PairVec</ref><sp/>=<sp/>std::vector&lt;std::pair&lt;std::size_t,<sp/>std::size_t&gt;&gt;;</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"></highlight></codeline>
+<codeline lineno="107" refid="typedefs_8hpp_1adec0f497a15d2aa470499fdac84de9f7" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="typedefs_8hpp_1adec0f497a15d2aa470499fdac84de9f7" kindref="member">BoresightTable</ref><sp/>=<sp/>std::vector&lt;std::vector&lt;EciRadiusVec&gt;&gt;;</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"></highlight></codeline>
+<codeline lineno="109"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>trace</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="110"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>astrea</highlight></codeline>
     </programlisting>
     <location file="astrea/trace/trace/types/typedefs.hpp"/>
   </compounddef>

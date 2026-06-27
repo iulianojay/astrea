@@ -357,7 +357,7 @@
     <member refid="classastrea_1_1astro_1_1Constellation_1aa957ad6545451048157a98890f67cc0b" kind="function"><name>Constellation</name></member>
     <member refid="classastrea_1_1astro_1_1Constellation_1af285072940971595dda30630b06743c5" kind="function"><name>Constellation</name></member>
     <member refid="classastrea_1_1astro_1_1Constellation_1aea8b68a5a026bb6da6a7538cbda60df9" kind="function"><name>Constellation</name></member>
-    <member refid="classastrea_1_1astro_1_1Constellation_1ae08b0be1981b019b2b7e1f1016c72176" kind="function"><name>Constellation</name></member>
+    <member refid="classastrea_1_1astro_1_1Constellation_1a3e77a877e4606735ef817c631ba407c5" kind="function"><name>Constellation</name></member>
     <member refid="classastrea_1_1astro_1_1Constellation_1ad768821a93cd9bf5d452368c12a9c5d8" kind="function"><name>~Constellation</name></member>
     <member refid="classastrea_1_1astro_1_1Constellation_1a88aea09b5bed8982e69943ed6f5a3ba9" kind="function"><name>size</name></member>
     <member refid="classastrea_1_1astro_1_1Constellation_1a74b808143631770be0259a7f9cb73617" kind="function"><name>n_shells</name></member>
@@ -1937,7 +1937,7 @@
     <member refid="classastrea_1_1astro_1_1Shell_1ae253aabd4b187f41ed36899c2ac573b9" kind="function"><name>Shell</name></member>
     <member refid="classastrea_1_1astro_1_1Shell_1acb0261ed7ca4e66f9d3dd2300f91bdee" kind="function"><name>Shell</name></member>
     <member refid="classastrea_1_1astro_1_1Shell_1aac3f987027a5f9f8e40da1eab5bed945" kind="function"><name>Shell</name></member>
-    <member refid="classastrea_1_1astro_1_1Shell_1a10ede4cad62e536cd8074f9db6bba9a8" kind="function"><name>Shell</name></member>
+    <member refid="classastrea_1_1astro_1_1Shell_1a9ee328b416e2961a5d35064c70ecb7e8" kind="function"><name>Shell</name></member>
     <member refid="classastrea_1_1astro_1_1Shell_1aabb9a60e32dd20f96a6c7ac60ad1b22a" kind="function"><name>~Shell</name></member>
     <member refid="classastrea_1_1astro_1_1Shell_1acc91237fd6263e3509980dcc30343049" kind="function"><name>size</name></member>
     <member refid="classastrea_1_1astro_1_1Shell_1a42a80ffad63c980474626c52405217a7" kind="function"><name>n_planes</name></member>
@@ -2150,6 +2150,7 @@
     <member refid="classastrea_1_1astro_1_1StateHistory_1ae7529bb95bf63f52dbcebbba3aa82964" kind="function"><name>cbegin</name></member>
     <member refid="classastrea_1_1astro_1_1StateHistory_1a43ef8d8056b9f7a7b656ba4421bcf4c6" kind="function"><name>cend</name></member>
     <member refid="classastrea_1_1astro_1_1StateHistory_1a67bd90ca8cb1a8189d1bb6d09a8b4a29" kind="function"><name>sort</name></member>
+    <member refid="classastrea_1_1astro_1_1StateHistory_1a26ad7d3785be43762c378e978c67af7b" kind="function"><name>convert_to_set</name></member>
   </compound>
   <compound refid="classastrea_1_1astro_1_1StatePartial" kind="class"><name>astrea::astro::StatePartial</name>
     <member refid="classastrea_1_1astro_1_1StatePartial_1adddef03e0a10031a6ab4f47db6413245" kind="variable"><name>_epoch</name></member>

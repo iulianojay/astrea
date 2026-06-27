@@ -13,6 +13,11 @@
 * **AccessMetric** ([**astrea::trace**](namespaceastrea_1_1trace.md))
 
 
+## b
+
+* **BoresightTable** ([**astrea::trace**](namespaceastrea_1_1trace.md))
+
+
 ## c
 
 * **calculate\_angle\_between\_vectors** ([**astrea::trace**](namespaceastrea_1_1trace.md))
@@ -43,6 +48,8 @@
 ## l
 
 * **LatLon** ([**astrea::trace**](namespaceastrea_1_1trace.md))
+* **LatRange** ([**astrea::trace**](namespaceastrea_1_1trace.md))
+* **LonRange** ([**astrea::trace**](namespaceastrea_1_1trace.md))
 
 
 ## m
@@ -60,6 +67,7 @@
 * **PairVec** ([**astrea::trace**](namespaceastrea_1_1trace.md))
 * **PatternApproximation** ([**astrea::trace**](namespaceastrea_1_1trace.md))
 * **point\_in\_polygon** ([**astrea::trace**](namespaceastrea_1_1trace.md))
+* **propagate\_and\_run\_access\_analysis** ([**astrea::trace**](namespaceastrea_1_1trace.md))
 
 
 ## r
@@ -69,6 +77,7 @@
 * **riseset\_difference** ([**astrea::trace**](namespaceastrea_1_1trace.md))
 * **riseset\_intersection** ([**astrea::trace**](namespaceastrea_1_1trace.md))
 * **riseset\_union** ([**astrea::trace**](namespaceastrea_1_1trace.md))
+* **run\_trace\_analysis** ([**astrea::trace**](namespaceastrea_1_1trace.md))
 
 
 ## s

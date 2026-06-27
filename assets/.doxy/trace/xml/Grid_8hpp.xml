@@ -14,6 +14,7 @@
     <includes refid="enums_8hpp" local="no">trace/types/enums.hpp</includes>
     <includes refid="typedefs_8hpp" local="no">trace/types/typedefs.hpp</includes>
     <includedby refid="AccessAnalyzer_8cpp" local="no">astrea/trace/trace/analysis/AccessAnalyzer.cpp</includedby>
+    <includedby refid="analysis_8cpp" local="no">astrea/trace/trace/analysis/analysis.cpp</includedby>
     <includedby refid="Plotter_8cpp" local="no">astrea/trace/trace/analysis/plots/Plotter.cpp</includedby>
     <includedby refid="trace_8hpp" local="no">astrea/trace/trace/trace.hpp</includedby>
     <incdepgraph>
@@ -94,7 +95,7 @@
         </childnode>
         <childnode refid="26" relation="include">
         </childnode>
-        <childnode refid="33" relation="include">
+        <childnode refid="35" relation="include">
         </childnode>
       </node>
       <node id="26">
@@ -127,12 +128,12 @@
         <childnode refid="9" relation="include">
         </childnode>
       </node>
-      <node id="33">
+      <node id="35">
         <label>trace/types/IdPair.hpp</label>
         <link refid="IdPair_8hpp_source"/>
         <childnode refid="32" relation="include">
         </childnode>
-        <childnode refid="34" relation="include">
+        <childnode refid="36" relation="include">
         </childnode>
       </node>
       <node id="29">
@@ -152,6 +153,14 @@
         <link refid="typedefs_8hpp"/>
         <childnode refid="32" relation="include">
         </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="33" relation="include">
+        </childnode>
+        <childnode refid="34" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
       </node>
       <node id="2">
         <label>algorithm</label>
@@ -162,11 +171,17 @@
       <node id="16">
         <label>astro/astro.fwd.hpp</label>
       </node>
+      <node id="33">
+        <label>astro/frames.hpp</label>
+      </node>
       <node id="17">
         <label>astro/frames/framework/CartesianVector.hpp</label>
       </node>
       <node id="18">
         <label>astro/state/angular_elements.hpp</label>
+      </node>
+      <node id="34">
+        <label>astro/systems.hpp</label>
       </node>
       <node id="19">
         <label>astro/systems/property_getters.hpp</label>
@@ -183,7 +198,7 @@
       <node id="32">
         <label>cstdint</label>
       </node>
-      <node id="34">
+      <node id="36">
         <label>functional</label>
       </node>
       <node id="25">
@@ -279,114 +294,144 @@ The GNU Lesser General Public License (LGPL)</para>
 <codeline lineno="39"><highlight class="normal"></highlight></codeline>
 <codeline lineno="49"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;astro::IsCelestialBody<sp/>auto<sp/>_body_&gt;</highlight></codeline>
 <codeline lineno="50" refid="classastrea_1_1trace_1_1Grid" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classastrea_1_1trace_1_1Grid" kindref="compound">Grid</ref><sp/>{</highlight></codeline>
-<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">Point<sp/>=<sp/><ref refid="classastrea_1_1trace_1_1GroundPoint" kindref="compound">GroundPoint&lt;_body_&gt;</ref>;</highlight></codeline>
-<codeline lineno="52"><highlight class="normal"></highlight></codeline>
-<codeline lineno="53"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
-<codeline lineno="59" refid="classastrea_1_1trace_1_1Grid_1aff380ed3514ec9e771b49d5d45b6bdd8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1trace_1_1Grid_1aff380ed3514ec9e771b49d5d45b6bdd8" kindref="member">Grid</ref>()<sp/>=<sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="60"><highlight class="normal"></highlight></codeline>
-<codeline lineno="66" refid="classastrea_1_1trace_1_1Grid_1a6b7d7882a6a844fc69cdba172c1a6cf7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1trace_1_1Grid_1a6b7d7882a6a844fc69cdba172c1a6cf7" kindref="member">Grid</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;Point&gt;&amp;<sp/>groundPoints)<sp/>:</highlight></codeline>
-<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_groundPoints(groundPoints),</highlight></codeline>
-<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_gridType(<ref refid="enums_8hpp_1a1e1be345d5d6782a8568d0550e205a4a" kindref="member">GridType</ref>::<ref refid="enums_8hpp_1a1e1be345d5d6782a8568d0550e205a4aaa60a6a471c0681e5a49c4f5d00f6bc5a" kindref="member">MANUAL</ref>)</highlight></codeline>
-<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
-<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="71"><highlight class="normal"></highlight></codeline>
-<codeline lineno="81" refid="classastrea_1_1trace_1_1Grid_1a504359e8d6b75a04b42c8f5cb37664da" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1trace_1_1Grid_1a504359e8d6b75a04b42c8f5cb37664da" kindref="member">Grid</ref>(</highlight></codeline>
-<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="typedefs_8hpp_1a1f5b508729d8e61c11b9fadb9f101bb4" kindref="member">LatLon</ref>&amp;<sp/>corner1,</highlight></codeline>
-<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="typedefs_8hpp_1a1f5b508729d8e61c11b9fadb9f101bb4" kindref="member">LatLon</ref>&amp;<sp/>corner4,</highlight></codeline>
-<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="enums_8hpp_1a1e1be345d5d6782a8568d0550e205a4a" kindref="member">GridType</ref>&amp;<sp/>gridType,</highlight></codeline>
-<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Angle&amp;<sp/>spacing<sp/><sp/><sp/>=<sp/>5.0<sp/>*<sp/>mp_units::angular::unit_symbols::deg,</highlight></codeline>
-<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Unitless&amp;<sp/>weight<sp/>=<sp/>0.0<sp/>*<sp/>mp_units::one</highlight></codeline>
-<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/>)<sp/>:</highlight></codeline>
-<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_groundPoints(build_grid(corner1,<sp/>corner4,<sp/>gridType,<sp/>spacing,<sp/>weight)),</highlight></codeline>
-<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_gridType(gridType)</highlight></codeline>
-<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
-<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="92"><highlight class="normal"></highlight></codeline>
-<codeline lineno="96" refid="classastrea_1_1trace_1_1Grid_1a78f005879911c679594aec33f0e633e0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1trace_1_1Grid_1a78f005879911c679594aec33f0e633e0" kindref="member">~Grid</ref>()<sp/>=<sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="97"><highlight class="normal"></highlight></codeline>
-<codeline lineno="103" refid="classastrea_1_1trace_1_1Grid_1aa7c30c713ee89466365308c27419300c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="enums_8hpp_1a1e1be345d5d6782a8568d0550e205a4a" kindref="member">GridType</ref><sp/><ref refid="classastrea_1_1trace_1_1Grid_1aa7c30c713ee89466365308c27419300c" kindref="member">get_grid_type</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_gridType;<sp/>}</highlight></codeline>
-<codeline lineno="104"><highlight class="normal"></highlight></codeline>
-<codeline lineno="110" refid="classastrea_1_1trace_1_1Grid_1a1588d27b21c5a998d78498cf2e650592" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::size_t<sp/><ref refid="classastrea_1_1trace_1_1Grid_1a1588d27b21c5a998d78498cf2e650592" kindref="member">size</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_groundPoints.size();<sp/>}</highlight></codeline>
-<codeline lineno="111"><highlight class="normal"></highlight></codeline>
-<codeline lineno="115" refid="classastrea_1_1trace_1_1Grid_1a8fb1a15f168eb88d1a76f08c795e29af" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="classastrea_1_1trace_1_1Grid_1a8fb1a15f168eb88d1a76f08c795e29af" kindref="member">iterator</ref><sp/>=<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>std::vector&lt;Point&gt;::iterator;</highlight></codeline>
-<codeline lineno="116"><highlight class="normal"></highlight></codeline>
-<codeline lineno="120" refid="classastrea_1_1trace_1_1Grid_1a7f344f1cdb62823c7f69257419fdc2e4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="classastrea_1_1trace_1_1Grid_1a7f344f1cdb62823c7f69257419fdc2e4" kindref="member">const_iterator</ref><sp/>=<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>std::vector&lt;Point&gt;::const_iterator;</highlight></codeline>
-<codeline lineno="121"><highlight class="normal"></highlight></codeline>
-<codeline lineno="127" refid="classastrea_1_1trace_1_1Grid_1a4cfc083449cdfdd8c66e8b1847a5f72c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1trace_1_1Grid_1a8fb1a15f168eb88d1a76f08c795e29af" kindref="member">iterator</ref><sp/><ref refid="classastrea_1_1trace_1_1Grid_1a4cfc083449cdfdd8c66e8b1847a5f72c" kindref="member">begin</ref>()<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_groundPoints.begin();<sp/>}</highlight></codeline>
-<codeline lineno="128"><highlight class="normal"></highlight></codeline>
-<codeline lineno="134" refid="classastrea_1_1trace_1_1Grid_1a36fdbf6e181e10cfebc471c57c75171d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1trace_1_1Grid_1a8fb1a15f168eb88d1a76f08c795e29af" kindref="member">iterator</ref><sp/><ref refid="classastrea_1_1trace_1_1Grid_1a36fdbf6e181e10cfebc471c57c75171d" kindref="member">end</ref>()<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_groundPoints.end();<sp/>}</highlight></codeline>
-<codeline lineno="135"><highlight class="normal"></highlight></codeline>
-<codeline lineno="141" refid="classastrea_1_1trace_1_1Grid_1a4af09782ac9bd3b73812d537beaa8834" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1trace_1_1Grid_1a7f344f1cdb62823c7f69257419fdc2e4" kindref="member">const_iterator</ref><sp/><ref refid="classastrea_1_1trace_1_1Grid_1a4af09782ac9bd3b73812d537beaa8834" kindref="member">begin</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_groundPoints.begin();<sp/>}</highlight></codeline>
-<codeline lineno="142"><highlight class="normal"></highlight></codeline>
-<codeline lineno="148" refid="classastrea_1_1trace_1_1Grid_1a84ffd1801f808a4070355fc487f90f0d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1trace_1_1Grid_1a7f344f1cdb62823c7f69257419fdc2e4" kindref="member">const_iterator</ref><sp/><ref refid="classastrea_1_1trace_1_1Grid_1a84ffd1801f808a4070355fc487f90f0d" kindref="member">end</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_groundPoints.end();<sp/>}</highlight></codeline>
-<codeline lineno="149"><highlight class="normal"></highlight></codeline>
-<codeline lineno="155" refid="classastrea_1_1trace_1_1Grid_1acb7453a9eb2f61763802e75c36186925" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1trace_1_1Grid_1a7f344f1cdb62823c7f69257419fdc2e4" kindref="member">const_iterator</ref><sp/><ref refid="classastrea_1_1trace_1_1Grid_1acb7453a9eb2f61763802e75c36186925" kindref="member">cbegin</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_groundPoints.begin();<sp/>}</highlight></codeline>
-<codeline lineno="156"><highlight class="normal"></highlight></codeline>
-<codeline lineno="162" refid="classastrea_1_1trace_1_1Grid_1a529d9b7eff1f603172e7dd2ac89b94e1" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1trace_1_1Grid_1a7f344f1cdb62823c7f69257419fdc2e4" kindref="member">const_iterator</ref><sp/><ref refid="classastrea_1_1trace_1_1Grid_1a529d9b7eff1f603172e7dd2ac89b94e1" kindref="member">cend</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_groundPoints.end();<sp/>}</highlight></codeline>
-<codeline lineno="163"><highlight class="normal"></highlight></codeline>
-<codeline lineno="170" refid="classastrea_1_1trace_1_1Grid_1a21109fe65138aeb4f47ccc249e0d4896" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>Point&amp;<sp/><ref refid="classastrea_1_1trace_1_1Grid_1a21109fe65138aeb4f47ccc249e0d4896" kindref="member">operator[]</ref>(std::size_t<sp/>index)<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_groundPoints[index];<sp/>}</highlight></codeline>
-<codeline lineno="171"><highlight class="normal"></highlight></codeline>
-<codeline lineno="178" refid="classastrea_1_1trace_1_1Grid_1a27f6672c9d0701e18b1da48d0134ced5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Point&amp;<sp/><ref refid="classastrea_1_1trace_1_1Grid_1a27f6672c9d0701e18b1da48d0134ced5" kindref="member">operator[]</ref>(std::size_t<sp/>index)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_groundPoints[index];<sp/>}</highlight></codeline>
-<codeline lineno="179"><highlight class="normal"></highlight></codeline>
-<codeline lineno="180"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
-<codeline lineno="181"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;Point&gt;<sp/>_groundPoints;<sp/></highlight></codeline>
-<codeline lineno="182"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="enums_8hpp_1a1e1be345d5d6782a8568d0550e205a4a" kindref="member">GridType</ref><sp/>_gridType{};<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="183"><highlight class="normal"></highlight></codeline>
-<codeline lineno="194"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;Point&gt;</highlight></codeline>
-<codeline lineno="195"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>build_grid(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>LatLon&amp;<sp/>corner1,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>LatLon&amp;<sp/>corner4,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>GridType&amp;<sp/>gridType,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Angle&amp;<sp/>spacing,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Unitless&amp;<sp/>weight)</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
-<codeline lineno="196"><highlight class="keyword"><sp/><sp/><sp/><sp/></highlight><highlight class="normal">{</highlight></codeline>
-<codeline lineno="197"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">switch</highlight><highlight class="normal"><sp/>(gridType)<sp/>{</highlight></codeline>
-<codeline lineno="198"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>GridType::UNIFORM:<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>build_uniform_grid(corner1,<sp/>corner4,<sp/>spacing);</highlight></codeline>
-<codeline lineno="199"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>GridType::EQUAL_AREA:<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>build_equal_area_grid(corner1,<sp/>corner4,<sp/>spacing);</highlight></codeline>
-<codeline lineno="200"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>GridType::WEIGHTED_NS:</highlight></codeline>
-<codeline lineno="201"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>GridType::WEIGHTED_EW:<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>build_weighted_grid(corner1,<sp/>corner4,<sp/>gridType,<sp/>spacing,<sp/>weight);</highlight></codeline>
-<codeline lineno="202"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>GridType::MANUAL:</highlight></codeline>
-<codeline lineno="203"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/>std::runtime_error(</highlight><highlight class="stringliteral">&quot;Manual<sp/>grids<sp/>can<sp/>only<sp/>be<sp/>constructed<sp/>from<sp/>a<sp/>vector<sp/>of<sp/>GroundPoints.&quot;</highlight><highlight class="normal">);</highlight></codeline>
-<codeline lineno="204"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">:<sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/>std::runtime_error(</highlight><highlight class="stringliteral">&quot;Unrecognized<sp/>GridType.&quot;</highlight><highlight class="normal">);</highlight></codeline>
-<codeline lineno="205"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="206"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="207"><highlight class="normal"></highlight></codeline>
-<codeline lineno="216"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;Point&gt;<sp/>build_uniform_grid(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>LatLon&amp;<sp/>corner1,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>LatLon&amp;<sp/>corner4,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Angle&amp;<sp/>spacing)</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
-<codeline lineno="217"><highlight class="keyword"><sp/><sp/><sp/><sp/></highlight><highlight class="normal">{</highlight></codeline>
-<codeline lineno="218"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>lat1<sp/>=<sp/>corner1.first;</highlight></codeline>
-<codeline lineno="219"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>lon1<sp/>=<sp/>corner1.second;</highlight></codeline>
-<codeline lineno="220"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>lat4<sp/>=<sp/>corner4.first;</highlight></codeline>
-<codeline lineno="221"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>lon4<sp/>=<sp/>corner4.second;</highlight></codeline>
-<codeline lineno="222"><highlight class="normal"></highlight></codeline>
-<codeline lineno="223"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;Angle&gt;<sp/>lats<sp/>=<sp/>create_uniformly_spaced_vector(lat1,<sp/>lat4,<sp/>spacing);</highlight></codeline>
-<codeline lineno="224"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;Angle&gt;<sp/>lons<sp/>=<sp/>create_uniformly_spaced_vector(lon1,<sp/>lon4,<sp/>spacing);</highlight></codeline>
-<codeline lineno="225"><highlight class="normal"></highlight></codeline>
-<codeline lineno="226"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;Point&gt;<sp/>grounds;</highlight></codeline>
-<codeline lineno="227"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>[lat,<sp/>lon]<sp/>:<sp/>std::views::cartesian_product(lats,<sp/>lons))<sp/>{</highlight></codeline>
-<codeline lineno="228"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>grounds.emplace_back(lat,<sp/>lon);</highlight></codeline>
-<codeline lineno="229"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="230"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>grounds;</highlight></codeline>
-<codeline lineno="231"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="232"><highlight class="normal"></highlight></codeline>
-<codeline lineno="241"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;Point&gt;<sp/>build_equal_area_grid(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>LatLon&amp;<sp/>corner1,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>LatLon&amp;<sp/>corner4,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Angle&amp;<sp/>spacing)</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
-<codeline lineno="242"><highlight class="keyword"><sp/><sp/><sp/><sp/></highlight><highlight class="normal">{</highlight></codeline>
-<codeline lineno="243"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/>std::runtime_error(</highlight><highlight class="stringliteral">&quot;Equal<sp/>area<sp/>grids<sp/>have<sp/>not<sp/>been<sp/>implemented<sp/>yet.&quot;</highlight><highlight class="normal">);</highlight></codeline>
-<codeline lineno="244"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="245"><highlight class="normal"></highlight></codeline>
-<codeline lineno="256"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;Point&gt;</highlight></codeline>
-<codeline lineno="257"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>build_weighted_grid(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>LatLon&amp;<sp/>corner1,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>LatLon&amp;<sp/>corner4,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>GridType&amp;<sp/>gridType,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Angle&amp;<sp/>initialSpacing,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Unitless&amp;<sp/>weight)</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
-<codeline lineno="258"><highlight class="keyword"><sp/><sp/><sp/><sp/></highlight><highlight class="normal">{</highlight></codeline>
-<codeline lineno="259"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/>std::runtime_error(</highlight><highlight class="stringliteral">&quot;Weighted<sp/>grids<sp/>have<sp/>not<sp/>been<sp/>implemented<sp/>yet.&quot;</highlight><highlight class="normal">);</highlight></codeline>
-<codeline lineno="260"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="261"><highlight class="normal"></highlight></codeline>
-<codeline lineno="270"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;Angle&gt;<sp/>create_uniformly_spaced_vector(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Angle&amp;<sp/>first,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Angle&amp;<sp/>second,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Angle&amp;<sp/>spacing)</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
-<codeline lineno="271"><highlight class="keyword"><sp/><sp/><sp/><sp/></highlight><highlight class="normal">{</highlight></codeline>
-<codeline lineno="272"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::size_t<sp/>nAngles<sp/>=<sp/>std::ceil((mp_units::abs(second<sp/>-<sp/>first)<sp/>/<sp/>spacing).numerical_value_in(mp_units::one))<sp/>+<sp/>1;</highlight></codeline>
-<codeline lineno="273"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;Angle&gt;<sp/>angles(nAngles);</highlight></codeline>
-<codeline lineno="274"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::generate(angles.begin(),<sp/>angles.end(),<sp/>[ii<sp/>=<sp/>0,<sp/>minAngle<sp/>=<sp/>std::min(first,<sp/>second),<sp/>maxAngle<sp/>=<sp/>std::max(first,<sp/>second),<sp/>&amp;spacing]()<sp/></highlight><highlight class="keyword">mutable</highlight><highlight class="normal"><sp/>{</highlight></codeline>
-<codeline lineno="275"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>return<sp/>std::min(minAngle<sp/>+<sp/>(ii++)<sp/>*<sp/>spacing,<sp/>maxAngle);</highlight></codeline>
-<codeline lineno="276"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>});</highlight></codeline>
-<codeline lineno="277"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>angles;</highlight></codeline>
-<codeline lineno="278"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="279"><highlight class="normal">};</highlight></codeline>
-<codeline lineno="280"><highlight class="normal"></highlight></codeline>
-<codeline lineno="281"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>trace</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="282"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>astrea</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">Point<sp/>=<sp/><ref refid="classastrea_1_1trace_1_1GroundPoint" kindref="compound">GroundPoint&lt;_body_&gt;</ref>;</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="60" refid="classastrea_1_1trace_1_1Grid_1aff380ed3514ec9e771b49d5d45b6bdd8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1trace_1_1Grid_1aff380ed3514ec9e771b49d5d45b6bdd8" kindref="member">Grid</ref>()<sp/>=<sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"></highlight></codeline>
+<codeline lineno="67" refid="classastrea_1_1trace_1_1Grid_1a6b7d7882a6a844fc69cdba172c1a6cf7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1trace_1_1Grid_1a6b7d7882a6a844fc69cdba172c1a6cf7" kindref="member">Grid</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;Point&gt;&amp;<sp/>groundPoints)<sp/>:</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_groundPoints(groundPoints),</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_gridType(<ref refid="enums_8hpp_1a1e1be345d5d6782a8568d0550e205a4a" kindref="member">GridType</ref>::<ref refid="enums_8hpp_1a1e1be345d5d6782a8568d0550e205a4aaa60a6a471c0681e5a49c4f5d00f6bc5a" kindref="member">MANUAL</ref>)</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"></highlight></codeline>
+<codeline lineno="82" refid="classastrea_1_1trace_1_1Grid_1a1dd954787e336643d596da01101486b5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1trace_1_1Grid_1a1dd954787e336643d596da01101486b5" kindref="member">Grid</ref>(</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="typedefs_8hpp_1adb267a53d491ab1e364558578b7aba52" kindref="member">LatRange</ref>&amp;<sp/>latRange,</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="typedefs_8hpp_1aef2e871664c74fcdae58e1b6db70c9b5" kindref="member">LonRange</ref>&amp;<sp/>lonRange,</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="enums_8hpp_1a1e1be345d5d6782a8568d0550e205a4a" kindref="member">GridType</ref>&amp;<sp/>gridType,</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Angle&amp;<sp/>spacing<sp/><sp/><sp/>=<sp/>5.0<sp/>*<sp/>mp_units::angular::unit_symbols::deg,</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Unitless&amp;<sp/>weight<sp/>=<sp/>0.0<sp/>*<sp/>mp_units::one</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/>)<sp/>:</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_groundPoints(build_grid(latRange,<sp/>lonRange,<sp/>gridType,<sp/>spacing,<sp/>weight)),</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_gridType(gridType)</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"></highlight></codeline>
+<codeline lineno="97" refid="classastrea_1_1trace_1_1Grid_1a78f005879911c679594aec33f0e633e0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1trace_1_1Grid_1a78f005879911c679594aec33f0e633e0" kindref="member">~Grid</ref>()<sp/>=<sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"></highlight></codeline>
+<codeline lineno="104" refid="classastrea_1_1trace_1_1Grid_1aa7c30c713ee89466365308c27419300c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="enums_8hpp_1a1e1be345d5d6782a8568d0550e205a4a" kindref="member">GridType</ref><sp/><ref refid="classastrea_1_1trace_1_1Grid_1aa7c30c713ee89466365308c27419300c" kindref="member">get_grid_type</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_gridType;<sp/>}</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"></highlight></codeline>
+<codeline lineno="111" refid="classastrea_1_1trace_1_1Grid_1a1588d27b21c5a998d78498cf2e650592" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::size_t<sp/><ref refid="classastrea_1_1trace_1_1Grid_1a1588d27b21c5a998d78498cf2e650592" kindref="member">size</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_groundPoints.size();<sp/>}</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"></highlight></codeline>
+<codeline lineno="116" refid="classastrea_1_1trace_1_1Grid_1a8fb1a15f168eb88d1a76f08c795e29af" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="classastrea_1_1trace_1_1Grid_1a8fb1a15f168eb88d1a76f08c795e29af" kindref="member">iterator</ref><sp/>=<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>std::vector&lt;Point&gt;::iterator;</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"></highlight></codeline>
+<codeline lineno="121" refid="classastrea_1_1trace_1_1Grid_1a7f344f1cdb62823c7f69257419fdc2e4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="classastrea_1_1trace_1_1Grid_1a7f344f1cdb62823c7f69257419fdc2e4" kindref="member">const_iterator</ref><sp/>=<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>std::vector&lt;Point&gt;::const_iterator;</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"></highlight></codeline>
+<codeline lineno="128" refid="classastrea_1_1trace_1_1Grid_1a4cfc083449cdfdd8c66e8b1847a5f72c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1trace_1_1Grid_1a8fb1a15f168eb88d1a76f08c795e29af" kindref="member">iterator</ref><sp/><ref refid="classastrea_1_1trace_1_1Grid_1a4cfc083449cdfdd8c66e8b1847a5f72c" kindref="member">begin</ref>()<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_groundPoints.begin();<sp/>}</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"></highlight></codeline>
+<codeline lineno="135" refid="classastrea_1_1trace_1_1Grid_1a36fdbf6e181e10cfebc471c57c75171d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1trace_1_1Grid_1a8fb1a15f168eb88d1a76f08c795e29af" kindref="member">iterator</ref><sp/><ref refid="classastrea_1_1trace_1_1Grid_1a36fdbf6e181e10cfebc471c57c75171d" kindref="member">end</ref>()<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_groundPoints.end();<sp/>}</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"></highlight></codeline>
+<codeline lineno="142" refid="classastrea_1_1trace_1_1Grid_1a4af09782ac9bd3b73812d537beaa8834" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1trace_1_1Grid_1a7f344f1cdb62823c7f69257419fdc2e4" kindref="member">const_iterator</ref><sp/><ref refid="classastrea_1_1trace_1_1Grid_1a4af09782ac9bd3b73812d537beaa8834" kindref="member">begin</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_groundPoints.begin();<sp/>}</highlight></codeline>
+<codeline lineno="143"><highlight class="normal"></highlight></codeline>
+<codeline lineno="149" refid="classastrea_1_1trace_1_1Grid_1a84ffd1801f808a4070355fc487f90f0d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1trace_1_1Grid_1a7f344f1cdb62823c7f69257419fdc2e4" kindref="member">const_iterator</ref><sp/><ref refid="classastrea_1_1trace_1_1Grid_1a84ffd1801f808a4070355fc487f90f0d" kindref="member">end</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_groundPoints.end();<sp/>}</highlight></codeline>
+<codeline lineno="150"><highlight class="normal"></highlight></codeline>
+<codeline lineno="156" refid="classastrea_1_1trace_1_1Grid_1acb7453a9eb2f61763802e75c36186925" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1trace_1_1Grid_1a7f344f1cdb62823c7f69257419fdc2e4" kindref="member">const_iterator</ref><sp/><ref refid="classastrea_1_1trace_1_1Grid_1acb7453a9eb2f61763802e75c36186925" kindref="member">cbegin</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_groundPoints.begin();<sp/>}</highlight></codeline>
+<codeline lineno="157"><highlight class="normal"></highlight></codeline>
+<codeline lineno="163" refid="classastrea_1_1trace_1_1Grid_1a529d9b7eff1f603172e7dd2ac89b94e1" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1trace_1_1Grid_1a7f344f1cdb62823c7f69257419fdc2e4" kindref="member">const_iterator</ref><sp/><ref refid="classastrea_1_1trace_1_1Grid_1a529d9b7eff1f603172e7dd2ac89b94e1" kindref="member">cend</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_groundPoints.end();<sp/>}</highlight></codeline>
+<codeline lineno="164"><highlight class="normal"></highlight></codeline>
+<codeline lineno="171" refid="classastrea_1_1trace_1_1Grid_1a21109fe65138aeb4f47ccc249e0d4896" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>Point&amp;<sp/><ref refid="classastrea_1_1trace_1_1Grid_1a21109fe65138aeb4f47ccc249e0d4896" kindref="member">operator[]</ref>(std::size_t<sp/>index)<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_groundPoints[index];<sp/>}</highlight></codeline>
+<codeline lineno="172"><highlight class="normal"></highlight></codeline>
+<codeline lineno="179" refid="classastrea_1_1trace_1_1Grid_1a27f6672c9d0701e18b1da48d0134ced5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Point&amp;<sp/><ref refid="classastrea_1_1trace_1_1Grid_1a27f6672c9d0701e18b1da48d0134ced5" kindref="member">operator[]</ref>(std::size_t<sp/>index)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_groundPoints[index];<sp/>}</highlight></codeline>
+<codeline lineno="180"><highlight class="normal"></highlight></codeline>
+<codeline lineno="186" refid="classastrea_1_1trace_1_1Grid_1ab0a813994412d76466f4f13fc70c2c9d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1trace_1_1Grid_1ab0a813994412d76466f4f13fc70c2c9d" kindref="member">push_back</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Point&amp;<sp/>point)</highlight></codeline>
+<codeline lineno="187"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="188"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_gridType<sp/>=<sp/>GridType::MANUAL;</highlight></codeline>
+<codeline lineno="189"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_groundPoints.push_back(point);</highlight></codeline>
+<codeline lineno="190"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="191"><highlight class="normal"></highlight></codeline>
+<codeline lineno="197" refid="classastrea_1_1trace_1_1Grid_1a5a64b9cb642cf708a8dc3d361bf1d3d2" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1trace_1_1Grid_1a5a64b9cb642cf708a8dc3d361bf1d3d2" kindref="member">push_back</ref>(Point&amp;&amp;<sp/>point)</highlight></codeline>
+<codeline lineno="198"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="199"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_gridType<sp/>=<sp/>GridType::MANUAL;</highlight></codeline>
+<codeline lineno="200"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_groundPoints.push_back(std::move(point));</highlight></codeline>
+<codeline lineno="201"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="202"><highlight class="normal"></highlight></codeline>
+<codeline lineno="208" refid="classastrea_1_1trace_1_1Grid_1a73d67d024ef701e034bde9dc032eca23" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1trace_1_1Grid_1a73d67d024ef701e034bde9dc032eca23" kindref="member">emplace_back</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Point&amp;<sp/>point)</highlight></codeline>
+<codeline lineno="209"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="210"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_gridType<sp/>=<sp/>GridType::MANUAL;</highlight></codeline>
+<codeline lineno="211"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_groundPoints.emplace_back(point);</highlight></codeline>
+<codeline lineno="212"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="213"><highlight class="normal"></highlight></codeline>
+<codeline lineno="219" refid="classastrea_1_1trace_1_1Grid_1a7d7497358a050283445659255f66e37d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1trace_1_1Grid_1a7d7497358a050283445659255f66e37d" kindref="member">emplace_back</ref>(Point&amp;&amp;<sp/>point)</highlight></codeline>
+<codeline lineno="220"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="221"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_gridType<sp/>=<sp/>GridType::MANUAL;</highlight></codeline>
+<codeline lineno="222"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_groundPoints.emplace_back(std::move(point));</highlight></codeline>
+<codeline lineno="223"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="224"><highlight class="normal"></highlight></codeline>
+<codeline lineno="228" refid="classastrea_1_1trace_1_1Grid_1a39a04edb59e647d08165df841e17bf3d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1trace_1_1Grid_1a39a04edb59e647d08165df841e17bf3d" kindref="member">clear</ref>()<sp/>{<sp/>_groundPoints.clear();<sp/>}</highlight></codeline>
+<codeline lineno="229"><highlight class="normal"></highlight></codeline>
+<codeline lineno="235" refid="classastrea_1_1trace_1_1Grid_1a80fb9380305a062453d52b4f3b4700b9" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1trace_1_1Grid_1a80fb9380305a062453d52b4f3b4700b9" kindref="member">reserve</ref>(std::size_t<sp/>n)<sp/>{<sp/>_groundPoints.reserve(n);<sp/>}</highlight></codeline>
+<codeline lineno="236"><highlight class="normal"></highlight></codeline>
+<codeline lineno="242" refid="classastrea_1_1trace_1_1Grid_1a8c6bec5121f3cfd339038663ec282728" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1trace_1_1Grid_1a8c6bec5121f3cfd339038663ec282728" kindref="member">resize</ref>(std::size_t<sp/>n)<sp/>{<sp/>_groundPoints.resize(n);<sp/>}</highlight></codeline>
+<codeline lineno="243"><highlight class="normal"></highlight></codeline>
+<codeline lineno="244"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="245"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;Point&gt;<sp/>_groundPoints;<sp/></highlight></codeline>
+<codeline lineno="246"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="enums_8hpp_1a1e1be345d5d6782a8568d0550e205a4a" kindref="member">GridType</ref><sp/>_gridType;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="247"><highlight class="normal"></highlight></codeline>
+<codeline lineno="258"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;Point&gt;</highlight></codeline>
+<codeline lineno="259"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>build_grid(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="typedefs_8hpp_1adb267a53d491ab1e364558578b7aba52" kindref="member">LatRange</ref>&amp;<sp/>latRange,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="typedefs_8hpp_1aef2e871664c74fcdae58e1b6db70c9b5" kindref="member">LonRange</ref>&amp;<sp/>lonRange,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="enums_8hpp_1a1e1be345d5d6782a8568d0550e205a4a" kindref="member">GridType</ref>&amp;<sp/>gridType,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Angle&amp;<sp/>spacing,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Unitless&amp;<sp/>weight)</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="260"><highlight class="keyword"><sp/><sp/><sp/><sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="261"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">switch</highlight><highlight class="normal"><sp/>(gridType)<sp/>{</highlight></codeline>
+<codeline lineno="262"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>GridType::UNIFORM:<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>build_uniform_grid(latRange,<sp/>lonRange,<sp/>spacing);</highlight></codeline>
+<codeline lineno="263"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>GridType::EQUAL_AREA:<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>build_equal_area_grid(latRange,<sp/>lonRange,<sp/>spacing);</highlight></codeline>
+<codeline lineno="264"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>GridType::WEIGHTED_NS:</highlight></codeline>
+<codeline lineno="265"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>GridType::WEIGHTED_EW:<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>build_weighted_grid(latRange,<sp/>lonRange,<sp/>gridType,<sp/>spacing,<sp/>weight);</highlight></codeline>
+<codeline lineno="266"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>GridType::MANUAL:</highlight></codeline>
+<codeline lineno="267"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/>std::runtime_error(</highlight><highlight class="stringliteral">&quot;Manual<sp/>grids<sp/>can<sp/>only<sp/>be<sp/>constructed<sp/>from<sp/>a<sp/>vector<sp/>of<sp/>GroundPoints.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="268"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">:<sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/>std::runtime_error(</highlight><highlight class="stringliteral">&quot;Unrecognized<sp/>GridType.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="269"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="270"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="271"><highlight class="normal"></highlight></codeline>
+<codeline lineno="280"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;Point&gt;<sp/>build_uniform_grid(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>LatRange&amp;<sp/>latRange,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>LonRange&amp;<sp/>lonRange,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Angle&amp;<sp/>spacing)</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="281"><highlight class="keyword"><sp/><sp/><sp/><sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="282"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;Angle&gt;<sp/>lats<sp/>=<sp/>create_uniformly_spaced_vector(latRange,<sp/>spacing);</highlight></codeline>
+<codeline lineno="283"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;Angle&gt;<sp/>lons<sp/>=<sp/>create_uniformly_spaced_vector(lonRange,<sp/>spacing);</highlight></codeline>
+<codeline lineno="284"><highlight class="normal"></highlight></codeline>
+<codeline lineno="285"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;Point&gt;<sp/>grounds;</highlight></codeline>
+<codeline lineno="286"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>[lat,<sp/>lon]<sp/>:<sp/>std::views::cartesian_product(lats,<sp/>lons))<sp/>{</highlight></codeline>
+<codeline lineno="287"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>grounds.emplace_back(lat,<sp/>lon);</highlight></codeline>
+<codeline lineno="288"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="289"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>grounds;</highlight></codeline>
+<codeline lineno="290"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="291"><highlight class="normal"></highlight></codeline>
+<codeline lineno="300"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;Point&gt;<sp/>build_equal_area_grid(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>LatRange&amp;<sp/>latRange,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>LonRange&amp;<sp/>lonRange,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Angle&amp;<sp/>spacing)</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="301"><highlight class="keyword"><sp/><sp/><sp/><sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="302"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/>std::runtime_error(</highlight><highlight class="stringliteral">&quot;Equal<sp/>area<sp/>grids<sp/>have<sp/>not<sp/>been<sp/>implemented<sp/>yet.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="303"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="304"><highlight class="normal"></highlight></codeline>
+<codeline lineno="315"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;Point&gt;</highlight></codeline>
+<codeline lineno="316"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>build_weighted_grid(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>LatRange&amp;<sp/>latRange,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>LonRange&amp;<sp/>lonRange,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>GridType&amp;<sp/>gridType,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Angle&amp;<sp/>initialSpacing,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Unitless&amp;<sp/>weight)</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="317"><highlight class="keyword"><sp/><sp/><sp/><sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="318"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/>std::runtime_error(</highlight><highlight class="stringliteral">&quot;Weighted<sp/>grids<sp/>have<sp/>not<sp/>been<sp/>implemented<sp/>yet.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="319"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="320"><highlight class="normal"></highlight></codeline>
+<codeline lineno="328"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;Angle&gt;<sp/>create_uniformly_spaced_vector(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::pair&lt;Angle,<sp/>Angle&gt;&amp;<sp/>range,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Angle&amp;<sp/>spacing)</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="329"><highlight class="keyword"><sp/><sp/><sp/><sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="330"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>minAngle<sp/>=<sp/>std::min(range.first,<sp/>range.second);</highlight></codeline>
+<codeline lineno="331"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>maxAngle<sp/>=<sp/>std::max(range.first,<sp/>range.second);</highlight></codeline>
+<codeline lineno="332"><highlight class="normal"></highlight></codeline>
+<codeline lineno="333"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::size_t<sp/>nAngles<sp/>=</highlight></codeline>
+<codeline lineno="334"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::ceil((mp_units::abs(maxAngle<sp/>-<sp/>minAngle)<sp/>/<sp/>spacing).numerical_value_in(mp_units::one))<sp/>+<sp/>1;</highlight></codeline>
+<codeline lineno="335"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;Angle&gt;<sp/>angles(nAngles);</highlight></codeline>
+<codeline lineno="336"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::generate(angles.begin(),<sp/>angles.end(),<sp/>[ii<sp/>=<sp/>0,<sp/>&amp;minAngle,<sp/>&amp;maxAngle,<sp/>&amp;spacing]()<sp/></highlight><highlight class="keyword">mutable</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="337"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>return<sp/>std::min(minAngle<sp/>+<sp/>(ii++)<sp/>*<sp/>spacing,<sp/>maxAngle);</highlight></codeline>
+<codeline lineno="338"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>});</highlight></codeline>
+<codeline lineno="339"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>angles;</highlight></codeline>
+<codeline lineno="340"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="341"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="342"><highlight class="normal"></highlight></codeline>
+<codeline lineno="343"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>trace</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="344"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>astrea</highlight></codeline>
     </programlisting>
     <location file="astrea/trace/trace/platforms/ground/Grid.hpp"/>
   </compounddef>

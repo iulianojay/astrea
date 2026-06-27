@@ -15,7 +15,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/io/output.hpp" line="85" column="9" bodyfile="astrea/trace/trace/io/output.hpp" bodystart="85" bodyend="-1"/>
+        <location file="astrea/trace/trace/io/output.hpp" line="88" column="9" bodyfile="astrea/trace/trace/io/output.hpp" bodystart="88" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structastrea_1_1trace_1_1FoldsRecord_1a5a7de4ce2a63efdc72805d0dc32e4913" prot="public" static="no" mutable="no">
         <type>std::string</type>
@@ -29,7 +29,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/io/output.hpp" line="86" column="17" bodyfile="astrea/trace/trace/io/output.hpp" bodystart="86" bodyend="-1"/>
+        <location file="astrea/trace/trace/io/output.hpp" line="89" column="17" bodyfile="astrea/trace/trace/io/output.hpp" bodystart="89" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structastrea_1_1trace_1_1FoldsRecord_1ad41c704fe47526b976283fc835c46b95" prot="public" static="no" mutable="no">
         <type>double</type>
@@ -43,7 +43,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/io/output.hpp" line="87" column="12" bodyfile="astrea/trace/trace/io/output.hpp" bodystart="87" bodyend="-1"/>
+        <location file="astrea/trace/trace/io/output.hpp" line="90" column="12" bodyfile="astrea/trace/trace/io/output.hpp" bodystart="90" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structastrea_1_1trace_1_1FoldsRecord_1a73e1622e5ebb806afd521e65d53ebd78" prot="public" static="no" mutable="no">
         <type>double</type>
@@ -57,7 +57,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/io/output.hpp" line="88" column="12" bodyfile="astrea/trace/trace/io/output.hpp" bodystart="88" bodyend="-1"/>
+        <location file="astrea/trace/trace/io/output.hpp" line="91" column="12" bodyfile="astrea/trace/trace/io/output.hpp" bodystart="91" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structastrea_1_1trace_1_1FoldsRecord_1a33303db67096a4953fe5dd104f3a58d8" prot="public" static="no" mutable="no">
         <type>double</type>
@@ -71,7 +71,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/io/output.hpp" line="89" column="12" bodyfile="astrea/trace/trace/io/output.hpp" bodystart="89" bodyend="-1"/>
+        <location file="astrea/trace/trace/io/output.hpp" line="92" column="12" bodyfile="astrea/trace/trace/io/output.hpp" bodystart="92" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structastrea_1_1trace_1_1FoldsRecord_1af8e6fb26229e4b2cd69fdf20bd14d945" prot="public" static="no" mutable="no">
         <type>std::string</type>
@@ -85,14 +85,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/io/output.hpp" line="90" column="17" bodyfile="astrea/trace/trace/io/output.hpp" bodystart="90" bodyend="-1"/>
+        <location file="astrea/trace/trace/io/output.hpp" line="93" column="17" bodyfile="astrea/trace/trace/io/output.hpp" bodystart="93" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="astrea/trace/trace/io/output.hpp" line="84" column="1" bodyfile="astrea/trace/trace/io/output.hpp" bodystart="84" bodyend="91"/>
+    <location file="astrea/trace/trace/io/output.hpp" line="87" column="1" bodyfile="astrea/trace/trace/io/output.hpp" bodystart="87" bodyend="94"/>
     <listofallmembers>
       <member refid="structastrea_1_1trace_1_1FoldsRecord_1a73e1622e5ebb806afd521e65d53ebd78" prot="public" virt="non-virtual"><scope>astrea::trace::FoldsRecord</scope><name>avgFolds</name></member>
       <member refid="structastrea_1_1trace_1_1FoldsRecord_1a57d3a64dd296767eef4683991ed23f37" prot="public" virt="non-virtual"><scope>astrea::trace::FoldsRecord</scope><name>id</name></member>

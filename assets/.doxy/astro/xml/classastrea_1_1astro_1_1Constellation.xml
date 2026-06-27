@@ -220,10 +220,10 @@
         </inbodydescription>
         <location file="astrea/astro/astro/platforms/space/Constellation.hpp" line="76" column="5" bodyfile="astrea/astro/astro/platforms/space/Constellation.ipp" bodystart="40" bodyend="47"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1astro_1_1Constellation_1ae08b0be1981b019b2b7e1f1016c72176" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Constellation_1a3e77a877e4606735ef817c631ba407c5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
         <definition>astrea::astro::Constellation&lt; Spacecraft_T &gt;::Constellation</definition>
-        <argsstring>(const Date &amp;epoch, const Distance &amp;semimajor, const Angle &amp;inclination, const std::size_t &amp;T, const std::size_t &amp;P, const double &amp;F, const Angle &amp;anchorRAAN=0.0 *mp_units::angular::unit_symbols::rad, const Angle &amp;anchorAnomaly=0.0 *mp_units::angular::unit_symbols::rad)</argsstring>
+        <argsstring>(const Date &amp;epoch, const Distance &amp;semimajor, const Angle &amp;inclination, const std::size_t &amp;T, const std::size_t &amp;P, const Unitless &amp;F, const Angle &amp;anchorRAAN=0.0 *mp_units::angular::unit_symbols::rad, const Angle &amp;anchorAnomaly=0.0 *mp_units::angular::unit_symbols::rad)</argsstring>
         <name>Constellation</name>
         <qualifiedname>astrea::astro::Constellation::Constellation</qualifiedname>
         <param>
@@ -247,7 +247,7 @@
           <declname>P</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">double</ref> &amp;</type>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Unitless</ref> &amp;</type>
           <declname>F</declname>
         </param>
         <param>
@@ -1027,7 +1027,7 @@
       <member refid="classastrea_1_1astro_1_1Constellation_1aa957ad6545451048157a98890f67cc0b" prot="public" virt="non-virtual"><scope>astrea::astro::Constellation</scope><name>Constellation</name></member>
       <member refid="classastrea_1_1astro_1_1Constellation_1af285072940971595dda30630b06743c5" prot="public" virt="non-virtual"><scope>astrea::astro::Constellation</scope><name>Constellation</name></member>
       <member refid="classastrea_1_1astro_1_1Constellation_1aea8b68a5a026bb6da6a7538cbda60df9" prot="public" virt="non-virtual"><scope>astrea::astro::Constellation</scope><name>Constellation</name></member>
-      <member refid="classastrea_1_1astro_1_1Constellation_1ae08b0be1981b019b2b7e1f1016c72176" prot="public" virt="non-virtual"><scope>astrea::astro::Constellation</scope><name>Constellation</name></member>
+      <member refid="classastrea_1_1astro_1_1Constellation_1a3e77a877e4606735ef817c631ba407c5" prot="public" virt="non-virtual"><scope>astrea::astro::Constellation</scope><name>Constellation</name></member>
       <member refid="classastrea_1_1astro_1_1Constellation_1ae7385d225ffa6906a17113fc594b99c8" prot="public" virt="non-virtual"><scope>astrea::astro::Constellation</scope><name>end</name></member>
       <member refid="classastrea_1_1astro_1_1Constellation_1a0664815e1853b1a6720638a0852a0263" prot="public" virt="non-virtual"><scope>astrea::astro::Constellation</scope><name>end</name></member>
       <member refid="classastrea_1_1astro_1_1Constellation_1a4e04c0c1fceae35316d4d49c7bff45df" prot="public" virt="non-virtual"><scope>astrea::astro::Constellation</scope><name>get_all_spacecraft</name></member>

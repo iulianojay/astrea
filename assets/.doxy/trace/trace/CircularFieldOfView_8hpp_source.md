@@ -14,6 +14,9 @@
 #include <numbers>
 #include <unordered_map>
 
+#include <mp-units/math.h>
+#include <mp-units/systems/angular/math.h>
+
 #include <astro/astro.fwd.hpp>
 #include <astro/frames/definitions/dynamic_frames.hpp>
 #include <units/units.hpp>
@@ -25,10 +28,7 @@ namespace trace {
 
 class CircularFieldOfView : public FieldOfView {
   public:
-    CircularFieldOfView(const Angle& halfConeAngle = std::numbers::pi / 4.0 * mp_units::angular::unit_symbols::rad) :
-        _halfConeAngle(halfConeAngle)
-    {
-    }
+    CircularFieldOfView(const Angle& halfConeAngle = std::numbers::pi / 4.0 * mp_units::angular::unit_symbols::rad);
 
     ~CircularFieldOfView() = default;
 
@@ -37,8 +37,11 @@ class CircularFieldOfView : public FieldOfView {
         const astro::CartesianVector<Distance, astro::frames::earth::icrf>& target
     ) const;
 
+    Angle max_half_angle() const override { return _halfConeAngle; }
+
   private:
-    Angle _halfConeAngle; // Half-cone angle defining the circular field of view
+    Angle _halfConeAngle;       // Half-cone angle defining the circular field of view
+    Unitless _cosHalfConeAngle; // cos(_halfConeAngle), pre-computed for fast containment checks
 };
 
 } // namespace trace

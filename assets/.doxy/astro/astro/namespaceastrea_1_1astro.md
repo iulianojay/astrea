@@ -6042,7 +6042,7 @@ std::ostream & astrea::astro::operator<< (
 ### function planes\_are\_nearly\_equal 
 
 ```C++
-bool astrea::astro::planes_are_nearly_equal (
+inline bool astrea::astro::planes_are_nearly_equal (
     const  OrbitalElements & elem1,
     const  OrbitalElements & elem2,
     const  Unitless & relTol

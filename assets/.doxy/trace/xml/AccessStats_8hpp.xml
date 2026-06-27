@@ -13,6 +13,8 @@
     <includes refid="trace_8fwd_8hpp" local="no">trace/trace.fwd.hpp</includes>
     <includes refid="IdPair_8hpp" local="no">trace/types/IdPair.hpp</includes>
     <includes refid="enums_8hpp" local="no">trace/types/enums.hpp</includes>
+    <includedby refid="analysis_8cpp" local="no">astrea/trace/trace/analysis/analysis.cpp</includedby>
+    <includedby refid="analysis_8hpp" local="no">astrea/trace/trace/analysis/analysis.hpp</includedby>
     <includedby refid="AccessStats_8cpp" local="no">astrea/trace/trace/analysis/stats/AccessStats.cpp</includedby>
     <includedby refid="output_8hpp" local="no">astrea/trace/trace/io/output.hpp</includedby>
     <includedby refid="trace_8hpp" local="no">astrea/trace/trace/trace.hpp</includedby>
@@ -38,7 +40,7 @@
         </childnode>
         <childnode refid="14" relation="include">
         </childnode>
-        <childnode refid="20" relation="include">
+        <childnode refid="23" relation="include">
         </childnode>
         <childnode refid="16" relation="include">
         </childnode>
@@ -62,7 +64,7 @@
         </childnode>
         <childnode refid="14" relation="include">
         </childnode>
-        <childnode refid="20" relation="include">
+        <childnode refid="23" relation="include">
         </childnode>
         <childnode refid="16" relation="include">
         </childnode>
@@ -135,12 +137,12 @@
         <childnode refid="15" relation="include">
         </childnode>
       </node>
-      <node id="20">
+      <node id="23">
         <label>trace/types/IdPair.hpp</label>
         <link refid="IdPair_8hpp_source"/>
         <childnode refid="19" relation="include">
         </childnode>
-        <childnode refid="21" relation="include">
+        <childnode refid="24" relation="include">
         </childnode>
       </node>
       <node id="16">
@@ -160,9 +162,26 @@
         <link refid="typedefs_8hpp"/>
         <childnode refid="19" relation="include">
         </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
       </node>
       <node id="17">
         <label>array</label>
+      </node>
+      <node id="20">
+        <label>astro/astro.fwd.hpp</label>
+      </node>
+      <node id="21">
+        <label>astro/frames.hpp</label>
+      </node>
+      <node id="22">
+        <label>astro/systems.hpp</label>
       </node>
       <node id="15">
         <label>astro/systems/system_concepts.hpp</label>
@@ -173,7 +192,7 @@
       <node id="19">
         <label>cstdint</label>
       </node>
-      <node id="21">
+      <node id="24">
         <label>functional</label>
       </node>
       <node id="4">
@@ -196,15 +215,23 @@
       </node>
     </incdepgraph>
     <invincdepgraph>
+      <node id="2">
+        <label>astrea/trace/trace/analysis/analysis.hpp</label>
+        <link refid="analysis_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
       <node id="1">
         <label>astrea/trace/trace/analysis/stats/AccessStats.hpp</label>
         <link refid="AccessStats_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
         <childnode refid="3" relation="include">
         </childnode>
       </node>
-      <node id="2">
+      <node id="4">
         <label>astrea/trace/trace/io/output.hpp</label>
         <link refid="output_8hpp"/>
         <childnode refid="3" relation="include">

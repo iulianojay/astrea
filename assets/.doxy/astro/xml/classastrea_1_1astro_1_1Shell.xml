@@ -179,10 +179,10 @@
         </inbodydescription>
         <location file="astrea/astro/astro/platforms/space/Shell.hpp" line="66" column="5" bodyfile="astrea/astro/astro/platforms/space/Shell.ipp" bodystart="15" bodyend="22"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1astro_1_1Shell_1a10ede4cad62e536cd8074f9db6bba9a8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Shell_1a9ee328b416e2961a5d35064c70ecb7e8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
         <definition>astrea::astro::Shell&lt; Spacecraft_T &gt;::Shell</definition>
-        <argsstring>(const Date &amp;epoch, const Distance &amp;semimajor, const Angle &amp;inclination, const std::size_t &amp;T, const std::size_t &amp;P, const double &amp;F, const Angle &amp;anchorRAAN=0.0 *mp_units::angular::unit_symbols::rad, const Angle &amp;anchorAnomaly=0.0 *mp_units::angular::unit_symbols::rad)</argsstring>
+        <argsstring>(const Date &amp;epoch, const Distance &amp;semimajor, const Angle &amp;inclination, const std::size_t &amp;T, const std::size_t &amp;P, const Unitless &amp;F, const Angle &amp;anchorRAAN=0.0 *mp_units::angular::unit_symbols::rad, const Angle &amp;anchorAnomaly=0.0 *mp_units::angular::unit_symbols::rad)</argsstring>
         <name>Shell</name>
         <qualifiedname>astrea::astro::Shell::Shell</qualifiedname>
         <param>
@@ -206,7 +206,7 @@
           <declname>P</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">double</ref> &amp;</type>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Unitless</ref> &amp;</type>
           <declname>F</declname>
         </param>
         <param>
@@ -813,7 +813,7 @@
       <member refid="classastrea_1_1astro_1_1Shell_1ae253aabd4b187f41ed36899c2ac573b9" prot="public" virt="non-virtual"><scope>astrea::astro::Shell</scope><name>Shell</name></member>
       <member refid="classastrea_1_1astro_1_1Shell_1acb0261ed7ca4e66f9d3dd2300f91bdee" prot="public" virt="non-virtual"><scope>astrea::astro::Shell</scope><name>Shell</name></member>
       <member refid="classastrea_1_1astro_1_1Shell_1aac3f987027a5f9f8e40da1eab5bed945" prot="public" virt="non-virtual"><scope>astrea::astro::Shell</scope><name>Shell</name></member>
-      <member refid="classastrea_1_1astro_1_1Shell_1a10ede4cad62e536cd8074f9db6bba9a8" prot="public" virt="non-virtual"><scope>astrea::astro::Shell</scope><name>Shell</name></member>
+      <member refid="classastrea_1_1astro_1_1Shell_1a9ee328b416e2961a5d35064c70ecb7e8" prot="public" virt="non-virtual"><scope>astrea::astro::Shell</scope><name>Shell</name></member>
       <member refid="classastrea_1_1astro_1_1Shell_1acc91237fd6263e3509980dcc30343049" prot="public" virt="non-virtual"><scope>astrea::astro::Shell</scope><name>size</name></member>
       <member refid="classastrea_1_1astro_1_1Shell_1aabb9a60e32dd20f96a6c7ac60ad1b22a" prot="public" virt="non-virtual"><scope>astrea::astro::Shell</scope><name>~Shell</name></member>
     </listofallmembers>

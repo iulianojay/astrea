@@ -15,7 +15,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/io/output.hpp" line="67" column="9" bodyfile="astrea/trace/trace/io/output.hpp" bodystart="67" bodyend="-1"/>
+        <location file="astrea/trace/trace/io/output.hpp" line="70" column="9" bodyfile="astrea/trace/trace/io/output.hpp" bodystart="70" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structastrea_1_1trace_1_1ReceiverRiseSetMetricsRecord_1a2b83c19de51fef671a892c6b8f64167f" prot="public" static="no" mutable="no">
         <type>std::string</type>
@@ -29,7 +29,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/io/output.hpp" line="68" column="17" bodyfile="astrea/trace/trace/io/output.hpp" bodystart="68" bodyend="-1"/>
+        <location file="astrea/trace/trace/io/output.hpp" line="71" column="17" bodyfile="astrea/trace/trace/io/output.hpp" bodystart="71" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structastrea_1_1trace_1_1ReceiverRiseSetMetricsRecord_1a607ebb87c7a4811cc6328dd90c9b4619" prot="public" static="no" mutable="no">
         <type>std::string</type>
@@ -43,7 +43,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/io/output.hpp" line="69" column="17" bodyfile="astrea/trace/trace/io/output.hpp" bodystart="69" bodyend="-1"/>
+        <location file="astrea/trace/trace/io/output.hpp" line="72" column="17" bodyfile="astrea/trace/trace/io/output.hpp" bodystart="72" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structastrea_1_1trace_1_1ReceiverRiseSetMetricsRecord_1a8d3981988a184513862c0d2bd2aa2711" prot="public" static="no" mutable="no">
         <type>std::string</type>
@@ -57,7 +57,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/io/output.hpp" line="70" column="17" bodyfile="astrea/trace/trace/io/output.hpp" bodystart="70" bodyend="-1"/>
+        <location file="astrea/trace/trace/io/output.hpp" line="73" column="17" bodyfile="astrea/trace/trace/io/output.hpp" bodystart="73" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structastrea_1_1trace_1_1ReceiverRiseSetMetricsRecord_1aa9c61f52f50b79c612a35ce357dabc49" prot="public" static="no" mutable="no">
         <type>double</type>
@@ -71,7 +71,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/io/output.hpp" line="71" column="12" bodyfile="astrea/trace/trace/io/output.hpp" bodystart="71" bodyend="-1"/>
+        <location file="astrea/trace/trace/io/output.hpp" line="74" column="12" bodyfile="astrea/trace/trace/io/output.hpp" bodystart="74" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structastrea_1_1trace_1_1ReceiverRiseSetMetricsRecord_1a06f42116b8fab3ef09f046f77fc5f333" prot="public" static="no" mutable="no">
         <type>double</type>
@@ -85,7 +85,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/io/output.hpp" line="72" column="12" bodyfile="astrea/trace/trace/io/output.hpp" bodystart="72" bodyend="-1"/>
+        <location file="astrea/trace/trace/io/output.hpp" line="75" column="12" bodyfile="astrea/trace/trace/io/output.hpp" bodystart="75" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structastrea_1_1trace_1_1ReceiverRiseSetMetricsRecord_1a8fa9da1939e71467aee9f996f998629d" prot="public" static="no" mutable="no">
         <type>double</type>
@@ -99,7 +99,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/io/output.hpp" line="73" column="12" bodyfile="astrea/trace/trace/io/output.hpp" bodystart="73" bodyend="-1"/>
+        <location file="astrea/trace/trace/io/output.hpp" line="76" column="12" bodyfile="astrea/trace/trace/io/output.hpp" bodystart="76" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structastrea_1_1trace_1_1ReceiverRiseSetMetricsRecord_1a7a1e02d8f3b01075b90304d334e3d48e" prot="public" static="no" mutable="no">
         <type>std::string</type>
@@ -113,14 +113,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/io/output.hpp" line="74" column="17" bodyfile="astrea/trace/trace/io/output.hpp" bodystart="74" bodyend="-1"/>
+        <location file="astrea/trace/trace/io/output.hpp" line="77" column="17" bodyfile="astrea/trace/trace/io/output.hpp" bodystart="77" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="astrea/trace/trace/io/output.hpp" line="66" column="1" bodyfile="astrea/trace/trace/io/output.hpp" bodystart="66" bodyend="75"/>
+    <location file="astrea/trace/trace/io/output.hpp" line="69" column="1" bodyfile="astrea/trace/trace/io/output.hpp" bodystart="69" bodyend="78"/>
     <listofallmembers>
       <member refid="structastrea_1_1trace_1_1ReceiverRiseSetMetricsRecord_1a06f42116b8fab3ef09f046f77fc5f333" prot="public" virt="non-virtual"><scope>astrea::trace::ReceiverRiseSetMetricsRecord</scope><name>avgTime</name></member>
       <member refid="structastrea_1_1trace_1_1ReceiverRiseSetMetricsRecord_1a993e378e34ab62b9400ee4887a43b33b" prot="public" virt="non-virtual"><scope>astrea::trace::ReceiverRiseSetMetricsRecord</scope><name>id</name></member>

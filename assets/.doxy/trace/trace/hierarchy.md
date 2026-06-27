@@ -26,16 +26,26 @@ This inheritance list is sorted roughly, but not completely, alphabetically:
 * **struct** [**astrea::trace::AccessInfo**](structastrea_1_1trace_1_1AccessInfo.md) 
 * **struct** [**astrea::trace::AccessMetricsRecord**](structastrea_1_1trace_1_1AccessMetricsRecord.md) 
 * **struct** [**astrea::trace::AccessStats**](structastrea_1_1trace_1_1AccessStats.md) _The_ [_**AccessStats**_](structastrea_1_1trace_1_1AccessStats.md) _struct represents statistics for access times based on an_[_**AccessArray**_](classastrea_1_1trace_1_1AccessArray.md) _._
+* **struct** [**astrea::trace::AnalysisResult**](structastrea_1_1trace_1_1AnalysisResult.md) _Aggregated results returned by run\_trace\_analysis._ 
+* **struct** [**astrea::trace::AnalysisSettings**](structastrea_1_1trace_1_1AnalysisSettings.md) 
+* **struct** [**astrea::trace::ConstellationSettings**](structastrea_1_1trace_1_1ConstellationSettings.md) 
 * **struct** [**astrea::trace::FoldsRecord**](structastrea_1_1trace_1_1FoldsRecord.md) 
 * **struct** [**astrea::trace::GeographicBin**](structastrea_1_1trace_1_1GeographicBin.md) _Geographic bin for spatial partitioning._ 
+* **struct** [**astrea::trace::GridSettings**](structastrea_1_1trace_1_1GridSettings.md) 
 * **struct** [**astrea::trace::GroundLocationRecord**](structastrea_1_1trace_1_1GroundLocationRecord.md) 
+* **struct** [**astrea::trace::GroundSettings**](structastrea_1_1trace_1_1GroundSettings.md) 
+* **struct** [**astrea::trace::GroundTrackRecord**](structastrea_1_1trace_1_1GroundTrackRecord.md) 
 * **struct** [**astrea::trace::HyperStats**](structastrea_1_1trace_1_1HyperStats.md) _The_ [_**HyperStats**_](structastrea_1_1trace_1_1HyperStats.md) _struct represents statistics of statistics, allowing for the calculation of statistics on a vector of Stats&lt;T&gt;._
 * **struct** [**astrea::trace::IdPair**](structastrea_1_1trace_1_1IdPair.md) _Represents a pair of IDs for sender and receiver._ 
+* **struct** [**astrea::trace::OutputSettings**](structastrea_1_1trace_1_1OutputSettings.md) 
+* **struct** [**astrea::trace::PairResult**](structastrea_1_1trace_1_1PairResult.md) _Per-viewer result for one (viewer, ground-point) work item._ 
 * **struct** [**astrea::trace::ReceiverRiseSetMetricsRecord**](structastrea_1_1trace_1_1ReceiverRiseSetMetricsRecord.md) 
 * **struct** [**astrea::trace::RiseSetMetricsRecord**](structastrea_1_1trace_1_1RiseSetMetricsRecord.md) 
 * **struct** [**astrea::trace::RiseSetRecord**](structastrea_1_1trace_1_1RiseSetRecord.md) 
 * **struct** [**astrea::trace::RiseSetStats**](structastrea_1_1trace_1_1RiseSetStats.md) _The_ [_**RiseSetStats**_](structastrea_1_1trace_1_1RiseSetStats.md) _struct represents statistics for rise and set times based on a_[_**RiseSetArray**_](classastrea_1_1trace_1_1RiseSetArray.md) _and a RiseSetMetric._
+* **struct** [**astrea::trace::SensorSettings**](structastrea_1_1trace_1_1SensorSettings.md) 
 * **struct** [**astrea::trace::Stats**](structastrea_1_1trace_1_1Stats.md) _The_ [_**Stats**_](structastrea_1_1trace_1_1Stats.md) _struct represents basic statistics (min, max, average, and percentiles) for a vector of values of type T._
+* **struct** [**astrea::trace::TraceConfig**](structastrea_1_1trace_1_1TraceConfig.md) _Configuration for a trace analysis run._ 
 * **struct** [**std::hash&lt; astrea::trace::IdPair &gt;**](structstd_1_1hash_3_01astrea_1_1trace_1_1IdPair_01_4.md) _Specialization of std::hash for IdPair to allow it to be used as a key in hash-based containers._ 
 * **struct** [**std::less&lt; astrea::trace::IdPair &gt;**](structstd_1_1less_3_01astrea_1_1trace_1_1IdPair_01_4.md) _Specialization of std::less for IdPair to allow it to be used in ordered containers._ 
 * **class** **astro::Payload< Sensor, SensorParameters >**    

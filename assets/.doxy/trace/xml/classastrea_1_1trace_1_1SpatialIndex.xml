@@ -16,7 +16,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/analysis/SpatialIndex.hpp" line="90" column="11" bodyfile="astrea/trace/trace/analysis/SpatialIndex.hpp" bodystart="90" bodyend="-1"/>
+        <location file="astrea/trace/trace/analysis/SpatialIndex.hpp" line="94" column="11" bodyfile="astrea/trace/trace/analysis/SpatialIndex.hpp" bodystart="94" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1trace_1_1SpatialIndex_1af38215452e02f94b50cb35c39ff61745" prot="private" static="no" mutable="no">
         <type>std::size_t</type>
@@ -30,7 +30,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/analysis/SpatialIndex.hpp" line="91" column="17" bodyfile="astrea/trace/trace/analysis/SpatialIndex.hpp" bodystart="91" bodyend="-1"/>
+        <location file="astrea/trace/trace/analysis/SpatialIndex.hpp" line="95" column="17" bodyfile="astrea/trace/trace/analysis/SpatialIndex.hpp" bodystart="95" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1trace_1_1SpatialIndex_1a3ec01f9b2a9a6a628e72993c67de6787" prot="private" static="no" mutable="no">
         <type>std::size_t</type>
@@ -44,7 +44,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/analysis/SpatialIndex.hpp" line="92" column="17" bodyfile="astrea/trace/trace/analysis/SpatialIndex.hpp" bodystart="92" bodyend="-1"/>
+        <location file="astrea/trace/trace/analysis/SpatialIndex.hpp" line="96" column="17" bodyfile="astrea/trace/trace/analysis/SpatialIndex.hpp" bodystart="96" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1trace_1_1SpatialIndex_1ad785294f5324a7ef7551d7686c6a205f" prot="private" static="no" mutable="no">
         <type>std::vector&lt; <ref refid="structastrea_1_1trace_1_1GeographicBin" kindref="compound">GeographicBin</ref> &gt;</type>
@@ -58,7 +58,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/analysis/SpatialIndex.hpp" line="93" column="17" bodyfile="astrea/trace/trace/analysis/SpatialIndex.hpp" bodystart="93" bodyend="-1"/>
+        <location file="astrea/trace/trace/analysis/SpatialIndex.hpp" line="97" column="17" bodyfile="astrea/trace/trace/analysis/SpatialIndex.hpp" bodystart="97" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="public-func">
@@ -90,7 +90,25 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/analysis/SpatialIndex.hpp" line="56" column="5" bodyfile="astrea/trace/trace/analysis/SpatialIndex.cpp" bodystart="33" bodyend="53"/>
+        <location file="astrea/trace/trace/analysis/SpatialIndex.hpp" line="58" column="5" bodyfile="astrea/trace/trace/analysis/SpatialIndex.cpp" bodystart="32" bodyend="52"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1SpatialIndex_1a5f31e8859e370796d3a99e2d24f49c05" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>astrea::trace::SpatialIndex::SpatialIndex</definition>
+        <argsstring>(const GroundPointRefVec &amp;groundPoints)</argsstring>
+        <name>SpatialIndex</name>
+        <qualifiedname>astrea::trace::SpatialIndex::SpatialIndex</qualifiedname>
+        <param>
+          <type>const <ref refid="typedefs_8hpp_1a343001e7eb8323eb6ee3ff0f3c3a35a4" kindref="member">GroundPointRefVec</ref> &amp;</type>
+          <declname>groundPoints</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/analysis/SpatialIndex.hpp" line="60" column="5" bodyfile="astrea/trace/trace/analysis/SpatialIndex.cpp" bodystart="54" bodyend="60"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1trace_1_1SpatialIndex_1a555bbe79be77a9e687ef302284507ac4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -143,7 +161,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/analysis/SpatialIndex.hpp" line="65" column="10" bodyfile="astrea/trace/trace/analysis/SpatialIndex.cpp" bodystart="55" bodyend="59"/>
+        <location file="astrea/trace/trace/analysis/SpatialIndex.hpp" line="69" column="10" bodyfile="astrea/trace/trace/analysis/SpatialIndex.cpp" bodystart="62" bodyend="66"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1trace_1_1SpatialIndex_1a81f9dc5b3184191688ffd1f58df618c7" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>std::unordered_set&lt; std::size_t &gt;</type>
@@ -198,7 +216,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/analysis/SpatialIndex.hpp" line="75" column="24" bodyfile="astrea/trace/trace/analysis/SpatialIndex.cpp" bodystart="61" bodyend="94"/>
+        <location file="astrea/trace/trace/analysis/SpatialIndex.hpp" line="79" column="24" bodyfile="astrea/trace/trace/analysis/SpatialIndex.cpp" bodystart="68" bodyend="101"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1trace_1_1SpatialIndex_1a6d8e8863c305d152fc236bb4adb11e20" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>std::vector&lt; std::size_t &gt;</type>
@@ -216,7 +234,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/analysis/SpatialIndex.hpp" line="82" column="17" bodyfile="astrea/trace/trace/analysis/SpatialIndex.cpp" bodystart="96" bodyend="105"/>
+        <location file="astrea/trace/trace/analysis/SpatialIndex.hpp" line="86" column="17" bodyfile="astrea/trace/trace/analysis/SpatialIndex.cpp" bodystart="103" bodyend="112"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1trace_1_1SpatialIndex_1a48e8c8ddf487a01ac26db232de1284fa" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -231,7 +249,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/analysis/SpatialIndex.hpp" line="87" column="10" bodyfile="astrea/trace/trace/analysis/SpatialIndex.cpp" bodystart="107" bodyend="112"/>
+        <location file="astrea/trace/trace/analysis/SpatialIndex.hpp" line="91" column="10" bodyfile="astrea/trace/trace/analysis/SpatialIndex.cpp" bodystart="114" bodyend="119"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="private-func">
@@ -264,7 +282,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/analysis/SpatialIndex.hpp" line="101" column="17" bodyfile="astrea/trace/trace/analysis/SpatialIndex.cpp" bodystart="114" bodyend="118"/>
+        <location file="astrea/trace/trace/analysis/SpatialIndex.hpp" line="105" column="17" bodyfile="astrea/trace/trace/analysis/SpatialIndex.cpp" bodystart="121" bodyend="125"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1trace_1_1SpatialIndex_1a1a4d15781dc2c4b40e6be875b36f0fd2" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>std::size_t</type>
@@ -295,7 +313,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/analysis/SpatialIndex.hpp" line="109" column="17" bodyfile="astrea/trace/trace/analysis/SpatialIndex.cpp" bodystart="120" bodyend="124"/>
+        <location file="astrea/trace/trace/analysis/SpatialIndex.hpp" line="113" column="17" bodyfile="astrea/trace/trace/analysis/SpatialIndex.cpp" bodystart="127" bodyend="131"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1trace_1_1SpatialIndex_1ac2edcc809ce65c30790da3bfb249ce64" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>std::size_t</type>
@@ -338,7 +356,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/analysis/SpatialIndex.hpp" line="118" column="17" bodyfile="astrea/trace/trace/analysis/SpatialIndex.cpp" bodystart="126" bodyend="129"/>
+        <location file="astrea/trace/trace/analysis/SpatialIndex.hpp" line="122" column="17" bodyfile="astrea/trace/trace/analysis/SpatialIndex.cpp" bodystart="133" bodyend="136"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
@@ -347,7 +365,7 @@
     <detaileddescription>
 <para>Divides the Earth&apos;s surface into geographic bins to quickly find which ground points are near a satellite&apos;s subsatellite point </para>
     </detaileddescription>
-    <location file="astrea/trace/trace/analysis/SpatialIndex.hpp" line="49" column="1" bodyfile="astrea/trace/trace/analysis/SpatialIndex.hpp" bodystart="49" bodyend="119"/>
+    <location file="astrea/trace/trace/analysis/SpatialIndex.hpp" line="51" column="1" bodyfile="astrea/trace/trace/analysis/SpatialIndex.hpp" bodystart="51" bodyend="123"/>
     <listofallmembers>
       <member refid="classastrea_1_1trace_1_1SpatialIndex_1ad785294f5324a7ef7551d7686c6a205f" prot="private" virt="non-virtual"><scope>astrea::trace::SpatialIndex</scope><name>_bins</name></member>
       <member refid="classastrea_1_1trace_1_1SpatialIndex_1acb60b2ea0841034a727ca09c9e82dd1f" prot="private" virt="non-virtual"><scope>astrea::trace::SpatialIndex</scope><name>_binSize</name></member>
@@ -361,6 +379,7 @@
       <member refid="classastrea_1_1trace_1_1SpatialIndex_1a1a4d15781dc2c4b40e6be875b36f0fd2" prot="private" virt="non-virtual"><scope>astrea::trace::SpatialIndex</scope><name>get_lon_bin_index</name></member>
       <member refid="classastrea_1_1trace_1_1SpatialIndex_1a81f9dc5b3184191688ffd1f58df618c7" prot="public" virt="non-virtual"><scope>astrea::trace::SpatialIndex</scope><name>get_nearby_ground_points</name></member>
       <member refid="classastrea_1_1trace_1_1SpatialIndex_1ac72aec45982c8518811bbd407f47bca9" prot="public" virt="non-virtual"><scope>astrea::trace::SpatialIndex</scope><name>SpatialIndex</name></member>
+      <member refid="classastrea_1_1trace_1_1SpatialIndex_1a5f31e8859e370796d3a99e2d24f49c05" prot="public" virt="non-virtual"><scope>astrea::trace::SpatialIndex</scope><name>SpatialIndex</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

@@ -13,6 +13,12 @@
 
 #include <cstdint>
 
+#include <astro/astro.fwd.hpp>
+#include <astro/frames.hpp>
+#include <astro/systems.hpp>
+
+#include <trace/trace.fwd.hpp>
+
 namespace astrea {
 namespace trace {
 
@@ -20,6 +26,27 @@ using EnumType = uint32_t;
 
 using LatLon = std::pair<Angle, Angle>;
 
+using LatRange = std::pair<Angle, Angle>;
+
+using LonRange = std::pair<Angle, Angle>;
+
+using EciRadiusVec = astro::CartesianVector<Distance, astro::frames::earth::icrf>;
+
+using EcefRadiusVec = astro::CartesianVector<Distance, astro::frames::earth::earth_fixed>;
+
+using DateVector = std::vector<astro::Date>;
+
+using ViewerConstellation = astro::Constellation<Viewer>;
+
+using ViewerRefVec = std::vector<std::shared_ptr<Viewer>>;
+
+using GroundStationRefVec = std::vector<std::shared_ptr<GroundStation<astro::planets::Earth>>>;
+
+using GroundPointRefVec = std::vector<std::shared_ptr<GroundPoint<astro::planets::Earth>>>;
+
+using PairVec = std::vector<std::pair<std::size_t, std::size_t>>;
+
+using BoresightTable = std::vector<std::vector<EciRadiusVec>>;
 
 } // namespace trace
 } // namespace astrea

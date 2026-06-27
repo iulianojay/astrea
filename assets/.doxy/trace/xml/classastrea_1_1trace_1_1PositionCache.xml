@@ -20,7 +20,7 @@
         <location file="astrea/trace/trace/analysis/PositionCache.hpp" line="125" column="17" bodyfile="astrea/trace/trace/analysis/PositionCache.hpp" bodystart="125" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1trace_1_1PositionCache_1a5f7b855efa70afe4dc99356589239d20" prot="private" static="no" mutable="no">
-        <type>std::vector&lt; std::vector&lt; EcefRadiusVec &gt; &gt;</type>
+        <type>std::vector&lt; std::vector&lt; <ref refid="PositionCache_8hpp_1afe793f30269c8d02fd6e9d89649ff7c9" kindref="member">EcefRadiusVec</ref> &gt; &gt;</type>
         <definition>std::vector&lt;std::vector&lt;EcefRadiusVec&gt; &gt; astrea::trace::PositionCache::_positions</definition>
         <argsstring></argsstring>
         <name>_positions</name>
@@ -166,7 +166,7 @@
           <declname>timeIdx</declname>
         </param>
         <param>
-          <type>const EcefRadiusVec &amp;</type>
+          <type>const <ref refid="PositionCache_8hpp_1afe793f30269c8d02fd6e9d89649ff7c9" kindref="member">EcefRadiusVec</ref> &amp;</type>
           <declname>position</declname>
         </param>
         <briefdescription>
@@ -205,7 +205,7 @@
         <location file="astrea/trace/trace/analysis/PositionCache.hpp" line="69" column="10" bodyfile="astrea/trace/trace/analysis/PositionCache.cpp" bodystart="34" bodyend="37"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1trace_1_1PositionCache_1ae2694ea5f8b92cd7fb625cc20b26317e" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
-        <type>const EcefRadiusVec &amp;</type>
+        <type>const <ref refid="PositionCache_8hpp_1afe793f30269c8d02fd6e9d89649ff7c9" kindref="member">EcefRadiusVec</ref> &amp;</type>
         <definition>const EcefRadiusVec &amp; astrea::trace::PositionCache::get_position_by_id</definition>
         <argsstring>(std::size_t platformId, std::size_t timeIdx) const</argsstring>
         <name>get_position_by_id</name>
@@ -248,7 +248,7 @@
         <location file="astrea/trace/trace/analysis/PositionCache.hpp" line="78" column="25" bodyfile="astrea/trace/trace/analysis/PositionCache.cpp" bodystart="39" bodyend="47"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1trace_1_1PositionCache_1ad1c880250c71d7782cd743c7fda9c0f7" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
-        <type>const EcefRadiusVec &amp;</type>
+        <type>const <ref refid="PositionCache_8hpp_1afe793f30269c8d02fd6e9d89649ff7c9" kindref="member">EcefRadiusVec</ref> &amp;</type>
         <definition>const EcefRadiusVec &amp; astrea::trace::PositionCache::get_position_by_index</definition>
         <argsstring>(std::size_t platformIdx, std::size_t timeIdx) const</argsstring>
         <name>get_position_by_index</name>

@@ -40,6 +40,12 @@
     <member refid="classastrea_1_1utilities_1_1ProgressBar_1a2877b448dbe830dca1a334ca269ab0ce" kind="function"><name>get_progress</name></member>
     <member refid="classastrea_1_1utilities_1_1ProgressBar_1a1bae9d81e9fc865f1b050434cf5ec80e" kind="function"><name>operator()</name></member>
   </compound>
+  <compound refid="classastrea_1_1utilities_1_1StopWatch" kind="class"><name>astrea::utilities::StopWatch</name>
+    <member refid="classastrea_1_1utilities_1_1StopWatch_1af7826faadbd5c0a5a172a549e8c7395b" kind="variable"><name>_start</name></member>
+    <member refid="classastrea_1_1utilities_1_1StopWatch_1a1e05d0904e5d43390e6d790ead89bd40" kind="function"><name>StopWatch</name></member>
+    <member refid="classastrea_1_1utilities_1_1StopWatch_1af741045f9ca6811d7e95ade5af59856c" kind="function"><name>reset</name></member>
+    <member refid="classastrea_1_1utilities_1_1StopWatch_1afaecd16b37f746ef45397701637076ae" kind="function"><name>measure</name></member>
+  </compound>
   <compound refid="namespaceastrea" kind="namespace"><name>astrea</name>
   </compound>
   <compound refid="namespaceastrea_1_1utilities" kind="namespace"><name>astrea::utilities</name>
@@ -61,6 +67,8 @@
   <compound refid="json__util_8hpp" kind="file"><name>json_util.hpp</name>
   </compound>
   <compound refid="ProgressBar_8hpp" kind="file"><name>ProgressBar.hpp</name>
+  </compound>
+  <compound refid="StopWatch_8hpp" kind="file"><name>StopWatch.hpp</name>
   </compound>
   <compound refid="string__util_8cpp" kind="file"><name>string_util.cpp</name>
   </compound>

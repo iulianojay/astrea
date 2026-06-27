@@ -30,7 +30,6 @@
 #include <astro/state/angular_elements.hpp>
 
 #include <trace/platforms/ground/GroundPoint.hpp>
-#include <trace/types/typedefs.hpp>
 
 
 using namespace mp_units;
@@ -59,6 +58,14 @@ SpatialIndex::SpatialIndex(const Angle& binSize) :
             _bins[binIdx].lonMin = -180.0 * deg + iLon * binSize;
             _bins[binIdx].lonMax = _bins[binIdx].lonMin + binSize;
         }
+    }
+}
+
+SpatialIndex::SpatialIndex(const GroundPointRefVec& groundPoints) :
+    SpatialIndex() // delegate: initialise bins with the default bin size first
+{
+    for (std::size_t i = 0; i < groundPoints.size(); ++i) {
+        add_ground_point(i, groundPoints[i]->get_latitude(), groundPoints[i]->get_longitude());
     }
 }
 

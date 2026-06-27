@@ -49,6 +49,8 @@ class RiseSetArray {
 
     std::size_t size() const;
 
+    bool empty() const;
+
     Time& operator[](const std::size_t& ind); // TODO: Should this be allowed? Makes it possible to generate bad rise/set pairs
 
     const Time& operator[](const std::size_t& ind) const;

@@ -6,6 +6,7 @@
     <innerclass refid="classastrea_1_1utilities_1_1f__to__string__t" prot="public">astrea::utilities::f_to_string_t</innerclass>
     <innerclass refid="classastrea_1_1utilities_1_1IdProvider" prot="public">astrea::utilities::IdProvider</innerclass>
     <innerclass refid="classastrea_1_1utilities_1_1ProgressBar" prot="public">astrea::utilities::ProgressBar</innerclass>
+    <innerclass refid="classastrea_1_1utilities_1_1StopWatch" prot="public">astrea::utilities::StopWatch</innerclass>
     <sectiondef kind="var">
       <memberdef kind="variable" id="string__util_8hpp_1ab0fcf94ac3be9a2e1abf8b1accbd956a" prot="public" static="no" constexpr="yes" mutable="no">
         <templateparamlist>

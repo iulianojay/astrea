@@ -3366,7 +3366,7 @@ Get the Direction Cosine Matrix (DCM) for the J2000 to ICRF at a given date.</pa
         </inbodydescription>
         <location file="astrea/astro/astro/frames/framework/Origin.hpp" line="79" column="16" bodyfile="astrea/astro/astro/frames/framework/Origin.hpp" bodystart="79" bodyend="82"/>
       </memberdef>
-      <memberdef kind="function" id="Plane_8ipp_1a3cbe0e4f2674999cf097480a23aa094a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="Plane_8ipp_1a3cbe0e4f2674999cf097480a23aa094a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">bool</ref></type>
         <definition>bool astrea::astro::planes_are_nearly_equal</definition>
         <argsstring>(const OrbitalElements &amp;elem1, const OrbitalElements &amp;elem2, const Unitless &amp;relTol)</argsstring>
@@ -3390,7 +3390,7 @@ Get the Direction Cosine Matrix (DCM) for the J2000 to ICRF at a given date.</pa
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/platforms/space/Plane.ipp" line="10" column="6" bodyfile="astrea/astro/astro/platforms/space/Plane.ipp" bodystart="10" bodyend="17"/>
+        <location file="astrea/astro/astro/platforms/space/Plane.ipp" line="10" column="13" bodyfile="astrea/astro/astro/platforms/space/Plane.ipp" bodystart="10" bodyend="17"/>
       </memberdef>
       <memberdef kind="function" id="Cylindrical_8hpp_1ad2783c8981c919a1f1f2f1403df770ca" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>

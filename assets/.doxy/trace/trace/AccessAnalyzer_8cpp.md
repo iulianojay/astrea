@@ -13,6 +13,8 @@
 * `#include <trace/analysis/AccessAnalyzer.hpp>`
 * `#include <algorithm>`
 * `#include <execution>`
+* `#include <numeric>`
+* `#include <unordered_set>`
 * `#include <mp-units/math.h>`
 * `#include <mp-units/systems/angular/math.h>`
 * `#include <astro/platforms/space/Constellation.hpp>`
@@ -59,6 +61,7 @@
 | Type | Name |
 | ---: | :--- |
 | struct | [**AccessInfo**](structastrea_1_1trace_1_1AccessInfo.md) <br> |
+| struct | [**PairResult**](structastrea_1_1trace_1_1PairResult.md) <br>_Per-viewer result for one (viewer, ground-point) work item._  |
 
 
 

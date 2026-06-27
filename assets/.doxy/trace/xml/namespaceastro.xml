@@ -6,6 +6,6 @@
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="astrea/trace/trace/drivers/main.cpp" line="38" column="1"/>
+    <location file="astrea/trace/trace/analysis/analysis.cpp" line="38" column="1"/>
   </compounddef>
 </doxygen>

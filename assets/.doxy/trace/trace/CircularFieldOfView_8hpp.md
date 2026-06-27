@@ -12,6 +12,8 @@
 
 * `#include <numbers>`
 * `#include <unordered_map>`
+* `#include <mp-units/math.h>`
+* `#include <mp-units/systems/angular/math.h>`
 * `#include <astro/astro.fwd.hpp>`
 * `#include <astro/frames/definitions/dynamic_frames.hpp>`
 * `#include <units/units.hpp>`

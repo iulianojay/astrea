@@ -40,21 +40,29 @@
 | struct | [**AccessMetricsRecord**](structastrea_1_1trace_1_1AccessMetricsRecord.md) <br> |
 | class | [**AccessObject**](classastrea_1_1trace_1_1AccessObject.md) <br>_Base class for objects that can visually access other objects._  |
 | struct | [**AccessStats**](structastrea_1_1trace_1_1AccessStats.md) <br>_The_ [_**AccessStats**_](structastrea_1_1trace_1_1AccessStats.md) _struct represents statistics for access times based on an_[_**AccessArray**_](classastrea_1_1trace_1_1AccessArray.md) _._ |
+| struct | [**AnalysisResult**](structastrea_1_1trace_1_1AnalysisResult.md) <br>_Aggregated results returned by run\_trace\_analysis._  |
+| struct | [**AnalysisSettings**](structastrea_1_1trace_1_1AnalysisSettings.md) <br> |
 | class | [**Antenna**](classastrea_1_1trace_1_1Antenna.md) <br>_Represents an antenna with properties such as diameter, efficiency, frequency, and power._  |
 | class | [**AntennaParameters**](classastrea_1_1trace_1_1AntennaParameters.md) <br>_Class for storing and managing antenna parameters._  |
 | class | [**CircularFieldOfView**](classastrea_1_1trace_1_1CircularFieldOfView.md) <br>_Circular field of view implementation._  |
+| struct | [**ConstellationSettings**](structastrea_1_1trace_1_1ConstellationSettings.md) <br> |
 | class | [**DatabaseOutputManager**](classastrea_1_1trace_1_1DatabaseOutputManager.md) <br>_A class for managing database output operations with a single database instance._  |
 | class | [**FieldOfView**](classastrea_1_1trace_1_1FieldOfView.md) <br>_Base class for Field of View (FoV) representations._  |
 | class | [**FoldsOfCoverage**](classastrea_1_1trace_1_1FoldsOfCoverage.md) <br>_The_ [_**FoldsOfCoverage**_](classastrea_1_1trace_1_1FoldsOfCoverage.md) _class represents the folds of coverage (simultaneous accesses) for each receiver ID over time._ |
 | struct | [**FoldsRecord**](structastrea_1_1trace_1_1FoldsRecord.md) <br> |
 | struct | [**GeographicBin**](structastrea_1_1trace_1_1GeographicBin.md) <br>_Geographic bin for spatial partitioning._  |
 | class | [**Grid**](classastrea_1_1trace_1_1Grid.md) &lt;\_body\_&gt;<br>_Class representing a grid of ground points on the surface of a celestial body._  |
+| struct | [**GridSettings**](structastrea_1_1trace_1_1GridSettings.md) <br> |
 | class | [**GroundArchitecture**](classastrea_1_1trace_1_1GroundArchitecture.md) &lt;\_body\_&gt;<br>_A collection of ground stations on the surface of a celestial body._  |
 | struct | [**GroundLocationRecord**](structastrea_1_1trace_1_1GroundLocationRecord.md) <br> |
 | class | [**GroundPoint**](classastrea_1_1trace_1_1GroundPoint.md) &lt;\_body\_&gt;<br>_Represents a point on the surface of a celestial body with latitude, longitude, and altitude._  |
+| struct | [**GroundSettings**](structastrea_1_1trace_1_1GroundSettings.md) <br> |
 | class | [**GroundStation**](classastrea_1_1trace_1_1GroundStation.md) &lt;\_body\_&gt;<br>_Ground station on the surface of a celestial body, with sensors._  |
+| struct | [**GroundTrackRecord**](structastrea_1_1trace_1_1GroundTrackRecord.md) <br> |
 | struct | [**HyperStats**](structastrea_1_1trace_1_1HyperStats.md) &lt;class T&gt;<br>_The_ [_**HyperStats**_](structastrea_1_1trace_1_1HyperStats.md) _struct represents statistics of statistics, allowing for the calculation of statistics on a vector of Stats&lt;T&gt;._ |
 | struct | [**IdPair**](structastrea_1_1trace_1_1IdPair.md) <br>_Represents a pair of IDs for sender and receiver._  |
+| struct | [**OutputSettings**](structastrea_1_1trace_1_1OutputSettings.md) <br> |
+| struct | [**PairResult**](structastrea_1_1trace_1_1PairResult.md) <br>_Per-viewer result for one (viewer, ground-point) work item._  |
 | class | [**PolygonalFieldOfView**](classastrea_1_1trace_1_1PolygonalFieldOfView.md) <br>_Polygonal field of view implementation._  |
 | class | [**PositionCache**](classastrea_1_1trace_1_1PositionCache.md) <br>_Contiguous memory cache for platform positions across time._  |
 | struct | [**ReceiverRiseSetMetricsRecord**](structastrea_1_1trace_1_1ReceiverRiseSetMetricsRecord.md) <br> |
@@ -64,8 +72,10 @@
 | struct | [**RiseSetStats**](structastrea_1_1trace_1_1RiseSetStats.md) <br>_The_ [_**RiseSetStats**_](structastrea_1_1trace_1_1RiseSetStats.md) _struct represents statistics for rise and set times based on a_[_**RiseSetArray**_](classastrea_1_1trace_1_1RiseSetArray.md) _and a RiseSetMetric._ |
 | class | [**Sensor**](classastrea_1_1trace_1_1Sensor.md) <br>[_**Sensor**_](classastrea_1_1trace_1_1Sensor.md) _class representing a sensor on a platform._ |
 | class | [**SensorParameters**](classastrea_1_1trace_1_1SensorParameters.md) <br>_Class for storing and managing sensor parameters._  |
+| struct | [**SensorSettings**](structastrea_1_1trace_1_1SensorSettings.md) <br> |
 | class | [**SpatialIndex**](classastrea_1_1trace_1_1SpatialIndex.md) <br>_Spatial index for efficient ground point queries._  |
 | struct | [**Stats**](structastrea_1_1trace_1_1Stats.md) &lt;class T&gt;<br>_The_ [_**Stats**_](structastrea_1_1trace_1_1Stats.md) _struct represents basic statistics (min, max, average, and percentiles) for a vector of values of type T._ |
+| struct | [**TraceConfig**](structastrea_1_1trace_1_1TraceConfig.md) <br>_Configuration for a trace analysis run._  |
 | class | [**Viewer**](classastrea_1_1trace_1_1Viewer.md) <br>[_**Viewer**_](classastrea_1_1trace_1_1Viewer.md) _class for managing access and sensors on a spacecraft. This class inherits from Spacecraft,_[_**AccessObject**_](classastrea_1_1trace_1_1AccessObject.md) _, and SensorPlatform. It provides functionality to manage sensors and access rights for the spacecraft._ |
 
 
@@ -74,21 +84,24 @@
 | Type | Name |
 | ---: | :--- |
 | enum [**EnumType**](namespaceastrea_1_1trace.md#typedef-enumtype) | [**AccessMetric**](#enum-accessmetric)  <br>_Enumeration for different access metrics._  |
+| typedef std::vector&lt; std::vector&lt; EciRadiusVec &gt; &gt; | [**BoresightTable**](#typedef-boresighttable)  <br>_Pre-computed ECI boresight vectors per sensor per timestep._  |
 | typedef std::vector&lt; astro::Date &gt; | [**DateVector**](#typedef-datevector)  <br>_Type alias for a vector of time values._  |
-| typedef astro::RadiusVector&lt; astro::frames::earth::earth\_fixed &gt; | [**EcefRadiusVec**](#typedef-ecefradiusvec)  <br> |
-| typedef astro::RadiusVector&lt; astro::frames::earth::icrf &gt; | [**EciRadiusVec**](#typedef-eciradiusvec)  <br> |
+| typedef astro::RadiusVector&lt; astro::frames::earth::earth\_fixed &gt; | [**EcefRadiusVec**](#typedef-ecefradiusvec)  <br>_Type definition for ECEF radius vectors._  |
+| typedef astro::RadiusVector&lt; astro::frames::earth::icrf &gt; | [**EciRadiusVec**](#typedef-eciradiusvec)  <br>_Type definition for ECI radius vectors._  |
 | typedef uint32\_t | [**EnumType**](#typedef-enumtype)  <br>_Type definition for enumeration types._  |
 | enum [**EnumType**](namespaceastrea_1_1trace.md#typedef-enumtype) | [**GridType**](#enum-gridtype)  <br>_Enumeration for different grid types._  |
-| typedef std::vector&lt; std::shared\_ptr&lt; [**GroundPoint**](classastrea_1_1trace_1_1GroundPoint.md)&lt; astro::planets::Earth &gt; &gt; &gt; | [**GroundPointRefVec**](#typedef-groundpointrefvec)  <br> |
-| typedef std::vector&lt; std::shared\_ptr&lt; [**GroundStation**](classastrea_1_1trace_1_1GroundStation.md)&lt; astro::planets::Earth &gt; &gt; &gt; | [**GroundStationRefVec**](#typedef-groundstationrefvec)  <br> |
+| typedef std::vector&lt; std::shared\_ptr&lt; [**GroundPoint**](classastrea_1_1trace_1_1GroundPoint.md)&lt; astro::planets::Earth &gt; &gt; &gt; | [**GroundPointRefVec**](#typedef-groundpointrefvec)  <br>_Type definition for a vector of ground point references._  |
+| typedef std::vector&lt; std::shared\_ptr&lt; [**GroundStation**](classastrea_1_1trace_1_1GroundStation.md)&lt; astro::planets::Earth &gt; &gt; &gt; | [**GroundStationRefVec**](#typedef-groundstationrefvec)  <br>_Type alias for a vector of_ [_**GroundStation**_](classastrea_1_1trace_1_1GroundStation.md) _references._ |
 | typedef std::pair&lt; Angle, Angle &gt; | [**LatLon**](#typedef-latlon)  <br>_Latitude/Longitude coordinate pair._  |
-| typedef std::vector&lt; std::pair&lt; std::size\_t, std::size\_t &gt; &gt; | [**PairVec**](#typedef-pairvec)  <br> |
+| typedef std::pair&lt; Angle, Angle &gt; | [**LatRange**](#typedef-latrange)  <br>_Latitude range pair._  |
+| typedef std::pair&lt; Angle, Angle &gt; | [**LonRange**](#typedef-lonrange)  <br>_Longitude range pair._  |
+| typedef std::vector&lt; std::pair&lt; std::size\_t, std::size\_t &gt; &gt; | [**PairVec**](#typedef-pairvec)  <br>_Type alias for a vector of pairs of size\_t values._  |
 | enum  | [**PatternApproximation**](#enum-patternapproximation)  <br>_Enum class for different antenna pattern approximations._  |
 | enum [**EnumType**](namespaceastrea_1_1trace.md#typedef-enumtype) | [**RiseSetMetric**](#enum-risesetmetric)  <br>_Enumeration for different rise/set metrics._  |
 | typedef astro::PayloadPlatform&lt; [**Sensor**](classastrea_1_1trace_1_1Sensor.md) &gt; | [**SensorPlatform**](#typedef-sensorplatform)  <br>_Type definition for sensor platforms._  |
 | enum [**EnumType**](namespaceastrea_1_1trace.md#typedef-enumtype) | [**StatType**](#enum-stattype)  <br>_Enumeration of statistical measures for_ [_**RiseSetArray**_](classastrea_1_1trace_1_1RiseSetArray.md) _._ |
 | typedef astro::Constellation&lt; [**Viewer**](classastrea_1_1trace_1_1Viewer.md) &gt; | [**ViewerConstellation**](#typedef-viewerconstellation)  <br>_Type alias for a constellation of_ [_**Viewer**_](classastrea_1_1trace_1_1Viewer.md) _objects._ |
-| typedef std::vector&lt; std::shared\_ptr&lt; [**Viewer**](classastrea_1_1trace_1_1Viewer.md) &gt; &gt; | [**ViewerRefVec**](#typedef-viewerrefvec)  <br> |
+| typedef std::vector&lt; std::shared\_ptr&lt; [**Viewer**](classastrea_1_1trace_1_1Viewer.md) &gt; &gt; | [**ViewerRefVec**](#typedef-viewerrefvec)  <br>_Type alias for a vector of_ [_**Viewer**_](classastrea_1_1trace_1_1Viewer.md) _references._ |
 
 
 
@@ -136,9 +149,15 @@
 |  [**RiseSetArray**](classastrea_1_1trace_1_1RiseSetArray.md) | [**riseset\_difference**](#function-riseset_difference) (const [**RiseSetArray**](classastrea_1_1trace_1_1RiseSetArray.md) & a, const [**RiseSetArray**](classastrea_1_1trace_1_1RiseSetArray.md) & b) <br>_Difference of two_ [_**RiseSetArray**_](classastrea_1_1trace_1_1RiseSetArray.md) _objects._ |
 |  [**RiseSetArray**](classastrea_1_1trace_1_1RiseSetArray.md) | [**riseset\_intersection**](#function-riseset_intersection) (const [**RiseSetArray**](classastrea_1_1trace_1_1RiseSetArray.md) & a, const [**RiseSetArray**](classastrea_1_1trace_1_1RiseSetArray.md) & b) <br>_Intersection of two_ [_**RiseSetArray**_](classastrea_1_1trace_1_1RiseSetArray.md) _objects._ |
 |  [**RiseSetArray**](classastrea_1_1trace_1_1RiseSetArray.md) | [**riseset\_union**](#function-riseset_union) (const [**RiseSetArray**](classastrea_1_1trace_1_1RiseSetArray.md) & a, const [**RiseSetArray**](classastrea_1_1trace_1_1RiseSetArray.md) & b) <br>_Union of two_ [_**RiseSetArray**_](classastrea_1_1trace_1_1RiseSetArray.md) _objects._ |
+|  [**AnalysisResult**](structastrea_1_1trace_1_1AnalysisResult.md) | [**run\_trace\_analysis**](#function-run_trace_analysis) (const [**TraceConfig**](structastrea_1_1trace_1_1TraceConfig.md) & config) <br>_Run a full trace analysis (propagation + access + statistics) from a_ [_**TraceConfig**_](structastrea_1_1trace_1_1TraceConfig.md) _._ |
 |  std::string | [**to\_formatted\_string**](#function-to_formatted_string) (Time t) <br>_Converts a Time object to a formatted string._  |
 
 
+## Public Static Functions
+
+| Type | Name |
+| ---: | :--- |
+|  [**AccessArray**](classastrea_1_1trace_1_1AccessArray.md) | [**propagate\_and\_run\_access\_analysis**](#function-propagate_and_run_access_analysis) (astro::Constellation&lt; T &gt; & constellation, U & grounds, const Date & epoch, const Time propTime, const Time accessResolution, const bool printProgress) <br> |
 
 
 
@@ -187,6 +206,24 @@ enum astrea::trace::AccessMetric {
 
 
 
+### typedef BoresightTable 
+
+_Pre-computed ECI boresight vectors per sensor per timestep._ 
+```C++
+using astrea::trace::BoresightTable = typedef std::vector<std::vector<EciRadiusVec> >;
+```
+
+
+
+Indexed as BoresightTable[sensor\_idx][time\_idx]. Computed once per satellite before the ground-point loop to avoid rebuilding the RIC frame for every (viewer, ground point) pair. 
+
+
+        
+
+<hr>
+
+
+
 ### typedef DateVector 
 
 _Type alias for a vector of time values._ 
@@ -203,8 +240,9 @@ using astrea::trace::DateVector = typedef std::vector<astro::Date>;
 
 ### typedef EcefRadiusVec 
 
+_Type definition for ECEF radius vectors._ 
 ```C++
-typedef astro::RadiusVector< astro::frames::earth::earth_fixed > astrea::trace::EcefRadiusVec;
+typedef astro::CartesianVector< Distance, astro::frames::earth::earth_fixed > astrea::trace::EcefRadiusVec;
 ```
 
 
@@ -216,8 +254,9 @@ typedef astro::RadiusVector< astro::frames::earth::earth_fixed > astrea::trace::
 
 ### typedef EciRadiusVec 
 
+_Type definition for ECI radius vectors._ 
 ```C++
-typedef astro::RadiusVector< astro::frames::earth::icrf > astrea::trace::EciRadiusVec;
+typedef astro::CartesianVector< Distance, astro::frames::earth::icrf > astrea::trace::EciRadiusVec;
 ```
 
 
@@ -263,12 +302,17 @@ enum astrea::trace::GridType {
 
 ### typedef GroundPointRefVec 
 
+_Type definition for a vector of ground point references._ 
 ```C++
 using astrea::trace::GroundPointRefVec = typedef std::vector<std::shared_ptr<GroundPoint<astro::planets::Earth> >>;
 ```
 
 
 
+This type is used to store references to ground points in the access analysis. 
+
+
+        
 
 <hr>
 
@@ -276,6 +320,7 @@ using astrea::trace::GroundPointRefVec = typedef std::vector<std::shared_ptr<Gro
 
 ### typedef GroundStationRefVec 
 
+_Type alias for a vector of_ [_**GroundStation**_](classastrea_1_1trace_1_1GroundStation.md) _references._
 ```C++
 using astrea::trace::GroundStationRefVec = typedef std::vector<std::shared_ptr<GroundStation<astro::planets::Earth> >>;
 ```
@@ -305,8 +350,45 @@ This type is used to represent a geographic location on the Earth's surface.
 
 
 
+### typedef LatRange 
+
+_Latitude range pair._ 
+```C++
+using astrea::trace::LatRange = typedef std::pair<Angle, Angle>;
+```
+
+
+
+This type is used to represent a range of latitudes for ground coverage analysis. 
+
+
+        
+
+<hr>
+
+
+
+### typedef LonRange 
+
+_Longitude range pair._ 
+```C++
+using astrea::trace::LonRange = typedef std::pair<Angle, Angle>;
+```
+
+
+
+This type is used to represent a range of longitudes for ground coverage analysis. 
+
+
+        
+
+<hr>
+
+
+
 ### typedef PairVec 
 
+_Type alias for a vector of pairs of size\_t values._ 
 ```C++
 using astrea::trace::PairVec = typedef std::vector<std::pair<std::size_t, std::size_t> >;
 ```
@@ -401,6 +483,7 @@ typedef astro::Constellation< Viewer > astrea::trace::ViewerConstellation;
 
 ### typedef ViewerRefVec 
 
+_Type alias for a vector of_ [_**Viewer**_](classastrea_1_1trace_1_1Viewer.md) _references._
 ```C++
 using astrea::trace::ViewerRefVec = typedef std::vector<std::shared_ptr<Viewer> >;
 ```
@@ -794,6 +877,36 @@ RiseSetArray astrea::trace::riseset_union (
 
 
 
+### function run\_trace\_analysis 
+
+_Run a full trace analysis (propagation + access + statistics) from a_ [_**TraceConfig**_](structastrea_1_1trace_1_1TraceConfig.md) _._
+```C++
+AnalysisResult astrea::trace::run_trace_analysis (
+    const TraceConfig & config
+) 
+```
+
+
+
+Builds the constellation, attaches sensors, builds the coverage grid, propagates with J2 mean-element dynamics, runs the access analyzer, and returns the aggregated statistics. Output (DB write, Python plotting) is the responsibility of the caller.
+
+
+
+
+**Parameters:**
+
+
+* `config` The [**TraceConfig**](structastrea_1_1trace_1_1TraceConfig.md) containing all settings for the analysis. 
+
+
+
+
+        
+
+<hr>
+
+
+
 ### function to\_formatted\_string 
 
 _Converts a Time object to a formatted string._ 
@@ -823,6 +936,29 @@ std::string A formatted string representation of the Time object.
 
 
         
+
+<hr>
+## Public Static Functions Documentation
+
+
+
+
+### function propagate\_and\_run\_access\_analysis 
+
+```C++
+template<typename T, typename U>
+static AccessArray astrea::trace::propagate_and_run_access_analysis (
+    astro::Constellation< T > & constellation,
+    U & grounds,
+    const Date & epoch,
+    const Time propTime,
+    const Time accessResolution,
+    const bool printProgress
+) 
+```
+
+
+
 
 <hr>
 

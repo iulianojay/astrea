@@ -84,6 +84,27 @@
         </inbodydescription>
         <location file="astrea/trace/trace/platforms/sensors/fov/FieldOfView.hpp" line="71" column="18"/>
       </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1FieldOfView_1aecfc83f0135def39939cce4108753388" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type>Angle</type>
+        <definition>virtual Angle astrea::trace::FieldOfView::max_half_angle</definition>
+        <argsstring>() const</argsstring>
+        <name>max_half_angle</name>
+        <qualifiedname>astrea::trace::FieldOfView::max_half_angle</qualifiedname>
+        <reimplementedby refid="classastrea_1_1trace_1_1CircularFieldOfView_1a29ff07554d053330704102a5b50ba291">max_half_angle</reimplementedby>
+        <reimplementedby refid="classastrea_1_1trace_1_1PolygonalFieldOfView_1ac3b66a99fa67b73802346d2693cdcdc7">max_half_angle</reimplementedby>
+        <briefdescription>
+<para>Returns the maximum off-boresight half-angle for this field of view. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Used for spatial index culling to determine the maximum sensor footprint radius. The default returns π/2 rad, a conservative bound covering the full hemisphere.</para>
+<para><simplesect kind="return"><para>Angle Maximum off-boresight half-angle. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/platforms/sensors/fov/FieldOfView.hpp" line="84" column="19" bodyfile="astrea/trace/trace/platforms/sensors/fov/FieldOfView.hpp" bodystart="84" bodyend="84"/>
+      </memberdef>
     </sectiondef>
     <briefdescription>
 <para>Base class for Field of View (FoV) representations. </para>
@@ -109,10 +130,11 @@
         </childnode>
       </node>
     </inheritancegraph>
-    <location file="astrea/trace/trace/platforms/sensors/fov/FieldOfView.hpp" line="49" column="1" bodyfile="astrea/trace/trace/platforms/sensors/fov/FieldOfView.hpp" bodystart="49" bodyend="75"/>
+    <location file="astrea/trace/trace/platforms/sensors/fov/FieldOfView.hpp" line="49" column="1" bodyfile="astrea/trace/trace/platforms/sensors/fov/FieldOfView.hpp" bodystart="49" bodyend="85"/>
     <listofallmembers>
       <member refid="classastrea_1_1trace_1_1FieldOfView_1a0137e9279399302d4288927fcb874a76" prot="public" virt="pure-virtual"><scope>astrea::trace::FieldOfView</scope><name>contains</name></member>
       <member refid="classastrea_1_1trace_1_1FieldOfView_1a81d04b924ac5862bd4b38072237bc3bb" prot="public" virt="non-virtual"><scope>astrea::trace::FieldOfView</scope><name>FieldOfView</name></member>
+      <member refid="classastrea_1_1trace_1_1FieldOfView_1aecfc83f0135def39939cce4108753388" prot="public" virt="virtual"><scope>astrea::trace::FieldOfView</scope><name>max_half_angle</name></member>
       <member refid="classastrea_1_1trace_1_1FieldOfView_1a7a73e0a1fcad3b8d1e6ac0cd7c13f0e1" prot="public" virt="non-virtual"><scope>astrea::trace::FieldOfView</scope><name>~FieldOfView</name></member>
     </listofallmembers>
   </compounddef>

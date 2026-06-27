@@ -37,6 +37,11 @@
 * **IdProvider** ([**astrea::utilities::IdProvider**](classastrea_1_1utilities_1_1IdProvider.md))
 
 
+## m
+
+* **measure** ([**astrea::utilities::StopWatch**](classastrea_1_1utilities_1_1StopWatch.md))
+
+
 ## o
 
 * **operator()** ([**astrea::utilities::ProgressBar**](classastrea_1_1utilities_1_1ProgressBar.md))
@@ -52,11 +57,12 @@
 
 ## r
 
-* **reset** ([**astrea::utilities::ProgressBar**](classastrea_1_1utilities_1_1ProgressBar.md))
+* **reset** ([**astrea::utilities::ProgressBar**](classastrea_1_1utilities_1_1ProgressBar.md), [**astrea::utilities::StopWatch**](classastrea_1_1utilities_1_1StopWatch.md))
 
 
 ## s
 
+* **StopWatch** ([**astrea::utilities::StopWatch**](classastrea_1_1utilities_1_1StopWatch.md))
 * **size** ([**astrea::utilities::f\_to\_string\_t**](classastrea_1_1utilities_1_1f__to__string__t.md))
 
 

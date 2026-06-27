@@ -37,6 +37,8 @@ class FieldOfView {
         const astro::CartesianVector<Distance, astro::frames::earth::icrf>& boresight,
         const astro::CartesianVector<Distance, astro::frames::earth::icrf>& target
     ) const = 0;
+
+    virtual Angle max_half_angle() const { return std::numbers::pi / 2.0 * mp_units::angular::unit_symbols::rad; }
 };
 
 } // namespace trace

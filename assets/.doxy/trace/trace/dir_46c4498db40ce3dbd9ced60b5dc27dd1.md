@@ -27,6 +27,9 @@
 | file | [**PositionCache.hpp**](PositionCache_8hpp.md) <br>_Header file for position caching trace library._  |
 | file | [**SpatialIndex.cpp**](SpatialIndex_8cpp.md) <br> |
 | file | [**SpatialIndex.hpp**](SpatialIndex_8hpp.md) <br>_Header file for spatial indexing functions in the astrea trace library._  |
+| file | [**TraceConfig.hpp**](TraceConfig_8hpp.md) <br>_Header file for trace configuration in the astrea trace library._  |
+| file | [**analysis.cpp**](analysis_8cpp.md) <br> |
+| file | [**analysis.hpp**](analysis_8hpp.md) <br>_Header file for trace analysis functions in the astrea trace library._  |
 
 
 ## Directories

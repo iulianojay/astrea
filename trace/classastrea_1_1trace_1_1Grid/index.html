@@ -6282,7 +6282,7 @@ You're not viewing the latest version.
 </tr>
 <tr>
 <td style="text-align: right;"></td>
-<td style="text-align: left;"><a href="#function-grid-33"><strong>Grid</strong></a> (const <a href="../namespaceastrea_1_1trace/#typedef-latlon"><strong>LatLon</strong></a> &amp; corner1, const <a href="../namespaceastrea_1_1trace/#typedef-latlon"><strong>LatLon</strong></a> &amp; corner4, const <a href="../namespaceastrea_1_1trace/#enum-gridtype"><strong>GridType</strong></a> &amp; gridType, const Angle &amp; spacing=5.0 *mp_units::angular::unit_symbols::deg, const Unitless &amp; weight=0.0 *mp_units::one) <br><em>Construct a</em> <a href="./"><em><strong>Grid</strong></em></a> <em>from corner points and a grid type.</em></td>
+<td style="text-align: left;"><a href="#function-grid-33"><strong>Grid</strong></a> (const <a href="../namespaceastrea_1_1trace/#typedef-latrange"><strong>LatRange</strong></a> &amp; latRange, const <a href="../namespaceastrea_1_1trace/#typedef-lonrange"><strong>LonRange</strong></a> &amp; lonRange, const <a href="../namespaceastrea_1_1trace/#enum-gridtype"><strong>GridType</strong></a> &amp; gridType, const Angle &amp; spacing=5.0 *mp_units::angular::unit_symbols::deg, const Unitless &amp; weight=0.0 *mp_units::one) <br><em>Construct a</em> <a href="./"><em><strong>Grid</strong></em></a> <em>from corner points and a grid type.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;"><a href="./#typedef-iterator"><strong>iterator</strong></a></td>
@@ -6299,6 +6299,18 @@ You're not viewing the latest version.
 <tr>
 <td style="text-align: right;"><a href="./#typedef-const_iterator"><strong>const_iterator</strong></a></td>
 <td style="text-align: left;"><a href="#function-cend"><strong>cend</strong></a> () const<br><em>Returns a constant iterator to the end of the ground points in the grid.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-clear"><strong>clear</strong></a> () <br><em>Clear all ground points from the grid.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-emplace_back-12"><strong>emplace_back</strong></a> (const Point &amp; point) <br><em>Emplace a ground point in the grid.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-emplace_back-22"><strong>emplace_back</strong></a> (Point &amp;&amp; point) <br><em>Emplace a ground point in the grid (move version).</em></td>
 </tr>
 <tr>
 <td style="text-align: right;"><a href="./#typedef-iterator"><strong>iterator</strong></a></td>
@@ -6319,6 +6331,22 @@ You're not viewing the latest version.
 <tr>
 <td style="text-align: right;">const Point &amp;</td>
 <td style="text-align: left;"><a href="#function-operator_1"><strong>operator[]</strong></a> (std::size_t index) const<br><em>Access a ground point in the grid by index (constant version).</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-push_back-12"><strong>push_back</strong></a> (const Point &amp; point) <br><em>Add a ground point to the grid.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-push_back-22"><strong>push_back</strong></a> (Point &amp;&amp; point) <br><em>Add a ground point to the grid (move version).</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-reserve"><strong>reserve</strong></a> (std::size_t n) <br><em>Reserve space for a specified number of ground points in the grid.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-resize"><strong>resize</strong></a> (std::size_t n) <br><em>Resize the grid to contain a specified number of ground points.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">std::size_t</td>
@@ -6371,8 +6399,8 @@ You're not viewing the latest version.
 <h3 id="function-grid-33">function Grid [3/3]<a class="headerlink" href="#function-grid-33" title="Permanent link">&para;</a></h3>
 <p><em>Construct a</em> <a href="./"><em><strong>Grid</strong></em></a> <em>from corner points and a grid type.</em>
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kr">inline</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">trace</span><span class="o">::</span><span class="n">Grid</span><span class="o">::</span><span class="n">Grid</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">LatLon</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">corner1</span><span class="p">,</span>
-</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">LatLon</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">corner4</span><span class="p">,</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">LatRange</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">latRange</span><span class="p">,</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">LonRange</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">lonRange</span><span class="p">,</span>
 </span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">GridType</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">gridType</span><span class="p">,</span>
 </span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Angle</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">spacing</span><span class="o">=</span><span class="mf">5.0</span><span class="w"> </span><span class="o">*</span><span class="n">mp_units</span><span class="o">::</span><span class="n">angular</span><span class="o">::</span><span class="n">unit_symbols</span><span class="o">::</span><span class="n">deg</span><span class="p">,</span>
 </span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Unitless</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">weight</span><span class="o">=</span><span class="mf">0.0</span><span class="w"> </span><span class="o">*</span><span class="n">mp_units</span><span class="o">::</span><span class="n">one</span>
@@ -6380,8 +6408,8 @@ You're not viewing the latest version.
 </span></code></pre></div></p>
 <p><strong>Parameters:</strong></p>
 <ul>
-<li><code>corner1</code> First corner (latitude, longitude). </li>
-<li><code>corner4</code> Fourth corner (latitude, longitude). </li>
+<li><code>latRange</code> Latitude range (min, max). </li>
+<li><code>lonRange</code> Longitude range (min, max). </li>
 <li><code>gridType</code> <a href="./"><strong>Grid</strong></a> generation algorithm. </li>
 <li><code>spacing</code> Angular spacing between points (default 5 deg). </li>
 <li><code>weight</code> Weighting factor (default 0). </li>
@@ -6420,9 +6448,39 @@ You're not viewing the latest version.
 <p>A constant iterator to one past the last ground point. </p>
 <hr>
 
+<h3 id="function-clear">function clear<a class="headerlink" href="#function-clear" title="Permanent link">&para;</a></h3>
+<p><em>Clear all ground points from the grid.</em> 
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="kr">inline</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">trace</span><span class="o">::</span><span class="n">Grid</span><span class="o">::</span><span class="n">clear</span><span class="w"> </span><span class="p">()</span><span class="w"> </span>
+</span></code></pre></div></p>
+<hr>
+
+<h3 id="function-emplace_back-12">function emplace_back [1/2]<a class="headerlink" href="#function-emplace_back-12" title="Permanent link">&para;</a></h3>
+<p><em>Emplace a ground point in the grid.</em> 
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="kr">inline</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">trace</span><span class="o">::</span><span class="n">Grid</span><span class="o">::</span><span class="n">emplace_back</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Point</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">point</span>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="p">)</span><span class="w"> </span>
+</span></code></pre></div></p>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>point</code> The ground point to emplace. </li>
+</ul>
+<hr>
+
+<h3 id="function-emplace_back-22">function emplace_back [2/2]<a class="headerlink" href="#function-emplace_back-22" title="Permanent link">&para;</a></h3>
+<p><em>Emplace a ground point in the grid (move version).</em> 
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="kr">inline</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">trace</span><span class="o">::</span><span class="n">Grid</span><span class="o">::</span><span class="n">emplace_back</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="w">    </span><span class="n">Point</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">point</span>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="p">)</span><span class="w"> </span>
+</span></code></pre></div></p>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>point</code> The ground point to emplace (moved). </li>
+</ul>
+<hr>
+
 <h3 id="function-end-12">function end [1/2]<a class="headerlink" href="#function-end-12" title="Permanent link">&para;</a></h3>
 <p><em>Returns an iterator to the end of the ground points in the grid.</em> 
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="kr">inline</span><span class="w"> </span><span class="n">iterator</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">trace</span><span class="o">::</span><span class="n">Grid</span><span class="o">::</span><span class="n">end</span><span class="w"> </span><span class="p">()</span><span class="w"> </span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="kr">inline</span><span class="w"> </span><span class="n">iterator</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">trace</span><span class="o">::</span><span class="n">Grid</span><span class="o">::</span><span class="n">end</span><span class="w"> </span><span class="p">()</span><span class="w"> </span>
 </span></code></pre></div></p>
 <p><strong>Returns:</strong></p>
 <p>An iterator to one past the last ground point. </p>
@@ -6430,7 +6488,7 @@ You're not viewing the latest version.
 
 <h3 id="function-end-22">function end [2/2]<a class="headerlink" href="#function-end-22" title="Permanent link">&para;</a></h3>
 <p><em>Returns a constant iterator to the end of the ground points in the grid.</em> 
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="kr">inline</span><span class="w"> </span><span class="n">const_iterator</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">trace</span><span class="o">::</span><span class="n">Grid</span><span class="o">::</span><span class="n">end</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="kr">inline</span><span class="w"> </span><span class="n">const_iterator</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">trace</span><span class="o">::</span><span class="n">Grid</span><span class="o">::</span><span class="n">end</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </span></code></pre></div></p>
 <p><strong>Returns:</strong></p>
 <p>A constant iterator to one past the last ground point. </p>
@@ -6438,7 +6496,7 @@ You're not viewing the latest version.
 
 <h3 id="function-get_grid_type">function get_grid_type<a class="headerlink" href="#function-get_grid_type" title="Permanent link">&para;</a></h3>
 <p><em>Get the type of grid.</em> 
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="kr">inline</span><span class="w"> </span><span class="n">GridType</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">trace</span><span class="o">::</span><span class="n">Grid</span><span class="o">::</span><span class="n">get_grid_type</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="kr">inline</span><span class="w"> </span><span class="n">GridType</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">trace</span><span class="o">::</span><span class="n">Grid</span><span class="o">::</span><span class="n">get_grid_type</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </span></code></pre></div></p>
 <p><strong>Returns:</strong></p>
 <p>GridType The type of grid (uniform, equal area, etc.). </p>
@@ -6446,9 +6504,9 @@ You're not viewing the latest version.
 
 <h3 id="function-operator">function operator[]<a class="headerlink" href="#function-operator" title="Permanent link">&para;</a></h3>
 <p><em>Access a ground point in the grid by index.</em> 
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="kr">inline</span><span class="w"> </span><span class="n">Point</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">trace</span><span class="o">::</span><span class="n">Grid</span><span class="o">::</span><span class="k">operator</span><span class="p">[]</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="n">index</span>
-</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="p">)</span><span class="w"> </span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="kr">inline</span><span class="w"> </span><span class="n">Point</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">trace</span><span class="o">::</span><span class="n">Grid</span><span class="o">::</span><span class="k">operator</span><span class="p">[]</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="n">index</span>
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="p">)</span><span class="w"> </span>
 </span></code></pre></div></p>
 <p><strong>Parameters:</strong></p>
 <ul>
@@ -6460,9 +6518,9 @@ You're not viewing the latest version.
 
 <h3 id="function-operator_1">function operator[]<a class="headerlink" href="#function-operator_1" title="Permanent link">&para;</a></h3>
 <p><em>Access a ground point in the grid by index (constant version).</em> 
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="kr">inline</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Point</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">trace</span><span class="o">::</span><span class="n">Grid</span><span class="o">::</span><span class="k">operator</span><span class="p">[]</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="n">index</span>
-</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="kr">inline</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Point</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">trace</span><span class="o">::</span><span class="n">Grid</span><span class="o">::</span><span class="k">operator</span><span class="p">[]</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="n">index</span>
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
 </span></code></pre></div></p>
 <p><strong>Parameters:</strong></p>
 <ul>
@@ -6472,9 +6530,57 @@ You're not viewing the latest version.
 <p>Constant reference to the Point at the specified index. </p>
 <hr>
 
+<h3 id="function-push_back-12">function push_back [1/2]<a class="headerlink" href="#function-push_back-12" title="Permanent link">&para;</a></h3>
+<p><em>Add a ground point to the grid.</em> 
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="kr">inline</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">trace</span><span class="o">::</span><span class="n">Grid</span><span class="o">::</span><span class="n">push_back</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Point</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">point</span>
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="p">)</span><span class="w"> </span>
+</span></code></pre></div></p>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>point</code> The ground point to add. </li>
+</ul>
+<hr>
+
+<h3 id="function-push_back-22">function push_back [2/2]<a class="headerlink" href="#function-push_back-22" title="Permanent link">&para;</a></h3>
+<p><em>Add a ground point to the grid (move version).</em> 
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="kr">inline</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">trace</span><span class="o">::</span><span class="n">Grid</span><span class="o">::</span><span class="n">push_back</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="w">    </span><span class="n">Point</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">point</span>
+</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="p">)</span><span class="w"> </span>
+</span></code></pre></div></p>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>point</code> The ground point to add (moved). </li>
+</ul>
+<hr>
+
+<h3 id="function-reserve">function reserve<a class="headerlink" href="#function-reserve" title="Permanent link">&para;</a></h3>
+<p><em>Reserve space for a specified number of ground points in the grid.</em> 
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="kr">inline</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">trace</span><span class="o">::</span><span class="n">Grid</span><span class="o">::</span><span class="n">reserve</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="n">n</span>
+</span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a><span class="p">)</span><span class="w"> </span>
+</span></code></pre></div></p>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>n</code> The number of ground points to reserve space for. </li>
+</ul>
+<hr>
+
+<h3 id="function-resize">function resize<a class="headerlink" href="#function-resize" title="Permanent link">&para;</a></h3>
+<p><em>Resize the grid to contain a specified number of ground points.</em> 
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="kr">inline</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">trace</span><span class="o">::</span><span class="n">Grid</span><span class="o">::</span><span class="n">resize</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="n">n</span>
+</span><span id="__span-20-3"><a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a><span class="p">)</span><span class="w"> </span>
+</span></code></pre></div></p>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>n</code> The new size of the grid. </li>
+</ul>
+<hr>
+
 <h3 id="function-size">function size<a class="headerlink" href="#function-size" title="Permanent link">&para;</a></h3>
 <p><em>Get the number of ground points in the grid.</em> 
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="kr">inline</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">trace</span><span class="o">::</span><span class="n">Grid</span><span class="o">::</span><span class="n">size</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="kr">inline</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">trace</span><span class="o">::</span><span class="n">Grid</span><span class="o">::</span><span class="n">size</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </span></code></pre></div></p>
 <p><strong>Returns:</strong></p>
 <p>std::size_t The number of ground points in the grid. </p>
@@ -6482,7 +6588,7 @@ You're not viewing the latest version.
 
 <h3 id="function-grid">function ~Grid<a class="headerlink" href="#function-grid" title="Permanent link">&para;</a></h3>
 <p><em>Default destructor for the</em> <a href="./"><em><strong>Grid</strong></em></a> <em>class.</em>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="k">virtual</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">trace</span><span class="o">::</span><span class="n">Grid</span><span class="o">::~</span><span class="n">Grid</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">default</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="k">virtual</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">trace</span><span class="o">::</span><span class="n">Grid</span><span class="o">::~</span><span class="n">Grid</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">default</span>
 </span></code></pre></div></p>
 <hr>
 

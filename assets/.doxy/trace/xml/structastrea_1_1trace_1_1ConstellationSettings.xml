@@ -1,0 +1,163 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="structastrea_1_1trace_1_1ConstellationSettings" kind="struct" language="C++" prot="public">
+    <compoundname>astrea::trace::ConstellationSettings</compoundname>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structastrea_1_1trace_1_1ConstellationSettings_1aba5901ca57c588ca42a4cfcaa2698950" prot="public" static="no" mutable="no">
+        <type>Distance</type>
+        <definition>Distance astrea::trace::ConstellationSettings::altitude</definition>
+        <argsstring></argsstring>
+        <name>altitude</name>
+        <qualifiedname>astrea::trace::ConstellationSettings::altitude</qualifiedname>
+        <briefdescription>
+<para>Altitude of the constellation. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/analysis/TraceConfig.hpp" line="54" column="14" bodyfile="astrea/trace/trace/analysis/TraceConfig.hpp" bodystart="54" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structastrea_1_1trace_1_1ConstellationSettings_1a7024c96dc09b2a67a5f2c8db55bfe1be" prot="public" static="no" mutable="no">
+        <type>Angle</type>
+        <definition>Angle astrea::trace::ConstellationSettings::inclination</definition>
+        <argsstring></argsstring>
+        <name>inclination</name>
+        <qualifiedname>astrea::trace::ConstellationSettings::inclination</qualifiedname>
+        <briefdescription>
+<para>Inclination of the constellation. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/analysis/TraceConfig.hpp" line="55" column="11" bodyfile="astrea/trace/trace/analysis/TraceConfig.hpp" bodystart="55" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structastrea_1_1trace_1_1ConstellationSettings_1a529554d42bf903e5c8cd2b6ca4b03b3c" prot="public" static="no" mutable="no">
+        <type>std::size_t</type>
+        <definition>std::size_t astrea::trace::ConstellationSettings::nSats</definition>
+        <argsstring></argsstring>
+        <name>nSats</name>
+        <qualifiedname>astrea::trace::ConstellationSettings::nSats</qualifiedname>
+        <briefdescription>
+<para>Number of satellites per plane. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/analysis/TraceConfig.hpp" line="56" column="17" bodyfile="astrea/trace/trace/analysis/TraceConfig.hpp" bodystart="56" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structastrea_1_1trace_1_1ConstellationSettings_1aa69acdcb024c3a229b80a6c40f9dbf50" prot="public" static="no" mutable="no">
+        <type>std::size_t</type>
+        <definition>std::size_t astrea::trace::ConstellationSettings::nPlanes</definition>
+        <argsstring></argsstring>
+        <name>nPlanes</name>
+        <qualifiedname>astrea::trace::ConstellationSettings::nPlanes</qualifiedname>
+        <briefdescription>
+<para>Number of planes in the constellation. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/analysis/TraceConfig.hpp" line="57" column="17" bodyfile="astrea/trace/trace/analysis/TraceConfig.hpp" bodystart="57" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structastrea_1_1trace_1_1ConstellationSettings_1a2d627a721a0aa7d8e9b3556a0c89b606" prot="public" static="no" mutable="no">
+        <type>Unitless</type>
+        <definition>Unitless astrea::trace::ConstellationSettings::phasing</definition>
+        <argsstring></argsstring>
+        <name>phasing</name>
+        <qualifiedname>astrea::trace::ConstellationSettings::phasing</qualifiedname>
+        <briefdescription>
+<para>Phasing parameter for walkers. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/analysis/TraceConfig.hpp" line="58" column="14" bodyfile="astrea/trace/trace/analysis/TraceConfig.hpp" bodystart="58" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structastrea_1_1trace_1_1ConstellationSettings_1a41f4fd476a176b0effc2c069d6dc69d8" prot="public" static="no" mutable="no">
+        <type>Angle</type>
+        <definition>Angle astrea::trace::ConstellationSettings::anchorRaan</definition>
+        <argsstring></argsstring>
+        <name>anchorRaan</name>
+        <qualifiedname>astrea::trace::ConstellationSettings::anchorRaan</qualifiedname>
+        <briefdescription>
+<para>Right ascension of the ascending node for the anchor satellite. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/analysis/TraceConfig.hpp" line="59" column="11" bodyfile="astrea/trace/trace/analysis/TraceConfig.hpp" bodystart="59" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structastrea_1_1trace_1_1ConstellationSettings_1a21f45e3257f732a6ceca2c2588e2c5f6" prot="public" static="no" mutable="no">
+        <type>Angle</type>
+        <definition>Angle astrea::trace::ConstellationSettings::anchorTrueAnomaly</definition>
+        <argsstring></argsstring>
+        <name>anchorTrueAnomaly</name>
+        <qualifiedname>astrea::trace::ConstellationSettings::anchorTrueAnomaly</qualifiedname>
+        <briefdescription>
+<para>True anomaly of the anchor satellite. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/analysis/TraceConfig.hpp" line="60" column="11" bodyfile="astrea/trace/trace/analysis/TraceConfig.hpp" bodystart="60" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="structastrea_1_1trace_1_1ConstellationSettings_1a3e559c697698ca8248645b60cb027ac2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>astrea::trace::ConstellationSettings::ConstellationSettings</definition>
+        <argsstring>()=default</argsstring>
+        <name>ConstellationSettings</name>
+        <qualifiedname>astrea::trace::ConstellationSettings::ConstellationSettings</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/analysis/TraceConfig.hpp" line="62" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="structastrea_1_1trace_1_1ConstellationSettings_1a0a8d6e13aa4a1d4459180eda85bfffb0" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>astrea::trace::ConstellationSettings::ConstellationSettings</definition>
+        <argsstring>(const nlohmann::json &amp;json)</argsstring>
+        <name>ConstellationSettings</name>
+        <qualifiedname>astrea::trace::ConstellationSettings::ConstellationSettings</qualifiedname>
+        <param>
+          <type>const nlohmann::json &amp;</type>
+          <declname>json</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/analysis/TraceConfig.hpp" line="64" column="5" bodyfile="astrea/trace/trace/analysis/TraceConfig.hpp" bodystart="64" bodyend="77"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="astrea/trace/trace/analysis/TraceConfig.hpp" line="53" column="1" bodyfile="astrea/trace/trace/analysis/TraceConfig.hpp" bodystart="53" bodyend="78"/>
+    <listofallmembers>
+      <member refid="structastrea_1_1trace_1_1ConstellationSettings_1aba5901ca57c588ca42a4cfcaa2698950" prot="public" virt="non-virtual"><scope>astrea::trace::ConstellationSettings</scope><name>altitude</name></member>
+      <member refid="structastrea_1_1trace_1_1ConstellationSettings_1a41f4fd476a176b0effc2c069d6dc69d8" prot="public" virt="non-virtual"><scope>astrea::trace::ConstellationSettings</scope><name>anchorRaan</name></member>
+      <member refid="structastrea_1_1trace_1_1ConstellationSettings_1a21f45e3257f732a6ceca2c2588e2c5f6" prot="public" virt="non-virtual"><scope>astrea::trace::ConstellationSettings</scope><name>anchorTrueAnomaly</name></member>
+      <member refid="structastrea_1_1trace_1_1ConstellationSettings_1a3e559c697698ca8248645b60cb027ac2" prot="public" virt="non-virtual"><scope>astrea::trace::ConstellationSettings</scope><name>ConstellationSettings</name></member>
+      <member refid="structastrea_1_1trace_1_1ConstellationSettings_1a0a8d6e13aa4a1d4459180eda85bfffb0" prot="public" virt="non-virtual"><scope>astrea::trace::ConstellationSettings</scope><name>ConstellationSettings</name></member>
+      <member refid="structastrea_1_1trace_1_1ConstellationSettings_1a7024c96dc09b2a67a5f2c8db55bfe1be" prot="public" virt="non-virtual"><scope>astrea::trace::ConstellationSettings</scope><name>inclination</name></member>
+      <member refid="structastrea_1_1trace_1_1ConstellationSettings_1aa69acdcb024c3a229b80a6c40f9dbf50" prot="public" virt="non-virtual"><scope>astrea::trace::ConstellationSettings</scope><name>nPlanes</name></member>
+      <member refid="structastrea_1_1trace_1_1ConstellationSettings_1a529554d42bf903e5c8cd2b6ca4b03b3c" prot="public" virt="non-virtual"><scope>astrea::trace::ConstellationSettings</scope><name>nSats</name></member>
+      <member refid="structastrea_1_1trace_1_1ConstellationSettings_1a2d627a721a0aa7d8e9b3556a0c89b606" prot="public" virt="non-virtual"><scope>astrea::trace::ConstellationSettings</scope><name>phasing</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

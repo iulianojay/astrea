@@ -16,7 +16,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/io/output.hpp" line="196" column="5" bodyfile="astrea/trace/trace/io/output.hpp" bodystart="196" bodyend="-1"/>
+        <location file="astrea/trace/trace/io/output.hpp" line="216" column="5" bodyfile="astrea/trace/trace/io/output.hpp" bodystart="216" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="private-attrib">
@@ -32,7 +32,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/io/output.hpp" line="199" column="21" bodyfile="astrea/trace/trace/io/output.hpp" bodystart="199" bodyend="-1"/>
+        <location file="astrea/trace/trace/io/output.hpp" line="219" column="21" bodyfile="astrea/trace/trace/io/output.hpp" bodystart="219" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="public-func">
@@ -76,7 +76,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/io/output.hpp" line="208" column="14" bodyfile="astrea/trace/trace/io/output.hpp" bodystart="208" bodyend="216"/>
+        <location file="astrea/trace/trace/io/output.hpp" line="228" column="14" bodyfile="astrea/trace/trace/io/output.hpp" bodystart="228" bodyend="236"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1trace_1_1DatabaseOutputManager_1a465fba42855e0fdd0ec1e2b69ddd3882" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
@@ -179,7 +179,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/io/output.hpp" line="246" column="10" bodyfile="astrea/trace/trace/io/output.hpp" bodystart="246" bodyend="260"/>
+        <location file="astrea/trace/trace/io/output.hpp" line="266" column="10" bodyfile="astrea/trace/trace/io/output.hpp" bodystart="266" bodyend="280"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1trace_1_1DatabaseOutputManager_1adce9a06eabe6d2919320b8cb27dea389" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
@@ -258,7 +258,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/io/output.hpp" line="272" column="10" bodyfile="astrea/trace/trace/io/output.hpp" bodystart="272" bodyend="298"/>
+        <location file="astrea/trace/trace/io/output.hpp" line="292" column="10" bodyfile="astrea/trace/trace/io/output.hpp" bodystart="292" bodyend="318"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1trace_1_1DatabaseOutputManager_1a5e3f7bc363092986a7600d6ec55ac5e9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
@@ -337,7 +337,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/io/output.hpp" line="310" column="10" bodyfile="astrea/trace/trace/io/output.hpp" bodystart="310" bodyend="352"/>
+        <location file="astrea/trace/trace/io/output.hpp" line="330" column="10" bodyfile="astrea/trace/trace/io/output.hpp" bodystart="330" bodyend="372"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1trace_1_1DatabaseOutputManager_1a3790f104d20d5e7679b26c042107cecb" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
@@ -416,7 +416,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/io/output.hpp" line="364" column="10" bodyfile="astrea/trace/trace/io/output.hpp" bodystart="364" bodyend="429"/>
+        <location file="astrea/trace/trace/io/output.hpp" line="384" column="10" bodyfile="astrea/trace/trace/io/output.hpp" bodystart="384" bodyend="449"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1trace_1_1DatabaseOutputManager_1a34a05a10accaefe024b7d62d9f5bfe9c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
@@ -495,7 +495,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/io/output.hpp" line="442" column="10" bodyfile="astrea/trace/trace/io/output.hpp" bodystart="442" bodyend="462"/>
+        <location file="astrea/trace/trace/io/output.hpp" line="462" column="10" bodyfile="astrea/trace/trace/io/output.hpp" bodystart="462" bodyend="482"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1trace_1_1DatabaseOutputManager_1ae53d25e7b49df57672590fe734c99341" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
@@ -573,7 +573,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/io/output.hpp" line="474" column="10" bodyfile="astrea/trace/trace/io/output.hpp" bodystart="474" bodyend="504"/>
+        <location file="astrea/trace/trace/io/output.hpp" line="494" column="10" bodyfile="astrea/trace/trace/io/output.hpp" bodystart="494" bodyend="524"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1trace_1_1DatabaseOutputManager_1aea71b7108a610fa95118b05689708197" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
@@ -616,7 +616,86 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/io/output.hpp" line="513" column="10" bodyfile="astrea/trace/trace/io/output.hpp" bodystart="513" bodyend="536"/>
+        <location file="astrea/trace/trace/io/output.hpp" line="533" column="10" bodyfile="astrea/trace/trace/io/output.hpp" bodystart="533" bodyend="556"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1DatabaseOutputManager_1ac14e7693bc6383a85463b19ee8b2e1af" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void astrea::trace::DatabaseOutputManager::save_ground_track</definition>
+        <argsstring>(const astro::Constellation&lt; T &gt; &amp;satellites, const astro::Date &amp;startDate, const astro::Date &amp;endDate, const Time &amp;resolution)</argsstring>
+        <name>save_ground_track</name>
+        <qualifiedname>astrea::trace::DatabaseOutputManager::save_ground_track</qualifiedname>
+        <param>
+          <type>const astro::Constellation&lt; T &gt; &amp;</type>
+          <declname>satellites</declname>
+        </param>
+        <param>
+          <type>const astro::Date &amp;</type>
+          <declname>startDate</declname>
+        </param>
+        <param>
+          <type>const astro::Date &amp;</type>
+          <declname>endDate</declname>
+        </param>
+        <param>
+          <type>const Time &amp;</type>
+          <declname>resolution</declname>
+        </param>
+        <briefdescription>
+<para>Saves satellite ground track positions (latitude/longitude over time) to the database. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The spacecraft type used in the Constellation. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>satellites</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The constellation whose satellites&apos; ground tracks are to be saved. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>startDate</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The start of the simulation epoch. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>endDate</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The end of the simulation epoch. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>resolution</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The time step between saved ground track points. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/io/output.hpp" line="568" column="10" bodyfile="astrea/trace/trace/io/output.hpp" bodystart="568" bodyend="610"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1trace_1_1DatabaseOutputManager_1af53f6128a50cadfbff7a146addfa9ea6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
@@ -632,7 +711,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/io/output.hpp" line="544" column="10" bodyfile="astrea/trace/trace/io/output.hpp" bodystart="544" bodyend="552"/>
+        <location file="astrea/trace/trace/io/output.hpp" line="618" column="10" bodyfile="astrea/trace/trace/io/output.hpp" bodystart="618" bodyend="627"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1trace_1_1DatabaseOutputManager_1a50fdf626954fc935336362a0995c93da" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>DatabaseStorage &amp;</type>
@@ -650,7 +729,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/io/output.hpp" line="559" column="21" bodyfile="astrea/trace/trace/io/output.hpp" bodystart="559" bodyend="559"/>
+        <location file="astrea/trace/trace/io/output.hpp" line="634" column="21" bodyfile="astrea/trace/trace/io/output.hpp" bodystart="634" bodyend="634"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1trace_1_1DatabaseOutputManager_1ae1aefd018b65271bd988703f059068b3" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>const DatabaseStorage &amp;</type>
@@ -668,7 +747,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/io/output.hpp" line="566" column="27" bodyfile="astrea/trace/trace/io/output.hpp" bodystart="566" bodyend="566"/>
+        <location file="astrea/trace/trace/io/output.hpp" line="641" column="27" bodyfile="astrea/trace/trace/io/output.hpp" bodystart="641" bodyend="641"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="private-func">
@@ -685,7 +764,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/io/output.hpp" line="222" column="10" bodyfile="astrea/trace/trace/io/output.hpp" bodystart="222" bodyend="231"/>
+        <location file="astrea/trace/trace/io/output.hpp" line="242" column="10" bodyfile="astrea/trace/trace/io/output.hpp" bodystart="242" bodyend="251"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
@@ -694,7 +773,7 @@
     <detaileddescription>
 <para>This class creates or loads a database on construction and provides methods to save various types of analysis data using the same database connection. </para>
     </detaileddescription>
-    <location file="astrea/trace/trace/io/output.hpp" line="194" column="1" bodyfile="astrea/trace/trace/io/output.hpp" bodystart="194" bodyend="567"/>
+    <location file="astrea/trace/trace/io/output.hpp" line="214" column="1" bodyfile="astrea/trace/trace/io/output.hpp" bodystart="214" bodyend="642"/>
     <listofallmembers>
       <member refid="classastrea_1_1trace_1_1DatabaseOutputManager_1adf01be5b735a1140ac54000a960a1f2e" prot="private" virt="non-virtual"><scope>astrea::trace::DatabaseOutputManager</scope><name>_storage</name></member>
       <member refid="classastrea_1_1trace_1_1DatabaseOutputManager_1af53f6128a50cadfbff7a146addfa9ea6" prot="public" virt="non-virtual"><scope>astrea::trace::DatabaseOutputManager</scope><name>clear_all_tables</name></member>
@@ -705,6 +784,7 @@
       <member refid="classastrea_1_1trace_1_1DatabaseOutputManager_1a84dec4f1f005f64eb5a1d34dbf32fd29" prot="private" virt="non-virtual"><scope>astrea::trace::DatabaseOutputManager</scope><name>optimize_database_performance</name></member>
       <member refid="classastrea_1_1trace_1_1DatabaseOutputManager_1a34a05a10accaefe024b7d62d9f5bfe9c" prot="public" virt="non-virtual"><scope>astrea::trace::DatabaseOutputManager</scope><name>save_access_metrics</name></member>
       <member refid="classastrea_1_1trace_1_1DatabaseOutputManager_1aea71b7108a610fa95118b05689708197" prot="public" virt="non-virtual"><scope>astrea::trace::DatabaseOutputManager</scope><name>save_ground_locations</name></member>
+      <member refid="classastrea_1_1trace_1_1DatabaseOutputManager_1ac14e7693bc6383a85463b19ee8b2e1af" prot="public" virt="non-virtual"><scope>astrea::trace::DatabaseOutputManager</scope><name>save_ground_track</name></member>
       <member refid="classastrea_1_1trace_1_1DatabaseOutputManager_1ae53d25e7b49df57672590fe734c99341" prot="public" virt="non-virtual"><scope>astrea::trace::DatabaseOutputManager</scope><name>save_number_of_folds</name></member>
       <member refid="classastrea_1_1trace_1_1DatabaseOutputManager_1a3790f104d20d5e7679b26c042107cecb" prot="public" virt="non-virtual"><scope>astrea::trace::DatabaseOutputManager</scope><name>save_receiver_riseset_metrics</name></member>
       <member refid="classastrea_1_1trace_1_1DatabaseOutputManager_1a465fba42855e0fdd0ec1e2b69ddd3882" prot="public" virt="non-virtual"><scope>astrea::trace::DatabaseOutputManager</scope><name>save_results</name></member>

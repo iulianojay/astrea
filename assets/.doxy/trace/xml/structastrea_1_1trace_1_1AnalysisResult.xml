@@ -1,0 +1,92 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="structastrea_1_1trace_1_1AnalysisResult" kind="struct" language="C++" prot="public">
+    <compoundname>astrea::trace::AnalysisResult</compoundname>
+    <includes refid="analysis_8hpp" local="no">analysis.hpp</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structastrea_1_1trace_1_1AnalysisResult_1a1b5563659c9782eacd773938126ed84d" prot="public" static="no" mutable="no">
+        <type><ref refid="classastrea_1_1trace_1_1AccessArray" kindref="compound">AccessArray</ref></type>
+        <definition>AccessArray astrea::trace::AnalysisResult::accesses</definition>
+        <argsstring></argsstring>
+        <name>accesses</name>
+        <qualifiedname>astrea::trace::AnalysisResult::accesses</qualifiedname>
+        <briefdescription>
+<para>Array of access events. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/analysis/analysis.hpp" line="33" column="17" bodyfile="astrea/trace/trace/analysis/analysis.hpp" bodystart="33" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structastrea_1_1trace_1_1AnalysisResult_1a82a90bd4b191ce82f80e542bd33ff50a" prot="public" static="no" mutable="no">
+        <type><ref refid="structastrea_1_1trace_1_1AccessStats" kindref="compound">AccessStats</ref></type>
+        <definition>AccessStats astrea::trace::AnalysisResult::stats</definition>
+        <argsstring></argsstring>
+        <name>stats</name>
+        <qualifiedname>astrea::trace::AnalysisResult::stats</qualifiedname>
+        <briefdescription>
+<para>Statistics of the access events. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/analysis/analysis.hpp" line="34" column="17" bodyfile="astrea/trace/trace/analysis/analysis.hpp" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structastrea_1_1trace_1_1AnalysisResult_1af22f6126e55ffe84b41c9cde091cc2b5" prot="public" static="no" mutable="no">
+        <type><ref refid="classastrea_1_1trace_1_1FoldsOfCoverage" kindref="compound">FoldsOfCoverage</ref></type>
+        <definition>FoldsOfCoverage astrea::trace::AnalysisResult::folds</definition>
+        <argsstring></argsstring>
+        <name>folds</name>
+        <qualifiedname>astrea::trace::AnalysisResult::folds</qualifiedname>
+        <briefdescription>
+<para>Folds of coverage. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/analysis/analysis.hpp" line="35" column="21" bodyfile="astrea/trace/trace/analysis/analysis.hpp" bodystart="35" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Aggregated results returned by run_trace_analysis. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="2">
+        <label>astrea::trace::AccessArray</label>
+        <link refid="classastrea_1_1trace_1_1AccessArray"/>
+      </node>
+      <node id="3">
+        <label>astrea::trace::AccessStats</label>
+        <link refid="structastrea_1_1trace_1_1AccessStats"/>
+      </node>
+      <node id="1">
+        <label>astrea::trace::AnalysisResult</label>
+        <link refid="structastrea_1_1trace_1_1AnalysisResult"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>accesses</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>stats</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>folds</edgelabel>
+        </childnode>
+      </node>
+      <node id="4">
+        <label>astrea::trace::FoldsOfCoverage</label>
+        <link refid="classastrea_1_1trace_1_1FoldsOfCoverage"/>
+      </node>
+    </collaborationgraph>
+    <location file="astrea/trace/trace/analysis/analysis.hpp" line="32" column="1" bodyfile="astrea/trace/trace/analysis/analysis.hpp" bodystart="32" bodyend="36"/>
+    <listofallmembers>
+      <member refid="structastrea_1_1trace_1_1AnalysisResult_1a1b5563659c9782eacd773938126ed84d" prot="public" virt="non-virtual"><scope>astrea::trace::AnalysisResult</scope><name>accesses</name></member>
+      <member refid="structastrea_1_1trace_1_1AnalysisResult_1af22f6126e55ffe84b41c9cde091cc2b5" prot="public" virt="non-virtual"><scope>astrea::trace::AnalysisResult</scope><name>folds</name></member>
+      <member refid="structastrea_1_1trace_1_1AnalysisResult_1a82a90bd4b191ce82f80e542bd33ff50a" prot="public" virt="non-virtual"><scope>astrea::trace::AnalysisResult</scope><name>stats</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

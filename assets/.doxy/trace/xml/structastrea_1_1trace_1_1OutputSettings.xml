@@ -1,0 +1,131 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="structastrea_1_1trace_1_1OutputSettings" kind="struct" language="C++" prot="public">
+    <compoundname>astrea::trace::OutputSettings</compoundname>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structastrea_1_1trace_1_1OutputSettings_1ad505da3fe338570f6092b3030a75e766" prot="public" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string astrea::trace::OutputSettings::outdir</definition>
+        <argsstring></argsstring>
+        <name>outdir</name>
+        <qualifiedname>astrea::trace::OutputSettings::outdir</qualifiedname>
+        <briefdescription>
+<para>Output directory for results. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/analysis/TraceConfig.hpp" line="143" column="17" bodyfile="astrea/trace/trace/analysis/TraceConfig.hpp" bodystart="143" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structastrea_1_1trace_1_1OutputSettings_1a4e5c272016897917bef667cbcde8f268" prot="public" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string astrea::trace::OutputSettings::dbName</definition>
+        <argsstring></argsstring>
+        <name>dbName</name>
+        <qualifiedname>astrea::trace::OutputSettings::dbName</qualifiedname>
+        <briefdescription>
+<para>Name of the output database. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/analysis/TraceConfig.hpp" line="144" column="17" bodyfile="astrea/trace/trace/analysis/TraceConfig.hpp" bodystart="144" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structastrea_1_1trace_1_1OutputSettings_1ae468ac0385e4c692b9a11bd8789a0c78" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool astrea::trace::OutputSettings::printProgress</definition>
+        <argsstring></argsstring>
+        <name>printProgress</name>
+        <qualifiedname>astrea::trace::OutputSettings::printProgress</qualifiedname>
+        <briefdescription>
+<para>Flag to print progress during analysis. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/analysis/TraceConfig.hpp" line="145" column="10" bodyfile="astrea/trace/trace/analysis/TraceConfig.hpp" bodystart="145" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structastrea_1_1trace_1_1OutputSettings_1a3a30a7913929b48f3d372e60bf44613d" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool astrea::trace::OutputSettings::runPlotter</definition>
+        <argsstring></argsstring>
+        <name>runPlotter</name>
+        <qualifiedname>astrea::trace::OutputSettings::runPlotter</qualifiedname>
+        <briefdescription>
+<para>Flag to run the plotter after analysis. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/analysis/TraceConfig.hpp" line="146" column="10" bodyfile="astrea/trace/trace/analysis/TraceConfig.hpp" bodystart="146" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structastrea_1_1trace_1_1OutputSettings_1a2777800c25b3122b1fee388abe96967d" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool astrea::trace::OutputSettings::saveResults</definition>
+        <argsstring></argsstring>
+        <name>saveResults</name>
+        <qualifiedname>astrea::trace::OutputSettings::saveResults</qualifiedname>
+        <briefdescription>
+<para>Flag to save results to the database. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/analysis/TraceConfig.hpp" line="147" column="10" bodyfile="astrea/trace/trace/analysis/TraceConfig.hpp" bodystart="147" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="structastrea_1_1trace_1_1OutputSettings_1a95fdb771d0c0e9b4e8b5e3707a737299" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>astrea::trace::OutputSettings::OutputSettings</definition>
+        <argsstring>()=default</argsstring>
+        <name>OutputSettings</name>
+        <qualifiedname>astrea::trace::OutputSettings::OutputSettings</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/analysis/TraceConfig.hpp" line="149" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="structastrea_1_1trace_1_1OutputSettings_1a7526b8a406df580b61f57c030d68a1f5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>astrea::trace::OutputSettings::OutputSettings</definition>
+        <argsstring>(const nlohmann::json &amp;json)</argsstring>
+        <name>OutputSettings</name>
+        <qualifiedname>astrea::trace::OutputSettings::OutputSettings</qualifiedname>
+        <param>
+          <type>const nlohmann::json &amp;</type>
+          <declname>json</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/analysis/TraceConfig.hpp" line="151" column="5" bodyfile="astrea/trace/trace/analysis/TraceConfig.hpp" bodystart="151" bodyend="158"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="astrea/trace/trace/analysis/TraceConfig.hpp" line="142" column="1" bodyfile="astrea/trace/trace/analysis/TraceConfig.hpp" bodystart="142" bodyend="159"/>
+    <listofallmembers>
+      <member refid="structastrea_1_1trace_1_1OutputSettings_1a4e5c272016897917bef667cbcde8f268" prot="public" virt="non-virtual"><scope>astrea::trace::OutputSettings</scope><name>dbName</name></member>
+      <member refid="structastrea_1_1trace_1_1OutputSettings_1ad505da3fe338570f6092b3030a75e766" prot="public" virt="non-virtual"><scope>astrea::trace::OutputSettings</scope><name>outdir</name></member>
+      <member refid="structastrea_1_1trace_1_1OutputSettings_1a95fdb771d0c0e9b4e8b5e3707a737299" prot="public" virt="non-virtual"><scope>astrea::trace::OutputSettings</scope><name>OutputSettings</name></member>
+      <member refid="structastrea_1_1trace_1_1OutputSettings_1a7526b8a406df580b61f57c030d68a1f5" prot="public" virt="non-virtual"><scope>astrea::trace::OutputSettings</scope><name>OutputSettings</name></member>
+      <member refid="structastrea_1_1trace_1_1OutputSettings_1ae468ac0385e4c692b9a11bd8789a0c78" prot="public" virt="non-virtual"><scope>astrea::trace::OutputSettings</scope><name>printProgress</name></member>
+      <member refid="structastrea_1_1trace_1_1OutputSettings_1a3a30a7913929b48f3d372e60bf44613d" prot="public" virt="non-virtual"><scope>astrea::trace::OutputSettings</scope><name>runPlotter</name></member>
+      <member refid="structastrea_1_1trace_1_1OutputSettings_1a2777800c25b3122b1fee388abe96967d" prot="public" virt="non-virtual"><scope>astrea::trace::OutputSettings</scope><name>saveResults</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

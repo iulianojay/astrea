@@ -14,13 +14,16 @@
 #include <filesystem>
 #include <fstream>
 #include <iostream>
+#include <numbers>
 #include <optional>
 #include <sstream>
 
 #include <mp-units/systems/si/units.h>
 #include <sqlite_orm/sqlite_orm.h>
 
+#include <astro/frames/definitions.hpp>
 #include <astro/platforms/space/Constellation.hpp>
+#include <astro/time/Date.hpp>
 
 #include <trace/analysis/stats/AccessStats.hpp>
 #include <trace/analysis/stats/FoldsOfCoverage.hpp>
@@ -91,6 +94,14 @@ struct GroundLocationRecord {
     double altitude;
 };
 
+struct GroundTrackRecord {
+    int id;
+    std::string satellite;
+    double timeSec;
+    double latitude;
+    double longitude;
+};
+
 // Create database storage with schema
 inline auto make_database_storage(const std::filesystem::path& dbPath)
 {
@@ -154,6 +165,15 @@ inline auto make_database_storage(const std::filesystem::path& dbPath)
             make_column("latitude", &GroundLocationRecord::latitude),
             make_column("longitude", &GroundLocationRecord::longitude),
             make_column("altitude", &GroundLocationRecord::altitude)
+        ),
+
+        make_table(
+            "ground_track",
+            make_column("id", &GroundTrackRecord::id, primary_key().autoincrement()),
+            make_column("satellite", &GroundTrackRecord::satellite),
+            make_column("time_sec", &GroundTrackRecord::timeSec),
+            make_column("latitude", &GroundTrackRecord::latitude),
+            make_column("longitude", &GroundTrackRecord::longitude)
         )
     );
 }
@@ -451,6 +471,51 @@ class DatabaseOutputManager {
         });
     }
 
+    template <typename T>
+    void save_ground_track(const astro::Constellation<T>& satellites, const astro::Date& startDate, const astro::Date& endDate, const Time& resolution)
+    {
+        using namespace mp_units::si::unit_symbols;
+
+        _storage.remove_all<GroundTrackRecord>();
+
+        // Build date vector matching AccessAnalyzer::create_date_vector()
+        std::vector<astro::Date> dates;
+        Time elapsed = 0.0 * s;
+        dates.push_back(startDate);
+        while (startDate + elapsed < endDate) {
+            if (startDate + elapsed + resolution >= endDate) { elapsed = endDate - startDate; }
+            else {
+                elapsed += resolution;
+            }
+            dates.push_back(startDate + elapsed);
+        }
+
+        _storage.transaction([&] {
+            for (const auto& shell : satellites.get_shells()) {
+                for (const auto& plane : shell.get_planes()) {
+                    for (const auto& sat : plane.get_all_spacecraft()) {
+                        const std::string& rawName = sat.get_name();
+                        const std::string satName  = rawName.empty() ? "SAT-" + std::to_string(sat.get_id()) : rawName;
+                        for (const auto& date : dates) {
+                            const auto posEci  = sat.get_position(date);
+                            const auto posEcef = posEci.template in_frame<astro::frames::earth::earth_fixed>(date);
+                            const double r     = posEcef.norm().numerical_value_in(km);
+                            const double z     = posEcef.get_z().numerical_value_in(km);
+                            const double y     = posEcef.get_y().numerical_value_in(km);
+                            const double x     = posEcef.get_x().numerical_value_in(km);
+                            constexpr double rad_to_deg = 180.0 / std::numbers::pi;
+                            const double latDeg         = std::asin(z / r) * rad_to_deg;
+                            const double lonDeg         = std::atan2(y, x) * rad_to_deg;
+                            const double timeSec        = (date - startDate).numerical_value_in(s);
+                            _storage.insert(GroundTrackRecord{ -1, satName, timeSec, latDeg, lonDeg });
+                        }
+                    }
+                }
+            }
+            return true;
+        });
+    }
+
     void clear_all_tables()
     {
         _storage.remove_all<RiseSetRecord>();
@@ -459,6 +524,7 @@ class DatabaseOutputManager {
         _storage.remove_all<AccessMetricsRecord>();
         _storage.remove_all<FoldsRecord>();
         _storage.remove_all<GroundLocationRecord>();
+        _storage.remove_all<GroundTrackRecord>();
     }
 
     DatabaseStorage& get_storage() { return _storage; }

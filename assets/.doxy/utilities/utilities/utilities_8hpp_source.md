@@ -11,9 +11,10 @@
 
 #pragma once
 
-#include <utilities/ProgressBar.hpp>
-#include <utilities/json_util.hpp>
 #include <utilities/IdProvider.hpp>
+#include <utilities/ProgressBar.hpp>
+#include <utilities/StopWatch.hpp>
+#include <utilities/json_util.hpp>
 #include <utilities/string_util.hpp>
 ```
 

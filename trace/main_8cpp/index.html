@@ -6241,48 +6241,13 @@ You're not viewing the latest version.
 <p><a href="../files/"><strong>FileList</strong></a> <strong>&gt;</strong> <a href="../dir_b5324400686b7cece921533bb760c87a/"><strong>astrea</strong></a> <strong>&gt;</strong> <a href="../dir_e30098dbada9bbfb44888190c04e2af0/"><strong>trace</strong></a> <strong>&gt;</strong> <a href="../dir_f04035ba8afac2675c737f654641e7b5/"><strong>trace</strong></a> <strong>&gt;</strong> <a href="../dir_ede4f445fc3b272c23592e211659caf8/"><strong>drivers</strong></a> <strong>&gt;</strong> <a href="./"><strong>main.cpp</strong></a></p>
 <p><a href="../main_8cpp_source/">Go to the source code of this file</a></p>
 <ul>
-<li><code>#include &lt;cstdlib&gt;</code></li>
-<li><code>#include &lt;filesystem&gt;</code></li>
 <li><code>#include &lt;fstream&gt;</code></li>
 <li><code>#include &lt;iostream&gt;</code></li>
-<li><code>#include &lt;ranges&gt;</code></li>
-<li><code>#include &lt;set&gt;</code></li>
-<li><code>#include &lt;sqlite3.h&gt;</code></li>
-<li><code>#include &lt;stdio.h&gt;</code></li>
+<li><code>#include &lt;string&gt;</code></li>
 <li><code>#include &lt;nlohmann/json.hpp&gt;</code></li>
-<li><code>#include &lt;sqlite_orm/sqlite_orm.h&gt;</code></li>
-<li><code>#include &lt;mp-units/systems/angular.h&gt;</code></li>
-<li><code>#include &lt;mp-units/systems/international.h&gt;</code></li>
-<li><code>#include &lt;mp-units/systems/isq.h&gt;</code></li>
-<li><code>#include &lt;mp-units/systems/si.h&gt;</code></li>
-<li><code>#include &lt;astro/astro.hpp&gt;</code></li>
-<li><code>#include &lt;snapshot/snapshot.hpp&gt;</code></li>
+<li><code>#include &lt;trace/analysis/analysis.hpp&gt;</code></li>
 <li><code>#include &lt;trace/trace.hpp&gt;</code></li>
-<li><code>#include &lt;trace/trace.macros.hpp&gt;</code></li>
 </ul>
-<h2 id="namespaces">Namespaces<a class="headerlink" href="#namespaces" title="Permanent link">&para;</a></h2>
-<table>
-<thead>
-<tr>
-<th style="text-align: right;">Type</th>
-<th style="text-align: left;">Name</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: right;">namespace</td>
-<td style="text-align: left;"><a href="../namespaceastro/"><strong>astro</strong></a> <br></td>
-</tr>
-<tr>
-<td style="text-align: right;">namespace</td>
-<td style="text-align: left;"><a href="../namespacesnapshot/"><strong>snapshot</strong></a> <br></td>
-</tr>
-<tr>
-<td style="text-align: right;">namespace</td>
-<td style="text-align: left;"><a href="../namespacesqlite__orm/"><strong>sqlite_orm</strong></a> <br></td>
-</tr>
-</tbody>
-</table>
 <h2 id="public-functions">Public Functions<a class="headerlink" href="#public-functions" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
@@ -6294,44 +6259,16 @@ You're not viewing the latest version.
 <tbody>
 <tr>
 <td style="text-align: right;">int</td>
-<td style="text-align: left;"><a href="#function-main"><strong>main</strong></a> () <br></td>
-</tr>
-<tr>
-<td style="text-align: right;"><a href="../classastrea_1_1trace_1_1AccessArray/"><strong>AccessArray</strong></a></td>
-<td style="text-align: left;"><a href="#function-propagate_and_run_access_analysis"><strong>propagate_and_run_access_analysis</strong></a> (astro::Constellation&lt; T &gt; &amp; constellation, U &amp; grounds, const Date &amp; startDate, const Time propTime, const Time accessResolution, const bool printProgress) <br></td>
-</tr>
-<tr>
-<td style="text-align: right;">int</td>
-<td style="text-align: left;"><a href="#function-trace_analysis"><strong>trace_analysis</strong></a> (const Time propTime, const Time accessResolution, const bool printProgress, const Angle gridSpacing) <br></td>
+<td style="text-align: left;"><a href="#function-main"><strong>main</strong></a> (int argc, char * argv) <br></td>
 </tr>
 </tbody>
 </table>
 <h2 id="public-functions-documentation">Public Functions Documentation<a class="headerlink" href="#public-functions-documentation" title="Permanent link">&para;</a></h2>
 <h3 id="function-main">function main<a class="headerlink" href="#function-main" title="Permanent link">&para;</a></h3>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">main</span><span class="w"> </span><span class="p">()</span><span class="w"> </span>
-</span></code></pre></div>
-<hr>
-
-<h3 id="function-propagate_and_run_access_analysis">function propagate_and_run_access_analysis<a class="headerlink" href="#function-propagate_and_run_access_analysis" title="Permanent link">&para;</a></h3>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">T</span><span class="p">,</span><span class="w"> </span><span class="k">typename</span><span class="w"> </span><span class="nc">U</span><span class="o">&gt;</span>
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="n">AccessArray</span><span class="w"> </span><span class="n">propagate_and_run_access_analysis</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="n">astro</span><span class="o">::</span><span class="n">Constellation</span><span class="o">&lt;</span><span class="w"> </span><span class="n">T</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">constellation</span><span class="p">,</span>
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">    </span><span class="n">U</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">grounds</span><span class="p">,</span>
-</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Date</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">startDate</span><span class="p">,</span>
-</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Time</span><span class="w"> </span><span class="n">propTime</span><span class="p">,</span>
-</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Time</span><span class="w"> </span><span class="n">accessResolution</span><span class="p">,</span>
-</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">printProgress</span>
-</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="p">)</span><span class="w"> </span>
-</span></code></pre></div>
-<hr>
-
-<h3 id="function-trace_analysis">function trace_analysis<a class="headerlink" href="#function-trace_analysis" title="Permanent link">&para;</a></h3>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">trace_analysis</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Time</span><span class="w"> </span><span class="n">propTime</span><span class="p">,</span>
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Time</span><span class="w"> </span><span class="n">accessResolution</span><span class="p">,</span>
-</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">printProgress</span><span class="p">,</span>
-</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Angle</span><span class="w"> </span><span class="n">gridSpacing</span>
-</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="p">)</span><span class="w"> </span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">main</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">argv</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="p">)</span><span class="w"> </span>
 </span></code></pre></div>
 <hr>
 

@@ -6334,7 +6334,7 @@ inclusion of Howard Hinnat's date library into the official C++ standard chrono 
 <p>MacOS and Apple Clang is currently untested but I expect it works since linux Clang works fine.</p>
 <p>Note: I have not extensively tested every compiler version on every platform, so please make an issue if you encounter any problems or have questions about compatibility.</p>
 <h2 id="installation-methods">Installation Methods<a class="headerlink" href="#installation-methods" title="Permanent link">&para;</a></h2>
-<h3 id="method-1-quick-install-recommended">Method 1: Quick Install (Recommended)<a class="headerlink" href="#method-1-quick-install-recommended" title="Permanent link">&para;</a></h3>
+<h3 id="method-1-building-through-make-recipes">Method 1: Building through Make recipes<a class="headerlink" href="#method-1-building-through-make-recipes" title="Permanent link">&para;</a></h3>
 <p>For most users, the quickest way to get started is using the provided Makefile automation:</p>
 <h4 id="1-setup-python-environment">1. Setup Python Environment<a class="headerlink" href="#1-setup-python-environment" title="Permanent link">&para;</a></h4>
 <p>Astrea uses Python scripts for code generation and build automation. Create the required environment:</p>
@@ -6348,11 +6348,10 @@ inclusion of Howard Hinnat's date library into the official C++ standard chrono 
 <div class="language-powershell highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="p">.\.</span><span class="n">venv</span><span class="p">\</span><span class="n">Scripts</span><span class="p">\</span><span class="n">Activate</span><span class="p">.</span><span class="n">ps1</span>
 </span></code></pre></div></p>
 <h4 id="3-build-and-install">3. Build and Install<a class="headerlink" href="#3-build-and-install" title="Permanent link">&para;</a></h4>
+<p>It is recommended to use Ninja for faster builds, but it is not required. If you don't have Ninja installed, you may have to play with the make configuration a bit to get it to behave. Otherwise, just run make to build and install with the default settings.</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>make
 </span></code></pre></div>
 <p>This builds Astrea in Release configuration and installs it to the <code>install/</code> directory.</p>
-<h3 id="method-2-custom-configuration">Method 2: Custom Configuration<a class="headerlink" href="#method-2-custom-configuration" title="Permanent link">&para;</a></h3>
-<p>For advanced users who need specific build configurations:</p>
 <h4 id="development-build-with-tests-and-examples">Development Build with Tests and Examples<a class="headerlink" href="#development-build-with-tests-and-examples" title="Permanent link">&para;</a></h4>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1"># Build debug configuration with tests and examples</span>
 </span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>make<span class="w"> </span>debug<span class="w"> </span>tests<span class="w"> </span>examples<span class="w"> </span>build
@@ -6397,19 +6396,20 @@ inclusion of Howard Hinnat's date library into the official C++ standard chrono 
 </tbody>
 </table>
 <h3 id="method-3-manual-cmake-build">Method 3: Manual CMake Build<a class="headerlink" href="#method-3-manual-cmake-build" title="Permanent link">&para;</a></h3>
-<p>For complete control over the build process, use CMake directly:</p>
+<p>For complete control over the build process, use CMake directly or configure your own CmakePresets.json file.</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1"># Configure the build</span>
 </span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>cmake<span class="w"> </span>-B<span class="w"> </span>build<span class="w"> </span>-S<span class="w"> </span>.<span class="w"> </span><span class="se">\</span>
 </span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">    </span>-DCMAKE_BUILD_TYPE<span class="o">=</span>Release<span class="w"> </span><span class="se">\</span>
 </span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">    </span>-DCMAKE_INSTALL_PREFIX<span class="o">=</span>install<span class="w"> </span><span class="se">\</span>
 </span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="w">    </span>-DASTREA_BUILD_TESTS<span class="o">=</span>ON<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="w">    </span>-DASTREA_BUILD_EXAMPLES<span class="o">=</span>ON
-</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>
-</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="c1"># Build the library</span>
-</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>cmake<span class="w"> </span>--build<span class="w"> </span>build<span class="w"> </span>--config<span class="w"> </span>Release<span class="w"> </span>--parallel
-</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>
-</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a><span class="c1"># Install to the specified directory</span>
-</span><span id="__span-6-12"><a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a>cmake<span class="w"> </span>--install<span class="w"> </span>build<span class="w"> </span>--config<span class="w"> </span>Release
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="w">    </span>-DASTREA_BUILD_EXAMPLES<span class="o">=</span>ON<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="w">    </span>...
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="c1"># Build the library</span>
+</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>cmake<span class="w"> </span>--build<span class="w"> </span>build<span class="w"> </span>--config<span class="w"> </span>Release<span class="w"> </span>--parallel
+</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>
+</span><span id="__span-6-12"><a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a><span class="c1"># Install to the specified directory</span>
+</span><span id="__span-6-13"><a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a>cmake<span class="w"> </span>--install<span class="w"> </span>build<span class="w"> </span>--config<span class="w"> </span>Release
 </span></code></pre></div>
 <h2 id="build-configuration-options">Build Configuration Options<a class="headerlink" href="#build-configuration-options" title="Permanent link">&para;</a></h2>
 <p>Astrea provides several CMake options to customize the build:</p>
@@ -6423,22 +6423,42 @@ inclusion of Howard Hinnat's date library into the official C++ standard chrono 
 </thead>
 <tbody>
 <tr>
-<td><code>ASTREA_BUILD_TESTS</code></td>
+<td><code>BUILD_TESTS</code></td>
 <td><code>OFF</code></td>
 <td>Build unit tests and integration tests</td>
 </tr>
 <tr>
-<td><code>ASTREA_BUILD_EXAMPLES</code></td>
+<td><code>BUILD_EXAMPLES</code></td>
 <td><code>OFF</code></td>
 <td>Build example applications</td>
+</tr>
+<tr>
+<td><code>BUILD_BENCHMARKS</code></td>
+<td><code>OFF</code></td>
+<td>Build benchmark applications</td>
+</tr>
+<tr>
+<td><code>BUILD_STATIC</code></td>
+<td><code>OFF</code></td>
+<td>Build static library</td>
+</tr>
+<tr>
+<td><code>BUILD_PROFILERS</code></td>
+<td><code>OFF</code></td>
+<td>Build profiler tools</td>
+</tr>
+<tr>
+<td><code>BUILD_6DOF_CHECKCASES</code></td>
+<td><code>OFF</code></td>
+<td>Build 6DOF checkcase tests</td>
 </tr>
 </tbody>
 </table>
 <p>Example with custom options:
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>cmake<span class="w"> </span>-B<span class="w"> </span>build<span class="w"> </span>-S<span class="w"> </span>.<span class="w"> </span><span class="se">\</span>
 </span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">    </span>-DCMAKE_BUILD_TYPE<span class="o">=</span>Debug<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">    </span>-DASTREA_BUILD_TESTS<span class="o">=</span>ON<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">    </span>-DASTREA_BUILD_EXAMPLES<span class="o">=</span>ON
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">    </span>-DBUILD_TESTS<span class="o">=</span>ON<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">    </span>-DBUILD_EXAMPLES<span class="o">=</span>ON
 </span></code></pre></div></p>
 <h2 id="verification">Verification<a class="headerlink" href="#verification" title="Permanent link">&para;</a></h2>
 <h3 id="running-tests">Running Tests<a class="headerlink" href="#running-tests" title="Permanent link">&para;</a></h3>
@@ -6457,81 +6477,119 @@ inclusion of Howard Hinnat's date library into the official C++ standard chrono 
 </span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="c1"># Or run individual examples</span>
 </span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="nb">cd</span><span class="w"> </span>&lt;path_to_example&gt;<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>.<span class="w"> </span>./bin/example_name
 </span></code></pre></div>
-<h3 id="integration-test">Integration Test<a class="headerlink" href="#integration-test" title="Permanent link">&para;</a></h3>
-<p>Create a simple test program to verify integration:</p>
-<div class="language-cpp highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;astro/astro.hpp&gt;</span>
-</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
-</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>
-</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">astrea</span><span class="o">::</span><span class="nn">astro</span><span class="p">;</span>
-</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">mp_units</span><span class="p">;</span>
-</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>
-</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="k">using</span><span class="w"> </span><span class="n">mp_units</span><span class="o">::</span><span class="n">si</span><span class="o">::</span><span class="n">unit_symbols</span><span class="o">::</span><span class="n">km</span><span class="p">;</span>
-</span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a><span class="k">using</span><span class="w"> </span><span class="n">mp_units</span><span class="o">::</span><span class="n">si</span><span class="o">::</span><span class="n">unit_symbols</span><span class="o">::</span><span class="n">s</span><span class="p">;</span>
-</span><span id="__span-10-9"><a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a><span class="k">using</span><span class="w"> </span><span class="n">mp_units</span><span class="o">::</span><span class="n">angular</span><span class="o">::</span><span class="n">unit_symbols</span><span class="o">::</span><span class="n">deg</span><span class="p">;</span>
-</span><span id="__span-10-10"><a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a>
-</span><span id="__span-10-11"><a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-10-12"><a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a><span class="w">    </span><span class="c1">// Create a simple Keplerian orbit</span>
-</span><span id="__span-10-13"><a id="__codelineno-10-13" name="__codelineno-10-13" href="#__codelineno-10-13"></a><span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">orbit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Keplerian</span><span class="p">(</span>
-</span><span id="__span-10-14"><a id="__codelineno-10-14" name="__codelineno-10-14" href="#__codelineno-10-14"></a><span class="w">        </span><span class="mf">7000.0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">km</span><span class="p">,</span><span class="w"> </span><span class="c1">// Semi-major axis</span>
-</span><span id="__span-10-15"><a id="__codelineno-10-15" name="__codelineno-10-15" href="#__codelineno-10-15"></a><span class="w">        </span><span class="mf">0.001</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">one</span><span class="p">,</span><span class="w"> </span><span class="c1">// Eccentricity</span>
-</span><span id="__span-10-16"><a id="__codelineno-10-16" name="__codelineno-10-16" href="#__codelineno-10-16"></a><span class="w">        </span><span class="mf">98.0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">deg</span><span class="p">,</span><span class="w">  </span><span class="c1">// Inclination</span>
-</span><span id="__span-10-17"><a id="__codelineno-10-17" name="__codelineno-10-17" href="#__codelineno-10-17"></a><span class="w">        </span><span class="mf">0.0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">deg</span><span class="p">,</span><span class="w">   </span><span class="c1">// Right ascension of ascending node</span>
-</span><span id="__span-10-18"><a id="__codelineno-10-18" name="__codelineno-10-18" href="#__codelineno-10-18"></a><span class="w">        </span><span class="mf">0.0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">deg</span><span class="p">,</span><span class="w">   </span><span class="c1">// Argument of perigee</span>
-</span><span id="__span-10-19"><a id="__codelineno-10-19" name="__codelineno-10-19" href="#__codelineno-10-19"></a><span class="w">        </span><span class="mf">0.0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">deg</span><span class="w">    </span><span class="c1">// True anomaly</span>
-</span><span id="__span-10-20"><a id="__codelineno-10-20" name="__codelineno-10-20" href="#__codelineno-10-20"></a><span class="w">    </span><span class="p">)</span>
-</span><span id="__span-10-21"><a id="__codelineno-10-21" name="__codelineno-10-21" href="#__codelineno-10-21"></a>
-</span><span id="__span-10-22"><a id="__codelineno-10-22" name="__codelineno-10-22" href="#__codelineno-10-22"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Astrea integration successful!&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-</span><span id="__span-10-23"><a id="__codelineno-10-23" name="__codelineno-10-23" href="#__codelineno-10-23"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Orbit: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">orbit</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-</span><span id="__span-10-24"><a id="__codelineno-10-24" name="__codelineno-10-24" href="#__codelineno-10-24"></a>
-</span><span id="__span-10-25"><a id="__codelineno-10-25" name="__codelineno-10-25" href="#__codelineno-10-25"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
-</span><span id="__span-10-26"><a id="__codelineno-10-26" name="__codelineno-10-26" href="#__codelineno-10-26"></a><span class="p">}</span>
-</span></code></pre></div>
 <h2 id="usage-in-your-projects">Usage in Your Projects<a class="headerlink" href="#usage-in-your-projects" title="Permanent link">&para;</a></h2>
 <h3 id="cmake-integration">CMake Integration<a class="headerlink" href="#cmake-integration" title="Permanent link">&para;</a></h3>
 <p>Add Astrea to your CMake project using <code>find_package</code>:</p>
-<div class="language-cmake highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="nb">cmake_minimum_required</span><span class="p">(</span><span class="s">VERSION</span><span class="w"> </span><span class="s">3.20</span><span class="p">)</span>
-</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="nb">project</span><span class="p">(</span><span class="s">MyAstrodynamicsProject</span><span class="p">)</span>
-</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>
-</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="c"># Find Astrea</span>
-</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="nb">find_package</span><span class="p">(</span><span class="s">astrea</span><span class="w"> </span><span class="s">REQUIRED</span><span class="p">)</span>
-</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>
-</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a><span class="c"># Create your executable</span>
-</span><span id="__span-11-8"><a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a><span class="nb">add_executable</span><span class="p">(</span><span class="s">my_app</span><span class="w"> </span><span class="s">main.cpp</span><span class="p">)</span>
-</span><span id="__span-11-9"><a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a>
-</span><span id="__span-11-10"><a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a><span class="c"># Link against Astrea</span>
-</span><span id="__span-11-11"><a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a><span class="nb">target_link_libraries</span><span class="p">(</span><span class="s">my_app</span><span class="w"> </span><span class="s">PRIVATE</span><span class="w"> </span><span class="s">astrea::astro</span><span class="p">)</span>
-</span><span id="__span-11-12"><a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a>
-</span><span id="__span-11-13"><a id="__codelineno-11-13" name="__codelineno-11-13" href="#__codelineno-11-13"></a><span class="c"># Set C++ standard</span>
-</span><span id="__span-11-14"><a id="__codelineno-11-14" name="__codelineno-11-14" href="#__codelineno-11-14"></a><span class="nb">target_compile_features</span><span class="p">(</span><span class="s">my_app</span><span class="w"> </span><span class="s">PRIVATE</span><span class="w"> </span><span class="s">cxx_std_23</span><span class="p">)</span>
+<div class="language-cmake highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="nb">cmake_minimum_required</span><span class="p">(</span><span class="s">VERSION</span><span class="w"> </span><span class="s">3.20</span><span class="p">)</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="nb">project</span><span class="p">(</span><span class="s">MyAstrodynamicsProject</span><span class="p">)</span>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="c"># Find Astrea</span>
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="nb">find_package</span><span class="p">(</span><span class="s">astrea</span><span class="w"> </span><span class="s">REQUIRED</span><span class="p">)</span>
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>
+</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="c"># Create your executable</span>
+</span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a><span class="nb">add_executable</span><span class="p">(</span><span class="s">my_app</span><span class="w"> </span><span class="s">main.cpp</span><span class="p">)</span>
+</span><span id="__span-10-9"><a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a>
+</span><span id="__span-10-10"><a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a><span class="c"># Link against Astrea astro library</span>
+</span><span id="__span-10-11"><a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a><span class="nb">target_link_libraries</span><span class="p">(</span><span class="s">my_app</span><span class="w"> </span><span class="s">PRIVATE</span><span class="w"> </span><span class="s">astrea::astro</span><span class="p">)</span>
+</span><span id="__span-10-12"><a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a>
+</span><span id="__span-10-13"><a id="__codelineno-10-13" name="__codelineno-10-13" href="#__codelineno-10-13"></a><span class="c"># Set C++ standard</span>
+</span><span id="__span-10-14"><a id="__codelineno-10-14" name="__codelineno-10-14" href="#__codelineno-10-14"></a><span class="nb">target_compile_features</span><span class="p">(</span><span class="s">my_app</span><span class="w"> </span><span class="s">PRIVATE</span><span class="w"> </span><span class="s">cxx_std_23</span><span class="p">)</span>
 </span></code></pre></div>
 <h3 id="using-add_subdirectory">Using add_subdirectory<a class="headerlink" href="#using-add_subdirectory" title="Permanent link">&para;</a></h3>
 <p>If you prefer to include Astrea as a subproject:</p>
-<div class="language-cmake highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="c"># Add Astrea as subdirectory</span>
-</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="nb">add_subdirectory</span><span class="p">(</span><span class="s">extern/astrea/astrea</span><span class="p">)</span>
-</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>
-</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="c"># Link against the components you need</span>
-</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="nb">target_link_libraries</span><span class="p">(</span><span class="s">my_app</span><span class="w"> </span><span class="s">PRIVATE</span>
-</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a><span class="w">    </span><span class="s">astrea::astro</span>
-</span><span id="__span-12-7"><a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a><span class="w">    </span><span class="s">astrea::math</span>
-</span><span id="__span-12-8"><a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a><span class="w">    </span><span class="s">astrea::trace</span>
-</span><span id="__span-12-9"><a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a><span class="p">)</span>
+<div class="language-cmake highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="c"># Add Astrea as subdirectory</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="nb">add_subdirectory</span><span class="p">(</span><span class="s">extern/astrea/astrea</span><span class="p">)</span>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="c"># Link against the components you need</span>
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="nb">target_link_libraries</span><span class="p">(</span><span class="s">my_app</span><span class="w"> </span><span class="s">PRIVATE</span>
+</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="w">    </span><span class="s">astrea::astro</span>
+</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a><span class="w">    </span><span class="s">astrea::math</span>
+</span><span id="__span-11-8"><a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a><span class="w">    </span><span class="s">astrea::trace</span>
+</span><span id="__span-11-9"><a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a><span class="p">)</span>
+</span><span id="__span-11-10"><a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a>
+</span><span id="__span-11-11"><a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a><span class="c"># Or link against the entire library</span>
+</span><span id="__span-11-12"><a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a><span class="nb">target_link_libraries</span><span class="p">(</span><span class="s">my_app</span><span class="w"> </span><span class="s">PRIVATE</span><span class="w"> </span><span class="s">astrea::astrea</span><span class="p">)</span>
 </span></code></pre></div>
-<h2 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">&para;</a></h2>
-<h3 id="common-issues">Common Issues<a class="headerlink" href="#common-issues" title="Permanent link">&para;</a></h3>
-<p><strong>Compiler Version</strong>: Ensure your compiler supports C++23. Use <code>gcc --version</code>.</p>
+<p>It is not recommended to use <code>add_subdirectory</code> for production builds, as it can lead to longer build times and larger binaries. Use <code>find_package</code> for installed versions of Astrea.</p>
 <p><strong>Python Environment</strong>: If the Python environment fails to activate, try:
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>make<span class="w"> </span>python_env
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>make<span class="w"> </span>python_env
 </span></code></pre></div></p>
 <p><strong>Missing Dependencies</strong>: Astrea automatically downloads dependencies via CMake's FetchContent (via CPM). Dependencies
 cached locally in the <code>.cpm-cache</code>folder and should only be downloaded once. Ensure you have internet access during the
 first build.</p>
 <p><strong>Build Failures</strong>: For detailed build output:
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>make<span class="w"> </span>verbose<span class="w"> </span>install
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>make<span class="w"> </span>verbose<span class="w"> </span>install
 </span></code></pre></div></p>
-<h3 id="memory-debugging">Memory Debugging<a class="headerlink" href="#memory-debugging" title="Permanent link">&para;</a></h3>
-<p>For memory issue diagnosis:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>make<span class="w"> </span>debug<span class="w"> </span>install
+<h2 id="shrinking-the-size-of-astrea">Shrinking the size of Astrea<a class="headerlink" href="#shrinking-the-size-of-astrea" title="Permanent link">&para;</a></h2>
+<p>Astrea is designed to be modular, allowing users to include only the components they need. For example, if you only need the core astrodynamics functionality, you can link against <code>astrea::astro</code> without pulling in the access analysis or satellite database components. This helps keep compile times and binary sizes down for users who don't need the full functionality of the project.</p>
+<p>To help with binary size, users can also consider using analytic approximations for ephemerides instead of the compiled Chebyshev polynomials, which can be quite large. To control which of the default <code>CelestialBody</code>s are compiled with these polynomial files, you can use the CMake <code>BUILD_&lt;BODY&gt;</code> options. For example, if you only need Earth ephemerides, you can disable the others:</p>
+<p><div class="language-bash highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>cmake<span class="w"> </span>-B<span class="w"> </span>build<span class="w"> </span>-S<span class="w"> </span>.<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="w">    </span>-DCMAKE_BUILD_TYPE<span class="o">=</span>Release<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="w">    </span>-DCMAKE_INSTALL_PREFIX<span class="o">=</span>install<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="w">    </span>-DASTREA_BUILD_TESTS<span class="o">=</span>OFF<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a><span class="w">    </span>-DASTREA_BUILD_EXAMPLES<span class="o">=</span>OFF<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-14-6"><a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a><span class="w">    </span>-DBUILD_SUN<span class="o">=</span>OFF<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-14-7"><a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a><span class="w">    </span>-DBUILD_MOON<span class="o">=</span>OFF
 </span></code></pre></div>
+By default, Earth, Sun, and Moon are set to <code>ON</code> and all others are set to <code>OFF</code>. These ephemerides are built into <code>${CMAKE_INSTALL_PREFIX}/include/astro/ephemerides</code> by default.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>BUILD_SUN</code></td>
+<td><code>ON</code></td>
+<td>Build Sun ephemerides</td>
+</tr>
+<tr>
+<td><code>BUILD_MERCURY</code></td>
+<td><code>OFF</code></td>
+<td>Build Mercury system ephemerides</td>
+</tr>
+<tr>
+<td><code>BUILD_EARTH</code></td>
+<td><code>ON</code></td>
+<td>Build Earth system ephemerides</td>
+</tr>
+<tr>
+<td><code>BUILD_MARS</code></td>
+<td><code>OFF</code></td>
+<td>Build Mars system ephemerides</td>
+</tr>
+<tr>
+<td><code>BUILD_VENUS</code></td>
+<td><code>OFF</code></td>
+<td>Build Venus system ephemerides</td>
+</tr>
+<tr>
+<td><code>BUILD_JUPITER</code></td>
+<td><code>OFF</code></td>
+<td>Build Jupiter system ephemerides</td>
+</tr>
+<tr>
+<td><code>BUILD_SATURN</code></td>
+<td><code>OFF</code></td>
+<td>Build Saturn system ephemerides</td>
+</tr>
+<tr>
+<td><code>BUILD_URANUS</code></td>
+<td><code>OFF</code></td>
+<td>Build Uranus system ephemerides</td>
+</tr>
+<tr>
+<td><code>BUILD_NEPTUNE</code></td>
+<td><code>OFF</code></td>
+<td>Build Neptune system ephemerides</td>
+</tr>
+</tbody>
+</table>
+<h3 id="6dof-verification-test-data">6DoF Verification Test Data<a class="headerlink" href="#6dof-verification-test-data" title="Permanent link">&para;</a></h3>
+<p>For users with a local clone of Astrea, a good chunk of the project size comes from some NASA 6DoF verification test data. Users that are not interested in running this, but would like to keep the source code around can simply delete <code>./astrea/astro/tests/nasa_6dof_checkcases/data</code> folder.</p>
 <h2 id="next-steps">Next Steps<a class="headerlink" href="#next-steps" title="Permanent link">&para;</a></h2>
 <p>After successful installation:</p>
 <ol>
@@ -6539,19 +6597,6 @@ first build.</p>
 <li>Review the <a href="../api/index.md">API Documentation</a> for detailed interface descriptions</li>
 <li>Join the community discussions on <a href="https://github.com/iulianojay/astrea">GitHub</a></li>
 </ol>
-<h2 id="shrinking-the-size-of-astrea">Shrinking the size of Astrea<a class="headerlink" href="#shrinking-the-size-of-astrea" title="Permanent link">&para;</a></h2>
-<p>Astrea is designed to be modular, allowing users to include only the components they need. For example, if you only need the core astrodynamics functionality, you can link against <code>astrea::astro</code> without pulling in the access analysis or satellite database components. This helps keep compile times and binary sizes down for users who don't need the full functionality of the project.</p>
-<p>To help with binary size, users can also consider using analytic approximations for ephemerides instead of the compiled Chebyshev polynomials, which can be quite large. To control which of the default <code>CelestialBody</code>s are compiled with these polynomial files, you can use the CMake <code>BUILD_&lt;BODY&gt;</code> options. For example, if you only need Earth ephemerides, you can disable the others:</p>
-<p><div class="language-bash highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>cmake<span class="w"> </span>-B<span class="w"> </span>build<span class="w"> </span>-S<span class="w"> </span>.<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="w">    </span>-DCMAKE_BUILD_TYPE<span class="o">=</span>Release<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="w">    </span>-DCMAKE_INSTALL_PREFIX<span class="o">=</span>install<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="w">    </span>-DASTREA_BUILD_TESTS<span class="o">=</span>OFF<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-16-5"><a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a><span class="w">    </span>-DASTREA_BUILD_EXAMPLES<span class="o">=</span>OFF<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-16-6"><a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a><span class="w">    </span>-DBUILD_SUN<span class="o">=</span>OFF<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-16-7"><a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a><span class="w">    </span>-DBUILD_MOON<span class="o">=</span>OFF
-</span></code></pre></div>
-By default, Earth, Sun, and Moon are set to <code>ON</code> and all others are set to <code>OFF</code>.</p>
-<p>For users with a local clone of Astrea, a good chunk of the project size comes from some NASA 6DoF verification test data. Users that are not interested in running this, but would like to keep the source code around can simply delete <code>./astrea/astro/tests/nasa_6dof_checkcases/data</code> folder.</p>
 
 
 

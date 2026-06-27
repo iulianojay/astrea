@@ -6262,6 +6262,10 @@ You're not viewing the latest version.
 <td style="text-align: left;"><a href="#function-contains"><strong>contains</strong></a> (const astro::CartesianVector&lt; Distance, astro::frames::earth::icrf &gt; &amp; boresight, const astro::CartesianVector&lt; Distance, astro::frames::earth::icrf &gt; &amp; target) const = 0<br><em>Checks if a target is within the field of view.</em></td>
 </tr>
 <tr>
+<td style="text-align: right;">virtual Angle</td>
+<td style="text-align: left;"><a href="#function-max_half_angle"><strong>max_half_angle</strong></a> () const<br><em>Returns the maximum off-boresight half-angle for this field of view.</em></td>
+</tr>
+<tr>
 <td style="text-align: right;"></td>
 <td style="text-align: left;"><a href="#function-fieldofview"><strong>~FieldOfView</strong></a> () = default<br><em>Virtual destructor for</em> <a href="./"><em><strong>FieldOfView</strong></em></a> <em>.</em></td>
 </tr>
@@ -6294,9 +6298,18 @@ You're not viewing the latest version.
 <p>false If the target is outside the field of view. </p>
 <hr>
 
+<h3 id="function-max_half_angle">function max_half_angle<a class="headerlink" href="#function-max_half_angle" title="Permanent link">&para;</a></h3>
+<p><em>Returns the maximum off-boresight half-angle for this field of view.</em> 
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kr">inline</span><span class="w"> </span><span class="k">virtual</span><span class="w"> </span><span class="n">Angle</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">trace</span><span class="o">::</span><span class="n">FieldOfView</span><span class="o">::</span><span class="n">max_half_angle</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+</span></code></pre></div></p>
+<p>Used for spatial index culling to determine the maximum sensor footprint radius. The default returns π/2 rad, a conservative bound covering the full hemisphere.</p>
+<p><strong>Returns:</strong></p>
+<p>Angle Maximum off-boresight half-angle. </p>
+<hr>
+
 <h3 id="function-fieldofview_1">function ~FieldOfView<a class="headerlink" href="#function-fieldofview_1" title="Permanent link">&para;</a></h3>
 <p><em>Virtual destructor for</em> <a href="./"><em><strong>FieldOfView</strong></em></a> <em>.</em>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">astrea</span><span class="o">::</span><span class="n">trace</span><span class="o">::</span><span class="n">FieldOfView</span><span class="o">::~</span><span class="n">FieldOfView</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">default</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">astrea</span><span class="o">::</span><span class="n">trace</span><span class="o">::</span><span class="n">FieldOfView</span><span class="o">::~</span><span class="n">FieldOfView</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">default</span>
 </span></code></pre></div></p>
 <p>Ensures proper cleanup of derived classes. </p>
 <hr>

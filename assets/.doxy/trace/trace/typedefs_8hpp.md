@@ -11,6 +11,10 @@
 _Contains type definitions for the astrea access library._ [More...](#detailed-description)
 
 * `#include <cstdint>`
+* `#include <astro/astro.fwd.hpp>`
+* `#include <astro/frames.hpp>`
+* `#include <astro/systems.hpp>`
+* `#include <trace/trace.fwd.hpp>`
 
 
 

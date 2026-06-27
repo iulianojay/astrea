@@ -22,6 +22,10 @@
     <member refid="classastrea_1_1trace_1_1AccessAnalyzer_1ae3168714ac59e979a1ebc8efd867f5b4" kind="function"><name>cache_ground_points</name></member>
     <member refid="classastrea_1_1trace_1_1AccessAnalyzer_1aa47d54ece5bf38dcff32300bcbe8cc5f" kind="function"><name>cache_ground_points</name></member>
     <member refid="classastrea_1_1trace_1_1AccessAnalyzer_1a35fed5ffc965812dc852a7e70689748e" kind="function"><name>build_access_info</name></member>
+    <member refid="classastrea_1_1trace_1_1AccessAnalyzer_1a9b545598f7205fee6609e45747d876e4" kind="function"><name>build_ground_access_info</name></member>
+    <member refid="classastrea_1_1trace_1_1AccessAnalyzer_1af67cf57bf8e47bfde6caaf59aeaaea2f" kind="function"><name>compute_candidate_ground_points</name></member>
+    <member refid="classastrea_1_1trace_1_1AccessAnalyzer_1a8909ac37bfe197afe7bd167a9603edb6" kind="function"><name>compute_sensor_boresights</name></member>
+    <member refid="classastrea_1_1trace_1_1AccessAnalyzer_1a6e92247eac99b56537e47b788c0ff24a" kind="function"><name>find_sensor_accesses_precomputed</name></member>
   </compound>
   <compound refid="classastrea_1_1trace_1_1AccessArray" kind="class"><name>astrea::trace::AccessArray</name>
     <member refid="classastrea_1_1trace_1_1AccessArray_1a1ab2e729bec95a5d07ca0b34a0dfe6da" kind="typedef"><name>iterator</name></member>
@@ -87,6 +91,18 @@
     <member refid="structastrea_1_1trace_1_1AccessStats_1ae8d1ab178a4e91a29d8a8be14645f784" kind="function"><name>get_hyper_statistics</name></member>
     <member refid="structastrea_1_1trace_1_1AccessStats_1a948f90216cef5614c78eaf3ce9e579c6" kind="function"><name>get_hyper_statistics</name></member>
   </compound>
+  <compound refid="structastrea_1_1trace_1_1AnalysisResult" kind="struct"><name>astrea::trace::AnalysisResult</name>
+    <member refid="structastrea_1_1trace_1_1AnalysisResult_1a1b5563659c9782eacd773938126ed84d" kind="variable"><name>accesses</name></member>
+    <member refid="structastrea_1_1trace_1_1AnalysisResult_1a82a90bd4b191ce82f80e542bd33ff50a" kind="variable"><name>stats</name></member>
+    <member refid="structastrea_1_1trace_1_1AnalysisResult_1af22f6126e55ffe84b41c9cde091cc2b5" kind="variable"><name>folds</name></member>
+  </compound>
+  <compound refid="structastrea_1_1trace_1_1AnalysisSettings" kind="struct"><name>astrea::trace::AnalysisSettings</name>
+    <member refid="structastrea_1_1trace_1_1AnalysisSettings_1a5a4a0be73ac818e5ac83f4c6fa8cfdb8" kind="variable"><name>simTime</name></member>
+    <member refid="structastrea_1_1trace_1_1AnalysisSettings_1a6cd58da49e266064a1f853bcfe6fd9cb" kind="variable"><name>resolution</name></member>
+    <member refid="structastrea_1_1trace_1_1AnalysisSettings_1ac191fb12d55563bf85cf85774b1cc317" kind="variable"><name>epoch</name></member>
+    <member refid="structastrea_1_1trace_1_1AnalysisSettings_1a4410301bf3fad95051932e7b2c1bcd93" kind="function"><name>AnalysisSettings</name></member>
+    <member refid="structastrea_1_1trace_1_1AnalysisSettings_1ae7f026162f40462c726317da1577ba53" kind="function"><name>AnalysisSettings</name></member>
+  </compound>
   <compound refid="classastrea_1_1trace_1_1Antenna" kind="class"><name>astrea::trace::Antenna</name>
     <member refid="classastrea_1_1trace_1_1Antenna_1adcf98fecc8a061a81663b440c4936b8d" kind="variable"><name>_parameters</name></member>
     <member refid="classastrea_1_1trace_1_1Antenna_1af56cada8d90b9777886a01aa88745b36" kind="function"><name>Antenna</name></member>
@@ -145,9 +161,22 @@
   </compound>
   <compound refid="classastrea_1_1trace_1_1CircularFieldOfView" kind="class"><name>astrea::trace::CircularFieldOfView</name>
     <member refid="classastrea_1_1trace_1_1CircularFieldOfView_1ae4ba3fd97987e5963a9c1c45537559e3" kind="variable"><name>_halfConeAngle</name></member>
+    <member refid="classastrea_1_1trace_1_1CircularFieldOfView_1a495b89cecec1748f24e8e6a20274a2b4" kind="variable"><name>_cosHalfConeAngle</name></member>
     <member refid="classastrea_1_1trace_1_1CircularFieldOfView_1a8c942bd929e950fe2d7cfcba6d01fb14" kind="function"><name>CircularFieldOfView</name></member>
     <member refid="classastrea_1_1trace_1_1CircularFieldOfView_1af5553e9b512fcf92a1a8c27ce761bc59" kind="function"><name>~CircularFieldOfView</name></member>
     <member refid="classastrea_1_1trace_1_1CircularFieldOfView_1a6653ae918da14811e07ab37e4fd99cc6" kind="function"><name>contains</name></member>
+    <member refid="classastrea_1_1trace_1_1CircularFieldOfView_1a29ff07554d053330704102a5b50ba291" kind="function"><name>max_half_angle</name></member>
+  </compound>
+  <compound refid="structastrea_1_1trace_1_1ConstellationSettings" kind="struct"><name>astrea::trace::ConstellationSettings</name>
+    <member refid="structastrea_1_1trace_1_1ConstellationSettings_1aba5901ca57c588ca42a4cfcaa2698950" kind="variable"><name>altitude</name></member>
+    <member refid="structastrea_1_1trace_1_1ConstellationSettings_1a7024c96dc09b2a67a5f2c8db55bfe1be" kind="variable"><name>inclination</name></member>
+    <member refid="structastrea_1_1trace_1_1ConstellationSettings_1a529554d42bf903e5c8cd2b6ca4b03b3c" kind="variable"><name>nSats</name></member>
+    <member refid="structastrea_1_1trace_1_1ConstellationSettings_1aa69acdcb024c3a229b80a6c40f9dbf50" kind="variable"><name>nPlanes</name></member>
+    <member refid="structastrea_1_1trace_1_1ConstellationSettings_1a2d627a721a0aa7d8e9b3556a0c89b606" kind="variable"><name>phasing</name></member>
+    <member refid="structastrea_1_1trace_1_1ConstellationSettings_1a41f4fd476a176b0effc2c069d6dc69d8" kind="variable"><name>anchorRaan</name></member>
+    <member refid="structastrea_1_1trace_1_1ConstellationSettings_1a21f45e3257f732a6ceca2c2588e2c5f6" kind="variable"><name>anchorTrueAnomaly</name></member>
+    <member refid="structastrea_1_1trace_1_1ConstellationSettings_1a3e559c697698ca8248645b60cb027ac2" kind="function"><name>ConstellationSettings</name></member>
+    <member refid="structastrea_1_1trace_1_1ConstellationSettings_1a0a8d6e13aa4a1d4459180eda85bfffb0" kind="function"><name>ConstellationSettings</name></member>
   </compound>
   <compound refid="classastrea_1_1trace_1_1DatabaseOutputManager" kind="class"><name>astrea::trace::DatabaseOutputManager</name>
     <member refid="classastrea_1_1trace_1_1DatabaseOutputManager_1a671eff6532fe81d7f4147c3be482121f" kind="typedef"><name>DatabaseStorage</name></member>
@@ -160,6 +189,7 @@
     <member refid="classastrea_1_1trace_1_1DatabaseOutputManager_1a34a05a10accaefe024b7d62d9f5bfe9c" kind="function"><name>save_access_metrics</name></member>
     <member refid="classastrea_1_1trace_1_1DatabaseOutputManager_1ae53d25e7b49df57672590fe734c99341" kind="function"><name>save_number_of_folds</name></member>
     <member refid="classastrea_1_1trace_1_1DatabaseOutputManager_1aea71b7108a610fa95118b05689708197" kind="function"><name>save_ground_locations</name></member>
+    <member refid="classastrea_1_1trace_1_1DatabaseOutputManager_1ac14e7693bc6383a85463b19ee8b2e1af" kind="function"><name>save_ground_track</name></member>
     <member refid="classastrea_1_1trace_1_1DatabaseOutputManager_1af53f6128a50cadfbff7a146addfa9ea6" kind="function"><name>clear_all_tables</name></member>
     <member refid="classastrea_1_1trace_1_1DatabaseOutputManager_1a50fdf626954fc935336362a0995c93da" kind="function"><name>get_storage</name></member>
     <member refid="classastrea_1_1trace_1_1DatabaseOutputManager_1ae1aefd018b65271bd988703f059068b3" kind="function"><name>get_storage</name></member>
@@ -169,6 +199,7 @@
     <member refid="classastrea_1_1trace_1_1FieldOfView_1a81d04b924ac5862bd4b38072237bc3bb" kind="function"><name>FieldOfView</name></member>
     <member refid="classastrea_1_1trace_1_1FieldOfView_1a7a73e0a1fcad3b8d1e6ac0cd7c13f0e1" kind="function"><name>~FieldOfView</name></member>
     <member refid="classastrea_1_1trace_1_1FieldOfView_1a0137e9279399302d4288927fcb874a76" kind="function"><name>contains</name></member>
+    <member refid="classastrea_1_1trace_1_1FieldOfView_1aecfc83f0135def39939cce4108753388" kind="function"><name>max_half_angle</name></member>
   </compound>
   <compound refid="classastrea_1_1trace_1_1FoldsOfCoverage" kind="class"><name>astrea::trace::FoldsOfCoverage</name>
     <member refid="classastrea_1_1trace_1_1FoldsOfCoverage_1a285ab2f128bfe074c1a37fb8968e633c" kind="typedef"><name>iterator</name></member>
@@ -209,7 +240,7 @@
     <member refid="classastrea_1_1trace_1_1Grid_1a6de392ddd70ff7c54aa5e21117629629" kind="variable"><name>_gridType</name></member>
     <member refid="classastrea_1_1trace_1_1Grid_1aff380ed3514ec9e771b49d5d45b6bdd8" kind="function"><name>Grid</name></member>
     <member refid="classastrea_1_1trace_1_1Grid_1a6b7d7882a6a844fc69cdba172c1a6cf7" kind="function"><name>Grid</name></member>
-    <member refid="classastrea_1_1trace_1_1Grid_1a504359e8d6b75a04b42c8f5cb37664da" kind="function"><name>Grid</name></member>
+    <member refid="classastrea_1_1trace_1_1Grid_1a1dd954787e336643d596da01101486b5" kind="function"><name>Grid</name></member>
     <member refid="classastrea_1_1trace_1_1Grid_1a78f005879911c679594aec33f0e633e0" kind="function"><name>~Grid</name></member>
     <member refid="classastrea_1_1trace_1_1Grid_1aa7c30c713ee89466365308c27419300c" kind="function"><name>get_grid_type</name></member>
     <member refid="classastrea_1_1trace_1_1Grid_1a1588d27b21c5a998d78498cf2e650592" kind="function"><name>size</name></member>
@@ -221,11 +252,26 @@
     <member refid="classastrea_1_1trace_1_1Grid_1a529d9b7eff1f603172e7dd2ac89b94e1" kind="function"><name>cend</name></member>
     <member refid="classastrea_1_1trace_1_1Grid_1a21109fe65138aeb4f47ccc249e0d4896" kind="function"><name>operator[]</name></member>
     <member refid="classastrea_1_1trace_1_1Grid_1a27f6672c9d0701e18b1da48d0134ced5" kind="function"><name>operator[]</name></member>
-    <member refid="classastrea_1_1trace_1_1Grid_1a9e1ba7cc3937bc2a10fefe85799619f5" kind="function"><name>build_grid</name></member>
-    <member refid="classastrea_1_1trace_1_1Grid_1a39af620654f212b4d2a6796d7cd55f68" kind="function"><name>build_uniform_grid</name></member>
-    <member refid="classastrea_1_1trace_1_1Grid_1a18e2de547c1375560a8bdf7adde9184f" kind="function"><name>build_equal_area_grid</name></member>
-    <member refid="classastrea_1_1trace_1_1Grid_1a3ac3ea278e8de7ee57cf98a7fd2f16cd" kind="function"><name>build_weighted_grid</name></member>
-    <member refid="classastrea_1_1trace_1_1Grid_1aa885d1bf62fe797a4794ff91ff09a69a" kind="function"><name>create_uniformly_spaced_vector</name></member>
+    <member refid="classastrea_1_1trace_1_1Grid_1ab0a813994412d76466f4f13fc70c2c9d" kind="function"><name>push_back</name></member>
+    <member refid="classastrea_1_1trace_1_1Grid_1a5a64b9cb642cf708a8dc3d361bf1d3d2" kind="function"><name>push_back</name></member>
+    <member refid="classastrea_1_1trace_1_1Grid_1a73d67d024ef701e034bde9dc032eca23" kind="function"><name>emplace_back</name></member>
+    <member refid="classastrea_1_1trace_1_1Grid_1a7d7497358a050283445659255f66e37d" kind="function"><name>emplace_back</name></member>
+    <member refid="classastrea_1_1trace_1_1Grid_1a39a04edb59e647d08165df841e17bf3d" kind="function"><name>clear</name></member>
+    <member refid="classastrea_1_1trace_1_1Grid_1a80fb9380305a062453d52b4f3b4700b9" kind="function"><name>reserve</name></member>
+    <member refid="classastrea_1_1trace_1_1Grid_1a8c6bec5121f3cfd339038663ec282728" kind="function"><name>resize</name></member>
+    <member refid="classastrea_1_1trace_1_1Grid_1abb81a0eb74b38f318671a26d29ec404e" kind="function"><name>build_grid</name></member>
+    <member refid="classastrea_1_1trace_1_1Grid_1afd7ecbbd230c44308e232464abad10e9" kind="function"><name>build_uniform_grid</name></member>
+    <member refid="classastrea_1_1trace_1_1Grid_1a0e3d714968b39b9cb34caa884a8c4876" kind="function"><name>build_equal_area_grid</name></member>
+    <member refid="classastrea_1_1trace_1_1Grid_1ae840d969df0fc620ccaa2b0ea4681e0c" kind="function"><name>build_weighted_grid</name></member>
+    <member refid="classastrea_1_1trace_1_1Grid_1a2b68869f2d082da495c01c7a22613630" kind="function"><name>create_uniformly_spaced_vector</name></member>
+  </compound>
+  <compound refid="structastrea_1_1trace_1_1GridSettings" kind="struct"><name>astrea::trace::GridSettings</name>
+    <member refid="structastrea_1_1trace_1_1GridSettings_1a0f5f217e1a4fbaea014044dd7796ab95" kind="variable"><name>type</name></member>
+    <member refid="structastrea_1_1trace_1_1GridSettings_1ab7ccac92988018b84724760f533a4de5" kind="variable"><name>spacing</name></member>
+    <member refid="structastrea_1_1trace_1_1GridSettings_1a94911ea80bd8835fa758db85d5daa957" kind="variable"><name>latRange</name></member>
+    <member refid="structastrea_1_1trace_1_1GridSettings_1ad8efddf5f6e0fee3f6e64f994d814001" kind="variable"><name>lonRange</name></member>
+    <member refid="structastrea_1_1trace_1_1GridSettings_1adbc2d04551bf94cd343c909c090c70b9" kind="function"><name>GridSettings</name></member>
+    <member refid="structastrea_1_1trace_1_1GridSettings_1a38fec2af578c41b5b790fd7fa594adb1" kind="function"><name>GridSettings</name></member>
   </compound>
   <compound refid="classastrea_1_1trace_1_1GroundArchitecture" kind="class"><name>astrea::trace::GroundArchitecture</name>
     <member refid="classastrea_1_1trace_1_1GroundArchitecture_1ab8f5656df866403bb544064e54a64135" kind="typedef"><name>Station</name></member>
@@ -268,6 +314,11 @@
     <member refid="classastrea_1_1trace_1_1GroundPoint_1a99f3633bd696b98c70ca8d5378721f40" kind="function"><name>get_velocity</name></member>
     <member refid="classastrea_1_1trace_1_1GroundPoint_1a1be41e8fab572b8c2003654f0f9011cb" kind="function"><name>get_name</name></member>
   </compound>
+  <compound refid="structastrea_1_1trace_1_1GroundSettings" kind="struct"><name>astrea::trace::GroundSettings</name>
+    <member refid="structastrea_1_1trace_1_1GroundSettings_1a7b3ee6cce05254947f9b554b4d4bc48c" kind="variable"><name>gridSettings</name></member>
+    <member refid="structastrea_1_1trace_1_1GroundSettings_1ada5ba6c9a84c97d6c5671a0ca8e2751b" kind="function"><name>GroundSettings</name></member>
+    <member refid="structastrea_1_1trace_1_1GroundSettings_1a199f1804f59c0407feb4ff520773d11a" kind="function"><name>GroundSettings</name></member>
+  </compound>
   <compound refid="classastrea_1_1trace_1_1GroundStation" kind="class"><name>astrea::trace::GroundStation</name>
     <member refid="classastrea_1_1trace_1_1GroundStation_1a785e919803895e4d71648c080864a264" kind="typedef"><name>Base</name></member>
     <member refid="classastrea_1_1trace_1_1GroundStation_1a9754b1867a21768ebdcc7edaa2301996" kind="variable"><name>_name</name></member>
@@ -278,6 +329,13 @@
     <member refid="classastrea_1_1trace_1_1GroundStation_1aa02547e4156317182568b01a7a0cfbbc" kind="function"><name>get_position</name></member>
     <member refid="classastrea_1_1trace_1_1GroundStation_1a6a57aad4c21f2f5912d91c3a84558d8d" kind="function"><name>get_position</name></member>
     <member refid="classastrea_1_1trace_1_1GroundStation_1ab297f3c3442da7955d6713b0c69b805d" kind="function"><name>get_velocity</name></member>
+  </compound>
+  <compound refid="structastrea_1_1trace_1_1GroundTrackRecord" kind="struct"><name>astrea::trace::GroundTrackRecord</name>
+    <member refid="structastrea_1_1trace_1_1GroundTrackRecord_1a13768f3ce703544641d7d5d590eaad2e" kind="variable"><name>id</name></member>
+    <member refid="structastrea_1_1trace_1_1GroundTrackRecord_1a511d2d398abb1cc002face78934625f0" kind="variable"><name>satellite</name></member>
+    <member refid="structastrea_1_1trace_1_1GroundTrackRecord_1af07fc872997bce07b7e6e3ddf61b0981" kind="variable"><name>timeSec</name></member>
+    <member refid="structastrea_1_1trace_1_1GroundTrackRecord_1a636fbc87693f70be289c6672380c722f" kind="variable"><name>latitude</name></member>
+    <member refid="structastrea_1_1trace_1_1GroundTrackRecord_1a4efc179cb322511799935b9c8b1a9e4d" kind="variable"><name>longitude</name></member>
   </compound>
   <compound refid="structstd_1_1hash_3_01astrea_1_1trace_1_1IdPair_01_4" kind="struct"><name>std::hash&lt; astrea::trace::IdPair &gt;</name>
     <member refid="structstd_1_1hash_3_01astrea_1_1trace_1_1IdPair_01_4_1a133b540d71b76006280cafa3f0e519b6" kind="function"><name>operator()</name></member>
@@ -304,6 +362,19 @@
   <compound refid="structstd_1_1less_3_01astrea_1_1trace_1_1IdPair_01_4" kind="struct"><name>std::less&lt; astrea::trace::IdPair &gt;</name>
     <member refid="structstd_1_1less_3_01astrea_1_1trace_1_1IdPair_01_4_1a27f6193445ffd68d9703ed20d7060ce5" kind="function"><name>operator()</name></member>
   </compound>
+  <compound refid="structastrea_1_1trace_1_1OutputSettings" kind="struct"><name>astrea::trace::OutputSettings</name>
+    <member refid="structastrea_1_1trace_1_1OutputSettings_1ad505da3fe338570f6092b3030a75e766" kind="variable"><name>outdir</name></member>
+    <member refid="structastrea_1_1trace_1_1OutputSettings_1a4e5c272016897917bef667cbcde8f268" kind="variable"><name>dbName</name></member>
+    <member refid="structastrea_1_1trace_1_1OutputSettings_1ae468ac0385e4c692b9a11bd8789a0c78" kind="variable"><name>printProgress</name></member>
+    <member refid="structastrea_1_1trace_1_1OutputSettings_1a3a30a7913929b48f3d372e60bf44613d" kind="variable"><name>runPlotter</name></member>
+    <member refid="structastrea_1_1trace_1_1OutputSettings_1a2777800c25b3122b1fee388abe96967d" kind="variable"><name>saveResults</name></member>
+    <member refid="structastrea_1_1trace_1_1OutputSettings_1a95fdb771d0c0e9b4e8b5e3707a737299" kind="function"><name>OutputSettings</name></member>
+    <member refid="structastrea_1_1trace_1_1OutputSettings_1a7526b8a406df580b61f57c030d68a1f5" kind="function"><name>OutputSettings</name></member>
+  </compound>
+  <compound refid="structastrea_1_1trace_1_1PairResult" kind="struct"><name>astrea::trace::PairResult</name>
+    <member refid="structastrea_1_1trace_1_1PairResult_1a04054732a5af6699c40c478aad31c808" kind="variable"><name>platformAccess</name></member>
+    <member refid="structastrea_1_1trace_1_1PairResult_1a61c20d042ebb8b617018aa0f31ced637" kind="variable"><name>sensorAccesses</name></member>
+  </compound>
   <compound refid="classastrea_1_1trace_1_1plotting_1_1Plotter" kind="class"><name>astrea::trace::plotting::Plotter</name>
     <member refid="classastrea_1_1trace_1_1plotting_1_1Plotter_1a8997faec015e1c29c5729f9bef388111" kind="variable"><name>_font</name></member>
     <member refid="classastrea_1_1trace_1_1plotting_1_1Plotter_1ac2afac3ece794930b0f4cc78b9906a86" kind="variable"><name>_fontSize</name></member>
@@ -326,6 +397,7 @@
     <member refid="classastrea_1_1trace_1_1PolygonalFieldOfView_1aed8b1a5d877e7fa808f2fc131fde4e7f" kind="function"><name>PolygonalFieldOfView</name></member>
     <member refid="classastrea_1_1trace_1_1PolygonalFieldOfView_1ae1ad07b56ac0f6c8918df5677eeb3180" kind="function"><name>~PolygonalFieldOfView</name></member>
     <member refid="classastrea_1_1trace_1_1PolygonalFieldOfView_1a94e74f07885ff88b1099a5280eb65b4d" kind="function"><name>contains</name></member>
+    <member refid="classastrea_1_1trace_1_1PolygonalFieldOfView_1ac3b66a99fa67b73802346d2693cdcdc7" kind="function"><name>max_half_angle</name></member>
     <member refid="classastrea_1_1trace_1_1PolygonalFieldOfView_1a7c1c848443028ab3115d6886b48571d7" kind="function"><name>find_min_and_max_angles</name></member>
     <member refid="classastrea_1_1trace_1_1PolygonalFieldOfView_1a31473aee8361b7f92306307fdab8a78b" kind="function"><name>build_polygon</name></member>
   </compound>
@@ -372,6 +444,7 @@
     <member refid="classastrea_1_1trace_1_1RiseSetArray_1a8ba466172a3405522dfbbbb55b48c2e9" kind="function"><name>prepend</name></member>
     <member refid="classastrea_1_1trace_1_1RiseSetArray_1a146b49a45e3632b66df3686b1d06be7e" kind="function"><name>insert</name></member>
     <member refid="classastrea_1_1trace_1_1RiseSetArray_1a795066aa5e664a0aad0a32ea1c297b4c" kind="function"><name>size</name></member>
+    <member refid="classastrea_1_1trace_1_1RiseSetArray_1a4861ebe2498dd59d3dc351fba554c49a" kind="function"><name>empty</name></member>
     <member refid="classastrea_1_1trace_1_1RiseSetArray_1a1c56340dbb5ec8bbd4a4014915c742e6" kind="function"><name>operator[]</name></member>
     <member refid="classastrea_1_1trace_1_1RiseSetArray_1a011b5296303c7b0e424dbb70eaa4c2b1" kind="function"><name>operator[]</name></member>
     <member refid="classastrea_1_1trace_1_1RiseSetArray_1af3afc442dea26e5e93caaf8a8034a129" kind="function"><name>operator==</name></member>
@@ -437,12 +510,21 @@
     <member refid="classastrea_1_1trace_1_1SensorParameters_1a83c96f21e33ce56aebc0705d7237613f" kind="function"><name>get_fov</name></member>
     <member refid="classastrea_1_1trace_1_1SensorParameters_1a5c7a6dc96910faed8201d4e65e4bd07a" kind="function"><name>set_fov</name></member>
   </compound>
+  <compound refid="structastrea_1_1trace_1_1SensorSettings" kind="struct"><name>astrea::trace::SensorSettings</name>
+    <member refid="structastrea_1_1trace_1_1SensorSettings_1aa43bb34337df2ad1f3db51b6ec42a834" kind="variable"><name>name</name></member>
+    <member refid="structastrea_1_1trace_1_1SensorSettings_1a16cde7b3418aec3f4811bc02b57dcc52" kind="variable"><name>type</name></member>
+    <member refid="structastrea_1_1trace_1_1SensorSettings_1a332104afbd06a285832ab6aa17ef8076" kind="variable"><name>halfConeAngle</name></member>
+    <member refid="structastrea_1_1trace_1_1SensorSettings_1a19cf9e9ec2c05b3f342319c17653fe02" kind="variable"><name>boresight</name></member>
+    <member refid="structastrea_1_1trace_1_1SensorSettings_1a500533fb35582e91df29b6a59b580a0d" kind="function"><name>SensorSettings</name></member>
+    <member refid="structastrea_1_1trace_1_1SensorSettings_1a441d5b7ebb51d9aa30ed70a8c065c5d3" kind="function"><name>SensorSettings</name></member>
+  </compound>
   <compound refid="classastrea_1_1trace_1_1SpatialIndex" kind="class"><name>astrea::trace::SpatialIndex</name>
     <member refid="classastrea_1_1trace_1_1SpatialIndex_1acb60b2ea0841034a727ca09c9e82dd1f" kind="variable"><name>_binSize</name></member>
     <member refid="classastrea_1_1trace_1_1SpatialIndex_1af38215452e02f94b50cb35c39ff61745" kind="variable"><name>_nLatBins</name></member>
     <member refid="classastrea_1_1trace_1_1SpatialIndex_1a3ec01f9b2a9a6a628e72993c67de6787" kind="variable"><name>_nLonBins</name></member>
     <member refid="classastrea_1_1trace_1_1SpatialIndex_1ad785294f5324a7ef7551d7686c6a205f" kind="variable"><name>_bins</name></member>
     <member refid="classastrea_1_1trace_1_1SpatialIndex_1ac72aec45982c8518811bbd407f47bca9" kind="function"><name>SpatialIndex</name></member>
+    <member refid="classastrea_1_1trace_1_1SpatialIndex_1a5f31e8859e370796d3a99e2d24f49c05" kind="function"><name>SpatialIndex</name></member>
     <member refid="classastrea_1_1trace_1_1SpatialIndex_1a555bbe79be77a9e687ef302284507ac4" kind="function"><name>add_ground_point</name></member>
     <member refid="classastrea_1_1trace_1_1SpatialIndex_1a81f9dc5b3184191688ffd1f58df618c7" kind="function"><name>get_nearby_ground_points</name></member>
     <member refid="classastrea_1_1trace_1_1SpatialIndex_1a6d8e8863c305d152fc236bb4adb11e20" kind="function"><name>get_all_ground_points</name></member>
@@ -463,6 +545,15 @@
     <member refid="structastrea_1_1trace_1_1Stats_1aaa8a7573c96844e92c56d406cd0c1f45" kind="function"><name>Stats</name></member>
     <member refid="structastrea_1_1trace_1_1Stats_1a4642d8f303b592714a60fd787d14f428" kind="function"><name>to_string_vector</name></member>
     <member refid="structastrea_1_1trace_1_1Stats_1ab29cd3fb1920d42f43d94a0b8e91d367" kind="function"><name>size</name></member>
+  </compound>
+  <compound refid="structastrea_1_1trace_1_1TraceConfig" kind="struct"><name>astrea::trace::TraceConfig</name>
+    <member refid="structastrea_1_1trace_1_1TraceConfig_1a0546da7bf4c36c98ea0b31910e7471f6" kind="variable"><name>analysisSettings</name></member>
+    <member refid="structastrea_1_1trace_1_1TraceConfig_1ac73bcbd566100435f0146079215ecb91" kind="variable"><name>constellationSettings</name></member>
+    <member refid="structastrea_1_1trace_1_1TraceConfig_1abfd39c34653869842a8d8603727b3aab" kind="variable"><name>sensorSettings</name></member>
+    <member refid="structastrea_1_1trace_1_1TraceConfig_1a4c616cae4df69ca8a32a88fdde4027f2" kind="variable"><name>groundSettings</name></member>
+    <member refid="structastrea_1_1trace_1_1TraceConfig_1a2364d93586c5719c7e07dc0330221a9d" kind="variable"><name>outputSettings</name></member>
+    <member refid="structastrea_1_1trace_1_1TraceConfig_1a3e19b5c03aaab5ce82ae3fda88af97b1" kind="function"><name>TraceConfig</name></member>
+    <member refid="structastrea_1_1trace_1_1TraceConfig_1a07b186aa5299ec858a42b30ef9d8026a" kind="function"><name>TraceConfig</name></member>
   </compound>
   <compound refid="classastrea_1_1trace_1_1Viewer" kind="class"><name>astrea::trace::Viewer</name>
     <member refid="classastrea_1_1trace_1_1Viewer_1a3820234d00fc9bb42c33f9d84339f63e" kind="function"><name>Viewer</name></member>
@@ -503,17 +594,20 @@
     <member refid="enums_8hpp_1a1e1be345d5d6782a8568d0550e205a4aa9cc6ba9c88824eab6a1726f408bc517e" kind="enumvalue"><name>WEIGHTED_NS</name></member>
     <member refid="enums_8hpp_1a1e1be345d5d6782a8568d0550e205a4aa6da717095ae1c345cef22912acb622a7" kind="enumvalue"><name>WEIGHTED_EW</name></member>
     <member refid="enums_8hpp_1a1e1be345d5d6782a8568d0550e205a4aaa60a6a471c0681e5a49c4f5d00f6bc5a" kind="enumvalue"><name>MANUAL</name></member>
-    <member refid="AccessAnalyzer_8hpp_1a493336b6b50db8040b47a0a21834fe84" kind="typedef"><name>EciRadiusVec</name></member>
-    <member refid="AccessAnalyzer_8hpp_1ac59daa29795c0d97b4e314d99c8c9a99" kind="typedef"><name>EcefRadiusVec</name></member>
-    <member refid="AccessAnalyzer_8hpp_1aba5ee9c881a98fb1fdd78cce68fdc378" kind="typedef"><name>DateVector</name></member>
-    <member refid="AccessAnalyzer_8hpp_1a6577a4b6ee15f2bc01192d4e545278e5" kind="typedef"><name>ViewerConstellation</name></member>
-    <member refid="AccessAnalyzer_8hpp_1a6e01e2965d87fedc35dcd4b9da8bf8fa" kind="typedef"><name>ViewerRefVec</name></member>
-    <member refid="AccessAnalyzer_8hpp_1a58a4b43ed97587828db93eab81e2fafb" kind="typedef"><name>GroundStationRefVec</name></member>
-    <member refid="AccessAnalyzer_8hpp_1a343001e7eb8323eb6ee3ff0f3c3a35a4" kind="typedef"><name>GroundPointRefVec</name></member>
-    <member refid="AccessAnalyzer_8hpp_1ad15872bf64dbeccb549ccad1986be66d" kind="typedef"><name>PairVec</name></member>
+    <member refid="Plotter_8hpp_1a6577a4b6ee15f2bc01192d4e545278e5" kind="typedef"><name>ViewerConstellation</name></member>
+    <member refid="PositionCache_8hpp_1afe793f30269c8d02fd6e9d89649ff7c9" kind="typedef"><name>EcefRadiusVec</name></member>
+    <member refid="CircularFieldOfView_8cpp_1ab92356a7ce98b80bb5915098ef85764a" kind="typedef"><name>EciRadiusVec</name></member>
     <member refid="Sensor_8hpp_1a28fece046a4c051e91df7fe3f68f9e11" kind="typedef"><name>SensorPlatform</name></member>
     <member refid="typedefs_8hpp_1a433642ed3c2878bcde24598bdf615893" kind="typedef"><name>EnumType</name></member>
     <member refid="typedefs_8hpp_1a1f5b508729d8e61c11b9fadb9f101bb4" kind="typedef"><name>LatLon</name></member>
+    <member refid="typedefs_8hpp_1adb267a53d491ab1e364558578b7aba52" kind="typedef"><name>LatRange</name></member>
+    <member refid="typedefs_8hpp_1aef2e871664c74fcdae58e1b6db70c9b5" kind="typedef"><name>LonRange</name></member>
+    <member refid="typedefs_8hpp_1aba5ee9c881a98fb1fdd78cce68fdc378" kind="typedef"><name>DateVector</name></member>
+    <member refid="typedefs_8hpp_1a6e01e2965d87fedc35dcd4b9da8bf8fa" kind="typedef"><name>ViewerRefVec</name></member>
+    <member refid="typedefs_8hpp_1a58a4b43ed97587828db93eab81e2fafb" kind="typedef"><name>GroundStationRefVec</name></member>
+    <member refid="typedefs_8hpp_1a343001e7eb8323eb6ee3ff0f3c3a35a4" kind="typedef"><name>GroundPointRefVec</name></member>
+    <member refid="typedefs_8hpp_1ad15872bf64dbeccb549ccad1986be66d" kind="typedef"><name>PairVec</name></member>
+    <member refid="typedefs_8hpp_1adec0f497a15d2aa470499fdac84de9f7" kind="typedef"><name>BoresightTable</name></member>
     <member refid="Stats_8hpp_1aa805cd28f9825ba3b62958800fb83217" kind="variable"><name>DEFAULT_PERCENTILES</name></member>
     <member refid="enums_8hpp_1a744e83b01257ef3f1e19038d58f195cf" kind="variable"><name>ALL_STAT_TYPES</name></member>
     <member refid="enums_8hpp_1a60efc7c8de173c11236e5c400d6760ad" kind="variable"><name>STAT_TYPE_STRINGS</name></member>
@@ -523,6 +617,8 @@
     <member refid="enums_8hpp_1ad5f1557d53b44f838eb11362a9ca6afd" kind="variable"><name>ACCESS_METRIC_STRINGS</name></member>
     <member refid="enums_8hpp_1ab3e624800826bc5d851135ea3f3285de" kind="variable"><name>ALL_GRID_TYPES</name></member>
     <member refid="enums_8hpp_1af6ffba5dd455b32385610d986959e62e" kind="variable"><name>GRID_TYPE_STRINGS</name></member>
+    <member refid="analysis_8cpp_1a1e87b5657ee989bec5220a6c223e7c19" kind="function"><name>propagate_and_run_access_analysis</name></member>
+    <member refid="analysis_8cpp_1a06af763838a86e16bcb5e87723f541ac" kind="function"><name>run_trace_analysis</name></member>
     <member refid="output_8hpp_1ac3903f13ee71145329aeae88d4e04524" kind="function"><name>make_database_storage</name></member>
     <member refid="output_8hpp_1ab8f1484c3c3060a93c3bb00c1efb73a1" kind="function"><name>get_object_name_from_id</name></member>
     <member refid="FieldOfView_8cpp_1affa19a9aa828894a4617995076cfcb38" kind="function"><name>calculate_angle_between_vectors</name></member>
@@ -535,9 +631,11 @@
     <member refid="riseset__utils_8cpp_1a7cd188aabd3d2dd2bd78b147085e0a87" kind="function"><name>riseset_difference</name></member>
     <member refid="RiseSetArray_8cpp_1aa789a66bcde8642549ad9900cb43fe6a" kind="function"><name>operator&lt;&lt;</name></member>
   </compound>
+  <compound refid="namespaceastrea_1_1trace_1_1_0d0" kind="namespace"><name>astrea::trace::@0</name>
+  </compound>
   <compound refid="namespaceastrea_1_1trace_1_1plotting" kind="namespace"><name>astrea::trace::plotting</name>
   </compound>
-  <compound refid="namespaceastrea_1_1trace_1_1plotting_1_1_0d2" kind="namespace"><name>astrea::trace::plotting::@2</name>
+  <compound refid="namespaceastrea_1_1trace_1_1plotting_1_1_0d4" kind="namespace"><name>astrea::trace::plotting::@4</name>
   </compound>
   <compound refid="namespaceastro" kind="namespace"><name>astro</name>
   </compound>
@@ -549,15 +647,15 @@
   </compound>
   <compound refid="namespacemp__units_1_1angular" kind="namespace"><name>mp_units::angular</name>
   </compound>
-  <compound refid="namespacesnapshot" kind="namespace"><name>snapshot</name>
-  </compound>
-  <compound refid="namespacesqlite__orm" kind="namespace"><name>sqlite_orm</name>
-  </compound>
   <compound refid="namespacestd" kind="namespace"><name>std</name>
   </compound>
   <compound refid="AccessAnalyzer_8cpp" kind="file"><name>AccessAnalyzer.cpp</name>
   </compound>
   <compound refid="AccessAnalyzer_8hpp" kind="file"><name>AccessAnalyzer.hpp</name>
+  </compound>
+  <compound refid="analysis_8cpp" kind="file"><name>analysis.cpp</name>
+  </compound>
+  <compound refid="analysis_8hpp" kind="file"><name>analysis.hpp</name>
   </compound>
   <compound refid="Plotter_8cpp" kind="file"><name>Plotter.cpp</name>
   </compound>
@@ -587,10 +685,10 @@
   </compound>
   <compound refid="Stats_8hpp" kind="file"><name>Stats.hpp</name>
   </compound>
+  <compound refid="TraceConfig_8hpp" kind="file"><name>TraceConfig.hpp</name>
+  </compound>
   <compound refid="main_8cpp" kind="file"><name>main.cpp</name>
-    <member refid="main_8cpp_1a9bb634417d7277f83375b3b4e5070a62" kind="function"><name>trace_analysis</name></member>
-    <member refid="main_8cpp_1a53511b2f9f0631fc8cef8f4c5c98849d" kind="function"><name>propagate_and_run_access_analysis</name></member>
-    <member refid="main_8cpp_1ae66f6b31b5ad750f1fe042a706a4e3d4" kind="function"><name>main</name></member>
+    <member refid="main_8cpp_1a0ddf1224851353fc92bfbff6f499fa97" kind="function"><name>main</name></member>
   </compound>
   <compound refid="output_8hpp" kind="file"><name>output.hpp</name>
   </compound>

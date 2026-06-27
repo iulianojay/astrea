@@ -6254,7 +6254,11 @@ You're not viewing the latest version.
 <tbody>
 <tr>
 <td style="text-align: right;"></td>
-<td style="text-align: left;"><a href="#function-spatialindex"><strong>SpatialIndex</strong></a> (const Angle &amp; binSize=10.0 *mp_units::angular::unit_symbols::deg) <br><em>Construct spatial index with specified bin size.</em></td>
+<td style="text-align: left;"><a href="#function-spatialindex-12"><strong>SpatialIndex</strong></a> (const Angle &amp; binSize=10.0 *mp_units::angular::unit_symbols::deg) <br><em>Construct spatial index with specified bin size.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"></td>
+<td style="text-align: left;"><a href="#function-spatialindex-22"><strong>SpatialIndex</strong></a> (const <a href="../namespaceastrea_1_1trace/#typedef-groundpointrefvec"><strong>GroundPointRefVec</strong></a> &amp; groundPoints) <br></td>
 </tr>
 <tr>
 <td style="text-align: right;">void</td>
@@ -6277,7 +6281,7 @@ You're not viewing the latest version.
 <h2 id="detailed-description">Detailed Description<a class="headerlink" href="#detailed-description" title="Permanent link">&para;</a></h2>
 <p>Divides the Earth's surface into geographic bins to quickly find which ground points are near a satellite's subsatellite point </p>
 <h2 id="public-functions-documentation">Public Functions Documentation<a class="headerlink" href="#public-functions-documentation" title="Permanent link">&para;</a></h2>
-<h3 id="function-spatialindex">function SpatialIndex<a class="headerlink" href="#function-spatialindex" title="Permanent link">&para;</a></h3>
+<h3 id="function-spatialindex-12">function SpatialIndex [1/2]<a class="headerlink" href="#function-spatialindex-12" title="Permanent link">&para;</a></h3>
 <p><em>Construct spatial index with specified bin size.</em> 
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">astrea</span><span class="o">::</span><span class="n">trace</span><span class="o">::</span><span class="n">SpatialIndex</span><span class="o">::</span><span class="n">SpatialIndex</span><span class="w"> </span><span class="p">(</span>
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Angle</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">binSize</span><span class="o">=</span><span class="mf">10.0</span><span class="w"> </span><span class="o">*</span><span class="n">mp_units</span><span class="o">::</span><span class="n">angular</span><span class="o">::</span><span class="n">unit_symbols</span><span class="o">::</span><span class="n">deg</span>
@@ -6289,13 +6293,20 @@ You're not viewing the latest version.
 </ul>
 <hr>
 
+<h3 id="function-spatialindex-22">function SpatialIndex [2/2]<a class="headerlink" href="#function-spatialindex-22" title="Permanent link">&para;</a></h3>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">astrea</span><span class="o">::</span><span class="n">trace</span><span class="o">::</span><span class="n">SpatialIndex</span><span class="o">::</span><span class="n">SpatialIndex</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">GroundPointRefVec</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">groundPoints</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="p">)</span><span class="w"> </span>
+</span></code></pre></div>
+<hr>
+
 <h3 id="function-add_ground_point">function add_ground_point<a class="headerlink" href="#function-add_ground_point" title="Permanent link">&para;</a></h3>
 <p><em>Add a ground point to the index.</em> 
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">trace</span><span class="o">::</span><span class="n">SpatialIndex</span><span class="o">::</span><span class="n">add_ground_point</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="n">groundPointIdx</span><span class="p">,</span>
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Angle</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">lat</span><span class="p">,</span>
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Angle</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">lon</span>
-</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="p">)</span><span class="w"> </span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">trace</span><span class="o">::</span><span class="n">SpatialIndex</span><span class="o">::</span><span class="n">add_ground_point</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="n">groundPointIdx</span><span class="p">,</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Angle</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">lat</span><span class="p">,</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Angle</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">lon</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="p">)</span><span class="w"> </span>
 </span></code></pre></div></p>
 <p><strong>Parameters:</strong></p>
 <ul>
@@ -6307,13 +6318,13 @@ You're not viewing the latest version.
 
 <h3 id="function-clear">function clear<a class="headerlink" href="#function-clear" title="Permanent link">&para;</a></h3>
 <p><em>Clear all ground points from the index.</em> 
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">trace</span><span class="o">::</span><span class="n">SpatialIndex</span><span class="o">::</span><span class="n">clear</span><span class="w"> </span><span class="p">()</span><span class="w"> </span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">trace</span><span class="o">::</span><span class="n">SpatialIndex</span><span class="o">::</span><span class="n">clear</span><span class="w"> </span><span class="p">()</span><span class="w"> </span>
 </span></code></pre></div></p>
 <hr>
 
 <h3 id="function-get_all_ground_points">function get_all_ground_points<a class="headerlink" href="#function-get_all_ground_points" title="Permanent link">&para;</a></h3>
 <p><em>Get all ground point indices.</em> 
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">trace</span><span class="o">::</span><span class="n">SpatialIndex</span><span class="o">::</span><span class="n">get_all_ground_points</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">trace</span><span class="o">::</span><span class="n">SpatialIndex</span><span class="o">::</span><span class="n">get_all_ground_points</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </span></code></pre></div></p>
 <p><strong>Returns:</strong></p>
 <p>std::vector&lt;std::size_t&gt; Vector of all ground point indices in the index </p>
@@ -6321,11 +6332,11 @@ You're not viewing the latest version.
 
 <h3 id="function-get_nearby_ground_points">function get_nearby_ground_points<a class="headerlink" href="#function-get_nearby_ground_points" title="Permanent link">&para;</a></h3>
 <p><em>Get ground points within a radius of a lat/lon position.</em> 
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">std</span><span class="o">::</span><span class="n">unordered_set</span><span class="o">&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">trace</span><span class="o">::</span><span class="n">SpatialIndex</span><span class="o">::</span><span class="n">get_nearby_ground_points</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Angle</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">lat</span><span class="p">,</span>
-</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Angle</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">lon</span><span class="p">,</span>
-</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Angle</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">radius</span>
-</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">std</span><span class="o">::</span><span class="n">unordered_set</span><span class="o">&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">trace</span><span class="o">::</span><span class="n">SpatialIndex</span><span class="o">::</span><span class="n">get_nearby_ground_points</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Angle</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">lat</span><span class="p">,</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Angle</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">lon</span><span class="p">,</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Angle</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">radius</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
 </span></code></pre></div></p>
 <p><strong>Parameters:</strong></p>
 <ul>

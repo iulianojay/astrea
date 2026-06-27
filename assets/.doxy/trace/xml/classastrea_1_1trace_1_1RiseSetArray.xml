@@ -17,7 +17,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/risesets/RiseSetArray.hpp" line="279" column="5" bodyfile="astrea/trace/trace/risesets/RiseSetArray.hpp" bodystart="279" bodyend="-1"/>
+        <location file="astrea/trace/trace/risesets/RiseSetArray.hpp" line="287" column="5" bodyfile="astrea/trace/trace/risesets/RiseSetArray.hpp" bodystart="287" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="classastrea_1_1trace_1_1RiseSetArray_1a7ecd7a7a9185e1c62d85a2b0afcc497f" prot="public" static="no">
         <type>std::vector&lt; Time &gt;::const_iterator</type>
@@ -32,7 +32,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/risesets/RiseSetArray.hpp" line="284" column="5" bodyfile="astrea/trace/trace/risesets/RiseSetArray.hpp" bodystart="284" bodyend="-1"/>
+        <location file="astrea/trace/trace/risesets/RiseSetArray.hpp" line="292" column="5" bodyfile="astrea/trace/trace/risesets/RiseSetArray.hpp" bodystart="292" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="private-attrib">
@@ -49,7 +49,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/risesets/RiseSetArray.hpp" line="336" column="17" bodyfile="astrea/trace/trace/risesets/RiseSetArray.hpp" bodystart="336" bodyend="-1"/>
+        <location file="astrea/trace/trace/risesets/RiseSetArray.hpp" line="344" column="17" bodyfile="astrea/trace/trace/risesets/RiseSetArray.hpp" bodystart="344" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="friend">
@@ -73,7 +73,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/risesets/RiseSetArray.hpp" line="40" column="12" bodyfile="astrea/trace/trace/risesets/RiseSetArray.cpp" bodystart="301" bodyend="310"/>
+        <location file="astrea/trace/trace/risesets/RiseSetArray.hpp" line="40" column="12" bodyfile="astrea/trace/trace/risesets/RiseSetArray.cpp" bodystart="306" bodyend="315"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="public-func">
@@ -321,7 +321,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/risesets/RiseSetArray.hpp" line="101" column="10" bodyfile="astrea/trace/trace/risesets/RiseSetArray.cpp" bodystart="113" bodyend="123"/>
+        <location file="astrea/trace/trace/risesets/RiseSetArray.hpp" line="101" column="10" bodyfile="astrea/trace/trace/risesets/RiseSetArray.cpp" bodystart="115" bodyend="125"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1trace_1_1RiseSetArray_1a8ba466172a3405522dfbbbb55b48c2e9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -387,7 +387,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/risesets/RiseSetArray.hpp" line="112" column="10" bodyfile="astrea/trace/trace/risesets/RiseSetArray.cpp" bodystart="125" bodyend="135"/>
+        <location file="astrea/trace/trace/risesets/RiseSetArray.hpp" line="112" column="10" bodyfile="astrea/trace/trace/risesets/RiseSetArray.cpp" bodystart="127" bodyend="137"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1trace_1_1RiseSetArray_1a146b49a45e3632b66df3686b1d06be7e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -453,7 +453,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/risesets/RiseSetArray.hpp" line="123" column="10" bodyfile="astrea/trace/trace/risesets/RiseSetArray.cpp" bodystart="137" bodyend="142"/>
+        <location file="astrea/trace/trace/risesets/RiseSetArray.hpp" line="123" column="10" bodyfile="astrea/trace/trace/risesets/RiseSetArray.cpp" bodystart="139" bodyend="144"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1trace_1_1RiseSetArray_1a795066aa5e664a0aad0a32ea1c297b4c" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>std::size_t</type>
@@ -472,6 +472,26 @@
         <inbodydescription>
         </inbodydescription>
         <location file="astrea/trace/trace/risesets/RiseSetArray.hpp" line="130" column="17" bodyfile="astrea/trace/trace/risesets/RiseSetArray.cpp" bodystart="92" bodyend="92"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1RiseSetArray_1a4861ebe2498dd59d3dc351fba554c49a" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool astrea::trace::RiseSetArray::empty</definition>
+        <argsstring>() const</argsstring>
+        <name>empty</name>
+        <qualifiedname>astrea::trace::RiseSetArray::empty</qualifiedname>
+        <briefdescription>
+<para>Checks if the <ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref> is empty. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>true If the <ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref> is empty. </para>
+</simplesect>
+<simplesect kind="return"><para>false If the <ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref> is not empty. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/risesets/RiseSetArray.hpp" line="138" column="10" bodyfile="astrea/trace/trace/risesets/RiseSetArray.cpp" bodystart="94" bodyend="94"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1trace_1_1RiseSetArray_1a1c56340dbb5ec8bbd4a4014915c742e6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>Time &amp;</type>
@@ -502,7 +522,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/risesets/RiseSetArray.hpp" line="138" column="10" bodyfile="astrea/trace/trace/risesets/RiseSetArray.cpp" bodystart="89" bodyend="89"/>
+        <location file="astrea/trace/trace/risesets/RiseSetArray.hpp" line="146" column="10" bodyfile="astrea/trace/trace/risesets/RiseSetArray.cpp" bodystart="89" bodyend="89"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1trace_1_1RiseSetArray_1a011b5296303c7b0e424dbb70eaa4c2b1" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>const Time &amp;</type>
@@ -533,7 +553,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/risesets/RiseSetArray.hpp" line="146" column="16" bodyfile="astrea/trace/trace/risesets/RiseSetArray.cpp" bodystart="90" bodyend="90"/>
+        <location file="astrea/trace/trace/risesets/RiseSetArray.hpp" line="154" column="16" bodyfile="astrea/trace/trace/risesets/RiseSetArray.cpp" bodystart="90" bodyend="90"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1trace_1_1RiseSetArray_1af3afc442dea26e5e93caaf8a8034a129" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -566,7 +586,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/risesets/RiseSetArray.hpp" line="155" column="10" bodyfile="astrea/trace/trace/risesets/RiseSetArray.cpp" bodystart="53" bodyend="57"/>
+        <location file="astrea/trace/trace/risesets/RiseSetArray.hpp" line="163" column="10" bodyfile="astrea/trace/trace/risesets/RiseSetArray.cpp" bodystart="53" bodyend="57"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1trace_1_1RiseSetArray_1a8dc0e7156869bfabacc5c3db742cdeb2" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref></type>
@@ -597,7 +617,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/risesets/RiseSetArray.hpp" line="163" column="18" bodyfile="astrea/trace/trace/risesets/RiseSetArray.cpp" bodystart="81" bodyend="81"/>
+        <location file="astrea/trace/trace/risesets/RiseSetArray.hpp" line="171" column="18" bodyfile="astrea/trace/trace/risesets/RiseSetArray.cpp" bodystart="81" bodyend="81"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1trace_1_1RiseSetArray_1a1754732751f90b7afddaf778af359202" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref> &amp;</type>
@@ -628,7 +648,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/risesets/RiseSetArray.hpp" line="171" column="18" bodyfile="astrea/trace/trace/risesets/RiseSetArray.cpp" bodystart="83" bodyend="87"/>
+        <location file="astrea/trace/trace/risesets/RiseSetArray.hpp" line="179" column="18" bodyfile="astrea/trace/trace/risesets/RiseSetArray.cpp" bodystart="83" bodyend="87"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1trace_1_1RiseSetArray_1a8592783de48f50c9ad9e95afdc3a0465" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref></type>
@@ -659,7 +679,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/risesets/RiseSetArray.hpp" line="179" column="18" bodyfile="astrea/trace/trace/risesets/RiseSetArray.cpp" bodystart="73" bodyend="73"/>
+        <location file="astrea/trace/trace/risesets/RiseSetArray.hpp" line="187" column="18" bodyfile="astrea/trace/trace/risesets/RiseSetArray.cpp" bodystart="73" bodyend="73"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1trace_1_1RiseSetArray_1a7373a1fc0953fba58369480f7aac0243" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref> &amp;</type>
@@ -690,7 +710,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/risesets/RiseSetArray.hpp" line="187" column="18" bodyfile="astrea/trace/trace/risesets/RiseSetArray.cpp" bodystart="75" bodyend="75"/>
+        <location file="astrea/trace/trace/risesets/RiseSetArray.hpp" line="195" column="18" bodyfile="astrea/trace/trace/risesets/RiseSetArray.cpp" bodystart="75" bodyend="75"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1trace_1_1RiseSetArray_1a7e310770af520d6d6558277cd4894558" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref></type>
@@ -721,7 +741,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/risesets/RiseSetArray.hpp" line="195" column="18" bodyfile="astrea/trace/trace/risesets/RiseSetArray.cpp" bodystart="77" bodyend="77"/>
+        <location file="astrea/trace/trace/risesets/RiseSetArray.hpp" line="203" column="18" bodyfile="astrea/trace/trace/risesets/RiseSetArray.cpp" bodystart="77" bodyend="77"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1trace_1_1RiseSetArray_1a5c0925ba598ccad14ca8d421873f8797" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref> &amp;</type>
@@ -752,7 +772,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/risesets/RiseSetArray.hpp" line="203" column="18" bodyfile="astrea/trace/trace/risesets/RiseSetArray.cpp" bodystart="79" bodyend="79"/>
+        <location file="astrea/trace/trace/risesets/RiseSetArray.hpp" line="211" column="18" bodyfile="astrea/trace/trace/risesets/RiseSetArray.cpp" bodystart="79" bodyend="79"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1trace_1_1RiseSetArray_1a2973225c531a00add63bafe93585f09a" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>Time</type>
@@ -797,7 +817,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/risesets/RiseSetArray.hpp" line="212" column="10" bodyfile="astrea/trace/trace/risesets/RiseSetArray.cpp" bodystart="155" bodyend="158"/>
+        <location file="astrea/trace/trace/risesets/RiseSetArray.hpp" line="220" column="10" bodyfile="astrea/trace/trace/risesets/RiseSetArray.cpp" bodystart="157" bodyend="160"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1trace_1_1RiseSetArray_1a8d26e20f7a3c1d858198f6e16d726a1b" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>std::vector&lt; Time &gt;</type>
@@ -815,7 +835,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/risesets/RiseSetArray.hpp" line="219" column="17" bodyfile="astrea/trace/trace/risesets/RiseSetArray.cpp" bodystart="161" bodyend="169"/>
+        <location file="astrea/trace/trace/risesets/RiseSetArray.hpp" line="227" column="17" bodyfile="astrea/trace/trace/risesets/RiseSetArray.cpp" bodystart="163" bodyend="171"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1trace_1_1RiseSetArray_1ab2c58e5cf7f07ae08f1651eaa03c1d60" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>Time</type>
@@ -860,7 +880,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/risesets/RiseSetArray.hpp" line="228" column="10" bodyfile="astrea/trace/trace/risesets/RiseSetArray.cpp" bodystart="172" bodyend="175"/>
+        <location file="astrea/trace/trace/risesets/RiseSetArray.hpp" line="236" column="10" bodyfile="astrea/trace/trace/risesets/RiseSetArray.cpp" bodystart="174" bodyend="177"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1trace_1_1RiseSetArray_1a2087e41832275b0a695e55a8b5e59f3d" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>std::vector&lt; Time &gt;</type>
@@ -878,7 +898,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/risesets/RiseSetArray.hpp" line="235" column="17" bodyfile="astrea/trace/trace/risesets/RiseSetArray.cpp" bodystart="178" bodyend="186"/>
+        <location file="astrea/trace/trace/risesets/RiseSetArray.hpp" line="243" column="17" bodyfile="astrea/trace/trace/risesets/RiseSetArray.cpp" bodystart="180" bodyend="188"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1trace_1_1RiseSetArray_1aa6a97aa99b6f5934bd8dd6e45652f57b" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -911,7 +931,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/risesets/RiseSetArray.hpp" line="244" column="10" bodyfile="astrea/trace/trace/risesets/RiseSetArray.cpp" bodystart="294" bodyend="298"/>
+        <location file="astrea/trace/trace/risesets/RiseSetArray.hpp" line="252" column="10" bodyfile="astrea/trace/trace/risesets/RiseSetArray.cpp" bodystart="299" bodyend="303"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1trace_1_1RiseSetArray_1a418c7035a51acbd394c19bbe00bfbcad" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>Time</type>
@@ -929,7 +949,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/risesets/RiseSetArray.hpp" line="251" column="10" bodyfile="astrea/trace/trace/risesets/RiseSetArray.cpp" bodystart="189" bodyend="216"/>
+        <location file="astrea/trace/trace/risesets/RiseSetArray.hpp" line="259" column="10" bodyfile="astrea/trace/trace/risesets/RiseSetArray.cpp" bodystart="191" bodyend="219"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1trace_1_1RiseSetArray_1a951c07db06592cade8469b830e7e8b4e" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>Time</type>
@@ -949,7 +969,7 @@ MMTA is the mean time to access, or the mean height of the shaded regions MMTA =
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/risesets/RiseSetArray.hpp" line="274" column="10" bodyfile="astrea/trace/trace/risesets/RiseSetArray.cpp" bodystart="219" bodyend="226"/>
+        <location file="astrea/trace/trace/risesets/RiseSetArray.hpp" line="282" column="10" bodyfile="astrea/trace/trace/risesets/RiseSetArray.cpp" bodystart="222" bodyend="231"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1trace_1_1RiseSetArray_1a385d7b6199a722bac5334bb23e6f091a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classastrea_1_1trace_1_1RiseSetArray_1ab256024b973b212c6311954db59e61e8" kindref="member">iterator</ref></type>
@@ -967,7 +987,7 @@ MMTA is the mean time to access, or the mean height of the shaded regions MMTA =
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/risesets/RiseSetArray.hpp" line="291" column="14" bodyfile="astrea/trace/trace/risesets/RiseSetArray.cpp" bodystart="59" bodyend="59"/>
+        <location file="astrea/trace/trace/risesets/RiseSetArray.hpp" line="299" column="14" bodyfile="astrea/trace/trace/risesets/RiseSetArray.cpp" bodystart="59" bodyend="59"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1trace_1_1RiseSetArray_1a7f779a5c829d020eaaa548cdff3fdf97" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classastrea_1_1trace_1_1RiseSetArray_1ab256024b973b212c6311954db59e61e8" kindref="member">iterator</ref></type>
@@ -985,7 +1005,7 @@ MMTA is the mean time to access, or the mean height of the shaded regions MMTA =
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/risesets/RiseSetArray.hpp" line="298" column="14" bodyfile="astrea/trace/trace/risesets/RiseSetArray.cpp" bodystart="61" bodyend="61"/>
+        <location file="astrea/trace/trace/risesets/RiseSetArray.hpp" line="306" column="14" bodyfile="astrea/trace/trace/risesets/RiseSetArray.cpp" bodystart="61" bodyend="61"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1trace_1_1RiseSetArray_1a68527a3a188ee248cf2ebcc2c222ff72" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classastrea_1_1trace_1_1RiseSetArray_1a7ecd7a7a9185e1c62d85a2b0afcc497f" kindref="member">const_iterator</ref></type>
@@ -1003,7 +1023,7 @@ MMTA is the mean time to access, or the mean height of the shaded regions MMTA =
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/risesets/RiseSetArray.hpp" line="305" column="20" bodyfile="astrea/trace/trace/risesets/RiseSetArray.cpp" bodystart="63" bodyend="63"/>
+        <location file="astrea/trace/trace/risesets/RiseSetArray.hpp" line="313" column="20" bodyfile="astrea/trace/trace/risesets/RiseSetArray.cpp" bodystart="63" bodyend="63"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1trace_1_1RiseSetArray_1abf6de039fefbe621e11a3f7909322201" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classastrea_1_1trace_1_1RiseSetArray_1a7ecd7a7a9185e1c62d85a2b0afcc497f" kindref="member">const_iterator</ref></type>
@@ -1021,7 +1041,7 @@ MMTA is the mean time to access, or the mean height of the shaded regions MMTA =
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/risesets/RiseSetArray.hpp" line="312" column="20" bodyfile="astrea/trace/trace/risesets/RiseSetArray.cpp" bodystart="65" bodyend="65"/>
+        <location file="astrea/trace/trace/risesets/RiseSetArray.hpp" line="320" column="20" bodyfile="astrea/trace/trace/risesets/RiseSetArray.cpp" bodystart="65" bodyend="65"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1trace_1_1RiseSetArray_1af4f8e26ecfe036ea157dcde4a0eb1f67" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classastrea_1_1trace_1_1RiseSetArray_1a7ecd7a7a9185e1c62d85a2b0afcc497f" kindref="member">const_iterator</ref></type>
@@ -1039,7 +1059,7 @@ MMTA is the mean time to access, or the mean height of the shaded regions MMTA =
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/risesets/RiseSetArray.hpp" line="319" column="20" bodyfile="astrea/trace/trace/risesets/RiseSetArray.cpp" bodystart="67" bodyend="67"/>
+        <location file="astrea/trace/trace/risesets/RiseSetArray.hpp" line="327" column="20" bodyfile="astrea/trace/trace/risesets/RiseSetArray.cpp" bodystart="67" bodyend="67"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1trace_1_1RiseSetArray_1ac39fe449a89dd4eadb677a9729ce5160" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classastrea_1_1trace_1_1RiseSetArray_1a7ecd7a7a9185e1c62d85a2b0afcc497f" kindref="member">const_iterator</ref></type>
@@ -1057,7 +1077,7 @@ MMTA is the mean time to access, or the mean height of the shaded regions MMTA =
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/risesets/RiseSetArray.hpp" line="326" column="20" bodyfile="astrea/trace/trace/risesets/RiseSetArray.cpp" bodystart="69" bodyend="69"/>
+        <location file="astrea/trace/trace/risesets/RiseSetArray.hpp" line="334" column="20" bodyfile="astrea/trace/trace/risesets/RiseSetArray.cpp" bodystart="69" bodyend="69"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1trace_1_1RiseSetArray_1acf7777458d9889df5a8327f3d75cb030" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>std::vector&lt; std::string &gt;</type>
@@ -1075,7 +1095,7 @@ MMTA is the mean time to access, or the mean height of the shaded regions MMTA =
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/risesets/RiseSetArray.hpp" line="333" column="17" bodyfile="astrea/trace/trace/risesets/RiseSetArray.cpp" bodystart="144" bodyend="152"/>
+        <location file="astrea/trace/trace/risesets/RiseSetArray.hpp" line="341" column="17" bodyfile="astrea/trace/trace/risesets/RiseSetArray.cpp" bodystart="146" bodyend="154"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="private-func">
@@ -1143,7 +1163,7 @@ MMTA is the mean time to access, or the mean height of the shaded regions MMTA =
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/risesets/RiseSetArray.hpp" line="347" column="10" bodyfile="astrea/trace/trace/risesets/RiseSetArray.cpp" bodystart="105" bodyend="111"/>
+        <location file="astrea/trace/trace/risesets/RiseSetArray.hpp" line="355" column="10" bodyfile="astrea/trace/trace/risesets/RiseSetArray.cpp" bodystart="107" bodyend="113"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1trace_1_1RiseSetArray_1a6005931116a0ba21cb048aacd58d41bd" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1189,7 +1209,7 @@ MMTA is the mean time to access, or the mean height of the shaded regions MMTA =
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/risesets/RiseSetArray.hpp" line="356" column="10" bodyfile="astrea/trace/trace/risesets/RiseSetArray.cpp" bodystart="94" bodyend="103"/>
+        <location file="astrea/trace/trace/risesets/RiseSetArray.hpp" line="364" column="10" bodyfile="astrea/trace/trace/risesets/RiseSetArray.cpp" bodystart="96" bodyend="105"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1trace_1_1RiseSetArray_1aac1f1cff223599300555e9a15b03df50" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>Time</type>
@@ -1244,7 +1264,7 @@ MMTA is the mean time to access, or the mean height of the shaded regions MMTA =
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/risesets/RiseSetArray.hpp" line="366" column="10" bodyfile="astrea/trace/trace/risesets/RiseSetArray.cpp" bodystart="229" bodyend="291"/>
+        <location file="astrea/trace/trace/risesets/RiseSetArray.hpp" line="374" column="10" bodyfile="astrea/trace/trace/risesets/RiseSetArray.cpp" bodystart="234" bodyend="296"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
@@ -1253,7 +1273,7 @@ MMTA is the mean time to access, or the mean height of the shaded regions MMTA =
     <detaileddescription>
 <para>This class provides functionality to manage and manipulate an array of rise and set times, including operations like addition, subtraction, intersection, and union of rise/set pairs. </para>
     </detaileddescription>
-    <location file="astrea/trace/trace/risesets/RiseSetArray.hpp" line="38" column="1" bodyfile="astrea/trace/trace/risesets/RiseSetArray.hpp" bodystart="38" bodyend="367"/>
+    <location file="astrea/trace/trace/risesets/RiseSetArray.hpp" line="38" column="1" bodyfile="astrea/trace/trace/risesets/RiseSetArray.hpp" bodystart="38" bodyend="375"/>
     <listofallmembers>
       <member refid="classastrea_1_1trace_1_1RiseSetArray_1a0edea064febec77fe1badd23ace63838" prot="private" virt="non-virtual"><scope>astrea::trace::RiseSetArray</scope><name>_risesets</name></member>
       <member refid="classastrea_1_1trace_1_1RiseSetArray_1ab2c58e5cf7f07ae08f1651eaa03c1d60" prot="public" virt="non-virtual"><scope>astrea::trace::RiseSetArray</scope><name>access_time</name></member>
@@ -1265,6 +1285,7 @@ MMTA is the mean time to access, or the mean height of the shaded regions MMTA =
       <member refid="classastrea_1_1trace_1_1RiseSetArray_1af4f8e26ecfe036ea157dcde4a0eb1f67" prot="public" virt="non-virtual"><scope>astrea::trace::RiseSetArray</scope><name>cbegin</name></member>
       <member refid="classastrea_1_1trace_1_1RiseSetArray_1ac39fe449a89dd4eadb677a9729ce5160" prot="public" virt="non-virtual"><scope>astrea::trace::RiseSetArray</scope><name>cend</name></member>
       <member refid="classastrea_1_1trace_1_1RiseSetArray_1a7ecd7a7a9185e1c62d85a2b0afcc497f" prot="public" virt="non-virtual"><scope>astrea::trace::RiseSetArray</scope><name>const_iterator</name></member>
+      <member refid="classastrea_1_1trace_1_1RiseSetArray_1a4861ebe2498dd59d3dc351fba554c49a" prot="public" virt="non-virtual"><scope>astrea::trace::RiseSetArray</scope><name>empty</name></member>
       <member refid="classastrea_1_1trace_1_1RiseSetArray_1a7f779a5c829d020eaaa548cdff3fdf97" prot="public" virt="non-virtual"><scope>astrea::trace::RiseSetArray</scope><name>end</name></member>
       <member refid="classastrea_1_1trace_1_1RiseSetArray_1abf6de039fefbe621e11a3f7909322201" prot="public" virt="non-virtual"><scope>astrea::trace::RiseSetArray</scope><name>end</name></member>
       <member refid="classastrea_1_1trace_1_1RiseSetArray_1a2973225c531a00add63bafe93585f09a" prot="public" virt="non-virtual"><scope>astrea::trace::RiseSetArray</scope><name>gap</name></member>

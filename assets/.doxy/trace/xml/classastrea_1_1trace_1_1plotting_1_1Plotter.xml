@@ -138,7 +138,7 @@
         <name>plot_number_of_folds</name>
         <qualifiedname>astrea::trace::plotting::Plotter::plot_number_of_folds</qualifiedname>
         <param>
-          <type>const <ref refid="AccessAnalyzer_8hpp_1a6577a4b6ee15f2bc01192d4e545278e5" kindref="member">ViewerConstellation</ref> &amp;</type>
+          <type>const <ref refid="Plotter_8hpp_1a6577a4b6ee15f2bc01192d4e545278e5" kindref="member">ViewerConstellation</ref> &amp;</type>
           <declname>satellites</declname>
         </param>
         <param>

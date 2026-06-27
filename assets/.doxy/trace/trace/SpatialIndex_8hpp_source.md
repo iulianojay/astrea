@@ -16,6 +16,8 @@
 
 #include <units/units.hpp>
 
+#include <trace/types/typedefs.hpp>
+
 namespace astrea {
 namespace trace {
 
@@ -33,6 +35,8 @@ struct GeographicBin {
 class SpatialIndex {
   public:
     SpatialIndex(const Angle& binSize = 10.0 * mp_units::angular::unit_symbols::deg);
+
+    SpatialIndex(const GroundPointRefVec& groundPoints);
 
     void add_ground_point(std::size_t groundPointIdx, const Angle& lat, const Angle& lon);
 

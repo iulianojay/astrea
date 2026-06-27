@@ -8,21 +8,29 @@
     <innerclass refid="structastrea_1_1trace_1_1AccessMetricsRecord" prot="public">astrea::trace::AccessMetricsRecord</innerclass>
     <innerclass refid="classastrea_1_1trace_1_1AccessObject" prot="public">astrea::trace::AccessObject</innerclass>
     <innerclass refid="structastrea_1_1trace_1_1AccessStats" prot="public">astrea::trace::AccessStats</innerclass>
+    <innerclass refid="structastrea_1_1trace_1_1AnalysisResult" prot="public">astrea::trace::AnalysisResult</innerclass>
+    <innerclass refid="structastrea_1_1trace_1_1AnalysisSettings" prot="public">astrea::trace::AnalysisSettings</innerclass>
     <innerclass refid="classastrea_1_1trace_1_1Antenna" prot="public">astrea::trace::Antenna</innerclass>
     <innerclass refid="classastrea_1_1trace_1_1AntennaParameters" prot="public">astrea::trace::AntennaParameters</innerclass>
     <innerclass refid="classastrea_1_1trace_1_1CircularFieldOfView" prot="public">astrea::trace::CircularFieldOfView</innerclass>
+    <innerclass refid="structastrea_1_1trace_1_1ConstellationSettings" prot="public">astrea::trace::ConstellationSettings</innerclass>
     <innerclass refid="classastrea_1_1trace_1_1DatabaseOutputManager" prot="public">astrea::trace::DatabaseOutputManager</innerclass>
     <innerclass refid="classastrea_1_1trace_1_1FieldOfView" prot="public">astrea::trace::FieldOfView</innerclass>
     <innerclass refid="classastrea_1_1trace_1_1FoldsOfCoverage" prot="public">astrea::trace::FoldsOfCoverage</innerclass>
     <innerclass refid="structastrea_1_1trace_1_1FoldsRecord" prot="public">astrea::trace::FoldsRecord</innerclass>
     <innerclass refid="structastrea_1_1trace_1_1GeographicBin" prot="public">astrea::trace::GeographicBin</innerclass>
     <innerclass refid="classastrea_1_1trace_1_1Grid" prot="public">astrea::trace::Grid</innerclass>
+    <innerclass refid="structastrea_1_1trace_1_1GridSettings" prot="public">astrea::trace::GridSettings</innerclass>
     <innerclass refid="classastrea_1_1trace_1_1GroundArchitecture" prot="public">astrea::trace::GroundArchitecture</innerclass>
     <innerclass refid="structastrea_1_1trace_1_1GroundLocationRecord" prot="public">astrea::trace::GroundLocationRecord</innerclass>
     <innerclass refid="classastrea_1_1trace_1_1GroundPoint" prot="public">astrea::trace::GroundPoint</innerclass>
+    <innerclass refid="structastrea_1_1trace_1_1GroundSettings" prot="public">astrea::trace::GroundSettings</innerclass>
     <innerclass refid="classastrea_1_1trace_1_1GroundStation" prot="public">astrea::trace::GroundStation</innerclass>
+    <innerclass refid="structastrea_1_1trace_1_1GroundTrackRecord" prot="public">astrea::trace::GroundTrackRecord</innerclass>
     <innerclass refid="structastrea_1_1trace_1_1HyperStats" prot="public">astrea::trace::HyperStats</innerclass>
     <innerclass refid="structastrea_1_1trace_1_1IdPair" prot="public">astrea::trace::IdPair</innerclass>
+    <innerclass refid="structastrea_1_1trace_1_1OutputSettings" prot="public">astrea::trace::OutputSettings</innerclass>
+    <innerclass refid="structastrea_1_1trace_1_1PairResult" prot="public">astrea::trace::PairResult</innerclass>
     <innerclass refid="classastrea_1_1trace_1_1PolygonalFieldOfView" prot="public">astrea::trace::PolygonalFieldOfView</innerclass>
     <innerclass refid="classastrea_1_1trace_1_1PositionCache" prot="public">astrea::trace::PositionCache</innerclass>
     <innerclass refid="structastrea_1_1trace_1_1ReceiverRiseSetMetricsRecord" prot="public">astrea::trace::ReceiverRiseSetMetricsRecord</innerclass>
@@ -32,8 +40,10 @@
     <innerclass refid="structastrea_1_1trace_1_1RiseSetStats" prot="public">astrea::trace::RiseSetStats</innerclass>
     <innerclass refid="classastrea_1_1trace_1_1Sensor" prot="public">astrea::trace::Sensor</innerclass>
     <innerclass refid="classastrea_1_1trace_1_1SensorParameters" prot="public">astrea::trace::SensorParameters</innerclass>
+    <innerclass refid="structastrea_1_1trace_1_1SensorSettings" prot="public">astrea::trace::SensorSettings</innerclass>
     <innerclass refid="classastrea_1_1trace_1_1SpatialIndex" prot="public">astrea::trace::SpatialIndex</innerclass>
     <innerclass refid="structastrea_1_1trace_1_1Stats" prot="public">astrea::trace::Stats</innerclass>
+    <innerclass refid="structastrea_1_1trace_1_1TraceConfig" prot="public">astrea::trace::TraceConfig</innerclass>
     <innerclass refid="classastrea_1_1trace_1_1Viewer" prot="public">astrea::trace::Viewer</innerclass>
     <innernamespace refid="namespaceastrea_1_1trace_1_1plotting">astrea::trace::plotting</innernamespace>
     <sectiondef kind="enum">
@@ -224,50 +234,7 @@
       </memberdef>
     </sectiondef>
     <sectiondef kind="typedef">
-      <memberdef kind="typedef" id="AccessAnalyzer_8hpp_1a493336b6b50db8040b47a0a21834fe84" prot="public" static="no">
-        <type>astro::RadiusVector&lt; astro::frames::earth::icrf &gt;</type>
-        <definition>typedef astro::RadiusVector&lt; astro::frames::earth::icrf &gt; astrea::trace::EciRadiusVec</definition>
-        <argsstring></argsstring>
-        <name>EciRadiusVec</name>
-        <qualifiedname>astrea::trace::EciRadiusVec</qualifiedname>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="astrea/trace/trace/analysis/AccessAnalyzer.hpp" line="60" column="1" bodyfile="astrea/trace/trace/analysis/AccessAnalyzer.hpp" bodystart="60" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="typedef" id="AccessAnalyzer_8hpp_1ac59daa29795c0d97b4e314d99c8c9a99" prot="public" static="no">
-        <type>astro::RadiusVector&lt; astro::frames::earth::earth_fixed &gt;</type>
-        <definition>typedef astro::RadiusVector&lt; astro::frames::earth::earth_fixed &gt; astrea::trace::EcefRadiusVec</definition>
-        <argsstring></argsstring>
-        <name>EcefRadiusVec</name>
-        <qualifiedname>astrea::trace::EcefRadiusVec</qualifiedname>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="astrea/trace/trace/analysis/AccessAnalyzer.hpp" line="61" column="1" bodyfile="astrea/trace/trace/analysis/AccessAnalyzer.hpp" bodystart="61" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="typedef" id="AccessAnalyzer_8hpp_1aba5ee9c881a98fb1fdd78cce68fdc378" prot="public" static="no">
-        <type>std::vector&lt; astro::Date &gt;</type>
-        <definition>using astrea::trace::DateVector = typedef std::vector&lt;astro::Date&gt;</definition>
-        <argsstring></argsstring>
-        <name>DateVector</name>
-        <qualifiedname>astrea::trace::DateVector</qualifiedname>
-        <briefdescription>
-<para>Type alias for a vector of time values. </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="astrea/trace/trace/analysis/AccessAnalyzer.hpp" line="66" column="1" bodyfile="astrea/trace/trace/analysis/AccessAnalyzer.hpp" bodystart="66" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="typedef" id="AccessAnalyzer_8hpp_1a6577a4b6ee15f2bc01192d4e545278e5" prot="public" static="no">
+      <memberdef kind="typedef" id="Plotter_8hpp_1a6577a4b6ee15f2bc01192d4e545278e5" prot="public" static="no">
         <type>astro::Constellation&lt; <ref refid="classastrea_1_1trace_1_1Viewer" kindref="compound">Viewer</ref> &gt;</type>
         <definition>typedef astro::Constellation&lt; Viewer &gt; astrea::trace::ViewerConstellation</definition>
         <argsstring></argsstring>
@@ -280,63 +247,37 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/analysis/AccessAnalyzer.hpp" line="71" column="1" bodyfile="astrea/trace/trace/analysis/AccessAnalyzer.hpp" bodystart="71" bodyend="-1"/>
+        <location file="astrea/trace/trace/analysis/plots/Plotter.hpp" line="37" column="1" bodyfile="astrea/trace/trace/analysis/plots/Plotter.hpp" bodystart="37" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="typedef" id="AccessAnalyzer_8hpp_1a6e01e2965d87fedc35dcd4b9da8bf8fa" prot="public" static="no">
-        <type>std::vector&lt; std::shared_ptr&lt; <ref refid="classastrea_1_1trace_1_1Viewer" kindref="compound">Viewer</ref> &gt; &gt;</type>
-        <definition>using astrea::trace::ViewerRefVec = typedef std::vector&lt;std::shared_ptr&lt;Viewer&gt; &gt;</definition>
+      <memberdef kind="typedef" id="PositionCache_8hpp_1afe793f30269c8d02fd6e9d89649ff7c9" prot="public" static="no">
+        <type>astro::RadiusVector&lt; astro::frames::earth::earth_fixed &gt;</type>
+        <definition>typedef astro::CartesianVector&lt; Distance, astro::frames::earth::earth_fixed &gt; astrea::trace::EcefRadiusVec</definition>
         <argsstring></argsstring>
-        <name>ViewerRefVec</name>
-        <qualifiedname>astrea::trace::ViewerRefVec</qualifiedname>
+        <name>EcefRadiusVec</name>
+        <qualifiedname>astrea::trace::EcefRadiusVec</qualifiedname>
         <briefdescription>
+<para>Type definition for ECEF radius vectors. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/analysis/AccessAnalyzer.hpp" line="74" column="1" bodyfile="astrea/trace/trace/analysis/AccessAnalyzer.hpp" bodystart="74" bodyend="-1"/>
+        <location file="astrea/trace/trace/analysis/PositionCache.hpp" line="34" column="1" bodyfile="astrea/trace/trace/analysis/PositionCache.hpp" bodystart="34" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="typedef" id="AccessAnalyzer_8hpp_1a58a4b43ed97587828db93eab81e2fafb" prot="public" static="no">
-        <type>std::vector&lt; std::shared_ptr&lt; <ref refid="classastrea_1_1trace_1_1GroundStation" kindref="compound">GroundStation</ref>&lt; astro::planets::Earth &gt; &gt; &gt;</type>
-        <definition>using astrea::trace::GroundStationRefVec = typedef std::vector&lt;std::shared_ptr&lt;GroundStation&lt;astro::planets::Earth&gt; &gt;&gt;</definition>
+      <memberdef kind="typedef" id="CircularFieldOfView_8cpp_1ab92356a7ce98b80bb5915098ef85764a" prot="public" static="no">
+        <type>astro::RadiusVector&lt; astro::frames::earth::icrf &gt;</type>
+        <definition>typedef astro::CartesianVector&lt; Distance, astro::frames::earth::icrf &gt; astrea::trace::EciRadiusVec</definition>
         <argsstring></argsstring>
-        <name>GroundStationRefVec</name>
-        <qualifiedname>astrea::trace::GroundStationRefVec</qualifiedname>
+        <name>EciRadiusVec</name>
+        <qualifiedname>astrea::trace::EciRadiusVec</qualifiedname>
         <briefdescription>
+<para>Type definition for ECI radius vectors. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/analysis/AccessAnalyzer.hpp" line="76" column="1" bodyfile="astrea/trace/trace/analysis/AccessAnalyzer.hpp" bodystart="76" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="typedef" id="AccessAnalyzer_8hpp_1a343001e7eb8323eb6ee3ff0f3c3a35a4" prot="public" static="no">
-        <type>std::vector&lt; std::shared_ptr&lt; <ref refid="classastrea_1_1trace_1_1GroundPoint" kindref="compound">GroundPoint</ref>&lt; astro::planets::Earth &gt; &gt; &gt;</type>
-        <definition>using astrea::trace::GroundPointRefVec = typedef std::vector&lt;std::shared_ptr&lt;GroundPoint&lt;astro::planets::Earth&gt; &gt;&gt;</definition>
-        <argsstring></argsstring>
-        <name>GroundPointRefVec</name>
-        <qualifiedname>astrea::trace::GroundPointRefVec</qualifiedname>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="astrea/trace/trace/analysis/AccessAnalyzer.hpp" line="78" column="1" bodyfile="astrea/trace/trace/analysis/AccessAnalyzer.hpp" bodystart="78" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="typedef" id="AccessAnalyzer_8hpp_1ad15872bf64dbeccb549ccad1986be66d" prot="public" static="no">
-        <type>std::vector&lt; std::pair&lt; std::size_t, std::size_t &gt; &gt;</type>
-        <definition>using astrea::trace::PairVec = typedef std::vector&lt;std::pair&lt;std::size_t, std::size_t&gt; &gt;</definition>
-        <argsstring></argsstring>
-        <name>PairVec</name>
-        <qualifiedname>astrea::trace::PairVec</qualifiedname>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="astrea/trace/trace/analysis/AccessAnalyzer.hpp" line="80" column="1" bodyfile="astrea/trace/trace/analysis/AccessAnalyzer.hpp" bodystart="80" bodyend="-1"/>
+        <location file="astrea/trace/trace/platforms/sensors/fov/CircularFieldOfView.cpp" line="27" column="1" bodyfile="astrea/trace/trace/platforms/sensors/fov/CircularFieldOfView.cpp" bodystart="27" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="Sensor_8hpp_1a28fece046a4c051e91df7fe3f68f9e11" prot="public" static="no">
         <type>astro::PayloadPlatform&lt; <ref refid="classastrea_1_1trace_1_1Sensor" kindref="compound">Sensor</ref> &gt;</type>
@@ -366,7 +307,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/types/typedefs.hpp" line="29" column="1" bodyfile="astrea/trace/trace/types/typedefs.hpp" bodystart="29" bodyend="-1"/>
+        <location file="astrea/trace/trace/types/typedefs.hpp" line="35" column="1" bodyfile="astrea/trace/trace/types/typedefs.hpp" bodystart="35" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="typedefs_8hpp_1a1f5b508729d8e61c11b9fadb9f101bb4" prot="public" static="no">
         <type>std::pair&lt; Angle, Angle &gt;</type>
@@ -382,7 +323,131 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/types/typedefs.hpp" line="36" column="1" bodyfile="astrea/trace/trace/types/typedefs.hpp" bodystart="36" bodyend="-1"/>
+        <location file="astrea/trace/trace/types/typedefs.hpp" line="42" column="1" bodyfile="astrea/trace/trace/types/typedefs.hpp" bodystart="42" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="typedefs_8hpp_1adb267a53d491ab1e364558578b7aba52" prot="public" static="no">
+        <type>std::pair&lt; Angle, Angle &gt;</type>
+        <definition>using astrea::trace::LatRange = typedef std::pair&lt;Angle, Angle&gt;</definition>
+        <argsstring></argsstring>
+        <name>LatRange</name>
+        <qualifiedname>astrea::trace::LatRange</qualifiedname>
+        <briefdescription>
+<para>Latitude range pair. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This type is used to represent a range of latitudes for ground coverage analysis. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/types/typedefs.hpp" line="49" column="1" bodyfile="astrea/trace/trace/types/typedefs.hpp" bodystart="49" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="typedefs_8hpp_1aef2e871664c74fcdae58e1b6db70c9b5" prot="public" static="no">
+        <type>std::pair&lt; Angle, Angle &gt;</type>
+        <definition>using astrea::trace::LonRange = typedef std::pair&lt;Angle, Angle&gt;</definition>
+        <argsstring></argsstring>
+        <name>LonRange</name>
+        <qualifiedname>astrea::trace::LonRange</qualifiedname>
+        <briefdescription>
+<para>Longitude range pair. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This type is used to represent a range of longitudes for ground coverage analysis. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/types/typedefs.hpp" line="56" column="1" bodyfile="astrea/trace/trace/types/typedefs.hpp" bodystart="56" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="typedefs_8hpp_1aba5ee9c881a98fb1fdd78cce68fdc378" prot="public" static="no">
+        <type>std::vector&lt; astro::Date &gt;</type>
+        <definition>using astrea::trace::DateVector = typedef std::vector&lt;astro::Date&gt;</definition>
+        <argsstring></argsstring>
+        <name>DateVector</name>
+        <qualifiedname>astrea::trace::DateVector</qualifiedname>
+        <briefdescription>
+<para>Type alias for a vector of time values. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/types/typedefs.hpp" line="71" column="1" bodyfile="astrea/trace/trace/types/typedefs.hpp" bodystart="71" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="typedefs_8hpp_1a6e01e2965d87fedc35dcd4b9da8bf8fa" prot="public" static="no">
+        <type>std::vector&lt; std::shared_ptr&lt; <ref refid="classastrea_1_1trace_1_1Viewer" kindref="compound">Viewer</ref> &gt; &gt;</type>
+        <definition>using astrea::trace::ViewerRefVec = typedef std::vector&lt;std::shared_ptr&lt;Viewer&gt; &gt;</definition>
+        <argsstring></argsstring>
+        <name>ViewerRefVec</name>
+        <qualifiedname>astrea::trace::ViewerRefVec</qualifiedname>
+        <briefdescription>
+<para>Type alias for a vector of <ref refid="classastrea_1_1trace_1_1Viewer" kindref="compound">Viewer</ref> references. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/types/typedefs.hpp" line="81" column="1" bodyfile="astrea/trace/trace/types/typedefs.hpp" bodystart="81" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="typedefs_8hpp_1a58a4b43ed97587828db93eab81e2fafb" prot="public" static="no">
+        <type>std::vector&lt; std::shared_ptr&lt; <ref refid="classastrea_1_1trace_1_1GroundStation" kindref="compound">GroundStation</ref>&lt; astro::planets::Earth &gt; &gt; &gt;</type>
+        <definition>using astrea::trace::GroundStationRefVec = typedef std::vector&lt;std::shared_ptr&lt;GroundStation&lt;astro::planets::Earth&gt; &gt;&gt;</definition>
+        <argsstring></argsstring>
+        <name>GroundStationRefVec</name>
+        <qualifiedname>astrea::trace::GroundStationRefVec</qualifiedname>
+        <briefdescription>
+<para>Type alias for a vector of <ref refid="classastrea_1_1trace_1_1GroundStation" kindref="compound">GroundStation</ref> references. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/types/typedefs.hpp" line="86" column="1" bodyfile="astrea/trace/trace/types/typedefs.hpp" bodystart="86" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="typedefs_8hpp_1a343001e7eb8323eb6ee3ff0f3c3a35a4" prot="public" static="no">
+        <type>std::vector&lt; std::shared_ptr&lt; <ref refid="classastrea_1_1trace_1_1GroundPoint" kindref="compound">GroundPoint</ref>&lt; astro::planets::Earth &gt; &gt; &gt;</type>
+        <definition>using astrea::trace::GroundPointRefVec = typedef std::vector&lt;std::shared_ptr&lt;GroundPoint&lt;astro::planets::Earth&gt; &gt;&gt;</definition>
+        <argsstring></argsstring>
+        <name>GroundPointRefVec</name>
+        <qualifiedname>astrea::trace::GroundPointRefVec</qualifiedname>
+        <briefdescription>
+<para>Type definition for a vector of ground point references. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This type is used to store references to ground points in the access analysis. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/types/typedefs.hpp" line="93" column="1" bodyfile="astrea/trace/trace/types/typedefs.hpp" bodystart="93" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="typedefs_8hpp_1ad15872bf64dbeccb549ccad1986be66d" prot="public" static="no">
+        <type>std::vector&lt; std::pair&lt; std::size_t, std::size_t &gt; &gt;</type>
+        <definition>using astrea::trace::PairVec = typedef std::vector&lt;std::pair&lt;std::size_t, std::size_t&gt; &gt;</definition>
+        <argsstring></argsstring>
+        <name>PairVec</name>
+        <qualifiedname>astrea::trace::PairVec</qualifiedname>
+        <briefdescription>
+<para>Type alias for a vector of pairs of size_t values. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/types/typedefs.hpp" line="98" column="1" bodyfile="astrea/trace/trace/types/typedefs.hpp" bodystart="98" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="typedefs_8hpp_1adec0f497a15d2aa470499fdac84de9f7" prot="public" static="no">
+        <type>std::vector&lt; std::vector&lt; EciRadiusVec &gt; &gt;</type>
+        <definition>using astrea::trace::BoresightTable = typedef std::vector&lt;std::vector&lt;EciRadiusVec&gt; &gt;</definition>
+        <argsstring></argsstring>
+        <name>BoresightTable</name>
+        <qualifiedname>astrea::trace::BoresightTable</qualifiedname>
+        <briefdescription>
+<para>Pre-computed ECI boresight vectors per sensor per timestep. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Indexed as BoresightTable[sensor_idx][time_idx]. Computed once per satellite before the ground-point loop to avoid rebuilding the RIC frame for every (viewer, ground point) pair. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/types/typedefs.hpp" line="107" column="1" bodyfile="astrea/trace/trace/types/typedefs.hpp" bodystart="107" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="var">
@@ -536,6 +601,82 @@
       </memberdef>
     </sectiondef>
     <sectiondef kind="func">
+      <memberdef kind="function" id="analysis_8cpp_1a1e87b5657ee989bec5220a6c223e7c19" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+          <param>
+            <type>typename U</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="classastrea_1_1trace_1_1AccessArray" kindref="compound">AccessArray</ref></type>
+        <definition>static AccessArray astrea::trace::propagate_and_run_access_analysis</definition>
+        <argsstring>(astro::Constellation&lt; T &gt; &amp;constellation, U &amp;grounds, const Date &amp;epoch, const Time propTime, const Time accessResolution, const bool printProgress)</argsstring>
+        <name>propagate_and_run_access_analysis</name>
+        <qualifiedname>astrea::trace::propagate_and_run_access_analysis</qualifiedname>
+        <param>
+          <type>astro::Constellation&lt; T &gt; &amp;</type>
+          <declname>constellation</declname>
+        </param>
+        <param>
+          <type>U &amp;</type>
+          <declname>grounds</declname>
+        </param>
+        <param>
+          <type>const Date &amp;</type>
+          <declname>epoch</declname>
+        </param>
+        <param>
+          <type>const Time</type>
+          <declname>propTime</declname>
+        </param>
+        <param>
+          <type>const Time</type>
+          <declname>accessResolution</declname>
+        </param>
+        <param>
+          <type>const bool</type>
+          <declname>printProgress</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/analysis/analysis.cpp" line="50" column="5" bodyfile="astrea/trace/trace/analysis/analysis.cpp" bodystart="50" bodyend="102"/>
+      </memberdef>
+      <memberdef kind="function" id="analysis_8cpp_1a06af763838a86e16bcb5e87723f541ac" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structastrea_1_1trace_1_1AnalysisResult" kindref="compound">AnalysisResult</ref></type>
+        <definition>AnalysisResult astrea::trace::run_trace_analysis</definition>
+        <argsstring>(const TraceConfig &amp;config)</argsstring>
+        <name>run_trace_analysis</name>
+        <qualifiedname>astrea::trace::run_trace_analysis</qualifiedname>
+        <param>
+          <type>const <ref refid="structastrea_1_1trace_1_1TraceConfig" kindref="compound">TraceConfig</ref> &amp;</type>
+          <declname>config</declname>
+        </param>
+        <briefdescription>
+<para>Run a full trace analysis (propagation + access + statistics) from a <ref refid="structastrea_1_1trace_1_1TraceConfig" kindref="compound">TraceConfig</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Builds the constellation, attaches sensors, builds the coverage grid, propagates with J2 mean-element dynamics, runs the access analyzer, and returns the aggregated statistics. Output (DB write, Python plotting) is the responsibility of the caller.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>config</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The <ref refid="structastrea_1_1trace_1_1TraceConfig" kindref="compound">TraceConfig</ref> containing all settings for the analysis. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/analysis/analysis.cpp" line="104" column="16" bodyfile="astrea/trace/trace/analysis/analysis.cpp" bodystart="104" bodyend="186" declfile="astrea/trace/trace/analysis/analysis.hpp" declline="47" declcolumn="16"/>
+      </memberdef>
       <memberdef kind="function" id="output_8hpp_1ac3903f13ee71145329aeae88d4e04524" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>auto</type>
         <definition>auto astrea::trace::make_database_storage</definition>
@@ -552,7 +693,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/io/output.hpp" line="102" column="13" bodyfile="astrea/trace/trace/io/output.hpp" bodystart="102" bodyend="166"/>
+        <location file="astrea/trace/trace/io/output.hpp" line="113" column="13" bodyfile="astrea/trace/trace/io/output.hpp" bodystart="113" bodyend="186"/>
       </memberdef>
       <memberdef kind="function" id="output_8hpp_1ab8f1484c3c3060a93c3bb00c1efb73a1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
@@ -587,7 +728,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/io/output.hpp" line="169" column="13" bodyfile="astrea/trace/trace/io/output.hpp" bodystart="169" bodyend="185"/>
+        <location file="astrea/trace/trace/io/output.hpp" line="189" column="13" bodyfile="astrea/trace/trace/io/output.hpp" bodystart="189" bodyend="205"/>
       </memberdef>
       <memberdef kind="function" id="FieldOfView_8cpp_1affa19a9aa828894a4617995076cfcb38" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>Angle</type>
@@ -674,7 +815,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/platforms/sensors/fov/PolygonalFieldOfView.cpp" line="107" column="6" bodyfile="astrea/trace/trace/platforms/sensors/fov/PolygonalFieldOfView.cpp" bodystart="107" bodyend="124" declfile="astrea/trace/trace/platforms/sensors/fov/PolygonalFieldOfView.hpp" declline="111" declcolumn="6"/>
+        <location file="astrea/trace/trace/platforms/sensors/fov/PolygonalFieldOfView.cpp" line="107" column="6" bodyfile="astrea/trace/trace/platforms/sensors/fov/PolygonalFieldOfView.cpp" bodystart="107" bodyend="124" declfile="astrea/trace/trace/platforms/sensors/fov/PolygonalFieldOfView.hpp" declline="113" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="AccessArray_8cpp_1a15c3b7d207a35f0197b778079a2d1872" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>std::ostream &amp;</type>
@@ -899,13 +1040,13 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/risesets/RiseSetArray.cpp" line="301" column="1" bodyfile="astrea/trace/trace/risesets/RiseSetArray.cpp" bodystart="301" bodyend="310"/>
+        <location file="astrea/trace/trace/risesets/RiseSetArray.cpp" line="306" column="1" bodyfile="astrea/trace/trace/risesets/RiseSetArray.cpp" bodystart="306" bodyend="315"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="astrea/trace/trace/analysis/AccessAnalyzer.cpp" line="50" column="1"/>
+    <location file="astrea/trace/trace/analysis/AccessAnalyzer.cpp" line="52" column="1"/>
   </compounddef>
 </doxygen>

@@ -122,25 +122,27 @@
 <codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>astro::CartesianVector&lt;Distance,<sp/>astro::frames::earth::icrf&gt;&amp;<sp/>target</highlight></codeline>
 <codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/>)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="87"><highlight class="normal"></highlight></codeline>
-<codeline lineno="88"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
-<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>TODO:<sp/>These<sp/>angle<sp/>are<sp/>actually<sp/>defined<sp/>w.r.t<sp/>a<sp/>frame<sp/>so<sp/>we<sp/>need<sp/>to<sp/>figure<sp/>out<sp/>what<sp/>that</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>is<sp/>and<sp/>how<sp/>to<sp/>define<sp/>it<sp/>meaningfully.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Probably<sp/>will<sp/>be<sp/>some<sp/>body-fixed<sp/>frame<sp/>aligned<sp/>with<sp/>the<sp/>sensor<sp/>boresight</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>key<sp/>angle<sp/>is<sp/>the<sp/>azimuthal<sp/>angle<sp/>around<sp/>the<sp/>boresight,<sp/>and<sp/>the<sp/>value<sp/>angle<sp/>is<sp/>the</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>off-boresight<sp/>angle<sp/>at<sp/>that<sp/>azimuth</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/>gtl::flat_hash_map&lt;Angle,<sp/>Angle&gt;<sp/>_points;<sp/></highlight></codeline>
-<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/>Angle<sp/>_minHalfAngle<sp/>=<sp/>0.0<sp/>*<sp/>mp_units::angular::unit_symbols::rad;<sp/></highlight></codeline>
-<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/>Angle<sp/>_maxHalfAngle<sp/>=<sp/>std::numeric_limits&lt;Angle&gt;::infinity();<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="97"><highlight class="normal"></highlight></codeline>
-<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>find_min_and_max_angles();</highlight></codeline>
-<codeline lineno="102"><highlight class="normal"></highlight></codeline>
-<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;std::pair&lt;Unitless,<sp/>Unitless&gt;&gt;<sp/>build_polygon()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="109"><highlight class="normal">};</highlight></codeline>
-<codeline lineno="110"><highlight class="normal"></highlight></codeline>
-<codeline lineno="111"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>point_in_polygon(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::pair&lt;Unitless,<sp/>Unitless&gt;&amp;<sp/>point,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;std::pair&lt;Unitless,<sp/>Unitless&gt;&gt;&amp;<sp/>polygon);</highlight></codeline>
+<codeline lineno="88" refid="classastrea_1_1trace_1_1PolygonalFieldOfView_1ac3b66a99fa67b73802346d2693cdcdc7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>Angle<sp/><ref refid="classastrea_1_1trace_1_1PolygonalFieldOfView_1ac3b66a99fa67b73802346d2693cdcdc7" kindref="member">max_half_angle</ref>()</highlight><highlight class="keyword"><sp/>const<sp/>override<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_maxHalfAngle;<sp/>}</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"></highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>TODO:<sp/>These<sp/>angle<sp/>are<sp/>actually<sp/>defined<sp/>w.r.t<sp/>a<sp/>frame<sp/>so<sp/>we<sp/>need<sp/>to<sp/>figure<sp/>out<sp/>what<sp/>that</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>is<sp/>and<sp/>how<sp/>to<sp/>define<sp/>it<sp/>meaningfully.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Probably<sp/>will<sp/>be<sp/>some<sp/>body-fixed<sp/>frame<sp/>aligned<sp/>with<sp/>the<sp/>sensor<sp/>boresight</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>key<sp/>angle<sp/>is<sp/>the<sp/>azimuthal<sp/>angle<sp/>around<sp/>the<sp/>boresight,<sp/>and<sp/>the<sp/>value<sp/>angle<sp/>is<sp/>the</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>off-boresight<sp/>angle<sp/>at<sp/>that<sp/>azimuth</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/>gtl::flat_hash_map&lt;Angle,<sp/>Angle&gt;<sp/>_points;<sp/></highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/>Angle<sp/>_minHalfAngle<sp/>=<sp/>0.0<sp/>*<sp/>mp_units::angular::unit_symbols::rad;<sp/></highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/>Angle<sp/>_maxHalfAngle<sp/>=<sp/>std::numeric_limits&lt;Angle&gt;::infinity();<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="99"><highlight class="normal"></highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>find_min_and_max_angles();</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"></highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;std::pair&lt;Unitless,<sp/>Unitless&gt;&gt;<sp/>build_polygon()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="111"><highlight class="normal">};</highlight></codeline>
 <codeline lineno="112"><highlight class="normal"></highlight></codeline>
-<codeline lineno="113"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>trace</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="114"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>astrea</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>point_in_polygon(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::pair&lt;Unitless,<sp/>Unitless&gt;&amp;<sp/>point,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;std::pair&lt;Unitless,<sp/>Unitless&gt;&gt;&amp;<sp/>polygon);</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"></highlight></codeline>
+<codeline lineno="115"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>trace</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="116"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>astrea</highlight></codeline>
     </programlisting>
     <location file="astrea/trace/trace/platforms/sensors/fov/PolygonalFieldOfView.hpp"/>
   </compounddef>

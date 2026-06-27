@@ -65,6 +65,7 @@ _Class to manage the history of states for an object over date._ [More...](#deta
 |  [**const\_iterator**](classastrea_1_1astro_1_1StateHistory.md#typedef-const_iterator) | [**cbegin**](#function-cbegin) () const<br>_Returns a constant iterator to the beginning of the state history._  |
 |  [**const\_iterator**](classastrea_1_1astro_1_1StateHistory.md#typedef-const_iterator) | [**cend**](#function-cend) () const<br>_Returns a constant iterator to the end of the state history._  |
 |  [**void**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**clear**](#function-clear) () <br>_Clears the state history, removing all stored states._  |
+|  [**void**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**convert\_to\_set**](#function-convert_to_set) () <br>_Converts the orbital elements of all states in the history to a different type._  |
 |  [**bool**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**empty**](#function-empty) () const<br>_Checks if the state history is empty._  |
 |  [**iterator**](classastrea_1_1astro_1_1StateHistory.md#typedef-iterator) | [**end**](#function-end-12) () <br>_Returns an iterator to the end of the state history._  |
 |  [**const\_iterator**](classastrea_1_1astro_1_1StateHistory.md#typedef-const_iterator) | [**end**](#function-end-22) () const<br>_Returns a constant iterator to the end of the state history._  |
@@ -307,6 +308,32 @@ void astrea::astro::StateHistory::clear ()
 
 
 
+
+<hr>
+
+
+
+### function convert\_to\_set 
+
+_Converts the orbital elements of all states in the history to a different type._ 
+```C++
+template<IsOrbitalElements T>
+inline void astrea::astro::StateHistory::convert_to_set () 
+```
+
+
+
+
+
+**Template parameters:**
+
+
+* `T` The type to convert the orbital elements to. 
+
+
+
+
+        
 
 <hr>
 

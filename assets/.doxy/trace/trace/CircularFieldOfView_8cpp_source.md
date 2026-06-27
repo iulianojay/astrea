@@ -36,9 +36,20 @@ using namespace mp_units;
 using namespace mp_units::angular;
 using EciRadiusVec = astro::RadiusVector<astro::frames::earth::icrf>;
 
+CircularFieldOfView::CircularFieldOfView(const Angle& halfConeAngle) :
+    _halfConeAngle(halfConeAngle),
+    _cosHalfConeAngle(cos(halfConeAngle))
+{
+}
+
 bool CircularFieldOfView::contains(const EciRadiusVec& boresight, const EciRadiusVec& target) const
 {
-    return (calculate_angle_between_vectors(boresight, target) <= _halfConeAngle);
+    // Replace acos(dot/(|b||t|)) <= θ with the equivalent dot(b̂,t̂) >= cos(θ),
+    // using the pre-computed _cosHalfConeAngle to eliminate the inverse-trig call.
+    const Distance bMag = boresight.norm();
+    const Distance tMag = target.norm();
+    const auto ratio    = boresight.dot(target) / (bMag * tMag);
+    return ratio >= _cosHalfConeAngle;
 }
 
 } // namespace trace

@@ -26,11 +26,31 @@
         <childnode refid="8" relation="include">
         </childnode>
       </node>
+      <node id="13">
+        <label>trace/trace.fwd.hpp</label>
+        <link refid="trace_8fwd_8hpp"/>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
       <node id="8">
         <label>trace/types/typedefs.hpp</label>
         <link refid="typedefs_8hpp"/>
         <childnode refid="9" relation="include">
         </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>astro/astro.fwd.hpp</label>
+      </node>
+      <node id="11">
+        <label>astro/frames.hpp</label>
       </node>
       <node id="5">
         <label>astro/frames/definitions.hpp</label>
@@ -40,6 +60,12 @@
       </node>
       <node id="7">
         <label>astro/state/angular_elements.hpp</label>
+      </node>
+      <node id="12">
+        <label>astro/systems.hpp</label>
+      </node>
+      <node id="14">
+        <label>astro/systems/system_concepts.hpp</label>
       </node>
       <node id="9">
         <label>cstdint</label>
@@ -96,7 +122,7 @@
 <codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/>_positions[platformIdx][timeIdx]<sp/>=<sp/>position;</highlight></codeline>
 <codeline lineno="37"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="38"><highlight class="normal"></highlight></codeline>
-<codeline lineno="39"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>EcefRadiusVec&amp;<sp/><ref refid="classastrea_1_1trace_1_1PositionCache_1ae2694ea5f8b92cd7fb625cc20b26317e" kindref="member">PositionCache::get_position_by_id</ref>(std::size_t<sp/>platformId,<sp/>std::size_t<sp/>timeIdx)</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="PositionCache_8hpp_1afe793f30269c8d02fd6e9d89649ff7c9" kindref="member">EcefRadiusVec</ref>&amp;<sp/><ref refid="classastrea_1_1trace_1_1PositionCache_1ae2694ea5f8b92cd7fb625cc20b26317e" kindref="member">PositionCache::get_position_by_id</ref>(std::size_t<sp/>platformId,<sp/>std::size_t<sp/>timeIdx)</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
 <codeline lineno="40"><highlight class="keyword"></highlight><highlight class="normal">{</highlight></codeline>
 <codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>positions<sp/>=<sp/>_positions[_idToIndex.at(platformId)];</highlight></codeline>
 <codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(positions.size()<sp/>==<sp/>1)<sp/>{</highlight></codeline>
@@ -106,7 +132,7 @@
 <codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>positions[timeIdx];</highlight></codeline>
 <codeline lineno="47"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="48"><highlight class="normal"></highlight></codeline>
-<codeline lineno="49"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>EcefRadiusVec&amp;<sp/><ref refid="classastrea_1_1trace_1_1PositionCache_1ad1c880250c71d7782cd743c7fda9c0f7" kindref="member">PositionCache::get_position_by_index</ref>(std::size_t<sp/>platformIdx,<sp/>std::size_t<sp/>timeIdx)</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="PositionCache_8hpp_1afe793f30269c8d02fd6e9d89649ff7c9" kindref="member">EcefRadiusVec</ref>&amp;<sp/><ref refid="classastrea_1_1trace_1_1PositionCache_1ad1c880250c71d7782cd743c7fda9c0f7" kindref="member">PositionCache::get_position_by_index</ref>(std::size_t<sp/>platformIdx,<sp/>std::size_t<sp/>timeIdx)</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
 <codeline lineno="50"><highlight class="keyword"></highlight><highlight class="normal">{</highlight></codeline>
 <codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>positions<sp/>=<sp/>_positions[platformIdx];</highlight></codeline>
 <codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(positions.size()<sp/>==<sp/>1)<sp/>{</highlight></codeline>

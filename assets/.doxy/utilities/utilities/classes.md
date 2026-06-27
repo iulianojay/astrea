@@ -26,3 +26,9 @@
 ([**astrea::utilities**](namespaceastrea_1_1utilities.md))
 
 
+## s
+
+* [**StopWatch**](classastrea_1_1utilities_1_1StopWatch.md)
+([**astrea::utilities**](namespaceastrea_1_1utilities.md))
+
+

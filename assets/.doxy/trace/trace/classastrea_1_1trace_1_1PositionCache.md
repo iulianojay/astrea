@@ -57,12 +57,12 @@ _Contiguous memory cache for platform positions across time._ [More...](#detaile
 |  void | [**clear**](#function-clear) () <br>_Clear all data._  |
 |  std::size\_t | [**get\_index**](#function-get_index) (std::size\_t platformId) const<br>_Convert platform ID to internal index._  |
 |  std::size\_t | [**get\_platform\_id**](#function-get_platform_id) (std::size\_t platformIdx) const<br>_Get platform ID from internal index._  |
-|  const EcefRadiusVec & | [**get\_position\_by\_id**](#function-get_position_by_id) (std::size\_t platformId, std::size\_t timeIdx) const<br>_Get position by platform ID and time index._  |
-|  const EcefRadiusVec & | [**get\_position\_by\_index**](#function-get_position_by_index) (std::size\_t platformIdx, std::size\_t timeIdx) const<br>_Get position by platform index and time index (faster)_  |
+|  const [**EcefRadiusVec**](namespaceastrea_1_1trace.md#typedef-ecefradiusvec) & | [**get\_position\_by\_id**](#function-get_position_by_id) (std::size\_t platformId, std::size\_t timeIdx) const<br>_Get position by platform ID and time index._  |
+|  const [**EcefRadiusVec**](namespaceastrea_1_1trace.md#typedef-ecefradiusvec) & | [**get\_position\_by\_index**](#function-get_position_by_index) (std::size\_t platformIdx, std::size\_t timeIdx) const<br>_Get position by platform index and time index (faster)_  |
 |  std::size\_t | [**n\_platforms**](#function-n_platforms) () const<br>_Get number of platforms._  |
 |  std::size\_t | [**n\_timesteps**](#function-n_timesteps) () const<br>_Get number of timesteps._  |
 |  void | [**reserve**](#function-reserve) (std::size\_t nPlatforms) <br>_Reserve space for platforms and timesteps._  |
-|  void | [**set\_position**](#function-set_position) (std::size\_t platformIdx, std::size\_t timeIdx, const EcefRadiusVec & position) <br>_Set position for a platform at a specific timestep._  |
+|  void | [**set\_position**](#function-set_position) (std::size\_t platformIdx, std::size\_t timeIdx, const [**EcefRadiusVec**](namespaceastrea_1_1trace.md#typedef-ecefradiusvec) & position) <br>_Set position for a platform at a specific timestep._  |
 |   | [**~PositionCache**](#function-positioncache) () = default<br> |
 
 

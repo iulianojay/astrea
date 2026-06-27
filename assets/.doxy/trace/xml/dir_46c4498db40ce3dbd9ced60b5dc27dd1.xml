@@ -6,10 +6,13 @@
     <innerdir refid="dir_d68b2e53ed12ccd9980273f79a385518">astrea/trace/trace/analysis/stats</innerdir>
     <innerfile refid="AccessAnalyzer_8cpp">AccessAnalyzer.cpp</innerfile>
     <innerfile refid="AccessAnalyzer_8hpp">AccessAnalyzer.hpp</innerfile>
+    <innerfile refid="analysis_8cpp">analysis.cpp</innerfile>
+    <innerfile refid="analysis_8hpp">analysis.hpp</innerfile>
     <innerfile refid="PositionCache_8cpp">PositionCache.cpp</innerfile>
     <innerfile refid="PositionCache_8hpp">PositionCache.hpp</innerfile>
     <innerfile refid="SpatialIndex_8cpp">SpatialIndex.cpp</innerfile>
     <innerfile refid="SpatialIndex_8hpp">SpatialIndex.hpp</innerfile>
+    <innerfile refid="TraceConfig_8hpp">TraceConfig.hpp</innerfile>
     <briefdescription>
     </briefdescription>
     <detaileddescription>

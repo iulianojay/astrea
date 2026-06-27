@@ -62,16 +62,23 @@ _Class representing a grid of ground points on the surface of a celestial body._
 | ---: | :--- |
 |   | [**Grid**](#function-grid-13) () = default<br>_Default constructor for the_ [_**Grid**_](classastrea_1_1trace_1_1Grid.md) _class._ |
 |   | [**Grid**](#function-grid-23) (const std::vector&lt; Point &gt; & groundPoints) <br>_Construct a_ [_**Grid**_](classastrea_1_1trace_1_1Grid.md) _from an explicit vector of ground points._ |
-|   | [**Grid**](#function-grid-33) (const [**LatLon**](namespaceastrea_1_1trace.md#typedef-latlon) & corner1, const [**LatLon**](namespaceastrea_1_1trace.md#typedef-latlon) & corner4, const [**GridType**](namespaceastrea_1_1trace.md#enum-gridtype) & gridType, const Angle & spacing=5.0 \*mp\_units::angular::unit\_symbols::deg, const Unitless & weight=0.0 \*mp\_units::one) <br>_Construct a_ [_**Grid**_](classastrea_1_1trace_1_1Grid.md) _from corner points and a grid type._ |
+|   | [**Grid**](#function-grid-33) (const [**LatRange**](namespaceastrea_1_1trace.md#typedef-latrange) & latRange, const [**LonRange**](namespaceastrea_1_1trace.md#typedef-lonrange) & lonRange, const [**GridType**](namespaceastrea_1_1trace.md#enum-gridtype) & gridType, const Angle & spacing=5.0 \*mp\_units::angular::unit\_symbols::deg, const Unitless & weight=0.0 \*mp\_units::one) <br>_Construct a_ [_**Grid**_](classastrea_1_1trace_1_1Grid.md) _from corner points and a grid type._ |
 |  [**iterator**](classastrea_1_1trace_1_1Grid.md#typedef-iterator) | [**begin**](#function-begin-12) () <br>_Returns an iterator to the beginning of the ground points in the grid._  |
 |  [**const\_iterator**](classastrea_1_1trace_1_1Grid.md#typedef-const_iterator) | [**begin**](#function-begin-22) () const<br>_Returns a constant iterator to the beginning of the ground points in the grid._  |
 |  [**const\_iterator**](classastrea_1_1trace_1_1Grid.md#typedef-const_iterator) | [**cbegin**](#function-cbegin) () const<br>_Returns a constant iterator to the beginning of the ground points in the grid._  |
 |  [**const\_iterator**](classastrea_1_1trace_1_1Grid.md#typedef-const_iterator) | [**cend**](#function-cend) () const<br>_Returns a constant iterator to the end of the ground points in the grid._  |
+|  void | [**clear**](#function-clear) () <br>_Clear all ground points from the grid._  |
+|  void | [**emplace\_back**](#function-emplace_back-12) (const Point & point) <br>_Emplace a ground point in the grid._  |
+|  void | [**emplace\_back**](#function-emplace_back-22) (Point && point) <br>_Emplace a ground point in the grid (move version)._  |
 |  [**iterator**](classastrea_1_1trace_1_1Grid.md#typedef-iterator) | [**end**](#function-end-12) () <br>_Returns an iterator to the end of the ground points in the grid._  |
 |  [**const\_iterator**](classastrea_1_1trace_1_1Grid.md#typedef-const_iterator) | [**end**](#function-end-22) () const<br>_Returns a constant iterator to the end of the ground points in the grid._  |
 |  [**GridType**](namespaceastrea_1_1trace.md#enum-gridtype) | [**get\_grid\_type**](#function-get_grid_type) () const<br>_Get the type of grid._  |
 |  Point & | [**operator[]**](#function-operator) (std::size\_t index) <br>_Access a ground point in the grid by index._  |
 |  const Point & | [**operator[]**](#function-operator_1) (std::size\_t index) const<br>_Access a ground point in the grid by index (constant version)._  |
+|  void | [**push\_back**](#function-push_back-12) (const Point & point) <br>_Add a ground point to the grid._  |
+|  void | [**push\_back**](#function-push_back-22) (Point && point) <br>_Add a ground point to the grid (move version)._  |
+|  void | [**reserve**](#function-reserve) (std::size\_t n) <br>_Reserve space for a specified number of ground points in the grid._  |
+|  void | [**resize**](#function-resize) (std::size\_t n) <br>_Resize the grid to contain a specified number of ground points._  |
 |  std::size\_t | [**size**](#function-size) () const<br>_Get the number of ground points in the grid._  |
 | virtual  | [**~Grid**](#function-grid) () = default<br>_Default destructor for the_ [_**Grid**_](classastrea_1_1trace_1_1Grid.md) _class._ |
 
@@ -204,8 +211,8 @@ inline astrea::trace::Grid::Grid (
 _Construct a_ [_**Grid**_](classastrea_1_1trace_1_1Grid.md) _from corner points and a grid type._
 ```C++
 inline astrea::trace::Grid::Grid (
-    const LatLon & corner1,
-    const LatLon & corner4,
+    const LatRange & latRange,
+    const LonRange & lonRange,
     const GridType & gridType,
     const Angle & spacing=5.0 *mp_units::angular::unit_symbols::deg,
     const Unitless & weight=0.0 *mp_units::one
@@ -219,8 +226,8 @@ inline astrea::trace::Grid::Grid (
 **Parameters:**
 
 
-* `corner1` First corner (latitude, longitude). 
-* `corner4` Fourth corner (latitude, longitude). 
+* `latRange` Latitude range (min, max). 
+* `lonRange` Longitude range (min, max). 
 * `gridType` [**Grid**](classastrea_1_1trace_1_1Grid.md) generation algorithm. 
 * `spacing` Angular spacing between points (default 5 deg). 
 * `weight` Weighting factor (default 0). 
@@ -324,6 +331,74 @@ inline const_iterator astrea::trace::Grid::cend () const
 
 A constant iterator to one past the last ground point. 
 
+
+
+
+
+        
+
+<hr>
+
+
+
+### function clear 
+
+_Clear all ground points from the grid._ 
+```C++
+inline void astrea::trace::Grid::clear () 
+```
+
+
+
+
+<hr>
+
+
+
+### function emplace\_back [1/2]
+
+_Emplace a ground point in the grid._ 
+```C++
+inline void astrea::trace::Grid::emplace_back (
+    const Point & point
+) 
+```
+
+
+
+
+
+**Parameters:**
+
+
+* `point` The ground point to emplace. 
+
+
+
+
+        
+
+<hr>
+
+
+
+### function emplace\_back [2/2]
+
+_Emplace a ground point in the grid (move version)._ 
+```C++
+inline void astrea::trace::Grid::emplace_back (
+    Point && point
+) 
+```
+
+
+
+
+
+**Parameters:**
+
+
+* `point` The ground point to emplace (moved). 
 
 
 
@@ -467,6 +542,114 @@ inline const Point & astrea::trace::Grid::operator[] (
 
 Constant reference to the Point at the specified index. 
 
+
+
+
+
+        
+
+<hr>
+
+
+
+### function push\_back [1/2]
+
+_Add a ground point to the grid._ 
+```C++
+inline void astrea::trace::Grid::push_back (
+    const Point & point
+) 
+```
+
+
+
+
+
+**Parameters:**
+
+
+* `point` The ground point to add. 
+
+
+
+
+        
+
+<hr>
+
+
+
+### function push\_back [2/2]
+
+_Add a ground point to the grid (move version)._ 
+```C++
+inline void astrea::trace::Grid::push_back (
+    Point && point
+) 
+```
+
+
+
+
+
+**Parameters:**
+
+
+* `point` The ground point to add (moved). 
+
+
+
+
+        
+
+<hr>
+
+
+
+### function reserve 
+
+_Reserve space for a specified number of ground points in the grid._ 
+```C++
+inline void astrea::trace::Grid::reserve (
+    std::size_t n
+) 
+```
+
+
+
+
+
+**Parameters:**
+
+
+* `n` The number of ground points to reserve space for. 
+
+
+
+
+        
+
+<hr>
+
+
+
+### function resize 
+
+_Resize the grid to contain a specified number of ground points._ 
+```C++
+inline void astrea::trace::Grid::resize (
+    std::size_t n
+) 
+```
+
+
+
+
+
+**Parameters:**
+
+
+* `n` The new size of the grid. 
 
 
 

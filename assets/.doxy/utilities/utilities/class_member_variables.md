@@ -25,6 +25,7 @@
 * **\_iRecord** ([**astrea::utilities::ProgressBar**](classastrea_1_1utilities_1_1ProgressBar.md))
 * **\_maxRecords** ([**astrea::utilities::ProgressBar**](classastrea_1_1utilities_1_1ProgressBar.md))
 * **\_title** ([**astrea::utilities::ProgressBar**](classastrea_1_1utilities_1_1ProgressBar.md))
+* **\_start** ([**astrea::utilities::StopWatch**](classastrea_1_1utilities_1_1StopWatch.md))
 
 
 

@@ -36,7 +36,7 @@
 | Type | Name |
 | ---: | :--- |
 |  bool | [**isOcculted**](#variable-isocculted)  <br> |
-|  EcefRadiusVec | [**radius1to2**](#variable-radius1to2)  <br> |
+|  [**EcefRadiusVec**](namespaceastrea_1_1trace.md#typedef-ecefradiusvec) | [**radius1to2**](#variable-radius1to2)  <br> |
 |  Time | [**time**](#variable-time)  <br> |
 
 

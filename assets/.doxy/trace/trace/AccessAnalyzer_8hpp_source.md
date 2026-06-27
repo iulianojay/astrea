@@ -50,23 +50,6 @@ concept HasSubscriptOperator = requires(T t) {
 template <typename T>
 concept IsPlatformContainer = HasSize<T> && HasSubscriptOperator<T>;
 
-using EciRadiusVec  = astro::RadiusVector<astro::frames::earth::icrf>;
-using EcefRadiusVec = astro::RadiusVector<astro::frames::earth::earth_fixed>;
-
-using DateVector = std::vector<astro::Date>;
-
-using ViewerConstellation = astro::Constellation<Viewer>;
-
-
-using ViewerRefVec = std::vector<std::shared_ptr<Viewer>>;
-
-using GroundStationRefVec = std::vector<std::shared_ptr<GroundStation<astro::planets::Earth>>>;
-
-using GroundPointRefVec = std::vector<std::shared_ptr<GroundPoint<astro::planets::Earth>>>;
-
-using PairVec = std::vector<std::pair<std::size_t, std::size_t>>;
-
-
 class AccessAnalyzer {
 
   public:
@@ -130,6 +113,16 @@ class AccessAnalyzer {
     GroundPointRefVec cache_ground_points(Grid<astro::planets::Earth>& grid);
 
     std::vector<AccessInfo> build_access_info(const std::size_t& id1, const std::size_t& id2) const;
+
+    std::vector<AccessInfo> build_ground_access_info(const std::size_t& satId, const std::size_t& gpId) const;
+
+    std::vector<std::vector<std::size_t>>
+        compute_candidate_ground_points(const ViewerRefVec& viewers, const SpatialIndex& spatialIndex) const;
+
+    BoresightTable compute_sensor_boresights(std::shared_ptr<astro::PayloadPlatform<Sensor>> platform) const;
+
+    RiseSetArray
+        find_sensor_accesses_precomputed(const std::vector<AccessInfo>& accessInfo, const std::vector<EciRadiusVec>& boresightEci, const FieldOfView* fov) const;
 };
 
 } // namespace trace

@@ -4,7 +4,7 @@
 
 
 
-[**Namespace List**](namespaces.md) **>** [**plotting**](namespaceastrea_1_1trace_1_1plotting_1_1_0d2.md)
+[**Namespace List**](namespaces.md) **>** [**plotting**](namespaceastrea_1_1trace_1_1plotting_1_1_0d4.md)
 
 
 

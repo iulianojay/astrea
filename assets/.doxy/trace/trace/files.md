@@ -14,6 +14,9 @@ Here is a list of all files with brief descriptions:
                 * **file** [**PositionCache.hpp**](PositionCache_8hpp.md) _Header file for position caching trace library._     
                 * **file** [**SpatialIndex.cpp**](SpatialIndex_8cpp.md)     
                 * **file** [**SpatialIndex.hpp**](SpatialIndex_8hpp.md) _Header file for spatial indexing functions in the astrea trace library._     
+                * **file** [**TraceConfig.hpp**](TraceConfig_8hpp.md) _Header file for trace configuration in the astrea trace library._     
+                * **file** [**analysis.cpp**](analysis_8cpp.md)     
+                * **file** [**analysis.hpp**](analysis_8hpp.md) _Header file for trace analysis functions in the astrea trace library._     
                 * **dir** [**plots**](dir_6faad7806a2c60f21e03829ae6b33a05.md)     
                     * **file** [**Plotter.cpp**](Plotter_8cpp.md)     
                     * **file** [**Plotter.hpp**](Plotter_8hpp.md) _Header file for plotting utilities in the trace module._     

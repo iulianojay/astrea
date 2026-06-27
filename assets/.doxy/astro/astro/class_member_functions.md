@@ -52,7 +52,7 @@
 * **clear\_watchers** ([**astrea::astro::Integrator**](classastrea_1_1astro_1_1Integrator.md))
 * **check\_degenerate** ([**astrea::astro::KeplerianVop**](classastrea_1_1astro_1_1KeplerianVop.md))
 * **clone** ([**astrea::astro::NullVehicle**](classastrea_1_1astro_1_1NullVehicle.md), [**astrea::astro::detail::EventInner**](structastrea_1_1astro_1_1detail_1_1EventInner.md), [**astrea::astro::detail::EventInnerBase**](structastrea_1_1astro_1_1detail_1_1EventInnerBase.md), [**astrea::astro::detail::VehicleInner**](structastrea_1_1astro_1_1detail_1_1VehicleInner.md), [**astrea::astro::detail::VehicleInnerBase**](structastrea_1_1astro_1_1detail_1_1VehicleInnerBase.md))
-* **convert\_to\_set** ([**astrea::astro::OrbitalElements**](classastrea_1_1astro_1_1OrbitalElements.md), [**astrea::astro::State**](classastrea_1_1astro_1_1State.md))
+* **convert\_to\_set** ([**astrea::astro::OrbitalElements**](classastrea_1_1astro_1_1OrbitalElements.md), [**astrea::astro::State**](classastrea_1_1astro_1_1State.md), [**astrea::astro::StateHistory**](classastrea_1_1astro_1_1StateHistory.md))
 * **convert\_to\_set\_impl** ([**astrea::astro::OrbitalElements**](classastrea_1_1astro_1_1OrbitalElements.md))
 * **conjugate** ([**astrea::astro::Quaternion**](classastrea_1_1astro_1_1Quaternion.md))
 * **ctor\_impl** ([**astrea::astro::TwoLineElements**](classastrea_1_1astro_1_1TwoLineElements.md))

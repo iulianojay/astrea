@@ -13,6 +13,7 @@ _Header file for spatial indexing functions in the astrea trace library._ [More.
 * `#include <unordered_set>`
 * `#include <vector>`
 * `#include <units/units.hpp>`
+* `#include <trace/types/typedefs.hpp>`
 
 
 

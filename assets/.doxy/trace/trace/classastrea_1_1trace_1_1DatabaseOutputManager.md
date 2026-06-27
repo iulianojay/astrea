@@ -63,6 +63,7 @@ _A class for managing database output operations with a single database instance
 |  const DatabaseStorage & | [**get\_storage**](#function-get_storage-22) () const<br>_Gets a const reference to the underlying database storage._  |
 |  void | [**save\_access\_metrics**](#function-save_access_metrics) (const [**AccessStats**](structastrea_1_1trace_1_1AccessStats.md) & stats, const astro::Constellation&lt; T &gt; & satellites, const U & grounds=U()) <br>_Saves the access metrics to the database in a structured format._  |
 |  void | [**save\_ground\_locations**](#function-save_ground_locations) (const U & grounds) <br>_Saves ground location coordinates to the database._  |
+|  void | [**save\_ground\_track**](#function-save_ground_track) (const astro::Constellation&lt; T &gt; & satellites, const astro::Date & startDate, const astro::Date & endDate, const Time & resolution) <br>_Saves satellite ground track positions (latitude/longitude over time) to the database._  |
 |  void | [**save\_number\_of\_folds**](#function-save_number_of_folds) (const [**FoldsOfCoverage**](classastrea_1_1trace_1_1FoldsOfCoverage.md) & folds, const astro::Constellation&lt; T &gt; & satellites, const U & grounds) <br>_Saves the number of folds coverage data to the database in a structured format._  |
 |  void | [**save\_receiver\_riseset\_metrics**](#function-save_receiver_riseset_metrics) (const [**AccessStats**](structastrea_1_1trace_1_1AccessStats.md) & stats, const astro::Constellation&lt; T &gt; & satellites, const U & grounds=U()) <br>_Saves the receiver RiseSet metrics to the database in a structured format._  |
 |  void | [**save\_results**](#function-save_results) (const [**FoldsOfCoverage**](classastrea_1_1trace_1_1FoldsOfCoverage.md) & folds, const [**AccessStats**](structastrea_1_1trace_1_1AccessStats.md) & stats, const [**AccessArray**](classastrea_1_1trace_1_1AccessArray.md) & accesses, const astro::Constellation&lt; T &gt; & satellites, const U & grounds=U()) <br>_Saves all results to the database in a structured format._  |
@@ -285,6 +286,47 @@ inline void astrea::trace::DatabaseOutputManager::save_ground_locations (
 
 
 * `grounds` The container of ground objects to save. 
+
+
+
+
+        
+
+<hr>
+
+
+
+### function save\_ground\_track 
+
+_Saves satellite ground track positions (latitude/longitude over time) to the database._ 
+```C++
+template<typename T>
+inline void astrea::trace::DatabaseOutputManager::save_ground_track (
+    const astro::Constellation< T > & satellites,
+    const astro::Date & startDate,
+    const astro::Date & endDate,
+    const Time & resolution
+) 
+```
+
+
+
+
+
+**Template parameters:**
+
+
+* `T` The spacecraft type used in the Constellation. 
+
+
+
+**Parameters:**
+
+
+* `satellites` The constellation whose satellites' ground tracks are to be saved. 
+* `startDate` The start of the simulation epoch. 
+* `endDate` The end of the simulation epoch. 
+* `resolution` The time step between saved ground track points. 
 
 
 

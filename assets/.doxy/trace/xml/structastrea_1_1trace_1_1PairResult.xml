@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="structastrea_1_1trace_1_1PairResult" kind="struct" language="C++" prot="public">
+    <compoundname>astrea::trace::PairResult</compoundname>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structastrea_1_1trace_1_1PairResult_1a04054732a5af6699c40c478aad31c808" prot="public" static="no" mutable="no">
+        <type><ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref></type>
+        <definition>RiseSetArray astrea::trace::PairResult::platformAccess</definition>
+        <argsstring></argsstring>
+        <name>platformAccess</name>
+        <qualifiedname>astrea::trace::PairResult::platformAccess</qualifiedname>
+        <briefdescription>
+<para>Union over all sensors. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/analysis/AccessAnalyzer.cpp" line="71" column="18" bodyfile="astrea/trace/trace/analysis/AccessAnalyzer.cpp" bodystart="71" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structastrea_1_1trace_1_1PairResult_1a61c20d042ebb8b617018aa0f31ced637" prot="public" static="no" mutable="no">
+        <type>std::vector&lt; std::pair&lt; std::size_t, <ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref> &gt; &gt;</type>
+        <definition>std::vector&lt;std::pair&lt;std::size_t, RiseSetArray&gt; &gt; astrea::trace::PairResult::sensorAccesses</definition>
+        <argsstring></argsstring>
+        <name>sensorAccesses</name>
+        <qualifiedname>astrea::trace::PairResult::sensorAccesses</qualifiedname>
+        <briefdescription>
+<para>(sensor_idx, access_windows) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/analysis/AccessAnalyzer.cpp" line="72" column="17" bodyfile="astrea/trace/trace/analysis/AccessAnalyzer.cpp" bodystart="72" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Per-viewer result for one (viewer, ground-point) work item. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>astrea::trace::PairResult</label>
+        <link refid="structastrea_1_1trace_1_1PairResult"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>platformAccess</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>astrea::trace::RiseSetArray</label>
+        <link refid="classastrea_1_1trace_1_1RiseSetArray"/>
+      </node>
+    </collaborationgraph>
+    <location file="astrea/trace/trace/analysis/AccessAnalyzer.cpp" line="70" column="1" bodyfile="astrea/trace/trace/analysis/AccessAnalyzer.cpp" bodystart="70" bodyend="73"/>
+    <listofallmembers>
+      <member refid="structastrea_1_1trace_1_1PairResult_1a04054732a5af6699c40c478aad31c808" prot="public" virt="non-virtual"><scope>astrea::trace::PairResult</scope><name>platformAccess</name></member>
+      <member refid="structastrea_1_1trace_1_1PairResult_1a61c20d042ebb8b617018aa0f31ced637" prot="public" virt="non-virtual"><scope>astrea::trace::PairResult</scope><name>sensorAccesses</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

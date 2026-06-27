@@ -6262,6 +6262,10 @@ You're not viewing the latest version.
 <td style="text-align: left;"><a href="#function-contains"><strong>contains</strong></a> (const astro::CartesianVector&lt; Distance, astro::frames::earth::icrf &gt; &amp; boresight, const astro::CartesianVector&lt; Distance, astro::frames::earth::icrf &gt; &amp; target) const<br><em>Checks if a target is within the circular field of view.</em></td>
 </tr>
 <tr>
+<td style="text-align: right;">virtual Angle</td>
+<td style="text-align: left;"><a href="#function-max_half_angle"><strong>max_half_angle</strong></a> () override const<br><em>Returns the maximum off-boresight half-angle for this field of view.</em></td>
+</tr>
+<tr>
 <td style="text-align: right;"></td>
 <td style="text-align: left;"><a href="#function-circularfieldofview"><strong>~CircularFieldOfView</strong></a> () = default<br><em>Default destructor for</em> <a href="./"><em><strong>CircularFieldOfView</strong></em></a> <em>.</em></td>
 </tr>
@@ -6286,6 +6290,10 @@ You're not viewing the latest version.
 <td style="text-align: left;"><a href="../classastrea_1_1trace_1_1FieldOfView/#function-contains"><strong>contains</strong></a> (const astro::CartesianVector&lt; Distance, astro::frames::earth::icrf &gt; &amp; boresight, const astro::CartesianVector&lt; Distance, astro::frames::earth::icrf &gt; &amp; target) const = 0<br><em>Checks if a target is within the field of view.</em></td>
 </tr>
 <tr>
+<td style="text-align: right;">virtual Angle</td>
+<td style="text-align: left;"><a href="../classastrea_1_1trace_1_1FieldOfView/#function-max_half_angle"><strong>max_half_angle</strong></a> () const<br><em>Returns the maximum off-boresight half-angle for this field of view.</em></td>
+</tr>
+<tr>
 <td style="text-align: right;"></td>
 <td style="text-align: left;"><a href="../classastrea_1_1trace_1_1FieldOfView/#function-fieldofview"><strong>~FieldOfView</strong></a> () = default<br><em>Virtual destructor for</em> <a href="../classastrea_1_1trace_1_1FieldOfView/"><em><strong>FieldOfView</strong></em></a> <em>.</em></td>
 </tr>
@@ -6296,7 +6304,7 @@ You're not viewing the latest version.
 <h2 id="public-functions-documentation">Public Functions Documentation<a class="headerlink" href="#public-functions-documentation" title="Permanent link">&para;</a></h2>
 <h3 id="function-circularfieldofview">function CircularFieldOfView<a class="headerlink" href="#function-circularfieldofview" title="Permanent link">&para;</a></h3>
 <p><em>Constructor for</em> <a href="./"><em><strong>CircularFieldOfView</strong></em></a> <em>.</em>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kr">inline</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">trace</span><span class="o">::</span><span class="n">CircularFieldOfView</span><span class="o">::</span><span class="n">CircularFieldOfView</span><span class="w"> </span><span class="p">(</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">astrea</span><span class="o">::</span><span class="n">trace</span><span class="o">::</span><span class="n">CircularFieldOfView</span><span class="o">::</span><span class="n">CircularFieldOfView</span><span class="w"> </span><span class="p">(</span>
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Angle</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">halfConeAngle</span><span class="o">=</span><span class="n">std</span><span class="o">::</span><span class="n">numbers</span><span class="o">::</span><span class="n">pi</span><span class="o">/</span><span class="mf">4.0</span><span class="w"> </span><span class="o">*</span><span class="n">mp_units</span><span class="o">::</span><span class="n">angular</span><span class="o">::</span><span class="n">unit_symbols</span><span class="o">::</span><span class="n">rad</span>
 </span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="p">)</span><span class="w"> </span>
 </span></code></pre></div></p>
@@ -6325,9 +6333,19 @@ You're not viewing the latest version.
 <p>Implements <a href="../classastrea_1_1trace_1_1FieldOfView/#function-contains"><em>astrea::trace::FieldOfView::contains</em></a></p>
 <hr>
 
+<h3 id="function-max_half_angle">function max_half_angle<a class="headerlink" href="#function-max_half_angle" title="Permanent link">&para;</a></h3>
+<p><em>Returns the maximum off-boresight half-angle for this field of view.</em> 
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kr">inline</span><span class="w"> </span><span class="k">virtual</span><span class="w"> </span><span class="n">Angle</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">trace</span><span class="o">::</span><span class="n">CircularFieldOfView</span><span class="o">::</span><span class="n">max_half_angle</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="k">const</span>
+</span></code></pre></div></p>
+<p>Used for spatial index culling to determine the maximum sensor footprint radius. The default returns π/2 rad, a conservative bound covering the full hemisphere.</p>
+<p><strong>Returns:</strong></p>
+<p>Angle Maximum off-boresight half-angle. </p>
+<p>Implements <a href="../classastrea_1_1trace_1_1FieldOfView/#function-max_half_angle"><em>astrea::trace::FieldOfView::max_half_angle</em></a></p>
+<hr>
+
 <h3 id="function-circularfieldofview_1">function ~CircularFieldOfView<a class="headerlink" href="#function-circularfieldofview_1" title="Permanent link">&para;</a></h3>
 <p><em>Default destructor for</em> <a href="./"><em><strong>CircularFieldOfView</strong></em></a> <em>.</em>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">astrea</span><span class="o">::</span><span class="n">trace</span><span class="o">::</span><span class="n">CircularFieldOfView</span><span class="o">::~</span><span class="n">CircularFieldOfView</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">default</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">astrea</span><span class="o">::</span><span class="n">trace</span><span class="o">::</span><span class="n">CircularFieldOfView</span><span class="o">::~</span><span class="n">CircularFieldOfView</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">default</span>
 </span></code></pre></div></p>
 <hr>
 

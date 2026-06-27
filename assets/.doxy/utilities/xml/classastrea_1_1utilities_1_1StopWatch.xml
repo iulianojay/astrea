@@ -1,0 +1,86 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classastrea_1_1utilities_1_1StopWatch" kind="class" language="C++" prot="public">
+    <compoundname>astrea::utilities::StopWatch</compoundname>
+    <includes refid="StopWatch_8hpp" local="no">StopWatch.hpp</includes>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classastrea_1_1utilities_1_1StopWatch_1af7826faadbd5c0a5a172a549e8c7395b" prot="private" static="no" mutable="no">
+        <type>std::chrono::high_resolution_clock::time_point</type>
+        <definition>std::chrono::high_resolution_clock::time_point astrea::utilities::StopWatch::_start</definition>
+        <argsstring></argsstring>
+        <name>_start</name>
+        <qualifiedname>astrea::utilities::StopWatch::_start</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/utilities/utilities/StopWatch.hpp" line="67" column="52" bodyfile="astrea/utilities/utilities/StopWatch.hpp" bodystart="67" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classastrea_1_1utilities_1_1StopWatch_1a1e05d0904e5d43390e6d790ead89bd40" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>astrea::utilities::StopWatch::StopWatch</definition>
+        <argsstring>()</argsstring>
+        <name>StopWatch</name>
+        <qualifiedname>astrea::utilities::StopWatch::StopWatch</qualifiedname>
+        <briefdescription>
+<para>Constructs a <ref refid="classastrea_1_1utilities_1_1StopWatch" kindref="compound">StopWatch</ref> and starts timing. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/utilities/utilities/StopWatch.hpp" line="42" column="5" bodyfile="astrea/utilities/utilities/StopWatch.hpp" bodystart="42" bodyend="45"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1utilities_1_1StopWatch_1af741045f9ca6811d7e95ade5af59856c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void astrea::utilities::StopWatch::reset</definition>
+        <argsstring>()</argsstring>
+        <name>reset</name>
+        <qualifiedname>astrea::utilities::StopWatch::reset</qualifiedname>
+        <briefdescription>
+<para>Resets the stopwatch to the current time. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/utilities/utilities/StopWatch.hpp" line="50" column="10" bodyfile="astrea/utilities/utilities/StopWatch.hpp" bodystart="50" bodyend="50"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1utilities_1_1StopWatch_1afaecd16b37f746ef45397701637076ae" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>Time</type>
+        <definition>Time astrea::utilities::StopWatch::measure</definition>
+        <argsstring>() const</argsstring>
+        <name>measure</name>
+        <qualifiedname>astrea::utilities::StopWatch::measure</qualifiedname>
+        <briefdescription>
+<para>Measures the elapsed time in seconds since the last reset or construction. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Time The elapsed time. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/utilities/utilities/StopWatch.hpp" line="57" column="10" bodyfile="astrea/utilities/utilities/StopWatch.hpp" bodystart="57" bodyend="64"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>A simple stopwatch utility for measuring elapsed time. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>The <ref refid="classastrea_1_1utilities_1_1StopWatch" kindref="compound">StopWatch</ref> class provides a convenient way to measure elapsed time in seconds. It uses the high-resolution clock from the &lt;chrono&gt; library to provide accurate timing. </para>
+    </detaileddescription>
+    <location file="astrea/utilities/utilities/StopWatch.hpp" line="37" column="1" bodyfile="astrea/utilities/utilities/StopWatch.hpp" bodystart="37" bodyend="68"/>
+    <listofallmembers>
+      <member refid="classastrea_1_1utilities_1_1StopWatch_1af7826faadbd5c0a5a172a549e8c7395b" prot="private" virt="non-virtual"><scope>astrea::utilities::StopWatch</scope><name>_start</name></member>
+      <member refid="classastrea_1_1utilities_1_1StopWatch_1afaecd16b37f746ef45397701637076ae" prot="public" virt="non-virtual"><scope>astrea::utilities::StopWatch</scope><name>measure</name></member>
+      <member refid="classastrea_1_1utilities_1_1StopWatch_1af741045f9ca6811d7e95ade5af59856c" prot="public" virt="non-virtual"><scope>astrea::utilities::StopWatch</scope><name>reset</name></member>
+      <member refid="classastrea_1_1utilities_1_1StopWatch_1a1e05d0904e5d43390e6d790ead89bd40" prot="public" virt="non-virtual"><scope>astrea::utilities::StopWatch</scope><name>StopWatch</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

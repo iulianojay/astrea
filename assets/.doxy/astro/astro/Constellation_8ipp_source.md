@@ -64,7 +64,7 @@ Constellation<Spacecraft_T>::Constellation(
     const Angle& inclination,
     const size_t& T,
     const size_t& P,
-    const double& F,
+    const Unitless& F,
     const Angle& anchorRAAN,
     const Angle& anchorAnomaly
 )
