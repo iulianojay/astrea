@@ -62,7 +62,7 @@ static AccessArray
     const Date endDate = epoch + propTime;
     constellation.propagate(endDate, integrator);
 
-    if (printProgress) { std::cout << std::endl << "[trace] Propagation Time: " << watch.measure() << std::endl; }
+    if (printProgress) { std::cout << "[trace] Propagation Time: " << watch.measure() << std::endl; }
 
     // Validate state histories
     for (auto& shell : constellation.get_shells()) {
@@ -90,7 +90,7 @@ static AccessArray
     }
 
     // Find access
-    if (printProgress) { std::cout << std::endl << "[trace] Running Access Analysis..." << std::endl; }
+    if (printProgress) { std::cout << "[trace] Running Access Analysis..." << std::endl; }
 
     watch.reset();
     AccessAnalyzer analyzer(accessResolution, epoch, endDate, true);
