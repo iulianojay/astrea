@@ -21,6 +21,7 @@
 #include <mp-units/systems/si.h>
 
 #include <astro/astro.hpp>
+#include <utilities/StopWatch.hpp>
 
 #include <trace/analysis/AccessAnalyzer.hpp>
 #include <trace/analysis/stats/AccessStats.hpp>
@@ -45,14 +46,8 @@ namespace astrea {
 namespace trace {
 
 template <typename T, typename U>
-static AccessArray propagate_and_run_access_analysis(
-    astro::Constellation<T>& constellation,
-    U& grounds,
-    const Date& startDate,
-    const Time propTime,
-    const Time accessResolution,
-    const bool printProgress
-)
+static AccessArray
+    propagate_and_run_access_analysis(astro::Constellation<T>& constellation, U& grounds, const Date& epoch, const Time propTime, const Time accessResolution, const bool printProgress)
 {
     // Setup integrator
     J2MeanVop eom;
@@ -61,14 +56,13 @@ static AccessArray propagate_and_run_access_analysis(
     integrator.switch_fixed_timestep(true, accessResolution);
 
     // Propagate
-    auto start         = std::chrono::steady_clock::now();
-    const Date endDate = startDate + propTime;
-    constellation.propagate(endDate, integrator);
-    auto end  = std::chrono::steady_clock::now();
-    auto diff = std::chrono::duration_cast<nanoseconds>(end - start);
+    if (printProgress) { std::cout << std::endl << "[trace]: Propagating..." << std::endl; }
 
-    if (printProgress) { std::cout << "\nPropagation Time: " << diff.count() / 1e9 << " (s)\n"; }
-    start = std::chrono::steady_clock::now();
+    utilities::StopWatch watch;
+    const Date endDate = epoch + propTime;
+    constellation.propagate(endDate, integrator);
+
+    if (printProgress) { std::cout << std::endl << "[trace]: Propagation Time: " << watch.measure() << std::endl; }
 
     // Validate state histories
     for (auto& shell : constellation.get_shells()) {
@@ -77,17 +71,17 @@ static AccessArray propagate_and_run_access_analysis(
                 auto& stateHistory = sat.get_state_history();
                 stateHistory.template convert_to_set<Cartesian<frames::primary>>();
                 if (stateHistory.size() == 0) {
-                    throw std::runtime_error("Error: State history not populated after propagation.");
+                    throw std::runtime_error("[trace]: ERROR - State history not populated after propagation.");
                 }
-                if (stateHistory.first().get_epoch() > startDate) {
+                if (stateHistory.first().get_epoch() > epoch) {
                     std::ostringstream oss;
-                    oss << "Error: State history starts at the wrong time! Expected: " << startDate
+                    oss << "[trace]: ERROR - State history starts at the wrong time! Expected: " << epoch
                         << ", Actual: " << stateHistory.first().get_epoch();
                     throw std::runtime_error(oss.str());
                 }
                 if (stateHistory.last().get_epoch() != endDate) {
                     std::ostringstream oss;
-                    oss << "Error: State history ends at the wrong time! Expected: " << endDate
+                    oss << "[trace]: ERROR - State history ends at the wrong time! Expected: " << endDate
                         << ", Actual: " << stateHistory.last().get_epoch();
                     throw std::runtime_error(oss.str());
                 }
@@ -96,35 +90,45 @@ static AccessArray propagate_and_run_access_analysis(
     }
 
     // Find access
-    AccessAnalyzer analyzer(accessResolution, startDate, endDate, true);
+    if (printProgress) { std::cout << std::endl << "[trace]: Running Access Analysis..." << std::endl; }
+
+    watch.reset();
+    AccessAnalyzer analyzer(accessResolution, epoch, endDate, true);
     const AccessArray accesses = analyzer.find_accesses(constellation, grounds, true);
 
-    end  = std::chrono::steady_clock::now();
-    diff = std::chrono::duration_cast<nanoseconds>(end - start);
-
-    if (printProgress) { std::cout << "\nAccess Analysis Time: " << diff.count() / 1.0e9 << " (s)\n"; }
+    if (printProgress) { std::cout << "[trace]: Access Analysis Time: " << watch.measure() << std::endl; }
 
     return accesses;
 }
 
 AnalysisResult run_trace_analysis(const TraceConfig& config)
 {
-    const Date startDate = Date::now();
+    // Unpack settings
+    const auto analysisSettings      = config.analysisSettings;
+    const auto constellationSettings = config.constellationSettings;
+    const auto sensorSettings        = config.sensorSettings;
+    const auto groundSettings        = config.groundSettings;
+    const auto outputSettings        = config.outputSettings;
+
+    // Propagate + access analysis
+    const Time propTime         = analysisSettings.simTime;
+    const Time accessResolution = analysisSettings.resolution;
+    const Date epoch            = analysisSettings.epoch;
 
     // Build 3-shell Walker constellation
-    const Distance altitude   = config.constellationSettings.altitude;
+    const Distance altitude   = constellationSettings.altitude;
     const Distance semimajor  = altitude + get_equitorial_radius<planets::Earth>();
-    const Angle inclination   = config.constellationSettings.inclination;
-    const std::size_t nSats   = config.constellationSettings.nSats;
-    const std::size_t nPlanes = config.constellationSettings.nPlanes;
-    const Unitless phasing    = config.constellationSettings.phasing;
-    const Angle anchorRaan    = config.constellationSettings.anchorRaan;
-    const Angle anchorAnomaly = config.constellationSettings.anchorTrueAnomaly;
+    const Angle inclination   = constellationSettings.inclination;
+    const std::size_t nSats   = constellationSettings.nSats;
+    const std::size_t nPlanes = constellationSettings.nPlanes;
+    const Unitless phasing    = constellationSettings.phasing;
+    const Angle anchorRaan    = constellationSettings.anchorRaan;
+    const Angle anchorAnomaly = constellationSettings.anchorTrueAnomaly;
 
-    Constellation<Viewer> constellation(startDate, semimajor, inclination, nSats, nPlanes, phasing, anchorRaan, anchorAnomaly);
+    Constellation<Viewer> constellation(epoch, semimajor, inclination, nSats, nPlanes, phasing, anchorRaan, anchorAnomaly);
 
     // Attach sensors
-    CircularFieldOfView fovShape(config.sensorSettings.halfConeAngle);
+    CircularFieldOfView fovShape(sensorSettings.halfConeAngle);
     SensorParameters sensor(&fovShape);
     for (auto& shell : constellation.get_shells()) {
         for (auto& plane : shell.get_planes()) {
@@ -136,42 +140,46 @@ AnalysisResult run_trace_analysis(const TraceConfig& config)
 
     // Build grid — LatLon is (latitude, longitude)
     Grid<astro::planets::Earth> grid(
-        config.groundSettings.gridSettings.latRange,
-        config.groundSettings.gridSettings.lonRange,
+        groundSettings.gridSettings.latRange,
+        groundSettings.gridSettings.lonRange,
         GridType::UNIFORM,
-        config.groundSettings.gridSettings.spacing
+        groundSettings.gridSettings.spacing
     );
 
-    // Propagate + access analysis
-    const Time propTime         = config.analysisSettings.simTime;
-    const Time accessResolution = config.analysisSettings.resolution;
-
-    const AccessArray accesses = propagate_and_run_access_analysis(
-        constellation, grid, startDate, propTime, accessResolution, config.outputSettings.printProgress
-    );
+    // Run the access analysis
+    const bool printProgress = outputSettings.printProgress;
+    const AccessArray accesses =
+        propagate_and_run_access_analysis(constellation, grid, epoch, propTime, accessResolution, printProgress);
 
     const AnalysisResult results{ accesses, AccessStats(accesses), FoldsOfCoverage(accesses, accessResolution, propTime) };
 
     // Save results
-    if (!config.outputSettings.saveResults) { return results; }
+    if (outputSettings.saveResults) {
+        utilities::StopWatch watch;
 
-    const std::filesystem::path outdir = config.outputSettings.outdir.empty() ?
-                                             std::filesystem::path(std::string(_TRACE_ROOT_) + "/trace/drivers/results/global") :
-                                             std::filesystem::path(config.outputSettings.outdir);
-    std::filesystem::create_directories(outdir);
-    const std::filesystem::path dbPath = outdir / config.outputSettings.dbName;
+        const std::filesystem::path outdir = std::filesystem::path(outputSettings.outdir);
+        std::filesystem::create_directories(outdir);
 
-    if (config.outputSettings.printProgress) { std::cout << "Saving results to: " << dbPath << std::endl; }
-    DatabaseOutputManager manager(dbPath, true);
-    manager.save_results(results.folds, results.stats, results.accesses, constellation, grid);
-    manager.save_ground_track(constellation, startDate, startDate + propTime, accessResolution);
+        const std::filesystem::path dbPath = outdir / outputSettings.dbName;
+        if (printProgress) { std::cout << "[trace]: Saving results to: " << dbPath << std::endl; }
 
-    // Call plotter
-    if (config.outputSettings.runPlotter) {
-        const std::string cmd = "python3 " + std::string(_TRACE_ROOT_) + "/pytrace/tracer.py " + outdir.string();
-        if (config.outputSettings.printProgress) { std::cout << "Plotting: " << cmd << std::endl; }
-        const auto exitCode = std::system(cmd.c_str());
-        if (exitCode != 0) { std::cerr << "Error: Plotter exited with code " << exitCode << std::endl; }
+        DatabaseOutputManager manager(dbPath, true);
+        manager.save_results(results.folds, results.stats, results.accesses, constellation, grid);
+        manager.save_ground_track(constellation, epoch, epoch + propTime, accessResolution);
+
+        if (printProgress) { std::cout << "[trace]: Save Time: " << watch.measure() << std::endl; }
+
+        // Call plotter
+        if (outputSettings.runPlotter) {
+            watch.reset();
+            const std::string cmd = "python3 " + std::string(_TRACE_ROOT_) + "/pytrace/tracer.py " + outdir.string();
+            if (printProgress) { std::cout << "[trace]: Plotting: " << cmd << std::endl; }
+
+            const auto exitCode = std::system(cmd.c_str());
+
+            if (exitCode != 0) { std::cerr << "[trace]: Error: Plotter exited with code " << exitCode << std::endl; }
+            if (printProgress) { std::cout << "[trace]: Plotting Time: " << watch.measure() << std::endl; }
+        }
     }
 
     return results;

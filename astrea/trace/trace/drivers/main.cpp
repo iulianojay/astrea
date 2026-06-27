@@ -26,14 +26,14 @@ using namespace trace;
 int main(int argc, char* argv[])
 {
     if (argc != 2) {
-        std::cerr << "Usage: " << argv[0] << " <config.json>\n";
+        std::cerr << "[trace]: Usage: " << argv[0] << " <config.json>\n";
         return 1;
     }
 
     const std::string path = argv[1];
     std::ifstream f(path);
     if (!f) {
-        std::cerr << "Error: cannot open config file: " << path << "\n";
+        std::cerr << "[trace]: ERROR - cannot open config file: " << path << "\n";
         return 1;
     }
 
@@ -42,7 +42,7 @@ int main(int argc, char* argv[])
         config = TraceConfig(nlohmann::json::parse(f));
     }
     catch (const std::exception& e) {
-        std::cerr << "Error: JSON parse error in " << path << ": " << e.what() << "\n";
+        std::cerr << "[trace]: ERROR - JSON parse error in " << path << ": " << e.what() << "\n";
         return 1;
     }
 

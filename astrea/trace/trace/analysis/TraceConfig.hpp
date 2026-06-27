@@ -33,8 +33,9 @@ namespace astrea {
 namespace trace {
 
 struct AnalysisSettings {
-    Time simTime;    //!< Total simulation time
-    Time resolution; //!< Time resolution of the simulation
+    Time simTime;      //!< Total simulation time
+    Time resolution;   //!< Time resolution of the simulation
+    astro::Date epoch; //!< Epoch of the simulation
 
     AnalysisSettings() = default;
 
@@ -45,6 +46,7 @@ struct AnalysisSettings {
 
         simTime    = json.at("sim_time_days").get<double>() * day;
         resolution = json.at("resolution_min").get<double>() * min;
+        epoch      = astro::Date(json.at("epoch").get<std::string>());
     }
 };
 

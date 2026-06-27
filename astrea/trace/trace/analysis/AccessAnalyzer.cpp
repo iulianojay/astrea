@@ -217,10 +217,8 @@ AccessArray AccessAnalyzer::find_internal_accesses(ViewerConstellation& constel,
     // Process access checks in parallel
     AccessArray allAccesses;
 
-    if (_printProgress) { std::cout << std::endl; }
-    utilities::ProgressBar progressBar(nViewers * (nViewers - 1) / 2, "\tSat->Sat Access");
-
     // Note: Parallel execution requires thread-safe access storage
+    utilities::ProgressBar progressBar(nViewers * (nViewers - 1) / 2, "\tSat->Sat Access");
     for (std::size_t iViewer = 0; iViewer < nViewers - 1; ++iViewer) {
         for (std::size_t jViewer = iViewer + 1; jViewer < nViewers; ++jViewer) {
             auto& viewer1 = viewers[iViewer];
@@ -261,9 +259,7 @@ AccessArray AccessAnalyzer::find_accesses(ViewerConstellation& constel, GroundAr
     // Internal accesses if requested
     AccessArray allAccesses = includeInternalAccesses ? find_internal_accesses(constel, false) : AccessArray();
 
-    if (_printProgress) { std::cout << std::endl; }
     utilities::ProgressBar progressBar(nViewers * nGrounds, "\tSat->Ground Arch Access");
-
     for (std::size_t iViewer = 0; iViewer < nViewers; ++iViewer) {
         for (std::size_t iGround = 0; iGround < nGrounds; ++iGround) {
             auto& viewer        = viewers[iViewer];

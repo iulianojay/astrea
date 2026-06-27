@@ -30,9 +30,9 @@ namespace trace {
  * @brief Aggregated results returned by run_trace_analysis.
  */
 struct AnalysisResult {
-    AccessArray accesses;
-    AccessStats stats;
-    FoldsOfCoverage folds;
+    AccessArray accesses;  //!< Array of access events
+    AccessStats stats;     //!< Statistics of the access events
+    FoldsOfCoverage folds; //!< Folds of coverage
 };
 
 /**
@@ -41,6 +41,8 @@ struct AnalysisResult {
  * Builds the constellation, attaches sensors, builds the coverage grid, propagates
  * with J2 mean-element dynamics, runs the access analyzer, and returns the aggregated
  * statistics.  Output (DB write, Python plotting) is the responsibility of the caller.
+ *
+ * @param config The TraceConfig containing all settings for the analysis.
  */
 AnalysisResult run_trace_analysis(const TraceConfig& config);
 
