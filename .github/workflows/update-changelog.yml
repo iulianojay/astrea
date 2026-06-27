@@ -14,7 +14,7 @@
 name: Update Changelog
 
 on:
-  pull_request:
+  push:
     branches: [ "dev" ]
 
 jobs:
