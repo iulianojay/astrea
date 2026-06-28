@@ -22,7 +22,7 @@ on:
   push:
     branches: [ "master" ]
   pull_request:
-    branches: [ "dev" ]
+    branches: [ "dev", "master" ]
 
 jobs:
   check-docker-changes:
