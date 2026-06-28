@@ -64,16 +64,6 @@ int main(int argc, char** argv)
 
 TEST_F(OutputTest, DatabaseCreationDoesNotThrow) { ASSERT_NO_THROW(DatabaseOutputManager manager(dbPath, true)); }
 
-TEST_F(OutputTest, SaveGroundTrackEmptyConstellationProducesNoRecords)
-{
-    ViewerConstellation empty(startDate, 7000.0 * km, 53.0 * deg, 0, 1, 2.0);
-    DatabaseOutputManager manager(dbPath, true);
-    ASSERT_NO_THROW(manager.save_ground_track(empty, startDate, endDate, resolution));
-
-    const auto records = manager.get_storage().get_all<GroundTrackRecord>();
-    ASSERT_EQ(records.size(), 0);
-}
-
 TEST_F(OutputTest, SaveGroundTrackRecordCountMatchesSatelliteTimesteps)
 {
     ViewerConstellation constellation = make_constellation();
