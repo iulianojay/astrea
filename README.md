@@ -43,6 +43,28 @@ Beyond the core principles of safety, performance was a necessary benchmark for 
 ```cpp
   std::array<double> positionEci;                          // implicit units, and implicit frame
   CartesianVector<Distance, frames::earth::icrf> position; // explicit, and safe
+  // CartesianVector<Distance, frames::earth::j2000> positionJ2000 = position; // Compile-time error!
+  CartesianVector<Distance, frames::earth::j2000> positionJ2000 = position.in_frame<frames::earth::j2000>(epoch); // explicit frame transformation
+```
+- **Extensible frame definitions** supporting user-defined coordinate systems
+```cpp
+  namespace custom_frames {
+    // Define spacecraft body frame
+    constexpr inline struct SpacecraftBody : public Frame<"MySpacecraftFrame", SpacecraftOrigin, DynamicAxis> {
+    } SpacecraftBody;
+  }
+  
+  CartesianVector<Thrust, custom_frames::SpacecraftBody> thrust_vector{1.0 * N, 0.0 * N, 0.0 * N};
+```
+- **Automatic, compile-time frame transformations** with support for time-varying frames
+```cpp
+  CartesianVector<Distance, frames::earth::earth_fixed> posEcef{7000.0 * km, 0.0 * km, 0.0 * km};
+  CartesianVector<Distance, frames::earth::icrf> posIcrf = posEcef.in_frame<frames::earth::icrf>(epoch); // Automatic transformation to ICRF at compile time
+  CartesianVector<Distance, frames::mars::icrf> posMarsIcrf = posEcef.in_frame<frames::mars::icrf>(epoch); // Transformations can be chained automatically
+
+  CartesianVector<Distance, frames::dynamic::ric> pos{7000.0 * km, 0.0 * km, 0.0 * km};
+  frames::dynamic::ric ricFrame = frames::dynamic::ric::instantaneous{state}; // RIC frame defined by current state
+  CartesianVector<Distance, frames::earth::icrf> posIcrf = ricFrame.rotate_out_of_this_frame<frames::earth::icrf>(pos, epoch);
 ```
 
 ### Astrodynamics Core
@@ -65,22 +87,20 @@ Beyond the core principles of safety, performance was a necessary benchmark for 
 ```
 - **Automatic element set conversions** with strongly-typed interfaces
 ```cpp
-  AstrodynamicsSystem sys;
-
   // Either directly through constructors
-  Keplerian kepler{/* ... */};
-  Cartesian cartesian(kepler, sys.get_mu());
-  Equinoctial equinoctial(cartesian, sys.get_mu());
+  Keplerian<frames::earth::icrf> kepler{/* ... */};
+  Cartesian<frames::earth::icrf> cartesian(kepler, get_mu<planets::Earth>());
+  Equinoctial<frames::earth::icrf> equinoctial(cartesian, get_mu<planets::Earth>());
 
   // Through a generic container for any element set
   OrbitalElements elements(kepler);
-  Cartesian cartesian2 = elements.in_element_set<Cartesian>(sys);
-  Equinoctial equinoctial2 = elements.in_element_set<Equinoctial>(sys);
+  auto cartesian2 = elements.in_element_set<Cartesian>(get_mu<planets::Earth>());
+  auto equinoctial2 = elements.in_element_set<Equinoctial>(get_mu<planets::Earth>());
 
   // Or using the more powerful State container
-  State state(Date::now(), elements, sys);
-  Cartesian cartesian3 = state.in_element_set<Cartesian>(); // explicit extraction
-  Equinoctial equinoctial3 = state.in_element_set<Equinoctial>();
+  State state(Date::now(), elements);
+  auto cartesian3 = state.in_element_set<Cartesian>(); // explicit extraction
+  auto equinoctial3 = state.in_element_set<Equinoctial>();
 
   state.convert_to_set<Cartesian>(); // in-place conversion of state elements
   state.convert_to_set<Equinoctial>(); 
@@ -89,7 +109,7 @@ Beyond the core principles of safety, performance was a necessary benchmark for 
 ```cpp
   ForceModel forces;
   forces.add<AtmosphericForce>();
-  forces.add<OblatenessForce>(sys, 100, 100);
+  forces.add<OblatenessForce, planets::Earth, 100, 100>();
 
   TwoBody twoBodyEom;                          // No forces
   J2MeanVop j2MeanEom;                         // Forces assumed
@@ -165,7 +185,6 @@ And more!
   const Time accessResolution = minutes(5.0);
   const Date startDate = Date::now();
   const Date endDate = startDate + months(3.0);
-  AstrodynamicsSystem sys;
 
   // Build a walker ball
   const Distance semimajor = 7000.0 * km;
@@ -173,7 +192,7 @@ And more!
   const std::size_t T = 30;
   const std::size_t P = 6;
   const double F = 1.0;
-  Constellation<Viewer> constelaltion(sys, startDate, semimajor, inclination, T, P F);
+  Constellation<Viewer> constelaltion(startDate, semimajor, inclination, T, P, F);
 
   // Ground station definition
   GroundStation station{"Denver", 39.7392 * deg, -104.9903 * deg, 1655.0 * m};
@@ -194,18 +213,32 @@ And more!
 ```
 - **Celestial body definitions** with customizable parameters
 ```cpp
-  // Predefined celestial bodies
-  auto earth = Earth();
-  auto moon = Moon();
-  auto mars = Mars();
+  // Many pre-defined celestial bodies
+  using earth = planets::Earth;
+  using moon = moons::Moon;
+  using mars = planets::Mars;
   
-  // Custom body definition
-  CelestialBody asteroid{
-    .name = "Bennu",
-    .gravitational_parameter = 5.2 * (m*m*m / (s*s)),
-    .radius = 245.0 * m,
-    .rotation_period = 4.297 * h
-  };
+  // Custom body definitions that seemlessly hook into the frame system
+  inline constexpr inline constexpr struct Bennu final : CelestialBody<"Bennu", barycenters::SolarSystemBarycenter> {
+  } Bennu;
+
+  template <>
+  inline consteval CelestialBodyParameters get_celestial_body_parameters<Bennu>() {
+  return {
+      .name = "Bennu",
+      .gravitational_parameter = 5.2 * (m*m*m / (s*s)),
+      .radius = 245.0 * m,
+      .rotation_period = 4.297 * h
+    };
+  }
+
+  // Now we can build a frame on our custom body
+  inline constexpr struct BennuICRF : public Frame<"BennuICRF", Bennu, axes::icrf> {
+  } BennuICRF;
+
+  // And even chain transformations to other bodies with no extra work
+  CartesianVector<Distance, BennuICRF> posBennu{1000.0 * m, 0.0 * m, 0.0 * m};
+  CartesianVector<Distance, frames::earth::icrf> posEarth = posBennu.in_frame<frames::earth::icrf>(epoch);
 ```
 
 ### External Integration

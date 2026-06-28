@@ -12,8 +12,8 @@ cmake_minimum_required(VERSION 3.28.3)
 set(CMAKE_INSTALL_MESSAGE LAZY)
 
 # Option to control whether to run 6DOF checkcases (can be slow)
-if(NOT DEFINED RUN_6DOF_CHECKCASES)
-    set(RUN_6DOF_CHECKCASES ON CACHE BOOL "Run NASA 6DOF checkcase tests")
+if(NOT DEFINED BUILD_6DOF_CHECKCASES)
+    set(BUILD_6DOF_CHECKCASES ON CACHE BOOL "Run NASA 6DOF checkcase tests")
 endif()
 
 # Add profilers and checkcase tests
@@ -21,7 +21,7 @@ if(${BUILD_PROFILERS})
     add_subdirectory(profiling)
 endif()
 
-if(${BUILD_CHECKCASE_DATABASE} OR ${RUN_6DOF_CHECKCASES})
+if(${BUILD_CHECKCASE_DATABASE} OR ${BUILD_6DOF_CHECKCASES})
     add_subdirectory(nasa_6dof_checkcases)
 endif()
 
@@ -32,8 +32,8 @@ file(GLOB_RECURSE REGRESSION_TEST_SOURCES CONFIGURE_DEPENDS ${CMAKE_CURRENT_SOUR
 
 set(CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_RPATH}:\$ORIGIN/../lib")
 
-# Filter out 6DOF checkcase tests if RUN_6DOF_CHECKCASES is OFF
-if(NOT ${RUN_6DOF_CHECKCASES})
+# Filter out 6DOF checkcase tests if BUILD_6DOF_CHECKCASES is OFF
+if(NOT ${BUILD_6DOF_CHECKCASES})
     list(FILTER REGRESSION_TEST_SOURCES EXCLUDE REGEX "nasa_6dof_checkcases") #TODO: Separate 6dof tests into separate lists
 endif()
 
@@ -51,7 +51,7 @@ set(HELPER_SOURCES
     ${HELPER_BASE}/utilities/comparisons.cpp
 )
 
-if(${RUN_6DOF_CHECKCASES})
+if(${BUILD_6DOF_CHECKCASES})
     set(HELPER_HEADERS
         ${HELPER_HEADERS}
         ${HELPER_BASE}/nasa_6dof_checkcases/helpers/AtmosphericCheckcase.hpp

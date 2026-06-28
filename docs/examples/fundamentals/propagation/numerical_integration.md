@@ -22,10 +22,9 @@ The following example demonstrates the fundamental workflow for numerical integr
 ## State Definition
 
 ```cpp
-AstrodynamicsSystem sys; // Defaults to Earth-Moon
 const Date epoch;        // Defaults to J2000
 const Keplerian elements(10000.0 * km, 0.0 * one, 45.0 * deg, 0.0 * deg, 0.0 * deg, 0.0 * deg);
-const State state0(elements, epoch, sys);
+const State state0(elements, epoch);
 ```
 
 Astrea uses a type-erased Vehicle class to propagate states. This keeps the interface more static while allowing for more flexibility and extensibility for users.
@@ -41,7 +40,7 @@ Vehicle vehicle(sat);
 // Build a force model
 ForceModel forces;
 forces.add<AtmosphericForce>();
-forces.add<OblatenessForce>(sys, 10, 10);
+forces.add<OblatenessForce, planets::Earth, 10, 10>();
 // forces.add<UserDefinedForce>(...); // Users can add their own perturbations to the propagation
 ```
 

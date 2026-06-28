@@ -82,11 +82,9 @@ Models gravitational perturbations due to Earth's non-spherical shape:
 #include <astro/propagation/force_models/instances/OblatenessForce.hpp>
 
 // Create oblateness force with zonal harmonics
-AstrodynamicsSystem system;   // Earth system
-int maxDegree = 10;           // Include up to J10
-int maxOrder = 10;            // Include tesseral harmonics
-
-OblatenessForce oblatenessForce(system, maxDegree, maxOrder);
+constexpr int maxDegree = 10; // Include up to J10
+constexpr int maxOrder = 10;  // Include tesseral harmonics
+OblatenessForce oblatenessForce<planets::Earth, maxDegree, maxOrder>();
 ```
 
 The oblateness force computes the acceleration from the Earth's gravity field using spherical harmonic coefficients, accounting for both zonal and tesseral terms accoding to the standard formulation for gravitational potential:
@@ -128,14 +126,8 @@ Models gravitational effects from third bodies (Moon, Sun, planets):
 ```cpp
 #include <astro/propagation/force_models/instances/NBodyForce.hpp>
 
-// Create multi-body system
-AstrodynamicsSystem system(
-    CelestialBodyId::EARTH,                       // Central body
-    {CelestialBodyId::MOON, CelestialBodyId::SUN} // Secondary bodies
-);
-
 // N-body force includes all secondary bodies
-NBodyForce nBodyForce(system);
+NBodyForce nBodyForce<planets::Earth, moons::Moon, stars::Sun>();
 ```
 Computes gravitational acceleration from each perturbing body:
 $$
@@ -147,7 +139,6 @@ where \(\vec{r}_i\) is position of perturbing body \(i\) relative to central bod
 ```cpp
 AccelerationVector<frames::earth::icrf>  nBodyAccel = nBodyForce.compute_perturbation(state, vehicle);
 ```
-The n-body force relies on assumptions of relative positions hard coded into the AstrodynamicsSystem that fixes it to an Earth-centric model, but future iterations will support user-defined perturbing bodies and more flexible ephemeris handling.
 
 ## Custom Force Implementation
 
@@ -194,19 +185,13 @@ forces.add<ThrusterForce>(thrust, thrustStart, thrustDuration);
 ## Comprehensive Force Model Example
 
 ```cpp
-AstrodynamicsSystem system(
-    CelestialBodyId::EARTH,
-    {CelestialBodyId::MOON, CelestialBodyId::SUN}
-);
-
 // Create high-fidelity force model for LEO satellite
 ForceModel allForces;
 
-
-allForces.add<OblatenessForce>(system, 10, 10); // Earth gravity field (up to degree order 10)
+allForces.add<OblatenessForce, planets::Earth, 10, 10>(); // Earth gravity field (up to degree order 10)
 allForces.add<AtmosphericForce>(); // Atmospheric drag
 allForces.add<SolarRadiationPressure>(); // Solar radiation pressure
-allForces.add<NBodyForce>(system); // Third-body perturbations (Moon and Sun)
+allForces.add<NBodyForce, planets::Earth, moons::Moon, stars::Sun>(); // Third-body perturbations (Moon and Sun)
 allForces.add<ThrusterForce>(thrustVector, startTime, duration); // Custom station-keeping thrusters
 
 // Use with propagation

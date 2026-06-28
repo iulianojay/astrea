@@ -130,6 +130,14 @@ class RiseSetArray {
     std::size_t size() const;
 
     /**
+     * @brief Checks if the RiseSetArray is empty.
+     *
+     * @return true If the RiseSetArray is empty.
+     * @return false If the RiseSetArray is not empty.
+     */
+    bool empty() const;
+
+    /**
      * @brief Returns a reference to the rise/set pair at the specified index.
      *
      * @param ind The index of the rise/set pair to access.
