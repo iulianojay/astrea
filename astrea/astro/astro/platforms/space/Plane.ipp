@@ -7,7 +7,7 @@ namespace astrea {
 namespace astro {
 
 
-bool planes_are_nearly_equal(const OrbitalElements& elem1, const OrbitalElements& elem2, const Unitless& relTol)
+inline bool planes_are_nearly_equal(const OrbitalElements& elem1, const OrbitalElements& elem2, const Unitless& relTol)
 {
     const auto blob1 = elem1.force_to_vector();
     const auto blob2 = elem2.force_to_vector();

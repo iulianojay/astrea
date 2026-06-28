@@ -39,6 +39,7 @@ set(UTILITIES_HEADERS
 # Includes
 set(UTILITIES_DIRS
     ${CMAKE_CURRENT_LIST_DIR}
+    ${CMAKE_CURRENT_LIST_DIR}/../units
 )
 
 # Find library
@@ -52,6 +53,7 @@ add_library                (${PROJECT_NAME}_shared SHARED ${UTILITIES_SOURCES} $
 set_target_properties      (${PROJECT_NAME}_shared PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ${PROJECT_NAME} CLEAN_DIRECT_OUTPUT 1)
 target_link_libraries      (${PROJECT_NAME}_shared PUBLIC ${UTILITIES_LIBS})
 target_include_directories (${PROJECT_NAME}_shared PUBLIC ${UTILITIES_DIRS})
+add_library                (astrea::utilities ALIAS ${PROJECT_NAME}_shared)
 
 # Install shared library (DLL)
 install(TARGETS ${PROJECT_NAME}_shared
@@ -66,6 +68,7 @@ if(${BUILD_STATIC})
     set_target_properties      (${PROJECT_NAME}_static PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ${PROJECT_NAME} CLEAN_DIRECT_OUTPUT 1 SUFFIX .a.${PROJECT_VERSION})
     target_link_libraries      (${PROJECT_NAME}_static PUBLIC ${UTILITIES_LIBS})
     target_include_directories (${PROJECT_NAME}_static PUBLIC ${UTILITIES_DIRS})
+    add_library                (astrea::utilities_static ALIAS ${PROJECT_NAME}_static)
 
     # Install static library (A)
     install(TARGETS ${PROJECT_NAME}_static

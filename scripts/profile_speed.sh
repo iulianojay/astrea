@@ -1,6 +1,6 @@
 
 DEBUG=RelWithDebInfo
-PROGRAM=./install/gcc-13-23/$DEBUG/bin/trace/trace
+PROGRAM=./install/gcc/gcc-15-23/$DEBUG/bin/trace/trace
 BASE_DIR=./astrea/trace/trace/drivers/results
 OUTFILE=$BASE_DIR/callgrind.out
 # PROGRAM=./astrea/astro/tests/profiling/bin/astro_profiler
