@@ -23,6 +23,8 @@
 
 #include <units/units.hpp>
 
+#include <trace/types/typedefs.hpp>
+
 namespace astrea {
 namespace trace {
 
@@ -54,6 +56,8 @@ class SpatialIndex {
      * @param binSize Angular size of each bin (smaller = more bins, finer resolution)
      */
     SpatialIndex(const Angle& binSize = 10.0 * mp_units::angular::unit_symbols::deg);
+
+    SpatialIndex(const GroundPointRefVec& groundPoints);
 
     /**
      * @brief Add a ground point to the index
