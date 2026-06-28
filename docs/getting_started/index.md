@@ -82,31 +82,30 @@ Beyond the core principles of safety, performance was a necessary benchmark for 
 ```
 - **Automatic element set conversions** with strongly-typed interfaces
 ```cpp
-  AstrodynamicsSystem sys;
-
   // Either directly through constructors
+  const auto mu = get_mu<planets::Earth>();
   Keplerian kepler{/* ... */};
-  Cartesian cartesian(kepler, sys.get_mu());
-  Equinoctial equinoctial(cartesian, sys.get_mu());
+  Cartesian cartesian(kepler, mu);
+  Equinoctial equinoctial(cartesian, mu);
 
   // Through a generic container for any element set
   OrbitalElements elements(kepler);
-  Cartesian cartesian2 = elements.in_element_set<Cartesian>(sys);
-  Equinoctial equinoctial2 = elements.in_element_set<Equinoctial>(sys);
+  Cartesian cartesian2 = elements.in_element_set<Cartesian>(mu);
+  Equinoctial equinoctial2 = elements.in_element_set<Equinoctial>(mu);
 
   // Or using the more powerful State container
-  State state(Date::now(), elements, sys);
-  Cartesian cartesian3 = state.in_element_set<Cartesian>(); // explicit extraction
-  Equinoctial equinoctial3 = state.in_element_set<Equinoctial>();
+  State state(Date::now(), elements);
+  Cartesian cartesian3 = state.in_element_set<Cartesian>(mu); // explicit extraction
+  Equinoctial equinoctial3 = state.in_element_set<Equinoctial>(mu);
 
-  state.convert_to_set<Cartesian>(); // in-place conversion of state elements
-  state.convert_to_set<Equinoctial>(); 
+  state.convert_to_set<Cartesian>(mu); // in-place conversion of state elements
+  state.convert_to_set<Equinoctial>(mu); 
 ```
 - **Advanced propagation algorithms** supporting numerical and analytical methods
 ```cpp
   ForceModel forces;
   forces.add<AtmosphericForce>();
-  forces.add<OblatenessForce>(sys, 100, 100);
+  forces.add<OblatenessForce, planets::Earth, 100, 100>();
 
   TwoBody twoBodyEom;                          // No forces
   J2MeanVop j2MeanEom;                         // Forces assumed

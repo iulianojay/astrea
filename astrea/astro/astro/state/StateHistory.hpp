@@ -266,6 +266,19 @@ class StateHistory {
      */
     void sort();
 
+    /**
+     * @brief Converts the orbital elements of all states in the history to a different type.
+     *
+     * @tparam T The type to convert the orbital elements to.
+     */
+    template <IsOrbitalElements T>
+    void convert_to_set()
+    {
+        for (auto& state : _states) {
+            state.convert_to_set<T>();
+        }
+    }
+
   private:
     std::vector<State> _states; //!< Vector to store states sorted by date
     EventTimesMap _eventTimes;  //!< Vector to store event times during propagation

@@ -244,6 +244,7 @@ set(ASTRO_LIBS
 
 # Shared library
 add_library(${PROJECT_NAME}_shared SHARED ${ASTRO_SOURCES} ${ASTRO_HEADERS})
+add_library(astrea::astro ALIAS ${PROJECT_NAME}_shared)
 
 if(${BUILD_EPHEMERIDES})
     add_dependencies(${PROJECT_NAME}_shared generated_ephemerides)
@@ -274,6 +275,7 @@ install(TARGETS matplot
 # Static library
 if(${BUILD_STATIC})
     add_library(${PROJECT_NAME}_static STATIC ${ASTRO_SOURCES} ${ASTRO_HEADERS})
+    add_library(astrea::astro_static ALIAS ${PROJECT_NAME}_static)
 
     if(${BUILD_EPHEMERIDES})
         add_dependencies(${PROJECT_NAME}_static generated_ephemerides)
@@ -302,6 +304,21 @@ install(
     PATTERN *.hpp
     PATTERN *.ipp
     PATTERN *.h
+)
+
+# Install generated ephemeris headers (directory may not exist if no ephemerides are built)
+if(EXISTS "${CMAKE_CURRENT_BINARY_DIR}/include/ephemerides")
+    install(
+        DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/include/ephemerides
+        DESTINATION include/astro
+        FILES_MATCHING PATTERN *.hpp
+    )
+endif()
+
+# Install data files (gravity models, JPL ephemeris data, etc.)
+install(
+    DIRECTORY ${CMAKE_CURRENT_LIST_DIR}/data
+    DESTINATION share/astrea/astro
 )
 
 if(${BUILD_EXAMPLES})

@@ -48,6 +48,7 @@ namespace trace {
  */
 template <astro::IsCelestialBody auto _body_>
 class Grid {
+
     using Point = GroundPoint<_body_>;
 
   public:
@@ -72,20 +73,20 @@ class Grid {
     /**
      * @brief Construct a Grid from corner points and a grid type.
      *
-     * @param corner1  First corner (latitude, longitude).
-     * @param corner4  Fourth corner (latitude, longitude).
+     * @param latRange  Latitude range (min, max).
+     * @param lonRange  Longitude range (min, max).
      * @param gridType Grid generation algorithm.
      * @param spacing  Angular spacing between points (default 5 deg).
      * @param weight   Weighting factor (default 0).
      */
     Grid(
-        const LatLon& corner1,
-        const LatLon& corner4,
+        const LatRange& latRange,
+        const LonRange& lonRange,
         const GridType& gridType,
         const Angle& spacing   = 5.0 * mp_units::angular::unit_symbols::deg,
         const Unitless& weight = 0.0 * mp_units::one
     ) :
-        _groundPoints(build_grid(corner1, corner4, gridType, spacing, weight)),
+        _groundPoints(build_grid(latRange, lonRange, gridType, spacing, weight)),
         _gridType(gridType)
     {
     }
@@ -177,28 +178,91 @@ class Grid {
      */
     const Point& operator[](std::size_t index) const { return _groundPoints[index]; }
 
+    /**
+     * @brief Add a ground point to the grid.
+     *
+     * @param point The ground point to add.
+     */
+    void push_back(const Point& point)
+    {
+        _gridType = GridType::MANUAL;
+        _groundPoints.push_back(point);
+    }
+
+    /**
+     * @brief Add a ground point to the grid (move version).
+     *
+     * @param point The ground point to add (moved).
+     */
+    void push_back(Point&& point)
+    {
+        _gridType = GridType::MANUAL;
+        _groundPoints.push_back(std::move(point));
+    }
+
+    /**
+     * @brief Emplace a ground point in the grid.
+     *
+     * @param point The ground point to emplace.
+     */
+    void emplace_back(const Point& point)
+    {
+        _gridType = GridType::MANUAL;
+        _groundPoints.emplace_back(point);
+    }
+
+    /**
+     * @brief Emplace a ground point in the grid (move version).
+     *
+     * @param point The ground point to emplace (moved).
+     */
+    void emplace_back(Point&& point)
+    {
+        _gridType = GridType::MANUAL;
+        _groundPoints.emplace_back(std::move(point));
+    }
+
+    /**
+     * @brief Clear all ground points from the grid.
+     */
+    void clear() { _groundPoints.clear(); }
+
+    /**
+     * @brief Reserve space for a specified number of ground points in the grid.
+     *
+     * @param n The number of ground points to reserve space for.
+     */
+    void reserve(std::size_t n) { _groundPoints.reserve(n); }
+
+    /**
+     * @brief Resize the grid to contain a specified number of ground points.
+     *
+     * @param n The new size of the grid.
+     */
+    void resize(std::size_t n) { _groundPoints.resize(n); }
+
   private:
     std::vector<Point> _groundPoints; //!< Vector of ground points in the grid.
-    GridType _gridType{};             //!< Type of grid (uniform, equal area, etc.).
+    GridType _gridType;               //!< Type of grid (uniform, equal area, etc.).
 
     /**
      * @brief Builds a grid of ground points based on the specified parameters.
      *
-     * @param corner1  First corner point of the grid (latitude, longitude).
-     * @param corner4  Fourth corner point of the grid (latitude, longitude).
+     * @param latRange  Latitude range of the grid.
+     * @param lonRange  Longitude range of the grid.
      * @param gridType Type of grid to create (uniform, equal area, etc.).
      * @param spacing  Spacing between points in the grid.
      * @param weight   Weighting factor for the grid.
      * @return A vector of Point objects representing the grid.
      */
     std::vector<Point>
-        build_grid(const LatLon& corner1, const LatLon& corner4, const GridType& gridType, const Angle& spacing, const Unitless& weight) const
+        build_grid(const LatRange& latRange, const LonRange& lonRange, const GridType& gridType, const Angle& spacing, const Unitless& weight) const
     {
         switch (gridType) {
-            case GridType::UNIFORM: return build_uniform_grid(corner1, corner4, spacing);
-            case GridType::EQUAL_AREA: return build_equal_area_grid(corner1, corner4, spacing);
+            case GridType::UNIFORM: return build_uniform_grid(latRange, lonRange, spacing);
+            case GridType::EQUAL_AREA: return build_equal_area_grid(latRange, lonRange, spacing);
             case GridType::WEIGHTED_NS:
-            case GridType::WEIGHTED_EW: return build_weighted_grid(corner1, corner4, gridType, spacing, weight);
+            case GridType::WEIGHTED_EW: return build_weighted_grid(latRange, lonRange, gridType, spacing, weight);
             case GridType::MANUAL:
                 throw std::runtime_error("Manual grids can only be constructed from a vector of GroundPoints.");
             default: throw std::runtime_error("Unrecognized GridType.");
@@ -208,20 +272,15 @@ class Grid {
     /**
      * @brief Builds a uniform grid of ground points.
      *
-     * @param corner1 First corner point of the grid (latitude, longitude).
-     * @param corner4 Fourth corner point of the grid (latitude, longitude).
+     * @param latRange Latitude range of the grid.
+     * @param lonRange Longitude range of the grid.
      * @param spacing Spacing between points in the grid.
      * @return std::vector<Point> A vector of Point objects representing the uniform grid.
      */
-    std::vector<Point> build_uniform_grid(const LatLon& corner1, const LatLon& corner4, const Angle& spacing) const
+    std::vector<Point> build_uniform_grid(const LatRange& latRange, const LonRange& lonRange, const Angle& spacing) const
     {
-        const auto& lat1 = corner1.first;
-        const auto& lon1 = corner1.second;
-        const auto& lat4 = corner4.first;
-        const auto& lon4 = corner4.second;
-
-        std::vector<Angle> lats = create_uniformly_spaced_vector(lat1, lat4, spacing);
-        std::vector<Angle> lons = create_uniformly_spaced_vector(lon1, lon4, spacing);
+        const std::vector<Angle> lats = create_uniformly_spaced_vector(latRange, spacing);
+        const std::vector<Angle> lons = create_uniformly_spaced_vector(lonRange, spacing);
 
         std::vector<Point> grounds;
         for (const auto& [lat, lon] : std::views::cartesian_product(lats, lons)) {
@@ -231,14 +290,14 @@ class Grid {
     }
 
     /**
-     * @brief Builds an equal area grid of ground points based on the specified corner points and spacing.
+     * @brief Builds an equal area grid of ground points based on the specified latitude and longitude ranges and spacing.
      *
-     * @param corner1 First corner point of the grid (latitude, longitude).
-     * @param corner4 Fourth corner point of the grid (latitude, longitude).
+     * @param latRange Latitude range of the grid.
+     * @param lonRange Longitude range of the grid.
      * @param spacing Spacing between points in the grid.
      * @return std::vector<Point> A vector of ground points representing the equal area grid.
      */
-    std::vector<Point> build_equal_area_grid(const LatLon& corner1, const LatLon& corner4, const Angle& spacing) const
+    std::vector<Point> build_equal_area_grid(const LatRange& latRange, const LonRange& lonRange, const Angle& spacing) const
     {
         throw std::runtime_error("Equal area grids have not been implemented yet.");
     }
@@ -246,15 +305,15 @@ class Grid {
     /**
      * @brief Builds a weighted grid of ground points.
      *
-     * @param corner1       First corner point of the grid (latitude, longitude).
-     * @param corner4       Fourth corner point of the grid (latitude, longitude).
+     * @param latRange       Latitude range of the grid.
+     * @param lonRange       Longitude range of the grid.
      * @param gridType      Type of weighted grid to create (North-South or East-West emphasis).
      * @param initialSpacing Spacing between points in the grid.
      * @param weight        Weighting factor for the grid.
      * @return std::vector<Point> A vector of Point objects representing the weighted grid.
      */
     std::vector<Point>
-        build_weighted_grid(const LatLon& corner1, const LatLon& corner4, const GridType& gridType, const Angle& initialSpacing, const Unitless& weight) const
+        build_weighted_grid(const LatRange& latRange, const LonRange& lonRange, const GridType& gridType, const Angle& initialSpacing, const Unitless& weight) const
     {
         throw std::runtime_error("Weighted grids have not been implemented yet.");
     }
@@ -262,16 +321,19 @@ class Grid {
     /**
      * @brief Creates a uniformly spaced vector of angles between two points.
      *
-     * @param first   First angle in the vector.
-     * @param second  Second angle in the vector.
+     * @param range  Pair of angles representing the start and end of the range.
      * @param spacing Spacing between the angles.
-     * @return std::vector<Angle> A vector of angles spaced evenly between first and second.
+     * @return std::vector<Angle> A vector of angles spaced evenly between the start and end of the range.
      */
-    std::vector<Angle> create_uniformly_spaced_vector(const Angle& first, const Angle& second, const Angle& spacing) const
+    std::vector<Angle> create_uniformly_spaced_vector(const std::pair<Angle, Angle>& range, const Angle& spacing) const
     {
-        const std::size_t nAngles = std::ceil((mp_units::abs(second - first) / spacing).numerical_value_in(mp_units::one)) + 1;
+        const auto& minAngle = std::min(range.first, range.second);
+        const auto& maxAngle = std::max(range.first, range.second);
+
+        const std::size_t nAngles =
+            std::ceil((mp_units::abs(maxAngle - minAngle) / spacing).numerical_value_in(mp_units::one)) + 1;
         std::vector<Angle> angles(nAngles);
-        std::generate(angles.begin(), angles.end(), [ii = 0, minAngle = std::min(first, second), maxAngle = std::max(first, second), &spacing]() mutable {
+        std::generate(angles.begin(), angles.end(), [ii = 0, &minAngle, &maxAngle, &spacing]() mutable {
             return std::min(minAngle + (ii++) * spacing, maxAngle);
         });
         return angles;

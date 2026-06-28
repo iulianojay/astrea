@@ -85,6 +85,8 @@ class PolygonalFieldOfView : public FieldOfView {
         const astro::CartesianVector<Distance, astro::frames::earth::icrf>& target
     ) const;
 
+    Angle max_half_angle() const override { return _maxHalfAngle; }
+
   private:
     // TODO: These angle are actually defined w.r.t a frame so we need to figure out what that
     // is and how to define it meaningfully.

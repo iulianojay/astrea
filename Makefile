@@ -14,7 +14,6 @@ cxx_ver := $(shell $(cxx) -dumpversion | cut -d. -f1)
 comp := $(cxx_name)-$(cxx_ver)-$(cxx_std)
 tests_path := tests
 
-# Compiler configuration - can be 'gcc' or 'mingw'
 ifneq (,$(wildcard $(config_path)/.venv/bin/activate))
 	venv_activate := $(config_path)/.venv/bin/activate
 else ifneq (,$(wildcard $(config_path)/.venv/Scripts/activate))
@@ -22,9 +21,10 @@ else ifneq (,$(wildcard $(config_path)/.venv/Scripts/activate))
 else
 	venv_activate :=
 endif
+# Compiler configuration - can be 'gcc' or 'clang' or 'mingw'
 compiler := gcc
 toolchain_file :=
-toolchain_make :=
+toolchain_make := -G Ninja
 extra_cmake_args :=
 
 # Set toolchain file for mingw cross-compilation
@@ -32,6 +32,9 @@ ifeq ($(compiler),mingw)
 	venv_activate := $(config_path)/.venv/Scripts/activate
 	toolchain_file := -DCMAKE_TOOLCHAIN_FILE=$(abspath cmake/windows_toolchain.cmake)
 	toolchain_make := -G "MinGW Makefiles"
+else ifeq ($(compiler),msvc)
+	venv_activate := $(config_path)/.venv/Scripts/activate
+	toolchain_make := -G "Visual Studio 18 2026" -A x64
 endif
 
 CMAKE := source $(venv_activate) && cmake
@@ -72,6 +75,7 @@ build:
 	$(toolchain_file) \
 	-DCMAKE_BUILD_TYPE=$(build_type) \
 	-DCMAKE_INSTALL_PREFIX:PATH=$(install_path) \
+	-DCMAKE_CXX_FLAGS=-fdiagnostics-color=always \
 	-DCPM_SOURCE_CACHE=$(config_path)/.cpm-cache \
 	-DBUILD_TESTS=$(build_tests) \
 	-DBUILD_BENCHMARKS=$(build_benchmarks) \
@@ -79,9 +83,8 @@ build:
 	-DBUILD_STATIC=$(build_static) \
 	-DBUILD_PROFILERS=$(build_profilers) \
 	-DBUILD_CHECKCASE_DATABASE=$(build_checkcase_db) \
-	-DRUN_6DOF_CHECKCASES=$(run_6dof_checkcases) \
-	-Wno-dev
-	
+	-DBUILD_6DOF_CHECKCASES=$(run_6dof_checkcases)
+
 .PHONY: build-gcc
 build-gcc: gcc build
 
@@ -114,7 +117,15 @@ relwithdebinfo:
 gcc:
 	$(eval compiler = gcc)
 	$(eval toolchain_file = )
-	$(eval toolchain_make = ")
+	$(eval toolchain_make = -G Ninja)
+	$(eval build_path := $(abspath ./build/$(compiler)/$(comp)/$(build_type)))
+	$(eval install_path := $(abspath ./install/$(compiler)/$(comp)/$(build_type)))
+
+.PHONY: clang
+clang:
+	$(eval compiler = clang)
+	$(eval toolchain_file = )
+	$(eval toolchain_make = -G Ninja)
 	$(eval build_path := $(abspath ./build/$(compiler)/$(comp)/$(build_type)))
 	$(eval install_path := $(abspath ./install/$(compiler)/$(comp)/$(build_type)))
 
@@ -122,7 +133,7 @@ gcc:
 msvc:
 	$(eval compiler = msvc)
 	$(eval toolchain_file = )
-	$(eval toolchain_make = -G "Visual Studio 17 2022" -A x64)
+	$(eval toolchain_make = -G "Visual Studio 18 2026" -A x64)
 	$(eval build_path := $(abspath ./build/$(compiler)/$(comp)/$(build_type)))
 	$(eval install_path := $(abspath ./install/$(compiler)/$(comp)/$(build_type)))
 

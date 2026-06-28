@@ -197,12 +197,12 @@ private:
 // Eclipse detection
 class EclipseEvent : public Event {
 public:
-    EclipseEvent(const AstrodynamicsSystem& system)
+    EclipseEvent()
         : _system(system) {}
 
     Unitless measure_event(const Time& time, const State& state, const Vehicle& vehicle) const override {
         // Calculate sun angle relative to Earth shadow
-        CartesianVector<Distance, ECI> sunPos = _system.get_sun_position(time);
+        CartesianVector<Distance, ECI> sunPos = get_position<star::Sun>(state.get_epoch());
         CartesianVector<Distance, ECI> satPos = state.get_position();
 
         // Shadow cone calculation
@@ -212,9 +212,6 @@ public:
 
     std::string get_name() const override { return "Eclipse"; }
     bool is_terminal() const override { return false; }
-
-private:
-    const AstrodynamicsSystem& _system;
 };
 ```
 
