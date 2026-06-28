@@ -72,6 +72,16 @@ class FieldOfView {
         const astro::CartesianVector<Distance, astro::frames::earth::icrf>& boresight,
         const astro::CartesianVector<Distance, astro::frames::earth::icrf>& target
     ) const = 0;
+
+    /**
+     * @brief Returns the maximum off-boresight half-angle for this field of view.
+     *
+     * Used for spatial index culling to determine the maximum sensor footprint radius.
+     * The default returns π/2 rad, a conservative bound covering the full hemisphere.
+     *
+     * @return Angle Maximum off-boresight half-angle.
+     */
+    virtual Angle max_half_angle() const { return std::numbers::pi / 2.0 * mp_units::angular::unit_symbols::rad; }
 };
 
 } // namespace trace

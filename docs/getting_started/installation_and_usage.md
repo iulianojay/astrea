@@ -25,13 +25,26 @@ Astrea is tested and supported on the following platforms:
 
 | Platform               | Status         |
 |------------------------|----------------|
-| Ubuntu 20.04+          | ✅ Supported   |
-| Windows 10/11          | ❌ In Progress |
-| macOS 11.0+            | ❌ In Progress |
+| Ubuntu 20.04+          | ✅ Supported  |
+| Windows 10/11          | ✅ Supported  |
+| macOS 11.0+            | ❓ Untested   |
+
+Astrea has been tested with the following compilers:
+
+| Compiler               | Version        | Status         |
+|------------------------|----------------|----------------|
+| GCC                    | 14.0+          | ✅ Supported   |
+| Clang                  | 14.0+          | ✅ Supported |
+| MSVC                   | 19.30+         | ❌ In Progress |
+| Apple Clang            | 14.0+          | ❓ Untested |
+
+MacOS and Apple Clang is currently untested but I expect it works since linux Clang works fine.
+
+Note: I have not extensively tested every compiler version on every platform, so please make an issue if you encounter any problems or have questions about compatibility.
 
 ## Installation Methods
 
-### Method 1: Quick Install (Recommended)
+### Method 1: Building through Make recipes
 
 For most users, the quickest way to get started is using the provided Makefile automation:
 
@@ -58,15 +71,13 @@ On Windows (PowerShell):
 
 #### 3. Build and Install
 
+It is recommended to use Ninja for faster builds, but it is not required. If you don't have Ninja installed, you may have to play with the make configuration a bit to get it to behave. Otherwise, just run make to build and install with the default settings.
+
 ```bash
 make
 ```
 
 This builds Astrea in Release configuration and installs it to the `install/` directory.
-
-### Method 2: Custom Configuration
-
-For advanced users who need specific build configurations:
 
 #### Development Build with Tests and Examples
 
@@ -96,7 +107,7 @@ make relwithdebinfo install
 
 ### Method 3: Manual CMake Build
 
-For complete control over the build process, use CMake directly:
+For complete control over the build process, use CMake directly or configure your own CmakePresets.json file.
 
 ```bash
 # Configure the build
@@ -104,7 +115,8 @@ cmake -B build -S . \
     -DCMAKE_BUILD_TYPE=Release \
     -DCMAKE_INSTALL_PREFIX=install \
     -DASTREA_BUILD_TESTS=ON \
-    -DASTREA_BUILD_EXAMPLES=ON
+    -DASTREA_BUILD_EXAMPLES=ON \
+    ...
 
 # Build the library
 cmake --build build --config Release --parallel
@@ -117,17 +129,21 @@ cmake --install build --config Release
 
 Astrea provides several CMake options to customize the build:
 
-| Option                    | Default | Description                              |
-|--------------------------|---------|------------------------------------------|
-| `ASTREA_BUILD_TESTS`     | `OFF`   | Build unit tests and integration tests  |
-| `ASTREA_BUILD_EXAMPLES`  | `OFF`   | Build example applications              |
-
+| Option                     | Default | Description                              |
+|----------------------------|---------|------------------------------------------|
+| `BUILD_TESTS`              | `OFF`   | Build unit tests and integration tests   |
+| `BUILD_EXAMPLES`           | `OFF`   | Build example applications               |
+| `BUILD_BENCHMARKS`         | `OFF`   | Build benchmark applications             |
+| `BUILD_STATIC`             | `OFF`   | Build static library                     |
+| `BUILD_PROFILERS`          | `OFF`   | Build profiler tools                     |
+| `BUILD_6DOF_CHECKCASES`    | `OFF`   | Build 6DOF checkcase tests               |
+ 
 Example with custom options:
 ```bash
 cmake -B build -S . \
     -DCMAKE_BUILD_TYPE=Debug \
-    -DASTREA_BUILD_TESTS=ON \
-    -DASTREA_BUILD_EXAMPLES=ON
+    -DBUILD_TESTS=ON \
+    -DBUILD_EXAMPLES=ON
 ```
 
 ## Verification
@@ -156,39 +172,6 @@ make run_examples
 cd <path_to_example> && . ./bin/example_name
 ```
 
-### Integration Test
-
-Create a simple test program to verify integration:
-
-```cpp
-#include <astro/astro.hpp>
-#include <iostream>
-
-using namespace astrea::astro;
-using namespace mp_units;
-
-using mp_units::si::unit_symbols::km;
-using mp_units::si::unit_symbols::s;
-using mp_units::angular::unit_symbols::deg;
-
-int main() {
-    // Create a simple Keplerian orbit
-    auto orbit = Keplerian(
-        7000.0 * km, // Semi-major axis
-        0.001 * one, // Eccentricity
-        98.0 * deg,  // Inclination
-        0.0 * deg,   // Right ascension of ascending node
-        0.0 * deg,   // Argument of perigee
-        0.0 * deg    // True anomaly
-    )
-
-    std::cout << "Astrea integration successful!" << std::endl;
-    std::cout << "Orbit: " << orbit << std::endl;
-
-    return 0;
-}
-```
-
 ## Usage in Your Projects
 
 ### CMake Integration
@@ -205,7 +188,7 @@ find_package(astrea REQUIRED)
 # Create your executable
 add_executable(my_app main.cpp)
 
-# Link against Astrea
+# Link against Astrea astro library
 target_link_libraries(my_app PRIVATE astrea::astro)
 
 # Set C++ standard
@@ -226,13 +209,12 @@ target_link_libraries(my_app PRIVATE
     astrea::math
     astrea::trace
 )
+
+# Or link against the entire library
+target_link_libraries(my_app PRIVATE astrea::astrea)
 ```
 
-## Troubleshooting
-
-### Common Issues
-
-**Compiler Version**: Ensure your compiler supports C++23. Use `gcc --version`.
+It is not recommended to use `add_subdirectory` for production builds, as it can lead to longer build times and larger binaries. Use `find_package` for installed versions of Astrea.
 
 **Python Environment**: If the Python environment fails to activate, try:
 ```bash
@@ -248,22 +230,6 @@ first build.
 make verbose install
 ```
 
-### Memory Debugging
-
-For memory issue diagnosis:
-
-```bash
-make debug install
-```
-
-## Next Steps
-
-After successful installation:
-
-1. Explore the [Examples](../examples/index.md) to understand common usage patterns
-2. Review the [API Documentation](../api/index.md) for detailed interface descriptions
-3. Join the community discussions on [GitHub](https://github.com/iulianojay/astrea)
-
 ## Shrinking the size of Astrea
 Astrea is designed to be modular, allowing users to include only the components they need. For example, if you only need the core astrodynamics functionality, you can link against `astrea::astro` without pulling in the access analysis or satellite database components. This helps keep compile times and binary sizes down for users who don't need the full functionality of the project.
 
@@ -278,6 +244,27 @@ cmake -B build -S . \
     -DBUILD_SUN=OFF \
     -DBUILD_MOON=OFF
 ```
-By default, Earth, Sun, and Moon are set to `ON` and all others are set to `OFF`.
+By default, Earth, Sun, and Moon are set to `ON` and all others are set to `OFF`. These ephemerides are built into `${CMAKE_INSTALL_PREFIX}/include/astro/ephemerides` by default.
 
+| Option             | Default | Description                              |
+|--------------------|---------|------------------------------------------|
+| `BUILD_SUN`        | `ON`    | Build Sun ephemerides                    |
+| `BUILD_MERCURY`    | `OFF`   | Build Mercury system ephemerides         |
+| `BUILD_EARTH`      | `ON`    | Build Earth system ephemerides           |
+| `BUILD_MARS`       | `OFF`   | Build Mars system ephemerides            |
+| `BUILD_VENUS`      | `OFF`   | Build Venus system ephemerides           |
+| `BUILD_JUPITER`    | `OFF`   | Build Jupiter system ephemerides         |
+| `BUILD_SATURN`     | `OFF`   | Build Saturn system ephemerides          |
+| `BUILD_URANUS`     | `OFF`   | Build Uranus system ephemerides          |
+| `BUILD_NEPTUNE`    | `OFF`   | Build Neptune system ephemerides         |
+
+### 6DoF Verification Test Data
 For users with a local clone of Astrea, a good chunk of the project size comes from some NASA 6DoF verification test data. Users that are not interested in running this, but would like to keep the source code around can simply delete `./astrea/astro/tests/nasa_6dof_checkcases/data` folder.
+
+## Next Steps
+
+After successful installation:
+
+1. Explore the [Examples](../examples/index.md) to understand common usage patterns
+2. Review the [API Documentation](../api/index.md) for detailed interface descriptions
+3. Join the community discussions on [GitHub](https://github.com/iulianojay/astrea)

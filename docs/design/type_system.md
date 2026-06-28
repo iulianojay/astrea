@@ -161,10 +161,10 @@ class State {
 Since the `State` is built on-top of the `OrbitalElements` machinery, but also contains the system information, it can trivially convert element sets and act as a read-only vehicle for the astrodynamics system used in a given simulation.
 
 ```cpp
-State state(Keplerian::LEO(), Date::J2000(), AstrodynamicsSystem());
+State state(Keplerian::LEO(), Date::J2000());
 Keplerian kep = state.in_element_set<Keplerian>();
-Cartesian kep = state.in_element_set<Cartesian>();
-Equinoctial kep = state.in_element_set<Equinoctial>();
+Cartesian cart = state.in_element_set<Cartesian>();
+Equinoctial equi = state.in_element_set<Equinoctial>();
 ```
 
 It can also provide a nice utility wrapper for frame transformations.

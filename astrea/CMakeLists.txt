@@ -16,3 +16,33 @@ add_subdirectory(snapshot)
 add_subdirectory(utilities)
 
 # add_subdirectory(units) // ignore until it has compiled files in it
+
+# Install units headers (header-only, no compiled target yet)
+install(
+    DIRECTORY ${CMAKE_CURRENT_LIST_DIR}/units/units
+    DESTINATION include
+)
+
+# Aggregate target
+add_library(astrea INTERFACE)
+add_library(astrea::astrea ALIAS astrea)
+target_link_libraries(astrea INTERFACE
+    math_shared
+    utilities_shared
+    astro_shared
+    snapshot_shared
+    trace_shared
+)
+
+# Static aggregate target (only created when BUILD_STATIC is enabled)
+if(${BUILD_STATIC})
+    add_library(astrea_static INTERFACE)
+    add_library(astrea::astrea_static ALIAS astrea_static)
+    target_link_libraries(astrea_static INTERFACE
+        math_static
+        utilities_static
+        astro_static
+        snapshot_static
+        trace_static
+    )
+endif()

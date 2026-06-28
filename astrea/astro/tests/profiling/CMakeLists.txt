@@ -15,5 +15,7 @@ set(PROFILER_NAME astro_profiler)
 
 add_executable         (${PROFILER_NAME} ${BASE}/main.cpp)
 set_target_properties  (${PROFILER_NAME} PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${BASE}/bin)
-target_compile_options (${PROFILER_NAME} PUBLIC -Wno-parentheses -Wno-unused-but-set-variable -Wno-unused-variable -Wno-unused-local-typedefs)
+if (NOT MSVC)
+    target_compile_options (${PROFILER_NAME} PUBLIC -Wno-parentheses -Wno-unused-but-set-variable -Wno-unused-variable -Wno-unused-local-typedefs)
+endif()
 target_link_libraries  (${PROFILER_NAME} PUBLIC astro_shared matplot)

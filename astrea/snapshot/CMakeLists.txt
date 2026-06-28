@@ -53,6 +53,7 @@ add_library                (${PROJECT_NAME}_shared SHARED ${SNAPSHOT_SOURCES} ${
 set_target_properties      (${PROJECT_NAME}_shared PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ${PROJECT_NAME} CLEAN_DIRECT_OUTPUT 1)
 target_link_libraries      (${PROJECT_NAME}_shared PUBLIC astro_shared utilities_shared ${SNAPSHOT_LIBS})
 target_include_directories (${PROJECT_NAME}_shared PUBLIC ${SNAPSHOT_DIRS})
+add_library                (astrea::snapshot ALIAS ${PROJECT_NAME}_shared)
 
 if(WIN32)
     target_compile_definitions (${PROJECT_NAME}_shared PUBLIC "_SNAPSHOT_ROOT_=\"${CMAKE_CURRENT_LIST_DIR}\"" WIN32_LEAN_AND_MEAN NOMINMAX)
@@ -74,6 +75,7 @@ if(${BUILD_STATIC})
     target_link_libraries      (${PROJECT_NAME}_static PUBLIC astro_shared utilities_static ${SNAPSHOT_LIBS})
     target_include_directories (${PROJECT_NAME}_static PUBLIC ${SNAPSHOT_DIRS})
     target_compile_definitions (${PROJECT_NAME}_static PUBLIC "_SNAPSHOT_ROOT_=\"${CMAKE_CURRENT_LIST_DIR}\"")
+    add_library                (astrea::snapshot_static ALIAS ${PROJECT_NAME}_static)
 
     # Install static library (A)
     install(TARGETS ${PROJECT_NAME}_static
@@ -101,6 +103,15 @@ install(
     PATTERN *.hpp
     PATTERN *.ipp
     PATTERN *.h
+)
+
+# Install database files
+install(
+    DIRECTORY ${SNAPSHOT_BASE}/database
+    DESTINATION share/astrea/snapshot/snapshot
+    FILES_MATCHING
+    PATTERN *.db
+    PATTERN *.json
 )
 
 if(${BUILD_EXAMPLES})

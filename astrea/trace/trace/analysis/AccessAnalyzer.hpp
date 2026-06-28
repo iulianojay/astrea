@@ -57,29 +57,6 @@ concept HasSubscriptOperator = requires(T t) {
 template <typename T>
 concept IsPlatformContainer = HasSize<T> && HasSubscriptOperator<T>;
 
-using EciRadiusVec  = astro::RadiusVector<astro::frames::earth::icrf>;
-using EcefRadiusVec = astro::RadiusVector<astro::frames::earth::earth_fixed>;
-
-/**
- * @brief Type alias for a vector of time values.
- */
-using DateVector = std::vector<astro::Date>;
-
-/**
- * @brief Type alias for a constellation of Viewer objects.
- */
-using ViewerConstellation = astro::Constellation<Viewer>;
-
-
-using ViewerRefVec = std::vector<std::shared_ptr<Viewer>>;
-
-using GroundStationRefVec = std::vector<std::shared_ptr<GroundStation<astro::planets::Earth>>>;
-
-using GroundPointRefVec = std::vector<std::shared_ptr<GroundPoint<astro::planets::Earth>>>;
-
-using PairVec = std::vector<std::pair<std::size_t, std::size_t>>;
-
-
 class AccessAnalyzer {
 
   public:
@@ -248,12 +225,54 @@ class AccessAnalyzer {
 
     /**
      * @brief Build access information for a pair of objects based on their cached positions.
-     *
-     * @param id1 The id of the first object.
-     * @param id2 The id of the second object.
-     * @return std::vector<AccessInfo> A vector of AccessInfo objects containing trace information for the pair of objects.
+     *        Uses the full is_central_body_occulting check; prefer build_ground_access_info
+     *        when id2 refers to a surface-fixed ground point.
      */
     std::vector<AccessInfo> build_access_info(const std::size_t& id1, const std::size_t& id2) const;
+
+    /**
+     * @brief Fast-path access info builder for satellite-to-ground-point pairs.
+     *        Replaces the asin/acos occlusion test with a single dot-product elevation check,
+     *        valid because the ground position is fixed on Earth's surface.
+     */
+    std::vector<AccessInfo> build_ground_access_info(const std::size_t& satId, const std::size_t& gpId) const;
+
+    /**
+     * @brief For each viewer, find all ground-point indices (by position in groundPoints)
+     *        reachable at any timestep given the sensor footprints and satellite ground track.
+     *
+     * @param viewers       The satellite platforms.
+     * @param spatialIndex  Pre-built spatial index of the ground points.
+     * @return Per-viewer vector of reachable ground-point indices.
+     */
+    std::vector<std::vector<std::size_t>>
+        compute_candidate_ground_points(const ViewerRefVec& viewers, const SpatialIndex& spatialIndex) const;
+
+    /**
+     * @brief Pre-compute ECI boresight vectors for every sensor on a platform at every timestep.
+     *
+     * Hoists the RIC-frame construction and boresight rotation out of the inner
+     * ground-point loop so the cost is O(N_sensors * N_time) instead of
+     * O(N_sensors * N_time * N_groundPoints).
+     *
+     * @param platform The sensor platform.
+     * @return BoresightTable boresights[sensor_idx][time_idx] in ECI.
+     */
+    BoresightTable compute_sensor_boresights(std::shared_ptr<astro::PayloadPlatform<Sensor>> platform) const;
+
+    /**
+     * @brief Find sensor accesses using a pre-computed ECI boresight table.
+     *
+     * Replaces the per-timestep sensor.contains() call (which rebuilds the RIC
+     * frame) with a direct fov->contains() using a pre-computed boresight vector.
+     *
+     * @param accessInfo Per-timestep geometry and occlusion data.
+     * @param boresightEci Pre-computed ECI boresight vector for this sensor, indexed by time.
+     * @param fov Field of view to check against.
+     * @return RiseSetArray Access windows for this sensor.
+     */
+    RiseSetArray
+        find_sensor_accesses_precomputed(const std::vector<AccessInfo>& accessInfo, const std::vector<EciRadiusVec>& boresightEci, const FieldOfView* fov) const;
 };
 
 } // namespace trace

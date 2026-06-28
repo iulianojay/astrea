@@ -4,6 +4,7 @@
 .cpm-cache
 .gcovr
 .venv
+.vs
 .vscode
 .cpm-cache
 CMake*
@@ -23,9 +24,9 @@ site
 *.pyc
 
 # Specific files
+.env
 build.txt
 package.json
-pyastro/astro.py
 .coverage.info
 .env
 snapshot.db

@@ -4,10 +4,9 @@ Astrea hosts it's own Integrator. While many numerical integrators exist with fa
 
 ```cpp
 // Setup initial state
-AstrodynamicsSystem sys; // Defaults to Earth-Moon
 const Date epoch;        // Defaults to J2000
 const Keplerian elements(10000.0 * km, 0.0 * one, 45.0 * deg, 0.0 * deg, 0.0 * deg, 0.0 * deg);
-const State state0(elements, epoch, sys);
+const State state0(elements, epoch);
 ```
 
 Astrea uses a type-erased Vehicle class to propagate states. This keeps the interface more static while allowing for more flexibility and extensibility for users.
@@ -32,9 +31,8 @@ struct MyEquationsOfMotion : public EquationsOfMotion {
     OrbitalElementPartials compute_dynamics(const State& state, const Vehicle& vehicle, const ForceVector<frames::earth::icrf>& perts, const ForceVector<frames::earth::icrf>& control) const override
     {
         // Extracting into the desired set can be convenient
-        const AstrodynamicsSystem& system = state.get_system();
-        const auto mu                     = system.get_mu();
-        const Cartesian cartesian         = state.in_element_set<Cartesian>();
+        const auto mu             = get_mu<planets::Earth>();
+        const Cartesian cartesian = state.in_element_set<Cartesian>();
 
         // Pull out the pieces for simple two-body gravity
         const auto r = cartesian.get_position();
