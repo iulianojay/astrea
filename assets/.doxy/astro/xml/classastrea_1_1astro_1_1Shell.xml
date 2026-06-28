@@ -325,7 +325,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/platforms/space/Shell.hpp" line="101" column="23" bodyfile="astrea/astro/astro/platforms/space/Shell.ipp" bodystart="73" bodyend="80"/>
+        <location file="astrea/astro/astro/platforms/space/Shell.hpp" line="101" column="23" bodyfile="astrea/astro/astro/platforms/space/Shell.ipp" bodystart="75" bodyend="82"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Shell_1a42a80ffad63c980474626c52405217a7" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> std::size_t</type>
@@ -343,7 +343,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/platforms/space/Shell.hpp" line="108" column="23" bodyfile="astrea/astro/astro/platforms/space/Shell.ipp" bodystart="84" bodyend="87"/>
+        <location file="astrea/astro/astro/platforms/space/Shell.hpp" line="108" column="23" bodyfile="astrea/astro/astro/platforms/space/Shell.ipp" bodystart="86" bodyend="89"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Shell_1a0f5ee5058faa4af2d14070eeffd0aab2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">void</ref></type>
@@ -372,7 +372,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/platforms/space/Shell.hpp" line="115" column="10" bodyfile="astrea/astro/astro/platforms/space/Shell.ipp" bodystart="91" bodyend="94"/>
+        <location file="astrea/astro/astro/platforms/space/Shell.hpp" line="115" column="10" bodyfile="astrea/astro/astro/platforms/space/Shell.ipp" bodystart="93" bodyend="96"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Shell_1a9c278f282fe389dffc03e1b76075a05f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">void</ref></type>
@@ -442,7 +442,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/platforms/space/Shell.hpp" line="130" column="10" bodyfile="astrea/astro/astro/platforms/space/Shell.ipp" bodystart="110" bodyend="114"/>
+        <location file="astrea/astro/astro/platforms/space/Shell.hpp" line="130" column="10" bodyfile="astrea/astro/astro/platforms/space/Shell.ipp" bodystart="112" bodyend="116"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Shell_1a4f4fe24b44643e497b0d4144c02cbd55" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>std::vector&lt; <ref refid="classastrea_1_1astro_1_1Plane" kindref="compound">Plane</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Spacecraft_T</ref> &gt; &gt; &amp;</type>
@@ -460,7 +460,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/platforms/space/Shell.hpp" line="137" column="17" bodyfile="astrea/astro/astro/platforms/space/Shell.ipp" bodystart="124" bodyend="127"/>
+        <location file="astrea/astro/astro/platforms/space/Shell.hpp" line="137" column="17" bodyfile="astrea/astro/astro/platforms/space/Shell.ipp" bodystart="126" bodyend="129"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Shell_1a129a39fd2e5838f9c22de4d63dc0b457" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> std::vector&lt; <ref refid="classastrea_1_1astro_1_1Plane" kindref="compound">Plane</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Spacecraft_T</ref> &gt; &gt; &amp;</type>
@@ -478,7 +478,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/platforms/space/Shell.hpp" line="144" column="23" bodyfile="astrea/astro/astro/platforms/space/Shell.ipp" bodystart="118" bodyend="121"/>
+        <location file="astrea/astro/astro/platforms/space/Shell.hpp" line="144" column="23" bodyfile="astrea/astro/astro/platforms/space/Shell.ipp" bodystart="120" bodyend="123"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Shell_1a04300f500e57c7e3efce1c80bfdaf82f" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> std::vector&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Spacecraft_T</ref> &gt;</type>
@@ -496,7 +496,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/platforms/space/Shell.hpp" line="151" column="23" bodyfile="astrea/astro/astro/platforms/space/Shell.ipp" bodystart="130" bodyend="138"/>
+        <location file="astrea/astro/astro/platforms/space/Shell.hpp" line="151" column="23" bodyfile="astrea/astro/astro/platforms/space/Shell.ipp" bodystart="132" bodyend="140"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Shell_1a50c2584b2ac4830a423a433fba4b3aeb" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Plane" kindref="compound">Plane</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Spacecraft_T</ref> &gt; &amp;</type>
@@ -527,7 +527,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/platforms/space/Shell.hpp" line="159" column="17" bodyfile="astrea/astro/astro/platforms/space/Shell.ipp" bodystart="142" bodyend="148"/>
+        <location file="astrea/astro/astro/platforms/space/Shell.hpp" line="159" column="17" bodyfile="astrea/astro/astro/platforms/space/Shell.ipp" bodystart="144" bodyend="150"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Shell_1ac6551915ea1dff7f683d5a898c063401" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Spacecraft_T</ref> &amp;</type>
@@ -558,7 +558,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/platforms/space/Shell.hpp" line="167" column="24" bodyfile="astrea/astro/astro/platforms/space/Shell.ipp" bodystart="152" bodyend="160"/>
+        <location file="astrea/astro/astro/platforms/space/Shell.hpp" line="167" column="24" bodyfile="astrea/astro/astro/platforms/space/Shell.ipp" bodystart="154" bodyend="162"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Shell_1ac0a1440a6d6ac39d27ac86932fb31d14" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">void</ref></type>
@@ -599,7 +599,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/platforms/space/Shell.hpp" line="175" column="10" bodyfile="astrea/astro/astro/platforms/space/Shell.ipp" bodystart="164" bodyend="169"/>
+        <location file="astrea/astro/astro/platforms/space/Shell.hpp" line="175" column="10" bodyfile="astrea/astro/astro/platforms/space/Shell.ipp" bodystart="166" bodyend="171"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Shell_1a66ccbc5f4303b7da7b9f9fc43daf6484" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">void</ref></type>
@@ -640,7 +640,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/platforms/space/Shell.hpp" line="183" column="10" bodyfile="astrea/astro/astro/platforms/space/Shell.ipp" bodystart="173" bodyend="178"/>
+        <location file="astrea/astro/astro/platforms/space/Shell.hpp" line="183" column="10" bodyfile="astrea/astro/astro/platforms/space/Shell.ipp" bodystart="175" bodyend="180"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Shell_1ae4dae64792b9ea1bf53241d922fe1e32" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="classastrea_1_1astro_1_1Shell_1a38ebd03403226aba01836dd1200d5b23" kindref="member">iterator</ref></type>
