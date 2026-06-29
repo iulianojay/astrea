@@ -27,13 +27,14 @@
 #include <astro/types/typedefs.hpp>
 #include <astro/utilities/conversions.hpp>
 
-
+namespace {
 using namespace mp_units;
 using namespace mp_units::angular;
 using angular::unit_symbols::deg;
 using angular::unit_symbols::rad;
 using si::unit_symbols::km;
 using si::unit_symbols::s;
+} // namespace
 
 namespace astrea {
 namespace astro {

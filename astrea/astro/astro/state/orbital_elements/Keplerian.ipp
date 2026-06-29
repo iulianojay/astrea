@@ -21,13 +21,14 @@
 #include <astro/utilities/conversions.hpp>
 #include <math/interpolation.hpp>
 
-
+namespace {
 using namespace mp_units;
 using namespace mp_units::angular;
 using angular::unit_symbols::deg;
 using angular::unit_symbols::rad;
 using si::unit_symbols::km;
 using si::unit_symbols::s;
+} // namespace
 
 namespace astrea {
 namespace astro {
