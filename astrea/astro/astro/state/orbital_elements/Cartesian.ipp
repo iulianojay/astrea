@@ -27,22 +27,18 @@
 #include <astro/types/typedefs.hpp>
 #include <math/interpolation.hpp>
 
-namespace {
-using namespace mp_units;
-using namespace mp_units::non_si;
-using namespace mp_units::angular;
-using angular::unit_symbols::deg;
-using angular::unit_symbols::rad;
-using si::unit_symbols::km;
-using si::unit_symbols::s;
-} // namespace
-
 namespace astrea {
 namespace astro {
 
 template <IsFrame auto _frame_>
 Cartesian<_frame_>::Cartesian(const Keplerian<_frame_>& elements, const GravParam& mu)
 {
+    using namespace mp_units;
+    using namespace mp_units::si;
+    using namespace mp_units::angular;
+    using mp_units::si::unit_symbols::km;
+    using mp_units::si::unit_symbols::s;
+
     // Extract elements
     const auto& a     = elements.get_semimajor();
     const auto& ecc   = elements.get_eccentricity();
@@ -104,6 +100,12 @@ Cartesian<_frame_>::Cartesian(const Keplerian<_frame_>& elements, const GravPara
 template <IsFrame auto _frame_>
 Cartesian<_frame_>::Cartesian(const Equinoctial<_frame_>& elements, const GravParam& mu)
 {
+    using namespace mp_units;
+    using namespace mp_units::si;
+    using namespace mp_units::angular;
+    using mp_units::si::unit_symbols::km;
+    using mp_units::si::unit_symbols::s;
+
     // Extract
     const auto& semilatus     = elements.get_semilatus();
     const auto& f             = elements.get_f();
