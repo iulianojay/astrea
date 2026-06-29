@@ -307,6 +307,9 @@ template <IsFrame auto frame>
     requires(IsBodyFixedFrame<decltype(frame)>)
 std::tuple<Angle, Angle, Distance> convert_body_fixed_to_geodetic(const RadiusVector<frame>& rBodyFixed)
 {
+    using mp_units::abs;
+    using mp_units::sqrt;
+    using mp_units::angular::atan2;
     using mp_units::si::unit_symbols::km;
     using mp_units::si::unit_symbols::mm;
 
@@ -361,6 +364,10 @@ template <IsFrame auto frame>
     requires(IsBodyFixedFrame<decltype(frame)>)
 RadiusVector<frame> convert_geodetic_to_body_fixed(const Angle& lat, const Angle& lon, const Distance& alt)
 {
+    using mp_units::sqrt;
+    using mp_units::angular::cos;
+    using mp_units::angular::sin;
+
     const Unitless sinLat = sin(lat);
     const Unitless cosLat = cos(lat);
 
