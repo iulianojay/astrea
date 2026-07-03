@@ -83,18 +83,26 @@ constexpr std::array<int, 3> get_sequence_numbers(RotationSequence sequence)
 /**
  * @brief Concept to check if two EulerAngless are the same (same sequence type, same specific sequence, same rotation type, and same frames).
  */
-template <RotationSequence sequence_t, RotationType rotation_t, IsFrame auto _in_frame_, IsFrame auto _out_frame_, RotationSequence sequence_u, RotationType rotation_u, IsFrame auto _in_frame_u_, IsFrame auto _out_frame_u_>
+template <RotationSequence sequence_t, RotationType rotation_t, auto _in_frame_, auto _out_frame_, RotationSequence sequence_u, RotationType rotation_u, auto _in_frame_u_, auto _out_frame_u_>
 concept IsSameEulerAngles =
-    (sequence_t == sequence_u) && // Must both be the same specific sequence (e.g., ZXZ)
-    (rotation_t == rotation_u) && // Must both be the same rotation type (intrinsic or extrinsic)
+    IsFrame<decltype(_in_frame_)> &&    //
+    IsFrame<decltype(_out_frame_)> &&   //
+    IsFrame<decltype(_in_frame_u_)> &&  //
+    IsFrame<decltype(_out_frame_u_)> && //
+    (sequence_t == sequence_u) &&       // Must both be the same specific sequence (e.g., ZXZ)
+    (rotation_t == rotation_u) &&       // Must both be the same rotation type (intrinsic or extrinsic)
     std::is_same_v<decltype(_in_frame_), decltype(_in_frame_u_)> && // Must have the same input frame
     std::is_same_v<decltype(_out_frame_), decltype(_out_frame_u_)>; // Must have the same output frame
 
 /**
  * @brief Concept to check if two EulerAngless are equivalent (same sequence type, reverse specific sequence, opposite rotation type, and same frames).
  */
-template <RotationSequence sequence_t, RotationType rotation_t, IsFrame auto _in_frame_, IsFrame auto _out_frame_, RotationSequence sequence_u, RotationType rotation_u, IsFrame auto _in_frame_u_, IsFrame auto _out_frame_u_>
+template <RotationSequence sequence_t, RotationType rotation_t, auto _in_frame_, auto _out_frame_, RotationSequence sequence_u, RotationType rotation_u, auto _in_frame_u_, auto _out_frame_u_>
 concept IsEquivalentEulerAngles =
+    IsFrame<decltype(_in_frame_)> &&                    //
+    IsFrame<decltype(_out_frame_)> &&                   //
+    IsFrame<decltype(_in_frame_u_)> &&                  //
+    IsFrame<decltype(_out_frame_u_)> &&                 //
     (get_reverse_sequence(sequence_t) == sequence_u) && // Must be the reverse sequence (e.g., ZXZ vs ZXZ with reversed angles)
     (rotation_t != rotation_u) &&                       // Must be opposite rotation types (intrinsic vs extrinsic)
     std::is_same_v<decltype(_in_frame_), decltype(_in_frame_u_)> && // Must have the same input frame
@@ -107,10 +115,14 @@ concept IsEquivalentEulerAngles =
  * want to prevent implicit conversions between sequences that would lead to very non-obvious bugs. If users want to convert
  * between different sequences, they can do so explicitly through the DCM or by converting to the same rotation type and then using the reverse sequence if desired.
  */
-template <RotationSequence sequence_t, RotationType rotation_t, IsFrame auto _in_frame_, IsFrame auto _out_frame_, RotationSequence sequence_u, RotationType rotation_u, IsFrame auto _in_frame_u_, IsFrame auto _out_frame_u_>
+template <RotationSequence sequence_t, RotationType rotation_t, auto _in_frame_, auto _out_frame_, RotationSequence sequence_u, RotationType rotation_u, auto _in_frame_u_, auto _out_frame_u_>
 concept IsCompatibleEulerAngles =
-    IsSameEulerAngles<sequence_t, rotation_t, _in_frame_, _out_frame_, sequence_u, rotation_u, _in_frame_u_, _out_frame_u_> ||
-    IsEquivalentEulerAngles<sequence_t, rotation_t, _in_frame_, _out_frame_, sequence_u, rotation_u, _in_frame_u_, _out_frame_u_>;
+    IsFrame<decltype(_in_frame_)> &&    //
+    IsFrame<decltype(_out_frame_)> &&   //
+    IsFrame<decltype(_in_frame_u_)> &&  //
+    IsFrame<decltype(_out_frame_u_)> && //
+    (IsSameEulerAngles<sequence_t, rotation_t, _in_frame_, _out_frame_, sequence_u, rotation_u, _in_frame_u_, _out_frame_u_> ||
+     IsEquivalentEulerAngles<sequence_t, rotation_t, _in_frame_, _out_frame_, sequence_u, rotation_u, _in_frame_u_, _out_frame_u_>);
 
 /**
  * @brief Class representing a sequence of angles (either Euler or Tait-Bryan) for attitude transformations between frames.

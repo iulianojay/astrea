@@ -104,8 +104,8 @@ using AllRegisteredFrames = typename tuple_cat_types<AutomaticallyRegisteredFram
 
 
 // Concept: true if frame is one of the types in AllRegisteredFrames
-template <IsFrame auto frame>
-concept IsRegisteredFrame = []<std::size_t... I>(std::index_sequence<I...>) {
+template <auto frame>
+concept IsRegisteredFrame = IsFrame<decltype(frame)> && []<std::size_t... I>(std::index_sequence<I...>) {
     return (std::same_as<decltype(frame), std::tuple_element_t<I, detail::AllRegisteredFrames>> || ...);
 }(std::make_index_sequence<std::tuple_size_v<detail::AllRegisteredFrames>>{});
 

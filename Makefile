@@ -66,13 +66,15 @@ profile: profiling install
 
 .PHONY: install
 install: build
-	$(CMAKE) --build $(build_path) --target install -j10
+	$(CMAKE) --build $(build_path) --target install -j20
 
 .PHONY: build
 build:
 	cmake -S . -B $(build_path) \
 	$(toolchain_make) \
 	$(toolchain_file) \
+	-DCMAKE_CXX_COMPILER=$(cxx) \
+	-DCMAKE_C_COMPILER=$(shell echo $(cxx) | sed 's/g++/gcc/;s/clang++/clang/') \
 	-DCMAKE_BUILD_TYPE=$(build_type) \
 	-DCMAKE_INSTALL_PREFIX:PATH=$(install_path) \
 	-DCMAKE_CXX_FLAGS=-fdiagnostics-color=always \
