@@ -8,7 +8,7 @@ source_path := astrea
 examples_path := examples
 arch := x86_64
 cxx := g++
-cxx_std := 23
+cxx_std := 26
 cxx_name := $(shell echo $(cxx) | sed 's/g++/gcc/; s/clang++/clang/' | sed 's/-[0-9.]*$$//')
 cxx_ver := $(shell $(cxx) -dumpversion | cut -d. -f1)
 comp := $(cxx_name)-$(cxx_ver)-$(cxx_std)
@@ -38,6 +38,7 @@ else ifeq ($(compiler),msvc)
 endif
 
 CMAKE := source $(venv_activate) && cmake
+CONAN := source $(venv_activate) && conan
 build_type := Release
 build_type_lower := $(shell echo $(build_type) | tr A-Z a-z)
 build_path := $(abspath ./build/$(compiler)/$(comp)/$(build_type))
@@ -66,18 +67,27 @@ profile: profiling install
 
 .PHONY: install
 install: build
-	$(CMAKE) --build $(build_path) --target install -j20
+	$(CMAKE) --build $(build_path) --target install -j10
+
+.PHONY: conan-install
+conan-install:
+	mkdir -p $(build_path)
+	$(CONAN) install . \
+	--output-folder=$(build_path) \
+	--build=missing \
+	-s build_type=$(build_type)
+	rm -f $(build_path)/CMakeCache.txt
 
 .PHONY: build
-build:
+build: conan-install
 	cmake -S . -B $(build_path) \
 	$(toolchain_make) \
+	-DCMAKE_TOOLCHAIN_FILE=$(build_path)/conan_toolchain.cmake \
 	$(toolchain_file) \
 	-DCMAKE_CXX_COMPILER=$(cxx) \
 	-DCMAKE_C_COMPILER=$(shell echo $(cxx) | sed 's/g++/gcc/;s/clang++/clang/') \
 	-DCMAKE_BUILD_TYPE=$(build_type) \
 	-DCMAKE_INSTALL_PREFIX:PATH=$(install_path) \
-	-DCMAKE_CXX_FLAGS=-fdiagnostics-color=always \
 	-DCPM_SOURCE_CACHE=$(config_path)/.cpm-cache \
 	-DBUILD_TESTS=$(build_tests) \
 	-DBUILD_BENCHMARKS=$(build_benchmarks) \
@@ -231,7 +241,7 @@ new:
 	rm -rf build
 	rm -rf install
 
-CLANG_TIDY_CMD = clang-tidy -p=$(build_path) --extra-arg=-Who-unknown-warning-option --extra-arg=-std=c++23
+CLANG_TIDY_CMD = clang-tidy -p=$(build_path) --extra-arg=-Who-unknown-warning-option --extra-arg=-std=c++26
 .PHONY: check
 check: build
 	find $(source_path) -regex '.*\.\(cpp\|hpp\|c\|h\)' | xargs $(CLANG_TIDY_CMD)

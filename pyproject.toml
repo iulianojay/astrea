@@ -30,6 +30,7 @@ dependencies = [
     "pymdown-extensions>=10.21.3",
     "Pygments>=2.20.0",
     "GitPython>=3.1.48",
+    "conan>=2.0.0",
 ]
 
 [dependency-groups]
