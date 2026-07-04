@@ -31,7 +31,7 @@ elseif(MINGW)
     set(CXX_FLAGS "-Wall -Wl,--kill-at -fpermissive")
 elseif(UNIX AND NOT APPLE)
     # Linux GCC flags
-    set(COMMON_FLAGS "-DWL=64 -m64 -fPIC -mfpmath=sse -DLINUX -Wno-interference-size -fdiagnostics-color=always") # -freport-bug
+    set(COMMON_FLAGS "-DWL=64 -m64 -fPIC -mfpmath=sse -DLINUX -Wno-interference-size -fdiagnostics-color=always -freflection") # -freport-bug
     set(DEBUG_FLAGS "${COMMON_FLAGS} -g -fno-inline -fno-inline-small-functions -fno-default-inline --coverage -O0")
     set(RELEASE_FLAGS "${COMMON_FLAGS} -O3 -ffinite-loops")
     set(RELWITHHDEBINFO_FLAGS "${RELEASE_FLAGS} -g")
