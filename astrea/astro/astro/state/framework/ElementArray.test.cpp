@@ -23,6 +23,7 @@ using namespace astro;
 
 using namespace mp_units;
 using mp_units::angular::unit_symbols::deg;
+using mp_units::angular::unit_symbols::rad;
 using mp_units::si::unit_symbols::km;
 using mp_units::si::unit_symbols::s;
 
@@ -47,6 +48,18 @@ TEST_F(ElementArrayTest, DefaultConstructor) { ASSERT_NO_THROW(KeplerianElements
 TEST_F(ElementArrayTest, ElementConstructor)
 {
     ASSERT_NO_THROW(KeplerianElements(Distance{}, Unitless{}, Angle{}, Angle{}, Angle{}, Angle{}));
+}
+
+TEST_F(ElementArrayTest, Partial)
+{
+    KeplerianElements elements(
+        Distance{ 1.0 * km }, Unitless{ 1.0 * one }, Angle{ 1.0 * deg }, Angle{ 1.0 * deg }, Angle{ 1.0 * deg }, Angle{ 1.0 * deg }
+    );
+    auto partialElements = KeplerianElements::partial_in<Time>(elements / Time{ 1.0 * s });
+    auto weirdPartial    = KeplerianElements::partial_in<Distance>(elements / Distance{ 1.0 * km });
+
+    static_assert(std::is_same_v<decltype(partialElements), KeplerianElements::partial_in<Time>>);
+    static_assert(std::is_same_v<decltype(partialElements * Time{}), KeplerianElements>);
 }
 
 TEST_F(ElementArrayTest, CopyConstructor)
@@ -126,6 +139,30 @@ TEST_F(ElementArrayTest, RowColumnAccess)
     ASSERT_EQ(col0.n_col, 1);
     ASSERT_EQ(col0.get<0>(), Distance{ 1.0 * km });
     ASSERT_EQ(col0.get<1>(), Angle{ 1.0 * deg });
+}
+
+TEST_F(ElementArrayTest, GetSubMatrix)
+{
+    ElementArray<3, 3, Distance, Unitless, Angle, Angle, Angle, Angle, Distance, Unitless, Angle> elements(
+        Distance{ 1.0 * km },
+        Unitless{ 1.0 * one },
+        Angle{ 1.0 * deg },
+        Angle{ 2.0 * deg },
+        Angle{ 3.0 * deg },
+        Angle{ 4.0 * deg },
+        Distance{ 5.0 * km },
+        Unitless{ 6.0 * one },
+        Angle{ 7.0 * deg }
+    );
+
+    auto submatrix = elements.get_submatrix<1, 3, 1, 3>();
+    ASSERT_EQ(submatrix.size, 4);
+    ASSERT_EQ(submatrix.n_row, 2);
+    ASSERT_EQ(submatrix.n_col, 2);
+    ASSERT_EQ(submatrix.get<0>(), Angle{ 3.0 * deg });
+    ASSERT_EQ(submatrix.get<1>(), Angle{ 4.0 * deg });
+    ASSERT_EQ(submatrix.get<2>(), Unitless{ 6.0 * one });
+    ASSERT_EQ(submatrix.get<3>(), Angle{ 7.0 * deg });
 }
 
 TEST_F(ElementArrayTest, Size)
@@ -270,4 +307,121 @@ TEST_F(ElementArrayTest, VectorMultiplication)
     ASSERT_EQ(D.get<6>(), 9.0);  // 9*1
     ASSERT_EQ(D.get<7>(), 18.0); // 9*2
     ASSERT_EQ(D.get<8>(), 27.0); // 9*3
+}
+
+TEST_F(ElementArrayTest, DotProduct)
+{
+    ElementArray<3, 1, double, double, double> A{ 1.0, 2.0, 3.0 };
+    ElementArray<3, 1, double, double, double> B{ 4.0, 5.0, 6.0 };
+
+    auto dotProduct = A.dot(B);
+
+    ASSERT_EQ(dotProduct, 32.0); // dot product: 1*4 + 2*5 + 3*6
+}
+
+TEST_F(ElementArrayTest, Transpose)
+{
+    ElementArray<2, 3, double, double, double, double, double, double> A{ 1.0, 2.0, 3.0, 4.0, 5.0, 6.0 };
+
+    auto B = A.transpose();
+
+    ASSERT_EQ(B.size, 6);
+    ASSERT_EQ(B.n_row, 3);
+    ASSERT_EQ(B.n_col, 2);
+    ASSERT_EQ(B.get<0>(), 1.0);
+    ASSERT_EQ(B.get<1>(), 4.0);
+    ASSERT_EQ(B.get<2>(), 2.0);
+    ASSERT_EQ(B.get<3>(), 5.0);
+    ASSERT_EQ(B.get<4>(), 3.0);
+    ASSERT_EQ(B.get<5>(), 6.0);
+}
+
+TEST_F(ElementArrayTest, Determinant)
+{
+    ElementArray<2, 2, double, double, double, double> A{ 1.0, 2.0, 3.0, 4.0 };
+
+    auto detA = A.determinant();
+
+    ASSERT_EQ(detA, -2.0); // 1*4 - 2*3 = -2
+
+    ElementArray<3, 3, double, double, double, double, double, double, double, double, double> B{ 1.0, 2.0, 3.0,
+                                                                                                  4.0, 5.0, 6.0,
+                                                                                                  7.0, 8.0, 9.0 };
+
+    auto detB = B.determinant();
+
+    ASSERT_EQ(detB, 0.0); // determinant of a singular matrix is zero
+}
+
+TEST_F(ElementArrayTest, Trace)
+{
+    ElementArray<3, 3, double, double, double, double, double, double, double, double, double> A{ 1.0, 2.0, 3.0,
+                                                                                                  4.0, 5.0, 6.0,
+                                                                                                  7.0, 8.0, 9.0 };
+
+    auto traceA = A.trace();
+
+    ASSERT_EQ(traceA, 15.0); // 1 + 5 + 9 = 15
+}
+
+TEST_F(ElementArrayTest, Norm)
+{
+    ElementArray<3, 1, double, double, double> A{ 3.0, 4.0, 12.0 };
+
+    auto norm = A.norm();
+
+    ASSERT_EQ(norm, 13.0); // sqrt(3^2 + 4^2 + 12^2) = 13
+}
+
+TEST_F(ElementArrayTest, NormP)
+{
+    ElementArray<3, 1, double, double, double> A{ 1.0, 2.0, 3.0 };
+
+    auto norm2 = A.norm<2>();
+    ASSERT_EQ(norm2, std::sqrt(14.0)); // sqrt(1^2 + 2^2 + 3^2) = sqrt(14)
+
+    auto norm3 = A.norm<3>();
+    ASSERT_EQ(norm3, std::pow(36.0, 1.0 / 3.0)); // (1^3 + 2^3 + 3^3)^(1/3) = (36)^(1/3)
+}
+
+TEST_F(ElementArrayTest, ToTuple)
+{
+    ElementArray<3, 1, double, double, double> A{ 1.0, 2.0, 3.0 };
+
+    auto tuple = A.to_tuple();
+
+    static_assert(std::is_same_v<decltype(tuple), decltype(A)::tuple_type>);
+
+    ASSERT_EQ(std::get<0>(tuple), 1.0);
+    ASSERT_EQ(std::get<1>(tuple), 2.0);
+    ASSERT_EQ(std::get<2>(tuple), 3.0);
+}
+
+TEST_F(ElementArrayTest, Flatten)
+{
+    ElementArray<2, 3, double, double, double, double, double, double> A{ 1.0, 2.0, 3.0, 4.0, 5.0, 6.0 };
+
+    auto B = A.flatten();
+
+    ASSERT_EQ(B.size, 6);
+    ASSERT_EQ(B.n_row, 1);
+    ASSERT_EQ(B.n_col, 6);
+    ASSERT_EQ(B.get<0>(), 1.0);
+    ASSERT_EQ(B.get<1>(), 2.0);
+    ASSERT_EQ(B.get<2>(), 3.0);
+    ASSERT_EQ(B.get<3>(), 4.0);
+    ASSERT_EQ(B.get<4>(), 5.0);
+    ASSERT_EQ(B.get<5>(), 6.0);
+}
+
+TEST_F(ElementArrayTest, ForceToDoubleArray)
+{
+    ElementArray<3, 1, Distance, Unitless, Angle> A{ Distance{ 1.0 * km }, Unitless{ 2.0 * one }, Angle{ 3.0 * rad } };
+
+    auto doubleArray = A.force_to_double_array();
+
+    ASSERT_EQ(doubleArray.size(), 3);
+    ASSERT_EQ(doubleArray[0], 1.0);
+    ASSERT_EQ(doubleArray[1], 2.0);
+    ASSERT_EQ(doubleArray[2], 3.0); // have to use radians for the test to match the unit of the Angle type
 }
