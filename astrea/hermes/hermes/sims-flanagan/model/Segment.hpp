@@ -168,6 +168,21 @@ class Segment {
      */
     OptionalRef<State> get_state(std::size_t id);
 
+    /**
+     * @brief Get the burns that occur during this segment
+     *
+     * @return const std::vector<DeltaV>& The burns that occur during this segment
+     */
+    const std::vector<DeltaV>& get_burns() const;
+
+    /**
+     * @brief Check if the segment is forward-propagating
+     *
+     * @return true If the segment is forward-propagating
+     * @return false If the segment is backward-propagating
+     */
+    bool is_forward() const;
+
   private:
     std::size_t _id;
     std::vector<Subsegment> _subsegments;

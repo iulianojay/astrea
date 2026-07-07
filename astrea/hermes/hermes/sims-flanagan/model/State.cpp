@@ -13,6 +13,8 @@
 
 #include <hermes/sims-flanagan/model/State.hpp>
 
+#include <utilities/IdProvider.hpp>
+
 namespace astrea {
 namespace hermes {
 
@@ -25,6 +27,11 @@ State::State(const astro::State& state) :
 std::size_t State::get_id() const { return _id; }
 
 const astro::State& State::get_state() const { return _state; }
+
+astro::Cartesian<astro::frames::primary> State::get_cartesian() const
+{
+    return _state.in_element_set<astro::Cartesian<astro::frames::primary>>();
+}
 
 } // namespace hermes
 } // namespace astrea

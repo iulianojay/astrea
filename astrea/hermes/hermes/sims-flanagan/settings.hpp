@@ -1,7 +1,7 @@
 /**
- * @file Trajectory.hpp
+ * @file settings.hpp
  * @author Jay Iuliano (iuliano.jay@gmail.com)
- * @brief Header file for the Trajectory module
+ * @brief Header file for the settings module
  * @date 2026-04-24
  *
  * @copyright Copyright (c) 2026 Jay Iuliano
@@ -36,7 +36,7 @@ struct SegmentSettings {
     bool isForward;           //!< Whether the segment is forward-propagating (true) or backward-propagating (false)
     Time duration;            //!< The duration of the segment
     std::vector<DeltaV> subsegBurns; //!< The delta-v burns for each subsegment
-    astro::State initialState;       //!< The initial state of the segment
+    State initialState;              //!< The initial state of the segment
 };
 
 /**
@@ -54,6 +54,7 @@ struct TrajectorySettings {
  * @brief A struct representing the settings for a Sims-Flanagan problem
  */
 struct SimsFlanaganSettings {
+    astro::Date epoch;                  //!< The epoch for the trajectory
     std::size_t nSegments;              //!< The number of segments in the trajectory
     std::size_t nSubsegmentsPerSegment; //!< The number of subsegments per segment in the trajectory
     Time maxFlightTime;                 //!< The maximum flight time for the entire trajectory
@@ -64,6 +65,8 @@ struct SimsFlanaganSettings {
     Velocity maxDeltaV;                 //!< The maximum delta-v magnitude for any burn in the trajectory
     astro::Integrator integrator;       //!< The integrator to use for propagating the trajectory
     astro::Vehicle vehicle;             //!< The vehicle to use for propagating the trajectory
+    astro::State initialState;          //!< The initial state of the segment
+    astro::State targetState;           //!< The final state of the segment
 };
 
 } // namespace hermes

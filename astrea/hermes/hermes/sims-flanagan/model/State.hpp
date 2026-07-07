@@ -20,7 +20,6 @@
 
 #include <astro/astro.hpp>
 #include <units/units.hpp>
-#include <utilities/IdProvider.hpp>
 
 namespace astrea {
 namespace hermes {
@@ -55,6 +54,13 @@ class State {
      * @return const astro::State& The state of the trajectory at a given point in time
      */
     const astro::State& get_state() const;
+
+    /**
+     * @brief Get the state of the trajectory at a given point in time as a Cartesian state vector
+     *
+     * @return const astro::Cartesian<astro::frames::primary>& The state of the trajectory at a given point in time as a Cartesian state vector
+     */
+    astro::Cartesian<astro::frames::primary> get_cartesian() const;
 
   private:
     std::size_t _id;     //!< The unique identifier for this State instance

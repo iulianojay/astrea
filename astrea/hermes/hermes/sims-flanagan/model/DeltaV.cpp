@@ -22,9 +22,21 @@ DeltaV::DeltaV(const astro::VelocityVector<astro::frames::primary>& deltaV) :
     _id = utilities::IdProvider::get_next_id<"SimsFlanagan">();
 }
 
+DeltaV::DeltaV(const Velocity& dx, const Velocity& dy, const Velocity& dz) :
+    _id(utilities::IdProvider::get_next_id<"SimsFlanagan">()),
+    _dv(dx, dy, dz)
+{
+}
+
 std::size_t DeltaV::get_id() const { return _id; }
 
 const astro::VelocityVector<astro::frames::primary>& DeltaV::get_delta_v() const { return _dv; }
+
+const Velocity& DeltaV::get_dx() const { return _dv.get_x(); }
+
+const Velocity& DeltaV::get_dy() const { return _dv.get_y(); }
+
+const Velocity& DeltaV::get_dz() const { return _dv.get_z(); }
 
 } // namespace hermes
 } // namespace astrea

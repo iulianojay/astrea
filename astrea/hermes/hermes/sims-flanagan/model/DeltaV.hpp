@@ -43,6 +43,15 @@ class DeltaV {
     DeltaV(const astro::VelocityVector<astro::frames::primary>& deltaV);
 
     /**
+     * @brief Construct a new DeltaV object
+     *
+     * @param dx The change in velocity in the x direction
+     * @param dy The change in velocity in the y direction
+     * @param dz The change in velocity in the z direction
+     */
+    DeltaV(const Velocity& dx, const Velocity& dy, const Velocity& dz);
+
+    /**
      * @brief Default destructor for the DeltaV class
      */
     ~DeltaV() = default;
@@ -60,6 +69,27 @@ class DeltaV {
      * @return const astro::VelocityVector<astro::frames::primary>& The change in velocity vector for this DeltaV instance
      */
     const astro::VelocityVector<astro::frames::primary>& get_delta_v() const;
+
+    /**
+     * @brief Get the change in velocity in the x direction for this DeltaV instance
+     *
+     * @return const Velocity& The change in velocity in the x direction for this DeltaV instance
+     */
+    const Velocity& get_dx() const;
+
+    /**
+     * @brief Get the change in velocity in the x direction for this DeltaV instance
+     *
+     * @return const Velocity& The change in velocity in the x direction for this DeltaV instance
+     */
+    const Velocity& get_dy() const;
+
+    /**
+     * @brief Get the change in velocity in the x direction for this DeltaV instance
+     *
+     * @return const Velocity& The change in velocity in the x direction for this DeltaV instance
+     */
+    const Velocity& get_dz() const;
 
   private:
     std::size_t _id;                                   //!< Unique identifier for this DeltaV instance

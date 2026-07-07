@@ -179,6 +179,27 @@ class Trajectory {
      */
     OptionalRef<State> get_state(std::size_t id);
 
+    /**
+     * @brief Get the initial burn of the trajectory
+     *
+     * @return const DeltaV& The initial burn of the trajectory
+     */
+    const DeltaV& get_initial_burn() const { return _initialBurn; }
+
+    /**
+     * @brief Get the final burn of the trajectory
+     *
+     * @return const DeltaV& The final burn of the trajectory
+     */
+    const DeltaV& get_final_burn() const { return _finalBurn; }
+
+    /**
+     * @brief Get the burns for each segment in the trajectory
+     *
+     * @return const std::vector<DeltaV>& The burns for each segment in the trajectory
+     */
+    const std::vector<DeltaV>& get_burns() const { return _burns; }
+
   private:
     std::size_t _id;                //!< Unique identifier for this Trajectory instance
     std::vector<Segment> _segments; //!< The segments that make up this trajectory

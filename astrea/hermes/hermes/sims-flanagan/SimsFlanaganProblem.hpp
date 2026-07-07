@@ -47,6 +47,7 @@ class SimsFlanaganProblem {
      * @param settings The settings for the Sims-Flanagan problem
      */
     SimsFlanaganProblem(const SimsFlanaganSettings& settings) :
+        _epoch(settings.epoch),
         _nSegments(settings.nSegments),
         _nSubsegmentsPerSegment(settings.nSubsegmentsPerSegment),
         _maxFlightTime(settings.maxFlightTime),
@@ -133,16 +134,17 @@ class SimsFlanaganProblem {
     DoubleVector encode_trajectory(const Trajectory& trajectory) const;
 
   private:
-    std::size_t _nSegments;              //!< The number of segments in the trajectory
-    std::size_t _nSubsegmentsPerSegment; //!< The number of subsegments per segment in the trajectory
-    Time _maxFlightTime;                 //!< The maximum flight time for the entire trajectory
-    Distance _minPosition;               //!< The minimum position value for the decision variables
-    Distance _maxPosition;               //!< The maximum position value for the decision variables
-    Velocity _minVelocity;               //!< The minimum velocity value for the decision variables
-    Velocity _maxVelocity;               //!< The maximum velocity value for the decision variables
-    Velocity _maxDeltaV;                 //!< The maximum delta-v value for the decision variables
-    astro::Integrator _integrator;       //!< The integrator to use for propagating the trajectory
-    astro::Vehicle _vehicle;             //!< The vehicle to use for propagating the trajectory
+    astro::Date _epoch;                    //!< The epoch for the trajectory
+    std::size_t _nSegments;                //!< The number of segments in the trajectory
+    std::size_t _nSubsegmentsPerSegment;   //!< The number of subsegments per segment in the trajectory
+    Time _maxFlightTime;                   //!< The maximum flight time for the entire trajectory
+    Distance _minPosition;                 //!< The minimum position value for the decision variables
+    Distance _maxPosition;                 //!< The maximum position value for the decision variables
+    Velocity _minVelocity;                 //!< The minimum velocity value for the decision variables
+    Velocity _maxVelocity;                 //!< The maximum velocity value for the decision variables
+    Velocity _maxDeltaV;                   //!< The maximum delta-v value for the decision variables
+    mutable astro::Integrator _integrator; //!< The integrator to use for propagating the trajectory
+    mutable astro::Vehicle _vehicle;       //!< The vehicle to use for propagating the trajectory
 
     std::size_t _nBurnsPerSegment; //!< The number of burns per segment in the trajectory (equal to nSubsegmentsPerSegment - 1)
     std::size_t _nDecisionsPerSegment; //!< The number of decision variables per segment in the trajectory (equal to 8 + 3 * nBurnsPerSegment)

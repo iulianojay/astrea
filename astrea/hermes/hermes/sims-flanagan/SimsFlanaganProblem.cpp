@@ -18,6 +18,8 @@
 
 #include <units/units.hpp>
 
+#include <hermes/sims-flanagan/calculations.hpp>
+
 namespace astrea {
 namespace hermes {
 
@@ -63,23 +65,23 @@ Trajectory SimsFlanaganProblem::decode_decision_vector(const DoubleVector& x) co
         segSettings.duration     = convert_decision_value_to_quantity(x[idx + 1], Time::zero(), _maxFlightTime);
 
         // Build the state
-        segSettings.initialState = { astro::Cartesian<astro::frames::primary>{
-                                         convert_decision_value_to_quantity(x[idx + 2], _minPosition, _maxPosition),
-                                         convert_decision_value_to_quantity(x[idx + 3], _minPosition, _maxPosition),
-                                         convert_decision_value_to_quantity(x[idx + 4], _minPosition, _maxPosition),
-                                         convert_decision_value_to_quantity(x[idx + 5], _minVelocity, _maxVelocity),
-                                         convert_decision_value_to_quantity(x[idx + 6], _minVelocity, _maxVelocity),
-                                         convert_decision_value_to_quantity(x[idx + 7], _minVelocity, _maxVelocity) },
-                                     _epoch };
+        segSettings.initialState =
+            State(astro::State{ astro::Cartesian<astro::frames::primary>{
+                                    convert_decision_value_to_quantity(x[idx + 2], _minPosition, _maxPosition),
+                                    convert_decision_value_to_quantity(x[idx + 3], _minPosition, _maxPosition),
+                                    convert_decision_value_to_quantity(x[idx + 4], _minPosition, _maxPosition),
+                                    convert_decision_value_to_quantity(x[idx + 5], _minVelocity, _maxVelocity),
+                                    convert_decision_value_to_quantity(x[idx + 6], _minVelocity, _maxVelocity),
+                                    convert_decision_value_to_quantity(x[idx + 7], _minVelocity, _maxVelocity) },
+                                _epoch });
 
         // Build out the burns
         segSettings.subsegBurns.reserve(_nBurnsPerSegment);
         for (std::size_t jj = 0; jj < _nBurnsPerSegment; ++jj) {
-            segSettings.subsegBurns.push_back(
-                DeltaV{ convert_decision_value_to_quantity(x[idx + 8 + 3 * jj], Velocity::zero(), _maxDeltaV),
-                        convert_decision_value_to_quantity(x[idx + 9 + 3 * jj], Velocity::zero(), _maxDeltaV),
-                        convert_decision_value_to_quantity(x[idx + 10 + 3 * jj], Velocity::zero(), _maxDeltaV) }
-            );
+            segSettings.subsegBurns.push_back(DeltaV{
+                convert_decision_value_to_quantity(x[idx + 8 + 3 * jj], Velocity::zero(), _maxDeltaV),
+                convert_decision_value_to_quantity(x[idx + 9 + 3 * jj], Velocity::zero(), _maxDeltaV),
+                convert_decision_value_to_quantity(x[idx + 10 + 3 * jj], Velocity::zero(), _maxDeltaV) });
         }
 
         // Store
@@ -99,20 +101,20 @@ DoubleVector SimsFlanaganProblem::encode_trajectory(const Trajectory& trajectory
         x[idx]     = segment.is_forward() ? 1.0 : 0.0;
         x[idx + 1] = segment.get_duration().numerical_value_in(s);
 
-        const auto& initialState = segment.get_initial_state().get<astro::Cartesian<astro::frames::primary>>();
-        x[idx + 2]               = (initialState.x() - _minPosition) / (_maxPosition - _minPosition);
-        x[idx + 3]               = (initialState.y() - _minPosition) / (_maxPosition - _minPosition);
-        x[idx + 4]               = (initialState.z() - _minPosition) / (_maxPosition - _minPosition);
-        x[idx + 5]               = (initialState.vx() - _minVelocity) / (_maxVelocity - _minVelocity);
-        x[idx + 6]               = (initialState.vy() - _minVelocity) / (_maxVelocity - _minVelocity);
-        x[idx + 7]               = (initialState.vz() - _minVelocity) / (_maxVelocity - _minVelocity);
+        const auto initialState = segment.get_initial_state().get_cartesian();
+        x[idx + 2] = ((initialState.get_x() - _minPosition) / (_maxPosition - _minPosition)).numerical_value_in(one);
+        x[idx + 3] = ((initialState.get_y() - _minPosition) / (_maxPosition - _minPosition)).numerical_value_in(one);
+        x[idx + 4] = ((initialState.get_z() - _minPosition) / (_maxPosition - _minPosition)).numerical_value_in(one);
+        x[idx + 5] = ((initialState.get_vx() - _minVelocity) / (_maxVelocity - _minVelocity)).numerical_value_in(one);
+        x[idx + 6] = ((initialState.get_vy() - _minVelocity) / (_maxVelocity - _minVelocity)).numerical_value_in(one);
+        x[idx + 7] = ((initialState.get_vz() - _minVelocity) / (_maxVelocity - _minVelocity)).numerical_value_in(one);
 
         const auto& burns = segment.get_burns();
         for (std::size_t jj = 0; jj < burns.size(); ++jj) {
             const auto& burn     = burns[jj];
-            x[idx + 8 + 3 * jj]  = (burn.dx() / _maxDeltaV).numerical_value_in(one);
-            x[idx + 9 + 3 * jj]  = (burn.dy() / _maxDeltaV).numerical_value_in(one);
-            x[idx + 10 + 3 * jj] = (burn.dz() / _maxDeltaV).numerical_value_in(one);
+            x[idx + 8 + 3 * jj]  = (burn.get_dx() / _maxDeltaV).numerical_value_in(one);
+            x[idx + 9 + 3 * jj]  = (burn.get_dy() / _maxDeltaV).numerical_value_in(one);
+            x[idx + 10 + 3 * jj] = (burn.get_dz() / _maxDeltaV).numerical_value_in(one);
         }
     }
 
@@ -123,17 +125,25 @@ DoubleVector SimsFlanaganProblem::fitness(const DoubleVector& x) const
 {
     // Build the trajectory and propagate
     Trajectory trajectory = decode_decision_vector(x);
-    trajectory.propagate(_integrator, _vehicle);
+
+    try {
+        trajectory.propagate_no_storage(_integrator, _vehicle);
+    }
+    catch (...) {
+        return { std::numeric_limits<double>::infinity(),
+                 std::numeric_limits<double>::infinity(),
+                 std::numeric_limits<double>::infinity(),
+                 std::numeric_limits<double>::infinity() };
+    }
 
     // Compute objectives
-    const Distance positionViolation = compute_position_violation(trajectory);
-    const Velocity velocityViolation = compute_velocity_violation(trajectory);
-    const Velocity totalDeltaV       = compute_total_delta_v(trajectory);
-    const Time totalTimeOfFlight     = compute_total_time_of_flight(trajectory);
+    const auto continuityViolations = compute_continuity_violations(trajectory);
+    const auto deltaVCosts          = compute_total_delta_v(trajectory);
+    const Time totalTimeOfFlight    = compute_total_time_of_flight(trajectory);
 
-    return { positionViolation.numerical_value_in(km),
-             velocityViolation.numerical_value_in(km / s),
-             totalDeltaV.numerical_value_in(km / s),
+    return { continuityViolations.positionViolation.numerical_value_in(km),
+             continuityViolations.velocityViolation.numerical_value_in(km / s),
+             deltaVCosts.totalDeltaV.numerical_value_in(km / s),
              totalTimeOfFlight.numerical_value_in(day) };
 }
 

@@ -145,5 +145,9 @@ OptionalRef<State> Segment::get_state(std::size_t id)
     return std::nullopt;
 }
 
+const std::vector<DeltaV>& Segment::get_burns() const { return _burns; }
+
+bool Segment::is_forward() const { return _isForward; }
+
 } // namespace hermes
 } // namespace astrea

@@ -29,6 +29,7 @@ set(HERMES_SOURCES
     ${HERMES_BASE}/sims-flanagan/model/Trajectory.cpp
 
     ${HERMES_BASE}/sims-flanagan/SimsFlanaganProblem.cpp
+    ${HERMES_BASE}/sims-flanagan/calculations.cpp
 )
 
 # Headers
@@ -43,10 +44,10 @@ set(HERMES_HEADERS
     ${HERMES_BASE}/sims-flanagan/model/Subsegment.hpp
     ${HERMES_BASE}/sims-flanagan/model/Segment.hpp
     ${HERMES_BASE}/sims-flanagan/model/Trajectory.hpp
-    
+
     ${HERMES_BASE}/sims-flanagan/settings.hpp
     ${HERMES_BASE}/sims-flanagan/SimsFlanaganProblem.hpp
-    
+
     ${HERMES_BASE}/types/typedefs.hpp
 )
 

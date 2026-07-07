@@ -1,7 +1,7 @@
 /**
- * @file hermes.hpp
+ * @file model.hpp
  * @author Jay Iuliano (iuliano.jay@gmail.com)
- * @brief Header file for the hermes module
+ * @brief Header file for the model module
  * @date 2026-04-24
  *
  * @copyright Copyright (c) 2026 Jay Iuliano
