@@ -16,8 +16,11 @@
 namespace astrea {
 namespace hermes {
 
-Segment::Segment(const std::vector<Subsegment>& subsegments) :
-    _subsegments(subsegments)
+Segment::Segment(const std::vector<Subsegment>& subsegments, const std::vector<DeltaV>& burns, const Time& duration, bool isForward) :
+    _subsegments(subsegments),
+    _burns(burns),
+    _isForward(isForward),
+    _duration(duration)
 {
     _id = utilities::IdProvider::get_next_id<"SimsFlanagan">();
 }
@@ -56,11 +59,16 @@ Segment Segment::ballistic(astro::Integrator& integrator, astro::Vehicle& vehicl
     }
 
     const Segment segment(subsegments);
-    return Segment(subsegments);
+    return Segment(subsegments, {}, segmentTime, true);
 }
 
 void Segment::propagate_no_storage(astro::Integrator& integrator, astro::Vehicle& vehicle)
 {
+    if (_subsegments.empty()) { throw std::runtime_error("Segment has no subsegments to propagate."); }
+    else if (mp_units::abs(_duration) <= 1.0 * mp_units::si::unit_symbols::ms) {
+        throw std::runtime_error("Segment has zero duration.");
+    }
+
     const Time timeOfFlight = _duration / _subsegments.size();
     State subsegmentState   = get_initial_state();
     for (auto& subsegment : _subsegments) {
@@ -71,6 +79,11 @@ void Segment::propagate_no_storage(astro::Integrator& integrator, astro::Vehicle
 
 astro::StateHistory Segment::propagate(astro::Integrator& integrator, astro::Vehicle& vehicle)
 {
+    if (_subsegments.empty()) { throw std::runtime_error("Segment has no subsegments to propagate."); }
+    else if (mp_units::abs(_duration) <= 1.0 * mp_units::si::unit_symbols::ms) {
+        throw std::runtime_error("Segment has zero duration.");
+    }
+
     astro::StateHistory history;
 
     const Time timeOfFlight = _duration / _subsegments.size();

@@ -62,3 +62,20 @@ TEST_F(SimsFlanaganTest, TransferOptimization)
 {
     Trajectory trajectory = Trajectory::ballistic(integrator, vehicle, state, propTime, nSegments, nSubsegmentsPerSegment);
 }
+
+// Regression: Trajectory::ballistic uses propagate_no_storage internally, which left the integrator
+// _store flag as false. Subsequent calls to propagate() then only returned the final state instead
+// of the full state history.
+TEST_F(SimsFlanaganTest, BallisticPropagateProducesFullStateHistory)
+{
+    Trajectory trajectory = Trajectory::ballistic(integrator, vehicle, state, propTime, nSegments, nSubsegmentsPerSegment);
+
+    const astro::StateHistory history = trajectory.propagate(integrator, vehicle);
+
+    // With a fixed 1-minute timestep over 1 week, there should be many states.
+    // We assert well above 1 to catch the regression where only the final state was stored.
+    const std::size_t minExpectedStates = nSegments * nSubsegmentsPerSegment * 2;
+    EXPECT_GT(history.size(), minExpectedStates)
+        << "State history has too few states (" << history.size()
+        << "). propagate_no_storage likely left the integrator _store flag false.";
+}

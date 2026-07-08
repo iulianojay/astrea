@@ -65,8 +65,8 @@ struct SimsFlanaganSettings {
     Velocity maxDeltaV;                 //!< The maximum delta-v magnitude for any burn in the trajectory
     astro::Integrator integrator;       //!< The integrator to use for propagating the trajectory
     astro::Vehicle vehicle;             //!< The vehicle to use for propagating the trajectory
-    astro::State initialState;          //!< The initial state of the segment
-    astro::State targetState;           //!< The final state of the segment
+    astro::Cartesian<astro::frames::primary> initialCartesian; //!< The initial state of the first segment
+    astro::Cartesian<astro::frames::primary> targetCartesian;  //!< The final state of the last segment
 };
 
 } // namespace hermes

@@ -60,8 +60,8 @@ int main()
                                    .maxDeltaV              = 1.0 * km / s,
                                    .integrator             = integrator,
                                    .vehicle                = vehicle,
-                                   .initialState           = initialState,
-                                   .targetState            = targetState };
+                                   .initialCartesian       = Cartesian<frames::primary>::LEO(mu),
+                                   .targetCartesian        = Cartesian<frames::primary>::GEO(mu) };
     SimsFlanaganProblem problem(settings);
 
     // Build problem, and algorithm
@@ -104,7 +104,9 @@ int main()
     // Trajectory trajectory            = problem.decode_decision_vector(x[idx]);
     // astro::StateHistory stateHistory = trajectory.propagate(integrator, vehicle);
 
-    astro::StateHistory ballisticStateHistory = ballisticTrajectory.propagate(integrator, vehicle);
+    const auto ballisticStateHistory = ballisticTrajectory.propagate(integrator, vehicle);
+    const auto initialOrbitHistory   = integrator.propagate(initialState, initialPropTime, vehicle);
+    const auto finalOrbitHistory     = integrator.propagate(targetState, initialPropTime, vehicle);
 
     // Plot and save
     std::filesystem::path outputDir = std::string(_HERMES_ROOT_) + "/results/sims-flanagan-test";
@@ -113,7 +115,7 @@ int main()
     std::filesystem::path solutionPath = outputDir / "result.png";
 
     std::cout << "Plotting results to " << guessPath << " and " << solutionPath << std::endl;
-    plot_trajectory(ballisticStateHistory, guessPath);
+    compare_trajectories({ initialOrbitHistory, finalOrbitHistory, ballisticStateHistory }, { "Initial Orbit", "Final Orbit", "Ballistic Trajectory" }, guessPath);
     // plot_trajectory(stateHistory, solutionPath);
 
     return 0;

@@ -56,6 +56,8 @@ class SimsFlanaganProblem {
         _minVelocity(settings.minVelocity),
         _maxVelocity(settings.maxVelocity),
         _maxDeltaV(settings.maxDeltaV),
+        _initialCartesian(settings.initialCartesian),
+        _targetCartesian(settings.targetCartesian),
         _integrator(settings.integrator),
         _vehicle(settings.vehicle),
         _nBurnsPerSegment(_nSubsegmentsPerSegment - 1),
@@ -134,15 +136,19 @@ class SimsFlanaganProblem {
     DoubleVector encode_trajectory(const Trajectory& trajectory) const;
 
   private:
-    astro::Date _epoch;                    //!< The epoch for the trajectory
-    std::size_t _nSegments;                //!< The number of segments in the trajectory
-    std::size_t _nSubsegmentsPerSegment;   //!< The number of subsegments per segment in the trajectory
-    Time _maxFlightTime;                   //!< The maximum flight time for the entire trajectory
-    Distance _minPosition;                 //!< The minimum position value for the decision variables
-    Distance _maxPosition;                 //!< The maximum position value for the decision variables
-    Velocity _minVelocity;                 //!< The minimum velocity value for the decision variables
-    Velocity _maxVelocity;                 //!< The maximum velocity value for the decision variables
-    Velocity _maxDeltaV;                   //!< The maximum delta-v value for the decision variables
+    astro::Date _epoch;                  //!< The epoch for the trajectory
+    std::size_t _nSegments;              //!< The number of segments in the trajectory
+    std::size_t _nSubsegmentsPerSegment; //!< The number of subsegments per segment in the trajectory
+    Time _maxFlightTime;                 //!< The maximum flight time for the entire trajectory
+    Distance _minPosition;               //!< The minimum position value for the decision variables
+    Distance _maxPosition;               //!< The maximum position value for the decision variables
+    Velocity _minVelocity;               //!< The minimum velocity value for the decision variables
+    Velocity _maxVelocity;               //!< The maximum velocity value for the decision variables
+    Velocity _maxDeltaV;                 //!< The maximum delta-v value for the decision variables
+
+    astro::Cartesian<astro::frames::primary> _initialCartesian; //!< The initial state of the first segment
+    astro::Cartesian<astro::frames::primary> _targetCartesian;  //!< The final state of the last segment
+
     mutable astro::Integrator _integrator; //!< The integrator to use for propagating the trajectory
     mutable astro::Vehicle _vehicle;       //!< The vehicle to use for propagating the trajectory
 

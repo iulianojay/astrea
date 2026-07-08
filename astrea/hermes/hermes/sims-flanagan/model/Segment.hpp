@@ -40,8 +40,11 @@ class Segment {
      * @brief Construct a new Segment object
      *
      * @param subsegments The subsegments that make up the segment
+     * @param burns The delta-v burns that occur during the segment
+     * @param duration The total duration of the segment
+     * @param isForward Whether the segment is forward-propagating (true) or backward
      */
-    Segment(const std::vector<Subsegment>& subsegments = {});
+    Segment(const std::vector<Subsegment>& subsegments = {}, const std::vector<DeltaV>& burns = {}, const Time& duration = Time::zero(), bool isForward = true);
 
     /**
      * @brief Construct a new Segment object from the given settings

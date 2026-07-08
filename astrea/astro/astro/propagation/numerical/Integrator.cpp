@@ -146,8 +146,10 @@ StateHistory Integrator::propagate(const State& state0, const Time& propTime, Ve
 
 State Integrator::propagate_no_storage(const State& state0, const Time& propTime, Vehicle vehicle)
 {
-    _store = false;
-    return propagate(state0, propTime, vehicle).last();
+    _store             = false;
+    const State result = propagate(state0, propTime, vehicle).last();
+    _store             = true;
+    return result;
 }
 
 State Integrator::propagate_no_storage(const State& state0, const Date& endEpoch, Vehicle vehicle)
@@ -186,7 +188,12 @@ StateHistory Integrator::propagate_impl(const State& state0, const Time& propTim
 
     // Fruit Loop
     StateHistory stateHistory;
-    if (_store) { stateHistory.insert(state); }
+    if (_store) {
+        if (forwardTime) { stateHistory.fast_append(state); }
+        else {
+            stateHistory.fast_prepend(state);
+        }
+    }
     while (_iteration < _MAX_ITER) {
 
         // Check for event
@@ -243,7 +250,12 @@ StateHistory Integrator::propagate_impl(const State& state0, const Time& propTim
 
         // Successful event
         watch_step(time, state, vehicle);
-        if (_store) { stateHistory.insert(state); }
+        if (_store) {
+            if (forwardTime) { stateHistory.fast_append(state); }
+            else {
+                stateHistory.fast_prepend(state);
+            }
+        }
 
         // Ensure last step goes to exact final time
         if ((forwardTime && time + timeStep > propTime && time < propTime) ||
@@ -260,7 +272,10 @@ StateHistory Integrator::propagate_impl(const State& state0, const Time& propTim
     }
 
     // Always store last state, even on failure to get last valid state
-    stateHistory.insert(state);
+    if (forwardTime) { stateHistory.fast_append(state); }
+    else {
+        stateHistory.fast_prepend(state);
+    }
 
     // Store event times
     if (!_eventDetector.get_events().empty()) { stateHistory.set_event_times(_eventDetector.get_event_times(_epoch0)); }
@@ -357,10 +372,8 @@ void Integrator::setup_butcher_tableau()
             break;
         }
         default:
-            throw std::invalid_argument(
-                "Integration Error: Stepping method not found. Options are {RK45, RKF45, "
-                "RKF78, DOP45, DOP78}."
-            );
+            throw std::invalid_argument("Integration Error: Stepping method not found. Options are {RK45, RKF45, "
+                                        "RKF78, DOP45, DOP78}.");
     }
 }
 
