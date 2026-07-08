@@ -61,9 +61,15 @@ class SimsFlanaganProblem {
         _integrator(settings.integrator),
         _vehicle(settings.vehicle),
         _nBurnsPerSegment(_nSubsegmentsPerSegment - 1),
-        _nDecisionsPerSegment(8 + 3 * _nBurnsPerSegment),
-        _nDecisions(_nDecisionsPerSegment * _nSegments)
+        _nDecisionsPerSegment(7 + 3 * _nBurnsPerSegment),
+        _nDecisions(_nDecisionsPerSegment * _nSegments + 6) // +6 for initial and final burns
     {
+        if (!settings.segmentDirections.empty()) { _segmentDirections = settings.segmentDirections; }
+        else {
+            // Default: all segments forward, last segment backward
+            _segmentDirections.assign(_nSegments, true);
+            if (_nSegments > 0) { _segmentDirections.back() = false; }
+        }
     }
 
     /**
@@ -153,8 +159,9 @@ class SimsFlanaganProblem {
     mutable astro::Vehicle _vehicle;       //!< The vehicle to use for propagating the trajectory
 
     std::size_t _nBurnsPerSegment; //!< The number of burns per segment in the trajectory (equal to nSubsegmentsPerSegment - 1)
-    std::size_t _nDecisionsPerSegment; //!< The number of decision variables per segment in the trajectory (equal to 8 + 3 * nBurnsPerSegment)
-    std::size_t _nDecisions; //!< The total number of decision variables for the trajectory (equal to nDecisionsPerSegment * nSegments)
+    std::size_t _nDecisionsPerSegment; //!< The number of decision variables per segment (equal to 7 + 3 * nBurnsPerSegment)
+    std::size_t _nDecisions;           //!< The total number of decision variables for the trajectory
+    std::vector<bool> _segmentDirections; //!< Forward (true) / backward (false) for each segment
 };
 
 } // namespace hermes

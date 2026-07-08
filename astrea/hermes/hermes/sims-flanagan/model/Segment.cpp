@@ -62,36 +62,36 @@ Segment Segment::ballistic(astro::Integrator& integrator, astro::Vehicle& vehicl
     return Segment(subsegments, {}, segmentTime, true);
 }
 
-void Segment::propagate_no_storage(astro::Integrator& integrator, astro::Vehicle& vehicle)
+astro::StateHistory
+    Segment::propagate(astro::Integrator& integrator, astro::Vehicle& vehicle, const DeltaV& initialBurn, const DeltaV& finalBurn, bool store)
 {
     if (_subsegments.empty()) { throw std::runtime_error("Segment has no subsegments to propagate."); }
     else if (mp_units::abs(_duration) <= 1.0 * mp_units::si::unit_symbols::ms) {
         throw std::runtime_error("Segment has zero duration.");
     }
 
-    const Time timeOfFlight = _duration / _subsegments.size();
-    State subsegmentState   = get_initial_state();
-    for (auto& subsegment : _subsegments) {
-        subsegment.propagate_no_storage(integrator, vehicle, subsegmentState, timeOfFlight);
-        subsegmentState = subsegment.get_final_state();
-    }
-}
-
-astro::StateHistory Segment::propagate(astro::Integrator& integrator, astro::Vehicle& vehicle)
-{
-    if (_subsegments.empty()) { throw std::runtime_error("Segment has no subsegments to propagate."); }
-    else if (mp_units::abs(_duration) <= 1.0 * mp_units::si::unit_symbols::ms) {
-        throw std::runtime_error("Segment has zero duration.");
-    }
-
+    static const DeltaV zeroBurn{};
     astro::StateHistory history;
-
     const Time timeOfFlight = _duration / _subsegments.size();
-    State subsegmentState   = get_initial_state();
-    for (auto& subsegment : _subsegments) {
-        const astro::StateHistory subsegmentHistory = subsegment.propagate(integrator, vehicle, subsegmentState, timeOfFlight);
-        history.insert(subsegmentHistory);
-        subsegmentState = subsegment.get_final_state();
+    const std::size_t N     = _subsegments.size();
+
+    // Seed from the optimizer-controlled entry node (forward) or exit node (backward).
+    State currentState = _isForward ? _subsegments.front().get_initial_node().get_state_in() :
+                                      _subsegments.back().get_final_node().get_state_out();
+
+    for (std::size_t step = 0; step < N; ++step) {
+        // Iterate forward 0..N-1 or backward N-1..0
+        const std::size_t ii = _isForward ? step : (N - 1 - step);
+        auto& subsegment     = _subsegments[ii];
+
+        const DeltaV& iBurn = (ii == 0) ? initialBurn : (ii - 1 < _burns.size() ? _burns[ii - 1] : zeroBurn);
+        const DeltaV& fBurn = (ii + 1 == N) ? finalBurn : (ii < _burns.size() ? _burns[ii] : zeroBurn);
+
+        const auto subsegmentHistory = subsegment.propagate(integrator, vehicle, currentState, timeOfFlight, iBurn, fBurn, store);
+        if (store) { history.insert(subsegmentHistory); }
+
+        // Chain: next subsegment inherits from the physical propagation result (pre-burn)
+        currentState = _isForward ? subsegment.get_final_node().get_state_out() : subsegment.get_initial_node().get_state_in();
     }
     return history;
 }

@@ -13,6 +13,7 @@
 
 #include <hermes/sims-flanagan/model/State.hpp>
 
+#include <hermes/sims-flanagan/model/DeltaV.hpp>
 #include <utilities/IdProvider.hpp>
 
 namespace astrea {
@@ -31,6 +32,16 @@ const astro::State& State::get_state() const { return _state; }
 astro::Cartesian<astro::frames::primary> State::get_cartesian() const
 {
     return _state.in_element_set<astro::Cartesian<astro::frames::primary>>();
+}
+
+State State::operator+(const DeltaV& burn) const
+{
+    return State{ astro::State{ get_cartesian() + burn.get_delta_v(), _state.get_epoch() } };
+}
+
+State State::operator-(const DeltaV& burn) const
+{
+    return State{ astro::State{ get_cartesian() - burn.get_delta_v(), _state.get_epoch() } };
 }
 
 } // namespace hermes

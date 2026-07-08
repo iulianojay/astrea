@@ -31,35 +31,36 @@ Subsegment Subsegment::ballistic(astro::Integrator& integrator, astro::Vehicle& 
     return subsegment;
 }
 
-void Subsegment::propagate_no_storage(astro::Integrator& integrator, astro::Vehicle& vehicle, const State& initialState, const Time& timeOfFlight)
+astro::StateHistory Subsegment::propagate(
+    astro::Integrator& integrator,
+    astro::Vehicle& vehicle,
+    const State& initialState,
+    const Time& timeOfFlight,
+    const DeltaV& initialBurn,
+    const DeltaV& finalBurn,
+    bool store
+)
 {
-    if (_isForward) {
-        const State state = integrator.propagate_no_storage(initialState.get_state(), timeOfFlight, vehicle);
-        set_initial_node(Node(initialState));
-        set_final_node(Node(state));
-    }
-    else {
-        const State state = integrator.propagate_no_storage(initialState.get_state(), -timeOfFlight, vehicle);
-        set_initial_node(Node(state));
-        set_final_node(Node(initialState));
-    }
-}
+    const State startingState(_isForward ? initialState + initialBurn : initialState - finalBurn);
+    const Time propTime = _isForward ? timeOfFlight : -timeOfFlight;
 
-astro::StateHistory
-    Subsegment::propagate(astro::Integrator& integrator, astro::Vehicle& vehicle, const State& initialState, const Time& timeOfFlight)
-{
-    if (_isForward) {
-        const astro::StateHistory stateHistory = integrator.propagate(initialState.get_state(), timeOfFlight, vehicle);
-        set_initial_node(Node(initialState));
-        set_final_node(Node(stateHistory.last()));
-        return stateHistory;
+    astro::StateHistory history;
+    State endState;
+    if (store) {
+        history  = integrator.propagate(startingState.get_state(), propTime, vehicle);
+        endState = history.last();
     }
     else {
-        const astro::StateHistory stateHistory = integrator.propagate(initialState.get_state(), -timeOfFlight, vehicle);
-        set_initial_node(Node(stateHistory.last()));
-        set_final_node(Node(initialState));
-        return stateHistory;
+        endState = integrator.propagate_no_storage(startingState.get_state(), propTime, vehicle);
     }
+
+    const Node initialNode = _isForward ? Node(initialState, startingState) : Node(endState - initialBurn, endState);
+    const Node finalNode   = _isForward ? Node(endState, endState + finalBurn) : Node(initialState, startingState);
+
+    set_initial_node(initialNode);
+    set_final_node(finalNode);
+
+    return history;
 }
 
 std::size_t Subsegment::get_id() const { return _id; }

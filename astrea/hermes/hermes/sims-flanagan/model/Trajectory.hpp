@@ -41,8 +41,16 @@ class Trajectory {
      * @brief Construct a new Trajectory object
      *
      * @param segments The segments that make up the trajectory
+     * @param initialBurn The initial burn of the trajectory
+     * @param finalBurn The final burn of the trajectory
+     * @param burns The burns for each segment of the trajectory
      */
-    Trajectory(const std::vector<Segment>& segments = {});
+    Trajectory(
+        const std::vector<Segment>& segments = {},
+        const DeltaV& initialBurn            = {},
+        const DeltaV& finalBurn              = {},
+        const std::vector<DeltaV>& burns     = {}
+    );
 
     /**
      * @brief Construct a new Trajectory object from the given settings
@@ -67,25 +75,29 @@ class Trajectory {
      * @param nSubsegmentsPerSegment The number of subsegments per segment in the trajectory
      * @return Trajectory A new Trajectory object representing a ballistic trajectory with the given parameters
      */
-    static Trajectory
-        ballistic(astro::Integrator& integrator, astro::Vehicle& vehicle, const State& initialState, const Time& propTime, std::size_t nSegments, std::size_t nSubsegmentsPerSegment);
+    static Trajectory ballistic(
+        astro::Integrator& integrator,
+        astro::Vehicle& vehicle,
+        const State& initialState,
+        const Time& propTime,
+        std::size_t nSegments,
+        std::size_t nSubsegmentsPerSegment,
+        const DeltaV& initialBurn = {}
+    );
 
     /**
-     * @brief Propagate the trajectory without storing the state history
+     * @brief Propagate the trajectory, optionally storing the full state history.
+     *
+     * When store is false (default) each segment uses the integrator's propagate_no_storage path,
+     * which avoids building intermediate state vectors and runs significantly faster. Use this for
+     * fitness evaluations. Pass store=true when you need the full history for plotting or analysis.
      *
      * @param integrator The integrator to use for propagating the trajectory
      * @param vehicle The vehicle to use for propagating the trajectory
+     * @param store When false (default) skips intermediate state storage; when true returns the full history
+     * @return astro::StateHistory The state history (empty when store is false)
      */
-    void propagate_no_storage(astro::Integrator& integrator, astro::Vehicle& vehicle);
-
-    /**
-     * @brief Propagate the trajectory and return the state history
-     *
-     * @param integrator The integrator to use for propagating the trajectory
-     * @param vehicle The vehicle to use for propagating the trajectory
-     * @return astro::StateHistory The state history of the propagated trajectory
-     */
-    astro::StateHistory propagate(astro::Integrator& integrator, astro::Vehicle& vehicle);
+    astro::StateHistory propagate(astro::Integrator& integrator, astro::Vehicle& vehicle, bool store = false);
 
     /**
      * @brief Get the unique identifier for this Trajectory instance

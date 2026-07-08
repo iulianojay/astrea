@@ -24,6 +24,8 @@
 namespace astrea {
 namespace hermes {
 
+class DeltaV; // forward declaration for operator+/-
+
 /**
  * @brief A class representing the state of the trajectory at a given point in time
  */
@@ -61,6 +63,23 @@ class State {
      * @return const astro::Cartesian<astro::frames::primary>& The state of the trajectory at a given point in time as a Cartesian state vector
      */
     astro::Cartesian<astro::frames::primary> get_cartesian() const;
+
+    /**
+     * @brief Apply an impulsive burn, adding the delta-v to the velocity.
+     *
+     * @param burn The burn to apply
+     * @return State The post-burn state at the same epoch
+     */
+    State operator+(const DeltaV& burn) const;
+
+    /**
+     * @brief Undo an impulsive burn, subtracting the delta-v from the velocity.
+     * Used when propagating backward in time through a burn node.
+     *
+     * @param burn The burn to undo
+     * @return State The pre-burn state at the same epoch
+     */
+    State operator-(const DeltaV& burn) const;
 
   private:
     std::size_t _id;     //!< The unique identifier for this State instance

@@ -67,6 +67,8 @@ struct SimsFlanaganSettings {
     astro::Vehicle vehicle;             //!< The vehicle to use for propagating the trajectory
     astro::Cartesian<astro::frames::primary> initialCartesian; //!< The initial state of the first segment
     astro::Cartesian<astro::frames::primary> targetCartesian;  //!< The final state of the last segment
+    std::vector<bool> segmentDirections;                       //!< Forward (true) / backward (false) per segment.
+                                                               //!< If empty, all segments are forward except the last.
 };
 
 } // namespace hermes

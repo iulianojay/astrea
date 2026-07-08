@@ -16,8 +16,11 @@
 namespace astrea {
 namespace hermes {
 
-Trajectory::Trajectory(const std::vector<Segment>& segments) :
-    _segments(segments)
+Trajectory::Trajectory(const std::vector<Segment>& segments, const DeltaV& initialBurn, const DeltaV& finalBurn, const std::vector<DeltaV>& burns) :
+    _segments(segments),
+    _initialBurn(initialBurn),
+    _finalBurn(finalBurn),
+    _burns(burns)
 {
     _id = utilities::IdProvider::get_next_id<"SimsFlanagan">();
 }
@@ -41,7 +44,8 @@ Trajectory Trajectory::ballistic(
     const State& initialState,
     const Time& propTime,
     std::size_t nSegments,
-    std::size_t nSubsegmentsPerSegment
+    std::size_t nSubsegmentsPerSegment,
+    const DeltaV& initialBurn
 )
 {
     std::vector<Segment> segments;
@@ -54,22 +58,22 @@ Trajectory Trajectory::ballistic(
         segmentState = segment.get_final_state();
         segments.emplace_back(segment);
     }
-    return Trajectory(segments);
+    return Trajectory(segments, initialBurn);
 }
 
-void Trajectory::propagate_no_storage(astro::Integrator& integrator, astro::Vehicle& vehicle)
+astro::StateHistory Trajectory::propagate(astro::Integrator& integrator, astro::Vehicle& vehicle, bool store)
 {
-    for (auto& segment : _segments) {
-        segment.propagate_no_storage(integrator, vehicle);
-    }
-}
+    static const DeltaV zeroBurn{};
+    const std::size_t N = _segments.size();
 
-astro::StateHistory Trajectory::propagate(astro::Integrator& integrator, astro::Vehicle& vehicle)
-{
     astro::StateHistory history;
-    for (auto& segment : _segments) {
-        const auto segmentHistory = segment.propagate(integrator, vehicle);
-        history.insert(segmentHistory);
+    for (std::size_t ii = 0; ii < N; ++ii) {
+        auto& segment             = _segments[ii];
+        const DeltaV& initialBurn = (ii == 0) ? _initialBurn : (ii - 1 < _burns.size() ? _burns[ii - 1] : zeroBurn);
+        const DeltaV& finalBurn   = (ii + 1 == N) ? _finalBurn : (ii < _burns.size() ? _burns[ii] : zeroBurn);
+
+        const auto segmentHistory = segment.propagate(integrator, vehicle, initialBurn, finalBurn, store);
+        if (store) { history.insert(segmentHistory); }
     }
     return history;
 }

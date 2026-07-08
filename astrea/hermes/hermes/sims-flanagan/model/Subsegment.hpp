@@ -24,6 +24,7 @@
 #include <units/units.hpp>
 #include <utilities/IdProvider.hpp>
 
+#include <hermes/sims-flanagan/model/DeltaV.hpp>
 #include <hermes/sims-flanagan/model/Node.hpp>
 #include <hermes/sims-flanagan/model/State.hpp>
 #include <hermes/types/typedefs.hpp>
@@ -69,26 +70,31 @@ class Subsegment {
     static Subsegment ballistic(astro::Integrator& integrator, astro::Vehicle& vehicle, const State& initialState, const Time& timeOfFlight);
 
     /**
-     * @brief Propagate the subsegment without storing the state history
+     * @brief Propagate the subsegment, optionally storing the full state history.
+     *
+     * Burns are applied at the nodes in forward time: the initial node stores
+     * (state_in = initialState, state_out = initialState + initialBurn) and the
+     * final node stores (state_in = propagated_result, state_out = propagated_result + finalBurn).
+     * The ballistic arc runs between initial_node.state_out and final_node.state_in.
      *
      * @param integrator The integrator to use for propagating the trajectory
      * @param vehicle The vehicle to use for propagating the trajectory
-     * @param initialState The initial state of the subsegment
-     * @param timeOfFlight The time of flight for the subsegment
+     * @param initialState The state arriving at the initial node (pre-burn)
+     * @param timeOfFlight The time of flight for the subsegment arc
+     * @param initialBurn Burn applied at the initial node (default zero)
+     * @param finalBurn Burn applied at the final node (default zero)
+     * @param store When false (default) skips intermediate state storage; when true returns the full history
+     * @return astro::StateHistory The state history (empty when store is false)
      */
-    void propagate_no_storage(astro::Integrator& integrator, astro::Vehicle& vehicle, const State& initialState, const Time& timeOfFlight);
-
-    /**
-     * @brief Propagate the subsegment and return the state history
-     *
-     * @param integrator The integrator to use for propagating the trajectory
-     * @param vehicle The vehicle to use for propagating the trajectory
-     * @param initialState The initial state of the subsegment
-     * @param timeOfFlight The time of flight for the subsegment
-     * @return astro::StateHistory The state history of the propagated subsegment
-     */
-    astro::StateHistory
-        propagate(astro::Integrator& integrator, astro::Vehicle& vehicle, const State& initialState, const Time& timeOfFlight);
+    astro::StateHistory propagate(
+        astro::Integrator& integrator,
+        astro::Vehicle& vehicle,
+        const State& initialState,
+        const Time& timeOfFlight,
+        const DeltaV& initialBurn = {},
+        const DeltaV& finalBurn   = {},
+        bool store                = false
+    );
 
     /**
      * @brief Get the unique identifier for this Subsegment instance

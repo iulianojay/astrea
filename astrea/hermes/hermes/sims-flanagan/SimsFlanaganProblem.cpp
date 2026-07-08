@@ -42,8 +42,6 @@ std::pair<DoubleVector, DoubleVector> SimsFlanaganProblem::get_bounds() const
     return { lb, ub };
 }
 
-bool convert_decision_value_to_bool(double value) { return value >= 0.5; }
-
 template <typename T>
 T convert_decision_value_to_quantity(double value, T min, T max)
 {
@@ -61,32 +59,39 @@ Trajectory SimsFlanaganProblem::decode_decision_vector(const DoubleVector& x) co
 
         SegmentSettings segSettings;
         segSettings.nSubsegments = _nSubsegmentsPerSegment;
-        segSettings.isForward    = convert_decision_value_to_bool(x[idx]);
-        segSettings.duration     = convert_decision_value_to_quantity(x[idx + 1], Time::zero(), _maxFlightTime);
+        segSettings.isForward    = _segmentDirections[ii];
+        segSettings.duration     = convert_decision_value_to_quantity(x[idx + 0], Time::zero(), _maxFlightTime);
 
         // Build the state
         segSettings.initialState =
             State(astro::State{ astro::Cartesian<astro::frames::primary>{
+                                    convert_decision_value_to_quantity(x[idx + 1], _minPosition, _maxPosition),
                                     convert_decision_value_to_quantity(x[idx + 2], _minPosition, _maxPosition),
                                     convert_decision_value_to_quantity(x[idx + 3], _minPosition, _maxPosition),
-                                    convert_decision_value_to_quantity(x[idx + 4], _minPosition, _maxPosition),
+                                    convert_decision_value_to_quantity(x[idx + 4], _minVelocity, _maxVelocity),
                                     convert_decision_value_to_quantity(x[idx + 5], _minVelocity, _maxVelocity),
-                                    convert_decision_value_to_quantity(x[idx + 6], _minVelocity, _maxVelocity),
-                                    convert_decision_value_to_quantity(x[idx + 7], _minVelocity, _maxVelocity) },
+                                    convert_decision_value_to_quantity(x[idx + 6], _minVelocity, _maxVelocity) },
                                 _epoch });
 
         // Build out the burns
         segSettings.subsegBurns.reserve(_nBurnsPerSegment);
         for (std::size_t jj = 0; jj < _nBurnsPerSegment; ++jj) {
             segSettings.subsegBurns.push_back(DeltaV{
+                convert_decision_value_to_quantity(x[idx + 7 + 3 * jj], Velocity::zero(), _maxDeltaV),
                 convert_decision_value_to_quantity(x[idx + 8 + 3 * jj], Velocity::zero(), _maxDeltaV),
-                convert_decision_value_to_quantity(x[idx + 9 + 3 * jj], Velocity::zero(), _maxDeltaV),
-                convert_decision_value_to_quantity(x[idx + 10 + 3 * jj], Velocity::zero(), _maxDeltaV) });
+                convert_decision_value_to_quantity(x[idx + 9 + 3 * jj], Velocity::zero(), _maxDeltaV) });
         }
 
         // Store
         settings.segmentSettings.emplace_back(segSettings);
     }
+    std::size_t idx      = _nDecisionsPerSegment * _nSegments;
+    settings.initialBurn = DeltaV{ convert_decision_value_to_quantity(x[idx], Velocity::zero(), _maxDeltaV),
+                                   convert_decision_value_to_quantity(x[idx + 1], Velocity::zero(), _maxDeltaV),
+                                   convert_decision_value_to_quantity(x[idx + 2], Velocity::zero(), _maxDeltaV) };
+    settings.finalBurn   = DeltaV{ convert_decision_value_to_quantity(x[idx + 3], Velocity::zero(), _maxDeltaV),
+                                 convert_decision_value_to_quantity(x[idx + 4], Velocity::zero(), _maxDeltaV),
+                                 convert_decision_value_to_quantity(x[idx + 5], Velocity::zero(), _maxDeltaV) };
     return Trajectory(settings);
 }
 
@@ -98,25 +103,33 @@ DoubleVector SimsFlanaganProblem::encode_trajectory(const Trajectory& trajectory
         const auto& segment = segments[ii];
         std::size_t idx     = _nDecisionsPerSegment * ii;
 
-        x[idx]     = segment.is_forward() ? 1.0 : 0.0;
-        x[idx + 1] = segment.get_duration().numerical_value_in(s);
+        x[idx + 0] = segment.get_duration().numerical_value_in(s);
 
         const auto initialState = segment.get_initial_state().get_cartesian();
-        x[idx + 2] = ((initialState.get_x() - _minPosition) / (_maxPosition - _minPosition)).numerical_value_in(one);
-        x[idx + 3] = ((initialState.get_y() - _minPosition) / (_maxPosition - _minPosition)).numerical_value_in(one);
-        x[idx + 4] = ((initialState.get_z() - _minPosition) / (_maxPosition - _minPosition)).numerical_value_in(one);
-        x[idx + 5] = ((initialState.get_vx() - _minVelocity) / (_maxVelocity - _minVelocity)).numerical_value_in(one);
-        x[idx + 6] = ((initialState.get_vy() - _minVelocity) / (_maxVelocity - _minVelocity)).numerical_value_in(one);
-        x[idx + 7] = ((initialState.get_vz() - _minVelocity) / (_maxVelocity - _minVelocity)).numerical_value_in(one);
+        x[idx + 1] = ((initialState.get_x() - _minPosition) / (_maxPosition - _minPosition)).numerical_value_in(one);
+        x[idx + 2] = ((initialState.get_y() - _minPosition) / (_maxPosition - _minPosition)).numerical_value_in(one);
+        x[idx + 3] = ((initialState.get_z() - _minPosition) / (_maxPosition - _minPosition)).numerical_value_in(one);
+        x[idx + 4] = ((initialState.get_vx() - _minVelocity) / (_maxVelocity - _minVelocity)).numerical_value_in(one);
+        x[idx + 5] = ((initialState.get_vy() - _minVelocity) / (_maxVelocity - _minVelocity)).numerical_value_in(one);
+        x[idx + 6] = ((initialState.get_vz() - _minVelocity) / (_maxVelocity - _minVelocity)).numerical_value_in(one);
 
         const auto& burns = segment.get_burns();
         for (std::size_t jj = 0; jj < burns.size(); ++jj) {
-            const auto& burn     = burns[jj];
-            x[idx + 8 + 3 * jj]  = (burn.get_dx() / _maxDeltaV).numerical_value_in(one);
-            x[idx + 9 + 3 * jj]  = (burn.get_dy() / _maxDeltaV).numerical_value_in(one);
-            x[idx + 10 + 3 * jj] = (burn.get_dz() / _maxDeltaV).numerical_value_in(one);
+            const auto& burn    = burns[jj];
+            x[idx + 7 + 3 * jj] = (burn.get_dx() / _maxDeltaV).numerical_value_in(one);
+            x[idx + 8 + 3 * jj] = (burn.get_dy() / _maxDeltaV).numerical_value_in(one);
+            x[idx + 9 + 3 * jj] = (burn.get_dz() / _maxDeltaV).numerical_value_in(one);
         }
     }
+    const std::size_t idx   = _nDecisionsPerSegment * _nSegments;
+    const auto& initialBurn = trajectory.get_initial_burn();
+    x[idx]                  = (initialBurn.get_dx() / _maxDeltaV).numerical_value_in(one);
+    x[idx + 1]              = (initialBurn.get_dy() / _maxDeltaV).numerical_value_in(one);
+    x[idx + 2]              = (initialBurn.get_dz() / _maxDeltaV).numerical_value_in(one);
+    const auto& finalBurn   = trajectory.get_final_burn();
+    x[idx + 3]              = (finalBurn.get_dx() / _maxDeltaV).numerical_value_in(one);
+    x[idx + 4]              = (finalBurn.get_dy() / _maxDeltaV).numerical_value_in(one);
+    x[idx + 5]              = (finalBurn.get_dz() / _maxDeltaV).numerical_value_in(one);
 
     return x;
 }
@@ -127,7 +140,7 @@ DoubleVector SimsFlanaganProblem::fitness(const DoubleVector& x) const
     Trajectory trajectory = decode_decision_vector(x);
 
     try {
-        trajectory.propagate_no_storage(_integrator, _vehicle);
+        trajectory.propagate(_integrator, _vehicle);
     }
     catch (...) {
         return { std::numeric_limits<double>::infinity(),

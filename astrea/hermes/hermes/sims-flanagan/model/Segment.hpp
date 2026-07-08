@@ -72,21 +72,22 @@ class Segment {
         ballistic(astro::Integrator& integrator, astro::Vehicle& vehicle, const State& initialState, const Time& segmentTime, std::size_t nSubsegments);
 
     /**
-     * @brief Propagate the segment without storing the state history
+     * @brief Propagate the segment from its stored initial state.
      *
-     * @param integrator The integrator to use for propagating the trajectory
-     * @param vehicle The vehicle to use for propagating the trajectory
-     */
-    void propagate_no_storage(astro::Integrator& integrator, astro::Vehicle& vehicle);
-
-    /**
-     * @brief Propagate the segment and return the state history
+     * The seed state is read from the entry node (forward) or exit node (backward) of the
+     * segment itself — the optimizer's decision variable. Each subsequent subsegment inherits
+     * its starting state from the physical propagation result of the previous subsegment,
+     * ensuring physical continuity within the segment regardless of where the optimizer
+     * places the segment nodes. Burns create the permitted velocity discontinuities at nodes.
      *
-     * @param integrator The integrator to use for propagating the trajectory
-     * @param vehicle The vehicle to use for propagating the trajectory
-     * @return astro::StateHistory The state history of the propagated segment
+     * @param integrator  Integrator to use
+     * @param vehicle     Vehicle to use
+     * @param initialBurn Burn at the segment's entry node (default zero)
+     * @param finalBurn   Burn at the segment's exit node  (default zero)
+     * @param store       When true accumulates and returns the full state history
      */
-    astro::StateHistory propagate(astro::Integrator& integrator, astro::Vehicle& vehicle);
+    astro::StateHistory
+        propagate(astro::Integrator& integrator, astro::Vehicle& vehicle, const DeltaV& initialBurn = {}, const DeltaV& finalBurn = {}, bool store = false);
 
     /**
      * @brief Get the unique identifier for this Segment instance

@@ -36,7 +36,6 @@ int main()
     astro::Integrator integrator;
     astro::J2MeanVop eoms;
     integrator.set_equations_of_motion(eoms);
-    integrator.switch_fixed_timestep(true, 1.0 * mp_units::si::minute);
     integrator.set_abs_tol(1e-10);
     integrator.set_rel_tol(1e-10);
 
@@ -45,14 +44,15 @@ int main()
 
     // Problem settings
     astro::Date epoch               = J2000;
-    Time initialPropTime            = weeks(1);
+    Time initialPropTime            = days(1);
     const auto mu                   = astro::get_mu<astro::planets::Earth>();
     const astro::State initialState = { Cartesian<frames::primary>::LEO(mu), epoch };
     const astro::State targetState  = { Cartesian<frames::primary>::GEO(mu), epoch + initialPropTime };
+    const DeltaV initialBurn        = initialState.get_velocity().direction() * (2.25 * km / s);
     SimsFlanaganSettings settings{ .epoch                  = epoch,
-                                   .nSegments              = 10,
+                                   .nSegments              = 3,
                                    .nSubsegmentsPerSegment = 5,
-                                   .maxFlightTime          = 4 * initialPropTime,
+                                   .maxFlightTime          = initialPropTime,
                                    .minPosition            = -1000.0 * km,
                                    .maxPosition            = 1000.0 * km,
                                    .minVelocity            = -10.0 * km / s,
@@ -69,42 +69,46 @@ int main()
     pagmo::algorithm algo{ pagmo::nsga2() };
 
     // Use ballistic case as first guess
+    const unsigned popSize = 1;
+    std::cout << "Building initial population (" << popSize << " individuals)..." << std::endl;
+    pagmo::population pop{ pagmoProblem, popSize };
     std::cout << "Generating ballistic trajectory for initial guess..." << std::endl;
-    // pagmo::population pop{ pagmoProblem, 20 };
     Trajectory ballisticTrajectory =
-        Trajectory::ballistic(integrator, vehicle, { initialState }, initialPropTime, settings.nSegments, settings.nSubsegmentsPerSegment);
+        Trajectory::ballistic(integrator, vehicle, { initialState }, initialPropTime, settings.nSegments, settings.nSubsegmentsPerSegment, initialBurn);
     const DoubleVector guess = problem.encode_trajectory(ballisticTrajectory);
-    // pop.set_x(0, guess);
+    pop.set_x(0, guess);
 
-    // // Evolve the population
-    // std::cout << "Evolving population..." << std::endl;
-    // const std::size_t nEvolutions = 10;
+    // Evolve the population
+    std::cout << "Evolving population..." << std::endl;
+    const std::size_t nEvolutions = 10;
     // for (std::size_t ii = 0; ii < nEvolutions; ++ii) {
-    //     std::cout << "\tEvolution " << ii + 1 << " of " << nEvolutions << "\r";
+    //     std::cout << "\tEvolution " << ii + 1 << " of " << nEvolutions << std::flush << "\r";
     //     pop = algo.evolve(pop);
     // }
     // std::cout << std::endl;
 
-    // // Repropagate the best solution and the guess
-    // const auto& f      = pop.get_f();
-    // const auto& x      = pop.get_x();
-    // std::size_t idx    = 0;
-    // Velocity minDeltaV = std::numeric_limits<Velocity>::infinity();
-    // for (std::size_t ii = 0; ii < x.size(); ++ii) {
-    //     std::cout << "Solution " << ii + 1 << ": " << std::endl;
-    //     std::cout << "\tContinuity Position Violation = " << f[ii][0] * km << std::endl;
-    //     std::cout << "\tContinuity Velocity Violation = " << f[ii][1] * km / s << std::endl;
-    //     std::cout << "\tTotal Delta-V = " << f[ii][2] * km / s << std::endl;
-    //     std::cout << "\tTotal Time of Flight = " << f[ii][3] * day << std::endl;
-    //     if (f[ii][2] * km / s < minDeltaV) {
-    //         minDeltaV = f[ii][2] * km / s;
-    //         idx       = ii;
-    //     }
-    // }
-    // Trajectory trajectory            = problem.decode_decision_vector(x[idx]);
-    // astro::StateHistory stateHistory = trajectory.propagate(integrator, vehicle);
+    // Repropagate the best solution and the guess
+    const auto& f      = pop.get_f();
+    const auto& x      = pop.get_x();
+    std::size_t idx    = 0;
+    Velocity minDeltaV = std::numeric_limits<Velocity>::infinity();
+    for (std::size_t ii = 0; ii < x.size(); ++ii) {
+        std::cout << "Solution " << ii + 1 << ": " << std::endl;
+        std::cout << "\tContinuity Position Violation = " << f[ii][0] * km << std::endl;
+        std::cout << "\tContinuity Velocity Violation = " << f[ii][1] * km / s << std::endl;
+        std::cout << "\tTotal Delta-V = " << f[ii][2] * km / s << std::endl;
+        std::cout << "\tTotal Time of Flight = " << f[ii][3] * day << std::endl;
+        if (f[ii][2] * km / s < minDeltaV) {
+            minDeltaV = f[ii][2] * km / s;
+            idx       = ii;
+        }
+    }
+    Trajectory trajectory = problem.decode_decision_vector(x[idx]);
 
-    const auto ballisticStateHistory = ballisticTrajectory.propagate(integrator, vehicle);
+    integrator.switch_fixed_timestep(true, 1.0 * mp_units::si::minute);
+    astro::StateHistory stateHistory = trajectory.propagate(integrator, vehicle, true);
+
+    const auto ballisticStateHistory = ballisticTrajectory.propagate(integrator, vehicle, true);
     const auto initialOrbitHistory   = integrator.propagate(initialState, initialPropTime, vehicle);
     const auto finalOrbitHistory     = integrator.propagate(targetState, initialPropTime, vehicle);
 
@@ -115,8 +119,11 @@ int main()
     std::filesystem::path solutionPath = outputDir / "result.png";
 
     std::cout << "Plotting results to " << guessPath << " and " << solutionPath << std::endl;
-    compare_trajectories({ initialOrbitHistory, finalOrbitHistory, ballisticStateHistory }, { "Initial Orbit", "Final Orbit", "Ballistic Trajectory" }, guessPath);
-    // plot_trajectory(stateHistory, solutionPath);
+    compare_trajectories(
+        { initialOrbitHistory, finalOrbitHistory, ballisticStateHistory, stateHistory },
+        { "Initial Orbit", "Final Orbit", "Ballistic Guess", "Optimized Trajectory" },
+        solutionPath
+    );
 
     return 0;
 }
