@@ -1,7 +1,8 @@
 
+PROGRAM_NAME=hermes
 DEBUG=RelWithDebInfo
-PROGRAM=./install/gcc/gcc-15-23/$DEBUG/bin/trace/trace
-BASE_DIR=./astrea/trace/trace/drivers/results
+PROGRAM=./install/gcc/gcc-15-23/$DEBUG/bin/$PROGRAM_NAME/$PROGRAM_NAME
+BASE_DIR=./astrea/hermes/results/profiling
 OUTFILE=$BASE_DIR/callgrind.out
 # PROGRAM=./astrea/astro/tests/profiling/bin/astro_profiler
 # OUTFILE=./astrea/astro/tests/profiling/results/callgrind.out
@@ -14,7 +15,7 @@ OPTIONS="--callgrind-out-file=$OUTFILE --dump-instr=yes --collect-jumps=yes"
 CALLGRIND_CMD="valgrind --tool=callgrind $OPTIONS $PROGRAM"
 
 echo $CALLGRIND_CMD
-eval $CALLGRIND_CMD
+# eval $CALLGRIND_CMD
 
 CALLGRIND_OPTIONS="--threshold=100 --tree=both"
 ANNOTATE_INCLUSIVE_CMD="callgrind_annotate $CALLGRIND_OPTIONS --inclusive=yes $OUTFILE  > $OUTFILE.inclusive"

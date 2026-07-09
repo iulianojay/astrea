@@ -16,6 +16,10 @@
 namespace astrea {
 namespace hermes {
 
+using namespace mp_units;
+using mp_units::si::unit_symbols::km;
+using mp_units::si::unit_symbols::s;
+
 ContinuityViolations compute_continuity_violations(const Trajectory& trajectory)
 {
     Distance positionViolation = 0.0 * km;

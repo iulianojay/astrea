@@ -23,6 +23,7 @@
 namespace astrea {
 namespace hermes {
 
+using namespace mp_units;
 using mp_units::non_si::day;
 using mp_units::si::unit_symbols::km;
 using mp_units::si::unit_symbols::s;
