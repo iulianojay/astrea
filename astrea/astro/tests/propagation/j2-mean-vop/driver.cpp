@@ -20,7 +20,7 @@
 #include <astro/propagation/equations_of_motion/J2MeanVop.hpp>
 #include <astro/propagation/force_models/ForceModel.hpp>
 #include <astro/propagation/numerical/Integrator.hpp>
-#include <astro/state/orbital_elements/OrbitalElements.hpp>
+#include <astro/state/framework/OrbitalElements.hpp>
 #include <astro/systems/system_utilities.hpp>
 #include <astro/time/Date.hpp>
 #include <astro/time/Interval.hpp>

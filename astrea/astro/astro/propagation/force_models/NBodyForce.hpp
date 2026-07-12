@@ -24,7 +24,7 @@
 #include <astro/platforms/Vehicle.hpp>
 #include <astro/propagation/force_models/PerturbingForce.hpp>
 #include <astro/state/State.hpp>
-#include <astro/state/orbital_elements/OrbitalElements.hpp>
+#include <astro/state/framework/OrbitalElements.hpp>
 #include <astro/systems/system_concepts.hpp>
 #include <astro/systems/system_utilities.hpp>
 #include <astro/types/enums.hpp>

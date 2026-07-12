@@ -174,7 +174,7 @@ struct ElementArray {
      * @return The element at the specified index.
      */
     template <std::size_t idx>
-    inline constexpr auto get() const
+    inline constexpr auto& get() const
     {
         return std::get<idx>(elements);
     }
@@ -187,7 +187,7 @@ struct ElementArray {
      * @return The element at the specified row and column.
      */
     template <std::size_t row, std::size_t col>
-    inline constexpr auto get() const
+    inline constexpr auto& get() const
     {
         static_assert(row < n_row, "Row index out of bounds");
         static_assert(col < n_col, "Column index out of bounds");

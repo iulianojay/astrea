@@ -43,7 +43,7 @@
 #include <astro/propagation/numerical/Integrator.hpp>
 
 #include <astro/astro.macros.hpp>
-#include <astro/state/orbital_elements/OrbitalElements.hpp>
+#include <astro/state/framework/OrbitalElements.hpp>
 #include <astro/systems/celestial_bodies/Earth/Earth.hpp>
 #include <astro/systems/property_getters.hpp>
 #include <astro/systems/system_utilities.hpp>

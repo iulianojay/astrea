@@ -102,12 +102,12 @@ Keplerian<_frame_>::Keplerian(const Cartesian<_frame_>& elements, const GravPara
 
     // Catch default/nonsense case
     if (R == 0.0 * km) {
-        _semimajor      = 0.0 * km;
-        _eccentricity   = 0.0 * one;
-        _inclination    = 0.0 * rad;
-        _rightAscension = 0.0 * rad;
-        _argPerigee     = 0.0 * rad;
-        _trueAnomaly    = 0.0 * rad;
+        get_semimajor()           = 0.0 * km;
+        get_eccentricity()        = 0.0 * one;
+        get_inclination()         = 0.0 * rad;
+        get_right_ascension()     = 0.0 * rad;
+        get_argument_of_perigee() = 0.0 * rad;
+        get_trueAnomaly()         = 0.0 * rad;
         return;
     }
 
@@ -124,7 +124,7 @@ Keplerian<_frame_>::Keplerian(const Cartesian<_frame_>& elements, const GravPara
     const quantity normN = sqrt(Nx * Nx + Ny * Ny);
 
     // Semimajor Axis
-    _semimajor = 1.0 / (2.0 / R - V * V / mu);
+    get_semimajor() = 1.0 / (2.0 / R - V * V / mu);
 
     // Eccentricity
     const quantity<pow<2>(km) / s> dotRV                = x * vx + y * vy + z * vz;
@@ -135,7 +135,7 @@ Keplerian<_frame_>::Keplerian(const Cartesian<_frame_>& elements, const GravPara
     const Unitless eccY = oneOverMu * (vSquaredMinuMuTimesR * y - dotRV * vy);
     const Unitless eccZ = oneOverMu * (vSquaredMinuMuTimesR * z - dotRV * vz);
 
-    _eccentricity = sqrt(eccX * eccX + eccY * eccY + eccZ * eccZ);
+    get_eccentricity() = sqrt(eccX * eccX + eccY * eccY + eccZ * eccZ);
 
     /*
         If the orbit has an _inclination of exactly 0, w is ill-defined, the
@@ -143,74 +143,74 @@ Keplerian<_frame_>::Keplerian(const Cartesian<_frame_>& elements, const GravPara
         _eccentricity very close to 0 be exactly 0 to avoid issues where w and
         anomaly flail around wildly as ecc fluctuates.
     */
-    if (_eccentricity < tol) { _eccentricity = 0.0 * one; }
+    if (get_eccentricity() < tol) { get_eccentricity() = 0.0 * one; }
 
     // Inclination (rad)
-    _inclination = acos(hz / normH);
-    if (abs(_inclination - piRad) < angularTol) { _inclination = 0.0 * rad; }
+    get_inclination() = acos(hz / normH);
+    if (abs(get_inclination() - piRad) < angularTol) { get_inclination() = 0.0 * rad; }
 
     // Right Ascension of Ascending Node (rad)
-    if (_inclination == 0.0 * rad) { // No nodal line
-        _rightAscension = 0.0 * rad;
+    if (get_inclination() == 0.0 * rad) { // No nodal line
+        get_right_ascension() = 0.0 * rad;
     }
     else {
-        if (Ny > 0.0 * (km * km / s)) { _rightAscension = acos(Nx / normN); }
+        if (Ny > 0.0 * (km * km / s)) { get_right_ascension() = acos(Nx / normN); }
         else {
-            _rightAscension = twoPiRad - acos(Nx / normN);
+            get_right_ascension() = twoPiRad - acos(Nx / normN);
         }
 
-        if (abs(_rightAscension - twoPiRad) < angularTol) { _rightAscension = 0.0 * rad; }
+        if (abs(get_right_ascension() - twoPiRad) < angularTol) { get_right_ascension() = 0.0 * rad; }
     }
 
     // True Anomaly (rad)
-    if (_eccentricity == 0.0 * one) {    // No argument of perigee, use nodal line
-        if (_inclination == 0.0 * rad) { // No nodal line, use true longitude
-            if (vx <= 0.0 * km / s) { _trueAnomaly = acos(x / R); }
+    if (get_eccentricity() == 0.0 * one) {    // No argument of perigee, use nodal line
+        if (get_inclination() == 0.0 * rad) { // No nodal line, use true longitude
+            if (vx <= 0.0 * km / s) { get_true_anomaly() = acos(x / R); }
             else {
-                _trueAnomaly = 2 * piRad - acos(x / R);
+                get_true_anomaly() = 2 * piRad - acos(x / R);
             }
         }
         else { // Use argument of latitude
             const quantity nDotR = Nx * x + Ny * y;
-            if (z >= 0.0 * km) { _trueAnomaly = acos(nDotR / (normN * R)); }
+            if (z >= 0.0 * km) { get_true_anomaly() = acos(nDotR / (normN * R)); }
             else {
-                _trueAnomaly = 2 * piRad - acos(nDotR / (normN * R));
+                get_true_anomaly() = 2 * piRad - acos(nDotR / (normN * R));
             }
         }
     }
     else {
         const quantity eccDotR = eccX * x + eccY * y + eccZ * z;
-        if (dotRV >= 0.0 * (km * km / s)) { _trueAnomaly = acos(eccDotR / (_eccentricity * R)); }
+        if (dotRV >= 0.0 * (km * km / s)) { get_true_anomaly() = acos(eccDotR / (get_eccentricity() * R)); }
         else {
-            _trueAnomaly = twoPiRad - acos(eccDotR / (_eccentricity * R));
+            get_true_anomaly() = twoPiRad - acos(eccDotR / (get_eccentricity() * R));
         }
     }
 
     // Argument of Parigee (rad)
-    if (_eccentricity == 0.0 * one) { // Ill-defined. Assume zero
-        _argPerigee = 0.0 * rad;
+    if (get_eccentricity() == 0.0 * one) { // Ill-defined. Assume zero
+        get_argument_of_perigee() = 0.0 * rad;
     }
-    else if (_inclination == 0.0 * rad) { // No nodal line, use ecc vec
-        if (hz > 0.0 * (km * km / s)) { _argPerigee = atan2(eccY, eccX); }
+    else if (get_inclination() == 0.0 * rad) { // No nodal line, use ecc vec
+        if (hz > 0.0 * (km * km / s)) { get_argument_of_perigee() = atan2(eccY, eccX); }
         else {
-            _argPerigee = 2 * piRad - atan2(eccY, eccX);
+            get_argument_of_perigee() = 2 * piRad - atan2(eccY, eccX);
         }
     }
     else {
         const quantity eccDotN = eccX * Nx + eccY * Ny;
-        if (eccZ < 0.0 * one) { _argPerigee = twoPiRad - acos(eccDotN / (_eccentricity * normN)); }
+        if (eccZ < 0.0 * one) { get_argument_of_perigee() = twoPiRad - acos(eccDotN / (get_eccentricity() * normN)); }
         else {
-            _argPerigee = acos(eccDotN / (_eccentricity * normN));
+            get_argument_of_perigee() = acos(eccDotN / (get_eccentricity() * normN));
         }
     }
 
     // Catch garbage
-    if (normN == 0.0 * (km * km / s) || abs(_argPerigee - twoPiRad) < angularTol) {
-        _trueAnomaly += _argPerigee;
-        _argPerigee = 0.0 * rad;
+    if (normN == 0.0 * (km * km / s) || abs(get_argument_of_perigee() - twoPiRad) < angularTol) {
+        get_true_anomaly() += get_argument_of_perigee();
+        get_argument_of_perigee() = 0.0 * rad;
     }
 
-    if (abs(_trueAnomaly - twoPiRad) < angularTol) { _trueAnomaly = 0.0 * rad; }
+    if (abs(get_true_anomaly() - twoPiRad) < angularTol) { get_true_anomaly() = 0.0 * rad; }
 
     wrap_angles();
 }
@@ -231,23 +231,23 @@ Keplerian<_frame_>::Keplerian(const Equinoctial<_frame_>& elements, const GravPa
 
     // Semimajor
     const auto eccSq = f * f + g * g;
-    _semimajor       = semilatus / (1 - eccSq);
+    get_semimajor()  = semilatus / (1 - eccSq);
 
     // Eccentricity
-    _eccentricity = sqrt(eccSq);
+    get_eccentricity() = sqrt(eccSq);
 
     // Inclination
     const auto hSqPlusKSq = h * h + k * k;
-    _inclination          = atan2(2.0 * sqrt(hSqPlusKSq), 1 - hSqPlusKSq);
+    get_inclination()     = atan2(2.0 * sqrt(hSqPlusKSq), 1 - hSqPlusKSq);
 
     // Arg perigee
-    _argPerigee = atan2(g * h - f * k, f * h + g * k);
+    get_argument_of_perigee() = atan2(g * h - f * k, f * h + g * k);
 
     // Right ascension
-    _rightAscension = atan2(k, h);
+    get_right_ascension() = atan2(k, h);
 
     // Anomaly
-    _trueAnomaly = trueLongitude - (_rightAscension + _argPerigee);
+    get_true_anomaly() = trueLongitude - (get_right_ascension() + get_argument_of_perigee());
 
     wrap_angles();
 }
@@ -255,24 +255,14 @@ Keplerian<_frame_>::Keplerian(const Equinoctial<_frame_>& elements, const GravPa
 // Copy constructor
 template <IsFrame auto _frame_>
 Keplerian<_frame_>::Keplerian(const Keplerian<_frame_>& other) :
-    _semimajor(other._semimajor),
-    _eccentricity(other._eccentricity),
-    _inclination(other._inclination),
-    _rightAscension(other._rightAscension),
-    _argPerigee(other._argPerigee),
-    _trueAnomaly(other._trueAnomaly)
+    _elements(other._elements)
 {
 }
 
 // Move constructor
 template <IsFrame auto _frame_>
 Keplerian<_frame_>::Keplerian(Keplerian<_frame_>&& other) noexcept :
-    _semimajor(std::move(other._semimajor)),
-    _eccentricity(std::move(other._eccentricity)),
-    _inclination(std::move(other._inclination)),
-    _rightAscension(std::move(other._rightAscension)),
-    _argPerigee(std::move(other._argPerigee)),
-    _trueAnomaly(std::move(other._trueAnomaly))
+    _elements(std::move(other._elements))
 {
 }
 
@@ -280,27 +270,20 @@ Keplerian<_frame_>::Keplerian(Keplerian<_frame_>&& other) noexcept :
 template <IsFrame auto _frame_>
 Keplerian<_frame_>& Keplerian<_frame_>::operator=(Keplerian<_frame_>&& other) noexcept
 {
-    if (this != &other) {
-        _semimajor      = std::move(other._semimajor);
-        _eccentricity   = std::move(other._eccentricity);
-        _inclination    = std::move(other._inclination);
-        _rightAscension = std::move(other._rightAscension);
-        _argPerigee     = std::move(other._argPerigee);
-        _trueAnomaly    = std::move(other._trueAnomaly);
-    }
+    if (this != &other) { _elements = std::move(other._elements); }
     return *this;
 }
 
 template <IsFrame auto _frame_>
 Angle Keplerian<_frame_>::get_mean_anomaly() const
 {
-    return convert_true_anomaly_to_mean_anomaly(_trueAnomaly, _eccentricity);
+    return convert_true_anomaly_to_mean_anomaly(get_true_anomaly(), get_eccentricity());
 }
 
 template <IsFrame auto _frame_>
 MeanMotion Keplerian<_frame_>::get_mean_motion(const GravParam& mu) const
 {
-    return sqrt(mu / (_semimajor * _semimajor * _semimajor));
+    return sqrt(mu / (get_semimajor() * get_semimajor() * get_semimajor()));
 }
 
 template <IsFrame auto _frame_>
@@ -316,117 +299,6 @@ Keplerian<_frame_>& Keplerian<_frame_>::operator=(const Keplerian<_frame_>& othe
 {
     return *this = Keplerian(other);
 }
-
-// Comparitors operators
-template <IsFrame auto _frame_>
-bool Keplerian<_frame_>::operator==(const Keplerian<_frame_>& other) const
-{
-    return (
-        _semimajor == other._semimajor && _eccentricity == other._eccentricity && _inclination == other._inclination &&
-        _rightAscension == other._rightAscension && _argPerigee == other._argPerigee && _trueAnomaly == other._trueAnomaly
-    );
-}
-
-template <IsFrame auto _frame_>
-bool Keplerian<_frame_>::operator!=(const Keplerian<_frame_>& other) const
-{
-    return !(*this == other);
-}
-
-
-// Mathmatical operators
-template <IsFrame auto _frame_>
-Keplerian<_frame_> Keplerian<_frame_>::operator+(const Keplerian<_frame_>& other) const
-{
-    return Keplerian(
-        _semimajor + other._semimajor,
-        _eccentricity + other._eccentricity,
-        _inclination + other._inclination,
-        _rightAscension + other._rightAscension,
-        _argPerigee + other._argPerigee,
-        _trueAnomaly + other._trueAnomaly
-    );
-}
-template <IsFrame auto _frame_>
-Keplerian<_frame_>& Keplerian<_frame_>::operator+=(const Keplerian<_frame_>& other)
-{
-    _semimajor += other._semimajor;
-    _eccentricity += other._eccentricity;
-    _inclination += other._inclination;
-    _rightAscension += other._rightAscension;
-    _argPerigee += other._argPerigee;
-    _trueAnomaly += other._trueAnomaly;
-    return *this;
-}
-
-template <IsFrame auto _frame_>
-Keplerian<_frame_> Keplerian<_frame_>::operator-(const Keplerian<_frame_>& other) const
-{
-    return Keplerian(
-        _semimajor - other._semimajor,
-        _eccentricity - other._eccentricity,
-        _inclination - other._inclination,
-        _rightAscension - other._rightAscension,
-        _argPerigee - other._argPerigee,
-        _trueAnomaly - other._trueAnomaly
-    );
-}
-template <IsFrame auto _frame_>
-Keplerian<_frame_>& Keplerian<_frame_>::operator-=(const Keplerian<_frame_>& other)
-{
-    _semimajor -= other._semimajor;
-    _eccentricity -= other._eccentricity;
-    _inclination -= other._inclination;
-    _rightAscension -= other._rightAscension;
-    _argPerigee -= other._argPerigee;
-    _trueAnomaly -= other._trueAnomaly;
-    return *this;
-}
-
-template <IsFrame auto _frame_>
-Keplerian<_frame_> Keplerian<_frame_>::operator*(const Unitless& multiplier) const
-{
-    return Keplerian(
-        _semimajor * multiplier, _eccentricity * multiplier, _inclination * multiplier, _rightAscension * multiplier, _argPerigee * multiplier, _trueAnomaly * multiplier
-    );
-}
-template <IsFrame auto _frame_>
-Keplerian<_frame_>& Keplerian<_frame_>::operator*=(const Unitless& multiplier)
-{
-    _semimajor *= multiplier;
-    _eccentricity *= multiplier;
-    _inclination *= multiplier;
-    _rightAscension *= multiplier;
-    _argPerigee *= multiplier;
-    _trueAnomaly *= multiplier;
-    return *this;
-}
-
-template <IsFrame auto _frame_>
-KeplerianPartial<_frame_> Keplerian<_frame_>::operator/(const Time& time) const
-{
-    return KeplerianPartial<_frame_>(
-        _semimajor / time, _eccentricity / time, _inclination / time, _rightAscension / time, _argPerigee / time, _trueAnomaly / time
-    );
-}
-
-template <IsFrame auto _frame_>
-Keplerian<_frame_> Keplerian<_frame_>::operator/(const Unitless& divisor) const
-{
-    return Keplerian(_semimajor / divisor, _eccentricity / divisor, _inclination / divisor, _rightAscension / divisor, _argPerigee / divisor, _trueAnomaly / divisor);
-}
-template <IsFrame auto _frame_>
-Keplerian<_frame_>& Keplerian<_frame_>::operator/=(const Unitless& divisor)
-{
-    _semimajor /= divisor;
-    _eccentricity /= divisor;
-    _inclination /= divisor;
-    _rightAscension /= divisor;
-    _argPerigee /= divisor;
-    _trueAnomaly /= divisor;
-    return *this;
-}
-
 template <IsFrame auto _frame_>
 Keplerian<_frame_>
     Keplerian<_frame_>::interpolate(const Time& thisTime, const Time& otherTime, const Keplerian<_frame_>& other, const GravParam& mu, const Time& targetTime) const
@@ -436,10 +308,10 @@ Keplerian<_frame_>
         math::fast_interpolate<Time, Distance>(times, { _semimajor, other.get_semimajor() }, targetTime);
     const Unitless interpEcc =
         math::fast_interpolate<Time, Unitless>(times, { _eccentricity, other.get_eccentricity() }, targetTime);
-    const Angle interpInc    = interpolate_angle(times, { _inclination, other.get_inclination() }, targetTime);
-    const Angle interpRaan   = interpolate_angle(times, { _rightAscension, other.get_right_ascension() }, targetTime);
-    const Angle interpArgPer = interpolate_angle(times, { _argPerigee, other.get_argument_of_perigee() }, targetTime);
-    const Angle interpTheta  = interpolate_angle(times, { _trueAnomaly, other.get_true_anomaly() }, targetTime);
+    const Angle interpInc  = interpolate_angle(times, { _inclination, other.get_inclination() }, targetTime);
+    const Angle interpRaan = interpolate_angle(times, { _right_ascension, other.get_right_ascension() }, targetTime);
+    const Angle interpArgPer = interpolate_angle(times, { _argument_of_perigee, other.get_argument_of_perigee() }, targetTime);
+    const Angle interpTheta = interpolate_angle(times, { _trueAnomaly, other.get_true_anomaly() }, targetTime);
 
     return Keplerian(interpSemimajor, interpEcc, interpInc, interpRaan, interpArgPer, interpTheta);
 }
@@ -460,52 +332,12 @@ Angle Keplerian<_frame_>::interpolate_angle(const std::array<Time, 2>& times, co
 }
 
 template <IsFrame auto _frame_>
-std::vector<Unitless> Keplerian<_frame_>::force_to_vector() const
-{
-    return { _semimajor / _semimajor.unit,     _eccentricity,
-             _inclination / _inclination.unit, _rightAscension / _rightAscension.unit,
-             _argPerigee / _argPerigee.unit,   _trueAnomaly / _trueAnomaly.unit };
-}
-
-template <IsFrame auto _frame_>
 void Keplerian<_frame_>::wrap_angles()
 {
-    _inclination    = wrap_angle(_inclination);
-    _rightAscension = wrap_angle(_rightAscension);
-    _argPerigee     = wrap_angle(_argPerigee);
-    _trueAnomaly    = wrap_angle(_trueAnomaly);
-}
-
-template <IsFrame auto _frame_>
-Keplerian<_frame_> Keplerian<_frame_>::from_vector(const std::vector<Unitless>& vec)
-{
-    using mp_units::angular::unit_symbols::rad;
-    using mp_units::si::unit_symbols::km;
-    if (vec.size() != 6) {
-        throw std::runtime_error("Input vector must have exactly 6 elements to convert to Keplerian.");
-    }
-    return Keplerian(vec[0] * km, vec[1], vec[2] * rad, vec[3] * rad, vec[4] * rad, vec[5] * rad);
-}
-
-template <IsFrame auto _frame_>
-Keplerian<_frame_> KeplerianPartial<_frame_>::operator*(const Time& time) const
-{
-    return Keplerian<_frame_>(
-        _semimajorPartial * time,
-        _eccentricityPartial * time,
-        _inclinationPartial * time,
-        _rightAscensionPartial * time,
-        _argPerigeePartial * time,
-        _trueAnomalyPartial * time
-    );
-}
-
-template <IsFrame auto _frame_>
-std::vector<Unitless> KeplerianPartial<_frame_>::force_to_vector() const
-{
-    return { _semimajorPartial / _semimajorPartial.unit,     _eccentricityPartial / _eccentricityPartial.unit,
-             _inclinationPartial / _inclinationPartial.unit, _rightAscensionPartial / _rightAscensionPartial.unit,
-             _argPerigeePartial / _argPerigeePartial.unit,   _trueAnomalyPartial / _trueAnomalyPartial.unit };
+    _inclination         = wrap_angle(_inclination);
+    _right_ascension     = wrap_angle(_right_ascension);
+    _argument_of_perigee = wrap_angle(_argument_of_perigee);
+    _trueAnomaly         = wrap_angle(_trueAnomaly);
 }
 
 template <IsFrame auto _frame_>
@@ -529,8 +361,8 @@ std::ostream& operator<<(std::ostream& os, KeplerianPartial<_frame_> const& elem
     os << elements._semimajorPartial << ", ";
     os << elements._eccentricityPartial << ", ";
     os << elements._inclinationPartial << ", ";
-    os << elements._rightAscensionPartial << ", ";
-    os << elements._argPerigeePartial << ", ";
+    os << elements._right_ascensionPartial << ", ";
+    os << elements._argument_of_perigeePartial << ", ";
     os << elements._trueAnomalyPartial;
     os << "] (KeplerianPartial)";
     return os;

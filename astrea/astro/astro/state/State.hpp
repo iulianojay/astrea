@@ -24,7 +24,8 @@
 #include <astro/frames/definitions/dynamic_frames.hpp>
 #include <astro/state/attitude/Attitude.hpp>
 #include <astro/state/attitude/Quaternion.hpp>
-#include <astro/state/orbital_elements/OrbitalElements.hpp>
+#include <astro/state/framework/OrbitalElements.hpp>
+#include <astro/state/framework/orbital_elements.hpp>
 #include <astro/systems/system_utilities.hpp>
 #include <astro/time/Date.hpp>
 #include <astro/types/typedefs.hpp>

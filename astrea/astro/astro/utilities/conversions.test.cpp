@@ -20,7 +20,7 @@
 #include <units/units.hpp>
 
 #include <astro/state/angular_elements/Geodetic.hpp>
-#include <astro/state/orbital_elements/OrbitalElements.hpp>
+#include <astro/state/framework/OrbitalElements.hpp>
 #include <astro/systems/system_utilities.hpp>
 #include <astro/utilities/conversions.hpp>
 #include <tests/utilities/comparisons.hpp>

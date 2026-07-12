@@ -23,9 +23,9 @@
 #include <astro/propagation/event_detection/EventDetector.hpp>
 #include <astro/propagation/event_detection/events/ImpulsiveBurn.hpp>
 #include <astro/state/State.hpp>
+#include <astro/state/framework/OrbitalElements.hpp>
 #include <astro/state/orbital_elements/Cartesian.hpp>
 #include <astro/state/orbital_elements/Keplerian.hpp>
-#include <astro/state/orbital_elements/OrbitalElements.hpp>
 #include <astro/systems/celestial_bodies/Earth/Earth.hpp>
 #include <astro/systems/system_utilities.hpp>
 

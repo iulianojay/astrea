@@ -23,7 +23,7 @@
 #include <astro/astro.fwd.hpp>
 #include <astro/propagation/equations_of_motion/EquationsOfMotion.hpp>
 #include <astro/propagation/force_models/ForceModel.hpp>
-#include <astro/state/orbital_elements/OrbitalElements.hpp>
+#include <astro/state/framework/OrbitalElements.hpp>
 
 namespace astrea {
 namespace astro {
@@ -65,7 +65,10 @@ class J2MeanVop : public EquationsOfMotion {
      *
      * @return std::size_t The expected set id of orbital elements.
      */
-    constexpr std::size_t get_expected_set_id() const override { return OrbitalElements::get_set_id<Keplerian<frames::primary>>(); };
+    constexpr std::size_t get_expected_set_id() const override
+    {
+        return OrbitalElements::get_set_id<Keplerian<frames::primary>>();
+    };
 
   private:
     const Unitless eccTol = 1e-10 * mp_units::one;                        //!< Tolerance for checking eccentricity.

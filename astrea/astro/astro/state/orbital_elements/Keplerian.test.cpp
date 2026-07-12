@@ -18,10 +18,10 @@
 
 #include <astro/frames.hpp>
 #include <astro/frames/framework/CartesianVector.hpp>
+#include <astro/state/framework/OrbitalElements.hpp>
 #include <astro/state/orbital_elements/Cartesian.hpp>
 #include <astro/state/orbital_elements/Equinoctial.hpp>
 #include <astro/state/orbital_elements/Keplerian.hpp>
-#include <astro/state/orbital_elements/OrbitalElements.hpp>
 #include <astro/systems/system_utilities.hpp>
 #include <astro/time/Date.hpp>
 #include <tests/utilities/comparisons.hpp>

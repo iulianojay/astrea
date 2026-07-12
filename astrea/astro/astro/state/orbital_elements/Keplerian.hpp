@@ -40,49 +40,17 @@ namespace astro {
  * argument of perigee, and true anomaly.
  */
 template <IsFrame auto _frame_>
-class Keplerian {
+class Keplerian : public OrbitalElements<Keplerian<_frame_>, _frame_, Distance, Unitless, Angle, Angle, Angle, Angle> {
 
     template <IsFrame auto frame>
     friend std::ostream& operator<<(std::ostream&, Keplerian<frame> const&);
     friend class OrbitalElements;
 
   public:
-    static constexpr auto frame = _frame_; //!< The reference frame of the Keplerian elements.
-
     /**
-     * @brief Constructs a Keplerian object with default values.
-     *
-     * @param scale A scaling factor to initialize the elements, typically used for unit conversion.
+     * @brief Default constructor for Keplerian.
      */
-    Keplerian(Unitless scale = 0.0 * astrea::detail::unitless) :
-        _semimajor(scale * astrea::detail::distance_unit),
-        _eccentricity(scale * astrea::detail::unitless),
-        _inclination(scale * astrea::detail::angle_unit),
-        _rightAscension(scale * astrea::detail::angle_unit),
-        _argPerigee(scale * astrea::detail::angle_unit),
-        _trueAnomaly(scale * astrea::detail::angle_unit)
-    {
-    }
-
-    /**
-     * @brief Constructs a Keplerian object with specified values.
-     *
-     * @param semimajor The semimajor axis of the orbit.
-     * @param eccentricity The eccentricity of the orbit.
-     * @param inclination The inclination of the orbit.
-     * @param rightAscension The right ascension of the ascending node.
-     * @param argPerigee The argument of perigee.
-     * @param trueAnomaly The true anomaly of the orbit.
-     */
-    Keplerian(const Distance& semimajor, const Unitless& eccentricity, const Angle& inclination, const Angle& rightAscension, const Angle& argPerigee, const Angle& trueAnomaly) :
-        _semimajor(semimajor),
-        _eccentricity(eccentricity),
-        _inclination(inclination),
-        _rightAscension(rightAscension),
-        _argPerigee(argPerigee),
-        _trueAnomaly(trueAnomaly)
-    {
-    }
+    Keplerian() = default;
 
     /**
      * @brief Constructs a Keplerian object from another Keplerian object.
@@ -90,8 +58,8 @@ class Keplerian {
      * @param elements The Keplerian elements to copy.
      * @param sys The astrodynamics system context for conversion.
      */
-    Keplerian(const Keplerian<_frame_>& elements, const GravParam& mu) :
-        Keplerian(elements)
+    Keplerian(const Keplerian<_frame_>& other, const GravParam& mu) :
+        _elements(other._elements)
     {
     }
 
@@ -199,164 +167,118 @@ class Keplerian {
     ~Keplerian() = default;
 
     /**
-     * @brief Checks if two Keplerian objects are equal.
-     *
-     * @param other Another Keplerian object
-     * @return true if the two Keplerian objects are equal, false otherwise.
-     */
-    bool operator==(const Keplerian<_frame_>& other) const;
-
-    /**
-     * @brief Checks if two Keplerian objects are not equal.
-     *
-     * @param other Another Keplerian object
-     * @return true if the two Keplerian objects are not equal, false otherwise.
-     */
-    bool operator!=(const Keplerian<_frame_>& other) const;
-
-    /**
-     * @brief Adds two Keplerian objects.
-     *
-     * @param other Another Keplerian object
-     * @return Resultant Keplerian sum.
-     */
-    Keplerian operator+(const Keplerian<_frame_>& other) const;
-
-    /**
-     * @brief Adds another Keplerian object to the current one.
-     *
-     * @param other Another Keplerian object
-     * @return Reference to the current Keplerian object after addition.
-     */
-    Keplerian& operator+=(const Keplerian<_frame_>& other);
-
-    /**
-     * @brief Subtracts another Keplerian object from the current one.
-     *
-     * @param other Another Keplerian object
-     * @return Resultant Keplerian after subtraction.
-     */
-    Keplerian operator-(const Keplerian<_frame_>& other) const;
-
-    /**
-     * @brief Subtracts another Keplerian object from the current one.
-     *
-     * @param other Another Keplerian object
-     * @return Reference to the current Keplerian object after subtraction.
-     */
-    Keplerian& operator-=(const Keplerian<_frame_>& other);
-
-    /**
-     * @brief Multiplies the Keplerian state vector by a scalar.
-     *
-     * @param multiplier Scalar value to multiply with
-     * @return Resultant Keplerian after multiplication.
-     */
-    Keplerian operator*(const Unitless& multiplier) const;
-
-    /**
-     * @brief Multiplies the Keplerian state vector by a scalar.
-     *
-     * @param multiplier Scalar value to multiply with
-     * @return Reference to the current Keplerian object after multiplication.
-     */
-    Keplerian& operator*=(const Unitless& multiplier);
-
-    /**
-     * @brief Divides the Keplerian state vector by a time.
-     *
-     * @param time Time value to divide by
-     * @return Resultant KeplerianPartial after division.
-     */
-    KeplerianPartial<_frame_> operator/(const Time& time) const;
-
-    /**
-     * @brief Divides the Keplerian state vector by another Keplerian object.
-     *
-     * @param other Another Keplerian object
-     * @return Resultant vector of unitless values after division.
-     */
-    Keplerian operator/(const Unitless& divisor) const;
-
-    /**
-     * @brief Divides the Keplerian state vector by a scalar.
-     *
-     * @param divisor Scalar value to divide with
-     * @return Reference to the current Keplerian object after division.
-     */
-    Keplerian& operator/=(const Unitless& divisor);
-
-    /**
      * @brief Set the semimajor axis of the Keplerian state vector.
      */
-    void set_semimajor(const Distance& semimajor) { _semimajor = semimajor; }
+    void set_semimajor(const Distance& semimajor) { get_semimajor() = semimajor; }
 
     /**
      * @brief Set the eccentricity of the Keplerian state vector.
      */
-    void set_eccentricity(const Unitless& eccentricity) { _eccentricity = eccentricity; }
+    void set_eccentricity(const Unitless& eccentricity) { get_eccentricity() = eccentricity; }
 
     /**
      * @brief Set the inclination of the Keplerian state vector.
      */
-    void set_inclination(const Angle& inclination) { _inclination = inclination; }
+    void set_inclination(const Angle& inclination) { get_inclination() = inclination; }
 
     /**
      * @brief Set the right ascension of the ascending node of the Keplerian state vector.
      */
-    void set_right_ascension(const Angle& rightAscension) { _rightAscension = rightAscension; }
+    void set_right_ascension(const Angle& rightAscension) { get_right_ascension() = rightAscension; }
 
     /**
      * @brief Get the argument of perigee of the Keplerian state vector.
      */
-    void set_argument_of_perigee(const Angle& argPerigee) { _argPerigee = argPerigee; }
+    void set_argument_of_perigee(const Angle& argPerigee) { get_argument_of_perigee() = argPerigee; }
 
     /**
      * @brief Get the true anomaly of the Keplerian state vector.
      */
-    void set_true_anomaly(const Angle& trueAnomaly) { _trueAnomaly = trueAnomaly; }
+    void set_true_anomaly(const Angle& trueAnomaly) { get_true_anomaly() = trueAnomaly; }
+
+    /**
+     * @brief Get the semimajor axis of the Keplerian state vector.
+     *
+     * @return  Distance& Reference to the semimajor axis component of the Keplerian state vector.
+     */
+    Distance& get_semimajor() { return this->template get<0>(); }
+
+    /**
+     * @brief Get the eccentricity of the Keplerian state vector.
+     *
+     * @return  Unitless& Reference to the eccentricity component of the Keplerian state vector.
+     */
+    Unitless& get_eccentricity() { return this->template get<1>(); }
+
+    /**
+     * @brief Get the inclination of the Keplerian state vector.
+     *
+     * @return  Angle& Reference to the inclination component of the Keplerian state vector.
+     */
+    Angle& get_inclination() { return this->template get<2>(); }
+
+    /**
+     * @brief Get the right ascension of the ascending node of the Keplerian state vector.
+     *
+     * @return  Angle& Reference to the right ascension component of the Keplerian state vector.
+     */
+    Angle& get_right_ascension() { return this->template get<3>(); }
+
+    /**
+     * @brief Get the argument of perigee of the Keplerian state vector.
+     *
+     * @return  Angle& Reference to the argument of perigee component of the Keplerian state vector.
+     */
+    Angle& get_argument_of_perigee() { return this->template get<4>(); }
+
+    /**
+     * @brief Get the true anomaly of the Keplerian state vector.
+     *
+     * @return  Angle& Reference to the true anomaly component of the Keplerian state vector.
+     */
+    Angle& get_true_anomaly() { return this->template get<5>(); }
 
     /**
      * @brief Get the semimajor axis of the Keplerian state vector.
      *
      * @return const Distance& Reference to the semimajor axis component of the Keplerian state vector.
      */
-    const Distance& get_semimajor() const { return _semimajor; }
+    const Distance& get_semimajor() const { return this->template get<0>(); }
 
     /**
      * @brief Get the eccentricity of the Keplerian state vector.
      *
      * @return const Unitless& Reference to the eccentricity component of the Keplerian state vector.
      */
-    const Unitless& get_eccentricity() const { return _eccentricity; }
+    const Unitless& get_eccentricity() const { return this->template get<1>(); }
 
     /**
      * @brief Get the inclination of the Keplerian state vector.
      *
      * @return const Angle& Reference to the inclination component of the Keplerian state vector.
      */
-    const Angle& get_inclination() const { return _inclination; }
+    const Angle& get_inclination() const { return this->template get<2>(); }
 
     /**
      * @brief Get the right ascension of the ascending node of the Keplerian state vector.
      *
      * @return const Angle& Reference to the right ascension component of the Keplerian state vector.
      */
-    const Angle& get_right_ascension() const { return _rightAscension; }
+    const Angle& get_right_ascension() const { return this->template get<3>(); }
 
     /**
      * @brief Get the argument of perigee of the Keplerian state vector.
      *
      * @return const Angle& Reference to the argument of perigee component of the Keplerian state vector.
      */
-    const Angle& get_argument_of_perigee() const { return _argPerigee; }
+    const Angle& get_argument_of_perigee() const { return this->template get<4>(); }
 
     /**
      * @brief Get the true anomaly of the Keplerian state vector.
      *
      * @return const Angle& Reference to the true anomaly component of the Keplerian state vector.
      */
-    const Angle& get_true_anomaly() const { return _trueAnomaly; }
+    const Angle& get_true_anomaly() const { return this->template get<5>(); }
 
     /**
      * @brief Get the mean anomaly of the Keplerian state vector.
@@ -396,14 +318,6 @@ class Keplerian {
     Keplerian interpolate(const Time& thisTime, const Time& otherTime, const Keplerian<_frame_>& other, const GravParam& mu, const Time& targetTime) const;
 
     /**
-     * @brief Converts the Keplerian state vector to a vector of unitless values.
-     *
-     * @return std::vector<Unitless> Vector containing the semimajor axis, eccentricity, inclination, right ascension,
-     * argument of perigee, and true anomaly components of the Keplerian state vector.
-     */
-    std::vector<Unitless> force_to_vector() const;
-
-    /**
      * @brief Converts this Keplerian state to Keplerian elements expressed in a different frame.
      *
      * First converts to Cartesian in the native frame, applies the physical frame transformation,
@@ -418,13 +332,6 @@ class Keplerian {
     Keplerian<target_frame> in_frame(const Date& epoch, const GravParam& mu) const;
 
   private:
-    Distance _semimajor;    //!< Semimajor axis of the orbit
-    Unitless _eccentricity; //!< Eccentricity of the orbit
-    Angle _inclination;     //!< Inclination of the orbit
-    Angle _rightAscension;  //!< Right ascension of the ascending node
-    Angle _argPerigee;      //!< Argument of perigee of the orbit
-    Angle _trueAnomaly;     //!< True anomaly of the orbit
-
     /**
      * @brief Sanitize the angles of the Keplerian state vector.
      *
@@ -441,15 +348,6 @@ class Keplerian {
      * @return Angle The interpolated angle at the target time.
      */
     Angle interpolate_angle(const std::array<Time, 2>& times, const std::array<Angle, 2>& angles, const Time& targetTime) const;
-
-
-    /**
-     * @brief Creates a Keplerian object from a vector of unitless values.
-     *
-     * @param vec Vector containing the components of the Keplerian state vector.
-     * @return Keplerian Constructed Keplerian object.
-     */
-    static Keplerian from_vector(const std::vector<Unitless>& vec);
 };
 
 /**
@@ -461,72 +359,19 @@ class Keplerian {
  * @note The KeplerianPartial class is typically used in astrodynamics calculations involving orbital mechanics.
  */
 template <IsFrame auto _frame_>
-class KeplerianPartial {
+class KeplerianPartial
+    : public OrbitalElements<KeplerianPartial<_frame_>, _frame_, Velocity, UnitlessPerTime, AngularVelocity, AngularVelocity, AngularVelocity, AngularVelocity> {
 
     template <IsFrame auto frame>
     friend std::ostream& operator<<(std::ostream&, KeplerianPartial<frame> const&);
 
   public:
-    static constexpr auto frame = _frame_; //!< The reference frame of the Keplerian partial derivatives.
-
     /**
      * @brief Default constructor for KeplerianPartial.
      *
      * Initializes the KeplerianPartial with zero values.
      */
     KeplerianPartial() = default;
-
-    /**
-     * @brief Constructor for KeplerianPartial with velocity and acceleration components.
-     *
-     * @param semimajorPartial Semimajor axis partial derivative
-     * @param eccentricityPartial Eccentricity partial derivative
-     * @param inclinationPartial Inclination partial derivative
-     * @param rightAscensionPartial Right ascension partial derivative
-     * @param argPerigeePartial Argument of perigee partial derivative
-     * @param trueAnomalyPartial True anomaly partial derivative
-     */
-    KeplerianPartial(
-        const Velocity& semimajorPartial,
-        const UnitlessPerTime& eccentricityPartial,
-        const AngularVelocity& inclinationPartial,
-        const AngularVelocity& rightAscensionPartial,
-        const AngularVelocity& argPerigeePartial,
-        const AngularVelocity& trueAnomalyPartial
-    ) :
-        _semimajorPartial(semimajorPartial),
-        _eccentricityPartial(eccentricityPartial),
-        _inclinationPartial(inclinationPartial),
-        _rightAscensionPartial(rightAscensionPartial),
-        _argPerigeePartial(argPerigeePartial),
-        _trueAnomalyPartial(trueAnomalyPartial)
-    {
-    }
-
-    /**
-     * @brief Multiplication operator for KeplerianPartial.
-     *
-     * This method multiplies the KeplerianPartial by a time value to obtain a Keplerian state vector.
-     *
-     * @param time Time to multiply the KeplerianPartial by
-     * @return Keplerian Resulting Keplerian state vector after multiplication.
-     */
-    Keplerian<_frame_> operator*(const Time& time) const;
-
-    /**
-     * @brief Converts the KeplerianPartial state vector to a vector of unitless values.
-     *
-     * @return std::vector<Unitless> Vector containing the components of the KeplerianPartial state vector.
-     */
-    std::vector<Unitless> force_to_vector() const;
-
-  private:
-    Velocity _semimajorPartial;             //!< Semimajor axis partial derivative
-    UnitlessPerTime _eccentricityPartial;   //!< Eccentricity partial derivative
-    AngularVelocity _inclinationPartial;    //!< Inclination partial derivative
-    AngularVelocity _rightAscensionPartial; //!< Right ascension partial derivative
-    AngularVelocity _argPerigeePartial;     //!< Argument of perigee partial derivative
-    AngularVelocity _trueAnomalyPartial;    //!< True anomaly partial derivative
 };
 
 } // namespace astro

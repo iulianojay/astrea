@@ -26,8 +26,8 @@
 #include <astro/frames/framework/CartesianVector.hpp>
 #include <astro/platforms/thrusters/Thruster.hpp>
 #include <astro/state/StateHistory.hpp>
+#include <astro/state/framework/OrbitalElements.hpp>
 #include <astro/state/orbital_data_formats/GeneralPerturbations.hpp>
-#include <astro/state/orbital_elements/OrbitalElements.hpp>
 #include <astro/time/Date.hpp>
 #include <astro/types/typedefs.hpp>
 

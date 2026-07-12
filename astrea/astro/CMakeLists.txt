@@ -57,8 +57,6 @@ set(ASTRO_SOURCES
 
     ${ASTRO_BASE}/state/attitude/Attitude.cpp
 
-    ${ASTRO_BASE}/state/orbital_elements/OrbitalElements.cpp
-
     ${ASTRO_BASE}/state/orbital_data_formats/TwoLineElements.cpp
     ${ASTRO_BASE}/state/orbital_data_formats/GeneralPerturbations.cpp
 
@@ -85,6 +83,8 @@ set(ASTRO_HEADERS
     ${ASTRO_BASE}/frames/definitions/VelocityNormalBinormal.hpp
     ${ASTRO_BASE}/frames/definitions/dynamic_frames.hpp
     ${ASTRO_BASE}/frames/definitions/transformations.hpp
+    ${ASTRO_BASE}/frames/definitions/primary_frame.hpp
+    ${ASTRO_BASE}/frames/definitions/frame_registry.hpp
 
     ${ASTRO_BASE}/frames/framework/Axis.hpp
     ${ASTRO_BASE}/frames/framework/BodyFixedFrame.hpp
@@ -95,9 +95,7 @@ set(ASTRO_HEADERS
     ${ASTRO_BASE}/frames/framework/Frame.hpp
     ${ASTRO_BASE}/frames/framework/Origin.hpp
     ${ASTRO_BASE}/frames/framework/frame_concepts.hpp
-    ${ASTRO_BASE}/frames/definitions/frame_registry.hpp
     ${ASTRO_BASE}/frames/framework/frame_utilities.hpp
-    ${ASTRO_BASE}/frames/definitions/primary_frame.hpp
 
     ${ASTRO_BASE}/frames/framework.hpp
     ${ASTRO_BASE}/frames/definitions.hpp
@@ -148,6 +146,9 @@ set(ASTRO_HEADERS
     ${ASTRO_BASE}/state/State.hpp
     ${ASTRO_BASE}/state/StateHistory.hpp
 
+    ${ASTRO_BASE}/state/framework/ElementArray.hpp
+    ${ASTRO_BASE}/state/framework/OrbitalElements.hpp
+
     ${ASTRO_BASE}/state/attitude/Attitude.hpp
     ${ASTRO_BASE}/state/attitude/Quaternion.hpp
     ${ASTRO_BASE}/state/attitude/AngularVelocities.hpp
@@ -161,7 +162,6 @@ set(ASTRO_HEADERS
     ${ASTRO_BASE}/state/orbital_elements/Cartesian.hpp
     ${ASTRO_BASE}/state/orbital_elements/Equinoctial.hpp
     ${ASTRO_BASE}/state/orbital_elements/Keplerian.hpp
-    ${ASTRO_BASE}/state/orbital_elements/OrbitalElements.hpp
 
     ${ASTRO_BASE}/state/orbital_data_formats/TwoLineElements.hpp
     ${ASTRO_BASE}/state/orbital_data_formats/GeneralPerturbations.hpp

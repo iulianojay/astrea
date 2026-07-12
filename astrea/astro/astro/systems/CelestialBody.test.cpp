@@ -18,7 +18,7 @@
 
 #include <astro/frames/framework/CartesianVector.hpp>
 #include <astro/state/State.hpp>
-#include <astro/state/orbital_elements/OrbitalElements.hpp>
+#include <astro/state/framework/OrbitalElements.hpp>
 #include <astro/systems/CelestialBody.hpp>
 #include <astro/systems/celestial_bodies.hpp>
 #include <astro/systems/default_property_getters.hpp>

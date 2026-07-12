@@ -36,49 +36,18 @@ namespace astro {
  * They are defined in terms of the semilatus rectum and the components of the eccentricity vector.
  */
 template <IsFrame auto _frame_>
-class Equinoctial {
+class Equinoctial
+    : public OrbitalElements<Equinoctial<_frame_>, _frame_, Distance, Unitless, Unitless, Unitless, Unitless, Angle> {
 
     template <IsFrame auto frame>
     friend std::ostream& operator<<(std::ostream&, Equinoctial<frame> const&);
     friend class OrbitalElements;
 
   public:
-    static constexpr auto frame = _frame_; //!< The reference frame of the Equinoctial state vector.
-
     /**
-     * @brief Constructs an Equinoctial object with default values.
-     *
-     * @param scale A scaling factor to initialize the elements, typically used for unit conversion.
+     * @brief Default constructor for Equinoctial.
      */
-    Equinoctial(Unitless scale = 0.0 * astrea::detail::unitless) :
-        _semilatus(scale * astrea::detail::distance_unit),
-        _f(scale * astrea::detail::unitless),
-        _g(scale * astrea::detail::unitless),
-        _h(scale * astrea::detail::unitless),
-        _k(scale * astrea::detail::unitless),
-        _trueLongitude(scale * astrea::detail::angle_unit)
-    {
-    }
-
-    /**
-     * @brief Constructs an Equinoctial object with specified values.
-     *
-     * @param semilatus The semilatus rectum of the orbit.
-     * @param f The first component of the eccentricity vector.
-     * @param g The second component of the eccentricity vector.
-     * @param h The the first component of the planar vector.
-     * @param k The the second component of the planar vector.
-     * @param trueLongitude The true longitude of the orbit.
-     */
-    Equinoctial(const Distance& semilatus, const Unitless& f, const Unitless& g, const Unitless& h, const Unitless& k, const Angle& trueLongitude) :
-        _semilatus(semilatus),
-        _f(f),
-        _g(g),
-        _h(h),
-        _k(k),
-        _trueLongitude(trueLongitude)
-    {
-    }
+    Equinoctial() = default;
 
     /**
      * @brief Constructs an Equinoctial object from another Equinoctial object.
@@ -209,170 +178,88 @@ class Equinoctial {
     Equinoctial<target_frame> in_frame(const Date& epoch, const GravParam& mu) const;
 
     /**
-     * @brief Checks if two Equinoctial objects are equal.
-     *
-     * @param other Another Equinoctial object
-     * @return true if the two Equinoctial objects are equal, false otherwise.
-     */
-    bool operator==(const Equinoctial<_frame_>& other) const;
-
-    /**
-     * @brief Checks if two Equinoctial objects are not equal.
-     *
-     * @param other Another Equinoctial object
-     * @return true if the two Equinoctial objects are not equal, false otherwise.
-     */
-    bool operator!=(const Equinoctial<_frame_>& other) const;
-
-    /**
-     * @brief Adds two Equinoctial objects.
-     *
-     * @param other Another Equinoctial object
-     * @return Resultant Equinoctial sum.
-     */
-    Equinoctial operator+(const Equinoctial<_frame_>& other) const;
-
-    /**
-     * @brief Adds another Equinoctial object to the current one.
-     *
-     * @param other Another Equinoctial object
-     * @return Reference to the current Equinoctial object after addition.
-     */
-    Equinoctial& operator+=(const Equinoctial<_frame_>& other);
-
-    /**
-     * @brief Subtracts another Equinoctial object from the current one.
-     *
-     * @param other Another Equinoctial object
-     * @return Resultant Equinoctial after subtraction.
-     */
-    Equinoctial operator-(const Equinoctial<_frame_>& other) const;
-
-    /**
-     * @brief Subtracts another Equinoctial object from the current one.
-     *
-     * @param other Another Equinoctial object
-     * @return Reference to the current Equinoctial object after subtraction.
-     */
-    Equinoctial& operator-=(const Equinoctial<_frame_>& other);
-
-    /**
-     * @brief Multiplies the Equinoctial state vector by a scalar.
-     *
-     * @param multiplier Scalar value to multiply with
-     * @return Resultant Equinoctial after multiplication.
-     */
-    Equinoctial operator*(const Unitless& multiplier) const;
-
-    /**
-     * @brief Multiplies the Equinoctial state vector by a scalar.
-     *
-     * @param multiplier Scalar value to multiply with
-     * @return Reference to the current Equinoctial object after multiplication.
-     */
-    Equinoctial& operator*=(const Unitless& multiplier);
-
-    /**
-     * @brief Divides the Equinoctial state vector by a time.
-     *
-     * @param time Time value to divide by
-     * @return Resultant EquinoctialPartial after division.
-     */
-    EquinoctialPartial<_frame_> operator/(const Time& time) const;
-
-    /**
-     * @brief Divides the Equinoctial state vector by a scalar.
-     *
-     * @param divisor Scalar value to divide with
-     * @return Resultant Equinoctial after division.
-     */
-    Equinoctial operator/(const Unitless& divisor) const;
-
-    /**
-     * @brief Divides the Equinoctial state vector by a scalar.
-     *
-     * @param divisor Scalar value to divide with
-     * @return Reference to the current Equinoctial object after division.
-     */
-    Equinoctial& operator/=(const Unitless& divisor);
-
-    /**
      * @brief Get the semilatus value of the Equinoctial state vector.
      *
      * @return const Distance& Reference to the semilatus component of the Equinoctial state vector.
      */
-    const Distance& get_semilatus() const { return _semilatus; }
+    Distance& get_semilatus() { return this->template get<0>(); }
 
     /**
      * @brief Get the f value of the Equinoctial state vector.
      *
      * @return const Unitless& Reference to the f component of the Equinoctial state vector.
      */
-    const Unitless& get_f() const { return _f; }
+    Unitless& get_f() { return this->template get<1>(); }
 
     /**
      * @brief Get the g value of the Equinoctial state vector.
      *
      * @return const Unitless& Reference to the g component of the Equinoctial state vector.
      */
-    const Unitless& get_g() const { return _g; }
+    Unitless& get_g() { return this->template get<2>(); }
 
     /**
      * @brief Get the h value of the Equinoctial state vector.
      *
      * @return const Unitless& Reference to the h component of the Equinoctial state vector.
      */
-    const Unitless& get_h() const { return _h; }
+    Unitless& get_h() { return this->template get<3>(); }
 
     /**
      * @brief Get the k value of the Equinoctial state vector.
      *
      * @return const Unitless& Reference to the k component of the Equinoctial state vector.
      */
-    const Unitless& get_k() const { return _k; }
+    Unitless& get_k() { return this->template get<4>(); }
 
     /**
      * @brief Get the true longitude value of the Equinoctial state vector.
      *
      * @return const Angle& Reference to the true longitude component of the Equinoctial state vector.
      */
-    const Angle& get_true_longitude() const { return _trueLongitude; }
+    Angle& get_true_longitude() { return this->template get<5>(); }
 
     /**
-     * @brief Converts the Equinoctial state vector to a vector of unitless values.
+     * @brief Get the semilatus value of the Equinoctial state vector.
      *
-     * @return std::vector<Unitless> Vector containing the semilatus, f, g, h, k, and true longitude components of the Equinoctial state vector.
+     * @return const Distance& Reference to the semilatus component of the Equinoctial state vector.
      */
-    std::vector<Unitless> force_to_vector() const;
+    const Distance& get_semilatus() const { return this->template get<0>(); }
 
     /**
-     * @brief Interpolates the Equinoctial state vector between two time instances.
+     * @brief Get the f value of the Equinoctial state vector.
      *
-     * @param thisTime Time of the current state
-     * @param otherTime Time of the other state
-     * @param other Another Equinoctial object to interpolate with
-     * @param mu The gravitational parameter to use for the interpolation
-     * @param targetTime Time of the target state
-     * @return Equinoctial Interpolated Equinoctial state vector.
+     * @return const Unitless& Reference to the f component of the Equinoctial state vector.
      */
-    Equinoctial
-        interpolate(const Time& thisTime, const Time& otherTime, const Equinoctial<_frame_>& other, const GravParam& mu, const Time& targetTime) const;
-
-  private:
-    Distance _semilatus;  //!< Semilatus rectum of the orbit
-    Unitless _f;          //!< First component of the eccentricity vector
-    Unitless _g;          //!< Second component of the eccentricity vector
-    Unitless _h;          //!< The first component of the planar vector
-    Unitless _k;          //!< The second component of the planar vector
-    Angle _trueLongitude; //!< True longitude of the orbit
+    const Unitless& get_f() const { return this->template get<1>(); }
 
     /**
-     * @brief Creates a Equinoctial object from a vector of unitless values.
+     * @brief Get the g value of the Equinoctial state vector.
      *
-     * @param vec Vector containing the components of the Equinoctial state vector.
-     * @return Equinoctial Constructed Equinoctial object.
+     * @return const Unitless& Reference to the g component of the Equinoctial state vector.
      */
-    static Equinoctial from_vector(const std::vector<Unitless>& vec);
+    const Unitless& get_g() const { return this->template get<2>(); }
+
+    /**
+     * @brief Get the h value of the Equinoctial state vector.
+     *
+     * @return const Unitless& Reference to the h component of the Equinoctial state vector.
+     */
+    const Unitless& get_h() const { return this->template get<3>(); }
+
+    /**
+     * @brief Get the k value of the Equinoctial state vector.
+     *
+     * @return const Unitless& Reference to the k component of the Equinoctial state vector.
+     */
+    const Unitless& get_k() const { return this->template get<4>(); }
+
+    /**
+     * @brief Get the true longitude value of the Equinoctial state vector.
+     *
+     * @return const Angle& Reference to the true longitude component of the Equinoctial state vector.
+     */
+    const Angle& get_true_longitude() const { return this->template get<5>(); }
 };
 
 /**
@@ -380,70 +267,19 @@ class Equinoctial {
  *
  */
 template <IsFrame auto _frame_>
-class EquinoctialPartial {
+class EquinoctialPartial
+    : public OrbitalElements<EquinoctialPartial<_frame_>, _frame_, Velocity, UnitlessPerTime, UnitlessPerTime, UnitlessPerTime, UnitlessPerTime, AngularVelocity> {
 
     template <IsFrame auto frame>
     friend std::ostream& operator<<(std::ostream&, EquinoctialPartial<frame> const&);
 
   public:
-    static constexpr auto frame = _frame_; //!< The reference frame of the Cartesian state vector.
-
     /**
      * @brief Default constructor for EquinoctialPartial.
      *
      * Initializes the EquinoctialPartial with zero values.
      */
     EquinoctialPartial() = default;
-
-    /**
-     * @brief Constructor for EquinoctialPartial with velocity and acceleration components.
-     *
-     * @param semilatusPartial Semilatus rectum partial derivative
-     * @param fPartial First component of the eccentricity vector partial derivative
-     * @param gPartial Second component of the eccentricity vector partial derivative
-     * @param hPartial First component of the planar vector partial derivative
-     * @param kPartial Second component of the planar vector partial derivative
-     * @param trueLongitudePartial True longitude partial derivative
-     */
-    EquinoctialPartial(
-        const Velocity& semilatusPartial,
-        const UnitlessPerTime& fPartial,
-        const UnitlessPerTime& gPartial,
-        const UnitlessPerTime& hPartial,
-        const UnitlessPerTime& kPartial,
-        const AngularVelocity& trueLongitudePartial
-    ) :
-        _semilatusPartial(semilatusPartial),
-        _fPartial(fPartial),
-        _gPartial(gPartial),
-        _hPartial(hPartial),
-        _kPartial(kPartial),
-        _trueLongitudePartial(trueLongitudePartial)
-    {
-    }
-
-    /**
-     * @brief Multiplication operator for EquinoctialPartial.
-     *
-     * @param time Time to multiply the EquinoctialPartial by
-     * @return Equinoctial Resulting Equinoctial state vector after multiplication.
-     */
-    Equinoctial<_frame_> operator*(const Time& time) const;
-
-    /**
-     * @brief Converts the EquinoctialPartial state vector to a vector of unitless values.
-     *
-     * @return std::vector<Unitless> Vector containing the components of the EquinoctialPartial state vector.
-     */
-    std::vector<Unitless> force_to_vector() const;
-
-  private:
-    Velocity _semilatusPartial;            //!< Semilatus rectum partial derivative
-    UnitlessPerTime _fPartial;             //!< First component of the eccentricity vector partial derivative
-    UnitlessPerTime _gPartial;             //!< Second component of the eccentricity vector partial derivative
-    UnitlessPerTime _hPartial;             //!< First component of the planar vector partial derivative
-    UnitlessPerTime _kPartial;             //!< Second component of the planar vector partial derivative
-    AngularVelocity _trueLongitudePartial; //!< True longitude partial derivative
 };
 
 } // namespace astro

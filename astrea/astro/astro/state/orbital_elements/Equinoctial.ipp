@@ -72,39 +72,29 @@ Equinoctial<_frame_>::Equinoctial(const Keplerian<_frame_>& elements, const Grav
     const auto& theta  = elements.get_true_anomaly();
 
     // Semilatus rectum
-    _semilatus = a * (1 - ecc * ecc);
+    get_semilatus() = a * (1 - ecc * ecc);
 
     // Non-dimensionalized parameters
-    _f = ecc * cos(argPer + raan);
-    _g = ecc * sin(argPer + raan);
-    _h = tan(inc / 2.0) * cos(raan);
-    _k = tan(inc / 2.0) * sin(raan);
+    get_f() = ecc * cos(argPer + raan);
+    get_g() = ecc * sin(argPer + raan);
+    get_h() = tan(inc / 2.0) * cos(raan);
+    get_k() = tan(inc / 2.0) * sin(raan);
 
     // True longitude
-    _trueLongitude = wrap_angle(raan + argPer + theta);
+    get_true_longitude() = wrap_angle(raan + argPer + theta);
 }
 
 // Copy constructor
 template <IsFrame auto _frame_>
 Equinoctial<_frame_>::Equinoctial(const Equinoctial<_frame_>& other) :
-    _semilatus(other._semilatus),
-    _f(other._f),
-    _g(other._g),
-    _h(other._h),
-    _k(other._k),
-    _trueLongitude(other._trueLongitude)
+    _elements(other._elements)
 {
 }
 
 // Move constructor
 template <IsFrame auto _frame_>
 Equinoctial<_frame_>::Equinoctial(Equinoctial<_frame_>&& other) noexcept :
-    _semilatus(std::move(other._semilatus)),
-    _f(std::move(other._f)),
-    _g(std::move(other._g)),
-    _h(std::move(other._h)),
-    _k(std::move(other._k)),
-    _trueLongitude(std::move(other._trueLongitude))
+    _elements(std::move(other._elements))
 {
 }
 
@@ -112,14 +102,7 @@ Equinoctial<_frame_>::Equinoctial(Equinoctial<_frame_>&& other) noexcept :
 template <IsFrame auto _frame_>
 Equinoctial<_frame_>& Equinoctial<_frame_>::operator=(Equinoctial<_frame_>&& other) noexcept
 {
-    if (this != &other) {
-        _semilatus     = std::move(other._semilatus);
-        _f             = std::move(other._f);
-        _g             = std::move(other._g);
-        _h             = std::move(other._h);
-        _k             = std::move(other._k);
-        _trueLongitude = std::move(other._trueLongitude);
-    }
+    if (this != &other) { _elements = std::move(other._elements); }
     return *this;
 }
 
@@ -129,114 +112,6 @@ Equinoctial<_frame_>& Equinoctial<_frame_>::operator=(const Equinoctial<_frame_>
 {
     return *this = Equinoctial(other);
 }
-
-// Comparitors operators
-template <IsFrame auto _frame_>
-bool Equinoctial<_frame_>::operator==(const Equinoctial<_frame_>& other) const
-{
-    return (
-        _semilatus == other._semilatus && _f == other._f && _g == other._g && _h == other._h && _k == other._k &&
-        _trueLongitude == other._trueLongitude
-    );
-}
-
-template <IsFrame auto _frame_>
-bool Equinoctial<_frame_>::operator!=(const Equinoctial<_frame_>& other) const
-{
-    return !(*this == other);
-}
-
-
-// Mathmatical operators
-template <IsFrame auto _frame_>
-Equinoctial<_frame_> Equinoctial<_frame_>::operator+(const Equinoctial<_frame_>& other) const
-{
-    return Equinoctial(
-        _semilatus + other._semilatus,
-        _f + other._f,
-        _g + other._g,
-        _h + other._h,
-        _k + other._k,
-        _trueLongitude + other._trueLongitude
-    );
-}
-template <IsFrame auto _frame_>
-Equinoctial<_frame_>& Equinoctial<_frame_>::operator+=(const Equinoctial<_frame_>& other)
-{
-    _semilatus += other._semilatus;
-    _f += other._f;
-    _g += other._g;
-    _h += other._h;
-    _k += other._k;
-    _trueLongitude += other._trueLongitude;
-    return *this;
-}
-
-template <IsFrame auto _frame_>
-Equinoctial<_frame_> Equinoctial<_frame_>::operator-(const Equinoctial<_frame_>& other) const
-{
-    return Equinoctial(
-        _semilatus - other._semilatus,
-        _f - other._f,
-        _g - other._g,
-        _h - other._h,
-        _k - other._k,
-        _trueLongitude - other._trueLongitude
-    );
-}
-template <IsFrame auto _frame_>
-Equinoctial<_frame_>& Equinoctial<_frame_>::operator-=(const Equinoctial<_frame_>& other)
-{
-    _semilatus -= other._semilatus;
-    _f -= other._f;
-    _g -= other._g;
-    _h -= other._h;
-    _k -= other._k;
-    _trueLongitude -= other._trueLongitude;
-    return *this;
-}
-
-template <IsFrame auto _frame_>
-Equinoctial<_frame_> Equinoctial<_frame_>::operator*(const Unitless& multiplier) const
-{
-    return Equinoctial(_semilatus * multiplier, _f * multiplier, _g * multiplier, _h * multiplier, _k * multiplier, _trueLongitude * multiplier);
-}
-template <IsFrame auto _frame_>
-Equinoctial<_frame_>& Equinoctial<_frame_>::operator*=(const Unitless& multiplier)
-{
-    _semilatus *= multiplier;
-    _f *= multiplier;
-    _g *= multiplier;
-    _h *= multiplier;
-    _k *= multiplier;
-    _trueLongitude *= multiplier;
-    return *this;
-}
-
-template <IsFrame auto _frame_>
-EquinoctialPartial<_frame_> Equinoctial<_frame_>::operator/(const Time& time) const
-{
-    return EquinoctialPartial<_frame_>(_semilatus / time, _f / time, _g / time, _h / time, _k / time, _trueLongitude / time);
-}
-
-template <IsFrame auto _frame_>
-Equinoctial<_frame_> Equinoctial<_frame_>::operator/(const Unitless& divisor) const
-{
-    return Equinoctial(_semilatus / divisor, _f / divisor, _g / divisor, _h / divisor, _k / divisor, _trueLongitude / divisor);
-}
-
-template <IsFrame auto _frame_>
-Equinoctial<_frame_>& Equinoctial<_frame_>::operator/=(const Unitless& divisor)
-{
-    _semilatus /= divisor;
-    _f /= divisor;
-    _g /= divisor;
-    _h /= divisor;
-    _k /= divisor;
-    _trueLongitude /= divisor;
-    return *this;
-}
-
 
 template <IsFrame auto _frame_>
 Equinoctial<_frame_>
@@ -252,40 +127,6 @@ Equinoctial<_frame_>
     const Angle interpTheta = math::fast_interpolate<Time, Angle>(times, { _trueLongitude, other.get_true_longitude() }, targetTime);
 
     return Equinoctial(interpSemimajor, interpEcc, interpInc, interpRaan, interpArgPer, interpTheta);
-}
-
-template <IsFrame auto _frame_>
-std::vector<Unitless> Equinoctial<_frame_>::force_to_vector() const
-{
-    return { _semilatus / _semilatus.unit, _f, _g, _h, _k, _trueLongitude / _trueLongitude.unit };
-}
-
-template <IsFrame auto _frame_>
-Equinoctial<_frame_> Equinoctial<_frame_>::from_vector(const std::vector<Unitless>& vec)
-{
-    using mp_units::angular::unit_symbols::rad;
-    using mp_units::si::unit_symbols::km;
-    if (vec.size() != 6) {
-        throw std::runtime_error("Input vector must have exactly 6 elements to convert to Equinoctial.");
-    }
-    return Equinoctial(vec[0] * km, vec[1], vec[2], vec[3], vec[4], vec[5] * rad);
-}
-
-template <IsFrame auto _frame_>
-Equinoctial<_frame_> EquinoctialPartial<_frame_>::operator*(const Time& time) const
-{
-    return Equinoctial<_frame_>(_semilatusPartial * time, _fPartial * time, _gPartial * time, _hPartial * time, _kPartial * time, _trueLongitudePartial * time);
-}
-
-template <IsFrame auto _frame_>
-std::vector<Unitless> EquinoctialPartial<_frame_>::force_to_vector() const
-{
-    return { _semilatusPartial / _semilatusPartial.unit,
-             _fPartial / _fPartial.unit,
-             _gPartial / _gPartial.unit,
-             _hPartial / _hPartial.unit,
-             _kPartial / _kPartial.unit,
-             _trueLongitudePartial / _trueLongitudePartial.unit };
 }
 
 template <IsFrame auto _frame_>

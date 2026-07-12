@@ -33,8 +33,8 @@
 #include <astro/platforms/Vehicle.hpp>
 #include <astro/state/State.hpp>
 #include <astro/state/angular_elements.hpp>
+#include <astro/state/framework/OrbitalElements.hpp>
 #include <astro/state/orbital_elements/Cartesian.hpp>
-#include <astro/state/orbital_elements/OrbitalElements.hpp>
 #include <astro/systems/system_utilities.hpp>
 #include <astro/utilities/conversions.hpp>
 

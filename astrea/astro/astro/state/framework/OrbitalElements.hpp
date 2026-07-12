@@ -1,7 +1,7 @@
 /**
- * @file OrbitalElementsTemp.hpp
+ * @file OrbitalElements.hpp
  * @author Jay Iuliano (iuliano.jay@gmail.com)
- * @brief This file defines the OrbitalElementsTemp class and its associated methods.
+ * @brief This file defines the OrbitalElements class and its associated methods.
  * @date 2025-08-02
  *
  * @copyright Copyright (c) 2025 Jay Iuliano
@@ -25,66 +25,65 @@ namespace astrea {
 namespace astro {
 
 template <typename T>
-concept IsOrbitalElementsTemp = requires {
+concept IsOrbitalElements = requires {
     typename T::ArrayType;
     typename T::orbital_elements_temp_tag;
 };
 
 template <typename Derived_T, typename Derived_U>
-concept IsCompatibleOrbitalElementsTemp =
-    IsOrbitalElementsTemp<Derived_T> && IsOrbitalElementsTemp<Derived_U> &&
-    IsCompatibleElementArray<typename Derived_T::ArrayType, typename Derived_U::ArrayType> &&
-    equivalent(Derived_T::frame, Derived_U::frame);
+concept IsCompatibleOrbitalElements = IsOrbitalElements<Derived_T> && IsOrbitalElements<Derived_U> &&
+                                      IsCompatibleElementArray<typename Derived_T::ArrayType, typename Derived_U::ArrayType> &&
+                                      equivalent(Derived_T::frame, Derived_U::frame);
 
 template <typename Derived_T, IsFrame auto _frame_, typename... Elements_T>
-class OrbitalElementsTemp {
+class OrbitalElements {
   public:
-    using orbital_elements_temp_tag = void; //!< Tag type used by IsOrbitalElementsTemp concept detection.
+    using orbital_elements_temp_tag = void; //!< Tag type used by IsOrbitalElements concept detection.
     using ArrayType = ElementArray<sizeof...(Elements_T), 1, Elements_T...>; //!< The underlying array type representing the orbital elements.
 
-    static constexpr auto frame = _frame_; //!< The reference frame of the OrbitalElementsTemp.
+    static constexpr auto frame = _frame_; //!< The reference frame of the OrbitalElements.
 
     /**
-     * @brief Default constructor for OrbitalElementsTemp.
+     * @brief Default constructor for OrbitalElements.
      *
-     * Initializes the OrbitalElementsTemp with default values.
+     * Initializes the OrbitalElements with default values.
      */
-    OrbitalElementsTemp() = default;
+    OrbitalElements() = default;
 
     /**
-     * @brief Constructor for OrbitalElementsTemp with specified elements.
+     * @brief Constructor for OrbitalElements with specified elements.
      *
-     * @param elements The elements to initialize the OrbitalElementsTemp with.
+     * @param elements The elements to initialize the OrbitalElements with.
      */
-    OrbitalElementsTemp(const Elements_T&... elements) :
-        elements(elements...)
+    OrbitalElements(const Elements_T&... elements) :
+        _elements(elements...)
     {
     }
 
     /**
-     * @brief Constructor for OrbitalElementsTemp with an existing array of elements.
+     * @brief Constructor for OrbitalElements with an existing array of elements.
      *
-     * @param elements The array of elements to initialize the OrbitalElementsTemp with.
+     * @param elements The array of elements to initialize the OrbitalElements with.
      */
-    OrbitalElementsTemp(const ArrayType& elements) :
-        elements(elements)
+    OrbitalElements(const ArrayType& elements) :
+        _elements(elements)
     {
     }
 
     /**
-     * @brief Constructor for OrbitalElementsTemp by moving an existing array of elements.
+     * @brief Constructor for OrbitalElements by moving an existing array of elements.
      *
-     * @param elements The array of elements to move into the OrbitalElementsTemp.
+     * @param elements The array of elements to move into the OrbitalElements.
      */
-    OrbitalElementsTemp(ArrayType&& elements) :
-        elements(std::move(elements))
+    OrbitalElements(ArrayType&& elements) :
+        _elements(std::move(elements))
     {
     }
 
     /**
-     * @brief Virtual destructor for OrbitalElementsTemp.
+     * @brief Virtual destructor for OrbitalElements.
      */
-    virtual ~OrbitalElementsTemp() = default;
+    virtual ~OrbitalElements() = default;
 
     /**
      * @brief Copy assignment operator for the Derived_T.
@@ -94,7 +93,7 @@ class OrbitalElementsTemp {
      */
     Derived_T& operator=(const Derived_T& other)
     {
-        elements = other.elements;
+        _elements = other._elements;
         return static_cast<Derived_T&>(*this);
     }
 
@@ -106,7 +105,7 @@ class OrbitalElementsTemp {
      */
     Derived_T& operator=(Derived_T&& other) noexcept
     {
-        elements = std::move(other.elements);
+        _elements = std::move(other._elements);
         return static_cast<Derived_T&>(*this);
     }
 
@@ -118,10 +117,10 @@ class OrbitalElementsTemp {
      * @return A reference to the assigned Derived_T.
      */
     template <typename Derived_U>
-        requires(IsCompatibleOrbitalElementsTemp<Derived_T, Derived_U>)
+        requires(IsCompatibleOrbitalElements<Derived_T, Derived_U>)
     Derived_T& operator=(const Derived_U& other)
     {
-        elements = other.elements;
+        _elements = other._elements;
         return static_cast<Derived_T&>(*this);
     }
 
@@ -133,10 +132,10 @@ class OrbitalElementsTemp {
      * @return A reference to the assigned Derived_T.
      */
     template <typename Derived_U>
-        requires(IsCompatibleOrbitalElementsTemp<Derived_T, Derived_U>)
+        requires(IsCompatibleOrbitalElements<Derived_T, Derived_U>)
     Derived_T& operator=(Derived_U&& other) noexcept
     {
-        elements = std::move(other.elements);
+        _elements = std::move(other._elements);
         return static_cast<Derived_T&>(*this);
     }
 
@@ -147,9 +146,9 @@ class OrbitalElementsTemp {
      * @return The element at the specified index.
      */
     template <std::size_t idx>
-    inline constexpr auto get() const
+    inline constexpr auto& get() const
     {
-        return elements.template get<idx>();
+        return _elements.template get<idx>();
     }
 
     /**
@@ -160,10 +159,10 @@ class OrbitalElementsTemp {
      * @return A new Derived_T representing the sum of the two arrays.
      */
     template <typename Derived_U>
-        requires(IsCompatibleOrbitalElementsTemp<Derived_T, Derived_U>)
+        requires(IsCompatibleOrbitalElements<Derived_T, Derived_U>)
     inline constexpr Derived_T operator+(const Derived_U& other) const
     {
-        return { elements + other.elements };
+        return { _elements + other._elements };
     }
 
     /**
@@ -174,10 +173,10 @@ class OrbitalElementsTemp {
      * @return A reference to the modified Derived_T after addition.
      */
     template <typename Derived_U>
-        requires(IsCompatibleOrbitalElementsTemp<Derived_T, Derived_U>)
+        requires(IsCompatibleOrbitalElements<Derived_T, Derived_U>)
     inline constexpr Derived_T& operator+=(const Derived_U& other)
     {
-        elements += other.elements;
+        _elements += other._elements;
         return static_cast<Derived_T&>(*this);
     }
 
@@ -186,7 +185,7 @@ class OrbitalElementsTemp {
      *
      * @return A new Derived_T with all elements negated.
      */
-    inline constexpr Derived_T operator-() const { return { -elements }; }
+    inline constexpr Derived_T operator-() const { return { -_elements }; }
 
     /**
      * @brief Subtraction between equivalent Derived_Ts.
@@ -196,10 +195,10 @@ class OrbitalElementsTemp {
      * @return A new Derived_T representing the difference of the two arrays.
      */
     template <typename Derived_U>
-        requires(IsCompatibleOrbitalElementsTemp<Derived_T, Derived_U>)
+        requires(IsCompatibleOrbitalElements<Derived_T, Derived_U>)
     inline constexpr Derived_T operator-(const Derived_U& other) const
     {
-        return { elements - other.elements };
+        return { _elements - other._elements };
     }
 
     /**
@@ -210,10 +209,10 @@ class OrbitalElementsTemp {
      * @return A reference to the modified Derived_T after subtraction.
      */
     template <typename Derived_U>
-        requires(IsCompatibleOrbitalElementsTemp<Derived_T, Derived_U>)
+        requires(IsCompatibleOrbitalElements<Derived_T, Derived_U>)
     inline constexpr Derived_T& operator-=(const Derived_U& other)
     {
-        elements -= other.elements;
+        _elements -= other._elements;
         return static_cast<Derived_T&>(*this);
     }
 
@@ -225,10 +224,10 @@ class OrbitalElementsTemp {
      * @return True if all corresponding elements are equal, false otherwise.
      */
     template <typename Derived_U>
-        requires(IsCompatibleOrbitalElementsTemp<Derived_T, Derived_U>)
+        requires(IsCompatibleOrbitalElements<Derived_T, Derived_U>)
     inline constexpr bool operator==(const Derived_U& other) const
     {
-        return elements == other.elements;
+        return _elements == other._elements;
     }
 
     /**
@@ -242,14 +241,14 @@ class OrbitalElementsTemp {
         requires(IsScalarThatCanMultiply<T, Elements_T...> && (std::is_arithmetic_v<T> || std::is_same_v<T, Unitless>))
     inline constexpr Derived_T operator*(const T& scalar) const
     {
-        return Derived_T{ elements * scalar };
+        return Derived_T{ _elements * scalar };
     }
 
     template <typename T>
         requires(IsScalarThatCanMultiply<T, Elements_T...> && !std::is_arithmetic_v<T> && !std::is_same_v<T, Unitless>)
     inline constexpr auto operator*(const T& scalar) const
     {
-        return elements * scalar;
+        return _elements * scalar;
     }
 
     /**
@@ -263,7 +262,7 @@ class OrbitalElementsTemp {
         requires(IsScalarThatCanMultiply<T, Elements_T...> && (std::is_arithmetic_v<T> || std::is_same_v<T, Unitless>))
     inline constexpr Derived_T& operator*=(const T& scalar)
     {
-        elements *= scalar;
+        _elements *= scalar;
         return static_cast<Derived_T&>(*this);
     }
 
@@ -278,14 +277,14 @@ class OrbitalElementsTemp {
         requires(IsScalarThatCanDivide<T, Elements_T...> && (std::is_arithmetic_v<T> || std::is_same_v<T, Unitless>))
     inline constexpr Derived_T operator/(const T& scalar) const
     {
-        return Derived_T{ elements / scalar };
+        return Derived_T{ _elements / scalar };
     }
 
     template <typename T>
         requires(IsScalarThatCanDivide<T, Elements_T...> && !std::is_arithmetic_v<T> && !std::is_same_v<T, Unitless>)
     inline constexpr auto operator/(const T& scalar) const
     {
-        return elements / scalar;
+        return _elements / scalar;
     }
 
     /**
@@ -299,7 +298,7 @@ class OrbitalElementsTemp {
         requires(IsScalarThatCanDivide<T, Elements_T...> && (std::is_arithmetic_v<T> || std::is_same_v<T, Unitless>))
     inline constexpr Derived_T& operator/=(const T& scalar)
     {
-        elements /= scalar;
+        _elements /= scalar;
         return static_cast<Derived_T&>(*this);
     }
 
@@ -315,7 +314,7 @@ class OrbitalElementsTemp {
     template <typename Derived_U>
     inline constexpr auto operator*(const Derived_U& other) const
     {
-        return elements * other.elements;
+        return _elements * other._elements;
     }
 
     /**
@@ -330,7 +329,7 @@ class OrbitalElementsTemp {
     template <typename Derived_U>
     inline constexpr auto dot(const Derived_U& other) const
     {
-        return elements.dot(other.elements);
+        return _elements.dot(other._elements);
     }
 
     /**
@@ -338,14 +337,21 @@ class OrbitalElementsTemp {
      *
      * @return A new Derived_T representing the transpose of the original array.
      */
-    inline constexpr auto transpose() const { return elements.transpose(); }
+    inline constexpr auto transpose() const { return _elements.transpose(); }
+
+    /**
+     * @brief Convert the Derived_T to an ElementArray.
+     *
+     * @return An ElementArray containing the elements of the array.
+     */
+    inline constexpr auto to_element_array() const { return _elements; }
 
     /**
      * @brief Convert the Derived_T to a tuple.
      *
      * @return A tuple containing the elements of the array.
      */
-    inline constexpr typename ArrayType::tuple_type to_tuple() const { return elements.to_tuple(); }
+    inline constexpr typename ArrayType::tuple_type to_tuple() const { return _elements.to_tuple(); }
 
     /**
      * @brief Force the Derived_T to a std::array of doubles.
@@ -354,15 +360,15 @@ class OrbitalElementsTemp {
      *
      * @note This function is only defined for uniform element arrays.
      */
-    inline constexpr auto force_to_double_array() const { return elements.force_to_double_array(); }
+    inline constexpr auto force_to_double_array() const { return _elements.force_to_double_array(); }
 
   protected:
-    ArrayType elements; //!< The underlying Derived_T representing the orbital elements.
+    ArrayType _elements; //!< The underlying Derived_T representing the orbital elements.
 };
 
 template <IsFrame auto _frame_>
 class KeplerianTemp
-    : public OrbitalElementsTemp<KeplerianTemp<_frame_>, _frame_, Distance, Unitless, Angle, Angle, Angle, Angle> {};
+    : public OrbitalElements<KeplerianTemp<_frame_>, _frame_, Distance, Unitless, Angle, Angle, Angle, Angle> {};
 
 } // namespace astro
 } // namespace astrea
