@@ -30,6 +30,7 @@
 // astro
 #include <astro/astro.fwd.hpp>
 #include <astro/frames/framework/CartesianVector.hpp>
+#include <astro/state/framework/ElementArray.hpp>
 #include <astro/types/typedefs.hpp>
 
 namespace astrea {
@@ -55,11 +56,9 @@ class Cartesian {
      *
      * Initializes the Cartesian state vector with zero values.
      */
-    Cartesian(Unitless scale = 0.0 * astrea::detail::unitless) :
-        _r(scale * astrea::detail::distance_unit, scale * astrea::detail::distance_unit, scale * astrea::detail::distance_unit),
-        _v(scale * astrea::detail::distance_unit / astrea::detail::time_unit,
-           scale * astrea::detail::distance_unit / astrea::detail::time_unit,
-           scale * astrea::detail::distance_unit / astrea::detail::time_unit)
+    Cartesian() :
+        _r(Distance::zero(), Distance::zero(), Distance::zero()),
+        _v(Velocity::zero(), Velocity::zero(), Velocity::zero())
     {
     }
 
@@ -400,6 +399,11 @@ class Cartesian {
      * @return std::vector<Unitless> Vector containing the x, y, z, vx, vy, and vz components of the Cartesian state vector.
      */
     std::vector<Unitless> force_to_vector() const;
+
+    ElementArray<6, 1, Distance, Distance, Distance, Velocity, Velocity, Velocity> to_element_array() const
+    {
+        return { _r.get_x(), _r.get_y(), _r.get_z(), _v.get_x(), _v.get_y(), _v.get_z() };
+    }
 
     /**
      * @brief Interpolates between two Cartesian states at a given time.

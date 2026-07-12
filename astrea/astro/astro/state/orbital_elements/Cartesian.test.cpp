@@ -79,17 +79,6 @@ TEST_F(CartesianTest, DefaultConstructor)
     ASSERT_TRUE(math::nearly_equal(defaultState.get_vz(), Velocity(0.0 * km / s), REL_TOL));
 }
 
-TEST_F(CartesianTest, UnitlessConstructor)
-{
-    Cartesian<frames::earth::icrf> scaledState(2.0 * one);
-    ASSERT_TRUE(math::nearly_equal(scaledState.get_x(), Distance(2.0 * km), REL_TOL));
-    ASSERT_TRUE(math::nearly_equal(scaledState.get_y(), Distance(2.0 * km), REL_TOL));
-    ASSERT_TRUE(math::nearly_equal(scaledState.get_z(), Distance(2.0 * km), REL_TOL));
-    ASSERT_TRUE(math::nearly_equal(scaledState.get_vx(), Velocity(2.0 * km / s), REL_TOL));
-    ASSERT_TRUE(math::nearly_equal(scaledState.get_vy(), Velocity(2.0 * km / s), REL_TOL));
-    ASSERT_TRUE(math::nearly_equal(scaledState.get_vz(), Velocity(2.0 * km / s), REL_TOL));
-}
-
 TEST_F(CartesianTest, VectorConstructor)
 {
     RadiusVector<frames::earth::icrf> r{ x, y, z };

@@ -36,30 +36,30 @@ namespace astro {
  *
  * @tparam _n_row_ The number of rows in the array.
  * @tparam _n_col_ The number of columns in the array.
- * @tparam _elements_ The types of the elements in the array.
+ * @tparam Elements_T The types of the elements in the array.
  *
  * @note This is frame unaware and meant to be used as a base class for frame aware state vectors.
  */
-template <std::size_t _n_row_, std::size_t _n_col_, typename... _elements_>
+template <std::size_t _n_row_, std::size_t _n_col_, typename... Elements_T>
 struct ElementArray {
 
-    using base_type = ElementArray<_n_row_, _n_col_, _elements_...>; //!< The base type of the ElementArray for introspection
-    using tuple_type = std::tuple<_elements_...>;                    //!< The underlying tuple type of the ElementArray
+    using base_type = ElementArray<_n_row_, _n_col_, Elements_T...>; //!< The base type of the ElementArray for introspection
+    using tuple_type = std::tuple<Elements_T...>;                    //!< The underlying tuple type of the ElementArray
 
     template <mp_units::Quantity Partial_T>
     using partial_in =
-        ElementArray<_n_row_, _n_col_, decltype(_elements_{} / Partial_T{})...>; //!< Partial of array w.r.t input quantity
+        ElementArray<_n_row_, _n_col_, decltype(Elements_T{} / Partial_T{})...>; //!< Partial of array w.r.t input quantity
 
     static constexpr std::size_t n_row = _n_row_;               //!< The number of rows in the array
     static constexpr std::size_t n_col = _n_col_;               //!< The number of columns in the array
-    static constexpr std::size_t size  = sizeof...(_elements_); //!< The total number of elements in the array
+    static constexpr std::size_t size  = sizeof...(Elements_T); //!< The total number of elements in the array
     static constexpr std::pair<std::size_t, std::size_t> shape{ n_row, n_col }; //!< The shape of the array as a pair of (n_row, n_col)
 
-    static constexpr bool _is_quantity_array = mp_units::Quantity<std::tuple_element_t<0, std::tuple<_elements_...>>>; //!< Whether the array is a quantity array (all elements are quantities)
+    static constexpr bool _is_quantity_array = mp_units::Quantity<std::tuple_element_t<0, std::tuple<Elements_T...>>>; //!< Whether the array is a quantity array (all elements are quantities)
 
     static_assert(size == n_row * n_col, "The number of elements must equal n_row * n_col");
 
-    std::tuple<_elements_...> elements; //!< The underlying tuple of elements in the array
+    std::tuple<Elements_T...> elements; //!< The underlying tuple of elements in the array
 
     /**
      * @brief Default constructor for the ElementArray.
@@ -71,7 +71,7 @@ struct ElementArray {
      *
      * @param elements The individual elements to initialize the array with.
      */
-    ElementArray(const _elements_&... elements) :
+    ElementArray(const Elements_T&... elements) :
         elements(elements...)
     {
     }
@@ -93,7 +93,7 @@ struct ElementArray {
     /**
      * @brief Virtual destructor for the ElementArray.
      */
-    virtual ~ElementArray() = default;
+    ~ElementArray() = default;
 
     /**
      * @brief Copy assignment operator for the ElementArray.
@@ -351,7 +351,7 @@ struct ElementArray {
      * @return True if any corresponding elements are not equal, false otherwise.
      */
     template <typename T>
-        requires(IsScalarThatCanMultiply<T, _elements_...>)
+        requires(IsScalarThatCanMultiply<T, Elements_T...>)
     inline constexpr auto operator*(const T& scalar) const
     {
         const auto& [... a] = elements;
@@ -366,7 +366,7 @@ struct ElementArray {
      * @return A reference to the modified ElementArray after multiplication.
      */
     template <typename T>
-        requires(IsScalarThatCanMultiply<T, _elements_...> && (std::is_arithmetic_v<T> || std::is_same_v<T, Unitless>))
+        requires(IsScalarThatCanMultiply<T, Elements_T...> && (std::is_arithmetic_v<T> || std::is_same_v<T, Unitless>))
     inline constexpr ElementArray& operator*=(const T& scalar)
     {
         return *this = *this * scalar;
@@ -380,7 +380,7 @@ struct ElementArray {
      * @return A new ElementArray representing the result of the division.
      */
     template <typename T>
-        requires(IsScalarThatCanDivide<T, _elements_...>)
+        requires(IsScalarThatCanDivide<T, Elements_T...>)
     inline constexpr auto operator/(const T& scalar) const
     {
         const auto& [... a] = elements;
@@ -395,7 +395,7 @@ struct ElementArray {
      * @return A reference to the modified ElementArray after division.
      */
     template <typename T>
-        requires(IsScalarThatCanDivide<T, _elements_...> && (std::is_arithmetic_v<T> || std::is_same_v<T, Unitless>))
+        requires(IsScalarThatCanDivide<T, Elements_T...> && (std::is_arithmetic_v<T> || std::is_same_v<T, Unitless>))
     inline constexpr ElementArray& operator/=(const T& scalar)
     {
         return *this = *this / scalar;
@@ -607,14 +607,14 @@ struct ElementArray {
  * @tparam T The type of the scalar.
  * @tparam _n_row_ The number of rows in the ElementArray.
  * @tparam _n_col_ The number of columns in the ElementArray.
- * @tparam _elements_ The types of the elements in the ElementArray.
+ * @tparam Elements_T The types of the elements in the ElementArray.
  * @param scalar The scalar to multiply with.
  * @param arr The ElementArray to multiply.
  * @return A new ElementArray representing the result of the multiplication.
  */
-template <typename T, std::size_t _n_row_, std::size_t _n_col_, typename... _elements_>
-    requires(IsScalarThatCanMultiply<T, _elements_...>)
-inline constexpr auto operator*(const T& scalar, const astrea::astro::ElementArray<_n_row_, _n_col_, _elements_...>& arr)
+template <typename T, std::size_t _n_row_, std::size_t _n_col_, typename... Elements_T>
+    requires(IsScalarThatCanMultiply<T, Elements_T...>)
+inline constexpr auto operator*(const T& scalar, const astrea::astro::ElementArray<_n_row_, _n_col_, Elements_T...>& arr)
 {
     return arr * scalar;
 }
@@ -629,11 +629,11 @@ namespace std {
  *
  * @tparam _n_row_ The number of rows in the ElementArray.
  * @tparam _n_col_ The number of columns in the ElementArray.
- * @tparam _elements_ The types of the elements in the ElementArray.
+ * @tparam Elements_T The types of the elements in the ElementArray.
  */
-template <std::size_t _n_row_, std::size_t _n_col_, typename... _elements_>
-struct tuple_size<astrea::astro::ElementArray<_n_row_, _n_col_, _elements_...>>
-    : std::integral_constant<std::size_t, sizeof...(_elements_)> {};
+template <std::size_t _n_row_, std::size_t _n_col_, typename... Elements_T>
+struct tuple_size<astrea::astro::ElementArray<_n_row_, _n_col_, Elements_T...>>
+    : std::integral_constant<std::size_t, sizeof...(Elements_T)> {};
 
 /**
  * @brief Specialization of std::tuple_element for ElementArray.
@@ -641,10 +641,10 @@ struct tuple_size<astrea::astro::ElementArray<_n_row_, _n_col_, _elements_...>>
  * @tparam I The index of the element to access.
  * @tparam _n_row_ The number of rows in the ElementArray.
  * @tparam _n_col_ The number of columns in the ElementArray.
- * @tparam _elements_ The types of the elements in the ElementArray.
+ * @tparam Elements_T The types of the elements in the ElementArray.
  */
-template <std::size_t I, std::size_t _n_row_, std::size_t _n_col_, typename... _elements_>
-struct tuple_element<I, astrea::astro::ElementArray<_n_row_, _n_col_, _elements_...>>
-    : std::tuple_element<I, std::tuple<_elements_...>> {};
+template <std::size_t I, std::size_t _n_row_, std::size_t _n_col_, typename... Elements_T>
+struct tuple_element<I, astrea::astro::ElementArray<_n_row_, _n_col_, Elements_T...>>
+    : std::tuple_element<I, std::tuple<Elements_T...>> {};
 
 } // namespace std
