@@ -46,8 +46,8 @@ class Interval {
      */
     ~Interval() = default;
 
-    Time start;    ///< The start time of the interval.
-    Time propTime; ///< The end time of the interval.
+    Time start;    //!< The start time of the interval.
+    Time propTime; //!< The end time of the interval.
 };
 
 } // namespace astro

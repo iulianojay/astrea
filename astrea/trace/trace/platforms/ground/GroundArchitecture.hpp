@@ -131,7 +131,7 @@ class GroundArchitecture {
     const_iterator cend() const { return _groundStations.end(); }
 
   private:
-    std::vector<Station> _groundStations; ///< A vector containing the ground stations in this architecture.
+    std::vector<Station> _groundStations; //!< A vector containing the ground stations in this architecture.
 };
 
 } // namespace trace

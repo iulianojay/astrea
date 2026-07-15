@@ -287,15 +287,15 @@ static const AtomicMass XMM = 28.9500 * u;
 
 /// Per-species empirical parameters for NRLMSISE-00 diffusive and mixed-region density calculations.
 struct SpeciesModelParams {
-    NumberDensity n_ref; ///< cm⁻³: reference number density at lower boundary
-    Unitless mix_ratio;  ///< dimensionless: mixing ratio / density correction factor
-    Distance zh;         ///< turbopause altitude
-    Unitless c3;         ///< species-specific: zhm scale height (N2) or rc correction ratio (O, O2, H, N)
-    Distance za;         ///< primary ccor correction centre altitude (N2: unused, set to 0)
-    Distance ha;         ///< primary ccor correction scale height
-    Distance zb;         ///< secondary ccor correction centre altitude
-    Distance hb;         ///< secondary ccor correction scale height
-    Unitless c9;         ///< anomalous O only: secondary thermal reference parameter
+    NumberDensity n_ref; //!< cm⁻³: reference number density at lower boundary
+    Unitless mix_ratio;  //!< dimensionless: mixing ratio / density correction factor
+    Distance zh;         //!< turbopause altitude
+    Unitless c3;         //!< species-specific: zhm scale height (N2) or rc correction ratio (O, O2, H, N)
+    Distance za;         //!< primary ccor correction centre altitude (N2: unused, set to 0)
+    Distance ha;         //!< primary ccor correction scale height
+    Distance zb;         //!< secondary ccor correction centre altitude
+    Distance hb;         //!< secondary ccor correction scale height
+    Unitless c9;         //!< anomalous O only: secondary thermal reference parameter
 };
 
 /** NRLMSISE-00 data: pdm[8][10]. */
@@ -1536,7 +1536,8 @@ class NRLMSISE00 : public AbstractSunInfluencedAtmosphere {
                 t[13] =
                     f2 *
                     ((p[39] * plg[3][3] + (p[93] * plg[3][4] + p[46] * plg[3][6]) * cd14 * options[ASYMMETRICAL_ANNUAL].crossEffect) * s3tloc +
-                     (p[40] * plg[3][3] + (p[94] * plg[3][4] + p[48] * plg[3][6]) * cd14 * options[ASYMMETRICAL_ANNUAL].crossEffect) * c3tloc);
+                     (p[40] * plg[3][3] + (p[94] * plg[3][4] + p[48] * plg[3][6]) * cd14 * options[ASYMMETRICAL_ANNUAL].crossEffect
+                     ) * c3tloc);
             }
 
             // magnetic activity based on daily ap
@@ -1571,17 +1572,16 @@ class NRLMSISE00 : public AbstractSunInfluencedAtmosphere {
                 const SinCos scLonr = sinCos(lonr);
                 // Longitudinal
                 if (options[LONGITUDINAL_EFFECTS].mainEffect) {
-                    t[10] = (1.0 + p[80] * dfa * options[F107_EFFECT_ON_MEAN].crossEffect) *
-                            ((p[64] * plg[1][2] + p[65] * plg[1][4] + p[66] * plg[1][6] + p[103] * plg[1][1] +
-                              p[104] * plg[1][3] + p[105] * plg[1][5] +
-                              (p[109] * plg[1][1] + p[110] * plg[1][3] + p[111] * plg[1][5]) *
-                                  options[ASYMMETRICAL_ANNUAL].crossEffect * cd14) *
-                                 scLonr.cos() +
-                             (p[90] * plg[1][2] + p[91] * plg[1][4] + p[92] * plg[1][6] + p[106] * plg[1][1] +
-                              p[107] * plg[1][3] + p[108] * plg[1][5] +
-                              (p[112] * plg[1][1] + p[113] * plg[1][3] + p[114] * plg[1][5]) *
-                                  options[ASYMMETRICAL_ANNUAL].crossEffect * cd14) *
-                                 scLonr.sin());
+                    t[10] =
+                        (1.0 + p[80] * dfa * options[F107_EFFECT_ON_MEAN].crossEffect) *
+                        ((p[64] * plg[1][2] + p[65] * plg[1][4] + p[66] * plg[1][6] + p[103] * plg[1][1] +
+                          p[104] * plg[1][3] + p[105] * plg[1][5] +
+                          (p[109] * plg[1][1] + p[110] * plg[1][3] + p[111] * plg[1][5]) * options[ASYMMETRICAL_ANNUAL].crossEffect * cd14
+                         ) * scLonr.cos() +
+                         (p[90] * plg[1][2] + p[91] * plg[1][4] + p[92] * plg[1][6] + p[106] * plg[1][1] +
+                          p[107] * plg[1][3] + p[108] * plg[1][5] +
+                          (p[112] * plg[1][1] + p[113] * plg[1][3] + p[114] * plg[1][5]) * options[ASYMMETRICAL_ANNUAL].crossEffect * cd14
+                         ) * scLonr.sin());
                 }
 
                 // ut and mixed ut, longitude

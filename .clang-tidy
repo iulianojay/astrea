@@ -90,12 +90,16 @@ Checks: >
   -google-runtime-references,
   -google-build-using-namespace,
   -readability-uppercase-literal-suffix,
+  -readability-identifier-length,
+  -readability-magic-numbers,
   -misc-non-private-member-variables-in-classes,
   -misc-include-cleaner,
   -modernize-concat-nested-namespaces,
   -modernize-use-nodiscard,
+  -modernize-use-trailing-return-type,
   -performance-avoid-endl,
-  -bugprone-inc-dec-in-conditions
+  -bugprone-inc-dec-in-conditions,
+  -bugprone-easily-swappable-parameters
 
 # Turn all the warnings from the checks above into errors.
 WarningsAsErrors: "*"

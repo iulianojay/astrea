@@ -68,8 +68,8 @@ struct AccessInfo {
 
 /// Per-viewer result for one (viewer, ground-point) work item.
 struct PairResult {
-    RiseSetArray platformAccess;                                      ///< Union over all sensors
-    std::vector<std::pair<std::size_t, RiseSetArray>> sensorAccesses; ///< (sensor_idx, access_windows)
+    RiseSetArray platformAccess;                                      //!< Union over all sensors
+    std::vector<std::pair<std::size_t, RiseSetArray>> sensorAccesses; //!< (sensor_idx, access_windows)
 };
 
 namespace {
