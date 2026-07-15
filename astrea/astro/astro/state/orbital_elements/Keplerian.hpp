@@ -27,6 +27,7 @@
 #include <units/units.hpp>
 
 #include <astro/astro.fwd.hpp>
+#include <astro/state/framework/FrameAwareElementMatrixInterface.hpp>
 #include <astro/types/typedefs.hpp>
 
 namespace astrea {
@@ -40,7 +41,7 @@ namespace astro {
  * argument of perigee, and true anomaly.
  */
 template <IsFrame auto _frame_>
-class Keplerian : public OrbitalElements<Keplerian<_frame_>, _frame_, Distance, Unitless, Angle, Angle, Angle, Angle> {
+class Keplerian : public FaemInterface<Keplerian<_frame_>, _frame_, Distance, Unitless, Angle, Angle, Angle, Angle> {
 
     template <IsFrame auto frame>
     friend std::ostream& operator<<(std::ostream&, Keplerian<frame> const&);
@@ -360,7 +361,7 @@ class Keplerian : public OrbitalElements<Keplerian<_frame_>, _frame_, Distance, 
  */
 template <IsFrame auto _frame_>
 class KeplerianPartial
-    : public OrbitalElements<KeplerianPartial<_frame_>, _frame_, Velocity, UnitlessPerTime, AngularVelocity, AngularVelocity, AngularVelocity, AngularVelocity> {
+    : public FaemInterface<KeplerianPartial<_frame_>, _frame_, Velocity, UnitlessPerTime, AngularVelocity, AngularVelocity, AngularVelocity, AngularVelocity> {
 
     template <IsFrame auto frame>
     friend std::ostream& operator<<(std::ostream&, KeplerianPartial<frame> const&);

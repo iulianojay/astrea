@@ -1,7 +1,7 @@
 /**
- * @file ElementArray.hpp
+ * @file ElementMatrix.hpp
  * @author Jay Iuliano (iuliano.jay@gmail.com)
- * @brief Header file for the ElementArray module
+ * @brief Header file for the ElementMatrix module
  * @date 2026-06-01
  *
  * @copyright Copyright (c) 2026 Jay Iuliano
@@ -26,7 +26,7 @@
 #include <mp-units/framework/quantity_concepts.h>
 #include <mp-units/math.h>
 
-#include <astro/state/framework/element_array_concepts.hpp>
+#include <astro/state/framework/element_matrix_concepts.hpp>
 
 namespace astrea {
 namespace astro {
@@ -41,14 +41,14 @@ namespace astro {
  * @note This is frame unaware and meant to be used as a base class for frame aware state vectors.
  */
 template <std::size_t _n_row_, std::size_t _n_col_, typename... Elements_T>
-struct ElementArray {
+struct ElementMatrix {
 
-    using base_type = ElementArray<_n_row_, _n_col_, Elements_T...>; //!< The base type of the ElementArray for introspection
-    using tuple_type = std::tuple<Elements_T...>;                    //!< The underlying tuple type of the ElementArray
+    using base_type = ElementMatrix<_n_row_, _n_col_, Elements_T...>; //!< The base type of the ElementMatrix for introspection
+    using tuple_type = std::tuple<Elements_T...>; //!< The underlying tuple type of the ElementMatrix
 
     template <mp_units::Quantity Partial_T>
     using partial_in =
-        ElementArray<_n_row_, _n_col_, decltype(Elements_T{} / Partial_T{})...>; //!< Partial of array w.r.t input quantity
+        ElementMatrix<_n_row_, _n_col_, decltype(Elements_T{} / Partial_T{})...>; //!< Partial of array w.r.t input quantity
 
     static constexpr std::size_t n_row = _n_row_;               //!< The number of rows in the array
     static constexpr std::size_t n_col = _n_col_;               //!< The number of columns in the array
@@ -62,106 +62,106 @@ struct ElementArray {
     std::tuple<Elements_T...> elements; //!< The underlying tuple of elements in the array
 
     /**
-     * @brief Default constructor for the ElementArray.
+     * @brief Default constructor for the ElementMatrix.
      */
-    ElementArray() = default;
+    ElementMatrix() = default;
 
     /**
-     * @brief Constructor for the ElementArray that takes individual elements as arguments.
+     * @brief Constructor for the ElementMatrix that takes individual elements as arguments.
      *
      * @param elements The individual elements to initialize the array with.
      */
-    ElementArray(const Elements_T&... elements) :
+    ElementMatrix(const Elements_T&... elements) :
         elements(elements...)
     {
     }
 
     /**
-     * @brief Copy constructor for the ElementArray.
+     * @brief Copy constructor for the ElementMatrix.
      *
-     * @param other The ElementArray to copy from.
+     * @param other The ElementMatrix to copy from.
      */
-    ElementArray(const ElementArray& other) = default;
+    ElementMatrix(const ElementMatrix& other) = default;
 
     /**
-     * @brief Move constructor for the ElementArray.
+     * @brief Move constructor for the ElementMatrix.
      *
-     * @param other The ElementArray to move from.
+     * @param other The ElementMatrix to move from.
      */
-    ElementArray(ElementArray&& other) noexcept = default;
+    ElementMatrix(ElementMatrix&& other) noexcept = default;
 
     /**
-     * @brief Virtual destructor for the ElementArray.
+     * @brief Virtual destructor for the ElementMatrix.
      */
-    ~ElementArray() = default;
+    ~ElementMatrix() = default;
 
     /**
-     * @brief Copy assignment operator for the ElementArray.
+     * @brief Copy assignment operator for the ElementMatrix.
      *
-     * @param other The ElementArray to copy from.
-     * @return A reference to the assigned ElementArray.
+     * @param other The ElementMatrix to copy from.
+     * @return A reference to the assigned ElementMatrix.
      */
-    ElementArray& operator=(const ElementArray& other) = default;
+    ElementMatrix& operator=(const ElementMatrix& other) = default;
 
     /**
-     * @brief Move assignment operator for the ElementArray.
+     * @brief Move assignment operator for the ElementMatrix.
      *
-     * @param other The ElementArray to move from.
-     * @return A reference to the assigned ElementArray.
+     * @param other The ElementMatrix to move from.
+     * @return A reference to the assigned ElementMatrix.
      */
-    ElementArray& operator=(ElementArray&& other) noexcept = default;
+    ElementMatrix& operator=(ElementMatrix&& other) noexcept = default;
 
     /**
-     * @brief Copy constructor for compatible ElementArrays.
+     * @brief Copy constructor for compatible ElementMatrixs.
      *
-     * @tparam elements_u The types of the elements in the other ElementArray.
-     * @param other The ElementArray to copy from.
+     * @tparam elements_u The types of the elements in the other ElementMatrix.
+     * @param other The ElementMatrix to copy from.
      */
     template <typename... elements_u>
-        requires(IsCompatibleElementArray<base_type, ElementArray<_n_row_, _n_col_, elements_u...>>)
-    ElementArray(const ElementArray<_n_row_, _n_col_, elements_u...>& other) :
+        requires(IsCompatibleElementMatrix<base_type, ElementMatrix<_n_row_, _n_col_, elements_u...>>)
+    ElementMatrix(const ElementMatrix<_n_row_, _n_col_, elements_u...>& other) :
         elements(other.elements)
     {
     }
 
     /**
-     * @brief Move constructor for compatible ElementArrays.
+     * @brief Move constructor for compatible ElementMatrixs.
      *
-     * @tparam elements_u The types of the elements in the other ElementArray.
-     * @param other The ElementArray to move from.
+     * @tparam elements_u The types of the elements in the other ElementMatrix.
+     * @param other The ElementMatrix to move from.
      */
     template <typename... elements_u>
-        requires(IsCompatibleElementArray<base_type, ElementArray<_n_row_, _n_col_, elements_u...>>)
-    ElementArray(ElementArray<_n_row_, _n_col_, elements_u...>&& other) noexcept :
+        requires(IsCompatibleElementMatrix<base_type, ElementMatrix<_n_row_, _n_col_, elements_u...>>)
+    ElementMatrix(ElementMatrix<_n_row_, _n_col_, elements_u...>&& other) noexcept :
         elements(std::move(other.elements))
     {
     }
 
     /**
-     * @brief Copy assignment operator for compatible ElementArrays.
+     * @brief Copy assignment operator for compatible ElementMatrixs.
      *
-     * @tparam elements_u The types of the elements in the other ElementArray.
-     * @param other The ElementArray to copy from.
-     * @return A reference to the assigned ElementArray.
+     * @tparam elements_u The types of the elements in the other ElementMatrix.
+     * @param other The ElementMatrix to copy from.
+     * @return A reference to the assigned ElementMatrix.
      */
     template <typename... elements_u>
-        requires(IsCompatibleElementArray<base_type, ElementArray<_n_row_, _n_col_, elements_u...>>)
-    ElementArray& operator=(const ElementArray<_n_row_, _n_col_, elements_u...>& other)
+        requires(IsCompatibleElementMatrix<base_type, ElementMatrix<_n_row_, _n_col_, elements_u...>>)
+    ElementMatrix& operator=(const ElementMatrix<_n_row_, _n_col_, elements_u...>& other)
     {
         elements = other.elements;
         return *this;
     }
 
     /**
-     * @brief Move assignment operator for compatible ElementArrays.
+     * @brief Move assignment operator for compatible ElementMatrixs.
      *
-     * @tparam elements_u The types of the elements in the other ElementArray.
-     * @param other The ElementArray to move from.
-     * @return A reference to the assigned ElementArray.
+     * @tparam elements_u The types of the elements in the other ElementMatrix.
+     * @param other The ElementMatrix to move from.
+     * @return A reference to the assigned ElementMatrix.
      */
     template <typename... elements_u>
-        requires(IsCompatibleElementArray<base_type, ElementArray<_n_row_, _n_col_, elements_u...>>)
-    ElementArray& operator=(ElementArray<_n_row_, _n_col_, elements_u...>&& other) noexcept
+        requires(IsCompatibleElementMatrix<base_type, ElementMatrix<_n_row_, _n_col_, elements_u...>>)
+    ElementMatrix& operator=(ElementMatrix<_n_row_, _n_col_, elements_u...>&& other) noexcept
     {
         elements = std::move(other.elements);
         return *this;
@@ -195,12 +195,12 @@ struct ElementArray {
     }
 
     /**
-     * @brief Get a specific row of the array as a new ElementArray.
+     * @brief Get a specific row of the array as a new ElementMatrix.
      *
      * @tparam row The index of the row to retrieve.
-     * @return An ElementArray representing the specified row.
+     * @return An ElementMatrix representing the specified row.
      *
-     * @note This returned value is NOT a reference to the original array, but a new ElementArray containing the elements of the specified row.
+     * @note This returned value is NOT a reference to the original array, but a new ElementMatrix containing the elements of the specified row.
      */
     template <std::size_t row>
     inline constexpr auto get_row() const
@@ -209,17 +209,17 @@ struct ElementArray {
 
         const auto& [... a] = elements;
         return [&]<std::size_t... colIdx>(std::index_sequence<colIdx...>) {
-            return ElementArray<1, _n_col_, decltype(a...[row * _n_col_ + colIdx])...>{ a...[row * _n_col_ + colIdx]... };
+            return ElementMatrix<1, _n_col_, decltype(a...[row * _n_col_ + colIdx])...>{ a...[row * _n_col_ + colIdx]... };
         }(std::make_index_sequence<_n_col_>{});
     }
 
     /**
-     * @brief Get a specific column of the array as a new ElementArray.
+     * @brief Get a specific column of the array as a new ElementMatrix.
      *
      * @tparam col The index of the column to retrieve.
-     * @return An ElementArray representing the specified column.
+     * @return An ElementMatrix representing the specified column.
      *
-     * @note This returned value is NOT a reference to the original array, but a new ElementArray containing the elements of the specified column.
+     * @note This returned value is NOT a reference to the original array, but a new ElementMatrix containing the elements of the specified column.
      */
     template <std::size_t col>
     inline constexpr auto get_col() const
@@ -228,20 +228,20 @@ struct ElementArray {
 
         const auto& [... a] = elements;
         return [&]<std::size_t... rowIdx>(std::index_sequence<rowIdx...>) {
-            return ElementArray<_n_row_, 1, decltype(a...[rowIdx * _n_col_ + col])...>{ a...[rowIdx * _n_col_ + col]... };
+            return ElementMatrix<_n_row_, 1, decltype(a...[rowIdx * _n_col_ + col])...>{ a...[rowIdx * _n_col_ + col]... };
         }(std::make_index_sequence<_n_row_>{});
     }
 
     /**
-     * @brief Get a submatrix of the array as a new ElementArray.
+     * @brief Get a submatrix of the array as a new ElementMatrix.
      *
      * @tparam row0 The starting row index (inclusive) of the submatrix.
      * @tparam rowf The ending row index (exclusive) of the submatrix.
      * @tparam col0 The starting column index (inclusive) of the submatrix.
      * @tparam colf The ending column index (exclusive) of the submatrix.
-     * @return An ElementArray representing the specified submatrix.
+     * @return An ElementMatrix representing the specified submatrix.
      *
-     * @note This returned value is NOT a reference to the original array, but a new ElementArray containing the elements of the specified submatrix.
+     * @note This returned value is NOT a reference to the original array, but a new ElementMatrix containing the elements of the specified submatrix.
      */
     template <std::size_t row0, std::size_t rowf, std::size_t col0, std::size_t colf>
     inline constexpr auto get_submatrix() const
@@ -250,93 +250,93 @@ struct ElementArray {
         static_assert(col0 < colf && colf <= n_col, "Column indices out of bounds");
 
         return [&]<std::size_t... idx>(std::index_sequence<idx...>) {
-            return ElementArray<rowf - row0, colf - col0, decltype(std::get<(row0 + idx / (colf - col0)) * _n_col_ + (col0 + idx % (colf - col0))>(elements))...>{
+            return ElementMatrix<rowf - row0, colf - col0, decltype(std::get<(row0 + idx / (colf - col0)) * _n_col_ + (col0 + idx % (colf - col0))>(elements))...>{
                 std::get<(row0 + idx / (colf - col0)) * _n_col_ + (col0 + idx % (colf - col0))>(elements)...
             };
         }(std::make_index_sequence<(rowf - row0) * (colf - col0)>{});
     }
 
     /**
-     * @brief Addition between equivalent ElementArrays.
+     * @brief Addition between equivalent ElementMatrixs.
      *
      * @tparam elements_u The types of the elements in the other array.
-     * @param other The other ElementArray to add.
-     * @return A new ElementArray representing the sum of the two arrays.
+     * @param other The other ElementMatrix to add.
+     * @return A new ElementMatrix representing the sum of the two arrays.
      */
     template <typename... elements_u>
-        requires(IsCompatibleElementArray<base_type, ElementArray<_n_row_, _n_col_, elements_u...>>)
-    inline constexpr ElementArray operator+(const ElementArray<_n_row_, _n_col_, elements_u...>& other) const
+        requires(IsCompatibleElementMatrix<base_type, ElementMatrix<_n_row_, _n_col_, elements_u...>>)
+    inline constexpr ElementMatrix operator+(const ElementMatrix<_n_row_, _n_col_, elements_u...>& other) const
     {
         const auto& [... a] = elements;
         const auto& [... b] = other.elements;
-        return ElementArray{ (a + b)... };
+        return ElementMatrix{ (a + b)... };
     }
 
     /**
-     * @brief Addition assignment between equivalent ElementArrays.
+     * @brief Addition assignment between equivalent ElementMatrixs.
      *
      * @tparam elements_u The types of the elements in the other array.
-     * @param other The other ElementArray to add.
-     * @return A reference to the modified ElementArray after addition.
+     * @param other The other ElementMatrix to add.
+     * @return A reference to the modified ElementMatrix after addition.
      */
     template <typename... elements_u>
-        requires(IsCompatibleElementArray<base_type, ElementArray<_n_row_, _n_col_, elements_u...>>)
-    inline constexpr ElementArray& operator+=(const ElementArray<_n_row_, _n_col_, elements_u...>& other)
+        requires(IsCompatibleElementMatrix<base_type, ElementMatrix<_n_row_, _n_col_, elements_u...>>)
+    inline constexpr ElementMatrix& operator+=(const ElementMatrix<_n_row_, _n_col_, elements_u...>& other)
     {
         return *this = *this + other;
     }
 
     /**
-     * @brief Unary negation of the ElementArray.
+     * @brief Unary negation of the ElementMatrix.
      *
-     * @return A new ElementArray with all elements negated.
+     * @return A new ElementMatrix with all elements negated.
      */
-    inline constexpr ElementArray operator-() const
+    inline constexpr ElementMatrix operator-() const
     {
         const auto& [... a] = elements;
-        return ElementArray{ (-a)... };
+        return ElementMatrix{ (-a)... };
     }
 
     /**
-     * @brief Subtraction between equivalent ElementArrays.
+     * @brief Subtraction between equivalent ElementMatrixs.
      *
      * @tparam elements_u The types of the elements in the other array.
-     * @param other The other ElementArray to subtract.
-     * @return A new ElementArray representing the difference of the two arrays.
+     * @param other The other ElementMatrix to subtract.
+     * @return A new ElementMatrix representing the difference of the two arrays.
      */
     template <typename... elements_u>
-        requires(IsCompatibleElementArray<base_type, ElementArray<_n_row_, _n_col_, elements_u...>>)
-    inline constexpr ElementArray operator-(const ElementArray<_n_row_, _n_col_, elements_u...>& other) const
+        requires(IsCompatibleElementMatrix<base_type, ElementMatrix<_n_row_, _n_col_, elements_u...>>)
+    inline constexpr ElementMatrix operator-(const ElementMatrix<_n_row_, _n_col_, elements_u...>& other) const
     {
         const auto& [... a] = elements;
         const auto& [... b] = other.elements;
-        return ElementArray{ (a - b)... };
+        return ElementMatrix{ (a - b)... };
     }
 
     /**
-     * @brief Subtraction assignment between equivalent ElementArrays.
+     * @brief Subtraction assignment between equivalent ElementMatrixs.
      *
      * @tparam elements_u The types of the elements in the other array.
-     * @param other The other ElementArray to subtract.
-     * @return A reference to the modified ElementArray after subtraction.
+     * @param other The other ElementMatrix to subtract.
+     * @return A reference to the modified ElementMatrix after subtraction.
      */
     template <typename... elements_u>
-        requires(IsCompatibleElementArray<base_type, ElementArray<_n_row_, _n_col_, elements_u...>>)
-    inline constexpr ElementArray& operator-=(const ElementArray<_n_row_, _n_col_, elements_u...>& other)
+        requires(IsCompatibleElementMatrix<base_type, ElementMatrix<_n_row_, _n_col_, elements_u...>>)
+    inline constexpr ElementMatrix& operator-=(const ElementMatrix<_n_row_, _n_col_, elements_u...>& other)
     {
         return *this = *this - other;
     }
 
     /**
-     * @brief Equality comparison between equivalent ElementArrays.
+     * @brief Equality comparison between equivalent ElementMatrixs.
      *
      * @tparam elements_u The types of the elements in the other array.
-     * @param other The other ElementArray to compare.
+     * @param other The other ElementMatrix to compare.
      * @return True if all corresponding elements are equal, false otherwise.
      */
     template <typename... elements_u>
-        requires(IsCompatibleElementArray<base_type, ElementArray<_n_row_, _n_col_, elements_u...>>)
-    inline constexpr bool operator==(const ElementArray<_n_row_, _n_col_, elements_u...>& other) const
+        requires(IsCompatibleElementMatrix<base_type, ElementMatrix<_n_row_, _n_col_, elements_u...>>)
+    inline constexpr bool operator==(const ElementMatrix<_n_row_, _n_col_, elements_u...>& other) const
     {
         const auto& [... a] = elements;
         const auto& [... b] = other.elements;
@@ -344,10 +344,10 @@ struct ElementArray {
     }
 
     /**
-     * @brief Inequality comparison between equivalent ElementArrays.
+     * @brief Inequality comparison between equivalent ElementMatrixs.
      *
      * @tparam elements_u The types of the elements in the other array.
-     * @param other The other ElementArray to compare.
+     * @param other The other ElementMatrix to compare.
      * @return True if any corresponding elements are not equal, false otherwise.
      */
     template <typename T>
@@ -355,7 +355,7 @@ struct ElementArray {
     inline constexpr auto operator*(const T& scalar) const
     {
         const auto& [... a] = elements;
-        return ElementArray<_n_row_, _n_col_, decltype(a * scalar)...>{ (a * scalar)... };
+        return ElementMatrix<_n_row_, _n_col_, decltype(a * scalar)...>{ (a * scalar)... };
     }
 
     /**
@@ -363,11 +363,11 @@ struct ElementArray {
      *
      * @tparam T The type of the scalar.
      * @param scalar The scalar to multiply by.
-     * @return A reference to the modified ElementArray after multiplication.
+     * @return A reference to the modified ElementMatrix after multiplication.
      */
     template <typename T>
         requires(IsScalarThatCanMultiply<T, Elements_T...> && (std::is_arithmetic_v<T> || std::is_same_v<T, Unitless>))
-    inline constexpr ElementArray& operator*=(const T& scalar)
+    inline constexpr ElementMatrix& operator*=(const T& scalar)
     {
         return *this = *this * scalar;
     }
@@ -377,14 +377,14 @@ struct ElementArray {
      *
      * @tparam T The type of the scalar.
      * @param scalar The scalar to divide by.
-     * @return A new ElementArray representing the result of the division.
+     * @return A new ElementMatrix representing the result of the division.
      */
     template <typename T>
         requires(IsScalarThatCanDivide<T, Elements_T...>)
     inline constexpr auto operator/(const T& scalar) const
     {
         const auto& [... a] = elements;
-        return ElementArray<_n_row_, _n_col_, decltype(a / scalar)...>{ (a / scalar)... };
+        return ElementMatrix<_n_row_, _n_col_, decltype(a / scalar)...>{ (a / scalar)... };
     }
 
     /**
@@ -392,27 +392,27 @@ struct ElementArray {
      *
      * @tparam T The type of the scalar.
      * @param scalar The scalar to divide by.
-     * @return A reference to the modified ElementArray after division.
+     * @return A reference to the modified ElementMatrix after division.
      */
     template <typename T>
         requires(IsScalarThatCanDivide<T, Elements_T...> && (std::is_arithmetic_v<T> || std::is_same_v<T, Unitless>))
-    inline constexpr ElementArray& operator/=(const T& scalar)
+    inline constexpr ElementMatrix& operator/=(const T& scalar)
     {
         return *this = *this / scalar;
     }
 
     /**
-     * @brief Matrix multiplication between compatible ElementArrays.
+     * @brief Matrix multiplication between compatible ElementMatrixs.
      *
      * @tparam n_row_u The number of rows in the other array.
      * @tparam n_col_u The number of columns in the other array.
      * @tparam elements_u The types of the elements in the other array.
-     * @param other The other ElementArray to multiply with.
-     * @return A new ElementArray representing the result of the matrix multiplication.
+     * @param other The other ElementMatrix to multiply with.
+     * @return A new ElementMatrix representing the result of the matrix multiplication.
      */
     template <std::size_t n_row_u, std::size_t n_col_u, typename... elements_u>
         requires(_n_col_ == n_row_u)
-    inline constexpr auto operator*(const ElementArray<n_row_u, n_col_u, elements_u...>& other) const
+    inline constexpr auto operator*(const ElementMatrix<n_row_u, n_col_u, elements_u...>& other) const
     {
         const auto& [... a] = elements;
         const auto& [... b] = other.elements;
@@ -427,29 +427,29 @@ struct ElementArray {
 
         return [&]<std::size_t... resultIdx>(std::index_sequence<resultIdx...>) {
             using result_type =
-                ElementArray<_n_row_, n_col_u, decltype(dot(std::integral_constant<std::size_t, resultIdx>{}))...>;
+                ElementMatrix<_n_row_, n_col_u, decltype(dot(std::integral_constant<std::size_t, resultIdx>{}))...>;
             return result_type{ dot(std::integral_constant<std::size_t, resultIdx>{})... };
         }(std::make_index_sequence<_n_row_ * n_col_u>{});
     }
 
     /**
-     * @brief Dot product between compatible ElementArrays.
+     * @brief Dot product between compatible ElementMatrixs.
      *
      * @tparam n_row_u The number of rows in the other array.
      * @tparam n_col_u The number of columns in the other array.
      * @tparam elements_u The types of the elements in the other array.
-     * @param other The other ElementArray to compute the dot product with.
+     * @param other The other ElementMatrix to compute the dot product with.
      * @return The result of the dot product.
      */
     template <std::size_t n_row_u, std::size_t n_col_u, typename... elements_u>
         requires(
-            IsElementVector<_n_row_, _n_col_> &&                     // row or column vector
-            IsElementVector<n_row_u, n_col_u> &&                     //
-            (_n_row_ * _n_col_ == n_row_u * n_col_u) &&              // same size
-            IsUniform<base_type> &&                                  // uniform element types
-            IsUniform<ElementArray<n_row_u, n_col_u, elements_u...>> //
+            IsElementVector<_n_row_, _n_col_> &&                      // row or column vector
+            IsElementVector<n_row_u, n_col_u> &&                      //
+            (_n_row_ * _n_col_ == n_row_u * n_col_u) &&               // same size
+            IsUniform<base_type> &&                                   // uniform element types
+            IsUniform<ElementMatrix<n_row_u, n_col_u, elements_u...>> //
         )
-    inline constexpr auto dot(const ElementArray<n_row_u, n_col_u, elements_u...>& other) const
+    inline constexpr auto dot(const ElementMatrix<n_row_u, n_col_u, elements_u...>& other) const
     {
         const auto& [... a] = elements;
         const auto& [... b] = other.elements;
@@ -459,22 +459,22 @@ struct ElementArray {
     }
 
     /**
-     * @brief Transpose of the ElementArray.
+     * @brief Transpose of the ElementMatrix.
      *
-     * @return A new ElementArray representing the transpose of the original array.
+     * @return A new ElementMatrix representing the transpose of the original array.
      */
     inline constexpr auto transpose() const
     {
         const auto& [... a] = elements;
         return [&]<std::size_t... resultIdx>(std::index_sequence<resultIdx...>) {
             using result_type =
-                ElementArray<_n_col_, _n_row_, decltype(a...[resultIdx % _n_row_ * _n_col_ + resultIdx / _n_row_])...>;
+                ElementMatrix<_n_col_, _n_row_, decltype(a...[resultIdx % _n_row_ * _n_col_ + resultIdx / _n_row_])...>;
             return result_type{ a...[resultIdx % _n_row_ * _n_col_ + resultIdx / _n_row_]... };
         }(std::make_index_sequence<size>{});
     }
 
     /**
-     * @brief Determinant of the ElementArray.
+     * @brief Determinant of the ElementMatrix.
      *
      * @return The determinant of the array.
      *
@@ -500,7 +500,7 @@ struct ElementArray {
             return [&]<std::size_t... rowIdx>(std::index_sequence<rowIdx...>) {
                 return (
                     (std::get<rowIdx * _n_col_>(elements) *
-                     ElementArray<_n_row_ - 1, _n_col_ - 1, decltype(std::get<rowIdx * _n_col_ + 1>(elements))...>{
+                     ElementMatrix<_n_row_ - 1, _n_col_ - 1, decltype(std::get<rowIdx * _n_col_ + 1>(elements))...>{
                          std::get<rowIdx * _n_col_ + 1>(elements)... } // minor matrix
                          .determinant() *
                      ((rowIdx % 2 == 0) ? 1 : -1)) +
@@ -511,7 +511,7 @@ struct ElementArray {
     }
 
     /**
-     * @brief Trace of the ElementArray.
+     * @brief Trace of the ElementMatrix.
      *
      * @return The trace of the array (sum of diagonal elements).
      *
@@ -529,7 +529,7 @@ struct ElementArray {
     }
 
     /**
-     * @brief Norm of the ElementArray (Euclidean norm).
+     * @brief Norm of the ElementMatrix (Euclidean norm).
      *
      * @return The Euclidean norm of the array.
      *
@@ -547,7 +547,7 @@ struct ElementArray {
     }
 
     /**
-     * @brief Norm of the ElementArray raised to a power p.
+     * @brief Norm of the ElementMatrix raised to a power p.
      *
      * @tparam p The power to which the norm is raised.
      * @return The norm of the array raised to the power p.
@@ -567,54 +567,74 @@ struct ElementArray {
     }
 
     /**
-     * @brief Convert the ElementArray to a tuple.
+     * @brief Convert the ElementMatrix to a tuple.
      *
      * @return A tuple containing the elements of the array.
      */
     inline constexpr tuple_type to_tuple() const { return elements; }
 
     /**
-     * @brief Flatten the ElementArray to a 1D array.
+     * @brief Flatten the ElementMatrix to a 1D array.
      *
-     * @return A new ElementArray representing the flattened version of the original array.
+     * @return A new ElementMatrix representing the flattened version of the original array.
      */
     inline constexpr auto flatten() const
     {
         const auto& [... a] = elements;
-        return ElementArray<1, size, decltype(a)...>{ a... };
+        return ElementMatrix<1, size, decltype(a)...>{ a... };
     }
 
     /**
-     * @brief Force the ElementArray to a std::array of doubles.
+     * @brief Combine two ElementMatrixs with the same number of columns into a new ElementMatrix with the rows of both arrays.
      *
-     * @return A std::array containing the numerical values of the elements in the array.
-     *
-     * @note This function is only defined for uniform element arrays.
+     * @tparam _n_row_u_ The number of rows in the other array.
+     * @tparam _n_col_u_ The number of columns in the other array.
+     * @tparam Elements_T_U The types of the elements in the other array.
+     * @param other The other ElementMatrix to combine with.
+     * @return A new ElementMatrix representing the combined arrays.
      */
-    inline constexpr std::array<double, size> force_to_double_array() const
+    template <std::size_t _n_row_u_, std::size_t _n_col_u_, typename... Elements_T_U>
+        requires(_n_col_ == _n_col_u_)
+    auto combine_rows(const ElementMatrix<_n_row_u_, _n_col_u_, Elements_T_U...>& other) const
     {
         const auto& [... a] = elements;
-        if constexpr (_is_quantity_array) { return std::array<double, size>{ a.numerical_value_in(a.unit)... }; }
-        else {
-            return std::array<double, size>{ static_cast<double>(a)... };
-        }
+        const auto& [... b] = other.elements;
+        return ElementMatrix<_n_row_ + _n_row_u_, _n_col_, decltype(a)..., decltype(b)...>{ a..., b... };
+    }
+
+    /**
+     * @brief Combine two ElementMatrixs with the same number of rows into a new ElementMatrix with the columns of both arrays.
+     *
+     * @tparam _n_row_u_ The number of rows in the other array.
+     * @tparam _n_col_u_ The number of columns in the other array.
+     * @tparam Elements_T_U The types of the elements in the other array.
+     * @param other The other ElementMatrix to combine with.
+     * @return A new ElementMatrix representing the combined arrays.
+     */
+    template <std::size_t _n_row_u_, std::size_t _n_col_u_, typename... Elements_T_U>
+        requires(_n_row_ == _n_row_u_)
+    auto combine_columns(const ElementMatrix<_n_row_u_, _n_col_u_, Elements_T_U...>& other) const
+    {
+        const auto& [... a] = elements;
+        const auto& [... b] = other.elements;
+        return ElementMatrix<_n_row_, _n_col_ + _n_col_u_, decltype(a)..., decltype(b)...>{ a..., b... };
     }
 };
 
 /**
- * @brief Scalar multiplication between a scalar and an ElementArray.
+ * @brief Scalar multiplication between a scalar and an ElementMatrix.
  *
  * @tparam T The type of the scalar.
- * @tparam _n_row_ The number of rows in the ElementArray.
- * @tparam _n_col_ The number of columns in the ElementArray.
- * @tparam Elements_T The types of the elements in the ElementArray.
+ * @tparam _n_row_ The number of rows in the ElementMatrix.
+ * @tparam _n_col_ The number of columns in the ElementMatrix.
+ * @tparam Elements_T The types of the elements in the ElementMatrix.
  * @param scalar The scalar to multiply with.
- * @param arr The ElementArray to multiply.
- * @return A new ElementArray representing the result of the multiplication.
+ * @param arr The ElementMatrix to multiply.
+ * @return A new ElementMatrix representing the result of the multiplication.
  */
 template <typename T, std::size_t _n_row_, std::size_t _n_col_, typename... Elements_T>
     requires(IsScalarThatCanMultiply<T, Elements_T...>)
-inline constexpr auto operator*(const T& scalar, const astrea::astro::ElementArray<_n_row_, _n_col_, Elements_T...>& arr)
+inline constexpr auto operator*(const T& scalar, const astrea::astro::ElementMatrix<_n_row_, _n_col_, Elements_T...>& arr)
 {
     return arr * scalar;
 }
@@ -625,26 +645,26 @@ inline constexpr auto operator*(const T& scalar, const astrea::astro::ElementArr
 namespace std {
 
 /**
- * @brief Specialization of std::tuple_size for ElementArray.
+ * @brief Specialization of std::tuple_size for ElementMatrix.
  *
- * @tparam _n_row_ The number of rows in the ElementArray.
- * @tparam _n_col_ The number of columns in the ElementArray.
- * @tparam Elements_T The types of the elements in the ElementArray.
+ * @tparam _n_row_ The number of rows in the ElementMatrix.
+ * @tparam _n_col_ The number of columns in the ElementMatrix.
+ * @tparam Elements_T The types of the elements in the ElementMatrix.
  */
 template <std::size_t _n_row_, std::size_t _n_col_, typename... Elements_T>
-struct tuple_size<astrea::astro::ElementArray<_n_row_, _n_col_, Elements_T...>>
+struct tuple_size<astrea::astro::ElementMatrix<_n_row_, _n_col_, Elements_T...>>
     : std::integral_constant<std::size_t, sizeof...(Elements_T)> {};
 
 /**
- * @brief Specialization of std::tuple_element for ElementArray.
+ * @brief Specialization of std::tuple_element for ElementMatrix.
  *
  * @tparam I The index of the element to access.
- * @tparam _n_row_ The number of rows in the ElementArray.
- * @tparam _n_col_ The number of columns in the ElementArray.
- * @tparam Elements_T The types of the elements in the ElementArray.
+ * @tparam _n_row_ The number of rows in the ElementMatrix.
+ * @tparam _n_col_ The number of columns in the ElementMatrix.
+ * @tparam Elements_T The types of the elements in the ElementMatrix.
  */
 template <std::size_t I, std::size_t _n_row_, std::size_t _n_col_, typename... Elements_T>
-struct tuple_element<I, astrea::astro::ElementArray<_n_row_, _n_col_, Elements_T...>>
+struct tuple_element<I, astrea::astro::ElementMatrix<_n_row_, _n_col_, Elements_T...>>
     : std::tuple_element<I, std::tuple<Elements_T...>> {};
 
 } // namespace std

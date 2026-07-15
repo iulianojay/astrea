@@ -30,7 +30,7 @@
 // astro
 #include <astro/astro.fwd.hpp>
 #include <astro/frames/framework/CartesianVector.hpp>
-#include <astro/state/framework/OrbitalElements.hpp>
+#include <astro/state/framework/FrameAwareElementMatrixInterface.hpp>
 #include <astro/types/typedefs.hpp>
 
 namespace astrea {
@@ -42,8 +42,7 @@ namespace astro {
  * This class encapsulates the position and velocity of a vehicle in Cartesian coordinates.
  */
 template <IsFrame auto _frame_>
-class Cartesian
-    : public OrbitalElements<Cartesian<_frame_>, _frame_, Distance, Distance, Distance, Velocity, Velocity, Velocity> {
+class Cartesian : public FaemInterface<Cartesian<_frame_>, _frame_, Distance, Distance, Distance, Velocity, Velocity, Velocity> {
 
     template <IsFrame auto frame>
     friend std::ostream& operator<<(std::ostream&, Cartesian<frame> const&);
@@ -258,10 +257,12 @@ class Cartesian
     template <IsFrame auto target_frame>
     Cartesian<target_frame> in_frame(const Date& epoch) const
     {
-        const auto r                                          = get_position();
-        const auto v                                          = get_velocity();
+        const auto r = get_position();
+        const auto v = get_velocity();
+
         const CartesianVector<Distance, target_frame> rTarget = r.template in_frame<target_frame>(epoch);
         const CartesianVector<Velocity, target_frame> vTarget = v.template in_frame<target_frame>(epoch, r);
+
         return Cartesian<target_frame>(rTarget, vTarget);
     }
 
@@ -288,14 +289,28 @@ class Cartesian
      *
      * @return RadiusVector<_frame_> The position vector in Cartesian coordinates.
      */
-    RadiusVector<_frame_> get_position() const { return { get_x(), get_y(), get_z() }; }
+    RadiusVector<_frame_>& get_position() { return { get_x(), get_y(), get_z() }; }
 
     /**
      * @brief Converts the Cartesian state vector to a VelocityVector<_frame_>.
      *
      * @return VelocityVector<_frame_> The velocity vector in Cartesian coordinates.
      */
-    VelocityVector<_frame_> get_velocity() const { return { get_vx(), get_vy(), get_vz() }; }
+    VelocityVector<_frame_>& get_velocity() { return { get_vx(), get_vy(), get_vz() }; }
+
+    /**
+     * @brief Converts the Cartesian state vector to a RadiusVector<_frame_>.
+     *
+     * @return RadiusVector<_frame_> The position vector in Cartesian coordinates.
+     */
+    const RadiusVector<_frame_>& get_position() const { return { get_x(), get_y(), get_z() }; }
+
+    /**
+     * @brief Converts the Cartesian state vector to a VelocityVector<_frame_>.
+     *
+     * @return VelocityVector<_frame_> The velocity vector in Cartesian coordinates.
+     */
+    const VelocityVector<_frame_>& get_velocity() const { return { get_vx(), get_vy(), get_vz() }; }
 
     /**
      * @brief Get the x value of the Cartesian state vector.
@@ -401,7 +416,7 @@ class Cartesian
  */
 template <IsFrame auto _frame_>
 class CartesianPartial
-    : public OrbitalElements<CartesianPartial<_frame_>, _frame_, Velocity, Velocity, Velocity, Acceleration, Acceleration, Acceleration> {
+    : public FaemInterface<CartesianPartial<_frame_>, _frame_, Velocity, Velocity, Velocity, Acceleration, Acceleration, Acceleration> {
 
     template <IsFrame auto frame>
     friend std::ostream& operator<<(std::ostream&, CartesianPartial<frame> const&);

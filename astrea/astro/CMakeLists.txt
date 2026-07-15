@@ -146,7 +146,7 @@ set(ASTRO_HEADERS
     ${ASTRO_BASE}/state/State.hpp
     ${ASTRO_BASE}/state/StateHistory.hpp
 
-    ${ASTRO_BASE}/state/framework/ElementArray.hpp
+    ${ASTRO_BASE}/state/framework/ElementMatrix.hpp
     ${ASTRO_BASE}/state/framework/OrbitalElements.hpp
 
     ${ASTRO_BASE}/state/attitude/Attitude.hpp

@@ -23,6 +23,7 @@
 #include <units/units.hpp>
 
 #include <astro/astro.fwd.hpp>
+#include <astro/state/framework/FrameAwareElementMatrixInterface.hpp>
 #include <astro/types/typedefs.hpp>
 
 namespace astrea {
@@ -37,7 +38,7 @@ namespace astro {
  */
 template <IsFrame auto _frame_>
 class Equinoctial
-    : public OrbitalElements<Equinoctial<_frame_>, _frame_, Distance, Unitless, Unitless, Unitless, Unitless, Angle> {
+    : public FaemInterface<Equinoctial<_frame_>, _frame_, Distance, Unitless, Unitless, Unitless, Unitless, Angle> {
 
     template <IsFrame auto frame>
     friend std::ostream& operator<<(std::ostream&, Equinoctial<frame> const&);
@@ -268,7 +269,7 @@ class Equinoctial
  */
 template <IsFrame auto _frame_>
 class EquinoctialPartial
-    : public OrbitalElements<EquinoctialPartial<_frame_>, _frame_, Velocity, UnitlessPerTime, UnitlessPerTime, UnitlessPerTime, UnitlessPerTime, AngularVelocity> {
+    : public FaemInterface<EquinoctialPartial<_frame_>, _frame_, Velocity, UnitlessPerTime, UnitlessPerTime, UnitlessPerTime, UnitlessPerTime, AngularVelocity> {
 
     template <IsFrame auto frame>
     friend std::ostream& operator<<(std::ostream&, EquinoctialPartial<frame> const&);

@@ -16,7 +16,7 @@
 #include <units/units.hpp>
 
 #include <astro/frames.hpp>
-#include <astro/state/framework/OrbitalElements.hpp>
+#include <astro/state/framework/FrameAwareElementMatrixInterface.hpp>
 
 using namespace astrea;
 using namespace astro;
@@ -38,8 +38,8 @@ using mp_units::si::unit_symbols::s;
  * so that arithmetic operator results (which return Derived_T) are constructible.
  */
 template <IsFrame auto _frame_>
-class TestKeplerian : public OrbitalElements<TestKeplerian<_frame_>, _frame_, Distance, Unitless, Angle, Angle, Angle, Angle> {
-    using Base = OrbitalElements<TestKeplerian<_frame_>, _frame_, Distance, Unitless, Angle, Angle, Angle, Angle>;
+class TestKeplerian : public FaemInterface<TestKeplerian<_frame_>, _frame_, Distance, Unitless, Angle, Angle, Angle, Angle> {
+    using Base = FaemInterface<TestKeplerian<_frame_>, _frame_, Distance, Unitless, Angle, Angle, Angle, Angle>;
 
   public:
     using Base::Base;
@@ -54,8 +54,8 @@ class TestKeplerian : public OrbitalElements<TestKeplerian<_frame_>, _frame_, Di
  *        IsCompatibleOrbitalElements across distinct derived types.
  */
 template <IsFrame auto _frame_>
-class TestKeplerian2 : public OrbitalElements<TestKeplerian2<_frame_>, _frame_, Distance, Unitless, Angle, Angle, Angle, Angle> {
-    using Base = OrbitalElements<TestKeplerian2<_frame_>, _frame_, Distance, Unitless, Angle, Angle, Angle, Angle>;
+class TestKeplerian2 : public FaemInterface<TestKeplerian2<_frame_>, _frame_, Distance, Unitless, Angle, Angle, Angle, Angle> {
+    using Base = FaemInterface<TestKeplerian2<_frame_>, _frame_, Distance, Unitless, Angle, Angle, Angle, Angle>;
 
   public:
     using Base::Base;
@@ -67,12 +67,12 @@ class TestKeplerian2 : public OrbitalElements<TestKeplerian2<_frame_>, _frame_, 
 /**
  * @brief Uniform-element (all double) derived type for testing dot product.
  *
- * ElementArray::dot() requires IsUniform — mixed-type Keplerian elements do not
+ * ElementMatrix::dot() requires IsUniform — mixed-type Keplerian elements do not
  * satisfy that constraint, so a separate scalar-element type is used here.
  */
 template <IsFrame auto _frame_>
-class TestUniform3 : public OrbitalElements<TestUniform3<_frame_>, _frame_, double, double, double> {
-    using Base = OrbitalElements<TestUniform3<_frame_>, _frame_, double, double, double>;
+class TestUniform3 : public FaemInterface<TestUniform3<_frame_>, _frame_, double, double, double> {
+    using Base = FaemInterface<TestUniform3<_frame_>, _frame_, double, double, double>;
 
   public:
     using Base::Base;
@@ -367,13 +367,13 @@ TEST_F(OrbitalElementsTest, Transpose)
 // Conversion helpers
 // ---------------------------------------------------------------------------
 
-TEST_F(OrbitalElementsTest, ToTuple)
+TEST_F(OrbitalElementsTest, ForceToTuple)
 {
     EarthKeplerian state(
         Distance{ 7000.0 * km }, Unitless{ 0.01 * one }, Angle{ 98.0 * deg }, Angle{ 40.0 * deg }, Angle{ 80.0 * deg }, Angle{ 0.0 * deg }
     );
 
-    auto t = state.to_tuple();
+    auto t = state.force_to_tuple();
 
     static_assert(std::is_same_v<decltype(t), EarthKeplerian::ArrayType::tuple_type>);
 
@@ -385,17 +385,20 @@ TEST_F(OrbitalElementsTest, ToTuple)
     ASSERT_EQ(std::get<5>(t), Angle{ 0.0 * deg });
 }
 
-TEST_F(OrbitalElementsTest, ForceToDoubleArray)
+TEST_F(OrbitalElementsTest, ForceToElementMatrix)
 {
-    EarthKeplerian state(Distance{ 1.0 * km }, Unitless{ 2.0 * one }, Angle{ 3.0 * rad }, Angle{ 4.0 * rad }, Angle{ 5.0 * rad }, Angle{ 6.0 * rad });
+    EarthKeplerian state(
+        Distance{ 7000.0 * km }, Unitless{ 0.01 * one }, Angle{ 98.0 * deg }, Angle{ 40.0 * deg }, Angle{ 80.0 * deg }, Angle{ 0.0 * deg }
+    );
 
-    auto arr = state.force_to_double_array();
+    auto arr = state.force_to_element_array();
 
-    ASSERT_EQ(arr.size(), 6u);
-    ASSERT_EQ(arr[0], 1.0); // km → numerical value
-    ASSERT_EQ(arr[1], 2.0); // dimensionless
-    ASSERT_EQ(arr[2], 3.0); // rad → numerical value
-    ASSERT_EQ(arr[3], 4.0);
-    ASSERT_EQ(arr[4], 5.0);
-    ASSERT_EQ(arr[5], 6.0);
+    static_assert(std::is_same_v<decltype(arr), EarthKeplerian::ArrayType>);
+
+    ASSERT_EQ(arr.get<0>(), Distance{ 7000.0 * km });
+    ASSERT_EQ(arr.get<1>(), Unitless{ 0.01 * one });
+    ASSERT_EQ(arr.get<2>(), Angle{ 98.0 * deg });
+    ASSERT_EQ(arr.get<3>(), Angle{ 40.0 * deg });
+    ASSERT_EQ(arr.get<4>(), Angle{ 80.0 * deg });
+    ASSERT_EQ(arr.get<5>(), Angle{ 0.0 * deg });
 }

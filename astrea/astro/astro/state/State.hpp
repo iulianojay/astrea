@@ -38,6 +38,7 @@ namespace astro {
  * This class encapsulates the orbital elements, epoch, and the astrodynamics system
  * that the state belongs to. It also optionally includes the attitude of the object as a quaternion.
  */
+template <typename OrbitalElements_T, typename Attitude_T>
 class State {
 
     friend std::ostream& operator<<(std::ostream& os, const State& state);
@@ -57,23 +58,8 @@ class State {
      * @param epoch The epoch of the state.
      * @param attitude The attitude of the state, represented as a quaternion.
      */
-    State(const OrbitalElements& elements, const Date& epoch, const std::optional<Attitude>& attitude = std::nullopt) :
+    State(const OrbitalElements_T& elements, const Date& epoch, const std::optional<Attitude_T>& attitude = std::nullopt) :
         _elements(elements),
-        _epoch(epoch),
-        _attitude(attitude)
-    {
-    }
-
-    /**
-     * @brief Constructs a State from a Cartesian in any frame, converting it to the primary frame.
-     *
-     * @param elements Cartesian elements in an arbitrary inertial frame.
-     * @param epoch The epoch of the state.
-     * @param attitude The attitude of the state.
-     */
-    template <IsFrame auto frame>
-    State(Cartesian<frame> elements, const Date& epoch, const std::optional<Attitude>& attitude = std::nullopt) :
-        _elements(elements.template in_frame<frames::primary>(epoch)),
         _epoch(epoch),
         _attitude(attitude)
     {
@@ -100,16 +86,16 @@ class State {
     /**
      * @brief Gets the orbital elements of the state.
      *
-     * @return const OrbitalElements& Reference to the orbital elements of the state.
+     * @return const OrbitalElements_T& Reference to the orbital elements of the state.
      */
-    const OrbitalElements& get_elements() const { return _elements; }
+    const OrbitalElements_T& get_elements() const { return _elements; }
 
     /**
      * @brief Get the attitude of the state.
      *
-     * @return std::optional<Attitude> The attitude of the state.
+     * @return std::optional<Attitude_T> The attitude of the state.
      */
-    const std::optional<Attitude>& get_attitude() const { return _attitude; }
+    const std::optional<Attitude_T>& get_attitude() const { return _attitude; }
 
     /**
      * @brief Gets the epoch of the state.
@@ -145,39 +131,15 @@ class State {
     }
 
     /**
-     * @brief Converts the orbital elements to a different type based on index.
-     *
-     * @param idx The index of the orbital element type to convert to.
-     */
-    State& convert_to_set(const std::size_t idx)
-    {
-        _elements.convert_to_set(idx, get_mu());
-        return *this;
-    }
-
-    /**
-     * @brief Converts the state to a different type of orbital elements based on index.
-     *
-     * @param idx The index of the orbital element type to convert to.
-     * @return State A new State object with the converted orbital elements.
-     */
-    State convert_to_set(const std::size_t idx) const
-    {
-        State newState = *this;
-        newState._elements.convert_to_set(idx, get_mu());
-        return newState;
-    }
-
-    /**
      * @brief Converts the state to a different type of orbital elements.
      *
      * @tparam T The type to convert the state to.
      * @return State A new State object with the converted orbital elements.
      */
     template <IsOrbitalElements T>
-    State convert_to_set() const
+    State<T, Attitude_T> convert_to_set() const
     {
-        return { in_element_set<T>(), _epoch };
+        return { in_element_set<T>(), _epoch, _attitude };
     }
 
     /**
@@ -254,7 +216,7 @@ class State {
      *
      * @param attitude The new attitude to set.
      */
-    void set_attitude(const Attitude& attitude) { _attitude = attitude; }
+    void set_attitude(const Attitude_T& attitude) { _attitude = attitude; }
 
     /**
      * @brief Sets the epoch of the state.
@@ -264,22 +226,19 @@ class State {
     void set_epoch(const Date& epoch) { _epoch = epoch; }
 
   private:
-    OrbitalElements _elements; //!< The orbital elements of the state, defining the shape and attitude of the orbit.
+    OrbitalElements_T _elements; //!< The orbital elements of the state, defining the shape and attitude of the orbit.
     Date _epoch; //!< The epoch of the state, representing the time at which the orbital elements are defined.
-    std::optional<Attitude> _attitude; //!< The attitude of the state, represented as a quaternion.
+    std::optional<Attitude_T> _attitude; //!< The attitude of the state, represented as a quaternion.
 
     /**
      * @brief Converts the State to a vector of Unitless values.
      *
-     * @return std::vector<Unitless> Vector containing the orbital elements as unitless values.
+     * @return auto Vector containing the orbital elements as element array values.
      */
-    std::vector<Unitless> force_to_vector() const
+    auto force_to_element_array() const
     {
-        auto retval = _elements.force_to_vector();
-        if (_attitude.has_value()) {
-            const auto& attitudeVector = _attitude->force_to_vector();
-            retval.insert(retval.end(), attitudeVector.begin(), attitudeVector.end());
-        }
+        auto retval = _elements.force_to_element_array();
+        if (_attitude.has_value()) { retval.combine_rows(_attitude->force_to_element_array()); }
         return retval;
     }
 
@@ -415,11 +374,11 @@ class StatePartial {
      *
      * @return std::vector<Unitless> Vector containing the orbital element partials and attitude partials as unitless values.
      */
-    std::vector<Unitless> force_to_vector() const
+    std::vector<Unitless> force_to_element_array() const
     {
-        auto retval = _elementPartials.force_to_vector();
+        auto retval = _elementPartials.force_to_element_array();
         if (_attitudePartial.has_value()) {
-            const auto& attitudeVector = _attitudePartial->force_to_vector();
+            const auto& attitudeVector = _attitudePartial->force_to_element_array();
             retval.insert(retval.end(), attitudeVector.begin(), attitudeVector.end());
         }
         return retval;

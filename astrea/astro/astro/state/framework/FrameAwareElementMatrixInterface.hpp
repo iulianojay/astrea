@@ -1,7 +1,7 @@
 /**
- * @file OrbitalElements.hpp
+ * @file FrameAwareElementMatrixInterface.hpp
  * @author Jay Iuliano (iuliano.jay@gmail.com)
- * @brief This file defines the OrbitalElements class and its associated methods.
+ * @brief This file defines the FrameAwareElementMatrixInterface class and its associated methods.
  * @date 2025-08-02
  *
  * @copyright Copyright (c) 2025 Jay Iuliano
@@ -19,7 +19,7 @@
 #pragma once
 
 #include <astro/frames.hpp>
-#include <astro/state/framework/ElementArray.hpp>
+#include <astro/state/framework/ElementMatrix.hpp>
 
 namespace astrea {
 namespace astro {
@@ -27,19 +27,19 @@ namespace astro {
 template <typename T>
 concept IsOrbitalElements = requires {
     typename T::ArrayType;
-    typename T::orbital_elements_temp_tag;
+    typename T::orbital_elements_tag;
 };
 
 template <typename Derived_T, typename Derived_U>
 concept IsCompatibleOrbitalElements = IsOrbitalElements<Derived_T> && IsOrbitalElements<Derived_U> &&
-                                      IsCompatibleElementArray<typename Derived_T::ArrayType, typename Derived_U::ArrayType> &&
+                                      IsCompatibleElementMatrix<typename Derived_T::ArrayType, typename Derived_U::ArrayType> &&
                                       equivalent(Derived_T::frame, Derived_U::frame);
 
 template <typename Derived_T, IsFrame auto _frame_, typename... Elements_T>
-class OrbitalElements {
+class FrameAwareElementMatrixInterface {
   public:
-    using orbital_elements_temp_tag = void; //!< Tag type used by IsOrbitalElements concept detection.
-    using ArrayType = ElementArray<sizeof...(Elements_T), 1, Elements_T...>; //!< The underlying array type representing the orbital elements.
+    using orbital_elements_tag = void; //!< Tag type used by IsOrbitalElements concept detection.
+    using ArrayType = ElementMatrix<sizeof...(Elements_T), 1, Elements_T...>; //!< The underlying array type representing the orbital elements.
 
     static constexpr auto frame = _frame_; //!< The reference frame of the OrbitalElements.
 
@@ -48,14 +48,14 @@ class OrbitalElements {
      *
      * Initializes the OrbitalElements with default values.
      */
-    OrbitalElements() = default;
+    FrameAwareElementMatrixInterface() = default;
 
     /**
      * @brief Constructor for OrbitalElements with specified elements.
      *
      * @param elements The elements to initialize the OrbitalElements with.
      */
-    OrbitalElements(const Elements_T&... elements) :
+    FrameAwareElementMatrixInterface(const Elements_T&... elements) :
         _elements(elements...)
     {
     }
@@ -65,7 +65,7 @@ class OrbitalElements {
      *
      * @param elements The array of elements to initialize the OrbitalElements with.
      */
-    OrbitalElements(const ArrayType& elements) :
+    FrameAwareElementMatrixInterface(const ArrayType& elements) :
         _elements(elements)
     {
     }
@@ -75,7 +75,7 @@ class OrbitalElements {
      *
      * @param elements The array of elements to move into the OrbitalElements.
      */
-    OrbitalElements(ArrayType&& elements) :
+    FrameAwareElementMatrixInterface(ArrayType&& elements) :
         _elements(std::move(elements))
     {
     }
@@ -83,7 +83,7 @@ class OrbitalElements {
     /**
      * @brief Virtual destructor for OrbitalElements.
      */
-    virtual ~OrbitalElements() = default;
+    virtual ~FrameAwareElementMatrixInterface() = default;
 
     /**
      * @brief Copy assignment operator for the Derived_T.
@@ -340,35 +340,25 @@ class OrbitalElements {
     inline constexpr auto transpose() const { return _elements.transpose(); }
 
     /**
-     * @brief Convert the Derived_T to an ElementArray.
+     * @brief Convert the Derived_T to a raw ElementMatrix.
      *
-     * @return An ElementArray containing the elements of the array.
+     * @return An ElementMatrix containing the elements of the array.
      */
-    inline constexpr auto to_element_array() const { return _elements; }
+    inline constexpr auto force_to_element_array() const { return _elements; }
 
     /**
-     * @brief Convert the Derived_T to a tuple.
+     * @brief Convert the Derived_T to a raw tuple.
      *
      * @return A tuple containing the elements of the array.
      */
-    inline constexpr typename ArrayType::tuple_type to_tuple() const { return _elements.to_tuple(); }
-
-    /**
-     * @brief Force the Derived_T to a std::array of doubles.
-     *
-     * @return A std::array containing the numerical values of the elements in the array.
-     *
-     * @note This function is only defined for uniform element arrays.
-     */
-    inline constexpr auto force_to_double_array() const { return _elements.force_to_double_array(); }
+    inline constexpr typename ArrayType::tuple_type force_to_tuple() const { return _elements.to_tuple(); }
 
   protected:
     ArrayType _elements; //!< The underlying Derived_T representing the orbital elements.
 };
 
-template <IsFrame auto _frame_>
-class KeplerianTemp
-    : public OrbitalElements<KeplerianTemp<_frame_>, _frame_, Distance, Unitless, Angle, Angle, Angle, Angle> {};
+template <typename Derived_T, IsFrame auto _frame_, typename... Elements_T>
+using FaemInterface = FrameAwareElementMatrixInterface<Derived_T, _frame_, Elements_T...>;
 
 } // namespace astro
 } // namespace astrea
