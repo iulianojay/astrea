@@ -69,7 +69,7 @@ static AccessArray
         for (auto& plane : shell.get_planes()) {
             for (auto& sat : plane.get_all_spacecraft()) {
                 auto& stateHistory = sat.get_state_history();
-                stateHistory.template convert_to_set<Cartesian<frames::primary>>();
+                stateHistory.template convert_to_set<Cartesian<frames::earth::icrf>>();
                 if (stateHistory.size() == 0) {
                     throw std::runtime_error("[trace] Error: State history not populated after propagation.");
                 }

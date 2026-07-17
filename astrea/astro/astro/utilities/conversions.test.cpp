@@ -20,7 +20,7 @@
 #include <units/units.hpp>
 
 #include <astro/state/angular_elements/Geodetic.hpp>
-#include <astro/state/framework/OrbitalElements.hpp>
+#include <astro/state/framework/element_matrix_concepts.hpp>
 #include <astro/systems/system_utilities.hpp>
 #include <astro/utilities/conversions.hpp>
 #include <tests/utilities/comparisons.hpp>
@@ -54,15 +54,15 @@ class ConversionTest : public testing::Test {
     void SetUp() override
     {
         const Distance R   = 10000.0 * km;
-        const GravParam mu = get_mu<frames::primary.origin>();
+        const GravParam mu = get_mu<frames::earth::icrf.origin>();
         const Velocity V   = sqrt(mu / R);
 
-        _keplExp = Keplerian<frames::primary>(R, 0.0 * one, 0.0 * rad, 0.0 * rad, 0.0 * rad, 0.0 * rad);
-        _cartExp = Cartesian<frames::primary>(R, 0.0 * km, 0.0 * km, 0.0 * km / s, V, 0.0 * km / s);
-        _equiExp = Equinoctial<frames::primary>(R, 0.0 * one, 0.0 * one, 0.0 * one, 0.0 * one, 0.0 * rad);
+        _keplExp = Keplerian<frames::earth::icrf>(R, 0.0 * one, 0.0 * rad, 0.0 * rad, 0.0 * rad, 0.0 * rad);
+        _cartExp = Cartesian<frames::earth::icrf>(R, 0.0 * km, 0.0 * km, 0.0 * km / s, V, 0.0 * km / s);
+        _equiExp = Equinoctial<frames::earth::icrf>(R, 0.0 * one, 0.0 * one, 0.0 * one, 0.0 * one, 0.0 * rad);
 
-        _eciExp  = Cartesian<frames::primary>(R, 0.0 * km, 0.0 * km, 0.0 * km / s, V, 0.0 * km / s);
-        _ecefExp = Cartesian<frames::primary>(R, 0.0 * km, 0.0 * km, 0.0 * km / s, V, 0.0 * km / s);
+        _eciExp  = Cartesian<frames::earth::icrf>(R, 0.0 * km, 0.0 * km, 0.0 * km / s, V, 0.0 * km / s);
+        _ecefExp = Cartesian<frames::earth::icrf>(R, 0.0 * km, 0.0 * km, 0.0 * km / s, V, 0.0 * km / s);
 
         // Hard code vallado values to ensure tests pass
         rEquitorial = 6378.1363 * km;
@@ -78,7 +78,7 @@ class ConversionTest : public testing::Test {
     OrbitalElements _ecefExp;
 
     // Setup
-    GravParam mu = get_mu<frames::primary.origin>();
+    GravParam mu = get_mu<frames::earth::icrf.origin>();
     Distance rEquitorial;
     Distance rPolar;
 

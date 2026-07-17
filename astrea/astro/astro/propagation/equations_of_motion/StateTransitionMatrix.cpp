@@ -2,7 +2,7 @@
 
 #include <astro/propagation/equations_of_motion/EquationsOfMotion.hpp>
 #include <astro/state/State.hpp>
-#include <astro/state/framework/OrbitalElements.hpp>
+#include <astro/state/framework/element_matrix_concepts.hpp>
 
 using namespace mp_units;
 

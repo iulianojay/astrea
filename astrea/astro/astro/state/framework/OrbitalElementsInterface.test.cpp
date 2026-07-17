@@ -16,7 +16,7 @@
 #include <units/units.hpp>
 
 #include <astro/frames.hpp>
-#include <astro/state/framework/FrameAwareElementMatrixInterface.hpp>
+#include <astro/state/framework/OrbitalElementsInterface.hpp>
 
 using namespace astrea;
 using namespace astro;
@@ -38,8 +38,9 @@ using mp_units::si::unit_symbols::s;
  * so that arithmetic operator results (which return Derived_T) are constructible.
  */
 template <IsFrame auto _frame_>
-class TestKeplerian : public FaemInterface<TestKeplerian<_frame_>, _frame_, Distance, Unitless, Angle, Angle, Angle, Angle> {
-    using Base = FaemInterface<TestKeplerian<_frame_>, _frame_, Distance, Unitless, Angle, Angle, Angle, Angle>;
+class TestKeplerian
+    : public OrbitalElementsInterface<TestKeplerian<_frame_>, _frame_, Distance, Unitless, Angle, Angle, Angle, Angle> {
+    using Base = OrbitalElementsInterface<TestKeplerian<_frame_>, _frame_, Distance, Unitless, Angle, Angle, Angle, Angle>;
 
   public:
     using Base::Base;
@@ -54,8 +55,9 @@ class TestKeplerian : public FaemInterface<TestKeplerian<_frame_>, _frame_, Dist
  *        IsCompatibleOrbitalElements across distinct derived types.
  */
 template <IsFrame auto _frame_>
-class TestKeplerian2 : public FaemInterface<TestKeplerian2<_frame_>, _frame_, Distance, Unitless, Angle, Angle, Angle, Angle> {
-    using Base = FaemInterface<TestKeplerian2<_frame_>, _frame_, Distance, Unitless, Angle, Angle, Angle, Angle>;
+class TestKeplerian2
+    : public OrbitalElementsInterface<TestKeplerian2<_frame_>, _frame_, Distance, Unitless, Angle, Angle, Angle, Angle> {
+    using Base = OrbitalElementsInterface<TestKeplerian2<_frame_>, _frame_, Distance, Unitless, Angle, Angle, Angle, Angle>;
 
   public:
     using Base::Base;
@@ -71,8 +73,8 @@ class TestKeplerian2 : public FaemInterface<TestKeplerian2<_frame_>, _frame_, Di
  * satisfy that constraint, so a separate scalar-element type is used here.
  */
 template <IsFrame auto _frame_>
-class TestUniform3 : public FaemInterface<TestUniform3<_frame_>, _frame_, double, double, double> {
-    using Base = FaemInterface<TestUniform3<_frame_>, _frame_, double, double, double>;
+class TestUniform3 : public OrbitalElementsInterface<TestUniform3<_frame_>, _frame_, double, double, double> {
+    using Base = OrbitalElementsInterface<TestUniform3<_frame_>, _frame_, double, double, double>;
 
   public:
     using Base::Base;

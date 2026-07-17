@@ -26,8 +26,13 @@
 namespace astrea {
 namespace astro {
 
+template <typename OrbitalElements_T, typename Attitude_T>
 class State;
+
+template <typename OrbitalElements_T, typename Attitude_T>
 class StatePartial;
+
+template <typename State_T>
 class StateHistory;
 
 // ELement sets

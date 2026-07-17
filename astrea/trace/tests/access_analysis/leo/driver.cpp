@@ -48,7 +48,7 @@ using mp_units::si::unit_symbols::W;
 class LeoToGroundAccessTest : public testing::Test {
   public:
     LeoToGroundAccessTest() :
-        mu(get_mu<frames::primary.origin>()),
+        mu(get_mu<frames::earth::icrf.origin>()),
         semimajorLeo(6778.0 * km),
         propTime(hours(2.0)),
         resolution(seconds(5.0))

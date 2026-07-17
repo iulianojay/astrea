@@ -22,7 +22,7 @@
 #include <astro/propagation/event_detection/events/ImpulsiveBurn.hpp>
 #include <astro/propagation/force_models/ForceModel.hpp>
 #include <astro/propagation/numerical/Integrator.hpp>
-#include <astro/state/framework/OrbitalElements.hpp>
+#include <astro/state/framework/element_matrix_concepts.hpp>
 #include <astro/systems/system_utilities.hpp>
 #include <astro/time/Date.hpp>
 #include <astro/time/Interval.hpp>
@@ -43,7 +43,7 @@ using mp_units::si::unit_symbols::W;
 class EventDetectionTest : public testing::Test {
   public:
     EventDetectionTest() :
-        mu(get_mu<frames::primary.origin>()),
+        mu(get_mu<frames::earth::icrf.origin>()),
         propTime(weeks(1)),
         epoch(J2000)
     {

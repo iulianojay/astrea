@@ -20,7 +20,7 @@
 #include <astro/propagation/event_detection/Event.hpp>
 #include <astro/propagation/event_detection/EventDetector.hpp>
 #include <astro/propagation/event_detection/events/NullEvent.hpp>
-#include <astro/state/framework/OrbitalElements.hpp>
+#include <astro/state/framework/element_matrix_concepts.hpp>
 
 using namespace astrea;
 using namespace astro;

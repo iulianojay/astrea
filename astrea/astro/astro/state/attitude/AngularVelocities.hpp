@@ -27,6 +27,7 @@
 #include <astro/frames/framework/frame_concepts.hpp>
 #include <astro/platforms/InertiaTensor.hpp>
 #include <astro/state/attitude/EulerAngles.hpp>
+#include <astro/state/framework/ElementMatrix.hpp>
 #include <astro/types/enums.hpp>
 #include <astro/utilities/conversions.hpp>
 
@@ -345,11 +346,9 @@ class AngularVelocities {
      *
      * @return A std::vector of Unitless quantities representing the components of the angle sequence velocity, in the order [first, second, third].
      */
-    std::vector<Unitless> force_to_vector() const
+    ElementMatrix<3, 1, AngularVelocity, AngularVelocity, AngularVelocity> force_to_element_array() const
     {
-        return { _angularVelocities[0] / _angularVelocities[0].unit,
-                 _angularVelocities[1] / _angularVelocities[1].unit,
-                 _angularVelocities[2] / _angularVelocities[2].unit };
+        return { _angularVelocities[0], _angularVelocities[1], _angularVelocities[2] };
     }
 
     /**
@@ -378,25 +377,6 @@ class AngularVelocities {
 
   private:
     CartesianVector<AngularVelocity, in_frame> _angularVelocities;
-
-    /**
-     * @brief Constructs an AngularVelocities from a vector of Unitless quantities representing the angle components.
-     *
-     * @param vec A std::vector of Unitless quantities representing the components of the angle sequence, in the order [first, second, third].
-     * @return A new AngularVelocities constructed from the given vector.
-     *
-     * @throws std::invalid_argument if the input vector does not have exactly 3 components.
-     */
-    static AngularVelocities from_vector(const std::vector<Unitless>& vec)
-    {
-        using mp_units::angular::unit_symbols::rad;
-        using mp_units::si::unit_symbols::s;
-
-        if (vec.size() != 3) {
-            throw std::invalid_argument("Input vector must have exactly 3 components to convert to an AngularVelocities.");
-        }
-        return { vec[0] * rad / s, vec[1] * rad / s, vec[2] * rad / s };
-    }
 };
 
 /**
@@ -625,11 +605,11 @@ class AngularAccelerations {
     }
 
     /**
-     * @brief Converts the angular sequence acceleration to a vector form for use in numerical integration.
-     *
+     * @brief Converts the angular sequence acceleration to an element array for use in numerical integration.
+
      * @return A std::vector of Unitless quantities representing the components of the angular sequence acceleration, in the order [first, second, third].
      */
-    std::vector<Unitless> force_to_vector() const
+    ElementMatrix<3, 1, AngularAcceleration, AngularAcceleration, AngularAcceleration> force_to_element_array() const
     {
         return { _angularAccels[0] / _angularAccels[0].unit,
                  _angularAccels[1] / _angularAccels[1].unit,

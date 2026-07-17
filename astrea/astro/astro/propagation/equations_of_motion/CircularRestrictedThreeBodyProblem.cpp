@@ -36,7 +36,7 @@ using si::unit_symbols::s;
 namespace astrea {
 namespace astro {
 
-using frames::primary;
+using frames::earth::icrf;
 using frames::earth_moon_barycenter::ems;
 
 CircularRestrictedThreeBodyProblem::CircularRestrictedThreeBodyProblem(const ForceModel& forces) :

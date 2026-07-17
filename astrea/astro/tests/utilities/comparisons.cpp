@@ -17,7 +17,7 @@
 
 #include <math/operations.hpp>
 
-#include <astro/state/framework/OrbitalElements.hpp>
+#include <astro/state/framework/element_matrix_concepts.hpp>
 
 namespace astrea {
 

@@ -22,10 +22,8 @@
 #include <optional>
 
 #include <astro/frames/definitions/dynamic_frames.hpp>
-#include <astro/state/attitude/Attitude.hpp>
 #include <astro/state/attitude/Quaternion.hpp>
-#include <astro/state/framework/OrbitalElements.hpp>
-#include <astro/state/framework/orbital_elements.hpp>
+#include <astro/state/framework/element_matrix_concepts.hpp>
 #include <astro/systems/system_utilities.hpp>
 #include <astro/time/Date.hpp>
 #include <astro/types/typedefs.hpp>
@@ -157,11 +155,11 @@ class State {
     /**
      * @brief Gets the position vector from the state.
      *
-     * @return RadiusVector<frames::primary> The position vector of the state.
+     * @return RadiusVector<frames::earth::icrf> The position vector of the state.
      */
-    RadiusVector<frames::primary> get_position() const
+    RadiusVector<frames::earth::icrf> get_position() const
     {
-        return in_element_set<Cartesian<frames::primary>>().get_position();
+        return in_element_set<Cartesian<frames::earth::icrf>>().get_position();
     }
 
     /**
@@ -179,11 +177,11 @@ class State {
     /**
      * @brief Gets the velocity vector from the state.
      *
-     * @return VelocityVector<frames::primary> The velocity vector of the state.
+     * @return VelocityVector<frames::earth::icrf> The velocity vector of the state.
      */
-    VelocityVector<frames::primary> get_velocity() const
+    VelocityVector<frames::earth::icrf> get_velocity() const
     {
-        return in_element_set<Cartesian<frames::primary>>().get_velocity();
+        return in_element_set<Cartesian<frames::earth::icrf>>().get_velocity();
     }
 
     /**
@@ -249,7 +247,18 @@ class State {
      * @param idx The index of the orbital element type to create.
      * @return State The created State object.
      */
-    static State from_vector(const std::vector<Unitless>& vec, const std::size_t idx);
+    template <std::size_t size, typename... Elements_T>
+    void update_from_element_array(const ElementMatrix<size, 1, Elements_T...>& array)
+    {
+        template for (constexpr auto idx : std::make_index_sequence<size>)
+        {
+            static_assert(std::is_same_v<decltype(array.get<idx>()), decltype(_elements.get<idx>())>, "All elements in the array must be the same type");
+            if constexpr (idx < _elements.size()) { _elements.get<idx>() = array.get<idx>(); }
+            else { // Assumed that a larger input array means that the attitude is being updated as well
+                _attitude->get<idx - _elements.size()>() = array.get<idx>();
+            }
+        }
+    }
 
     /**
      * @brief Adds two State objects together.
@@ -321,7 +330,7 @@ class State {
      * @param divisor The Time to divide by.
      * @return StatePartial The resulting StatePartial after division.
      */
-    StatePartial operator/(const Time& divisor) const;
+    StatePartial<OrbitalElements_T, Attitude_T> operator/(const Time& divisor) const;
 
     /**
      * @brief Validates that another State object belongs to the same astrodynamics system.
@@ -331,6 +340,7 @@ class State {
     void validate_system(const State& other) const;
 };
 
+template <typename OrbitalElements_T, typename Attitude_T>
 class StatePartial {
 
   public:
@@ -360,7 +370,7 @@ class StatePartial {
      * @param time The time to multiply with.
      * @return State The resulting State after multiplication.
      */
-    State operator*(const Time& time) const;
+    State<OrbitalElements_T, Attitude_T> operator*(const Time& time) const;
 
     /**
      * @brief Gets the epoch of the state partial.
@@ -392,3 +402,5 @@ class StatePartial {
 
 } // namespace astro
 } // namespace astrea
+
+#include <astro/state/State.ipp>

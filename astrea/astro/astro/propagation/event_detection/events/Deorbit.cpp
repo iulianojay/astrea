@@ -13,7 +13,6 @@
 
 #include <astro/propagation/event_detection/events/Deorbit.hpp>
 
-#include <astro/frames/definitions/frame_registry.hpp>
 #include <astro/state/State.hpp>
 #include <astro/state/angular_elements/Geodetic.hpp>
 
@@ -31,12 +30,12 @@ std::string Deorbit::get_name() const { return "Deorbit"; }
 
 Unitless Deorbit::measure_event(const Time& time, const State& state, const Vehicle& vehicle) const
 {
-    const Cartesian<frames::primary> elements = state.in_element_set<Cartesian<frames::primary>>();
+    const Cartesian<frames::earth::icrf> elements = state.in_element_set<Cartesian<frames::earth::icrf>>();
 
-    const Distance altitude = Geodetic<frames::primary.origin>(elements.get_position(), state.get_epoch()).get_altitude();
+    const Distance altitude = Geodetic<frames::earth::icrf.origin>(elements.get_position(), state.get_epoch()).get_altitude();
 
     if (_triggerAltitude != 0.0 * km) { return (altitude - _triggerAltitude) / (1.0 * km); }
-    return (altitude - get_crash_radius<frames::primary.origin>()) / (1.0 * km);
+    return (altitude - get_crash_radius<frames::earth::icrf.origin>()) / (1.0 * km);
 }
 
 bool Deorbit::is_terminal() const { return true; }

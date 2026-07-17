@@ -46,16 +46,16 @@ KeplerianVop::KeplerianVop(const ForceModel& forces, const bool doWarn) :
 OrbitalElementPartials KeplerianVop::compute_dynamics(
     const State& state,
     const Vehicle& vehicle,
-    const ForceVector<frames::primary>& perts,
-    const ForceVector<frames::primary>& control
+    const ForceVector<frames::earth::icrf>& perts,
+    const ForceVector<frames::earth::icrf>& control
 ) const
 {
     // Extract
-    const GravParam mu = get_mu<frames::primary.origin>();
+    const GravParam mu = get_mu<frames::earth::icrf.origin>();
     const Date& date   = state.get_epoch();
 
-    const Keplerian<frames::primary> elements = state.in_element_set<Keplerian<frames::primary>>();
-    const Distance& a                         = elements.get_semimajor();
+    const Keplerian<frames::earth::icrf> elements = state.in_element_set<Keplerian<frames::earth::icrf>>();
+    const Distance& a                             = elements.get_semimajor();
     // const Angle& raan = elements.get_right_ascension();
     const Angle& w     = elements.get_argument_of_perigee();
     const Angle& theta = elements.get_true_anomaly();
@@ -68,8 +68,8 @@ OrbitalElementPartials KeplerianVop::compute_dynamics(
     if (doWarn) { check_degenerate(ecc, inc); }
 
     // conversions KEPLERIANs to r and v
-    const VelocityVector<frames::primary> v = state.get_velocity();
-    const RadiusVector<frames::primary> r   = state.get_position();
+    const VelocityVector<frames::earth::icrf> v = state.get_velocity();
+    const RadiusVector<frames::earth::icrf> r   = state.get_position();
 
     // Calculate R, N, and T
     const auto ricFrame = frames::dynamic::ric.instantaneous(r, v);
@@ -106,7 +106,7 @@ OrbitalElementPartials KeplerianVop::compute_dynamics(
     const AngularVelocity draandt = R * sinU / (h * sin(inc)) * normalPert * (isq_angle::cotes_angle);
     const AngularVelocity dwdt    = (-dthetadt + (hOverRSquared * isq_angle::cotes_angle - draandt * cos(inc)));
 
-    return KeplerianPartial<frames::primary>(dadt, deccdt, dincdt, draandt, dwdt, dthetadt);
+    return KeplerianPartial<frames::earth::icrf>(dadt, deccdt, dincdt, draandt, dwdt, dthetadt);
 }
 
 void KeplerianVop::check_degenerate(const Unitless& ecc, const Angle& inc) const

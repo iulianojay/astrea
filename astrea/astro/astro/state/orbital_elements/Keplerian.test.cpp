@@ -18,7 +18,7 @@
 
 #include <astro/frames.hpp>
 #include <astro/frames/framework/CartesianVector.hpp>
-#include <astro/state/framework/OrbitalElements.hpp>
+#include <astro/state/framework/element_matrix_concepts.hpp>
 #include <astro/state/orbital_elements/Cartesian.hpp>
 #include <astro/state/orbital_elements/Equinoctial.hpp>
 #include <astro/state/orbital_elements/Keplerian.hpp>
@@ -43,7 +43,7 @@ class KeplerianTest : public testing::Test {
     const Unitless REL_TOL = 1.0e-6;
 
     Date epoch;
-    const GravParam mu = get_mu<frames::primary.origin>();
+    const GravParam mu = get_mu<frames::earth::icrf.origin>();
     Distance a         = 7000.0 * km;
     Unitless ecc       = 0.01 * one;
     Angle inc          = 98.0 * deg;

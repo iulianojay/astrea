@@ -30,7 +30,7 @@
 // astro
 #include <astro/astro.fwd.hpp>
 #include <astro/frames/framework/CartesianVector.hpp>
-#include <astro/state/framework/FrameAwareElementMatrixInterface.hpp>
+#include <astro/state/framework/OrbitalElementsInterface.hpp>
 #include <astro/types/typedefs.hpp>
 
 namespace astrea {
@@ -42,13 +42,18 @@ namespace astro {
  * This class encapsulates the position and velocity of a vehicle in Cartesian coordinates.
  */
 template <IsFrame auto _frame_>
-class Cartesian : public FaemInterface<Cartesian<_frame_>, _frame_, Distance, Distance, Distance, Velocity, Velocity, Velocity> {
+class Cartesian
+    : public OrbitalElementsInterface<Cartesian<_frame_>, _frame_, Distance, Distance, Distance, Velocity, Velocity, Velocity> {
+
+    using Base_T = OrbitalElementsInterface<Cartesian<_frame_>, _frame_, Distance, Distance, Distance, Velocity, Velocity, Velocity>;
 
     template <IsFrame auto frame>
     friend std::ostream& operator<<(std::ostream&, Cartesian<frame> const&);
     friend class OrbitalElements;
 
   public:
+    using Base_T::Base_T;
+
     /**
      * @brief Default constructor for Cartesian.
      *
@@ -63,7 +68,7 @@ class Cartesian : public FaemInterface<Cartesian<_frame_>, _frame_, Distance, Di
      * @param v Velocity vector
      */
     Cartesian(const RadiusVector<_frame_>& r, const VelocityVector<_frame_>& v) :
-        _elements(r[0], r[1], r[2], v[0], v[1], v[2])
+        Base_T(r[0], r[1], r[2], v[0], v[1], v[2])
     {
     }
 
@@ -416,12 +421,17 @@ class Cartesian : public FaemInterface<Cartesian<_frame_>, _frame_, Distance, Di
  */
 template <IsFrame auto _frame_>
 class CartesianPartial
-    : public FaemInterface<CartesianPartial<_frame_>, _frame_, Velocity, Velocity, Velocity, Acceleration, Acceleration, Acceleration> {
+    : public OrbitalElementsInterface<CartesianPartial<_frame_>, _frame_, Velocity, Velocity, Velocity, Acceleration, Acceleration, Acceleration> {
+
+    using Base_T =
+        OrbitalElementsInterface<CartesianPartial<_frame_>, _frame_, Velocity, Velocity, Velocity, Acceleration, Acceleration, Acceleration>;
 
     template <IsFrame auto frame>
     friend std::ostream& operator<<(std::ostream&, CartesianPartial<frame> const&);
 
   public:
+    using Base_T::Base_T;
+
     /**
      * @brief Default constructor for CartesianPartial.
      */
@@ -434,7 +444,7 @@ class CartesianPartial
      * @param a Acceleration vector
      */
     CartesianPartial(const VelocityVector<_frame_>& v, const AccelerationVector<_frame_>& a) :
-        _elements(v[0], v[1], v[2], a[0], a[1], a[2])
+        Base_T(v[0], v[1], v[2], a[0], a[1], a[2])
     {
     }
 

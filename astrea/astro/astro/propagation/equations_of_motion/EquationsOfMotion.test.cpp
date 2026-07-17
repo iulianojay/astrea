@@ -22,8 +22,7 @@
 #include <astro/propagation/force_models/ForceModel.hpp>
 #include <astro/propagation/force_models/Perturbation.hpp>
 #include <astro/state/State.hpp>
-#include <astro/state/attitude/Attitude.hpp>
-#include <astro/state/framework/OrbitalElements.hpp>
+#include <astro/state/framework/element_matrix_concepts.hpp>
 #include <astro/state/orbital_elements/Cartesian.hpp>
 #include <astro/systems/system_utilities.hpp>
 #include <astro/time/Date.hpp>
@@ -52,8 +51,8 @@ class MockEquationsOfMotion : public EquationsOfMotion {
     OrbitalElementPartials compute_dynamics(
         const State& state,
         const Vehicle& vehicle,
-        const ForceVector<frames::primary>& perts,
-        const ForceVector<frames::primary>& control
+        const ForceVector<frames::earth::icrf>& perts,
+        const ForceVector<frames::earth::icrf>& control
     ) const override
     {
         // Return simple mock dynamics (zero acceleration for testing)
@@ -64,7 +63,7 @@ class MockEquationsOfMotion : public EquationsOfMotion {
 
     constexpr std::size_t get_expected_set_id() const override
     {
-        return OrbitalElements::get_set_id<Cartesian<frames::primary>>();
+        return OrbitalElements::get_set_id<Cartesian<frames::earth::icrf>>();
     }
 };
 
@@ -74,19 +73,19 @@ class EquationsOfMotionTest : public testing::Test {
 
     void SetUp() override
     {
-        // Set up test state with basic Cartesian<frames::primary> elements
-        cart  = Cartesian<frames::primary>::LEO(get_mu<frames::primary.origin>());
+        // Set up test state with basic Cartesian<frames::earth::icrf> elements
+        cart  = Cartesian<frames::earth::icrf>::LEO(get_mu<frames::earth::icrf.origin>());
         state = State(cart, epoch);
     }
 
     const Unitless REL_TOL = 1.0e-6;
 
     ForceModel forceModel;
-    ForceVector<frames::primary> noForce;
-    TorqueVector<frames::primary> noTorque;
+    ForceVector<frames::earth::icrf> noForce;
+    TorqueVector<frames::earth::icrf> noTorque;
     Vehicle vehicle;
     Date epoch;
-    Cartesian<frames::primary> cart;
+    Cartesian<frames::earth::icrf> cart;
     State state;
     MockEquationsOfMotion eomDefault;
     MockEquationsOfMotion eomWithForces{ forceModel };
@@ -106,8 +105,8 @@ TEST_F(EquationsOfMotionTest, ConstructorWithForceModel) { ASSERT_NO_THROW(MockE
 // Test get_expected_set_id method
 TEST_F(EquationsOfMotionTest, GetExpectedSetId)
 {
-    ASSERT_EQ(eomDefault.get_expected_set_id(), OrbitalElements::get_set_id<Cartesian<frames::primary>>());
-    ASSERT_EQ(eomWithForces.get_expected_set_id(), OrbitalElements::get_set_id<Cartesian<frames::primary>>());
+    ASSERT_EQ(eomDefault.get_expected_set_id(), OrbitalElements::get_set_id<Cartesian<frames::earth::icrf>>());
+    ASSERT_EQ(eomWithForces.get_expected_set_id(), OrbitalElements::get_set_id<Cartesian<frames::earth::icrf>>());
 }
 
 // Test operator() method
@@ -135,7 +134,7 @@ TEST_F(EquationsOfMotionTest, ComputeDynamics)
     ASSERT_NO_THROW(result = eomDefault.compute_dynamics(state, vehicle, noForce, noForce));
 
     // Check that we get a valid CartesianPartial (our mock returns zeros)
-    auto cartResult = std::get<CartesianPartial<frames::primary>>(result.extract());
+    auto cartResult = std::get<CartesianPartial<frames::earth::icrf>>(result.extract());
     EXPECT_TRUE(math::nearly_equal(cartResult.get_vx(), 0.0 * km / s));
     EXPECT_TRUE(math::nearly_equal(cartResult.get_vy(), 0.0 * km / s));
     EXPECT_TRUE(math::nearly_equal(cartResult.get_vz(), 0.0 * km / s));
@@ -163,8 +162,8 @@ TEST_F(EquationsOfMotionTest, ComputeKinematicsWithAttitude)
 TEST_F(EquationsOfMotionTest, OperatorCallWithForces)
 {
     // Test with non-zero forces (still using mock that returns zeros)
-    ForceVector<frames::primary> testForce(1.0 * N, 0.0 * N, 0.0 * N);
-    TorqueVector<frames::primary> testTorque(0.1 * N * m, 0.0 * N * m, 0.0 * N * m);
+    ForceVector<frames::earth::icrf> testForce(1.0 * N, 0.0 * N, 0.0 * N);
+    TorqueVector<frames::earth::icrf> testTorque(0.1 * N * m, 0.0 * N * m, 0.0 * N * m);
 
     StatePartial result;
     ASSERT_NO_THROW(result = eomDefault(state, vehicle));

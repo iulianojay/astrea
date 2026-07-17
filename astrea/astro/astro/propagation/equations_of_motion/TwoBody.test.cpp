@@ -37,7 +37,7 @@ class TwoBodyTest : public testing::Test {
 
     const Unitless REL_TOL = 1.0e-6;
 
-    const GravParam mu = get_mu<frames::primary.origin>();
+    const GravParam mu = get_mu<frames::earth::icrf.origin>();
     ForceVector<frames::earth::icrf> noForce;
     Vehicle sat;
     Date epoch;

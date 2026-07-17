@@ -25,6 +25,7 @@
 #include <astro/frames/framework/CartesianVector.hpp>
 #include <astro/frames/framework/DirectionCosineMatrix.hpp>
 #include <astro/frames/framework/frame_concepts.hpp>
+#include <astro/state/framework/ElementMatrix.hpp>
 #include <astro/types/enums.hpp>
 #include <astro/utilities/conversions.hpp>
 
@@ -537,13 +538,13 @@ class EulerAngles {
     Angle norm() const { return _angles.norm(); }
 
     /**
-     * @brief Converts the angle sequence to a vector form for use in numerical integration.
+     * @brief Converts the angle sequence to an element array form for use in numerical integration.
      *
-     * @return A std::vector of Unitless quantities representing the components of the angle sequence, in the order [first, second, third].
+     * @return An ElementMatrix of Angle quantities representing the components of the angle sequence, in the order [first, second, third].
      */
-    std::vector<Unitless> force_to_vector() const
+    ElementMatrix<3, 1, Angle, Angle, Angle> force_to_element_array() const
     {
-        return { _angles[0] / _angles[0].unit, _angles[1] / _angles[1].unit, _angles[2] / _angles[2].unit };
+        return { _angles[0], _angles[1], _angles[2] };
     }
 
     /**
@@ -583,24 +584,6 @@ class EulerAngles {
         _angles[0] = wrap_angle(_angles[0]);       // φ - [0, 2π)
         _angles[1] = wrap_angle_to_pi(_angles[1]); // θ - [0, π)
         _angles[2] = wrap_angle(_angles[2]);       // ψ - [0, 2π)
-    }
-
-    /**
-     * @brief Constructs an EulerAngles from a vector of Unitless quantities representing the angle components.
-     *
-     * @param vec A std::vector of Unitless quantities representing the components of the angle sequence, in the order [first, second, third].
-     * @return A new EulerAngles constructed from the given vector.
-     *
-     * @throws std::invalid_argument if the input vector does not have exactly 3 components.
-     */
-    static EulerAngles<sequence, rotation_type, _in_frame_, _out_frame_> from_vector(const std::vector<Unitless>& vec)
-    {
-        using mp_units::angular::unit_symbols::rad;
-
-        if (vec.size() != 3) {
-            throw std::invalid_argument("Input vector must have exactly 3 components to convert to an EulerAngles.");
-        }
-        return { vec[0] * rad, vec[1] * rad, vec[2] * rad };
     }
 };
 

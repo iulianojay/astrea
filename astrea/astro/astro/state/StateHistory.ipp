@@ -1,7 +1,12 @@
-/*
- * The GNU Lesser General Public License (LGPL)
+/**
+ * @file StateHistory.ipp
+ * @author Jay Iuliano (iuliano.jay@gmail.com)
+ * @brief Implementation file for StateHistory class
+ * @date 2025-08-02
  *
- * Copyright (c) 2025 Jay Iuliano
+ * @copyright Copyright (c) 2025 Jay Iuliano
+ *
+ * The GNU Lesser General Public License (LGPL)
  *
  * This file is part of Astrea.
  * Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License
@@ -10,8 +15,7 @@
  * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details. You should
  * have received a copy of the GNU General Public License along with Astrea. If not, see <https://www.gnu.org/licenses/>.
  */
-
-#include <astro/state/StateHistory.hpp>
+#pragma once
 
 #include <iostream>
 
@@ -23,7 +27,8 @@ using mp_units::si::unit_symbols::s;
 namespace astrea {
 namespace astro {
 
-void StateHistory::insert(const State& state)
+template <typename State_T>
+void StateHistory<State_T>::insert(const State_T& state)
 {
     auto iter = std::lower_bound(_states.begin(), _states.end(), state.get_epoch(), [](const State& existingState, const Date& date) {
         return existingState.get_epoch() < date;
@@ -37,18 +42,32 @@ void StateHistory::insert(const State& state)
     }
 }
 
-void StateHistory::insert(const StateHistory& stateHistory)
+template <typename State_T>
+void StateHistory<State_T>::insert(const StateHistory<State_T>& stateHistory)
 {
     for (const auto& state : stateHistory._states) {
         insert(state);
     }
 }
 
-std::size_t StateHistory::size() const { return _states.size(); }
-bool StateHistory::empty() const { return _states.empty(); }
-void StateHistory::clear() { _states.clear(); }
+template <typename State_T>
+std::size_t StateHistory<State_T>::size() const
+{
+    return _states.size();
+}
+template <typename State_T>
+bool StateHistory<State_T>::empty() const
+{
+    return _states.empty();
+}
+template <typename State_T>
+void StateHistory<State_T>::clear()
+{
+    _states.clear();
+}
 
-const State& StateHistory::get_closest_state(const Date& date) const
+template <typename State_T>
+const State_T& StateHistory<State_T>::get_closest_state(const Date& date) const
 {
     if (_states.empty()) { throw std::runtime_error("No states stored in StateHistory."); }
 
@@ -77,7 +96,8 @@ const State& StateHistory::get_closest_state(const Date& date) const
     }
 }
 
-State StateHistory::get_state_at(const Date& date, const bool allowApproximation) const
+template <typename State_T>
+State_T StateHistory<State_T>::get_state_at(const Date& date, const bool allowApproximation) const
 {
     if (_states.size() == 0) { throw std::runtime_error("No states stored in StateHistory to extrapolate from."); }
 
@@ -115,7 +135,7 @@ State StateHistory::get_state_at(const Date& date, const bool allowApproximation
     const State& preState              = *std::prev(iter);
     const OrbitalElements& preElements = preState.get_elements();
 
-    const auto& mu = get_mu<frames::primary.origin>();
+    const auto& mu = get_mu<frames::earth::icrf.origin>();
 
     // Normalize to initial date for simplicity
     const Time time0 = 0.0 * astrea::detail::time_unit;
@@ -131,7 +151,8 @@ State StateHistory::get_state_at(const Date& date, const bool allowApproximation
     // return _states.at(date);
 }
 
-void StateHistory::sort()
+template <typename State_T>
+void StateHistory<State_T>::sort()
 {
     std::sort(_states.begin(), _states.end(), [](const State& a, const State& b) {
         return a.get_epoch() < b.get_epoch();

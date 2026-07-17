@@ -16,7 +16,6 @@
 #include <math/operations.hpp>
 #include <units/units.hpp>
 
-#include <astro/frames/definitions/frame_registry.hpp>
 #include <astro/frames/framework/CartesianVector.hpp>
 #include <astro/propagation/analytic/LambertSolver.hpp>
 #include <astro/state/orbital_elements/Cartesian.hpp>
@@ -37,7 +36,7 @@ class LambertSolverTest : public testing::Test {
     void SetUp() override {}
 
     const Unitless REL_TOL = 1.0e-6;
-    const GravParam mu     = get_mu<frames::primary.origin>();
+    const GravParam mu     = get_mu<frames::earth::icrf.origin>();
 
     // Numbers from Vallado, 5th Ed., Ex. 7-5
     RadiusVector<frames::earth::icrf> r0{ 15945.34 * km, 0.0 * km, 0.0 * km }, rf{ 12214.83899 * km, 10249.46731 * km, 0.0 * km };
@@ -106,7 +105,7 @@ TEST_F(LambertSolverTest, MinimumTimeHasShorterTOFThanMinimumEnergy)
 class LambertSolverMultiRevTest : public testing::Test {
   public:
     LambertSolverMultiRevTest() :
-        mu(get_mu<frames::primary.origin>())
+        mu(get_mu<frames::earth::icrf.origin>())
     {
     }
 

@@ -23,7 +23,7 @@
 #include <astro/astro.fwd.hpp>
 #include <astro/propagation/equations_of_motion/EquationsOfMotion.hpp>
 #include <astro/propagation/force_models/ForceModel.hpp>
-#include <astro/state/framework/OrbitalElements.hpp>
+#include <astro/state/framework/element_matrix_concepts.hpp>
 
 namespace astrea {
 namespace astro {
@@ -56,8 +56,8 @@ class TwoBody : public EquationsOfMotion {
     OrbitalElementPartials compute_dynamics(
         const State& state,
         const Vehicle& vehicle,
-        const ForceVector<frames::primary>& perts,
-        const ForceVector<frames::primary>& control
+        const ForceVector<frames::earth::icrf>& perts,
+        const ForceVector<frames::earth::icrf>& control
     ) const override;
 
     /**
@@ -76,7 +76,7 @@ class TwoBody : public EquationsOfMotion {
      */
     constexpr std::size_t get_expected_set_id() const override
     {
-        return OrbitalElements::get_set_id<Cartesian<frames::primary>>();
+        return OrbitalElements::get_set_id<Cartesian<frames::earth::icrf>>();
     };
 };
 

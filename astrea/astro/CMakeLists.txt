@@ -52,11 +52,6 @@ set(ASTRO_SOURCES
 
     ${ASTRO_BASE}/propagation/equations_of_motion/StateTransitionMatrix.cpp
 
-    ${ASTRO_BASE}/state/State.cpp
-    ${ASTRO_BASE}/state/StateHistory.cpp
-
-    ${ASTRO_BASE}/state/attitude/Attitude.cpp
-
     ${ASTRO_BASE}/state/orbital_data_formats/TwoLineElements.cpp
     ${ASTRO_BASE}/state/orbital_data_formats/GeneralPerturbations.cpp
 
@@ -83,8 +78,6 @@ set(ASTRO_HEADERS
     ${ASTRO_BASE}/frames/definitions/VelocityNormalBinormal.hpp
     ${ASTRO_BASE}/frames/definitions/dynamic_frames.hpp
     ${ASTRO_BASE}/frames/definitions/transformations.hpp
-    ${ASTRO_BASE}/frames/definitions/primary_frame.hpp
-    ${ASTRO_BASE}/frames/definitions/frame_registry.hpp
 
     ${ASTRO_BASE}/frames/framework/Axis.hpp
     ${ASTRO_BASE}/frames/framework/BodyFixedFrame.hpp
@@ -147,9 +140,8 @@ set(ASTRO_HEADERS
     ${ASTRO_BASE}/state/StateHistory.hpp
 
     ${ASTRO_BASE}/state/framework/ElementMatrix.hpp
-    ${ASTRO_BASE}/state/framework/OrbitalElements.hpp
+    ${ASTRO_BASE}/state/framework/OrbitalElementsInterface.hpp
 
-    ${ASTRO_BASE}/state/attitude/Attitude.hpp
     ${ASTRO_BASE}/state/attitude/Quaternion.hpp
     ${ASTRO_BASE}/state/attitude/AngularVelocities.hpp
     ${ASTRO_BASE}/state/attitude/EulerAngles.hpp

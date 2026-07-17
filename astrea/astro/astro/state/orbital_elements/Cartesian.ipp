@@ -48,8 +48,12 @@ Cartesian<_frame_>::Cartesian(const Keplerian<_frame_>& elements, const GravPara
     const auto& theta = elements.get_true_anomaly();
 
     if (a == 0.0 * km) {
-        _r = { 0.0 * km, 0.0 * km, 0.0 * km };
-        _v = { 0.0 * km / s, 0.0 * km / s, 0.0 * km / s };
+        get_x()  = 0.0 * km;
+        get_y()  = 0.0 * km;
+        get_z()  = 0.0 * km;
+        get_vx() = 0.0 * km / s;
+        get_vy() = 0.0 * km / s;
+        get_vz() = 0.0 * km / s;
         return;
     }
 
@@ -88,13 +92,13 @@ Cartesian<_frame_>::Cartesian(const Keplerian<_frame_>& elements, const GravPara
     const quantity DcmPeri2Eci32 = sinInc * cosW;
 
     // Inertial position and _velocity
-    _r[0] = DcmPeri2Eci11 * xPeri + DcmPeri2Eci12 * yPeri;
-    _r[1] = DcmPeri2Eci21 * xPeri + DcmPeri2Eci22 * yPeri;
-    _r[2] = DcmPeri2Eci31 * xPeri + DcmPeri2Eci32 * yPeri;
+    get_x() = DcmPeri2Eci11 * xPeri + DcmPeri2Eci12 * yPeri;
+    get_y() = DcmPeri2Eci21 * xPeri + DcmPeri2Eci22 * yPeri;
+    get_z() = DcmPeri2Eci31 * xPeri + DcmPeri2Eci32 * yPeri;
 
-    _v[0] = DcmPeri2Eci11 * vxPeri + DcmPeri2Eci12 * vyPeri;
-    _v[1] = DcmPeri2Eci21 * vxPeri + DcmPeri2Eci22 * vyPeri;
-    _v[2] = DcmPeri2Eci31 * vxPeri + DcmPeri2Eci32 * vyPeri;
+    get_vx() = DcmPeri2Eci11 * vxPeri + DcmPeri2Eci12 * vyPeri;
+    get_vy() = DcmPeri2Eci21 * vxPeri + DcmPeri2Eci22 * vyPeri;
+    get_vz() = DcmPeri2Eci31 * vxPeri + DcmPeri2Eci32 * vyPeri;
 }
 
 template <IsFrame auto _frame_>
@@ -269,12 +273,12 @@ Cartesian<_frame_>
     Cartesian<_frame_>::interpolate(const Time& thisTime, const Time& otherTime, const Cartesian<_frame_>& other, const GravParam& mu, const Time& targetTime) const
 {
     const std::array<Time, 2> times = { thisTime, otherTime };
-    const Distance interpX          = math::fast_interpolate<Time, Distance>(times, { _r[0], other._r[0] }, targetTime);
-    const Distance interpY          = math::fast_interpolate<Time, Distance>(times, { _r[1], other._r[1] }, targetTime);
-    const Distance interpZ          = math::fast_interpolate<Time, Distance>(times, { _r[2], other._r[2] }, targetTime);
-    const Velocity interpVx         = math::fast_interpolate<Time, Velocity>(times, { _v[0], other._v[0] }, targetTime);
-    const Velocity interpVy         = math::fast_interpolate<Time, Velocity>(times, { _v[1], other._v[1] }, targetTime);
-    const Velocity interpVz         = math::fast_interpolate<Time, Velocity>(times, { _v[2], other._v[2] }, targetTime);
+    const Distance interpX  = math::fast_interpolate<Time, Distance>(times, { get_x(), other.get_x() }, targetTime);
+    const Distance interpY  = math::fast_interpolate<Time, Distance>(times, { get_y(), other.get_y() }, targetTime);
+    const Distance interpZ  = math::fast_interpolate<Time, Distance>(times, { get_z(), other.get_z() }, targetTime);
+    const Velocity interpVx = math::fast_interpolate<Time, Velocity>(times, { get_vx(), other.get_vx() }, targetTime);
+    const Velocity interpVy = math::fast_interpolate<Time, Velocity>(times, { get_vy(), other.get_vy() }, targetTime);
+    const Velocity interpVz = math::fast_interpolate<Time, Velocity>(times, { get_vz(), other.get_vz() }, targetTime);
 
     return Cartesian<_frame_>(interpX, interpY, interpZ, interpVx, interpVy, interpVz);
 }
@@ -297,12 +301,12 @@ template <IsFrame auto _frame_>
 std::ostream& operator<<(std::ostream& os, CartesianPartial<_frame_> const& elements)
 {
     os << "[";
-    os << elements._v[0] << ", ";
-    os << elements._v[1] << ", ";
-    os << elements._v[2] << ", ";
-    os << elements._a[0] << ", ";
-    os << elements._a[1] << ", ";
-    os << elements._a[2];
+    os << elements.get_vx() << ", ";
+    os << elements.get_vy() << ", ";
+    os << elements.get_vz() << ", ";
+    os << elements.get_ax() << ", ";
+    os << elements.get_ay() << ", ";
+    os << elements.get_az();
     os << "] (CartesianPartial)";
     return os;
 }

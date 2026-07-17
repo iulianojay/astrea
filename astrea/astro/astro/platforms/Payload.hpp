@@ -24,7 +24,6 @@
 
 #include <astro/frames/definitions.hpp>
 #include <astro/frames/definitions/dynamic_frames.hpp>
-#include <astro/frames/definitions/primary_frame.hpp>
 #include <astro/frames/framework/CartesianVector.hpp>
 #include <astro/platforms/PayloadPlatform.hpp>
 #include <astro/types/typedefs.hpp>
@@ -178,9 +177,9 @@ class Payload {
      * @brief Get the position of the payload in the primary frame.
      *
      * @param date The date for which to get the position.
-     * @return CartesianVector<Distance, frames::primary> Position of the payload in the primary frame.
+     * @return CartesianVector<Distance, frames::earth::icrf> Position of the payload in the primary frame.
      */
-    CartesianVector<Distance, frames::primary> get_position(const Date& date) const
+    CartesianVector<Distance, frames::earth::icrf> get_position(const Date& date) const
     {
         // Assumes the payload is fixed
         static const auto parentToPayload = get_parameters().get_attachment_point();
@@ -200,9 +199,9 @@ class Payload {
      * @brief Get the velocity of the payload in the primary frame. Assumes all payloads are fixed to their platform.
      *
      * @param date The date for which to get the velocity.
-     * @return CartesianVector<Velocity, frames::primary> Velocity of the payload in the primary frame.
+     * @return CartesianVector<Velocity, frames::earth::icrf> Velocity of the payload in the primary frame.
      */
-    CartesianVector<Velocity, frames::primary> get_velocity(const Date& date) const
+    CartesianVector<Velocity, frames::earth::icrf> get_velocity(const Date& date) const
     {
         // Assumes the payload is fixed
         return get_parent()->get_velocity(date);

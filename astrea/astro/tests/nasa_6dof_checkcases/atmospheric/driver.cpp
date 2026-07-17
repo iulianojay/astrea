@@ -20,7 +20,7 @@
 // #include <astro/propagation/equations_of_motion/TwoBody.hpp>
 // #include <astro/propagation/force_models/ForceModel.hpp>
 // #include <astro/propagation/numerical/Integrator.hpp>
-// #include <astro/state/framework/OrbitalElements.hpp>
+// #include <astro/state/framework/element_matrix_concepts.hpp>
 // #include <astro/systems/system_utilities.hpp>
 // #include <astro/time/Date.hpp>
 // #include <astro/time/Interval.hpp>
@@ -41,7 +41,7 @@
 // class Atmospheric6DofTest : public testing::Test {
 //   public:
 //     Atmospheric6DofTest() :
-//         mu(get_mu<frames::primary.origin>()),
+//         mu(get_mu<frames::earth::icrf.origin>()),
 //         propTime(weeks(1)),
 //         propInterval({ start, end }),
 //         epoch(J2000)

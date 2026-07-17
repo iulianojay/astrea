@@ -27,7 +27,7 @@
 #include <units/units.hpp>
 
 #include <astro/astro.fwd.hpp>
-#include <astro/state/framework/FrameAwareElementMatrixInterface.hpp>
+#include <astro/state/framework/OrbitalElementsInterface.hpp>
 #include <astro/types/typedefs.hpp>
 
 namespace astrea {
@@ -41,13 +41,17 @@ namespace astro {
  * argument of perigee, and true anomaly.
  */
 template <IsFrame auto _frame_>
-class Keplerian : public FaemInterface<Keplerian<_frame_>, _frame_, Distance, Unitless, Angle, Angle, Angle, Angle> {
+class Keplerian : public OrbitalElementsInterface<Keplerian<_frame_>, _frame_, Distance, Unitless, Angle, Angle, Angle, Angle> {
+
+    using Base_T = OrbitalElementsInterface<Keplerian<_frame_>, _frame_, Distance, Unitless, Angle, Angle, Angle, Angle>;
 
     template <IsFrame auto frame>
     friend std::ostream& operator<<(std::ostream&, Keplerian<frame> const&);
     friend class OrbitalElements;
 
   public:
+    using Base_T::Base_T;
+
     /**
      * @brief Default constructor for Keplerian.
      */
@@ -60,7 +64,7 @@ class Keplerian : public FaemInterface<Keplerian<_frame_>, _frame_, Distance, Un
      * @param sys The astrodynamics system context for conversion.
      */
     Keplerian(const Keplerian<_frame_>& other, const GravParam& mu) :
-        _elements(other._elements)
+        Base_T(other._elements)
     {
     }
 
@@ -361,12 +365,17 @@ class Keplerian : public FaemInterface<Keplerian<_frame_>, _frame_, Distance, Un
  */
 template <IsFrame auto _frame_>
 class KeplerianPartial
-    : public FaemInterface<KeplerianPartial<_frame_>, _frame_, Velocity, UnitlessPerTime, AngularVelocity, AngularVelocity, AngularVelocity, AngularVelocity> {
+    : public OrbitalElementsInterface<KeplerianPartial<_frame_>, _frame_, Velocity, UnitlessPerTime, AngularVelocity, AngularVelocity, AngularVelocity, AngularVelocity> {
+
+    using Base_T =
+        OrbitalElementsInterface<KeplerianPartial<_frame_>, _frame_, Velocity, UnitlessPerTime, AngularVelocity, AngularVelocity, AngularVelocity, AngularVelocity>;
 
     template <IsFrame auto frame>
     friend std::ostream& operator<<(std::ostream&, KeplerianPartial<frame> const&);
 
   public:
+    using Base_T::Base_T;
+
     /**
      * @brief Default constructor for KeplerianPartial.
      *

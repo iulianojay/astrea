@@ -36,22 +36,22 @@ using mp_units::si::unit_symbols::s;
 OrbitalElementPartials TwoBody::compute_dynamics(
     const State& state,
     const Vehicle& vehicle,
-    const ForceVector<frames::primary>& perts,
-    const ForceVector<frames::primary>& control
+    const ForceVector<frames::earth::icrf>& perts,
+    const ForceVector<frames::earth::icrf>& control
 ) const
 {
     // Extract
-    const GravParam mu = get_mu<frames::primary.origin>();
+    const GravParam mu = get_mu<frames::earth::icrf.origin>();
 
-    const RadiusVector<frames::primary> r   = state.get_position();
-    const VelocityVector<frames::primary> v = state.get_velocity();
+    const RadiusVector<frames::earth::icrf> r   = state.get_position();
+    const VelocityVector<frames::earth::icrf> v = state.get_velocity();
 
     // mu/R^3
     const Distance R    = r.norm();
     const auto muOverR3 = mu / pow<3>(R);
 
     // Dynamics
-    return CartesianPartial<frames::primary>(v, -muOverR3 * r + control / vehicle.get_mass());
+    return CartesianPartial<frames::earth::icrf>(v, -muOverR3 * r + control / vehicle.get_mass());
 }
 
 
@@ -75,7 +75,7 @@ StateTransitionMatrix TwoBody::compute_stm(const State& state, const Vehicle& ve
         dax/dy = 3*mu*x*y/r^5
         dax/dz = 3*mu*x*z/r^5
     */
-    const GravParam mu = get_mu<frames::primary.origin>();
+    const GravParam mu = get_mu<frames::earth::icrf.origin>();
 
     const auto r  = state.get_position();
     const auto& x = r[0];

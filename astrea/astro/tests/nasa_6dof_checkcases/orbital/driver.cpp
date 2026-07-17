@@ -43,7 +43,7 @@
 #include <astro/propagation/numerical/Integrator.hpp>
 
 #include <astro/astro.macros.hpp>
-#include <astro/state/framework/OrbitalElements.hpp>
+#include <astro/state/framework/element_matrix_concepts.hpp>
 #include <astro/systems/celestial_bodies/Earth/Earth.hpp>
 #include <astro/systems/property_getters.hpp>
 #include <astro/systems/system_utilities.hpp>
@@ -105,7 +105,7 @@ class Orbital6DofTest : public testing::Test {
 
   public:
     Orbital6DofTest() :
-        mu(get_mu<frames::primary.origin>()),
+        mu(get_mu<frames::earth::icrf.origin>()),
         epoch("2007/324:00:00:00", "%Y/%j:%H:%M:%S"),
         circular(
             RadiusVector<frames::earth::icrf>(-4292.65341 * km, 955.16847 * km, 5139.35657 * km),

@@ -22,7 +22,6 @@
 #include <astro/frames/definitions/LocalHorizontalLocalVertical.hpp>
 #include <astro/frames/definitions/RadialInTrackCrossTrack.hpp>
 #include <astro/frames/definitions/VelocityNormalBinormal.hpp>
-#include <astro/frames/definitions/frame_registry.hpp>
 #include <astro/frames/framework/DynamicFrame.hpp>
 #include <astro/frames/framework/Frame.hpp>
 
@@ -34,13 +33,13 @@ namespace dynamic {
 inline constexpr struct body final : Frame<"body", DynamicOrigin{}, DynamicAxis{}> {
 } body;
 
-inline constexpr EastNorthUpTag<frames::primary> enu{};
+inline constexpr EastNorthUpTag<frames::earth::icrf> enu{};
 
-inline constexpr LvlhTag<frames::primary> lvlh{};
+inline constexpr LvlhTag<frames::earth::icrf> lvlh{};
 
-inline constexpr RicTag<frames::primary> ric{};
+inline constexpr RicTag<frames::earth::icrf> ric{};
 
-inline constexpr VnbTag<frames::primary> vnb{};
+inline constexpr VnbTag<frames::earth::icrf> vnb{};
 
 } // namespace dynamic
 } // namespace frames

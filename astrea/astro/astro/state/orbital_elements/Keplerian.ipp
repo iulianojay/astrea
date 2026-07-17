@@ -107,7 +107,7 @@ Keplerian<_frame_>::Keplerian(const Cartesian<_frame_>& elements, const GravPara
         get_inclination()         = 0.0 * rad;
         get_right_ascension()     = 0.0 * rad;
         get_argument_of_perigee() = 0.0 * rad;
-        get_trueAnomaly()         = 0.0 * rad;
+        get_true_anomaly()        = 0.0 * rad;
         return;
     }
 
@@ -255,14 +255,14 @@ Keplerian<_frame_>::Keplerian(const Equinoctial<_frame_>& elements, const GravPa
 // Copy constructor
 template <IsFrame auto _frame_>
 Keplerian<_frame_>::Keplerian(const Keplerian<_frame_>& other) :
-    _elements(other._elements)
+    Base_T(other._elements)
 {
 }
 
 // Move constructor
 template <IsFrame auto _frame_>
 Keplerian<_frame_>::Keplerian(Keplerian<_frame_>&& other) noexcept :
-    _elements(std::move(other._elements))
+    Base_T(std::move(other._elements))
 {
 }
 
@@ -305,13 +305,13 @@ Keplerian<_frame_>
 {
     const std::array<Time, 2> times = { thisTime, otherTime };
     const Distance interpSemimajor =
-        math::fast_interpolate<Time, Distance>(times, { _semimajor, other.get_semimajor() }, targetTime);
+        math::fast_interpolate<Time, Distance>(times, { get_semimajor(), other.get_semimajor() }, targetTime);
     const Unitless interpEcc =
-        math::fast_interpolate<Time, Unitless>(times, { _eccentricity, other.get_eccentricity() }, targetTime);
-    const Angle interpInc  = interpolate_angle(times, { _inclination, other.get_inclination() }, targetTime);
-    const Angle interpRaan = interpolate_angle(times, { _right_ascension, other.get_right_ascension() }, targetTime);
-    const Angle interpArgPer = interpolate_angle(times, { _argument_of_perigee, other.get_argument_of_perigee() }, targetTime);
-    const Angle interpTheta = interpolate_angle(times, { _trueAnomaly, other.get_true_anomaly() }, targetTime);
+        math::fast_interpolate<Time, Unitless>(times, { get_eccentricity(), other.get_eccentricity() }, targetTime);
+    const Angle interpInc = interpolate_angle(times, { get_inclination(), other.get_inclination() }, targetTime);
+    const Angle interpRaan = interpolate_angle(times, { get_right_ascension(), other.get_right_ascension() }, targetTime);
+    const Angle interpArgPer = interpolate_angle(times, { get_argument_of_perigee(), other.get_argument_of_perigee() }, targetTime);
+    const Angle interpTheta = interpolate_angle(times, { get_true_anomaly(), other.get_true_anomaly() }, targetTime);
 
     return Keplerian(interpSemimajor, interpEcc, interpInc, interpRaan, interpArgPer, interpTheta);
 }
@@ -334,10 +334,10 @@ Angle Keplerian<_frame_>::interpolate_angle(const std::array<Time, 2>& times, co
 template <IsFrame auto _frame_>
 void Keplerian<_frame_>::wrap_angles()
 {
-    _inclination         = wrap_angle(_inclination);
-    _right_ascension     = wrap_angle(_right_ascension);
-    _argument_of_perigee = wrap_angle(_argument_of_perigee);
-    _trueAnomaly         = wrap_angle(_trueAnomaly);
+    get_inclination()         = wrap_angle(get_inclination());
+    get_right_ascension()     = wrap_angle(get_right_ascension());
+    get_argument_of_perigee() = wrap_angle(get_argument_of_perigee());
+    get_true_anomaly()        = wrap_angle(get_true_anomaly());
 }
 
 template <IsFrame auto _frame_>
@@ -358,12 +358,12 @@ template <IsFrame auto _frame_>
 std::ostream& operator<<(std::ostream& os, KeplerianPartial<_frame_> const& elements)
 {
     os << "[";
-    os << elements._semimajorPartial << ", ";
-    os << elements._eccentricityPartial << ", ";
-    os << elements._inclinationPartial << ", ";
-    os << elements._right_ascensionPartial << ", ";
-    os << elements._argument_of_perigeePartial << ", ";
-    os << elements._trueAnomalyPartial;
+    os << elements.template get<0>() << ", ";
+    os << elements.template get<1>() << ", ";
+    os << elements.template get<2>() << ", ";
+    os << elements.template get<3>() << ", ";
+    os << elements.template get<4>() << ", ";
+    os << elements.template get<5>();
     os << "] (KeplerianPartial)";
     return os;
 }

@@ -26,7 +26,7 @@
 #include <astro/platforms/Vehicle.hpp>
 #include <astro/state/State.hpp>
 #include <astro/state/angular_elements.hpp>
-#include <astro/state/framework/OrbitalElements.hpp>
+#include <astro/state/framework/element_matrix_concepts.hpp>
 #include <astro/state/orbital_elements/Keplerian.hpp>
 #include <astro/systems/system_utilities.hpp>
 #include <astro/time/Date.hpp>
@@ -52,11 +52,11 @@ using mp_units::si::unit_symbols::s;
 Perturbation AtmosphericForce::compute_perturbation(const State& state, const Vehicle& vehicle) const
 {
     // Extract
-    static constexpr auto center            = frames::primary.origin;
+    static constexpr auto center            = frames::earth::icrf.origin;
     const AngularVelocity& bodyRotationRate = get_rotation_rate<center>();
 
-    const RadiusVector<frames::primary>& r   = state.get_position();
-    const VelocityVector<frames::primary>& v = state.get_velocity();
+    const RadiusVector<frames::earth::icrf>& r   = state.get_position();
+    const VelocityVector<frames::earth::icrf>& v = state.get_velocity();
 
     const Distance& x = r.get_x();
     const Distance& y = r.get_y();
@@ -67,9 +67,9 @@ Perturbation AtmosphericForce::compute_perturbation(const State& state, const Ve
     const Velocity& vz = v.get_z();
 
     // Find velocity relative to atmosphere
-    const VelocityVector<frames::primary> relVelocity = { vx + y * bodyRotationRate.in(rad / s) / (isq_angle::cotes_angle),
-                                                          vy - x * bodyRotationRate.in(rad / s) / (isq_angle::cotes_angle),
-                                                          vz };
+    const VelocityVector<frames::earth::icrf> relVelocity = { vx + y * bodyRotationRate.in(rad / s) / (isq_angle::cotes_angle),
+                                                              vy - x * bodyRotationRate.in(rad / s) / (isq_angle::cotes_angle),
+                                                              vz };
 
     // Exponential Drag Model
     const Density atmosphericDensity = find_atmospheric_density<center>(state);
@@ -80,14 +80,14 @@ Perturbation AtmosphericForce::compute_perturbation(const State& state, const Ve
     const SurfaceArea areaRam        = vehicle.get_ram_area();
     const Force dragForceMag         = -0.5 * coefficientOfDrag * areaRam * atmosphericDensity * pow<2>(relVelMag);
 
-    const ForceVector<frames::primary> forceDrag = dragForceMag * (relVelocity / relVelMag);
+    const ForceVector<frames::earth::icrf> forceDrag = dragForceMag * (relVelocity / relVelMag);
 
     // accel due to lift
     const Angle angleOfAttack        = atan2(relVelocity.get_z(), relVelocity.get_x());
     const Unitless coefficientOfLift = vehicle.get_coefficient_of_lift();
     const SurfaceArea areaLift       = vehicle.get_lift_area();
     const Force liftForceMag = 0.5 * coefficientOfLift * areaLift * atmosphericDensity * pow<2>(relVelMag) * sin(angleOfAttack);
-    const ForceVector<frames::primary> forceLift = liftForceMag * (r / R); // just assume radial lift for now
+    const ForceVector<frames::earth::icrf> forceLift = liftForceMag * (r / R); // just assume radial lift for now
 
     return { .force = forceDrag + forceLift };
 };

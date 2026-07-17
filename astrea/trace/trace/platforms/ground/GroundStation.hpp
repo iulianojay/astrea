@@ -96,9 +96,9 @@ class GroundStation : public GroundPoint<_body_>, public SensorPlatform {
      * @brief Gets the inertial position of the spacecraft at a specific date.
      *
      * @param date The date at which to retrieve the position.
-     * @return astro::RadiusVector<astro::frames::primary> The inertial position of the spacecraft.
+     * @return astro::RadiusVector<astro::frames::earth::icrf> The inertial position of the spacecraft.
      */
-    astro::RadiusVector<astro::frames::primary> get_position(const astro::Date& date) const
+    astro::RadiusVector<astro::frames::earth::icrf> get_position(const astro::Date& date) const
     {
         return Base::get_position(date);
     }
@@ -107,9 +107,9 @@ class GroundStation : public GroundPoint<_body_>, public SensorPlatform {
      * @brief Gets the inertial velocity of the spacecraft at a specific date.
      *
      * @param date The date at which to retrieve the velocity.
-     * @return astro::VelocityVector<astro::frames::primary> The inertial velocity of the spacecraft.
+     * @return astro::VelocityVector<astro::frames::earth::icrf> The inertial velocity of the spacecraft.
      */
-    astro::VelocityVector<astro::frames::primary> get_velocity(const astro::Date& date) const
+    astro::VelocityVector<astro::frames::earth::icrf> get_velocity(const astro::Date& date) const
     {
         return Base::get_velocity(date);
     }

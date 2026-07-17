@@ -24,7 +24,7 @@
 #include <astro/platforms/Vehicle.hpp>
 #include <astro/propagation/force_models/PerturbingForce.hpp>
 #include <astro/state/State.hpp>
-#include <astro/state/framework/OrbitalElements.hpp>
+#include <astro/state/framework/element_matrix_concepts.hpp>
 #include <astro/systems/system_concepts.hpp>
 #include <astro/systems/system_utilities.hpp>
 #include <astro/types/enums.hpp>
@@ -52,21 +52,21 @@ class NBodyForce : public PerturbingForce {
     /**
      * @brief Computes the gravitational force due to multiple celestial bodies.
      *
-     * @param state Cartesian<frames::primary> state vector of the vehicle
+     * @param state Cartesian<frames::earth::icrf> state vector of the vehicle
      * @param vehicle Vehicle object representing the spacecraft
      * @return Perturbation The computed force and torque due to multiple bodies.
      */
     Perturbation compute_perturbation(const State& state, const Vehicle& vehicle) const override
     {
         // Extract
-        const Date date                                       = state.get_epoch();
-        const RadiusVector<frames::primary>& rCenterToVehicle = state.get_position();
+        const Date date                                           = state.get_epoch();
+        const RadiusVector<frames::earth::icrf>& rCenterToVehicle = state.get_position();
 
         // Center body properties
-        constexpr static auto center = frames::primary.origin;
+        constexpr static auto center = frames::earth::icrf.origin;
 
         // Reset perturbation
-        AccelerationVector<frames::primary> accelNBody{ Acceleration::zero() };
+        AccelerationVector<frames::earth::icrf> accelNBody{ Acceleration::zero() };
         (
             [&]<auto body>() {
                 if constexpr (body == center) {
@@ -75,9 +75,9 @@ class NBodyForce : public PerturbingForce {
 
                 // Find center to nth body and spacecraft to nth body
                 // NOTE: The forced frame conversion here is fine since it's just a relative translation, no rotation or velocity
-                const RadiusVector<frames::primary> rCenterToNbody =
-                    get_relative_position<body, center>(date).template force_frame_conversion<frames::primary>();
-                const RadiusVector<frames::primary> rVehicleToNbody = rCenterToNbody - rCenterToVehicle;
+                const RadiusVector<frames::earth::icrf> rCenterToNbody =
+                    get_relative_position<body, center>(date).template force_frame_conversion<frames::earth::icrf>();
+                const RadiusVector<frames::earth::icrf> rVehicleToNbody = rCenterToNbody - rCenterToVehicle;
 
                 // Normalize
                 const Distance rMagVehicleToNbody = rVehicleToNbody.norm();

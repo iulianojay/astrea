@@ -87,14 +87,14 @@ Equinoctial<_frame_>::Equinoctial(const Keplerian<_frame_>& elements, const Grav
 // Copy constructor
 template <IsFrame auto _frame_>
 Equinoctial<_frame_>::Equinoctial(const Equinoctial<_frame_>& other) :
-    _elements(other._elements)
+    Base_T(other._elements)
 {
 }
 
 // Move constructor
 template <IsFrame auto _frame_>
 Equinoctial<_frame_>::Equinoctial(Equinoctial<_frame_>&& other) noexcept :
-    _elements(std::move(other._elements))
+    Base_T(std::move(other._elements))
 {
 }
 
@@ -119,12 +119,13 @@ Equinoctial<_frame_>
 {
     const std::array<Time, 2> times = { thisTime, otherTime };
     const Distance interpSemimajor =
-        math::fast_interpolate<Time, Distance>(times, { _semilatus, other.get_semilatus() }, targetTime);
-    const Unitless interpEcc    = math::fast_interpolate<Time, Unitless>(times, { _f, other.get_f() }, targetTime);
-    const Unitless interpInc    = math::fast_interpolate<Time, Unitless>(times, { _g, other.get_g() }, targetTime);
-    const Unitless interpRaan   = math::fast_interpolate<Time, Unitless>(times, { _h, other.get_h() }, targetTime);
-    const Unitless interpArgPer = math::fast_interpolate<Time, Unitless>(times, { _k, other.get_k() }, targetTime);
-    const Angle interpTheta = math::fast_interpolate<Time, Angle>(times, { _trueLongitude, other.get_true_longitude() }, targetTime);
+        math::fast_interpolate<Time, Distance>(times, { get_semilatus(), other.get_semilatus() }, targetTime);
+    const Unitless interpEcc    = math::fast_interpolate<Time, Unitless>(times, { get_f(), other.get_f() }, targetTime);
+    const Unitless interpInc    = math::fast_interpolate<Time, Unitless>(times, { get_g(), other.get_g() }, targetTime);
+    const Unitless interpRaan   = math::fast_interpolate<Time, Unitless>(times, { get_h(), other.get_h() }, targetTime);
+    const Unitless interpArgPer = math::fast_interpolate<Time, Unitless>(times, { get_k(), other.get_k() }, targetTime);
+    const Angle interpTheta =
+        math::fast_interpolate<Time, Angle>(times, { get_true_longitude(), other.get_true_longitude() }, targetTime);
 
     return Equinoctial(interpSemimajor, interpEcc, interpInc, interpRaan, interpArgPer, interpTheta);
 }
@@ -147,12 +148,12 @@ template <IsFrame auto _frame_>
 std::ostream& operator<<(std::ostream& os, EquinoctialPartial<_frame_> const& elements)
 {
     os << "[";
-    os << elements._semilatusPartial << ", ";
-    os << elements._fPartial << ", ";
-    os << elements._gPartial << ", ";
-    os << elements._hPartial << ", ";
-    os << elements._kPartial << ", ";
-    os << elements._trueLongitudePartial;
+    os << elements.template get<0>() << ", ";
+    os << elements.template get<1>() << ", ";
+    os << elements.template get<2>() << ", ";
+    os << elements.template get<3>() << ", ";
+    os << elements.template get<4>() << ", ";
+    os << elements.template get<5>();
     os << "] (EquinoctialPartial)";
     return os;
 }

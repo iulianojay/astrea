@@ -1,7 +1,7 @@
 /**
- * @file FrameAwareElementMatrixInterface.hpp
+ * @file OrbitalElementsInterface.hpp
  * @author Jay Iuliano (iuliano.jay@gmail.com)
- * @brief This file defines the FrameAwareElementMatrixInterface class and its associated methods.
+ * @brief This file defines the OrbitalElementsInterface class and its associated methods.
  * @date 2025-08-02
  *
  * @copyright Copyright (c) 2025 Jay Iuliano
@@ -36,7 +36,7 @@ concept IsCompatibleOrbitalElements = IsOrbitalElements<Derived_T> && IsOrbitalE
                                       equivalent(Derived_T::frame, Derived_U::frame);
 
 template <typename Derived_T, IsFrame auto _frame_, typename... Elements_T>
-class FrameAwareElementMatrixInterface {
+class OrbitalElementsInterface {
   public:
     using orbital_elements_tag = void; //!< Tag type used by IsOrbitalElements concept detection.
     using ArrayType = ElementMatrix<sizeof...(Elements_T), 1, Elements_T...>; //!< The underlying array type representing the orbital elements.
@@ -48,14 +48,14 @@ class FrameAwareElementMatrixInterface {
      *
      * Initializes the OrbitalElements with default values.
      */
-    FrameAwareElementMatrixInterface() = default;
+    inline constexpr OrbitalElementsInterface() = default;
 
     /**
      * @brief Constructor for OrbitalElements with specified elements.
      *
      * @param elements The elements to initialize the OrbitalElements with.
      */
-    FrameAwareElementMatrixInterface(const Elements_T&... elements) :
+    inline constexpr OrbitalElementsInterface(const Elements_T&... elements) :
         _elements(elements...)
     {
     }
@@ -65,7 +65,7 @@ class FrameAwareElementMatrixInterface {
      *
      * @param elements The array of elements to initialize the OrbitalElements with.
      */
-    FrameAwareElementMatrixInterface(const ArrayType& elements) :
+    inline constexpr OrbitalElementsInterface(const ArrayType& elements) :
         _elements(elements)
     {
     }
@@ -75,7 +75,7 @@ class FrameAwareElementMatrixInterface {
      *
      * @param elements The array of elements to move into the OrbitalElements.
      */
-    FrameAwareElementMatrixInterface(ArrayType&& elements) :
+    inline constexpr OrbitalElementsInterface(ArrayType&& elements) :
         _elements(std::move(elements))
     {
     }
@@ -83,7 +83,7 @@ class FrameAwareElementMatrixInterface {
     /**
      * @brief Virtual destructor for OrbitalElements.
      */
-    virtual ~FrameAwareElementMatrixInterface() = default;
+    virtual inline constexpr ~OrbitalElementsInterface() = default;
 
     /**
      * @brief Copy assignment operator for the Derived_T.
@@ -91,7 +91,7 @@ class FrameAwareElementMatrixInterface {
      * @param other The Derived_T to copy from.
      * @return A reference to the assigned Derived_T.
      */
-    Derived_T& operator=(const Derived_T& other)
+    inline constexpr Derived_T& operator=(const Derived_T& other)
     {
         _elements = other._elements;
         return static_cast<Derived_T&>(*this);
@@ -103,7 +103,7 @@ class FrameAwareElementMatrixInterface {
      * @param other The Derived_T to move from.
      * @return A reference to the assigned Derived_T.
      */
-    Derived_T& operator=(Derived_T&& other) noexcept
+    inline constexpr Derived_T& operator=(Derived_T&& other) noexcept
     {
         _elements = std::move(other._elements);
         return static_cast<Derived_T&>(*this);
@@ -118,7 +118,7 @@ class FrameAwareElementMatrixInterface {
      */
     template <typename Derived_U>
         requires(IsCompatibleOrbitalElements<Derived_T, Derived_U>)
-    Derived_T& operator=(const Derived_U& other)
+    inline constexpr Derived_T& operator=(const Derived_U& other)
     {
         _elements = other._elements;
         return static_cast<Derived_T&>(*this);
@@ -133,7 +133,7 @@ class FrameAwareElementMatrixInterface {
      */
     template <typename Derived_U>
         requires(IsCompatibleOrbitalElements<Derived_T, Derived_U>)
-    Derived_T& operator=(Derived_U&& other) noexcept
+    inline constexpr Derived_T& operator=(Derived_U&& other) noexcept
     {
         _elements = std::move(other._elements);
         return static_cast<Derived_T&>(*this);
@@ -356,9 +356,6 @@ class FrameAwareElementMatrixInterface {
   protected:
     ArrayType _elements; //!< The underlying Derived_T representing the orbital elements.
 };
-
-template <typename Derived_T, IsFrame auto _frame_, typename... Elements_T>
-using FaemInterface = FrameAwareElementMatrixInterface<Derived_T, _frame_, Elements_T...>;
 
 } // namespace astro
 } // namespace astrea

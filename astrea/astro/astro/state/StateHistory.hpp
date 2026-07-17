@@ -33,6 +33,7 @@ namespace astro {
  * at different dates, providing functionality to access the closest state
  * to a given date and to convert between different orbital elements.
  */
+template <typename State_T>
 class StateHistory {
 
     using EventTimesMap = gtl::btree_map<std::string, std::vector<Date>>;
@@ -63,14 +64,14 @@ class StateHistory {
      *
      * @param state The state to be inserted.
      */
-    void insert(const State& state);
+    void insert(const State_T& state);
 
     /**
      * @brief Inserts multiple states from another StateHistory into this history.
      *
      * @param stateHistory The StateHistory containing the states to be inserted.
      */
-    void insert(const StateHistory& stateHistory);
+    void insert(const StateHistory<State_T>& stateHistory);
 
     /**
      * @brief Appends a state to the end of the history without sorting.
@@ -80,7 +81,7 @@ class StateHistory {
      *
      * @param state The state to be appended.
      */
-    void fast_append(const State& state) { _states.push_back(state); }
+    void fast_append(const State_T& state) { _states.push_back(state); }
 
     /**
      * @brief Prepends a state to the beginning of the history without sorting.
@@ -90,7 +91,7 @@ class StateHistory {
      *
      * @param state The state to be prepended.
      */
-    void fast_prepend(const State& state) { _states.insert(_states.begin(), state); }
+    void fast_prepend(const State_T& state) { _states.insert(_states.begin(), state); }
 
     /**
      * @brief Get the number of states in the history.
@@ -121,30 +122,30 @@ class StateHistory {
     /**
      * @brief Retrieves the first and last states in the history.
      *
-     * @return State& Reference to the first state.
+     * @return State_T& Reference to the first state.
      */
-    State& first() { return _states.front(); }
+    State_T& first() { return _states.front(); }
 
     /**
      * @brief Retrieves the first and last states in the history.
      *
-     * @return const State& Reference to the first state.
+     * @return const State_T& Reference to the first state.
      */
-    const State& first() const { return _states.front(); }
+    const State_T& first() const { return _states.front(); }
 
     /**
      * @brief Retrieves the last state in the history.
      *
-     * @return State& Reference to the last state.
+     * @return State_T& Reference to the last state.
      */
-    State& last() { return _states.back(); }
+    State_T& last() { return _states.back(); }
 
     /**
      * @brief Retrieves the last state in the history.
      *
-     * @return const State& Reference to the last state.
+     * @return const State_T& Reference to the last state.
      */
-    const State& last() const { return _states.back(); }
+    const State_T& last() const { return _states.back(); }
 
     /**
      * @brief Sets the object ID for this state history.
@@ -167,9 +168,9 @@ class StateHistory {
      * either before or after it, and returns it.
      *
      * @param date The date for which the closest state is requested.
-     * @return const State& Reference to the closest state.
+     * @return const State_T& Reference to the closest state.
      */
-    const State& get_closest_state(const Date& date) const;
+    const State_T& get_closest_state(const Date& date) const;
 
     /**
      * @brief Retrieves the state at a specific date.
@@ -179,11 +180,11 @@ class StateHistory {
      *
      * @param date The date for which the state is requested.
      * @param allowApproximation Flag indicating whether to allow returning the closest state if an exact match is not found (default is true).
-     * @return State The state at the specified date.
+     * @return State_T The state at the specified date.
      *
      * @note Allowing the approximation is generally recommended and will only accept times within a second of any stored points without interpolation.
      */
-    State get_state_at(const Date& date, const bool allowApproximation = true) const;
+    State_T get_state_at(const Date& date, const bool allowApproximation = true) const;
 
     /**
      * @brief Sets the event times recorded during propagation.
@@ -209,12 +210,12 @@ class StateHistory {
     /**
      * @brief Iterator types for iterating over the states in the history.
      */
-    using iterator = std::vector<State>::iterator;
+    using iterator = std::vector<State_T>::iterator;
 
     /**
      * @brief Constant iterator types for iterating over the states in the history.
      */
-    using const_iterator = std::vector<State>::const_iterator;
+    using const_iterator = std::vector<State_T>::const_iterator;
 
     /**
      * @brief Returns an iterator to the beginning of the state history.
@@ -280,9 +281,9 @@ class StateHistory {
     }
 
   private:
-    std::vector<State> _states; //!< Vector to store states sorted by date
-    EventTimesMap _eventTimes;  //!< Vector to store event times during propagation
-    std::size_t _objectId = 0;  //!< ID of the object for which this state history is maintained
+    std::vector<State_T> _states; //!< Vector to store states sorted by date
+    EventTimesMap _eventTimes;    //!< Vector to store event times during propagation
+    std::size_t _objectId = 0;    //!< ID of the object for which this state history is maintained
 };
 
 } // namespace astro

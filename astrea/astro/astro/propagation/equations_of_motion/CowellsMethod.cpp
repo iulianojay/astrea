@@ -43,22 +43,22 @@ CowellsMethod::CowellsMethod(const ForceModel& forces) :
 OrbitalElementPartials CowellsMethod::compute_dynamics(
     const State& state,
     const Vehicle& vehicle,
-    const ForceVector<frames::primary>& perts,
-    const ForceVector<frames::primary>& control
+    const ForceVector<frames::earth::icrf>& perts,
+    const ForceVector<frames::earth::icrf>& control
 ) const
 {
     // Extract
-    const GravParam mu = get_mu<frames::primary.origin>();
+    const GravParam mu = get_mu<frames::earth::icrf.origin>();
 
-    const RadiusVector<frames::primary> r   = state.get_position();
-    const VelocityVector<frames::primary> v = state.get_velocity();
+    const RadiusVector<frames::earth::icrf> r   = state.get_position();
+    const VelocityVector<frames::earth::icrf> v = state.get_velocity();
 
     // mu/R^3
     const Distance R             = r.norm();
     const auto muOverRadiusCubed = mu / (R * R * R);
 
     // Derivative
-    return CartesianPartial<frames::primary>(v, -muOverRadiusCubed * r + (perts + control) / vehicle.get_mass());
+    return CartesianPartial<frames::earth::icrf>(v, -muOverRadiusCubed * r + (perts + control) / vehicle.get_mass());
 }
 
 

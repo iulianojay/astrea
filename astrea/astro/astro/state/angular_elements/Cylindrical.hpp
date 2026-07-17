@@ -31,7 +31,7 @@
 #include <astro/frames/definitions.hpp>
 #include <astro/frames/framework/CartesianVector.hpp>
 #include <astro/frames/framework/frame_concepts.hpp>
-#include <astro/state/framework/OrbitalElements.hpp>
+#include <astro/state/framework/element_matrix_concepts.hpp>
 #include <astro/systems/system_concepts.hpp>
 #include <astro/systems/system_utilities.hpp>
 #include <astro/types/typedefs.hpp>

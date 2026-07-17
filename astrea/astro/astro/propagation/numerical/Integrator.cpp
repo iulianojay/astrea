@@ -31,7 +31,7 @@
 #include <astro/propagation/event_detection/EventDetector.hpp>
 #include <astro/propagation/numerical/butcher_tableau.hpp>
 #include <astro/state/StateHistory.hpp>
-#include <astro/state/framework/OrbitalElements.hpp>
+#include <astro/state/framework/element_matrix_concepts.hpp>
 #include <astro/state/orbital_elements.hpp>
 #include <astro/time/Interval.hpp>
 #include <astro/types/typedefs.hpp>

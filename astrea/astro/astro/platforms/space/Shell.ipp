@@ -34,8 +34,10 @@ Shell<Spacecraft_T>::Shell(
 )
 {
     if (T % P) {
-        throw std::runtime_error("The Walker constructor requires the total number planes is a multiple of the total "
-                                 "number of of satellites.");
+        throw std::runtime_error(
+            "The Walker constructor requires the total number planes is a multiple of the total "
+            "number of of satellites."
+        );
     }
     if (T == 0) { throw std::runtime_error("Constellation must have at least one satellite, and one plane."); }
     if (mp_units::is_lt_zero(F)) { throw std::runtime_error("Constellation phasing parameter must be non-negative."); }
@@ -52,9 +54,9 @@ Shell<Spacecraft_T>::Shell(
     for (auto& plane : planes) {
         plane.satellites.resize(satsPerPlane);
 
-        const Keplerian<frames::primary> planeElements{ semimajor,     Unitless::zero(),
-                                                        inclination,   (anchorRAAN + deltaRAAN * iPlane),
-                                                        Angle::zero(), Angle::zero() };
+        const Keplerian<frames::earth::icrf> planeElements{ semimajor,     Unitless::zero(),
+                                                            inclination,   (anchorRAAN + deltaRAAN * iPlane),
+                                                            Angle::zero(), Angle::zero() };
         plane.elements = OrbitalElements(planeElements);
 
         for (auto& sat : plane.satellites) {

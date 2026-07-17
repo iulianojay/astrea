@@ -174,7 +174,7 @@ std::array<std::vector<double>, 6> extract_raw_orbital_elements(const StateHisto
 {
     std::array<std::vector<double>, 6> data;
     for (const auto& state : trajectory) {
-        const Keplerian<frames::primary> kep = state.in_element_set<Keplerian<frames::primary>>();
+        const Keplerian<frames::earth::icrf> kep = state.in_element_set<Keplerian<frames::earth::icrf>>();
 
         const auto a  = kep.get_semimajor();
         const auto e  = kep.get_eccentricity();
@@ -199,8 +199,8 @@ std::array<std::vector<double>, 6> extract_raw_orbital_elements_at_times(const s
     std::array<std::vector<double>, 6> data;
     const Date epoch = trajectory.epoch();
     for (const auto& time : times) {
-        const Keplerian<frames::primary> kep =
-            trajectory.get_state_at(epoch + time * day).in_element_set<Keplerian<frames::primary>>();
+        const Keplerian<frames::earth::icrf> kep =
+            trajectory.get_state_at(epoch + time * day).in_element_set<Keplerian<frames::earth::icrf>>();
         const auto a  = kep.get_semimajor();
         const auto e  = kep.get_eccentricity();
         const auto i  = wrap_angle(kep.get_inclination());

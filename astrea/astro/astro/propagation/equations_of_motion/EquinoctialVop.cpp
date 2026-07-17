@@ -45,14 +45,14 @@ EquinoctialVop::EquinoctialVop(const ForceModel& forces) :
 OrbitalElementPartials EquinoctialVop::compute_dynamics(
     const State& state,
     const Vehicle& vehicle,
-    const ForceVector<frames::primary>& perts,
-    const ForceVector<frames::primary>& control
+    const ForceVector<frames::earth::icrf>& perts,
+    const ForceVector<frames::earth::icrf>& control
 ) const
 {
     // Get need representations
-    const GravParam mu                             = get_mu<frames::primary.origin>();
-    const Date& date                               = state.get_epoch();
-    const Equinoctial<frames::primary> equinoctial = state.in_element_set<Equinoctial<frames::primary>>();
+    const GravParam mu                                 = get_mu<frames::earth::icrf.origin>();
+    const Date& date                                   = state.get_epoch();
+    const Equinoctial<frames::earth::icrf> equinoctial = state.in_element_set<Equinoctial<frames::earth::icrf>>();
 
     // Extract
     const Distance& p = equinoctial.get_semilatus();
@@ -63,8 +63,8 @@ OrbitalElementPartials EquinoctialVop::compute_dynamics(
     const Angle& L    = equinoctial.get_true_longitude();
 
     // R and V
-    const RadiusVector<frames::primary> r   = state.get_position();
-    const VelocityVector<frames::primary> v = state.get_velocity();
+    const RadiusVector<frames::earth::icrf> r   = state.get_position();
+    const VelocityVector<frames::earth::icrf> v = state.get_velocity();
 
     // Calculate R, N, and T
     const auto ricFrame = frames::dynamic::ric.instantaneous(r, v);
@@ -95,7 +95,7 @@ OrbitalElementPartials EquinoctialVop::compute_dynamics(
     const UnitlessPerTime dkdt = termB * sinL * normalPert;
     const AngularVelocity dLdt = (sqrt(mu * p) * w * w / (p * p) + sqPOverMu * termA) * (isq_angle::cotes_angle);
 
-    return EquinoctialPartial<frames::primary>(dpdt, dfdt, dgdt, dhdt, dkdt, dLdt);
+    return EquinoctialPartial<frames::earth::icrf>(dpdt, dfdt, dgdt, dhdt, dkdt, dLdt);
 }
 
 

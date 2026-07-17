@@ -23,7 +23,6 @@
 #include <units/units.hpp>
 
 #include <astro/frames/definitions.hpp>
-#include <astro/frames/definitions/primary_frame.hpp>
 #include <astro/frames/framework/CartesianVector.hpp>
 #include <astro/types/typedefs.hpp>
 
@@ -34,8 +33,8 @@ namespace astro {
  * @brief Struct to hold the results of a perturbation force computation, including both acceleration and torque.
  */
 struct Perturbation {
-    ForceVector<frames::primary> force = { 0.0 * mp_units::si::unit_symbols::N }; //!< The computed force vector due to the perturbing force.
-    TorqueVector<frames::primary> torque = { 0.0 * mp_units::si::unit_symbols::N * mp_units::si::unit_symbols::m }; //!< The computed torque vector due to the perturbing force.
+    ForceVector<frames::earth::icrf> force = { 0.0 * mp_units::si::unit_symbols::N }; //!< The computed force vector due to the perturbing force.
+    TorqueVector<frames::earth::icrf> torque = { 0.0 * mp_units::si::unit_symbols::N * mp_units::si::unit_symbols::m }; //!< The computed torque vector due to the perturbing force.
 };
 
 } // namespace astro

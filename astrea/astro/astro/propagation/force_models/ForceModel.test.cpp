@@ -74,7 +74,7 @@ TEST(ForceModelTest, ComputeForces)
 
     Vehicle vehicle;
     Date date;
-    Cartesian<frames::primary> cart;
+    Cartesian<frames::earth::icrf> cart;
     State state(cart, date);
 
     auto [accel, torque] = model.compute_perturbations(state, vehicle);

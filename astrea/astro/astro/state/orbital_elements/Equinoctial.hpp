@@ -23,7 +23,7 @@
 #include <units/units.hpp>
 
 #include <astro/astro.fwd.hpp>
-#include <astro/state/framework/FrameAwareElementMatrixInterface.hpp>
+#include <astro/state/framework/OrbitalElementsInterface.hpp>
 #include <astro/types/typedefs.hpp>
 
 namespace astrea {
@@ -38,13 +38,18 @@ namespace astro {
  */
 template <IsFrame auto _frame_>
 class Equinoctial
-    : public FaemInterface<Equinoctial<_frame_>, _frame_, Distance, Unitless, Unitless, Unitless, Unitless, Angle> {
+    : public OrbitalElementsInterface<Equinoctial<_frame_>, _frame_, Distance, Unitless, Unitless, Unitless, Unitless, Angle> {
+
+    using Base_T =
+        OrbitalElementsInterface<Equinoctial<_frame_>, _frame_, Distance, Unitless, Unitless, Unitless, Unitless, Angle>;
 
     template <IsFrame auto frame>
     friend std::ostream& operator<<(std::ostream&, Equinoctial<frame> const&);
     friend class OrbitalElements;
 
   public:
+    using Base_T::Base_T;
+
     /**
      * @brief Default constructor for Equinoctial.
      */
@@ -269,12 +274,17 @@ class Equinoctial
  */
 template <IsFrame auto _frame_>
 class EquinoctialPartial
-    : public FaemInterface<EquinoctialPartial<_frame_>, _frame_, Velocity, UnitlessPerTime, UnitlessPerTime, UnitlessPerTime, UnitlessPerTime, AngularVelocity> {
+    : public OrbitalElementsInterface<EquinoctialPartial<_frame_>, _frame_, Velocity, UnitlessPerTime, UnitlessPerTime, UnitlessPerTime, UnitlessPerTime, AngularVelocity> {
+
+    using Base_T =
+        OrbitalElementsInterface<EquinoctialPartial<_frame_>, _frame_, Velocity, UnitlessPerTime, UnitlessPerTime, UnitlessPerTime, UnitlessPerTime, AngularVelocity>;
 
     template <IsFrame auto frame>
     friend std::ostream& operator<<(std::ostream&, EquinoctialPartial<frame> const&);
 
   public:
+    using Base_T::Base_T;
+
     /**
      * @brief Default constructor for EquinoctialPartial.
      *

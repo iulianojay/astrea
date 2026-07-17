@@ -44,7 +44,7 @@ Unitless ImpulsiveBurn::measure_event(const Time& time, const State& state, cons
 
 Unitless ImpulsiveBurn::measure_anomaly_event(const Time& time, const State& state, const Vehicle& vehicle) const
 {
-    const Keplerian<frames::primary> elements = state.in_element_set<Keplerian<frames::primary>>();
+    const Keplerian<frames::earth::icrf> elements = state.in_element_set<Keplerian<frames::earth::icrf>>();
 
     const Angle anomaly = (_trigger == BurnTrigger::TRUE_ANOMALY) ? elements.get_true_anomaly() - _triggerAnomaly :
                                                                     elements.get_mean_anomaly() - _triggerAnomaly;
@@ -63,9 +63,9 @@ Unitless ImpulsiveBurn::measure_anomaly_event(const Time& time, const State& sta
 
 Unitless ImpulsiveBurn::measure_altitude_event(const Time& time, const State& state, const Vehicle& vehicle) const
 {
-    const Cartesian<frames::primary> elements = state.in_element_set<Cartesian<frames::primary>>();
+    const Cartesian<frames::earth::icrf> elements = state.in_element_set<Cartesian<frames::earth::icrf>>();
 
-    const Distance altitude = Geodetic<frames::primary.origin>(elements.get_position(), state.get_epoch()).get_altitude();
+    const Distance altitude = Geodetic<frames::earth::icrf.origin>(elements.get_position(), state.get_epoch()).get_altitude();
 
     return (altitude - _triggerAltitude) / (1.0 * km);
 }
@@ -87,7 +87,7 @@ void ImpulsiveBurn::trigger_action(const Time& time, State& state, Vehicle& vehi
     }
 
     // Pull out state
-    Cartesian<frames::primary> elements = state.in_element_set<Cartesian<frames::primary>>();
+    Cartesian<frames::earth::icrf> elements = state.in_element_set<Cartesian<frames::earth::icrf>>();
 
     // Just sum up all the thrusters
     const Spacecraft* sat = vehicle.extract<Spacecraft>();

@@ -21,14 +21,14 @@ Plane<Spacecraft_T>::Plane(std::vector<Spacecraft_T> _satellites) :
     satellites(_satellites)
 {
     // Grab first element set as plane set
-    const GravParam mu = get_mu<frames::primary.origin>();
-    elements = satellites[0].get_initial_state().get_elements().template in_element_set<Keplerian<frames::primary>>(mu);
+    const GravParam mu = get_mu<frames::earth::icrf.origin>();
+    elements = satellites[0].get_initial_state().get_elements().template in_element_set<Keplerian<frames::earth::icrf>>(mu);
 
     // Check if other satellites are actually in-plane
     strict = true;
     for (const auto& sat : satellites) {
         const OrbitalElements satElements =
-            sat.get_initial_state().get_elements().template in_element_set<Keplerian<frames::primary>>(mu);
+            sat.get_initial_state().get_elements().template in_element_set<Keplerian<frames::earth::icrf>>(mu);
         if (!planes_are_nearly_equal(elements, satElements, 1.0e-6 * mp_units::one)) {
             strict = false;
             break;

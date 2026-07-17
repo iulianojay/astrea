@@ -19,7 +19,7 @@
 
 #include <astro/platforms/Vehicle.hpp>
 #include <astro/state/State.hpp>
-#include <astro/state/framework/OrbitalElements.hpp>
+#include <astro/state/framework/element_matrix_concepts.hpp>
 #include <astro/state/orbital_elements/Cartesian.hpp>
 #include <astro/systems/system_utilities.hpp>
 #include <astro/types/enums.hpp>
@@ -43,21 +43,21 @@ using mp_units::si::unit_symbols::s;
 
 Perturbation SolarRadiationPressure::compute_perturbation(const State& state, const Vehicle& vehicle) const
 {
-    static constexpr auto center = frames::primary.origin;
+    static constexpr auto center = frames::earth::icrf.origin;
     static constexpr bool isSun  = (center == star::Sun);
 
     // Extract
-    const Date date                                      = state.get_epoch();
-    const RadiusVector<frames::primary> rCenterToVehicle = state.get_position();
-    const Distance rMagCenterToVehicle                   = rCenterToVehicle.norm();
+    const Date date                                          = state.get_epoch();
+    const RadiusVector<frames::earth::icrf> rCenterToVehicle = state.get_position();
+    const Distance rMagCenterToVehicle                       = rCenterToVehicle.norm();
 
     // Radius from central body to sun
-    const RadiusVector<frames::primary> rCenterToSun =
-        get_relative_position<star::Sun, center>(date).force_frame_conversion<frames::primary>();
+    const RadiusVector<frames::earth::icrf> rCenterToSun =
+        get_relative_position<star::Sun, center>(date).force_frame_conversion<frames::earth::icrf>();
     const Distance rMagCenterToSun = rCenterToSun.norm();
 
-    const RadiusVector<frames::primary> rVehicleToSun = rCenterToSun - rCenterToVehicle;
-    const Distance rMagVehicleToSun                   = rVehicleToSun.norm();
+    const RadiusVector<frames::earth::icrf> rVehicleToSun = rCenterToSun - rCenterToVehicle;
+    const Distance rMagVehicleToSun                       = rVehicleToSun.norm();
 
     // Average solar radiation pressure at 1 AU scaled to average distance from Sun
     static const quantity<N / pow<2>(m)> srpAtOneAU = 4.556485540406757e-6 * N / pow<2>(m);
@@ -79,12 +79,12 @@ Perturbation SolarRadiationPressure::compute_perturbation(const State& state, co
             static constexpr Distance diamSun = get_equitorial_radius<star::Sun>() * 2;
             const Distance Xu                 = equitorialR * rMagCenterToSun / (diamSun - equitorialR);
 
-            const RadiusVector<frames::primary> rP = -Xu * rCenterToSun / rMagCenterToSun;
-            const Distance normRP                  = rP.norm();
+            const RadiusVector<frames::earth::icrf> rP = -Xu * rCenterToSun / rMagCenterToSun;
+            const Distance normRP                      = rP.norm();
 
-            const RadiusVector<frames::primary> rPs = rCenterToVehicle - rP;
-            const Distance normRPs                  = rPs.norm();
-            const Angle alphaps                     = abs(asin(-rPs.dot(rP) / (normRP * normRPs)));
+            const RadiusVector<frames::earth::icrf> rPs = rCenterToVehicle - rP;
+            const Distance normRPs                      = rPs.norm();
+            const Angle alphaps                         = abs(asin(-rPs.dot(rP) / (normRP * normRPs)));
 
             if (alphaps < asin(equitorialR / Xu)) { // Umbra
                 fractionOfRecievedSunlight = 0.0 * one;

@@ -7,7 +7,7 @@
 # of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details. You should
 # have received a copy of the GNU General Public License along with Astrea. If not, see <https://www.gnu.org/licenses/>.
 
-add_subdirectory(trace)
+# add_subdirectory(trace)
 add_subdirectory(astro)
 add_subdirectory(math)
 # add_subdirectory(pathfinder)
@@ -30,7 +30,7 @@ target_link_libraries(astrea INTERFACE
     utilities_shared
     astro_shared
     snapshot_shared
-    trace_shared
+    # trace_shared
 )
 
 # Static aggregate target (only created when BUILD_STATIC is enabled)
@@ -42,6 +42,6 @@ if(${BUILD_STATIC})
         utilities_static
         astro_static
         snapshot_static
-        trace_static
+        # trace_static
     )
 endif()

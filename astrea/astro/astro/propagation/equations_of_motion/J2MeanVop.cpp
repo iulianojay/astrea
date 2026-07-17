@@ -44,17 +44,17 @@ using mp_units::si::unit_symbols::s;
 OrbitalElementPartials J2MeanVop::compute_dynamics(
     const State& state,
     const Vehicle& vehicle,
-    const ForceVector<frames::primary>& perts,
-    const ForceVector<frames::primary>& control
+    const ForceVector<frames::earth::icrf>& perts,
+    const ForceVector<frames::earth::icrf>& control
 ) const
 {
     // Extract
-    const GravParam mu     = get_mu<frames::primary.origin>();
-    const auto J2          = get_j2<frames::primary.origin>();
-    const auto equitorialR = get_equitorial_radius<frames::primary.origin>();
+    const GravParam mu     = get_mu<frames::earth::icrf.origin>();
+    const auto J2          = get_j2<frames::earth::icrf.origin>();
+    const auto equitorialR = get_equitorial_radius<frames::earth::icrf.origin>();
 
-    const Keplerian<frames::primary> elements = state.in_element_set<Keplerian<frames::primary>>();
-    const Distance& a                         = elements.get_semimajor();
+    const Keplerian<frames::earth::icrf> elements = state.in_element_set<Keplerian<frames::earth::icrf>>();
+    const Distance& a                             = elements.get_semimajor();
     // const Angle& raan = elements.get_right_ascension();
     const Angle& w     = elements.get_argument_of_perigee();
     const Angle& theta = elements.get_true_anomaly();
@@ -64,8 +64,8 @@ OrbitalElementPartials J2MeanVop::compute_dynamics(
     const Angle& inc    = (elements.get_inclination() < incTol) ? incTol : elements.get_inclination();
 
     // conversions Keplerian elements to r and v
-    const RadiusVector<frames::primary> r   = state.get_position();
-    const VelocityVector<frames::primary> v = state.get_velocity();
+    const RadiusVector<frames::earth::icrf> r   = state.get_position();
+    const VelocityVector<frames::earth::icrf> v = state.get_velocity();
 
     const Distance& x = r.get_x();
     const Distance& y = r.get_y();
@@ -80,9 +80,9 @@ OrbitalElementPartials J2MeanVop::compute_dynamics(
     // entire keplerian VoP form, in which case you should just use the KeplerianVoP class.
 
     // accel due to oblateness
-    AccelerationVector<frames::primary> accelOblateness = { termA * (1.0 - 5.0 * termB) * x,
-                                                            termA * (1.0 - 5.0 * termB) * y,
-                                                            termA * (3.0 - 5.0 * termB) * z };
+    AccelerationVector<frames::earth::icrf> accelOblateness = { termA * (1.0 - 5.0 * termB) * x,
+                                                                termA * (1.0 - 5.0 * termB) * y,
+                                                                termA * (3.0 - 5.0 * termB) * z };
 
     // Only normal pert required
     const Direction Nhat          = r.cross(v).direction();
@@ -105,7 +105,7 @@ OrbitalElementPartials J2MeanVop::compute_dynamics(
     AngularVelocity dincdt = _dincdt;
     if (inc == incTol && dincdt <= incTol * one / s) { dincdt = 0.0 * rad / s; }
 
-    return KeplerianPartial<frames::primary>(dadt, deccdt, dincdt, draandt, dwdt, dthetadt);
+    return KeplerianPartial<frames::earth::icrf>(dadt, deccdt, dincdt, draandt, dwdt, dthetadt);
 }
 
 } // namespace astro

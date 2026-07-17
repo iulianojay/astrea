@@ -26,7 +26,7 @@
 #include <astro/frames/framework/CartesianVector.hpp>
 #include <astro/platforms/thrusters/Thruster.hpp>
 #include <astro/state/StateHistory.hpp>
-#include <astro/state/framework/OrbitalElements.hpp>
+#include <astro/state/framework/element_matrix_concepts.hpp>
 #include <astro/state/orbital_data_formats/GeneralPerturbations.hpp>
 #include <astro/time/Date.hpp>
 #include <astro/types/typedefs.hpp>
@@ -51,7 +51,7 @@ Spacecraft::Spacecraft(const GeneralPerturbations& gp)
         !gp.RA_OF_ASC_NODE.has_value() || !gp.ARG_OF_PERICENTER.has_value() || !gp.MEAN_ANOMALY.has_value()) {
         std::cerr << "Missing GP info. Sad." << std::endl;
     }
-    Keplerian<frames::primary> coes(
+    Keplerian<frames::earth::icrf> coes(
         gp.SEMIMAJOR_AXIS.value() * km,
         gp.ECCENTRICITY.value() * one,
         gp.INCLINATION.value() * deg,
@@ -107,7 +107,7 @@ Perturbation Spacecraft::get_control_authority(const State& state) const
         totalThrust[1] += thruster.get_thrust();
     }
 
-    const Cartesian<frames::primary> elements = state.in_element_set<Cartesian<frames::primary>>();
+    const Cartesian<frames::earth::icrf> elements = state.in_element_set<Cartesian<frames::earth::icrf>>();
     const auto ricFrame = frames::dynamic::ric.instantaneous(elements.get_position(), elements.get_velocity());
     return {
         .force = ricFrame.rotate_out_of_this_frame(totalThrust, state.get_epoch()), .torque = {} // first cut
@@ -131,15 +131,17 @@ void Spacecraft::set_lift_area(const SurfaceArea& liftArea) { _liftArea = liftAr
 
 void Spacecraft::set_name(const std::string& name) { _name = name; }
 
-RadiusVector<frames::primary> Spacecraft::get_position(const Date& date) const
+RadiusVector<frames::earth::icrf> Spacecraft::get_position(const Date& date) const
 {
-    const Cartesian<frames::primary> elements = _stateHistory.get_state_at(date).in_element_set<Cartesian<frames::primary>>();
+    const Cartesian<frames::earth::icrf> elements =
+        _stateHistory.get_state_at(date).in_element_set<Cartesian<frames::earth::icrf>>();
     return elements.get_position();
 }
 
-VelocityVector<frames::primary> Spacecraft::get_velocity(const Date& date) const
+VelocityVector<frames::earth::icrf> Spacecraft::get_velocity(const Date& date) const
 {
-    const Cartesian<frames::primary> elements = _stateHistory.get_state_at(date).in_element_set<Cartesian<frames::primary>>();
+    const Cartesian<frames::earth::icrf> elements =
+        _stateHistory.get_state_at(date).in_element_set<Cartesian<frames::earth::icrf>>();
     return elements.get_velocity();
 }
 
