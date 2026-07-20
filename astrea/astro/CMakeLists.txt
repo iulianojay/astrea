@@ -63,6 +63,10 @@ set(ASTRO_SOURCES
     ${ASTRO_BASE}/state/orbital_data_formats/GeneralPerturbations.cpp
 
     ${ASTRO_BASE}/systems/celestial_bodies/JplEphemerisTable.cpp
+    
+    ${ASTRO_BASE}/systems/celestial_bodies/Earth/atmosphere/HarrisPriester.cpp
+    ${ASTRO_BASE}/systems/celestial_bodies/Earth/atmosphere/JacciaRoberts.cpp
+    ${ASTRO_BASE}/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp
 
     ${ASTRO_BASE}/time/Date.cpp
 
@@ -176,6 +180,7 @@ set(ASTRO_HEADERS
     ${ASTRO_BASE}/systems/celestial_bodies/Earth/Earth.hpp
     ${ASTRO_BASE}/systems/celestial_bodies/Earth/atmosphere/JacciaRoberts.hpp
     ${ASTRO_BASE}/systems/celestial_bodies/Earth/atmosphere/HarrisPriester.hpp
+    ${ASTRO_BASE}/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.hpp
     ${ASTRO_BASE}/systems/celestial_bodies/Earth/Moon.hpp
     ${ASTRO_BASE}/systems/celestial_bodies/Mars/Deimos.hpp
     ${ASTRO_BASE}/systems/celestial_bodies/Mars/Mars.hpp

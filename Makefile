@@ -7,6 +7,7 @@ config_path := $(abspath .)
 source_path := astrea
 examples_path := examples
 arch := x86_64
+cc := gcc
 cxx := g++
 cxx_std := 23
 cxx_name := $(shell echo $(cxx) | sed 's/g++/gcc/; s/clang++/clang/' | sed 's/-[0-9.]*$$//')
@@ -73,6 +74,8 @@ build:
 	cmake -S . -B $(build_path) \
 	$(toolchain_make) \
 	$(toolchain_file) \
+	-DCMAKE_CXX_COMPILER=$(cxx) \
+	-DCMAKE_C_COMPILER=$(cc) \
 	-DCMAKE_BUILD_TYPE=$(build_type) \
 	-DCMAKE_INSTALL_PREFIX:PATH=$(install_path) \
 	-DCMAKE_CXX_FLAGS=-fdiagnostics-color=always \

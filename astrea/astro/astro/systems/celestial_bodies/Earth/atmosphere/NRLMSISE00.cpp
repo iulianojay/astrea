@@ -1,12 +1,7 @@
-/**
- * @file NRLMSISE00.hpp
- * @author Jay Iuliano (iuliano.jay@gmail.com)
- * @brief Header file for the NRLMSISE00 class.
- * @date 2026-05-01
- *
- * @copyright Copyright (c) 2026 Jay Iuliano
- *
+/*
  * The GNU Lesser General Public License (LGPL)
+ *
+ * Copyright (c) 2026 Jay Iuliano
  *
  * This file is part of Astrea.
  * Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License
@@ -14,11 +9,8 @@
  * Astrea is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty
  * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details. You should
  * have received a copy of the GNU General Public License along with Astrea. If not, see <https://www.gnu.org/licenses/>.
- *
  */
-#pragma once
-
-#include <astro/systems/celestial_bodies/Earth/atmosphere/JacciaRoberts.hpp>
+#include <astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.hpp>
 
 #include <mp-units/core.h>
 #include <mp-units/systems/angular.h>
@@ -43,12 +35,16 @@ using mp_units::si::unit_symbols::s;
 using NumberDensity = quantity<one / pow<3>(m)>;
 using AtomicMass    = quantity<u>;
 
+/*
+Note: Who the fuck wrote the original code for this model? Why do you hate code maintainers?
+*/
+
 namespace astrea {
 namespace astro {
 namespace planets {
 
 /** NRLMSISE-00 data: temperature pt[150]. */
-static const double PT[] = {
+static const std::array<Temperature, 150> PT = {
     9.86573e-1,  1.62228e-2,  1.55270e-2,  -1.04323e-1, -3.75801e-3, -1.18538e-3, -1.24043e-1, 4.56820e-3,  8.76018e-3,
     -1.36235e-1, -3.52427e-2, 8.84181e-3,  -5.92127e-3, -8.61650,    0.0,         1.28492e-2,  0.0,         1.30096e2,
     1.04567e-2,  1.65686e-3,  -5.53887e-6, 2.97810e-3,  0.0,         5.13122e-3,  8.66784e-2,  1.58727e-1,  0.0,
@@ -241,7 +237,7 @@ static const std::array<std::array<NumberDensity, 150>, 9> PD = {
 };
 
 /** NRLMSISE-00 data: ps[150]. */
-static const double[] PS = {
+static const quantity[] PS = {
     9.56827e-1, 6.20637e-2, 3.18433e-2,  0.0,         0.0,        3.94900e-2, 0.0, 0.0, -9.24882e-3, -7.94023e-3,
     0.0,        0.0,        0.0,         1.74712e2,   0.0,        0.0,        0.0, 0.0, 0.0,         0.0,
     0.0,        2.74677e-3, 0.0,         1.54951e-2,  8.66784e-2, 1.58727e-1, 0.0, 0.0, 0.0,         0.0,
@@ -260,7 +256,7 @@ static const double[] PS = {
 };
 
 /** NRLMSISE-00 data: TURBO pdl[2][25]. */
-static const double[][] PDL = {
+static const quantity[][] PDL = {
     { 1.09930, 3.90631, 3.07165, 9.86161e-1, 1.63536e1, 4.63830, 1.0, 0.0, 0.0, 0.0,     0.0,        0.0,       0.0,
       0.0,     0.0,     0.0,     0.0,        0.0,       0.0,     0.0, 0.0, 0.0, 1.28840, 3.10302e-2, 1.18339e-1 },
     { 1.0,        7.00000e-1, 1.15020,   3.44689,    1.28840, 1.0,         1.08738,   1.22947,     1.10016,
@@ -270,57 +266,66 @@ static const double[][] PDL = {
 
 /** NRLMSISE-00 data: LOWER BOUNDARY ptm[10]. */
 struct BatesProfileParams {
-    quantity<K> Tinf;
-    quantity<K> Tlb0;
-    quantity<K> TN12;
+    Temperature Tinf;
+    Temperature Tlb0;
+    Temperature TN12;
     quantity<K / km> S0;
-    quantity<K> TN14;
-    quantity<km> Zlb;
-    quantity<K> TN11;
-    quantity<K> TN13;
+    Temperature TN14;
+    Distance Zlb;
+    Temperature TN11;
+    Temperature TN13;
     quantity<K / km> Tgrad;
 };
 static const BatesProfileParams PTM = { 1.0413e3 * K, 3.86e2 * K, 1.95e2 * K, 1.66728e1 * K / km, 2.13e2 * K,
                                         1.2e2 * km,   2.4e2 * K,  1.87e2 * K, -2.0 * K / km };
 
-/// Mean molecular mass of the well-mixed lower atmosphere (amu), corresponding to PDM[N2][4] in the Fortran source.
+/// Mean molecular mass of the well-mixed lower atmosphere (amu), corresponding to SpeciesModelData[N2][4] in the Fortran source.
 static const AtomicMass XMM = 28.9500 * u;
 
 /// Per-species empirical parameters for NRLMSISE-00 diffusive and mixed-region density calculations.
 struct SpeciesModelParams {
-    NumberDensity n_ref; ///< cm⁻³: reference number density at lower boundary
-    Unitless mix_ratio;  ///< dimensionless: mixing ratio / density correction factor
-    Distance zh;         ///< turbopause altitude
-    Unitless c3;         ///< species-specific: zhm scale height (N2) or rc correction ratio (O, O2, H, N)
-    Distance za;         ///< primary ccor correction centre altitude (N2: unused, set to 0)
-    Distance ha;         ///< primary ccor correction scale height
-    Distance zb;         ///< secondary ccor correction centre altitude
-    Distance hb;         ///< secondary ccor correction scale height
-    Unitless c9;         ///< anomalous O only: secondary thermal reference parameter
+    NumberDensity nRef; ///< cm⁻³: reference number density at lower boundary
+    Unitless mixRatio;  ///< dimensionless: mixing ratio / density correction factor
+    Distance zh;        ///< turbopause altitude
+    Unitless c3;        ///< species-specific: zhm scale height (N2) or rc correction ratio (O, O2, H, N)
+    Distance za;        ///< primary ccor correction centre altitude (N2: unused, set to 0)
+    Distance ha;        ///< primary ccor correction scale height
+    Distance zb;        ///< secondary ccor correction centre altitude
+    Distance hb;        ///< secondary ccor correction scale height
+    Unitless c9;        ///< anomalous O only: secondary thermal reference parameter
+};
+
+enum Species {
+    HELIUM             = 0,
+    ATOMIC_OXYGEN      = 1,
+    MOLECULAR_NITROGEN = 2,
+    MOLECULAR_OXYGEN   = 3,
+    ARGON              = 4,
+    TOTAL_MASS         = 5,
+    HYDROGEN           = 6,
+    ATOMIC_NITROGEN    = 7,
+    ANOMALOUS_OXYGEN   = 8
 };
 
 /** NRLMSISE-00 data: pdm[8][10]. */
-static const std::array<SpeciesModelParams, 8> PDM = { {
-    // He
-    { 2.456e7 * pow<-3>(cm), 6.71072e-6 * one, 1.0e2 * km, 0.0 * one, 1.1e2 * km, 1.0e1 * km, 0.0 * km, 0.0 * km, 0.0 * one },
-    // O
-    { 8.594e+10 * pow<-3>(cm), 1.0 * one, 1.05e2 * km, -8.0 * one, 1.1e2 * km, 1.0e1 * km, 9.0e1 * km, 2.0 * km, 0.0 * one },
-    // N2  (za unused; XMM = 28.9500 defined above)
-    { 2.81e+11 * pow<-3>(cm), 0.0 * one, 1.05e2 * km, 2.8e1 * one, 0.0 * km, 0.0 * km, 0.0 * km, 0.0 * km, 0.0 * one },
-    // O2
-    { 3.3e+10 * pow<-3>(cm), 2.68270e-1 * one, 1.05e2 * km, 1.0 * one, 1.1e2 * km, 1.0e1 * km, 1.1e2 * km, -1.0e1 * km, 0.0 * one },
-    // Ar
-    { 1.33e9 * pow<-3>(cm), 1.19615e-2 * one, 1.05e2 * km, 0.0 * one, 1.1e2 * km, 1.0e1 * km, 0.0 * km, 0.0 * km, 0.0 * one },
-    // H
-    { 1.761e5 * pow<-3>(cm), 1.0 * one, 9.5e1 * km, -8.0 * one, 1.1e2 * km, 1.0e1 * km, 9.0e1 * km, 2.0 * km, 0.0 * one },
-    // N
-    { 1.0e7 * pow<-3>(cm), 1.0 * one, 1.05e2 * km, -8.0 * one, 1.1e2 * km, 1.0e1 * km, 9.0e1 * km, 2.0 * km, 0.0 * one },
-    // Anomalous O
-    { 1.0e6 * pow<-3>(cm), 1.0 * one, 1.05e2 * km, -8.0 * one, 5.5e2 * km, 7.6e1 * km, 9.0e1 * km, 2.0 * km, 4.0e3 * one },
+static const std::unordered_map<Species, SpeciesModelParams> SpeciesModelData = { {
+    { HELIUM, { 2.456e7 * pow<-3>(cm), 6.71072e-6 * one, 1.0e2 * km, 0.0 * one, 1.1e2 * km, 1.0e1 * km, 0.0 * km, 0.0 * km, 0.0 * one } },
+    { ATOMIC_OXYGEN,
+      { 8.594e+10 * pow<-3>(cm), 1.0 * one, 1.05e2 * km, -8.0 * one, 1.1e2 * km, 1.0e1 * km, 9.0e1 * km, 2.0 * km, 0.0 * one } },
+    { MOLECULAR_NITROGEN,
+      { 2.81e+11 * pow<-3>(cm), 0.0 * one, 1.05e2 * km, 2.8e1 * one, 0.0 * km, 0.0 * km, 0.0 * km, 0.0 * km, 0.0 * one } },
+    { MOLECULAR_OXYGEN,
+      { 3.3e+10 * pow<-3>(cm), 2.68270e-1 * one, 1.05e2 * km, 1.0 * one, 1.1e2 * km, 1.0e1 * km, 1.1e2 * km, -1.0e1 * km, 0.0 * one } },
+    { ARGON, { 1.33e9 * pow<-3>(cm), 1.19615e-2 * one, 1.05e2 * km, 0.0 * one, 1.1e2 * km, 1.0e1 * km, 0.0 * km, 0.0 * km, 0.0 * one } },
+    { HYDROGEN, { 1.761e5 * pow<-3>(cm), 1.0 * one, 9.5e1 * km, -8.0 * one, 1.1e2 * km, 1.0e1 * km, 9.0e1 * km, 2.0 * km, 0.0 * one } },
+    { ATOMIC_NITROGEN,
+      { 1.0e7 * pow<-3>(cm), 1.0 * one, 1.05e2 * km, -8.0 * one, 1.1e2 * km, 1.0e1 * km, 9.0e1 * km, 2.0 * km, 0.0 * one } },
+    { ANOMALOUS_OXYGEN,
+      { 1.0e6 * pow<-3>(cm), 1.0 * one, 1.05e2 * km, -8.0 * one, 5.5e2 * km, 7.6e1 * km, 9.0e1 * km, 2.0 * km, 4.0e3 * one } },
 } };
 
 /** NRLMSISE-00 data: ptl[4][100]. */
-static const double[][] PTL = {
+static const quantity[][] PTL = {
     // TN1(2)
     { 1.00858,     4.56011e-2,  -2.22972e-2, -5.44388e-2, 5.23136e-4,  -1.88849e-2, 5.23707e-2, -9.43646e-3,
       6.31707e-3,  -7.80460e-2, -4.88430e-2, 0.0,         0.0,         -7.60250,    0.0,        -1.44635e-2,
@@ -379,7 +384,7 @@ static const double[][] PTL = {
 };
 
 /** NRLMSISE-00 data: pma[10][100]. */
-static const double[][] PMA = {
+static const quantity[][] PMA = {
     // TN2(2)
     { 9.81637e-1,  -1.41317e-3, 3.87323e-2,  0.0,        0.0,        0.0,         0.0,         0.0,
       0.0,         -3.58707e-2, -8.63658e-3, 0.0,        0.0,        -2.02226,    0.0,         -8.69424e-3,
@@ -509,1090 +514,1052 @@ static const double[][] PMA = {
       2.0 }
 };
 
+// Constants
 
-/** This class implements the mathematical representation of the 2001
- *  Naval Research Laboratory Mass Spectrometer and Incoherent Scatter
- *  Radar Exosphere (NRLMSISE-00) of the MSIS® class model.
- *  <p>
- *  NRLMSISE-00 calculates the neutral atmosphere empirical model from the surface
- *  to lower exosphere (0 to 1000 km) and provides:
- *  <ul>
- *  <li>Exospheric Temperature above Input Position (K)</li>
- *  <li>Local Temperature at Input Position (K)</li>
- *  <li>Total Mass-Density at Input Position (kg/m³)</li>
- *  <li>Partial Densities at Input Position (1/m³) for:
- *  <ul>
- *      <li>He,</li>
- *      <li>H,</li>
- *      <li>N,</li>
- *      <li>O,</li>
- *      <li>Ar,</li>
- *      <li>N2,</li>
- *      <li>O2,</li>
- *      <li>anomalous oxygen.</li>
- *  </ul>
- *  </li>
- *  </ul>
- *  <p>
- *  The model needs geographical and time information to compute general values,
- *  but also needs space weather data:
- *  <ul>
- *  <li>mean and daily solar flux,</li>
- *  <li>geomagnetic indices.</li>
- *  </ul>
- *  <p>
- *  Switches can be used to turn on and off particular variations:<br>
- *  0 is off, 1 is on, and 2 is main effects off but cross terms on.<br>
- *  The standard value is 1 for all the 23 available switches.<br>
- *  Function of each switch according to its number:
- *  <ul>
- *  <li>#1 - F10.7 effect on mean</li>
- *  <li>#2 - Independent of time</li>
- *  <li>#3 - Symmetrical annual</li>
- *  <li>#4 - Symmetrical semiannual</li>
- *  <li>#5 - Asymmetrical annual</li>
- *  <li>#6 - Asymmetrical semiannual</li>
- *  <li>#7 - Diurnal</li>
- *  <li>#8 - Semidiurnal</li>
- *  <li>#9 - Daily Ap [**]</li>
- *  <li>#10 - All UT, longitudinal effects</li>
- *  <li>#11 - Longitudinal</li>
- *  <li>#12 - UT and mixed UT, longitudinal</li>
- *  <li>#13 - Mixed AP, UT, longitudinal</li>
- *  <li>#14 - Terdiurnal</li>
- *  <li>#15 - Departures from diffusive equilibrium</li>
- *  <li>#16 - All exospheric temperature variations</li>
- *  <li>#17 - All variations from 120 km temperature (TLB)</li>
- *  <li>#18 - All lower thermosphere (TN1) temperature variations</li>
- *  <li>#19 - All 120 km gradient (S) variations</li>
- *  <li>#20 - All upper stratosphere (TN2) temperature variations</li>
- *  <li>#21 - All variations from 120 km values (ZLB)</li>
- *  <li>#22 - All lower mesosphere temperature (TN3) variations</li>
- *  <li>#23 - Turbopause scale height variations</li>
- *  </ul>
- *  [**] Switch #9 is a bit specific:
- *  <ul>
- *  <li>set to  1, the daily Ap only is used (first element of ap array),</li>
- *  <li>set to -1, the entire array of ap is used, including 3 hr ap indices.</li>
- *  </ul>
- *  <p>
- *  The NRLMSISE-00 model was developed by Mike Picone, Alan Hedin, and Doug Drob.<br>
- *  They also wrote a NRLMSISE-00 distribution package in FORTRAN available at:<br>
- *  ftp://hanna.ccmc.gsfc.nasa.gov/pub/modelweb/atmospheric/msis/nrlmsise00/<br>
- *  <br>
- *  Dominik Brodowski implemented a C version of the NRLMSISE-00 model available at:<br>
- *  https://www.brodo.de/space/nrlmsise/index.html
- *  <p>
- *  Instances of this class are immutable.
- *  </p>
- *
- *  @author Mike Picone &amp; al (Naval Research Laboratory), 2001: FORTRAN routine
- *  @author Dominik Brodowski, 2004: C routine
- *  @author Pascal Parraud, 2016: Java translation
- *  @since 8.1
+enum TemperatureType { EXOSPHERIC = 0, ALTITUDE = 1 };
+
+// EARTH GEOPHYSICAL CONSTANTS
+
+/** Reference latitude (°). */
+static const Angle LAT_REF = 45.0 * deg;
+
+/** Reference gravity on Earth surface at reference latitude (cm/s2). */
+static const Acceleration G_REF = 980.616 * cm / (s * s);
+
+// CHEMICAL CONSTANTS
+
+/** Gas constant (inverse of). */
+static const auto R_GAS = 831.4 * J / (mol * K);
+
+/** Hydrogen atomic mass. */
+static const AtomicMass H_MASS = 1.0 * u;
+
+/** Helium atomic mass. */
+static const AtomicMass HE_MASS = 4.0 * u;
+
+/** Nitrogen atomic mass. */
+static const AtomicMass N_MASS = 14.0 * u;
+
+/** N2 molecular mass. */
+static const AtomicMass N2_MASS = 2.0 * N_MASS;
+
+/** Oxygen atomic mass. */
+static const AtomicMass O_MASS = 16.0 * u;
+
+/** O2 molecular mass. */
+static const AtomicMass O2_MASS = 2.0 * O_MASS;
+
+/** Argon atomic mass. */
+static const AtomicMass AR_MASS = 40.0 * u;
+
+// NRL MSISE 2000 SPECIFIC CONSTANTS
+
+/** Reference average flux. */
+static const SolarFlux FLUX_REF = 150.0;
+
+/** Array of altitudes #1. */
+static const std::array<Distance, 5> ZN1 = { 123.435 * km, 110.0 * km, 100.0 * km, 90.0 * km, 72.5 * km };
+
+/** Array of altitudes #2. */
+static const std::array<Distance, 4> ZN2 = { 72.5 * km, 55.0 * km, 45.0 * km, 32.5 * km };
+
+/** Array of altitudes #3. */
+static const std::array<Distance, 5> ZN3 = { 32.5 * km, 20.0 * km, 15.0 * km, 10.0 * km, 0.0 * km };
+
+/** Mix altitude (km). */
+static const Distance ZMIX = 62.5 * km;
+
+/**  NRLMSISE-00 data: MIDDLE ATMOSPHERE AVERAGES pavgm[10]. */
+static const std::array<quantity, 10> PAVGM = { 2.61e2, 2.64e2,   2.29e2,   2.17e2, 2.17e2,
+                                                2.23e2, 2.8676e2, -2.93940, 2.50,   0.0 };
+
+/** NRLMSISE-00 minimum temperature, used in many cases in density computation. */
+static const Temperature MIN_TEMP = 50.0 * K;
+
+/** Switches for main effects. */
+enum Option {
+    F107_EFFECT_ON_MEAN                               = 0,
+    INDEPENDENT_OF_TIME                               = 1,
+    SYMMETRICAL_ANNUAL                                = 2,
+    SYMMETRICAL_SEMIANNUAL                            = 3,
+    ASYMMETRICAL_ANNUAL                               = 4,
+    ASYMMETRICAL_SEMIANNUAL                           = 5,
+    DIURNAL                                           = 6,
+    SEMIDIURNAL                                       = 7,
+    DAILY_AP                                          = 8,
+    ALL_UT_LONGITUDINAL_EFFECTS                       = 9,
+    LONGITUDINAL_EFFECTS                              = 10,
+    UT_AND_MIXED_UT_LONGITUDINAL_EFFECTS              = 11,
+    MIXED_AP_UT_LONGITUDINAL_EFFECTS                  = 12,
+    TERDIURNAL                                        = 13,
+    DEPARTURES_FROM_DIFFUSIVE_EQUILIBRIUM             = 14,
+    ALL_EXOSPHERIC_TEMPERATURE_VARIATIONS             = 15,
+    ALL_VARIATIONS_FROM_120KM_TEMPERATURE_TLB         = 16,
+    ALL_LOWER_THERMOSPHERE_TEMPERATURE_TN1_VARIATIONS = 17,
+    ALL_120KM_GRADIENT_S_VARIATIONS                   = 18,
+    ALL_UPPER_STRATOSPHERE_TEMPERATURE_TN2_VARIATIONS = 19,
+    ALL_VARIATIONS_FROM_120KM_VALUES_ZLB              = 20,
+    ALL_LOWER_MESOSPHERE_TEMPERATURE_TN3_VARIATIONS   = 21,
+    TURBOPAUSE_SCALE_HEIGHT_VARIATIONS                = 22
+};
+
+struct Switch {
+    bool mainEffect  = true;
+    bool crossEffect = true;
+    bool fullAp      = true;
+};
+
+std::unordered_map<Option, Switch> options{ { F107_EFFECT_ON_MEAN, Switch() },
+                                            { INDEPENDENT_OF_TIME, Switch() },
+                                            { SYMMETRICAL_ANNUAL, Switch() },
+                                            { SYMMETRICAL_SEMIANNUAL, Switch() },
+                                            { ASYMMETRICAL_ANNUAL, Switch() },
+                                            { ASYMMETRICAL_SEMIANNUAL, Switch() },
+                                            { DIURNAL, Switch() },
+                                            { SEMIDIURNAL, Switch() },
+                                            { DAILY_AP, Switch() },
+                                            { ALL_UT_LONGITUDINAL_EFFECTS, Switch() },
+                                            { LONGITUDINAL_EFFECTS, Switch() },
+                                            { UT_AND_MIXED_UT_LONGITUDINAL_EFFECTS, Switch() },
+                                            { MIXED_AP_UT_LONGITUDINAL_EFFECTS, Switch() },
+                                            { TERDIURNAL, Switch() },
+                                            { DEPARTURES_FROM_DIFFUSIVE_EQUILIBRIUM, Switch() },
+                                            { ALL_EXOSPHERIC_TEMPERATURE_VARIATIONS, Switch() },
+                                            { ALL_VARIATIONS_FROM_120KM_TEMPERATURE_TLB, Switch() },
+                                            { ALL_LOWER_THERMOSPHERE_TEMPERATURE_TN1_VARIATIONS, Switch() },
+                                            { ALL_120KM_GRADIENT_S_VARIATIONS, Switch() },
+                                            { ALL_UPPER_STRATOSPHERE_TEMPERATURE_TN2_VARIATIONS, Switch() },
+                                            { ALL_VARIATIONS_FROM_120KM_VALUES_ZLB, Switch() },
+                                            { ALL_LOWER_MESOSPHERE_TEMPERATURE_TN3_VARIATIONS, Switch() },
+                                            { TURBOPAUSE_SCALE_HEIGHT_VARIATIONS, Switch() } };
+
+
+Density find_atmospheric_density(const State& state)
+{
+    // check if data are available :
+    const Date& date = state.get_epoch();
+    if (date < inputParams.getMinDate() || date > inputParams.getMaxDate()) {
+        throw std::out_of_range("Date is out of range for NRLMSISE-00 model: " + date.toString());
+    }
+
+    // compute day number in current year and the seconds within the day
+    const int doy  = date.day_of_year();
+    const Time sec = date.seconds_in_local_day();
+
+    // compute geodetic position
+    const auto& rEcef          = state.get_position_in_frame<frames::earth::earth_fixed>();
+    const auto [lat, lon, alt] = convert_body_fixed_to_geodetic(rEcef);
+
+    // compute local solar time
+    const Time lst = calculate_local_solar_time(state);
+
+    // get solar activity data and compute
+    const Output out = new Output(
+        doy, sec, lat, lon, lst, inputParams.get_average_flux(date), inputParams.get_daily_flux(date), inputParams.get_ap(date)
+    );
+    out.gtd7d(alt);
+
+    // return the local density
+    return out.get_density(TOTAL_MASS);
+}
+
+Time calculate_local_solar_time(const State& state)
+{
+    const Date& date     = state.get_epoch();
+    const auto& position = state.get_position();
+
+    const RadiusVector<frames::solar_system_barycenter::icrf> sun2Earth = get_position_at(date);
+    const Direction<frames::earth::icrf> sunDirection = -sun2Earth.direction().force_frame_conversion<frames::earth::icrf>();
+
+    const Angle lst =
+        std::numbers::pi * rad + atan2(
+                                     sunDirection.get_x() * position.get_y() - sunDirection.get_y() * position.get_x(),
+                                     sunDirection.get_x() * position.get_x() + sunDirection.get_y() * position.get_y()
+                                 );
+    return lst * 12.0 / std::numbers::pi * h / (isq_angle::cotes_angle);
+}
+
+
+/**
+ * This class is a placeholder for the computed densities and temperatures.
+ * <p>
+ * Densities are provided as an array d such as:
+ * <ul>
+ * <li>d[0] = He number density (1/m³)</li>
+ * <li>d[1] = O number density (1/m³)</li>
+ * <li>d[2] = N2 number density (1/m³)</li>
+ * <li>d[3] = O2 number density (1/m³)</li>
+ * <li>d[4] = Ar number density (1/m³)</li>
+ * <li>d[5] = total mass density (kg/m³) (*)</li>
+ * <li>d[6] = H number density (1/m³)</li>
+ * <li>d[7] = N number density (1/m³)</li>
+ * <li>d[8] = anomalous oxygen number density (1/m³)
+ * </ul>
+ * Total mass density, d[5], is NOT the same for methods gtd7 and gtd7d:
+ * <ul>
+ * <li>For gtd7: d[5] is the sum of the mass densities of the species
+ * He, O, N2, O2, Ar, H and N but does NOT include anomalous oxygen.</li>
+ * <li>For gtd7d: d[5] is the "effective total mass density for drag" and is the sum
+ * of the mass densities of all species in this model, INCLUDING anomalous oxygen.</li>
+ * </ul>
+ * O, H, and N are set to zero below 72.5 km.
+ * </p>
+ * <p>
+ * Temperatures are provided as an array t such as:
+ * <ul>
+ * <li>t[0] = exospheric temperature (K)</li>
+ * <li>t[1] = temperature at altitude (K)</li>
+ * </ul>
+ * t[0] is set to global average for altitudes below 120 km.<br>
+ * The 120 km gradient is left at global average value for altitudes below 72 km.
+ * </p>
  */
-class NRLMSISE00 : public AbstractSunInfluencedAtmosphere {
-    // Constants
+class Output {
 
-    enum AtomicDensity {
-        HELIUM             = 0,
-        ATOMIC_OXYGEN      = 1,
-        MOLECULAR_NITROGEN = 2,
-        MOLECULAR_OXYGEN   = 3,
-        ARGON              = 4,
-        TOTAL_MASS         = 5,
-        HYDROGEN           = 6,
-        ATOMIC_NITROGEN    = 7,
-        ANOMALOUS_OXYGEN   = 8
-    };
+    /** Day of year (from 1 to 365 or 366). */
+    const int doy;
 
-    enum TemperatureType { EXOSPHERIC = 0, ALTITUDE = 1 };
+    /** Seconds in day (UT scale). */
+    const Time sec;
 
-    // EARTH GEOPHYSICAL CONSTANTS
+    /** Geodetic latitude (°). */
+    const Angle lat;
 
-    /** Reference latitude (°). */
-    static const Angle LAT_REF = 45.0 * deg;
+    /** Geodetic longitude (°). */
+    const Angle lon;
 
-    /** Reference gravity on Earth surface at reference latitude (cm/s2). */
-    static const Acceleration G_REF = 980.616 * cm / (s * s);
+    /** Local apparent solar time (hours). */
+    const Time hl;
 
-    // CHEMICAL CONSTANTS
+    /** 81 day average of F10.7 flux (centered on day). */
+    const SolarFlux f107a;
 
-    /** Gas constant (inverse of). */
-    static const auto R_GAS = 831.4 * J / (mol * K);
+    /** Daily F10.7 flux for previous day. */
+    const SolarFlux f107;
 
-    /** Hydrogen atomic mass. */
-    static const AtomicMass H_MASS = 1.0 * u;
+    /** Array containing:
+     *  <ul>
+     *  <li>0: daily Ap</li>
+     *  <li>1: 3 hr ap index for current time</li>
+     *  <li>2: 3 hr ap index for 3 hrs before current time</li>
+     *  <li>3: 3 hr ap index for 6 hrs before current time</li>
+     *  <li>4: 3 hr ap index for FOR 9 hrs before current time</li>
+     *  <li>5: average of eight 3 hr ap indices from 12 to 33 hrs prior to current time</li>
+     *  <li>6: average of eight 3 hr ap indices from 36 to 57 hrs prior to current time</li>
+     *  </ul>. */
+    const std::array<Unitless, 7> ap;
 
-    /** Helium atomic mass. */
-    static const AtomicMass HE_MASS = 4.0 * u;
+    /** Gravity at latitude (cm/s2). */
+    Acceleration glat;
 
-    /** Nitrogen atomic mass. */
-    static const AtomicMass N_MASS = 14.0 * u;
+    /** Effective Earth radius at latitude (km). */
+    Distance rlat;
 
-    /** N2 molecular mass. */
-    static const AtomicMass N2_MASS = 2.0 * N_MASS;
+    /** N2 mixed density at alt. */
+    NumberDensity n2MixedNumberDensity;
 
-    /** Oxygen atomic mass. */
-    static const AtomicMass O_MASS = 16.0 * u;
+    /** Legendre polynomials. */
+    const std::array<std::array<Unitless, 8>, 4> legendrePolynomials;
 
-    /** O2 molecular mass. */
-    static const AtomicMass O2_MASS = 2.0 * O_MASS;
+    /** Cosinus of local solar time. */
+    const Unitless ctloc;
+    /** Sinus of local solar time. */
+    const Unitless stloc;
+    /** Square of ctloc. */
+    const Unitless c2tloc;
+    /** Square of stloc. */
+    const Unitless s2tloc;
+    /** Cube of ctloc. */
+    const Unitless c3tloc;
+    /** Cube of stloc. */
+    const Unitless s3tloc;
 
-    /** Argon atomic mass. */
-    static const AtomicMass AR_MASS = 40.0 * u;
+    /** Magnetic activity based on daily ap. */
+    quantity apdf;
 
-    // NRL MSISE 2000 SPECIFIC CONSTANTS
+    /** Magnetic activity based on daily ap. */
+    quantity apt;
 
-    /** Reference average flux. */
-    static const SolarFlux FLUX_REF = 150.0;
+    /** Temperature at nodes for ZN1 scale. */
+    const std::array<Temperature, ZN1.size()> mesoTn1;
 
-    /** Array of altitudes #1. */
-    static const std::array<Distance, 5> ZN1 = { 123.435 * km, 110.0 * km, 100.0 * km, 90.0 * km, 72.5 * km };
+    /** Temperature at nodes for ZN2 scale. */
+    const std::array<Temperature, ZN2.size()> mesoTn2;
 
-    /** Array of altitudes #2. */
-    static const std::array<Distance, 4> ZN2 = { 72.5 * km, 55.0 * km, 45.0 * km, 32.5 * km };
+    /** Temperature at nodes for ZN3 scale. */
+    const std::array<Temperature, ZN3.size()> mesoTn3;
 
-    /** Array of altitudes #3. */
-    static const std::array<Distance, 5> ZN3 = { 32.5 * km, 20.0 * km, 15.0 * km, 10.0 * km, 0.0 * km };
+    /** Temperature gradients at end nodes for ZN1 scale. */
+    const std::array<Temperature, 2> mesoTgn1;
 
-    /** Mix altitude (km). */
-    static const Distance ZMIX = 62.5 * km;
+    /** Temperature gradients at end nodes for ZN2 scale. */
+    const std::array<Temperature, 2> mesoTgn2;
 
-    /**  NRLMSISE-00 data: MIDDLE ATMOSPHERE AVERAGES pavgm[10]. */
-    static const std::array<double, 10> PAVGM = { 2.61e2, 2.64e2,   2.29e2,   2.17e2, 2.17e2,
-                                                  2.23e2, 2.8676e2, -2.93940, 2.50,   0.0 };
+    /** Temperature gradients at end nodes for ZN3 scale. */
+    const std::array<Temperature, 2> mesoTgn3;
 
-    /** NRLMSISE-00 minimum temperature, used in many cases in density computation. */
-    static const Temperature MIN_TEMP = 50.0 * K;
+    /** Densities. */
+    const std::array<NumberDensity, 9> densities;
 
-    /** Switches for main effects. */
-    enum Option {
-        F107_EFFECT_ON_MEAN                               = 0,
-        INDEPENDENT_OF_TIME                               = 1,
-        SYMMETRICAL_ANNUAL                                = 2,
-        SYMMETRICAL_SEMIANNUAL                            = 3,
-        ASYMMETRICAL_ANNUAL                               = 4,
-        ASYMMETRICAL_SEMIANNUAL                           = 5,
-        DIURNAL                                           = 6,
-        SEMIDIURNAL                                       = 7,
-        DAILY_AP                                          = 8,
-        ALL_UT_LONGITUDINAL_EFFECTS                       = 9,
-        LONGITUDINAL_EFFECTS                              = 10,
-        UT_AND_MIXED_UT_LONGITUDINAL_EFFECTS              = 11,
-        MIXED_AP_UT_LONGITUDINAL_EFFECTS                  = 12,
-        TERDIURNAL                                        = 13,
-        DEPARTURES_FROM_DIFFUSIVE_EQUILIBRIUM             = 14,
-        ALL_EXOSPHERIC_TEMPERATURE_VARIATIONS             = 15,
-        ALL_VARIATIONS_FROM_120KM_TEMPERATURE_TLB         = 16,
-        ALL_LOWER_THERMOSPHERE_TEMPERATURE_TN1_VARIATIONS = 17,
-        ALL_120KM_GRADIENT_S_VARIATIONS                   = 18,
-        ALL_UPPER_STRATOSPHERE_TEMPERATURE_TN2_VARIATIONS = 19,
-        ALL_VARIATIONS_FROM_120KM_VALUES_ZLB              = 20,
-        ALL_LOWER_MESOSPHERE_TEMPERATURE_TN3_VARIATIONS   = 21,
-        TURBOPAUSE_SCALE_HEIGHT_VARIATIONS                = 22
-    };
+    /** Temperatures. */
+    const std::array<Temperature, 2> temperatures;
 
-    struct Switch {
-        bool mainEffect  = true;
-        bool crossEffect = true;
-        bool fullAp      = true;
-    };
-
-    std::unordered_map<Option, Switch> options{ { F107_EFFECT_ON_MEAN, Switch() },
-                                                { INDEPENDENT_OF_TIME, Switch() },
-                                                { SYMMETRICAL_ANNUAL, Switch() },
-                                                { SYMMETRICAL_SEMIANNUAL, Switch() },
-                                                { ASYMMETRICAL_ANNUAL, Switch() },
-                                                { ASYMMETRICAL_SEMIANNUAL, Switch() },
-                                                { DIURNAL, Switch() },
-                                                { SEMIDIURNAL, Switch() },
-                                                { DAILY_AP, Switch() },
-                                                { ALL_UT_LONGITUDINAL_EFFECTS, Switch() },
-                                                { LONGITUDINAL_EFFECTS, Switch() },
-                                                { UT_AND_MIXED_UT_LONGITUDINAL_EFFECTS, Switch() },
-                                                { MIXED_AP_UT_LONGITUDINAL_EFFECTS, Switch() },
-                                                { TERDIURNAL, Switch() },
-                                                { DEPARTURES_FROM_DIFFUSIVE_EQUILIBRIUM, Switch() },
-                                                { ALL_EXOSPHERIC_TEMPERATURE_VARIATIONS, Switch() },
-                                                { ALL_VARIATIONS_FROM_120KM_TEMPERATURE_TLB, Switch() },
-                                                { ALL_LOWER_THERMOSPHERE_TEMPERATURE_TN1_VARIATIONS, Switch() },
-                                                { ALL_120KM_GRADIENT_S_VARIATIONS, Switch() },
-                                                { ALL_UPPER_STRATOSPHERE_TEMPERATURE_TN2_VARIATIONS, Switch() },
-                                                { ALL_VARIATIONS_FROM_120KM_VALUES_ZLB, Switch() },
-                                                { ALL_LOWER_MESOSPHERE_TEMPERATURE_TN3_VARIATIONS, Switch() },
-                                                { TURBOPAUSE_SCALE_HEIGHT_VARIATIONS, Switch() } };
-
-
-    Density find_atmospheric_density(const State& state)
-    {
-        // check if data are available :
-        const Date& date = state.get_epoch();
-        if (date < inputParams.getMinDate() || date > inputParams.getMaxDate()) {
-            throw std::out_of_range("Date is out of range for NRLMSISE-00 model: " + date.toString());
-        }
-
-        // compute day number in current year and the seconds within the day
-        const int doy  = date.day_of_year();
-        const Time sec = date.seconds_in_local_day();
-
-        // compute geodetic position
-        const auto& rEcef          = state.get_position_in_frame<frames::earth::earth_fixed>();
-        const auto [lat, lon, alt] = convert_body_fixed_to_geodetic(rEcef);
-
-        // compute local solar time
-        const Time lst = calculate_local_solar_time(state);
-
-        // get solar activity data and compute
-        const Output out = new Output(
-            doy, sec, lat, lon, lst, inputParams.get_average_flux(date), inputParams.get_daily_flux(date), inputParams.get_ap(date)
-        );
-        out.gtd7d(alt);
-
-        // return the local density
-        return out.get_density(TOTAL_MASS);
-    }
-
-    Time calculate_local_solar_time(const State& state)
-    {
-        const Date& date     = state.get_epoch();
-        const auto& position = state.get_position();
-
-        const RadiusVector<frames::solar_system_barycenter::icrf> sun2Earth = get_position_at(date);
-        const Direction<frames::earth::icrf> sunDirection = -sun2Earth.direction().force_frame_conversion<frames::earth::icrf>();
-
-        const Angle lst =
-            std::numbers::pi * rad + atan2(
-                                         sunDirection.get_x() * position.get_y() - sunDirection.get_y() * position.get_x(),
-                                         sunDirection.get_x() * position.get_x() + sunDirection.get_y() * position.get_y()
-                                     );
-        return lst / (isq_angle::cotes_angle) * 12.0 / std::numbers::pi * h;
-    }
-
-
-    /**
-     * This class is a placeholder for the computed densities and temperatures.
-     * <p>
-     * Densities are provided as an array d such as:
-     * <ul>
-     * <li>d[0] = He number density (1/m³)</li>
-     * <li>d[1] = O number density (1/m³)</li>
-     * <li>d[2] = N2 number density (1/m³)</li>
-     * <li>d[3] = O2 number density (1/m³)</li>
-     * <li>d[4] = Ar number density (1/m³)</li>
-     * <li>d[5] = total mass density (kg/m³) (*)</li>
-     * <li>d[6] = H number density (1/m³)</li>
-     * <li>d[7] = N number density (1/m³)</li>
-     * <li>d[8] = anomalous oxygen number density (1/m³)
-     * </ul>
-     * Total mass density, d[5], is NOT the same for methods gtd7 and gtd7d:
-     * <ul>
-     * <li>For gtd7: d[5] is the sum of the mass densities of the species
-     * He, O, N2, O2, Ar, H and N but does NOT include anomalous oxygen.</li>
-     * <li>For gtd7d: d[5] is the "effective total mass density for drag" and is the sum
-     * of the mass densities of all species in this model, INCLUDING anomalous oxygen.</li>
-     * </ul>
-     * O, H, and N are set to zero below 72.5 km.
-     * </p>
-     * <p>
-     * Temperatures are provided as an array t such as:
-     * <ul>
-     * <li>t[0] = exospheric temperature (K)</li>
-     * <li>t[1] = temperature at altitude (K)</li>
-     * </ul>
-     * t[0] is set to global average for altitudes below 120 km.<br>
-     * The 120 km gradient is left at global average value for altitudes below 72 km.
-     * </p>
+    /** Simple constructor.
+     *  @param doy day of year (from 1 to 365 or 366)
+     *  @param sec seconds in day (UT scale)
+     *  @param lat geodetic latitude (°)
+     *  @param lon geodetic longitude (°)
+     *  @param hl local apparent solar time (hours)
+     *  @param f107a 81 day average of F10.7 flux (centered on day)
+     *  @param f107 daily F10.7 flux for previous day
+     *  @param ap array containing:
+     *  <ul>
+     *  <li>0: daily Ap</li>
+     *  <li>1: 3 hr ap index for current time</li>
+     *  <li>2: 3 hr ap index for 3 hrs before current time</li>
+     *  <li>3: 3 hr ap index for 6 hrs before current time</li>
+     *  <li>4: 3 hr ap index for FOR 9 hrs before current time</li>
+     *  <li>5: average of eight 3 hr ap indices from 12 to 33 hrs prior to current time</li>
+     *  <li>6: average of eight 3 hr ap indices from 36 to 57 hrs prior to current time</li>
+     *  </ul>
      */
-    class Output {
+    Output(
+        const int doy,
+        const Time sec,
+        const Angle lat,
+        const Angle lon,
+        const Time hl,
+        const SolarFlux f107a,
+        const SolarFlux f107,
+        const std::array<Unitless, 7>& ap
+    ) :
+        doy(doy),
+        sec(sec),
+        lat(lat),
+        lon(lon),
+        hl(hl),
+        f107a(f107a),
+        f107(f107),
+        ap(ap)
+    {
+        // Calculates latitude variable gravity and effective radius
+        const Angle xlat  = (!options[INDEPENDENT_OF_TIME].mainEffect) ? LAT_REF : lat;
+        const Unitless c2 = cos(2.0 * xlat * rad);
+        glat              = G_REF * (1.0 - 0.0026373 * c2);
+        rlat              = 2.0 * glat * cm / (s * s) / (3.085462e-6 + 2.27e-9 * c2 * 1.0e-5 * km);
 
-        /** Day of year (from 1 to 365 or 366). */
-        const int doy;
+        // Calculate legendre polynomials (lat already in radians)
+        const Unitless sinLat = sin(lat); // Orekit has c = sin(lat) and s = cos(lat). Is this an error?
+        const Unitless cosLat = cos(lat); // I've kept the equations below consistent with Orekit but they might be inverted.
 
-        /** Seconds in day (UT scale). */
-        const Time sec;
+        legendrePolynomials[0][1] = sinLat;
+        legendrePolynomials[0][2] = (3.0 * sinLat * legendrePolynomials[0][1] - 1.0) / 2.0;
+        legendrePolynomials[0][3] = (5.0 * sinLat * legendrePolynomials[0][2] - 2.0 * legendrePolynomials[0][1]) / 3.0;
+        legendrePolynomials[0][4] = (7.0 * sinLat * legendrePolynomials[0][3] - 3.0 * legendrePolynomials[0][2]) / 4.0;
+        legendrePolynomials[0][5] = (9.0 * sinLat * legendrePolynomials[0][4] - 4.0 * legendrePolynomials[0][3]) / 5.0;
+        legendrePolynomials[0][6] = (11.0 * sinLat * legendrePolynomials[0][5] - 5.0 * legendrePolynomials[0][4]) / 6.0;
 
-        /** Geodetic latitude (°). */
-        const Angle lat;
+        legendrePolynomials[1][1] = cosLat;
+        legendrePolynomials[1][2] = 3.0 * sinLat * legendrePolynomials[1][1];
+        legendrePolynomials[1][3] = (5.0 * sinLat * legendrePolynomials[1][2] - 3.0 * legendrePolynomials[1][1]) / 2.0;
+        legendrePolynomials[1][4] = (7.0 * sinLat * legendrePolynomials[1][3] - 4.0 * legendrePolynomials[1][2]) / 3.0;
+        legendrePolynomials[1][5] = (9.0 * sinLat * legendrePolynomials[1][4] - 5.0 * legendrePolynomials[1][3]) / 4.0;
+        legendrePolynomials[1][6] = (11.0 * sinLat * legendrePolynomials[1][5] - 6.0 * legendrePolynomials[1][4]) / 5.0;
 
-        /** Geodetic longitude (°). */
-        const Angle lon;
+        legendrePolynomials[2][2] = 3.0 * cosLat * legendrePolynomials[1][1];
+        legendrePolynomials[2][3] = 5.0 * sinLat * legendrePolynomials[2][2];
+        legendrePolynomials[2][4] = (7.0 * sinLat * legendrePolynomials[2][3] - 5.0 * legendrePolynomials[2][2]) / 2.0;
+        legendrePolynomials[2][5] = (9.0 * sinLat * legendrePolynomials[2][4] - 6.0 * legendrePolynomials[2][3]) / 3.0;
+        legendrePolynomials[2][6] = (11.0 * sinLat * legendrePolynomials[2][5] - 7.0 * legendrePolynomials[2][4]) / 4.0;
+        legendrePolynomials[2][7] = (13.0 * sinLat * legendrePolynomials[2][6] - 8.0 * legendrePolynomials[2][5]) / 5.0;
 
-        /** Local apparent solar time (hours). */
-        const Time hl;
+        legendrePolynomials[3][3] = 5.0 * cosLat * legendrePolynomials[2][2];
+        legendrePolynomials[3][4] = 7.0 * sinLat * legendrePolynomials[3][3];
+        legendrePolynomials[3][5] = (9.0 * sinLat * legendrePolynomials[3][4] - 7.0 * legendrePolynomials[3][3]) / 2.0;
+        legendrePolynomials[3][6] = (11.0 * sinLat * legendrePolynomials[3][5] - 8.0 * legendrePolynomials[3][4]) / 3.0;
 
-        /** 81 day average of F10.7 flux (centered on day). */
-        const SolarFlux f107a;
+        // Calculate additional data
+        if (options[DIURNAL].mainEffect || options[SEMIDIURNAL].mainEffect || options[TERDIURNAL].mainEffect) {
+            const Angle tloc = HOUR_TO_RAD * hl;
+            stloc            = sin(tloc);
+            ctloc            = cos(tloc);
+            s2tloc           = sin(2.0 * tloc);
+            c2tloc           = cos(2.0 * tloc);
+            s3tloc           = sin(3.0 * tloc);
+            c3tloc           = cos(3.0 * tloc);
+        }
+        else {
+            stloc  = 0.0 * one;
+            ctloc  = 0.0 * one;
+            s2tloc = 0.0 * one;
+            c2tloc = 0.0 * one;
+            s3tloc = 0.0 * one;
+            c3tloc = 0.0 * one;
+        }
+    }
 
-        /** Daily F10.7 flux for previous day. */
-        const SolarFlux f107;
+    /** Calculate temperatures and densities not including anomalous oxygen.
+     *  <p>
+     *  This method is the thermospheric portion of NRLMSISE-00 for alt > 72.5 km.
+     *  </p>
+     *  <p>NOTES ON INPUT VARIABLES:<br>
+     *  Seconds, Local Time, and Longitude are used independently in the
+     *  model and are not of equal importance for every situation.<br>
+     *  For the most physically realistic calculation these three
+     *  variables should be consistent (lst=sec/3600 + lon/15).<br>
+     *  The Equation of Time departures from the above formula
+     *  for apparent local time can be included if available but
+     *  are of minor importance.<br><br>
+     *
+     *  f107 and f107A values used to generate the model correspond
+     *  to the 10.7 cm radio flux at the actual distance of the Earth
+     *  from the Sun rather than the radio flux at 1 AU. The following
+     *  site provides both classes of values:<br>
+     *  ftp://ftp.ngdc.noaa.gov/STP/SOLAR_DATA/SOLAR_RADIO/FLUX/<br><br>
+     *
+     *  f107, f107A, and ap effects are neither large nor well established below 80 km
+     *  and these parameters should be set to 150., 150., and 4. respectively.
+     *  </p>
+     *  @param alt altitude (km)
+     */
+    void gts7(const Distance alt)
+    {
 
-        /** Array containing:
-         *  <ul>
-         *  <li>0: daily Ap</li>
-         *  <li>1: 3 hr ap index for current time</li>
-         *  <li>2: 3 hr ap index for 3 hrs before current time</li>
-         *  <li>3: 3 hr ap index for 6 hrs before current time</li>
-         *  <li>4: 3 hr ap index for FOR 9 hrs before current time</li>
-         *  <li>5: average of eight 3 hr ap indices from 12 to 33 hrs prior to current time</li>
-         *  <li>6: average of eight 3 hr ap indices from 36 to 57 hrs prior to current time</li>
-         *  </ul>. */
-        const std::array<Unitless, 7> ap;
+        // Thermal diffusion coefficients for species
+        const std::array<Unitless, 9> thermalDiffusionCoefficients = { -0.38, 0.0, 0.0, 0.0, 0.17, 0.0, -0.38, 0.0, 0.0 };
 
-        /** Gravity at latitude (cm/s2). */
-        Acceleration glat;
+        // Altitude limits for net density computation for species
+        const std::array<Distance, 8> altl = { 200.0 * km, 300.0 * km, 160.0 * km, 250.0 * km,
+                                               240.0 * km, 450.0 * km, 320.0 * km, 450.0 * km };
 
-        /** Effective Earth radius at latitude (km). */
-        Distance rlat;
+        /**** Exospheric temperature ****/
+        const Temperature tempInf = PTM.Tinf * PT[0];
 
-        /** N2 mixed density at alt. */
-        NumberDensity dm28;
+        // Tinf variations not important below ZA or ZN[0]
+        if (alt > ZN1[0]) { tempInf *= 1.0 + options[ALL_EXOSPHERIC_TEMPERATURE_VARIATIONS].mainEffect * globe7(PT); }
+        set_temperature(EXOSPHERIC, tempInf);
 
-        /** Legendre polynomials. */
-        const std::array<std::array<Unitless, 8>, 4> plg;
+        // Gradient variations not important below ZN[4]
+        quantity g0 = PTM.S0 * PS[0];
+        if (alt > ZN1[4]) { g0 *= 1.0 + options[ALL_120KM_GRADIENT_S_VARIATIONS].mainEffect * globe7(PS); }
 
-        /** Cosinus of local solar time. */
-        const Unitless ctloc;
-        /** Sinus of local solar time. */
-        const Unitless stloc;
-        /** Square of ctloc. */
-        const Unitless c2tloc;
-        /** Square of stloc. */
-        const Unitless s2tloc;
-        /** Cube of ctloc. */
-        const Unitless c3tloc;
-        /** Cube of stloc. */
-        const Unitless s3tloc;
+        // Temperature at lower boundary
+        const Temperature tempLowerBound =
+            PTM.Tlb0 * PD[3][0] * (1.0 + options[ALL_VARIATIONS_FROM_120KM_TEMPERATURE_TLB].mainEffect * globe7(PD[3]));
 
-        /** Magnetic activity based on daily ap. */
-        double apdf;
+        // Slope
+        const quantity s = g0 / (tempInf - tempLowerBound);
 
-        /** Magnetic activity based on daily ap. */
-        double apt;
-
-        /** Temperature at nodes for ZN1 scale. */
-        const std::array<Temperature, ZN1.size()> meso_tn1;
-
-        /** Temperature at nodes for ZN2 scale. */
-        const std::array<Temperature, ZN2.size()> meso_tn2;
-
-        /** Temperature at nodes for ZN3 scale. */
-        const std::array<Temperature, ZN3.size()> meso_tn3;
-
-        /** Temperature gradients at end nodes for ZN1 scale. */
-        const std::array<Temperature, 2> meso_tgn1;
-
-        /** Temperature gradients at end nodes for ZN2 scale. */
-        const std::array<Temperature, 2> meso_tgn2;
-
-        /** Temperature gradients at end nodes for ZN3 scale. */
-        const std::array<Temperature, 2> meso_tgn3;
-
-        /** Densities. */
-        const std::array<NumberDensity, 9> densities;
-
-        /** Temperatures. */
-        const std::array<Temperature, 2> temperatures;
-
-        /** Simple constructor.
-         *  @param doy day of year (from 1 to 365 or 366)
-         *  @param sec seconds in day (UT scale)
-         *  @param lat geodetic latitude (°)
-         *  @param lon geodetic longitude (°)
-         *  @param hl local apparent solar time (hours)
-         *  @param f107a 81 day average of F10.7 flux (centered on day)
-         *  @param f107 daily F10.7 flux for previous day
-         *  @param ap array containing:
-         *  <ul>
-         *  <li>0: daily Ap</li>
-         *  <li>1: 3 hr ap index for current time</li>
-         *  <li>2: 3 hr ap index for 3 hrs before current time</li>
-         *  <li>3: 3 hr ap index for 6 hrs before current time</li>
-         *  <li>4: 3 hr ap index for FOR 9 hrs before current time</li>
-         *  <li>5: average of eight 3 hr ap indices from 12 to 33 hrs prior to current time</li>
-         *  <li>6: average of eight 3 hr ap indices from 36 to 57 hrs prior to current time</li>
-         *  </ul>
-         */
-        Output(
-            const int doy,
-            const Time sec,
-            const Angle lat,
-            const Angle lon,
-            const Time hl,
-            const SolarFlux f107a,
-            const SolarFlux f107,
-            const std::array<Unitless, 7>& ap
-        ) :
-            doy(doy),
-            sec(sec),
-            lat(lat),
-            lon(lon),
-            hl(hl),
-            f107a(f107a),
-            f107(f107),
-            ap(ap)
-        {
-            // Calculates latitude variable gravity and effective radius
-            const Angle xlat  = (!options[INDEPENDENT_OF_TIME].mainEffect) ? LAT_REF : lat;
-            const Unitless c2 = cos(2.0 * xlat * rad);
-            glat              = G_REF * (1. - .0026373 * c2);
-            rlat              = 2.0 * glat * cm / (s * s) / (3.085462e-6 + 2.27e-9 * c2 * 1.0e-5 * km);
-
-            // Calculate legendre polynomials (lat already in radians)
-            const Unitless c = sin(lat);
-            const Unitless s = cos(lat);
-
-            plg[0][1] = c;
-            plg[0][2] = (3.0 * c * plg[0][1] - 1.0) / 2.0;
-            plg[0][3] = (5.0 * c * plg[0][2] - 2.0 * plg[0][1]) / 3.0;
-            plg[0][4] = (7.0 * c * plg[0][3] - 3.0 * plg[0][2]) / 4.0;
-            plg[0][5] = (9.0 * c * plg[0][4] - 4.0 * plg[0][3]) / 5.0;
-            plg[0][6] = (11.0 * c * plg[0][5] - 5.0 * plg[0][4]) / 6.0;
-
-            plg[1][1] = s;
-            plg[1][2] = 3.0 * c * plg[1][1];
-            plg[1][3] = (5.0 * c * plg[1][2] - 3.0 * plg[1][1]) / 2.0;
-            plg[1][4] = (7.0 * c * plg[1][3] - 4.0 * plg[1][2]) / 3.0;
-            plg[1][5] = (9.0 * c * plg[1][4] - 5.0 * plg[1][3]) / 4.0;
-            plg[1][6] = (11.0 * c * plg[1][5] - 6.0 * plg[1][4]) / 5.0;
-
-            plg[2][2] = 3.0 * s * plg[1][1];
-            plg[2][3] = 5.0 * c * plg[2][2];
-            plg[2][4] = (7.0 * c * plg[2][3] - 5.0 * plg[2][2]) / 2.0;
-            plg[2][5] = (9.0 * c * plg[2][4] - 6.0 * plg[2][3]) / 3.0;
-            plg[2][6] = (11.0 * c * plg[2][5] - 7.0 * plg[2][4]) / 4.0;
-            plg[2][7] = (13.0 * c * plg[2][6] - 8.0 * plg[2][5]) / 5.0;
-
-            plg[3][3] = 5.0 * s * plg[2][2];
-            plg[3][4] = 7.0 * c * plg[3][3];
-            plg[3][5] = (9.0 * c * plg[3][4] - 7.0 * plg[3][3]) / 2.0;
-            plg[3][6] = (11.0 * c * plg[3][5] - 8.0 * plg[3][4]) / 3.0;
-
-            // Calculate additional data
-            if (options[DIURNAL].mainEffect || options[SEMIDIURNAL].mainEffect || options[TERDIURNAL].mainEffect) {
-                const Angle tloc = HOUR_TO_RAD * hl;
-                stloc            = sin(tloc);
-                ctloc            = cos(tloc);
-                s2tloc           = sin(2.0 * tloc);
-                c2tloc           = cos(2.0 * tloc);
-                s3tloc           = sin(3.0 * tloc);
-                c3tloc           = cos(3.0 * tloc);
-            }
-            else {
-                stloc  = 0.0 * one;
-                ctloc  = 0.0 * one;
-                s2tloc = 0.0 * one;
-                c2tloc = 0.0 * one;
-                s3tloc = 0.0 * one;
-                c3tloc = 0.0 * one;
-            }
+        // Lower thermosphere temp variations not significant for density above 300 km
+        mesoTn1[1]  = PTM.TN11 * PTL[0][0];
+        mesoTn1[2]  = PTM.TN12 * PTL[1][0];
+        mesoTn1[3]  = PTM.TN13 * PTL[2][0];
+        mesoTn1[4]  = PTM.TN14 * PTL[3][0];
+        mesoTgn1[1] = PTM.Tgrad * PMA[8][0];
+        if (alt < 300.0) {
+            const quantity r = PTM.TN14 * PTL[3][0];
+            mesoTn1[1] /= 1.0 - options[ALL_LOWER_THERMOSPHERE_TEMPERATURE_TN1_VARIATIONS].mainEffect * glob7s(PTL[0]);
+            mesoTn1[2] /= 1.0 - options[ALL_LOWER_THERMOSPHERE_TEMPERATURE_TN1_VARIATIONS].mainEffect * glob7s(PTL[1]);
+            mesoTn1[3] /= 1.0 - options[ALL_LOWER_THERMOSPHERE_TEMPERATURE_TN1_VARIATIONS].mainEffect * glob7s(PTL[2]);
+            mesoTn1[4] /= 1.0 - options[ALL_LOWER_THERMOSPHERE_TEMPERATURE_TN1_VARIATIONS].mainEffect *
+                                    options[ALL_UPPER_STRATOSPHERE_TEMPERATURE_TN2_VARIATIONS].mainEffect * glob7s(PTL[3]);
+            mesoTgn1[1] *= 1.0 + options[ALL_LOWER_THERMOSPHERE_TEMPERATURE_TN1_VARIATIONS].mainEffect *
+                                     options[ALL_UPPER_STRATOSPHERE_TEMPERATURE_TN2_VARIATIONS].mainEffect * glob7s(PMA[8]);
+            mesoTgn1[1] *= mesoTn1[4] * mesoTn1[4] / (r * r);
         }
 
-        /** Calculate temperatures and densities not including anomalous oxygen.
-         *  <p>
-         *  This method is the thermospheric portion of NRLMSISE-00 for alt > 72.5 km.
-         *  </p>
-         *  <p>NOTES ON INPUT VARIABLES:<br>
-         *  Seconds, Local Time, and Longitude are used independently in the
-         *  model and are not of equal importance for every situation.<br>
-         *  For the most physically realistic calculation these three
-         *  variables should be consistent (lst=sec/3600 + lon/15).<br>
-         *  The Equation of Time departures from the above formula
-         *  for apparent local time can be included if available but
-         *  are of minor importance.<br><br>
-         *
-         *  f107 and f107A values used to generate the model correspond
-         *  to the 10.7 cm radio flux at the actual distance of the Earth
-         *  from the Sun rather than the radio flux at 1 AU. The following
-         *  site provides both classes of values:<br>
-         *  ftp://ftp.ngdc.noaa.gov/STP/SOLAR_DATA/SOLAR_RADIO/FLUX/<br><br>
-         *
-         *  f107, f107A, and ap effects are neither large nor well established below 80 km
-         *  and these parameters should be set to 150., 150., and 4. respectively.
-         *  </p>
-         *  @param alt altitude (km)
-         */
-        void gts7(const Distance alt)
-        {
+        /**** Temperature at altitude ****/
+        set_temperature(ALTITUDE, calculate_density_temperature_profile_new(alt, 1.0, tempInf, tempLowerBound, 0.0, 0.0, PTM.Zlb, s));
 
-            // Thermal diffusion coefficients for species
-            const std::array<Unitless, 9> alpha = { -0.38, 0.0, 0.0, 0.0, 0.17, 0.0, -0.38, 0.0, 0.0 };
+        /**** N2 density ****/
+        /*   Density variation factor at Zlb */
+        const quantity g28 = options[ALL_VARIATIONS_FROM_120KM_VALUES_ZLB].mainEffect * globe7(PD[2]);
+        /* Diffusive density at Zlb */
+        const quantity db28 = SpeciesModelData[MOLECULAR_NITROGEN].nRef * exp(g28) * PD[2][0];
+        /* Diffusive density at Alt */
+        quantity diffusiveDensity = calculate_density_temperature_profile_new(
+            alt, db28, tempInf, tempLowerBound, N2_MASS, thermalDiffusionCoefficients[2], PTM.Zlb, s
+        );
+        set_density(MOLECULAR_NITROGEN, diffusiveDensity);
+        // Variation of turbopause height
+        const quantity zhf = PDL[1][24] * (1.0 + options[ASYMMETRICAL_ANNUAL] * PDL[0][24].mainEffect * sin(lat * rad) *
+                                                     cos(DAY_TO_RAD * rad / d) * (doy - PT[13]));
+        /* Turbopause */
+        const quantity zh28  = SpeciesModelData[MOLECULAR_NITROGEN].zh * zhf;
+        const quantity zhm28 = SpeciesModelData[MOLECULAR_NITROGEN].c3 * PDL[1][5];
+        /* Mixed density at Zlb */
+        const quantity b28 = calculate_density_temperature_profile_new(
+            zh28, db28, tempInf, tempLowerBound, N2_MASS - XMM, thermalDiffusionCoefficients[2] - 1.0, PTM.Zlb, s
+        );
+        if (options[DEPARTURES_FROM_DIFFUSIVE_EQUILIBRIUM].mainEffect && alt <= altl[2]) {
+            /*  Mixed density at Alt */
+            n2MixedNumberDensity = calculate_density_temperature_profile_new(
+                alt, b28, tempInf, tempLowerBound, XMM, thermalDiffusionCoefficients[2], PTM.Zlb, s
+            );
+            /*  Net density at Alt */
+            set_density(MOLECULAR_NITROGEN, calculate_turbopause_correction(diffusiveDensity, n2MixedNumberDensity, zhm28, XMM, N2_MASS));
+        }
 
-            // Altitude limits for net density computation for species
-            const std::array<double, 8> altl = { 200.0, 300.0, 160.0, 250.0, 240.0, 450.0, 320.0, 450.0 };
+        /**** He density ****/
+        /*   Density variation factor at Zlb */
+        const quantity g4 = options[ALL_VARIATIONS_FROM_120KM_VALUES_ZLB].mainEffect * globe7(PD[0]);
+        /*  Diffusive density at Zlb */
+        const quantity db04 = SpeciesModelData[HELIUM].nRef * exp(g4) * PD[0][0];
+        /*  Diffusive density at Alt */
+        diffusiveDensity = calculate_density_temperature_profile_new(
+            alt, db04, tempInf, tempLowerBound, HE_MASS, thermalDiffusionCoefficients[0], PTM.Zlb, s
+        );
+        set_density(HELIUM, diffusiveDensity);
+        if (options[DEPARTURES_FROM_DIFFUSIVE_EQUILIBRIUM].mainEffect && alt < altl[0]) {
+            /*  Turbopause */
+            const quantity zh04 = SpeciesModelData[HELIUM].zh;
+            /*  Mixed density at Zlb */
+            const quantity b04 = calculate_density_temperature_profile_new(
+                zh04, db04, tempInf, tempLowerBound, HE_MASS - XMM, thermalDiffusionCoefficients[0] - 1., PTM.Zlb, s
+            );
+            /*  Mixed density at Alt */
+            const quantity dm04 =
+                calculate_density_temperature_profile_new(alt, b04, tempInf, tempLowerBound, XMM, 0., PTM.Zlb, s);
+            const quantity zhm04 = zhm28;
+            /*  Net density at Alt */
+            diffusiveDensity = calculate_turbopause_correction(diffusiveDensity, dm04, zhm04, XMM, HE_MASS);
+            /*  Correction to specified mixing ratio at ground */
+            const quantity rl   = log(b28 * SpeciesModelData[HELIUM].mixRatio / b04);
+            const quantity zc04 = SpeciesModelData[HELIUM].za * PDL[1][0];
+            const quantity hc04 = SpeciesModelData[HELIUM].ha * PDL[1][1];
+            /*  Net density corrected at Alt */
+            set_density(HELIUM, diffusiveDensity * calculate_dissociation_correction(alt, rl, hc04, zc04));
+        }
 
-            /**** Exospheric temperature ****/
-            Temperature tinf = PTM.Tinf * PT[0];
-
-            // Tinf variations not important below ZA or ZN[0]
-            if (alt > ZN1[0]) { tinf *= 1.0 + options[ALL_EXOSPHERIC_TEMPERATURE_VARIATIONS].mainEffect * globe7(PT); }
-            set_temperature(EXOSPHERIC, tinf);
-
-            // Gradient variations not important below ZN[4]
-            double g0 = PTM.S0.numerical_value_in(K / km) * PS[0];
-            if (alt > ZN1[4]) { g0 *= 1.0 + options[ALL_120KM_GRADIENT_S_VARIATIONS].mainEffect * globe7(PS); }
-
-            // Temperature at lower boundary
-            Temperature tlb = PTM.Tlb0 * PD[3][0];
-            tlb *= 1.0 + options[ALL_VARIATIONS_FROM_120KM_TEMPERATURE_TLB].mainEffect * globe7(PD[3]);
-
-            // Slope
-            const double s = g0 / (tinf - tlb);
-
-            // Lower thermosphere temp variations not significant for density above 300 km
-            meso_tn1[1]  = PTM.TN11 * PTL[0][0];
-            meso_tn1[2]  = PTM.TN12 * PTL[1][0];
-            meso_tn1[3]  = PTM.TN13 * PTL[2][0];
-            meso_tn1[4]  = PTM.TN14 * PTL[3][0];
-            meso_tgn1[1] = PTM.Tgrad * PMA[8][0];
-            if (alt < 300.0) {
-                const double r = PTM.TN14 * PTL[3][0];
-                meso_tn1[1] /= 1.0 - options[ALL_LOWER_THERMOSPHERE_TEMPERATURE_TN1_VARIATIONS].mainEffect * glob7s(PTL[0]);
-                meso_tn1[2] /= 1.0 - options[ALL_LOWER_THERMOSPHERE_TEMPERATURE_TN1_VARIATIONS].mainEffect * glob7s(PTL[1]);
-                meso_tn1[3] /= 1.0 - options[ALL_LOWER_THERMOSPHERE_TEMPERATURE_TN1_VARIATIONS].mainEffect * glob7s(PTL[2]);
-                meso_tn1[4] /= 1.0 - options[ALL_LOWER_THERMOSPHERE_TEMPERATURE_TN1_VARIATIONS].mainEffect *
-                                         options[ALL_UPPER_STRATOSPHERE_TEMPERATURE_TN2_VARIATIONS].mainEffect * glob7s(PTL[3]);
-                meso_tgn1[1] *= 1.0 + options[ALL_LOWER_THERMOSPHERE_TEMPERATURE_TN1_VARIATIONS].mainEffect *
-                                          options[ALL_UPPER_STRATOSPHERE_TEMPERATURE_TN2_VARIATIONS].mainEffect *
-                                          glob7s(PMA[8]);
-                meso_tgn1[1] *= meso_tn1[4] * meso_tn1[4] / (r * r);
-            }
-
-            /**** Temperature at altitude ****/
-            set_temperature(ALTITUDE, densu(alt, 1.0, tinf, tlb, 0.0, 0.0, PTM.Zlb, s));
-
-            /**** N2 density ****/
-            /*   Density variation factor at Zlb */
-            const double g28 = options[ALL_VARIATIONS_FROM_120KM_VALUES_ZLB].mainEffect * globe7(PD[2]);
-            /* Diffusive density at Zlb */
-            const double db28 = PDM[2].n_ref * exp(g28) * PD[2][0];
-            /* Diffusive density at Alt */
-            double diffusiveDensity = densu(alt, db28, tinf, tlb, N2_MASS, alpha[2], PTM.Zlb, s);
-            set_density(MOLECULAR_NITROGEN, diffusiveDensity);
-            // Variation of turbopause height
-            const double zhf = PDL[1][24] * (1.0 + options[ASYMMETRICAL_ANNUAL] * PDL[0][24].mainEffect *
-                                                       sin(lat * rad) * cos(DAY_TO_RAD * rad / d) * (doy - PT[13]));
+        /**** O density ****/
+        /* Density variation factor at Zlb */
+        const quantity g16 = options[ALL_VARIATIONS_FROM_120KM_VALUES_ZLB].mainEffect * globe7(PD[1]);
+        /* Diffusive density at Zlb */
+        const quantity db16 = SpeciesModelData[ATOMIC_OXYGEN].nRef * exp(g16) * PD[1][0];
+        /* Diffusive density at Alt */
+        diffusiveDensity = calculate_density_temperature_profile_new(
+            alt, db16, tempInf, tempLowerBound, O_MASS, thermalDiffusionCoefficients[1], PTM.Zlb, s
+        );
+        set_density(ATOMIC_OXYGEN, diffusiveDensity);
+        if (options[DEPARTURES_FROM_DIFFUSIVE_EQUILIBRIUM].mainEffect && alt < altl[1]) {
             /* Turbopause */
-            const double zh28  = PDM[2].zh * zhf;
-            const double zhm28 = PDM[2].c3 * PDL[1][5];
+            const quantity zh16 = SpeciesModelData[ATOMIC_OXYGEN].zh;
             /* Mixed density at Zlb */
-            const double b28 = densu(zh28, db28, tinf, tlb, N2_MASS - XMM, alpha[2] - 1.0, PTM.Zlb, s);
-            if (options[DEPARTURES_FROM_DIFFUSIVE_EQUILIBRIUM].mainEffect && alt <= altl[2]) {
-                /*  Mixed density at Alt */
-                dm28 = densu(alt, b28, tinf, tlb, XMM, alpha[2], PTM.Zlb, s);
-                /*  Net density at Alt */
-                set_density(MOLECULAR_NITROGEN, dnet(diffusiveDensity, dm28, zhm28, XMM, N2_MASS));
-            }
-
-            /**** He density ****/
-            /*   Density variation factor at Zlb */
-            const double g4 = options[ALL_VARIATIONS_FROM_120KM_VALUES_ZLB].mainEffect * globe7(PD[0]);
-            /*  Diffusive density at Zlb */
-            const double db04 = PDM[0].n_ref * exp(g4) * PD[0][0];
-            /*  Diffusive density at Alt */
-            diffusiveDensity = densu(alt, db04, tinf, tlb, HE_MASS, alpha[0], PTM.Zlb, s);
-            set_density(HELIUM, diffusiveDensity);
-            if (options[DEPARTURES_FROM_DIFFUSIVE_EQUILIBRIUM].mainEffect && alt < altl[0]) {
-                /*  Turbopause */
-                const double zh04 = PDM[0].zh;
-                /*  Mixed density at Zlb */
-                const double b04 = densu(zh04, db04, tinf, tlb, HE_MASS - XMM, alpha[0] - 1., PTM.Zlb, s);
-                /*  Mixed density at Alt */
-                const double dm04  = densu(alt, b04, tinf, tlb, XMM, 0., PTM.Zlb, s);
-                const double zhm04 = zhm28;
-                /*  Net density at Alt */
-                diffusiveDensity = dnet(diffusiveDensity, dm04, zhm04, XMM, HE_MASS);
-                /*  Correction to specified mixing ratio at ground */
-                const double rl   = log(b28 * PDM[0].mix_ratio / b04);
-                const double zc04 = PDM[0].za * PDL[1][0];
-                const double hc04 = PDM[0].ha * PDL[1][1];
-                /*  Net density corrected at Alt */
-                set_density(HELIUM, diffusiveDensity * ccor(alt, rl, hc04, zc04));
-            }
-
-            /**** O density ****/
-            /* Density variation factor at Zlb */
-            const double g16 = options[ALL_VARIATIONS_FROM_120KM_VALUES_ZLB].mainEffect * globe7(PD[1]);
-            /* Diffusive density at Zlb */
-            const double db16 = PDM[1].n_ref * exp(g16) * PD[1][0];
-            /* Diffusive density at Alt */
-            diffusiveDensity = densu(alt, db16, tinf, tlb, O_MASS, alpha[1], PTM.Zlb, s);
-            set_density(ATOMIC_OXYGEN, diffusiveDensity);
-            if (options[DEPARTURES_FROM_DIFFUSIVE_EQUILIBRIUM].mainEffect && alt < altl[1]) {
-                /* Turbopause */
-                const double zh16 = PDM[1].zh;
-                /* Mixed density at Zlb */
-                const double b16 = densu(zh16, db16, tinf, tlb, O_MASS - XMM, alpha[1] - 1.0, PTM.Zlb, s);
-                /* Mixed density at Alt */
-                const double dm16  = densu(alt, b16, tinf, tlb, XMM, 0., PTM.Zlb, s);
-                const double zhm16 = zhm28;
-                /* Net density at Alt */
-                diffusiveDensity = dnet(diffusiveDensity, dm16, zhm16, XMM, O_MASS);
-                const double rl  = PDM[1].mix_ratio * PDL[1][16] *
-                                  (1.0 + options[F107_EFFECT_ON_MEAN].mainEffect * PDL[0][23] * (f107a - FLUX_REF));
-                const double hc16  = PDM[1].ha * PDL[1][3];
-                const double zc16  = PDM[1].za * PDL[1][2];
-                const double hc216 = PDM[1].ha * PDL[1][4];
-                diffusiveDensity *= ccor2(alt, rl, hc16, zc16, hc216);
-                /* Chemistry correction */
-                const double hcc16 = PDM[1].hb * PDL[1][13];
-                const double zcc16 = PDM[1].zb * PDL[1][12];
-                const double rc16  = PDM[1].c3 * PDL[1][14];
-                /* Net density corrected at Alt */
-                set_density(ATOMIC_OXYGEN, diffusiveDensity * ccor(alt, rc16, hcc16, zcc16));
-            }
-
-            /**** O2 density ****/
-            /* Density variation factor at Zlb */
-            const double g32 = options[ALL_VARIATIONS_FROM_120KM_VALUES_ZLB].mainEffect * globe7(PD[4]);
-            /* Diffusive density at Zlb */
-            const double db32 = PDM[3].n_ref * exp(g32) * PD[4][0];
-            /* Diffusive density at Alt */
-            diffusiveDensity = densu(alt, db32, tinf, tlb, O2_MASS, alpha[3], PTM.Zlb, s);
-            set_density(MOLECULAR_OXYGEN, diffusiveDensity);
-            if (options[DEPARTURES_FROM_DIFFUSIVE_EQUILIBRIUM].mainEffect) {
-                if (alt <= altl[3]) {
-                    /* Turbopause */
-                    const double zh32 = PDM[3].zh;
-                    /* Mixed density at Zlb */
-                    const double b32 = densu(zh32, db32, tinf, tlb, O2_MASS - XMM, alpha[3] - 1., PTM.Zlb, s);
-                    /* Mixed density at Alt */
-                    const double dm32  = densu(alt, b32, tinf, tlb, XMM, 0., PTM.Zlb, s);
-                    const double zhm32 = zhm28;
-                    /* Net density at Alt */
-                    diffusiveDensity = dnet(diffusiveDensity, dm32, zhm32, XMM, O2_MASS);
-                    /* Correction to specified mixing ratio at ground */
-                    const double rl   = log(b28 * PDM[3].mix_ratio / b32);
-                    const double hc32 = PDM[3].ha * PDL[1][7];
-                    const double zc32 = PDM[3].za * PDL[1][6];
-                    diffusiveDensity *= ccor(alt, rl, hc32, zc32);
-                }
-                /* Correction for general departure from diffusive equilibrium above Zlb */
-                const double hcc32  = PDM[3].hb * PDL[1][22];
-                const double hcc232 = PDM[3].hb * PDL[0][22];
-                const double zcc32  = PDM[3].zb * PDL[1][21];
-                const double rc32   = PDM[3].c3 * PDL[1][23] *
-                                    (1. + options[F107_EFFECT_ON_MEAN].mainEffect * PDL[0][23] * (f107a - FLUX_REF));
-                /* Net density corrected at Alt */
-                set_density(MOLECULAR_OXYGEN, diffusiveDensity * ccor2(alt, rc32, hcc32, zcc32, hcc232));
-            }
-
-            /**** Ar density ****/
-            /* Density variation factor at Zlb */
-            const double g40 = options[ALL_VARIATIONS_FROM_120KM_VALUES_ZLB].mainEffect * globe7(PD[5]);
-            /* Diffusive density at Zlb */
-            const double db40 = PDM[4].n_ref * exp(g40) * PD[5][0];
-            /* Diffusive density at Alt */
-            diffusiveDensity = densu(alt, db40, tinf, tlb, AR_MASS, alpha[4], PTM.Zlb, s);
-            set_density(ARGON, diffusiveDensity);
-            if (options[DEPARTURES_FROM_DIFFUSIVE_EQUILIBRIUM].mainEffect && alt <= altl[4]) {
-                /* Turbopause */
-                const double zh40 = PDM[4].zh;
-                /* Mixed density at Zlb */
-                const double b40 = densu(zh40, db40, tinf, tlb, AR_MASS - XMM, alpha[4] - 1., PTM.Zlb, s);
-                /* Mixed density at Alt */
-                const double dm40  = densu(alt, b40, tinf, tlb, XMM, 0., PTM.Zlb, s);
-                const double zhm40 = zhm28;
-                /* Net density at Alt */
-                diffusiveDensity = dnet(diffusiveDensity, dm40, zhm40, XMM, AR_MASS);
-                /* Correction to specified mixing ratio at ground */
-                const double rl   = log(b28 * PDM[4].mix_ratio / b40);
-                const double hc40 = PDM[4].ha * PDL[1][9];
-                const double zc40 = PDM[4].za * PDL[1][8];
-                /* Net density corrected at Alt */
-                set_density(ARGON, diffusiveDensity * ccor(alt, rl, hc40, zc40));
-            }
-
-            /**** H density ****/
-            /* Density variation factor at Zlb */
-            const double g1 = options[ALL_VARIATIONS_FROM_120KM_VALUES_ZLB].mainEffect * globe7(PD[6]);
-            /* Diffusive density at Zlb */
-            const double db01 = PDM[5].n_ref * exp(g1) * PD[6][0];
-            /* Diffusive density at Alt */
-            diffusiveDensity = densu(alt, db01, tinf, tlb, H_MASS, alpha[6], PTM.Zlb, s);
-            set_density(HYDROGEN, diffusiveDensity);
-            if (options[DEPARTURES_FROM_DIFFUSIVE_EQUILIBRIUM].mainEffect && alt <= altl[6]) {
-                /* Turbopause */
-                const double zh01 = PDM[5].zh;
-                /* Mixed density at Zlb */
-                const double b01 = densu(zh01, db01, tinf, tlb, H_MASS - XMM, alpha[6] - 1., PTM.Zlb, s);
-                /* Mixed density at Alt */
-                const double dm01  = densu(alt, b01, tinf, tlb, XMM, 0., PTM.Zlb, s);
-                const double zhm01 = zhm28;
-                /* Net density at Alt */
-                diffusiveDensity = dnet(diffusiveDensity, dm01, zhm01, XMM, H_MASS);
-                /* Correction to specified mixing ratio at ground */
-                const double rl   = log(b28 * PDM[5].mix_ratio * sqrt(PDL[1][17] * PDL[1][17]) / b01);
-                const double hc01 = PDM[5].ha * PDL[1][11];
-                const double zc01 = PDM[5].za * PDL[1][10];
-                diffusiveDensity *= ccor(alt, rl, hc01, zc01);
-                /* Chemistry correction */
-                const double hcc01 = PDM[5].hb * PDL[1][19];
-                const double zcc01 = PDM[5].zb * PDL[1][18];
-                const double rc01  = PDM[5].c3 * PDL[1][20];
-                /* Net density corrected at Alt */
-                set_density(HYDROGEN, diffusiveDensity * ccor(alt, rc01, hcc01, zcc01));
-            }
-
-            /**** N density ****/
-            /* Density variation factor at Zlb */
-            const double g14 = options[ALL_VARIATIONS_FROM_120KM_VALUES_ZLB].mainEffect * globe7(PD[7]);
-            /* Diffusive density at Zlb */
-            const double db14 = PDM[6].n_ref * exp(g14) * PD[7][0];
-            /* Diffusive density at Alt */
-            diffusiveDensity = densu(alt, db14, tinf, tlb, N_MASS, alpha[7], PTM.Zlb, s);
-            set_density(ATOMIC_NITROGEN, diffusiveDensity);
-            if (options[DEPARTURES_FROM_DIFFUSIVE_EQUILIBRIUM].mainEffect && alt <= altl[7]) {
-                /* Turbopause */
-                const double zh14 = PDM[6].zh;
-                /* Mixed density at Zlb */
-                const double b14 = densu(zh14, db14, tinf, tlb, N_MASS - XMM, alpha[7] - 1., PTM.Zlb, s);
-                /* Mixed density at Alt */
-                const double dm14  = densu(alt, b14, tinf, tlb, XMM, 0., PTM.Zlb, s);
-                const double zhm14 = zhm28;
-                /* Net density at Alt */
-                diffusiveDensity = dnet(diffusiveDensity, dm14, zhm14, XMM, N_MASS);
-                /* Correction to specified mixing ratio at ground */
-                const double rl   = log(b28 * PDM[6].mix_ratio * PDL[0][2] / b14);
-                const double hc14 = PDM[6].ha * PDL[0][1];
-                const double zc14 = PDM[6].za * PDL[0][0];
-                diffusiveDensity *= ccor(alt, rl, hc14, zc14);
-                /* Chemistry correction */
-                const double hcc14 = PDM[6].hb * PDL[0][4];
-                const double zcc14 = PDM[6].zb * PDL[0][3];
-                const double rc14  = PDM[6].c3 * PDL[0][5];
-                /* Net density corrected at Alt */
-                set_density(ATOMIC_NITROGEN, diffusiveDensity * ccor(alt, rc14, hcc14, zcc14));
-            }
-
-            /**** Anomalous O density ****/
-            const double g16h  = options[ALL_VARIATIONS_FROM_120KM_VALUES_ZLB].mainEffect * globe7(PD[8]);
-            const double db16h = PDM[7].n_ref * exp(g16h) * PD[8][0];
-            const double tho   = PDM[7].c9 * PDL[0][6];
-            diffusiveDensity   = densu(alt, db16h, tho, tho, O_MASS, alpha[8], PTM.Zlb, s);
-            const double zsht  = PDM[7].ha;
-            const double zmho  = PDM[7].za;
-            const double zsho  = scalh(zmho, O_MASS, tho);
-            diffusiveDensity *= exp(-zsht / zsho * (exp((zmho - alt) / zsht) - 1.));
-            set_density(ANOMALOUS_OXYGEN, diffusiveDensity);
-
-            // Convert densities from cm-3 to m-3
-            for (int i = 0; i < 9; i++) {
-                set_density(i, get_density(i) * 1.0e6);
-            }
-
-            /**** Total mass density ****/
-            const double tmd = HE_MASS * get_density(HELIUM) + O_MASS * get_density(ATOMIC_OXYGEN) +
-                               N2_MASS * get_density(MOLECULAR_NITROGEN) + O2_MASS * get_density(MOLECULAR_OXYGEN) +
-                               AR_MASS * get_density(ARGON) + H_MASS * get_density(HYDROGEN) +
-                               N_MASS * get_density(ATOMIC_NITROGEN);
-            set_density(TOTAL_MASS, tmd);
+            const quantity b16 = calculate_density_temperature_profile_new(
+                zh16, db16, tempInf, tempLowerBound, O_MASS - XMM, thermalDiffusionCoefficients[1] - 1.0, PTM.Zlb, s
+            );
+            /* Mixed density at Alt */
+            const quantity dm16 =
+                calculate_density_temperature_profile_new(alt, b16, tempInf, tempLowerBound, XMM, 0., PTM.Zlb, s);
+            const quantity zhm16 = zhm28;
+            /* Net density at Alt */
+            diffusiveDensity  = calculate_turbopause_correction(diffusiveDensity, dm16, zhm16, XMM, O_MASS);
+            const quantity rl = SpeciesModelData[ATOMIC_OXYGEN].mixRatio * PDL[1][16] *
+                                (1.0 + options[F107_EFFECT_ON_MEAN].mainEffect * PDL[0][23] * (f107a - FLUX_REF));
+            const quantity hc16  = SpeciesModelData[ATOMIC_OXYGEN].ha * PDL[1][3];
+            const quantity zc16  = SpeciesModelData[ATOMIC_OXYGEN].za * PDL[1][2];
+            const quantity hc216 = SpeciesModelData[ATOMIC_OXYGEN].ha * PDL[1][4];
+            diffusiveDensity *= calculate_oxygen_dissociation_correction(alt, rl, hc16, zc16, hc216);
+            /* Chemistry correction */
+            const quantity hcc16 = SpeciesModelData[ATOMIC_OXYGEN].hb * PDL[1][13];
+            const quantity zcc16 = SpeciesModelData[ATOMIC_OXYGEN].zb * PDL[1][12];
+            const quantity rc16  = SpeciesModelData[ATOMIC_OXYGEN].c3 * PDL[1][14];
+            /* Net density corrected at Alt */
+            set_density(ATOMIC_OXYGEN, diffusiveDensity * calculate_dissociation_correction(alt, rc16, hcc16, zcc16));
         }
 
-        /** Calculate temperatures and densities not including anomalous oxygen.
-         *  <p>NOTES ON INPUT VARIABLES:<br>
-         *  Seconds, Local Time, and Longitude are used independently in the
-         *  model and are not of equal importance for every situation.<br>
-         *  For the most physically realistic calculation these three
-         *  variables should be consistent (lst=sec/3600 + lon/15).<br>
-         *  The Equation of Time departures from the above formula
-         *  for apparent local time can be included if available but
-         *  are of minor importance.<br><br>
-         *
-         *  f107 and f107A values used to generate the model correspond
-         *  to the 10.7 cm radio flux at the actual distance of the Earth
-         *  from the Sun rather than the radio flux at 1 AU. The following
-         *  site provides both classes of values:<br>
-         *  ftp://ftp.ngdc.noaa.gov/STP/SOLAR_DATA/SOLAR_RADIO/FLUX/<br><br>
-         *
-         *  f107, f107A, and ap effects are neither large nor well established below 80 km
-         *  and these parameters should be set to 150., 150., and 4. respectively.
-         *  </p>
-         *  @param alt altitude (km)
-         */
-        void gtd7(const Distance alt)
-        {
-            const double alt = alt * km;
-
-            // Calculates for thermosphere/mesosphere (above ZN2[0])
-            const Distance altt = (alt > ZN2[0]) ? alt : ZN2[0];
-            gts7(altt);
-            if (alt >= ZN2[0]) { return; }
-
-            // Calculates for lower mesosphere/upper stratosphere (between ZN2[0] and ZN3[0]):
-            // Temperature at nodes and gradients at end nodes
-            // Inverse temperature a linear function of spherical harmonics
-            const double r = PMA[2][0] * PAVGM[2];
-            meso_tgn2[0]   = meso_tgn1[1];
-            meso_tn2[0]    = meso_tn1[4];
-            meso_tn2[1]    = PMA[0][0] * PAVGM[0] /
-                          (1.0 - options[ALL_UPPER_STRATOSPHERE_TEMPERATURE_TN2_VARIATIONS].mainEffect * glob7s(PMA[0]));
-            meso_tn2[2] = PMA[1][0] * PAVGM[1] /
-                          (1.0 - options[ALL_UPPER_STRATOSPHERE_TEMPERATURE_TN2_VARIATIONS].mainEffect * glob7s(PMA[1]));
-            meso_tn2[3] = PMA[2][0] * PAVGM[2] /
-                          (1.0 - options[ALL_UPPER_STRATOSPHERE_TEMPERATURE_TN2_VARIATIONS].mainEffect *
-                                     options[ALL_LOWER_MESOSPHERE_TEMPERATURE_TN3_VARIATIONS].mainEffect * glob7s(PMA[2]));
-            meso_tgn2[1] = PMA[9][0] * PAVGM[8] *
-                           (1.0 + options[ALL_UPPER_STRATOSPHERE_TEMPERATURE_TN2_VARIATIONS].mainEffect *
-                                      options[ALL_LOWER_MESOSPHERE_TEMPERATURE_TN3_VARIATIONS].mainEffect * glob7s(PMA[9])) *
-                           meso_tn2[3] * meso_tn2[3] / (r * r);
-            meso_tn3[0] = meso_tn2[3];
-
-            // Calculates for lower stratosphere and troposphere (below ZN3[0])
-            // Temperature at nodes and gradients at end nodes
-            // Inverse temperature a linear function of spherical harmonics
-            if (alt <= ZN3[0]) {
-                const double q = PMA[6][0] * PAVGM[6];
-                meso_tgn3[0]   = meso_tgn2[1];
-                meso_tn3[1]    = PMA[3][0] * PAVGM[3] /
-                              (1.0 - options[ALL_LOWER_MESOSPHERE_TEMPERATURE_TN3_VARIATIONS].mainEffect * glob7s(PMA[3]));
-                meso_tn3[2] = PMA[4][0] * PAVGM[4] /
-                              (1.0 - options[ALL_LOWER_MESOSPHERE_TEMPERATURE_TN3_VARIATIONS].mainEffect * glob7s(PMA[4]));
-                meso_tn3[3] = PMA[5][0] * PAVGM[5] /
-                              (1.0 - options[ALL_LOWER_MESOSPHERE_TEMPERATURE_TN3_VARIATIONS].mainEffect * glob7s(PMA[5]));
-                meso_tn3[4] = PMA[6][0] * PAVGM[6] /
-                              (1.0 - options[ALL_LOWER_MESOSPHERE_TEMPERATURE_TN3_VARIATIONS].mainEffect * glob7s(PMA[6]));
-                meso_tgn3[1] = PMA[7][0] * PAVGM[7] *
-                               (1.0 + options[ALL_LOWER_MESOSPHERE_TEMPERATURE_TN3_VARIATIONS].mainEffect * glob7s(PMA[7])) *
-                               meso_tn3[4] * meso_tn3[4] / (q * q);
+        /**** O2 density ****/
+        /* Density variation factor at Zlb */
+        const quantity g32 = options[ALL_VARIATIONS_FROM_120KM_VALUES_ZLB].mainEffect * globe7(PD[4]);
+        /* Diffusive density at Zlb */
+        const quantity db32 = SpeciesModelData[MOLECULAR_OXYGEN].nRef * exp(g32) * PD[4][0];
+        /* Diffusive density at Alt */
+        diffusiveDensity = calculate_density_temperature_profile_new(
+            alt, db32, tempInf, tempLowerBound, O2_MASS, thermalDiffusionCoefficients[3], PTM.Zlb, s
+        );
+        set_density(MOLECULAR_OXYGEN, diffusiveDensity);
+        if (options[DEPARTURES_FROM_DIFFUSIVE_EQUILIBRIUM].mainEffect) {
+            if (alt <= altl[3]) {
+                /* Turbopause */
+                const quantity zh32 = SpeciesModelData[MOLECULAR_OXYGEN].zh;
+                /* Mixed density at Zlb */
+                const quantity b32 = calculate_density_temperature_profile_new(
+                    zh32, db32, tempInf, tempLowerBound, O2_MASS - XMM, thermalDiffusionCoefficients[3] - 1., PTM.Zlb, s
+                );
+                /* Mixed density at Alt */
+                const quantity dm32 =
+                    calculate_density_temperature_profile_new(alt, b32, tempInf, tempLowerBound, XMM, 0., PTM.Zlb, s);
+                const quantity zhm32 = zhm28;
+                /* Net density at Alt */
+                diffusiveDensity = calculate_turbopause_correction(diffusiveDensity, dm32, zhm32, XMM, O2_MASS);
+                /* Correction to specified mixing ratio at ground */
+                const quantity rl   = log(b28 * SpeciesModelData[MOLECULAR_OXYGEN].mixRatio / b32);
+                const quantity hc32 = SpeciesModelData[MOLECULAR_OXYGEN].ha * PDL[1][7];
+                const quantity zc32 = SpeciesModelData[MOLECULAR_OXYGEN].za * PDL[1][6];
+                diffusiveDensity *= calculate_dissociation_correction(alt, rl, hc32, zc32);
             }
-
-            // Linear transition to full mixing below ZN2[0]
-            const double dmc  = (alt > ZMIX) ? 1.0 - (ZN2[0] * km) - alt / (ZN2[0] * km) - ZMIX : 0.;
-            const double dz28 = get_density(MOLECULAR_NITROGEN);
-
-            // N2 density
-            const double dm28m = dm28 * 1.0e6;
-            double dmr         = dz28 / dm28m - 1.0;
-            double dst         = densm(alt, dm28m, XMM) * (1.0 + dmr * dmc);
-            set_density(MOLECULAR_NITROGEN, dst);
-
-            // HE density
-            dmr = get_density(HELIUM) / (dz28 * PDM[0].mix_ratio) - 1.0;
-            dst = get_density(MOLECULAR_NITROGEN) * PDM[0].mix_ratio * (1.0 + dmr * dmc);
-            set_density(HELIUM, dst);
-
-            // O density
-            set_density(ATOMIC_OXYGEN, 0.);
-            set_density(ANOMALOUS_OXYGEN, 0.);
-
-            // O2 density
-            dmr = get_density(MOLECULAR_OXYGEN) / (dz28 * PDM[3].mix_ratio) - 1.0;
-            dst = get_density(MOLECULAR_NITROGEN) * PDM[3].mix_ratio * (1.0 + dmr * dmc);
-            set_density(MOLECULAR_OXYGEN, dst);
-
-            // AR density
-            dmr = get_density(ARGON) / (dz28 * PDM[4].mix_ratio) - 1.0;
-            dst = get_density(MOLECULAR_NITROGEN) * PDM[4].mix_ratio * (1.0 + dmr * dmc);
-            set_density(ARGON, dst);
-
-            // H density
-            set_density(HYDROGEN, 0.);
-
-            // N density
-            set_density(ATOMIC_NITROGEN, 0.);
-
-            // Total mass density
-            const double tmd = AMU * (HE_MASS * get_density(HELIUM) + O_MASS * get_density(ATOMIC_OXYGEN) +
-                                      N2_MASS * get_density(MOLECULAR_NITROGEN) +
-                                      O2_MASS * get_density(MOLECULAR_OXYGEN) + AR_MASS * get_density(ARGON) +
-                                      H_MASS * get_density(HYDROGEN) + N_MASS * get_density(ATOMIC_NITROGEN));
-            set_density(TOTAL_MASS, tmd);
-
-            // Temperature at altitude
-            set_temperature(ALTITUDE, densm(alt, 1.0, 0));
+            /* Correction for general departure from diffusive equilibrium above Zlb */
+            const quantity hcc32  = SpeciesModelData[MOLECULAR_OXYGEN].hb * PDL[1][22];
+            const quantity hcc232 = SpeciesModelData[MOLECULAR_OXYGEN].hb * PDL[0][22];
+            const quantity zcc32  = SpeciesModelData[MOLECULAR_OXYGEN].zb * PDL[1][21];
+            const quantity rc32   = SpeciesModelData[MOLECULAR_OXYGEN].c3 * PDL[1][23] *
+                                  (1. + options[F107_EFFECT_ON_MEAN].mainEffect * PDL[0][23] * (f107a - FLUX_REF));
+            /* Net density corrected at Alt */
+            set_density(MOLECULAR_OXYGEN, diffusiveDensity * calculate_oxygen_dissociation_correction(alt, rc32, hcc32, zcc32, hcc232));
         }
 
-        /** Calculate temperatures and densities including anomalous oxygen.
-         *  <p></p>
-         *  <p>NOTES ON INPUT VARIABLES:<br>
-         *  Seconds, Local Time, and Longitude are used independently in the
-         *  model and are not of equal importance for every situation.<br>
-         *  For the most physically realistic calculation these three
-         *  variables should be consistent (lst=sec/3600 + lon/15).<br>
-         *  The Equation of Time departures from the above formula
-         *  for apparent local time can be included if available but
-         *  are of minor importance.<br>
-         *  <br>
-         *  f107 and f107A values used to generate the model correspond
-         *  to the 10.7 cm radio flux at the actual distance of the Earth
-         *  from the Sun rather than the radio flux at 1 AU. The following
-         *  site provides both classes of values:<br>
-         *  ftp://ftp.ngdc.noaa.gov/STP/SOLAR_DATA/SOLAR_RADIO/FLUX/<br>
-         *  <br>
-         *  f107, f107A, and ap effects are neither large nor well established below 80 km
-         *  and these parameters should be set to 150., 150., and 4. respectively.
-         *  </p>
-         *  @param alt altitude (km)
-         */
-        void gtd7d(const Distance alt)
-        {
-            // Compute densities and temperatures
-            gtd7(alt);
-
-            // Update the total mass density with anomalous oxygen contribution
-            const double dTot = get_density(TOTAL_MASS) + AMU * O_MASS * get_density(ANOMALOUS_OXYGEN);
-            set_density(TOTAL_MASS, dTot);
+        /**** Ar density ****/
+        /* Density variation factor at Zlb */
+        const quantity g40 = options[ALL_VARIATIONS_FROM_120KM_VALUES_ZLB].mainEffect * globe7(PD[5]);
+        /* Diffusive density at Zlb */
+        const quantity db40 = SpeciesModelData[ARGON].nRef * exp(g40) * PD[5][0];
+        /* Diffusive density at Alt */
+        diffusiveDensity = calculate_density_temperature_profile_new(
+            alt, db40, tempInf, tempLowerBound, AR_MASS, thermalDiffusionCoefficients[4], PTM.Zlb, s
+        );
+        set_density(ARGON, diffusiveDensity);
+        if (options[DEPARTURES_FROM_DIFFUSIVE_EQUILIBRIUM].mainEffect && alt <= altl[4]) {
+            /* Turbopause */
+            const quantity zh40 = SpeciesModelData[ARGON].zh;
+            /* Mixed density at Zlb */
+            const quantity b40 = calculate_density_temperature_profile_new(
+                zh40, db40, tempInf, tempLowerBound, AR_MASS - XMM, thermalDiffusionCoefficients[4] - 1., PTM.Zlb, s
+            );
+            /* Mixed density at Alt */
+            const quantity dm40 =
+                calculate_density_temperature_profile_new(alt, b40, tempInf, tempLowerBound, XMM, 0., PTM.Zlb, s);
+            const quantity zhm40 = zhm28;
+            /* Net density at Alt */
+            diffusiveDensity = calculate_turbopause_correction(diffusiveDensity, dm40, zhm40, XMM, AR_MASS);
+            /* Correction to specified mixing ratio at ground */
+            const quantity rl   = log(b28 * SpeciesModelData[ARGON].mixRatio / b40);
+            const quantity hc40 = SpeciesModelData[ARGON].ha * PDL[1][9];
+            const quantity zc40 = SpeciesModelData[ARGON].za * PDL[1][8];
+            /* Net density corrected at Alt */
+            set_density(ARGON, diffusiveDensity * calculate_dissociation_correction(alt, rl, hc40, zc40));
         }
 
-        /** Set one density.
-         * @param index one of the nine elements :
-         * <ul>
-         * <li>{@link #HELIUM}</li>
-         * <li>{@link #ATOMIC_OXYGEN}</li>
-         * <li>{@link #MOLECULAR_NITROGEN}</li>
-         * <li>{@link #MOLECULAR_OXYGEN}</li>
-         * <li>{@link #ARGON}</li>
-         * <li>{@link #TOTAL_MASS}</li>
-         * <li>{@link #HYDROGEN}</li>
-         * <li>{@link #ATOMIC_NITROGEN}</li>
-         * <li>{@link #ATOMIC_NITROGEN}</li>
-         * </ul>
-         * @param d the value of density to set
-         */
-        void set_density(const int index, const NumberDensity d) { densities[index] = d; }
+        /**** H density ****/
+        /* Density variation factor at Zlb */
+        const quantity g1 = options[ALL_VARIATIONS_FROM_120KM_VALUES_ZLB].mainEffect * globe7(PD[6]);
+        /* Diffusive density at Zlb */
+        const quantity db01 = SpeciesModelData[HYDROGEN].nRef * exp(g1) * PD[6][0];
+        /* Diffusive density at Alt */
+        diffusiveDensity = calculate_density_temperature_profile_new(
+            alt, db01, tempInf, tempLowerBound, H_MASS, thermalDiffusionCoefficients[6], PTM.Zlb, s
+        );
+        set_density(HYDROGEN, diffusiveDensity);
+        if (options[DEPARTURES_FROM_DIFFUSIVE_EQUILIBRIUM].mainEffect && alt <= altl[6]) {
+            /* Turbopause */
+            const quantity zh01 = SpeciesModelData[HYDROGEN].zh;
+            /* Mixed density at Zlb */
+            const quantity b01 = calculate_density_temperature_profile_new(
+                zh01, db01, tempInf, tempLowerBound, H_MASS - XMM, thermalDiffusionCoefficients[6] - 1., PTM.Zlb, s
+            );
+            /* Mixed density at Alt */
+            const quantity dm01 =
+                calculate_density_temperature_profile_new(alt, b01, tempInf, tempLowerBound, XMM, 0., PTM.Zlb, s);
+            const quantity zhm01 = zhm28;
+            /* Net density at Alt */
+            diffusiveDensity = calculate_turbopause_correction(diffusiveDensity, dm01, zhm01, XMM, H_MASS);
+            /* Correction to specified mixing ratio at ground */
+            const quantity rl   = log(b28 * SpeciesModelData[HYDROGEN].mixRatio * sqrt(PDL[1][17] * PDL[1][17]) / b01);
+            const quantity hc01 = SpeciesModelData[HYDROGEN].ha * PDL[1][11];
+            const quantity zc01 = SpeciesModelData[HYDROGEN].za * PDL[1][10];
+            diffusiveDensity *= calculate_dissociation_correction(alt, rl, hc01, zc01);
+            /* Chemistry correction */
+            const quantity hcc01 = SpeciesModelData[HYDROGEN].hb * PDL[1][19];
+            const quantity zcc01 = SpeciesModelData[HYDROGEN].zb * PDL[1][18];
+            const quantity rc01  = SpeciesModelData[HYDROGEN].c3 * PDL[1][20];
+            /* Net density corrected at Alt */
+            set_density(HYDROGEN, diffusiveDensity * calculate_dissociation_correction(alt, rc01, hcc01, zcc01));
+        }
 
-        /** Set one temperature.
-         * @param index one of the two elements :
-         * <ul>
-         * <li>{@link #EXOSPHERIC}</li>
-         * <li>{@link #ALTITUDE}</li>
-         * </ul>
-         * @param t the value of temperature to set
-         */
-        void set_temperature(const int index, const Temperature t) { temperatures[index] = t; }
+        /**** N density ****/
+        /* Density variation factor at Zlb */
+        const quantity g14 = options[ALL_VARIATIONS_FROM_120KM_VALUES_ZLB].mainEffect * globe7(PD[7]);
+        /* Diffusive density at Zlb */
+        const quantity db14 = SpeciesModelData[ATOMIC_NITROGEN].nRef * exp(g14) * PD[7][0];
+        /* Diffusive density at Alt */
+        diffusiveDensity = calculate_density_temperature_profile_new(
+            alt, db14, tempInf, tempLowerBound, N_MASS, thermalDiffusionCoefficients[7], PTM.Zlb, s
+        );
+        set_density(ATOMIC_NITROGEN, diffusiveDensity);
+        if (options[DEPARTURES_FROM_DIFFUSIVE_EQUILIBRIUM].mainEffect && alt <= altl[7]) {
+            /* Turbopause */
+            const quantity zh14 = SpeciesModelData[ATOMIC_NITROGEN].zh;
+            /* Mixed density at Zlb */
+            const quantity b14 = calculate_density_temperature_profile_new(
+                zh14, db14, tempInf, tempLowerBound, N_MASS - XMM, thermalDiffusionCoefficients[7] - 1., PTM.Zlb, s
+            );
+            /* Mixed density at Alt */
+            const quantity dm14 =
+                calculate_density_temperature_profile_new(alt, b14, tempInf, tempLowerBound, XMM, 0., PTM.Zlb, s);
+            const quantity zhm14 = zhm28;
+            /* Net density at Alt */
+            diffusiveDensity = calculate_turbopause_correction(diffusiveDensity, dm14, zhm14, XMM, N_MASS);
+            /* Correction to specified mixing ratio at ground */
+            const quantity rl   = log(b28 * SpeciesModelData[ATOMIC_NITROGEN].mixRatio * PDL[0][2] / b14);
+            const quantity hc14 = SpeciesModelData[ATOMIC_NITROGEN].ha * PDL[0][1];
+            const quantity zc14 = SpeciesModelData[ATOMIC_NITROGEN].za * PDL[0][0];
+            diffusiveDensity *= calculate_dissociation_correction(alt, rl, hc14, zc14);
+            /* Chemistry correction */
+            const quantity hcc14 = SpeciesModelData[ATOMIC_NITROGEN].hb * PDL[0][4];
+            const quantity zcc14 = SpeciesModelData[ATOMIC_NITROGEN].zb * PDL[0][3];
+            const quantity rc14  = SpeciesModelData[ATOMIC_NITROGEN].c3 * PDL[0][5];
+            /* Net density corrected at Alt */
+            set_density(ATOMIC_NITROGEN, diffusiveDensity * calculate_dissociation_correction(alt, rc14, hcc14, zcc14));
+        }
 
-        /** Get one of the stored densities.
-         * @param index one of the nine elements :
-         * <ul>
-         * <li>{@link #HELIUM}</li>
-         * <li>{@link #ATOMIC_OXYGEN}</li>
-         * <li>{@link #MOLECULAR_NITROGEN}</li>
-         * <li>{@link #MOLECULAR_OXYGEN}</li>
-         * <li>{@link #ARGON}</li>
-         * <li>{@link #TOTAL_MASS}</li>
-         * <li>{@link #HYDROGEN}</li>
-         * <li>{@link #ATOMIC_NITROGEN}</li>
-         * <li>{@link #ATOMIC_NITROGEN}</li>
-         * </ul>
-         * @return the requested density
-         */
-        double get_density(const int index) { return densities[index]; }
+        /**** Anomalous O density ****/
+        const quantity g16h  = options[ALL_VARIATIONS_FROM_120KM_VALUES_ZLB].mainEffect * globe7(PD[8]);
+        const quantity db16h = SpeciesModelData[ANOMALOUS_OXYGEN].nRef * exp(g16h) * PD[8][0];
+        const quantity tho   = SpeciesModelData[ANOMALOUS_OXYGEN].c9 * PDL[0][6];
+        diffusiveDensity =
+            calculate_density_temperature_profile_new(alt, db16h, tho, tho, O_MASS, thermalDiffusionCoefficients[8], PTM.Zlb, s);
+        const quantity zsht = SpeciesModelData[ANOMALOUS_OXYGEN].ha;
+        const quantity zmho = SpeciesModelData[ANOMALOUS_OXYGEN].za;
+        const quantity zsho = calculate_scale_height(zmho, O_MASS, tho);
+        diffusiveDensity *= exp(-zsht / zsho * (exp((zmho - alt) / zsht) - 1.));
+        set_density(ANOMALOUS_OXYGEN, diffusiveDensity);
 
-        /** Calculate G(L) function with upper thermosphere parameters.
-         *  @param p array of parameters
-         *  @return G(L) value
-         */
-        double globe7(const double[] p)
-        {
-            // Extract raw values from typed quantities for use in polynomial expressions
-            const double[] t  = new double[14];
-            const double cd32 = cos(doy - p[31]));
-            const double cd18 = cos(2.0 * doy - p[17]));
-            const double cd14 = cos(doy - p[13]));
-            const double cd39 = cos(2.0 * doy - p[38]));
+        // Convert densities from cm-3 to m-3
+        for (int i = 0; i < 9; i++) {
+            set_density(i, get_density(i) * 1.0e6);
+        }
+
+        /**** Total mass density ****/
+        const quantity tmd = HE_MASS * get_density(HELIUM) + O_MASS * get_density(ATOMIC_OXYGEN) +
+                             N2_MASS * get_density(MOLECULAR_NITROGEN) + O2_MASS * get_density(MOLECULAR_OXYGEN) +
+                             AR_MASS * get_density(ARGON) + H_MASS * get_density(HYDROGEN) + N_MASS * get_density(ATOMIC_NITROGEN);
+        set_density(TOTAL_MASS, tmd);
+    }
+
+    /** Calculate temperatures and densities not including anomalous oxygen.
+     *  <p>NOTES ON INPUT VARIABLES:<br>
+     *  Seconds, Local Time, and Longitude are used independently in the
+     *  model and are not of equal importance for every situation.<br>
+     *  For the most physically realistic calculation these three
+     *  variables should be consistent (lst=sec/3600 + lon/15).<br>
+     *  The Equation of Time departures from the above formula
+     *  for apparent local time can be included if available but
+     *  are of minor importance.<br><br>
+     *
+     *  f107 and f107A values used to generate the model correspond
+     *  to the 10.7 cm radio flux at the actual distance of the Earth
+     *  from the Sun rather than the radio flux at 1 AU. The following
+     *  site provides both classes of values:<br>
+     *  ftp://ftp.ngdc.noaa.gov/STP/SOLAR_DATA/SOLAR_RADIO/FLUX/<br><br>
+     *
+     *  f107, f107A, and ap effects are neither large nor well established below 80 km
+     *  and these parameters should be set to 150., 150., and 4. respectively.
+     *  </p>
+     *  @param alt altitude (km)
+     */
+    void gtd7(const Distance alt)
+    {
+        const quantity alt = alt * km;
+
+        // Calculates for thermosphere/mesosphere (above ZN2[0])
+        const Distance altt = (alt > ZN2[0]) ? alt : ZN2[0];
+        gts7(altt);
+        if (alt >= ZN2[0]) { return; }
+
+        // Calculates for lower mesosphere/upper stratosphere (between ZN2[0] and ZN3[0]):
+        // Temperature at nodes and gradients at end nodes
+        // Inverse temperature a linear function of spherical harmonics
+        const quantity r = PMA[2][0] * PAVGM[2];
+        mesoTgn2[0]      = mesoTgn1[1];
+        mesoTn2[0]       = mesoTn1[4];
+        mesoTn2[1]       = PMA[0][0] * PAVGM[0] /
+                     (1.0 - options[ALL_UPPER_STRATOSPHERE_TEMPERATURE_TN2_VARIATIONS].mainEffect * glob7s(PMA[0]));
+        mesoTn2[2] = PMA[1][0] * PAVGM[1] /
+                     (1.0 - options[ALL_UPPER_STRATOSPHERE_TEMPERATURE_TN2_VARIATIONS].mainEffect * glob7s(PMA[1]));
+        mesoTn2[3] = PMA[2][0] * PAVGM[2] /
+                     (1.0 - options[ALL_UPPER_STRATOSPHERE_TEMPERATURE_TN2_VARIATIONS].mainEffect *
+                                options[ALL_LOWER_MESOSPHERE_TEMPERATURE_TN3_VARIATIONS].mainEffect * glob7s(PMA[2]));
+        mesoTgn2[1] = PMA[9][0] * PAVGM[8] *
+                      (1.0 + options[ALL_UPPER_STRATOSPHERE_TEMPERATURE_TN2_VARIATIONS].mainEffect *
+                                 options[ALL_LOWER_MESOSPHERE_TEMPERATURE_TN3_VARIATIONS].mainEffect * glob7s(PMA[9])) *
+                      mesoTn2[3] * mesoTn2[3] / (r * r);
+        mesoTn3[0] = mesoTn2[3];
+
+        // Calculates for lower stratosphere and troposphere (below ZN3[0])
+        // Temperature at nodes and gradients at end nodes
+        // Inverse temperature a linear function of spherical harmonics
+        if (alt <= ZN3[0]) {
+            const quantity q = PMA[6][0] * PAVGM[6];
+            mesoTgn3[0]      = mesoTgn2[1];
+            mesoTn3[1]       = PMA[3][0] * PAVGM[3] /
+                         (1.0 - options[ALL_LOWER_MESOSPHERE_TEMPERATURE_TN3_VARIATIONS].mainEffect * glob7s(PMA[3]));
+            mesoTn3[2] = PMA[4][0] * PAVGM[4] /
+                         (1.0 - options[ALL_LOWER_MESOSPHERE_TEMPERATURE_TN3_VARIATIONS].mainEffect * glob7s(PMA[4]));
+            mesoTn3[3] = PMA[5][0] * PAVGM[5] /
+                         (1.0 - options[ALL_LOWER_MESOSPHERE_TEMPERATURE_TN3_VARIATIONS].mainEffect * glob7s(PMA[5]));
+            mesoTn3[4] = PMA[6][0] * PAVGM[6] /
+                         (1.0 - options[ALL_LOWER_MESOSPHERE_TEMPERATURE_TN3_VARIATIONS].mainEffect * glob7s(PMA[6]));
+            mesoTgn3[1] = PMA[7][0] * PAVGM[7] *
+                          (1.0 + options[ALL_LOWER_MESOSPHERE_TEMPERATURE_TN3_VARIATIONS].mainEffect * glob7s(PMA[7])) *
+                          mesoTn3[4] * mesoTn3[4] / (q * q);
+        }
+
+        // Linear transition to full mixing below ZN2[0]
+        const quantity dmc  = (alt > ZMIX) ? 1.0 - (ZN2[0] * km) - alt / (ZN2[0] * km) - ZMIX : 0.;
+        const quantity dz28 = get_density(MOLECULAR_NITROGEN);
+
+        // N2 density
+        const quantity n2MixedNumberDensitym = n2MixedNumberDensity * 1.0e6;
+        quantity dmr                         = dz28 / n2MixedNumberDensitym - 1.0;
+        quantity dst = calculate_density_temperature_profile(alt, n2MixedNumberDensitym, XMM) * (1.0 + dmr * dmc);
+        set_density(MOLECULAR_NITROGEN, dst);
+
+        // HE density
+        dmr = get_density(HELIUM) / (dz28 * SpeciesModelData[HELIUM].mixRatio) - 1.0;
+        dst = get_density(MOLECULAR_NITROGEN) * SpeciesModelData[HELIUM].mixRatio * (1.0 + dmr * dmc);
+        set_density(HELIUM, dst);
+
+        // O density
+        set_density(ATOMIC_OXYGEN, 0.);
+        set_density(ANOMALOUS_OXYGEN, 0.);
+
+        // O2 density
+        dmr = get_density(MOLECULAR_OXYGEN) / (dz28 * SpeciesModelData[MOLECULAR_OXYGEN].mixRatio) - 1.0;
+        dst = get_density(MOLECULAR_NITROGEN) * SpeciesModelData[MOLECULAR_OXYGEN].mixRatio * (1.0 + dmr * dmc);
+        set_density(MOLECULAR_OXYGEN, dst);
+
+        // AR density
+        dmr = get_density(ARGON) / (dz28 * SpeciesModelData[ARGON].mixRatio) - 1.0;
+        dst = get_density(MOLECULAR_NITROGEN) * SpeciesModelData[ARGON].mixRatio * (1.0 + dmr * dmc);
+        set_density(ARGON, dst);
+
+        // H density
+        set_density(HYDROGEN, 0.);
+
+        // N density
+        set_density(ATOMIC_NITROGEN, 0.);
+
+        // Total mass density
+        const quantity tmd =
+            AMU * (HE_MASS * get_density(HELIUM) + O_MASS * get_density(ATOMIC_OXYGEN) +
+                   N2_MASS * get_density(MOLECULAR_NITROGEN) + O2_MASS * get_density(MOLECULAR_OXYGEN) +
+                   AR_MASS * get_density(ARGON) + H_MASS * get_density(HYDROGEN) + N_MASS * get_density(ATOMIC_NITROGEN));
+        set_density(TOTAL_MASS, tmd);
+
+        // Temperature at altitude
+        set_temperature(ALTITUDE, calculate_density_temperature_profile(alt, 1.0, 0));
+    }
+
+    /** Calculate temperatures and densities including anomalous oxygen.
+     *  <p></p>
+     *  <p>NOTES ON INPUT VARIABLES:<br>
+     *  Seconds, Local Time, and Longitude are used independently in the
+     *  model and are not of equal importance for every situation.<br>
+     *  For the most physically realistic calculation these three
+     *  variables should be consistent (lst=sec/3600 + lon/15).<br>
+     *  The Equation of Time departures from the above formula
+     *  for apparent local time can be included if available but
+     *  are of minor importance.<br>
+     *  <br>
+     *  f107 and f107A values used to generate the model correspond
+     *  to the 10.7 cm radio flux at the actual distance of the Earth
+     *  from the Sun rather than the radio flux at 1 AU. The following
+     *  site provides both classes of values:<br>
+     *  ftp://ftp.ngdc.noaa.gov/STP/SOLAR_DATA/SOLAR_RADIO/FLUX/<br>
+     *  <br>
+     *  f107, f107A, and ap effects are neither large nor well established below 80 km
+     *  and these parameters should be set to 150., 150., and 4. respectively.
+     *  </p>
+     *  @param alt altitude (km)
+     */
+    void gtd7d(const Distance& alt)
+    {
+        // Compute densities and temperatures
+        gtd7(alt);
+
+        // Update the total mass density with anomalous oxygen contribution
+        const quantity dTot = get_density(TOTAL_MASS) + AMU * O_MASS * get_density(ANOMALOUS_OXYGEN);
+        set_density(TOTAL_MASS, dTot);
+    }
+
+    /** Set one density.
+     * @param index one of the nine elements :
+     * <ul>
+     * <li>{@link #HELIUM}</li>
+     * <li>{@link #ATOMIC_OXYGEN}</li>
+     * <li>{@link #MOLECULAR_NITROGEN}</li>
+     * <li>{@link #MOLECULAR_OXYGEN}</li>
+     * <li>{@link #ARGON}</li>
+     * <li>{@link #TOTAL_MASS}</li>
+     * <li>{@link #HYDROGEN}</li>
+     * <li>{@link #ATOMIC_NITROGEN}</li>
+     * <li>{@link #ATOMIC_NITROGEN}</li>
+     * </ul>
+     * @param d the value of density to set
+     */
+    void set_density(const int index, const NumberDensity d) { densities[index] = d; }
+
+    /** Set one temperature.
+     * @param index one of the two elements :
+     * <ul>
+     * <li>{@link #EXOSPHERIC}</li>
+     * <li>{@link #ALTITUDE}</li>
+     * </ul>
+     * @param t the value of temperature to set
+     */
+    void set_temperature(const int index, const Temperature t) { temperatures[index] = t; }
+
+    /** Get one of the stored densities.
+     * @param index one of the nine elements :
+     * <ul>
+     * <li>{@link #HELIUM}</li>
+     * <li>{@link #ATOMIC_OXYGEN}</li>
+     * <li>{@link #MOLECULAR_NITROGEN}</li>
+     * <li>{@link #MOLECULAR_OXYGEN}</li>
+     * <li>{@link #ARGON}</li>
+     * <li>{@link #TOTAL_MASS}</li>
+     * <li>{@link #HYDROGEN}</li>
+     * <li>{@link #ATOMIC_NITROGEN}</li>
+     * <li>{@link #ATOMIC_NITROGEN}</li>
+     * </ul>
+     * @return the requested density
+     */
+    NumberDensity get_density(const int index) { return densities[index]; }
+
+    /** Calculate G(L) function with upper thermosphere parameters.
+     *  @param p array of parameters
+     *  @return G(L) value
+     */
+    quantity globe7(const quantity[] p)
+    {
+        // Extract raw values from typed quantities for use in polynomial expressions
+        const quantity[] t      = new quantity[14];
+            const quantity cd32 = cos(doy - p[31]));
+            const quantity cd18 = cos(2.0 * doy - p[17]));
+            const quantity cd14 = cos(doy - p[13]));
+            const quantity cd39 = cos(2.0 * doy - p[38]));
 
             // F10.7 effect
-            const double df  = f107 - f107a;
-            const double dfa = f107a - FLUX_REF;
-            t[0]             = p[19] * df * (1.0 + p[59] * dfa) + p[20] * df * df + p[21] * dfa + p[29] * dfa * dfa;
+            const quantity df  = f107 - f107a;
+            const quantity dfa = f107a - FLUX_REF;
+            t[0]               = p[19] * df * (1.0 + p[59] * dfa) + p[20] * df * df + p[21] * dfa + p[29] * dfa * dfa;
 
-            const double f1 = 1.0 + (p[47] * dfa + p[19] * df + p[20] * df * df) * options[F107_EFFECT_ON_MEAN].crossEffect;
-            const double f2 = 1.0 + (p[49] * dfa + p[19] * df + p[20] * df * df) * options[F107_EFFECT_ON_MEAN].crossEffect;
+            const quantity f1 = 1.0 + (p[47] * dfa + p[19] * df + p[20] * df * df) * options[F107_EFFECT_ON_MEAN].crossEffect;
+            const quantity f2 = 1.0 + (p[49] * dfa + p[19] * df + p[20] * df * df) * options[F107_EFFECT_ON_MEAN].crossEffect;
 
             // Time independent
-            t[1] = (p[1] * plg[0][2] + p[2] * plg[0][4] + p[22] * plg[0][6]) +
-                   (p[14] * plg[0][2]) * dfa * options[F107_EFFECT_ON_MEAN].crossEffect + p[26] * plg[0][1];
+            t[1] = (p[1] * legendrePolynomials[0][2] + p[2] * legendrePolynomials[0][4] + p[22] * legendrePolynomials[0][6]) +
+                   (p[14] * legendrePolynomials[0][2]) * dfa * options[F107_EFFECT_ON_MEAN].crossEffect +
+                   p[26] * legendrePolynomials[0][1];
 
             // Symmetrical annual
             t[2] = p[18] * cd32;
 
             // Symmetrical semiannual
-            t[3] = (p[15] + p[16] * plg[0][2]) * cd18;
+            t[3] = (p[15] + p[16] * legendrePolynomials[0][2]) * cd18;
 
             // Asymmetrical annual
-            t[4] = f1 * (p[9] * plg[0][1] + p[10] * plg[0][3]) * cd14;
+            t[4] = f1 * (p[9] * legendrePolynomials[0][1] + p[10] * legendrePolynomials[0][3]) * cd14;
 
             // Asymmetrical semiannual
-            t[5] = p[37] * plg[0][1] * cd39;
+            t[5] = p[37] * legendrePolynomials[0][1] * cd39;
 
             // Diurnal
             if (options[DIURNAL].mainEffect) {
-                const double t71 = (p[11] * plg[1][2]) * cd14 * options[ASYMMETRICAL_ANNUAL].crossEffect;
-                const double t72 = (p[12] * plg[1][2]) * cd14 * options[ASYMMETRICAL_ANNUAL].crossEffect;
-                t[6]             = f2 * ((p[3] * plg[1][1] + p[4] * plg[1][3] + p[27] * plg[1][5] + t71) * ctloc +
-                             (p[6] * plg[1][1] + p[7] * plg[1][3] + p[28] * plg[1][5] + t72) * stloc);
+                const quantity t71 = (p[11] * legendrePolynomials[1][2]) * cd14 * options[ASYMMETRICAL_ANNUAL].crossEffect;
+                const quantity t72 = (p[12] * legendrePolynomials[1][2]) * cd14 * options[ASYMMETRICAL_ANNUAL].crossEffect;
+                t[6] =
+                    f2 *
+                    ((p[3] * legendrePolynomials[1][1] + p[4] * legendrePolynomials[1][3] + p[27] * legendrePolynomials[1][5] + t71) * ctloc +
+                     (p[6] * legendrePolynomials[1][1] + p[7] * legendrePolynomials[1][3] + p[28] * legendrePolynomials[1][5] + t72) * stloc);
             }
 
             // Semidiurnal
             if (options[SEMIDIURNAL].mainEffect) {
-                const double t81 = (p[23] * plg[2][3] + p[35] * plg[2][5]) * cd14 * options[ASYMMETRICAL_ANNUAL].crossEffect;
-                const double t82 = (p[33] * plg[2][3] + p[36] * plg[2][5]) * cd14 * options[ASYMMETRICAL_ANNUAL].crossEffect;
-                t[7] = f2 * ((p[5] * plg[2][2] + p[41] * plg[2][4] + t81) * c2tloc +
-                             (p[8] * plg[2][2] + p[42] * plg[2][4] + t82) * s2tloc);
+                const quantity t81 = (p[23] * legendrePolynomials[2][3] + p[35] * legendrePolynomials[2][5]) * cd14 *
+                                     options[ASYMMETRICAL_ANNUAL].crossEffect;
+                const quantity t82 = (p[33] * legendrePolynomials[2][3] + p[36] * legendrePolynomials[2][5]) * cd14 *
+                                     options[ASYMMETRICAL_ANNUAL].crossEffect;
+                t[7] = f2 * ((p[5] * legendrePolynomials[2][2] + p[41] * legendrePolynomials[2][4] + t81) * c2tloc +
+                             (p[8] * legendrePolynomials[2][2] + p[42] * legendrePolynomials[2][4] + t82) * s2tloc);
             }
 
             // Terdiurnal
             if (options[TERDIURNAL].mainEffect) {
-                t[13] =
-                    f2 *
-                    ((p[39] * plg[3][3] + (p[93] * plg[3][4] + p[46] * plg[3][6]) * cd14 * options[ASYMMETRICAL_ANNUAL].crossEffect) * s3tloc +
-                     (p[40] * plg[3][3] + (p[94] * plg[3][4] + p[48] * plg[3][6]) * cd14 * options[ASYMMETRICAL_ANNUAL].crossEffect) * c3tloc);
+                t[13] = f2 * ((p[39] * legendrePolynomials[3][3] +
+                               (p[93] * legendrePolynomials[3][4] + p[46] * legendrePolynomials[3][6]) * cd14 *
+                                   options[ASYMMETRICAL_ANNUAL].crossEffect) *
+                                  s3tloc +
+                              (p[40] * legendrePolynomials[3][3] +
+                               (p[94] * legendrePolynomials[3][4] + p[48] * legendrePolynomials[3][6]) * cd14 *
+                                   options[ASYMMETRICAL_ANNUAL].crossEffect) *
+                                  c3tloc);
             }
 
             // magnetic activity based on daily ap
             if (options[DAILY_AP].fullAp) {
                 if (p[51] != 0) {
-                    const double exp1 = exp(-10800.0 * abs(p[51]) / (1.0 + p[138] * (LAT_REF * rad) - abs(lat)));
-                    const double p24  = max(p[24], 1.0e-4);
-                    apt               = sg0(min(exp1, 0.99999), p24, p[25]);
-                    t[8]              = apt * (p[50] + p[96] * plg[0][2] + p[54] * plg[0][4] +
-                                  (p[125] * plg[0][1] + p[126] * plg[0][3] + p[127] * plg[0][5]) * cd14 *
-                                      options[ASYMMETRICAL_ANNUAL].crossEffect +
-                                  (p[128] * plg[1][1] + p[129] * plg[1][3] + p[130] * plg[1][5]) *
+                    const quantity exp1 = exp(-10800.0 * abs(p[51]) / (1.0 + p[138] * (LAT_REF * rad) - abs(lat)));
+                    const quantity p24  = max(p[24], 1.0e-4);
+                    apt                 = sg0(min(exp1, 0.99999), p24, p[25]);
+                    t[8] = apt * (p[50] + p[96] * legendrePolynomials[0][2] + p[54] * legendrePolynomials[0][4] +
+                                  (p[125] * legendrePolynomials[0][1] + p[126] * legendrePolynomials[0][3] +
+                                   p[127] * legendrePolynomials[0][5]) *
+                                      cd14 * options[ASYMMETRICAL_ANNUAL].crossEffect +
+                                  (p[128] * legendrePolynomials[1][1] + p[129] * legendrePolynomials[1][3] +
+                                   p[130] * legendrePolynomials[1][5]) *
                                       options[DIURNAL].crossEffect * cos(hour2rad * (hl - p[131])));
                 }
             }
             else {
-                const double apd = ap[0] - 4.0;
-                const double p44 = (p[43] < 0.) ? 1.0E-5 : p[43];
-                const double p45 = p[44];
-                apdf             = apd + (p45 - 1.0) * (apd + (exp(-p44 * apd) - 1.0) / p44);
+                const quantity apd = ap[0] - 4.0;
+                const quantity p44 = (p[43] < 0.) ? 1.0E-5 : p[43];
+                const quantity p45 = p[44];
+                apdf               = apd + (p45 - 1.0) * (apd + (exp(-p44 * apd) - 1.0) / p44);
                 if (options[DAILY_AP].mainEffect) {
-                    t[8] = apdf * (p[32] + p[45] * plg[0][2] + p[34] * plg[0][4] +
-                                   (p[100] * plg[0][1] + p[101] * plg[0][3] + p[102] * plg[0][5]) * cd14 *
-                                       options[ASYMMETRICAL_ANNUAL].crossEffect +
-                                   (p[121] * plg[1][1] + p[122] * plg[1][3] + p[123] * plg[1][5]) *
+                    t[8] = apdf * (p[32] + p[45] * legendrePolynomials[0][2] + p[34] * legendrePolynomials[0][4] +
+                                   (p[100] * legendrePolynomials[0][1] + p[101] * legendrePolynomials[0][3] +
+                                    p[102] * legendrePolynomials[0][5]) *
+                                       cd14 * options[ASYMMETRICAL_ANNUAL].crossEffect +
+                                   (p[121] * legendrePolynomials[1][1] + p[122] * legendrePolynomials[1][3] +
+                                    p[123] * legendrePolynomials[1][5]) *
                                        options[DIURNAL].crossEffect * cos(hour2rad * (hl - p[124])));
                 }
             }
 
             if (options[ALL_UT_LONGITUDINAL_EFFECTS].mainEffect) {
-                const double lonr   = lon;
+                const quantity lonr = lon;
                 const SinCos scLonr = sinCos(lonr);
                 // Longitudinal
                 if (options[LONGITUDINAL_EFFECTS].mainEffect) {
                     t[10] = (1.0 + p[80] * dfa * options[F107_EFFECT_ON_MEAN].crossEffect) *
-                            ((p[64] * plg[1][2] + p[65] * plg[1][4] + p[66] * plg[1][6] + p[103] * plg[1][1] +
-                              p[104] * plg[1][3] + p[105] * plg[1][5] +
-                              (p[109] * plg[1][1] + p[110] * plg[1][3] + p[111] * plg[1][5]) *
+                            ((p[64] * legendrePolynomials[1][2] + p[65] * legendrePolynomials[1][4] +
+                              p[66] * legendrePolynomials[1][6] + p[103] * legendrePolynomials[1][1] +
+                              p[104] * legendrePolynomials[1][3] + p[105] * legendrePolynomials[1][5] +
+                              (p[109] * legendrePolynomials[1][1] + p[110] * legendrePolynomials[1][3] +
+                               p[111] * legendrePolynomials[1][5]) *
                                   options[ASYMMETRICAL_ANNUAL].crossEffect * cd14) *
                                  scLonr.cos() +
-                             (p[90] * plg[1][2] + p[91] * plg[1][4] + p[92] * plg[1][6] + p[106] * plg[1][1] +
-                              p[107] * plg[1][3] + p[108] * plg[1][5] +
-                              (p[112] * plg[1][1] + p[113] * plg[1][3] + p[114] * plg[1][5]) *
+                             (p[90] * legendrePolynomials[1][2] + p[91] * legendrePolynomials[1][4] +
+                              p[92] * legendrePolynomials[1][6] + p[106] * legendrePolynomials[1][1] +
+                              p[107] * legendrePolynomials[1][3] + p[108] * legendrePolynomials[1][5] +
+                              (p[112] * legendrePolynomials[1][1] + p[113] * legendrePolynomials[1][3] +
+                               p[114] * legendrePolynomials[1][5]) *
                                   options[ASYMMETRICAL_ANNUAL].crossEffect * cd14) *
                                  scLonr.sin());
                 }
 
                 // ut and mixed ut, longitude
                 if (options[UT_AND_MIXED_UT_LONGITUDINAL_EFFECTS].mainEffect) {
-                    t[11] = (1.0 + p[95] * plg[0][1]) * (1.0 + p[81] * dfa * options[F107_EFFECT_ON_MEAN].crossEffect) *
-                            (1.0 + p[119] * plg[0][1] * options[ASYMMETRICAL_ANNUAL].crossEffect * cd14) *
-                            (p[68] * plg[0][1] + p[69] * plg[0][3] + p[70] * plg[0][5]) * cos(sec2rad * (sec - p[71]));
+                    t[11] = (1.0 + p[95] * legendrePolynomials[0][1]) *
+                            (1.0 + p[81] * dfa * options[F107_EFFECT_ON_MEAN].crossEffect) *
+                            (1.0 + p[119] * legendrePolynomials[0][1] * options[ASYMMETRICAL_ANNUAL].crossEffect * cd14) *
+                            (p[68] * legendrePolynomials[0][1] + p[69] * legendrePolynomials[0][3] +
+                             p[70] * legendrePolynomials[0][5]) *
+                            cos(sec2rad * (sec - p[71]));
                     t[11] += options[LONGITUDINAL_EFFECTS] *
                              (1.0 + p[137].crossEffect * dfa * options[F107_EFFECT_ON_MEAN].crossEffect) *
-                             (p[76] * plg[2][3] + p[77] * plg[2][5] + p[78] * plg[2][7]) *
+                             (p[76] * legendrePolynomials[2][3] + p[77] * legendrePolynomials[2][5] +
+                              p[78] * legendrePolynomials[2][7]) *
                              cos(sec2rad * (sec - p[79]) + 2.0 * lonr);
                 }
 
@@ -1600,556 +1567,483 @@ class NRLMSISE00 : public AbstractSunInfluencedAtmosphere {
                 if (options[MIXED_AP_UT_LONGITUDINAL_EFFECTS].mainEffect) {
                     if (options[DAILY_AP].fullAp) {
                         if (p[51] != 0.) {
-                            t[12] = apt * options[LONGITUDINAL_EFFECTS].crossEffect * (1. + p[132] * plg[0][1]) *
-                                        (p[52] * plg[1][2] + p[98] * plg[1][4] + p[67] * plg[1][6]) * cos(lon - p[97] * rad_val) +
-                                    apt * options[LONGITUDINAL_EFFECTS].crossEffect * options[ASYMMETRICAL_ANNUAL].crossEffect *
-                                        cd14 * (p[133] * plg[1][1] + p[134] * plg[1][3] + p[135] * plg[1][5]) *
+                            t[12] = apt * options[LONGITUDINAL_EFFECTS].crossEffect *
+                                        (1. + p[132] * legendrePolynomials[0][1]) *
+                                        (p[52] * legendrePolynomials[1][2] + p[98] * legendrePolynomials[1][4] +
+                                         p[67] * legendrePolynomials[1][6]) *
+                                        cos(lon - p[97] * rad_val) +
+                                    apt * options[LONGITUDINAL_EFFECTS].crossEffect *
+                                        options[ASYMMETRICAL_ANNUAL].crossEffect * cd14 *
+                                        (p[133] * legendrePolynomials[1][1] + p[134] * legendrePolynomials[1][3] +
+                                         p[135] * legendrePolynomials[1][5]) *
                                         cos(lon - p[136] * rad_val) +
                                     apt * options[UT_AND_MIXED_UT_LONGITUDINAL_EFFECTS].crossEffect *
-                                        (p[55] * plg[0][1] + p[56] * plg[0][3] + p[57] * plg[0][5]) *
+                                        (p[55] * legendrePolynomials[0][1] + p[56] * legendrePolynomials[0][3] +
+                                         p[57] * legendrePolynomials[0][5]) *
                                         cos(sec2rad * (sec - p[58]));
                         }
                     }
                     else {
-                        t[12] =
-                            apdf * options[LONGITUDINAL_EFFECTS].crossEffect * (1.0 + p[120] * plg[0][1]) *
-                                ((p[60] * plg[1][2] + p[61] * plg[1][4] + p[62] * plg[1][6]) * cos(lon - p[63] * rad_val)) +
-                            apdf * options[LONGITUDINAL_EFFECTS].crossEffect * options[ASYMMETRICAL_ANNUAL].crossEffect * cd14 *
-                                (p[115] * plg[1][1] + p[116] * plg[1][3] + p[117] * plg[1][5]) * cos(lon - p[118] * rad_val) +
-                            apdf * options[UT_AND_MIXED_UT_LONGITUDINAL_EFFECTS].crossEffect *
-                                (p[83] * plg[0][1] + p[84] * plg[0][3] + p[85] * plg[0][5]) * cos(sec2rad * (sec - p[75]));
+                        t[12] = apdf * options[LONGITUDINAL_EFFECTS].crossEffect * (1.0 + p[120] * legendrePolynomials[0][1]) *
+                                    ((p[60] * legendrePolynomials[1][2] + p[61] * legendrePolynomials[1][4] +
+                                      p[62] * legendrePolynomials[1][6]) *
+                                     cos(lon - p[63] * rad_val)) +
+                                apdf * options[LONGITUDINAL_EFFECTS].crossEffect * options[ASYMMETRICAL_ANNUAL].crossEffect * cd14 *
+                                    (p[115] * legendrePolynomials[1][1] + p[116] * legendrePolynomials[1][3] +
+                                     p[117] * legendrePolynomials[1][5]) *
+                                    cos(lon - p[118] * rad_val) +
+                                apdf * options[UT_AND_MIXED_UT_LONGITUDINAL_EFFECTS].crossEffect *
+                                    (p[83] * legendrePolynomials[0][1] + p[84] * legendrePolynomials[0][3] +
+                                     p[85] * legendrePolynomials[0][5]) *
+                                    cos(sec2rad * (sec - p[75]));
                     }
                 }
             }
 
             // Sum all effects (params not used: 82, 89, 99, 139-149)
-            double tinf = p[30];
+            quantity tempInf = p[30];
             for (int i = 0; i < 14; i++) {
-                tinf += abs(sw[i + 1]) * t[i];
+                tempInf += abs(sw[i + 1]) * t[i];
             }
 
             // Return G(L)
-            return tinf;
+            return tempInf;
+    }
+
+    /** Calculate G(L) function with lower atmosphere parameters.
+     *  @param p array of parameters
+     *  @return G(L) value
+     */
+    quantity glob7s(const quantity[] p)
+    {
+        const quantity[] t  = new quantity[14];
+        const quantity cd32 = cos(doy - p[31]);
+        const quantity cd18 = cos(2.0 * doy - p[17]);
+        const quantity cd14 = cos(doy - p[13]);
+        const quantity cd39 = cos(2.0 * doy - p[38]);
+
+        // F10.7 effect
+        t[0] = p[21] * (f107a - FLUX_REF);
+
+        // Time independent
+        t[1] = p[1] * legendrePolynomials[0][2] + p[2] * legendrePolynomials[0][4] + p[22] * legendrePolynomials[0][6] +
+               p[26] * legendrePolynomials[0][1] + p[14] * legendrePolynomials[0][3] + p[59] * legendrePolynomials[0][5];
+
+        // Symmetrical annual
+        t[2] = (p[18] + p[47] * legendrePolynomials[0][2] + p[29] * legendrePolynomials[0][4]) * cd32;
+
+        // Symmetrical semiannual
+        t[3] = (p[15] + p[16] * legendrePolynomials[0][2] + p[30] * legendrePolynomials[0][4]) * cd18;
+
+        // Asymmetrical annual
+        t[4] = (p[9] * legendrePolynomials[0][1] + p[10] * legendrePolynomials[0][3] + p[20] * legendrePolynomials[0][5]) * cd14;
+
+        // Asymmetrical semiannual
+        t[5] = (p[37] * legendrePolynomials[0][1]) * cd39;
+
+        // Diurnal
+        if (options[DIURNAL].mainEffect) {
+            const quantity t71 = p[11] * legendrePolynomials[1][2] * cd14 * options[ASYMMETRICAL_ANNUAL].crossEffect;
+            const quantity t72 = p[12] * legendrePolynomials[1][2] * cd14 * options[ASYMMETRICAL_ANNUAL].crossEffect;
+            t[6]               = (p[3] * legendrePolynomials[1][1] + p[4] * legendrePolynomials[1][3] + t71) * ctloc +
+                   (p[6] * legendrePolynomials[1][1] + p[7] * legendrePolynomials[1][3] + t72) * stloc;
         }
 
-        /** Calculate G(L) function with lower atmosphere parameters.
-         *  @param p array of parameters
-         *  @return G(L) value
-         */
-        double glob7s(const double[] p)
-        {
-            const double[] t  = new double[14];
-            const double cd32 = cos(doy - p[31]);
-            const double cd18 = cos(2.0 * doy - p[17]);
-            const double cd14 = cos(doy - p[13]);
-            const double cd39 = cos(2.0 * doy - p[38]);
-
-            // F10.7 effect
-            t[0] = p[21] * (f107a - FLUX_REF);
-
-            // Time independent
-            t[1] = p[1] * plg[0][2] + p[2] * plg[0][4] + p[22] * plg[0][6] + p[26] * plg[0][1] + p[14] * plg[0][3] +
-                   p[59] * plg[0][5];
-
-            // Symmetrical annual
-            t[2] = (p[18] + p[47] * plg[0][2] + p[29] * plg[0][4]) * cd32;
-
-            // Symmetrical semiannual
-            t[3] = (p[15] + p[16] * plg[0][2] + p[30] * plg[0][4]) * cd18;
-
-            // Asymmetrical annual
-            t[4] = (p[9] * plg[0][1] + p[10] * plg[0][3] + p[20] * plg[0][5]) * cd14;
-
-            // Asymmetrical semiannual
-            t[5] = (p[37] * plg[0][1]) * cd39;
-
-            // Diurnal
-            if (options[DIURNAL].mainEffect) {
-                const double t71 = p[11] * plg[1][2] * cd14 * options[ASYMMETRICAL_ANNUAL].crossEffect;
-                const double t72 = p[12] * plg[1][2] * cd14 * options[ASYMMETRICAL_ANNUAL].crossEffect;
-                t[6] = (p[3] * plg[1][1] + p[4] * plg[1][3] + t71) * ctloc + (p[6] * plg[1][1] + p[7] * plg[1][3] + t72) * stloc;
-            }
-
-            // Semidiurnal
-            if (options[SEMIDIURNAL].mainEffect) {
-                const double t81 = (p[23] * plg[2][3] + p[35] * plg[2][5]) * cd14 * options[ASYMMETRICAL_ANNUAL].crossEffect;
-                const double t82 = (p[33] * plg[2][3] + p[36] * plg[2][5]) * cd14 * options[ASYMMETRICAL_ANNUAL].crossEffect;
-                t[7] = (p[5] * plg[2][2] + p[41] * plg[2][4] + t81) * c2tloc + (p[8] * plg[2][2] + p[42] * plg[2][4] + t82) * s2tloc;
-            }
-
-            // Terdiurnal
-            if (options[TERDIURNAL].mainEffect) { t[13] = p[39] * plg[3][3] * s3tloc + p[40] * plg[3][3] * c3tloc; }
-
-            // Magnetic activity
-            if (options[DAILY_AP].mainEffect) {
-                t[8] = apdf * (p[32] + p[45] * plg[0][2] * options[INDEPENDENT_OF_TIME].crossEffect);
-            }
-            else if (options[DAILY_AP].fullAp) {
-                t[8] = apt * (p[50] + p[96] * plg[0][2] * options[INDEPENDENT_OF_TIME].crossEffect);
-            }
-
-            // Longitudinal
-            if (options[ALL_UT_LONGITUDINAL_EFFECTS].mainEffect == 0 && options[LONGITUDINAL_EFFECTS].mainEffect) {
-                const double lonr   = lon * rad;
-                const SinCos scLonr = sinCos(lonr);
-                t[10] = (1.0 + plg[0][1] * (p[80] * options[ASYMMETRICAL_ANNUAL].crossEffect * cos(doy - p[81])) +
-                         p[85] * options[ASYMMETRICAL_SEMIANNUAL].crossEffect * cos(2.0 * doy - p[86])) +
-                        p[83] * options[SYMMETRICAL_ANNUAL].crossEffect * cos(doy - p[84]) +
-                        p[87] * options[SYMMETRICAL_SEMIANNUAL].crossEffect * cos(2.0 * doy - p[88]) *
-                            ((p[64] * plg[1][2] + p[65] * plg[1][4] + p[66] * plg[1][6] + p[74] * plg[1][1] +
-                              p[75] * plg[1][3] + p[76] * plg[1][5]) *
-                                 scLonr.cos() +
-                             (p[90] * plg[1][2] + p[91] * plg[1][4] + p[92] * plg[1][6] + p[77] * plg[1][1] +
-                              p[78] * plg[1][3] + p[79] * plg[1][5]) *
-                                 scLonr.sin());
-            }
-
-            // Sum all effects
-            double gl = 0;
-            for (int i = 0; i < 14; i++) {
-                gl += abs(sw[i + 1]) * t[i];
-            }
-
-            // Return G(L)
-            return gl;
+        // Semidiurnal
+        if (options[SEMIDIURNAL].mainEffect) {
+            const quantity t81 = (p[23] * legendrePolynomials[2][3] + p[35] * legendrePolynomials[2][5]) * cd14 *
+                                 options[ASYMMETRICAL_ANNUAL].crossEffect;
+            const quantity t82 = (p[33] * legendrePolynomials[2][3] + p[36] * legendrePolynomials[2][5]) * cd14 *
+                                 options[ASYMMETRICAL_ANNUAL].crossEffect;
+            t[7] = (p[5] * legendrePolynomials[2][2] + p[41] * legendrePolynomials[2][4] + t81) * c2tloc +
+                   (p[8] * legendrePolynomials[2][2] + p[42] * legendrePolynomials[2][4] + t82) * s2tloc;
         }
 
-        /** Implements sg0 function (Eq. A24a).
-         * @param ex ex
-         * @param p24 abs(p[24])
-         * @param p25 p[25]
-         * @return sg0
-         */
-        Unitless sg0(const Unitless ex, const Unitless p24, const Unitless p25)
-        {
-            const Unitless g01   = g0(ap[1], p24, p25);
-            const Unitless g02   = g0(ap[2], p24, p25);
-            const Unitless g03   = g0(ap[3], p24, p25);
-            const Unitless g04   = g0(ap[4], p24, p25);
-            const Unitless g05   = g0(ap[5], p24, p25);
-            const Unitless g06   = g0(ap[6], p24, p25);
-            const Unitless ex2   = ex * ex;
-            const Unitless ex3   = ex * ex2;
-            const Unitless ex4   = ex2 * ex2;
-            const Unitless ex8   = ex4 * ex4;
-            const Unitless ex12  = ex4 * ex8;
-            const Unitless g234  = g02 * ex + g03 * ex2 + g04 * ex3;
-            const Unitless g56   = g05 * ex4 + g06 * ex12;
-            const Unitless ex19  = ex3 * ex4 * ex12;
-            const Unitless omex  = 1.0 - ex;
-            const Unitless sumex = 1.0 + (1.0 - ex19) / omex * sqrt(ex);
-            return (g01 + (g234 + g56 * (1.0 - ex8) / omex)) / sumex;
+        // Terdiurnal
+        if (options[TERDIURNAL].mainEffect) {
+            t[13] = p[39] * legendrePolynomials[3][3] * s3tloc + p[40] * legendrePolynomials[3][3] * c3tloc;
         }
 
-        /** Implements go function (Eq. A24d).
-         * @param apI 3 hrs ap
-         * @param p24 abs(p[24])
-         * @param p25 p[25]
-         * @return go
-         */
-        Unitless g0(const Unitless apI, const Unitless p24, const Unitless p25)
-        {
-            const Unitless am4 = apI - 4.0;
-            return am4 + (p25 - 1.0) * (am4 + (exp(-p24 * am4) - 1.0) / p24);
+        // Magnetic activity
+        if (options[DAILY_AP].mainEffect) {
+            t[8] = apdf * (p[32] + p[45] * legendrePolynomials[0][2] * options[INDEPENDENT_OF_TIME].crossEffect);
+        }
+        else if (options[DAILY_AP].fullAp) {
+            t[8] = apt * (p[50] + p[96] * legendrePolynomials[0][2] * options[INDEPENDENT_OF_TIME].crossEffect);
         }
 
-        /** Calculates chemistry/dissociation correction for MSIS models.
-         * @param alt altitude
-         * @param r target ratio
-         * @param h1 transition scale length
-         * @param zh altitude of 1/2 R
-         * @return correction
-         */
-        Unitless ccor(const Distance alt, const Unitless r, const Distance h1, const Distance zh)
-        {
-            const Unitless e = (alt - zh) / h1;
-            if (e > 70.0 * one) { return 1.0 * one; }
-            else if (e < -70.0 * one) {
-                return exp(r);
-            }
-            else {
-                return exp(r / (1.0 + exp(e)));
-            }
+        // Longitudinal
+        if (options[ALL_UT_LONGITUDINAL_EFFECTS].mainEffect == 0 && options[LONGITUDINAL_EFFECTS].mainEffect) {
+            const quantity lonr = lon * rad;
+            const SinCos scLonr = sinCos(lonr);
+            t[10] = (1.0 + legendrePolynomials[0][1] * (p[80] * options[ASYMMETRICAL_ANNUAL].crossEffect * cos(doy - p[81])) +
+                     p[85] * options[ASYMMETRICAL_SEMIANNUAL].crossEffect * cos(2.0 * doy - p[86])) +
+                    p[83] * options[SYMMETRICAL_ANNUAL].crossEffect * cos(doy - p[84]) +
+                    p[87] * options[SYMMETRICAL_SEMIANNUAL].crossEffect * cos(2.0 * doy - p[88]) *
+                        ((p[64] * legendrePolynomials[1][2] + p[65] * legendrePolynomials[1][4] +
+                          p[66] * legendrePolynomials[1][6] + p[74] * legendrePolynomials[1][1] +
+                          p[75] * legendrePolynomials[1][3] + p[76] * legendrePolynomials[1][5]) *
+                             scLonr.cos() +
+                         (p[90] * legendrePolynomials[1][2] + p[91] * legendrePolynomials[1][4] +
+                          p[92] * legendrePolynomials[1][6] + p[77] * legendrePolynomials[1][1] +
+                          p[78] * legendrePolynomials[1][3] + p[79] * legendrePolynomials[1][5]) *
+                             scLonr.sin());
         }
 
-
-        /** Calculates O & O2 chemistry/dissociation correction for MSIS models.
-         * @param alt altitude
-         * @param r target ratio
-         * @param h1 transition scale length
-         * @param zh altitude of 1/2 R
-         * @param h2 transition scale length
-         * @return correction
-         */
-        Unitless ccor2(const Distance alt, const Unitless r, const Distance h1, const Distance zh, const Distance h2)
-        {
-            const Unitless e1 = (alt - zh) / h1;
-            const Unitless e2 = (alt - zh) / h2;
-            if (e1 > 70.0 * one || e2 > 70.0 * one) { return 1.0 * one; }
-            else if (e1 < -70.0 * one && e2 < -70.0 * one) {
-                return exp(r);
-            }
-            else {
-                const Unitless ex1 = exp(e1);
-                const Unitless ex2 = exp(e2);
-                return exp(r / (1.0 * one + 0.5 * (ex1 + ex2)));
-            }
+        // Sum all effects
+        quantity gl = 0;
+        for (int i = 0; i < 14; i++) {
+            gl += abs(sw[i + 1]) * t[i];
         }
 
-        /** Calculates scale height.
-         * @param alt altitude
-         * @param xm species molecular weight
-         * @param temp temperature
-         * @return scale height (km)
-         */
-        Distance scalh(const Distance alt, const NumberDensity xm, const Temperature temp)
-        {
-            // Gravity at altitude
-            const Unitless denom    = 1.0 * one + alt / rlat;
-            const Acceleration galt = glat / (denom * denom);
-            return R_GAS * temp / (galt * xm);
+        // Return G(L)
+        return gl;
+    }
+
+    /** Implements sg0 function (Eq. A24a).
+     * @param ex ex
+     * @param p24 abs(p[24])
+     * @param p25 p[25]
+     * @return sg0
+     */
+    Unitless sg0(const Unitless& ex, const Unitless& p24, const Unitless& p25)
+    {
+        const Unitless g01   = g0(ap[1], p24, p25);
+        const Unitless g02   = g0(ap[2], p24, p25);
+        const Unitless g03   = g0(ap[3], p24, p25);
+        const Unitless g04   = g0(ap[4], p24, p25);
+        const Unitless g05   = g0(ap[5], p24, p25);
+        const Unitless g06   = g0(ap[6], p24, p25);
+        const Unitless ex2   = ex * ex;
+        const Unitless ex3   = ex * ex2;
+        const Unitless ex4   = ex2 * ex2;
+        const Unitless ex8   = ex4 * ex4;
+        const Unitless ex12  = ex4 * ex8;
+        const Unitless g234  = g02 * ex + g03 * ex2 + g04 * ex3;
+        const Unitless g56   = g05 * ex4 + g06 * ex12;
+        const Unitless ex19  = ex3 * ex4 * ex12;
+        const Unitless omex  = 1.0 - ex;
+        const Unitless sumex = 1.0 + (1.0 - ex19) / omex * sqrt(ex);
+        return (g01 + (g234 + g56 * (1.0 - ex8) / omex)) / sumex;
+    }
+
+    /** Implements go function (Eq. A24d).
+     * @param apI 3 hrs ap
+     * @param p24 abs(p[24])
+     * @param p25 p[25]
+     * @return go
+     */
+    Unitless g0(const Unitless& apI, const Unitless& p24, const Unitless& p25)
+    {
+        const Unitless am4 = apI - 4.0;
+        return am4 + (p25 - 1.0) * (am4 + (exp(-p24 * am4) - 1.0) / p24);
+    }
+
+    /** Calculates chemistry/dissociation correction for MSIS models.
+     * @param alt altitude
+     * @param r target ratio
+     * @param h1 transition scale length
+     * @param zh altitude of 1/2 R
+     * @return correction
+     */
+    Unitless calculate_dissociation_correction(const Distance alt, const Unitless r, const Distance h1, const Distance zh)
+    {
+        const Unitless e = (alt - zh) / h1;
+        if (e > 70.0 * one) { return 1.0 * one; }
+        else if (e < -70.0 * one) {
+            return exp(r);
+        }
+        else {
+            return exp(r / (1.0 + exp(e)));
+        }
+    }
+
+
+    /** Calculates O & O2 chemistry/dissociation correction for MSIS models.
+     * @param alt altitude
+     * @param r target ratio
+     * @param h1 transition scale length
+     * @param zh altitude of 1/2 R
+     * @param h2 transition scale length
+     * @return correction
+     */
+    Unitless calculate_oxygen_dissociation_correction(const Distance alt, const Unitless r, const Distance h1, const Distance zh, const Distance h2)
+    {
+        const Unitless e1 = (alt - zh) / h1;
+        const Unitless e2 = (alt - zh) / h2;
+        if (e1 > 70.0 * one || e2 > 70.0 * one) { return 1.0 * one; }
+        else if (e1 < -70.0 * one && e2 < -70.0 * one) {
+            return exp(r);
+        }
+        else {
+            const Unitless ex1 = exp(e1);
+            const Unitless ex2 = exp(e2);
+            return exp(r / (1.0 * one + 0.5 * (ex1 + ex2)));
+        }
+    }
+
+    /** Calculates scale height.
+     * @param alt altitude
+     * @param speciesMolecularWeight species molecular weight
+     * @param temp temperature
+     * @return scale height (km)
+     */
+    Distance calculate_scale_height(const Distance& alt, const NumberDensity& speciesMolecularWeight, const Temperature& temp)
+    {
+        // Gravity at altitude
+        const Acceleration calculate_gravity_at_altitude = glat / pow<2>(1.0 * one + alt / rlat);
+        return R_GAS * temp / (calculate_gravity_at_altitude * speciesMolecularWeight);
+    }
+
+    /** Calculates turbopause correction for MSIS models.
+     * @param dd diffusive density
+     * @param dm full mixed density
+     * @param zhm transition scale length
+     * @param XMM full mixed molecular weight
+     * @param speciesMolecularWeight species molecular weight
+     * @return combined density
+     */
+    Unitless calculate_turbopause_correction(
+        const Unitless& diffusiveDensity,
+        const Unitless& mixedDensity,
+        const Unitless& transitionScaleLength,
+        const Unitless& fullMixedMolecularWeight,
+        const Unitless& speciesMolecularWeight
+    )
+    {
+        if (!(mixedDensity > 0 && diffusiveDensity > 0)) {
+            Unitless ddd = diffusiveDensity;
+            if (diffusiveDensity == 0 && mixedDensity == 0) { ddd = 1; }
+            if (mixedDensity == 0) { return ddd; }
+            if (diffusiveDensity == 0) { return mixedDensity; }
         }
 
-        /** Calculates turbopause correction for MSIS models.
-         * @param dd diffusive density
-         * @param dm full mixed density
-         * @param zhm transition scale length
-         * @param XMM full mixed molecular weight
-         * @param xm species molecular weight
-         * @return combined density
-         */
-        Unitless dnet(const Unitless dd, const Unitless dm, const Unitless zhm, const Unitless XMM, const Unitless xm)
-        {
-            if (!(dm > 0 && dd > 0)) {
-                Unitless ddd = dd;
-                if (dd == 0 && dm == 0) { ddd = 1; }
-                if (dm == 0) { return ddd; }
-                if (dd == 0) { return dm; }
-            }
+        const Unitless a    = transitionScaleLength / (fullMixedMolecularWeight - speciesMolecularWeight);
+        const Unitless ylog = a * log(mixedDensity / diffusiveDensity);
+        if (ylog < -10.) { return diffusiveDensity; }
+        else if (ylog > 10.) {
+            return mixedDensity;
+        }
+        else {
+            return diffusiveDensity * pow(1.0 + exp(ylog), 1.0 / a);
+        }
+    }
 
-            const Unitless a    = zhm / (XMM - xm);
-            const Unitless ylog = a * log(dm / dd);
-            if (ylog < -10.) { return dd; }
-            else if (ylog > 10.) {
-                return dm;
-            }
-            else {
-                return dd * pow(1.0 + exp(ylog), 1.0 / a);
-            }
+    /** Calculate Temperature and Density Profiles for lower atmosphere.
+     * @param alt altitude
+     * @param d0 density
+     * @param xm mixed density
+     * @return temperature or density profile
+     */
+    quantity calculate_density_temperature_profile(const Distance& alt, const Density& density0, const Unitless& mixedDensity)
+    {
+        quantity densm = density0;
+
+        // stratosphere/mesosphere temperature
+        int mn     = ZN2.length;
+        quantity z = (alt > ZN2[mn - 1] * km) ? alt : ZN2[mn - 1];
+
+        quantity z1    = ZN2[0] * km;
+        quantity z2    = ZN2[mn - 1] * km;
+        quantity t1    = mesoTn2[0];
+        quantity t2    = mesoTn2[mn - 1];
+        quantity zg    = zeta(z, z1);
+        quantity zgdif = zeta(z2, z1);
+
+        /* set up spline nodes */
+        quantity[] xs = new quantity[mn];
+        quantity[] ys = new quantity[mn];
+        for (int k = 0; k < mn; k++) {
+            xs[k] = zeta(ZN2[k] * km), z1 / zgdif;
+            ys[k] = 1.0 / mesoTn2[k];
+        }
+        const quantity qSM = (rlat + z2) / (rlat + z1);
+        quantity yd1       = -mesoTgn2[0] / (t1 * t1) * zgdif;
+        quantity yd2       = -mesoTgn2[1] / (t2 * t2) * zgdif * qSM * qSM;
+
+        /* calculate spline coefficients */
+        quantity[] y2out = spline(xs, ys, yd1, yd2);
+        quantity x       = zg / zgdif;
+        quantity y       = splint(xs, ys, y2out, x);
+
+        /* temperature at altitude */
+        quantity tz = 1.0 / y;
+
+        if (mixedDensity != 0.0) {
+            /* calculate stratosphere / mesospehere density */
+            const quantity glb  = calculate_gravity_at_altitude(z1);
+            const quantity gamm = mixedDensity * glb * zgdif / R_GAS;
+
+            /* Integrate temperature profile */
+            const quantity yi   = splini(xs, ys, y2out, x);
+            const quantity expl = min(MIN_TEMP, gamm * yi);
+
+            /* Density at altitude */
+            densm *= (t1 / tz) * exp(-expl);
         }
 
-        /** Integrate cubic spline function from xa[0] to x.
-         * <p>ADAPTED FROM NUMERICAL RECIPES</p>
-         * @param xa array of abscissas in ascending order
-         * @param ya array of ordinates in ascending order by xa
-         * @param y2a array of second derivatives in ascending order by xa
-         * @param x abscissa end point
-         * @return integral value
-         */
-        double splini(const Unitless[] xa, const double[] ya, const double[] y2a, const double x)
-        {
-            const int n = xa.length;
-            double yi   = 0;
-            int klo     = 0;
-            int khi     = 1;
-            while (x > xa[klo] && khi < n) {
-                double xx = x;
-                if (khi < n - 1) { xx = (x < xa[khi]) ? x : xa[khi]; }
-                const double h  = xa[khi] - xa[klo];
-                const double a  = (xa[khi] - xx) / h;
-                const double b  = (xx - xa[klo]) / h;
-                const double a2 = a * a;
-                const double b2 = b * b;
-                yi += ((1.0 - a2) * ya[klo] / 2.0 + b2 * ya[khi] / 2.0 +
-                       ((-(1.0 + a2 * a2) / 4.0 + a2 / 2.0) * y2a[klo] + (b2 * b2 / 4.0 - b2 / 2.0) * y2a[khi]) * h * h / 6.0) *
-                      h;
-                klo++;
-                khi++;
-            }
-            return yi;
+        if (alt > ZN3[0]) { return (mixedDensity == 0.0) ? tz : densm; }
+
+        // troposhere/stratosphere temperature
+        z     = alt;
+        mn    = ZN3.length;
+        z1    = ZN3[0] * km;
+        z2    = ZN3[mn - 1] * km;
+        t1    = mesoTn3[0];
+        t2    = mesoTn3[mn - 1];
+        zg    = zeta(z, z1);
+        zgdif = zeta(z2, z1);
+
+        /* set up spline nodes */
+        xs = new quantity[mn];
+        ys = new quantity[mn];
+        for (int k = 0; k < mn; k++) {
+            xs[k] = zeta(ZN3[k] * km), z1 / zgdif;
+            ys[k] = 1.0 / mesoTn3[k];
+        }
+        const quantity qTS = (rlat + z2) / (rlat + z1);
+        yd1                = -mesoTgn3[0] / (t1 * t1) * zgdif;
+        yd2                = -mesoTgn3[1] / (t2 * t2) * zgdif * qTS * qTS;
+
+        /* calculate spline coefficients */
+        y2out = spline(xs, ys, yd1, yd2);
+        x     = zg / zgdif;
+        y     = splint(xs, ys, y2out, x);
+
+        /* temperature at altitude */
+        tz = 1.0 / y;
+
+        if (mixedDensity != 0.0) {
+            /* calculate tropospheric / stratosphere density */
+            const quantity glb   = calculate_gravity_at_altitude(z1);
+            const quantity gamm2 = mixedDensity * glb * zgdif / R_GAS;
+
+            /* Integrate temperature profile */
+            const quantity yi   = splini(xs, ys, y2out, x);
+            const quantity expl = min(MIN_TEMP, gamm2 * yi);
+
+            /* Density at altitude */
+            densm *= (t1 / tz) * exp(-expl);
         }
 
-        /** Calculate cubic spline interpolated value.
-         * <p>ADAPTED FROM NUMERICAL RECIPES</p>
-         * @param xa array of abscissas in ascending order
-         * @param ya array of ordinates in ascending order by xa
-         * @param y2a array of second derivatives in ascending order by xa
-         * @param x abscissa for interpolation
-         * @return interpolated value
-         */
-        double splint(const double[] xa, const double[] ya, const double[] y2a, const double x)
-        {
-            const int n = xa.length;
-            int klo     = 0;
-            int khi     = n - 1;
-            while (khi - klo > 1) {
-                const int k = (khi + klo) >>> 1;
-                if (xa[k] > x) { khi = k; }
-                else {
-                    klo = k;
-                }
-            }
-            const double h = xa[khi] - xa[klo];
-            const double a = (xa[khi] - x) / h;
-            const double b = (x - xa[klo]) / h;
-            return a * ya[klo] + b * ya[khi] + ((a * a * a - a) * y2a[klo] + (b * b * b - b) * y2a[khi]) * h * h / 6.0;
-        }
+        return (mixedDensity == 0.0) ? tz : densm;
+    }
 
-        /** Calculate 2nd derivatives of cubic spline interpolation function.
-         * <p>ADAPTED FROM NUMERICAL RECIPES</p>
-         * @param x array of abscissas in ascending order
-         * @param y array of ordinates in ascending order by x
-         * @param yp1 derivative at x[0] (2nd derivatives null if > 1E30)
-         * @param ypn derivative at x[n-1] (2nd derivatives null if > 1E30)
-         * @return array of second derivatives
-         */
-        double[] spline(const double[] x, const double[] y, const double yp1, const double ypn)
-        {
-            const int n       = x.length;
-            const double[] y2 = new double[n];
-            const double[] u  = new double[n];
+    /** Calculate temperature and density profiles according to new lower thermo polynomial.
+     * @param alt altitude
+     * @param densityLowerBound density at lower boundary
+     * @param tempInf exospheric temperature
+     * @param tempLowerBound temperature at lower boundary
+     * @param xm species molecular weight
+     * @param thermalDiffusionCoefficient thermal diffusion coefficient
+     * @param altLowerBound altitude of the lower boundary
+     * @param s2 slope
+     * @return temperature or density profile
+     */
+    quantity calculate_density_temperature_profile_new(
+        const quantity alt,
+        const quantity densityLowerBound,
+        const quantity tempInf,
+        const quantity tempLowerBound,
+        const quantity speciesMolecularWeight,
+        const quantity thermalDiffusionCoefficient,
+        const quantity altLowerBound,
+        const quantity slope
+    )
+    {
+        /* joining altitudes of Bates and spline */
+        quantity z = (alt > ZN1[0]) ? alt : ZN1[0];
 
-            if (yp1 < 1e+30) {
-                y2[0] = -0.5;
-                u[0]  = (3.0 / (x[1] - x[0])) * ((y[1] - y[0]) / (x[1] - x[0]) - yp1);
-            }
-            for (int i = 1; i < n - 1; i++) {
-                const double sig = (x[i] - x[i - 1]) / (x[i + 1] - x[i - 1]);
-                const double p   = sig * y2[i - 1] + 2.0;
-                y2[i]            = (sig - 1.0) / p;
-                u[i] = (6.0 * ((y[i + 1] - y[i]) / (x[i + 1] - x[i]) - (y[i] - y[i - 1]) / (x[i] - x[i - 1])) /
-                            (x[i + 1] - x[i - 1]) -
-                        sig * u[i - 1]) /
-                       p;
-            }
+        /* geopotential altitude difference from ZLB */
+        const quantity zg2 = zeta(z, altLowerBound);
 
-            double qn = 0;
-            double un = 0;
-            if (ypn < 1e+30) {
-                qn = 0.5;
-                un = (3.0 / (x[n - 1] - x[n - 2])) * (ypn - (y[n - 1] - y[n - 2]) / (x[n - 1] - x[n - 2]));
-            }
+        /* Bates temperature */
+        const quantity tt = tempInf - (tempInf - tempLowerBound) * exp(-slope * zg2);
+        const quantity ta = tt;
+        quantity tz       = tt;
 
-            y2[n - 1] = (un - qn * u[n - 2]) / (qn * y2[n - 2] + 1.0);
-            for (int k = n - 2; k >= 0; k--) {
-                y2[k] = y2[k] * y2[k + 1] + u[k];
-            }
+        const int mn        = ZN1.length;
+        const quantity[] xs = new quantity[mn];
+        const quantity[] ys = new quantity[mn];
+        quantity x          = 0.;
+        quantity[] y2out    = new quantity[mn];
+        quantity zgdif      = 0.;
+        if (alt < ZN1[0]) {
+            /* calculate temperature below ZA
+             * temperature gradient at ZA from Bates profile */
+            const quantity p   = (rlat + altLowerBound) / (rlat + ZN1[0]);
+            const quantity dta = (tempInf - ta) * slope * p * p;
+            mesoTgn1[0]        = dta;
+            mesoTn1[0]         = ta;
+            z                  = (alt > ZN1[mn - 1]) ? alt : ZN1[mn - 1];
 
-            return y2;
-        }
-
-        /** Calculate Temperature and Density Profiles for lower atmosphere.
-         * @param alt altitude
-         * @param d0 density
-         * @param xm mixed density
-         * @return temperature or density profile
-         */
-        double densm(const double alt, const double d0, const double xm)
-        {
-            const double rlat_km = rlat * km;
-            const double r_gas   = R_GAS * J / (mol * K);
-            const double min_t   = MIN_TEMP * K;
-
-            double densm = d0;
-
-            // stratosphere/mesosphere temperature
-            int mn   = ZN2.length;
-            double z = (alt > ZN2[mn - 1] * km) ? alt : ZN2[mn - 1];
-
-            double z1    = ZN2[0] * km;
-            double z2    = ZN2[mn - 1] * km;
-            double t1    = meso_tn2[0];
-            double t2    = meso_tn2[mn - 1];
-            double zg    = zeta(z, z1);
-            double zgdif = zeta(z2, z1);
-
+            const quantity t1 = mesoTn1[0];
+            const quantity t2 = mesoTn1[mn - 1];
+            /* geopotental difference from z1 */
+            const quantity zg = zeta(z, ZN1[0]);
+            zgdif             = zeta(ZN1[mn - 1], ZN1[0]);
             /* set up spline nodes */
-            double[] xs = new double[mn];
-            double[] ys = new double[mn];
             for (int k = 0; k < mn; k++) {
-                xs[k] = zeta(ZN2[k] * km), z1 / zgdif;
-                ys[k] = 1.0 / meso_tn2[k];
+                xs[k] = zeta(ZN1[k], ZN1[0]) / zgdif;
+                ys[k] = 1.0 / mesoTn1[k];
             }
-            const double qSM = (rlat_km + z2) / (rlat_km + z1);
-            double yd1       = -meso_tgn2[0] / (t1 * t1) * zgdif;
-            double yd2       = -meso_tgn2[1] / (t2 * t2) * zgdif * qSM * qSM;
-
+            /* end node derivatives */
+            const quantity q   = (rlat + ZN1[mn - 1]) / (rlat + ZN1[0]);
+            const quantity yd1 = -mesoTgn1[0] / (t1 * t1) * zgdif;
+            const quantity yd2 = -mesoTgn1[1] / (t2 * t2) * zgdif * q * q;
             /* calculate spline coefficients */
-            double[] y2out = spline(xs, ys, yd1, yd2);
-            double x       = zg / zgdif;
-            double y       = splint(xs, ys, y2out, x);
-
-            /* temperature at altitude */
-            double tz = 1.0 / y;
-
-            if (xm != 0.0) {
-                /* calculate stratosphere / mesospehere density */
-                const double glb  = galt(z1);
-                const double gamm = xm * glb * zgdif / r_gas;
-
-                /* Integrate temperature profile */
-                const double yi   = splini(xs, ys, y2out, x);
-                const double expl = min(min_t, gamm * yi);
-
-                /* Density at altitude */
-                densm *= (t1 / tz) * exp(-expl);
-            }
-
-            if (alt > ZN3[0]) { return (xm == 0.0) ? tz : densm; }
-
-            // troposhere/stratosphere temperature
-            z     = alt;
-            mn    = ZN3.length;
-            z1    = ZN3[0] * km;
-            z2    = ZN3[mn - 1] * km;
-            t1    = meso_tn3[0];
-            t2    = meso_tn3[mn - 1];
-            zg    = zeta(z, z1);
-            zgdif = zeta(z2, z1);
-
-            /* set up spline nodes */
-            xs = new double[mn];
-            ys = new double[mn];
-            for (int k = 0; k < mn; k++) {
-                xs[k] = zeta(ZN3[k] * km), z1 / zgdif;
-                ys[k] = 1.0 / meso_tn3[k];
-            }
-            const double qTS = (rlat_km + z2) / (rlat_km + z1);
-            yd1              = -meso_tgn3[0] / (t1 * t1) * zgdif;
-            yd2              = -meso_tgn3[1] / (t2 * t2) * zgdif * qTS * qTS;
-
-            /* calculate spline coefficients */
-            y2out = spline(xs, ys, yd1, yd2);
-            x     = zg / zgdif;
-            y     = splint(xs, ys, y2out, x);
-
+            y2out            = spline(xs, ys, yd1, yd2);
+            x                = zg / zgdif;
+            const quantity y = splint(xs, ys, y2out, x);
             /* temperature at altitude */
             tz = 1.0 / y;
-
-            if (xm != 0.0) {
-                /* calculate tropospheric / stratosphere density */
-                const double glb   = galt(z1);
-                const double gamm2 = xm * glb * zgdif / r_gas;
-
-                /* Integrate temperature profile */
-                const double yi   = splini(xs, ys, y2out, x);
-                const double expl = min(min_t, gamm2 * yi);
-
-                /* Density at altitude */
-                densm *= (t1 / tz) * exp(-expl);
-            }
-
-            return (xm == 0.0) ? tz : densm;
         }
 
-        /** Calculate temperature and density profiles according to new lower thermo polynomial.
-         * @param alt altitude
-         * @param dlb density at lower boundary
-         * @param tinf exospheric temperature
-         * @param tlb temperature at lower boundary
-         * @param xm species molecular weight
-         * @param alpha thermal diffusion coefficient
-         * @param zlb altitude of the lower boundary
-         * @param s2 slope
-         * @return temperature or density profile
-         */
-        double densu(const double alt, const double dlb, const double tinf, const double tlb, const double xm, const double alpha, const double zlb, const double s2)
-        {
-            /* joining altitudes of Bates and spline */
-            double z = (alt > ZN1[0]) ? alt : ZN1[0];
+        if (speciesMolecularWeight == 0) { return tz; }
 
-            /* geopotential altitude difference from ZLB */
-            const double zg2 = zeta(z, zlb);
+        /* calculate density above za */
+        quantity glb   = calculate_gravity_at_altitude(altLowerBound);
+        quantity gamma = speciesMolecularWeight * glb / (R_GAS * slope * tempInf);
+        quantity expl  = (tt <= 0) ? MIN_TEMP : min(MIN_TEMP, exp(-slope * gamma * zg2));
+        quantity densu = densityLowerBound * expl * pow(tempLowerBound / tt, 1.0 + thermalDiffusionCoefficient + gamma);
 
-            /* Bates temperature */
-            const double tt = tinf - (tinf - tlb) * exp(-s2 * zg2);
-            const double ta = tt;
-            double tz       = tt;
-
-            const int mn      = ZN1.length;
-            const double[] xs = new double[mn];
-            const double[] ys = new double[mn];
-            double x          = 0.;
-            double[] y2out    = new double[mn];
-            double zgdif      = 0.;
-            if (alt < ZN1[0]) {
-                /* calculate temperature below ZA
-                 * temperature gradient at ZA from Bates profile */
-                const double p   = (rlat + zlb) / (rlat + ZN1[0]);
-                const double dta = (tinf - ta) * s2 * p * p;
-                meso_tgn1[0]     = dta;
-                meso_tn1[0]      = ta;
-                z                = (alt > ZN1[mn - 1]) ? alt : ZN1[mn - 1];
-
-                const double t1 = meso_tn1[0];
-                const double t2 = meso_tn1[mn - 1];
-                /* geopotental difference from z1 */
-                const double zg = zeta(z, ZN1[0]);
-                zgdif           = zeta(ZN1[mn - 1], ZN1[0]);
-                /* set up spline nodes */
-                for (int k = 0; k < mn; k++) {
-                    xs[k] = zeta(ZN1[k], ZN1[0]) / zgdif;
-                    ys[k] = 1.0 / meso_tn1[k];
-                }
-                /* end node derivatives */
-                const double q   = (rlat + ZN1[mn - 1]) / (rlat + ZN1[0]);
-                const double yd1 = -meso_tgn1[0] / (t1 * t1) * zgdif;
-                const double yd2 = -meso_tgn1[1] / (t2 * t2) * zgdif * q * q;
-                /* calculate spline coefficients */
-                y2out          = spline(xs, ys, yd1, yd2);
-                x              = zg / zgdif;
-                const double y = splint(xs, ys, y2out, x);
-                /* temperature at altitude */
-                tz = 1.0 / y;
+        // Correction for issue 1365 - protection against "densu" being infinite
+        if (!std::isfinite(densu)) {
+            if (expl < MIN_TEMP) {
+                densu = densityLowerBound *
+                        exp(log(tempLowerBound / tt) * (1.0 + thermalDiffusionCoefficient + gamma) - slope * gamma * zg2);
             }
-
-            if (xm == 0) { return tz; }
-
-            /* calculate density above za */
-            double glb   = galt(zlb);
-            double gamma = xm * glb / (R_GAS * s2 * tinf);
-            double expl  = (tt <= 0) ? MIN_TEMP : min(MIN_TEMP, exp(-s2 * gamma * zg2));
-            double densu = dlb * expl * pow(tlb / tt, 1.0 + alpha + gamma);
-
-            // Correction for issue 1365 - protection against "densu" being infinite
-            if (!Double.isFinite(densu)) {
-                if (expl < MIN_TEMP) { densu = dlb * exp(log(tlb / tt) * (1.0 + alpha + gamma) - s2 * gamma * zg2); }
-                else {
-                    throw new OrekitException(OrekitMessages.INFINITE_NRLMSISE00_DENSITY);
-                }
+            else {
+                throw new OrekitException(OrekitMessages.INFINITE_NRLMSISE00_DENSITY);
             }
-
-            /* calculate density below za */
-            if (alt < ZN1[0]) {
-                glb   = galt(ZN1[0]);
-                gamma = xm * glb * zgdif / R_GAS;
-                /* integrate spline temperatures */
-                expl = (tz <= 0) ? MIN_TEMP : min(MIN_TEMP, gamma * splini(xs, ys, y2out, x));
-                /* correct density at altitude */
-                densu *= pow(meso_tn1[0] / tz, 1.0 + alpha) * exp(-expl);
-            }
-
-            /* Return density at altitude */
-            return densu;
         }
 
-        /** Calculate gravity at altitude.
-         * @param alt altitude (km)
-         * @return gravity at altitude (cm/s2)
-         */
-        double galt(const double alt)
-        {
-            const double r = 1.0 + alt / rlat;
-            return glat / (r * r);
+        /* calculate density below za */
+        if (alt < ZN1[0]) {
+            glb   = calculate_gravity_at_altitude(ZN1[0]);
+            gamma = speciesMolecularWeight * glb * zgdif / R_GAS;
+            /* integrate spline temperatures */
+            expl = (tz <= 0) ? MIN_TEMP : min(MIN_TEMP, gamma * splini(xs, ys, y2out, x));
+            /* correct density at altitude */
+            densu *= pow(mesoTn1[0] / tz, 1.0 + thermalDiffusionCoefficient) * exp(-expl);
         }
 
-        /** Calculate zeta function.
-         * @param zz zz value
-         * @param zl zl value
-         * @return value of zeta function
-         */
-        double zeta(const double zz, const double zl) { return (zz - zl) * (rlat + zl) / (rlat + zz); }
+        /* Return density at altitude */
+        return densu;
     }
+
+    /** Calculate gravity at altitude.
+     * @param alt altitude (km)
+     * @return gravity at altitude (cm/s2)
+     */
+    Acceleration calculate_gravity_at_altitude(const Distance& alt) { return glat / pow<2>(1.0 + alt / rlat); }
+
+    /** Calculate zeta function.
+     * @param zz zz value
+     * @param zl zl value
+     * @return value of zeta function
+     */
+    Distance zeta(const Distance& zz, const Distance& zl) { return (zz - zl) * (rlat + zl) / (rlat + zz); }
 }
 
 } // namespace planets

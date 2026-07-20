@@ -36,10 +36,10 @@ using mp_units::si::unit_symbols::s;
 
 
 /** Default cosine exponent value. */
-static const int cosineExponent = 4;
+static const int COSINE_EXPONENT = 4;
 
 /** Lag angle for diurnal bulge. */
-static const Angle LAG = 30.0 * deg;
+static const Angle DIURNAL_LAG = 30.0 * deg;
 
 /** Harris-Priester min-max density (kg/m3) vs. altitude (km) table.
  *  These data are valid for a mean solar activity. */
@@ -107,14 +107,14 @@ Density HarrisPriesterAtmosphere::find_atmospheric_density(const State& state)
     const RadiusVector<frames::solar_system_barycenter::icrf> sun2Earth =
         get_relative_position<planets::Earth, Sun>(state.get_epoch());
     const Direction<frames::earth::icrf> sunDirection = -sun2Earth.direction().force_frame_conversion<frames::earth::icrf>();
-    const Direction<frames::earth::icrf> bulgeDirection = DCM<frames::earth::icrf, frames::earth::icrf>::Z(LAG) * sunDirection;
+    const Direction<frames::earth::icrf> bulgeDirection = DCM<frames::earth::icrf, frames::earth::icrf>::Z(DIURNAL_LAG) * sunDirection;
 
     // Cosine of angle Psi between the diurnal bulge apex and the satellite
     const Unitless cosPsi = bulgeDirection.direction().dot(position.direction());
     // (1 + cos(Psi))/2 = cos²(Psi/2)
-    const Unitless c2Psi2 = (1.0 * one + cosPsi) / 2.0;
+    const Unitless c2Psi2 = (1.0 * one + cosPsi) * 0.5;
     const Unitless cPsi2  = sqrt(c2Psi2);
-    const Unitless cosPow = (cPsi2 > 1.0e-12 * one) ? c2Psi2 * math::pow(cPsi2, (cosineExponent - 2) * one) : Unitless::zero();
+    const Unitless cosPow = (cPsi2 > 1.0e-12 * one) ? c2Psi2 * math::pow(cPsi2, (COSINE_EXPONENT - 2) * one) : Unitless::zero();
 
     // Search altitude index in density table
     auto iter = HARRIS_PRIESTER_ATMOSPHERE.upper_bound(altitude);
