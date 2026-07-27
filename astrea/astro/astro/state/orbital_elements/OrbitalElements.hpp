@@ -77,7 +77,7 @@ concept IsOrbitalElements = requires(T) {
     requires !std::is_same<T, OrbitalElements>::value;
     requires std::is_same<T, Cartesian<frames::primary>>::value || IsConstructableTo<T, Cartesian<frames::primary>> ||
                  HasDirectCartesianConversion<T, frames::primary>;
-    requires HasToVector<T>;
+    requires HasForceToDoubleVector<T>;
     requires HasMathOperators<T>;
     requires HasInPlaceMathOperators<T>;
 };
@@ -276,7 +276,7 @@ class OrbitalElements {
      *
      * @return std::vector<Unitless> Vector containing the orbital elements as unitless values.
      */
-    std::vector<Unitless> force_to_vector() const;
+    std::vector<double> force_to_double_vector() const;
 
     /**
      * @brief Divides the OrbitalElements by a scalar.
@@ -381,7 +381,7 @@ class OrbitalElements {
      * @param idx The index of the orbital element type to create.
      * @return OrbitalElements The created OrbitalElements object.
      */
-    static OrbitalElements from_vector(const std::vector<Unitless>& vec, const std::size_t idx);
+    static OrbitalElements from_double_vector(const std::vector<double>& vec, const std::size_t idx);
 };
 
 template <template <auto> class... FrameIndexedTypes>
@@ -485,7 +485,7 @@ class OrbitalElementPartials {
      *
      * @return std::vector<Unitless> Vector containing the orbital elements as unitless values.
      */
-    std::vector<Unitless> force_to_vector() const;
+    std::vector<double> force_to_double_vector() const;
 
   private:
     PartialVariant _elements; //!< Variant holding the orbital element partials (CartesianPartial, KeplerianPartial, EquinoctialPartial)

@@ -460,11 +460,13 @@ Angle Keplerian<_frame_>::interpolate_angle(const std::array<Time, 2>& times, co
 }
 
 template <IsFrame auto _frame_>
-std::vector<Unitless> Keplerian<_frame_>::force_to_vector() const
+std::vector<double> Keplerian<_frame_>::force_to_double_vector() const
 {
-    return { _semimajor / _semimajor.unit,     _eccentricity,
-             _inclination / _inclination.unit, _rightAscension / _rightAscension.unit,
-             _argPerigee / _argPerigee.unit,   _trueAnomaly / _trueAnomaly.unit };
+    return {
+        _semimajor.numerical_value_in(_semimajor.unit),     _eccentricity.numerical_value_in(_eccentricity.unit),
+        _inclination.numerical_value_in(_inclination.unit), _rightAscension.numerical_value_in(_rightAscension.unit),
+        _argPerigee.numerical_value_in(_argPerigee.unit),   _trueAnomaly.numerical_value_in(_trueAnomaly.unit)
+    };
 }
 
 template <IsFrame auto _frame_>
@@ -477,7 +479,7 @@ void Keplerian<_frame_>::wrap_angles()
 }
 
 template <IsFrame auto _frame_>
-Keplerian<_frame_> Keplerian<_frame_>::from_vector(const std::vector<Unitless>& vec)
+Keplerian<_frame_> Keplerian<_frame_>::from_double_vector(const std::vector<double>& vec)
 {
     using mp_units::angular::unit_symbols::rad;
     using mp_units::si::unit_symbols::km;
@@ -501,11 +503,14 @@ Keplerian<_frame_> KeplerianPartial<_frame_>::operator*(const Time& time) const
 }
 
 template <IsFrame auto _frame_>
-std::vector<Unitless> KeplerianPartial<_frame_>::force_to_vector() const
+std::vector<double> KeplerianPartial<_frame_>::force_to_double_vector() const
 {
-    return { _semimajorPartial / _semimajorPartial.unit,     _eccentricityPartial / _eccentricityPartial.unit,
-             _inclinationPartial / _inclinationPartial.unit, _rightAscensionPartial / _rightAscensionPartial.unit,
-             _argPerigeePartial / _argPerigeePartial.unit,   _trueAnomalyPartial / _trueAnomalyPartial.unit };
+    return { _semimajorPartial.numerical_value_in(_semimajorPartial.unit),
+             _eccentricityPartial.numerical_value_in(_eccentricityPartial.unit),
+             _inclinationPartial.numerical_value_in(_inclinationPartial.unit),
+             _rightAscensionPartial.numerical_value_in(_rightAscensionPartial.unit),
+             _argPerigeePartial.numerical_value_in(_argPerigeePartial.unit),
+             _trueAnomalyPartial.numerical_value_in(_trueAnomalyPartial.unit) };
 }
 
 template <IsFrame auto _frame_>
