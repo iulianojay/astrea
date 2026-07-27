@@ -77,6 +77,7 @@ build:
 	-DCMAKE_INSTALL_PREFIX:PATH=$(install_path) \
 	-DCMAKE_CXX_FLAGS=-fdiagnostics-color=always \
 	-DCPM_SOURCE_CACHE=$(config_path)/.cpm-cache \
+	-DCMAKE_POLICY_VERSION_MINIMUM=3.5 \
 	-DBUILD_TESTS=$(build_tests) \
 	-DBUILD_BENCHMARKS=$(build_benchmarks) \
 	-DBUILD_EXAMPLES=$(build_examples) \
