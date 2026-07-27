@@ -1840,7 +1840,7 @@ class Output {
         quantity densm = density0;
 
         // stratosphere/mesosphere temperature
-        int mn     = ZN2.length;
+        int mn     = ZN2.size();
         quantity z = (alt > ZN2[mn - 1] * km) ? alt : ZN2[mn - 1];
 
         quantity z1    = ZN2[0] * km;
@@ -1886,7 +1886,7 @@ class Output {
 
         // troposhere/stratosphere temperature
         z     = alt;
-        mn    = ZN3.length;
+        mn    = ZN3.size();
         z1    = ZN3[0] * km;
         z2    = ZN3[mn - 1] * km;
         t1    = mesoTn3[0];
@@ -1941,46 +1941,48 @@ class Output {
      * @return temperature or density profile
      */
     quantity calculate_density_temperature_profile_new(
-        const quantity alt,
-        const quantity densityLowerBound,
-        const quantity tempInf,
-        const quantity tempLowerBound,
-        const quantity speciesMolecularWeight,
-        const quantity thermalDiffusionCoefficient,
-        const quantity altLowerBound,
-        const quantity slope
+        const Distance alt,
+        const Density densityLowerBound,
+        const Temperature tempInf,
+        const Temperature tempLowerBound,
+        const MolecularWeight speciesMolecularWeight,
+        const Unitless thermalDiffusionCoefficient,
+        const Distance altLowerBound,
+        const Unitless slope
     )
     {
         /* joining altitudes of Bates and spline */
-        quantity z = (alt > ZN1[0]) ? alt : ZN1[0];
+        const Distance z = (alt > ZN1[0]) ? alt : ZN1[0];
 
         /* geopotential altitude difference from ZLB */
-        const quantity zg2 = zeta(z, altLowerBound);
+        const Distance zg2 = zeta(z, altLowerBound);
 
         /* Bates temperature */
-        const quantity tt = tempInf - (tempInf - tempLowerBound) * exp(-slope * zg2);
-        const quantity ta = tt;
-        quantity tz       = tt;
+        const Temperature tt = tempInf - (tempInf - tempLowerBound) * exp(-slope * zg2);
+        const Temperature ta = tt;
+        Temperature tz       = tt;
 
-        const int mn        = ZN1.length;
-        const quantity[] xs = new quantity[mn];
-        const quantity[] ys = new quantity[mn];
-        quantity x          = 0.;
-        quantity[] y2out    = new quantity[mn];
-        quantity zgdif      = 0.;
+        static const int mn = ZN1.size();
+        const std::array<Unitless, mn> xs;
+        const std::array<Unitless, mn> ys;
+        Unitless x = 0.0;
+        std::array<Unitless, mn> y2out;
+
+        Distance zgdif = 0.0;
         if (alt < ZN1[0]) {
             /* calculate temperature below ZA
              * temperature gradient at ZA from Bates profile */
-            const quantity p   = (rlat + altLowerBound) / (rlat + ZN1[0]);
-            const quantity dta = (tempInf - ta) * slope * p * p;
-            mesoTgn1[0]        = dta;
-            mesoTn1[0]         = ta;
-            z                  = (alt > ZN1[mn - 1]) ? alt : ZN1[mn - 1];
+            const Unitless p      = (rlat + altLowerBound) / (rlat + ZN1[0]);
+            const Temperature dta = (tempInf - ta) * slope * p * p;
+            mesoTgn1[0]           = dta;
+            mesoTn1[0]            = ta;
+            z                     = (alt > ZN1[mn - 1]) ? alt : ZN1[mn - 1];
 
-            const quantity t1 = mesoTn1[0];
-            const quantity t2 = mesoTn1[mn - 1];
+            const Temperature t1 = mesoTn1[0];
+            const Temperature t2 = mesoTn1[mn - 1];
+
             /* geopotental difference from z1 */
-            const quantity zg = zeta(z, ZN1[0]);
+            const Distance zg = zeta(z, ZN1[0]);
             zgdif             = zeta(ZN1[mn - 1], ZN1[0]);
             /* set up spline nodes */
             for (int k = 0; k < mn; k++) {
@@ -1988,13 +1990,15 @@ class Output {
                 ys[k] = 1.0 / mesoTn1[k];
             }
             /* end node derivatives */
-            const quantity q   = (rlat + ZN1[mn - 1]) / (rlat + ZN1[0]);
-            const quantity yd1 = -mesoTgn1[0] / (t1 * t1) * zgdif;
-            const quantity yd2 = -mesoTgn1[1] / (t2 * t2) * zgdif * q * q;
+            const Unitless q   = (rlat + ZN1[mn - 1]) / (rlat + ZN1[0]);
+            const Unitless yd1 = -mesoTgn1[0] / (t1 * t1) * zgdif;
+            const Unitless yd2 = -mesoTgn1[1] / (t2 * t2) * zgdif * q * q;
+
             /* calculate spline coefficients */
             y2out            = spline(xs, ys, yd1, yd2);
             x                = zg / zgdif;
-            const quantity y = splint(xs, ys, y2out, x);
+            const Distance y = splint(xs, ys, y2out, x);
+
             /* temperature at altitude */
             tz = 1.0 / y;
         }
