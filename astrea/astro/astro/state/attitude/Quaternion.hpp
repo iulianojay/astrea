@@ -527,10 +527,7 @@ class Quaternion {
 
      * @return An ElementMatrix of Unitless quantities representing the components of the quaternion, in the order [s, u_x, u_y, u_z].
      */
-    ElementMatrix<4, 1, Unitless, Unitless, Unitless, Unitless> force_to_element_array() const
-    {
-        return { _s, _u[0], _u[1], _u[2] };
-    }
+    UniformElementArray<4, Unitless> force_to_element_array() const { return { _s, _u[0], _u[1], _u[2] }; }
 
     /**
      * @brief Computes the dot product between this quaternion and another quaternion.

@@ -387,10 +387,7 @@ class StatePartial {
     std::vector<Unitless> force_to_element_array() const
     {
         auto retval = _elementPartials.force_to_element_array();
-        if (_attitudePartial.has_value()) {
-            const auto& attitudeVector = _attitudePartial->force_to_element_array();
-            retval.insert(retval.end(), attitudeVector.begin(), attitudeVector.end());
-        }
+        if (_attitudePartial.has_value()) { retval.combine_rows(_attitudePartial->force_to_element_array()); }
         return retval;
     }
 

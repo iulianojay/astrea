@@ -542,10 +542,7 @@ class EulerAngles {
      *
      * @return An ElementMatrix of Angle quantities representing the components of the angle sequence, in the order [first, second, third].
      */
-    ElementMatrix<3, 1, Angle, Angle, Angle> force_to_element_array() const
-    {
-        return { _angles[0], _angles[1], _angles[2] };
-    }
+    UniformElementArray<3, Angle> force_to_element_array() const { return { _angles[0], _angles[1], _angles[2] }; }
 
     /**
      * @brief Interpolates between this angle sequence and another angle sequence at a target time.

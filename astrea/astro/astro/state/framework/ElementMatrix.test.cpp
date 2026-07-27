@@ -390,7 +390,7 @@ TEST_F(ElementMatrixTest, ToTuple)
 
     auto tuple = A.to_tuple();
 
-    static_assert(std::is_same_v<decltype(tuple), decltype(A)::tuple_type>);
+    static_assert(std::is_same_v<decltype(tuple), decltype(A)::TupleType>);
 
     ASSERT_EQ(std::get<0>(tuple), 1.0);
     ASSERT_EQ(std::get<1>(tuple), 2.0);

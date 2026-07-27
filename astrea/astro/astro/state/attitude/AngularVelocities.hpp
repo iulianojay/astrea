@@ -346,7 +346,7 @@ class AngularVelocities {
      *
      * @return A std::vector of Unitless quantities representing the components of the angle sequence velocity, in the order [first, second, third].
      */
-    ElementMatrix<3, 1, AngularVelocity, AngularVelocity, AngularVelocity> force_to_element_array() const
+    UniformElementArray<3, AngularVelocity> force_to_element_array() const
     {
         return { _angularVelocities[0], _angularVelocities[1], _angularVelocities[2] };
     }
@@ -609,7 +609,7 @@ class AngularAccelerations {
 
      * @return A std::vector of Unitless quantities representing the components of the angular sequence acceleration, in the order [first, second, third].
      */
-    ElementMatrix<3, 1, AngularAcceleration, AngularAcceleration, AngularAcceleration> force_to_element_array() const
+    UniformElementArray<3, AngularAcceleration> force_to_element_array() const
     {
         return { _angularAccels[0] / _angularAccels[0].unit,
                  _angularAccels[1] / _angularAccels[1].unit,
