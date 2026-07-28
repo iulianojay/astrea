@@ -27,7 +27,7 @@ dependencies = [
     "fonttools>=4.60.2",
     "Markdown>=3.8.1",
     "requests>=2.33.0",
-    "pymdown-extensions>=10.21.3",
+    "pymdown-extensions>=11.0",
     "Pygments>=2.20.0",
     "GitPython>=3.1.48",
 ]
