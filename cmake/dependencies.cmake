@@ -153,6 +153,14 @@ if(DEFINED gtl_SOURCE_DIR)
     install(DIRECTORY "${gtl_SOURCE_DIR}/include/" DESTINATION include)
 endif()
 
+# constexpr math library
+CPMFindPackage(
+    NAME gcem
+    GITHUB_REPOSITORY kthohr/gcem
+    GIT_SHALLOW TRUE
+    GIT_TAG v1.18.0
+)
+
 # CSV Parsing that sucks less
 # Doesn't follow standard versioning so use FetchContent
 FetchContent_Declare(
