@@ -84,6 +84,7 @@ class NBodyForce : public PerturbingForce {
                 const Distance rMagCenterToNbody  = rCenterToNbody.norm();
 
                 // Perturbational force from nth body
+                using mp_units::quantity;
                 const GravParam mu          = get_mu<body>();
                 const quantity directTerm   = mu / pow<3>(rMagVehicleToNbody);
                 const quantity indirectTerm = mu / pow<3>(rMagCenterToNbody);

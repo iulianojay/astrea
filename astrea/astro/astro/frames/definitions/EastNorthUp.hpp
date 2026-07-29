@@ -41,7 +41,7 @@ namespace frames {
  * @brief Frame tag type for EastNorthUp, defined outside the class to allow use as a DynamicFrame NTTP.
  */
 template <IsFrame auto _parent_>
-struct EastNorthUpTag : Frame<"East-North-Up", DynamicOrigin{}, DynamicAxis{}, _parent_> {
+struct EastNorthUpTag final : Frame<"East-North-Up", DynamicOrigin{}, DynamicAxis{}, _parent_> {
     EastNorthUp<_parent_> instantaneous(const RadiusVector<_parent_>& r, const VelocityVector<_parent_>& v) const
     {
         return EastNorthUp<_parent_>(r, v);
@@ -82,15 +82,17 @@ struct EastNorthUp : public DynamicFrame<EastNorthUp<_frame_>, _frame_, enu_tag<
      */
     DirectionCosineMatrix<frame, tag> get_dcm(const Date& date) const
     {
+        static constexpr auto fixed_frame = get_body_fixed_frame<frame.origin>();
+
         // eci -> ecef -> lat/lon -> n/e/u
         const RadiusVector<frame> r            = this->get_position(date);
-        static constexpr auto fixed_frame      = get_body_fixed_frame<frame.origin>();
         const RadiusVector<fixed_frame> rFixed = r.template in_frame<fixed_frame>(date);
         const auto [lat, lon, alt]             = convert_body_fixed_to_geodetic(rFixed);
 
         using mp_units::one;
         using mp_units::angular::cos;
         using mp_units::angular::sin;
+
         const Unitless sinLat = sin(lat);
         const Unitless cosLat = cos(lat);
         const Unitless sinLon = sin(lon);

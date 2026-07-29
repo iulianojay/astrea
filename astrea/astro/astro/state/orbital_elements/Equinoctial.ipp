@@ -27,14 +27,6 @@
 #include <astro/types/typedefs.hpp>
 #include <astro/utilities/conversions.hpp>
 
-
-using namespace mp_units;
-using namespace mp_units::angular;
-using angular::unit_symbols::deg;
-using angular::unit_symbols::rad;
-using si::unit_symbols::km;
-using si::unit_symbols::s;
-
 namespace astrea {
 namespace astro {
 
@@ -67,6 +59,10 @@ Equinoctial<_frame_> Equinoctial<_frame_>::GEO(const GravParam& mu)
 template <IsFrame auto _frame_>
 Equinoctial<_frame_>::Equinoctial(const Keplerian<_frame_>& elements, const GravParam& mu)
 {
+    using namespace mp_units;
+    using namespace mp_units::si;
+    using namespace mp_units::angular;
+
     // Get r and v
     const auto& a      = elements.get_semimajor();
     const auto& ecc    = elements.get_eccentricity();
@@ -267,6 +263,8 @@ std::vector<Unitless> Equinoctial<_frame_>::force_to_vector() const
 template <IsFrame auto _frame_>
 Equinoctial<_frame_> Equinoctial<_frame_>::from_vector(const std::vector<Unitless>& vec)
 {
+    using mp_units::angular::unit_symbols::rad;
+    using mp_units::si::unit_symbols::km;
     if (vec.size() != 6) {
         throw std::runtime_error("Input vector must have exactly 6 elements to convert to Equinoctial.");
     }

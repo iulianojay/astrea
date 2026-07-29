@@ -190,8 +190,11 @@ template <IsFrame auto _frame_>
     requires(IsBodyFixedFrame<decltype(_frame_)>)
 std::tuple<Distance, Angle, Angle> convert_body_fixed_to_spherical(const RadiusVector<_frame_>& rFixed)
 {
+    using mp_units::sqrt;
+    using mp_units::angular::acos;
     using mp_units::angular::unit_symbols::rad;
     using mp_units::si::unit_symbols::km;
+
     const Distance range    = rFixed.norm();
     const Angle inclination = acos(rFixed.get_z() / range);
 
@@ -220,6 +223,9 @@ template <IsFrame auto _frame_>
     requires(IsBodyFixedFrame<decltype(_frame_)>)
 RadiusVector<_frame_> convert_spherical_to_body_fixed(const Distance& range, const Angle& inclination, const Angle& azimuth)
 {
+    using mp_units::angular::cos;
+    using mp_units::angular::sin;
+
     return RadiusVector<_frame_>(range * sin(inclination) * cos(azimuth), range * sin(inclination) * sin(azimuth), range * cos(inclination));
 }
 
