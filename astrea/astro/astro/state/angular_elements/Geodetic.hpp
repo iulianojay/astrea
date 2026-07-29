@@ -21,6 +21,7 @@
 #include <iosfwd>
 
 // units
+#include <math/trig.hpp>
 #include <units/units.hpp>
 
 // astro
@@ -305,8 +306,11 @@ class Geodetic {
  */
 template <IsFrame auto frame>
     requires(IsBodyFixedFrame<decltype(frame)>)
-std::tuple<Angle, Angle, Distance> convert_body_fixed_to_geodetic(const RadiusVector<frame>& rBodyFixed)
+inline std::tuple<Angle, Angle, Distance> convert_body_fixed_to_geodetic(const RadiusVector<frame>& rBodyFixed)
 {
+    using mp_units::abs;
+    using mp_units::sqrt;
+    using mp_units::angular::atan2;
     using mp_units::si::unit_symbols::km;
     using mp_units::si::unit_symbols::mm;
 
@@ -359,15 +363,19 @@ std::tuple<Angle, Angle, Distance> convert_body_fixed_to_geodetic(const RadiusVe
  */
 template <IsFrame auto frame>
     requires(IsBodyFixedFrame<decltype(frame)>)
-RadiusVector<frame> convert_geodetic_to_body_fixed(const Angle& lat, const Angle& lon, const Distance& alt)
+inline constexpr RadiusVector<frame> convert_geodetic_to_body_fixed(const Angle& lat, const Angle& lon, const Distance& alt)
 {
+    using math::cos;
+    using math::sin;
+    using mp_units::sqrt;
+
     const Unitless sinLat = sin(lat);
     const Unitless cosLat = cos(lat);
 
-    static const Distance rEquitorial = get_equitorial_radius<decltype(frame)::origin>();
-    static const Distance rPolar      = get_polar_radius<decltype(frame)::origin>();
-    static const Unitless f           = (rEquitorial - rPolar) / rEquitorial;
-    static const Unitless eSq         = (2.0 - f) * f;
+    static constexpr Distance rEquitorial = get_equitorial_radius<decltype(frame)::origin>();
+    static constexpr Distance rPolar      = get_polar_radius<decltype(frame)::origin>();
+    static constexpr Unitless f           = (rEquitorial - rPolar) / rEquitorial;
+    static constexpr Unitless eSq         = (2.0 - f) * f;
 
     const Distance N = rEquitorial / sqrt(1.0 - eSq * sinLat * sinLat);
 
