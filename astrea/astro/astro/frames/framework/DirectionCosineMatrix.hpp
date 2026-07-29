@@ -25,6 +25,7 @@
 #include <mp-units/math.h>
 #include <mp-units/systems/angular/math.h>
 
+#include <math/trig.hpp>
 #include <units/units.hpp>
 #include <utilities/string_util.hpp>
 
@@ -38,8 +39,8 @@ namespace astro {
 
 inline constexpr auto sin_cos_pack(const Angle& angle)
 {
-    using mp_units::angular::cos;
-    using mp_units::angular::sin;
+    using math::cos;
+    using math::sin;
     return std::make_pair(sin(angle), cos(angle));
 }
 
@@ -81,6 +82,22 @@ struct DirectionCosineMatrix : public DcmInterface<Unitless, _in_frame_, _out_fr
 
     inline constexpr DirectionCosineMatrix(const DcmInterface<Unitless, _in_frame_, _out_frame_>& matrix) :
         DcmInterface<Unitless, _in_frame_, _out_frame_>{ matrix }
+    {
+        this->normalize();
+    }
+
+    template <IsFrame auto in_frame_u, IsFrame auto out_frame_u>
+        requires(equivalent(in_frame_u, _in_frame_) && equivalent(out_frame_u, _out_frame_))
+    inline constexpr DirectionCosineMatrix(const DirectionCosineMatrix<in_frame_u, out_frame_u>& other) :
+        DcmInterface<Unitless, _in_frame_, _out_frame_>{ other.data() }
+    {
+        this->normalize();
+    }
+
+    template <IsFrame auto in_frame_u, IsFrame auto out_frame_u>
+        requires(equivalent(in_frame_u, _in_frame_) && equivalent(out_frame_u, _out_frame_))
+    inline constexpr DirectionCosineMatrix(DirectionCosineMatrix<in_frame_u, out_frame_u>&& other) :
+        DcmInterface<Unitless, _in_frame_, _out_frame_>{ std::move(other.data()) }
     {
         this->normalize();
     }

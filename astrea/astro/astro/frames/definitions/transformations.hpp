@@ -25,6 +25,7 @@
 #include <astro/frames/definitions/defined_rotations.hpp>
 #include <astro/frames/framework/CartesianVector.hpp>
 #include <astro/frames/framework/DirectionCosineMatrix.hpp>
+#include <astro/frames/framework/FixedOffsetFrame.hpp>
 #include <astro/frames/framework/frame_concepts.hpp>
 #include <astro/systems/system_utilities.hpp>
 
@@ -89,6 +90,7 @@ struct NoDcmBetween;
 template <auto...>
 struct DcmDefinedBothWays;
 
+// Forward declarations of the get_dcm_impl, get_dcm_rate_impl, and get_dcm_accel_impl functions.
 template <IsFrame auto frame, IsFrame auto frame_u>
 inline constexpr DCM<frame, frame_u> get_dcm_impl(const Date& date);
 
@@ -123,7 +125,11 @@ inline constexpr DCM<frame, root> get_dcm_to_root_frame(const Date& date)
     }
     // current frame is a direct child of root
     else if constexpr (equivalent(axis.parent, root_axis)) {
-        return get_dcm_impl<frame, root>(date);
+        if constexpr (axis.parent == root_axis) { return get_dcm_impl<frame, root>(date); }
+        else {
+            // need to cast since get_dcm_impl can't search for get_dcm specializations through equivalence
+            return DCM<frame, root>(get_dcm_impl<frame, frame.parent>(date));
+        }
     }
     // current frame is a descendant of root
     else if constexpr (IsDerivedAxis<decltype(axis.parent)>) {
@@ -275,6 +281,12 @@ inline constexpr DCM<frame, frame_u> get_dcm_impl(const Date& date)
         return get_dcm<frame_u, frame>(date).transpose();
     }
     else if constexpr (HasCommonAncestor<frame.axis, frame_u.axis>) {
+        // We can only chain to the ancestor if the frame hooks into the existing graph of frames. We just check for the
+        // DCM to the parent frame, and should hit that check recursively as we dig to the ancestor.
+        if constexpr (IsChildOf<decltype(frame), decltype(frame_u)> || IsChildOf<decltype(frame_u), decltype(frame)>) {
+            static_assert(always_false<NoDcmBetween<frame.name.portable(), frame_u.name.portable()>>, "Frames have a direct parent-child relationship but no DCM is defined between them.");
+        }
+
         // If no direct DCM defined but common ancestor exists, we can get the DCMs to the common ancestor and compose them
         static constexpr auto root_axis = find_common_ancestor(frame.axis, frame_u.axis);
         static constexpr auto root      = make_frame(frame.origin, root_axis);
@@ -428,22 +440,26 @@ inline constexpr CartesianVector<Value_T, frame_u> get_offset_impl(const Date& d
         // We could explicitly write out all these frames to make sure they're correct, but this is more legible and the
         // forced conversions would be required anyway.
         if constexpr (IsFixedOffsetFrame<decltype(frame)> && IsFixedOffsetFrame<decltype(frame_u)>) {
-            constexpr auto offset1 = get_offset_from_root(frame).template force_frame_conversion<frame_u>(); // r_root->frame
-            constexpr auto offset2 = get_offset_from_root(frame_u).template force_frame_conversion<frame_u>(); // r_root_u->frame_u
+            constexpr auto offset1 = get_offset_from_root_frame<frame>().template force_frame_conversion<frame_u>(); // r_root->frame
+            constexpr auto offset2 = get_offset_from_root_frame<frame_u>().template force_frame_conversion<frame_u>(); // r_root_u->frame_u
+            constexpr auto origin1 = get_root_frame<frame>().origin;
+            constexpr auto origin2 = get_root_frame<frame_u>().origin;
             const auto rootOffsets = // r_root_u->root
-                get_relative_position<get_root_frame(frame), get_root_frame(frame_u)>(date).template force_frame_conversion<frame_u>();
+                get_relative_position<origin1, origin2>(date).template force_frame_conversion<frame_u>();
             return offset2 - offset1 + rootOffsets;
         }
         else if constexpr (IsFixedOffsetFrame<decltype(frame)>) {
-            const auto offset1 = get_offset_from_root(frame).template force_frame_conversion<frame_u>(); // r_root->frame
+            const auto offset1 = get_offset_from_root_frame<frame>().template force_frame_conversion<frame_u>(); // r_root->frame
+            constexpr auto origin1 = get_root_frame<frame>().origin;
             const auto rootOffsets = // r_root_u->root
-                get_relative_position<get_root_frame(frame), origin_u>(date).template force_frame_conversion<frame_u>();
+                get_relative_position<origin1, origin_u>(date).template force_frame_conversion<frame_u>();
             return rootOffsets - offset1;
         }
         else if constexpr (IsFixedOffsetFrame<decltype(frame_u)>) {
-            const auto offset2 = get_offset_from_root(frame_u).template force_frame_conversion<frame_u>(); // r_root_u->frame_u
+            const auto offset2 = get_offset_from_root_frame<frame_u>().template force_frame_conversion<frame_u>(); // r_root_u->frame_u
+            constexpr auto origin2 = get_root_frame<frame_u>().origin;
             const auto rootOffsets = // r_root_u->root
-                get_relative_position<origin, get_root_frame(frame_u)>(date).template force_frame_conversion<frame_u>();
+                get_relative_position<origin, origin2>(date).template force_frame_conversion<frame_u>();
             return offset2 + rootOffsets;
         }
     }
