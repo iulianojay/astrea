@@ -41,6 +41,7 @@ set(MATH_DIRS
 # Find library
 set(MATH_LIBS
     mp-units::mp-units
+    gcem
 )
 
 # Shared library

@@ -21,6 +21,7 @@
 #include <iosfwd>
 
 // units
+#include <math/trig.hpp>
 #include <units/units.hpp>
 
 // astro
@@ -301,16 +302,16 @@ class Geocentric {
  * @return The geocentric radius.
  */
 template <IsCelestialBody auto body>
-Distance calculate_geocentric_radius(const Angle& lat)
+inline constexpr Distance calculate_geocentric_radius(const Angle& lat)
 {
+    using math::cos;
+    using math::sin;
     using mp_units::pow;
-    using mp_units::angular::cos;
-    using mp_units::angular::sin;
 
-    const Distance& a       = get_equitorial_radius<body>();
-    const Distance& b       = get_polar_radius<body>();
-    const Unitless cosLatSq = pow<2>(cos(lat));
-    const Unitless sinLatSq = pow<2>(sin(lat));
+    static constexpr Distance a = get_equitorial_radius<body>();
+    static constexpr Distance b = get_polar_radius<body>();
+    const Unitless cosLatSq     = pow<2>(cos(lat));
+    const Unitless sinLatSq     = pow<2>(sin(lat));
     return sqrt((pow<4>(a) * cosLatSq + pow<4>(b) * sinLatSq) / (pow<2>(a) * cosLatSq + pow<2>(b) * sinLatSq));
 }
 
@@ -324,10 +325,10 @@ Distance calculate_geocentric_radius(const Angle& lat)
  */
 template <IsFrame auto frame>
     requires(IsBodyFixedFrame<decltype(frame)>)
-std::tuple<Angle, Angle, Distance> convert_body_fixed_to_geocentric(const RadiusVector<frame>& rEcef)
+inline constexpr std::tuple<Angle, Angle, Distance> convert_body_fixed_to_geocentric(const RadiusVector<frame>& rEcef)
 {
+    using math::atan2;
     using mp_units::sqrt;
-    using mp_units::angular::atan2;
 
     const Distance& x = rEcef[0];
     const Distance& y = rEcef[1];
@@ -356,10 +357,10 @@ std::tuple<Angle, Angle, Distance> convert_body_fixed_to_geocentric(const Radius
  */
 template <IsFrame auto _frame_>
     requires(IsBodyFixedFrame<decltype(_frame_)>)
-RadiusVector<_frame_> convert_geocentric_to_body_fixed(const Angle& lat, const Angle& lon, const Distance& alt)
+inline constexpr RadiusVector<_frame_> convert_geocentric_to_body_fixed(const Angle& lat, const Angle& lon, const Distance& alt)
 {
-    using mp_units::angular::cos;
-    using mp_units::angular::sin;
+    using math::cos;
+    using math::sin;
 
     const Distance rGeocentric = calculate_geocentric_radius<decltype(_frame_)::origin>(lat);
     const Distance R           = rGeocentric + alt;
