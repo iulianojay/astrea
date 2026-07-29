@@ -1460,7 +1460,7 @@ TEST_F(QuaternionTest, EulerAnglesConstructor_ZXY_Coverage)
 {
     using TestEulerAngles = EulerAngles<RotationSequence::ZXY, RotationType::INTRINSIC, TestFrame1, TestFrame2>;
 
-    TestEulerAngles angles(90.0 * deg, 0.0 * deg, 45.0 * deg);
+    TestEulerAngles angles(30.0 * deg, 0.0 * deg, 45.0 * deg);
     TestQuaternion q(angles);
 
     EXPECT_TRUE(math::nearly_equal(q.norm(), 1.0 * one, REL_TOL, ABS_TOL));
