@@ -9,6 +9,7 @@ examples_path := examples
 arch := x86_64
 cc := gcc
 cxx := g++
+cc := gcc
 cxx_std := 23
 cxx_name := $(shell echo $(cxx) | sed 's/g++/gcc/; s/clang++/clang/' | sed 's/-[0-9.]*$$//')
 cxx_ver := $(shell $(cxx) -dumpversion | cut -d. -f1)
@@ -80,6 +81,9 @@ build:
 	-DCMAKE_INSTALL_PREFIX:PATH=$(install_path) \
 	-DCMAKE_CXX_FLAGS=-fdiagnostics-color=always \
 	-DCPM_SOURCE_CACHE=$(config_path)/.cpm-cache \
+	-DCMAKE_POLICY_VERSION_MINIMUM=3.5 \
+	-DCMAKE_CXX_COMPILER=$(cxx) \
+	-DCMAKE_C_COMPILER=$(cc) \
 	-DBUILD_TESTS=$(build_tests) \
 	-DBUILD_BENCHMARKS=$(build_benchmarks) \
 	-DBUILD_EXAMPLES=$(build_examples) \
@@ -118,6 +122,8 @@ relwithdebinfo:
 # Compiler selection targets
 .PHONY: gcc
 gcc:
+	$(eval cc := gcc)
+	$(eval cxx := g++)
 	$(eval compiler = gcc)
 	$(eval toolchain_file = )
 	$(eval toolchain_make = -G Ninja)
@@ -126,6 +132,8 @@ gcc:
 
 .PHONY: clang
 clang:
+	$(eval cc := clang)
+	$(eval cxx := clang++)
 	$(eval compiler = clang)
 	$(eval toolchain_file = )
 	$(eval toolchain_make = -G Ninja)
