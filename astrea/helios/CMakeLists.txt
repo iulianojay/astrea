@@ -31,11 +31,18 @@ find_package(OpenMP REQUIRED)
 
 # Objects
 set(HELIOS_BASE ${CMAKE_CURRENT_LIST_DIR}/${PROJECT_NAME})
-set(HELIOS_SOURCES)
+set(HELIOS_SOURCES
+    ${HELIOS_BASE}/app/animations.cpp
+    ${HELIOS_BASE}/app/propagation.cpp
+)
 
 # Headers
 set(HELIOS_HEADERS
+    ${HELIOS_BASE}/app/animations.hpp
+    ${HELIOS_BASE}/app/propagation.hpp
+
     ${HELIOS_BASE}/helios.macros.hpp
+    ${HELIOS_BASE}/types.hpp
 )
 
 # Includes
