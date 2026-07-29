@@ -35,10 +35,15 @@ struct BodyFixedFrameBase;
 struct SynodicFrameBase;
 
 /**
- * @brief A symbolic constant is a type that is empty, trivially constructible, trivially copyable, trivially moveable, and trivially destructible.
+ * @brief A symbolic constant is a type that is empty, trivially constructible, trivially copyable, trivially moveable,
+ * and trivially destructible.
+ *
+ * @note mp-units uses (!std::is_const_v<T>) included here. I can't figure out why and it breaks my setup so I removed
+ * it. My guess is that it has to do with expression building (i.e. * km, etc) and we don't need that. std::is_final_v<T> is also used
+ * but we don't want it here since frames can be constructed on the fly. If someone knows how to do this while declaring 'final', let me know.
  */
 template <typename T>
-concept SymbolicConstant = (!std::is_const_v<T>) && (!std::is_reference_v<T>) && std::is_empty_v<T> &&
+concept SymbolicConstant = (!std::is_reference_v<T>) && std::is_empty_v<T> &&
                            std::is_trivially_default_constructible_v<T> && std::is_trivially_copy_constructible_v<T> &&
                            std::is_trivially_move_constructible_v<T> && std::is_trivially_destructible_v<T>;
 
@@ -182,6 +187,16 @@ concept HasAngularOffset = requires { T::axis.misalignment; } || requires { T::m
  */
 template <typename T>
 concept IsFixedOffsetFrame = IsDerivedFrame<T> && (HasSpatialOffset<T> || HasAngularOffset<T>);
+
+/**
+ * @brief Concept to determine if a frame is a derived directly from another
+ *
+ * @tparam T The frame type to check.
+ * @tparam U The frame type to check against.
+ * @return true if the frame is a child of the other frame, false otherwise.
+ */
+template <typename T, typename U>
+concept IsChildOf = IsDerivedFrame<T> && equivalent(T::parent, U{});
 
 /**
  * @brief Helper function to determine if two frames share the same parent frame. This is used in the get_dcm function
