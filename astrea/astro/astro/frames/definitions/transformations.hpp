@@ -280,9 +280,12 @@ inline constexpr DCM<frame, frame_u> get_dcm_impl(const Date& date)
         return get_dcm<frame_u, frame>(date).transpose();
     }
     else if constexpr (HasCommonAncestor<frame.axis, frame_u.axis>) {
+        // We can only chain to the ancestor if the frame hooks into the existing graph of frames. We just check for the
+        // DCM to the parent frame, and should hit that check recursively as we dig to the ancestor.
         if constexpr (IsChildOf<decltype(frame), decltype(frame_u)> || IsChildOf<decltype(frame_u), decltype(frame)>) {
             static_assert(always_false<NoDcmBetween<frame.name.portable(), frame_u.name.portable()>>, "Frames have a direct parent-child relationship but no DCM is defined between them.");
         }
+
         // If no direct DCM defined but common ancestor exists, we can get the DCMs to the common ancestor and compose them
         static constexpr auto root_axis = find_common_ancestor(frame.axis, frame_u.axis);
         static constexpr auto root      = make_frame(frame.origin, root_axis);

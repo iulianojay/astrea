@@ -93,7 +93,7 @@ inline consteval auto get_z_offset_from_lla()
  * @tparam _alt_ The altitude in the parent frame.
  */
 template <mp_units::symbol_text _name_, IsBodyFixedFrame auto _parent_, Angle _lat_, Angle _lon_, Distance _alt_>
-struct TopocentricFrame : public FixedOffsetFrame<
+struct TopocentricFrame : FixedOffsetFrame<
                               _name_,
                               _parent_,
                               get_x_offset_from_lla<_parent_, _lat_, _lon_, _alt_>(),

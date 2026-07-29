@@ -46,10 +46,10 @@ int main(int argc, char** argv)
 
 
 // Default (zero-offset) instantiation
-inline constexpr struct ZeroEarthIcrf
+inline constexpr struct ZeroEarthIcrf final
     : FixedOffsetFrame<frames::earth::icrf, Distance::zero(), Distance::zero(), Distance::zero()> {
 } ZeroEarthIcrf;
-inline constexpr struct ZeroMarsIcrf
+inline constexpr struct ZeroMarsIcrf final
     : FixedOffsetFrame<frames::mars::icrf, Distance::zero(), Distance::zero(), Distance::zero()> {
 } ZeroMarsIcrf;
 
@@ -86,6 +86,7 @@ TEST_F(FixedOffsetFrameTest, OffsetIsConstexprAccessible)
 static_assert(IsFrame<remove_cv_ref<decltype(ZeroEarthIcrf)>>);
 static_assert(IsStaticFrame<remove_cv_ref<decltype(ZeroEarthIcrf)>>);
 static_assert(IsInertialFrame<remove_cv_ref<decltype(ZeroEarthIcrf)>>);
+static_assert(IsFixedOffsetFrame<remove_cv_ref<decltype(ZeroEarthIcrf)>>);
 
 static_assert(ZeroEarthIcrf.origin != frames::earth::icrf.origin);
 static_assert(ZeroEarthIcrf::parent.origin == frames::earth::icrf.origin);
@@ -99,7 +100,7 @@ static_assert(ZeroEarthIcrf != frames::earth::icrf);
 static_assert(equivalent(ZeroEarthIcrf, frames::earth::icrf));
 static_assert(ZeroEarthIcrf::parent == frames::earth::icrf);
 
-inline constexpr struct Also : FixedOffsetFrame<frames::earth::icrf, Distance::zero(), Distance::zero(), Distance::zero()> {
+inline constexpr struct Also final : FixedOffsetFrame<frames::earth::icrf, Distance::zero(), Distance::zero(), Distance::zero()> {
 } Also;
 static_assert(ZeroEarthIcrf != Also);           // Type differs, even though all members are the same
 static_assert(equivalent(ZeroEarthIcrf, Also)); // Equivalent since they share the same parent and have values
@@ -109,22 +110,22 @@ static_assert(ZeroEarthIcrf != ZeroMarsIcrf);
 constexpr Angle HALF_PI_RAD = std::numbers::pi / 2.0 * rad;
 
 // Zero-angle angular offset (all defaults explicit)
-inline constexpr struct ZeroAngularEarthIcrf
+inline constexpr struct ZeroAngularEarthIcrf final
     : FixedOffsetFrame<frames::earth::icrf, Angle::zero(), Angle::zero(), Angle::zero(), RotationSequence::XYZ> {
 } ZeroAngularEarthIcrf;
 
 // XYZ sequence (default) — one axis rotated at a time
-inline constexpr struct RotXHalfPiXYZ
+inline constexpr struct RotXHalfPiXYZ final
     : FixedOffsetFrame<frames::earth::icrf, HALF_PI_RAD, Angle::zero(), Angle::zero(), RotationSequence::XYZ> {
 } RotXHalfPiXYZ;
-inline constexpr struct RotYHalfPiXYZ
+inline constexpr struct RotYHalfPiXYZ final
     : FixedOffsetFrame<frames::earth::icrf, Angle::zero(), HALF_PI_RAD, Angle::zero(), RotationSequence::XYZ> {
 } RotYHalfPiXYZ;
-inline constexpr struct RotZHalfPiXYZ
+inline constexpr struct RotZHalfPiXYZ final
     : FixedOffsetFrame<frames::earth::icrf, Angle::zero(), Angle::zero(), HALF_PI_RAD, RotationSequence::XYZ> {
 } RotZHalfPiXYZ;
 // ZYX sequence — same phi angle, different result
-inline constexpr struct RotXHalfPiZYX
+inline constexpr struct RotXHalfPiZYX final
     : FixedOffsetFrame<frames::earth::icrf, HALF_PI_RAD, Angle::zero(), Angle::zero(), RotationSequence::ZYX> {
 } RotXHalfPiZYX;
 
@@ -296,7 +297,7 @@ constexpr Distance THREE_KM = 3.0 * km;
 
 // Frame with both translational offset and angular misalignment (phi = pi/2, XYZ).
 // offset = (1, 2, 3) km; misalignment = Rx(pi/2)
-inline constexpr struct CombinedEarthIcrf
+inline constexpr struct CombinedEarthIcrf final
     : FixedOffsetFrame<frames::earth::icrf, ONE_KM, TWO_KM, THREE_KM, HALF_PI_RAD, Angle::zero(), Angle::zero(), RotationSequence::XYZ> {
 } CombinedEarthIcrf;
 
@@ -398,9 +399,9 @@ TEST_F(FixedOffsetFrameTest, GetDcmFromRootFrameMatchesFromFrameThirdRow)
 // ==================== Chained frames ====================
 
 // Pure spatial offset chain: 1 km in X, then 2 km in Y from that child frame.
-inline constexpr struct ChainOffset1 : FixedOffsetFrame<frames::earth::icrf, ONE_KM, Distance::zero(), Distance::zero()> {
+inline constexpr struct ChainOffset1 final : FixedOffsetFrame<frames::earth::icrf, ONE_KM, Distance::zero(), Distance::zero()> {
 } ChainOffset1;
-inline constexpr struct ChainOffset2 : FixedOffsetFrame<ChainOffset1, Distance::zero(), TWO_KM, Distance::zero()> {
+inline constexpr struct ChainOffset2 final : FixedOffsetFrame<ChainOffset1, Distance::zero(), TWO_KM, Distance::zero()> {
 } ChainOffset2;
 
 static_assert(IsFixedOffsetFrame<remove_cv_ref<decltype(ChainOffset1)>>);
@@ -431,10 +432,10 @@ TEST_F(FixedOffsetFrameTest, SpatialChainRootOffsetZIsZero)
 //   [[0, -1,  0],
 //    [0,  0, -1],
 //    [1,  0,  0]]
-inline constexpr struct ChainAngular1
+inline constexpr struct ChainAngular1 final
     : FixedOffsetFrame<frames::earth::icrf, HALF_PI_RAD, Angle::zero(), Angle::zero(), RotationSequence::XYZ> {
 } ChainAngular1;
-inline constexpr struct ChainAngular2
+inline constexpr struct ChainAngular2 final
     : FixedOffsetFrame<ChainAngular1, Angle::zero(), Angle::zero(), HALF_PI_RAD, RotationSequence::XYZ> {
 } ChainAngular2;
 
@@ -467,7 +468,7 @@ TEST_F(FixedOffsetFrameTest, AngularChainRootDcmComposesThirdRow)
 
 // A pure-offset child of a rotated parent has no angular contribution of its own —
 // get_dcm_from_root_frame should propagate the parent's DCM unchanged.
-inline constexpr struct OffsetChildOfAngular : FixedOffsetFrame<ChainAngular1, Distance::zero(), TWO_KM, Distance::zero()> {
+inline constexpr struct OffsetChildOfAngular final : FixedOffsetFrame<ChainAngular1, Distance::zero(), TWO_KM, Distance::zero()> {
 } OffsetChildOfAngular;
 TEST_F(FixedOffsetFrameTest, SpatialChildOfAngularParentPreserversParentDcmFirstRow)
 {
@@ -488,10 +489,10 @@ TEST_F(FixedOffsetFrameTest, SpatialChildOfAngularParentPreserversParentDcmFirst
 //
 // Accumulated offset from root = (1, 2, 0) km (both offsets summed numerically)
 // Composed DCM from root       = Rx(pi/2) * Rz(pi/2) = [[0,-1,0],[0,0,-1],[1,0,0]]
-inline constexpr struct ChainCombined1
+inline constexpr struct ChainCombined1 final
     : FixedOffsetFrame<frames::earth::icrf, ONE_KM, Distance::zero(), Distance::zero(), HALF_PI_RAD, Angle::zero(), Angle::zero(), RotationSequence::XYZ> {
 } ChainCombined1;
-inline constexpr struct ChainCombined2
+inline constexpr struct ChainCombined2 final
     : FixedOffsetFrame<ChainCombined1, Distance::zero(), TWO_KM, Distance::zero(), Angle::zero(), Angle::zero(), HALF_PI_RAD, RotationSequence::XYZ> {
 } ChainCombined2;
 

@@ -20,6 +20,7 @@
 #include <units/units.hpp>
 
 #include <astro/frames.hpp>
+#include <astro/frames/definitions/transformations.hpp>
 #include <astro/frames/framework/TopocentricFrame.hpp>
 #include <astro/frames/framework/frame_concepts.hpp>
 #include <astro/types/type_traits.hpp>
@@ -48,7 +49,7 @@ int main(int argc, char** argv)
 static constexpr Unitless ANGULAR_TOL = 1.0e-10 * one;
 
 // Default (zero-offset) instantiation
-inline constexpr struct WashingtonDcWnu
+inline constexpr struct WashingtonDcWnu final
     : TopocentricFrame<"Washington DC", frames::earth::earth_fixed, 38.895111 * deg, -77.036369 * deg, 0.0 * km> {
 } WashingtonDcWnu;
 
@@ -57,6 +58,10 @@ static_assert(HasAngularOffset<remove_cv_ref<decltype(WashingtonDcWnu)>>);
 static_assert(WashingtonDcWnu::parent.origin == planets::Earth);
 static_assert(WashingtonDcWnu::parent == frames::earth::earth_fixed);
 static_assert(equivalent(get_root_frame<WashingtonDcWnu>(), frames::earth::earth_fixed));
+static_assert(IsFixedOffsetFrame<remove_cv_ref<decltype(WashingtonDcWnu)>>);
+static_assert(IsChildOf<decltype(WashingtonDcWnu), decltype(frames::earth::earth_fixed)>);
+static_assert(equivalent(WashingtonDcWnu::parent.axis, frames::earth::earth_fixed::axis));
+static_assert(frames::HasDcm<WashingtonDcWnu, WashingtonDcWnu::parent>);
 
 TEST_F(TopocentricFrameTest, OffsetIsConstexprAccessible)
 {
@@ -83,9 +88,9 @@ TEST_F(TopocentricFrameTest, GetDcm)
 TEST_F(TopocentricFrameTest, ConstexprTransformationToParent)
 {
     // Verifies offset is a constexpr static member
-    const Date epoch;
-    const auto r       = CartesianVector<Distance, WashingtonDcWnu>(1.0 * km, 2.0 * km, 3.0 * km);
-    const auto rParent = r.template in_frame<frames::earth::earth_fixed>(epoch);
+    constexpr Date epoch;
+    constexpr auto r       = CartesianVector<Distance, WashingtonDcWnu>(1.0 * km, 2.0 * km, 3.0 * km);
+    constexpr auto rParent = r.template in_frame<frames::earth::earth_fixed>(epoch);
 
     ASSERT_TRUE(math::nearly_equal(rParent.norm(), r.norm(), 1e-6 * one));
     SUCCEED();
