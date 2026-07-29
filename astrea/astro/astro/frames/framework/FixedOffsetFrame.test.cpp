@@ -89,7 +89,7 @@ static_assert(IsInertialFrame<remove_cv_ref<decltype(ZeroEarthIcrf)>>);
 
 static_assert(ZeroEarthIcrf.origin != frames::earth::icrf.origin);
 static_assert(ZeroEarthIcrf::parent.origin == frames::earth::icrf.origin);
-static_assert(equivalent1(ZeroEarthIcrf.origin, frames::earth::icrf.origin));
+static_assert(equivalent(ZeroEarthIcrf.origin, frames::earth::icrf.origin));
 
 static_assert(ZeroEarthIcrf.axis == frames::earth::icrf.axis);
 static_assert(ZeroEarthIcrf::parent.axis == frames::earth::icrf.axis);

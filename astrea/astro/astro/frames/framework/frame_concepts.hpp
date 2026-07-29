@@ -184,6 +184,18 @@ template <typename T>
 concept IsFixedOffsetFrame = IsDerivedFrame<T> && (HasSpatialOffset<T> || HasAngularOffset<T>);
 
 /**
+ * @brief Concept to determine if a frame is a derived directly from another
+ *
+ * @tparam T The frame type to check.
+ * @tparam U The frame type to check against.
+ * @return true if the frame is a child of the other frame, false otherwise.
+ */
+template <typename T, typename U>
+concept IsChildOf = (IsDerivedAxis<decltype(T::axis)> && equivalent(T::axis.parent, U::axis)) ||
+                    (IsDerivedOrigin<decltype(T::origin)> && equivalent(T::origin.parent, U::origin)) ||
+                    (IsDerivedFrame<T> && equivalent(T::parent, U{}));
+
+/**
  * @brief Helper function to determine if two frames share the same parent frame. This is used in the get_dcm function
  * for FixedOffsetFrames to ensure that the input and output frames share the same parent frame.
  *

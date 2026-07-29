@@ -37,24 +37,61 @@ namespace astrea {
 namespace astro {
 
 // There has to be a better way to do this
+
+/**
+ * @brief Retrieves the X offset from the given latitude, longitude, and altitude relative to the parent body-fixed frame.
+ *
+ * @tparam _parent_ The parent body-fixed frame.
+ * @tparam _lat_ The latitude in the parent frame.
+ * @tparam _lon_ The longitude in the parent frame.
+ * @tparam _alt_ The altitude in the parent frame.
+ * @return The X offset in the parent frame.
+ */
 template <IsBodyFixedFrame auto _parent_, Angle _lat_, Angle _lon_, Distance _alt_>
 inline consteval auto get_x_offset_from_lla()
 {
     return convert_geodetic_to_body_fixed<_parent_>(_lat_, _lon_, _alt_)[0];
 }
 
+/**
+ * @brief Retrieves the Y offset from the given latitude, longitude, and altitude relative to the parent body-fixed frame.
+ *
+ * @tparam _parent_ The parent body-fixed frame.
+ * @tparam _lat_ The latitude in the parent frame.
+ * @tparam _lon_ The longitude in the parent frame.
+ * @tparam _alt_ The altitude in the parent frame.
+ * @return The Y offset in the parent frame.
+ */
 template <IsBodyFixedFrame auto _parent_, Angle _lat_, Angle _lon_, Distance _alt_>
 inline consteval auto get_y_offset_from_lla()
 {
     return convert_geodetic_to_body_fixed<_parent_>(_lat_, _lon_, _alt_)[1];
 }
 
+/**
+ * @brief Retrieves the Z offset from the given latitude, longitude, and altitude relative to the parent body-fixed frame.
+ *
+ * @tparam _parent_ The parent body-fixed frame.
+ * @tparam _lat_ The latitude in the parent frame.
+ * @tparam _lon_ The longitude in the parent frame.
+ * @tparam _alt_ The altitude in the parent frame.
+ * @return The Z offset in the parent frame.
+ */
 template <IsBodyFixedFrame auto _parent_, Angle _lat_, Angle _lon_, Distance _alt_>
 inline consteval auto get_z_offset_from_lla()
 {
     return convert_geodetic_to_body_fixed<_parent_>(_lat_, _lon_, _alt_)[2];
 }
 
+/**
+ * @brief A frame that is topocentric to a given body, defined relative to some body-fixed frame by a specific latitude, longitude, and altitude.
+ *
+ * @tparam _name_ The name of the topocentric frame.
+ * @tparam _parent_ The parent body-fixed frame from which this topocentric frame is derived. Must satisfy the IsBodyFixedFrame concept.
+ * @tparam _lat_ The latitude in the parent frame.
+ * @tparam _lon_ The longitude in the parent frame.
+ * @tparam _alt_ The altitude in the parent frame.
+ */
 template <mp_units::symbol_text _name_, IsBodyFixedFrame auto _parent_, Angle _lat_, Angle _lon_, Distance _alt_>
 struct TopocentricFrame : public FixedOffsetFrame<
                               _name_,
@@ -66,9 +103,11 @@ struct TopocentricFrame : public FixedOffsetFrame<
                               _lat_,                                   // rotation y by latitude,
                               _lon_,                   // rotation x by 90 degrees (to align with local vertical)
                               RotationSequence::ZYX> { // This gives the NWU frame
-    static constexpr auto lat = _lat_;
-    static constexpr auto lon = _lon_;
-    static constexpr auto alt = _alt_;
+
+    static constexpr auto lat  = _lat_; //!< The latitude of the topocentric frame relative to the parent body.
+    static constexpr auto lon  = _lon_; //!< The longitude of the topocentric frame relative to the parent body.
+    static constexpr auto alt  = _alt_; //!< The altitude of the topocentric frame relative to the parent body.
+    static constexpr auto body = _parent_.origin; //!< The celestial body associated with the parent body-fixed frame.
 };
 
 } // namespace astro

@@ -103,6 +103,10 @@ inline constexpr DirectionCosineMatrix<in_frame, out_frame> get_dcm(const Date& 
 
 /**
  * @brief Retrieves the direction cosine matrix representing the fixed angular offset from the parent frame to the given FixedOffsetFrame.
+ *
+ * @tparam frame The FixedOffsetFrame type for which to retrieve the DCM.
+ * @tparam parent The parent frame type to which the DCM should be obtained.
+ * @return DirectionCosineMatrix<parent, frame> The direction cosine matrix from the parent frame to the given FixedOffsetFrame.
  */
 template <IsFrame auto frame, IsFrame auto parent>
     requires(IsFixedOffsetFrame<decltype(frame)> && equivalent(frame.parent.axis, parent.axis))
