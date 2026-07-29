@@ -90,6 +90,7 @@ struct NoDcmBetween;
 template <auto...>
 struct DcmDefinedBothWays;
 
+// Forward declarations of the get_dcm_impl, get_dcm_rate_impl, and get_dcm_accel_impl functions.
 template <IsFrame auto frame, IsFrame auto frame_u>
 inline constexpr DCM<frame, frame_u> get_dcm_impl(const Date& date);
 

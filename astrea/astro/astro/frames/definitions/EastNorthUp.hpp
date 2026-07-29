@@ -41,7 +41,7 @@ namespace frames {
  * @brief Frame tag type for EastNorthUp, defined outside the class to allow use as a DynamicFrame NTTP.
  */
 template <IsFrame auto _parent_>
-struct EastNorthUpTag : Frame<"East-North-Up", DynamicOrigin{}, DynamicAxis{}, _parent_> {
+struct EastNorthUpTag final : Frame<"East-North-Up", DynamicOrigin{}, DynamicAxis{}, _parent_> {
     EastNorthUp<_parent_> instantaneous(const RadiusVector<_parent_>& r, const VelocityVector<_parent_>& v) const
     {
         return EastNorthUp<_parent_>(r, v);

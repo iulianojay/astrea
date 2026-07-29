@@ -33,7 +33,7 @@ namespace frames {
  * @brief Frame tag type for VelocityNormalBinormal, defined outside the class to allow use as a DynamicFrame NTTP.
  */
 template <IsFrame auto _parent_>
-struct VnbTag : Frame<"Velocity-Normal-Binormal", DynamicOrigin{}, DynamicAxis{}, _parent_> {
+struct VnbTag final : Frame<"Velocity-Normal-Binormal", DynamicOrigin{}, DynamicAxis{}, _parent_> {
     VelocityNormalBinormal<_parent_> instantaneous(const RadiusVector<_parent_>& r, const VelocityVector<_parent_>& v) const
     {
         return VelocityNormalBinormal<_parent_>(r, v);

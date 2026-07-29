@@ -108,9 +108,9 @@ inline constexpr DirectionCosineMatrix<in_frame, out_frame> get_dcm(const Date& 
  * @tparam parent The parent frame type to which the DCM should be obtained.
  * @return DirectionCosineMatrix<parent, frame> The direction cosine matrix from the parent frame to the given FixedOffsetFrame.
  */
-template <IsFrame auto frame, IsFrame auto parent>
+template <IsFrame auto parent, IsFrame auto frame>
     requires(IsFixedOffsetFrame<decltype(frame)> && equivalent(frame.parent.axis, parent.axis))
-inline constexpr DirectionCosineMatrix<parent, frame> get_dcm()
+inline constexpr DirectionCosineMatrix<parent, frame> get_dcm(const Date& date)
 {
     if constexpr (HasAngularOffset<decltype(frame)>) {
         return DirectionCosineMatrix<parent, frame>::template from_euler_angles<frame.axis.sequence>(

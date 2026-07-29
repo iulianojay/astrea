@@ -459,49 +459,19 @@ inline constexpr auto get_offset_from_root_frame()
 }
 
 /**
- * @brief Retrieves the direction cosine matrix (DCM) from the parent frame to the given FixedOffsetFrame, considering any angular misalignment.
- */
-template <IsFixedOffsetFrame auto frame, IsFrame auto frame_u>
-    requires(equivalent(frame.parent, frame_u))
-inline constexpr DCM<frame, frame_u> get_dcm(const Date& date)
-{
-    if constexpr (HasAngularOffset<std::remove_cv_t<decltype(frame)>>) {
-        return DCM<frame, frame_u>(
-            frame.axis.misalignment.phi, frame.axis.misalignment.theta, frame.axis.misalignment.psi, frame.axis.sequence
-        );
-    }
-    else {
-        return DCM<frame, frame_u>::identity();
-    }
-}
-
-template <IsFrame auto frame, IsFixedOffsetFrame auto frame_u>
-    requires(equivalent(frame, frame_u.parent))
-inline constexpr DCM<frame_u, frame> get_dcm(const Date& date)
-{
-    if constexpr (HasAngularOffset<std::remove_cv_t<decltype(frame_u)>>) {
-        return DCM<frame_u, frame>(
-            frame_u.axis.misalignment.phi, frame_u.axis.misalignment.theta, frame_u.axis.misalignment.psi, frame_u.axis.sequence
-        );
-    }
-    else {
-        return DCM<frame_u, frame>::identity();
-    }
-}
-
-/**
  * @brief Retrieves the accumulated direction cosine matrix from the root frame to the given FixedOffsetFrame by recursively composing the DCMs along the parent chain.
  */
 template <IsFixedOffsetFrame auto frame>
 inline constexpr auto get_dcm_from_root_frame()
 {
+    static constexpr Date dummyDate;
     if constexpr (HasAngularOffset<std::remove_cv_t<decltype(frame)>>) {
         if constexpr (IsDerivedFrame<std::remove_cv_t<decltype(frame.parent)>>) {
             // DCM<grandparent, parent> * DCM<parent, child> = DCM<grandparent, child>
-            return get_dcm_from_root_frame<frame.parent>() * get_dcm<frame, frame.parent>();
+            return get_dcm_from_root_frame<frame.parent>() * get_dcm<frame.parent, frame>(dummyDate);
         }
         else {
-            return get_dcm<frame, frame.parent>();
+            return get_dcm<frame.parent, frame>(dummyDate);
         }
     }
     else {
