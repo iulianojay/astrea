@@ -32,11 +32,15 @@
             min-height: 100vh;
             color: var(--ink);
             font-family: "IBM Plex Sans", "Segoe UI", sans-serif;
-            background:
-                radial-gradient(1200px 700px at 15% 10%, #1f4e79 0%, rgba(31, 78, 121, 0) 60%),
-                radial-gradient(1000px 600px at 85% 85%, #104667 0%, rgba(16, 70, 103, 0) 65%),
-                linear-gradient(160deg, var(--bg0), var(--bg1));
+            background: black;
             overflow: hidden;
+        }
+
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 75%;
+            opacity: 0.8;
         }
 
         .hud {
@@ -523,6 +527,27 @@
 
             requestAnimationFrame(draw);
         }
+
+        // Function to create multiple stars
+        function createStars() {
+            const numberOfStars = 500; // Adjust for more or fewer stars
+            for (let i = 0; i < numberOfStars; i++) {
+                const star = document.createElement('div');
+                star.classList.add('star');
+
+                // Random size, position, and animation duration for each star
+                const size = Math.random() * 1 + 1;
+                star.style.width = `${size}px`;
+                star.style.height = `${size}px`;
+                star.style.left = `${Math.random() * 100}vw`;
+                star.style.top = `${Math.random() * 100}vh`;
+                star.style.animationDuration = `${Math.random() * 2 + 1}s`;
+
+                document.body.appendChild(star);
+            }
+        }
+
+        createStars();
 
         window.addEventListener("resize", resize);
         resize();

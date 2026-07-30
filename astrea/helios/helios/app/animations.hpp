@@ -25,11 +25,34 @@
 namespace astrea {
 namespace helios {
 
+/**
+ * @brief Builds an HTML string for visualizing the animation frames.
+ *
+ * @param frames A vector of AnimationFrame objects representing the propagated states.
+ * @param maxRadiusKm The maximum radius in kilometers for scaling the visualization.
+ * @param elapsedMs The elapsed time in milliseconds for the propagation.
+ * @param propMinutes The total propagation time in minutes.
+ * @param stepMinutes The step size in minutes for each frame.
+ * @return A string containing the HTML representation of the animation.
+ */
 std::string
     build_html(const std::vector<AnimationFrame>& frames, const double maxRadiusKm, const double elapsedMs, const double propMinutes, const double stepMinutes);
 
+/**
+ * @brief Builds a JSON string for re-propagating the animation frames.
+ *
+ * @param settings The propagation settings used for the original propagation.
+ * @param results The PropagationResult containing the propagated frames and the number of frames.
+ * @return A string containing the JSON representation for re-propagation.
+ */
 std::string build_repropagate_json(const PropagationSettings& settings, const PropagationResult& results);
 
+/**
+ * @brief Builds a JSON string for the animation frames.
+ *
+ * @param frames A vector of AnimationFrame objects representing the propagated states.
+ * @return A string containing the JSON representation of the animation frames.
+ */
 std::string build_frames_js(const std::vector<AnimationFrame>& frames);
 
 } // namespace helios

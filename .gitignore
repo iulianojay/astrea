@@ -45,3 +45,4 @@ docs/reference/api_reference/gen
 
 # Must include
 !CMakeLists.txt
+!**/assets/**

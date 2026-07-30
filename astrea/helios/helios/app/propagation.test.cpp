@@ -37,6 +37,9 @@ class MultiObjectPropagationTest : public testing::Test {
     {
         const auto settings = astrea::helios::PropagationSettings(nlohmann::json::parse(request));
         const auto result   = propagate_many_objects(gpObjects, settings);
+
+        ASSERT_EQ(result.frames.size(), result.nFrames);
+        ASSERT_EQ(result.nFrames, settings.propTime / settings.step + 1);
         for (const auto& frame : result.frames) {
             ASSERT_EQ(frame.size(), gpObjects.size());
         }
@@ -62,6 +65,54 @@ TEST_F(MultiObjectPropagationTest, NoPerts)
             "propMin": 90,
             "srp": false,
             "stepMin": 5,
+            "ten": false
+        })";
+    propagate(request);
+}
+
+TEST_F(MultiObjectPropagationTest, NoPertsOneDay)
+{
+    const auto request =
+        R"({
+            "drag": false,
+            "eighty": false,
+            "fourty": false,
+            "nbody": false,
+            "propMin": 1440,
+            "srp": false,
+            "stepMin": 5,
+            "ten": false
+        })";
+    propagate(request);
+}
+
+TEST_F(MultiObjectPropagationTest, NoPertsSmallStep)
+{
+    const auto request =
+        R"({
+            "drag": false,
+            "eighty": false,
+            "fourty": false,
+            "nbody": false,
+            "propMin": 90,
+            "srp": false,
+            "stepMin": 1,
+            "ten": false
+        })";
+    propagate(request);
+}
+
+TEST_F(MultiObjectPropagationTest, NoPertsOneDaySmallStep)
+{
+    const auto request =
+        R"({
+            "drag": false,
+            "eighty": false,
+            "fourty": false,
+            "nbody": false,
+            "propMin": 1440,
+            "srp": false,
+            "stepMin": 1,
             "ten": false
         })";
     propagate(request);

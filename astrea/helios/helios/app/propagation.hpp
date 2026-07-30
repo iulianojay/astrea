@@ -25,6 +25,13 @@
 namespace astrea {
 namespace helios {
 
+/**
+ * @brief Propagates a vector of GeneralPerturbations objects over a specified time period with a given step size.
+ *
+ * @param gpObjects A vector of GeneralPerturbations objects to be propagated.
+ * @param settings The propagation settings, including the total propagation time and step size.
+ * @return PropagationResult containing the propagated frames and the number of frames.
+ */
 PropagationResult propagate_many_objects(const std::vector<astro::GeneralPerturbations>& gpObjects, const PropagationSettings& settings);
 
 } // namespace helios

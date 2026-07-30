@@ -26,6 +26,11 @@
 namespace astrea {
 namespace helios {
 
+/**
+ * @brief Loads GeneralPerturbations objects from the database.
+ *
+ * @return A vector of GeneralPerturbations objects fetched from the database.
+ */
 std::vector<astro::GeneralPerturbations> load_gp_from_db();
 
 } // namespace helios

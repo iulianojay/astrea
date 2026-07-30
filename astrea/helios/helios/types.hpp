@@ -21,12 +21,18 @@
 namespace astrea {
 namespace helios {
 
+/**
+ * @brief Represents a 3D point in space.
+ */
 struct Point3 {
-    double x;
-    double y;
-    double z;
+    double x; //!< The x-coordinate of the point.
+    double y; //!< The y-coordinate of the point.
+    double z; //!< The z-coordinate of the point.
 };
 
+/**
+ * @brief Represents a frame of animation, which is a collection of 3D points.
+ */
 using AnimationFrame = std::vector<Point3>;
 
 inline std::ostream& operator<<(std::ostream& os, const Point3& p)
@@ -46,16 +52,19 @@ inline std::ostream& operator<<(std::ostream& os, const AnimationFrame& frame)
     return os;
 }
 
+/**
+ * @brief Represents the settings for propagating objects in space.
+ */
 struct PropagationSettings {
 
-    Time propTime;
-    Time step;
-    bool ten    = false;
-    bool fourty = false;
-    bool eighty = false;
-    bool srp    = false;
-    bool nBody  = false;
-    bool drag   = false;
+    Time propTime;       //!< The total propagation time.
+    Time step;           //!< The time step for each propagation iteration.
+    bool ten    = false; //!< Flag indicating whether to use a 10x10 gravity model.
+    bool fourty = false; //!< Flag indicating whether to use a 40x40 gravity model.
+    bool eighty = false; //!< Flag indicating whether to use an 80x80 gravity model.
+    bool srp    = false; //!< Flag indicating whether to include solar radiation pressure effects.
+    bool nBody  = false; //!< Flag indicating whether to include n-body gravitational effects.
+    bool drag   = false; //!< Flag indicating whether to include atmospheric drag effects.
 
     PropagationSettings(const Time propTime, const Time step) :
         propTime(propTime),
@@ -76,11 +85,14 @@ struct PropagationSettings {
     }
 };
 
+/**
+ * @brief Represents the result of propagating objects in space.
+ */
 struct PropagationResult {
-    std::vector<AnimationFrame> frames;
-    std::size_t nFrames = 0;
-    double elapsedMs    = 0.0;
-    double maxRadiusKm  = 0.0;
+    std::vector<AnimationFrame> frames; //!< A vector of animation frames representing the propagated states of the objects.
+    std::size_t nFrames = 0;            //!< The total number of frames generated during the propagation.
+    double elapsedMs    = 0.0;          //!< The elapsed time in milliseconds for the propagation process.
+    double maxRadiusKm = 0.0; //!< The maximum radius in kilometers of the propagated objects from the origin during the propagation process.
 };
 
 } // namespace helios

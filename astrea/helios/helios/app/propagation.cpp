@@ -119,6 +119,10 @@ PropagationResult propagate_many_objects(const std::vector<GeneralPerturbations>
             }
             catch (...) {
                 // Leave this object at (0,0,0) if it fails to propagate
+                const auto& gp = gpObjects[ii];
+                const auto name =
+                    gp.OBJECT_NAME.value_or(gp.NORAD_CAT_ID ? std::string("NORAD Object ") + std::to_string(gp.NORAD_CAT_ID) : "Unknown");
+                std::cerr << "[helios] Error propagating " << name << ". Leaving at (0,0,0).\n";
             }
         }
     }
