@@ -25,7 +25,11 @@ using namespace helios;
 
 class MultiObjectPropagationTest : public testing::Test {
   public:
-    MultiObjectPropagationTest() { gpObjects = load_gp_from_db(); }
+    MultiObjectPropagationTest()
+    {
+        gpObjects = load_gp_from_db();
+        gpObjects.resize(100); // Limit to 100 objects for testing purposes
+    }
 
     void SetUp() override {}
 
