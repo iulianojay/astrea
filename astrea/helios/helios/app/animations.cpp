@@ -11,10 +11,20 @@
  * have received a copy of the GNU General Public License along with Astrea. If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include <helios/app/propagation.hpp>
+#include <helios/app/animations.hpp>
+
+#include <mp-units/systems/si.h>
 
 #include <astro/astro.hpp>
 #include <units/units.hpp>
+
+using namespace astrea;
+using namespace astro;
+
+using namespace mp_units;
+using mp_units::si::unit_symbols::km;
+using mp_units::si::unit_symbols::min;
+using mp_units::si::unit_symbols::s;
 
 namespace astrea {
 namespace helios {

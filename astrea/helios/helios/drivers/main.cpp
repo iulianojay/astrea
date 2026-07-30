@@ -66,9 +66,11 @@ std::vector<GeneralPerturbations> load_gp_from_db()
 
 int main(int argc, char* argv[])
 {
-    double kPropagationMinutes = 90.0;
-    double kOutputStepMinutes  = 5.0;
+    // Default propagation parameters
+    const double propagationMinutes = 90.0;
+    const double outputStepMinutes  = 5.0;
 
+    // Load GP data from snapshot database
     std::cout << "[helios] Loading GP data from snapshot database...\n";
     const auto gpObjects = load_gp_from_db();
     if (gpObjects.empty()) {
@@ -76,12 +78,14 @@ int main(int argc, char* argv[])
         return 1;
     }
 
-    const PropagationSettings settings = { .propTime = minutes(kPropagationMinutes), .step = minutes(kOutputStepMinutes) };
+    // Propagate everything
+    const PropagationSettings settings{ minutes(propagationMinutes), minutes(outputStepMinutes) };
 
     std::cout << "[helios] Propagating " << gpObjects.size() << " objects...\n";
     const auto result = propagate_many_objects(gpObjects, settings);
     std::cout << "[helios] Propagation complete in " << result.elapsedMs << " ms\n";
 
+    // Launch web UI
     webui::window window;
     const std::filesystem::path iconPath =
         std::string(_HELIOS_ROOT_) + "../../../docs/assets/images/astrea-color-crop.png";
@@ -92,33 +96,27 @@ int main(int argc, char* argv[])
     // Repropagate binding: JS calls webui.call('repropagate', propMin, stepMin)
     // Returns the new frames+numeric+stats as a JSON string, which the JS side
     // receives as the resolved promise value and applies directly.
-    window.bind("repropagate", [&](webui::window::event* e) {
+    window.bind("repropagate", [&](webui::window::event* event) {
         try {
-            const nlohmann::json args             = nlohmann::json::parse(e->get_string(0));
-            const PropagationSettings newSettings = { .propTime = minutes(args["propMin"].get<double>()),
-                                                      .step     = minutes(args["stepMin"].get<double>()),
-                                                      .ten      = args["ten"].get<bool>(),
-                                                      .fourty   = args["fourty"].get<bool>(),
-                                                      .eighty   = args["eighty"].get<bool>(),
-                                                      .srp      = args["srp"].get<bool>(),
-                                                      .nBody    = args["nbody"].get<bool>(),
-                                                      .drag     = args["drag"].get<bool>() };
+            const nlohmann::json args = nlohmann::json::parse(event->get_string(0));
+            const PropagationSettings rerunSettings(args);
 
-            std::cout << "[helios] Repropagating: " << newSettings.propTime.in(min) << " / " << newSettings.step.in(min) << " step...\n";
-            const auto results = propagate_many_objects(gpObjects, newSettings);
+            std::cout << "[helios] Repropagating: " << rerunSettings.propTime.in(min) << " / "
+                      << rerunSettings.step.in(min) << " step...\n";
+            const auto results = propagate_many_objects(gpObjects, rerunSettings);
             std::cout << "[helios] Repropagate complete in " << results.elapsedMs << " ms\n";
 
-            const std::string json = build_repropagate_json(newSettings, results);
-            e->return_string(json);
+            const std::string json = build_repropagate_json(rerunSettings, results);
+            event->return_string(json);
         }
         catch (const std::exception& ex) {
             std::cerr << "[helios] Repropagate error: " << ex.what() << "\n";
-            e->return_string("{\"error\":\"" + std::string(ex.what()) + "\"}");
+            event->return_string("{\"error\":\"" + std::string(ex.what()) + "\"}");
         }
     });
 
-    const std::string html =
-        build_html(result.frames, result.maxRadiusKm, result.elapsedMs, kPropagationMinutes, kOutputStepMinutes);
+    // Build initial HTML with the first propagation result
+    const std::string html = build_html(result.frames, result.maxRadiusKm, result.elapsedMs, propagationMinutes, outputStepMinutes);
 
     window.show(html);
     webui::wait();

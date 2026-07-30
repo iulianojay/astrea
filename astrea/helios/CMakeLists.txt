@@ -56,7 +56,7 @@ set(HELIOS_DIRS
 )
 
 # App
-add_executable(${PROJECT_NAME}_app helios/drivers/main.cpp ${HELIOS_SOURCES} ${HELIOS_HEADERS})
+add_executable(${PROJECT_NAME}_app ${HELIOS_BASE}/drivers/main.cpp ${HELIOS_SOURCES} ${HELIOS_HEADERS})
 target_link_libraries(${PROJECT_NAME}_app PRIVATE astro_shared snapshot_shared webui OpenMP::OpenMP_CXX)
 if(UNIX AND NOT APPLE)
     target_link_libraries(${PROJECT_NAME}_app PRIVATE pthread m dl)

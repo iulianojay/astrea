@@ -15,11 +15,12 @@
 
 #include <units/units.hpp>
 
+using namespace astrea;
 using namespace astro;
-using namespace snapshot;
 using namespace helios;
 
 using namespace mp_units;
+using mp_units::angular::unit_symbols::deg;
 using mp_units::si::unit_symbols::km;
 using mp_units::si::unit_symbols::s;
 

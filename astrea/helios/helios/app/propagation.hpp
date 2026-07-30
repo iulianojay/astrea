@@ -25,7 +25,7 @@
 namespace astrea {
 namespace helios {
 
-PropagationResult propagate_many_objects(const std::vector<GeneralPerturbations>& gpObjects, const PropagationSettings& settings);
+PropagationResult propagate_many_objects(const std::vector<astro::GeneralPerturbations>& gpObjects, const PropagationSettings& settings);
 
 } // namespace helios
 } // namespace astrea

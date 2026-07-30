@@ -14,6 +14,8 @@
 
 #include <iostream>
 
+#include <nlohmann/json.hpp>
+
 #include <units/units.hpp>
 
 namespace astrea {
@@ -27,13 +29,13 @@ struct Point3 {
 
 using AnimationFrame = std::vector<Point3>;
 
-std::ostream& operator<<(std::ostream& os, const Point3& p)
+inline std::ostream& operator<<(std::ostream& os, const Point3& p)
 {
     os << "[" << p.x << "," << p.y << "," << p.z << "]";
     return os;
 }
 
-std::ostream& operator<<(std::ostream& os, const AnimationFrame& frame)
+inline std::ostream& operator<<(std::ostream& os, const AnimationFrame& frame)
 {
     os << "[";
     for (const auto& object : frame) {
@@ -45,6 +47,7 @@ std::ostream& operator<<(std::ostream& os, const AnimationFrame& frame)
 }
 
 struct PropagationSettings {
+
     Time propTime;
     Time step;
     bool ten    = false;
@@ -53,6 +56,24 @@ struct PropagationSettings {
     bool srp    = false;
     bool nBody  = false;
     bool drag   = false;
+
+    PropagationSettings(const Time propTime, const Time step) :
+        propTime(propTime),
+        step(step)
+    {
+    }
+
+    PropagationSettings(nlohmann::json data) :
+        propTime(minutes(data["propMin"].get<double>())),
+        step(minutes(data["stepMin"].get<double>())),
+        ten(data["ten"].get<bool>()),
+        fourty(data["fourty"].get<bool>()),
+        eighty(data["eighty"].get<bool>()),
+        srp(data["srp"].get<bool>()),
+        nBody(data["nbody"].get<bool>()),
+        drag(data["drag"].get<bool>())
+    {
+    }
 };
 
 struct PropagationResult {
