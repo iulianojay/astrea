@@ -31,6 +31,7 @@ target_link_libraries(astrea INTERFACE
     utilities_shared
     astro_shared
     snapshot_shared
+    helios_shared
     trace_shared
 )
 
@@ -43,6 +44,7 @@ if(${BUILD_STATIC})
         utilities_static
         astro_static
         snapshot_static
+        helios_static
         trace_static
     )
 endif()

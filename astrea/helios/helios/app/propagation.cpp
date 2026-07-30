@@ -22,17 +22,32 @@ using namespace helios;
 using namespace mp_units;
 using mp_units::angular::unit_symbols::deg;
 using mp_units::si::unit_symbols::km;
+using mp_units::si::unit_symbols::min;
 using mp_units::si::unit_symbols::s;
+
+namespace astrea {
+namespace helios {
 
 inline constexpr struct AppFrame
     : FixedOffsetFrame<frames::primary, Angle(90.0 * deg), Angle::zero(), Angle::zero(), RotationSequence::XYZ> {
 } AppFrame;
 
-namespace astrea {
-namespace helios {
-
 PropagationResult propagate_many_objects(const std::vector<GeneralPerturbations>& gpObjects, const PropagationSettings& settings)
 {
+    std::cout << "[helios] Propagation settings:\n";
+    std::cout << "  Propagation time: " << settings.propTime.in(min) << " min\n";
+    std::cout << "  Output step:      " << settings.step.in(min) << " min\n";
+    std::cout << "  Force model:\n";
+    std::cout << "\t - Oblateness "
+              << (settings.ten    ? "10x10" :
+                  settings.fourty ? "40x40" :
+                  settings.eighty ? "80x80" :
+                                    "OFF")
+              << "\n";
+    std::cout << "\t - Solar Radiation Pressure " << (settings.srp ? "ON" : "OFF") << "\n";
+    std::cout << "\t - N-Body (Moon, Sun) " << (settings.nBody ? "ON" : "OFF") << "\n";
+    std::cout << "\t - Atmospheric Drag " << (settings.drag ? "ON" : "OFF") << "\n";
+
     const Time propTime = settings.propTime;
     const Time stepTime = settings.step;
 
@@ -89,10 +104,11 @@ PropagationResult propagate_many_objects(const std::vector<GeneralPerturbations>
                     // TODO: Do this rotation here for speed
                     const auto rApp = state.get_position();
                     // const auto rApp             = state.get_position_in_frame<AppFrame>();
-                    const double R              = rApp.norm().numerical_value_in(km);
-                    const double x              = rApp.get_x().numerical_value_in(km);
-                    const double y              = rApp.get_y().numerical_value_in(km);
-                    const double z              = rApp.get_z().numerical_value_in(km);
+                    const double R = rApp.norm().numerical_value_in(km);
+                    const double x = rApp.get_x().numerical_value_in(km);
+                    const double y = rApp.get_y().numerical_value_in(km);
+                    const double z = rApp.get_z().numerical_value_in(km);
+
                     result.frames[frameIdx][ii] = { x, y, z };
                     maxRadius                   = std::max(maxRadius, R);
                     ++frameIdx;
@@ -109,8 +125,10 @@ PropagationResult propagate_many_objects(const std::vector<GeneralPerturbations>
 
     const auto end   = std::chrono::steady_clock::now();
     result.elapsedMs = std::chrono::duration<double, std::milli>(end - start).count();
+
     // Cap max radius at geostationary distance for better visualization scaling
-    result.maxRadiusKm = std::min(maxRadius, 42000.0);
+    static const double GEO_RADIUS_KM = 42164.0;
+    result.maxRadiusKm                = std::min(maxRadius, GEO_RADIUS_KM);
 
     return result;
 }

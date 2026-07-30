@@ -31,6 +31,7 @@
 
 #include <helios/app.hpp>
 #include <helios/helios.macros.hpp>
+#include <helios/helpers.hpp>
 #include <helios/types.hpp>
 
 using namespace astrea;
@@ -45,24 +46,6 @@ using mp_units::si::unit_symbols::kg;
 using mp_units::si::unit_symbols::km;
 using mp_units::si::unit_symbols::s;
 
-
-std::vector<GeneralPerturbations> load_gp_from_db()
-{
-    auto storage = snapshot::get_snapshot();
-
-    std::vector<GeneralPerturbations> all = storage.get_all<GeneralPerturbations>();
-    std::vector<GeneralPerturbations> result;
-    result.reserve(all.size());
-    for (auto& gp : all) {
-        if (!gp.SEMIMAJOR_AXIS || !gp.ECCENTRICITY || !gp.INCLINATION || !gp.RA_OF_ASC_NODE || !gp.ARG_OF_PERICENTER ||
-            !gp.MEAN_ANOMALY) {
-            continue;
-        }
-        result.push_back(std::move(gp));
-    }
-    std::cout << "[helios] Loaded " << result.size() << " valid GP records from snapshot database\n";
-    return result;
-}
 
 int main(int argc, char* argv[])
 {
@@ -99,6 +82,7 @@ int main(int argc, char* argv[])
     window.bind("repropagate", [&](webui::window::event* event) {
         try {
             const nlohmann::json args = nlohmann::json::parse(event->get_string(0));
+            std::cout << "[helios] Repropagate request: " << args.dump() << "\n";
             const PropagationSettings rerunSettings(args);
 
             std::cout << "[helios] Repropagating: " << rerunSettings.propTime.in(min) << " / "
