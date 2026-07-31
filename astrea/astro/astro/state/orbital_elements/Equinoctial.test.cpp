@@ -311,14 +311,14 @@ TEST_F(EquinoctialTest, Getters)
 
 TEST_F(EquinoctialTest, ToVector)
 {
-    std::vector<Unitless> vec = state.force_to_vector();
+    std::vector<double> vec = state.force_to_double_vector();
     ASSERT_EQ(vec.size(), 6);
-    ASSERT_TRUE(math::nearly_equal(vec[0], p / (1.0 * km), REL_TOL));
-    ASSERT_TRUE(math::nearly_equal(vec[1], f, REL_TOL));
-    ASSERT_TRUE(math::nearly_equal(vec[2], g, REL_TOL));
-    ASSERT_TRUE(math::nearly_equal(vec[3], h, REL_TOL));
-    ASSERT_TRUE(math::nearly_equal(vec[4], k, REL_TOL));
-    ASSERT_TRUE(math::nearly_equal(vec[5], L / (1.0 * rad), REL_TOL));
+    ASSERT_NEAR(vec[0], p.numerical_value_in(km), 1.0e-6);
+    ASSERT_NEAR(vec[1], f.numerical_value_in(one), 1.0e-6);
+    ASSERT_NEAR(vec[2], g.numerical_value_in(one), 1.0e-6);
+    ASSERT_NEAR(vec[3], h.numerical_value_in(one), 1.0e-6);
+    ASSERT_NEAR(vec[4], k.numerical_value_in(one), 1.0e-6);
+    ASSERT_NEAR(vec[5], L.numerical_value_in(rad), 1.0e-6);
 }
 
 TEST_F(EquinoctialTest, Interpolate)
