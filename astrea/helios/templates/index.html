@@ -7,185 +7,9 @@
     <script src="/webui.js"></script>
     <title>Helios</title>
 
-    <link rel="shortcut icon" type="image/png" href="../../../docs/assets/images/astrea-color.png" />
-    <link rel="apple-touch-icon" href="../../../docs/assets/images/astrea-color.png" />
-
-    <style>
-        :root {
-            --bg0: #081226;
-            --bg1: #12304a;
-            --ink: #e9f4ff;
-            --muted: #93b6d8;
-            --earth: #2e78d8;
-            --earth-atmo: #5eb2ff;
-            --panel: rgba(3, 16, 33, 0.75);
-            --line: rgba(141, 194, 243, 0.35);
-            --accent: #5eb2ff;
-        }
-
-        * {
-            box-sizing: border-box;
-        }
-
-        body {
-            margin: 0;
-            min-height: 100vh;
-            color: var(--ink);
-            font-family: "IBM Plex Sans", "Segoe UI", sans-serif;
-            background: rgb(26, 26, 26);
-            overflow: hidden;
-        }
-
-        .star {
-            position: absolute;
-            background: white;
-            border-radius: 75%;
-            opacity: 0.6;
-        }
-
-        .hud {
-            position: fixed;
-            top: 14px;
-            left: 14px;
-            z-index: 10;
-            background: var(--panel);
-            border: 1px solid var(--line);
-            border-radius: 14px;
-            padding: 12px 14px;
-            backdrop-filter: blur(6px);
-            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.35);
-            max-width: min(92vw, 380px);
-        }
-
-        .title {
-            margin: 0 0 4px;
-            font-size: clamp(0.95rem, 2.4vw, 1.1rem);
-            letter-spacing: 0.04em;
-            text-transform: uppercase;
-            color: #d7ecff;
-        }
-
-        .metrics {
-            margin: 0 0 10px;
-            padding: 0;
-            list-style: none;
-            display: grid;
-            gap: 3px;
-            font-size: 0.88rem;
-        }
-
-        .metrics strong {
-            color: #fff;
-            font-weight: 600;
-        }
-
-        .controls {
-            display: flex;
-            flex-direction: column;
-            gap: 7px;
-            font-size: 0.85rem;
-            color: var(--muted);
-        }
-
-        .ctrl-row {
-            display: flex;
-            gap: 8px;
-        }
-
-        .ctrl-row.space-around {
-            justify-content: space-around;
-        }
-
-        .ctrl-row.space-between {
-            justify-content: space-between;
-        }
-
-        .ctrl-row label {
-            min-width: 80px;
-            color: var(--muted);
-        }
-
-        .ctrl-row input[type="range"] {
-            flex: 1;
-            accent-color: var(--accent);
-            cursor: pointer;
-        }
-
-        .ctrl-row input[type="number"] {
-            width: 70px;
-            background: rgba(255, 255, 255, 0.07);
-            border: 1px solid var(--line);
-            border-radius: 5px;
-            color: var(--ink);
-            padding: 2px 5px;
-            font-size: 0.85rem;
-        }
-
-        .ctrl-row span {
-            min-width: 34px;
-            text-align: right;
-            color: #fff;
-            font-size: 0.82rem;
-        }
-
-        .sep {
-            height: 1px;
-            background: var(--line);
-            margin: 4px 0;
-        }
-
-        button#repropBtn {
-            width: 100%;
-            padding: 6px 0;
-            background: linear-gradient(135deg, #1a6bb5, #0e4a8a);
-            border: 1px solid rgba(94, 178, 255, 0.4);
-            border-radius: 7px;
-            color: #d7ecff;
-            font-size: 0.88rem;
-            font-weight: 600;
-            letter-spacing: 0.03em;
-            cursor: pointer;
-            transition: opacity 0.15s;
-        }
-
-        button#repropBtn:hover:not(:disabled) {
-            opacity: 0.85;
-        }
-
-        button#repropBtn:disabled {
-            opacity: 0.45;
-            cursor: not-allowed;
-        }
-
-        .legend {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            margin-top: 6px;
-            font-size: 0.78rem;
-            color: var(--muted);
-        }
-
-        .legend-bar {
-            flex: 1;
-            height: 8px;
-            border-radius: 4px;
-            background: linear-gradient(to left,
-                    hsl(240, 100%, 65%), hsl(180, 100%, 65%), hsl(120, 100%, 65%), hsl(60, 100%, 65%), hsl(0, 100%, 65%));
-        }
-
-        .hint {
-            margin: 6px 0 0;
-            font-size: 0.76rem;
-            color: #5a8fba;
-        }
-
-        canvas {
-            width: 100vw;
-            height: 100vh;
-            display: block;
-        }
-    </style>
+    <link rel="shortcut icon" type="image/png" href="./docs/assets/images/astrea-color.png" />
+    <link rel="apple-touch-icon" href="/docs/assets/images/astrea-color.png" />
+    <link rel="stylesheet" href="./astrea/helios/css/style.css">
 </head>
 
 <body>
@@ -263,21 +87,13 @@
     </section>
     <canvas id="scene"></canvas>
 
+    <script src="./astrea/helios/js/main.js"></script>
     <script>
         let stats = __STATS__;
         let numeric = __NUMERIC__;
         let frames = __FRAMES__;
 
         // ---------- Metrics ----------
-        function updateMetrics() {
-            const throughputStr = stats.throughput.toLocaleString(undefined, { maximumFractionDigits: 0 });
-            document.getElementById("metrics").innerHTML = [
-                `<li><strong>${stats.objects.toLocaleString()}</strong> propagated objects</li>`,
-                `<li><strong>${stats.propMinutes.toFixed(1)} min</strong> prop &nbsp;·&nbsp; <strong>${stats.stepMinutes.toFixed(1)} min</strong> step &nbsp;·&nbsp; <strong>${stats.nFrames}</strong> frames</li>`,
-                `<li><strong>${stats.elapsedMs.toFixed(1)} ms</strong> propagation &nbsp;·&nbsp; <strong>${throughputStr}</strong> obj/s</li>`,
-                `<li id="simtime"><strong>T+0.0 min</strong></li>`
-            ].join("");
-        }
         updateMetrics();
 
         // ---------- Canvas ----------
@@ -291,16 +107,6 @@
             dragging: false, lastX: 0, lastY: 0,
             earthColor: "rgba(46, 120, 216, 1)"
         };
-
-        // ---------- Altitude colour ----------
-        function calculateColorByAltitude(x, y, z) {
-            const r = Math.sqrt(x * x + y * y + z * z);
-            const alt = r - numeric.earthRadiusKm;
-            const maxAlt = numeric.maxRadiusKm - numeric.earthRadiusKm;
-            const t = Math.max(0, Math.min(1, alt / Math.max(1, maxAlt)));
-            const hue = 240 * t; // blue (LEO) → red (HEO)
-            return `hsl(${hue.toFixed(0)},100%,65%)`;
-        }
 
         // ---------- Interaction ----------
         canvas.addEventListener("mousedown", (e) => {
@@ -420,131 +226,6 @@
             }
         });
 
-        // Updates the scene with a new propagation result
-        function updatePropagation(result) {
-            frames = result.frames;
-            numeric = result.numeric;
-            stats = result.stats;
-            state.simProgress = 0;
-            updateMetrics();
-        }
-
-        // ---------- Resize ----------
-        function resize() {
-            const dpr = Math.max(1, Math.min(2, window.devicePixelRatio || 1));
-            canvas.width = Math.floor(window.innerWidth * dpr);
-            canvas.height = Math.floor(window.innerHeight * dpr);
-            context.setTransform(dpr, 0, 0, dpr, 0, 0);
-        }
-
-        // ---------- Draw ----------
-        function draw() {
-            if (frames.length > 1) {
-                state.simProgress = (state.simProgress + state.speed / stats.nFrames) % frames.length;
-            }
-            const f0 = Math.floor(state.simProgress) % frames.length;
-            const f1 = (f0 + 1) % frames.length;
-            const blend = state.simProgress - Math.floor(state.simProgress);
-
-            const simEl = document.getElementById("simtime");
-            if (simEl) simEl.innerHTML = `<strong>T+${(f0 * stats.stepMinutes).toFixed(1)} min</strong>`;
-
-            const w = window.innerWidth, h = window.innerHeight;
-            const cx = w * 0.5, cy = h * 0.54;
-
-            context.clearRect(0, 0, w, h);
-
-            const span = Math.max(numeric.maxRadiusKm, numeric.earthRadiusKm * 1.6);
-            const scale = Math.min(w, h) * 0.43 / span * state.zoom;
-
-            const cosA = Math.cos(state.az), sinA = Math.sin(state.az);
-            const cosE = Math.cos(state.el), sinE = Math.sin(state.el);
-
-            // Project ECI [x,y,z] → canvas {x, y, z (depth), d (perspective factor)}
-            const project = (p) => {
-                const rx = p[0] * cosA + p[1] * sinA;
-                const ry = -p[0] * sinA + p[1] * cosA;
-                const rz = p[2];
-                const fx = rx * cosE + rz * sinE;
-                const fy = ry;
-                const fz = -rx * sinE + rz * cosE;
-                const depth = 1.0 / (1.0 + fx / (span * 2.8));
-                return { x: cx + fy * scale * depth, y: cy - fz * scale * depth, z: fx, d: depth };
-            };
-
-            const earthCenter = project([0, 0, 0]);
-
-            // Earth radius in pixels: scale-based only, not perspective-distorted
-            const earthRadiusPx = Math.max(2, numeric.earthRadiusKm * scale);
-
-            // // Atmospheric glow
-            // const glow = context.createRadialGradient(
-            //     earthCenter.x, earthCenter.y, earthRadiusPx * 0.4,
-            //     earthCenter.x, earthCenter.y, earthRadiusPx * 2.5
-            // );
-            // glow.addColorStop(0, "rgba(94,178,255,0.30)");
-            // glow.addColorStop(1, "rgba(94,178,255,0.00)");
-            // context.fillStyle = glow;
-            // context.beginPath();
-            // context.arc(earthCenter.x, earthCenter.y, earthRadiusPx * 1.1, 0, Math.PI * 2);
-            // context.fill();
-
-            // Earth body
-            context.fillStyle = state.earthColor;
-            context.beginPath();
-            context.arc(earthCenter.x, earthCenter.y, earthRadiusPx, 0, Math.PI * 2);
-            context.fill();
-
-            // // Latitude lines
-            // context.strokeStyle = "rgba(208,235,255,0.24)";
-            // context.lineWidth = 1;
-            // for (let i = -9; i <= 9; i++) {
-            //     const yOff = i * earthRadiusPx * 0.1;
-            //     const rx2 = earthRadiusPx * Math.sqrt(Math.max(0, 1 - Math.pow(yOff / earthRadiusPx, 2)));
-            //     context.beginPath();
-            //     context.ellipse(earthCenter.x, earthCenter.y + yOff, rx2, rx2 * 0.22, 0, 0, Math.PI * 2);
-            //     context.stroke();
-            // }
-
-            // Objects – coloured by current altitude
-            const frame0 = frames[f0], frame1 = frames[f1];
-            for (let i = 0; i < frame0.length; i++) {
-                const a = frame0[i], b = frame1[i];
-                const lx = a[0] + blend * (b[0] - a[0]);
-                const ly = a[1] + blend * (b[1] - a[1]);
-                const lz = a[2] + blend * (b[2] - a[2]);
-                const p = project([lx, ly, lz]);
-                if (p.z > span * 0.9) { continue; }
-                const alpha = Math.max(0.18, Math.min(1, 0.22 + 0.78 * p.d));
-                const r = Math.max(0.7, Math.min(2.3, 1.1 * p.d));
-                context.fillStyle = calculateColorByAltitude(lx, ly, lz);
-                context.globalAlpha = alpha;
-                context.beginPath();
-                context.arc(p.x, p.y, r, 0, Math.PI * 2);
-                context.fill();
-            }
-            context.globalAlpha = 1.0;
-
-            requestAnimationFrame(draw);
-        }
-
-        // Function to create multiple stars
-        function createStars() {
-            const numberOfStars = 500;
-            for (let i = 0; i < numberOfStars; i++) {
-                const star = document.createElement('div');
-                star.classList.add('star');
-
-                // Random size, and position for each star
-                const size = Math.random() * 1 + 1;
-                star.style.width = `${size}px`;
-                star.style.height = `${size}px`;
-                star.style.left = `${Math.random() * 100}vw`;
-                star.style.top = `${Math.random() * 100}vh`;
-
-                document.body.appendChild(star);
-            }
-        }
         createStars();
 
         window.addEventListener("resize", resize);
