@@ -158,7 +158,7 @@ TEST_F(EquationsOfMotionTest, ComputeKinematicsWithAttitude)
     ASSERT_NO_THROW(result = eomDefault.compute_kinematics(stateWithAttitude, vehicle, noTorque, noTorque));
 
     // Verify that we get valid attitude partials (check structure exists)
-    ASSERT_NO_THROW(result.force_to_vector());
+    ASSERT_NO_THROW(result.force_to_double_vector());
 }
 
 // Test operator() with different force scenarios
@@ -190,7 +190,7 @@ TEST_F(EquationsOfMotionTest, OperatorCallWithAttitude)
     ASSERT_EQ(result.get_epoch(), epoch);
 
     // The result should include attitude partials when attitude is present
-    auto vectorResult = result.force_to_vector();
+    auto vectorResult = result.force_to_double_vector();
     ASSERT_GT(vectorResult.size(), 6); // Should have more than just 6 orbital elements
 }
 
@@ -205,7 +205,7 @@ TEST_F(EquationsOfMotionTest, OperatorCallWithoutAttitude)
     ASSERT_EQ(result.get_epoch(), epoch);
 
     // The result should only have orbital elements (6 components)
-    auto vectorResult = result.force_to_vector();
+    auto vectorResult = result.force_to_double_vector();
     ASSERT_EQ(vectorResult.size(), 6); // Should have exactly 6 orbital elements
 }
 

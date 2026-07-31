@@ -255,13 +255,18 @@ Equinoctial<_frame_>
 }
 
 template <IsFrame auto _frame_>
-std::vector<Unitless> Equinoctial<_frame_>::force_to_vector() const
+std::vector<double> Equinoctial<_frame_>::force_to_double_vector() const
 {
-    return { _semilatus / _semilatus.unit, _f, _g, _h, _k, _trueLongitude / _trueLongitude.unit };
+    return { _semilatus.numerical_value_in(_semilatus.unit),
+             _f.numerical_value_in(_f.unit),
+             _g.numerical_value_in(_g.unit),
+             _h.numerical_value_in(_h.unit),
+             _k.numerical_value_in(_k.unit),
+             _trueLongitude.numerical_value_in(_trueLongitude.unit) };
 }
 
 template <IsFrame auto _frame_>
-Equinoctial<_frame_> Equinoctial<_frame_>::from_vector(const std::vector<Unitless>& vec)
+Equinoctial<_frame_> Equinoctial<_frame_>::from_double_vector(const std::vector<double>& vec)
 {
     using mp_units::angular::unit_symbols::rad;
     using mp_units::si::unit_symbols::km;
@@ -278,14 +283,14 @@ Equinoctial<_frame_> EquinoctialPartial<_frame_>::operator*(const Time& time) co
 }
 
 template <IsFrame auto _frame_>
-std::vector<Unitless> EquinoctialPartial<_frame_>::force_to_vector() const
+std::vector<double> EquinoctialPartial<_frame_>::force_to_double_vector() const
 {
-    return { _semilatusPartial / _semilatusPartial.unit,
-             _fPartial / _fPartial.unit,
-             _gPartial / _gPartial.unit,
-             _hPartial / _hPartial.unit,
-             _kPartial / _kPartial.unit,
-             _trueLongitudePartial / _trueLongitudePartial.unit };
+    return { _semilatusPartial.numerical_value_in(_semilatusPartial.unit),
+             _fPartial.numerical_value_in(_fPartial.unit),
+             _gPartial.numerical_value_in(_gPartial.unit),
+             _hPartial.numerical_value_in(_hPartial.unit),
+             _kPartial.numerical_value_in(_kPartial.unit),
+             _trueLongitudePartial.numerical_value_in(_trueLongitudePartial.unit) };
 }
 
 template <IsFrame auto _frame_>
