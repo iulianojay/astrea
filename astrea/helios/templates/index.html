@@ -32,7 +32,7 @@
             min-height: 100vh;
             color: var(--ink);
             font-family: "IBM Plex Sans", "Segoe UI", sans-serif;
-            background: black;
+            background: rgb(26, 26, 26);
             overflow: hidden;
         }
 
@@ -40,7 +40,7 @@
             position: absolute;
             background: white;
             border-radius: 75%;
-            opacity: 0.8;
+            opacity: 0.6;
         }
 
         .hud {
@@ -282,18 +282,18 @@
 
         // ---------- Canvas ----------
         const canvas = document.getElementById("scene");
-        const ctx = canvas.getContext("2d");
+        const context = canvas.getContext("2d");
 
         const state = {
             simProgress: 0,
             speed: 1.0,
             az: 0, el: 0, zoom: 1.0,
             dragging: false, lastX: 0, lastY: 0,
-            earthColor: "#2e78d8"
+            earthColor: "rgba(46, 120, 216, 1)"
         };
 
         // ---------- Altitude colour ----------
-        function altColor(x, y, z) {
+        function calculateColorByAltitude(x, y, z) {
             const r = Math.sqrt(x * x + y * y + z * z);
             const alt = r - numeric.earthRadiusKm;
             const maxAlt = numeric.maxRadiusKm - numeric.earthRadiusKm;
@@ -405,7 +405,7 @@
             }
 
             btn.disabled = true;
-            btn.textContent = "[helios] Propagating…";
+            btn.textContent = "Propagating…";
             try {
                 const raw = await webui.call("repropagate", settings);
                 const result = JSON.parse(raw);
@@ -434,7 +434,7 @@
             const dpr = Math.max(1, Math.min(2, window.devicePixelRatio || 1));
             canvas.width = Math.floor(window.innerWidth * dpr);
             canvas.height = Math.floor(window.innerHeight * dpr);
-            ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+            context.setTransform(dpr, 0, 0, dpr, 0, 0);
         }
 
         // ---------- Draw ----------
@@ -452,7 +452,7 @@
             const w = window.innerWidth, h = window.innerHeight;
             const cx = w * 0.5, cy = h * 0.54;
 
-            ctx.clearRect(0, 0, w, h);
+            context.clearRect(0, 0, w, h);
 
             const span = Math.max(numeric.maxRadiusKm, numeric.earthRadiusKm * 1.6);
             const scale = Math.min(w, h) * 0.43 / span * state.zoom;
@@ -477,34 +477,34 @@
             // Earth radius in pixels: scale-based only, not perspective-distorted
             const earthRadiusPx = Math.max(2, numeric.earthRadiusKm * scale);
 
-            // Atmospheric glow
-            const glow = ctx.createRadialGradient(
-                earthCenter.x, earthCenter.y, earthRadiusPx * 0.4,
-                earthCenter.x, earthCenter.y, earthRadiusPx * 2.5
-            );
-            glow.addColorStop(0, "rgba(94,178,255,0.30)");
-            glow.addColorStop(1, "rgba(94,178,255,0.00)");
-            ctx.fillStyle = glow;
-            ctx.beginPath();
-            ctx.arc(earthCenter.x, earthCenter.y, earthRadiusPx * 2.5, 0, Math.PI * 2);
-            ctx.fill();
+            // // Atmospheric glow
+            // const glow = context.createRadialGradient(
+            //     earthCenter.x, earthCenter.y, earthRadiusPx * 0.4,
+            //     earthCenter.x, earthCenter.y, earthRadiusPx * 2.5
+            // );
+            // glow.addColorStop(0, "rgba(94,178,255,0.30)");
+            // glow.addColorStop(1, "rgba(94,178,255,0.00)");
+            // context.fillStyle = glow;
+            // context.beginPath();
+            // context.arc(earthCenter.x, earthCenter.y, earthRadiusPx * 1.1, 0, Math.PI * 2);
+            // context.fill();
 
             // Earth body
-            ctx.fillStyle = state.earthColor;
-            ctx.beginPath();
-            ctx.arc(earthCenter.x, earthCenter.y, earthRadiusPx, 0, Math.PI * 2);
-            ctx.fill();
+            context.fillStyle = state.earthColor;
+            context.beginPath();
+            context.arc(earthCenter.x, earthCenter.y, earthRadiusPx, 0, Math.PI * 2);
+            context.fill();
 
-            // Latitude lines
-            ctx.strokeStyle = "rgba(208,235,255,0.24)";
-            ctx.lineWidth = 1;
-            for (let i = -2; i <= 2; i++) {
-                const yOff = i * earthRadiusPx * 0.32;
-                const rx2 = earthRadiusPx * Math.sqrt(Math.max(0, 1 - Math.pow(yOff / earthRadiusPx, 2)));
-                ctx.beginPath();
-                ctx.ellipse(earthCenter.x, earthCenter.y + yOff, rx2, rx2 * 0.22, 0, 0, Math.PI * 2);
-                ctx.stroke();
-            }
+            // // Latitude lines
+            // context.strokeStyle = "rgba(208,235,255,0.24)";
+            // context.lineWidth = 1;
+            // for (let i = -9; i <= 9; i++) {
+            //     const yOff = i * earthRadiusPx * 0.1;
+            //     const rx2 = earthRadiusPx * Math.sqrt(Math.max(0, 1 - Math.pow(yOff / earthRadiusPx, 2)));
+            //     context.beginPath();
+            //     context.ellipse(earthCenter.x, earthCenter.y + yOff, rx2, rx2 * 0.22, 0, 0, Math.PI * 2);
+            //     context.stroke();
+            // }
 
             // Objects – coloured by current altitude
             const frame0 = frames[f0], frame1 = frames[f1];
@@ -517,36 +517,34 @@
                 if (p.z > span * 0.9) { continue; }
                 const alpha = Math.max(0.18, Math.min(1, 0.22 + 0.78 * p.d));
                 const r = Math.max(0.7, Math.min(2.3, 1.1 * p.d));
-                ctx.fillStyle = altColor(lx, ly, lz);
-                ctx.globalAlpha = alpha;
-                ctx.beginPath();
-                ctx.arc(p.x, p.y, r, 0, Math.PI * 2);
-                ctx.fill();
+                context.fillStyle = calculateColorByAltitude(lx, ly, lz);
+                context.globalAlpha = alpha;
+                context.beginPath();
+                context.arc(p.x, p.y, r, 0, Math.PI * 2);
+                context.fill();
             }
-            ctx.globalAlpha = 1.0;
+            context.globalAlpha = 1.0;
 
             requestAnimationFrame(draw);
         }
 
         // Function to create multiple stars
         function createStars() {
-            const numberOfStars = 500; // Adjust for more or fewer stars
+            const numberOfStars = 500;
             for (let i = 0; i < numberOfStars; i++) {
                 const star = document.createElement('div');
                 star.classList.add('star');
 
-                // Random size, position, and animation duration for each star
+                // Random size, and position for each star
                 const size = Math.random() * 1 + 1;
                 star.style.width = `${size}px`;
                 star.style.height = `${size}px`;
                 star.style.left = `${Math.random() * 100}vw`;
                 star.style.top = `${Math.random() * 100}vh`;
-                star.style.animationDuration = `${Math.random() * 2 + 1}s`;
 
                 document.body.appendChild(star);
             }
         }
-
         createStars();
 
         window.addEventListener("resize", resize);
