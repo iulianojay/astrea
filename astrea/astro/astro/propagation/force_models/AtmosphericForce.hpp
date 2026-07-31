@@ -55,6 +55,13 @@ class AtmosphericForce : public PerturbingForce {
      * @return Perturbation The computed force and torque due to atmospheric force.
      */
     Perturbation compute_perturbation(const State& state, const Vehicle& vehicle) const override;
+
+    /**
+     * @brief Creates a clone of the current AtmosphericForce object.
+     *
+     * @return std::unique_ptr<PerturbingForce> A unique pointer to the cloned AtmosphericForce object.
+     */
+    std::unique_ptr<PerturbingForce> clone() const override { return std::make_unique<AtmosphericForce>(*this); }
 };
 
 } // namespace astro

@@ -79,6 +79,12 @@ int main()
 
             return partials;
         }
+
+        // Required clone function to help with polymorphic copying of the equations of motion object.
+        std::unique_ptr<EquationsOfMotion> clone() const override
+        {
+            return std::make_unique<MyEquationsOfMotion>(*this);
+        }
     };
     MyEquationsOfMotion myEoms;
 

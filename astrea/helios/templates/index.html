@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="/webui.js"></script>
+    <title>Helios</title>
+
+    <link rel="icon" type="image/png" href="./docs/assets/images/astrea-color.png" />
+    <link rel="shortcut icon" type="image/png" href="./docs/assets/images/astrea-color.png" />
+    <link rel="apple-touch-icon" type="image/png" href="./docs/assets/images/astrea-color.png" />
+    <link rel="stylesheet" href="./astrea/helios/css/style.css">
+</head>
+
+<body>
+    <section class="hud">
+        <h1 class="title">Propagation with Astrea</h1>
+        <ul class="metrics" id="metrics"></ul>
+
+        <div class="controls">
+            <div class="ctrl-row">
+                <label>Speed</label>
+                <input type="range" id="speedSlider" min="0.1" max="10" step="0.1" value="1.0">
+                <span id="speedVal">1.0×</span>
+            </div>
+
+            <div class="sep"></div>
+
+            <div class="ctrl-row space-around">
+                <div class="ctrl-col">
+                    <label>Prop (min)</label>
+                    <input type="number" id="propMin" value="90" min="1" max="2880" step="1">
+                </div>
+                <div class="ctrl-col">
+                    <label>Step (min)</label>
+                    <input type="number" id="stepMin" value="5" min="0.5" max="60" step="0.5">
+                </div>
+            </div>
+
+            <div class="ctrl-row space-around">
+                <div class="ctrl-col">
+                    <label>Oblateness:</label>
+                </div>
+                <div class="ctrl-col">
+                    <label>10×10</label>
+                    <input type="checkbox" id="10x10" value="no">
+                </div>
+                <div class="ctrl-col">
+                    <label>40×40</label>
+                    <input type="checkbox" id="40x40" value="no">
+                </div>
+                <div class="ctrl-col">
+                    <label>80×80</label>
+                    <input type="checkbox" id="80x80" value="no">
+                </div>
+            </div>
+
+            <div class="ctrl-row space-around">
+                <div class="ctrl-col">
+                    <label>Other Perts:</label>
+                </div>
+                <div class="ctrl-col">
+                    <label>SRP</label>
+                    <input type="checkbox" id="srp" value="no">
+                </div>
+                <div class="ctrl-col">
+                    <label>N-Body</label>
+                    <input type="checkbox" id="nbody" value="no">
+                </div>
+                <div class="ctrl-col">
+                    <label>Drag</label>
+                    <input type="checkbox" id="drag" value="no">
+                </div>
+            </div>
+
+            <div class="sep"></div>
+
+            <button id="repropBtn">Repropagate</button>
+        </div>
+
+        <div class="legend">
+            <span>LEO</span>
+            <div class="legend-bar"></div>
+            <span>GEO</span>
+        </div>
+        <p class="hint">drag to rotate &nbsp;·&nbsp; scroll to zoom</p>
+    </section>
+    <canvas id="scene"></canvas>
+
+    <script src="./astrea/helios/js/main.js"></script>
+    <script>
+        let stats = __STATS__;
+        let numeric = __NUMERIC__;
+        let frames = __FRAMES__;
+
+        // ---------- Metrics ----------
+        updateMetrics();
+
+        // ---------- Canvas ----------
+        const canvas = document.getElementById("scene");
+        const context = canvas.getContext("2d");
+
+        const state = {
+            simProgress: 0,
+            speed: 1.0,
+            az: 0, el: 0, zoom: 1.0,
+            dragging: false, lastX: 0, lastY: 0
+        };
+
+        // ---------- Interaction ----------
+        canvas.addEventListener("mousedown", (e) => {
+            state.dragging = true; state.lastX = e.clientX; state.lastY = e.clientY;
+            canvas.style.cursor = "grabbing";
+        });
+        canvas.addEventListener("mousemove", (e) => {
+            if (!state.dragging) return;
+            state.az += (e.clientX - state.lastX) * 0.005;
+            state.el = Math.max(-1.4, Math.min(1.4, state.el - (e.clientY - state.lastY) * 0.005));
+            state.lastX = e.clientX; state.lastY = e.clientY;
+        });
+        canvas.addEventListener("mouseup", () => { state.dragging = false; canvas.style.cursor = "grab"; });
+        canvas.addEventListener("mouseleave", () => { state.dragging = false; canvas.style.cursor = "grab"; });
+        canvas.style.cursor = "grab";
+
+        canvas.addEventListener("wheel", (e) => {
+            e.preventDefault();
+            state.zoom = Math.max(0.15, Math.min(20.0, state.zoom * (e.deltaY < 0 ? 1.1 : 0.91)));
+        }, { passive: false });
+
+        let lastTouchDist = null;
+        canvas.addEventListener("touchstart", (e) => {
+            if (e.touches.length === 1) { state.dragging = true; state.lastX = e.touches[0].clientX; state.lastY = e.touches[0].clientY; }
+            else if (e.touches.length === 2) {
+                lastTouchDist = Math.hypot(e.touches[0].clientX - e.touches[1].clientX, e.touches[0].clientY - e.touches[1].clientY);
+            }
+        }, { passive: true });
+        canvas.addEventListener("touchmove", (e) => {
+            if (e.touches.length === 1 && state.dragging) {
+                state.az += (e.touches[0].clientX - state.lastX) * 0.005;
+                state.el = Math.max(-1.4, Math.min(1.4, state.el - (e.touches[0].clientY - state.lastY) * 0.005));
+                state.lastX = e.touches[0].clientX; state.lastY = e.touches[0].clientY;
+            } else if (e.touches.length === 2 && lastTouchDist !== null) {
+                const d = Math.hypot(e.touches[0].clientX - e.touches[1].clientX, e.touches[0].clientY - e.touches[1].clientY);
+                state.zoom = Math.max(0.15, Math.min(20.0, state.zoom * (d / lastTouchDist)));
+                lastTouchDist = d;
+            }
+        }, { passive: true });
+        canvas.addEventListener("touchend", () => { state.dragging = false; lastTouchDist = null; }, { passive: true });
+
+        // ---------- Speed slider ----------
+        const speedSlider = document.getElementById("speedSlider");
+        const speedVal = document.getElementById("speedVal");
+        speedSlider.addEventListener("input", () => {
+            state.speed = parseFloat(speedSlider.value);
+            speedVal.textContent = state.speed.toFixed(1) + "×";
+        });
+
+        // ---------- Gravity checkboxes ----------
+        document.getElementById("10x10").addEventListener("click", () => {
+            const cb = document.getElementById("10x10");
+            if (cb.checked) {
+                document.getElementById("40x40").checked = false;
+                document.getElementById("80x80").checked = false;
+            }
+        });
+        document.getElementById("40x40").addEventListener("click", () => {
+            const cb = document.getElementById("40x40");
+            if (cb.checked) {
+                document.getElementById("10x10").checked = false;
+                document.getElementById("80x80").checked = false;
+            }
+        });
+        document.getElementById("80x80").addEventListener("click", () => {
+            const cb = document.getElementById("80x80");
+            if (cb.checked) {
+                document.getElementById("10x10").checked = false;
+                document.getElementById("40x40").checked = false;
+            }
+        });
+
+        // ---------- Repropagate button ----------
+        document.getElementById("repropBtn").addEventListener("click", async () => {
+
+            const btn = document.getElementById("repropBtn");
+
+            // Parse the options and send a repropagate request to the backend
+            const propMin = parseFloat(document.getElementById("propMin").value);
+            const stepMin = parseFloat(document.getElementById("stepMin").value);
+            const ten = document.getElementById("10x10").checked;
+            const fourty = document.getElementById("40x40").checked;
+            const eighty = document.getElementById("80x80").checked;
+            const srp = document.getElementById("srp").checked;
+            const nbody = document.getElementById("nbody").checked;
+            const drag = document.getElementById("drag").checked;
+
+            const settings = JSON.stringify({
+                "propMin": propMin,
+                "stepMin": stepMin,
+                "ten": ten,
+                "fourty": fourty,
+                "eighty": eighty,
+                "srp": srp,
+                "nbody": nbody,
+                "drag": drag
+            });
+
+            if (isNaN(propMin) || propMin <= 0 || isNaN(stepMin) || stepMin <= 0) {
+                console.error("[helios] Invalid input: Propagation and step minutes must be positive numbers.");
+                return;
+            }
+
+            btn.disabled = true;
+            btn.textContent = "Propagating…";
+            try {
+                const raw = await webui.call("repropagate", settings);
+                const result = JSON.parse(raw);
+                if (!result.error) {
+                    updatePropagation(result);
+                } else {
+                    console.error("[helios] Repropagate error:", result.error);
+                }
+            } finally {
+                btn.disabled = false;
+                btn.textContent = "Repropagate";
+            }
+        });
+
+        createStars();
+
+        window.addEventListener("resize", resize);
+        resize();
+        draw();
+    </script>
+</body>
+
+</html>
