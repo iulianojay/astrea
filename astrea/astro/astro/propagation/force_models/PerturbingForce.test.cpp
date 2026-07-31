@@ -39,6 +39,7 @@ class DummyForce : public PerturbingForce {
         return { .force  = ForceVector<frames::earth::icrf>(0.0 * N, 0.0 * N, 0.0 * N),
                  .torque = TorqueVector<frames::earth::icrf>(0.0 * N * m, 0.0 * N * m, 0.0 * N * m) };
     }
+    std::unique_ptr<PerturbingForce> clone() const override { return std::make_unique<DummyForce>(*this); }
 };
 
 class ForceTest : public testing::Test {
