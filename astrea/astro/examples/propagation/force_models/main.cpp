@@ -63,6 +63,8 @@ int main()
             return { .force = thrustForce, .torque = thrustTorque };
         }
 
+        std::unique_ptr<PerturbingForce> clone() const override { return std::make_unique<ContinuousThrust>(*this); }
+
       private:
         std::string _name;
     };

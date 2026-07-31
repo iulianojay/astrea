@@ -19,6 +19,24 @@
 namespace astrea {
 namespace astro {
 
+ForceModel::ForceModel(const ForceModel& other)
+{
+    for (const auto& [name, force] : other.forces) {
+        forces.emplace(name, force->clone());
+    }
+}
+
+ForceModel& ForceModel::operator=(const ForceModel& other)
+{
+    if (this != &other) {
+        forces.clear();
+        for (const auto& [name, force] : other.forces) {
+            forces.emplace(name, force->clone());
+        }
+    }
+    return *this;
+}
+
 Perturbation ForceModel::compute_perturbations(const State& state, const Vehicle& vehicle) const
 {
     Perturbation sum; // defaults to zero

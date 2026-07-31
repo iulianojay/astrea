@@ -85,6 +85,13 @@ class KeplerianVop : public EquationsOfMotion {
         return OrbitalElements::get_set_id<Keplerian<frames::primary>>();
     };
 
+    /**
+     * @brief Creates a clone of the current Keplerian VOP object.
+     *
+     * @return std::unique_ptr<EquationsOfMotion> A unique pointer to the cloned Keplerian VOP object.
+     */
+    std::unique_ptr<EquationsOfMotion> clone() const override { return std::make_unique<KeplerianVop>(*this); }
+
   private:
     const Unitless checkTol = 1e-10 * mp_units::one; //!< Tolerance for checking conditions.
     GravParam mu;                                    //!< Gravitational parameter of the central body.

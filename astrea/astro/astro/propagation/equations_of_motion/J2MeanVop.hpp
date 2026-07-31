@@ -74,7 +74,17 @@ class J2MeanVop : public EquationsOfMotion {
      *
      * @return std::size_t The expected set id of orbital elements.
      */
-    constexpr std::size_t get_expected_set_id() const override { return OrbitalElements::get_set_id<Keplerian<frames::primary>>(); };
+    constexpr std::size_t get_expected_set_id() const override
+    {
+        return OrbitalElements::get_set_id<Keplerian<frames::primary>>();
+    };
+
+    /**
+     * @brief Creates a clone of the current J2 Mean VOP object.
+     *
+     * @return std::unique_ptr<EquationsOfMotion> A unique pointer to the cloned J2 Mean VOP object.
+     */
+    std::unique_ptr<EquationsOfMotion> clone() const override { return std::make_unique<J2MeanVop>(*this); }
 
   private:
     const Unitless eccTol = 1e-10 * mp_units::one;                        //!< Tolerance for checking eccentricity.

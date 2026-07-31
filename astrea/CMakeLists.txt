@@ -10,6 +10,7 @@
 # add_subdirectory(trace)
 add_subdirectory(astro)
 add_subdirectory(math)
+add_subdirectory(helios)
 # add_subdirectory(pathfinder)
 add_subdirectory(snapshot)
 add_subdirectory(utilities)
@@ -30,6 +31,7 @@ target_link_libraries(astrea INTERFACE
     utilities_shared
     astro_shared
     snapshot_shared
+    helios_shared
     trace_shared
 )
 
@@ -42,6 +44,7 @@ if(${BUILD_STATIC})
         utilities_static
         astro_static
         snapshot_static
+        helios_static
         trace_static
     )
 endif()

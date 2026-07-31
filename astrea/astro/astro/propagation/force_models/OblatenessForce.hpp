@@ -109,6 +109,16 @@ class OblatenessForce : public PerturbingForce {
      */
     Perturbation compute_perturbation(const State& state, const Vehicle& vehicle) const;
 
+    /**
+     * @brief Creates a clone of the current OblatenessForce object.
+     *
+     * @return std::unique_ptr<PerturbingForce> A unique pointer to the cloned OblatenessForce object.
+     */
+    std::unique_ptr<PerturbingForce> clone() const override
+    {
+        return std::make_unique<OblatenessForce<_body_, _degree_, _order_>>(*this);
+    }
+
   private:
     const LegendreCache<_body_, _degree_, _order_> _legendreCache; //!< Cache for Legendre polynomials and coefficients
 };
