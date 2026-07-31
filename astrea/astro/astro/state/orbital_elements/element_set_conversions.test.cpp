@@ -248,9 +248,9 @@ TEST_F(OrbitalElementsTest, DivisionByTime)
 
 TEST_F(OrbitalElementsTest, ToVector)
 {
-    ASSERT_NO_THROW(_cartElements.force_to_vector());
-    ASSERT_NO_THROW(_keplElements.force_to_vector());
-    ASSERT_NO_THROW(_equiElements.force_to_vector());
+    ASSERT_NO_THROW(_cartElements.force_to_double_vector());
+    ASSERT_NO_THROW(_keplElements.force_to_double_vector());
+    ASSERT_NO_THROW(_equiElements.force_to_double_vector());
 }
 
 TEST_F(OrbitalElementsTest, InterpolateCartesian)

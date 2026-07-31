@@ -611,9 +611,9 @@ class AngularAccelerations {
      */
     UniformElementArray<3, AngularAcceleration> force_to_element_array() const
     {
-        return { _angularAccels[0] / _angularAccels[0].unit,
-                 _angularAccels[1] / _angularAccels[1].unit,
-                 _angularAccels[2] / _angularAccels[2].unit };
+        return { _angularAccels[0].numerical_value_in(_angularAccels[0].unit),
+                 _angularAccels[1].numerical_value_in(_angularAccels[1].unit),
+                 _angularAccels[2].numerical_value_in(_angularAccels[2].unit) };
     }
 
   private:

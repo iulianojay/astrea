@@ -31,13 +31,15 @@ bool nearly_equal(
     const std::vector<Unitless>& absTol
 ) noexcept
 {
+    using mp_units::one;
+
     if (first.index() != second.index()) { return false; }
 
-    auto firstUnitless  = first.force_to_vector();
-    auto secondUnitless = second.force_to_vector();
+    auto firstUnitless  = first.force_to_double_vector();
+    auto secondUnitless = second.force_to_double_vector();
     const int maxIdx    = ignoreFastVariable ? 5 : 6;
     for (int ii = 0; ii < maxIdx; ii++) {
-        if (!math::nearly_equal(firstUnitless[ii], secondUnitless[ii], relTol, absTol.size() == 1 ? absTol[0] : absTol[ii])) {
+        if (!math::nearly_equal(firstUnitless[ii] * one, secondUnitless[ii] * one, relTol, absTol.size() == 1 ? absTol[0] : absTol[ii])) {
             std::cout << "First: " << first << std::endl;
             std::cout << "Second: " << second << std::endl;
             std::cout << "Element " << ii << " differs: " << firstUnitless[ii] << " vs " << secondUnitless[ii] << std::endl;
@@ -49,14 +51,14 @@ bool nearly_equal(
 
 bool nearly_equal(const OrbitalElementPartials& first, const OrbitalElementPartials& second, const Unitless& relTol, const std::vector<Unitless>& absTol) noexcept
 {
+    using mp_units::one;
+
     if (first.index() != second.index()) { return false; }
 
-    // arbitrary normalization. shouldn't affect relative size
-    const Time scale                         = 1.0 * mp_units::si::unit_symbols::s;
-    const std::vector<Unitless> firstScaled  = (first * scale).force_to_vector();
-    const std::vector<Unitless> secondScaled = (second * scale).force_to_vector();
+    const auto firstScaled  = first.force_to_double_vector();
+    const auto secondScaled = second.force_to_double_vector();
     for (int ii = 0; ii < 6; ii++) {
-        if (!math::nearly_equal(firstScaled[ii], secondScaled[ii], relTol, absTol.size() == 1 ? absTol[0] : absTol[ii])) {
+        if (!math::nearly_equal(firstScaled[ii] * one, secondScaled[ii] * one, relTol, absTol.size() == 1 ? absTol[0] : absTol[ii])) {
             std::cout << "First: " << first << std::endl;
             std::cout << "Second: " << second << std::endl;
             std::cout << "Element " << ii << " differs: " << firstScaled[ii] << " vs " << secondScaled[ii] << std::endl;

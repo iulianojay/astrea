@@ -387,14 +387,14 @@ TEST_F(CartesianTest, GetVz) { ASSERT_TRUE(math::nearly_equal(state.get_vz(), vz
 
 TEST_F(CartesianTest, ToVector)
 {
-    std::vector<Unitless> vec = state.force_to_vector();
+    std::vector<double> vec = state.force_to_double_vector();
     ASSERT_EQ(vec.size(), 6);
-    ASSERT_TRUE(math::nearly_equal(vec[0], x / (1.0 * km), REL_TOL));
-    ASSERT_TRUE(math::nearly_equal(vec[1], y / (1.0 * km), REL_TOL));
-    ASSERT_TRUE(math::nearly_equal(vec[2], z / (1.0 * km), REL_TOL));
-    ASSERT_TRUE(math::nearly_equal(vec[3], vx / (1.0 * km / s), REL_TOL));
-    ASSERT_TRUE(math::nearly_equal(vec[4], vy / (1.0 * km / s), REL_TOL));
-    ASSERT_TRUE(math::nearly_equal(vec[5], vz / (1.0 * km / s), REL_TOL));
+    ASSERT_NEAR(vec[0], x.numerical_value_in(km), 1.0e-6);
+    ASSERT_NEAR(vec[1], y.numerical_value_in(km), 1.0e-6);
+    ASSERT_NEAR(vec[2], z.numerical_value_in(km), 1.0e-6);
+    ASSERT_NEAR(vec[3], vx.numerical_value_in(km / s), 1.0e-6);
+    ASSERT_NEAR(vec[4], vy.numerical_value_in(km / s), 1.0e-6);
+    ASSERT_NEAR(vec[5], vz.numerical_value_in(km / s), 1.0e-6);
 }
 
 TEST_F(CartesianTest, Interpolate)

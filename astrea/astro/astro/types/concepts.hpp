@@ -84,13 +84,13 @@ concept HasIterpolate =
     };
 
 /**
- * @brief Concept to check if a type can be converted to a vector of Unitless.
+ * @brief Concept to check if a type can be converted to a vector of double.
  *
  * @tparam T The type to check.
  */
 template <typename T>
-concept HasToVector = requires(const T elements) {
-    { elements.force_to_vector() } -> std::same_as<std::vector<Unitless>>;
+concept HasForceToDoubleVector = requires(const T elements) {
+    { elements.force_to_double_vector() } -> std::same_as<std::vector<double>>;
 };
 
 /**

@@ -333,14 +333,14 @@ TEST_F(KeplerianTest, GetMeanMotion)
 
 TEST_F(KeplerianTest, ToVector)
 {
-    std::vector<Unitless> vec = state.force_to_vector();
+    std::vector<double> vec = state.force_to_double_vector();
     ASSERT_EQ(vec.size(), 6);
-    ASSERT_TRUE(math::nearly_equal(vec[0], a / (1.0 * km), REL_TOL));
-    ASSERT_TRUE(math::nearly_equal(vec[1], ecc, REL_TOL));
-    ASSERT_TRUE(math::nearly_equal(vec[2], inc / (1.0 * rad), REL_TOL));
-    ASSERT_TRUE(math::nearly_equal(vec[3], raan / (1.0 * rad), REL_TOL));
-    ASSERT_TRUE(math::nearly_equal(vec[4], w / (1.0 * rad), REL_TOL));
-    ASSERT_TRUE(math::nearly_equal(vec[5], theta / (1.0 * rad), REL_TOL));
+    ASSERT_NEAR(vec[0], a.numerical_value_in(km), 1.0e-6);
+    ASSERT_NEAR(vec[1], ecc.numerical_value_in(one), 1.0e-6);
+    ASSERT_NEAR(vec[2], inc.numerical_value_in(rad), 1.0e-6);
+    ASSERT_NEAR(vec[3], raan.numerical_value_in(rad), 1.0e-6);
+    ASSERT_NEAR(vec[4], w.numerical_value_in(rad), 1.0e-6);
+    ASSERT_NEAR(vec[5], theta.numerical_value_in(rad), 1.0e-6);
 }
 
 TEST_F(KeplerianTest, Interpolate)
