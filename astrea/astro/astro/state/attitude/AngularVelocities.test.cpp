@@ -361,11 +361,11 @@ TEST_F(AngularAccelerationsTest, TestForceToVector)
     TestEulerAcceleration accel(angularAccel1, angularAccel2, angularAccel3);
 
     // Convert to vector
-    auto vec = accel.force_to_vector();
+    auto vec = accel.force_to_double_vector();
     ASSERT_EQ(vec.size(), 3);
 
     // Check values (normalized by unit)
-    EXPECT_TRUE(math::nearly_equal(vec[0], 0.1 * one, REL_TOL));
-    EXPECT_TRUE(math::nearly_equal(vec[1], 0.2 * one, REL_TOL));
-    EXPECT_TRUE(math::nearly_equal(vec[2], 0.3 * one, REL_TOL));
+    EXPECT_TRUE(math::nearly_equal(vec[0] * one, 0.1 * one, REL_TOL));
+    EXPECT_TRUE(math::nearly_equal(vec[1] * one, 0.2 * one, REL_TOL));
+    EXPECT_TRUE(math::nearly_equal(vec[2] * one, 0.3 * one, REL_TOL));
 }

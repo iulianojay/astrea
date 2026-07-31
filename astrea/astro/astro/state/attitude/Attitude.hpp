@@ -204,7 +204,7 @@ class Attitude {
      *
      * @return std::vector<Unitless> Vector containing the orientation as unitless values.
      */
-    std::vector<Unitless> force_to_vector() const;
+    std::vector<double> force_to_double_vector() const;
 
     /**
      * @brief Divides the Attitude by a scalar.
@@ -243,7 +243,7 @@ class Attitude {
      * @param vec The vector of Unitless values.
      * @return Attitude The created Attitude object.
      */
-    static Attitude from_vector(const std::vector<Unitless>& vec);
+    static Attitude from_double_vector(const std::vector<double>& vec);
 };
 
 /**
@@ -285,7 +285,7 @@ class AttitudePartials {
      *
      * @return std::vector<Unitless> Vector containing the orientation as unitless values.
      */
-    std::vector<Unitless> force_to_vector() const;
+    std::vector<double> force_to_double_vector() const;
 
   private:
     BodyQuaternionRate _orientationRate; //!< Partial derivatives of the orientation, represented as a quaternion rate

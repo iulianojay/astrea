@@ -351,14 +351,15 @@ Cartesian<_frame_>
 }
 
 template <IsFrame auto _frame_>
-std::vector<Unitless> Cartesian<_frame_>::force_to_vector() const
+std::vector<double> Cartesian<_frame_>::force_to_double_vector() const
 {
-    return { _r[0] / _r[0].unit, _r[1] / _r[1].unit, _r[2] / _r[2].unit,
-             _v[0] / _v[0].unit, _v[1] / _v[1].unit, _v[2] / _v[2].unit };
+    return { _r[0].numerical_value_in(_r[0].unit), _r[1].numerical_value_in(_r[1].unit),
+             _r[2].numerical_value_in(_r[2].unit), _v[0].numerical_value_in(_v[0].unit),
+             _v[1].numerical_value_in(_v[1].unit), _v[2].numerical_value_in(_v[2].unit) };
 }
 
 template <IsFrame auto _frame_>
-Cartesian<_frame_> Cartesian<_frame_>::from_vector(const std::vector<Unitless>& vec)
+Cartesian<_frame_> Cartesian<_frame_>::from_double_vector(const std::vector<double>& vec)
 {
     if (vec.size() != 6) {
         throw std::runtime_error("Input vector must have exactly 6 elements to convert to Cartesian.");
@@ -381,10 +382,11 @@ Cartesian<_frame_> CartesianPartial<_frame_>::operator*(const Time& time) const
 }
 
 template <IsFrame auto _frame_>
-std::vector<Unitless> CartesianPartial<_frame_>::force_to_vector() const
+std::vector<double> CartesianPartial<_frame_>::force_to_double_vector() const
 {
-    return { _v[0] / _v[0].unit, _v[1] / _v[1].unit, _v[2] / _v[2].unit,
-             _a[0] / _a[0].unit, _a[1] / _a[1].unit, _a[2] / _a[2].unit };
+    return { _v[0].numerical_value_in(_v[0].unit), _v[1].numerical_value_in(_v[1].unit),
+             _v[2].numerical_value_in(_v[2].unit), _a[0].numerical_value_in(_a[0].unit),
+             _a[1].numerical_value_in(_a[1].unit), _a[2].numerical_value_in(_a[2].unit) };
 }
 
 template <IsFrame auto _frame_>
