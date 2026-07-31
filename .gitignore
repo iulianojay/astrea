@@ -22,13 +22,13 @@ site
 *.jpg
 *.zip
 *.pyc
-*.html
 
 # Specific files
 .env
 build.txt
 package.json
 .coverage.info
+.env
 snapshot.db
 snapshot.db-journal
 spacetrack.query-history.json
@@ -45,3 +45,4 @@ docs/reference/api_reference/gen
 
 # Must include
 !CMakeLists.txt
+!**/assets/**

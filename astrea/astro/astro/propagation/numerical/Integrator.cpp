@@ -135,13 +135,13 @@ StateHistory Integrator::propagate_impl(const State& state0, const Time& propTim
 
         // Check for event
         if (check_event(time, state, vehicle)) {
-            std::cout << "Warning: Terminal conditions detected.";
+            std::cerr << "Warning: Terminal conditions detected.";
             break;
         }
 
         // Make sure state and time are valid
         if (!validate_state_and_time(time, state)) {
-            std::cout << "Integration Error: Invalid state or time (NaN or Inf). \n\n";
+            std::cerr << "Integration Error: Invalid state or time (NaN or Inf). \n\n";
             break;
         }
 
@@ -163,7 +163,7 @@ StateHistory Integrator::propagate_impl(const State& state0, const Time& propTim
 
                 // Catch underflow
                 if (time + timeStep == time) {
-                    std::cout << "Integration Error: Stepsize underflow. \n\n";
+                    std::cerr << "Integration Error: Stepsize underflow. \n\n";
                     interiorStepFailure = true;
                     break;
                 }
@@ -177,7 +177,7 @@ StateHistory Integrator::propagate_impl(const State& state0, const Time& propTim
 
             // Exceeded max inner loop iterations
             if (_variableStepIteration >= _MAX_VAR_STEP_ITER) {
-                std::cout
+                std::cerr
                     << "Integration Error: Max iterations exceeded. Unable to find stepsize within tolerance. \n\n";
                 interiorStepFailure = true;
                 break;

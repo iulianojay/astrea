@@ -21,6 +21,7 @@
 #include <astro/astro.fwd.hpp>
 #include <astro/frames/definitions.hpp>
 #include <astro/frames/definitions/primary_frame.hpp>
+#include <astro/propagation/force_models/ForceModel.hpp>
 #include <astro/types/typedefs.hpp>
 
 namespace astrea {
@@ -107,8 +108,15 @@ class EquationsOfMotion {
      */
     virtual constexpr std::size_t get_expected_set_id() const = 0;
 
+    /**
+     * @brief Creates a clone of the current EquationsOfMotion object.
+     *
+     * @return std::unique_ptr<EquationsOfMotion> A unique pointer to the cloned EquationsOfMotion object.
+     */
+    virtual std::unique_ptr<EquationsOfMotion> clone() const = 0;
+
   protected:
-    const ForceModel* forces = nullptr; //!< The force model used in the equations of motion.
+    ForceModel forces; //!< The force model used in the equations of motion.
 };
 
 } // namespace astro

@@ -78,6 +78,13 @@ class CowellsMethod : public EquationsOfMotion {
     {
         return OrbitalElements::get_set_id<Cartesian<frames::primary>>();
     };
+
+    /**
+     * @brief Creates a clone of the current Cowell's Method object.
+     *
+     * @return std::unique_ptr<EquationsOfMotion> A unique pointer to the cloned Cowell's Method object.
+     */
+    std::unique_ptr<EquationsOfMotion> clone() const override { return std::make_unique<CowellsMethod>(*this); }
 };
 
 } // namespace astro

@@ -66,6 +66,8 @@ class MockEquationsOfMotion : public EquationsOfMotion {
     {
         return OrbitalElements::get_set_id<Cartesian<frames::primary>>();
     }
+
+    std::unique_ptr<EquationsOfMotion> clone() const override { return std::make_unique<MockEquationsOfMotion>(*this); }
 };
 
 class EquationsOfMotionTest : public testing::Test {
