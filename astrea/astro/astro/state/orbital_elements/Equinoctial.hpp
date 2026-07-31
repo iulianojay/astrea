@@ -343,7 +343,7 @@ class Equinoctial {
      *
      * @return std::vector<Unitless> Vector containing the semilatus, f, g, h, k, and true longitude components of the Equinoctial state vector.
      */
-    std::vector<Unitless> force_to_vector() const;
+    std::vector<double> force_to_double_vector() const;
 
     /**
      * @brief Interpolates the Equinoctial state vector between two time instances.
@@ -372,7 +372,7 @@ class Equinoctial {
      * @param vec Vector containing the components of the Equinoctial state vector.
      * @return Equinoctial Constructed Equinoctial object.
      */
-    static Equinoctial from_vector(const std::vector<Unitless>& vec);
+    static Equinoctial from_double_vector(const std::vector<double>& vec);
 };
 
 /**
@@ -435,7 +435,7 @@ class EquinoctialPartial {
      *
      * @return std::vector<Unitless> Vector containing the components of the EquinoctialPartial state vector.
      */
-    std::vector<Unitless> force_to_vector() const;
+    std::vector<double> force_to_double_vector() const;
 
   private:
     Velocity _semilatusPartial;            //!< Semilatus rectum partial derivative

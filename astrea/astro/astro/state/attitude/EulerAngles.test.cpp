@@ -356,7 +356,7 @@ TEST_F(EulerAnglesTest, TestForceToVectorAndFromVector)
     TestEulerAngles euler(30.0 * deg, 45.0 * deg, 60.0 * deg);
 
     // Convert to vector
-    auto vec = euler.force_to_vector();
+    auto vec = euler.force_to_double_vector();
     ASSERT_EQ(vec.size(), 3);
 }
 

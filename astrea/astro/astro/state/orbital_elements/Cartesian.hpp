@@ -399,7 +399,7 @@ class Cartesian {
      *
      * @return std::vector<Unitless> Vector containing the x, y, z, vx, vy, and vz components of the Cartesian state vector.
      */
-    std::vector<Unitless> force_to_vector() const;
+    std::vector<double> force_to_double_vector() const;
 
     /**
      * @brief Interpolates between two Cartesian states at a given time.
@@ -423,7 +423,7 @@ class Cartesian {
      * @param vec Vector containing the x, y, z, vx, vy, and vz components of the Cartesian state vector.
      * @return Cartesian Constructed Cartesian object.
      */
-    static Cartesian from_vector(const std::vector<Unitless>& vec);
+    static Cartesian from_double_vector(const std::vector<double>& vec);
 };
 
 /**
@@ -528,7 +528,7 @@ class CartesianPartial {
      *
      * @return std::vector<Unitless> Vector containing the components of the CartesianPartial state vector.
      */
-    std::vector<Unitless> force_to_vector() const;
+    std::vector<double> force_to_double_vector() const;
 
   private:
     VelocityVector<_frame_> _v;     //!< Velocity vector

@@ -272,11 +272,11 @@ class State {
      *
      * @return std::vector<Unitless> Vector containing the orbital elements as unitless values.
      */
-    std::vector<Unitless> force_to_vector() const
+    std::vector<double> force_to_double_vector() const
     {
-        auto retval = _elements.force_to_vector();
+        auto retval = _elements.force_to_double_vector();
         if (_attitude.has_value()) {
-            const auto& attitudeVector = _attitude->force_to_vector();
+            const auto& attitudeVector = _attitude->force_to_double_vector();
             retval.insert(retval.end(), attitudeVector.begin(), attitudeVector.end());
         }
         return retval;
@@ -289,7 +289,7 @@ class State {
      * @param idx The index of the orbital element type to create.
      * @return State The created State object.
      */
-    static State from_vector(const std::vector<Unitless>& vec, const std::size_t idx);
+    static State from_double_vector(const std::vector<double>& vec, const std::size_t idx);
 
     /**
      * @brief Adds two State objects together.
@@ -414,11 +414,11 @@ class StatePartial {
      *
      * @return std::vector<Unitless> Vector containing the orbital element partials and attitude partials as unitless values.
      */
-    std::vector<Unitless> force_to_vector() const
+    std::vector<double> force_to_double_vector() const
     {
-        auto retval = _elementPartials.force_to_vector();
+        auto retval = _elementPartials.force_to_double_vector();
         if (_attitudePartial.has_value()) {
-            const auto& attitudeVector = _attitudePartial->force_to_vector();
+            const auto& attitudeVector = _attitudePartial->force_to_double_vector();
             retval.insert(retval.end(), attitudeVector.begin(), attitudeVector.end());
         }
         return retval;

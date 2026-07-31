@@ -345,11 +345,11 @@ class AngularVelocities {
      *
      * @return A std::vector of Unitless quantities representing the components of the angle sequence velocity, in the order [first, second, third].
      */
-    std::vector<Unitless> force_to_vector() const
+    std::vector<double> force_to_double_vector() const
     {
-        return { _angularVelocities[0] / _angularVelocities[0].unit,
-                 _angularVelocities[1] / _angularVelocities[1].unit,
-                 _angularVelocities[2] / _angularVelocities[2].unit };
+        return { _angularVelocities[0].numerical_value_in(_angularVelocities[0].unit),
+                 _angularVelocities[1].numerical_value_in(_angularVelocities[1].unit),
+                 _angularVelocities[2].numerical_value_in(_angularVelocities[2].unit) };
     }
 
     /**
@@ -387,7 +387,7 @@ class AngularVelocities {
      *
      * @throws std::invalid_argument if the input vector does not have exactly 3 components.
      */
-    static AngularVelocities from_vector(const std::vector<Unitless>& vec)
+    static AngularVelocities from_double_vector(const std::vector<double>& vec)
     {
         using mp_units::angular::unit_symbols::rad;
         using mp_units::si::unit_symbols::s;
@@ -629,11 +629,11 @@ class AngularAccelerations {
      *
      * @return A std::vector of Unitless quantities representing the components of the angular sequence acceleration, in the order [first, second, third].
      */
-    std::vector<Unitless> force_to_vector() const
+    std::vector<double> force_to_double_vector() const
     {
-        return { _angularAccels[0] / _angularAccels[0].unit,
-                 _angularAccels[1] / _angularAccels[1].unit,
-                 _angularAccels[2] / _angularAccels[2].unit };
+        return { _angularAccels[0].numerical_value_in(_angularAccels[0].unit),
+                 _angularAccels[1].numerical_value_in(_angularAccels[1].unit),
+                 _angularAccels[2].numerical_value_in(_angularAccels[2].unit) };
     }
 
   private:

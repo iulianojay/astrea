@@ -368,14 +368,14 @@ std::pair<State, State> Integrator::take_step(const Time& time, const Time& time
 
 Unitless Integrator::find_max_error(const State& stateNew, const State& stateError) const
 {
-    using mp_units::abs;
-    using mp_units::isinf;
-    using mp_units::isnan;
+    using std::abs;
+    using std::isinf;
+    using std::isnan;
 
     // Find max error from step
     Unitless maxError           = 0.0 * astrea::detail::unitless;
-    const auto stateErrorScaled = stateError.force_to_vector();
-    const auto stateNewScaled   = stateNew.force_to_vector();
+    const auto stateErrorScaled = stateError.force_to_double_vector();
+    const auto stateNewScaled   = stateNew.force_to_double_vector();
     for (std::size_t ii = 0; ii < stateErrorScaled.size(); ++ii) {
         // Error
         const auto err = abs(stateErrorScaled[ii]) / (_ABS_TOL + abs(stateNewScaled[ii]) * _REL_TOL);
@@ -499,7 +499,7 @@ bool Integrator::check_event(const Time& time, State& state, Vehicle& vehicle)
 bool Integrator::validate_state_and_time(const Time& time, const State& state) const
 {
     if (isinf(abs(time)) || isnan(abs(time))) { return false; }
-    for (const auto& x : state.force_to_vector()) {
+    for (const auto& x : state.force_to_double_vector()) {
         if (isinf(abs(x)) || isnan(abs(x))) { return false; }
     }
     return true;

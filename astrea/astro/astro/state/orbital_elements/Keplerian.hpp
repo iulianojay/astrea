@@ -401,7 +401,7 @@ class Keplerian {
      * @return std::vector<Unitless> Vector containing the semimajor axis, eccentricity, inclination, right ascension,
      * argument of perigee, and true anomaly components of the Keplerian state vector.
      */
-    std::vector<Unitless> force_to_vector() const;
+    std::vector<double> force_to_double_vector() const;
 
     /**
      * @brief Converts this Keplerian state to Keplerian elements expressed in a different frame.
@@ -449,7 +449,7 @@ class Keplerian {
      * @param vec Vector containing the components of the Keplerian state vector.
      * @return Keplerian Constructed Keplerian object.
      */
-    static Keplerian from_vector(const std::vector<Unitless>& vec);
+    static Keplerian from_double_vector(const std::vector<double>& vec);
 };
 
 /**
@@ -518,7 +518,7 @@ class KeplerianPartial {
      *
      * @return std::vector<Unitless> Vector containing the components of the KeplerianPartial state vector.
      */
-    std::vector<Unitless> force_to_vector() const;
+    std::vector<double> force_to_double_vector() const;
 
   private:
     Velocity _semimajorPartial;             //!< Semimajor axis partial derivative

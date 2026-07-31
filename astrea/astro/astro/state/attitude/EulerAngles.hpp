@@ -529,9 +529,11 @@ class EulerAngles {
      *
      * @return A std::vector of Unitless quantities representing the components of the angle sequence, in the order [first, second, third].
      */
-    std::vector<Unitless> force_to_vector() const
+    std::vector<double> force_to_double_vector() const
     {
-        return { _angles[0] / _angles[0].unit, _angles[1] / _angles[1].unit, _angles[2] / _angles[2].unit };
+        return { _angles[0].numerical_value_in(_angles[0].unit),
+                 _angles[1].numerical_value_in(_angles[1].unit),
+                 _angles[2].numerical_value_in(_angles[2].unit) };
     }
 
     /**
@@ -581,7 +583,7 @@ class EulerAngles {
      *
      * @throws std::invalid_argument if the input vector does not have exactly 3 components.
      */
-    static EulerAngles<sequence, rotation_type, _in_frame_, _out_frame_> from_vector(const std::vector<Unitless>& vec)
+    static EulerAngles<sequence, rotation_type, _in_frame_, _out_frame_> from_double_vector(const std::vector<double>& vec)
     {
         using mp_units::angular::unit_symbols::rad;
 
