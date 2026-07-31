@@ -45,6 +45,8 @@ class DummyEOM : public EquationsOfMotion {
     }
 
     constexpr std::size_t get_expected_set_id() const override { return 0; }
+
+    std::unique_ptr<EquationsOfMotion> clone() const override { return std::make_unique<DummyEOM>(*this); }
 };
 
 struct SimpleTestEvent {
