@@ -72,7 +72,7 @@ int main(int argc, char* argv[])
     webui::window window;
     const std::filesystem::path iconPath =
         std::string(_HELIOS_ROOT_) + "../../docs/assets/images/astrea-color-crop.png";
-    window.set_icon("<png>...</png>", iconPath.string()); // Set both SVG and PNG icons for compatibility
+    window.set_icon("<png>...</png>", iconPath.string());
     window.set_size(1280, 860);
     window.set_center();
 

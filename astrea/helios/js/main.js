@@ -67,10 +67,10 @@ function draw() {
     const cosE = Math.cos(state.el), sinE = Math.sin(state.el);
 
     // Project ECI [x,y,z] → canvas {x, y, z (depth), d (perspective factor)}
-    const project = (p) => {
-        const rx = p[0] * cosA + p[1] * sinA;
-        const ry = -p[0] * sinA + p[1] * cosA;
-        const rz = p[2];
+    const project = (x, y, z) => {
+        const rx = x * cosA + y * sinA;
+        const ry = -x * sinA + y * cosA;
+        const rz = z;
         const fx = rx * cosE + rz * sinE;
         const fy = ry;
         const fz = -rx * sinE + rz * cosE;
@@ -78,39 +78,45 @@ function draw() {
         return { x: cx + fy * scale * depth, y: cy - fz * scale * depth, z: fx, d: depth };
     };
 
-    const earthCenter = project([0, 0, 0]);
+    const earthCenter = project(0, 0, 0);
 
     // Earth radius in pixels: scale-based only, not perspective-distorted
     const earthRadiusPx = Math.max(2, numeric.earthRadiusKm * scale);
 
-    // // Atmospheric glow
-    // const glow = context.createRadialGradient(
-    //     earthCenter.x, earthCenter.y, earthRadiusPx * 0.4,
-    //     earthCenter.x, earthCenter.y, earthRadiusPx * 2.5
-    // );
-    // glow.addColorStop(0, "rgba(94,178,255,0.30)");
-    // glow.addColorStop(1, "rgba(94,178,255,0.00)");
-    // context.fillStyle = glow;
-    // context.beginPath();
-    // context.arc(earthCenter.x, earthCenter.y, earthRadiusPx * 1.1, 0, Math.PI * 2);
-    // context.fill();
+    // Atmospheric glow
+    const add_glow = (x, y, r) => {
+        const glow = context.createRadialGradient(
+            x, y, r * 0.4,
+            x, y, r * 2.5
+        );
+        glow.addColorStop(0, "rgba(94,178,255,0.30)");
+        glow.addColorStop(1, "rgba(94,178,255,0.00)");
+        context.fillStyle = glow;
+        context.beginPath();
+        context.arc(x, y, r * 1.1, 0, Math.PI * 2);
+        context.fill();
+    };
+    // add_glow(earthCenter.x, earthCenter.y, earthRadiusPx");
 
     // Earth body
-    context.fillStyle = state.earthColor;
+    context.fillStyle = "rgba(46, 120, 216, 1)";
     context.beginPath();
     context.arc(earthCenter.x, earthCenter.y, earthRadiusPx, 0, Math.PI * 2);
     context.fill();
 
-    // // Latitude lines
-    // context.strokeStyle = "rgba(208,235,255,0.24)";
-    // context.lineWidth = 1;
-    // for (let i = -9; i <= 9; i++) {
-    //     const yOff = i * earthRadiusPx * 0.1;
-    //     const rx2 = earthRadiusPx * Math.sqrt(Math.max(0, 1 - Math.pow(yOff / earthRadiusPx, 2)));
-    //     context.beginPath();
-    //     context.ellipse(earthCenter.x, earthCenter.y + yOff, rx2, rx2 * 0.22, 0, 0, Math.PI * 2);
-    //     context.stroke();
-    // }
+    // Latitude lines
+    const add_latitude_lines = (x, y, r) => {
+        context.strokeStyle = "rgba(208,235,255,0.24)";
+        context.lineWidth = 1;
+        for (let i = -9; i <= 9; i++) {
+            const yOff = i * r * 0.1;
+            const rx2 = r * Math.sqrt(Math.max(0, 1 - Math.pow(yOff / r, 2)));
+            context.beginPath();
+            context.ellipse(x, y + yOff, rx2, rx2 * 0.22, 0, 0, Math.PI * 2);
+            context.stroke();
+        }
+    };
+    // add_latitude_lines(earthCenter.x, earthCenter.y, earthRadiusPx);
 
     // Objects – coloured by current altitude
     const frame0 = frames[f0], frame1 = frames[f1];
@@ -122,7 +128,7 @@ function draw() {
         const lz = a[2] + blend * (b[2] - a[2]);
 
         // Project to screen space
-        const p = project([lx, ly, lz]);
+        const p = project(lx, ly, lz);
         if (p.z > span * 0.9) { continue; }
 
         // Size and alpha based on perspective depth
