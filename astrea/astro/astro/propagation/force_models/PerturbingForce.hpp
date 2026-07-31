@@ -49,6 +49,13 @@ class PerturbingForce {
      * @return Perturbation The computed acceleration and torque vectors due to the force.
      */
     virtual Perturbation compute_perturbation(const State& state, const Vehicle& vehicle) const = 0;
+
+    /**
+     * @brief Creates a clone of the current PerturbingForce object.
+     *
+     * @return std::unique_ptr<PerturbingForce> A unique pointer to the cloned PerturbingForce object.
+     */
+    virtual std::unique_ptr<PerturbingForce> clone() const = 0;
 };
 
 } // namespace astro

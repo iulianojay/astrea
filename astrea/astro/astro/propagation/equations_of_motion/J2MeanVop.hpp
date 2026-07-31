@@ -70,6 +70,13 @@ class J2MeanVop : public EquationsOfMotion {
         return OrbitalElements::get_set_id<Keplerian<frames::earth::icrf>>();
     };
 
+    /**
+     * @brief Creates a clone of the current J2 Mean VOP object.
+     *
+     * @return std::unique_ptr<EquationsOfMotion> A unique pointer to the cloned J2 Mean VOP object.
+     */
+    std::unique_ptr<EquationsOfMotion> clone() const override { return std::make_unique<J2MeanVop>(*this); }
+
   private:
     const Unitless eccTol = 1e-10 * mp_units::one;                        //!< Tolerance for checking eccentricity.
     const Angle incTol    = 1e-10 * mp_units::angular::unit_symbols::rad; //!< Tolerance for checking inclination.

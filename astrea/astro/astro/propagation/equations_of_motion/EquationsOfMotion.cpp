@@ -36,14 +36,14 @@ namespace astrea {
 namespace astro {
 
 EquationsOfMotion::EquationsOfMotion(const ForceModel& forces) :
-    forces(&forces)
+    forces(forces)
 {
 }
 
 StatePartial EquationsOfMotion::operator()(const State& state, const Vehicle& vehicle) const
 {
     // Find forces and torques caused by perturbations
-    const Perturbation perts = forces ? forces->compute_perturbations(state, vehicle) : Perturbation();
+    const Perturbation perts = (forces.size() > 0) ? forces.compute_perturbations(state, vehicle) : Perturbation();
 
     // Get vehicle-produced forces and torques
     const Perturbation control = vehicle.get_control_authority(state);

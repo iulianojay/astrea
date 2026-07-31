@@ -78,6 +78,13 @@ class TwoBody : public EquationsOfMotion {
     {
         return OrbitalElements::get_set_id<Cartesian<frames::earth::icrf>>();
     };
+
+    /**
+     * @brief Creates a clone of the current Two Body object.
+     *
+     * @return std::unique_ptr<EquationsOfMotion> A unique pointer to the cloned Two Body object.
+     */
+    std::unique_ptr<EquationsOfMotion> clone() const override { return std::make_unique<TwoBody>(*this); }
 };
 
 } // namespace astro

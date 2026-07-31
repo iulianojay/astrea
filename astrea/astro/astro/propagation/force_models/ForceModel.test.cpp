@@ -39,6 +39,8 @@ class DummyForce : public PerturbingForce {
     {
         return Perturbation{ .force = { 0.0 * N }, .torque = { 0.0 * N * m } };
     }
+
+    std::unique_ptr<PerturbingForce> clone() const override { return std::make_unique<DummyForce>(*this); }
 };
 
 class ForceModelTest : public testing::Test {

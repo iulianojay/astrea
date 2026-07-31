@@ -96,6 +96,13 @@ class NBodyForce : public PerturbingForce {
 
         return { .force = accelNBody * vehicle.get_mass() };
     }
+
+    /**
+     * @brief Creates a clone of the current NBodyForce object.
+     *
+     * @return std::unique_ptr<PerturbingForce> A unique pointer to the cloned NBodyForce object.
+     */
+    std::unique_ptr<PerturbingForce> clone() const override { return std::make_unique<NBodyForce<bodies...>>(*this); }
 };
 
 } // namespace astro

@@ -50,6 +50,36 @@ class ForceModel {
     ~ForceModel() = default;
 
     /**
+     * @brief Copy constructor for ForceModel.
+     *
+     * @param other The ForceModel object to copy from.
+     */
+    ForceModel(const ForceModel& other);
+
+    /**
+     * @brief Move constructor for ForceModel.
+     *
+     * @param other The ForceModel object to move from.
+     */
+    ForceModel(ForceModel&&) noexcept = default;
+
+    /**
+     * @brief Copy assignment operator for ForceModel.
+     *
+     * @param other The ForceModel object to copy from.
+     * @return ForceModel& Reference to the assigned ForceModel object.
+     */
+    ForceModel& operator=(const ForceModel& other);
+
+    /**
+     * @brief Move assignment operator for ForceModel.
+     *
+     * @param other The ForceModel object to move from.
+     * @return ForceModel& Reference to the assigned ForceModel object.
+     */
+    ForceModel& operator=(ForceModel&&) noexcept = default;
+
+    /**
      * @brief Returns the number of forces added to the ForceModel.
      *
      * @return std::size_t Number of forces.

@@ -74,6 +74,13 @@ class EquinoctialVop : public EquationsOfMotion {
         return OrbitalElements::get_set_id<Equinoctial<frames::earth::icrf>>();
     };
 
+    /**
+     * @brief Creates a clone of the current Equinoctial VOP object.
+     *
+     * @return std::unique_ptr<EquationsOfMotion> A unique pointer to the cloned Equinoctial VOP object.
+     */
+    std::unique_ptr<EquationsOfMotion> clone() const override { return std::make_unique<EquinoctialVop>(*this); }
+
   private:
     const Unitless checkTol = 1e-10 * mp_units::one; //!< Tolerance for checking conditions.
 };
