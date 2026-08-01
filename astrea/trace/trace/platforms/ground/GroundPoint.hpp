@@ -21,7 +21,6 @@
 #include <sstream>
 #include <string>
 
-#include <mp-units/systems/isq_angle.h>
 #include <mp-units/systems/si.h>
 
 #include <astro/astro.fwd.hpp>
@@ -124,7 +123,7 @@ class GroundPoint : virtual public AccessObject {
         const auto rEcefPlanar = astro::CartesianVector<Distance, fixed_frame>{ rEcef.get_x(), rEcef.get_y(), 0.0 * km };
 
         const Distance rEcefPlanarNorm = rEcefPlanar.norm();
-        const Velocity vEcefMag = rEcefPlanarNorm * astro::get_rotation_rate<_body_>() / mp_units::isq_angle::cotes_angle;
+        const Velocity vEcefMag        = rEcefPlanarNorm * astro::get_rotation_rate<_body_>() / rad;
 
         const astro::CartesianVector<Distance, fixed_frame> z{ 0.0 * km, 0.0 * km, 1.0 * km };
         const auto vEcef = z.cross(rEcefPlanar).direction() * vEcefMag;

@@ -21,7 +21,6 @@
 
 #include <mp-units/math.h>
 #include <mp-units/systems/iau.h>
-#include <mp-units/systems/isq_angle.h>
 #include <mp-units/systems/si/math.h>
 
 #include <math/operations.hpp>

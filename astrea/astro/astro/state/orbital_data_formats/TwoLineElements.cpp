@@ -34,10 +34,10 @@
 using namespace mp_units;
 using namespace mp_units::non_si;
 using namespace mp_units::si;
-using angular::unit_symbols::deg;
-using angular::unit_symbols::rad;
-using si::unit_symbols::km;
-using si::unit_symbols::s;
+using mp_units::si::unit_symbols::deg;
+using mp_units::si::unit_symbols::km;
+using mp_units::si::unit_symbols::rad;
+using mp_units::si::unit_symbols::s;
 
 namespace astrea {
 namespace astro {

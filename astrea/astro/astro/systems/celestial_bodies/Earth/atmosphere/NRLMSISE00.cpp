@@ -765,7 +765,7 @@ class NRLMSISE00 : public AbstractSunInfluencedAtmosphere {
                                          sunDirection.get_x() * position.get_y() - sunDirection.get_y() * position.get_x(),
                                          sunDirection.get_x() * position.get_x() + sunDirection.get_y() * position.get_y()
                                      );
-        return lst / (isq_angle::cotes_angle) * 12.0 / std::numbers::pi * h;
+        return lst / rad * 12.0 / std::numbers::pi * h;
     }
 
 

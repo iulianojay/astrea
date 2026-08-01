@@ -14,7 +14,6 @@
 #include <astro/propagation/equations_of_motion/EquinoctialVop.hpp>
 
 #include <mp-units/math.h>
-#include <mp-units/systems/isq_angle.h>
 #include <mp-units/systems/si.h>
 #include <mp-units/systems/si/math.h>
 
@@ -92,7 +91,7 @@ OrbitalElementPartials EquinoctialVop::compute_dynamics(
     const UnitlessPerTime dgdt = sqPOverMu * (-radialPert * cosL + ((w + 1) * sinL + g) / w * tangentialPert + g * termA); // TODO: My notes say: 'f * termA'. Find a second source
     const UnitlessPerTime dhdt = termB * cosL * normalPert;
     const UnitlessPerTime dkdt = termB * sinL * normalPert;
-    const AngularVelocity dLdt = (sqrt(mu * p) * w * w / (p * p) + sqPOverMu * termA) * (isq_angle::cotes_angle);
+    const AngularVelocity dLdt = (sqrt(mu * p) * w * w / (p * p) + sqPOverMu * termA) * rad;
 
     return EquinoctialPartial<frames::primary>(dpdt, dfdt, dgdt, dhdt, dkdt, dLdt);
 }

@@ -15,7 +15,6 @@
 
 // mp-units
 #include <mp-units/math.h>
-#include <mp-units/systems/isq_angle.h>
 #include <mp-units/systems/si.h>
 #include <mp-units/systems/si/math.h>
 
@@ -65,8 +64,8 @@ Perturbation AtmosphericForce::compute_perturbation(const State& state, const Ve
     const Velocity& vz = v.get_z();
 
     // Find velocity relative to atmosphere
-    const VelocityVector<frames::primary> relVelocity = { vx + y * bodyRotationRate.in(rad / s) / (isq_angle::cotes_angle),
-                                                          vy - x * bodyRotationRate.in(rad / s) / (isq_angle::cotes_angle),
+    const VelocityVector<frames::primary> relVelocity = { vx + y * bodyRotationRate.in(rad / s) / rad,
+                                                          vy - x * bodyRotationRate.in(rad / s) / rad,
                                                           vz };
 
     // Exponential Drag Model

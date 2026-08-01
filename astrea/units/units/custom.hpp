@@ -19,7 +19,6 @@
 #pragma once
 
 #include <mp-units/systems/iau.h>
-#include <mp-units/systems/isq_angle.h>
 #include <mp-units/systems/si.h>
 
 namespace astrea {

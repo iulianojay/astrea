@@ -16,7 +16,6 @@
 #include <iostream>
 
 #include <mp-units/math.h>
-#include <mp-units/systems/isq_angle.h>
 #include <mp-units/systems/si/math.h>
 
 #include <astro/frames/definitions.hpp>
@@ -98,12 +97,11 @@ OrbitalElementPartials KeplerianVop::compute_dynamics(
     const UnitlessPerTime deccdt =
         h / mu * sinTA * radialPert + 1.0 / (mu * h) * ((hSquared + mu * R) * cosTA + mu * ecc * R) * tangentialPert;
     const Velocity dadt = 2.0 * a * (1.0 / h * dhdt + ecc / (1 - ecc * ecc) * deccdt); // TODO: Someone check this. It's my derivation from h = sqrt(mu*a(1-ecc^2))
-    const AngularVelocity dincdt = R / h * cosU * normalPert * (isq_angle::cotes_angle);
+    const AngularVelocity dincdt = R / h * cosU * normalPert * rad;
     const AngularVelocity dthetadt =
-        (hOverRSquared + (1 / (ecc * h)) * ((hSquared / mu) * cosTA * radialPert - (hSquared / mu + R) * sinTA * tangentialPert)) *
-        (isq_angle::cotes_angle);
-    const AngularVelocity draandt = R * sinU / (h * sin(inc)) * normalPert * (isq_angle::cotes_angle);
-    const AngularVelocity dwdt    = (-dthetadt + (hOverRSquared * isq_angle::cotes_angle - draandt * cos(inc)));
+        (hOverRSquared + (1 / (ecc * h)) * ((hSquared / mu) * cosTA * radialPert - (hSquared / mu + R) * sinTA * tangentialPert)) * rad;
+    const AngularVelocity draandt = R * sinU / (h * sin(inc)) * normalPert * rad;
+    const AngularVelocity dwdt    = (-dthetadt + (hOverRSquared * rad - draandt * cos(inc)));
 
     return KeplerianPartial<frames::primary>(dadt, deccdt, dincdt, draandt, dwdt, dthetadt);
 }
