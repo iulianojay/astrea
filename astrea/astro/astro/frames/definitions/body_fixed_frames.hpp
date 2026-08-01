@@ -38,6 +38,8 @@ inline constexpr struct venus_fixed final : BodyFixedFrame<"Venus Fixed Frame", 
 namespace earth {
 inline constexpr struct earth_fixed final : BodyFixedFrame<"Earth Fixed Frame", planets::Earth> {
 } earth_fixed;
+inline constexpr auto ecef = earth_fixed;
+inline constexpr auto itrf = earth_fixed;
 } // namespace earth
 
 namespace moon {
