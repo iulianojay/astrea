@@ -95,8 +95,8 @@ const Date Date::now() noexcept { return JulianDateClock::now(); }
 
 Angle julian_date_to_sidereal_time(const JulianDate& julianDate)
 {
-    using mp_units::angular::unit_symbols::deg;
     using mp_units::non_si::day;
+    using mp_units::si::unit_symbols::deg;
 
     const Time julianDay = julianDate.time_since_epoch().count() * day;
 

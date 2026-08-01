@@ -15,7 +15,7 @@
 
 #include <numbers>
 
-#include <mp-units/systems/angular.h>
+#include <mp-units/systems/si.h>
 
 #include <math/operations.hpp>
 #include <units/units.hpp>
@@ -30,8 +30,8 @@
 using namespace astrea;
 using namespace astrea::astro;
 using namespace mp_units;
-using mp_units::angular::unit_symbols::rad;
 using mp_units::si::unit_symbols::km;
+using mp_units::si::unit_symbols::rad;
 
 static const Unitless REL_TOL = 1.0e-6 * one;
 static const Unitless ABS_TOL = 1.0e-6 * one;

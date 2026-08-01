@@ -26,7 +26,7 @@ using namespace astro;
 
 using namespace mp_units;
 using namespace mp_units::non_si;
-using namespace mp_units::angular;
+using namespace mp_units::si;
 using angular::unit_symbols::deg;
 using angular::unit_symbols::rad;
 using si::unit_symbols::km;

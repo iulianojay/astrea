@@ -19,7 +19,6 @@
 
 // mp-units
 #include <mp-units/math.h>
-#include <mp-units/systems/angular/math.h>
 #include <mp-units/systems/si.h>
 #include <mp-units/systems/si/math.h>
 
@@ -34,7 +33,7 @@
 
 using namespace mp_units;
 using namespace mp_units::non_si;
-using namespace mp_units::angular;
+using namespace mp_units::si;
 using angular::unit_symbols::deg;
 using angular::unit_symbols::rad;
 using si::unit_symbols::km;

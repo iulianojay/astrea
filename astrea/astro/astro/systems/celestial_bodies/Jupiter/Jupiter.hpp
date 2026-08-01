@@ -49,9 +49,9 @@ template <>
 inline consteval CelestialBodyParameters get_celestial_body_parameters<planets::Jupiter>()
 {
     using namespace mp_units;
-    using mp_units::angular::unit_symbols::deg;
     using mp_units::iau::unit_symbols::au;
     using mp_units::non_si::day;
+    using mp_units::si::unit_symbols::deg;
     using mp_units::si::unit_symbols::kg;
     using mp_units::si::unit_symbols::km;
     using mp_units::si::unit_symbols::s;
@@ -140,7 +140,7 @@ inline constexpr CartesianVector<Acceleration, get_parent_frame(planets::Jupiter
 template <>
 inline constexpr CoefficientPack get_linear_expansion_coefficients<planets::Jupiter>()
 {
-    using mp_units::angular::unit_symbols::rad;
+    using mp_units::si::unit_symbols::rad;
     return std::make_tuple(-0.00012452 * rad / (JulianCentury * JulianCentury), 0.06064060 * rad, -0.35635438 * rad, 38.35125000 * rad / JulianCentury);
 }
 

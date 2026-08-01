@@ -21,16 +21,14 @@
 #include <astro/systems/celestial_bodies/Earth/atmosphere/JacciaRoberts.hpp>
 
 #include <mp-units/core.h>
-#include <mp-units/systems/angular.h>
 #include <mp-units/systems/hep.h>
 #include <mp-units/systems/si.h>
 
 using namespace mp_units;
-using mp_units::angular::unit_symbols::deg;
-using mp_units::angular::unit_symbols::rad;
 using mp_units::hep::unit_symbols::u; // atmoic mass unit
 using mp_units::si::unit_symbols::cm;
 using mp_units::si::unit_symbols::d;
+using mp_units::si::unit_symbols::deg;
 using mp_units::si::unit_symbols::h;
 using mp_units::si::unit_symbols::J;
 using mp_units::si::unit_symbols::K;
@@ -38,6 +36,7 @@ using mp_units::si::unit_symbols::kg;
 using mp_units::si::unit_symbols::km;
 using mp_units::si::unit_symbols::m;
 using mp_units::si::unit_symbols::mol;
+using mp_units::si::unit_symbols::rad;
 using mp_units::si::unit_symbols::s;
 
 using NumberDensity = quantity<one / pow<3>(m)>;

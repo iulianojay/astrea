@@ -22,7 +22,7 @@
 
 #include <type_traits>
 
-#include <mp-units/systems/angular/math.h>
+#include <mp-units/systems/si/math.h>
 
 #include <math/trig.hpp>
 #include <units/units.hpp>

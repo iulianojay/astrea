@@ -15,8 +15,6 @@
 
 // mp-units
 #include <mp-units/math.h>
-#include <mp-units/systems/angular.h>
-#include <mp-units/systems/angular/math.h>
 #include <mp-units/systems/isq_angle.h>
 #include <mp-units/systems/si.h>
 #include <mp-units/systems/si/math.h>
@@ -37,15 +35,15 @@ namespace astro {
 
 using namespace mp_units;
 using mp_units::pow;
-using mp_units::angular::atan2;
-using mp_units::angular::sin;
-using mp_units::angular::unit_symbols::deg;
-using mp_units::angular::unit_symbols::rad;
+using mp_units::si::atan2;
+using mp_units::si::sin;
 using mp_units::si::unit_symbols::cm;
+using mp_units::si::unit_symbols::deg;
 using mp_units::si::unit_symbols::g;
 using mp_units::si::unit_symbols::kg;
 using mp_units::si::unit_symbols::km;
 using mp_units::si::unit_symbols::m;
+using mp_units::si::unit_symbols::rad;
 using mp_units::si::unit_symbols::s;
 
 

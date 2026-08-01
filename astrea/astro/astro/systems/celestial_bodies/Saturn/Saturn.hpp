@@ -48,9 +48,9 @@ template <>
 inline consteval CelestialBodyParameters get_celestial_body_parameters<planets::Saturn>()
 {
     using namespace mp_units;
-    using mp_units::angular::unit_symbols::deg;
     using mp_units::iau::unit_symbols::au;
     using mp_units::non_si::day;
+    using mp_units::si::unit_symbols::deg;
     using mp_units::si::unit_symbols::kg;
     using mp_units::si::unit_symbols::km;
     using mp_units::si::unit_symbols::s;
@@ -140,7 +140,7 @@ inline constexpr CartesianVector<Acceleration, get_parent_frame(planets::Saturn,
 template <>
 inline constexpr CoefficientPack get_linear_expansion_coefficients<planets::Saturn>()
 {
-    using mp_units::angular::unit_symbols::rad;
+    using mp_units::si::unit_symbols::rad;
     return std::make_tuple(0.00025899 * rad / (JulianCentury * JulianCentury), -0.13434469 * rad, 0.87320147 * rad, 38.35125000 * rad / JulianCentury);
 }
 

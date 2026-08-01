@@ -60,7 +60,7 @@ template <auto _body_>
 inline constexpr Keplerian<get_parent_frame(_body_, axes::icrf)> get_keplerian_elements_at(Date date)
 {
     using namespace mp_units;
-    using namespace mp_units::angular;
+    using namespace mp_units::si;
 
     const Distance a   = get_semimajor<_body_>(date);
     const Unitless ecc = get_eccentricity<_body_>(date);

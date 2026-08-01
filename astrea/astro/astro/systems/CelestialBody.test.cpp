@@ -31,12 +31,12 @@ using namespace astrea;
 using namespace astro;
 using namespace mp_units;
 
-using mp_units::angular::unit_symbols::deg;
-using mp_units::angular::unit_symbols::rad;
 using mp_units::iau::unit_symbols::au;
 using mp_units::non_si::day;
+using mp_units::si::unit_symbols::deg;
 using mp_units::si::unit_symbols::kg;
 using mp_units::si::unit_symbols::km;
+using mp_units::si::unit_symbols::rad;
 using mp_units::si::unit_symbols::s;
 
 class CelestialBodyTest : public testing::Test {

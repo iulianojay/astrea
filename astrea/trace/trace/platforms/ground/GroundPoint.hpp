@@ -21,7 +21,6 @@
 #include <sstream>
 #include <string>
 
-#include <mp-units/systems/angular.h>
 #include <mp-units/systems/isq_angle.h>
 #include <mp-units/systems/si.h>
 
@@ -60,8 +59,8 @@ class GroundPoint : virtual public AccessObject {
      * @param altitude  The altitude of the ground point above the surface (default is 0 km).
      */
     GroundPoint(
-        const Angle& latitude    = 0.0 * mp_units::angular::unit_symbols::deg,
-        const Angle& longitude   = 0.0 * mp_units::angular::unit_symbols::deg,
+        const Angle& latitude    = 0.0 * mp_units::si::unit_symbols::deg,
+        const Angle& longitude   = 0.0 * mp_units::si::unit_symbols::deg,
         const Distance& altitude = 0.0 * mp_units::si::unit_symbols::km
     ) :
         AccessObject(),
@@ -138,7 +137,7 @@ class GroundPoint : virtual public AccessObject {
      */
     std::string get_name() const
     {
-        using mp_units::angular::unit_symbols::deg;
+        using mp_units::si::unit_symbols::deg;
         using mp_units::si::unit_symbols::km;
 
         std::ostringstream oss;

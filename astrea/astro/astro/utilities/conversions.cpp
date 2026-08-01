@@ -13,17 +13,16 @@
 
 #include <astro/utilities/conversions.hpp>
 
-#include <mp-units/systems/angular.h>
-#include <mp-units/systems/angular/math.h>
 #include <mp-units/systems/isq_angle.h>
+#include <mp-units/systems/si.h>
 #include <mp-units/systems/si/math.h>
 
 #include <units/units.hpp>
 
 using namespace mp_units;
-using namespace mp_units::angular;
-using mp_units::angular::unit_symbols::deg;
-using mp_units::angular::unit_symbols::rad;
+using namespace mp_units::si;
+using mp_units::si::unit_symbols::deg;
+using mp_units::si::unit_symbols::rad;
 
 namespace astrea {
 namespace astro {

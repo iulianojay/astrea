@@ -103,8 +103,8 @@ class LambertSolver {
     {
 
         using namespace mp_units;
-        using namespace mp_units::angular;
-        using mp_units::angular::unit_symbols::rad;
+        using namespace mp_units::si;
+        using mp_units::si::unit_symbols::rad;
 
         // Parse initial state
         const RadiusVector<_frame_> r0   = state0.get_position();
@@ -183,9 +183,9 @@ class LambertSolver {
     {
 
         using namespace mp_units;
-        using namespace mp_units::angular;
-        using mp_units::angular::unit_symbols::rad;
+        using namespace mp_units::si;
         using mp_units::si::unit_symbols::km;
+        using mp_units::si::unit_symbols::rad;
 
         // Constants
         const Distance R0   = r0.norm();
@@ -267,9 +267,9 @@ class LambertSolver {
     {
 
         using namespace mp_units;
-        using namespace mp_units::angular;
-        using mp_units::angular::unit_symbols::rad;
+        using namespace mp_units::si;
         using mp_units::si::unit_symbols::km;
+        using mp_units::si::unit_symbols::rad;
 
         const Distance R0   = r0.norm();
         const Distance Rf   = rf.norm();
@@ -387,9 +387,9 @@ class LambertSolver {
     {
 
         using namespace mp_units;
-        using namespace mp_units::angular;
-        using mp_units::angular::unit_symbols::rad;
+        using namespace mp_units::si;
         using mp_units::si::unit_symbols::km;
+        using mp_units::si::unit_symbols::rad;
 
         if (N == 0) { throw std::invalid_argument("LambertSolver: N must be >= 1 for multi-rev solve"); }
 

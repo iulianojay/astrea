@@ -23,9 +23,9 @@ namespace astrea {
 namespace trace {
 
 using namespace mp_units;
-using namespace mp_units::angular;
+using namespace mp_units::si;
 
-using mp_units::angular::unit_symbols::rad;
+using mp_units::si::unit_symbols::rad;
 
 using EciRadiusVec = astro::RadiusVector<astro::frames::earth::icrf>;
 

@@ -17,7 +17,6 @@
 #include <stdexcept>
 
 #include <mp-units/math.h>
-#include <mp-units/systems/angular/math.h>
 #include <mp-units/systems/isq_angle.h>
 #include <mp-units/systems/si/math.h>
 
@@ -28,7 +27,7 @@ namespace astrea {
 namespace trace {
 
 using namespace mp_units;
-using namespace mp_units::angular;
+using namespace mp_units::si;
 using EciRadiusVec = astro::RadiusVector<astro::frames::earth::icrf>;
 
 Angle calculate_angle_between_vectors(const EciRadiusVec& vector1, const EciRadiusVec& vector2)

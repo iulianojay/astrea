@@ -585,7 +585,7 @@ class EulerAngles {
      */
     static EulerAngles<sequence, rotation_type, _in_frame_, _out_frame_> from_double_vector(const std::vector<double>& vec)
     {
-        using mp_units::angular::unit_symbols::rad;
+        using mp_units::si::unit_symbols::rad;
 
         if (vec.size() != 3) {
             throw std::invalid_argument("Input vector must have exactly 3 components to convert to an EulerAngles.");

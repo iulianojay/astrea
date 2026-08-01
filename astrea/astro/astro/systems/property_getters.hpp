@@ -22,7 +22,6 @@
 
 #include <string>
 
-#include <mp-units/systems/angular.h>
 #include <mp-units/systems/si.h>
 
 #include <astro/utilities/conversions.hpp>
@@ -53,10 +52,10 @@ namespace astro {
  * where T is time since reference epoch in Julian centuries.
  */
 using CoefficientPack = std::tuple<
-    mp_units::quantity<mp_units::angular::unit_symbols::rad / (JulianCentury * JulianCentury)>,
-    mp_units::quantity<mp_units::angular::unit_symbols::rad>,
-    mp_units::quantity<mp_units::angular::unit_symbols::rad>,
-    mp_units::quantity<mp_units::angular::unit_symbols::rad / JulianCentury>>;
+    mp_units::quantity<mp_units::si::unit_symbols::rad / (JulianCentury * JulianCentury)>,
+    mp_units::quantity<mp_units::si::unit_symbols::rad>,
+    mp_units::quantity<mp_units::si::unit_symbols::rad>,
+    mp_units::quantity<mp_units::si::unit_symbols::rad / JulianCentury>>;
 
 /**
  * @brief Get the linear expansion coefficients for the celestial body's mean anomaly correction.
@@ -69,7 +68,7 @@ using CoefficientPack = std::tuple<
 template <IsCelestialReference auto body>
 inline constexpr CoefficientPack get_linear_expansion_coefficients()
 {
-    using namespace mp_units::angular::unit_symbols;
+    using namespace mp_units::si::unit_symbols;
     return std::make_tuple(0.0 * rad / (JulianCentury * JulianCentury), 0.0 * rad, 0.0 * rad, 0.0 * rad / JulianCentury);
 }
 

@@ -15,7 +15,7 @@
 
 #include <numbers>
 
-#include <mp-units/systems/angular.h>
+#include <mp-units/systems/si.h>
 
 #include <math/operations.hpp>
 #include <units/units.hpp>
@@ -29,7 +29,7 @@
 using namespace astrea;
 using namespace astrea::astro;
 using namespace mp_units;
-using mp_units::angular::unit_symbols::rad;
+using mp_units::si::unit_symbols::rad;
 
 inline constexpr auto InFrame  = frames::earth::icrf;
 inline constexpr auto OutFrame = frames::earth::j2000;

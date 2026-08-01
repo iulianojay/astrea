@@ -22,7 +22,6 @@
 #include <nlohmann/json.hpp>
 #include <sqlite_orm/sqlite_orm.h>
 
-#include <mp-units/systems/angular.h>
 #include <mp-units/systems/international.h>
 #include <mp-units/systems/isq.h>
 #include <mp-units/systems/si.h>
@@ -36,7 +35,7 @@ using namespace trace;
 using namespace sqlite_orm;
 
 using namespace mp_units;
-using mp_units::angular::unit_symbols::deg;
+using mp_units::si::unit_symbols::deg;
 using mp_units::si::unit_symbols::km;
 using mp_units::si::unit_symbols::m;
 using mp_units::si::unit_symbols::s;

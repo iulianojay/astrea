@@ -23,7 +23,7 @@
 #include <iostream>
 
 #include <mp-units/math.h>
-#include <mp-units/systems/angular/math.h>
+#include <mp-units/systems/si/math.h>
 
 #include <utilities/string_util.hpp>
 

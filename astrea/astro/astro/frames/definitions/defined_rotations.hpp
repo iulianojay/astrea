@@ -44,7 +44,7 @@ template <IsFrame auto frame, IsFrame auto frame_u>
     requires(equivalent(frame.axis, axes::icrf) && equivalent(frame_u.axis, axes::j2000))
 inline constexpr DirectionCosineMatrix<frame, frame_u> get_dcm(const Date& date)
 {
-    using mp_units::angular::unit_symbols::rad;
+    using mp_units::si::unit_symbols::rad;
     static const Angle zeta0   = -8.0561e-8 * rad;
     static const Angle eta0    = -3.3060e-8 * rad;
     static const Angle dalpha0 = 7.0783e-8 * rad;

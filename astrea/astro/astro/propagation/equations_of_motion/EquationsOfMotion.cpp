@@ -15,7 +15,7 @@
 
 #include <optional>
 
-#include <mp-units/systems/angular.h>
+#include <mp-units/systems/si.h>
 
 #include <astro/platforms/Vehicle.hpp>
 #include <astro/propagation/equations_of_motion/StateTransitionMatrix.hpp>
@@ -28,9 +28,9 @@
 #include <astro/types/typedefs.hpp>
 
 using namespace mp_units;
-using mp_units::angular::unit_symbols::rad;
 using mp_units::si::unit_symbols::kg;
 using mp_units::si::unit_symbols::m;
+using mp_units::si::unit_symbols::rad;
 using mp_units::si::unit_symbols::s;
 
 namespace astrea {

@@ -48,9 +48,9 @@ template <>
 inline consteval CelestialBodyParameters get_celestial_body_parameters<planets::Uranus>()
 {
     using namespace mp_units;
-    using mp_units::angular::unit_symbols::deg;
     using mp_units::iau::unit_symbols::au;
     using mp_units::non_si::day;
+    using mp_units::si::unit_symbols::deg;
     using mp_units::si::unit_symbols::kg;
     using mp_units::si::unit_symbols::km;
     using mp_units::si::unit_symbols::s;
@@ -140,7 +140,7 @@ inline constexpr CartesianVector<Acceleration, get_parent_frame(planets::Uranus,
 template <>
 inline constexpr CoefficientPack get_linear_expansion_coefficients<planets::Uranus>()
 {
-    using mp_units::angular::unit_symbols::rad;
+    using mp_units::si::unit_symbols::rad;
     return std::make_tuple(0.00058331 * rad / (JulianCentury * JulianCentury), -0.97731848 * rad, 0.17689245 * rad, 7.67025000 * rad / JulianCentury);
 }
 

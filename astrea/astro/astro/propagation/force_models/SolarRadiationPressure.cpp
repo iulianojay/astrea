@@ -14,8 +14,8 @@
 #include <astro/propagation/force_models/SolarRadiationPressure.hpp>
 
 #include <mp-units/math.h>
-#include <mp-units/systems/angular/math.h>
 #include <mp-units/systems/iau.h>
+#include <mp-units/systems/si/math.h>
 
 #include <astro/platforms/Vehicle.hpp>
 #include <astro/state/State.hpp>
@@ -30,8 +30,8 @@ namespace astro {
 using namespace mp_units;
 
 using mp_units::pow;
-using mp_units::angular::acos;
-using mp_units::angular::asin;
+using mp_units::si::acos;
+using mp_units::si::asin;
 
 using mp_units::one;
 using mp_units::non_si::unit_symbols::au;

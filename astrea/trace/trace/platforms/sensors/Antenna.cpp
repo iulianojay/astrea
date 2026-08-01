@@ -16,7 +16,6 @@
 #include <stdexcept>
 
 #include <mp-units/math.h>
-#include <mp-units/systems/angular.h>
 #include <mp-units/systems/isq_angle.h>
 #include <mp-units/systems/si.h>
 
@@ -28,8 +27,8 @@ namespace trace {
 
 using mp_units::one;
 using mp_units::pow;
-using mp_units::angular::sin;
 using mp_units::isq_angle::cotes_angle;
+using mp_units::si::sin;
 
 CNR Antenna::carrier_to_noise_ratio(const Antenna& receiver, const Distance& range, const Angle& offsetAngle) const
 {

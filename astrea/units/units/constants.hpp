@@ -18,7 +18,6 @@
  */
 #pragma once
 
-#include <mp-units/systems/angular.h>
 #include <mp-units/systems/si.h>
 
 #include <units/detail.hpp>

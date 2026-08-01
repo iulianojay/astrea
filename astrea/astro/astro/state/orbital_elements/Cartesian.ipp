@@ -17,7 +17,6 @@
 
 // mp-units
 #include <mp-units/math.h>
-#include <mp-units/systems/angular/math.h>
 #include <mp-units/systems/si.h>
 #include <mp-units/systems/si/math.h>
 
@@ -35,7 +34,7 @@ Cartesian<_frame_>::Cartesian(const Keplerian<_frame_>& elements, const GravPara
 {
     using namespace mp_units;
     using namespace mp_units::si;
-    using namespace mp_units::angular;
+    using namespace mp_units::si;
     using mp_units::si::unit_symbols::km;
     using mp_units::si::unit_symbols::s;
 
@@ -102,7 +101,7 @@ Cartesian<_frame_>::Cartesian(const Equinoctial<_frame_>& elements, const GravPa
 {
     using namespace mp_units;
     using namespace mp_units::si;
-    using namespace mp_units::angular;
+    using namespace mp_units::si;
     using mp_units::si::unit_symbols::km;
     using mp_units::si::unit_symbols::s;
 
