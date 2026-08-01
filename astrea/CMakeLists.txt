@@ -8,12 +8,45 @@
 # have received a copy of the GNU General Public License along with Astrea. If not, see <https://www.gnu.org/licenses/>.
 
 add_subdirectory(astro)
+add_subdirectory(helios)
 add_subdirectory(hermes)
 add_subdirectory(math)
-
 # add_subdirectory(pathfinder)
 add_subdirectory(snapshot)
 add_subdirectory(trace)
-
 # add_subdirectory(units) // ignore until it has compiled files in it
 add_subdirectory(utilities)
+
+# Install units headers (header-only, no compiled target yet)
+install(
+    DIRECTORY ${CMAKE_CURRENT_LIST_DIR}/units/units
+    DESTINATION include
+)
+
+# Aggregate target
+add_library(astrea INTERFACE)
+add_library(astrea::astrea ALIAS astrea)
+target_link_libraries(astrea INTERFACE
+    math_shared
+    utilities_shared
+    astro_shared
+    snapshot_shared
+    helios_shared
+    trace_shared
+    hermes_shared
+)
+
+# Static aggregate target (only created when BUILD_STATIC is enabled)
+if(${BUILD_STATIC})
+    add_library(astrea_static INTERFACE)
+    add_library(astrea::astrea_static ALIAS astrea_static)
+    target_link_libraries(astrea_static INTERFACE
+        math_static
+        utilities_static
+        astro_static
+        snapshot_static
+        helios_static
+        trace_static
+        hermes_static
+    )
+endif()

@@ -188,6 +188,19 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(csv)
 
+# WebUI for GUI
+CPMAddPackage(
+    NAME webui
+    GITHUB_REPOSITORY webui-dev/webui
+    GIT_TAG nightly
+    GIT_SHALLOW TRUE
+    OPTIONS
+    "WEBUI_BUILD_EXAMPLES OFF"
+)
+
+# OpenMP for parallelization
+find_package(OpenMP REQUIRED)
+
 # Google test cause I Love massive endless macro heavy tools
 if (${BUILD_TESTS})
     CPMFindPackage(

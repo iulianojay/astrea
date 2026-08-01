@@ -69,6 +69,7 @@ set(HERMES_LIBS
 
 # Shared library
 add_library(${PROJECT_NAME}_shared SHARED ${HERMES_SOURCES} ${HERMES_HEADERS})
+add_library(astrea::hermes ALIAS ${PROJECT_NAME}_shared)
 
 if(${BUILD_EPHEMERIDES})
     add_dependencies(${PROJECT_NAME}_shared generated_ephemerides)
@@ -77,11 +78,23 @@ endif()
 set_target_properties(${PROJECT_NAME}_shared PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ${PROJECT_NAME} CLEAN_DIRECT_OUTPUT 1)
 target_link_libraries(${PROJECT_NAME}_shared PUBLIC astro_shared math_shared utilities_shared ${HERMES_LIBS})
 target_include_directories(${PROJECT_NAME}_shared PUBLIC ${HERMES_DIRS} ${CMAKE_CURRENT_BINARY_DIR}/include)
-target_compile_definitions(${PROJECT_NAME}_shared PUBLIC ${EPHEMERIS_COMPILE_DEFINES} "_HERMES_ROOT_=\"${CMAKE_CURRENT_LIST_DIR}\"")
+if(WIN32)
+    target_compile_definitions (${PROJECT_NAME}_shared PUBLIC ${EPHEMERIS_COMPILE_DEFINES} "_HERMES_ROOT_=\"${CMAKE_CURRENT_LIST_DIR}\"" WIN32_LEAN_AND_MEAN NOMINMAX)
+else()
+    target_compile_definitions (${PROJECT_NAME}_shared PUBLIC ${EPHEMERIS_COMPILE_DEFINES} "_HERMES_ROOT_=\"${CMAKE_CURRENT_LIST_DIR}\"")
+endif()
+
+# Install shared library (DLL)
+install(TARGETS ${PROJECT_NAME}_shared
+    RUNTIME DESTINATION bin
+    LIBRARY DESTINATION lib
+    ARCHIVE DESTINATION lib
+)
 
 # Static library
 if(${BUILD_STATIC})
     add_library(${PROJECT_NAME}_static STATIC ${HERMES_SOURCES} ${HERMES_HEADERS})
+    add_library(astrea::hermes_static ALIAS ${PROJECT_NAME}_static)
 
     if(${BUILD_EPHEMERIDES})
         add_dependencies(${PROJECT_NAME}_static generated_ephemerides)
@@ -90,8 +103,31 @@ if(${BUILD_STATIC})
     set_target_properties(${PROJECT_NAME}_static PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ${PROJECT_NAME} CLEAN_DIRECT_OUTPUT 1 SUFFIX .a.${PROJECT_VERSION})
     target_link_libraries(${PROJECT_NAME}_static PUBLIC astro_static math_static utilities_static ${HERMES_LIBS})
     target_include_directories(${PROJECT_NAME}_static PUBLIC ${HERMES_DIRS} ${CMAKE_CURRENT_BINARY_DIR}/include)
-    target_compile_definitions(${PROJECT_NAME}_static PUBLIC ${EPHEMERIS_COMPILE_DEFINES} "_HERMES_ROOT_=\"${CMAKE_CURRENT_LIST_DIR}\"")
+    if(WIN32)
+        target_compile_definitions (${PROJECT_NAME}_static PUBLIC ${EPHEMERIS_COMPILE_DEFINES} "_HERMES_ROOT_=\"${CMAKE_CURRENT_LIST_DIR}\"" WIN32_LEAN_AND_MEAN NOMINMAX)
+    else()
+        target_compile_definitions (${PROJECT_NAME}_static PUBLIC ${EPHEMERIS_COMPILE_DEFINES} "_HERMES_ROOT_=\"${CMAKE_CURRENT_LIST_DIR}\"")
+    endif()
+
+    # Install static library (A)
+    install(TARGETS ${PROJECT_NAME}_static
+        RUNTIME DESTINATION bin
+        LIBRARY DESTINATION lib
+        ARCHIVE DESTINATION lib
+    )
 endif()
+
+file(MAKE_DIRECTORY ${CMAKE_INSTALL_PREFIX}/include)
+
+# Install headers
+install(
+    DIRECTORY ${HERMES_BASE}
+    DESTINATION include
+    FILES_MATCHING
+    PATTERN *.hpp
+    PATTERN *.ipp
+    PATTERN *.h
+)
 
 # Executable
 add_executable(${PROJECT_NAME}_exe ${HERMES_BASE}/drivers/main.cpp)

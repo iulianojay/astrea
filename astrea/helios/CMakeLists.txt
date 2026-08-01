@@ -17,18 +17,6 @@ project(
 )
 set(CMAKE_CXX_STANDARD 23)
 
-# Packages only for this
-CPMAddPackage(
-    NAME webui
-    GITHUB_REPOSITORY webui-dev/webui
-    GIT_TAG nightly
-    GIT_SHALLOW TRUE
-    OPTIONS
-        "WEBUI_BUILD_EXAMPLES OFF"
-)
-
-find_package(OpenMP REQUIRED)
-
 # Objects
 set(HELIOS_BASE ${CMAKE_CURRENT_LIST_DIR}/${PROJECT_NAME})
 set(HELIOS_SOURCES
@@ -62,7 +50,7 @@ set(HELIOS_DIRS
 # Find library
 set(HELIOS_LIBS
     mp-units::mp-units 
-    webui 
+    webui::webui
     OpenMP::OpenMP_CXX
     nlohmann_json::nlohmann_json
 )
@@ -106,7 +94,11 @@ if(${BUILD_STATIC})
         target_link_libraries(${PROJECT_NAME}_static PRIVATE pthread m dl)
     endif()
     target_include_directories (${PROJECT_NAME}_static PUBLIC ${HELIOS_DIRS} ${CMAKE_CURRENT_BINARY_DIR}/include)
-    target_compile_definitions (${PROJECT_NAME}_static PUBLIC ${EPHEMERIS_COMPILE_DEFINES} "_HELIOS_ROOT_=\"${CMAKE_CURRENT_LIST_DIR}\"")
+    if(WIN32)
+        target_compile_definitions (${PROJECT_NAME}_static PUBLIC ${EPHEMERIS_COMPILE_DEFINES} "_HELIOS_ROOT_=\"${CMAKE_CURRENT_LIST_DIR}\"" WIN32_LEAN_AND_MEAN NOMINMAX)
+    else()
+        target_compile_definitions (${PROJECT_NAME}_static PUBLIC ${EPHEMERIS_COMPILE_DEFINES} "_HELIOS_ROOT_=\"${CMAKE_CURRENT_LIST_DIR}\"")
+    endif()
 
     # Install static library (A)
     install(TARGETS ${PROJECT_NAME}_static
