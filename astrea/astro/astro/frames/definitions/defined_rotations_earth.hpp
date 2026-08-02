@@ -33,6 +33,7 @@
 #include <astro/systems/celestial_bodies.hpp>
 #include <astro/systems/system_utilities.hpp>
 #include <astro/time/Date.hpp>
+#include <eop/EarthOrientationParameters.hpp>
 
 namespace astrea {
 namespace astro {
@@ -261,6 +262,35 @@ inline constexpr std::array<mp_units::quantity<mp_units::si::unit_symbols::arcse
     return { dpsi, deps };
 }
 
+/**
+ * @brief Get the polar motion (xp, yp) for a given date.
+ *
+ * @param date The date for which to get the polar motion.
+ * @return std::array<mp_units::quantity<mp_units::si::unit_symbols::arcsec>, 2> The polar motion [xp, yp].
+ *
+ * @throws std::out_of_range if the date is outside the range of available Earth Orientation Parameters data.
+ * @throws std::runtime_error if polar motion data is not found for the given date.
+ */
+inline constexpr std::array<mp_units::quantity<mp_units::si::unit_symbols::arcsec>, 2> get_polar_motion(const Date& date)
+{
+    if (date < eop::EarthOrientationParameters::DATA.front().MJD || date > eop::EarthOrientationParameters::DATA.back().MJD) {
+        throw std::out_of_range("Date is out of range for Earth Orientation Parameters data.");
+    }
+
+    for (const auto& row : eop::EarthOrientationParameters::DATA) {
+        if (row.MJD == date) { return { row.PMx, row.PMy }; }
+        else if (row.MJD > date) {
+            // Interpolate between the previous and current row
+            const auto& prevRow = *(std::prev(&row, 1));
+            const auto t        = (date - prevRow.MJD) / (row.MJD - prevRow.MJD);
+            const auto xp       = prevRow.PMx + t * (row.PMx - prevRow.PMx);
+            const auto yp       = prevRow.PMy + t * (row.PMy - prevRow.PMy);
+            return { xp, yp };
+        }
+    }
+    throw std::runtime_error("Polar motion data not found for the given date.");
+}
+
 } // namespace
 
 /**
@@ -314,8 +344,7 @@ inline constexpr DirectionCosineMatrix<frames::earth::cep, frames::earth::itrf>
     const Angle gst = julian_date_to_sidereal_time(date.jd());
     const auto Rs   = DCM<frames::earth::cep, frames::earth::itrf>::Z(gst);
 
-    const Angle xp = 0.0 * arcsec;
-    const Angle yp = 0.0 * arcsec;
+    const auto [xp, yp] = get_polar_motion(date);
 
     const auto R1 = DCM<frames::earth::itrf, frames::earth::itrf>::Y(-xp);
     const auto R2 = DCM<frames::earth::itrf, frames::earth::itrf>::X(-yp);
