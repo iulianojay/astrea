@@ -53,6 +53,7 @@ run_6dof_checkcases := OFF
 verbose_makefile := OFF
 warnings_as_errors := OFF
 username := $(shell whoami)
+eop_file := $(abspath ./astrea/astro/data/earth_orientation_parameters/eop.long)
 
 .DEFAULT_GOAL := install
 
@@ -87,7 +88,8 @@ build:
 	-DBUILD_STATIC=$(build_static) \
 	-DBUILD_PROFILERS=$(build_profilers) \
 	-DBUILD_CHECKCASE_DATABASE=$(build_checkcase_db) \
-	-DBUILD_6DOF_CHECKCASES=$(run_6dof_checkcases)
+	-DBUILD_6DOF_CHECKCASES=$(run_6dof_checkcases) \
+	-DEOP_FILE=$(eop_file) \
 
 .PHONY: build-gcc
 build-gcc: gcc build

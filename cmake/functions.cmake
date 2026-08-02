@@ -208,7 +208,7 @@ function(generate_ephemeris_files PROJECT_SOURCE_DIRECTORY)
     if(NOT Python3_FOUND)
         message(FATAL_ERROR "Python 3 is required for ephemeris generation but was not found")
     endif()
-    message("Python3 Found. Using exectuable at ${Python3_EXECUTABLE}")
+    message("Python3 Found. Using executable at ${Python3_EXECUTABLE}")
 
     add_custom_command(
         OUTPUT
@@ -252,6 +252,48 @@ function(build_system_ephemeris BODY_SYSTEM SYSTEM_BODIES)
 
     set(BODY_EPHEMERIS_HEADERS ${BODY_EPHEMERIS_HEADERS} ${ALL_EPHEMERIS_HEADERS} PARENT_SCOPE)
     set(BODY_EPHEMERIS_SOURCES ${BODY_EPHEMERIS_SOURCES} ${ALL_EPHEMERIS_SOURCES} PARENT_SCOPE)
+
+endfunction()
+
+
+function(generate_eop_files PROJECT_SOURCE_DIRECTORY)
+
+    message(" -- Earth Orientation Parameters Generation Options:")
+    message(" ---- BUILD_EOP: ${BUILD_EOP}")
+    message(" ---- EOP_FILE: ${EOP_FILE}")
+
+    if (NOT ${BUILD_EOP})
+        return()
+    elseif (NOT EXISTS ${EOP_FILE})
+        message(FATAL_ERROR "EOP file, ${EOP_FILE}, not found. Please provide a valid EOP file.")
+    endif()
+
+    set(EOP_BASE ${CMAKE_CURRENT_BINARY_DIR}/include/eop)
+    set(EOP_HEADERS "${EOP_BASE}/EarthOrientationParameters.hpp")
+    set(EOP_SOURCES "${EOP_BASE}/EarthOrientationParameters.cpp")
+
+    find_package(Python3 COMPONENTS Interpreter)
+    if(NOT Python3_FOUND)
+        message(FATAL_ERROR "Python 3 is required for eop file generation but was not found")
+    endif()
+    message("Python3 Found. Using executable at ${Python3_EXECUTABLE}")
+
+    add_custom_command(
+        OUTPUT
+            ${EOP_HEADERS}
+            ${EOP_SOURCES}
+        COMMAND ${Python3_EXECUTABLE} ${PROJECT_SOURCE_DIRECTORY}/pyastro/eop_parser.py -o ${CMAKE_CURRENT_BINARY_DIR}/include/eop --infile ${EOP_FILE}
+        DEPENDS
+            ${PROJECT_SOURCE_DIRECTORY}/pyastro/eop_parser.py
+        WORKING_DIRECTORY ${PROJECT_SOURCE_DIRECTORY}
+        COMMENT " -- Generating Earth Orientation Parameters from: ${EOP_FILE}"
+    )
+    add_custom_target(generated_eop_files
+        DEPENDS ${EOP_HEADERS} ${EOP_SOURCES}
+    )
+
+    set(ASTRO_HEADERS ${ASTRO_HEADERS} ${EOP_HEADERS} PARENT_SCOPE)
+    set(ASTRO_SOURCES ${ASTRO_SOURCES} ${EOP_SOURCES} PARENT_SCOPE)
 
 endfunction()
 
