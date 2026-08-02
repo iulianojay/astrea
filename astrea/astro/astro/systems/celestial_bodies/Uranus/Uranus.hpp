@@ -48,6 +48,7 @@ template <>
 inline consteval CelestialBodyParameters get_celestial_body_parameters<planets::Uranus>()
 {
     using namespace mp_units;
+    using astrea::units::unit_symbols::jc;
     using mp_units::iau::unit_symbols::au;
     using mp_units::non_si::day;
     using mp_units::si::unit_symbols::deg;
@@ -74,12 +75,12 @@ inline consteval CelestialBodyParameters get_celestial_body_parameters<planets::
              .rightAscension         = Angle(74.01692503 * deg),
              .longitudeOfPerigee     = Angle(170.95427630 * deg),
              .meanLongitude          = Angle(313.23810451 * deg),
-             .semimajorAxisRate      = InterplanetaryVelocity(-0.00196176 * au / JulianCentury),
-             .eccentricityRate       = BodyUnitlessPerTime(-0.00004397 * one / JulianCentury),
-             .inclinationRate        = BodyAngularVelocity(-0.00242939 * deg / JulianCentury),
-             .rightAscensionRate     = BodyAngularVelocity(0.04240589 * deg / JulianCentury),
-             .longitudeOfPerigeeRate = BodyAngularVelocity(0.40805281 * deg / JulianCentury),
-             .meanLongitudeRate      = BodyAngularVelocity(428.48202785 * deg / JulianCentury) };
+             .semimajorAxisRate      = InterplanetaryVelocity(-0.00196176 * au / jc),
+             .eccentricityRate       = BodyUnitlessPerTime(-0.00004397 * one / jc),
+             .inclinationRate        = BodyAngularVelocity(-0.00242939 * deg / jc),
+             .rightAscensionRate     = BodyAngularVelocity(0.04240589 * deg / jc),
+             .longitudeOfPerigeeRate = BodyAngularVelocity(0.40805281 * deg / jc),
+             .meanLongitudeRate      = BodyAngularVelocity(428.48202785 * deg / jc) };
 }
 
 #ifdef ASTREA_BUILD_URANUS_EPHEMERIS
@@ -140,8 +141,9 @@ inline constexpr CartesianVector<Acceleration, get_parent_frame(planets::Uranus,
 template <>
 inline constexpr CoefficientPack get_linear_expansion_coefficients<planets::Uranus>()
 {
+    using astrea::units::unit_symbols::jc;
     using mp_units::si::unit_symbols::rad;
-    return std::make_tuple(0.00058331 * rad / (JulianCentury * JulianCentury), -0.97731848 * rad, 0.17689245 * rad, 7.67025000 * rad / JulianCentury);
+    return std::make_tuple(0.00058331 * rad / (jc * jc), -0.97731848 * rad, 0.17689245 * rad, 7.67025000 * rad / jc);
 }
 
 } // namespace astro

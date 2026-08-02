@@ -48,6 +48,7 @@ template <>
 inline consteval CelestialBodyParameters get_celestial_body_parameters<planets::Mercury>()
 {
     using namespace mp_units;
+    using astrea::units::unit_symbols::jc;
     using mp_units::iau::unit_symbols::au;
     using mp_units::non_si::day;
     using mp_units::si::unit_symbols::deg;
@@ -74,12 +75,12 @@ inline consteval CelestialBodyParameters get_celestial_body_parameters<planets::
              .rightAscension         = Angle(48.33076593 * deg),
              .longitudeOfPerigee     = Angle(77.45779628 * deg),
              .meanLongitude          = Angle(252.25032350 * deg),
-             .semimajorAxisRate      = InterplanetaryVelocity(0.00000037 * au / JulianCentury),
-             .eccentricityRate       = BodyUnitlessPerTime(0.00001906 * one / JulianCentury),
-             .inclinationRate        = BodyAngularVelocity(-0.00594749 * deg / JulianCentury),
-             .rightAscensionRate     = BodyAngularVelocity(-0.12534081 * deg / JulianCentury),
-             .longitudeOfPerigeeRate = BodyAngularVelocity(0.16047689 * deg / JulianCentury),
-             .meanLongitudeRate      = BodyAngularVelocity(149472.67411175 * deg / JulianCentury) };
+             .semimajorAxisRate      = InterplanetaryVelocity(0.00000037 * au / jc),
+             .eccentricityRate       = BodyUnitlessPerTime(0.00001906 * one / jc),
+             .inclinationRate        = BodyAngularVelocity(-0.00594749 * deg / jc),
+             .rightAscensionRate     = BodyAngularVelocity(-0.12534081 * deg / jc),
+             .longitudeOfPerigeeRate = BodyAngularVelocity(0.16047689 * deg / jc),
+             .meanLongitudeRate      = BodyAngularVelocity(149472.67411175 * deg / jc) };
 }
 
 #ifdef ASTREA_BUILD_MERCURY_EPHEMERIS

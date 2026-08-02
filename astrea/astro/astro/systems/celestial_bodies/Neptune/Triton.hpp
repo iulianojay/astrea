@@ -47,6 +47,7 @@ template <>
 inline consteval CelestialBodyParameters get_celestial_body_parameters<moons::Triton>()
 {
     using namespace mp_units;
+    using astrea::units::unit_symbols::jc;
     using mp_units::iau::unit_symbols::au;
     using mp_units::non_si::day;
     using mp_units::si::unit_symbols::deg;
@@ -73,12 +74,12 @@ inline consteval CelestialBodyParameters get_celestial_body_parameters<moons::Tr
              .rightAscension         = Angle(177.608 * deg),
              .longitudeOfPerigee     = Angle(243.75 * deg),
              .meanLongitude          = Angle(596.007 * deg),
-             .semimajorAxisRate      = InterplanetaryVelocity(0.0 * km / JulianCentury),
-             .eccentricityRate       = BodyUnitlessPerTime(0.0 * one / JulianCentury),
-             .inclinationRate        = BodyAngularVelocity(0.0 * deg / JulianCentury),
-             .rightAscensionRate     = BodyAngularVelocity(188523.9 * deg / JulianCentury),
-             .longitudeOfPerigeeRate = BodyAngularVelocity(523952.8 * deg / JulianCentury),
-             .meanLongitudeRate      = BodyAngularVelocity(8055241569.86 * deg / JulianCentury) };
+             .semimajorAxisRate      = InterplanetaryVelocity(0.0 * km / jc),
+             .eccentricityRate       = BodyUnitlessPerTime(0.0 * one / jc),
+             .inclinationRate        = BodyAngularVelocity(0.0 * deg / jc),
+             .rightAscensionRate     = BodyAngularVelocity(188523.9 * deg / jc),
+             .longitudeOfPerigeeRate = BodyAngularVelocity(523952.8 * deg / jc),
+             .meanLongitudeRate      = BodyAngularVelocity(8055241569.86 * deg / jc) };
 }
 
 } // namespace astro

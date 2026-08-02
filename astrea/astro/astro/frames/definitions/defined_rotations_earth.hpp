@@ -38,8 +38,10 @@ namespace astrea {
 namespace astro {
 
 namespace axes {
+
 inline constexpr struct cep : Axis<"Earth Celestial Pole", axes::icrf> {
 } cep;
+
 } // namespace axes
 
 namespace frames {
@@ -51,6 +53,11 @@ inline constexpr struct cep : Frame<"Earth Celestial Pole", planets::Earth, axes
 } // namespace earth
 } // namespace frames
 
+namespace {
+
+/**
+ * @brief Nutation model coefficients for the Earth.
+ */
 struct NutationModel {
     std::array<int8_t, 5> k;
     Time period;
@@ -62,6 +69,12 @@ struct NutationModel {
 
 static constexpr std::size_t NUTATION_COEFFICIENTS_SIZE = 106;
 
+/**
+ * @brief Get the nutation coefficient for a given index.
+ *
+ * @param idx The index of the desired nutation coefficient (0 to NUTATION_COEFFICIENTS_SIZE - 1).
+ * @return NutationModel The nutation coefficient at the specified index.
+ */
 inline constexpr NutationModel get_nutation_coefficient(std::size_t idx)
 {
 
@@ -182,13 +195,16 @@ inline constexpr NutationModel get_nutation_coefficient(std::size_t idx)
     return NUTATION_COEFFICIENTS[idx];
 }
 
-inline constexpr struct revolution final : mp_units::named_unit<"rev", mp_units::mag<360> * mp_units::si::unit_symbols::deg> {
-} revolution;
-inline constexpr auto rev = revolution;
-
+/**
+ * @brief Get the anomaly terms for nutation calculations.
+ *
+ * @param T The time in Julian centuries since J2000.
+ * @return std::array<mp_units::quantity<mp_units::si::unit_symbols::arcsec>, 5> The anomaly terms [l, lp, F, D, Om].
+ */
 inline constexpr std::array<mp_units::quantity<mp_units::si::unit_symbols::arcsec>, 5> get_anomaly_terms(const Unitless& T)
 {
     using namespace mp_units;
+    using astrea::units::unit_symbols::rev;
     using mp_units::si::unit_symbols::arcmin;
     using mp_units::si::unit_symbols::arcsec;
     using mp_units::si::unit_symbols::deg;
@@ -216,6 +232,12 @@ inline constexpr std::array<mp_units::quantity<mp_units::si::unit_symbols::arcse
     return { l, lp, F, D, Om };
 }
 
+/**
+ * @brief Get the nutation angles (dpsi, deps) for a given time T.
+ *
+ * @param T The time in Julian centuries since J2000.
+ * @return std::array<mp_units::quantity<mp_units::si::unit_symbols::arcsec>, 2> The nutation angles [dpsi, deps].
+ */
 inline constexpr std::array<mp_units::quantity<mp_units::si::unit_symbols::arcsec>, 2> get_nutation_angles(const Unitless& T)
 {
     using namespace mp_units;
@@ -239,6 +261,8 @@ inline constexpr std::array<mp_units::quantity<mp_units::si::unit_symbols::arcse
     return { dpsi, deps };
 }
 
+} // namespace
+
 /**
  * @brief DCM from frames::earth::icrf to frames::earth::cep.
  *
@@ -252,13 +276,14 @@ inline constexpr DirectionCosineMatrix<frames::earth::icrf, frames::earth::cep>
     get_dcm<frames::earth::icrf, frames::earth::cep>(const Date& date)
 {
     using namespace mp_units;
+    using astrea::units::unit_symbols::jc;
     using mp_units::si::unit_symbols::arcmin;
     using mp_units::si::unit_symbols::arcsec;
     using mp_units::si::unit_symbols::deg;
 
     // These equations really should give the constants in terms of angular rates, accels, etc., but
     // it's easier to write them as unit-unaware polynomials and since everyone does that, we're just mimicking it here
-    const Unitless T = (date - J2000).numerical_value_in(JulianCentury) * one;
+    const Unitless T = (date - J2000).numerical_value_in(jc) * one;
 
     const quantity<arcsec> z = 2306.2181 * arcsec * T + 1.09468 * arcsec * pow<2>(T) + 0.018203 * arcsec * pow<3>(T);
     const quantity<arcsec> theta = 2004.3109 * arcsec * T - 0.42665 * arcsec * pow<2>(T) - 0.041833 * arcsec * pow<3>(T);
@@ -284,7 +309,7 @@ inline constexpr DirectionCosineMatrix<frames::earth::cep, frames::earth::itrf>
 
     // These equations really should give the constants in terms of angular rates, accels, etc., but
     // it's easier to write them as unit-unaware polynomials and since everyone does that, we're just mimicking it here
-    // const Unitless T = (date - J2000).numerical_value_in(JulianCentury) * one;
+    // const Unitless T = (date - J2000).numerical_value_in(jc) * one;
 
     const Angle gst = julian_date_to_sidereal_time(date.jd());
     const auto Rs   = DCM<frames::earth::cep, frames::earth::itrf>::Z(gst);

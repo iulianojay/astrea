@@ -61,6 +61,7 @@ template <>
 inline consteval CelestialBodyParameters get_celestial_body_parameters<planets::Earth>()
 {
     using namespace mp_units;
+    using astrea::units::unit_symbols::jc;
     using mp_units::iau::unit_symbols::au;
     using mp_units::non_si::day;
     using mp_units::si::unit_symbols::deg;
@@ -87,12 +88,12 @@ inline consteval CelestialBodyParameters get_celestial_body_parameters<planets::
              .rightAscension         = Angle(0.0 * deg),
              .longitudeOfPerigee     = Angle(102.93768193 * deg),
              .meanLongitude          = Angle(100.46457166 * deg),
-             .semimajorAxisRate      = InterplanetaryVelocity(0.00000562 * au / JulianCentury),
-             .eccentricityRate       = BodyUnitlessPerTime(-0.00004392 * one / JulianCentury),
-             .inclinationRate        = BodyAngularVelocity(-0.01294668 * deg / JulianCentury),
-             .rightAscensionRate     = BodyAngularVelocity(0.0 * deg / JulianCentury),
-             .longitudeOfPerigeeRate = BodyAngularVelocity(0.32327364 * deg / JulianCentury),
-             .meanLongitudeRate      = BodyAngularVelocity(35999.37244981 * deg / JulianCentury) };
+             .semimajorAxisRate      = InterplanetaryVelocity(0.00000562 * au / jc),
+             .eccentricityRate       = BodyUnitlessPerTime(-0.00004392 * one / jc),
+             .inclinationRate        = BodyAngularVelocity(-0.01294668 * deg / jc),
+             .rightAscensionRate     = BodyAngularVelocity(0.0 * deg / jc),
+             .longitudeOfPerigeeRate = BodyAngularVelocity(0.32327364 * deg / jc),
+             .meanLongitudeRate      = BodyAngularVelocity(35999.37244981 * deg / jc) };
 }
 
 /**

@@ -34,6 +34,7 @@
 using namespace mp_units;
 using namespace mp_units::non_si;
 using namespace mp_units::si;
+using astrea::units::unit_symbols::re;
 using mp_units::si::unit_symbols::deg;
 using mp_units::si::unit_symbols::km;
 using mp_units::si::unit_symbols::rad;
@@ -97,7 +98,7 @@ void TwoLineElements::ctor_impl(const std::array<std::string, 2> rawTle)
 
     const std::string ballisticCoefficientStr = rawTle[0].substr(53, 8);
     nDecimalPlaces                            = std::stoi(ballisticCoefficientStr.substr(6)) - 5;
-    _ballisticCoefficient = std::stod(ballisticCoefficientStr.substr(0, 6)) * std::pow(10.0, nDecimalPlaces) * one / EarthRadii;
+    _ballisticCoefficient = std::stod(ballisticCoefficientStr.substr(0, 6)) * std::pow(10.0, nDecimalPlaces) * one / re;
 
     _ephemerisType = std::stoi(rawTle[0].substr(62, 1));
     _elementSetNo  = std::stoi(rawTle[0].substr(64, 4));

@@ -44,6 +44,7 @@ template <>
 inline consteval CelestialBodyParameters get_celestial_body_parameters<moons::Phobos>()
 {
     using namespace mp_units;
+    using astrea::units::unit_symbols::jc;
     using mp_units::iau::unit_symbols::au;
     using mp_units::non_si::day;
     using mp_units::si::unit_symbols::deg;
@@ -70,12 +71,12 @@ inline consteval CelestialBodyParameters get_celestial_body_parameters<moons::Ph
              .rightAscension         = Angle(24.525 * deg),
              .longitudeOfPerigee     = Angle(285.254 * deg),
              .meanLongitude          = Angle(610.583 * deg),
-             .semimajorAxisRate      = InterplanetaryVelocity(0.0 * km / JulianCentury),
-             .eccentricityRate       = BodyUnitlessPerTime(0.0 * one / JulianCentury),
-             .inclinationRate        = BodyAngularVelocity(0.0 * deg / JulianCentury),
-             .rightAscensionRate     = BodyAngularVelocity(2376381 * deg / JulianCentury),
-             .longitudeOfPerigeeRate = BodyAngularVelocity(7111440.9 * deg / JulianCentury),
-             .meanLongitudeRate      = BodyAngularVelocity(37503046910.7 * deg / JulianCentury) };
+             .semimajorAxisRate      = InterplanetaryVelocity(0.0 * km / jc),
+             .eccentricityRate       = BodyUnitlessPerTime(0.0 * one / jc),
+             .inclinationRate        = BodyAngularVelocity(0.0 * deg / jc),
+             .rightAscensionRate     = BodyAngularVelocity(2376381 * deg / jc),
+             .longitudeOfPerigeeRate = BodyAngularVelocity(7111440.9 * deg / jc),
+             .meanLongitudeRate      = BodyAngularVelocity(37503046910.7 * deg / jc) };
 }
 
 } // namespace astro

@@ -22,25 +22,44 @@
 #include <mp-units/systems/si.h>
 
 namespace astrea {
+namespace units {
 
 /**
  * @brief Definition for a Julian Century as 36525 days.
  */
-inline constexpr struct JulianCentury final : mp_units::named_unit<"JulianCentury", mp_units::mag<36525> * mp_units::non_si::day> {
-} JulianCentury;
+inline constexpr struct julian_century final
+    : mp_units::named_unit<"Julian Century", mp_units::mag<36525> * mp_units::non_si::day> {
+} julian_century;
 
 /**
  * @brief Definition for Earth Radii as 6378 km.
  */
-inline constexpr struct EarthRadii final
-    : mp_units::named_unit<"EarthRadii", mp_units::mag<6378> * mp_units::si::unit_symbols::km> {
-} EarthRadii;
+inline constexpr struct earth_radii final
+    : mp_units::named_unit<"Earth Radii", mp_units::mag<6378> * mp_units::si::unit_symbols::km> {
+} earth_radii;
 
 /**
  * @brief Definition for Solar Flux Units as 1e-22 W / (m^2 * Hz).
  */
-inline constexpr struct SolarFluxUnits final
-    : mp_units::named_unit<"SolarFluxUnits", mp_units::mag_power<10, -22> * mp_units::si::unit_symbols::W / (pow<2>(mp_units::si::unit_symbols::m) * mp_units::si::unit_symbols::Hz)> {
-} SolarFluxUnits;
+inline constexpr struct solar_flux_units final
+    : mp_units::named_unit<"Solar Flux Units", mp_units::mag_power<10, -22> * mp_units::si::unit_symbols::W / (pow<2>(mp_units::si::unit_symbols::m) * mp_units::si::unit_symbols::Hz)> {
+} solar_flux_units;
 
+/**
+ * @brief Definition for a revolution as 360 degrees.
+ */
+inline constexpr struct revolution final : mp_units::named_unit<"rev", mp_units::mag<360> * mp_units::si::unit_symbols::deg> {
+} revolution;
+
+
+namespace unit_symbols {
+
+inline constexpr auto jc  = julian_century;
+inline constexpr auto re  = earth_radii;
+inline constexpr auto sfu = solar_flux_units;
+inline constexpr auto rev = revolution;
+
+} // namespace unit_symbols
+
+} // namespace units
 } // namespace astrea
