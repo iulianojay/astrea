@@ -10,7 +10,7 @@ ASTRO_ROOT = pathlib.Path(os.path.abspath(os.path.join(os.path.dirname(os.path.r
 
 
 
-def write_to_file(outPath: str, eopData: pd.DataFrame):
+def write_to_file(outPath: str, eopData: pd.DataFrame, rebuild: bool) -> None:
     """
     Format and write x, y, z position coefficients to file
     """
@@ -28,7 +28,7 @@ def write_to_file(outPath: str, eopData: pd.DataFrame):
     # Write header file
     header = f"{className}.hpp"
     headerfile = os.path.join(outPath, header)
-    if (os.path.exists(headerfile)):
+    if (os.path.exists(headerfile) and not rebuild):
         print(f" -- {headerfile} already exists, skipping rebuild...")
         return
     with open(headerfile, 'w+') as fID:
@@ -92,7 +92,7 @@ def write_to_file(outPath: str, eopData: pd.DataFrame):
         # Write the x coefficients to file
         fID.write(f"const std::array<{className}::EopRow, {nEntries}> {className}::DATA {{\n")
         for index, row in eopData.iterrows():
-            fID.write(f"\tEopRow({{ Date(JulianDate(JulianDateClock::duration{{{row['MJD (TAI)']}}})), ")
+            fID.write(f"\tEopRow({{ Date(JulianDate(JulianDateClock::duration{{{2400000.5 + row['MJD (TAI)']}}})), ")
             fID.write(f"{row['PMx (mas)']} * milli<arcsecond>, ")
             fID.write(f"{row['PMy (mas)']} * milli<arcsecond>, ")
             fID.write(f"{row['TAI-UT1 (ms)']} * milli<second>, ")
@@ -123,6 +123,7 @@ if __name__ == "__main__":
     parser.add_argument('--infile', nargs='+', type=str, default=[os.path.join(ASTRO_ROOT, "data", "earth_orientation_parameters", "eop.long")],
                         help='List of celestial bodies to generate ephemeris files for. Default is all bodies.')
     parser.add_argument('-o', '--output_path', type=str, default=None)
+    parser.add_argument('-r', '--rebuild', type=bool, default=False, help='Rebuild the ephemeris files even if they already exist. Default is False.')
     args = parser.parse_args()
 
     if not args.infile:
@@ -135,6 +136,7 @@ if __name__ == "__main__":
 
     infile = args.infile[0]
     output_path = args.output_path
+    rebuild = args.rebuild
 
     # Ensure the output directory exists
     os.makedirs(output_path, exist_ok=True)
@@ -161,5 +163,5 @@ if __name__ == "__main__":
     eopData = eopData.iloc[:, :len(columns)]  # Keep only the first 15 columns
     eopData.columns = columns
 
-    write_to_file(output_path, eopData)
+    write_to_file(output_path, eopData, rebuild)
 

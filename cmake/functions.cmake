@@ -261,6 +261,7 @@ function(generate_eop_files PROJECT_SOURCE_DIRECTORY)
     message(" -- Earth Orientation Parameters Generation Options:")
     message(" ---- BUILD_EOP: ${BUILD_EOP}")
     message(" ---- EOP_FILE: ${EOP_FILE}")
+    message(" ---- REBUILD_EOP: ${REBUILD_EOP}")
 
     if (NOT ${BUILD_EOP})
         return()
@@ -277,12 +278,12 @@ function(generate_eop_files PROJECT_SOURCE_DIRECTORY)
         message(FATAL_ERROR "Python 3 is required for eop file generation but was not found")
     endif()
     message("Python3 Found. Using executable at ${Python3_EXECUTABLE}")
-
+    
     add_custom_command(
         OUTPUT
             ${EOP_HEADERS}
             ${EOP_SOURCES}
-        COMMAND ${Python3_EXECUTABLE} ${PROJECT_SOURCE_DIRECTORY}/pyastro/eop_parser.py -o ${CMAKE_CURRENT_BINARY_DIR}/include/eop --infile ${EOP_FILE}
+        COMMAND ${Python3_EXECUTABLE} ${PROJECT_SOURCE_DIRECTORY}/pyastro/eop_parser.py -o ${CMAKE_CURRENT_BINARY_DIR}/include/eop --infile ${EOP_FILE} --rebuild ${REBUILD_EOP}
         DEPENDS
             ${PROJECT_SOURCE_DIRECTORY}/pyastro/eop_parser.py
         WORKING_DIRECTORY ${PROJECT_SOURCE_DIRECTORY}
