@@ -169,13 +169,28 @@ class Date {
      */
     double jdn() const { return std::chrono::floor<std::chrono::days>(_julianDate).time_since_epoch().count(); }
 
+    /**
+     * @brief Get the seconds in the local day for this Date object.
+     *
+     * @return Time The seconds in the local day for this Date object.
+     */
     Time seconds_in_local_day() const { return { _julianDate - std::chrono::floor<std::chrono::days>(_julianDate) }; }
 
+    /**
+     * @brief Get the year, month, and day representation of this Date object.
+     *
+     * @return std::chrono::year_month_day The year, month, and day representation of this Date object.
+     */
     std::chrono::year_month_day year_month_day() const
     {
         return std::chrono::year_month_day(std::chrono::sys_days(std::chrono::floor<std::chrono::days>(sys())));
     }
 
+    /**
+     * @brief Get the day of the year for this Date object.
+     *
+     * @return int The day of the year for this Date object, starting from 1.
+     */
     int day_of_year() const
     {
         using namespace std::chrono;
