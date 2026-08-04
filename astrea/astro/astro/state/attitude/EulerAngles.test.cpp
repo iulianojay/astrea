@@ -368,9 +368,9 @@ TEST_F(EulerAnglesTest, TestRotationTypeConversion)
     auto extrinsic = intrinsic.template to_rotation_type<RotationType::EXTRINSIC>();
 
     // Should have the same angle values
-    ASSERT_TRUE(math::nearly_equal(intrinsic[0], extrinsic[0], REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(intrinsic[0], extrinsic[2], REL_TOL));
     ASSERT_TRUE(math::nearly_equal(intrinsic[1], extrinsic[1], REL_TOL));
-    ASSERT_TRUE(math::nearly_equal(intrinsic[2], extrinsic[2], REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(intrinsic[2], extrinsic[0], REL_TOL));
 
     // Test conversion to same rotation type (no-op)
     auto intrinsicSame = intrinsic.template to_rotation_type<RotationType::INTRINSIC>();
@@ -450,9 +450,9 @@ TEST_F(EulerAnglesTest, TestExtrinsicToIntrinsicConversion)
     auto intrinsicResult = extrinsic_euler.to_rotation_type<RotationType::INTRINSIC>();
 
     // Verify that angles are reversed
-    ASSERT_TRUE(math::nearly_equal(intrinsicResult[0], extrinsic_euler[0], REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(intrinsicResult[0], extrinsic_euler[2], REL_TOL));
     ASSERT_TRUE(math::nearly_equal(intrinsicResult[1], extrinsic_euler[1], REL_TOL));
-    ASSERT_TRUE(math::nearly_equal(intrinsicResult[2], extrinsic_euler[2], REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(intrinsicResult[2], extrinsic_euler[0], REL_TOL));
 }
 
 TEST_F(EulerAnglesTest, TestIntrinsicToExtrinsicConversion)
@@ -464,9 +464,9 @@ TEST_F(EulerAnglesTest, TestIntrinsicToExtrinsicConversion)
     auto extrinsicResult = intrinsic_euler.to_rotation_type<RotationType::EXTRINSIC>();
 
     // Verify that angles are reversed
-    ASSERT_TRUE(math::nearly_equal(extrinsicResult[0], intrinsic_euler[0], REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(extrinsicResult[0], intrinsic_euler[2], REL_TOL));
     ASSERT_TRUE(math::nearly_equal(extrinsicResult[1], intrinsic_euler[1], REL_TOL));
-    ASSERT_TRUE(math::nearly_equal(extrinsicResult[2], intrinsic_euler[2], REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(extrinsicResult[2], intrinsic_euler[0], REL_TOL));
 }
 
 TEST_F(EulerAnglesTest, TestRoundTripIntrinsicExtrinsicConversion)

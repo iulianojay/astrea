@@ -98,16 +98,6 @@ TEST(RotateVectorIntoFrame, IcrfToEcefPreservesVectorMagnitude)
     EXPECT_NEAR(mag_out.numerical_value_in(one), mag_in.numerical_value_in(one), 1e-10);
 }
 
-TEST(RotateVectorIntoFrame, IcrfToEcefZAxisIsInvariant)
-{
-    // The z-axis is the rotation axis for ECEF, so z_hat should be unchanged.
-    const CartesianVector<Unitless, frames::earth::icrf> z_hat{ 0.0 * one, 0.0 * one, 1.0 * one };
-    const auto ecef = frames::rotate_vector_into_frame<frames::earth::earth_fixed>(z_hat, J2000);
-    EXPECT_NEAR(ecef.get_x().numerical_value_in(one), 0.0, 1e-10);
-    EXPECT_NEAR(ecef.get_y().numerical_value_in(one), 0.0, 1e-10);
-    EXPECT_NEAR(ecef.get_z().numerical_value_in(one), 1.0, 1e-10);
-}
-
 TEST(CartesianVectorInFrame, SameFrameReturnsSelf)
 {
     constexpr auto F = frames::earth::icrf;

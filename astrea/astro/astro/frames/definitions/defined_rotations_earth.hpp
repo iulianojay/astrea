@@ -351,15 +351,15 @@ inline constexpr DirectionCosineMatrix<frames::earth::icrf, frames::earth::cep>
     // it's easier to write them as unit-unaware polynomials and since everyone does that, we're just mimicking it here
     const Unitless T = (date - J2000).numerical_value_in(jc) * one;
 
-    // Precession matrix
+    // Precession matrix (icrf -> cep, applied first)
     const auto [z, theta, zeta] = get_precession_angles(T);
-    const auto P                = DCM<frames::earth::cep, frames::earth::cep>::ZYZ(-z, theta, -zeta);
+    const auto P                = DCM<frames::earth::icrf, frames::earth::cep>::ZYZ(-z, theta, -zeta);
 
-    // Nutation matrix
+    // Nutation matrix (cep -> cep, applied second, as a correction on top of precession)
     const auto [eps, dpsi, deps] = get_nutation_angles(T);
-    const auto N                 = DCM<frames::earth::icrf, frames::earth::cep>::XZX(-(eps + deps), -dpsi, eps);
+    const auto N                 = DCM<frames::earth::cep, frames::earth::cep>::XZX(-(eps + deps), -dpsi, eps);
 
-    return N * P;
+    return P * N;
 }
 
 template <>
