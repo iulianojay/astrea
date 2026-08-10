@@ -75,6 +75,7 @@ build:
 	$(toolchain_make) \
 	$(toolchain_file) \
 	-DCMAKE_BUILD_TYPE=$(build_type) \
+	-DCMAKE_EXPORT_COMPILE_COMMANDS=ON \
 	-DCMAKE_INSTALL_PREFIX:PATH=$(install_path) \
 	-DCMAKE_CXX_FLAGS=-fdiagnostics-color=always \
 	-DCPM_SOURCE_CACHE=$(config_path)/.cpm-cache \
