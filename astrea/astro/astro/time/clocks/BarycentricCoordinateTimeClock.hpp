@@ -74,7 +74,7 @@ struct BarycentricCoordinateTimeClock {
         const auto tdb = duration_cast<duration>(BarycentricDynamicalTimeClock::from_sys(timePoint).time_since_epoch());
         const auto jd  = JulianDateClock::from_sys(timePoint).time_since_epoch();
         const auto jdDiff = duration_cast<days>(jd - jdRef).count();
-        return BarycentricCoordinateTimePoint{ tdb + duration{ Lb * jdDiff + P0.count() } };
+        return BarycentricCoordinateTimePoint<duration>{ tdb + duration{ Lb * jdDiff + P0.count() } };
     }
 
     /**
@@ -96,9 +96,8 @@ struct BarycentricCoordinateTimeClock {
         static const auto tcbRef = BarycentricCoordinateTimeClock::from_sys(sysRef);
         const auto jdDiff        = duration_cast<days>(timePoint - tcbRef).count();
         const auto tdb           = timePoint.time_since_epoch() - duration{ Lb * jdDiff + P0.count() };
-        return BarycentricDynamicalTimeClock::to_sys(
-            BarycentricDynamicalTimeClock::time_point{ BarycentricDynamicalTimeClock::duration{ tdb } }
-        );
+        return BarycentricDynamicalTimeClock::to_sys(BarycentricDynamicalTimeClock::time_point{
+            BarycentricDynamicalTimeClock::duration{ tdb } });
     }
 
     /**
