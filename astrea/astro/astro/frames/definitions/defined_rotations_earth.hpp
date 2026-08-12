@@ -38,22 +38,6 @@
 namespace astrea {
 namespace astro {
 
-namespace axes {
-
-inline constexpr struct cep : Axis<"Earth Celestial Pole", axes::icrf> {
-} cep;
-
-} // namespace axes
-
-namespace frames {
-namespace earth {
-
-inline constexpr struct cep : Frame<"Earth Celestial Pole", planets::Earth, axes::cep> {
-} cep;
-
-} // namespace earth
-} // namespace frames
-
 namespace {
 
 /**
