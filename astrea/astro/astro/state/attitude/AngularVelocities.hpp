@@ -389,7 +389,7 @@ class AngularVelocities {
      */
     static AngularVelocities from_double_vector(const std::vector<double>& vec)
     {
-        using mp_units::angular::unit_symbols::rad;
+        using mp_units::si::unit_symbols::rad;
         using mp_units::si::unit_symbols::s;
 
         if (vec.size() != 3) {

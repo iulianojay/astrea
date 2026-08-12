@@ -17,7 +17,6 @@
 #include <iostream>
 #include <sstream>
 
-#include <mp-units/systems/angular.h>
 #include <mp-units/systems/si.h>
 
 #include <astro/astro.hpp>
@@ -37,7 +36,7 @@
 using namespace astrea;
 using namespace astro;
 
-using mp_units::angular::unit_symbols::deg;
+using mp_units::si::unit_symbols::deg;
 using mp_units::si::unit_symbols::km;
 using mp_units::si::unit_symbols::s;
 using std::chrono::nanoseconds;

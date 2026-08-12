@@ -14,7 +14,6 @@
 #include <cmath>
 #include <gtest/gtest.h>
 #include <math/trig.hpp>
-#include <mp-units/systems/angular.h>
 #include <mp-units/systems/si.h>
 
 using namespace astrea;
@@ -22,7 +21,7 @@ using namespace astrea::math;
 
 using mp_units::one;
 using mp_units::quantity;
-using mp_units::angular::unit_symbols::rad;
+using mp_units::si::unit_symbols::rad;
 
 int main(int argc, char** argv)
 {

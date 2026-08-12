@@ -18,7 +18,6 @@
  */
 #pragma once
 
-#include <mp-units/systems/angular/math.h>
 #include <mp-units/systems/si/math.h>
 
 #include <units/units.hpp>
@@ -90,8 +89,8 @@ struct EastNorthUp : public DynamicFrame<EastNorthUp<_frame_>, _frame_, enu_tag<
         const auto [lat, lon, alt]             = convert_body_fixed_to_geodetic(rFixed);
 
         using mp_units::one;
-        using mp_units::angular::cos;
-        using mp_units::angular::sin;
+        using mp_units::si::cos;
+        using mp_units::si::sin;
 
         const Unitless sinLat = sin(lat);
         const Unitless cosLat = cos(lat);

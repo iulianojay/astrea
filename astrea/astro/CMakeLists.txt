@@ -223,6 +223,10 @@ set(BUILD_EPHEMERIDES(BUILD_SUN OR BUILD_MERCURY OR BUILD_EARTH OR BUILD_MARS OR
 set(EPHEMERIS_COMPILE_DEFINES "")
 generate_ephemeris_files(${CMAKE_CURRENT_LIST_DIR})
 
+# Build EoP files
+option(BUILD_EOP "Build Earth Orientation Parameters" ON)
+generate_eop_files(${CMAKE_CURRENT_LIST_DIR})
+
 # Includes
 set(ASTRO_DIRS
     ${CMAKE_CURRENT_LIST_DIR}
@@ -248,6 +252,9 @@ add_library(astrea::astro ALIAS ${PROJECT_NAME}_shared)
 
 if(${BUILD_EPHEMERIDES})
     add_dependencies(${PROJECT_NAME}_shared generated_ephemerides)
+endif()
+if(${BUILD_EOP})
+    add_dependencies(${PROJECT_NAME}_shared generated_eop_files)
 endif()
 
 set_target_properties      (${PROJECT_NAME}_shared PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ${PROJECT_NAME} CLEAN_DIRECT_OUTPUT 1 INSTALL_RPATH "$ORIGIN")
@@ -280,6 +287,9 @@ if(${BUILD_STATIC})
     if(${BUILD_EPHEMERIDES})
         add_dependencies(${PROJECT_NAME}_static generated_ephemerides)
     endif()
+    if(${BUILD_EOP})
+        add_dependencies(${PROJECT_NAME}_static generated_eop_files)
+    endif()
 
     set_target_properties      (${PROJECT_NAME}_static PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ${PROJECT_NAME} CLEAN_DIRECT_OUTPUT 1 SUFFIX .a.${PROJECT_VERSION})
     target_link_libraries      (${PROJECT_NAME}_static PUBLIC math_static utilities_static ${ASTRO_LIBS})
@@ -310,6 +320,13 @@ install(
 if(EXISTS "${CMAKE_CURRENT_BINARY_DIR}/include/ephemerides")
     install(
         DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/include/ephemerides
+        DESTINATION include/astro
+        FILES_MATCHING PATTERN *.hpp
+    )
+endif()
+if(EXISTS "${CMAKE_CURRENT_BINARY_DIR}/include/eop")
+    install(
+        DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/include/eop
         DESTINATION include/astro
         FILES_MATCHING PATTERN *.hpp
     )

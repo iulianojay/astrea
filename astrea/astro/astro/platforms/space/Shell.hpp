@@ -83,8 +83,8 @@ class Shell {
         const std::size_t& T,
         const std::size_t& P,
         const Unitless& F,
-        const Angle& anchorRAAN    = 0.0 * mp_units::angular::unit_symbols::rad,
-        const Angle& anchorAnomaly = 0.0 * mp_units::angular::unit_symbols::rad
+        const Angle& anchorRAAN    = 0.0 * mp_units::si::unit_symbols::rad,
+        const Angle& anchorAnomaly = 0.0 * mp_units::si::unit_symbols::rad
     );
 
     /**

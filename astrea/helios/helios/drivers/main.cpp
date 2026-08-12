@@ -40,8 +40,8 @@ using namespace snapshot;
 using namespace helios;
 
 using namespace mp_units;
-using mp_units::angular::unit_symbols::deg;
 using mp_units::non_si::unit_symbols::min;
+using mp_units::si::unit_symbols::deg;
 using mp_units::si::unit_symbols::kg;
 using mp_units::si::unit_symbols::km;
 using mp_units::si::unit_symbols::s;

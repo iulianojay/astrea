@@ -23,13 +23,14 @@
 
 using namespace astrea;
 using namespace astro;
+using astrea::units::unit_symbols::re;
 
 using namespace mp_units;
 using namespace mp_units::non_si;
-using namespace mp_units::angular;
-using angular::unit_symbols::deg;
-using angular::unit_symbols::rad;
+using namespace mp_units::si;
+using si::unit_symbols::deg;
 using si::unit_symbols::km;
+using si::unit_symbols::rad;
 using si::unit_symbols::s;
 
 class TwoLineElementsTest : public testing::Test {
@@ -93,7 +94,7 @@ TEST_F(TwoLineElementsTest, StringConstructor)
     ASSERT_EQ(tle.get_epoch(), Date("2008-09-20 12:25:40"));
     ASSERT_TRUE(math::nearly_equal(tle.get_mean_motion_1st_derivative(), MeanMotion1stDer(-0.00002182 * one / pow<2>(day)), REL_TOL));
     ASSERT_TRUE(math::nearly_equal(tle.get_mean_motion_2nd_derivative(), MeanMotion2ndDer(-0.0 * one / pow<3>(day)), REL_TOL));
-    ASSERT_TRUE(math::nearly_equal(tle.get_ballistic_coefficient(), BallisticCoefficient(-0.000011606 * one / EarthRadii), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(tle.get_ballistic_coefficient(), BallisticCoefficient(-0.000011606 * one / re), REL_TOL));
     ASSERT_EQ(tle.get_ephemeris_type(), 0);
     ASSERT_EQ(tle.get_element_set_number(), 292);
     ASSERT_EQ(tle.get_check_sum1(), 7);
@@ -132,7 +133,7 @@ TEST_F(TwoLineElementsTest, StringConstructor3Line)
     ASSERT_EQ(tle.get_epoch(), Date("2008-09-20 12:25:40"));
     ASSERT_TRUE(math::nearly_equal(tle.get_mean_motion_1st_derivative(), MeanMotion1stDer(-0.00002182 * one / pow<2>(day)), REL_TOL));
     ASSERT_TRUE(math::nearly_equal(tle.get_mean_motion_2nd_derivative(), MeanMotion2ndDer(-0.0 * one / pow<3>(day)), REL_TOL));
-    ASSERT_TRUE(math::nearly_equal(tle.get_ballistic_coefficient(), BallisticCoefficient(-0.000011606 * one / EarthRadii), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(tle.get_ballistic_coefficient(), BallisticCoefficient(-0.000011606 * one / re), REL_TOL));
     ASSERT_EQ(tle.get_ephemeris_type(), 0);
     ASSERT_EQ(tle.get_element_set_number(), 292);
     ASSERT_EQ(tle.get_check_sum1(), 7);
