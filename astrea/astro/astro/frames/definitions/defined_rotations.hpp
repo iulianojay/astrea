@@ -64,12 +64,20 @@ template <IsFrame auto in_frame, IsFrame auto out_frame>
 inline constexpr DirectionCosineMatrix<in_frame, out_frame> get_dcm(const Date& date)
 {
     const Angle gst = date.body_sidereal_time<out_frame.origin>();
-    return DirectionCosineMatrix<in_frame, out_frame>::Z(-gst);
+    return DirectionCosineMatrix<in_frame, out_frame>::Z(-gst); // TODO: add axial tilt for non-Earth bodies
 }
 
+/**
+ * @brief Get the Direction Cosine Matrix (DCM) rate for the body-fixed frame at a given date.
+ *
+ * @tparam in_frame The input frame type, must be ICRF and share the same origin as out_frame.
+ * @tparam out_frame The output frame type, must be FIXED_ROTATING and share the same origin as in_frame.
+ * @param date The date for which to get the DCM rate.
+ * @return DirectionCosineMatrixRate<in_frame, out_frame> The DCM rate from in_frame to out_frame.
+ */
 template <IsFrame auto in_frame, IsFrame auto out_frame>
     requires(IsBodyFixedFrame<decltype(out_frame)> && equivalent(in_frame.axis, axes::icrf) && in_frame.origin != planets::Earth)
-inline constexpr DirectionCosineMatrix<in_frame, out_frame> get_dcm_rate(const Date& date)
+inline constexpr DirectionCosineMatrixRate<in_frame, out_frame> get_dcm_rate(const Date& date)
 {
     const Angle gst                    = date.body_sidereal_time<out_frame.origin>();
     const AngularVelocity rotationRate = get_rotation_rate<out_frame.origin>();
