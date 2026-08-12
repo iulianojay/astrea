@@ -4,7 +4,7 @@
  * @brief Header file for the CelestialBody class, which represents a celestial body in an astrodynamics system.
  * @date 2025-08-02
  *
- * @copyright Copyright (c) 2025 Jay Iuliano
+ * @copyright Copyright (c) 2025-2026 Jay Iuliano
  *
  * The GNU Lesser General Public License (LGPL)
  *

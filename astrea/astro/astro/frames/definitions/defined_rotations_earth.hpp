@@ -12,15 +12,13 @@
  * frames.hpp includes this file AFTER its two frame-instance headers, so by
  * the time these specialisations are compiled all earth frame types are complete.
  *
- * @copyright Copyright (c) 2025 Jay Iuliano
+ * @copyright Copyright (c) 2025-2026 Jay Iuliano
  *
  * The GNU Lesser General Public License (LGPL)
  *
  * This file is part of Astrea.
  */
 #pragma once
-
-#include <type_traits>
 
 #include <mp-units/systems/si/math.h>
 

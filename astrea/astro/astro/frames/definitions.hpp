@@ -9,7 +9,7 @@
  *
  * Depends on: frames/framework, astro/systems
  *
- * @copyright Copyright (c) 2025 Jay Iuliano
+ * @copyright Copyright (c) 2025-2026 Jay Iuliano
  *
  * The GNU Lesser General Public License (LGPL)
  *

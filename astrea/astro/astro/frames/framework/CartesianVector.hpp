@@ -4,7 +4,7 @@
  * @brief This file defines the CartesianVector class, which represents a 3D vector in Cartesian coordinates.
  * @date 2025-08-03
  *
- * @copyright Copyright (c) 2025 Jay Iuliano
+ * @copyright Copyright (c) 2025-2026 Jay Iuliano
  *
  * The GNU Lesser General Public License (LGPL)
  *
