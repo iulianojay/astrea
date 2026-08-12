@@ -4,7 +4,7 @@
  * @brief Header file for the state module
  * @date 2026-06-01
  *
- * @copyright Copyright (c) 2026 Jay Iuliano
+ * @copyright Copyright (c) 2025-2026 Jay Iuliano
  *
  * The GNU Lesser General Public License (LGPL)
  *

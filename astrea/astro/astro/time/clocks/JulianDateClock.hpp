@@ -4,7 +4,7 @@
  * @brief A clock implementation for Julian Dates. Adapted from https://stackoverflow.com/questions/33964461/handling-julian-days-in-c11-14.
  * @date 2025-08-02
  *
- * @copyright Copyright (c) 2025 Jay Iuliano
+ * @copyright Copyright (c) 2025-2026 Jay Iuliano
  *
  * The GNU Lesser General Public License (LGPL)
  *

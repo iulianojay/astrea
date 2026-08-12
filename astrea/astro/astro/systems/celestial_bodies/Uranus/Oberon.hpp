@@ -4,7 +4,7 @@
  * @brief Header file for the Oberon class.
  * @date 2025-10-02
  *
- * @copyright Copyright (c) 2025 Jay Iuliano
+ * @copyright Copyright (c) 2025-2026 Jay Iuliano
  *
  */
 #pragma once

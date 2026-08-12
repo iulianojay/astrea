@@ -4,7 +4,7 @@
  * @brief Unit tests for the Quaternion class
  * @date 2026-03-20
  *
- * @copyright Copyright (c) 2026 Jay Iuliano
+ * @copyright Copyright (c) 2025-2026 Jay Iuliano
  *
  * The GNU Lesser General Public License (LGPL)
  *

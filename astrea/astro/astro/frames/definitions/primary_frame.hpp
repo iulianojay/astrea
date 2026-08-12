@@ -4,7 +4,7 @@
  * @brief Registration point for the primary frame used across astrea.
  * @date 2025-04-22
  *
- * @copyright Copyright (c) 2025 Jay Iuliano
+ * @copyright Copyright (c) 2025-2026 Jay Iuliano
  *
  * The GNU Lesser General Public License (LGPL)
  *
