@@ -310,7 +310,7 @@ inline std::tuple<Angle, Angle, Distance> convert_body_fixed_to_geodetic(const R
 {
     using mp_units::abs;
     using mp_units::sqrt;
-    using mp_units::angular::atan2;
+    using mp_units::si::atan2;
     using mp_units::si::unit_symbols::km;
     using mp_units::si::unit_symbols::mm;
 

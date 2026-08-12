@@ -19,7 +19,7 @@
 #include <unordered_set>
 
 #include <mp-units/math.h>
-#include <mp-units/systems/angular/math.h>
+#include <mp-units/systems/si/math.h>
 
 #include <astro/platforms/space/Constellation.hpp>
 #include <astro/state/State.hpp>
@@ -52,11 +52,11 @@ using astro::VelocityVector;
 namespace trace {
 
 using namespace mp_units;
-using namespace mp_units::angular;
+using namespace mp_units::si;
 
-using mp_units::angular::unit_symbols::deg;
-using mp_units::angular::unit_symbols::rad;
+using mp_units::si::unit_symbols::deg;
 using mp_units::si::unit_symbols::km;
+using mp_units::si::unit_symbols::rad;
 using mp_units::si::unit_symbols::s;
 
 

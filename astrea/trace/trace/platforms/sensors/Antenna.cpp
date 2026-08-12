@@ -16,8 +16,6 @@
 #include <stdexcept>
 
 #include <mp-units/math.h>
-#include <mp-units/systems/angular.h>
-#include <mp-units/systems/isq_angle.h>
 #include <mp-units/systems/si.h>
 
 #include <astro/frames/definitions.hpp>
@@ -28,8 +26,8 @@ namespace trace {
 
 using mp_units::one;
 using mp_units::pow;
-using mp_units::angular::sin;
-using mp_units::isq_angle::cotes_angle;
+using mp_units::si::sin;
+using mp_units::si::unit_symbols::rad;
 
 CNR Antenna::carrier_to_noise_ratio(const Antenna& receiver, const Distance& range, const Angle& offsetAngle) const
 {
@@ -104,7 +102,7 @@ Gain Antenna::bessel_loss_approximation(const Angle& offsetAngle) const
 Gain Antenna::sinc_loss_approximation(const Angle& offsetAngle) const
 {
     const auto u     = mispointing_loss_approximation_argument(offsetAngle);
-    const auto sincU = math::sinc(0.690 * u * cotes_angle);
+    const auto sincU = math::sinc(0.690 * u * rad);
     return sincU * sincU;
 }
 

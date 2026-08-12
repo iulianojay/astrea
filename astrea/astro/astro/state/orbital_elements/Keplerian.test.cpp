@@ -29,9 +29,9 @@
 using namespace astrea;
 using namespace astro;
 using namespace mp_units;
-using mp_units::angular::unit_symbols::deg;
-using mp_units::angular::unit_symbols::rad;
+using mp_units::si::unit_symbols::deg;
 using mp_units::si::unit_symbols::km;
+using mp_units::si::unit_symbols::rad;
 using mp_units::si::unit_symbols::s;
 
 class KeplerianTest : public testing::Test {

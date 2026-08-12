@@ -27,8 +27,8 @@ class GroundPointTest : public testing::Test {
 
     void SetUp() override
     {
-        latitude  = 0.5 * mp_units::angular::unit_symbols::rad;
-        longitude = 1.0 * mp_units::angular::unit_symbols::rad;
+        latitude  = 0.5 * mp_units::si::unit_symbols::rad;
+        longitude = 1.0 * mp_units::si::unit_symbols::rad;
         altitude  = 0.1 * mp_units::si::unit_symbols::km;
         point     = GroundPoint<astro::planets::Earth>(latitude, longitude, altitude);
     }

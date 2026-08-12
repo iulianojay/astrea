@@ -20,9 +20,8 @@
 #include <numbers>
 
 #include <mp-units/math.h>
-#include <mp-units/systems/angular/math.h>
-#include <mp-units/systems/isq_angle.h>
 #include <mp-units/systems/si.h>
+#include <mp-units/systems/si/math.h>
 
 #include <astro/frames/definitions.hpp>
 #include <astro/frames/framework/CartesianVector.hpp>
@@ -33,22 +32,22 @@ namespace astrea {
 namespace astro {
 
 using namespace mp_units;
-using namespace mp_units::angular;
-using mp_units::angular::unit_symbols::rad;
+using namespace mp_units::si;
+using mp_units::si::unit_symbols::rad;
 
 std::pair<Unitless, Unitless> LambertSolver::evaluate_stumpff(const Unitless& z)
 {
     using namespace math;
     if (z > 0.0 * one) {
         const Unitless sqz = sqrt(z);
-        const Unitless Cz  = (1.0 - cos(sqz * isq_angle::cotes_angle)) / z;
-        const Unitless Sz  = (sqz - sin(sqz * isq_angle::cotes_angle)) / (sqz * sqz * sqz);
+        const Unitless Cz  = (1.0 - cos(sqz * rad)) / z;
+        const Unitless Sz  = (sqz - sin(sqz * rad)) / (sqz * sqz * sqz);
         return { Cz, Sz };
     }
     else if (z < 0.0 * one) {
         const Unitless sqnz = sqrt(-z);
-        const Unitless Cz   = (1.0 - cosh(sqnz * isq_angle::cotes_angle)) / z;
-        const Unitless Sz   = (sinh(sqnz * isq_angle::cotes_angle) - sqnz) / (sqnz * sqnz * sqnz);
+        const Unitless Cz   = (1.0 - cosh(sqnz * rad)) / z;
+        const Unitless Sz   = (sinh(sqnz * rad) - sqnz) / (sqnz * sqnz * sqnz);
         return { Cz, Sz };
     }
 

@@ -14,7 +14,7 @@
 #include <astro/state/attitude/Attitude.hpp>
 
 using namespace mp_units;
-using mp_units::angular::unit_symbols::rad;
+using mp_units::si::unit_symbols::rad;
 using mp_units::si::unit_symbols::s;
 
 namespace astrea {

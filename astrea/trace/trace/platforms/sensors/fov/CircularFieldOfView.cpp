@@ -23,7 +23,7 @@ namespace astrea {
 namespace trace {
 
 using namespace mp_units;
-using namespace mp_units::angular;
+using namespace mp_units::si;
 using EciRadiusVec = astro::RadiusVector<astro::frames::earth::icrf>;
 
 CircularFieldOfView::CircularFieldOfView(const Angle& halfConeAngle) :

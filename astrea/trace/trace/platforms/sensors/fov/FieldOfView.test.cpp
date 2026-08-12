@@ -22,8 +22,8 @@ using namespace astrea;
 using namespace astro;
 using namespace trace;
 
-using mp_units::angular::unit_symbols::rad;
 using mp_units::si::unit_symbols::m;
+using mp_units::si::unit_symbols::rad;
 
 class FieldOfViewTest : public testing::Test {
   public:

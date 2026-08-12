@@ -22,7 +22,7 @@
 #include <unordered_map>
 
 #include <mp-units/math.h>
-#include <mp-units/systems/angular/math.h>
+#include <mp-units/systems/si/math.h>
 
 #include <astro/astro.fwd.hpp>
 #include <astro/frames/definitions/dynamic_frames.hpp>
@@ -45,7 +45,7 @@ class CircularFieldOfView : public FieldOfView {
      *
      * @param halfConeAngle The half-cone angle defining the field of view.
      */
-    CircularFieldOfView(const Angle& halfConeAngle = std::numbers::pi / 4.0 * mp_units::angular::unit_symbols::rad);
+    CircularFieldOfView(const Angle& halfConeAngle = std::numbers::pi / 4.0 * mp_units::si::unit_symbols::rad);
 
     /**
      * @brief Default destructor for CircularFieldOfView.

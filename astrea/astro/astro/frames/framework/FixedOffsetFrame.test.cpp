@@ -27,8 +27,8 @@
 using namespace astrea;
 using namespace astrea::astro;
 using namespace mp_units;
-using mp_units::angular::unit_symbols::rad;
 using mp_units::si::unit_symbols::km;
+using mp_units::si::unit_symbols::rad;
 
 class FixedOffsetFrameTest : public testing::Test {
   public:

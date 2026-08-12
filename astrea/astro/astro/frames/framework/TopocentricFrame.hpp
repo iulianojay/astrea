@@ -99,8 +99,8 @@ struct TopocentricFrame : FixedOffsetFrame<
                               get_x_offset_from_lla<_parent_, _lat_, _lon_, _alt_>(),
                               get_y_offset_from_lla<_parent_, _lat_, _lon_, _alt_>(),
                               get_z_offset_from_lla<_parent_, _lat_, _lon_, _alt_>(),
-                              Angle(90.0 * mp_units::angular::degree), // rotation z by longitude,
-                              _lat_,                                   // rotation y by latitude,
+                              Angle(90.0 * mp_units::si::degree), // rotation z by longitude,
+                              _lat_,                              // rotation y by latitude,
                               _lon_,                   // rotation x by 90 degrees (to align with local vertical)
                               RotationSequence::ZYX> { // This gives the NWU frame
 

@@ -36,8 +36,18 @@ inline constexpr struct venus_fixed final : BodyFixedFrame<"Venus Fixed Frame", 
 } // namespace venus
 
 namespace earth {
+
 inline constexpr struct earth_fixed final : BodyFixedFrame<"Earth Fixed Frame", planets::Earth> {
 } earth_fixed;
+inline constexpr auto ecef = earth_fixed;
+inline constexpr auto itrf = earth_fixed;
+
+// TODO: This is a bit out of line with the reference axis definitions attached to the celestial bodies
+// since this is also technically an Earth-fixed frame and uses the Earth reference axes. It's not clear
+// to me if it makes sense to generalize all "Body Celestial Pole" axes/frames or to just use them here.
+inline constexpr struct cep : Frame<"Earth Celestial Pole", planets::Earth, axes::cep> {
+} cep;
+
 } // namespace earth
 
 namespace moon {

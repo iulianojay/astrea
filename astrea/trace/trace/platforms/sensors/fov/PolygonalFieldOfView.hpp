@@ -45,7 +45,7 @@ class PolygonalFieldOfView : public FieldOfView {
      * @param halfConeAngle The half-cone angle defining the field of view.
      * @param nPoints The number of points defining the polygon.
      */
-    PolygonalFieldOfView(const Angle& halfConeAngle = std::numbers::pi / 4.0 * mp_units::angular::unit_symbols::rad, const int& nPoints = 72);
+    PolygonalFieldOfView(const Angle& halfConeAngle = std::numbers::pi / 4.0 * mp_units::si::unit_symbols::rad, const int& nPoints = 72);
 
     /**
      * @brief Constructor for PolygonalFieldOfView with specified half-cone width and height.
@@ -93,9 +93,9 @@ class PolygonalFieldOfView : public FieldOfView {
     // Probably will be some body-fixed frame aligned with the sensor boresight
     // The key angle is the azimuthal angle around the boresight, and the value angle is the
     // off-boresight angle at that azimuth
-    gtl::flat_hash_map<Angle, Angle> _points; //!< Map of angles defining the polygonal field of view
-    Angle _minHalfAngle = 0.0 * mp_units::angular::unit_symbols::rad; //!< Minimum off-boresight half angle
-    Angle _maxHalfAngle = std::numeric_limits<Angle>::infinity();     //!< Maximum off-boresight half angle
+    gtl::flat_hash_map<Angle, Angle> _points;                    //!< Map of angles defining the polygonal field of view
+    Angle _minHalfAngle = 0.0 * mp_units::si::unit_symbols::rad; //!< Minimum off-boresight half angle
+    Angle _maxHalfAngle = std::numeric_limits<Angle>::infinity(); //!< Maximum off-boresight half angle
 
     /**
      * @brief Finds the minimum and maximum off-boresight angles from _points

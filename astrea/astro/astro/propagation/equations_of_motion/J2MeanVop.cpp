@@ -18,7 +18,6 @@
 #include <exception>
 
 #include <mp-units/math.h>
-#include <mp-units/systems/angular/math.h>
 #include <mp-units/systems/si/math.h>
 
 #include <astro/propagation/equations_of_motion/EquationsOfMotion.hpp>
@@ -34,10 +33,10 @@ namespace astrea {
 namespace astro {
 
 using namespace mp_units;
-using namespace mp_units::angular;
-using mp_units::angular::unit_symbols::deg;
-using mp_units::angular::unit_symbols::rad;
+using namespace mp_units::si;
+using mp_units::si::unit_symbols::deg;
 using mp_units::si::unit_symbols::km;
+using mp_units::si::unit_symbols::rad;
 using mp_units::si::unit_symbols::s;
 
 

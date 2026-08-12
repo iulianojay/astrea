@@ -17,7 +17,6 @@
 #include <gtest/gtest.h>
 #include <sqlite_orm/sqlite_orm.h>
 
-#include <mp-units/systems/angular.h>
 #include <mp-units/systems/si.h>
 
 #include <astro/astro.hpp>
@@ -29,7 +28,7 @@ using namespace astro;
 using namespace trace;
 using namespace sqlite_orm;
 
-using mp_units::angular::unit_symbols::deg;
+using mp_units::si::unit_symbols::deg;
 using mp_units::si::unit_symbols::km;
 using mp_units::si::unit_symbols::s;
 

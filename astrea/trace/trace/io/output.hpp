@@ -40,7 +40,7 @@
 #include <trace/risesets/RiseSetArray.hpp>
 #include <trace/risesets/riseset_utils.hpp>
 
-using mp_units::angular::unit_symbols::deg;
+using mp_units::si::unit_symbols::deg;
 using mp_units::si::unit_symbols::km;
 using mp_units::si::unit_symbols::s;
 

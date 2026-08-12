@@ -26,8 +26,8 @@ using astrea::astro::plotting::compare_trajectories;
 using astrea::astro::plotting::plot_orbital_elements;
 using astrea::astro::plotting::plot_trajectory;
 
-using mp_units::angular::unit_symbols::deg;
 using mp_units::non_si::day;
+using mp_units::si::unit_symbols::deg;
 using mp_units::si::unit_symbols::km;
 using mp_units::si::unit_symbols::m;
 using mp_units::si::unit_symbols::s;

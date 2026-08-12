@@ -15,7 +15,6 @@
 #include <iostream>
 
 #include <mp-units/math.h>
-#include <mp-units/systems/angular/math.h>
 #include <mp-units/systems/si.h>
 #include <mp-units/systems/si/math.h>
 
@@ -61,7 +60,7 @@ Equinoctial<_frame_>::Equinoctial(const Keplerian<_frame_>& elements, const Grav
 {
     using namespace mp_units;
     using namespace mp_units::si;
-    using namespace mp_units::angular;
+    using namespace mp_units::si;
 
     // Get r and v
     const auto& a      = elements.get_semimajor();
@@ -268,8 +267,8 @@ std::vector<double> Equinoctial<_frame_>::force_to_double_vector() const
 template <IsFrame auto _frame_>
 Equinoctial<_frame_> Equinoctial<_frame_>::from_double_vector(const std::vector<double>& vec)
 {
-    using mp_units::angular::unit_symbols::rad;
     using mp_units::si::unit_symbols::km;
+    using mp_units::si::unit_symbols::rad;
     if (vec.size() != 6) {
         throw std::runtime_error("Input vector must have exactly 6 elements to convert to Equinoctial.");
     }

@@ -48,9 +48,10 @@ template <>
 inline consteval CelestialBodyParameters get_celestial_body_parameters<planets::Saturn>()
 {
     using namespace mp_units;
-    using mp_units::angular::unit_symbols::deg;
+    using astrea::units::unit_symbols::jc;
     using mp_units::iau::unit_symbols::au;
     using mp_units::non_si::day;
+    using mp_units::si::unit_symbols::deg;
     using mp_units::si::unit_symbols::kg;
     using mp_units::si::unit_symbols::km;
     using mp_units::si::unit_symbols::s;
@@ -74,12 +75,12 @@ inline consteval CelestialBodyParameters get_celestial_body_parameters<planets::
              .rightAscension         = Angle(113.66242448 * deg),
              .longitudeOfPerigee     = Angle(92.59887831 * deg),
              .meanLongitude          = Angle(49.95424423 * deg),
-             .semimajorAxisRate      = InterplanetaryVelocity(-0.00125060 * au / JulianCentury),
-             .eccentricityRate       = BodyUnitlessPerTime(-0.00050991 * one / JulianCentury),
-             .inclinationRate        = BodyAngularVelocity(0.00193609 * deg / JulianCentury),
-             .rightAscensionRate     = BodyAngularVelocity(-0.28867794 * deg / JulianCentury),
-             .longitudeOfPerigeeRate = BodyAngularVelocity(-0.41897216 * deg / JulianCentury),
-             .meanLongitudeRate      = BodyAngularVelocity(1222.49362201 * deg / JulianCentury) };
+             .semimajorAxisRate      = InterplanetaryVelocity(-0.00125060 * au / jc),
+             .eccentricityRate       = BodyUnitlessPerTime(-0.00050991 * one / jc),
+             .inclinationRate        = BodyAngularVelocity(0.00193609 * deg / jc),
+             .rightAscensionRate     = BodyAngularVelocity(-0.28867794 * deg / jc),
+             .longitudeOfPerigeeRate = BodyAngularVelocity(-0.41897216 * deg / jc),
+             .meanLongitudeRate      = BodyAngularVelocity(1222.49362201 * deg / jc) };
 }
 
 #ifdef ASTREA_BUILD_SATURN_EPHEMERIS
@@ -140,8 +141,9 @@ inline constexpr CartesianVector<Acceleration, get_parent_frame(planets::Saturn,
 template <>
 inline constexpr CoefficientPack get_linear_expansion_coefficients<planets::Saturn>()
 {
-    using mp_units::angular::unit_symbols::rad;
-    return std::make_tuple(0.00025899 * rad / (JulianCentury * JulianCentury), -0.13434469 * rad, 0.87320147 * rad, 38.35125000 * rad / JulianCentury);
+    using astrea::units::unit_symbols::jc;
+    using mp_units::si::unit_symbols::rad;
+    return std::make_tuple(0.00025899 * rad / (jc * jc), -0.13434469 * rad, 0.87320147 * rad, 38.35125000 * rad / jc);
 }
 
 } // namespace astro

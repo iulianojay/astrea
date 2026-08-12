@@ -15,7 +15,6 @@
 #include <iostream>
 
 #include <mp-units/math.h>
-#include <mp-units/systems/angular/math.h>
 #include <mp-units/systems/si.h>
 #include <mp-units/systems/si/math.h>
 
@@ -193,7 +192,7 @@ RadiusVector<Geocentric<_body_>::_icrf_frame_> Geocentric<_body_>::get_position(
 template <IsCelestialBody auto _body_>
 std::ostream& operator<<(std::ostream& os, Geocentric<_body_> const& elements)
 {
-    using mp_units::angular::unit_symbols::deg;
+    using mp_units::si::unit_symbols::deg;
     using mp_units::si::unit_symbols::km;
     os << "[";
     os << elements.get_latitude().in(deg) << ", ";

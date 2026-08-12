@@ -44,9 +44,10 @@ template <>
 inline consteval CelestialBodyParameters get_celestial_body_parameters<moons::Titania>()
 {
     using namespace mp_units;
-    using mp_units::angular::unit_symbols::deg;
+    using astrea::units::unit_symbols::jc;
     using mp_units::iau::unit_symbols::au;
     using mp_units::non_si::day;
+    using mp_units::si::unit_symbols::deg;
     using mp_units::si::unit_symbols::kg;
     using mp_units::si::unit_symbols::km;
     using mp_units::si::unit_symbols::s;
@@ -70,12 +71,12 @@ inline consteval CelestialBodyParameters get_celestial_body_parameters<moons::Ti
              .rightAscension         = Angle(99.771 * deg),
              .longitudeOfPerigee     = Angle(24.17 * deg),
              .meanLongitude          = Angle(48.785 * deg),
-             .semimajorAxisRate      = InterplanetaryVelocity(0.0 * km / JulianCentury),
-             .eccentricityRate       = BodyUnitlessPerTime(0.0 * one / JulianCentury),
-             .inclinationRate        = BodyAngularVelocity(0.0 * deg / JulianCentury),
-             .rightAscensionRate     = BodyAngularVelocity(663360.1 * deg / JulianCentury),
-             .longitudeOfPerigeeRate = BodyAngularVelocity(1465712.68 * deg / JulianCentury),
-             .meanLongitudeRate      = BodyAngularVelocity(5438764533.33 * deg / JulianCentury) };
+             .semimajorAxisRate      = InterplanetaryVelocity(0.0 * km / jc),
+             .eccentricityRate       = BodyUnitlessPerTime(0.0 * one / jc),
+             .inclinationRate        = BodyAngularVelocity(0.0 * deg / jc),
+             .rightAscensionRate     = BodyAngularVelocity(663360.1 * deg / jc),
+             .longitudeOfPerigeeRate = BodyAngularVelocity(1465712.68 * deg / jc),
+             .meanLongitudeRate      = BodyAngularVelocity(5438764533.33 * deg / jc) };
 }
 
 } // namespace astro

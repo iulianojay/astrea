@@ -24,8 +24,8 @@
 #include <astro/systems/system_utilities.hpp>
 #include <tests/utilities/comparisons.hpp>
 
-using mp_units::angular::unit_symbols::rad;
 using mp_units::si::unit_symbols::km;
+using mp_units::si::unit_symbols::rad;
 using mp_units::si::unit_symbols::s;
 
 using namespace astrea;

@@ -60,7 +60,8 @@ template <auto _body_>
 inline constexpr Keplerian<get_parent_frame(_body_, axes::icrf)> get_keplerian_elements_at(Date date)
 {
     using namespace mp_units;
-    using namespace mp_units::angular;
+    using namespace mp_units::si;
+    using astrea::units::unit_symbols::jc;
 
     const Distance a   = get_semimajor<_body_>(date);
     const Unitless ecc = get_eccentricity<_body_>(date);
@@ -69,10 +70,10 @@ inline constexpr Keplerian<get_parent_frame(_body_, axes::icrf)> get_keplerian_e
     const Angle w      = get_longitude_of_perigee<_body_>(date);
     const Angle L      = get_mean_longitude<_body_>(date);
 
-    const mp_units::quantity<JulianCentury> T = get_time_since_reference_epoch<_body_>(date);
-    const auto [B, C, S, F]                   = get_linear_expansion_coefficients<_body_>();
-    const Angle Me                            = wrap_angle(L - w + B * T * T + C * cos(F * T) + S * sin(F * T));
-    const Angle argPer                        = wrap_angle(w - raan);
+    const mp_units::quantity<jc> T = get_time_since_reference_epoch<_body_>(date);
+    const auto [B, C, S, F]        = get_linear_expansion_coefficients<_body_>();
+    const Angle Me                 = wrap_angle(L - w + B * T * T + C * cos(F * T) + S * sin(F * T));
+    const Angle argPer             = wrap_angle(w - raan);
 
     const Angle thetat = convert_mean_anomaly_to_true_anomaly(Me, ecc);
     return Keplerian<get_parent_frame(_body_, axes::icrf)>(a, ecc, inc, raan, argPer, thetat);

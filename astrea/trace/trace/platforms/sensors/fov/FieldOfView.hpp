@@ -81,7 +81,7 @@ class FieldOfView {
      *
      * @return Angle Maximum off-boresight half-angle.
      */
-    virtual Angle max_half_angle() const { return std::numbers::pi / 2.0 * mp_units::angular::unit_symbols::rad; }
+    virtual Angle max_half_angle() const { return std::numbers::pi / 2.0 * mp_units::si::unit_symbols::rad; }
 };
 
 } // namespace trace

@@ -7,7 +7,7 @@ using namespace astrea;
 using namespace astro;
 using namespace trace;
 
-using mp_units::angular::unit_symbols::deg;
+using mp_units::si::unit_symbols::deg;
 using mp_units::si::unit_symbols::km;
 using mp_units::si::unit_symbols::s;
 
