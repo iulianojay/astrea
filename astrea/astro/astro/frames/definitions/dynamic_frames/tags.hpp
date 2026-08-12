@@ -1,7 +1,7 @@
 /**
- * @file dynamic_frames.hpp
+ * @file tags.hpp
  * @author Jay Iuliano (iuliano.jay@gmail.com)
- * @brief Header file for dynamic body frames.
+ * @brief Header file for dynamic body frame tags.
  * @date 2025-08-05
  *
  * @copyright Copyright (c) 2025-2026 Jay Iuliano
@@ -23,4 +23,30 @@
 #include <astro/frames/definitions/dynamic_frames/Perifocal.hpp>
 #include <astro/frames/definitions/dynamic_frames/RadialInTrackCrossTrack.hpp>
 #include <astro/frames/definitions/dynamic_frames/VelocityNormalBinormal.hpp>
-#include <astro/frames/definitions/dynamic_frames/tags.hpp>
+#include <astro/frames/definitions/frame_registry.hpp>
+#include <astro/frames/framework/DynamicFrame.hpp>
+#include <astro/frames/framework/Frame.hpp>
+
+namespace astrea {
+namespace astro {
+namespace frames {
+namespace dynamic {
+
+inline constexpr struct body final : Frame<"body", DynamicOrigin{}, DynamicAxis{}> {
+} body;
+
+inline constexpr EastNorthUpTag<frames::primary> enu{};
+
+inline constexpr LvlhTag<frames::primary> lvlh{};
+
+inline constexpr RicTag<frames::primary> ric{};
+
+inline constexpr VnbTag<frames::primary> vnb{};
+
+inline constexpr PerifocalTag<frames::primary> perifocal{};
+inline constexpr auto pqw = perifocal;
+
+} // namespace dynamic
+} // namespace frames
+} // namespace astro
+} // namespace astrea

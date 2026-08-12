@@ -5,7 +5,7 @@
  *
  * This file is intentionally separate from defined_rotations.hpp so that the
  * generic templates in defined_rotations.hpp can be included mid-way through
- * the include graph (e.g. via dynamic_frames.hpp) without pulling in
+ * the include graph (e.g. via dynamic/tags.hpp) without pulling in
  * frames::earth::*, which are only complete once body_centered_inertial_frames.hpp
  * and body_fixed_frames.hpp have both finished.
  *

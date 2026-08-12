@@ -300,7 +300,8 @@ Angle Keplerian<_frame_>::get_mean_anomaly() const
 template <IsFrame auto _frame_>
 MeanMotion Keplerian<_frame_>::get_mean_motion(const GravParam& mu) const
 {
-    return sqrt(mu / (_semimajor * _semimajor * _semimajor));
+    using mp_units::pow;
+    return sqrt(mu / pow<3>(_semimajor));
 }
 
 template <IsFrame auto _frame_>
@@ -308,6 +309,13 @@ Time Keplerian<_frame_>::get_orbital_period(const GravParam& mu) const
 {
     const auto meanMotion = get_mean_motion(mu);
     return (2.0 * std::numbers::pi) / meanMotion;
+}
+
+template <IsFrame auto _frame_>
+SpecificAngularMomentum Keplerian<_frame_>::get_specific_angular_momentum(const GravParam& mu) const
+{
+    using mp_units::pow;
+    return sqrt(mu * _semimajor * (1.0 - pow<2>(_eccentricity)));
 }
 
 // Copy assignment operator

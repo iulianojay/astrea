@@ -381,6 +381,14 @@ class Keplerian {
     Time get_orbital_period(const GravParam& mu) const;
 
     /**
+     * @brief Get the specific angular momentum of the Keplerian state vector.
+     *
+     * @param mu Gravitational parameter of the central body
+     * @return SpecificAngularMomentum Specific angular momentum of the Keplerian state vector.
+     */
+    SpecificAngularMomentum get_specific_angular_momentum(const GravParam& mu) const;
+
+    /**
      * @brief Interpolates between two Keplerian state vectors.
      *
      * This method performs linear interpolation between two Keplerian state vectors at a specified target time.

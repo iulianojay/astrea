@@ -28,6 +28,14 @@
 namespace astrea {
 namespace math {
 
+/**
+ * @brief Trigonometric sine function for angular quantities.
+ *
+ * @tparam R The reference type for the angle (e.g., radian).
+ * @tparam Rep The representation type (e.g., double, float).
+ * @param q The angle quantity.
+ * @return The sine of the angle as a dimensionless quantity.
+ */
 template <mp_units::ReferenceOf<mp_units::MP_UNITS_IS_VALUE_WORKAROUND(isq::angular_measure)> auto R, typename Rep>
     requires requires(Rep v) { sin(v); } || requires(Rep v) { gcem::sin(v); }
 [[nodiscard]] inline constexpr mp_units::QuantityOf<mp_units::dimensionless> auto sin(const mp_units::quantity<R, Rep>& q) noexcept
@@ -44,6 +52,14 @@ template <mp_units::ReferenceOf<mp_units::MP_UNITS_IS_VALUE_WORKAROUND(isq::angu
     }
 }
 
+/**
+ * @brief Trigonometric cosine function for angular quantities.
+ *
+ * @tparam R The reference type for the angle (e.g., radian).
+ * @tparam Rep The representation type (e.g., double, float).
+ * @param q The angle quantity.
+ * @return The cosine of the angle as a dimensionless quantity.
+ */
 template <mp_units::ReferenceOf<mp_units::MP_UNITS_IS_VALUE_WORKAROUND(isq::angular_measure)> auto R, typename Rep>
     requires requires(Rep v) { cos(v); } || requires(Rep v) { gcem::cos(v); }
 [[nodiscard]] inline constexpr mp_units::QuantityOf<mp_units::dimensionless> auto cos(const mp_units::quantity<R, Rep>& q) noexcept
@@ -60,6 +76,14 @@ template <mp_units::ReferenceOf<mp_units::MP_UNITS_IS_VALUE_WORKAROUND(isq::angu
     }
 }
 
+/**
+ * @brief Trigonometric tangent function for angular quantities.
+ *
+ * @tparam R The reference type for the angle (e.g., radian).
+ * @tparam Rep The representation type (e.g., double, float).
+ * @param q The angle quantity.
+ * @return The tangent of the angle as a dimensionless quantity.
+ */
 template <mp_units::ReferenceOf<mp_units::MP_UNITS_IS_VALUE_WORKAROUND(isq::angular_measure)> auto R, typename Rep>
     requires requires(Rep v) { tan(v); } || requires(Rep v) { gcem::tan(v); }
 [[nodiscard]] inline constexpr mp_units::QuantityOf<mp_units::dimensionless> auto tan(const mp_units::quantity<R, Rep>& q) noexcept
@@ -76,6 +100,14 @@ template <mp_units::ReferenceOf<mp_units::MP_UNITS_IS_VALUE_WORKAROUND(isq::angu
     }
 }
 
+/**
+ * @brief Trigonometric arcsine function for dimensionless quantities.
+ *
+ * @tparam R The reference type for the input (e.g., dimensionless).
+ * @tparam Rep The representation type (e.g., double, float).
+ * @param q The dimensionless quantity.
+ * @return The arcsine of the quantity as an angular measure (radians).
+ */
 template <mp_units::ReferenceOf<mp_units::dimensionless> auto R, typename Rep>
     requires requires(Rep v) { asin(v); } || requires(Rep v) { gcem::asin(v); }
 [[nodiscard]] inline constexpr mp_units::QuantityOf<mp_units::MP_UNITS_IS_VALUE_WORKAROUND(isq::angular_measure)> auto
@@ -93,6 +125,14 @@ template <mp_units::ReferenceOf<mp_units::dimensionless> auto R, typename Rep>
     }
 }
 
+/**
+ * @brief Trigonometric arccosine function for dimensionless quantities.
+ *
+ * @tparam R The reference type for the input (e.g., dimensionless).
+ * @tparam Rep The representation type (e.g., double, float).
+ * @param q The dimensionless quantity.
+ * @return The arccosine of the quantity as an angular measure (radians).
+ */
 template <mp_units::ReferenceOf<mp_units::dimensionless> auto R, typename Rep>
     requires requires(Rep v) { acos(v); } || requires(Rep v) { gcem::acos(v); }
 [[nodiscard]] inline constexpr mp_units::QuantityOf<mp_units::MP_UNITS_IS_VALUE_WORKAROUND(isq::angular_measure)> auto
@@ -110,6 +150,14 @@ template <mp_units::ReferenceOf<mp_units::dimensionless> auto R, typename Rep>
     }
 }
 
+/**
+ * @brief Trigonometric arctangent function for dimensionless quantities.
+ *
+ * @tparam R The reference type for the input (e.g., dimensionless).
+ * @tparam Rep The representation type (e.g., double, float).
+ * @param q The dimensionless quantity.
+ * @return The arctangent of the quantity as an angular measure (radians).
+ */
 template <mp_units::ReferenceOf<mp_units::dimensionless> auto R, typename Rep>
     requires requires(Rep v) { atan(v); } || requires(Rep v) { gcem::atan(v); }
 [[nodiscard]] inline constexpr mp_units::QuantityOf<mp_units::MP_UNITS_IS_VALUE_WORKAROUND(isq::angular_measure)> auto
@@ -127,6 +175,15 @@ template <mp_units::ReferenceOf<mp_units::dimensionless> auto R, typename Rep>
     }
 }
 
+/**
+ * @brief 2D trigonometric arctangent function.
+ *
+ * @tparam R The reference type for the input (e.g., dimensionless).
+ * @tparam Rep The representation type (e.g., double, float).
+ * @param y The first dimensionless quantity (numerator).
+ * @param x The second dimensionless quantity (denominator).
+ * @return The arctangent of the ratio y/x as an angular measure (radians).
+ */
 template <mp_units::Quantity auto R, typename Rep>
     requires requires(Rep v, Rep w) { atan2(v, w); } || requires(Rep v, Rep w) { gcem::atan2(v, w); }
 [[nodiscard]] inline constexpr mp_units::QuantityOf<mp_units::MP_UNITS_IS_VALUE_WORKAROUND(isq::angular_measure)> auto
@@ -262,6 +319,21 @@ template <mp_units::ReferenceOf<mp_units::dimensionless> auto R, typename Rep>
 {
     using std::assoc_legendre;
     return { static_cast<Rep>(assoc_legendre(n, m, q.numerical_value_ref_in(q.unit))), mp_units::one };
+}
+
+/**
+ * @brief Computes the sine and cosine of a given angle in radians.
+ *
+ * This function computes both the sine and cosine of a given angle and returns them as a pair.
+ *
+ * @param angle The angle in radians.
+ * @return A pair containing the sine and cosine of the angle.
+ */
+template <mp_units::ReferenceOf<mp_units::MP_UNITS_IS_VALUE_WORKAROUND(isq::angular_measure)> auto R, typename Rep>
+    requires requires(Rep v) { sin(v); } || requires(Rep v) { gcem::sin(v); }
+[[nodiscard]] inline constexpr auto sin_cos_pack(const mp_units::quantity<R, Rep>& q) noexcept
+{
+    return std::make_pair(math::sin(q), math::cos(q));
 }
 
 // TODO: Make this mp-units compatible
