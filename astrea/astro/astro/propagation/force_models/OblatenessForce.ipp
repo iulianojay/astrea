@@ -199,7 +199,7 @@ Unitless LegendreCache<_body_, _degree_, _order_>::get_sine_coefficient(const st
 }
 
 /*
-For the life of me, I could not get this to match the _degree_ASA checkcases. I can't find anything wrong with it. If you figure
+For the life of me, I could not get this to match the NASA checkcases. I can't find anything wrong with it. If you figure
 it out, let me know.
 
 AccelerationVector<frames::primary>
@@ -343,18 +343,19 @@ Perturbation OblatenessForce<_body_, _degree_, _order_>::compute_perturbation(co
     const Distance& z = rEcef[2];
 
     // Compute derived quantities
-    const Distance r          = rEcef.norm();
-    const Unitless xOverR     = x / r;
-    const Unitless yOverR     = y / r;
-    const Unitless zOverR     = z / r;
-    const Unitless rEqOverR   = equitorialR / r;
-    const Unitless rEqOverRSq = pow<2>(rEqOverR);
+    const Distance r           = rEcef.norm();
+    const Unitless xOverR      = x / r;
+    const Unitless yOverR      = y / r;
+    const Unitless zOverR      = z / r;
+    const Unitless rEqOverR    = equitorialR / r;
+    const Unitless zREqOverRSq = zOverR * rEqOverR;
+    const Unitless rEqOverRSq  = pow<2>(rEqOverR);
 
     // Initialize V and W as flat 1D arrays (row-major, stride = _order_ + 2)
     // Access element [n][m] as V[n * stride + m], W[n * stride + m]
     static constexpr std::size_t stride = _order_ + 2;
-    static std::array<Unitless, (_degree_ + 2) * stride> V{};
-    static std::array<Unitless, (_degree_ + 2) * stride> W{};
+    std::array<Unitless, (_degree_ + 2) * stride> V{};
+    std::array<Unitless, (_degree_ + 2) * stride> W{};
 
     // Compute V and W using recurrence relations (_order_ontenbruck & Gill Eq. 3.33)
     // Base case: V[0][0] = Re/r, W[0][0] = 0
@@ -366,34 +367,38 @@ Perturbation OblatenessForce<_body_, _degree_, _order_>::compute_perturbation(co
 
             if (m == 0) {
                 // First column recursion: V[n][0] and W[n][0]
-                V[n * stride] = ((2.0 * n - 1.0) / n) * zOverR * rEqOverR * V[(n - 1) * stride];
+                V[n * stride] = ((2.0 * n - 1.0) / n) * zREqOverRSq * V[(n - 1) * stride];
                 if (n > 1) { V[n * stride] -= ((n - 1.0) / n) * rEqOverRSq * V[(n - 2) * stride]; }
             }
             else if (n == m) {
                 // Diagonal recursion: V[m][m] and W[m][m]
-                V[m * stride + m] = (2.0 * m - 1.0) * rEqOverR *
-                                    (xOverR * V[(m - 1) * stride + (m - 1)] - yOverR * W[(m - 1) * stride + (m - 1)]);
-                W[m * stride + m] = (2.0 * m - 1.0) * rEqOverR *
-                                    (xOverR * W[(m - 1) * stride + (m - 1)] + yOverR * V[(m - 1) * stride + (m - 1)]);
+                const Unitless factor  = (2.0 * m - 1.0) * rEqOverR;
+                const std::size_t idx  = (m - 1) * stride + (m - 1);
+                const std::size_t mIdx = m * stride + m;
+                V[mIdx]                = factor * (xOverR * V[idx] - yOverR * W[idx]);
+                W[mIdx]                = factor * (xOverR * W[idx] + yOverR * V[idx]);
             }
             else {
                 // General recursion for n > m
-                const Unitless factor1 = rEqOverR * zOverR * (2.0 * n - 1.0) / (n - m);
+                const Unitless factor1 = zREqOverRSq * (2.0 * n - 1.0) / (n - m);
                 const Unitless factor2 = rEqOverRSq * (n + m - 1.0) / (n - m);
+                const std::size_t idx1 = (n - 1) * stride + m;
+                const std::size_t idx2 = (n - 2) * stride + m;
+                const std::size_t mIdx = n * stride + m;
 
-                V[n * stride + m] = factor1 * V[(n - 1) * stride + m];
-                W[n * stride + m] = factor1 * W[(n - 1) * stride + m];
+                V[mIdx] = factor1 * V[idx1];
+                W[mIdx] = factor1 * W[idx1];
 
                 if (n > 2) {
-                    V[n * stride + m] -= factor2 * V[(n - 2) * stride + m];
-                    W[n * stride + m] -= factor2 * W[(n - 2) * stride + m];
+                    V[mIdx] -= factor2 * V[idx2];
+                    W[mIdx] -= factor2 * W[idx2];
                 }
             }
         }
     }
 
     // Compute acceleration components using V and W
-    // Following _order_ontenbruck & Gill Eq. 3.35
+    // Following Montenbruck & Gill Eq. 3.35
     Unitless ax = 0.0 * one;
     Unitless ay = 0.0 * one;
     Unitless az = 0.0 * one;
@@ -427,7 +432,7 @@ Perturbation OblatenessForce<_body_, _degree_, _order_>::compute_perturbation(co
     }
 
     // Scale by mu/r^2
-    const Acceleration muOverR2 = mu / (equitorialR * equitorialR);
+    const Acceleration muOverR2 = mu / pow<2>(equitorialR);
     const AccelerationVector<frames::primary_fixed> accelOblatenessEcef = { ax * muOverR2, ay * muOverR2, az * muOverR2 };
 
     // Transform back to inertial frame without abberations - original values are in ecef, not w.r.t ecef
