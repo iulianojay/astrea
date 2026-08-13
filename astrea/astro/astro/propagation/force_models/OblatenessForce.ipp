@@ -1,22 +1,19 @@
 /*
- * The G_degree_U Lesser General Public License (LGPL)
+ * The GNU Lesser General Public License (LGPL)
  *
  * Copyright (c) 2025-2026 Jay Iuliano
  *
  * This file is part of Astrea.
- * Astrea is free software: you can redistribute it and/or modify it under the terms of the G_degree_U Lesser General
+ * Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General
  * Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any
- * later version. Astrea is distributed in the hope that it will be useful, but WITHOUT A_degree_Y WARRA_degree_TY;
- * without even the implied warranty of _order_ERCHA_degree_TABILITY or FIT_degree_ESS FOR A PARTICULAR PURPOSE. See the
- * G_degree_U Lesser General Public License for more details. You should have received a copy of the G_degree_U General
+ * later version. Astrea is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU Lesser General Public License for more details. You should have received a copy of the GNU General
  * Public License along with Astrea. If not, see <https://www.gnu.org/licenses/>.
  */
 #pragma once
 
-#include <filesystem>
-#include <fstream>
 #include <iostream>
-#include <sstream>
 #include <string>
 
 #include <mp-units/math.h>
@@ -26,7 +23,6 @@
 #include <math/operations.hpp>
 #include <math/trig.hpp>
 
-#include <astro/astro.macros.hpp>
 #include <astro/frames/definitions.hpp>
 #include <astro/frames/definitions/transformations.hpp>
 #include <astro/platforms/Vehicle.hpp>
@@ -38,165 +34,7 @@
 #include <astro/utilities/conversions.hpp>
 
 namespace astrea {
-
-using math::assoc_legendre;
-
 namespace astro {
-
-using namespace mp_units;
-using namespace mp_units::si;
-
-using mp_units::pow;
-
-using mp_units::si::unit_symbols::km;
-using mp_units::si::unit_symbols::m;
-using mp_units::si::unit_symbols::s;
-
-template <IsCelestialBody auto _body_, std::size_t _degree_, std::size_t _order_>
-LegendreCache<_body_, _degree_, _order_>::LegendreCache()
-{
-    // Open coefficients file
-    // TODO: Attach these files to the CelestialBody class
-    // TODO: Change to binary files cause boy are these big
-    static const std::filesystem::path path = std::string(_ASTRO_ROOT_) + "/data/gravity_models";
-    std::filesystem::path filename;
-    if constexpr (_body_ == planets::Mercury) {
-        // https://pds-geosciences.wustl.edu/messenger/mess-h-rss_mla-5-sdp-v1/messrs_1001/data/shadr/
-        filename = path / "Mercury" / "jgmess_160a_sha.tab"; // normalized
-    }
-    else if constexpr (_body_ == planets::Venus) {
-        // https://pds-geosciences.wustl.edu/mgn/mgn-v-rss-5-gravity-l2-v1/mg_5201/gravity/
-        filename = path / "Venus" / "shgj180u.a01"; // normalized?
-    }
-    else if constexpr (_body_ == planets::Earth) {
-        filename = path / "Earth" / "EGM2008_to2190_ZeroTide_mod.txt"; // normalized
-        // filename = path / "Earth" / "WGS84"; // normalized
-        // filename = path / "Earth" / "NASA_6DoF"; // normalized - only goes to 8x8
-    }
-    else if constexpr (_body_ == moons::Moon) {
-        // https://pds-geosciences.wustl.edu/grail/grail-l-lgrs-5-rdr-v1/grail_1001/shadr/
-        filename = path / "Moon" / "jggrx_0420a_sha.tab"; // normalized?
-    }
-    else if constexpr (_body_ == planets::Mars) {
-        // https://pds-geosciences.wustl.edu/mro/mro-m-rss-5-sdp-v1/mrors_1xxx/data/shadr/
-        filename = path / "Mars" / "jgmro_120f_sha.tab"; // normalized?
-    }
-    else {
-        throw std::runtime_error("Legendre coefficient file for central body, " + decltype(_body_)::name.portable() + ", not found.");
-    }
-
-    std::ifstream file(filename);
-    if (file.fail()) { throw std::runtime_error("Failed to open Legendre coefficient file: " + filename.string()); }
-
-    // Read coefficients from file
-    std::string line;
-    std::string cell;
-
-    std::size_t n = 0, m = 0;
-    while (file) {
-        // Read line from stream
-        std::getline(file, line);
-        std::stringstream lineStream(line);
-        std::vector<double> lineData;
-        while (std::getline(lineStream, cell, ',')) {
-            lineData.push_back(std::atof(cell.c_str()));
-        }
-
-        n = (std::size_t)lineData[0];
-        m = (std::size_t)lineData[1];
-
-        _C[n][m] = lineData[2];
-        _S[n][m] = lineData[3];
-
-        if (n >= _degree_ && m >= _order_) { break; }
-    }
-    file.close();
-
-    // Calculate normalization coefficients after reading all coefficients
-    if (_body_ == planets::Mars) {
-        // The Mars file is already normalized, so skip this step for Mars
-        return;
-    }
-
-    for (std::size_t n = 0; n <= _degree_; ++n) {
-        Unitless previousRatio = 0.0 * one;
-        for (std::size_t m = 0; m <= std::min(n, _order_); ++m) {
-            // Calculate (n + m)!/(n - m)! = (n - m + 1)(n - m + 2)...(n + m)
-            const Unitless ratio = (m == 0) ? 1.0 * one : previousRatio * (n + m) * (n - m + 1);
-            previousRatio        = ratio;
-
-            // sqrt( (2 - delta_m0) * (2n + 1) * (n - m)! / (n + m)! )
-            // delta = 1 if m = 0, else 0
-            const unsigned int delta = (m == 0) ? 1 : 0;
-            const Unitless Nnm       = sqrt((2 - delta) * (2 * n + 1) / ratio);
-
-            // Pre-normalize coefficients
-            _C[n][m] *= Nnm;
-            _S[n][m] *= Nnm;
-        }
-    }
-}
-
-
-// std::vector<std::vector<Unitless>>
-//     LegendreCache::get_legendre_coefficients(const std::size_t& degree, const std::size_t& order, const Unitless& x) const
-// {
-//     std::vector<std::vector<Unitless>> P(degree + 1);
-//     for (std::size_t n = 0; n < degree + 1; ++n) {
-//         P[n].resize(order + 1, 0.0 * one);
-//     }
-
-//     const Unitless sqrtOneMinusX2 = sqrt(1.0 * one - x * x);
-
-//     // Compute diagonal terms P_m^m using recursion
-//     Unitless Pmm = 1.0 * one; // P_0^0 = 1
-//     for (std::size_t m = 0; m <= std::min(degree, order); ++m) {
-//         if (m > 0) {
-//             // P_m^m = (2m-1) * sqrt(1-x^2) * P_{m-1}^{m-1}
-//             Pmm *= (2.0 * m - 1.0) * sqrtOneMinusX2;
-//         }
-
-//         if (m >= 2) { P[m][m] = _normalizingCoefficients[m][m] * Pmm; }
-
-//         // Compute P_{m+1}^m if m+1 <= degree
-//         if (m + 1 <= degree) {
-//             // P_{m+1}^m = x * (2m+1) * P_m^m
-//             const Unitless Pmp1m = x * (2.0 * m + 1.0) * Pmm;
-//             if (m + 1 >= 2) { P[m + 1][m] = _normalizingCoefficients[m + 1][m] * Pmp1m; }
-
-//             // Compute P_n^m for n > m+1 using three-term recursion
-//             // (n-m)*P_n^m = x*(2n-1)*P_{n-1}^m - (n+m-1)*P_{n-2}^m
-//             Unitless Pnm2 = Pmm;   // P_{n-2}^m
-//             Unitless Pnm1 = Pmp1m; // P_{n-1}^m
-
-//             for (std::size_t n = m + 2; n <= degree; ++n) {
-//                 const Unitless Pnm = (x * (2.0 * n - 1.0) * Pnm1 - (n + m - 1.0) * Pnm2) / (n - m);
-
-//                 if (n >= 2) { P[n][m] = _normalizingCoefficients[n][m] * Pnm; }
-
-//                 // Shift for next iteration
-//                 Pnm2 = Pnm1;
-//                 Pnm1 = Pnm;
-//             }
-//         }
-//     }
-
-//     return P;
-// }
-
-
-template <IsCelestialBody auto _body_, std::size_t _degree_, std::size_t _order_>
-Unitless LegendreCache<_body_, _degree_, _order_>::get_cosine_coefficient(const std::size_t& n, const std::size_t& m) const
-{
-    return _C[n][m];
-}
-
-
-template <IsCelestialBody auto _body_, std::size_t _degree_, std::size_t _order_>
-Unitless LegendreCache<_body_, _degree_, _order_>::get_sine_coefficient(const std::size_t& n, const std::size_t& m) const
-{
-    return _S[n][m];
-}
 
 /*
 For the life of me, I could not get this to match the NASA checkcases. I can't find anything wrong with it. If you figure
@@ -248,9 +86,9 @@ AccelerationVector<frames::primary>
             const Unitless Cnm = _legendreCache.get_cosine_coefficient(n, m);
             const Unitless Snm = _legendreCache.get_sine_coefficient(n, m);
 
-            const Unitless cos_order_Lon      = cos(mm * longitude);
-            const Unitless sin_order_Lon      = sin(mm * longitude);
-            const Unitless cCosPlusSSin = (Cnm * cos_order_Lon + Snm * sin_order_Lon);
+            const Unitless cosMLon      = cos(mm * longitude);
+            const Unitless sinMLon      = sin(mm * longitude);
+            const Unitless cCosPlusSSin = (Cnm * cosMLon + Snm * sinMLon);
 
             // dVdr
             dVdrInnerSum += cCosPlusSSin * Pnm;
@@ -261,18 +99,18 @@ AccelerationVector<frames::primary>
             dVdlatInnerSum += cCosPlusSSin * dPnmdLat;
 
             // dVdlon
-            dVdlonInnerSum += mm * Pnm * (Snm * cos_order_Lon - Cnm * sin_order_Lon);
+            dVdlonInnerSum += mm * Pnm * (Snm * cosMLon - Cnm * sinMLon);
         }
 
         // Precalculate common terms
         const Unitless rRatio = astrea::math::pow(equitorialROverR, nn);
 
         //
-        //  V      =  mu/r   * sum(n=0->_degree_) (Re/r)^n        * sum(m=0->min(n,_order_))       Pnm(sin(lat)) * (Cnm*cos(m*lon) + Snm*sin(m*lon))
+        //  V      =  mu/r   * sum(n=0->_degree_) (Re/r)^n        * sum(m=0->min(n,M))       Pnm(sin(lat)) * (Cnm*cos(m*lon) + Snm*sin(m*lon))
         //
-        //  dVdr   = -mu/r^2 * sum(n=0->_degree_) (n + 1)(Re/r)^n * sum(m=0->min(n,_order_))       Pnm(sin(lat)) * (Cnm*cos(m*lon) + Snm*sin(m*lon))
-        //  dVdlat =  mu/r   * sum(n=0->_degree_) (Re/r)^n        * sum(m=0->min(n,_order_)) dPnm(sin(lat))/dlat * (Cnm*cos(m*lon) + Snm*sin(m*lon))
-        //  dVdlon =  mu/r   * sum(n=0->_degree_) (Re/r)^n        * sum(m=0->min(n,_order_))   m * Pnm(sin(lat)) * (Snm*cos(m*lon) - Cnm*sin(m*lon))
+        //  dVdr   = -mu/r^2 * sum(n=0->_degree_) (n + 1)(Re/r)^n * sum(m=0->min(n,M))       Pnm(sin(lat)) * (Cnm*cos(m*lon) + Snm*sin(m*lon))
+        //  dVdlat =  mu/r   * sum(n=0->_degree_) (Re/r)^n        * sum(m=0->min(n,M)) dPnm(sin(lat))/dlat * (Cnm*cos(m*lon) + Snm*sin(m*lon))
+        //  dVdlon =  mu/r   * sum(n=0->_degree_) (Re/r)^n        * sum(m=0->min(n,M))   m * Pnm(sin(lat)) * (Snm*cos(m*lon) - Cnm*sin(m*lon))
         //
 
         dVdrOuterSum += rRatio * (nn + 1.0) * dVdrInnerSum;
@@ -325,8 +163,8 @@ AccelerationVector<frames::primary>
 template <IsCelestialBody auto _body_, std::size_t _degree_, std::size_t _order_>
 Perturbation OblatenessForce<_body_, _degree_, _order_>::compute_perturbation(const State& state, const Vehicle& vehicle) const
 {
-    // _order_ontenbruck & Gill (2000) V and W recurrence relations method
-    // Reference: Satellite Orbits: _order_odels, _order_ethods and Applications, O. _order_ontenbruck and E. Gill, Springer, 2000
+    // Montenbruck & Gill (2000) V and W recurrence relations method
+    // Reference: Satellite Orbits: Models, Methods and Applications, O. Montenbruck and E. Gill, Springer, 2000
 
     // Central body properties
     const GravParam& mu         = get_mu<_body_>();
@@ -357,7 +195,7 @@ Perturbation OblatenessForce<_body_, _degree_, _order_>::compute_perturbation(co
     std::array<Unitless, (_degree_ + 2) * stride> V{};
     std::array<Unitless, (_degree_ + 2) * stride> W{};
 
-    // Compute V and W using recurrence relations (_order_ontenbruck & Gill Eq. 3.33)
+    // Compute V and W using recurrence relations (Montenbruck & Gill Eq. 3.33)
     // Base case: V[0][0] = Re/r, W[0][0] = 0
     V[0] = rEqOverR;
 

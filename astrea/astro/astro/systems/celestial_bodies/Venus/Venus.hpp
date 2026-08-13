@@ -23,6 +23,7 @@
 #include <units/units.hpp>
 
 #include <astro/astro.fwd.hpp>
+#include <astro/astro.macros.hpp>
 #include <astro/systems/CelestialBody.hpp>
 #include <astro/systems/barycenters.hpp>
 
@@ -82,7 +83,9 @@ inline consteval CelestialBodyParameters get_celestial_body_parameters<planets::
              .inclinationRate        = BodyAngularVelocity(-0.00078890 * deg / jc),
              .rightAscensionRate     = BodyAngularVelocity(-0.27769418 * deg / jc),
              .longitudeOfPerigeeRate = BodyAngularVelocity(0.00268329 * deg / jc),
-             .meanLongitudeRate      = BodyAngularVelocity(58517.81538729 * deg / jc) };
+             .meanLongitudeRate      = BodyAngularVelocity(58517.81538729 * deg / jc),
+             // https://pds-geosciences.wustl.edu/mgn/mgn-v-rss-5-gravity-l2-v1/mg_5201/gravity/ - normalized?
+             .gravityCoefficientFile = _ASTRO_GRAV_DATA_ROOT_ "/Venus/shgj180u.a01" };
 }
 
 #ifdef ASTREA_BUILD_VENUS_EPHEMERIS

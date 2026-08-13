@@ -131,6 +131,8 @@ set(ASTRO_HEADERS
     ${ASTRO_BASE}/propagation/force_models/AtmosphericForce.hpp
     ${ASTRO_BASE}/propagation/force_models/PerturbingForce.hpp
     ${ASTRO_BASE}/propagation/force_models/ForceModel.hpp
+    ${ASTRO_BASE}/propagation/force_models/LegendreCache.hpp
+    ${ASTRO_BASE}/propagation/force_models/LegendreCache.ipp
     ${ASTRO_BASE}/propagation/force_models/NBodyForce.hpp
     ${ASTRO_BASE}/propagation/force_models/OblatenessForce.hpp
     ${ASTRO_BASE}/propagation/force_models/OblatenessForce.ipp

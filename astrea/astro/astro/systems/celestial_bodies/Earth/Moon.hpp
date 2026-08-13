@@ -21,6 +21,7 @@
 #include <units/units.hpp>
 
 #include <astro/astro.fwd.hpp>
+#include <astro/astro.macros.hpp>
 #include <astro/systems/CelestialBody.hpp>
 #include <astro/systems/celestial_bodies/Earth/Earth.hpp>
 
@@ -80,7 +81,9 @@ inline consteval CelestialBodyParameters get_celestial_body_parameters<moons::Mo
              .inclinationRate        = BodyAngularVelocity(0.0 * deg / jc),
              .rightAscensionRate     = BodyAngularVelocity(6967741.9 * deg / jc),
              .longitudeOfPerigeeRate = BodyAngularVelocity(28578547 * deg / jc),
-             .meanLongitudeRate      = BodyAngularVelocity(1761137860.75 * deg / jc) };
+             .meanLongitudeRate      = BodyAngularVelocity(1761137860.75 * deg / jc),
+             // https://pds-geosciences.wustl.edu/grail/grail-l-lgrs-5-rdr-v1/grail_1001/shadr/ - normalized?
+             .gravityCoefficientFile = _ASTRO_GRAV_DATA_ROOT_ "/Earth/jggrx_0420a_sha.tab" };
 }
 
 #ifdef ASTREA_BUILD_EARTH_EPHEMERIS
