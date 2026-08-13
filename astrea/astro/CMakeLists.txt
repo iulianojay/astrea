@@ -79,10 +79,12 @@ set(ASTRO_HEADERS
     ${ASTRO_BASE}/frames/definitions/body_fixed_frames.hpp
     ${ASTRO_BASE}/frames/definitions/defined_rotations.hpp
     ${ASTRO_BASE}/frames/definitions/defined_rotations_earth.hpp
-    ${ASTRO_BASE}/frames/definitions/EastNorthUp.hpp
-    ${ASTRO_BASE}/frames/definitions/LocalHorizontalLocalVertical.hpp
-    ${ASTRO_BASE}/frames/definitions/RadialInTrackCrossTrack.hpp
-    ${ASTRO_BASE}/frames/definitions/VelocityNormalBinormal.hpp
+    ${ASTRO_BASE}/frames/definitions/dynamic_frames/EastNorthUp.hpp
+    ${ASTRO_BASE}/frames/definitions/dynamic_frames/LocalHorizontalLocalVertical.hpp
+    ${ASTRO_BASE}/frames/definitions/dynamic_frames/Perifocal.hpp
+    ${ASTRO_BASE}/frames/definitions/dynamic_frames/RadialInTrackCrossTrack.hpp
+    ${ASTRO_BASE}/frames/definitions/dynamic_frames/VelocityNormalBinormal.hpp
+    ${ASTRO_BASE}/frames/definitions/dynamic_frames/tags.hpp
     ${ASTRO_BASE}/frames/definitions/dynamic_frames.hpp
     ${ASTRO_BASE}/frames/definitions/transformations.hpp
 
