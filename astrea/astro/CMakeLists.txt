@@ -317,14 +317,14 @@ install(
 )
 
 # Install generated ephemeris headers (directory may not exist if no ephemerides are built)
-if(EXISTS "${CMAKE_CURRENT_BINARY_DIR}/include/ephemerides")
+if(${BUILD_EPHEMERIDES})
     install(
         DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/include/ephemerides
         DESTINATION include/astro
         FILES_MATCHING PATTERN *.hpp
     )
 endif()
-if(EXISTS "${CMAKE_CURRENT_BINARY_DIR}/include/eop")
+if(${BUILD_EOP})
     install(
         DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/include/eop
         DESTINATION include/astro
