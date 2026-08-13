@@ -25,7 +25,7 @@
 #include <astro/systems/celestial_bodies/Earth/Earth.hpp>
 
 #ifdef ASTREA_BUILD_EARTH_EPHEMERIS
-#include <ephemerides/Earth/MoonEphemerisTable.hpp>
+#include <astro/ephemerides/Earth/MoonEphemerisTable.hpp>
 #endif // ASTREA_BUILD_EARTH_EPHEMERIS
 
 namespace astrea {

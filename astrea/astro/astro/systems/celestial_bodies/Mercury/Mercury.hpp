@@ -25,7 +25,7 @@
 #include <astro/systems/barycenters.hpp>
 
 #ifdef ASTREA_BUILD_MERCURY_EPHEMERIS
-#include <ephemerides/Mercury/MercuryEphemerisTable.hpp>
+#include <astro/ephemerides/Mercury/MercuryEphemerisTable.hpp>
 #endif // ASTREA_BUILD_MERCURY_EPHEMERIS
 
 namespace astrea {

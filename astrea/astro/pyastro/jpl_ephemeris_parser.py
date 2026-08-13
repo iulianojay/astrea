@@ -6,7 +6,10 @@ import os
 import pathlib
 import argparse
 
-ASTRO_ROOT = pathlib.Path(os.path.abspath(os.path.join(os.path.dirname(os.path.realpath(__file__)), '..')))
+ASTRO_ROOT = pathlib.Path(
+    os.path.abspath(os.path.join(os.path.dirname(os.path.realpath(__file__)), ".."))
+)
+
 
 def parse_header_file(headerFile):
     """
@@ -63,12 +66,12 @@ def parse_header_file(headerFile):
                 jplEphemHeader.append(list(map(int, line.strip().split())))
         return jplEphemHeader
 
-    with open(headerFile, 'r') as fID:
+    with open(headerFile, "r") as fID:
         lines = fID.readlines()
 
     # Parse the file into groupes
     group = None
-    groupLines = {'1040': [], '1041': [], '1050': []}
+    groupLines = {"1040": [], "1041": [], "1050": []}
 
     # Discard the lines until we get to the line containing "GROUP   1050"
     for line in lines:
@@ -79,18 +82,19 @@ def parse_header_file(headerFile):
             continue
         else:
             if group == "1040":
-                groupLines['1040'].append(line)
+                groupLines["1040"].append(line)
             elif group == "1041":
-                groupLines['1041'].append(line)
+                groupLines["1041"].append(line)
             elif group == "1050":
-                groupLines['1050'].append(line)
+                groupLines["1050"].append(line)
 
-    emratIdx = parse_group_1040(groupLines['1040'])
+    emratIdx = parse_group_1040(groupLines["1040"])
     if emratIdx is None:
         raise Exception("Failed to parse out the EMRAT value from header file")
-    emratio = parse_group_1041(groupLines['1041'], emratIdx)
-    jplEphemHeader = parse_group_1050(groupLines['1050'])
+    emratio = parse_group_1041(groupLines["1041"], emratIdx)
+    jplEphemHeader = parse_group_1050(groupLines["1050"])
     return emratio, np.asarray(jplEphemHeader)
+
 
 class CelestialBodies(IntEnum):
     """
@@ -104,18 +108,19 @@ class CelestialBodies(IntEnum):
         4     2     2     1     1     1     1     1     1     8     2     4     4     0     0
 
     """
-    Mercury = 0,        # Mercury from SSB
-    Venus = 1,          # Venus from SSB
-    EMB = 2,            # EMB from SSB
-    Mars = 3,           # Mars from SSB
-    Jupiter = 4,        # Jupiter from SSB
-    Saturn = 5,         # Saturn from SSB
-    Uranus = 6,         # Uranus from SSB
-    Neptune = 7,        # Neptune from SSB
-    Pluto = 8,          # Pluto from SSB
-    Moon = 9,           # Moon geocentric position
-    Sun = 10,           # Sun from SSB
-    EarthFromEMB = 11   # Earth from EMB
+
+    Mercury = (0,)  # Mercury from SSB
+    Venus = (1,)  # Venus from SSB
+    EMB = (2,)  # EMB from SSB
+    Mars = (3,)  # Mars from SSB
+    Jupiter = (4,)  # Jupiter from SSB
+    Saturn = (5,)  # Saturn from SSB
+    Uranus = (6,)  # Uranus from SSB
+    Neptune = (7,)  # Neptune from SSB
+    Pluto = (8,)  # Pluto from SSB
+    Moon = (9,)  # Moon geocentric position
+    Sun = (10,)  # Sun from SSB
+    EarthFromEMB = 11  # Earth from EMB
 
 
 def get_table_parameters(celestialBody: CelestialBodies, jplEphemHeader: np.ndarray):
@@ -175,10 +180,9 @@ def read_in_blocks(files: list):
     # read all lines from the file
     lines = []
     for file in files:
-        with open(file, 'r') as fID:
+        with open(file, "r") as fID:
             newLines = fID.readlines()
             lines += newLines
-
 
     # Split each line up into corresponding "blocks"
     blockLines = []
@@ -205,8 +209,16 @@ def read_in_blocks(files: list):
     return floatLines
 
 
-
-def write_to_file(outPath: str, relPath: str, className: str, nEntries : int, daysPerPoly: float, xCoeffStr: list, yCoeffStr: list, zCoeffStr: list):
+def write_to_file(
+    outPath: str,
+    relPath: str,
+    className: str,
+    nEntries: int,
+    daysPerPoly: float,
+    xCoeffStr: list,
+    yCoeffStr: list,
+    zCoeffStr: list,
+):
     """
     Format and write x, y, z position coefficients to file
     """
@@ -223,18 +235,19 @@ def write_to_file(outPath: str, relPath: str, className: str, nEntries : int, da
     # Write header file
     header = f"{relPath}/{className}.hpp"
     headerfile = os.path.join(outPath, header)
-    if (os.path.exists(headerfile)):
+    if os.path.exists(headerfile):
         print(f" -- {headerfile} already exists, skipping rebuild...")
         return
-    with open(headerfile, 'w+') as fID:
-
+    with open(headerfile, "w+") as fID:
         fID.write(warningString)
 
         fID.write(f"#pragma once\n\n")
         fID.write(f"#include <array>\n")
         fID.write(f"#include <units/units.hpp>\n")
         fID.write(f"#include <astro/time/Date.hpp>\n\n")
-        fID.write(f"#include <astro/systems/celestial_bodies/JplEphemerisTable.hpp>\n\n")
+        fID.write(
+            f"#include <astro/systems/celestial_bodies/JplEphemerisTable.hpp>\n\n"
+        )
         fID.write(f"namespace astrea {{\n")
         fID.write(f"namespace astro {{\n")
         fID.write(f"namespace ephemerides {{\n\n")
@@ -244,7 +257,9 @@ def write_to_file(outPath: str, relPath: str, className: str, nEntries : int, da
         fID.write(f"\t~{className}() = delete;\n\n")
 
         # Write number of days per poly at the top
-        fID.write(f"\tstatic constexpr Time TIME_PER_COEFFICIENT = {daysPerPoly} * mp_units::non_si::day;\n")
+        fID.write(
+            f"\tstatic constexpr Time TIME_PER_COEFFICIENT = {daysPerPoly} * mp_units::non_si::day;\n"
+        )
 
         # Write the x coefficients to file
         fID.write(f"\tstatic {typeString} X_INTERP;\n")
@@ -252,7 +267,9 @@ def write_to_file(outPath: str, relPath: str, className: str, nEntries : int, da
         fID.write(f"\tstatic {typeString} Z_INTERP;\n\n")
 
         # Write the get_index function
-        fID.write(f"\tstatic std::size_t get_index(const Date& date, const Time& daysPerPoly) {{ return JplEphemerisTable::get_index(date, daysPerPoly); }}\n")
+        fID.write(
+            f"\tstatic std::size_t get_index(const Date& date, const Time& daysPerPoly) {{ return JplEphemerisTable::get_index(date, daysPerPoly); }}\n"
+        )
 
         fID.write("};\n\n")
         fID.write(f"}} // namespace ephemerides \n\n")
@@ -261,10 +278,10 @@ def write_to_file(outPath: str, relPath: str, className: str, nEntries : int, da
 
     # Write source file
     sourcefile = os.path.join(outPath, f"{relPath}/{className}.cpp")
-    with open(sourcefile, 'w+') as fID:
+    with open(sourcefile, "w+") as fID:
         fID.write(warningString)
 
-        fID.write(f"#include <ephemerides/{header}>\n\n")
+        fID.write(f"#include <astro/ephemerides/{header}>\n\n")
         fID.write(f"namespace astrea {{\n")
         fID.write(f"namespace astro {{\n")
         fID.write(f"namespace ephemerides {{\n\n")
@@ -311,7 +328,9 @@ def convert_to_float(words):
         list[str]: Corresponding list of floating point values
 
     """
-    return [float(word.replace("D", "e")) if "D" in word else float(word) for word in words ]
+    return [
+        float(word.replace("D", "e")) if "D" in word else float(word) for word in words
+    ]
 
 
 def duplicate_start_date(startMjdVals, curMjdStart):
@@ -326,7 +345,15 @@ def duplicate_start_date(startMjdVals, curMjdStart):
     return False
 
 
-def generate_ephemeris_file(lineBlocks: list, em_ratio: float, mjd0: float, mjdF: float, celestialBody: CelestialBodies, jplEphemHeader: np.ndarray, outPath: str):
+def generate_ephemeris_file(
+    lineBlocks: list,
+    em_ratio: float,
+    mjd0: float,
+    mjdF: float,
+    celestialBody: CelestialBodies,
+    jplEphemHeader: np.ndarray,
+    outPath: str,
+):
     """
     Extract the Chebyshev coefficients for the specified liens, given an initial and final MJD from the J2000 Epoch
 
@@ -345,11 +372,15 @@ def generate_ephemeris_file(lineBlocks: list, em_ratio: float, mjd0: float, mjdF
 
     if celestialBody == CelestialBodies.EarthFromEMB:
         # Have to do extra work to compute the position of Earth relative to EMB
-        generate_earth_relative_to_barycenter_file(lineBlocks, em_ratio, mjd0, mjdF, jplEphemHeader, outPath)
+        generate_earth_relative_to_barycenter_file(
+            lineBlocks, em_ratio, mjd0, mjdF, jplEphemHeader, outPath
+        )
 
     else:
         # Get table parameters for the body
-        START_IND, END_IND, NUM_COEFF, NUM_POLY, DAYS_PER_POLY = get_table_parameters(celestialBody, jplEphemHeader)
+        START_IND, END_IND, NUM_COEFF, NUM_POLY, DAYS_PER_POLY = get_table_parameters(
+            celestialBody, jplEphemHeader
+        )
 
         xChebyshevStr = []
         yChebyshevStr = []
@@ -357,10 +388,9 @@ def generate_ephemeris_file(lineBlocks: list, em_ratio: float, mjd0: float, mjdF
         startMjdVals = []
 
         for block in lineBlocks:
-
             # First, pull out start/stop jd and convert to MJD_J2k
             mjdStart = jd_to_mjdj2k(block[0])
-            mjdStop  = jd_to_mjdj2k(block[1])
+            mjdStop = jd_to_mjdj2k(block[1])
 
             # Skip a block if it isn't contained within the start/stop window
             if mjdStop < mjd0 or mjdStart > mjdF:
@@ -382,17 +412,23 @@ def generate_ephemeris_file(lineBlocks: list, em_ratio: float, mjd0: float, mjdF
                 startMjdVals.append(curMjdStart)
 
                 # Extract x coefficients
-                xCoeffStr = format_coefficients_string(curMjdStart, curMjdStop, coeff[idx:(idx + NUM_COEFF)])
+                xCoeffStr = format_coefficients_string(
+                    curMjdStart, curMjdStop, coeff[idx : (idx + NUM_COEFF)]
+                )
                 xChebyshevStr.append(xCoeffStr)
 
                 # Extract y coefficients
                 idx += NUM_COEFF
-                yCoeffStr = format_coefficients_string(curMjdStart, curMjdStop, coeff[idx:(idx + NUM_COEFF)])
+                yCoeffStr = format_coefficients_string(
+                    curMjdStart, curMjdStop, coeff[idx : (idx + NUM_COEFF)]
+                )
                 yChebyshevStr.append(yCoeffStr)
 
                 # Extract z coefficients
                 idx += NUM_COEFF
-                zCoeffStr = format_coefficients_string(curMjdStart, curMjdStop, coeff[idx:(idx + NUM_COEFF)])
+                zCoeffStr = format_coefficients_string(
+                    curMjdStart, curMjdStop, coeff[idx : (idx + NUM_COEFF)]
+                )
                 zChebyshevStr.append(zCoeffStr)
 
                 # Add NUM_COEFF so the next X value starts off properly
@@ -400,20 +436,48 @@ def generate_ephemeris_file(lineBlocks: list, em_ratio: float, mjd0: float, mjdF
 
         # Write to file
         name = celestialBody.name
-        if (celestialBody != CelestialBodies.EMB and celestialBody != CelestialBodies.Moon):
+        if (
+            celestialBody != CelestialBodies.EMB
+            and celestialBody != CelestialBodies.Moon
+        ):
             relPath = f"{name}"
         else:
             relPath = "Earth"
 
         if celestialBody == CelestialBodies.EMB:
-            write_to_file(outPath, relPath, f"EmbEphemerisTable", NUM_COEFF + 2, DAYS_PER_POLY, xChebyshevStr, yChebyshevStr, zChebyshevStr)
+            write_to_file(
+                outPath,
+                relPath,
+                f"EmbEphemerisTable",
+                NUM_COEFF + 2,
+                DAYS_PER_POLY,
+                xChebyshevStr,
+                yChebyshevStr,
+                zChebyshevStr,
+            )
         else:
-            write_to_file(outPath, relPath, f"{name}EphemerisTable", NUM_COEFF + 2, DAYS_PER_POLY, xChebyshevStr, yChebyshevStr, zChebyshevStr)
+            write_to_file(
+                outPath,
+                relPath,
+                f"{name}EphemerisTable",
+                NUM_COEFF + 2,
+                DAYS_PER_POLY,
+                xChebyshevStr,
+                yChebyshevStr,
+                zChebyshevStr,
+            )
 
         return xChebyshevStr, yChebyshevStr, zChebyshevStr
 
 
-def generate_earth_relative_to_barycenter_file(lineBlocks: list, em_ratio: float, mjd0: float, mjdF: float, jplEphemHeader: np.ndarray, outPath: str):
+def generate_earth_relative_to_barycenter_file(
+    lineBlocks: list,
+    em_ratio: float,
+    mjd0: float,
+    mjdF: float,
+    jplEphemHeader: np.ndarray,
+    outPath: str,
+):
     """
     Extract the Chebyshev coefficients for the Earth's position relative to the Earth-Moon-Barycenter
 
@@ -430,7 +494,9 @@ def generate_earth_relative_to_barycenter_file(lineBlocks: list, em_ratio: float
     """
 
     # Get the Chebyshev parameters for the Moon, and will adjust
-    START_IND, END_IND, NUM_COEFF, NUM_POLY, DAYS_PER_POLY = get_table_parameters(CelestialBodies.Moon, jplEphemHeader)
+    START_IND, END_IND, NUM_COEFF, NUM_POLY, DAYS_PER_POLY = get_table_parameters(
+        CelestialBodies.Moon, jplEphemHeader
+    )
 
     xChebyshevStr = []
     yChebyshevStr = []
@@ -438,10 +504,9 @@ def generate_earth_relative_to_barycenter_file(lineBlocks: list, em_ratio: float
     startMjdVals = []
 
     for block in lineBlocks:
-
         # First, pull out start/stop jd and convert to MJD_J2k
         mjdStart = jd_to_mjdj2k(block[0])
-        mjdStop  = jd_to_mjdj2k(block[1])
+        mjdStop = jd_to_mjdj2k(block[1])
 
         # Skip a block if it isn't contained within the start/stop window
         if mjdStop < mjd0 or mjdStart > mjdF:
@@ -466,17 +531,23 @@ def generate_earth_relative_to_barycenter_file(lineBlocks: list, em_ratio: float
             startMjdVals.append(curMjdStart)
 
             # Extract x coefficients
-            xCoeffStr = format_coefficients_string(curMjdStart, curMjdStop, earth_rel_embary[idx:(idx + NUM_COEFF)])
+            xCoeffStr = format_coefficients_string(
+                curMjdStart, curMjdStop, earth_rel_embary[idx : (idx + NUM_COEFF)]
+            )
             xChebyshevStr.append(xCoeffStr)
 
             # Extract y coefficients
             idx += NUM_COEFF
-            yCoeffStr = format_coefficients_string(curMjdStart, curMjdStop, earth_rel_embary[idx:(idx + NUM_COEFF)])
+            yCoeffStr = format_coefficients_string(
+                curMjdStart, curMjdStop, earth_rel_embary[idx : (idx + NUM_COEFF)]
+            )
             yChebyshevStr.append(yCoeffStr)
 
             # Extract z coefficients
             idx += NUM_COEFF
-            zCoeffStr = format_coefficients_string(curMjdStart, curMjdStop, earth_rel_embary[idx:(idx + NUM_COEFF)])
+            zCoeffStr = format_coefficients_string(
+                curMjdStart, curMjdStop, earth_rel_embary[idx : (idx + NUM_COEFF)]
+            )
             zChebyshevStr.append(zCoeffStr)
 
             # Add NUM_COEFF so the next X value starts off properly
@@ -484,33 +555,55 @@ def generate_earth_relative_to_barycenter_file(lineBlocks: list, em_ratio: float
 
     # relPath = "astro/systems/celestial_bodies/Earth"
     relPath = "Earth"
-    write_to_file(outPath, relPath, "EarthFromEmbEphemerisTable", NUM_COEFF + 2, DAYS_PER_POLY, xChebyshevStr,
-                  yChebyshevStr, zChebyshevStr)
+    write_to_file(
+        outPath,
+        relPath,
+        "EarthFromEmbEphemerisTable",
+        NUM_COEFF + 2,
+        DAYS_PER_POLY,
+        xChebyshevStr,
+        yChebyshevStr,
+        zChebyshevStr,
+    )
 
     return xChebyshevStr, yChebyshevStr, zChebyshevStr
 
 
 def format_coefficients_string(mjdStart: float, mjdStop: float, coeff: list) -> str:
-    return "{},{},{}".format(mjdStart, mjdStop, ','.join([str("{0:0.15e}".format(val)) for val in coeff]))
+    return "{},{},{}".format(
+        mjdStart, mjdStop, ",".join([str("{0:0.15e}".format(val)) for val in coeff])
+    )
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Generate JPL Ephemeris files for Astrea")
-    parser.add_argument('--bodies', nargs='+', type=str, default=[body.name for body in CelestialBodies],
-                        help='List of celestial bodies to generate ephemeris files for. Default is all bodies.')
-    parser.add_argument('-o', '--output_path', type=str, default=pathlib.Path(ASTRO_ROOT,"systems","planets"))
+    parser = argparse.ArgumentParser(
+        description="Generate JPL Ephemeris files for Astrea"
+    )
+    parser.add_argument(
+        "--bodies",
+        nargs="+",
+        type=str,
+        default=[body.name for body in CelestialBodies],
+        help="List of celestial bodies to generate ephemeris files for. Default is all bodies.",
+    )
+    parser.add_argument(
+        "-o",
+        "--output_path",
+        type=str,
+        default=pathlib.Path(ASTRO_ROOT, "systems", "planets"),
+    )
     args = parser.parse_args()
 
     # Parse the header table
     ephemNumber = "430"
-    base = pathlib.Path(ASTRO_ROOT,  "data", "jpl_ephemeris_data")
+    base = pathlib.Path(ASTRO_ROOT, "data", "jpl_ephemeris_data")
     table_path = pathlib.Path(base, f"de_{ephemNumber}", "header.430_572").absolute()
     emratio, jplEphemHeader = parse_header_file(table_path)
 
     # Parse the desired files
     files = [
         f"{base}/de_{ephemNumber}/ascp1950.430",
-        f"{base}/de_{ephemNumber}/ascp2050.430"
+        f"{base}/de_{ephemNumber}/ascp2050.430",
     ]
     blockLines = read_in_blocks(files)
 
@@ -518,17 +611,27 @@ if __name__ == "__main__":
     mjd0 = 0
     mjdF = 36525
 
-    bodies = args.bodies[0].split(' ')
+    bodies = args.bodies[0].split(" ")
     outPath = args.output_path
     for body in bodies:
         try:
-            if body == 'Earth':
+            if body == "Earth":
                 celestialBody = CelestialBodies.EMB
-                generate_ephemeris_file(blockLines, emratio, mjd0, mjdF, celestialBody, jplEphemHeader, outPath)
+                generate_ephemeris_file(
+                    blockLines,
+                    emratio,
+                    mjd0,
+                    mjdF,
+                    celestialBody,
+                    jplEphemHeader,
+                    outPath,
+                )
                 celestialBody = CelestialBodies.EarthFromEMB
             else:
                 celestialBody = CelestialBodies[body]
         except KeyError:
             print(f" -- {body} not supported yet, skipping...")
-            continue # just ignore invalid body names for now
-        generate_ephemeris_file(blockLines, emratio, mjd0, mjdF, celestialBody, jplEphemHeader, outPath)
+            continue  # just ignore invalid body names for now
+        generate_ephemeris_file(
+            blockLines, emratio, mjd0, mjdF, celestialBody, jplEphemHeader, outPath
+        )

@@ -27,7 +27,7 @@
 #include <astro/systems/barycenters.hpp>
 
 #ifdef ASTREA_BUILD_VENUS_EPHEMERIS
-#include <ephemerides/Venus/VenusEphemerisTable.hpp>
+#include <astro/ephemerides/Venus/VenusEphemerisTable.hpp>
 #endif // ASTREA_BUILD_VENUS_EPHEMERIS
 
 namespace astrea {

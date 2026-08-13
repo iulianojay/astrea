@@ -27,7 +27,7 @@
 #include <astro/systems/barycenters.hpp>
 
 #ifdef ASTREA_BUILD_MARS_EPHEMERIS
-#include <ephemerides/Mars/MarsEphemerisTable.hpp>
+#include <astro/ephemerides/Mars/MarsEphemerisTable.hpp>
 #endif // ASTREA_BUILD_MARS_EPHEMERIS
 
 namespace astrea {
