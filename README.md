@@ -17,7 +17,7 @@ Astrea is a high-performance, type-safe astrodynamics library designed for missi
 
 ## Overview
 
-This library features a comprehensive type system that prevents common errors in astrodynamics calculations through compile-time checks - namely a strongly typed units system developed on top of mp-units, strongly typed orbital elements with in-place conversions and type-erased containers, and a system of strongly-typed framed. All of these features offer a high level of performance and safety, while also providing a flexible and extensible architecture for custom applications.
+This library features a comprehensive type system that prevents common errors in astrodynamics calculations through compile-time checks - namely a strongly typed units system developed on top of mp-units, strongly typed orbital elements with in-place conversions and type-erased containers, and a independently developed system of strongly-typed frames. All of these features offer a high level of performance and safety, while also providing a flexible and extensible architecture for custom applications.
 
 ## Key Features
 
