@@ -14,7 +14,7 @@
 #include <trace/platforms/sensors/Sensor.hpp>
 
 #include <astro/frames/definitions.hpp>
-#include <astro/frames/definitions/dynamic_frames.hpp>
+#include <astro/frames/definitions/dynamic_frames/tags.hpp>
 #include <astro/frames/framework/CartesianVector.hpp>
 
 namespace astrea {
