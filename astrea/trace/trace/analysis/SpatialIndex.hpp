@@ -59,6 +59,8 @@ class SpatialIndex {
 
     SpatialIndex(const GroundPointRefVec& groundPoints);
 
+    SpatialIndex(const GroundPointRefVec& groundPoints);
+
     /**
      * @brief Add a ground point to the index
      *
