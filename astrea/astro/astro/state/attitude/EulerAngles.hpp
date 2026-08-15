@@ -4,7 +4,7 @@
  * @brief Class representing a sequence of angles (either Euler or Tait-Bryan) for attitude transformations between state/frames.
  * @date 2026-03-22
  *
- * @copyright Copyright (c) 2026 Jay Iuliano
+ * @copyright Copyright (c) 2025-2026 Jay Iuliano
  *
  * The GNU Lesser General Public License (LGPL)
  *
@@ -282,14 +282,19 @@ class EulerAngles {
      */
     DirectionCosineMatrix<_in_frame_, _out_frame_> to_dcm() const
     {
-        // Extrinsic sequences are applied in the order they are specified, while intrinsic sequences are applied in reverse order
-        static constexpr bool isIntrinsic = (rotation_type == RotationType::INTRINSIC);
-
-        const Angle& first  = _angles[isIntrinsic ? 2 : 0];
-        const Angle& second = _angles[1];
-        const Angle& third  = _angles[isIntrinsic ? 0 : 2];
-
-        return DirectionCosineMatrix<_in_frame_, _out_frame_>::template from_euler_angles<sequence>(first, second, third);
+        // Intrinsic sequences are applied directly in the order they are specified (the static DCM factories
+        // implement the intrinsic composition convention: R_seq0(a) * R_seq1(b) * R_seq2(c)).
+        // Extrinsic sequences are equivalent to the reverse sequence applied intrinsically with the angles in
+        // reverse order (e.g. extrinsic XYZ(a,b,c) == intrinsic ZYX(c,b,a)), so we dispatch to the reverse
+        // sequence's factory with the angle order reversed.
+        if constexpr (rotation_type == RotationType::INTRINSIC) {
+            return DirectionCosineMatrix<_in_frame_, _out_frame_>::template from_euler_angles<sequence>(_angles[0], _angles[1], _angles[2]);
+        }
+        else {
+            return DirectionCosineMatrix<_in_frame_, _out_frame_>::template from_euler_angles<get_reverse_sequence(sequence)>(
+                _angles[2], _angles[1], _angles[0]
+            );
+        }
     }
 
     /**
@@ -299,7 +304,7 @@ class EulerAngles {
         requires(rotation_type != rotation_u)
     EulerAngles<get_reverse_sequence(sequence), rotation_u, _in_frame_, _out_frame_> to_rotation_type() const
     {
-        return { _angles };
+        return { _angles.reverse() };
     }
 
     /**

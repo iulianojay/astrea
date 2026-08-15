@@ -4,7 +4,7 @@
  * @brief Header file for the ForceModel class, which manages multiple force models and computes the total force on a vehicle.
  * @date 2025-08-02
  *
- * @copyright Copyright (c) 2025 Jay Iuliano
+ * @copyright Copyright (c) 2025-2026 Jay Iuliano
  *
  * The GNU Lesser General Public License (LGPL)
  *

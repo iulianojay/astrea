@@ -4,7 +4,7 @@
  * @brief Header file for the OblatenessForce class, which computes the gravitational force due to the oblateness of a celestial _body_.
  * @date 2025-08-02
  *
- * @copyright Copyright (c) 2025 Jay Iuliano
+ * @copyright Copyright (c) 2025-2026 Jay Iuliano
  *
  * The G_degree_U Lesser General Public License (LGPL)
  *

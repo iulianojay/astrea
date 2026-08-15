@@ -4,7 +4,7 @@
  * @brief This file defines the Spherical class and its associated methods.
  * @date 2025-08-02
  *
- * @copyright Copyright (c) 2025 Jay Iuliano
+ * @copyright Copyright (c) 2025-2026 Jay Iuliano
  *
  * The GNU Lesser General Public License (LGPL)
  *
@@ -21,7 +21,7 @@
 #include <iosfwd>
 
 #include <mp-units/math.h>
-#include <mp-units/systems/angular/math.h>
+#include <mp-units/systems/si/math.h>
 
 // units
 #include <units/units.hpp>
@@ -191,9 +191,9 @@ template <IsFrame auto _frame_>
 std::tuple<Distance, Angle, Angle> convert_body_fixed_to_spherical(const RadiusVector<_frame_>& rFixed)
 {
     using mp_units::sqrt;
-    using mp_units::angular::acos;
-    using mp_units::angular::unit_symbols::rad;
+    using mp_units::si::acos;
     using mp_units::si::unit_symbols::km;
+    using mp_units::si::unit_symbols::rad;
 
     const Distance range    = rFixed.norm();
     const Angle inclination = acos(rFixed.get_z() / range);
@@ -223,8 +223,8 @@ template <IsFrame auto _frame_>
     requires(IsBodyFixedFrame<decltype(_frame_)>)
 RadiusVector<_frame_> convert_spherical_to_body_fixed(const Distance& range, const Angle& inclination, const Angle& azimuth)
 {
-    using mp_units::angular::cos;
-    using mp_units::angular::sin;
+    using mp_units::si::cos;
+    using mp_units::si::sin;
 
     return RadiusVector<_frame_>(range * sin(inclination) * cos(azimuth), range * sin(inclination) * sin(azimuth), range * cos(inclination));
 }

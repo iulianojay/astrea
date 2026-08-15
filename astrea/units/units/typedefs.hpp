@@ -4,7 +4,7 @@
  * @brief Type definitions for astrea units
  * @date 2025-08-02
  *
- * @copyright Copyright (c) 2025 Jay Iuliano
+ * @copyright Copyright (c) 2025-2026 Jay Iuliano
  *
  * The GNU Lesser General Public License (LGPL)
  *
@@ -96,17 +96,17 @@ using InterplanetaryDistance = mp_units::quantity<mp_units::iau::unit_symbols::a
 /**
  * @brief Definition for a body-related velocity.
  */
-using InterplanetaryVelocity = mp_units::quantity<mp_units::iau::unit_symbols::au / JulianCentury>;
+using InterplanetaryVelocity = mp_units::quantity<mp_units::iau::unit_symbols::au / astrea::units::unit_symbols::jc>;
 
 /**
  * @brief Definition for a body-related unitless per time.
  */
-using BodyUnitlessPerTime = mp_units::quantity<detail::unitless / JulianCentury>;
+using BodyUnitlessPerTime = mp_units::quantity<detail::unitless / astrea::units::unit_symbols::jc>;
 
 /**
  * @brief Definition for a body-related angular rate.
  */
-using BodyAngularVelocity = mp_units::quantity<detail::angle_unit / JulianCentury>;
+using BodyAngularVelocity = mp_units::quantity<detail::angle_unit / astrea::units::unit_symbols::jc>;
 
 /**
  * @brief Definition for an acceleration quantity.
@@ -141,7 +141,7 @@ using MeanMotion2ndDer = mp_units::quantity<mp_units::one / mp_units::pow<3>(mp_
 /**
  * @brief Definition for a ballistic coefficient quantity.
  */
-using BallisticCoefficient = mp_units::quantity<mp_units::one / EarthRadii>;
+using BallisticCoefficient = mp_units::quantity<mp_units::one / astrea::units::unit_symbols::re>;
 
 /**
  * @brief Definition for a density quantity.
@@ -206,7 +206,7 @@ using MomentOfInertia = mp_units::quantity<detail::mass_unit * mp_units::pow<2>(
 /**
  * @brief Definition for a solar flux quantity.
  */
-using SolarFlux = mp_units::quantity<SolarFluxUnits>;
+using SolarFlux = mp_units::quantity<astrea::units::unit_symbols::sfu>;
 
 /**
  * @brief Definition for a chirp quantity, representing the rate of change of frequency.

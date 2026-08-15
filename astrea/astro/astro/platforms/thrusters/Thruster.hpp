@@ -4,7 +4,7 @@
  * @brief Thruster class definition for astrea access platform
  * @date 2025-08-03
  *
- * @copyright Copyright (c) 2025 Jay Iuliano
+ * @copyright Copyright (c) 2025-2026 Jay Iuliano
  *
  * The GNU Lesser General Public License (LGPL)
  *
@@ -22,7 +22,7 @@
 
 #include <astro/astro.fwd.hpp>
 #include <astro/frames/definitions.hpp>
-#include <astro/frames/definitions/dynamic_frames.hpp>
+#include <astro/frames/definitions/dynamic_frames/tags.hpp>
 #include <astro/platforms/Payload.hpp>
 #include <astro/types/typedefs.hpp>
 

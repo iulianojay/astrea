@@ -4,7 +4,7 @@
  * @brief This file defines the CartesianVector class, which represents a 3D vector in Cartesian coordinates.
  * @date 2025-08-03
  *
- * @copyright Copyright (c) 2025 Jay Iuliano
+ * @copyright Copyright (c) 2025-2026 Jay Iuliano
  *
  * The GNU Lesser General Public License (LGPL)
  *
@@ -22,7 +22,7 @@
 #include <typeinfo>
 
 #include <mp-units/framework.h>
-#include <mp-units/systems/angular.h>
+#include <mp-units/systems/si.h>
 
 #include <units/units.hpp>
 
@@ -424,7 +424,7 @@ struct CartesianVector {
     inline constexpr Angle offset_angle(const CartesianVector<Value_U, frame>& other) const
     {
         using namespace mp_units;
-        using namespace mp_units::angular;
+        using namespace mp_units::si;
 
         const Value_T v1Mag = norm();
         const Value_U v2Mag = other.norm();

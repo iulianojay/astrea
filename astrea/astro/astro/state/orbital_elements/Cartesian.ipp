@@ -1,7 +1,7 @@
 /*
  * The GNU Lesser General Public License (LGPL)
  *
- * Copyright (c) 2025 Jay Iuliano
+ * Copyright (c) 2025-2026 Jay Iuliano
  *
  * This file is part of Astrea.
  * Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License
@@ -17,25 +17,34 @@
 
 // mp-units
 #include <mp-units/math.h>
-#include <mp-units/systems/angular/math.h>
 #include <mp-units/systems/si.h>
 #include <mp-units/systems/si/math.h>
+
+#include <math/interpolation.hpp>
+#include <math/trig.hpp>
 
 #include <astro/state/orbital_elements/Equinoctial.hpp>
 #include <astro/state/orbital_elements/Keplerian.hpp>
 #include <astro/systems/system_utilities.hpp>
 #include <astro/types/typedefs.hpp>
-#include <math/interpolation.hpp>
 
 namespace astrea {
 namespace astro {
+
+namespace {
+
+// Perifocal Coordinates- we have to use this definition to avoid a log circular dependency issue
+inline constexpr struct peri : Frame<"fake perifocal frame for this calc only", DynamicOrigin{}, DynamicAxis{}> {
+} peri;
+
+} // namespace
 
 template <IsFrame auto _frame_>
 Cartesian<_frame_>::Cartesian(const Keplerian<_frame_>& elements, const GravParam& mu)
 {
     using namespace mp_units;
     using namespace mp_units::si;
-    using namespace mp_units::angular;
+    using namespace mp_units::si;
     using mp_units::si::unit_symbols::km;
     using mp_units::si::unit_symbols::s;
 
@@ -58,47 +67,35 @@ Cartesian<_frame_>::Cartesian(const Keplerian<_frame_>& elements, const GravPara
     }
 
     // Precalculate
-    const quantity cosTheta = cos(theta);
-    const quantity sinTheta = sin(theta);
+    const auto [sinTheta, cosTheta] = math::sin_cos_pack(theta);
+    const auto [sinW, cosW]         = math::sin_cos_pack(w);
+    const auto [sinRaan, cosRaan]   = math::sin_cos_pack(raan);
+    const auto [sinInc, cosInc]     = math::sin_cos_pack(inc);
 
-    const quantity cosW = cos(w);
-    const quantity sinW = sin(w);
+    const SpecificAngularMomentum h    = elements.get_specific_angular_momentum(mu);
+    const Distance radialCoefficient   = pow<2>(h) / mu / (1.0 + ecc * cosTheta);
+    const Velocity velocityCoefficient = mu / h;
 
-    const quantity cosRaan = cos(raan);
-    const quantity sinRaan = sin(raan);
-
-    const quantity cosInc = cos(inc);
-    const quantity sinInc = sin(inc);
-
-    const quantity h = sqrt(mu * a * (1.0 - ecc * ecc));
-    const quantity A = h * h / mu / (1.0 + ecc * cosTheta);
-    const quantity B = mu / h;
-
-    // Perifocal Coordinates
-    const quantity xPeri = A * cosTheta;
-    const quantity yPeri = A * sinTheta;
-
-    const quantity vxPeri = -B * sinTheta;
-    const quantity vyPeri = B * (ecc + cosTheta);
+    const RadiusVector<peri> rPeri{ radialCoefficient * cosTheta, radialCoefficient * sinTheta, Distance::zero() };
+    const VelocityVector<peri> vPeri{ -velocityCoefficient * sinTheta, velocityCoefficient * (ecc + cosTheta), Velocity::zero() };
 
     // Preallocate Dcm values for speed
-    const quantity DcmPeri2Eci11 = (cosW * cosRaan - sinW * cosInc * sinRaan);
-    const quantity DcmPeri2Eci12 = (-sinW * cosRaan - cosW * cosInc * sinRaan);
-
-    const quantity DcmPeri2Eci21 = (cosW * sinRaan + sinW * cosInc * cosRaan);
-    const quantity DcmPeri2Eci22 = (-sinW * sinRaan + cosW * cosInc * cosRaan);
-
-    const quantity DcmPeri2Eci31 = sinInc * sinW;
-    const quantity DcmPeri2Eci32 = sinInc * cosW;
+    const DCM<peri, _frame_> dcmPeri2Eci = {
+        { cosW * cosRaan - sinW * cosInc * sinRaan, -sinW * cosRaan - cosW * cosInc * sinRaan, sinInc * sinRaan },
+        { cosW * sinRaan + sinW * cosInc * cosRaan, -sinW * sinRaan + cosW * cosInc * cosRaan, -sinInc * cosRaan },
+        { sinInc * sinW, sinInc * cosW, cosInc }
+    };
 
     // Inertial position and _velocity
-    get_x() = DcmPeri2Eci11 * xPeri + DcmPeri2Eci12 * yPeri;
-    get_y() = DcmPeri2Eci21 * xPeri + DcmPeri2Eci22 * yPeri;
-    get_z() = DcmPeri2Eci31 * xPeri + DcmPeri2Eci32 * yPeri;
+    const auto r = dcmPeri2Eci * rPeri;
+    const auto v = dcmPeri2Eci * vPeri;
 
-    get_vx() = DcmPeri2Eci11 * vxPeri + DcmPeri2Eci12 * vyPeri;
-    get_vy() = DcmPeri2Eci21 * vxPeri + DcmPeri2Eci22 * vyPeri;
-    get_vz() = DcmPeri2Eci31 * vxPeri + DcmPeri2Eci32 * vyPeri;
+    get_x()  = r.get_x();
+    get_y()  = r.get_y();
+    get_z()  = r.get_z();
+    get_vx() = v.get_x();
+    get_vy() = v.get_y();
+    get_vz() = v.get_z();
 }
 
 template <IsFrame auto _frame_>
@@ -106,7 +103,7 @@ Cartesian<_frame_>::Cartesian(const Equinoctial<_frame_>& elements, const GravPa
 {
     using namespace mp_units;
     using namespace mp_units::si;
-    using namespace mp_units::angular;
+    using namespace mp_units::si;
     using mp_units::si::unit_symbols::km;
     using mp_units::si::unit_symbols::s;
 

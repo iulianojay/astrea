@@ -1,7 +1,7 @@
 /*
  * The GNU Lesser General Public License (LGPL)
  *
- * Copyright (c) 2025 Jay Iuliano
+ * Copyright (c) 2025-2026 Jay Iuliano
  *
  * This file is part of Astrea.
  * Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License
@@ -14,13 +14,11 @@
 #include <astro/propagation/equations_of_motion/EquinoctialVop.hpp>
 
 #include <mp-units/math.h>
-#include <mp-units/systems/angular/math.h>
-#include <mp-units/systems/isq_angle.h>
 #include <mp-units/systems/si.h>
 #include <mp-units/systems/si/math.h>
 
 #include <astro/frames/definitions.hpp>
-#include <astro/frames/definitions/dynamic_frames.hpp>
+#include <astro/frames/definitions/dynamic_frames/tags.hpp>
 #include <astro/platforms/Vehicle.hpp>
 #include <astro/propagation/force_models/ForceModel.hpp>
 #include <astro/state/State.hpp>
@@ -31,10 +29,10 @@ namespace astrea {
 namespace astro {
 
 using namespace mp_units;
-using namespace mp_units::angular;
-using mp_units::angular::unit_symbols::deg;
-using mp_units::angular::unit_symbols::rad;
+using namespace mp_units::si;
+using mp_units::si::unit_symbols::deg;
 using mp_units::si::unit_symbols::km;
+using mp_units::si::unit_symbols::rad;
 using mp_units::si::unit_symbols::s;
 
 EquinoctialVop::EquinoctialVop(const ForceModel& forces) :
@@ -93,7 +91,7 @@ OrbitalElementPartials EquinoctialVop::compute_dynamics(
     const UnitlessPerTime dgdt = sqPOverMu * (-radialPert * cosL + ((w + 1) * sinL + g) / w * tangentialPert + g * termA); // TODO: My notes say: 'f * termA'. Find a second source
     const UnitlessPerTime dhdt = termB * cosL * normalPert;
     const UnitlessPerTime dkdt = termB * sinL * normalPert;
-    const AngularVelocity dLdt = (sqrt(mu * p) * w * w / (p * p) + sqPOverMu * termA) * (isq_angle::cotes_angle);
+    const AngularVelocity dLdt = (sqrt(mu * p) * w * w / (p * p) + sqPOverMu * termA) * rad;
 
     return EquinoctialPartial<frames::earth::icrf>(dpdt, dfdt, dgdt, dhdt, dkdt, dLdt);
 }

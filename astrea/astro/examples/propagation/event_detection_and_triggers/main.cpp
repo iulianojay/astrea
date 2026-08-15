@@ -1,7 +1,7 @@
 /*
  * The GNU Lesser General Public License (LGPL)
  *
- * Copyright (c) 2025 Jay Iuliano
+ * Copyright (c) 2025-2026 Jay Iuliano
  *
  * This file is part of Astrea.
  * Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License
@@ -21,11 +21,12 @@ using namespace astrea;
 using namespace astro;
 using namespace mp_units;
 
-using mp_units::angular::unit_symbols::deg;
 using mp_units::non_si::unit_symbols::h;
 using mp_units::non_si::unit_symbols::min;
+using mp_units::si::unit_symbols::deg;
 using mp_units::si::unit_symbols::km;
 using mp_units::si::unit_symbols::kN;
+using mp_units::si::unit_symbols::rad;
 using mp_units::si::unit_symbols::s;
 
 int main()
@@ -78,8 +79,7 @@ int main()
 
     // Track period as a quasi-measure of the burn effect
     std::cout << "Initial State: " << elements << std::endl;
-    std::cout << "Initial Period: "
-              << mp_units::quantity<min>(TWO_PI * sqrt(pow<3>(elements.get_semimajor()) / mu) / (isq_angle::cotes_angle))
+    std::cout << "Initial Period: " << mp_units::quantity<min>(TWO_PI * sqrt(pow<3>(elements.get_semimajor()) / mu) / rad)
               << std::endl;
     std::cout << "Total Thrust: " << mp_units::quantity<kN>(thrusterParams.get_thrust()) << std::endl;
     std::cout << "Spacecraft Mass: " << sat.get_mass() << std::endl;
@@ -102,8 +102,7 @@ int main()
         for (const Date& date : dates) {
             const Keplerian<frames::earth::icrf> elementsAfterBurn =
                 history.get_state_at(date + 60.0 * s).in_element_set<Keplerian<frames::earth::icrf>>();
-            mp_units::quantity<min> orbitalPeriod =
-                TWO_PI * sqrt(pow<3>(elementsAfterBurn.get_semimajor()) / mu) / (isq_angle::cotes_angle);
+            mp_units::quantity<min> orbitalPeriod = TWO_PI * sqrt(pow<3>(elementsAfterBurn.get_semimajor()) / mu) / rad;
             std::cout << "\t" << orbitalPeriod << std::endl;
         }
     }

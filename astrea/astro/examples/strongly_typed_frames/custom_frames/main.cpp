@@ -1,7 +1,7 @@
 /*
  * The GNU Lesser General Public License (LGPL)
  *
- * Copyright (c) 2025 Jay Iuliano
+ * Copyright (c) 2025-2026 Jay Iuliano
  *
  * This file is part of Astrea.
  * Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License
@@ -123,13 +123,13 @@ template <>
 inline constexpr CelestialBodyParameters get_celestial_body_parameters<my_origin_with_parent>()
 {
     using namespace mp_units;
-    using mp_units::angular::unit_symbols::deg;
-    using mp_units::angular::unit_symbols::rad;
     using mp_units::non_si::day;
+    using mp_units::si::unit_symbols::deg;
     using mp_units::si::unit_symbols::h;
     using mp_units::si::unit_symbols::kg;
     using mp_units::si::unit_symbols::km;
     using mp_units::si::unit_symbols::m;
+    using mp_units::si::unit_symbols::rad;
     using mp_units::si::unit_symbols::s;
 
     // Return the celestial body parameters for my_origin_with_parent.

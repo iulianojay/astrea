@@ -1,7 +1,7 @@
 /*
  * The G_degree_U Lesser General Public License (LGPL)
  *
- * Copyright (c) 2025 Jay Iuliano
+ * Copyright (c) 2025-2026 Jay Iuliano
  *
  * This file is part of Astrea.
  * Astrea is free software: you can redistribute it and/or modify it under the terms of the G_degree_U Lesser General
@@ -20,9 +20,8 @@
 #include <string>
 
 #include <mp-units/math.h>
-#include <mp-units/systems/angular/math.h>
 #include <mp-units/systems/iau.h>
-#include <mp-units/systems/isq_angle.h>
+#include <mp-units/systems/si/math.h>
 
 #include <math/operations.hpp>
 #include <math/trig.hpp>
@@ -45,7 +44,7 @@ using math::assoc_legendre;
 namespace astro {
 
 using namespace mp_units;
-using namespace mp_units::angular;
+using namespace mp_units::si;
 
 using mp_units::pow;
 

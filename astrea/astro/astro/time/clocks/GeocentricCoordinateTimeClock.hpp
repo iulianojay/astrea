@@ -4,7 +4,7 @@
  * @brief A clock implementation for Geocentric Coordinate Time (TCG).
  * @date 2026-06-02
  *
- * @copyright Copyright (c) 2026 Jay Iuliano
+ * @copyright Copyright (c) 2025-2026 Jay Iuliano
  *
  * The GNU Lesser General Public License (LGPL)
  *
@@ -71,7 +71,7 @@ struct GeocentricCoordinateTimeClock {
         using namespace std::chrono;
         const auto tt = TerrestrialTimeClock::from_sys(timePoint).time_since_epoch();
         const auto jd = JulianDateClock::from_sys(timePoint).time_since_epoch();
-        return GeocentricCoordinateDateTime{ tt + Lg / (1.0 - Lg) * (jd - jdRef) };
+        return GeocentricCoordinateDateTime<duration>{ tt + Lg / (1.0 - Lg) * (jd - jdRef) };
     }
 
     /**

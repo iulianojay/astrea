@@ -4,7 +4,7 @@
  * @brief Trigonometric functions for Angular and SI units.
  * @date 2025-08-03
  *
- * @copyright Copyright (c) 2025 Jay Iuliano
+ * @copyright Copyright (c) 2025-2026 Jay Iuliano
  *
  * The GNU Lesser General Public License (LGPL)
  *
@@ -23,111 +23,170 @@
 
 #include <gcem.hpp>
 #include <mp-units/math.h>
-#include <mp-units/systems/angular/math.h>
 #include <mp-units/systems/si/math.h>
 
 namespace astrea {
 namespace math {
 
-template <mp_units::ReferenceOf<mp_units::angular::angle> auto R, typename Rep>
+/**
+ * @brief Trigonometric sine function for angular quantities.
+ *
+ * @tparam R The reference type for the angle (e.g., radian).
+ * @tparam Rep The representation type (e.g., double, float).
+ * @param q The angle quantity.
+ * @return The sine of the angle as a dimensionless quantity.
+ */
+template <mp_units::ReferenceOf<mp_units::MP_UNITS_IS_VALUE_WORKAROUND(isq::angular_measure)> auto R, typename Rep>
     requires requires(Rep v) { sin(v); } || requires(Rep v) { gcem::sin(v); }
 [[nodiscard]] inline constexpr mp_units::QuantityOf<mp_units::dimensionless> auto sin(const mp_units::quantity<R, Rep>& q) noexcept
 {
     using gcem::sin;
     if constexpr (!mp_units::treat_as_floating_point<Rep>) {
         // check what is the return type when called with the integral value
-        using rep = decltype(sin(q.force_numerical_value_in(mp_units::angular::radian)));
+        using rep = decltype(sin(q.force_numerical_value_in(mp_units::si::radian)));
         // use this type ahead of calling the function to prevent narrowing if a unit conversion is needed
-        return mp_units::quantity{ sin(value_cast<rep>(q).numerical_value_in(mp_units::angular::radian)), mp_units::one };
+        return mp_units::quantity{ sin(value_cast<rep>(q).numerical_value_in(mp_units::si::radian)), mp_units::one };
     }
     else {
-        return mp_units::quantity{ sin(q.numerical_value_in(mp_units::angular::radian)), mp_units::one };
+        return mp_units::quantity{ sin(q.numerical_value_in(mp_units::si::radian)), mp_units::one };
     }
 }
 
-template <mp_units::ReferenceOf<mp_units::angular::angle> auto R, typename Rep>
+/**
+ * @brief Trigonometric cosine function for angular quantities.
+ *
+ * @tparam R The reference type for the angle (e.g., radian).
+ * @tparam Rep The representation type (e.g., double, float).
+ * @param q The angle quantity.
+ * @return The cosine of the angle as a dimensionless quantity.
+ */
+template <mp_units::ReferenceOf<mp_units::MP_UNITS_IS_VALUE_WORKAROUND(isq::angular_measure)> auto R, typename Rep>
     requires requires(Rep v) { cos(v); } || requires(Rep v) { gcem::cos(v); }
 [[nodiscard]] inline constexpr mp_units::QuantityOf<mp_units::dimensionless> auto cos(const mp_units::quantity<R, Rep>& q) noexcept
 {
     using gcem::cos;
     if constexpr (!mp_units::treat_as_floating_point<Rep>) {
         // check what is the return type when called with the integral value
-        using rep = decltype(cos(q.force_numerical_value_in(mp_units::angular::radian)));
+        using rep = decltype(cos(q.force_numerical_value_in(mp_units::si::radian)));
         // use this type ahead of calling the function to prevent narrowing if a unit conversion is needed
-        return mp_units::quantity{ cos(value_cast<rep>(q).numerical_value_in(mp_units::angular::radian)), mp_units::one };
+        return mp_units::quantity{ cos(value_cast<rep>(q).numerical_value_in(mp_units::si::radian)), mp_units::one };
     }
     else {
-        return mp_units::quantity{ cos(q.numerical_value_in(mp_units::angular::radian)), mp_units::one };
+        return mp_units::quantity{ cos(q.numerical_value_in(mp_units::si::radian)), mp_units::one };
     }
 }
 
-template <mp_units::ReferenceOf<mp_units::angular::angle> auto R, typename Rep>
+/**
+ * @brief Trigonometric tangent function for angular quantities.
+ *
+ * @tparam R The reference type for the angle (e.g., radian).
+ * @tparam Rep The representation type (e.g., double, float).
+ * @param q The angle quantity.
+ * @return The tangent of the angle as a dimensionless quantity.
+ */
+template <mp_units::ReferenceOf<mp_units::MP_UNITS_IS_VALUE_WORKAROUND(isq::angular_measure)> auto R, typename Rep>
     requires requires(Rep v) { tan(v); } || requires(Rep v) { gcem::tan(v); }
 [[nodiscard]] inline constexpr mp_units::QuantityOf<mp_units::dimensionless> auto tan(const mp_units::quantity<R, Rep>& q) noexcept
 {
     using gcem::tan;
     if constexpr (!mp_units::treat_as_floating_point<Rep>) {
         // check what is the return type when called with the integral value
-        using rep = decltype(tan(q.force_numerical_value_in(mp_units::angular::radian)));
+        using rep = decltype(tan(q.force_numerical_value_in(mp_units::si::radian)));
         // use this type ahead of calling the function to prevent narrowing if a unit conversion is needed
-        return mp_units::quantity{ tan(value_cast<rep>(q).numerical_value_in(mp_units::angular::radian)), mp_units::one };
+        return mp_units::quantity{ tan(value_cast<rep>(q).numerical_value_in(mp_units::si::radian)), mp_units::one };
     }
     else {
-        return mp_units::quantity{ tan(q.numerical_value_in(mp_units::angular::radian)), mp_units::one };
+        return mp_units::quantity{ tan(q.numerical_value_in(mp_units::si::radian)), mp_units::one };
     }
 }
 
+/**
+ * @brief Trigonometric arcsine function for dimensionless quantities.
+ *
+ * @tparam R The reference type for the input (e.g., dimensionless).
+ * @tparam Rep The representation type (e.g., double, float).
+ * @param q The dimensionless quantity.
+ * @return The arcsine of the quantity as an angular measure (radians).
+ */
 template <mp_units::ReferenceOf<mp_units::dimensionless> auto R, typename Rep>
     requires requires(Rep v) { asin(v); } || requires(Rep v) { gcem::asin(v); }
-[[nodiscard]] inline constexpr mp_units::QuantityOf<mp_units::angular::angle> auto asin(const mp_units::quantity<R, Rep>& q) noexcept
+[[nodiscard]] inline constexpr mp_units::QuantityOf<mp_units::MP_UNITS_IS_VALUE_WORKAROUND(isq::angular_measure)> auto
+    asin(const mp_units::quantity<R, Rep>& q) noexcept
 {
     using gcem::asin;
     if constexpr (!mp_units::treat_as_floating_point<Rep>) {
         // check what is the return type when called with the integral value
-        using rep = decltype(asin(q.force_numerical_value_in(mp_units::angular::radian)));
+        using rep = decltype(asin(q.force_numerical_value_in(mp_units::si::radian)));
         // use this type ahead of calling the function to prevent narrowing if a unit conversion is needed
-        return mp_units::quantity{ asin(value_cast<rep>(q).numerical_value_in(mp_units::dimensionless)), mp_units::angular::radian };
+        return mp_units::quantity{ asin(value_cast<rep>(q).numerical_value_in(mp_units::dimensionless)), mp_units::si::radian };
     }
     else {
-        return mp_units::quantity{ asin(q.numerical_value_in(mp_units::dimensionless)), mp_units::angular::radian };
+        return mp_units::quantity{ asin(q.numerical_value_in(mp_units::dimensionless)), mp_units::si::radian };
     }
 }
 
+/**
+ * @brief Trigonometric arccosine function for dimensionless quantities.
+ *
+ * @tparam R The reference type for the input (e.g., dimensionless).
+ * @tparam Rep The representation type (e.g., double, float).
+ * @param q The dimensionless quantity.
+ * @return The arccosine of the quantity as an angular measure (radians).
+ */
 template <mp_units::ReferenceOf<mp_units::dimensionless> auto R, typename Rep>
     requires requires(Rep v) { acos(v); } || requires(Rep v) { gcem::acos(v); }
-[[nodiscard]] inline constexpr mp_units::QuantityOf<mp_units::angular::angle> auto acos(const mp_units::quantity<R, Rep>& q) noexcept
+[[nodiscard]] inline constexpr mp_units::QuantityOf<mp_units::MP_UNITS_IS_VALUE_WORKAROUND(isq::angular_measure)> auto
+    acos(const mp_units::quantity<R, Rep>& q) noexcept
 {
     using gcem::acos;
     if constexpr (!mp_units::treat_as_floating_point<Rep>) {
         // check what is the return type when called with the integral value
-        using rep = decltype(acos(q.force_numerical_value_in(mp_units::angular::radian)));
+        using rep = decltype(acos(q.force_numerical_value_in(mp_units::si::radian)));
         // use this type ahead of calling the function to prevent narrowing if a unit conversion is needed
-        return mp_units::quantity{ acos(value_cast<rep>(q).numerical_value_in(mp_units::dimensionless)), mp_units::angular::radian };
+        return mp_units::quantity{ acos(value_cast<rep>(q).numerical_value_in(mp_units::dimensionless)), mp_units::si::radian };
     }
     else {
-        return mp_units::quantity{ acos(q.numerical_value_in(mp_units::dimensionless)), mp_units::angular::radian };
+        return mp_units::quantity{ acos(q.numerical_value_in(mp_units::dimensionless)), mp_units::si::radian };
     }
 }
 
+/**
+ * @brief Trigonometric arctangent function for dimensionless quantities.
+ *
+ * @tparam R The reference type for the input (e.g., dimensionless).
+ * @tparam Rep The representation type (e.g., double, float).
+ * @param q The dimensionless quantity.
+ * @return The arctangent of the quantity as an angular measure (radians).
+ */
 template <mp_units::ReferenceOf<mp_units::dimensionless> auto R, typename Rep>
     requires requires(Rep v) { atan(v); } || requires(Rep v) { gcem::atan(v); }
-[[nodiscard]] inline constexpr mp_units::QuantityOf<mp_units::angular::angle> auto atan(const mp_units::quantity<R, Rep>& q) noexcept
+[[nodiscard]] inline constexpr mp_units::QuantityOf<mp_units::MP_UNITS_IS_VALUE_WORKAROUND(isq::angular_measure)> auto
+    atan(const mp_units::quantity<R, Rep>& q) noexcept
 {
     using gcem::atan;
     if constexpr (!mp_units::treat_as_floating_point<Rep>) {
         // check what is the return type when called with the integral value
-        using rep = decltype(atan(q.force_numerical_value_in(mp_units::angular::radian)));
+        using rep = decltype(atan(q.force_numerical_value_in(mp_units::si::radian)));
         // use this type ahead of calling the function to prevent narrowing if a unit conversion is needed
-        return mp_units::quantity{ atan(value_cast<rep>(q).numerical_value_in(mp_units::dimensionless)), mp_units::angular::radian };
+        return mp_units::quantity{ atan(value_cast<rep>(q).numerical_value_in(mp_units::dimensionless)), mp_units::si::radian };
     }
     else {
-        return mp_units::quantity{ atan(q.numerical_value_in(mp_units::dimensionless)), mp_units::angular::radian };
+        return mp_units::quantity{ atan(q.numerical_value_in(mp_units::dimensionless)), mp_units::si::radian };
     }
 }
 
+/**
+ * @brief 2D trigonometric arctangent function.
+ *
+ * @tparam R The reference type for the input (e.g., dimensionless).
+ * @tparam Rep The representation type (e.g., double, float).
+ * @param y The first dimensionless quantity (numerator).
+ * @param x The second dimensionless quantity (denominator).
+ * @return The arctangent of the ratio y/x as an angular measure (radians).
+ */
 template <mp_units::Quantity auto R, typename Rep>
     requires requires(Rep v, Rep w) { atan2(v, w); } || requires(Rep v, Rep w) { gcem::atan2(v, w); }
-[[nodiscard]] inline constexpr mp_units::QuantityOf<mp_units::angular::angle> auto
+[[nodiscard]] inline constexpr mp_units::QuantityOf<mp_units::MP_UNITS_IS_VALUE_WORKAROUND(isq::angular_measure)> auto
     atan2(const mp_units::quantity<R, Rep>& y, const mp_units::quantity<R, Rep>& x) noexcept
 {
     using gcem::atan2;
@@ -136,10 +195,10 @@ template <mp_units::Quantity auto R, typename Rep>
         using rep = decltype(atan2(y.force_numerical_value_in(y.unit), x.force_numerical_value_in(x.unit)));
         // use this type ahead of calling the function to prevent narrowing if a unit conversion is needed
         return mp_units::quantity{ atan2(value_cast<rep>(y).numerical_value_in(y.unit), value_cast<rep>(x).numerical_value_in(x.unit)),
-                                   mp_units::angular::radian };
+                                   mp_units::si::radian };
     }
     else {
-        return mp_units::quantity{ atan2(y.numerical_value_in(y.unit), x.numerical_value_in(x.unit)), mp_units::angular::radian };
+        return mp_units::quantity{ atan2(y.numerical_value_in(y.unit), x.numerical_value_in(x.unit)), mp_units::si::radian };
     }
 }
 
@@ -154,22 +213,21 @@ template <mp_units::Quantity auto R, typename Rep>
  * @param q The angle in radians.
  * @return The value of the sinc function at the given angle.
  */
-template <mp_units::ReferenceOf<mp_units::angular::angle> auto R, typename Rep>
+template <mp_units::ReferenceOf<mp_units::MP_UNITS_IS_VALUE_WORKAROUND(isq::angular_measure)> auto R, typename Rep>
     requires requires(Rep v) { sin(v); } || requires(Rep v) { gcem::sin(v); }
 [[nodiscard]] inline constexpr mp_units::QuantityOf<mp_units::dimensionless> auto sinc(const mp_units::quantity<R, Rep>& q) noexcept
 {
     using gcem::sin;
     if constexpr (!mp_units::treat_as_floating_point<Rep>) {
         // check what is the return type when called with the integral value
-        using rep = decltype(sin(q.force_numerical_value_in(mp_units::angular::radian)));
+        using rep = decltype(sin(q.force_numerical_value_in(mp_units::si::radian)));
         // use this type ahead of calling the function to prevent narrowing if a unit conversion is needed
-        return mp_units::quantity{ sin(value_cast<rep>(q).numerical_value_in(mp_units::angular::radian)) /
-                                       value_cast<rep>(q).numerical_value_in(mp_units::angular::radian),
+        return mp_units::quantity{ sin(value_cast<rep>(q).numerical_value_in(mp_units::si::radian)) /
+                                       value_cast<rep>(q).numerical_value_in(mp_units::si::radian),
                                    mp_units::one };
     }
     else {
-        return mp_units::quantity{ sin(q.numerical_value_in(mp_units::angular::radian)) /
-                                       q.numerical_value_in(mp_units::angular::radian),
+        return mp_units::quantity{ sin(q.numerical_value_in(mp_units::si::radian)) / q.numerical_value_in(mp_units::si::radian),
                                    mp_units::one };
     }
 }
@@ -182,19 +240,19 @@ template <mp_units::ReferenceOf<mp_units::angular::angle> auto R, typename Rep>
  * @param q The angle in radians.
  * @return The value of the hyperbolic cosine at the given angle.
  */
-template <mp_units::ReferenceOf<mp_units::angular::angle> auto R, typename Rep>
+template <mp_units::ReferenceOf<mp_units::MP_UNITS_IS_VALUE_WORKAROUND(isq::angular_measure)> auto R, typename Rep>
     requires requires(Rep v) { cosh(v); } || requires(Rep v) { gcem::cosh(v); }
 [[nodiscard]] inline constexpr mp_units::QuantityOf<mp_units::dimensionless> auto cosh(const mp_units::quantity<R, Rep>& q) noexcept
 {
     using gcem::cosh;
     if constexpr (!mp_units::treat_as_floating_point<Rep>) {
         // check what is the return type when called with the integral value
-        using rep = decltype(cosh(q.force_numerical_value_in(mp_units::angular::radian)));
+        using rep = decltype(cosh(q.force_numerical_value_in(mp_units::si::radian)));
         // use this type ahead of calling the function to prevent narrowing if a unit conversion is needed
-        return mp_units::quantity{ cosh(value_cast<rep>(q).numerical_value_in(mp_units::angular::radian)), mp_units::one };
+        return mp_units::quantity{ cosh(value_cast<rep>(q).numerical_value_in(mp_units::si::radian)), mp_units::one };
     }
     else {
-        return mp_units::quantity{ cosh(q.numerical_value_in(mp_units::angular::radian)), mp_units::one };
+        return mp_units::quantity{ cosh(q.numerical_value_in(mp_units::si::radian)), mp_units::one };
     }
 }
 
@@ -206,19 +264,19 @@ template <mp_units::ReferenceOf<mp_units::angular::angle> auto R, typename Rep>
  * @param q The angle in radians.
  * @return The value of the hyperbolic sine at the given angle.
  */
-template <mp_units::ReferenceOf<mp_units::angular::angle> auto R, typename Rep>
+template <mp_units::ReferenceOf<mp_units::MP_UNITS_IS_VALUE_WORKAROUND(isq::angular_measure)> auto R, typename Rep>
     requires requires(Rep v) { sinh(v); } || requires(Rep v) { gcem::sinh(v); }
 [[nodiscard]] inline constexpr mp_units::QuantityOf<mp_units::dimensionless> auto sinh(const mp_units::quantity<R, Rep>& q) noexcept
 {
     using gcem::sinh;
     if constexpr (!mp_units::treat_as_floating_point<Rep>) {
         // check what is the return type when called with the integral value
-        using rep = decltype(sinh(q.force_numerical_value_in(mp_units::angular::radian)));
+        using rep = decltype(sinh(q.force_numerical_value_in(mp_units::si::radian)));
         // use this type ahead of calling the function to prevent narrowing if a unit conversion is needed
-        return mp_units::quantity{ sinh(value_cast<rep>(q).numerical_value_in(mp_units::angular::radian)), mp_units::one };
+        return mp_units::quantity{ sinh(value_cast<rep>(q).numerical_value_in(mp_units::si::radian)), mp_units::one };
     }
     else {
-        return mp_units::quantity{ sinh(q.numerical_value_in(mp_units::angular::radian)), mp_units::one };
+        return mp_units::quantity{ sinh(q.numerical_value_in(mp_units::si::radian)), mp_units::one };
     }
 }
 
@@ -261,6 +319,21 @@ template <mp_units::ReferenceOf<mp_units::dimensionless> auto R, typename Rep>
 {
     using std::assoc_legendre;
     return { static_cast<Rep>(assoc_legendre(n, m, q.numerical_value_ref_in(q.unit))), mp_units::one };
+}
+
+/**
+ * @brief Computes the sine and cosine of a given angle in radians.
+ *
+ * This function computes both the sine and cosine of a given angle and returns them as a pair.
+ *
+ * @param angle The angle in radians.
+ * @return A pair containing the sine and cosine of the angle.
+ */
+template <mp_units::ReferenceOf<mp_units::MP_UNITS_IS_VALUE_WORKAROUND(isq::angular_measure)> auto R, typename Rep>
+    requires requires(Rep v) { sin(v); } || requires(Rep v) { gcem::sin(v); }
+[[nodiscard]] inline constexpr auto sin_cos_pack(const mp_units::quantity<R, Rep>& q) noexcept
+{
+    return std::make_pair(math::sin(q), math::cos(q));
 }
 
 // TODO: Make this mp-units compatible

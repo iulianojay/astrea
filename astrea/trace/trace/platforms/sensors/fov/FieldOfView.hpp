@@ -4,7 +4,7 @@
  * @brief Field of View (FoV) classes for representing different types of sensor fields of view.
  * @date 2025-08-03
  *
- * @copyright Copyright (c) 2025 Jay Iuliano
+ * @copyright Copyright (c) 2025-2026 Jay Iuliano
  *
  * The GNU Lesser General Public License (LGPL)
  *
@@ -24,7 +24,7 @@
 #include <units/units.hpp>
 
 #include <astro/astro.fwd.hpp>
-#include <astro/frames/definitions/dynamic_frames.hpp>
+#include <astro/frames/definitions/dynamic_frames/tags.hpp>
 
 namespace astrea {
 namespace trace {
@@ -81,7 +81,7 @@ class FieldOfView {
      *
      * @return Angle Maximum off-boresight half-angle.
      */
-    virtual Angle max_half_angle() const { return std::numbers::pi / 2.0 * mp_units::angular::unit_symbols::rad; }
+    virtual Angle max_half_angle() const { return std::numbers::pi / 2.0 * mp_units::si::unit_symbols::rad; }
 };
 
 } // namespace trace
