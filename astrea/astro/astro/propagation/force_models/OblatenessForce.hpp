@@ -37,6 +37,10 @@ namespace astro {
  */
 template <IsCelestialBody auto _body_, std::size_t _degree_ = 2, std::size_t _order_ = 0>
 class OblatenessForce : public PerturbingForce {
+
+    static_assert(_degree_ >= _order_, "Degree must be greater than or equal to the order");
+    static_assert(_degree_ >= 2 && _order_ >= 0, "Degree must be at least 2 and order must be non-negative");
+
   public:
     /**
      * @brief Constructor for OblatenessForce.

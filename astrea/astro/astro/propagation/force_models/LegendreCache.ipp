@@ -20,14 +20,16 @@
 #include <string>
 #include <vector>
 
+#include <math/trig.hpp>
+
 #include <astro/astro.macros.hpp>
+#include <astro/systems/celestial_bodies.hpp>
 #include <astro/systems/property_getters.hpp>
 
 namespace astrea {
+namespace astro {
 
 using math::assoc_legendre;
-
-namespace astro {
 
 using namespace mp_units;
 
@@ -37,8 +39,10 @@ LegendreCache<_body_, _degree_, _order_>::LegendreCache()
     // Open coefficients file
     // TODO: Change to binary files cause boy are these big
     static constexpr const char* filename = get_gravity_coefficient_file<_body_>();
-    if ((filename != NULL) && (filename[0] == '\0') == "") { // "" is the default so check if it's overwritten
-        throw std::invalid_argument("No gravity coefficient file set for " + decltype(_body_)::name.portable());
+    if ((filename != NULL) && (filename[0] == '\0')) { // "" is the default so check if it's overwritten
+        throw std::invalid_argument(
+            std::string("No gravity coefficient file set for ") + decltype(_body_)::name.portable().data()
+        );
     }
     else if (!std::filesystem::exists(filename)) { // check the file actually exists
         throw std::invalid_argument(
@@ -66,8 +70,8 @@ LegendreCache<_body_, _degree_, _order_>::LegendreCache()
         n = (std::size_t)lineData[0];
         m = (std::size_t)lineData[1];
 
-        _C[n][m] = lineData[2];
-        _S[n][m] = lineData[3];
+        _C[n * _span + m] = lineData[2];
+        _S[n * _span + m] = lineData[3];
 
         if (n >= _degree_ && m >= _order_) { break; }
     }
@@ -92,24 +96,24 @@ LegendreCache<_body_, _degree_, _order_>::LegendreCache()
             const Unitless Nnm       = sqrt((2 - delta) * (2 * n + 1) / ratio);
 
             // Pre-normalize coefficients
-            _C[n][m] *= Nnm;
-            _S[n][m] *= Nnm;
+            _C[n * _span + m] *= Nnm;
+            _S[n * _span + m] *= Nnm;
         }
     }
 }
 
 
 template <IsCelestialBody auto _body_, std::size_t _degree_, std::size_t _order_>
-Unitless LegendreCache<_body_, _degree_, _order_>::get_cosine_coefficient(const std::size_t& n, const std::size_t& m) const
+const Unitless& LegendreCache<_body_, _degree_, _order_>::get_cosine_coefficient(const std::size_t& n, const std::size_t& m) const
 {
-    return _C[n][m];
+    return _C[n * _span + m];
 }
 
 
 template <IsCelestialBody auto _body_, std::size_t _degree_, std::size_t _order_>
-Unitless LegendreCache<_body_, _degree_, _order_>::get_sine_coefficient(const std::size_t& n, const std::size_t& m) const
+const Unitless& LegendreCache<_body_, _degree_, _order_>::get_sine_coefficient(const std::size_t& n, const std::size_t& m) const
 {
-    return _S[n][m];
+    return _S[n * _span + m];
 }
 
 } // namespace astro

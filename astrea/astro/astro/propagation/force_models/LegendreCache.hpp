@@ -24,6 +24,8 @@
 #include <units/units.hpp>
 
 #include <astro/astro.fwd.hpp>
+#include <astro/frames/framework/frame_concepts.hpp>
+#include <astro/systems/system_concepts.hpp>
 
 namespace astrea {
 namespace astro {
@@ -37,6 +39,10 @@ namespace astro {
  */
 template <IsCelestialBody auto _body_, std::size_t _degree_ = 2, std::size_t _order_ = 0>
 class LegendreCache {
+
+    static_assert(_degree_ >= _order_, "Degree must be greater than or equal to the order");
+    static_assert(_degree_ >= 2 && _order_ >= 0, "Degree must be at least 2 and order must be non-negative");
+
   public:
     /**
      * @brief Builds the cache for Legendre polynomials and coefficients.
@@ -58,7 +64,7 @@ class LegendreCache {
      * @param m Order of the polynomial
      * @return Unitless The value of the cosine coefficient Cnm
      */
-    Unitless get_cosine_coefficient(const std::size_t& n, const std::size_t& m) const;
+    const Unitless& get_cosine_coefficient(const std::size_t& n, const std::size_t& m) const;
 
     /**
      * @brief Gets the sine coefficient for given n and m.
@@ -67,11 +73,12 @@ class LegendreCache {
      * @param m Order of the polynomial
      * @return Unitless The value of the sine coefficient Snm
      */
-    Unitless get_sine_coefficient(const std::size_t& n, const std::size_t& m) const;
+    const Unitless& get_sine_coefficient(const std::size_t& n, const std::size_t& m) const;
 
   private:
-    std::array<std::array<Unitless, _order_ + 1>, _degree_ + 1> _C{}; //!< Cosine coefficients for the spherical harmonics
-    std::array<std::array<Unitless, _order_ + 1>, _degree_ + 1> _S{}; //!< Sine coefficients for the spherical harmonics
+    static constexpr std::size_t _span = _order_ + 1;
+    std::array<Unitless, _span*(_degree_ + 1)> _C{}; //!< Cosine coefficients for the spherical harmonics
+    std::array<Unitless, _span*(_degree_ + 1)> _S{}; //!< Sine coefficients for the spherical harmonics
 };
 
 } // namespace astro
