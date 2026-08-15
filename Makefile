@@ -73,7 +73,7 @@ install: build
 
 .PHONY: build
 build:
-	cmake -S . -B $(build_path) \
+	$(CMAKE) -S . -B $(build_path) \
 	$(toolchain_make) \
 	$(toolchain_file) \
 	-DCMAKE_BUILD_TYPE=$(build_type) \

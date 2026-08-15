@@ -133,6 +133,8 @@ set(ASTRO_HEADERS
     ${ASTRO_BASE}/propagation/force_models/AtmosphericForce.hpp
     ${ASTRO_BASE}/propagation/force_models/PerturbingForce.hpp
     ${ASTRO_BASE}/propagation/force_models/ForceModel.hpp
+    ${ASTRO_BASE}/propagation/force_models/LegendreCache.hpp
+    ${ASTRO_BASE}/propagation/force_models/LegendreCache.ipp
     ${ASTRO_BASE}/propagation/force_models/NBodyForce.hpp
     ${ASTRO_BASE}/propagation/force_models/OblatenessForce.hpp
     ${ASTRO_BASE}/propagation/force_models/OblatenessForce.ipp
@@ -319,16 +321,16 @@ install(
 )
 
 # Install generated ephemeris headers (directory may not exist if no ephemerides are built)
-if(EXISTS "${CMAKE_CURRENT_BINARY_DIR}/include/ephemerides")
+if(${BUILD_EPHEMERIDES})
     install(
-        DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/include/ephemerides
+        DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/include/astro/ephemerides
         DESTINATION include/astro
         FILES_MATCHING PATTERN *.hpp
     )
 endif()
-if(EXISTS "${CMAKE_CURRENT_BINARY_DIR}/include/eop")
+if(${BUILD_EOP})
     install(
-        DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/include/eop
+        DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/include/astro/eop
         DESTINATION include/astro
         FILES_MATCHING PATTERN *.hpp
     )

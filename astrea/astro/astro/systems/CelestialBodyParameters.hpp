@@ -25,6 +25,12 @@
 namespace astrea {
 namespace astro {
 
+/**
+ * @brief Structure to hold the parameters of a celestial body.
+ *
+ * This structure contains various physical and orbital parameters of a celestial body, such as its type, reference
+ * date, gravitational parameter, mass, etc.
+ */
 struct CelestialBodyParameters {
     CelestialBodyType type;                     //!< Type of the celestial body.
     Date referenceDate;                         //!< Reference date for the celestial body data.
@@ -51,6 +57,7 @@ struct CelestialBodyParameters {
     BodyAngularVelocity rightAscensionRate;     //!< Rate of change of the right ascension.
     BodyAngularVelocity longitudeOfPerigeeRate; //!< Rate of change of the longitude of perigee.
     BodyAngularVelocity meanLongitudeRate;      //!< Rate of change of the mean longitude.
+    const char* gravityCoefficientFile = "";    //!< File containing the full set of gravitational coefficients.
 };
 
 } // namespace astro
