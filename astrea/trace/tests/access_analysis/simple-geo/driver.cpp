@@ -1,7 +1,7 @@
 /*
  * The GNU Lesser General Public License (LGPL)
  *
- * Copyright (c) 2025 Jay Iuliano
+ * Copyright (c) 2025-2026 Jay Iuliano
  *
  * This file is part of Astrea.
  * Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License
@@ -22,7 +22,6 @@
 #include <nlohmann/json.hpp>
 #include <sqlite_orm/sqlite_orm.h>
 
-#include <mp-units/systems/angular.h>
 #include <mp-units/systems/international.h>
 #include <mp-units/systems/isq.h>
 #include <mp-units/systems/si.h>
@@ -37,7 +36,7 @@ using namespace trace;
 using namespace sqlite_orm;
 
 using namespace mp_units;
-using mp_units::angular::unit_symbols::deg;
+using mp_units::si::unit_symbols::deg;
 using mp_units::si::unit_symbols::km;
 using mp_units::si::unit_symbols::s;
 
@@ -107,7 +106,7 @@ TEST_F(SimpleGeoAccessTest, TwoBallGeoAlwaysConnected)
     twoBallGeo.add_spacecraft(geo2);
 
     // Add sensors
-    CircularFieldOfView fov180deg(180.0 * mp_units::angular::unit_symbols::deg);
+    CircularFieldOfView fov180deg(180.0 * mp_units::si::unit_symbols::deg);
     SensorParameters geoCone(&fov180deg);
 
     for (auto& shell : twoBallGeo.get_shells()) {
@@ -163,7 +162,7 @@ TEST_F(SimpleGeoAccessTest, TwoBallGeoNeverConnected)
     twoBallGeo.add_spacecraft(geo2);
 
     // Add sensors
-    CircularFieldOfView fov180deg(180.0 * mp_units::angular::unit_symbols::deg);
+    CircularFieldOfView fov180deg(180.0 * mp_units::si::unit_symbols::deg);
     SensorParameters geoCone(&fov180deg);
 
     for (auto& shell : twoBallGeo.get_shells()) {
@@ -210,7 +209,7 @@ TEST_F(SimpleGeoAccessTest, FourBallGeo)
     fourBallGeo.add_spacecraft(geo4);
 
     // Add sensors
-    CircularFieldOfView fov180deg(180.0 * mp_units::angular::unit_symbols::deg);
+    CircularFieldOfView fov180deg(180.0 * mp_units::si::unit_symbols::deg);
     SensorParameters geoCone(&fov180deg);
 
     for (auto& shell : fourBallGeo.get_shells()) {

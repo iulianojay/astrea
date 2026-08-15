@@ -1,7 +1,7 @@
 /*
  * The GNU Lesser General Public License (LGPL)
  *
- * Copyright (c) 2025 Jay Iuliano
+ * Copyright (c) 2025-2026 Jay Iuliano
  *
  * This file is part of Astrea.
  * Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License
@@ -15,9 +15,6 @@
 
 // mp-units
 #include <mp-units/math.h>
-#include <mp-units/systems/angular.h>
-#include <mp-units/systems/angular/math.h>
-#include <mp-units/systems/isq_angle.h>
 #include <mp-units/systems/si.h>
 #include <mp-units/systems/si/math.h>
 
@@ -37,15 +34,15 @@ namespace astro {
 
 using namespace mp_units;
 using mp_units::pow;
-using mp_units::angular::atan2;
-using mp_units::angular::sin;
-using mp_units::angular::unit_symbols::deg;
-using mp_units::angular::unit_symbols::rad;
+using mp_units::si::atan2;
+using mp_units::si::sin;
 using mp_units::si::unit_symbols::cm;
+using mp_units::si::unit_symbols::deg;
 using mp_units::si::unit_symbols::g;
 using mp_units::si::unit_symbols::kg;
 using mp_units::si::unit_symbols::km;
 using mp_units::si::unit_symbols::m;
+using mp_units::si::unit_symbols::rad;
 using mp_units::si::unit_symbols::s;
 
 
@@ -67,8 +64,8 @@ Perturbation AtmosphericForce::compute_perturbation(const State& state, const Ve
     const Velocity& vz = v.get_z();
 
     // Find velocity relative to atmosphere
-    const VelocityVector<frames::primary> relVelocity = { vx + y * bodyRotationRate.in(rad / s) / (isq_angle::cotes_angle),
-                                                          vy - x * bodyRotationRate.in(rad / s) / (isq_angle::cotes_angle),
+    const VelocityVector<frames::primary> relVelocity = { vx + y * bodyRotationRate.in(rad / s) / rad,
+                                                          vy - x * bodyRotationRate.in(rad / s) / rad,
                                                           vz };
 
     // Exponential Drag Model

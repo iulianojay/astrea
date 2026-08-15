@@ -1,7 +1,12 @@
-/*
- * The GNU Lesser General Public License (LGPL)
+/**
+ * @file NRLMSISE00.hpp
+ * @author Jay Iuliano (iuliano.jay@gmail.com)
+ * @brief Header file for the NRLMSISE00 class.
+ * @date 2026-05-01
  *
- * Copyright (c) 2026 Jay Iuliano
+ * @copyright Copyright (c) 2025-2026 Jay Iuliano
+ *
+ * The GNU Lesser General Public License (LGPL)
  *
  * This file is part of Astrea.
  * Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License
@@ -13,16 +18,14 @@
 #include <astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.hpp>
 
 #include <mp-units/core.h>
-#include <mp-units/systems/angular.h>
 #include <mp-units/systems/hep.h>
 #include <mp-units/systems/si.h>
 
 using namespace mp_units;
-using mp_units::angular::unit_symbols::deg;
-using mp_units::angular::unit_symbols::rad;
 using mp_units::hep::unit_symbols::u; // atmoic mass unit
 using mp_units::si::unit_symbols::cm;
 using mp_units::si::unit_symbols::d;
+using mp_units::si::unit_symbols::deg;
 using mp_units::si::unit_symbols::h;
 using mp_units::si::unit_symbols::J;
 using mp_units::si::unit_symbols::K;
@@ -30,6 +33,7 @@ using mp_units::si::unit_symbols::kg;
 using mp_units::si::unit_symbols::km;
 using mp_units::si::unit_symbols::m;
 using mp_units::si::unit_symbols::mol;
+using mp_units::si::unit_symbols::rad;
 using mp_units::si::unit_symbols::s;
 
 using NumberDensity = quantity<one / pow<3>(m)>;

@@ -4,7 +4,7 @@
  * @brief Header file for the Rhea class.
  * @date 2025-10-02
  *
- * @copyright Copyright (c) 2025 Jay Iuliano
+ * @copyright Copyright (c) 2025-2026 Jay Iuliano
  *
  * The GNU Lesser General Public License (LGPL)
  *
@@ -44,9 +44,10 @@ template <>
 inline consteval CelestialBodyParameters get_celestial_body_parameters<moons::Rhea>()
 {
     using namespace mp_units;
-    using mp_units::angular::unit_symbols::deg;
+    using astrea::units::unit_symbols::jc;
     using mp_units::iau::unit_symbols::au;
     using mp_units::non_si::day;
+    using mp_units::si::unit_symbols::deg;
     using mp_units::si::unit_symbols::kg;
     using mp_units::si::unit_symbols::km;
     using mp_units::si::unit_symbols::s;
@@ -70,12 +71,12 @@ inline consteval CelestialBodyParameters get_celestial_body_parameters<moons::Rh
              .rightAscension         = Angle(81.105 * deg),
              .longitudeOfPerigee     = Angle(352.711 * deg),
              .meanLongitude          = Angle(554.5 * deg),
-             .semimajorAxisRate      = InterplanetaryVelocity(0.0 * km / JulianCentury),
-             .eccentricityRate       = BodyUnitlessPerTime(0.0 * one / JulianCentury),
-             .inclinationRate        = BodyAngularVelocity(0.0 * deg / JulianCentury),
-             .rightAscensionRate     = BodyAngularVelocity(37688.33 * deg / JulianCentury),
-             .longitudeOfPerigeeRate = BodyAngularVelocity(11498.3 * deg / JulianCentury),
-             .meanLongitudeRate      = BodyAngularVelocity(59680892.45 * deg / JulianCentury) };
+             .semimajorAxisRate      = InterplanetaryVelocity(0.0 * km / jc),
+             .eccentricityRate       = BodyUnitlessPerTime(0.0 * one / jc),
+             .inclinationRate        = BodyAngularVelocity(0.0 * deg / jc),
+             .rightAscensionRate     = BodyAngularVelocity(37688.33 * deg / jc),
+             .longitudeOfPerigeeRate = BodyAngularVelocity(11498.3 * deg / jc),
+             .meanLongitudeRate      = BodyAngularVelocity(59680892.45 * deg / jc) };
 }
 
 } // namespace astro
