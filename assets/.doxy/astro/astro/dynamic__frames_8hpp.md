@@ -10,13 +10,12 @@
 
 _Header file for dynamic body frames._ [More...](#detailed-description)
 
-* `#include <astro/frames/definitions/EastNorthUp.hpp>`
-* `#include <astro/frames/definitions/LocalHorizontalLocalVertical.hpp>`
-* `#include <astro/frames/definitions/RadialInTrackCrossTrack.hpp>`
-* `#include <astro/frames/definitions/VelocityNormalBinormal.hpp>`
-* `#include <astro/frames/definitions/frame_registry.hpp>`
-* `#include <astro/frames/framework/DynamicFrame.hpp>`
-* `#include <astro/frames/framework/Frame.hpp>`
+* `#include <astro/frames/definitions/dynamic_frames/EastNorthUp.hpp>`
+* `#include <astro/frames/definitions/dynamic_frames/LocalHorizontalLocalVertical.hpp>`
+* `#include <astro/frames/definitions/dynamic_frames/Perifocal.hpp>`
+* `#include <astro/frames/definitions/dynamic_frames/RadialInTrackCrossTrack.hpp>`
+* `#include <astro/frames/definitions/dynamic_frames/VelocityNormalBinormal.hpp>`
+* `#include <astro/frames/definitions/dynamic_frames/tags.hpp>`
 
 
 
@@ -30,21 +29,8 @@ _Header file for dynamic body frames._ [More...](#detailed-description)
 
 
 
-## Namespaces
-
-| Type | Name |
-| ---: | :--- |
-| namespace | [**astrea**](namespaceastrea.md) <br> |
-| namespace | [**astro**](namespaceastrea_1_1astro.md) <br> |
-| namespace | [**frames**](namespaceastrea_1_1astro_1_1frames.md) <br> |
-| namespace | [**dynamic**](namespaceastrea_1_1astro_1_1frames_1_1dynamic.md) <br> |
 
 
-## Classes
-
-| Type | Name |
-| ---: | :--- |
-| struct | [**body**](structastrea_1_1astro_1_1frames_1_1dynamic_1_1body.md) <br> |
 
 
 
@@ -116,7 +102,7 @@ Jay Iuliano ([iuliano.jay@gmail.com](mailto:iuliano.jay@gmail.com))
 
 **Copyright:**
 
-Copyright (c) 2025 Jay Iuliano
+Copyright (c) 2025-2026 Jay Iuliano
 
 
 The GNU Lesser General Public License (LGPL)

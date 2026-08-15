@@ -4,7 +4,6 @@
 Here is a list of all namespaces with brief descriptions:
 
 
-* **namespace** [**anonymous namespace{astrea/astro/astro/state/orbital\_elements/Cartesian.ipp}**](namespace_0d125.md) 
 * **namespace** [**astrea**](namespaceastrea.md)     
     * **namespace** [**astro**](namespaceastrea_1_1astro.md)     
         * **namespace** [**DOP45**](namespaceastrea_1_1astro_1_1DOP45.md)     
@@ -61,14 +60,15 @@ Here is a list of all namespaces with brief descriptions:
         * **namespace** [**planets**](namespaceastrea_1_1astro_1_1planets.md)     
         * **namespace** [**plotting**](namespaceastrea_1_1astro_1_1plotting.md)     
         * **namespace** [**star**](namespaceastrea_1_1astro_1_1star.md)     
-* **namespace** [**frames**](namespaceastrea_1_1astro_1_1frames_1_1_0d17.md) 
-* **namespace** [**plotting**](namespaceastrea_1_1astro_1_1plotting_1_1_0d196.md) 
+* **namespace** [**astro**](namespaceastrea_1_1astro_1_1_0d130.md) 
+* **namespace** [**astro**](namespaceastrea_1_1astro_1_1_0d8.md) 
+* **namespace** [**frames**](namespaceastrea_1_1astro_1_1frames_1_1_0d20.md) 
+* **namespace** [**plotting**](namespaceastrea_1_1astro_1_1plotting_1_1_0d201.md) 
 * **namespace** [**matplot**](namespacematplot.md) 
 * **namespace** [**mp\_units**](namespacemp__units.md)     
-* **namespace** [**angular**](namespacemp__units_1_1angular.md) 
 * **namespace** [**non\_si**](namespacemp__units_1_1non__si.md) 
 * **namespace** [**si**](namespacemp__units_1_1si.md) 
 * **namespace** [**unit\_symbols**](namespacemp__units_1_1si_1_1unit__symbols.md) 
 * **namespace** [**std**](namespacestd.md)     
-* **namespace** [**std**](namespacestd_1_1_0d190.md) 
+* **namespace** [**std**](namespacestd_1_1_0d195.md) 
 

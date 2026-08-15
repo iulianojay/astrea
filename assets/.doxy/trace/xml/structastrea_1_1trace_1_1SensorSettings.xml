@@ -16,7 +16,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/analysis/TraceConfig.hpp" line="81" column="17" bodyfile="astrea/trace/trace/analysis/TraceConfig.hpp" bodystart="81" bodyend="-1"/>
+        <location file="astrea/trace/trace/analysis/TraceConfig.hpp" line="80" column="17" bodyfile="astrea/trace/trace/analysis/TraceConfig.hpp" bodystart="80" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structastrea_1_1trace_1_1SensorSettings_1a16cde7b3418aec3f4811bc02b57dcc52" prot="public" static="no" mutable="no">
         <type>std::string</type>
@@ -31,7 +31,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/analysis/TraceConfig.hpp" line="82" column="17" bodyfile="astrea/trace/trace/analysis/TraceConfig.hpp" bodystart="82" bodyend="-1"/>
+        <location file="astrea/trace/trace/analysis/TraceConfig.hpp" line="81" column="17" bodyfile="astrea/trace/trace/analysis/TraceConfig.hpp" bodystart="81" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structastrea_1_1trace_1_1SensorSettings_1a332104afbd06a285832ab6aa17ef8076" prot="public" static="no" mutable="no">
         <type>Angle</type>
@@ -46,7 +46,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/analysis/TraceConfig.hpp" line="83" column="11" bodyfile="astrea/trace/trace/analysis/TraceConfig.hpp" bodystart="83" bodyend="-1"/>
+        <location file="astrea/trace/trace/analysis/TraceConfig.hpp" line="82" column="11" bodyfile="astrea/trace/trace/analysis/TraceConfig.hpp" bodystart="82" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structastrea_1_1trace_1_1SensorSettings_1a19cf9e9ec2c05b3f342319c17653fe02" prot="public" static="no" mutable="no">
         <type>astro::Direction&lt; astro::frames::dynamic::ric &gt;</type>
@@ -61,7 +61,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/analysis/TraceConfig.hpp" line="84" column="22" bodyfile="astrea/trace/trace/analysis/TraceConfig.hpp" bodystart="84" bodyend="-1"/>
+        <location file="astrea/trace/trace/analysis/TraceConfig.hpp" line="83" column="22" bodyfile="astrea/trace/trace/analysis/TraceConfig.hpp" bodystart="83" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="public-func">
@@ -77,7 +77,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/analysis/TraceConfig.hpp" line="86" column="5"/>
+        <location file="astrea/trace/trace/analysis/TraceConfig.hpp" line="85" column="5"/>
       </memberdef>
       <memberdef kind="function" id="structastrea_1_1trace_1_1SensorSettings_1a441d5b7ebb51d9aa30ed70a8c065c5d3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
@@ -95,14 +95,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/analysis/TraceConfig.hpp" line="88" column="5" bodyfile="astrea/trace/trace/analysis/TraceConfig.hpp" bodystart="88" bodyend="107"/>
+        <location file="astrea/trace/trace/analysis/TraceConfig.hpp" line="87" column="5" bodyfile="astrea/trace/trace/analysis/TraceConfig.hpp" bodystart="87" bodyend="106"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="astrea/trace/trace/analysis/TraceConfig.hpp" line="80" column="1" bodyfile="astrea/trace/trace/analysis/TraceConfig.hpp" bodystart="80" bodyend="108"/>
+    <location file="astrea/trace/trace/analysis/TraceConfig.hpp" line="79" column="1" bodyfile="astrea/trace/trace/analysis/TraceConfig.hpp" bodystart="79" bodyend="107"/>
     <listofallmembers>
       <member refid="structastrea_1_1trace_1_1SensorSettings_1a19cf9e9ec2c05b3f342319c17653fe02" prot="public" virt="non-virtual"><scope>astrea::trace::SensorSettings</scope><name>boresight</name></member>
       <member refid="structastrea_1_1trace_1_1SensorSettings_1a332104afbd06a285832ab6aa17ef8076" prot="public" virt="non-virtual"><scope>astrea::trace::SensorSettings</scope><name>halfConeAngle</name></member>

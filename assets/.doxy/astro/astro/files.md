@@ -9,15 +9,18 @@ Here is a list of all files with brief descriptions:
         * **dir** [**astro**](dir_84db6e3c60e44147f5214c05dc45afc2.md)     
             * **dir** [**frames**](dir_45ba6462728f0c3fdeb841915d341ea3.md)     
                 * **dir** [**definitions**](dir_0fbce91be2e6463cb25c5b2d70c0c29c.md)     
-                    * **file** [**EastNorthUp.hpp**](EastNorthUp_8hpp.md) _Header file for the EastNorthUp class in the astro namespace._     
-                    * **file** [**LocalHorizontalLocalVertical.hpp**](LocalHorizontalLocalVertical_8hpp.md) _Header file for the LocalHorizontalLocalVertical class in the astro namespace._     
-                    * **file** [**RadialInTrackCrossTrack.hpp**](RadialInTrackCrossTrack_8hpp.md) _Header file for the RadialInTrackCrossTrack class in the astro namespace._     
-                    * **file** [**VelocityNormalBinormal.hpp**](VelocityNormalBinormal_8hpp.md) _Header file for the VelocityNormalBinormal class in the astro namespace._     
+                    * **dir** [**dynamic\_frames**](dir_212f82f17a8a6ae9a0307bd639427aed.md)     
+                        * **file** [**EastNorthUp.hpp**](EastNorthUp_8hpp.md) _Header file for the EastNorthUp class in the astro namespace._     
+                        * **file** [**LocalHorizontalLocalVertical.hpp**](LocalHorizontalLocalVertical_8hpp.md) _Header file for the LocalHorizontalLocalVertical class in the astro namespace._     
+                        * **file** [**Perifocal.hpp**](Perifocal_8hpp.md) _Header file for the Perifocal class in the astro namespace._     
+                        * **file** [**RadialInTrackCrossTrack.hpp**](RadialInTrackCrossTrack_8hpp.md) _Header file for the RadialInTrackCrossTrack class in the astro namespace._     
+                        * **file** [**VelocityNormalBinormal.hpp**](VelocityNormalBinormal_8hpp.md) _Header file for the VelocityNormalBinormal class in the astro namespace._     
+                        * **file** [**tags.hpp**](tags_8hpp.md) _Header file for dynamic body frame tags._     
                     * **file** [**body\_centered\_inertial\_frames.hpp**](body__centered__inertial__frames_8hpp.md) _Header file for all (most? common?) body-centered inertial frames._     
                     * **file** [**body\_fixed\_frames.hpp**](body__fixed__frames_8hpp.md) _Header file for body-fixed frames. Just ECEF right now._     
                     * **file** [**defined\_rotations.hpp**](defined__rotations_8hpp.md) _Header file for defined rotations between common frames._     
                     * **file** [**defined\_rotations\_earth.hpp**](defined__rotations__earth_8hpp.md) _Earth-specific DCM explicit specialisations._     
-                    * **file** [**dynamic\_frames.hpp**](dynamic__frames_8hpp.md) _Header file for dynamic body frames._     
+                    * **file** [**dynamic\_frames.hpp**](dynamic__frames_8hpp.md) _Header file for dynamic body frames._ 
                     * **file** [**frame\_registry.fwd.hpp**](frame__registry_8fwd_8hpp.md)     
                     * **file** [**frame\_registry.hpp**](frame__registry_8hpp.md) _Registration point for Cartesian frames used across astrea._     
                     * **file** [**primary\_frame.hpp**](primary__frame_8hpp.md) _Registration point for the primary frame used across astrea._     
@@ -36,6 +39,7 @@ Here is a list of all files with brief descriptions:
                     * **file** [**Frame.hpp**](Frame_8hpp.md) _Definition for a Frame in astrea._     
                     * **file** [**Origin.hpp**](Origin_8hpp.md) _Definition for a Origin in astrea._     
                     * **file** [**SynodicFrame.hpp**](SynodicFrame_8hpp.md)     
+                    * **file** [**TopocentricFrame.hpp**](TopocentricFrame_8hpp.md) _Definition for a TopocentricFrame in astrea._     
                     * **file** [**frame\_concepts.hpp**](frame__concepts_8hpp.md) _Definitions for frame concepts and other compile-time utilities._     
                     * **file** [**frame\_utilities.hpp**](frame__utilities_8hpp.md) _Definition for frame utilities in astrea._     
                 * **file** [**definitions.hpp**](definitions_8hpp.md) 
@@ -104,6 +108,8 @@ Here is a list of all files with brief descriptions:
                     * **file** [**AtmosphericForce.hpp**](AtmosphericForce_8hpp.md) _Header file for the AtmosphericForce class, which computes the atmospheric force on a vehicle._     
                     * **file** [**ForceModel.cpp**](ForceModel_8cpp.md)     
                     * **file** [**ForceModel.hpp**](ForceModel_8hpp.md) _Header file for the ForceModel class, which manages multiple force models and computes the total force on a vehicle._     
+                    * **file** [**LegendreCache.hpp**](LegendreCache_8hpp.md) _Header file for the LegendreCache class, which caches Legendre polynomial coefficients for a given celestial_ _body_ _, degree, and order._    
+                    * **file** [**LegendreCache.ipp**](LegendreCache_8ipp.md)     
                     * **file** [**NBodyForce.hpp**](NBodyForce_8hpp.md)     
                     * **file** [**OblatenessForce.hpp**](OblatenessForce_8hpp.md) _Header file for the NBodyForce class, which computes the gravitational force due to multiple celestial bodies._     
                     * **file** [**OblatenessForce.ipp**](OblatenessForce_8ipp.md)     

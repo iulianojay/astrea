@@ -16,7 +16,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/analysis/TraceConfig.hpp" line="54" column="14" bodyfile="astrea/trace/trace/analysis/TraceConfig.hpp" bodystart="54" bodyend="-1"/>
+        <location file="astrea/trace/trace/analysis/TraceConfig.hpp" line="53" column="14" bodyfile="astrea/trace/trace/analysis/TraceConfig.hpp" bodystart="53" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structastrea_1_1trace_1_1ConstellationSettings_1a7024c96dc09b2a67a5f2c8db55bfe1be" prot="public" static="no" mutable="no">
         <type>Angle</type>
@@ -31,7 +31,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/analysis/TraceConfig.hpp" line="55" column="11" bodyfile="astrea/trace/trace/analysis/TraceConfig.hpp" bodystart="55" bodyend="-1"/>
+        <location file="astrea/trace/trace/analysis/TraceConfig.hpp" line="54" column="11" bodyfile="astrea/trace/trace/analysis/TraceConfig.hpp" bodystart="54" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structastrea_1_1trace_1_1ConstellationSettings_1a529554d42bf903e5c8cd2b6ca4b03b3c" prot="public" static="no" mutable="no">
         <type>std::size_t</type>
@@ -46,7 +46,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/analysis/TraceConfig.hpp" line="56" column="17" bodyfile="astrea/trace/trace/analysis/TraceConfig.hpp" bodystart="56" bodyend="-1"/>
+        <location file="astrea/trace/trace/analysis/TraceConfig.hpp" line="55" column="17" bodyfile="astrea/trace/trace/analysis/TraceConfig.hpp" bodystart="55" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structastrea_1_1trace_1_1ConstellationSettings_1aa69acdcb024c3a229b80a6c40f9dbf50" prot="public" static="no" mutable="no">
         <type>std::size_t</type>
@@ -61,7 +61,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/analysis/TraceConfig.hpp" line="57" column="17" bodyfile="astrea/trace/trace/analysis/TraceConfig.hpp" bodystart="57" bodyend="-1"/>
+        <location file="astrea/trace/trace/analysis/TraceConfig.hpp" line="56" column="17" bodyfile="astrea/trace/trace/analysis/TraceConfig.hpp" bodystart="56" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structastrea_1_1trace_1_1ConstellationSettings_1a2d627a721a0aa7d8e9b3556a0c89b606" prot="public" static="no" mutable="no">
         <type>Unitless</type>
@@ -76,7 +76,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/analysis/TraceConfig.hpp" line="58" column="14" bodyfile="astrea/trace/trace/analysis/TraceConfig.hpp" bodystart="58" bodyend="-1"/>
+        <location file="astrea/trace/trace/analysis/TraceConfig.hpp" line="57" column="14" bodyfile="astrea/trace/trace/analysis/TraceConfig.hpp" bodystart="57" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structastrea_1_1trace_1_1ConstellationSettings_1a41f4fd476a176b0effc2c069d6dc69d8" prot="public" static="no" mutable="no">
         <type>Angle</type>
@@ -91,7 +91,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/analysis/TraceConfig.hpp" line="59" column="11" bodyfile="astrea/trace/trace/analysis/TraceConfig.hpp" bodystart="59" bodyend="-1"/>
+        <location file="astrea/trace/trace/analysis/TraceConfig.hpp" line="58" column="11" bodyfile="astrea/trace/trace/analysis/TraceConfig.hpp" bodystart="58" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structastrea_1_1trace_1_1ConstellationSettings_1a21f45e3257f732a6ceca2c2588e2c5f6" prot="public" static="no" mutable="no">
         <type>Angle</type>
@@ -106,7 +106,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/analysis/TraceConfig.hpp" line="60" column="11" bodyfile="astrea/trace/trace/analysis/TraceConfig.hpp" bodystart="60" bodyend="-1"/>
+        <location file="astrea/trace/trace/analysis/TraceConfig.hpp" line="59" column="11" bodyfile="astrea/trace/trace/analysis/TraceConfig.hpp" bodystart="59" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="public-func">
@@ -122,7 +122,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/analysis/TraceConfig.hpp" line="62" column="5"/>
+        <location file="astrea/trace/trace/analysis/TraceConfig.hpp" line="61" column="5"/>
       </memberdef>
       <memberdef kind="function" id="structastrea_1_1trace_1_1ConstellationSettings_1a0a8d6e13aa4a1d4459180eda85bfffb0" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
@@ -140,14 +140,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/analysis/TraceConfig.hpp" line="64" column="5" bodyfile="astrea/trace/trace/analysis/TraceConfig.hpp" bodystart="64" bodyend="77"/>
+        <location file="astrea/trace/trace/analysis/TraceConfig.hpp" line="63" column="5" bodyfile="astrea/trace/trace/analysis/TraceConfig.hpp" bodystart="63" bodyend="76"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="astrea/trace/trace/analysis/TraceConfig.hpp" line="53" column="1" bodyfile="astrea/trace/trace/analysis/TraceConfig.hpp" bodystart="53" bodyend="78"/>
+    <location file="astrea/trace/trace/analysis/TraceConfig.hpp" line="52" column="1" bodyfile="astrea/trace/trace/analysis/TraceConfig.hpp" bodystart="52" bodyend="77"/>
     <listofallmembers>
       <member refid="structastrea_1_1trace_1_1ConstellationSettings_1aba5901ca57c588ca42a4cfcaa2698950" prot="public" virt="non-virtual"><scope>astrea::trace::ConstellationSettings</scope><name>altitude</name></member>
       <member refid="structastrea_1_1trace_1_1ConstellationSettings_1a41f4fd476a176b0effc2c069d6dc69d8" prot="public" virt="non-virtual"><scope>astrea::trace::ConstellationSettings</scope><name>anchorRaan</name></member>

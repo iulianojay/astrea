@@ -11,7 +11,7 @@
 /*
  * The GNU Lesser General Public License (LGPL)
  *
- * Copyright (c) 2025 Jay Iuliano
+ * Copyright (c) 2025-2026 Jay Iuliano
  *
  * This file is part of Astrea.
  * Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License
@@ -47,13 +47,13 @@ State::State(const StateHistory& history)
 }
 
 
-State State::from_vector(const std::vector<Unitless>& vec, const std::size_t idx)
+State State::from_double_vector(const std::vector<double>& vec, const std::size_t idx)
 {
-    if (vec.size() == 6) { return State(OrbitalElements::from_vector(vec, idx), Date()); }
+    if (vec.size() == 6) { return State(OrbitalElements::from_double_vector(vec, idx), Date()); }
 
-    const auto elementValues  = std::vector<Unitless>(vec.begin(), vec.begin() + 6);
-    const auto attitudeValues = std::vector<Unitless>(vec.begin() + 6, vec.end());
-    return State(OrbitalElements::from_vector(elementValues, idx), Date(), Attitude::from_vector(attitudeValues));
+    const auto elementValues  = std::vector<double>(vec.begin(), vec.begin() + 6);
+    const auto attitudeValues = std::vector<double>(vec.begin() + 6, vec.end());
+    return State(OrbitalElements::from_double_vector(elementValues, idx), Date(), Attitude::from_double_vector(attitudeValues));
 }
 
 bool State::operator==(const State& other) const

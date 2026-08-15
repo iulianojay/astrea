@@ -34,7 +34,7 @@ _A clock implementation for Terrestrial Time (TT)._ [More...](#detailed-descript
 | ---: | :--- |
 | typedef std::chrono::duration&lt; [**rep**](structastrea_1_1astro_1_1TerrestrialTimeClock.md#typedef-rep), [**period**](structastrea_1_1astro_1_1TerrestrialTimeClock.md#typedef-period) &gt; | [**duration**](#typedef-duration)  <br>_The duration type, representing time in seconds._  |
 | typedef std::ratio&lt; 1 &gt; | [**period**](#typedef-period)  <br>_The period type, seconds._  |
-| typedef [**double**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**rep**](#typedef-rep)  <br>_The representation type, a double for sub-second precision._  |
+| typedef double | [**rep**](#typedef-rep)  <br>_The representation type, a double for sub-second precision._  |
 | typedef std::chrono::time\_point&lt; [**TerrestrialTimeClock**](structastrea_1_1astro_1_1TerrestrialTimeClock.md) &gt; | [**time\_point**](#typedef-time_point)  <br>_The time point type for TT, using_ [_**TerrestrialTimeClock**_](structastrea_1_1astro_1_1TerrestrialTimeClock.md) _._ |
 
 
@@ -46,8 +46,8 @@ _A clock implementation for Terrestrial Time (TT)._ [More...](#detailed-descript
 
 | Type | Name |
 | ---: | :--- |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**bool**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**is\_steady**](#variable-is_steady)   = `[**false**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)`<br>_TT is not a steady clock; it is anchored to TAI._  |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**duration**](structastrea_1_1astro_1_1TerrestrialTimeClock.md#typedef-duration) | [**tt\_tai\_offset**](#variable-tt_tai_offset)   = `{ 32.184 }`<br>_The fixed offset between Terrestrial Time and International Atomic Time._  |
+|  constexpr bool | [**is\_steady**](#variable-is_steady)   = `false`<br>_TT is not a steady clock; it is anchored to TAI._  |
+|  constexpr [**duration**](structastrea_1_1astro_1_1TerrestrialTimeClock.md#typedef-duration) | [**tt\_tai\_offset**](#variable-tt_tai_offset)   = `{ 32.184 }`<br>_The fixed offset between Terrestrial Time and International Atomic Time._  |
 
 
 
@@ -68,9 +68,9 @@ _A clock implementation for Terrestrial Time (TT)._ [More...](#detailed-descript
 
 | Type | Name |
 | ---: | :--- |
-|  [**auto**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**from\_sys**](#function-from_sys) (std::chrono::sys\_time&lt; [**Duration**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt; [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & timePoint) noexcept<br>_Converts a system time point to a Terrestrial Time time point._  |
+|  auto | [**from\_sys**](#function-from_sys) (std::chrono::sys\_time&lt; Duration &gt; const & timePoint) noexcept<br>_Converts a system time point to a Terrestrial Time time point._  |
 |  [**time\_point**](structastrea_1_1astro_1_1TerrestrialTimeClock.md#typedef-time_point) | [**now**](#function-now) () noexcept<br>_Gets the current time point in Terrestrial Time format._  |
-|  [**auto**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**to\_sys**](#function-to_sys) ([**TerrestrialDateTime**](namespaceastrea_1_1astro.md#typedef-terrestrialdatetime)&lt; [**Duration**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt; [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & timePoint) noexcept<br>_Converts a Terrestrial Time time point to a system time point._  |
+|  auto | [**to\_sys**](#function-to_sys) ([**TerrestrialDateTime**](namespaceastrea_1_1astro.md#typedef-terrestrialdatetime)&lt; Duration &gt; const & timePoint) noexcept<br>_Converts a Terrestrial Time time point to a system time point._  |
 
 
 
@@ -208,7 +208,7 @@ TT = TAI + 32.184 s (as defined by the IAU).
 
 _Converts a system time point to a Terrestrial Time time point._ 
 ```C++
-template<class  Duration>
+template<class Duration>
 static inline auto astrea::astro::TerrestrialTimeClock::from_sys (
     std::chrono::sys_time< Duration > const & timePoint
 ) noexcept
@@ -237,7 +237,7 @@ The conversion route is: UTC (sys) → TAI (via clock\_cast, handling leap secon
 
 **Returns:**
 
-[**TerrestrialDateTime&lt;TerrestrialTimeClock::duration&gt;**](namespaceastrea_1_1astro.md#typedef-terrestrialdatetime) The converted TT time point. 
+TerrestrialDateTime&lt;TerrestrialTimeClock::duration&gt; The converted TT time point. 
 
 
 
@@ -278,7 +278,7 @@ static inline time_point astrea::astro::TerrestrialTimeClock::now () noexcept
 
 _Converts a Terrestrial Time time point to a system time point._ 
 ```C++
-template<class  Duration>
+template<class Duration>
 static inline auto astrea::astro::TerrestrialTimeClock::to_sys (
     TerrestrialDateTime < Duration > const & timePoint
 ) noexcept

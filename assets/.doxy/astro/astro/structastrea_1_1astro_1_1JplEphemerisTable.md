@@ -62,8 +62,8 @@ _Base class for any JPL_ [_**CelestialBody**_](structastrea_1_1astro_1_1Celestia
 
 | Type | Name |
 | ---: | :--- |
-|  [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Date**](classastrea_1_1astro_1_1Date.md) | [**START\_DATE**](#variable-start_date)   = `[**Date**](classastrea_1_1astro_1_1Date.md)("1999-12-24 00:00:00")`<br>_Lower bound on MJD J2K in the TDB time system._  |
-|  [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Date**](classastrea_1_1astro_1_1Date.md) | [**STOP\_DATE**](#variable-stop_date)   = `[**Date**](classastrea_1_1astro_1_1Date.md)("2100-01-12 00:00:00")`<br>_Upper bound on MJD J2K in the TDB time system._  |
+|  const [**Date**](classastrea_1_1astro_1_1Date.md) | [**START\_DATE**](#variable-start_date)   = `[**Date**](classastrea_1_1astro_1_1Date.md)("1999-12-24 00:00:00")`<br>_Lower bound on MJD J2K in the TDB time system._  |
+|  const [**Date**](classastrea_1_1astro_1_1Date.md) | [**STOP\_DATE**](#variable-stop_date)   = `[**Date**](classastrea_1_1astro_1_1Date.md)("2100-01-12 00:00:00")`<br>_Upper bound on MJD J2K in the TDB time system._  |
 
 
 
@@ -90,7 +90,7 @@ _Base class for any JPL_ [_**CelestialBody**_](structastrea_1_1astro_1_1Celestia
 
 | Type | Name |
 | ---: | :--- |
-|  std::size\_t | [**get\_index**](#function-get_index) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Date**](classastrea_1_1astro_1_1Date.md) & date, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Time**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & timePerPoly) <br>_Get the index corresponding to the Chebyshev polynomial coefficients._  |
+|  std::size\_t | [**get\_index**](#function-get_index) (const [**Date**](classastrea_1_1astro_1_1Date.md) & date, const Time & timePerPoly) <br>_Get the index corresponding to the Chebyshev polynomial coefficients._  |
 
 
 ## Protected Static Attributes Documentation
@@ -161,8 +161,8 @@ astrea::astro::JplEphemerisTable::~JplEphemerisTable () = delete
 _Get the index corresponding to the Chebyshev polynomial coefficients._ 
 ```C++
 static std::size_t astrea::astro::JplEphemerisTable::get_index (
-    const  Date & date,
-    const  Time & timePerPoly
+    const Date & date,
+    const Time & timePerPoly
 ) 
 ```
 

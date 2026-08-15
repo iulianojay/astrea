@@ -34,7 +34,7 @@ struct GeographicBin {
 
 class SpatialIndex {
   public:
-    SpatialIndex(const Angle& binSize = 10.0 * mp_units::angular::unit_symbols::deg);
+    SpatialIndex(const Angle& binSize = 10.0 * mp_units::si::unit_symbols::deg);
 
     SpatialIndex(const GroundPointRefVec& groundPoints);
 

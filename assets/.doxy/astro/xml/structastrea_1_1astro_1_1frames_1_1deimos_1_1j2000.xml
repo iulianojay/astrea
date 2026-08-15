@@ -31,7 +31,7 @@
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="astrea/astro/astro/frames/definitions/body_centered_inertial_frames.hpp" line="80" column="17" bodyfile="astrea/astro/astro/frames/definitions/body_centered_inertial_frames.hpp" bodystart="80" bodyend="81"/>
+    <location file="astrea/astro/astro/frames/definitions/body_centered_inertial_frames.hpp" line="81" column="17" bodyfile="astrea/astro/astro/frames/definitions/body_centered_inertial_frames.hpp" bodystart="81" bodyend="82"/>
     <listofallmembers>
     </listofallmembers>
   </compounddef>

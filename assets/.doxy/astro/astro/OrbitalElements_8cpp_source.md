@@ -11,7 +11,7 @@
 /*
  * The GNU Lesser General Public License (LGPL)
  *
- * Copyright (c) 2025 Jay Iuliano
+ * Copyright (c) 2025-2026 Jay Iuliano
  *
  * This file is part of Astrea.
  * Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License
@@ -136,9 +136,9 @@ OrbitalElements& OrbitalElements::operator/=(const Unitless& divisor)
     return *this;
 }
 
-std::vector<Unitless> OrbitalElements::force_to_vector() const
+std::vector<double> OrbitalElements::force_to_double_vector() const
 {
-    return std::visit([&](const auto& x) -> std::vector<Unitless> { return x.force_to_vector(); }, _elements);
+    return std::visit([&](const auto& x) -> std::vector<double> { return x.force_to_double_vector(); }, _elements);
 }
 
 OrbitalElements
@@ -181,14 +181,14 @@ OrbitalElements OrbitalElements::convert_to_set_impl(const std::size_t idx, cons
     }(std::make_index_sequence<std::variant_size_v<ElementVariant>>{});
 }
 
-OrbitalElements OrbitalElements::from_vector(const std::vector<Unitless>& vec, const std::size_t idx)
+OrbitalElements OrbitalElements::from_double_vector(const std::vector<double>& vec, const std::size_t idx)
 {
     return [&]<std::size_t... Is>(std::index_sequence<Is...>) -> OrbitalElements {
         OrbitalElements result;
         bool found =
-            ((Is == idx ? (result = OrbitalElements(std::variant_alternative_t<Is, ElementVariant>::from_vector(vec)), true) : false) ||
+            ((Is == idx ? (result = OrbitalElements(std::variant_alternative_t<Is, ElementVariant>::from_double_vector(vec)), true) : false) ||
              ...);
-        if (!found) throw std::runtime_error("Invalid orbital element set index for from_vector.");
+        if (!found) throw std::runtime_error("Invalid orbital element set index for from_double_vector.");
         return result;
     }(std::make_index_sequence<std::variant_size_v<ElementVariant>>{});
 }
@@ -209,9 +209,9 @@ const OrbitalElementPartials::PartialVariant& OrbitalElementPartials::extract() 
 
 OrbitalElementPartials::PartialVariant& OrbitalElementPartials::extract() { return _elements; }
 
-std::vector<Unitless> OrbitalElementPartials::force_to_vector() const
+std::vector<double> OrbitalElementPartials::force_to_double_vector() const
 {
-    return std::visit([&](const auto& x) -> std::vector<Unitless> { return x.force_to_vector(); }, _elements);
+    return std::visit([&](const auto& x) -> std::vector<double> { return x.force_to_double_vector(); }, _elements);
 }
 
 void throw_mismatched_types()

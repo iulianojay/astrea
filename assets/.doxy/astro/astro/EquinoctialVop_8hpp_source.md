@@ -35,7 +35,12 @@ class EquinoctialVop : public EquationsOfMotion {
         const ForceVector<frames::primary>& control
     ) const override;
 
-    constexpr std::size_t get_expected_set_id() const override { return OrbitalElements::get_set_id<Equinoctial<frames::primary>>(); };
+    constexpr std::size_t get_expected_set_id() const override
+    {
+        return OrbitalElements::get_set_id<Equinoctial<frames::primary>>();
+    };
+
+    std::unique_ptr<EquationsOfMotion> clone() const override { return std::make_unique<EquinoctialVop>(*this); }
 
   private:
     const Unitless checkTol = 1e-10 * mp_units::one; 

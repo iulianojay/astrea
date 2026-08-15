@@ -2,7 +2,7 @@
 
 # Class astrea::astro::AngularAccelerations
 
-**template &lt;IsFrame [**auto**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) \_in\_frame\_, IsFrame [**auto**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) \_ref\_frame\_&gt;**
+**template &lt;IsFrame auto \_in\_frame\_, IsFrame auto \_ref\_frame\_&gt;**
 
 
 
@@ -40,8 +40,8 @@ _Class representing the angular sequence acceleration, which is the time derivat
 
 | Type | Name |
 | ---: | :--- |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**auto**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**in\_frame**](#variable-in_frame)   = `[**\_in\_frame\_**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)`<br> |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**auto**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**ref\_frame**](#variable-ref_frame)   = `[**\_ref\_frame\_**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)`<br> |
+|  constexpr auto | [**in\_frame**](#variable-in_frame)   = `\_in\_frame\_`<br> |
+|  constexpr auto | [**ref\_frame**](#variable-ref_frame)   = `\_ref\_frame\_`<br> |
 
 
 
@@ -61,24 +61,24 @@ _Class representing the angular sequence acceleration, which is the time derivat
 | Type | Name |
 | ---: | :--- |
 |   | [**AngularAccelerations**](#function-angularaccelerations-13) () = default<br>_Default constructor for the_ [_**AngularAccelerations**_](classastrea_1_1astro_1_1AngularAccelerations.md) _class. Initializes all angular accelerations to zero._ |
-|   | [**AngularAccelerations**](#function-angularaccelerations-23) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**AngularAcceleration**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & accel1, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**AngularAcceleration**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & accel2, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**AngularAcceleration**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & accel3) <br>_Constructor for the_ [_**AngularAccelerations**_](classastrea_1_1astro_1_1AngularAccelerations.md) _class from three angular accelerations._ |
-|   | [**AngularAccelerations**](#function-angularaccelerations-33) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; [**AngularAcceleration**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), in\_frame &gt; & accels) <br>_Constructor for the_ [_**AngularAccelerations**_](classastrea_1_1astro_1_1AngularAccelerations.md) _class from a_[_**CartesianVector**_](structastrea_1_1astro_1_1CartesianVector.md) _of angular accelerations._ |
-|  [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; [**decltype**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)([**AngularAcceleration**](classastrea_1_1astro_1_1DirectionCosineMatrix.md){} \*[**Value\_U**](classastrea_1_1astro_1_1DirectionCosineMatrix.md){}), in\_frame &gt; | [**cross**](#function-cross-12) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; [**Value\_U**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), in\_frame &gt; & other) const<br>_Cross product of this angular acceleration vector with a_ [_**CartesianVector**_](structastrea_1_1astro_1_1CartesianVector.md) _._ |
-|  [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; [**decltype**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)([**AngularAcceleration**](classastrea_1_1astro_1_1DirectionCosineMatrix.md){} \*[**AngularAcceleration**](classastrea_1_1astro_1_1DirectionCosineMatrix.md){}), in\_frame &gt; | [**cross**](#function-cross-22) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**AngularAccelerations**](classastrea_1_1astro_1_1AngularAccelerations.md)&lt; in\_frame, ref\_frame &gt; & other) const<br>_Cross product of this angle vector with another_ [_**AngularAccelerations**_](classastrea_1_1astro_1_1AngularAccelerations.md) _._ |
-|  [**auto**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**dot**](#function-dot-12) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; [**Value\_U**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), in\_frame &gt; & other) const<br>_Dot product of this angular acceleration vector with a_ [_**CartesianVector**_](structastrea_1_1astro_1_1CartesianVector.md) _._ |
-|  [**auto**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**dot**](#function-dot-22) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**AngularAccelerations**](classastrea_1_1astro_1_1AngularAccelerations.md)&lt; in\_frame, ref\_frame &gt; & other) const<br>_Dot product of this angle vector with another_ [_**AngularAccelerations**_](classastrea_1_1astro_1_1AngularAccelerations.md) _._ |
-|  std::vector&lt; [**Unitless**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt; | [**force\_to\_vector**](#function-force_to_vector) () const<br>_Converts the angular sequence acceleration to a vector form for use in numerical integration._  |
-|  [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; [**AngularAcceleration**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), in\_frame &gt; & | [**get\_angularAccels**](#function-get_angularaccels-12) () <br>_Get access to the underlying_ [_**CartesianVector**_](structastrea_1_1astro_1_1CartesianVector.md) _._ |
-|  [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; [**AngularAcceleration**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), in\_frame &gt; & | [**get\_angularAccels**](#function-get_angularaccels-22) () const<br>_Get const access to the underlying_ [_**CartesianVector**_](structastrea_1_1astro_1_1CartesianVector.md) _._ |
-|  [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; [**decltype**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)([**AngularAcceleration**](classastrea_1_1astro_1_1DirectionCosineMatrix.md){} \*[**Value\_U**](classastrea_1_1astro_1_1DirectionCosineMatrix.md){}), in\_frame &gt; | [**operator\***](#function-operator) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Value\_U**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & scalar) const<br>_Scalar multiplication operator for_ [_**AngularAccelerations**_](classastrea_1_1astro_1_1AngularAccelerations.md) _by a quantity, resulting in a_[_**CartesianVector**_](structastrea_1_1astro_1_1CartesianVector.md) _._ |
-|  [**AngularVelocities**](classastrea_1_1astro_1_1AngularVelocities.md)&lt; in\_frame, ref\_frame &gt; | [**operator\***](#function-operator_1) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Time**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & time) const<br>_Scalar multiplication operator for_ [_**AngularAccelerations**_](classastrea_1_1astro_1_1AngularAccelerations.md) _._ |
-|  [**AngularAccelerations**](classastrea_1_1astro_1_1AngularAccelerations.md)&lt; in\_frame, ref\_frame &gt; | [**operator+**](#function-operator_2) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**AngularAccelerations**](classastrea_1_1astro_1_1AngularAccelerations.md)&lt; in\_frame, ref\_frame &gt; & other) const<br>_Addition operator for_ [_**AngularAccelerations**_](classastrea_1_1astro_1_1AngularAccelerations.md) _._ |
-|  [**AngularAccelerations**](classastrea_1_1astro_1_1AngularAccelerations.md)&lt; in\_frame, ref\_frame &gt; & | [**operator+=**](#function-operator_3) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**AngularAccelerations**](classastrea_1_1astro_1_1AngularAccelerations.md)&lt; in\_frame, ref\_frame &gt; & other) <br>_Addition assignment operator for_ [_**AngularAccelerations**_](classastrea_1_1astro_1_1AngularAccelerations.md) _._ |
-|  [**AngularAccelerations**](classastrea_1_1astro_1_1AngularAccelerations.md)&lt; in\_frame, ref\_frame &gt; | [**operator-**](#function-operator-) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**AngularAccelerations**](classastrea_1_1astro_1_1AngularAccelerations.md)&lt; in\_frame, ref\_frame &gt; & other) const<br>_Subtraction operator for_ [_**AngularAccelerations**_](classastrea_1_1astro_1_1AngularAccelerations.md) _._ |
-|  [**AngularAccelerations**](classastrea_1_1astro_1_1AngularAccelerations.md)&lt; in\_frame, ref\_frame &gt; & | [**operator-=**](#function-operator-_1) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**AngularAccelerations**](classastrea_1_1astro_1_1AngularAccelerations.md)&lt; in\_frame, ref\_frame &gt; & other) <br>_Subtraction assignment operator for_ [_**AngularAccelerations**_](classastrea_1_1astro_1_1AngularAccelerations.md) _._ |
-|  [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; [**decltype**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)([**AngularAcceleration**](classastrea_1_1astro_1_1DirectionCosineMatrix.md){}/[**Value\_U**](classastrea_1_1astro_1_1DirectionCosineMatrix.md){}), in\_frame &gt; | [**operator/**](#function-operator_4) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Value\_U**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & scalar) const<br>_Scalar division operator for_ [_**AngularAccelerations**_](classastrea_1_1astro_1_1AngularAccelerations.md) _by a quantity, resulting in a_[_**CartesianVector**_](structastrea_1_1astro_1_1CartesianVector.md) _._ |
-|  [**AngularAcceleration**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & | [**operator[]**](#function-operator_5) (std::size\_t index) <br>_Array access operator for accessing individual angular acceleration components._  |
-|  [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**AngularAcceleration**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & | [**operator[]**](#function-operator_6) (std::size\_t index) const<br>_Const array access operator for accessing individual angular acceleration components._  |
+|   | [**AngularAccelerations**](#function-angularaccelerations-23) (const AngularAcceleration & accel1, const AngularAcceleration & accel2, const AngularAcceleration & accel3) <br>_Constructor for the_ [_**AngularAccelerations**_](classastrea_1_1astro_1_1AngularAccelerations.md) _class from three angular accelerations._ |
+|   | [**AngularAccelerations**](#function-angularaccelerations-33) (const [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; AngularAcceleration, in\_frame &gt; & accels) <br>_Constructor for the_ [_**AngularAccelerations**_](classastrea_1_1astro_1_1AngularAccelerations.md) _class from a_[_**CartesianVector**_](structastrea_1_1astro_1_1CartesianVector.md) _of angular accelerations._ |
+|  [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; decltype(AngularAcceleration{} \*Value\_U{}), in\_frame &gt; | [**cross**](#function-cross-12) (const [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; Value\_U, in\_frame &gt; & other) const<br>_Cross product of this angular acceleration vector with a_ [_**CartesianVector**_](structastrea_1_1astro_1_1CartesianVector.md) _._ |
+|  [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; decltype(AngularAcceleration{} \*AngularAcceleration{}), in\_frame &gt; | [**cross**](#function-cross-22) (const [**AngularAccelerations**](classastrea_1_1astro_1_1AngularAccelerations.md)&lt; in\_frame, ref\_frame &gt; & other) const<br>_Cross product of this angle vector with another_ [_**AngularAccelerations**_](classastrea_1_1astro_1_1AngularAccelerations.md) _._ |
+|  auto | [**dot**](#function-dot-12) (const [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; Value\_U, in\_frame &gt; & other) const<br>_Dot product of this angular acceleration vector with a_ [_**CartesianVector**_](structastrea_1_1astro_1_1CartesianVector.md) _._ |
+|  auto | [**dot**](#function-dot-22) (const [**AngularAccelerations**](classastrea_1_1astro_1_1AngularAccelerations.md)&lt; in\_frame, ref\_frame &gt; & other) const<br>_Dot product of this angle vector with another_ [_**AngularAccelerations**_](classastrea_1_1astro_1_1AngularAccelerations.md) _._ |
+|  std::vector&lt; double &gt; | [**force\_to\_double\_vector**](#function-force_to_double_vector) () const<br>_Converts the angular sequence acceleration to a vector form for use in numerical integration._  |
+|  [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; AngularAcceleration, in\_frame &gt; & | [**get\_angularAccels**](#function-get_angularaccels-12) () <br>_Get access to the underlying_ [_**CartesianVector**_](structastrea_1_1astro_1_1CartesianVector.md) _._ |
+|  const [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; AngularAcceleration, in\_frame &gt; & | [**get\_angularAccels**](#function-get_angularaccels-22) () const<br>_Get const access to the underlying_ [_**CartesianVector**_](structastrea_1_1astro_1_1CartesianVector.md) _._ |
+|  [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; decltype(AngularAcceleration{} \*Value\_U{}), in\_frame &gt; | [**operator\***](#function-operator) (const Value\_U & scalar) const<br>_Scalar multiplication operator for_ [_**AngularAccelerations**_](classastrea_1_1astro_1_1AngularAccelerations.md) _by a quantity, resulting in a_[_**CartesianVector**_](structastrea_1_1astro_1_1CartesianVector.md) _._ |
+|  [**AngularVelocities**](classastrea_1_1astro_1_1AngularVelocities.md)&lt; in\_frame, ref\_frame &gt; | [**operator\***](#function-operator_1) (const Time & time) const<br>_Scalar multiplication operator for_ [_**AngularAccelerations**_](classastrea_1_1astro_1_1AngularAccelerations.md) _._ |
+|  [**AngularAccelerations**](classastrea_1_1astro_1_1AngularAccelerations.md)&lt; in\_frame, ref\_frame &gt; | [**operator+**](#function-operator_2) (const [**AngularAccelerations**](classastrea_1_1astro_1_1AngularAccelerations.md)&lt; in\_frame, ref\_frame &gt; & other) const<br>_Addition operator for_ [_**AngularAccelerations**_](classastrea_1_1astro_1_1AngularAccelerations.md) _._ |
+|  [**AngularAccelerations**](classastrea_1_1astro_1_1AngularAccelerations.md)&lt; in\_frame, ref\_frame &gt; & | [**operator+=**](#function-operator_3) (const [**AngularAccelerations**](classastrea_1_1astro_1_1AngularAccelerations.md)&lt; in\_frame, ref\_frame &gt; & other) <br>_Addition assignment operator for_ [_**AngularAccelerations**_](classastrea_1_1astro_1_1AngularAccelerations.md) _._ |
+|  [**AngularAccelerations**](classastrea_1_1astro_1_1AngularAccelerations.md)&lt; in\_frame, ref\_frame &gt; | [**operator-**](#function-operator-) (const [**AngularAccelerations**](classastrea_1_1astro_1_1AngularAccelerations.md)&lt; in\_frame, ref\_frame &gt; & other) const<br>_Subtraction operator for_ [_**AngularAccelerations**_](classastrea_1_1astro_1_1AngularAccelerations.md) _._ |
+|  [**AngularAccelerations**](classastrea_1_1astro_1_1AngularAccelerations.md)&lt; in\_frame, ref\_frame &gt; & | [**operator-=**](#function-operator-_1) (const [**AngularAccelerations**](classastrea_1_1astro_1_1AngularAccelerations.md)&lt; in\_frame, ref\_frame &gt; & other) <br>_Subtraction assignment operator for_ [_**AngularAccelerations**_](classastrea_1_1astro_1_1AngularAccelerations.md) _._ |
+|  [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; decltype(AngularAcceleration{}/Value\_U{}), in\_frame &gt; | [**operator/**](#function-operator_4) (const Value\_U & scalar) const<br>_Scalar division operator for_ [_**AngularAccelerations**_](classastrea_1_1astro_1_1AngularAccelerations.md) _by a quantity, resulting in a_[_**CartesianVector**_](structastrea_1_1astro_1_1CartesianVector.md) _._ |
+|  AngularAcceleration & | [**operator[]**](#function-operator_5) (std::size\_t index) <br>_Array access operator for accessing individual angular acceleration components._  |
+|  const AngularAcceleration & | [**operator[]**](#function-operator_6) (std::size\_t index) const<br>_Const array access operator for accessing individual angular acceleration components._  |
 
 
 
@@ -174,9 +174,9 @@ astrea::astro::AngularAccelerations::AngularAccelerations () = default
 _Constructor for the_ [_**AngularAccelerations**_](classastrea_1_1astro_1_1AngularAccelerations.md) _class from three angular accelerations._
 ```C++
 inline astrea::astro::AngularAccelerations::AngularAccelerations (
-    const  AngularAcceleration & accel1,
-    const  AngularAcceleration & accel2,
-    const  AngularAcceleration & accel3
+    const AngularAcceleration & accel1,
+    const AngularAcceleration & accel2,
+    const AngularAcceleration & accel3
 ) 
 ```
 
@@ -205,7 +205,7 @@ inline astrea::astro::AngularAccelerations::AngularAccelerations (
 _Constructor for the_ [_**AngularAccelerations**_](classastrea_1_1astro_1_1AngularAccelerations.md) _class from a_[_**CartesianVector**_](structastrea_1_1astro_1_1CartesianVector.md) _of angular accelerations._
 ```C++
 inline astrea::astro::AngularAccelerations::AngularAccelerations (
-    const  CartesianVector < AngularAcceleration , in_frame > & accels
+    const CartesianVector < AngularAcceleration, in_frame > & accels
 ) 
 ```
 
@@ -231,9 +231,9 @@ inline astrea::astro::AngularAccelerations::AngularAccelerations (
 
 _Cross product of this angular acceleration vector with a_ [_**CartesianVector**_](structastrea_1_1astro_1_1CartesianVector.md) _._
 ```C++
-template<typename  Value_U>
-inline CartesianVector < decltype ( AngularAcceleration {} * Value_U {}), in_frame > astrea::astro::AngularAccelerations::cross (
-    const  CartesianVector < Value_U , in_frame > & other
+template<typename Value_U>
+inline CartesianVector < decltype(AngularAcceleration{} *Value_U{}), in_frame > astrea::astro::AngularAccelerations::cross (
+    const CartesianVector < Value_U, in_frame > & other
 ) const
 ```
 
@@ -273,8 +273,8 @@ inline CartesianVector < decltype ( AngularAcceleration {} * Value_U {}), in_fra
 
 _Cross product of this angle vector with another_ [_**AngularAccelerations**_](classastrea_1_1astro_1_1AngularAccelerations.md) _._
 ```C++
-inline CartesianVector < decltype ( AngularAcceleration {} * AngularAcceleration {}), in_frame > astrea::astro::AngularAccelerations::cross (
-    const  AngularAccelerations < in_frame, ref_frame > & other
+inline CartesianVector < decltype(AngularAcceleration{} *AngularAcceleration{}), in_frame > astrea::astro::AngularAccelerations::cross (
+    const AngularAccelerations < in_frame, ref_frame > & other
 ) const
 ```
 
@@ -307,9 +307,9 @@ inline CartesianVector < decltype ( AngularAcceleration {} * AngularAcceleration
 
 _Dot product of this angular acceleration vector with a_ [_**CartesianVector**_](structastrea_1_1astro_1_1CartesianVector.md) _._
 ```C++
-template<typename  Value_U>
+template<typename Value_U>
 inline auto astrea::astro::AngularAccelerations::dot (
-    const  CartesianVector < Value_U , in_frame > & other
+    const CartesianVector < Value_U, in_frame > & other
 ) const
 ```
 
@@ -350,7 +350,7 @@ auto The resulting scalar from the dot product.
 _Dot product of this angle vector with another_ [_**AngularAccelerations**_](classastrea_1_1astro_1_1AngularAccelerations.md) _._
 ```C++
 inline auto astrea::astro::AngularAccelerations::dot (
-    const  AngularAccelerations < in_frame, ref_frame > & other
+    const AngularAccelerations < in_frame, ref_frame > & other
 ) const
 ```
 
@@ -379,11 +379,11 @@ auto The resulting scalar from the dot product.
 
 
 
-### function force\_to\_vector 
+### function force\_to\_double\_vector 
 
 _Converts the angular sequence acceleration to a vector form for use in numerical integration._ 
 ```C++
-inline std::vector< Unitless > astrea::astro::AngularAccelerations::force_to_vector () const
+inline std::vector< double > astrea::astro::AngularAccelerations::force_to_double_vector () const
 ```
 
 
@@ -408,7 +408,7 @@ A std::vector of Unitless quantities representing the components of the angular 
 
 _Get access to the underlying_ [_**CartesianVector**_](structastrea_1_1astro_1_1CartesianVector.md) _._
 ```C++
-inline CartesianVector < AngularAcceleration , in_frame > & astrea::astro::AngularAccelerations::get_angularAccels () 
+inline CartesianVector < AngularAcceleration, in_frame > & astrea::astro::AngularAccelerations::get_angularAccels () 
 ```
 
 
@@ -433,7 +433,7 @@ inline CartesianVector < AngularAcceleration , in_frame > & astrea::astro::Angul
 
 _Get const access to the underlying_ [_**CartesianVector**_](structastrea_1_1astro_1_1CartesianVector.md) _._
 ```C++
-inline const  CartesianVector < AngularAcceleration , in_frame > & astrea::astro::AngularAccelerations::get_angularAccels () const
+inline const CartesianVector < AngularAcceleration, in_frame > & astrea::astro::AngularAccelerations::get_angularAccels () const
 ```
 
 
@@ -458,9 +458,9 @@ const [**CartesianVector&lt;AngularAcceleration, in\_frame&gt;**](structastrea_1
 
 _Scalar multiplication operator for_ [_**AngularAccelerations**_](classastrea_1_1astro_1_1AngularAccelerations.md) _by a quantity, resulting in a_[_**CartesianVector**_](structastrea_1_1astro_1_1CartesianVector.md) _._
 ```C++
-template<typename  Value_U>
-inline CartesianVector < decltype ( AngularAcceleration {} * Value_U {}), in_frame > astrea::astro::AngularAccelerations::operator* (
-    const  Value_U & scalar
+template<typename Value_U>
+inline CartesianVector < decltype(AngularAcceleration{} *Value_U{}), in_frame > astrea::astro::AngularAccelerations::operator* (
+    const Value_U & scalar
 ) const
 ```
 
@@ -494,7 +494,7 @@ inline CartesianVector < decltype ( AngularAcceleration {} * Value_U {}), in_fra
 _Scalar multiplication operator for_ [_**AngularAccelerations**_](classastrea_1_1astro_1_1AngularAccelerations.md) _._
 ```C++
 inline AngularVelocities < in_frame, ref_frame > astrea::astro::AngularAccelerations::operator* (
-    const  Time & time
+    const Time & time
 ) const
 ```
 
@@ -528,7 +528,7 @@ AngularVelocities&lt;in\_frame, ref\_frame&gt; A new [**AngularVelocities**](cla
 _Addition operator for_ [_**AngularAccelerations**_](classastrea_1_1astro_1_1AngularAccelerations.md) _._
 ```C++
 inline AngularAccelerations < in_frame, ref_frame > astrea::astro::AngularAccelerations::operator+ (
-    const  AngularAccelerations < in_frame, ref_frame > & other
+    const AngularAccelerations < in_frame, ref_frame > & other
 ) const
 ```
 
@@ -562,7 +562,7 @@ AngularAccelerations&lt;in\_frame, ref\_frame&gt; A new [**AngularAccelerations*
 _Addition assignment operator for_ [_**AngularAccelerations**_](classastrea_1_1astro_1_1AngularAccelerations.md) _._
 ```C++
 inline AngularAccelerations < in_frame, ref_frame > & astrea::astro::AngularAccelerations::operator+= (
-    const  AngularAccelerations < in_frame, ref_frame > & other
+    const AngularAccelerations < in_frame, ref_frame > & other
 ) 
 ```
 
@@ -596,7 +596,7 @@ AngularAccelerations&lt;in\_frame, ref\_frame&gt;& Reference to the current obje
 _Subtraction operator for_ [_**AngularAccelerations**_](classastrea_1_1astro_1_1AngularAccelerations.md) _._
 ```C++
 inline AngularAccelerations < in_frame, ref_frame > astrea::astro::AngularAccelerations::operator- (
-    const  AngularAccelerations < in_frame, ref_frame > & other
+    const AngularAccelerations < in_frame, ref_frame > & other
 ) const
 ```
 
@@ -630,7 +630,7 @@ AngularAccelerations&lt;in\_frame, ref\_frame&gt; A new [**AngularAccelerations*
 _Subtraction assignment operator for_ [_**AngularAccelerations**_](classastrea_1_1astro_1_1AngularAccelerations.md) _._
 ```C++
 inline AngularAccelerations < in_frame, ref_frame > & astrea::astro::AngularAccelerations::operator-= (
-    const  AngularAccelerations < in_frame, ref_frame > & other
+    const AngularAccelerations < in_frame, ref_frame > & other
 ) 
 ```
 
@@ -663,9 +663,9 @@ AngularAccelerations&lt;in\_frame, ref\_frame&gt;& Reference to the current obje
 
 _Scalar division operator for_ [_**AngularAccelerations**_](classastrea_1_1astro_1_1AngularAccelerations.md) _by a quantity, resulting in a_[_**CartesianVector**_](structastrea_1_1astro_1_1CartesianVector.md) _._
 ```C++
-template<typename  Value_U>
-inline CartesianVector < decltype ( AngularAcceleration {}/ Value_U {}), in_frame > astrea::astro::AngularAccelerations::operator/ (
-    const  Value_U & scalar
+template<typename Value_U>
+inline CartesianVector < decltype(AngularAcceleration{}/Value_U{}), in_frame > astrea::astro::AngularAccelerations::operator/ (
+    const Value_U & scalar
 ) const
 ```
 
@@ -732,7 +732,7 @@ AngularAcceleration& Reference to the angular acceleration component.
 
 _Const array access operator for accessing individual angular acceleration components._ 
 ```C++
-inline const  AngularAcceleration & astrea::astro::AngularAccelerations::operator[] (
+inline const AngularAcceleration & astrea::astro::AngularAccelerations::operator[] (
     std::size_t index
 ) const
 ```

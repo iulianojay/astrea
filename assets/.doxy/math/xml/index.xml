@@ -16,11 +16,19 @@
     <member refid="operations_8hpp_1a8c39995fb8abca15cc5143d5425f7d26" kind="function"><name>min</name></member>
     <member refid="operations_8hpp_1a366d78f9b21636bb268a3ed9049fa18b" kind="function"><name>pow</name></member>
     <member refid="operations_8hpp_1adb10fbaa0dc54cf1caf8c15503499898" kind="function"><name>clamp</name></member>
-    <member refid="trig_8hpp_1a19cc70ec319a907c374f8ac988b4db4b" kind="function"><name>sinc</name></member>
-    <member refid="trig_8hpp_1a3b85c702df84b8462a853006fdd76d0c" kind="function"><name>cosh</name></member>
-    <member refid="trig_8hpp_1a3e370c308e3a6e00e61243ff4b4f80bb" kind="function"><name>sinh</name></member>
+    <member refid="trig_8hpp_1a71cffbdebf4defd2e8ba29c19824c8bc" kind="function"><name>sin</name></member>
+    <member refid="trig_8hpp_1a788c70d8bc0485c24e93aacb2244f059" kind="function"><name>cos</name></member>
+    <member refid="trig_8hpp_1ad6ecc2569de45bef5a7d8bea28c02809" kind="function"><name>tan</name></member>
+    <member refid="trig_8hpp_1ad32fbc3425de2b592bb367e2e1ffd1a9" kind="function"><name>asin</name></member>
+    <member refid="trig_8hpp_1a667afccfc8c5b307ca22470a0b322b7f" kind="function"><name>acos</name></member>
+    <member refid="trig_8hpp_1adf9a3822d4c7184fb22055c309264261" kind="function"><name>atan</name></member>
+    <member refid="trig_8hpp_1adfa40e8c5dc6ccf304857077d397117e" kind="function"><name>atan2</name></member>
+    <member refid="trig_8hpp_1ac49c16de5e97422212e4fb61cba3e84c" kind="function"><name>sinc</name></member>
+    <member refid="trig_8hpp_1af32a45aaa67effbdee014b95d2f46723" kind="function"><name>cosh</name></member>
+    <member refid="trig_8hpp_1a08a26e9216c2d39ffda1711d1a85d33f" kind="function"><name>sinh</name></member>
     <member refid="trig_8hpp_1a7441ac3de7e390dd6ca1960e63c01eee" kind="function"><name>cyl_bessel_j</name></member>
     <member refid="trig_8hpp_1a15e82cd47191247ee10408c938e42a60" kind="function"><name>assoc_legendre</name></member>
+    <member refid="trig_8hpp_1afb356f1db0e851411dd16fb241f6ca68" kind="function"><name>sin_cos_pack</name></member>
     <member refid="trig_8hpp_1afb4d7a968d43b5c732112833f4133b80" kind="function"><name>atan3</name></member>
   </compound>
   <compound refid="chebyshev__util_8cpp" kind="file"><name>chebyshev_util.cpp</name>

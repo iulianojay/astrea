@@ -41,7 +41,7 @@
 
 | Type | Name |
 | ---: | :--- |
-| class | [**Plane**](classastrea_1_1astro_1_1Plane.md) &lt;[**class**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Spacecraft\_T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)&gt;<br>_A_ [_**Plane**_](classastrea_1_1astro_1_1Plane.md) _is a collection of_[_**Spacecraft**_](classastrea_1_1astro_1_1Spacecraft.md) _that share the same orbital elements._ |
+| class | [**Plane**](classastrea_1_1astro_1_1Plane.md) &lt;class Spacecraft\_T&gt;<br>_A_ [_**Plane**_](classastrea_1_1astro_1_1Plane.md) _is a collection of_[_**Spacecraft**_](classastrea_1_1astro_1_1Spacecraft.md) _that share the same orbital elements._ |
 
 
 
@@ -113,7 +113,7 @@ Jay Iuliano ([iuliano.jay@gmail.com](mailto:iuliano.jay@gmail.com))
 
 **Copyright:**
 
-Copyright (c) 2025 Jay Iuliano
+Copyright (c) 2025-2026 Jay Iuliano
 
 
 The GNU Lesser General Public License (LGPL)

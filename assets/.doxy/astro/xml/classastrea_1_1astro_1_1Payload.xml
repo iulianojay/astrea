@@ -5,15 +5,15 @@
     <includes refid="Payload_8hpp" local="no">Payload.hpp</includes>
     <templateparamlist>
       <param>
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">class</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Payload_T</ref></type>
+        <type>class Payload_T</type>
       </param>
       <param>
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">class</ref> PayloadParameters_T</type>
+        <type>class PayloadParameters_T</type>
       </param>
     </templateparamlist>
     <sectiondef kind="private-attrib">
       <memberdef kind="variable" id="classastrea_1_1astro_1_1Payload_1a27fc7a87c5d98d6bed7c16c5b60a2eb4" prot="private" static="no" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">friend</ref></type>
+        <type>friend</type>
         <definition>friend astrea::astro::Payload&lt; Payload_T, PayloadParameters_T &gt;::PayloadPlatform&lt; Payload_T &gt;</definition>
         <argsstring></argsstring>
         <name>PayloadPlatform&lt; Payload_T &gt;</name>
@@ -29,7 +29,7 @@
     </sectiondef>
     <sectiondef kind="protected-attrib">
       <memberdef kind="variable" id="classastrea_1_1astro_1_1Payload_1a68a557dbe7f23431b6511054e26de492" prot="protected" static="no" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1PayloadPlatform" kindref="compound">PayloadPlatform</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Payload_T</ref> &gt; *</type>
+        <type>const <ref refid="classastrea_1_1astro_1_1PayloadPlatform" kindref="compound">PayloadPlatform</ref>&lt; Payload_T &gt; *</type>
         <definition>const PayloadPlatform&lt;Payload_T&gt;* astrea::astro::Payload&lt; Payload_T, PayloadParameters_T &gt;::_parent</definition>
         <argsstring></argsstring>
         <name>_parent</name>
@@ -78,7 +78,7 @@
       <memberdef kind="function" id="classastrea_1_1astro_1_1Payload_1a4edc11aa97e4b5209ae4fa95fcc40261" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
-            <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">typename</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Parent_T</ref></type>
+            <type>typename Parent_T</type>
           </param>
         </templateparamlist>
         <type></type>
@@ -87,11 +87,11 @@
         <name>Payload</name>
         <qualifiedname>astrea::astro::Payload::Payload</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Parent_T</ref> &amp;</type>
+          <type>const Parent_T &amp;</type>
           <declname>parent</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> PayloadParameters_T &amp;</type>
+          <type>const PayloadParameters_T &amp;</type>
           <declname>parameters</declname>
         </param>
     <requiresclause>(std::is_base_of_v&lt;PayloadPlatform&lt;Payload_T&gt;, Parent_T&gt;)    </requiresclause>
@@ -140,16 +140,16 @@
       <memberdef kind="function" id="classastrea_1_1astro_1_1Payload_1a14204ed9712842fc105aab8677215ef0" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
-            <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">typename</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Parent_T</ref></type>
+            <type>typename Parent_T</type>
           </param>
         </templateparamlist>
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">void</ref></type>
+        <type>void</type>
         <definition>void astrea::astro::Payload&lt; Payload_T, PayloadParameters_T &gt;::set_parent</definition>
         <argsstring>(const Parent_T &amp;parent)</argsstring>
         <name>set_parent</name>
         <qualifiedname>astrea::astro::Payload::set_parent</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Parent_T</ref> &amp;</type>
+          <type>const Parent_T &amp;</type>
           <declname>parent</declname>
         </param>
     <requiresclause>(std::is_base_of_v&lt;PayloadPlatform&lt;Payload_T&gt;, Parent_T&gt;)    </requiresclause>
@@ -203,7 +203,7 @@
         <location file="astrea/astro/astro/platforms/Payload.hpp" line="147" column="25"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Payload_1a87585ddc75db2373262ed16eecba591e" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1PayloadPlatform" kindref="compound">PayloadPlatform</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Payload_T</ref> &gt; *<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref></type>
+        <type>const <ref refid="classastrea_1_1astro_1_1PayloadPlatform" kindref="compound">PayloadPlatform</ref>&lt; Payload_T &gt; *const</type>
         <definition>const PayloadPlatform&lt; Payload_T &gt; *const astrea::astro::Payload&lt; Payload_T, PayloadParameters_T &gt;::get_parent</definition>
         <argsstring>() const</argsstring>
         <name>get_parent</name>
@@ -221,7 +221,7 @@
         <location file="astrea/astro/astro/platforms/Payload.hpp" line="154" column="33" bodyfile="astrea/astro/astro/platforms/Payload.hpp" bodystart="154" bodyend="154"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Payload_1a581af5242cdbd9298e6a49fd8dffb2d1" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> PayloadParameters_T &amp;</type>
+        <type>const PayloadParameters_T &amp;</type>
         <definition>const PayloadParameters_T &amp; astrea::astro::Payload&lt; Payload_T, PayloadParameters_T &gt;::get_parameters</definition>
         <argsstring>() const</argsstring>
         <name>get_parameters</name>
@@ -275,13 +275,13 @@
         <location file="astrea/astro/astro/platforms/Payload.hpp" line="175" column="17" bodyfile="astrea/astro/astro/platforms/Payload.hpp" bodystart="175" bodyend="175"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Payload_1aa5b3aa98893c3df3a2b32e66c93f55d1" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Distance</ref>, frames::primary &gt;</type>
+        <type><ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; Distance, frames::primary &gt;</type>
         <definition>CartesianVector&lt; Distance, frames::primary &gt; astrea::astro::Payload&lt; Payload_T, PayloadParameters_T &gt;::get_position</definition>
         <argsstring>(const Date &amp;date) const</argsstring>
         <name>get_position</name>
         <qualifiedname>astrea::astro::Payload::get_position</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
           <declname>date</declname>
         </param>
         <briefdescription>
@@ -306,13 +306,13 @@
         <location file="astrea/astro/astro/platforms/Payload.hpp" line="183" column="21" bodyfile="astrea/astro/astro/platforms/Payload.hpp" bodystart="183" bodyend="197"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Payload_1a6c54c96e9604715311d5079ff1d2bd87" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Velocity</ref>, frames::primary &gt;</type>
+        <type><ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; Velocity, frames::primary &gt;</type>
         <definition>CartesianVector&lt; Velocity, frames::primary &gt; astrea::astro::Payload&lt; Payload_T, PayloadParameters_T &gt;::get_velocity</definition>
         <argsstring>(const Date &amp;date) const</argsstring>
         <name>get_velocity</name>
         <qualifiedname>astrea::astro::Payload::get_velocity</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
           <declname>date</declname>
         </param>
         <briefdescription>

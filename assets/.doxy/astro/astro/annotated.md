@@ -4,7 +4,6 @@
 
 Here are the classes, structs, unions and interfaces with brief descriptions:
 
-* **namespace** [**anonymous namespace{astrea/astro/astro/state/orbital\_elements/Cartesian.ipp}**](namespace_0d125.md) 
 * **namespace** [**astrea**](namespaceastrea.md)     
     * **namespace** [**astro**](namespaceastrea_1_1astro.md)     
         * **class** [**AngularAccelerations**](classastrea_1_1astro_1_1AngularAccelerations.md) _Class representing the angular sequence acceleration, which is the time derivative of the angular sequence velocity._     
@@ -25,7 +24,7 @@ Here are the classes, structs, unions and interfaces with brief descriptions:
         * **class** [**CartesianPartial**](classastrea_1_1astro_1_1CartesianPartial.md) _Class representing a partial derivative of a_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _state vector._    
         * **struct** [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md) _Class representing a 3D vector in_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _coordinates._    
         * **struct** [**CelestialBody**](structastrea_1_1astro_1_1CelestialBody.md) [_**CelestialBody**_](structastrea_1_1astro_1_1CelestialBody.md) _class represents a celestial body in an astrodynamics system._    
-        * **struct** [**CelestialBodyParameters**](structastrea_1_1astro_1_1CelestialBodyParameters.md)     
+        * **struct** [**CelestialBodyParameters**](structastrea_1_1astro_1_1CelestialBodyParameters.md) _Structure to hold the parameters of a celestial body._     
         * **struct** [**CelestialBodyTypePack**](structastrea_1_1astro_1_1CelestialBodyTypePack.md) _Type-list used to attach member bodies to a_ [_**Barycenter**_](structastrea_1_1astro_1_1Barycenter.md) _._
         * **class** [**CircularRestrictedThreeBodyProblem**](classastrea_1_1astro_1_1CircularRestrictedThreeBodyProblem.md) _Class implementing the Circular Restricted Three-Body Problem equations of motion._     
         * **class** [**Constellation**](classastrea_1_1astro_1_1Constellation.md) _A_ [_**Constellation**_](classastrea_1_1astro_1_1Constellation.md) _is a collection of_[_**Spacecraft**_](classastrea_1_1astro_1_1Spacecraft.md) _, organized into Shells and/or Planes._    
@@ -54,6 +53,9 @@ Here are the classes, structs, unions and interfaces with brief descriptions:
         * **struct** [**FixedOffsetAxis**](structastrea_1_1astro_1_1FixedOffsetAxis.md)     
             * **struct** [**Misalignment**](structastrea_1_1astro_1_1FixedOffsetAxis_1_1Misalignment.md)     
         * **struct** [**FixedOffsetFrame**](structastrea_1_1astro_1_1FixedOffsetFrame.md) _Class representing a fixed offset frame, which is defined by a fixed spatial and/or angular offset from a parent frame._ 
+        * **struct** [**FixedOffsetFrame&lt; \_name\_, \_parent\_, \_phi\_, \_theta\_, \_psi\_, \_sequence\_, Args... &gt;**](structastrea_1_1astro_1_1FixedOffsetFrame_3_01__name___00_01__parent___00_01__phi___00_01__theta96154ff31cb8eb7d055f0d1372ec2a1e.md) _Specialization of_ [_**FixedOffsetFrame**_](structastrea_1_1astro_1_1FixedOffsetFrame.md) _for an angular offset with no spatial misalignment that lets the name be specified._
+        * **struct** [**FixedOffsetFrame&lt; \_name\_, \_parent\_, \_x\_, \_y\_, \_z\_, Args... &gt;**](structastrea_1_1astro_1_1FixedOffsetFrame_3_01__name___00_01__parent___00_01__x___00_01__y___00_01__z___00_01Args_8_8_8_01_4.md) _Specialization of_ [_**FixedOffsetFrame**_](structastrea_1_1astro_1_1FixedOffsetFrame.md) _for a spatial offset with no angular misalignment that lets the name be specified._
+        * **struct** [**FixedOffsetFrame&lt; \_name\_, \_parent\_, \_x\_, \_y\_, \_z\_, \_phi\_, \_theta\_, \_psi\_, \_sequence\_, Args... &gt;**](structastrea_1_1astro_1_1FixedOffsetFrame_3_01__name___00_01__parent___00_01__x___00_01__y___00_682f817510ea200b9f1d77fc37d45a92.md) _Specialization of_ [_**FixedOffsetFrame**_](structastrea_1_1astro_1_1FixedOffsetFrame.md) _for a combined spatial and angular offset that lets the name be specified._
         * **struct** [**FixedOffsetFrame&lt; \_parent\_, \_phi\_, \_theta\_, \_psi\_, \_sequence\_, Args... &gt;**](structastrea_1_1astro_1_1FixedOffsetFrame_3_01__parent___00_01__phi___00_01__theta___00_01__psi_9e091a834f5483531831878cbc7beda5.md) _Specialization of_ [_**FixedOffsetFrame**_](structastrea_1_1astro_1_1FixedOffsetFrame.md) _for a pure angular offset (no spatial offset)._
         * **struct** [**FixedOffsetFrame&lt; \_parent\_, \_x\_, \_y\_, \_z\_, Args... &gt;**](structastrea_1_1astro_1_1FixedOffsetFrame_3_01__parent___00_01__x___00_01__y___00_01__z___00_01Args_8_8_8_01_4.md) _Specialization of_ [_**FixedOffsetFrame**_](structastrea_1_1astro_1_1FixedOffsetFrame.md) _for a pure spatial offset (no angular misalignment)._
         * **struct** [**FixedOffsetFrame&lt; \_parent\_, \_x\_, \_y\_, \_z\_, \_phi\_, \_theta\_, \_psi\_, \_sequence\_, Args... &gt;**](structastrea_1_1astro_1_1FixedOffsetFrame_3_01__parent___00_01__x___00_01__y___00_01__z___00_01_3721297a9a90e06cc0beab0e7a99da8d.md) _Specialization of_ [_**FixedOffsetFrame**_](structastrea_1_1astro_1_1FixedOffsetFrame.md) _for a combined spatial and angular offset._
@@ -81,7 +83,7 @@ Here are the classes, structs, unions and interfaces with brief descriptions:
         * **class** [**KeplerianVop**](classastrea_1_1astro_1_1KeplerianVop.md) _Class implementing the_ [_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _VOP equations of motion._    
         * **class** [**LambertSolver**](classastrea_1_1astro_1_1LambertSolver.md) _Class for solving Lambert's problem._     
             * **struct** [**Solution**](structastrea_1_1astro_1_1LambertSolver_1_1Solution.md) _Result structure for optimal Lambert solutions._     
-        * **class** [**LegendreCache**](classastrea_1_1astro_1_1LegendreCache.md)     
+        * **class** [**LegendreCache**](classastrea_1_1astro_1_1LegendreCache.md) _Class to cache Legendre polynomial coefficients for a given celestial_ _body_ _, degree, and order._    
         * **class** [**NBodyForce**](classastrea_1_1astro_1_1NBodyForce.md) _Class to compute the gravitational force due to multiple celestial bodies._     
         * **class** [**NullEvent**](classastrea_1_1astro_1_1NullEvent.md) _A class representing a null_ [_**Event**_](classastrea_1_1astro_1_1Event.md) _in the astrea astro platform. This class is used as a placeholder for Events that do not have a defined state or mass._    
         * **class** [**NullVehicle**](classastrea_1_1astro_1_1NullVehicle.md) _A class representing a null vehicle in the astrea astro platform. This class is used as a placeholder for vehicles that do not have a defined state or mass._     
@@ -119,12 +121,14 @@ Here are the classes, structs, unions and interfaces with brief descriptions:
         * **struct** [**TerrestrialTimeClock**](structastrea_1_1astro_1_1TerrestrialTimeClock.md) _A clock implementation for Terrestrial Time (TT)._     
         * **class** [**Thruster**](classastrea_1_1astro_1_1Thruster.md) [_**Thruster**_](classastrea_1_1astro_1_1Thruster.md) _class representing a thruster on a platform._    
         * **class** [**ThrusterParameters**](classastrea_1_1astro_1_1ThrusterParameters.md) _Class for storing and managing thruster parameters._     
+        * **struct** [**TopocentricFrame**](structastrea_1_1astro_1_1TopocentricFrame.md) _A frame that is topocentric to a given body, defined relative to some body-fixed frame by a specific latitude, longitude, and altitude._     
         * **class** [**TurnThrustersOff**](classastrea_1_1astro_1_1TurnThrustersOff.md) _A class representing a_ [_**TurnThrustersOff**_](classastrea_1_1astro_1_1TurnThrustersOff.md) __[_**Event**_](classastrea_1_1astro_1_1Event.md) _in the astrea astro platform. This class is used as a placeholder for Events that do not have a defined state or mass._    
         * **class** [**TurnThrustersOn**](classastrea_1_1astro_1_1TurnThrustersOn.md) _A class representing a_ [_**TurnThrustersOn**_](classastrea_1_1astro_1_1TurnThrustersOn.md) __[_**Event**_](classastrea_1_1astro_1_1Event.md) _in the astrea astro platform. This class is used as a placeholder for Events that do not have a defined state or mass._    
         * **class** [**TwoBody**](classastrea_1_1astro_1_1TwoBody.md) _Class implementing the Two Body equations of motion._     
         * **class** [**TwoLineElements**](classastrea_1_1astro_1_1TwoLineElements.md) _Class representing the two-line element (TLE) format for orbital data._     
         * **class** [**Vehicle**](classastrea_1_1astro_1_1Vehicle.md) _A class representing a vehicle in the astrea astro platform. This class serves as a base for user-defined vehicles and provides a common interface._     
         * **namespace** [**axes**](namespaceastrea_1_1astro_1_1axes.md)     
+            * **struct** [**cep**](structastrea_1_1astro_1_1axes_1_1cep.md) 
             * **struct** [**icrf**](structastrea_1_1astro_1_1axes_1_1icrf.md) 
             * **struct** [**j2000**](structastrea_1_1astro_1_1axes_1_1j2000.md) 
         * **namespace** [**barycenters**](namespaceastrea_1_1astro_1_1barycenters.md)     
@@ -167,6 +171,8 @@ Here are the classes, structs, unions and interfaces with brief descriptions:
             * **struct** [**EastNorthUpTag**](structastrea_1_1astro_1_1frames_1_1EastNorthUpTag.md) [_**Frame**_](structastrea_1_1astro_1_1Frame.md) _tag type for_[_**EastNorthUp**_](structastrea_1_1astro_1_1frames_1_1EastNorthUp.md) _, defined outside the class to allow use as a_[_**DynamicFrame**_](structastrea_1_1astro_1_1DynamicFrame.md) _NTTP._    
             * **struct** [**LocalHorizontalLocalVertical**](structastrea_1_1astro_1_1frames_1_1LocalHorizontalLocalVertical.md) _Class representing the Local Horizontal, Local Vertical (LVLH) frame._     
             * **struct** [**LvlhTag**](structastrea_1_1astro_1_1frames_1_1LvlhTag.md) [_**Frame**_](structastrea_1_1astro_1_1Frame.md) _tag type for_[_**LocalHorizontalLocalVertical**_](structastrea_1_1astro_1_1frames_1_1LocalHorizontalLocalVertical.md) _, defined outside the class to allow use as a_[_**DynamicFrame**_](structastrea_1_1astro_1_1DynamicFrame.md) _NTTP._    
+            * **struct** [**Perifocal**](structastrea_1_1astro_1_1frames_1_1Perifocal.md) _Class representing the_ [_**Perifocal**_](structastrea_1_1astro_1_1frames_1_1Perifocal.md) _(PQW) frame: P towards periapsis, W along the angular momentum vector, and Q completing the right-handed triad in the orbital plane._    
+            * **struct** [**PerifocalTag**](structastrea_1_1astro_1_1frames_1_1PerifocalTag.md) [_**Frame**_](structastrea_1_1astro_1_1Frame.md) _tag type for_[_**Perifocal**_](structastrea_1_1astro_1_1frames_1_1Perifocal.md) _, defined outside the class to allow use as a_[_**DynamicFrame**_](structastrea_1_1astro_1_1DynamicFrame.md) _NTTP._    
             * **struct** [**RadialInTrackCrossTrack**](structastrea_1_1astro_1_1frames_1_1RadialInTrackCrossTrack.md) _Class representing the Radial, In-Track, Cross-Track (RIC) frame._     
             * **struct** [**RicTag**](structastrea_1_1astro_1_1frames_1_1RicTag.md) [_**Frame**_](structastrea_1_1astro_1_1Frame.md) _tag type for_[_**RadialInTrackCrossTrack**_](structastrea_1_1astro_1_1frames_1_1RadialInTrackCrossTrack.md) _, defined outside the class to allow use as a_[_**DynamicFrame**_](structastrea_1_1astro_1_1DynamicFrame.md) _NTTP._    
             * **struct** [**VelocityNormalBinormal**](structastrea_1_1astro_1_1frames_1_1VelocityNormalBinormal.md) _Class representing the Velocity, Normal, Binormal (VNB) frame._     
@@ -182,6 +188,7 @@ Here are the classes, structs, unions and interfaces with brief descriptions:
             * **namespace** [**dynamic**](namespaceastrea_1_1astro_1_1frames_1_1dynamic.md)     
                 * **struct** [**body**](structastrea_1_1astro_1_1frames_1_1dynamic_1_1body.md) 
             * **namespace** [**earth**](namespaceastrea_1_1astro_1_1frames_1_1earth.md)     
+                * **struct** [**cep**](structastrea_1_1astro_1_1frames_1_1earth_1_1cep.md) 
                 * **struct** [**earth\_fixed**](structastrea_1_1astro_1_1frames_1_1earth_1_1earth__fixed.md) 
                 * **struct** [**icrf**](structastrea_1_1astro_1_1frames_1_1earth_1_1icrf.md) 
                 * **struct** [**j2000**](structastrea_1_1astro_1_1frames_1_1earth_1_1j2000.md) 
@@ -340,19 +347,20 @@ Here are the classes, structs, unions and interfaces with brief descriptions:
         * **namespace** [**plotting**](namespaceastrea_1_1astro_1_1plotting.md)     
         * **namespace** [**star**](namespaceastrea_1_1astro_1_1star.md)     
             * **class** [**Sun**](structastrea_1_1astro_1_1star_1_1Sun.md) _Represents the_ [_**Sun**_](structastrea_1_1astro_1_1star_1_1Sun.md) _celestial body._
+* **namespace** [**astro**](namespaceastrea_1_1astro_1_1_0d130.md) 
+* **namespace** [**astro**](namespaceastrea_1_1astro_1_1_0d8.md) 
 * **struct** [**EventTracker**](structastrea_1_1astro_1_1EventDetector_1_1EventTracker.md) _A struct for tracking events._     
-* **namespace** [**frames**](namespaceastrea_1_1astro_1_1frames_1_1_0d17.md) 
+* **namespace** [**frames**](namespaceastrea_1_1astro_1_1frames_1_1_0d20.md) 
 * **class** [**Output**](classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Output.md)     
 * **struct** [**Switch**](structastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Switch.md)     
-* **namespace** [**plotting**](namespaceastrea_1_1astro_1_1plotting_1_1_0d196.md) 
+* **namespace** [**plotting**](namespaceastrea_1_1astro_1_1plotting_1_1_0d201.md) 
 * **namespace** [**matplot**](namespacematplot.md) 
 * **namespace** [**mp\_units**](namespacemp__units.md)     
     * **struct** [**quantity\_point\_like\_traits&lt; astrea::astro::Date &gt;**](structmp__units_1_1quantity__point__like__traits_3_01astrea_1_1astro_1_1Date_01_4.md) _Specialization of mp\_units::quantity\_point\_like\_traits for the Date class._     
-* **namespace** [**angular**](namespacemp__units_1_1angular.md) 
 * **namespace** [**non\_si**](namespacemp__units_1_1non__si.md) 
 * **namespace** [**si**](namespacemp__units_1_1si.md) 
 * **namespace** [**unit\_symbols**](namespacemp__units_1_1si_1_1unit__symbols.md) 
 * **namespace** [**std**](namespacestd.md)     
     * **struct** [**hash&lt; std::tuple&lt; TT... &gt; &gt;**](structstd_1_1hash_3_01std_1_1tuple_3_01TT_8_8_8_01_4_01_4.md)     
-* **namespace** [**std**](namespacestd_1_1_0d190.md) 
+* **namespace** [**std**](namespacestd_1_1_0d195.md) 
 

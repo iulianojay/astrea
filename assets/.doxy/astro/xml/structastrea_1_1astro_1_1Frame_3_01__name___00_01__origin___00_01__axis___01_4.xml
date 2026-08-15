@@ -11,24 +11,24 @@
         <defname>_name_</defname>
       </param>
       <param>
-        <type>IsOrigin <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+        <type>IsOrigin auto</type>
         <declname>_origin_</declname>
         <defname>_origin_</defname>
       </param>
       <param>
-        <type>IsAxis <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+        <type>IsAxis auto</type>
         <declname>_axis_</declname>
         <defname>_axis_</defname>
       </param>
     </templateparamlist>
     <sectiondef kind="public-static-attrib">
       <memberdef kind="variable" id="structastrea_1_1astro_1_1Frame_3_01__name___00_01__origin___00_01__axis___01_4_1acac10d7053bd88c355d60db9a236906f" prot="public" static="yes" constexpr="yes" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+        <type>constexpr auto</type>
         <definition>constexpr auto astrea::astro::Frame&lt; _name_, _origin_, _axis_ &gt;::name</definition>
         <argsstring></argsstring>
         <name>name</name>
         <qualifiedname>astrea::astro::Frame&lt; _name_, _origin_, _axis_ &gt;::name</qualifiedname>
-        <initializer>= <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_name_</ref></initializer>
+        <initializer>= _name_</initializer>
         <briefdescription>
 <para>The name of the frame. </para>
         </briefdescription>
@@ -39,12 +39,12 @@
         <location file="astrea/astro/astro/frames/framework/Frame.hpp" line="66" column="27" bodyfile="astrea/astro/astro/frames/framework/Frame.hpp" bodystart="66" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structastrea_1_1astro_1_1Frame_3_01__name___00_01__origin___00_01__axis___01_4_1a199cc2effee0a0058399c32376618404" prot="public" static="yes" constexpr="yes" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+        <type>constexpr auto</type>
         <definition>constexpr auto astrea::astro::Frame&lt; _name_, _origin_, _axis_ &gt;::origin</definition>
         <argsstring></argsstring>
         <name>origin</name>
         <qualifiedname>astrea::astro::Frame&lt; _name_, _origin_, _axis_ &gt;::origin</qualifiedname>
-        <initializer>= <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_origin_</ref></initializer>
+        <initializer>= _origin_</initializer>
         <briefdescription>
 <para>The central body associated with the frame. </para>
         </briefdescription>
@@ -55,12 +55,12 @@
         <location file="astrea/astro/astro/frames/framework/Frame.hpp" line="67" column="27" bodyfile="astrea/astro/astro/frames/framework/Frame.hpp" bodystart="67" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structastrea_1_1astro_1_1Frame_3_01__name___00_01__origin___00_01__axis___01_4_1adc2b54b49870983e05d2c055f6953798" prot="public" static="yes" constexpr="yes" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+        <type>constexpr auto</type>
         <definition>constexpr auto astrea::astro::Frame&lt; _name_, _origin_, _axis_ &gt;::axis</definition>
         <argsstring></argsstring>
         <name>axis</name>
         <qualifiedname>astrea::astro::Frame&lt; _name_, _origin_, _axis_ &gt;::axis</qualifiedname>
-        <initializer>= <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_axis_</ref></initializer>
+        <initializer>= _axis_</initializer>
         <briefdescription>
 <para>The axis type of the frame. </para>
         </briefdescription>

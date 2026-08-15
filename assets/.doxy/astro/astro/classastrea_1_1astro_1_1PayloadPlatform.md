@@ -2,7 +2,7 @@
 
 # Class astrea::astro::PayloadPlatform
 
-**template &lt;[**class**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Payload\_T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)&gt;**
+**template &lt;class Payload\_T&gt;**
 
 
 
@@ -54,14 +54,14 @@ _The_ [_**PayloadPlatform**_](classastrea_1_1astro_1_1PayloadPlatform.md) _class
 
 | Type | Name |
 | ---: | :--- |
-|  [**void**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**attach\_payload**](#function-attach_payload) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**PayloadParameters\_T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & parameters) <br>_Attaches a single payload to the platform._  |
-|  [**void**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**attach\_payloads**](#function-attach_payloads) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) std::vector&lt; [**PayloadParameters\_T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt; & parameterPack) <br>_Attaches multiple payloads to the platform._  |
+|  void | [**attach\_payload**](#function-attach_payload) (const PayloadParameters\_T & parameters) <br>_Attaches a single payload to the platform._  |
+|  void | [**attach\_payloads**](#function-attach_payloads) (const std::vector&lt; PayloadParameters\_T &gt; & parameterPack) <br>_Attaches multiple payloads to the platform._  |
 | virtual std::size\_t | [**get\_id**](#function-get_id) () const = 0<br>_Get the ID of the payload._  |
-| virtual [**Mass**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**get\_mass**](#function-get_mass) () const<br>_Get the mass of the platform._  |
-|  std::vector&lt; [**Payload\_T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt; & | [**get\_payloads**](#function-get_payloads-12) () <br>_Retrieves the list of payloads attached to the platform._  |
-|  [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) std::vector&lt; [**Payload\_T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt; & | [**get\_payloads**](#function-get_payloads-22) () const<br>_Retrieves the list of payloads attached to the platform (const version)._  |
-| virtual [**RadiusVector**](namespaceastrea_1_1astro.md#typedef-radiusvector)&lt; frames::primary &gt; | [**get\_position**](#function-get_position) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Date**](classastrea_1_1astro_1_1Date.md) & date) const = 0<br>_Get the position of the platform._  |
-| virtual [**VelocityVector**](namespaceastrea_1_1astro.md#typedef-velocityvector)&lt; frames::primary &gt; | [**get\_velocity**](#function-get_velocity) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Date**](classastrea_1_1astro_1_1Date.md) & date) const = 0<br>_Get the velocity of the platform._  |
+| virtual Mass | [**get\_mass**](#function-get_mass) () const<br>_Get the mass of the platform._  |
+|  std::vector&lt; Payload\_T &gt; & | [**get\_payloads**](#function-get_payloads-12) () <br>_Retrieves the list of payloads attached to the platform._  |
+|  const std::vector&lt; Payload\_T &gt; & | [**get\_payloads**](#function-get_payloads-22) () const<br>_Retrieves the list of payloads attached to the platform (const version)._  |
+| virtual [**RadiusVector**](namespaceastrea_1_1astro.md#typedef-radiusvector)&lt; frames::primary &gt; | [**get\_position**](#function-get_position) (const [**Date**](classastrea_1_1astro_1_1Date.md) & date) const = 0<br>_Get the position of the platform._  |
+| virtual [**VelocityVector**](namespaceastrea_1_1astro.md#typedef-velocityvector)&lt; frames::primary &gt; | [**get\_velocity**](#function-get_velocity) (const [**Date**](classastrea_1_1astro_1_1Date.md) & date) const = 0<br>_Get the velocity of the platform._  |
 
 
 
@@ -74,7 +74,7 @@ _The_ [_**PayloadPlatform**_](classastrea_1_1astro_1_1PayloadPlatform.md) _class
 
 | Type | Name |
 | ---: | :--- |
-|  std::vector&lt; [**Payload\_T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt; | [**\_payloads**](#variable-_payloads)  <br> |
+|  std::vector&lt; Payload\_T &gt; | [**\_payloads**](#variable-_payloads)  <br> |
 
 
 
@@ -96,11 +96,11 @@ _The_ [_**PayloadPlatform**_](classastrea_1_1astro_1_1PayloadPlatform.md) _class
 | Type | Name |
 | ---: | :--- |
 |   | [**PayloadPlatform**](#function-payloadplatform-13) () = default<br>_Default constructor for_ [_**PayloadPlatform**_](classastrea_1_1astro_1_1PayloadPlatform.md) _._ |
-|   | [**PayloadPlatform**](#function-payloadplatform-23) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**PayloadPlatform**](classastrea_1_1astro_1_1PayloadPlatform.md) & other) <br>_Copy constructor for_ [_**PayloadPlatform**_](classastrea_1_1astro_1_1PayloadPlatform.md) _._ |
+|   | [**PayloadPlatform**](#function-payloadplatform-23) (const [**PayloadPlatform**](classastrea_1_1astro_1_1PayloadPlatform.md) & other) <br>_Copy constructor for_ [_**PayloadPlatform**_](classastrea_1_1astro_1_1PayloadPlatform.md) _._ |
 |   | [**PayloadPlatform**](#function-payloadplatform-33) ([**PayloadPlatform**](classastrea_1_1astro_1_1PayloadPlatform.md) && other) noexcept<br>_Move constructor for_ [_**PayloadPlatform**_](classastrea_1_1astro_1_1PayloadPlatform.md) _._ |
-|  [**PayloadPlatform**](classastrea_1_1astro_1_1PayloadPlatform.md) & | [**operator=**](#function-operator) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**PayloadPlatform**](classastrea_1_1astro_1_1PayloadPlatform.md) & other) <br>_Copy assignment operator for_ [_**PayloadPlatform**_](classastrea_1_1astro_1_1PayloadPlatform.md) _._ |
+|  [**PayloadPlatform**](classastrea_1_1astro_1_1PayloadPlatform.md) & | [**operator=**](#function-operator) (const [**PayloadPlatform**](classastrea_1_1astro_1_1PayloadPlatform.md) & other) <br>_Copy assignment operator for_ [_**PayloadPlatform**_](classastrea_1_1astro_1_1PayloadPlatform.md) _._ |
 |  [**PayloadPlatform**](classastrea_1_1astro_1_1PayloadPlatform.md) & | [**operator=**](#function-operator_1) ([**PayloadPlatform**](classastrea_1_1astro_1_1PayloadPlatform.md) && other) noexcept<br>_Move assignment operator for_ [_**PayloadPlatform**_](classastrea_1_1astro_1_1PayloadPlatform.md) _._ |
-|  [**void**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**reset\_payload\_parentage**](#function-reset_payload_parentage) () <br>_Resets the parentage of all payloads attached to the platform to this._  |
+|  void | [**reset\_payload\_parentage**](#function-reset_payload_parentage) () <br>_Resets the parentage of all payloads attached to the platform to this._  |
 | virtual  | [**~PayloadPlatform**](#function-payloadplatform) () = default<br>_Default destructor for_ [_**PayloadPlatform**_](classastrea_1_1astro_1_1PayloadPlatform.md) _._ |
 
 
@@ -116,7 +116,7 @@ _The_ [_**PayloadPlatform**_](classastrea_1_1astro_1_1PayloadPlatform.md) _class
 _Attaches a single payload to the platform._ 
 ```C++
 inline void astrea::astro::PayloadPlatform::attach_payload (
-    const  PayloadParameters_T & parameters
+    const PayloadParameters_T & parameters
 ) 
 ```
 
@@ -270,7 +270,7 @@ A const vector of payloads attached to the platform.
 _Get the position of the platform._ 
 ```C++
 virtual RadiusVector < frames::primary > astrea::astro::PayloadPlatform::get_position (
-    const  Date & date
+    const Date & date
 ) const = 0
 ```
 
@@ -287,7 +287,7 @@ virtual RadiusVector < frames::primary > astrea::astro::PayloadPlatform::get_pos
 
 **Returns:**
 
-[**RadiusVector&lt;frames::primary&gt;**](namespaceastrea_1_1astro.md#typedef-radiusvector) Position of the platform. 
+RadiusVector&lt;frames::primary&gt; Position of the platform. 
 
 
 
@@ -304,7 +304,7 @@ virtual RadiusVector < frames::primary > astrea::astro::PayloadPlatform::get_pos
 _Get the velocity of the platform._ 
 ```C++
 virtual VelocityVector < frames::primary > astrea::astro::PayloadPlatform::get_velocity (
-    const  Date & date
+    const Date & date
 ) const = 0
 ```
 
@@ -321,7 +321,7 @@ virtual VelocityVector < frames::primary > astrea::astro::PayloadPlatform::get_v
 
 **Returns:**
 
-[**VelocityVector&lt;frames::primary&gt;**](namespaceastrea_1_1astro.md#typedef-velocityvector) Velocity of the platform. 
+VelocityVector&lt;frames::primary&gt; Velocity of the platform. 
 
 
 
@@ -369,7 +369,7 @@ astrea::astro::PayloadPlatform::PayloadPlatform () = default
 _Copy constructor for_ [_**PayloadPlatform**_](classastrea_1_1astro_1_1PayloadPlatform.md) _._
 ```C++
 inline astrea::astro::PayloadPlatform::PayloadPlatform (
-    const  PayloadPlatform & other
+    const PayloadPlatform & other
 ) 
 ```
 
@@ -423,7 +423,7 @@ inline astrea::astro::PayloadPlatform::PayloadPlatform (
 _Copy assignment operator for_ [_**PayloadPlatform**_](classastrea_1_1astro_1_1PayloadPlatform.md) _._
 ```C++
 inline PayloadPlatform & astrea::astro::PayloadPlatform::operator= (
-    const  PayloadPlatform & other
+    const PayloadPlatform & other
 ) 
 ```
 

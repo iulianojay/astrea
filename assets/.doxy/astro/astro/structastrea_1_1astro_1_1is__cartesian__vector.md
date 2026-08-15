@@ -2,7 +2,7 @@
 
 # Struct astrea::astro::is\_cartesian\_vector
 
-**template &lt;[**class**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)&gt;**
+**template &lt;class T&gt;**
 
 
 

@@ -6252,28 +6252,9 @@ You're not viewing the latest version.
 <td style="text-align: right;">namespace</td>
 <td style="text-align: left;"><a href="../namespaceastrea_1_1detail/"><strong>detail</strong></a> <br></td>
 </tr>
-</tbody>
-</table>
-<h2 id="classes">Classes<a class="headerlink" href="#classes" title="Permanent link">&para;</a></h2>
-<table>
-<thead>
 <tr>
-<th style="text-align: right;">Type</th>
-<th style="text-align: left;">Name</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: right;">struct</td>
-<td style="text-align: left;"><a href="../structastrea_1_1EarthRadii/"><strong>EarthRadii</strong></a> <br><em>Definition for Earth Radii as 6378 km.</em></td>
-</tr>
-<tr>
-<td style="text-align: right;">struct</td>
-<td style="text-align: left;"><a href="../structastrea_1_1JulianCentury/"><strong>JulianCentury</strong></a> <br><em>Definition for a Julian Century as 36525 days.</em></td>
-</tr>
-<tr>
-<td style="text-align: right;">struct</td>
-<td style="text-align: left;"><a href="../structastrea_1_1SolarFluxUnits/"><strong>SolarFluxUnits</strong></a> <br><em>Definition for Solar Flux Units as 1e-22 W / (m^2 * Hz).</em></td>
+<td style="text-align: right;">namespace</td>
+<td style="text-align: left;"><a href="../namespaceastrea_1_1units/"><strong>units</strong></a> <br></td>
 </tr>
 </tbody>
 </table>
@@ -6307,15 +6288,15 @@ You're not viewing the latest version.
 <td style="text-align: left;"><a href="#typedef-angularvelocity"><strong>AngularVelocity</strong></a>  <br><em>Definition for an angular rate quantity.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">typedef mp_units::quantity&lt; mp_units::one/<a href="../structastrea_1_1EarthRadii/"><strong>EarthRadii</strong></a> &gt;</td>
+<td style="text-align: right;">typedef mp_units::quantity&lt; mp_units::one/astrea::units::unit_symbols::re &gt;</td>
 <td style="text-align: left;"><a href="#typedef-ballisticcoefficient"><strong>BallisticCoefficient</strong></a>  <br><em>Definition for a ballistic coefficient quantity.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">typedef mp_units::quantity&lt; detail::angle_unit/<a href="../structastrea_1_1JulianCentury/"><strong>JulianCentury</strong></a> &gt;</td>
+<td style="text-align: right;">typedef mp_units::quantity&lt; detail::angle_unit/astrea::units::unit_symbols::jc &gt;</td>
 <td style="text-align: left;"><a href="#typedef-bodyangularvelocity"><strong>BodyAngularVelocity</strong></a>  <br><em>Definition for a body-related angular rate.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">typedef mp_units::quantity&lt; detail::unitless/<a href="../structastrea_1_1JulianCentury/"><strong>JulianCentury</strong></a> &gt;</td>
+<td style="text-align: right;">typedef mp_units::quantity&lt; detail::unitless/astrea::units::unit_symbols::jc &gt;</td>
 <td style="text-align: left;"><a href="#typedef-bodyunitlesspertime"><strong>BodyUnitlessPerTime</strong></a>  <br><em>Definition for a body-related unitless per time.</em></td>
 </tr>
 <tr>
@@ -6355,7 +6336,7 @@ You're not viewing the latest version.
 <td style="text-align: left;"><a href="#typedef-interplanetarydistance"><strong>InterplanetaryDistance</strong></a>  <br><em>Definition for a interplanetary distance quantity.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">typedef mp_units::quantity&lt; mp_units::iau::unit_symbols::au/<a href="../structastrea_1_1JulianCentury/"><strong>JulianCentury</strong></a> &gt;</td>
+<td style="text-align: right;">typedef mp_units::quantity&lt; mp_units::iau::unit_symbols::au/astrea::units::unit_symbols::jc &gt;</td>
 <td style="text-align: left;"><a href="#typedef-interplanetaryvelocity"><strong>InterplanetaryVelocity</strong></a>  <br><em>Definition for a body-related velocity.</em></td>
 </tr>
 <tr>
@@ -6403,7 +6384,7 @@ You're not viewing the latest version.
 <td style="text-align: left;"><a href="#typedef-snr"><strong>SNR</strong></a>  <br><em>Definition for a signal-to-noise ratio quantity.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">typedef mp_units::quantity&lt; <a href="../structastrea_1_1SolarFluxUnits/"><strong>SolarFluxUnits</strong></a> &gt;</td>
+<td style="text-align: right;">typedef mp_units::quantity&lt; astrea::units::unit_symbols::sfu &gt;</td>
 <td style="text-align: left;"><a href="#typedef-solarflux"><strong>SolarFlux</strong></a>  <br><em>Definition for a solar flux quantity.</em></td>
 </tr>
 <tr>
@@ -6486,20 +6467,8 @@ You're not viewing the latest version.
 </thead>
 <tbody>
 <tr>
-<td style="text-align: right;"><a href="../structastrea_1_1EarthRadii/"><strong>astrea::EarthRadii</strong></a></td>
-<td style="text-align: left;"><a href="#variable-earthradii"><strong>EarthRadii</strong></a>  <br></td>
-</tr>
-<tr>
-<td style="text-align: right;"><a href="../structastrea_1_1JulianCentury/"><strong>astrea::JulianCentury</strong></a></td>
-<td style="text-align: left;"><a href="#variable-juliancentury"><strong>JulianCentury</strong></a>  <br></td>
-</tr>
-<tr>
 <td style="text-align: right;">constexpr <a href="./#typedef-angle"><strong>Angle</strong></a></td>
 <td style="text-align: left;"><a href="#variable-pi"><strong>PI</strong></a>   = <code>1.0 \* (mp\_units::mag&amp;lt;mp\_units::pi&amp;gt; \* detail::angle\_unit)</code><br></td>
-</tr>
-<tr>
-<td style="text-align: right;"><a href="../structastrea_1_1SolarFluxUnits/"><strong>astrea::SolarFluxUnits</strong></a></td>
-<td style="text-align: left;"><a href="#variable-solarfluxunits"><strong>SolarFluxUnits</strong></a>  <br></td>
 </tr>
 <tr>
 <td style="text-align: right;">constexpr <a href="./#typedef-angle"><strong>Angle</strong></a></td>
@@ -6567,19 +6536,19 @@ You're not viewing the latest version.
 
 <h3 id="typedef-ballisticcoefficient">typedef BallisticCoefficient<a class="headerlink" href="#typedef-ballisticcoefficient" title="Permanent link">&para;</a></h3>
 <p><em>Definition for a ballistic coefficient quantity.</em> 
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">using</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">BallisticCoefficient</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">typedef</span><span class="w"> </span><span class="n">mp_units</span><span class="o">::</span><span class="n">quantity</span><span class="o">&lt;</span><span class="n">mp_units</span><span class="o">::</span><span class="n">one</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">EarthRadii</span><span class="o">&gt;</span><span class="p">;</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">using</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">BallisticCoefficient</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">typedef</span><span class="w"> </span><span class="n">mp_units</span><span class="o">::</span><span class="n">quantity</span><span class="o">&lt;</span><span class="n">mp_units</span><span class="o">::</span><span class="n">one</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">units</span><span class="o">::</span><span class="n">unit_symbols</span><span class="o">::</span><span class="n">re</span><span class="o">&gt;</span><span class="p">;</span>
 </span></code></pre></div></p>
 <hr>
 
 <h3 id="typedef-bodyangularvelocity">typedef BodyAngularVelocity<a class="headerlink" href="#typedef-bodyangularvelocity" title="Permanent link">&para;</a></h3>
 <p><em>Definition for a body-related angular rate.</em> 
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">using</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">BodyAngularVelocity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">typedef</span><span class="w"> </span><span class="n">mp_units</span><span class="o">::</span><span class="n">quantity</span><span class="o">&lt;</span><span class="n">detail</span><span class="o">::</span><span class="n">angle_unit</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">JulianCentury</span><span class="o">&gt;</span><span class="p">;</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">using</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">BodyAngularVelocity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">typedef</span><span class="w"> </span><span class="n">mp_units</span><span class="o">::</span><span class="n">quantity</span><span class="o">&lt;</span><span class="n">detail</span><span class="o">::</span><span class="n">angle_unit</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">units</span><span class="o">::</span><span class="n">unit_symbols</span><span class="o">::</span><span class="n">jc</span><span class="o">&gt;</span><span class="p">;</span>
 </span></code></pre></div></p>
 <hr>
 
 <h3 id="typedef-bodyunitlesspertime">typedef BodyUnitlessPerTime<a class="headerlink" href="#typedef-bodyunitlesspertime" title="Permanent link">&para;</a></h3>
 <p><em>Definition for a body-related unitless per time.</em> 
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">using</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">BodyUnitlessPerTime</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">typedef</span><span class="w"> </span><span class="n">mp_units</span><span class="o">::</span><span class="n">quantity</span><span class="o">&lt;</span><span class="n">detail</span><span class="o">::</span><span class="n">unitless</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">JulianCentury</span><span class="o">&gt;</span><span class="p">;</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">using</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">BodyUnitlessPerTime</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">typedef</span><span class="w"> </span><span class="n">mp_units</span><span class="o">::</span><span class="n">quantity</span><span class="o">&lt;</span><span class="n">detail</span><span class="o">::</span><span class="n">unitless</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">units</span><span class="o">::</span><span class="n">unit_symbols</span><span class="o">::</span><span class="n">jc</span><span class="o">&gt;</span><span class="p">;</span>
 </span></code></pre></div></p>
 <hr>
 
@@ -6639,7 +6608,7 @@ You're not viewing the latest version.
 
 <h3 id="typedef-interplanetaryvelocity">typedef InterplanetaryVelocity<a class="headerlink" href="#typedef-interplanetaryvelocity" title="Permanent link">&para;</a></h3>
 <p><em>Definition for a body-related velocity.</em> 
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="k">using</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">InterplanetaryVelocity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">typedef</span><span class="w"> </span><span class="n">mp_units</span><span class="o">::</span><span class="n">quantity</span><span class="o">&lt;</span><span class="n">mp_units</span><span class="o">::</span><span class="n">iau</span><span class="o">::</span><span class="n">unit_symbols</span><span class="o">::</span><span class="n">au</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">JulianCentury</span><span class="o">&gt;</span><span class="p">;</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="k">using</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">InterplanetaryVelocity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">typedef</span><span class="w"> </span><span class="n">mp_units</span><span class="o">::</span><span class="n">quantity</span><span class="o">&lt;</span><span class="n">mp_units</span><span class="o">::</span><span class="n">iau</span><span class="o">::</span><span class="n">unit_symbols</span><span class="o">::</span><span class="n">au</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">units</span><span class="o">::</span><span class="n">unit_symbols</span><span class="o">::</span><span class="n">jc</span><span class="o">&gt;</span><span class="p">;</span>
 </span></code></pre></div></p>
 <hr>
 
@@ -6711,7 +6680,7 @@ You're not viewing the latest version.
 
 <h3 id="typedef-solarflux">typedef SolarFlux<a class="headerlink" href="#typedef-solarflux" title="Permanent link">&para;</a></h3>
 <p><em>Definition for a solar flux quantity.</em> 
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-29-1"><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="k">using</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">SolarFlux</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">typedef</span><span class="w"> </span><span class="n">mp_units</span><span class="o">::</span><span class="n">quantity</span><span class="o">&lt;</span><span class="n">SolarFluxUnits</span><span class="o">&gt;</span><span class="p">;</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-29-1"><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="k">using</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">SolarFlux</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">typedef</span><span class="w"> </span><span class="n">mp_units</span><span class="o">::</span><span class="n">quantity</span><span class="o">&lt;</span><span class="n">astrea</span><span class="o">::</span><span class="n">units</span><span class="o">::</span><span class="n">unit_symbols</span><span class="o">::</span><span class="n">sfu</span><span class="o">&gt;</span><span class="p">;</span>
 </span></code></pre></div></p>
 <hr>
 
@@ -6807,52 +6776,37 @@ You're not viewing the latest version.
 </span></code></pre></div>
 <hr>
 <h2 id="public-attributes-documentation">Public Attributes Documentation<a class="headerlink" href="#public-attributes-documentation" title="Permanent link">&para;</a></h2>
-<h3 id="variable-earthradii">variable EarthRadii<a class="headerlink" href="#variable-earthradii" title="Permanent link">&para;</a></h3>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-47-1"><a id="__codelineno-47-1" name="__codelineno-47-1" href="#__codelineno-47-1"></a><span class="n">astrea</span><span class="o">::</span><span class="n">EarthRadii</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">EarthRadii</span><span class="p">;</span>
-</span></code></pre></div>
-<hr>
-
-<h3 id="variable-juliancentury">variable JulianCentury<a class="headerlink" href="#variable-juliancentury" title="Permanent link">&para;</a></h3>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-48-1"><a id="__codelineno-48-1" name="__codelineno-48-1" href="#__codelineno-48-1"></a><span class="n">astrea</span><span class="o">::</span><span class="n">JulianCentury</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">JulianCentury</span><span class="p">;</span>
-</span></code></pre></div>
-<hr>
-
 <h3 id="variable-pi">variable PI<a class="headerlink" href="#variable-pi" title="Permanent link">&para;</a></h3>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-49-1"><a id="__codelineno-49-1" name="__codelineno-49-1" href="#__codelineno-49-1"></a><span class="k">constexpr</span><span class="w"> </span><span class="n">Angle</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">PI</span><span class="p">;</span>
-</span></code></pre></div>
-<hr>
-
-<h3 id="variable-solarfluxunits">variable SolarFluxUnits<a class="headerlink" href="#variable-solarfluxunits" title="Permanent link">&para;</a></h3>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-50-1"><a id="__codelineno-50-1" name="__codelineno-50-1" href="#__codelineno-50-1"></a><span class="n">astrea</span><span class="o">::</span><span class="n">SolarFluxUnits</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">SolarFluxUnits</span><span class="p">;</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-47-1"><a id="__codelineno-47-1" name="__codelineno-47-1" href="#__codelineno-47-1"></a><span class="k">constexpr</span><span class="w"> </span><span class="n">Angle</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">PI</span><span class="p">;</span>
 </span></code></pre></div>
 <hr>
 
 <h3 id="variable-two_pi">variable TWO_PI<a class="headerlink" href="#variable-two_pi" title="Permanent link">&para;</a></h3>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-51-1"><a id="__codelineno-51-1" name="__codelineno-51-1" href="#__codelineno-51-1"></a><span class="k">constexpr</span><span class="w"> </span><span class="n">Angle</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">TWO_PI</span><span class="p">;</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-48-1"><a id="__codelineno-48-1" name="__codelineno-48-1" href="#__codelineno-48-1"></a><span class="k">constexpr</span><span class="w"> </span><span class="n">Angle</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">TWO_PI</span><span class="p">;</span>
 </span></code></pre></div>
 <hr>
 
 <h3 id="variable-boltzmann_constant">variable boltzmann_constant<a class="headerlink" href="#variable-boltzmann_constant" title="Permanent link">&para;</a></h3>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-52-1"><a id="__codelineno-52-1" name="__codelineno-52-1" href="#__codelineno-52-1"></a><span class="k">constexpr</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">boltzmann_constant</span><span class="p">;</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-49-1"><a id="__codelineno-49-1" name="__codelineno-49-1" href="#__codelineno-49-1"></a><span class="k">constexpr</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">boltzmann_constant</span><span class="p">;</span>
 </span></code></pre></div>
 <hr>
 
 <h3 id="variable-speed_of_light_in_vacuum">variable speed_of_light_in_vacuum<a class="headerlink" href="#variable-speed_of_light_in_vacuum" title="Permanent link">&para;</a></h3>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-53-1"><a id="__codelineno-53-1" name="__codelineno-53-1" href="#__codelineno-53-1"></a><span class="k">constexpr</span><span class="w"> </span><span class="n">Velocity</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">speed_of_light_in_vacuum</span><span class="p">;</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-50-1"><a id="__codelineno-50-1" name="__codelineno-50-1" href="#__codelineno-50-1"></a><span class="k">constexpr</span><span class="w"> </span><span class="n">Velocity</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">speed_of_light_in_vacuum</span><span class="p">;</span>
 </span></code></pre></div>
 <hr>
 <h2 id="public-functions-documentation">Public Functions Documentation<a class="headerlink" href="#public-functions-documentation" title="Permanent link">&para;</a></h2>
 <h3 id="function-n_pi">function n_pi<a class="headerlink" href="#function-n_pi" title="Permanent link">&para;</a></h3>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-54-1"><a id="__codelineno-54-1" name="__codelineno-54-1" href="#__codelineno-54-1"></a><span class="k">constexpr</span><span class="w"> </span><span class="n">mp_units</span><span class="o">::</span><span class="n">quantity</span><span class="o">&lt;</span><span class="w"> </span><span class="n">mp_units</span><span class="o">::</span><span class="n">mag</span><span class="o">&lt;</span><span class="w"> </span><span class="n">mp_units</span><span class="o">::</span><span class="n">pi</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">*</span><span class="n">detail</span><span class="o">::</span><span class="n">angle_unit</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">n_pi</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-54-2"><a id="__codelineno-54-2" name="__codelineno-54-2" href="#__codelineno-54-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">mag</span>
-</span><span id="__span-54-3"><a id="__codelineno-54-3" name="__codelineno-54-3" href="#__codelineno-54-3"></a><span class="p">)</span><span class="w"> </span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-51-1"><a id="__codelineno-51-1" name="__codelineno-51-1" href="#__codelineno-51-1"></a><span class="k">constexpr</span><span class="w"> </span><span class="n">mp_units</span><span class="o">::</span><span class="n">quantity</span><span class="o">&lt;</span><span class="w"> </span><span class="n">mp_units</span><span class="o">::</span><span class="n">mag</span><span class="o">&lt;</span><span class="w"> </span><span class="n">mp_units</span><span class="o">::</span><span class="n">pi</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">*</span><span class="n">detail</span><span class="o">::</span><span class="n">angle_unit</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">n_pi</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-51-2"><a id="__codelineno-51-2" name="__codelineno-51-2" href="#__codelineno-51-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">mag</span>
+</span><span id="__span-51-3"><a id="__codelineno-51-3" name="__codelineno-51-3" href="#__codelineno-51-3"></a><span class="p">)</span><span class="w"> </span>
 </span></code></pre></div>
 <hr>
 
 <h3 id="function-n_pi_mag">function n_pi_mag<a class="headerlink" href="#function-n_pi_mag" title="Permanent link">&para;</a></h3>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-55-1"><a id="__codelineno-55-1" name="__codelineno-55-1" href="#__codelineno-55-1"></a><span class="k">constexpr</span><span class="w"> </span><span class="n">mp_units</span><span class="o">::</span><span class="n">quantity</span><span class="o">&lt;</span><span class="w"> </span><span class="n">detail</span><span class="o">::</span><span class="n">unitless</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">n_pi_mag</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-55-2"><a id="__codelineno-55-2" name="__codelineno-55-2" href="#__codelineno-55-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">mag</span>
-</span><span id="__span-55-3"><a id="__codelineno-55-3" name="__codelineno-55-3" href="#__codelineno-55-3"></a><span class="p">)</span><span class="w"> </span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-52-1"><a id="__codelineno-52-1" name="__codelineno-52-1" href="#__codelineno-52-1"></a><span class="k">constexpr</span><span class="w"> </span><span class="n">mp_units</span><span class="o">::</span><span class="n">quantity</span><span class="o">&lt;</span><span class="w"> </span><span class="n">detail</span><span class="o">::</span><span class="n">unitless</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">n_pi_mag</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-52-2"><a id="__codelineno-52-2" name="__codelineno-52-2" href="#__codelineno-52-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">mag</span>
+</span><span id="__span-52-3"><a id="__codelineno-52-3" name="__codelineno-52-3" href="#__codelineno-52-3"></a><span class="p">)</span><span class="w"> </span>
 </span></code></pre></div>
 <hr>
 

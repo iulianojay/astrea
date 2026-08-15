@@ -18,7 +18,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/frames/definitions/body_centered_inertial_frames.hpp" line="114" column="6"/>
+        <location file="astrea/astro/astro/frames/definitions/body_centered_inertial_frames.hpp" line="115" column="6"/>
       </memberdef>
       <memberdef kind="variable" id="body__centered__inertial__frames_8hpp_1a04ad2adae626754add4223c38273c3ac" prot="public" static="no" mutable="no">
         <type><ref refid="structastrea_1_1astro_1_1frames_1_1europa_1_1j2000" kindref="compound">astrea::astro::frames::europa::j2000</ref></type>
@@ -32,7 +32,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/frames/definitions/body_centered_inertial_frames.hpp" line="116" column="7"/>
+        <location file="astrea/astro/astro/frames/definitions/body_centered_inertial_frames.hpp" line="117" column="7"/>
       </memberdef>
       <memberdef kind="variable" id="body__fixed__frames_8hpp_1ad1e6bca852c64628ce051d6134310815" prot="public" static="no" mutable="no">
         <type><ref refid="structastrea_1_1astro_1_1frames_1_1europa_1_1europa__fixed" kindref="compound">astrea::astro::frames::europa::europa_fixed</ref></type>
@@ -46,13 +46,13 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/frames/definitions/body_fixed_frames.hpp" line="85" column="14"/>
+        <location file="astrea/astro/astro/frames/definitions/body_fixed_frames.hpp" line="95" column="14"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="astrea/astro/astro/frames/definitions/body_centered_inertial_frames.hpp" line="112" column="1"/>
+    <location file="astrea/astro/astro/frames/definitions/body_centered_inertial_frames.hpp" line="113" column="1"/>
   </compounddef>
 </doxygen>

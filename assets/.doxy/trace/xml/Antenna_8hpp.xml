@@ -4,7 +4,7 @@
     <compoundname>Antenna.hpp</compoundname>
     <includes local="no">vector</includes>
     <includes local="no">astro/astro.fwd.hpp</includes>
-    <includes local="no">astro/frames/definitions/dynamic_frames.hpp</includes>
+    <includes local="no">astro/frames/definitions/dynamic_frames/tags.hpp</includes>
     <includes local="no">astro/types/typedefs.hpp</includes>
     <includes local="no">math/trig.hpp</includes>
     <includes local="no">units/units.hpp</includes>
@@ -161,7 +161,7 @@
         <label>astro/frames.hpp</label>
       </node>
       <node id="4">
-        <label>astro/frames/definitions/dynamic_frames.hpp</label>
+        <label>astro/frames/definitions/dynamic_frames/tags.hpp</label>
       </node>
       <node id="10">
         <label>astro/platforms/Payload.hpp</label>
@@ -230,7 +230,7 @@
 </simplesect>
 <simplesect kind="date"><para>2025-08-03</para>
 </simplesect>
-<simplesect kind="copyright"><para>Copyright (c) 2025 Jay Iuliano</para>
+<simplesect kind="copyright"><para>Copyright (c) 2025-2026 Jay Iuliano</para>
 </simplesect>
 The GNU Lesser General Public License (LGPL)</para>
 <para>This file is part of Astrea. Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. Astrea is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details. You should have received a copy of the GNU General Public License along with Astrea. If not, see <ulink url="https://www.gnu.org/licenses/">https://www.gnu.org/licenses/</ulink>. </para>
@@ -242,7 +242,7 @@ The GNU Lesser General Public License (LGPL)</para>
 <codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;vector&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="22"><highlight class="normal"></highlight></codeline>
 <codeline lineno="23"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;astro/astro.fwd.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;astro/frames/definitions/dynamic_frames.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;astro/frames/definitions/dynamic_frames/tags.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;astro/types/typedefs.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="26"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;math/trig.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="27"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;units/units.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>

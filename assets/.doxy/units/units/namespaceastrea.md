@@ -28,15 +28,9 @@
 | Type | Name |
 | ---: | :--- |
 | namespace | [**detail**](namespaceastrea_1_1detail.md) <br> |
+| namespace | [**units**](namespaceastrea_1_1units.md) <br> |
 
 
-## Classes
-
-| Type | Name |
-| ---: | :--- |
-| struct | [**EarthRadii**](structastrea_1_1EarthRadii.md) <br>_Definition for Earth Radii as 6378 km._  |
-| struct | [**JulianCentury**](structastrea_1_1JulianCentury.md) <br>_Definition for a Julian Century as 36525 days._  |
-| struct | [**SolarFluxUnits**](structastrea_1_1SolarFluxUnits.md) <br>_Definition for Solar Flux Units as 1e-22 W / (m^2 \* Hz)._  |
 
 
 ## Public Types
@@ -48,9 +42,9 @@
 | typedef mp\_units::quantity&lt; detail::angle\_unit &gt; | [**Angle**](#typedef-angle)  <br>_Definition for an angle quantity._  |
 | typedef mp\_units::quantity&lt; detail::angle\_unit/mp\_units::pow&lt; 2 &gt;(detail::time\_unit)&gt; | [**AngularAcceleration**](#typedef-angularacceleration)  <br>_Definition for an angular acceleration quantity._  |
 | typedef mp\_units::quantity&lt; detail::angle\_unit/detail::time\_unit &gt; | [**AngularVelocity**](#typedef-angularvelocity)  <br>_Definition for an angular rate quantity._  |
-| typedef mp\_units::quantity&lt; mp\_units::one/[**EarthRadii**](structastrea_1_1EarthRadii.md) &gt; | [**BallisticCoefficient**](#typedef-ballisticcoefficient)  <br>_Definition for a ballistic coefficient quantity._  |
-| typedef mp\_units::quantity&lt; detail::angle\_unit/[**JulianCentury**](structastrea_1_1JulianCentury.md) &gt; | [**BodyAngularVelocity**](#typedef-bodyangularvelocity)  <br>_Definition for a body-related angular rate._  |
-| typedef mp\_units::quantity&lt; detail::unitless/[**JulianCentury**](structastrea_1_1JulianCentury.md) &gt; | [**BodyUnitlessPerTime**](#typedef-bodyunitlesspertime)  <br>_Definition for a body-related unitless per time._  |
+| typedef mp\_units::quantity&lt; mp\_units::one/astrea::units::unit\_symbols::re &gt; | [**BallisticCoefficient**](#typedef-ballisticcoefficient)  <br>_Definition for a ballistic coefficient quantity._  |
+| typedef mp\_units::quantity&lt; detail::angle\_unit/astrea::units::unit\_symbols::jc &gt; | [**BodyAngularVelocity**](#typedef-bodyangularvelocity)  <br>_Definition for a body-related angular rate._  |
+| typedef mp\_units::quantity&lt; detail::unitless/astrea::units::unit\_symbols::jc &gt; | [**BodyUnitlessPerTime**](#typedef-bodyunitlesspertime)  <br>_Definition for a body-related unitless per time._  |
 | typedef mp\_units::quantity&lt; detail::unitless &gt; | [**CNR**](#typedef-cnr)  <br>_Definition for a carrier-to-noise ratio quantity._  |
 | typedef mp\_units::quantity&lt; mp\_units::one/mp\_units::pow&lt; 2 &gt;(detail::time\_unit)&gt; | [**Chirp**](#typedef-chirp)  <br>_Definition for a chirp quantity, representing the rate of change of frequency._  |
 | typedef mp\_units::quantity&lt; detail::mass\_unit/(mp\_units::pow&lt; 3 &gt;(detail::distance\_unit))&gt; | [**Density**](#typedef-density)  <br>_Definition for a density quantity._  |
@@ -60,7 +54,7 @@
 | typedef mp\_units::quantity&lt; detail::unitless &gt; | [**Gain**](#typedef-gain)  <br>_Definition for a gain quantity._  |
 | typedef mp\_units::quantity&lt; mp\_units::pow&lt; 3 &gt;(detail::distance\_unit)/mp\_units::pow&lt; 2 &gt;(detail::time\_unit)&gt; | [**GravParam**](#typedef-gravparam)  <br>_Definition for a gravitational parameter quantity._  |
 | typedef mp\_units::quantity&lt; mp\_units::iau::unit\_symbols::au &gt; | [**InterplanetaryDistance**](#typedef-interplanetarydistance)  <br>_Definition for a interplanetary distance quantity._  |
-| typedef mp\_units::quantity&lt; mp\_units::iau::unit\_symbols::au/[**JulianCentury**](structastrea_1_1JulianCentury.md) &gt; | [**InterplanetaryVelocity**](#typedef-interplanetaryvelocity)  <br>_Definition for a body-related velocity._  |
+| typedef mp\_units::quantity&lt; mp\_units::iau::unit\_symbols::au/astrea::units::unit\_symbols::jc &gt; | [**InterplanetaryVelocity**](#typedef-interplanetaryvelocity)  <br>_Definition for a body-related velocity._  |
 | typedef mp\_units::quantity&lt; detail::distance\_unit &gt; | [**Length**](#typedef-length)  <br>_Definition for a length quantity._  |
 | typedef mp\_units::quantity&lt; detail::mass\_unit &gt; | [**Mass**](#typedef-mass)  <br>_Definition for a mass quantity._  |
 | typedef mp\_units::quantity&lt; mp\_units::one/mp\_units::non\_si::day &gt; | [**MeanMotion**](#typedef-meanmotion)  <br>_Definition for a mean motion quantity._  |
@@ -72,7 +66,7 @@
 | typedef mp\_units::quantity&lt; detail::power\_unit/mp\_units::pow&lt; 2 &gt;(detail::distance\_unit)&gt; | [**PowerFluxDensity**](#typedef-powerfluxdensity)  <br>_Definition for a power flux density quantity._  |
 | typedef mp\_units::quantity&lt; detail::pressure\_unit &gt; | [**Pressure**](#typedef-pressure)  <br>_Definition for a pressure quantity._  |
 | typedef mp\_units::quantity&lt; detail::unitless &gt; | [**SNR**](#typedef-snr)  <br>_Definition for a signal-to-noise ratio quantity._  |
-| typedef mp\_units::quantity&lt; [**SolarFluxUnits**](structastrea_1_1SolarFluxUnits.md) &gt; | [**SolarFlux**](#typedef-solarflux)  <br>_Definition for a solar flux quantity._  |
+| typedef mp\_units::quantity&lt; astrea::units::unit\_symbols::sfu &gt; | [**SolarFlux**](#typedef-solarflux)  <br>_Definition for a solar flux quantity._  |
 | typedef mp\_units::quantity&lt; detail::distance\_unit \*detail::distance\_unit/detail::time\_unit &gt; | [**SpecificAngularMomentum**](#typedef-specificangularmomentum)  <br>_Definition for a specific angular momentum quantity._  |
 | typedef mp\_units::quantity&lt; mp\_units::pow&lt; 2 &gt;(detail::distance\_unit)&gt; | [**SurfaceArea**](#typedef-surfacearea)  <br>_Definition for a surface area quantity._  |
 | typedef mp\_units::quantity\_point&lt; detail::temperature\_unit &gt; | [**Temperature**](#typedef-temperature)  <br>_Definition for a temperature quantity._  |
@@ -98,10 +92,7 @@
 
 | Type | Name |
 | ---: | :--- |
-|  [**astrea::EarthRadii**](structastrea_1_1EarthRadii.md) | [**EarthRadii**](#variable-earthradii)  <br> |
-|  [**astrea::JulianCentury**](structastrea_1_1JulianCentury.md) | [**JulianCentury**](#variable-juliancentury)  <br> |
 |  constexpr [**Angle**](namespaceastrea.md#typedef-angle) | [**PI**](#variable-pi)   = `1.0 \* (mp\_units::mag&lt;mp\_units::pi&gt; \* detail::angle\_unit)`<br> |
-|  [**astrea::SolarFluxUnits**](structastrea_1_1SolarFluxUnits.md) | [**SolarFluxUnits**](#variable-solarfluxunits)  <br> |
 |  constexpr [**Angle**](namespaceastrea.md#typedef-angle) | [**TWO\_PI**](#variable-two_pi)   = `2.0 \* (mp\_units::mag&lt;mp\_units::pi&gt; \* detail::angle\_unit)`<br> |
 |  constexpr auto | [**boltzmann\_constant**](#variable-boltzmann_constant)   = `1.0 \* mp\_units::si::si2019::boltzmann\_constant`<br> |
 |  constexpr [**Velocity**](namespaceastrea.md#typedef-velocity) | [**speed\_of\_light\_in\_vacuum**](#variable-speed_of_light_in_vacuum)   = `1.0 \* mp\_units::si::si2019::speed\_of\_light\_in\_vacuum`<br> |
@@ -234,7 +225,7 @@ using astrea::AngularVelocity = typedef mp_units::quantity<detail::angle_unit / 
 
 _Definition for a ballistic coefficient quantity._ 
 ```C++
-using astrea::BallisticCoefficient = typedef mp_units::quantity<mp_units::one / EarthRadii>;
+using astrea::BallisticCoefficient = typedef mp_units::quantity<mp_units::one / astrea::units::unit_symbols::re>;
 ```
 
 
@@ -248,7 +239,7 @@ using astrea::BallisticCoefficient = typedef mp_units::quantity<mp_units::one / 
 
 _Definition for a body-related angular rate._ 
 ```C++
-using astrea::BodyAngularVelocity = typedef mp_units::quantity<detail::angle_unit / JulianCentury>;
+using astrea::BodyAngularVelocity = typedef mp_units::quantity<detail::angle_unit / astrea::units::unit_symbols::jc>;
 ```
 
 
@@ -262,7 +253,7 @@ using astrea::BodyAngularVelocity = typedef mp_units::quantity<detail::angle_uni
 
 _Definition for a body-related unitless per time._ 
 ```C++
-using astrea::BodyUnitlessPerTime = typedef mp_units::quantity<detail::unitless / JulianCentury>;
+using astrea::BodyUnitlessPerTime = typedef mp_units::quantity<detail::unitless / astrea::units::unit_symbols::jc>;
 ```
 
 
@@ -402,7 +393,7 @@ using astrea::InterplanetaryDistance = typedef mp_units::quantity<mp_units::iau:
 
 _Definition for a body-related velocity._ 
 ```C++
-using astrea::InterplanetaryVelocity = typedef mp_units::quantity<mp_units::iau::unit_symbols::au / JulianCentury>;
+using astrea::InterplanetaryVelocity = typedef mp_units::quantity<mp_units::iau::unit_symbols::au / astrea::units::unit_symbols::jc>;
 ```
 
 
@@ -570,7 +561,7 @@ using astrea::SNR = typedef mp_units::quantity<detail::unitless>;
 
 _Definition for a solar flux quantity._ 
 ```C++
-using astrea::SolarFlux = typedef mp_units::quantity<SolarFluxUnits>;
+using astrea::SolarFlux = typedef mp_units::quantity<astrea::units::unit_symbols::sfu>;
 ```
 
 
@@ -810,49 +801,10 @@ using astrea::years = typedef std::chrono::duration<double, std::ratio<31556952>
 
 
 
-### variable EarthRadii 
-
-```C++
-astrea::EarthRadii astrea::EarthRadii;
-```
-
-
-
-
-<hr>
-
-
-
-### variable JulianCentury 
-
-```C++
-astrea::JulianCentury astrea::JulianCentury;
-```
-
-
-
-
-<hr>
-
-
-
 ### variable PI 
 
 ```C++
 constexpr Angle astrea::PI;
-```
-
-
-
-
-<hr>
-
-
-
-### variable SolarFluxUnits 
-
-```C++
-astrea::SolarFluxUnits astrea::SolarFluxUnits;
 ```
 
 

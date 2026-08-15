@@ -19,11 +19,28 @@ namespace astro {
 
 inline bool planes_are_nearly_equal(const OrbitalElements& elem1, const OrbitalElements& elem2, const Unitless& relTol)
 {
-    const auto blob1 = elem1.force_to_vector();
-    const auto blob2 = elem2.force_to_vector();
-    return math::nearly_equal(blob1[0], blob2[0], relTol) && math::nearly_equal(blob1[1], blob2[1], relTol) &&
-           math::nearly_equal(blob1[2], blob2[2], relTol) && math::nearly_equal(blob1[3], blob2[3], relTol) &&
-           math::nearly_equal(blob1[4], blob2[4], relTol);
+    static constexpr auto mu = get_mu<frames::primary.origin>();
+    const auto kepl1         = elem1.in_element_set<Keplerian<frames::primary>>(mu);
+    const auto kepl2         = elem2.in_element_set<Keplerian<frames::primary>>(mu);
+
+    const auto& a1 = kepl1.get_semimajor();
+    const auto& a2 = kepl2.get_semimajor();
+
+    const auto& ecc1 = kepl1.get_eccentricity();
+    const auto& ecc2 = kepl2.get_eccentricity();
+
+    const auto& inc1 = kepl1.get_inclination();
+    const auto& inc2 = kepl2.get_inclination();
+
+    const auto& raan1 = kepl1.get_right_ascension();
+    const auto& raan2 = kepl2.get_right_ascension();
+
+    const auto& w1 = kepl1.get_argument_of_perigee();
+    const auto& w2 = kepl2.get_argument_of_perigee();
+
+    return math::nearly_equal(a1, a2, relTol) && math::nearly_equal(ecc1, ecc2, relTol) &&
+           math::nearly_equal(inc1, inc2, relTol) && math::nearly_equal(raan1, raan2, relTol) &&
+           math::nearly_equal(w1, w2, relTol);
 }
 
 template <class Spacecraft_T>

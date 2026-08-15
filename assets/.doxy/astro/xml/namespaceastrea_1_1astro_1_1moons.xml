@@ -28,7 +28,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/systems/celestial_bodies/Earth/Moon.hpp" line="43" column="6"/>
+        <location file="astrea/astro/astro/systems/celestial_bodies/Earth/Moon.hpp" line="44" column="6"/>
       </memberdef>
       <memberdef kind="variable" id="Callisto_8hpp_1ae7df1679fdea85a6b8b094c66467ca5a" prot="public" static="no" mutable="no">
         <type><ref refid="structastrea_1_1astro_1_1moons_1_1Callisto" kindref="compound">astrea::astro::moons::Callisto</ref></type>
@@ -126,7 +126,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/systems/celestial_bodies/Neptune/Triton.hpp" line="43" column="8"/>
+        <location file="astrea/astro/astro/systems/celestial_bodies/Neptune/Triton.hpp" line="42" column="8"/>
       </memberdef>
       <memberdef kind="variable" id="Iapetus_8hpp_1ae1f8023a68b32b3c3cd3e8e00c7a09be" prot="public" static="no" mutable="no">
         <type><ref refid="structastrea_1_1astro_1_1moons_1_1Iapetus" kindref="compound">astrea::astro::moons::Iapetus</ref></type>

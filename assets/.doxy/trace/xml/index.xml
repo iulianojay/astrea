@@ -162,7 +162,7 @@
   <compound refid="classastrea_1_1trace_1_1CircularFieldOfView" kind="class"><name>astrea::trace::CircularFieldOfView</name>
     <member refid="classastrea_1_1trace_1_1CircularFieldOfView_1ae4ba3fd97987e5963a9c1c45537559e3" kind="variable"><name>_halfConeAngle</name></member>
     <member refid="classastrea_1_1trace_1_1CircularFieldOfView_1a495b89cecec1748f24e8e6a20274a2b4" kind="variable"><name>_cosHalfConeAngle</name></member>
-    <member refid="classastrea_1_1trace_1_1CircularFieldOfView_1a8c942bd929e950fe2d7cfcba6d01fb14" kind="function"><name>CircularFieldOfView</name></member>
+    <member refid="classastrea_1_1trace_1_1CircularFieldOfView_1a083b01e6c0133797b7d1cea923cbbc24" kind="function"><name>CircularFieldOfView</name></member>
     <member refid="classastrea_1_1trace_1_1CircularFieldOfView_1af5553e9b512fcf92a1a8c27ce761bc59" kind="function"><name>~CircularFieldOfView</name></member>
     <member refid="classastrea_1_1trace_1_1CircularFieldOfView_1a6653ae918da14811e07ab37e4fd99cc6" kind="function"><name>contains</name></member>
     <member refid="classastrea_1_1trace_1_1CircularFieldOfView_1a29ff07554d053330704102a5b50ba291" kind="function"><name>max_half_angle</name></member>
@@ -240,7 +240,7 @@
     <member refid="classastrea_1_1trace_1_1Grid_1a6de392ddd70ff7c54aa5e21117629629" kind="variable"><name>_gridType</name></member>
     <member refid="classastrea_1_1trace_1_1Grid_1aff380ed3514ec9e771b49d5d45b6bdd8" kind="function"><name>Grid</name></member>
     <member refid="classastrea_1_1trace_1_1Grid_1a6b7d7882a6a844fc69cdba172c1a6cf7" kind="function"><name>Grid</name></member>
-    <member refid="classastrea_1_1trace_1_1Grid_1a1dd954787e336643d596da01101486b5" kind="function"><name>Grid</name></member>
+    <member refid="classastrea_1_1trace_1_1Grid_1adfb30d1a3bb69974823762f33b011e6e" kind="function"><name>Grid</name></member>
     <member refid="classastrea_1_1trace_1_1Grid_1a78f005879911c679594aec33f0e633e0" kind="function"><name>~Grid</name></member>
     <member refid="classastrea_1_1trace_1_1Grid_1aa7c30c713ee89466365308c27419300c" kind="function"><name>get_grid_type</name></member>
     <member refid="classastrea_1_1trace_1_1Grid_1a1588d27b21c5a998d78498cf2e650592" kind="function"><name>size</name></member>
@@ -301,7 +301,7 @@
     <member refid="classastrea_1_1trace_1_1GroundPoint_1ae42d6c51eb5f9e4ff4b83c53ce1b5334" kind="variable"><name>body</name></member>
     <member refid="classastrea_1_1trace_1_1GroundPoint_1a5b5895b7982723bb126921bd8aa93971" kind="variable"><name>_lla</name></member>
     <member refid="classastrea_1_1trace_1_1GroundPoint_1a1cdb03820a0a6a1bcf796f2e071b9309" kind="variable"><name>_id</name></member>
-    <member refid="classastrea_1_1trace_1_1GroundPoint_1af1ad0aabe7d3052c9aa763b71a44bae7" kind="function"><name>GroundPoint</name></member>
+    <member refid="classastrea_1_1trace_1_1GroundPoint_1a88a6cd34026bf2c4dbf71b0d3b9bb47f" kind="function"><name>GroundPoint</name></member>
     <member refid="classastrea_1_1trace_1_1GroundPoint_1a733b8970957a03d8fc88112559fe24e5" kind="function"><name>~GroundPoint</name></member>
     <member refid="classastrea_1_1trace_1_1GroundPoint_1ace6b8af2a097d94a4a01dfa9ed59c52a" kind="function"><name>operator==</name></member>
     <member refid="classastrea_1_1trace_1_1GroundPoint_1a8167e2cd9ab9ffe3519a6b5967003991" kind="function"><name>get_lla</name></member>
@@ -392,7 +392,7 @@
     <member refid="classastrea_1_1trace_1_1PolygonalFieldOfView_1a390fa94deace1fde2ebd94b1f9b84f5f" kind="variable"><name>_points</name></member>
     <member refid="classastrea_1_1trace_1_1PolygonalFieldOfView_1a8909f8e42b015203296905b475a98479" kind="variable"><name>_minHalfAngle</name></member>
     <member refid="classastrea_1_1trace_1_1PolygonalFieldOfView_1ab630f4158139f02aa84bf2255afa99da" kind="variable"><name>_maxHalfAngle</name></member>
-    <member refid="classastrea_1_1trace_1_1PolygonalFieldOfView_1a57bc47f99079c7e580f1ae66b1b63308" kind="function"><name>PolygonalFieldOfView</name></member>
+    <member refid="classastrea_1_1trace_1_1PolygonalFieldOfView_1abe155797fd84f564812b6e0dd8cb2eb5" kind="function"><name>PolygonalFieldOfView</name></member>
     <member refid="classastrea_1_1trace_1_1PolygonalFieldOfView_1a398ce6e768a32ffd8c4e497ec2aa1345" kind="function"><name>PolygonalFieldOfView</name></member>
     <member refid="classastrea_1_1trace_1_1PolygonalFieldOfView_1aed8b1a5d877e7fa808f2fc131fde4e7f" kind="function"><name>PolygonalFieldOfView</name></member>
     <member refid="classastrea_1_1trace_1_1PolygonalFieldOfView_1ae1ad07b56ac0f6c8918df5677eeb3180" kind="function"><name>~PolygonalFieldOfView</name></member>
@@ -523,7 +523,7 @@
     <member refid="classastrea_1_1trace_1_1SpatialIndex_1af38215452e02f94b50cb35c39ff61745" kind="variable"><name>_nLatBins</name></member>
     <member refid="classastrea_1_1trace_1_1SpatialIndex_1a3ec01f9b2a9a6a628e72993c67de6787" kind="variable"><name>_nLonBins</name></member>
     <member refid="classastrea_1_1trace_1_1SpatialIndex_1ad785294f5324a7ef7551d7686c6a205f" kind="variable"><name>_bins</name></member>
-    <member refid="classastrea_1_1trace_1_1SpatialIndex_1ac72aec45982c8518811bbd407f47bca9" kind="function"><name>SpatialIndex</name></member>
+    <member refid="classastrea_1_1trace_1_1SpatialIndex_1aae631fecdba886f07b359e602d208f0f" kind="function"><name>SpatialIndex</name></member>
     <member refid="classastrea_1_1trace_1_1SpatialIndex_1a5f31e8859e370796d3a99e2d24f49c05" kind="function"><name>SpatialIndex</name></member>
     <member refid="classastrea_1_1trace_1_1SpatialIndex_1a555bbe79be77a9e687ef302284507ac4" kind="function"><name>add_ground_point</name></member>
     <member refid="classastrea_1_1trace_1_1SpatialIndex_1a81f9dc5b3184191688ffd1f58df618c7" kind="function"><name>get_nearby_ground_points</name></member>
@@ -645,7 +645,7 @@
   </compound>
   <compound refid="namespacemp__units" kind="namespace"><name>mp_units</name>
   </compound>
-  <compound refid="namespacemp__units_1_1angular" kind="namespace"><name>mp_units::angular</name>
+  <compound refid="namespacemp__units_1_1si" kind="namespace"><name>mp_units::si</name>
   </compound>
   <compound refid="namespacestd" kind="namespace"><name>std</name>
   </compound>

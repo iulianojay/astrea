@@ -13,8 +13,6 @@
 * `#include <trace/platforms/sensors/Antenna.hpp>`
 * `#include <stdexcept>`
 * `#include <mp-units/math.h>`
-* `#include <mp-units/systems/angular.h>`
-* `#include <mp-units/systems/isq_angle.h>`
 * `#include <mp-units/systems/si.h>`
 * `#include <astro/frames/definitions.hpp>`
 * `#include <astro/frames/framework/CartesianVector.hpp>`

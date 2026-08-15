@@ -12,7 +12,7 @@ _Class representing angular sequence velocities for attitude transformations bet
 
 * `#include <units/units.hpp>`
 * `#include <astro/astro.fwd.hpp>`
-* `#include <astro/frames/definitions/dynamic_frames.hpp>`
+* `#include <astro/frames/definitions/dynamic_frames/tags.hpp>`
 * `#include <astro/frames/framework/CartesianVector.hpp>`
 * `#include <astro/frames/framework/DirectionCosineMatrix.hpp>`
 * `#include <astro/frames/framework/frame_concepts.hpp>`
@@ -118,7 +118,7 @@ Jay Iuliano ([iuliano.jay@gmail.com](mailto:iuliano.jay@gmail.com))
 
 **Copyright:**
 
-Copyright (c) 2026 Jay Iuliano
+Copyright (c) 2025-2026 Jay Iuliano
 
 
 The GNU Lesser General Public License (LGPL)

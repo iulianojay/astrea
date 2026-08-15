@@ -16,10 +16,10 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" line="291" column="19" bodyfile="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" bodystart="291" bodyend="-1"/>
+        <location file="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" line="290" column="19" bodyfile="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" bodystart="290" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structastrea_1_1astro_1_1planets_1_1SpeciesModelParams_1af9f3195c7d6b7c14d98a9ca85cde8ce1" prot="public" static="no" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Unitless</ref></type>
+        <type>Unitless</type>
         <definition>Unitless astrea::astro::planets::SpeciesModelParams::mix_ratio</definition>
         <argsstring></argsstring>
         <name>mix_ratio</name>
@@ -31,10 +31,10 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" line="292" column="14" bodyfile="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" bodystart="292" bodyend="-1"/>
+        <location file="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" line="291" column="14" bodyfile="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" bodystart="291" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structastrea_1_1astro_1_1planets_1_1SpeciesModelParams_1a4ecb7c9c4b354e52237037493c608f8a" prot="public" static="no" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Distance</ref></type>
+        <type>Distance</type>
         <definition>Distance astrea::astro::planets::SpeciesModelParams::zh</definition>
         <argsstring></argsstring>
         <name>zh</name>
@@ -46,10 +46,10 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" line="293" column="14" bodyfile="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" bodystart="293" bodyend="-1"/>
+        <location file="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" line="292" column="14" bodyfile="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" bodystart="292" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structastrea_1_1astro_1_1planets_1_1SpeciesModelParams_1a43405cebc16af82b5e56ac571d634abf" prot="public" static="no" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Unitless</ref></type>
+        <type>Unitless</type>
         <definition>Unitless astrea::astro::planets::SpeciesModelParams::c3</definition>
         <argsstring></argsstring>
         <name>c3</name>
@@ -61,10 +61,10 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" line="294" column="14" bodyfile="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" bodystart="294" bodyend="-1"/>
+        <location file="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" line="293" column="14" bodyfile="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" bodystart="293" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structastrea_1_1astro_1_1planets_1_1SpeciesModelParams_1aaf22dfb17e550e27225c548eb01685e0" prot="public" static="no" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Distance</ref></type>
+        <type>Distance</type>
         <definition>Distance astrea::astro::planets::SpeciesModelParams::za</definition>
         <argsstring></argsstring>
         <name>za</name>
@@ -76,10 +76,10 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" line="295" column="14" bodyfile="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" bodystart="295" bodyend="-1"/>
+        <location file="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" line="294" column="14" bodyfile="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" bodystart="294" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structastrea_1_1astro_1_1planets_1_1SpeciesModelParams_1acae6ea30c38039eb4c6d51db327e3107" prot="public" static="no" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Distance</ref></type>
+        <type>Distance</type>
         <definition>Distance astrea::astro::planets::SpeciesModelParams::ha</definition>
         <argsstring></argsstring>
         <name>ha</name>
@@ -91,10 +91,10 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" line="296" column="14" bodyfile="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" bodystart="296" bodyend="-1"/>
+        <location file="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" line="295" column="14" bodyfile="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" bodystart="295" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structastrea_1_1astro_1_1planets_1_1SpeciesModelParams_1a907c3a0ca0631c9785b4e79694f82b09" prot="public" static="no" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Distance</ref></type>
+        <type>Distance</type>
         <definition>Distance astrea::astro::planets::SpeciesModelParams::zb</definition>
         <argsstring></argsstring>
         <name>zb</name>
@@ -106,10 +106,10 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" line="297" column="14" bodyfile="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" bodystart="297" bodyend="-1"/>
+        <location file="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" line="296" column="14" bodyfile="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" bodystart="296" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structastrea_1_1astro_1_1planets_1_1SpeciesModelParams_1a3a78728996bb0b140850afd99e2ceb7d" prot="public" static="no" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Distance</ref></type>
+        <type>Distance</type>
         <definition>Distance astrea::astro::planets::SpeciesModelParams::hb</definition>
         <argsstring></argsstring>
         <name>hb</name>
@@ -121,10 +121,10 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" line="298" column="14" bodyfile="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" bodystart="298" bodyend="-1"/>
+        <location file="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" line="297" column="14" bodyfile="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" bodystart="297" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structastrea_1_1astro_1_1planets_1_1SpeciesModelParams_1a2963f1ece1d69582fd82f557c738102e" prot="public" static="no" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Unitless</ref></type>
+        <type>Unitless</type>
         <definition>Unitless astrea::astro::planets::SpeciesModelParams::c9</definition>
         <argsstring></argsstring>
         <name>c9</name>
@@ -136,7 +136,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" line="299" column="14" bodyfile="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" bodystart="299" bodyend="-1"/>
+        <location file="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" line="298" column="14" bodyfile="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" bodystart="298" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
@@ -144,7 +144,7 @@
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" line="290" column="1" bodyfile="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" bodystart="290" bodyend="300"/>
+    <location file="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" line="289" column="1" bodyfile="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" bodystart="289" bodyend="299"/>
     <listofallmembers>
       <member refid="structastrea_1_1astro_1_1planets_1_1SpeciesModelParams_1a43405cebc16af82b5e56ac571d634abf" prot="public" virt="non-virtual"><scope>astrea::astro::planets::SpeciesModelParams</scope><name>c3</name></member>
       <member refid="structastrea_1_1astro_1_1planets_1_1SpeciesModelParams_1a2963f1ece1d69582fd82f557c738102e" prot="public" virt="non-virtual"><scope>astrea::astro::planets::SpeciesModelParams</scope><name>c9</name></member>

@@ -52,9 +52,9 @@ _A class representing a null vehicle in the astrea astro platform. This class is
 
 | Type | Name |
 | ---: | :--- |
-|   | [**NullVehicle**](#function-nullvehicle) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Mass**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & mass=1.0 \*mp\_units::si::unit\_symbols::kg) <br>_Constructs a_ [_**NullVehicle**_](classastrea_1_1astro_1_1NullVehicle.md) _with an initial state and mass._ |
+|   | [**NullVehicle**](#function-nullvehicle) (const Mass & mass=1.0 \*mp\_units::si::unit\_symbols::kg) <br>_Constructs a_ [_**NullVehicle**_](classastrea_1_1astro_1_1NullVehicle.md) _with an initial state and mass._ |
 |  [**NullVehicle**](classastrea_1_1astro_1_1NullVehicle.md) \* | [**clone**](#function-clone) () const<br>_Clone the_ [_**NullVehicle**_](classastrea_1_1astro_1_1NullVehicle.md) _object._ |
-|  [**Mass**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**get\_mass**](#function-get_mass) () const<br>_Gets the mass of the vehicle._  |
+|  Mass | [**get\_mass**](#function-get_mass) () const<br>_Gets the mass of the vehicle._  |
 |  std::string | [**get\_name**](#function-get_name) () const<br>_Gets the name of the vehicle._  |
 
 
@@ -94,7 +94,7 @@ _A class representing a null vehicle in the astrea astro platform. This class is
 _Constructs a_ [_**NullVehicle**_](classastrea_1_1astro_1_1NullVehicle.md) _with an initial state and mass._
 ```C++
 astrea::astro::NullVehicle::NullVehicle (
-    const  Mass & mass=1.0 *mp_units::si::unit_symbols::kg
+    const Mass & mass=1.0 *mp_units::si::unit_symbols::kg
 ) 
 ```
 

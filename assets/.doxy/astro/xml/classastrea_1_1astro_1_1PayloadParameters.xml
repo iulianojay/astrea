@@ -44,12 +44,12 @@
         <name>PayloadParameters</name>
         <qualifiedname>astrea::astro::PayloadParameters::PayloadParameters</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="typedefs_8hpp_1a7493d5fafd58941bc3440b866a25638d" kindref="member">astro::RadiusVector</ref>&lt; astro::frames::dynamic::ric &gt; &amp;</type>
+          <type>const <ref refid="typedefs_8hpp_1a7493d5fafd58941bc3440b866a25638d" kindref="member">astro::RadiusVector</ref>&lt; astro::frames::dynamic::ric &gt; &amp;</type>
           <declname>boresight</declname>
           <defval>NADIR_RIC</defval>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="typedefs_8hpp_1a7493d5fafd58941bc3440b866a25638d" kindref="member">astro::RadiusVector</ref>&lt; astro::frames::dynamic::ric &gt; &amp;</type>
+          <type>const <ref refid="typedefs_8hpp_1a7493d5fafd58941bc3440b866a25638d" kindref="member">astro::RadiusVector</ref>&lt; astro::frames::dynamic::ric &gt; &amp;</type>
           <declname>attachmentPoint</declname>
           <defval>CENTER</defval>
         </param>
@@ -98,7 +98,7 @@
     </sectiondef>
     <sectiondef kind="public-func">
       <memberdef kind="function" id="classastrea_1_1astro_1_1PayloadParameters_1ab1f56fb13171da62e0f641de204200ba" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="typedefs_8hpp_1a7493d5fafd58941bc3440b866a25638d" kindref="member">astro::RadiusVector</ref>&lt; astro::frames::dynamic::ric &gt; &amp;</type>
+        <type>const <ref refid="typedefs_8hpp_1a7493d5fafd58941bc3440b866a25638d" kindref="member">astro::RadiusVector</ref>&lt; astro::frames::dynamic::ric &gt; &amp;</type>
         <definition>const astro::RadiusVector&lt; astro::frames::dynamic::ric &gt; &amp; astrea::astro::PayloadParameters::get_boresight</definition>
         <argsstring>() const</argsstring>
         <name>get_boresight</name>
@@ -107,7 +107,7 @@
 <para>Get the boresight direction of the payload. </para>
         </briefdescription>
         <detaileddescription>
-<para><simplesect kind="return"><para><ref refid="typedefs_8hpp_1a7493d5fafd58941bc3440b866a25638d" kindref="member">astro::RadiusVector&lt;astro::frames::dynamic::ric&gt;</ref>Boresight direction of the payload. </para>
+<para><simplesect kind="return"><para>astro::RadiusVector&lt;astro::frames::dynamic::ric&gt;Boresight direction of the payload. </para>
 </simplesect>
 </para>
         </detaileddescription>
@@ -116,7 +116,7 @@
         <location file="astrea/astro/astro/platforms/Payload.hpp" line="76" column="31" bodyfile="astrea/astro/astro/platforms/Payload.hpp" bodystart="76" bodyend="76"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1PayloadParameters_1aa427ab5b3a5c8c0a00d0753fdf0303ed" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="typedefs_8hpp_1a7493d5fafd58941bc3440b866a25638d" kindref="member">astro::RadiusVector</ref>&lt; astro::frames::dynamic::ric &gt; &amp;</type>
+        <type>const <ref refid="typedefs_8hpp_1a7493d5fafd58941bc3440b866a25638d" kindref="member">astro::RadiusVector</ref>&lt; astro::frames::dynamic::ric &gt; &amp;</type>
         <definition>const astro::RadiusVector&lt; astro::frames::dynamic::ric &gt; &amp; astrea::astro::PayloadParameters::get_attachment_point</definition>
         <argsstring>() const</argsstring>
         <name>get_attachment_point</name>
@@ -125,7 +125,7 @@
 <para>Get the attachment point of the payload. </para>
         </briefdescription>
         <detaileddescription>
-<para><simplesect kind="return"><para><ref refid="typedefs_8hpp_1a7493d5fafd58941bc3440b866a25638d" kindref="member">astro::RadiusVector&lt;astro::frames::dynamic::ric&gt;</ref>Attachment point of the payload. </para>
+<para><simplesect kind="return"><para>astro::RadiusVector&lt;astro::frames::dynamic::ric&gt;Attachment point of the payload. </para>
 </simplesect>
 </para>
         </detaileddescription>
@@ -134,13 +134,13 @@
         <location file="astrea/astro/astro/platforms/Payload.hpp" line="83" column="31" bodyfile="astrea/astro/astro/platforms/Payload.hpp" bodystart="83" bodyend="83"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1PayloadParameters_1af7dbb7cf61c73e53934794bfd880dbc5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">void</ref></type>
+        <type>void</type>
         <definition>void astrea::astro::PayloadParameters::set_boresight</definition>
         <argsstring>(const astro::RadiusVector&lt; astro::frames::dynamic::ric &gt; &amp;boresight)</argsstring>
         <name>set_boresight</name>
         <qualifiedname>astrea::astro::PayloadParameters::set_boresight</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="typedefs_8hpp_1a7493d5fafd58941bc3440b866a25638d" kindref="member">astro::RadiusVector</ref>&lt; astro::frames::dynamic::ric &gt; &amp;</type>
+          <type>const <ref refid="typedefs_8hpp_1a7493d5fafd58941bc3440b866a25638d" kindref="member">astro::RadiusVector</ref>&lt; astro::frames::dynamic::ric &gt; &amp;</type>
           <declname>boresight</declname>
         </param>
         <briefdescription>
@@ -152,7 +152,7 @@
 <parametername>boresight</parametername>
 </parameternamelist>
 <parameterdescription>
-<para><ref refid="typedefs_8hpp_1a7493d5fafd58941bc3440b866a25638d" kindref="member">astro::RadiusVector&lt;astro::frames::dynamic::ric&gt;</ref>Boresight direction of the payload. </para>
+<para>astro::RadiusVector&lt;astro::frames::dynamic::ric&gt;Boresight direction of the payload. </para>
 </parameterdescription>
 </parameteritem>
 </parameterlist>
@@ -163,13 +163,13 @@
         <location file="astrea/astro/astro/platforms/Payload.hpp" line="90" column="10" bodyfile="astrea/astro/astro/platforms/Payload.hpp" bodystart="90" bodyend="90"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1PayloadParameters_1af3d2af7af17eef0cb4e036bd7f0609cf" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">void</ref></type>
+        <type>void</type>
         <definition>void astrea::astro::PayloadParameters::set_attachment_point</definition>
         <argsstring>(const astro::RadiusVector&lt; astro::frames::dynamic::ric &gt; &amp;attachmentPoint)</argsstring>
         <name>set_attachment_point</name>
         <qualifiedname>astrea::astro::PayloadParameters::set_attachment_point</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="typedefs_8hpp_1a7493d5fafd58941bc3440b866a25638d" kindref="member">astro::RadiusVector</ref>&lt; astro::frames::dynamic::ric &gt; &amp;</type>
+          <type>const <ref refid="typedefs_8hpp_1a7493d5fafd58941bc3440b866a25638d" kindref="member">astro::RadiusVector</ref>&lt; astro::frames::dynamic::ric &gt; &amp;</type>
           <declname>attachmentPoint</declname>
         </param>
         <briefdescription>
@@ -181,7 +181,7 @@
 <parametername>attachmentPoint</parametername>
 </parameternamelist>
 <parameterdescription>
-<para><ref refid="typedefs_8hpp_1a7493d5fafd58941bc3440b866a25638d" kindref="member">astro::RadiusVector&lt;astro::frames::dynamic::ric&gt;</ref>Attachment point of the payload. </para>
+<para>astro::RadiusVector&lt;astro::frames::dynamic::ric&gt;Attachment point of the payload. </para>
 </parameterdescription>
 </parameteritem>
 </parameterlist>

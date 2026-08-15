@@ -44,6 +44,7 @@ inline constexpr struct icrf final : Frame<"GCRF", planets::Earth, axes::icrf> {
 } icrf;
 inline constexpr struct j2000 final : Frame<"EME2000", planets::Earth, axes::j2000> {
 } j2000;
+inline constexpr auto eme2000 = j2000;
 } // namespace earth
 
 namespace moon {

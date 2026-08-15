@@ -6258,8 +6258,12 @@ You're not viewing the latest version.
 <td style="text-align: left;"><a href="#function-atmosphericforce"><strong>AtmosphericForce</strong></a> () = default<br><em>Default constructor for</em> <a href="./"><em><strong>AtmosphericForce</strong></em></a> <em>.</em></td>
 </tr>
 <tr>
+<td style="text-align: right;">virtual std::unique_ptr&lt; <a href="../classastrea_1_1astro_1_1PerturbingForce/"><strong>PerturbingForce</strong></a> &gt;</td>
+<td style="text-align: left;"><a href="#function-clone"><strong>clone</strong></a> () override const<br><em>Creates a clone of the current</em> <a href="./"><em><strong>AtmosphericForce</strong></em></a> <em>object.</em></td>
+</tr>
+<tr>
 <td style="text-align: right;">virtual <a href="../structastrea_1_1astro_1_1Perturbation/"><strong>Perturbation</strong></a></td>
-<td style="text-align: left;"><a href="#function-compute_perturbation"><strong>compute_perturbation</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1State/"><strong>State</strong></a> &amp; state, <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1Vehicle/"><strong>Vehicle</strong></a> &amp; vehicle) override const<br><em>Computes the atmospheric force on a vehicle.</em></td>
+<td style="text-align: left;"><a href="#function-compute_perturbation"><strong>compute_perturbation</strong></a> (const <a href="../classastrea_1_1astro_1_1State/"><strong>State</strong></a> &amp; state, const <a href="../classastrea_1_1astro_1_1Vehicle/"><strong>Vehicle</strong></a> &amp; vehicle) override const<br><em>Computes the atmospheric force on a vehicle.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;"></td>
@@ -6282,8 +6286,12 @@ You're not viewing the latest version.
 <td style="text-align: left;"><a href="../classastrea_1_1astro_1_1PerturbingForce/#function-perturbingforce"><strong>PerturbingForce</strong></a> () = default<br><em>Default constructor for</em> <a href="../classastrea_1_1astro_1_1PerturbingForce/"><em><strong>PerturbingForce</strong></em></a> <em>.</em></td>
 </tr>
 <tr>
+<td style="text-align: right;">virtual std::unique_ptr&lt; <a href="../classastrea_1_1astro_1_1PerturbingForce/"><strong>PerturbingForce</strong></a> &gt;</td>
+<td style="text-align: left;"><a href="../classastrea_1_1astro_1_1PerturbingForce/#function-clone"><strong>clone</strong></a> () const = 0<br><em>Creates a clone of the current</em> <a href="../classastrea_1_1astro_1_1PerturbingForce/"><em><strong>PerturbingForce</strong></em></a> <em>object.</em></td>
+</tr>
+<tr>
 <td style="text-align: right;">virtual <a href="../structastrea_1_1astro_1_1Perturbation/"><strong>Perturbation</strong></a></td>
-<td style="text-align: left;"><a href="../classastrea_1_1astro_1_1PerturbingForce/#function-compute_perturbation"><strong>compute_perturbation</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1State/"><strong>State</strong></a> &amp; state, <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1Vehicle/"><strong>Vehicle</strong></a> &amp; vehicle) const = 0<br><em>Computes the force acting on a vehicle at a given date and state.</em></td>
+<td style="text-align: left;"><a href="../classastrea_1_1astro_1_1PerturbingForce/#function-compute_perturbation"><strong>compute_perturbation</strong></a> (const <a href="../classastrea_1_1astro_1_1State/"><strong>State</strong></a> &amp; state, const <a href="../classastrea_1_1astro_1_1Vehicle/"><strong>Vehicle</strong></a> &amp; vehicle) const = 0<br><em>Computes the force acting on a vehicle at a given date and state.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">virtual</td>
@@ -6300,12 +6308,21 @@ You're not viewing the latest version.
 </span></code></pre></div></p>
 <hr>
 
+<h3 id="function-clone">function clone<a class="headerlink" href="#function-clone" title="Permanent link">&para;</a></h3>
+<p><em>Creates a clone of the current</em> <a href="./"><em><strong>AtmosphericForce</strong></em></a> <em>object.</em>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kr">inline</span><span class="w"> </span><span class="k">virtual</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="w"> </span><span class="n">PerturbingForce</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">AtmosphericForce</span><span class="o">::</span><span class="n">clone</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="k">const</span>
+</span></code></pre></div></p>
+<p><strong>Returns:</strong></p>
+<p>std::unique_ptr&lt;PerturbingForce&gt; A unique pointer to the cloned <a href="./"><strong>AtmosphericForce</strong></a> object. </p>
+<p>Implements <a href="../classastrea_1_1astro_1_1PerturbingForce/#function-clone"><em>astrea::astro::PerturbingForce::clone</em></a></p>
+<hr>
+
 <h3 id="function-compute_perturbation">function compute_perturbation<a class="headerlink" href="#function-compute_perturbation" title="Permanent link">&para;</a></h3>
 <p><em>Computes the atmospheric force on a vehicle.</em> 
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">virtual</span><span class="w"> </span><span class="n">Perturbation</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">AtmosphericForce</span><span class="o">::</span><span class="n">compute_perturbation</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">State</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">state</span><span class="p">,</span>
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Vehicle</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">vehicle</span>
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="k">const</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">virtual</span><span class="w"> </span><span class="n">Perturbation</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">AtmosphericForce</span><span class="o">::</span><span class="n">compute_perturbation</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">State</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">state</span><span class="p">,</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Vehicle</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">vehicle</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="k">const</span>
 </span></code></pre></div></p>
 <p><strong>Parameters:</strong></p>
 <ul>
@@ -6319,7 +6336,7 @@ You're not viewing the latest version.
 
 <h3 id="function-atmosphericforce_1">function ~AtmosphericForce<a class="headerlink" href="#function-atmosphericforce_1" title="Permanent link">&para;</a></h3>
 <p><em>Default destructor for</em> <a href="./"><em><strong>AtmosphericForce</strong></em></a> <em>.</em>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">AtmosphericForce</span><span class="o">::~</span><span class="n">AtmosphericForce</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">default</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">AtmosphericForce</span><span class="o">::~</span><span class="n">AtmosphericForce</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">default</span>
 </span></code></pre></div></p>
 <hr>
 

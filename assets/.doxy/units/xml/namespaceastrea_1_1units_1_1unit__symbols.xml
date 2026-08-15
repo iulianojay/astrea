@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="namespaceastrea_1_1units_1_1unit__symbols" kind="namespace" language="C++">
+    <compoundname>astrea::units::unit_symbols</compoundname>
+    <sectiondef kind="var">
+      <memberdef kind="variable" id="custom_8hpp_1aafa743bb8273185cc1d73263f8b1b850" prot="public" static="no" constexpr="yes" mutable="no">
+        <type>constexpr auto</type>
+        <definition>constexpr auto astrea::units::unit_symbols::jc</definition>
+        <argsstring></argsstring>
+        <name>jc</name>
+        <qualifiedname>astrea::units::unit_symbols::jc</qualifiedname>
+        <initializer>= <ref refid="structastrea_1_1units_1_1julian__century" kindref="compound">julian_century</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/units/units/custom.hpp" line="57" column="23" bodyfile="astrea/units/units/custom.hpp" bodystart="57" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="custom_8hpp_1a8bb1300cd578823748d6cee796f243b2" prot="public" static="no" constexpr="yes" mutable="no">
+        <type>constexpr auto</type>
+        <definition>constexpr auto astrea::units::unit_symbols::re</definition>
+        <argsstring></argsstring>
+        <name>re</name>
+        <qualifiedname>astrea::units::unit_symbols::re</qualifiedname>
+        <initializer>= <ref refid="structastrea_1_1units_1_1earth__radii" kindref="compound">earth_radii</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/units/units/custom.hpp" line="58" column="23" bodyfile="astrea/units/units/custom.hpp" bodystart="58" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="custom_8hpp_1a9a123207350069946b6baeaaf225acf8" prot="public" static="no" constexpr="yes" mutable="no">
+        <type>constexpr auto</type>
+        <definition>constexpr auto astrea::units::unit_symbols::sfu</definition>
+        <argsstring></argsstring>
+        <name>sfu</name>
+        <qualifiedname>astrea::units::unit_symbols::sfu</qualifiedname>
+        <initializer>= <ref refid="structastrea_1_1units_1_1solar__flux__units" kindref="compound">solar_flux_units</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/units/units/custom.hpp" line="59" column="23" bodyfile="astrea/units/units/custom.hpp" bodystart="59" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="custom_8hpp_1ac5e2a2853f4fb2a472fdb442d46aa804" prot="public" static="no" constexpr="yes" mutable="no">
+        <type>constexpr auto</type>
+        <definition>constexpr auto astrea::units::unit_symbols::rev</definition>
+        <argsstring></argsstring>
+        <name>rev</name>
+        <qualifiedname>astrea::units::unit_symbols::rev</qualifiedname>
+        <initializer>= <ref refid="structastrea_1_1units_1_1revolution" kindref="compound">revolution</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/units/units/custom.hpp" line="60" column="23" bodyfile="astrea/units/units/custom.hpp" bodystart="60" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="astrea/units/units/custom.hpp" line="55" column="1"/>
+  </compounddef>
+</doxygen>

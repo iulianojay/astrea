@@ -11,7 +11,7 @@
 /*
  * The GNU Lesser General Public License (LGPL)
  *
- * Copyright (c) 2025 Jay Iuliano
+ * Copyright (c) 2025-2026 Jay Iuliano
  *
  * This file is part of Astrea.
  * Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License
@@ -105,8 +105,9 @@ const Date Date::now() noexcept { return JulianDateClock::now(); }
 
 Angle julian_date_to_sidereal_time(const JulianDate& julianDate)
 {
-    using mp_units::angular::unit_symbols::deg;
+    using astrea::units::unit_symbols::jc;
     using mp_units::non_si::day;
+    using mp_units::si::unit_symbols::deg;
 
     const Time julianDay = julianDate.time_since_epoch().count() * day;
 
@@ -119,7 +120,7 @@ Angle julian_date_to_sidereal_time(const JulianDate& julianDate)
 
     // TODO: This difference can be done, somehow, with mp_units mechanisms
     const auto T0JulianCenturies = julianDay0 - J2000.time_since_epoch().count() * day;
-    const auto T0                = T0JulianCenturies / JulianCentury;
+    const auto T0                = T0JulianCenturies / jc;
 
     const Angle greenwichUniversalTime =
         (100.4606184 * one + 36000.77005361 * T0 + 0.00038793 * T0 * T0 - 2.583e-8 * T0 * T0 * T0) * deg;

@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="conceptastrea_1_1astro_1_1IsChildOf" kind="concept">
+    <compoundname>astrea::astro::IsChildOf</compoundname>
+    <includes refid="frame__concepts_8hpp" local="no">frame_concepts.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>typename T</type>
+      </param>
+      <param>
+        <type>typename U</type>
+      </param>
+    </templateparamlist>
+    <initializer>template&lt;typename T, typename U&gt;
+concept <ref refid="conceptastrea_1_1astro_1_1IsChildOf" kindref="compound">astrea::astro::IsChildOf</ref> =  IsDerivedFrame&lt;T&gt; &amp;&amp; equivalent(T::parent, U{})    </initializer>
+    <briefdescription>
+<para>Concept to determine if a frame is a derived directly from another. </para>
+    </briefdescription>
+    <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The frame type to check. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>U</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The frame type to check against. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>true if the frame is a child of the other frame, false otherwise. </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <location file="astrea/astro/astro/frames/framework/frame_concepts.hpp" line="199" column="1"/>
+  </compounddef>
+</doxygen>

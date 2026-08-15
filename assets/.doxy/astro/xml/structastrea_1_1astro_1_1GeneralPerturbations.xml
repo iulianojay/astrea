@@ -5,7 +5,7 @@
     <includes refid="GeneralPerturbations_8hpp" local="no">GeneralPerturbations.hpp</includes>
     <sectiondef kind="public-attrib">
       <memberdef kind="variable" id="structastrea_1_1astro_1_1GeneralPerturbations_1a2d778a4a2c863144ffe362595db888ed" prot="public" static="no" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">int</ref></type>
+        <type>int</type>
         <definition>int astrea::astro::GeneralPerturbations::DB_ID</definition>
         <argsstring></argsstring>
         <name>DB_ID</name>
@@ -20,7 +20,7 @@
         <location file="astrea/astro/astro/state/orbital_data_formats/GeneralPerturbations.hpp" line="57" column="9" bodyfile="astrea/astro/astro/state/orbital_data_formats/GeneralPerturbations.hpp" bodystart="57" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structastrea_1_1astro_1_1GeneralPerturbations_1a32d1bdc4c1e4f433d9c08a66fb36a369" prot="public" static="no" mutable="no">
-        <type>std::optional&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">double</ref> &gt;</type>
+        <type>std::optional&lt; double &gt;</type>
         <definition>std::optional&lt;double&gt; astrea::astro::GeneralPerturbations::APOAPSIS</definition>
         <argsstring></argsstring>
         <name>APOAPSIS</name>
@@ -35,7 +35,7 @@
         <location file="astrea/astro/astro/state/orbital_data_formats/GeneralPerturbations.hpp" line="58" column="19" bodyfile="astrea/astro/astro/state/orbital_data_formats/GeneralPerturbations.hpp" bodystart="58" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structastrea_1_1astro_1_1GeneralPerturbations_1abd3719cdfaffa92d663d1a4eb7deb86c" prot="public" static="no" mutable="no">
-        <type>std::optional&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">long</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">double</ref> &gt;</type>
+        <type>std::optional&lt; long double &gt;</type>
         <definition>std::optional&lt;long double&gt; astrea::astro::GeneralPerturbations::ARG_OF_PERICENTER</definition>
         <argsstring></argsstring>
         <name>ARG_OF_PERICENTER</name>
@@ -50,7 +50,7 @@
         <location file="astrea/astro/astro/state/orbital_data_formats/GeneralPerturbations.hpp" line="59" column="19" bodyfile="astrea/astro/astro/state/orbital_data_formats/GeneralPerturbations.hpp" bodystart="59" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structastrea_1_1astro_1_1GeneralPerturbations_1af0ba6c2491aa883cd236214cd6760d8a" prot="public" static="no" mutable="no">
-        <type>std::optional&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">long</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">double</ref> &gt;</type>
+        <type>std::optional&lt; long double &gt;</type>
         <definition>std::optional&lt;long double&gt; astrea::astro::GeneralPerturbations::BSTAR</definition>
         <argsstring></argsstring>
         <name>BSTAR</name>
@@ -95,7 +95,7 @@
         <location file="astrea/astro/astro/state/orbital_data_formats/GeneralPerturbations.hpp" line="62" column="17" bodyfile="astrea/astro/astro/state/orbital_data_formats/GeneralPerturbations.hpp" bodystart="62" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structastrea_1_1astro_1_1GeneralPerturbations_1a6dd576b7a573d0e9e0440c16f79903d8" prot="public" static="no" mutable="no">
-        <type>std::optional&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">char</ref> &gt;</type>
+        <type>std::optional&lt; char &gt;</type>
         <definition>std::optional&lt;char&gt; astrea::astro::GeneralPerturbations::CLASSIFICATION_TYPE</definition>
         <argsstring></argsstring>
         <name>CLASSIFICATION_TYPE</name>
@@ -170,7 +170,7 @@
         <location file="astrea/astro/astro/state/orbital_data_formats/GeneralPerturbations.hpp" line="67" column="19" bodyfile="astrea/astro/astro/state/orbital_data_formats/GeneralPerturbations.hpp" bodystart="67" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structastrea_1_1astro_1_1GeneralPerturbations_1aca5625479bf4333bd266e025876131e4" prot="public" static="no" mutable="no">
-        <type>std::optional&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">long</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">double</ref> &gt;</type>
+        <type>std::optional&lt; long double &gt;</type>
         <definition>std::optional&lt;long double&gt; astrea::astro::GeneralPerturbations::ECCENTRICITY</definition>
         <argsstring></argsstring>
         <name>ECCENTRICITY</name>
@@ -185,7 +185,7 @@
         <location file="astrea/astro/astro/state/orbital_data_formats/GeneralPerturbations.hpp" line="68" column="19" bodyfile="astrea/astro/astro/state/orbital_data_formats/GeneralPerturbations.hpp" bodystart="68" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structastrea_1_1astro_1_1GeneralPerturbations_1a8f972c04e3aa2c3fe6291ad5f0e6f923" prot="public" static="no" mutable="no">
-        <type>std::optional&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">short</ref> &gt;</type>
+        <type>std::optional&lt; short &gt;</type>
         <definition>std::optional&lt;short&gt; astrea::astro::GeneralPerturbations::ELEMENT_SET_NO</definition>
         <argsstring></argsstring>
         <name>ELEMENT_SET_NO</name>
@@ -200,7 +200,7 @@
         <location file="astrea/astro/astro/state/orbital_data_formats/GeneralPerturbations.hpp" line="69" column="19" bodyfile="astrea/astro/astro/state/orbital_data_formats/GeneralPerturbations.hpp" bodystart="69" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structastrea_1_1astro_1_1GeneralPerturbations_1a3dc0473bd8ff0cdbb84b786c435c0a9d" prot="public" static="no" mutable="no">
-        <type>std::optional&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">short</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">unsigned</ref> &gt;</type>
+        <type>std::optional&lt; short unsigned &gt;</type>
         <definition>std::optional&lt;short unsigned&gt; astrea::astro::GeneralPerturbations::EPHEMERIS_TYPE</definition>
         <argsstring></argsstring>
         <name>EPHEMERIS_TYPE</name>
@@ -230,7 +230,7 @@
         <location file="astrea/astro/astro/state/orbital_data_formats/GeneralPerturbations.hpp" line="71" column="19" bodyfile="astrea/astro/astro/state/orbital_data_formats/GeneralPerturbations.hpp" bodystart="71" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structastrea_1_1astro_1_1GeneralPerturbations_1acacfb556aa849b2e04c78581fa11534a" prot="public" static="no" mutable="no">
-        <type>std::optional&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">long</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">unsigned</ref> &gt;</type>
+        <type>std::optional&lt; long unsigned &gt;</type>
         <definition>std::optional&lt;long unsigned&gt; astrea::astro::GeneralPerturbations::FILE</definition>
         <argsstring></argsstring>
         <name>FILE</name>
@@ -245,7 +245,7 @@
         <location file="astrea/astro/astro/state/orbital_data_formats/GeneralPerturbations.hpp" line="72" column="19" bodyfile="astrea/astro/astro/state/orbital_data_formats/GeneralPerturbations.hpp" bodystart="72" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structastrea_1_1astro_1_1GeneralPerturbations_1a3d23f07db9f2eb8d0f720ada097ea605" prot="public" static="no" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">unsigned</ref></type>
+        <type>unsigned</type>
         <definition>unsigned astrea::astro::GeneralPerturbations::GP_ID</definition>
         <argsstring></argsstring>
         <name>GP_ID</name>
@@ -260,7 +260,7 @@
         <location file="astrea/astro/astro/state/orbital_data_formats/GeneralPerturbations.hpp" line="73" column="14" bodyfile="astrea/astro/astro/state/orbital_data_formats/GeneralPerturbations.hpp" bodystart="73" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structastrea_1_1astro_1_1GeneralPerturbations_1a4c79f0866fcaa38a293806d33b35d674" prot="public" static="no" mutable="no">
-        <type>std::optional&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">long</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">double</ref> &gt;</type>
+        <type>std::optional&lt; long double &gt;</type>
         <definition>std::optional&lt;long double&gt; astrea::astro::GeneralPerturbations::INCLINATION</definition>
         <argsstring></argsstring>
         <name>INCLINATION</name>
@@ -290,7 +290,7 @@
         <location file="astrea/astro/astro/state/orbital_data_formats/GeneralPerturbations.hpp" line="75" column="19" bodyfile="astrea/astro/astro/state/orbital_data_formats/GeneralPerturbations.hpp" bodystart="75" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structastrea_1_1astro_1_1GeneralPerturbations_1a79ed58c6b771cd460f3cde90a16b1687" prot="public" static="no" mutable="no">
-        <type>std::optional&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">double</ref> &gt;</type>
+        <type>std::optional&lt; double &gt;</type>
         <definition>std::optional&lt;double&gt; astrea::astro::GeneralPerturbations::MEAN_ANOMALY</definition>
         <argsstring></argsstring>
         <name>MEAN_ANOMALY</name>
@@ -320,7 +320,7 @@
         <location file="astrea/astro/astro/state/orbital_data_formats/GeneralPerturbations.hpp" line="77" column="17" bodyfile="astrea/astro/astro/state/orbital_data_formats/GeneralPerturbations.hpp" bodystart="77" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structastrea_1_1astro_1_1GeneralPerturbations_1a12d9756898715165ee239f599437e6ee" prot="public" static="no" mutable="no">
-        <type>std::optional&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">long</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">double</ref> &gt;</type>
+        <type>std::optional&lt; long double &gt;</type>
         <definition>std::optional&lt;long double&gt; astrea::astro::GeneralPerturbations::MEAN_MOTION</definition>
         <argsstring></argsstring>
         <name>MEAN_MOTION</name>
@@ -335,7 +335,7 @@
         <location file="astrea/astro/astro/state/orbital_data_formats/GeneralPerturbations.hpp" line="78" column="19" bodyfile="astrea/astro/astro/state/orbital_data_formats/GeneralPerturbations.hpp" bodystart="78" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structastrea_1_1astro_1_1GeneralPerturbations_1afd3658db1ad3cbd0a7760a0d98471f79" prot="public" static="no" mutable="no">
-        <type>std::optional&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">long</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">double</ref> &gt;</type>
+        <type>std::optional&lt; long double &gt;</type>
         <definition>std::optional&lt;long double&gt; astrea::astro::GeneralPerturbations::MEAN_MOTION_DDOT</definition>
         <argsstring></argsstring>
         <name>MEAN_MOTION_DDOT</name>
@@ -350,7 +350,7 @@
         <location file="astrea/astro/astro/state/orbital_data_formats/GeneralPerturbations.hpp" line="79" column="19" bodyfile="astrea/astro/astro/state/orbital_data_formats/GeneralPerturbations.hpp" bodystart="79" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structastrea_1_1astro_1_1GeneralPerturbations_1a60da67424a19e0856fbd8eabcfbe711f" prot="public" static="no" mutable="no">
-        <type>std::optional&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">long</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">double</ref> &gt;</type>
+        <type>std::optional&lt; long double &gt;</type>
         <definition>std::optional&lt;long double&gt; astrea::astro::GeneralPerturbations::MEAN_MOTION_DOT</definition>
         <argsstring></argsstring>
         <name>MEAN_MOTION_DOT</name>
@@ -365,7 +365,7 @@
         <location file="astrea/astro/astro/state/orbital_data_formats/GeneralPerturbations.hpp" line="80" column="19" bodyfile="astrea/astro/astro/state/orbital_data_formats/GeneralPerturbations.hpp" bodystart="80" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structastrea_1_1astro_1_1GeneralPerturbations_1aef8e1654cf85a0d3e4a2f3c18d2a3193" prot="public" static="no" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">unsigned</ref></type>
+        <type>unsigned</type>
         <definition>unsigned astrea::astro::GeneralPerturbations::NORAD_CAT_ID</definition>
         <argsstring></argsstring>
         <name>NORAD_CAT_ID</name>
@@ -440,7 +440,7 @@
         <location file="astrea/astro/astro/state/orbital_data_formats/GeneralPerturbations.hpp" line="85" column="17" bodyfile="astrea/astro/astro/state/orbital_data_formats/GeneralPerturbations.hpp" bodystart="85" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structastrea_1_1astro_1_1GeneralPerturbations_1af003ddd9da406aefecc39e700b19eb39" prot="public" static="no" mutable="no">
-        <type>std::optional&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">double</ref> &gt;</type>
+        <type>std::optional&lt; double &gt;</type>
         <definition>std::optional&lt;double&gt; astrea::astro::GeneralPerturbations::PERIAPSIS</definition>
         <argsstring></argsstring>
         <name>PERIAPSIS</name>
@@ -455,7 +455,7 @@
         <location file="astrea/astro/astro/state/orbital_data_formats/GeneralPerturbations.hpp" line="86" column="19" bodyfile="astrea/astro/astro/state/orbital_data_formats/GeneralPerturbations.hpp" bodystart="86" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structastrea_1_1astro_1_1GeneralPerturbations_1a42e8ddd753f9719ddca490d1174603b1" prot="public" static="no" mutable="no">
-        <type>std::optional&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">double</ref> &gt;</type>
+        <type>std::optional&lt; double &gt;</type>
         <definition>std::optional&lt;double&gt; astrea::astro::GeneralPerturbations::PERIOD</definition>
         <argsstring></argsstring>
         <name>PERIOD</name>
@@ -470,7 +470,7 @@
         <location file="astrea/astro/astro/state/orbital_data_formats/GeneralPerturbations.hpp" line="87" column="19" bodyfile="astrea/astro/astro/state/orbital_data_formats/GeneralPerturbations.hpp" bodystart="87" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structastrea_1_1astro_1_1GeneralPerturbations_1a92d1ebd8240b96037d9f35459355ccbf" prot="public" static="no" mutable="no">
-        <type>std::optional&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">long</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">double</ref> &gt;</type>
+        <type>std::optional&lt; long double &gt;</type>
         <definition>std::optional&lt;long double&gt; astrea::astro::GeneralPerturbations::RA_OF_ASC_NODE</definition>
         <argsstring></argsstring>
         <name>RA_OF_ASC_NODE</name>
@@ -515,7 +515,7 @@
         <location file="astrea/astro/astro/state/orbital_data_formats/GeneralPerturbations.hpp" line="90" column="17" bodyfile="astrea/astro/astro/state/orbital_data_formats/GeneralPerturbations.hpp" bodystart="90" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structastrea_1_1astro_1_1GeneralPerturbations_1a3a230f3e44600835c110c99f62613296" prot="public" static="no" mutable="no">
-        <type>std::optional&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">unsigned</ref> &gt;</type>
+        <type>std::optional&lt; unsigned &gt;</type>
         <definition>std::optional&lt;unsigned&gt; astrea::astro::GeneralPerturbations::REV_AT_EPOCH</definition>
         <argsstring></argsstring>
         <name>REV_AT_EPOCH</name>
@@ -530,7 +530,7 @@
         <location file="astrea/astro/astro/state/orbital_data_formats/GeneralPerturbations.hpp" line="91" column="19" bodyfile="astrea/astro/astro/state/orbital_data_formats/GeneralPerturbations.hpp" bodystart="91" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structastrea_1_1astro_1_1GeneralPerturbations_1a666b5675627f4a70c2b07f24d9c68744" prot="public" static="no" mutable="no">
-        <type>std::optional&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">double</ref> &gt;</type>
+        <type>std::optional&lt; double &gt;</type>
         <definition>std::optional&lt;double&gt; astrea::astro::GeneralPerturbations::SEMIMAJOR_AXIS</definition>
         <argsstring></argsstring>
         <name>SEMIMAJOR_AXIS</name>
@@ -643,7 +643,7 @@
         <name>GeneralPerturbations</name>
         <qualifiedname>astrea::astro::GeneralPerturbations::GeneralPerturbations</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> nlohmann::json &amp;</type>
+          <type>const nlohmann::json &amp;</type>
           <declname>data</declname>
         </param>
         <briefdescription>

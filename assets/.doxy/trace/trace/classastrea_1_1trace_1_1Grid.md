@@ -62,7 +62,7 @@ _Class representing a grid of ground points on the surface of a celestial body._
 | ---: | :--- |
 |   | [**Grid**](#function-grid-13) () = default<br>_Default constructor for the_ [_**Grid**_](classastrea_1_1trace_1_1Grid.md) _class._ |
 |   | [**Grid**](#function-grid-23) (const std::vector&lt; Point &gt; & groundPoints) <br>_Construct a_ [_**Grid**_](classastrea_1_1trace_1_1Grid.md) _from an explicit vector of ground points._ |
-|   | [**Grid**](#function-grid-33) (const [**LatRange**](namespaceastrea_1_1trace.md#typedef-latrange) & latRange, const [**LonRange**](namespaceastrea_1_1trace.md#typedef-lonrange) & lonRange, const [**GridType**](namespaceastrea_1_1trace.md#enum-gridtype) & gridType, const Angle & spacing=5.0 \*mp\_units::angular::unit\_symbols::deg, const Unitless & weight=0.0 \*mp\_units::one) <br>_Construct a_ [_**Grid**_](classastrea_1_1trace_1_1Grid.md) _from corner points and a grid type._ |
+|   | [**Grid**](#function-grid-33) (const [**LatRange**](namespaceastrea_1_1trace.md#typedef-latrange) & latRange, const [**LonRange**](namespaceastrea_1_1trace.md#typedef-lonrange) & lonRange, const [**GridType**](namespaceastrea_1_1trace.md#enum-gridtype) & gridType, const Angle & spacing=5.0 \*mp\_units::si::unit\_symbols::deg, const Unitless & weight=0.0 \*mp\_units::one) <br>_Construct a_ [_**Grid**_](classastrea_1_1trace_1_1Grid.md) _from corner points and a grid type._ |
 |  [**iterator**](classastrea_1_1trace_1_1Grid.md#typedef-iterator) | [**begin**](#function-begin-12) () <br>_Returns an iterator to the beginning of the ground points in the grid._  |
 |  [**const\_iterator**](classastrea_1_1trace_1_1Grid.md#typedef-const_iterator) | [**begin**](#function-begin-22) () const<br>_Returns a constant iterator to the beginning of the ground points in the grid._  |
 |  [**const\_iterator**](classastrea_1_1trace_1_1Grid.md#typedef-const_iterator) | [**cbegin**](#function-cbegin) () const<br>_Returns a constant iterator to the beginning of the ground points in the grid._  |
@@ -214,7 +214,7 @@ inline astrea::trace::Grid::Grid (
     const LatRange & latRange,
     const LonRange & lonRange,
     const GridType & gridType,
-    const Angle & spacing=5.0 *mp_units::angular::unit_symbols::deg,
+    const Angle & spacing=5.0 *mp_units::si::unit_symbols::deg,
     const Unitless & weight=0.0 *mp_units::one
 ) 
 ```

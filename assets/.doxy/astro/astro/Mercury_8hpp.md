@@ -12,6 +12,7 @@ _Header file for the Mercury class._ [More...](#detailed-description)
 
 * `#include <units/units.hpp>`
 * `#include <astro/astro.fwd.hpp>`
+* `#include <astro/astro.macros.hpp>`
 * `#include <astro/systems/CelestialBody.hpp>`
 * `#include <astro/systems/barycenters.hpp>`
 
@@ -112,7 +113,7 @@ Jay Iuliano ([iuliano.jay@gmail.com](mailto:iuliano.jay@gmail.com))
 
 **Copyright:**
 
-Copyright (c) 2025 Jay Iuliano
+Copyright (c) 2025-2026 Jay Iuliano
 
 
 The GNU Lesser General Public License (LGPL)

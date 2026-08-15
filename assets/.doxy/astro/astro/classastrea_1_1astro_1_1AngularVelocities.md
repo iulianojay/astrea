@@ -2,7 +2,7 @@
 
 # Class astrea::astro::AngularVelocities
 
-**template &lt;IsFrame [**auto**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) \_in\_frame\_, IsFrame [**auto**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) \_ref\_frame\_&gt;**
+**template &lt;IsFrame auto \_in\_frame\_, IsFrame auto \_ref\_frame\_&gt;**
 
 
 
@@ -40,8 +40,8 @@ _Class representing a sequence of angular velocities (either Euler or Tait-Bryan
 
 | Type | Name |
 | ---: | :--- |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**auto**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**in\_frame**](#variable-in_frame)   = `[**\_in\_frame\_**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)`<br> |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**auto**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**ref\_frame**](#variable-ref_frame)   = `[**\_ref\_frame\_**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)`<br> |
+|  constexpr auto | [**in\_frame**](#variable-in_frame)   = `\_in\_frame\_`<br> |
+|  constexpr auto | [**ref\_frame**](#variable-ref_frame)   = `\_ref\_frame\_`<br> |
 
 
 
@@ -61,39 +61,39 @@ _Class representing a sequence of angular velocities (either Euler or Tait-Bryan
 | Type | Name |
 | ---: | :--- |
 |   | [**AngularVelocities**](#function-angularvelocities-15) () = default<br>_Default constructor for the_ [_**AngularVelocities**_](classastrea_1_1astro_1_1AngularVelocities.md) _class. Initializes all angles to zero._ |
-|   | [**AngularVelocities**](#function-angularvelocities-25) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**AngularVelocity**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & angle1, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**AngularVelocity**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & angle2, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**AngularVelocity**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & angle3) <br>_Constructor for the_ [_**AngularVelocities**_](classastrea_1_1astro_1_1AngularVelocities.md) _class from three angles._ |
-|   | [**AngularVelocities**](#function-angularvelocities-35) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; [**AngularVelocity**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), in\_frame &gt; & angles) <br>_Constructor for the_ [_**AngularVelocities**_](classastrea_1_1astro_1_1AngularVelocities.md) _class from a_[_**CartesianVector**_](structastrea_1_1astro_1_1CartesianVector.md) _of angles._ |
-|   | [**AngularVelocities**](#function-angularvelocities-45) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**AngularVelocities**](classastrea_1_1astro_1_1AngularVelocities.md) & other) = default<br> |
+|   | [**AngularVelocities**](#function-angularvelocities-25) (const AngularVelocity & angle1, const AngularVelocity & angle2, const AngularVelocity & angle3) <br>_Constructor for the_ [_**AngularVelocities**_](classastrea_1_1astro_1_1AngularVelocities.md) _class from three angles._ |
+|   | [**AngularVelocities**](#function-angularvelocities-35) (const [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; AngularVelocity, in\_frame &gt; & angles) <br>_Constructor for the_ [_**AngularVelocities**_](classastrea_1_1astro_1_1AngularVelocities.md) _class from a_[_**CartesianVector**_](structastrea_1_1astro_1_1CartesianVector.md) _of angles._ |
+|   | [**AngularVelocities**](#function-angularvelocities-45) (const [**AngularVelocities**](classastrea_1_1astro_1_1AngularVelocities.md) & other) = default<br> |
 |   | [**AngularVelocities**](#function-angularvelocities-55) ([**AngularVelocities**](classastrea_1_1astro_1_1AngularVelocities.md) && other) = default<br> |
-|  [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; [**decltype**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)([**AngularVelocity**](classastrea_1_1astro_1_1DirectionCosineMatrix.md){} \*[**Value\_U**](classastrea_1_1astro_1_1DirectionCosineMatrix.md){}), in\_frame &gt; | [**cross**](#function-cross-12) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; [**Value\_U**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), in\_frame &gt; & other) const<br>_Cross product of this angular velocity vector with a_ [_**CartesianVector**_](structastrea_1_1astro_1_1CartesianVector.md) _._ |
-|  [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; [**decltype**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)([**AngularVelocity**](classastrea_1_1astro_1_1DirectionCosineMatrix.md){} \*[**AngularVelocity**](classastrea_1_1astro_1_1DirectionCosineMatrix.md){}), in\_frame &gt; | [**cross**](#function-cross-22) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**AngularVelocities**](classastrea_1_1astro_1_1AngularVelocities.md) & other) const<br>_Cross product of this angle vector with another_ [_**AngularVelocities**_](classastrea_1_1astro_1_1AngularVelocities.md) _._ |
-|  [**auto**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**dot**](#function-dot-12) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; [**Value\_U**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), in\_frame &gt; & other) const<br>_Dot product of this angular velocity vector with a_ [_**CartesianVector**_](structastrea_1_1astro_1_1CartesianVector.md) _._ |
-|  [**auto**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**dot**](#function-dot-22) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**AngularVelocities**](classastrea_1_1astro_1_1AngularVelocities.md) & other) const<br>_Dot product of this angle vector with another_ [_**AngularVelocities**_](classastrea_1_1astro_1_1AngularVelocities.md) _._ |
-|  std::vector&lt; [**Unitless**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt; | [**force\_to\_vector**](#function-force_to_vector) () const<br>_Converts the angle sequence velocity to a vector form for use in numerical integration._  |
-|  [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; [**AngularVelocity**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), in\_frame &gt; & | [**get\_angular\_velocities**](#function-get_angular_velocities-12) () <br>_Get access to the underlying_ [_**CartesianVector**_](structastrea_1_1astro_1_1CartesianVector.md) _._ |
-|  [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; [**AngularVelocity**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), in\_frame &gt; & | [**get\_angular\_velocities**](#function-get_angular_velocities-22) () const<br>_Get const access to the underlying_ [_**CartesianVector**_](structastrea_1_1astro_1_1CartesianVector.md) _._ |
-|  [**AngularVelocities**](classastrea_1_1astro_1_1AngularVelocities.md) | [**interpolate**](#function-interpolate) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Time**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & thisTime, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Time**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & otherTime, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**AngularVelocities**](classastrea_1_1astro_1_1AngularVelocities.md) & other, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Time**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & targetTime) const<br>_Interpolates between this angle sequence and another angle sequence at a target time._  |
-|  [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; [**decltype**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)([**AngularVelocity**](classastrea_1_1astro_1_1DirectionCosineMatrix.md){} \*[**Value\_U**](classastrea_1_1astro_1_1DirectionCosineMatrix.md){}), in\_frame &gt; | [**operator\***](#function-operator) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Value\_U**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & scalar) const<br>_Scalar multiplication operator for_ [_**AngularVelocities**_](classastrea_1_1astro_1_1AngularVelocities.md) _by a quantity, resulting in an_[_**CartesianVector**_](structastrea_1_1astro_1_1CartesianVector.md) _._ |
-|  [**EulerAngles**](classastrea_1_1astro_1_1EulerAngles.md)&lt; sequence, [**rotation\_type**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), in\_frame, ref\_frame &gt; | [**operator\***](#function-operator_1) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Time**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & time) const<br>_Scalar multiplication operator for_ [_**AngularVelocities**_](classastrea_1_1astro_1_1AngularVelocities.md) _by a Time quantity, resulting in an_[_**EulerAngles**_](classastrea_1_1astro_1_1EulerAngles.md) _._ |
-|  [**AngularVelocities**](classastrea_1_1astro_1_1AngularVelocities.md) | [**operator\***](#function-operator_2) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Unitless**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & scale) const<br>_Scalar multiplication operator for_ [_**AngularVelocities**_](classastrea_1_1astro_1_1AngularVelocities.md) _by a quantity, resulting in an_[_**AngularVelocities**_](classastrea_1_1astro_1_1AngularVelocities.md) _._ |
-|  [**AngularVelocities**](classastrea_1_1astro_1_1AngularVelocities.md) & | [**operator\*=**](#function-operator_3) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Unitless**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & scale) <br>_Scalar multiplication assignment operator for_ [_**AngularVelocities**_](classastrea_1_1astro_1_1AngularVelocities.md) _by a quantity._ |
-|  [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; [**AngularVelocity**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), in\_frame &gt; | [**operator+**](#function-operator_4) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; [**AngularVelocity**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), in\_frame &gt; & other) const<br>_Addition operator for_ [_**CartesianVector**_](structastrea_1_1astro_1_1CartesianVector.md) _._ |
-|  [**AngularVelocities**](classastrea_1_1astro_1_1AngularVelocities.md) | [**operator+**](#function-operator_5) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**AngularVelocities**](classastrea_1_1astro_1_1AngularVelocities.md) & other) const<br>_Addition operator for_ [_**CartesianVector**_](structastrea_1_1astro_1_1CartesianVector.md) _._ |
-|  [**AngularVelocities**](classastrea_1_1astro_1_1AngularVelocities.md) & | [**operator+=**](#function-operator_6) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**AngularVelocities**](classastrea_1_1astro_1_1AngularVelocities.md) & other) <br>_Addition assignment operator for_ [_**AngularVelocities**_](classastrea_1_1astro_1_1AngularVelocities.md) _._ |
+|  [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; decltype(AngularVelocity{} \*Value\_U{}), in\_frame &gt; | [**cross**](#function-cross-12) (const [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; Value\_U, in\_frame &gt; & other) const<br>_Cross product of this angular velocity vector with a_ [_**CartesianVector**_](structastrea_1_1astro_1_1CartesianVector.md) _._ |
+|  [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; decltype(AngularVelocity{} \*AngularVelocity{}), in\_frame &gt; | [**cross**](#function-cross-22) (const [**AngularVelocities**](classastrea_1_1astro_1_1AngularVelocities.md) & other) const<br>_Cross product of this angle vector with another_ [_**AngularVelocities**_](classastrea_1_1astro_1_1AngularVelocities.md) _._ |
+|  auto | [**dot**](#function-dot-12) (const [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; Value\_U, in\_frame &gt; & other) const<br>_Dot product of this angular velocity vector with a_ [_**CartesianVector**_](structastrea_1_1astro_1_1CartesianVector.md) _._ |
+|  auto | [**dot**](#function-dot-22) (const [**AngularVelocities**](classastrea_1_1astro_1_1AngularVelocities.md) & other) const<br>_Dot product of this angle vector with another_ [_**AngularVelocities**_](classastrea_1_1astro_1_1AngularVelocities.md) _._ |
+|  std::vector&lt; double &gt; | [**force\_to\_double\_vector**](#function-force_to_double_vector) () const<br>_Converts the angle sequence velocity to a vector form for use in numerical integration._  |
+|  [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; AngularVelocity, in\_frame &gt; & | [**get\_angular\_velocities**](#function-get_angular_velocities-12) () <br>_Get access to the underlying_ [_**CartesianVector**_](structastrea_1_1astro_1_1CartesianVector.md) _._ |
+|  const [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; AngularVelocity, in\_frame &gt; & | [**get\_angular\_velocities**](#function-get_angular_velocities-22) () const<br>_Get const access to the underlying_ [_**CartesianVector**_](structastrea_1_1astro_1_1CartesianVector.md) _._ |
+|  [**AngularVelocities**](classastrea_1_1astro_1_1AngularVelocities.md) | [**interpolate**](#function-interpolate) (const Time & thisTime, const Time & otherTime, const [**AngularVelocities**](classastrea_1_1astro_1_1AngularVelocities.md) & other, const Time & targetTime) const<br>_Interpolates between this angle sequence and another angle sequence at a target time._  |
+|  [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; decltype(AngularVelocity{} \*Value\_U{}), in\_frame &gt; | [**operator\***](#function-operator) (const Value\_U & scalar) const<br>_Scalar multiplication operator for_ [_**AngularVelocities**_](classastrea_1_1astro_1_1AngularVelocities.md) _by a quantity, resulting in an_[_**CartesianVector**_](structastrea_1_1astro_1_1CartesianVector.md) _._ |
+|  [**EulerAngles**](classastrea_1_1astro_1_1EulerAngles.md)&lt; sequence, rotation\_type, in\_frame, ref\_frame &gt; | [**operator\***](#function-operator_1) (const Time & time) const<br>_Scalar multiplication operator for_ [_**AngularVelocities**_](classastrea_1_1astro_1_1AngularVelocities.md) _by a Time quantity, resulting in an_[_**EulerAngles**_](classastrea_1_1astro_1_1EulerAngles.md) _._ |
+|  [**AngularVelocities**](classastrea_1_1astro_1_1AngularVelocities.md) | [**operator\***](#function-operator_2) (const Unitless & scale) const<br>_Scalar multiplication operator for_ [_**AngularVelocities**_](classastrea_1_1astro_1_1AngularVelocities.md) _by a quantity, resulting in an_[_**AngularVelocities**_](classastrea_1_1astro_1_1AngularVelocities.md) _._ |
+|  [**AngularVelocities**](classastrea_1_1astro_1_1AngularVelocities.md) & | [**operator\*=**](#function-operator_3) (const Unitless & scale) <br>_Scalar multiplication assignment operator for_ [_**AngularVelocities**_](classastrea_1_1astro_1_1AngularVelocities.md) _by a quantity._ |
+|  [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; AngularVelocity, in\_frame &gt; | [**operator+**](#function-operator_4) (const [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; AngularVelocity, in\_frame &gt; & other) const<br>_Addition operator for_ [_**CartesianVector**_](structastrea_1_1astro_1_1CartesianVector.md) _._ |
+|  [**AngularVelocities**](classastrea_1_1astro_1_1AngularVelocities.md) | [**operator+**](#function-operator_5) (const [**AngularVelocities**](classastrea_1_1astro_1_1AngularVelocities.md) & other) const<br>_Addition operator for_ [_**CartesianVector**_](structastrea_1_1astro_1_1CartesianVector.md) _._ |
+|  [**AngularVelocities**](classastrea_1_1astro_1_1AngularVelocities.md) & | [**operator+=**](#function-operator_6) (const [**AngularVelocities**](classastrea_1_1astro_1_1AngularVelocities.md) & other) <br>_Addition assignment operator for_ [_**AngularVelocities**_](classastrea_1_1astro_1_1AngularVelocities.md) _._ |
 |  [**AngularVelocities**](classastrea_1_1astro_1_1AngularVelocities.md) | [**operator-**](#function-operator-) () const<br>_Unary negation operator for_ [_**AngularVelocities**_](classastrea_1_1astro_1_1AngularVelocities.md) _._ |
-|  [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; [**AngularVelocity**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), in\_frame &gt; | [**operator-**](#function-operator-_1) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; [**AngularVelocity**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), in\_frame &gt; & other) const<br>_Subtraction operator for_ [_**CartesianVector**_](structastrea_1_1astro_1_1CartesianVector.md) _._ |
-|  [**AngularVelocities**](classastrea_1_1astro_1_1AngularVelocities.md) | [**operator-**](#function-operator-_2) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**AngularVelocities**](classastrea_1_1astro_1_1AngularVelocities.md) & other) const<br>_Subtraction operator for_ [_**AngularVelocities**_](classastrea_1_1astro_1_1AngularVelocities.md) _._ |
-|  [**AngularVelocities**](classastrea_1_1astro_1_1AngularVelocities.md) & | [**operator-=**](#function-operator-_3) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**AngularVelocities**](classastrea_1_1astro_1_1AngularVelocities.md) & other) <br>_Subtraction assignment operator for_ [_**AngularVelocities**_](classastrea_1_1astro_1_1AngularVelocities.md) _._ |
-|  [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; [**decltype**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)([**AngularVelocity**](classastrea_1_1astro_1_1DirectionCosineMatrix.md){}/[**Value\_U**](classastrea_1_1astro_1_1DirectionCosineMatrix.md){}), in\_frame &gt; | [**operator/**](#function-operator_7) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Value\_U**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & scalar) const<br>_Scalar division operator for_ [_**AngularVelocities**_](classastrea_1_1astro_1_1AngularVelocities.md) _by a quantity, resulting in a_[_**CartesianVector**_](structastrea_1_1astro_1_1CartesianVector.md) _._ |
-|  [**AngularAccelerations**](classastrea_1_1astro_1_1AngularAccelerations.md)&lt; in\_frame, ref\_frame &gt; | [**operator/**](#function-operator_8) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Time**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & time) const<br>_Scalar division operator for_ [_**AngularVelocities**_](classastrea_1_1astro_1_1AngularVelocities.md) _by a Time quantity, resulting in an_[_**AngularAccelerations**_](classastrea_1_1astro_1_1AngularAccelerations.md) _._ |
-|  [**AngularVelocities**](classastrea_1_1astro_1_1AngularVelocities.md) | [**operator/**](#function-operator_9) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Unitless**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & scale) const<br>_Scalar division operator for_ [_**AngularVelocities**_](classastrea_1_1astro_1_1AngularVelocities.md) _by a quantity, resulting in an_[_**AngularVelocities**_](classastrea_1_1astro_1_1AngularVelocities.md) _._ |
-|  [**AngularVelocities**](classastrea_1_1astro_1_1AngularVelocities.md) & | [**operator/=**](#function-operator_10) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Unitless**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & scale) <br>_Scalar division assignment operator for_ [_**AngularVelocities**_](classastrea_1_1astro_1_1AngularVelocities.md) _by a quantity._ |
-|  [**AngularVelocities**](classastrea_1_1astro_1_1AngularVelocities.md) & | [**operator=**](#function-operator_11) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**AngularVelocities**](classastrea_1_1astro_1_1AngularVelocities.md) & other) = default<br> |
+|  [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; AngularVelocity, in\_frame &gt; | [**operator-**](#function-operator-_1) (const [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; AngularVelocity, in\_frame &gt; & other) const<br>_Subtraction operator for_ [_**CartesianVector**_](structastrea_1_1astro_1_1CartesianVector.md) _._ |
+|  [**AngularVelocities**](classastrea_1_1astro_1_1AngularVelocities.md) | [**operator-**](#function-operator-_2) (const [**AngularVelocities**](classastrea_1_1astro_1_1AngularVelocities.md) & other) const<br>_Subtraction operator for_ [_**AngularVelocities**_](classastrea_1_1astro_1_1AngularVelocities.md) _._ |
+|  [**AngularVelocities**](classastrea_1_1astro_1_1AngularVelocities.md) & | [**operator-=**](#function-operator-_3) (const [**AngularVelocities**](classastrea_1_1astro_1_1AngularVelocities.md) & other) <br>_Subtraction assignment operator for_ [_**AngularVelocities**_](classastrea_1_1astro_1_1AngularVelocities.md) _._ |
+|  [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; decltype(AngularVelocity{}/Value\_U{}), in\_frame &gt; | [**operator/**](#function-operator_7) (const Value\_U & scalar) const<br>_Scalar division operator for_ [_**AngularVelocities**_](classastrea_1_1astro_1_1AngularVelocities.md) _by a quantity, resulting in a_[_**CartesianVector**_](structastrea_1_1astro_1_1CartesianVector.md) _._ |
+|  [**AngularAccelerations**](classastrea_1_1astro_1_1AngularAccelerations.md)&lt; in\_frame, ref\_frame &gt; | [**operator/**](#function-operator_8) (const Time & time) const<br>_Scalar division operator for_ [_**AngularVelocities**_](classastrea_1_1astro_1_1AngularVelocities.md) _by a Time quantity, resulting in an_[_**AngularAccelerations**_](classastrea_1_1astro_1_1AngularAccelerations.md) _._ |
+|  [**AngularVelocities**](classastrea_1_1astro_1_1AngularVelocities.md) | [**operator/**](#function-operator_9) (const Unitless & scale) const<br>_Scalar division operator for_ [_**AngularVelocities**_](classastrea_1_1astro_1_1AngularVelocities.md) _by a quantity, resulting in an_[_**AngularVelocities**_](classastrea_1_1astro_1_1AngularVelocities.md) _._ |
+|  [**AngularVelocities**](classastrea_1_1astro_1_1AngularVelocities.md) & | [**operator/=**](#function-operator_10) (const Unitless & scale) <br>_Scalar division assignment operator for_ [_**AngularVelocities**_](classastrea_1_1astro_1_1AngularVelocities.md) _by a quantity._ |
+|  [**AngularVelocities**](classastrea_1_1astro_1_1AngularVelocities.md) & | [**operator=**](#function-operator_11) (const [**AngularVelocities**](classastrea_1_1astro_1_1AngularVelocities.md) & other) = default<br> |
 |  [**AngularVelocities**](classastrea_1_1astro_1_1AngularVelocities.md) & | [**operator=**](#function-operator_12) ([**AngularVelocities**](classastrea_1_1astro_1_1AngularVelocities.md) && other) = default<br> |
-|  [**bool**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**operator==**](#function-operator_13) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**AngularVelocities**](classastrea_1_1astro_1_1AngularVelocities.md) & other) const<br> |
-|  [**bool**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**operator==**](#function-operator_14) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**AngularVelocities**](classastrea_1_1astro_1_1AngularVelocities.md)&lt; [**in\_frame\_u**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), [**ref\_frame\_u**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt; &) const<br> |
-|  [**AngularVelocity**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & | [**operator[]**](#function-operator_15) (std::size\_t index) <br>_Array access operator for accessing individual angular velocity components._  |
-|  [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**AngularVelocity**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & | [**operator[]**](#function-operator_16) (std::size\_t index) const<br>_Const array access operator for accessing individual angular velocity components._  |
+|  bool | [**operator==**](#function-operator_13) (const [**AngularVelocities**](classastrea_1_1astro_1_1AngularVelocities.md) & other) const<br> |
+|  bool | [**operator==**](#function-operator_14) (const [**AngularVelocities**](classastrea_1_1astro_1_1AngularVelocities.md)&lt; in\_frame\_u, ref\_frame\_u &gt; &) const<br> |
+|  AngularVelocity & | [**operator[]**](#function-operator_15) (std::size\_t index) <br>_Array access operator for accessing individual angular velocity components._  |
+|  const AngularVelocity & | [**operator[]**](#function-operator_16) (std::size\_t index) const<br>_Const array access operator for accessing individual angular velocity components._  |
 
 
 
@@ -189,9 +189,9 @@ astrea::astro::AngularVelocities::AngularVelocities () = default
 _Constructor for the_ [_**AngularVelocities**_](classastrea_1_1astro_1_1AngularVelocities.md) _class from three angles._
 ```C++
 inline astrea::astro::AngularVelocities::AngularVelocities (
-    const  AngularVelocity & angle1,
-    const  AngularVelocity & angle2,
-    const  AngularVelocity & angle3
+    const AngularVelocity & angle1,
+    const AngularVelocity & angle2,
+    const AngularVelocity & angle3
 ) 
 ```
 
@@ -220,7 +220,7 @@ inline astrea::astro::AngularVelocities::AngularVelocities (
 _Constructor for the_ [_**AngularVelocities**_](classastrea_1_1astro_1_1AngularVelocities.md) _class from a_[_**CartesianVector**_](structastrea_1_1astro_1_1CartesianVector.md) _of angles._
 ```C++
 inline astrea::astro::AngularVelocities::AngularVelocities (
-    const  CartesianVector < AngularVelocity , in_frame > & angles
+    const CartesianVector < AngularVelocity, in_frame > & angles
 ) 
 ```
 
@@ -246,7 +246,7 @@ inline astrea::astro::AngularVelocities::AngularVelocities (
 
 ```C++
 explicit astrea::astro::AngularVelocities::AngularVelocities (
-    const  AngularVelocities & other
+    const AngularVelocities & other
 ) = default
 ```
 
@@ -276,9 +276,9 @@ explicit astrea::astro::AngularVelocities::AngularVelocities (
 
 _Cross product of this angular velocity vector with a_ [_**CartesianVector**_](structastrea_1_1astro_1_1CartesianVector.md) _._
 ```C++
-template<typename  Value_U>
-inline CartesianVector < decltype ( AngularVelocity {} * Value_U {}), in_frame > astrea::astro::AngularVelocities::cross (
-    const  CartesianVector < Value_U , in_frame > & other
+template<typename Value_U>
+inline CartesianVector < decltype(AngularVelocity{} *Value_U{}), in_frame > astrea::astro::AngularVelocities::cross (
+    const CartesianVector < Value_U, in_frame > & other
 ) const
 ```
 
@@ -318,8 +318,8 @@ inline CartesianVector < decltype ( AngularVelocity {} * Value_U {}), in_frame >
 
 _Cross product of this angle vector with another_ [_**AngularVelocities**_](classastrea_1_1astro_1_1AngularVelocities.md) _._
 ```C++
-inline CartesianVector < decltype ( AngularVelocity {} * AngularVelocity {}), in_frame > astrea::astro::AngularVelocities::cross (
-    const  AngularVelocities & other
+inline CartesianVector < decltype(AngularVelocity{} *AngularVelocity{}), in_frame > astrea::astro::AngularVelocities::cross (
+    const AngularVelocities & other
 ) const
 ```
 
@@ -352,9 +352,9 @@ inline CartesianVector < decltype ( AngularVelocity {} * AngularVelocity {}), in
 
 _Dot product of this angular velocity vector with a_ [_**CartesianVector**_](structastrea_1_1astro_1_1CartesianVector.md) _._
 ```C++
-template<typename  Value_U>
+template<typename Value_U>
 inline auto astrea::astro::AngularVelocities::dot (
-    const  CartesianVector < Value_U , in_frame > & other
+    const CartesianVector < Value_U, in_frame > & other
 ) const
 ```
 
@@ -395,7 +395,7 @@ auto The resulting scalar from the dot product.
 _Dot product of this angle vector with another_ [_**AngularVelocities**_](classastrea_1_1astro_1_1AngularVelocities.md) _._
 ```C++
 inline auto astrea::astro::AngularVelocities::dot (
-    const  AngularVelocities & other
+    const AngularVelocities & other
 ) const
 ```
 
@@ -424,11 +424,11 @@ auto The resulting scalar from the dot product.
 
 
 
-### function force\_to\_vector 
+### function force\_to\_double\_vector 
 
 _Converts the angle sequence velocity to a vector form for use in numerical integration._ 
 ```C++
-inline std::vector< Unitless > astrea::astro::AngularVelocities::force_to_vector () const
+inline std::vector< double > astrea::astro::AngularVelocities::force_to_double_vector () const
 ```
 
 
@@ -453,7 +453,7 @@ A std::vector of Unitless quantities representing the components of the angle se
 
 _Get access to the underlying_ [_**CartesianVector**_](structastrea_1_1astro_1_1CartesianVector.md) _._
 ```C++
-inline CartesianVector < AngularVelocity , in_frame > & astrea::astro::AngularVelocities::get_angular_velocities () 
+inline CartesianVector < AngularVelocity, in_frame > & astrea::astro::AngularVelocities::get_angular_velocities () 
 ```
 
 
@@ -478,7 +478,7 @@ inline CartesianVector < AngularVelocity , in_frame > & astrea::astro::AngularVe
 
 _Get const access to the underlying_ [_**CartesianVector**_](structastrea_1_1astro_1_1CartesianVector.md) _._
 ```C++
-inline const  CartesianVector < AngularVelocity , in_frame > & astrea::astro::AngularVelocities::get_angular_velocities () const
+inline const CartesianVector < AngularVelocity, in_frame > & astrea::astro::AngularVelocities::get_angular_velocities () const
 ```
 
 
@@ -504,10 +504,10 @@ const [**CartesianVector&lt;AngularVelocity, in\_frame&gt;**](structastrea_1_1as
 _Interpolates between this angle sequence and another angle sequence at a target time._ 
 ```C++
 inline AngularVelocities astrea::astro::AngularVelocities::interpolate (
-    const  Time & thisTime,
-    const  Time & otherTime,
-    const  AngularVelocities & other,
-    const  Time & targetTime
+    const Time & thisTime,
+    const Time & otherTime,
+    const AngularVelocities & other,
+    const Time & targetTime
 ) const
 ```
 
@@ -543,9 +543,9 @@ inline AngularVelocities astrea::astro::AngularVelocities::interpolate (
 
 _Scalar multiplication operator for_ [_**AngularVelocities**_](classastrea_1_1astro_1_1AngularVelocities.md) _by a quantity, resulting in an_[_**CartesianVector**_](structastrea_1_1astro_1_1CartesianVector.md) _._
 ```C++
-template<typename  Value_U>
-inline CartesianVector < decltype ( AngularVelocity {} * Value_U {}), in_frame > astrea::astro::AngularVelocities::operator* (
-    const  Value_U & scalar
+template<typename Value_U>
+inline CartesianVector < decltype(AngularVelocity{} *Value_U{}), in_frame > astrea::astro::AngularVelocities::operator* (
+    const Value_U & scalar
 ) const
 ```
 
@@ -579,8 +579,8 @@ inline CartesianVector < decltype ( AngularVelocity {} * Value_U {}), in_frame >
 _Scalar multiplication operator for_ [_**AngularVelocities**_](classastrea_1_1astro_1_1AngularVelocities.md) _by a Time quantity, resulting in an_[_**EulerAngles**_](classastrea_1_1astro_1_1EulerAngles.md) _._
 ```C++
 template<RotationSequence sequence, RotationType rotation_type>
-inline EulerAngles < sequence, rotation_type , in_frame, ref_frame > astrea::astro::AngularVelocities::operator* (
-    const  Time & time
+inline EulerAngles < sequence, rotation_type, in_frame, ref_frame > astrea::astro::AngularVelocities::operator* (
+    const Time & time
 ) const
 ```
 
@@ -614,7 +614,7 @@ EulerAngles&lt;sequence, rotation\_type, in\_frame, ref\_frame&gt; A new [**Eule
 _Scalar multiplication operator for_ [_**AngularVelocities**_](classastrea_1_1astro_1_1AngularVelocities.md) _by a quantity, resulting in an_[_**AngularVelocities**_](classastrea_1_1astro_1_1AngularVelocities.md) _._
 ```C++
 inline AngularVelocities astrea::astro::AngularVelocities::operator* (
-    const  Unitless & scale
+    const Unitless & scale
 ) const
 ```
 
@@ -648,7 +648,7 @@ inline AngularVelocities astrea::astro::AngularVelocities::operator* (
 _Scalar multiplication assignment operator for_ [_**AngularVelocities**_](classastrea_1_1astro_1_1AngularVelocities.md) _by a quantity._
 ```C++
 inline AngularVelocities & astrea::astro::AngularVelocities::operator*= (
-    const  Unitless & scale
+    const Unitless & scale
 ) 
 ```
 
@@ -681,8 +681,8 @@ inline AngularVelocities & astrea::astro::AngularVelocities::operator*= (
 
 _Addition operator for_ [_**CartesianVector**_](structastrea_1_1astro_1_1CartesianVector.md) _._
 ```C++
-inline CartesianVector < AngularVelocity , in_frame > astrea::astro::AngularVelocities::operator+ (
-    const  CartesianVector < AngularVelocity , in_frame > & other
+inline CartesianVector < AngularVelocity, in_frame > astrea::astro::AngularVelocities::operator+ (
+    const CartesianVector < AngularVelocity, in_frame > & other
 ) const
 ```
 
@@ -716,7 +716,7 @@ inline CartesianVector < AngularVelocity , in_frame > astrea::astro::AngularVelo
 _Addition operator for_ [_**CartesianVector**_](structastrea_1_1astro_1_1CartesianVector.md) _._
 ```C++
 inline AngularVelocities astrea::astro::AngularVelocities::operator+ (
-    const  AngularVelocities & other
+    const AngularVelocities & other
 ) const
 ```
 
@@ -750,7 +750,7 @@ inline AngularVelocities astrea::astro::AngularVelocities::operator+ (
 _Addition assignment operator for_ [_**AngularVelocities**_](classastrea_1_1astro_1_1AngularVelocities.md) _._
 ```C++
 inline AngularVelocities & astrea::astro::AngularVelocities::operator+= (
-    const  AngularVelocities & other
+    const AngularVelocities & other
 ) 
 ```
 
@@ -808,8 +808,8 @@ inline AngularVelocities astrea::astro::AngularVelocities::operator- () const
 
 _Subtraction operator for_ [_**CartesianVector**_](structastrea_1_1astro_1_1CartesianVector.md) _._
 ```C++
-inline CartesianVector < AngularVelocity , in_frame > astrea::astro::AngularVelocities::operator- (
-    const  CartesianVector < AngularVelocity , in_frame > & other
+inline CartesianVector < AngularVelocity, in_frame > astrea::astro::AngularVelocities::operator- (
+    const CartesianVector < AngularVelocity, in_frame > & other
 ) const
 ```
 
@@ -843,7 +843,7 @@ inline CartesianVector < AngularVelocity , in_frame > astrea::astro::AngularVelo
 _Subtraction operator for_ [_**AngularVelocities**_](classastrea_1_1astro_1_1AngularVelocities.md) _._
 ```C++
 inline AngularVelocities astrea::astro::AngularVelocities::operator- (
-    const  AngularVelocities & other
+    const AngularVelocities & other
 ) const
 ```
 
@@ -877,7 +877,7 @@ inline AngularVelocities astrea::astro::AngularVelocities::operator- (
 _Subtraction assignment operator for_ [_**AngularVelocities**_](classastrea_1_1astro_1_1AngularVelocities.md) _._
 ```C++
 inline AngularVelocities & astrea::astro::AngularVelocities::operator-= (
-    const  AngularVelocities & other
+    const AngularVelocities & other
 ) 
 ```
 
@@ -910,9 +910,9 @@ inline AngularVelocities & astrea::astro::AngularVelocities::operator-= (
 
 _Scalar division operator for_ [_**AngularVelocities**_](classastrea_1_1astro_1_1AngularVelocities.md) _by a quantity, resulting in a_[_**CartesianVector**_](structastrea_1_1astro_1_1CartesianVector.md) _._
 ```C++
-template<typename  Value_U>
-inline CartesianVector < decltype ( AngularVelocity {}/ Value_U {}), in_frame > astrea::astro::AngularVelocities::operator/ (
-    const  Value_U & scalar
+template<typename Value_U>
+inline CartesianVector < decltype(AngularVelocity{}/Value_U{}), in_frame > astrea::astro::AngularVelocities::operator/ (
+    const Value_U & scalar
 ) const
 ```
 
@@ -946,7 +946,7 @@ inline CartesianVector < decltype ( AngularVelocity {}/ Value_U {}), in_frame > 
 _Scalar division operator for_ [_**AngularVelocities**_](classastrea_1_1astro_1_1AngularVelocities.md) _by a Time quantity, resulting in an_[_**AngularAccelerations**_](classastrea_1_1astro_1_1AngularAccelerations.md) _._
 ```C++
 inline AngularAccelerations < in_frame, ref_frame > astrea::astro::AngularVelocities::operator/ (
-    const  Time & time
+    const Time & time
 ) const
 ```
 
@@ -980,7 +980,7 @@ AngularAccelerations&lt;in\_frame, ref\_frame&gt; A new [**AngularAccelerations*
 _Scalar division operator for_ [_**AngularVelocities**_](classastrea_1_1astro_1_1AngularVelocities.md) _by a quantity, resulting in an_[_**AngularVelocities**_](classastrea_1_1astro_1_1AngularVelocities.md) _._
 ```C++
 inline AngularVelocities astrea::astro::AngularVelocities::operator/ (
-    const  Unitless & scale
+    const Unitless & scale
 ) const
 ```
 
@@ -1014,7 +1014,7 @@ inline AngularVelocities astrea::astro::AngularVelocities::operator/ (
 _Scalar division assignment operator for_ [_**AngularVelocities**_](classastrea_1_1astro_1_1AngularVelocities.md) _by a quantity._
 ```C++
 inline AngularVelocities & astrea::astro::AngularVelocities::operator/= (
-    const  Unitless & scale
+    const Unitless & scale
 ) 
 ```
 
@@ -1047,7 +1047,7 @@ inline AngularVelocities & astrea::astro::AngularVelocities::operator/= (
 
 ```C++
 AngularVelocities & astrea::astro::AngularVelocities::operator= (
-    const  AngularVelocities & other
+    const AngularVelocities & other
 ) = default
 ```
 
@@ -1077,7 +1077,7 @@ AngularVelocities & astrea::astro::AngularVelocities::operator= (
 
 ```C++
 inline bool astrea::astro::AngularVelocities::operator== (
-    const  AngularVelocities & other
+    const AngularVelocities & other
 ) const
 ```
 
@@ -1093,7 +1093,7 @@ inline bool astrea::astro::AngularVelocities::operator== (
 ```C++
 template<auto in_frame_u, auto ref_frame_u>
 inline bool astrea::astro::AngularVelocities::operator== (
-    const  AngularVelocities < in_frame_u , ref_frame_u > &
+    const AngularVelocities < in_frame_u, ref_frame_u > &
 ) const
 ```
 
@@ -1142,7 +1142,7 @@ AngularVelocity& Reference to the angular velocity component.
 
 _Const array access operator for accessing individual angular velocity components._ 
 ```C++
-inline const  AngularVelocity & astrea::astro::AngularVelocities::operator[] (
+inline const AngularVelocity & astrea::astro::AngularVelocities::operator[] (
     std::size_t index
 ) const
 ```

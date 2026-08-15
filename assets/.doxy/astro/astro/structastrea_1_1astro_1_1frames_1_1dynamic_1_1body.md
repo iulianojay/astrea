@@ -126,5 +126,5 @@ Inherits the following classes: [astrea::astro::Frame](structastrea_1_1astro_1_1
 
 
 ------------------------------
-The documentation for this class was generated from the following file `astrea/astro/astro/frames/definitions/dynamic_frames.hpp`
+The documentation for this class was generated from the following file `astrea/astro/astro/frames/definitions/dynamic_frames/tags.hpp`
 

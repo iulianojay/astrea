@@ -16,7 +16,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/analysis/TraceConfig.hpp" line="135" column="18" bodyfile="astrea/trace/trace/analysis/TraceConfig.hpp" bodystart="135" bodyend="-1"/>
+        <location file="astrea/trace/trace/analysis/TraceConfig.hpp" line="134" column="18" bodyfile="astrea/trace/trace/analysis/TraceConfig.hpp" bodystart="134" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="public-func">
@@ -32,7 +32,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/analysis/TraceConfig.hpp" line="137" column="5"/>
+        <location file="astrea/trace/trace/analysis/TraceConfig.hpp" line="136" column="5"/>
       </memberdef>
       <memberdef kind="function" id="structastrea_1_1trace_1_1GroundSettings_1a199f1804f59c0407feb4ff520773d11a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
@@ -50,7 +50,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/analysis/TraceConfig.hpp" line="139" column="5" bodyfile="astrea/trace/trace/analysis/TraceConfig.hpp" bodystart="139" bodyend="139"/>
+        <location file="astrea/trace/trace/analysis/TraceConfig.hpp" line="138" column="5" bodyfile="astrea/trace/trace/analysis/TraceConfig.hpp" bodystart="138" bodyend="138"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
@@ -70,7 +70,7 @@
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="astrea/trace/trace/analysis/TraceConfig.hpp" line="134" column="1" bodyfile="astrea/trace/trace/analysis/TraceConfig.hpp" bodystart="134" bodyend="140"/>
+    <location file="astrea/trace/trace/analysis/TraceConfig.hpp" line="133" column="1" bodyfile="astrea/trace/trace/analysis/TraceConfig.hpp" bodystart="133" bodyend="139"/>
     <listofallmembers>
       <member refid="structastrea_1_1trace_1_1GroundSettings_1a7b3ee6cce05254947f9b554b4d4bc48c" prot="public" virt="non-virtual"><scope>astrea::trace::GroundSettings</scope><name>gridSettings</name></member>
       <member refid="structastrea_1_1trace_1_1GroundSettings_1ada5ba6c9a84c97d6c5671a0ca8e2751b" prot="public" virt="non-virtual"><scope>astrea::trace::GroundSettings</scope><name>GroundSettings</name></member>

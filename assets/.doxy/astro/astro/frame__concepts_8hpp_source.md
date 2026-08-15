@@ -28,7 +28,7 @@ struct BodyFixedFrameBase;
 struct SynodicFrameBase;
 
 template <typename T>
-concept SymbolicConstant = (!std::is_const_v<T>) && (!std::is_reference_v<T>) && std::is_empty_v<T> &&
+concept SymbolicConstant = (!std::is_reference_v<T>) && std::is_empty_v<T> &&
                            std::is_trivially_default_constructible_v<T> && std::is_trivially_copy_constructible_v<T> &&
                            std::is_trivially_move_constructible_v<T> && std::is_trivially_destructible_v<T>;
 
@@ -87,6 +87,9 @@ concept HasAngularOffset = requires { T::axis.misalignment; } || requires { T::m
 
 template <typename T>
 concept IsFixedOffsetFrame = IsDerivedFrame<T> && (HasSpatialOffset<T> || HasAngularOffset<T>);
+
+template <typename T, typename U>
+concept IsChildOf = IsDerivedFrame<T> && equivalent(T::parent, U{});
 
 template <IsFrame T, IsFrame U>
 consteval bool has_same_parent(T t, U u)

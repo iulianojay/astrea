@@ -5,19 +5,19 @@
     <includes refid="Cylindrical_8hpp" local="no">Cylindrical.hpp</includes>
     <templateparamlist>
       <param>
-        <type>IsCelestialBody <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+        <type>IsCelestialBody auto</type>
         <declname>_body_</declname>
         <defname>_body_</defname>
       </param>
     </templateparamlist>
     <sectiondef kind="public-static-attrib">
       <memberdef kind="variable" id="classastrea_1_1astro_1_1Cylindrical_1aebfaf8c8c55b043e42da9ce4d3e0a6af" prot="public" static="yes" constexpr="yes" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+        <type>constexpr auto</type>
         <definition>constexpr auto astrea::astro::Cylindrical&lt; _body_ &gt;::body</definition>
         <argsstring></argsstring>
         <name>body</name>
         <qualifiedname>astrea::astro::Cylindrical::body</qualifiedname>
-        <initializer>= <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_body_</ref></initializer>
+        <initializer>= _body_</initializer>
         <briefdescription>
 <para>The celestial body of this <ref refid="classastrea_1_1astro_1_1Cylindrical" kindref="compound">Cylindrical</ref> state. </para>
         </briefdescription>
@@ -28,12 +28,12 @@
         <location file="astrea/astro/astro/state/angular_elements/Cylindrical.hpp" line="56" column="27" bodyfile="astrea/astro/astro/state/angular_elements/Cylindrical.hpp" bodystart="56" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1Cylindrical_1a10c31af2a454aee32b181797990da3a3" prot="public" static="yes" constexpr="yes" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+        <type>constexpr auto</type>
         <definition>constexpr auto astrea::astro::Cylindrical&lt; _body_ &gt;::_icrf_frame_</definition>
         <argsstring></argsstring>
         <name>_icrf_frame_</name>
         <qualifiedname>astrea::astro::Cylindrical::_icrf_frame_</qualifiedname>
-        <initializer>= make_frame(<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_body_</ref>, <ref refid="structastrea_1_1astro_1_1axes_1_1icrf" kindref="compound">axes::icrf</ref>)</initializer>
+        <initializer>= make_frame(_body_, <ref refid="structastrea_1_1astro_1_1axes_1_1icrf" kindref="compound">axes::icrf</ref>)</initializer>
         <briefdescription>
 <para>Inertial frame for the body. </para>
         </briefdescription>
@@ -44,12 +44,12 @@
         <location file="astrea/astro/astro/state/angular_elements/Cylindrical.hpp" line="57" column="27" bodyfile="astrea/astro/astro/state/angular_elements/Cylindrical.hpp" bodystart="57" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1Cylindrical_1a6ef24e5387d60bd423ee9e0536f111a9" prot="public" static="yes" constexpr="yes" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+        <type>constexpr auto</type>
         <definition>constexpr auto astrea::astro::Cylindrical&lt; _body_ &gt;::_fixed_frame_</definition>
         <argsstring></argsstring>
         <name>_fixed_frame_</name>
         <qualifiedname>astrea::astro::Cylindrical::_fixed_frame_</qualifiedname>
-        <initializer>= get_body_fixed_frame&lt;<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_body_</ref>&gt;()</initializer>
+        <initializer>= get_body_fixed_frame&lt;_body_&gt;()</initializer>
         <briefdescription>
 <para>Body-fixed rotating frame. </para>
         </briefdescription>
@@ -62,7 +62,7 @@
     </sectiondef>
     <sectiondef kind="private-attrib">
       <memberdef kind="variable" id="classastrea_1_1astro_1_1Cylindrical_1a6918c7fdbcf3cb01e86f2d55ae5ee3bd" prot="private" static="no" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Distance</ref></type>
+        <type>Distance</type>
         <definition>Distance astrea::astro::Cylindrical&lt; _body_ &gt;::_range</definition>
         <argsstring></argsstring>
         <name>_range</name>
@@ -77,7 +77,7 @@
         <location file="astrea/astro/astro/state/angular_elements/Cylindrical.hpp" line="177" column="14" bodyfile="astrea/astro/astro/state/angular_elements/Cylindrical.hpp" bodystart="177" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1Cylindrical_1a2f2797f8d857407dbc2232ab54a061db" prot="private" static="no" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Angle</ref></type>
+        <type>Angle</type>
         <definition>Angle astrea::astro::Cylindrical&lt; _body_ &gt;::_azimuth</definition>
         <argsstring></argsstring>
         <name>_azimuth</name>
@@ -92,7 +92,7 @@
         <location file="astrea/astro/astro/state/angular_elements/Cylindrical.hpp" line="178" column="11" bodyfile="astrea/astro/astro/state/angular_elements/Cylindrical.hpp" bodystart="178" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1Cylindrical_1a5535acf23d59444d413e36f022503439" prot="private" static="no" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Distance</ref></type>
+        <type>Distance</type>
         <definition>Distance astrea::astro::Cylindrical&lt; _body_ &gt;::_elevation</definition>
         <argsstring></argsstring>
         <name>_elevation</name>
@@ -111,7 +111,7 @@
       <memberdef kind="friend" id="classastrea_1_1astro_1_1Cylindrical_1aa46989b2aed63fbf4dc49dea6ae23734" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
           <param>
-            <type>IsCelestialBody <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+            <type>IsCelestialBody auto</type>
             <declname>body</declname>
             <defname>body</defname>
           </param>
@@ -125,7 +125,7 @@
           <type>std::ostream &amp;</type>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1Cylindrical" kindref="compound">Cylindrical</ref>&lt; <ref refid="classastrea_1_1astro_1_1Cylindrical_1aebfaf8c8c55b043e42da9ce4d3e0a6af" kindref="member">body</ref> &gt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> &amp;</type>
+          <type><ref refid="classastrea_1_1astro_1_1Cylindrical" kindref="compound">Cylindrical</ref>&lt; <ref refid="classastrea_1_1astro_1_1Cylindrical_1aebfaf8c8c55b043e42da9ce4d3e0a6af" kindref="member">body</ref> &gt; const &amp;</type>
         </param>
         <briefdescription>
         </briefdescription>
@@ -144,7 +144,7 @@
         <name>Cylindrical</name>
         <qualifiedname>astrea::astro::Cylindrical::Cylindrical</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Unitless</ref></type>
+          <type>Unitless</type>
           <declname>scale</declname>
           <defval>0.0 *astrea::detail::unitless</defval>
         </param>
@@ -165,15 +165,15 @@
         <name>Cylindrical</name>
         <qualifiedname>astrea::astro::Cylindrical::Cylindrical</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Distance</ref> &amp;</type>
+          <type>const Distance &amp;</type>
           <declname>range</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Angle</ref> &amp;</type>
+          <type>const Angle &amp;</type>
           <declname>azimuth</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Distance</ref> &amp;</type>
+          <type>const Distance &amp;</type>
           <declname>elevation</declname>
         </param>
         <briefdescription>
@@ -214,7 +214,7 @@
       <memberdef kind="function" id="classastrea_1_1astro_1_1Cylindrical_1a0283b6b5c33c45bae82bb77171314650" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
           <param>
-            <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+            <type>auto</type>
             <declname>_frame_</declname>
             <defname>_frame_</defname>
           </param>
@@ -225,11 +225,11 @@
         <name>Cylindrical</name>
         <qualifiedname>astrea::astro::Cylindrical::Cylindrical</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="typedefs_8hpp_1a7493d5fafd58941bc3440b866a25638d" kindref="member">RadiusVector</ref>&lt; _frame_ &gt; &amp;</type>
+          <type>const <ref refid="typedefs_8hpp_1a7493d5fafd58941bc3440b866a25638d" kindref="member">RadiusVector</ref>&lt; _frame_ &gt; &amp;</type>
           <declname>r</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
           <declname>date</declname>
         </param>
     <requiresclause>(equivalent(_frame_, make_frame(_body_, axes::icrf)))    </requiresclause>
@@ -268,7 +268,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/angular_elements/Cylindrical.hpp" line="97" column="5" bodyfile="astrea/astro/astro/state/angular_elements/Cylindrical.ipp" bodystart="38" bodyend="41"/>
+        <location file="astrea/astro/astro/state/angular_elements/Cylindrical.hpp" line="97" column="5" bodyfile="astrea/astro/astro/state/angular_elements/Cylindrical.ipp" bodystart="37" bodyend="40"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Cylindrical_1a86d0f776dfdfab50a6d19446ffc88ca6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -277,7 +277,7 @@
         <name>Cylindrical</name>
         <qualifiedname>astrea::astro::Cylindrical::Cylindrical</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="typedefs_8hpp_1a7493d5fafd58941bc3440b866a25638d" kindref="member">RadiusVector</ref>&lt; <ref refid="classastrea_1_1astro_1_1Cylindrical_1a6ef24e5387d60bd423ee9e0536f111a9" kindref="member">_fixed_frame_</ref> &gt; &amp;</type>
+          <type>const <ref refid="typedefs_8hpp_1a7493d5fafd58941bc3440b866a25638d" kindref="member">RadiusVector</ref>&lt; <ref refid="classastrea_1_1astro_1_1Cylindrical_1a6ef24e5387d60bd423ee9e0536f111a9" kindref="member">_fixed_frame_</ref> &gt; &amp;</type>
           <declname>r</declname>
         </param>
         <briefdescription>
@@ -297,7 +297,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/angular_elements/Cylindrical.hpp" line="104" column="5" bodyfile="astrea/astro/astro/state/angular_elements/Cylindrical.ipp" bodystart="44" bodyend="47"/>
+        <location file="astrea/astro/astro/state/angular_elements/Cylindrical.hpp" line="104" column="5" bodyfile="astrea/astro/astro/state/angular_elements/Cylindrical.ipp" bodystart="43" bodyend="46"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Cylindrical_1a2fed1102e78e9d8025bf97fc92fe52ab" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
@@ -313,11 +313,11 @@
         <name>Cylindrical</name>
         <qualifiedname>astrea::astro::Cylindrical::Cylindrical</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">T</ref> &amp;</type>
+          <type>const T &amp;</type>
           <declname>elements</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
           <declname>date</declname>
         </param>
         <briefdescription>
@@ -354,7 +354,7 @@
         <name>Cylindrical</name>
         <qualifiedname>astrea::astro::Cylindrical::Cylindrical</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Cylindrical" kindref="compound">Cylindrical</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_body_</ref> &gt; &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Cylindrical" kindref="compound">Cylindrical</ref>&lt; _body_ &gt; &amp;</type>
           <defname>other</defname>
         </param>
         <briefdescription>
@@ -364,7 +364,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/angular_elements/Cylindrical.hpp" line="122" column="5" bodyfile="astrea/astro/astro/state/angular_elements/Cylindrical.ipp" bodystart="51" bodyend="56"/>
+        <location file="astrea/astro/astro/state/angular_elements/Cylindrical.hpp" line="122" column="5" bodyfile="astrea/astro/astro/state/angular_elements/Cylindrical.ipp" bodystart="50" bodyend="55"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Cylindrical_1a6cbcdfcc86d606dc85eca9323d4e4def" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
         <type></type>
@@ -373,7 +373,7 @@
         <name>Cylindrical</name>
         <qualifiedname>astrea::astro::Cylindrical::Cylindrical</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1Cylindrical" kindref="compound">Cylindrical</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_body_</ref> &gt; &amp;&amp;</type>
+          <type><ref refid="classastrea_1_1astro_1_1Cylindrical" kindref="compound">Cylindrical</ref>&lt; _body_ &gt; &amp;&amp;</type>
           <defname>other</defname>
         </param>
         <briefdescription>
@@ -383,16 +383,16 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/angular_elements/Cylindrical.hpp" line="127" column="5" bodyfile="astrea/astro/astro/state/angular_elements/Cylindrical.ipp" bodystart="60" bodyend="65"/>
+        <location file="astrea/astro/astro/state/angular_elements/Cylindrical.hpp" line="127" column="5" bodyfile="astrea/astro/astro/state/angular_elements/Cylindrical.ipp" bodystart="59" bodyend="64"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Cylindrical_1a912b345330ca546deb6fe47c5d4b7669" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1Cylindrical" kindref="compound">Cylindrical</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_body_</ref> &gt; &amp;</type>
+        <type><ref refid="classastrea_1_1astro_1_1Cylindrical" kindref="compound">Cylindrical</ref>&lt; _body_ &gt; &amp;</type>
         <definition>Cylindrical&lt; _body_ &gt; &amp; astrea::astro::Cylindrical&lt; _body_ &gt;::operator=</definition>
         <argsstring>(Cylindrical&lt; _body_ &gt; &amp;&amp;) noexcept</argsstring>
         <name>operator=</name>
         <qualifiedname>astrea::astro::Cylindrical::operator=</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1Cylindrical" kindref="compound">Cylindrical</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_body_</ref> &gt; &amp;&amp;</type>
+          <type><ref refid="classastrea_1_1astro_1_1Cylindrical" kindref="compound">Cylindrical</ref>&lt; _body_ &gt; &amp;&amp;</type>
           <defname>other</defname>
         </param>
         <briefdescription>
@@ -402,16 +402,16 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/angular_elements/Cylindrical.hpp" line="132" column="17" bodyfile="astrea/astro/astro/state/angular_elements/Cylindrical.ipp" bodystart="69" bodyend="77"/>
+        <location file="astrea/astro/astro/state/angular_elements/Cylindrical.hpp" line="132" column="17" bodyfile="astrea/astro/astro/state/angular_elements/Cylindrical.ipp" bodystart="68" bodyend="76"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Cylindrical_1a01160a5a55399be7d23ace0f159c09c3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1Cylindrical" kindref="compound">Cylindrical</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_body_</ref> &gt; &amp;</type>
+        <type><ref refid="classastrea_1_1astro_1_1Cylindrical" kindref="compound">Cylindrical</ref>&lt; _body_ &gt; &amp;</type>
         <definition>Cylindrical&lt; _body_ &gt; &amp; astrea::astro::Cylindrical&lt; _body_ &gt;::operator=</definition>
         <argsstring>(const Cylindrical&lt; _body_ &gt; &amp;)</argsstring>
         <name>operator=</name>
         <qualifiedname>astrea::astro::Cylindrical::operator=</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Cylindrical" kindref="compound">Cylindrical</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_body_</ref> &gt; &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Cylindrical" kindref="compound">Cylindrical</ref>&lt; _body_ &gt; &amp;</type>
           <defname>other</defname>
         </param>
         <briefdescription>
@@ -421,7 +421,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/angular_elements/Cylindrical.hpp" line="137" column="17" bodyfile="astrea/astro/astro/state/angular_elements/Cylindrical.ipp" bodystart="81" bodyend="84"/>
+        <location file="astrea/astro/astro/state/angular_elements/Cylindrical.hpp" line="137" column="17" bodyfile="astrea/astro/astro/state/angular_elements/Cylindrical.ipp" bodystart="80" bodyend="83"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Cylindrical_1a6a3b9b02e7d1b54bfb74036cc72b3eea" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -439,13 +439,13 @@
         <location file="astrea/astro/astro/state/angular_elements/Cylindrical.hpp" line="142" column="5"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Cylindrical_1a92cf4bcffc65eec5723ff437a5feb0d7" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">bool</ref></type>
+        <type>bool</type>
         <definition>bool astrea::astro::Cylindrical&lt; _body_ &gt;::operator==</definition>
         <argsstring>(const Cylindrical&lt; _body_ &gt; &amp;other) const</argsstring>
         <name>operator==</name>
         <qualifiedname>astrea::astro::Cylindrical::operator==</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Cylindrical" kindref="compound">Cylindrical</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_body_</ref> &gt; &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Cylindrical" kindref="compound">Cylindrical</ref>&lt; _body_ &gt; &amp;</type>
           <declname>other</declname>
         </param>
         <briefdescription>
@@ -454,16 +454,16 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/angular_elements/Cylindrical.hpp" line="144" column="10" bodyfile="astrea/astro/astro/state/angular_elements/Cylindrical.ipp" bodystart="88" bodyend="91"/>
+        <location file="astrea/astro/astro/state/angular_elements/Cylindrical.hpp" line="144" column="10" bodyfile="astrea/astro/astro/state/angular_elements/Cylindrical.ipp" bodystart="87" bodyend="90"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Cylindrical_1a3fe4c34747d6afa6b0106256f5e43635" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">bool</ref></type>
+        <type>bool</type>
         <definition>bool astrea::astro::Cylindrical&lt; _body_ &gt;::operator!=</definition>
         <argsstring>(const Cylindrical&lt; _body_ &gt; &amp;other) const</argsstring>
         <name>operator!=</name>
         <qualifiedname>astrea::astro::Cylindrical::operator!=</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Cylindrical" kindref="compound">Cylindrical</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_body_</ref> &gt; &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Cylindrical" kindref="compound">Cylindrical</ref>&lt; _body_ &gt; &amp;</type>
           <declname>other</declname>
         </param>
         <briefdescription>
@@ -472,16 +472,16 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/angular_elements/Cylindrical.hpp" line="145" column="10" bodyfile="astrea/astro/astro/state/angular_elements/Cylindrical.ipp" bodystart="94" bodyend="97"/>
+        <location file="astrea/astro/astro/state/angular_elements/Cylindrical.hpp" line="145" column="10" bodyfile="astrea/astro/astro/state/angular_elements/Cylindrical.ipp" bodystart="93" bodyend="96"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Cylindrical_1a23c8fb1b8a3d98785621b735070b560d" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1Cylindrical" kindref="compound">Cylindrical</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_body_</ref> &gt;</type>
+        <type><ref refid="classastrea_1_1astro_1_1Cylindrical" kindref="compound">Cylindrical</ref>&lt; _body_ &gt;</type>
         <definition>Cylindrical&lt; _body_ &gt; astrea::astro::Cylindrical&lt; _body_ &gt;::operator+</definition>
         <argsstring>(const Cylindrical&lt; _body_ &gt; &amp;other) const</argsstring>
         <name>operator+</name>
         <qualifiedname>astrea::astro::Cylindrical::operator+</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Cylindrical" kindref="compound">Cylindrical</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_body_</ref> &gt; &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Cylindrical" kindref="compound">Cylindrical</ref>&lt; _body_ &gt; &amp;</type>
           <declname>other</declname>
         </param>
         <briefdescription>
@@ -490,16 +490,16 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/angular_elements/Cylindrical.hpp" line="147" column="17" bodyfile="astrea/astro/astro/state/angular_elements/Cylindrical.ipp" bodystart="101" bodyend="104"/>
+        <location file="astrea/astro/astro/state/angular_elements/Cylindrical.hpp" line="147" column="17" bodyfile="astrea/astro/astro/state/angular_elements/Cylindrical.ipp" bodystart="100" bodyend="103"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Cylindrical_1ac145dc30e99c49fa669ea14b54c5c1b9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1Cylindrical" kindref="compound">Cylindrical</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_body_</ref> &gt; &amp;</type>
+        <type><ref refid="classastrea_1_1astro_1_1Cylindrical" kindref="compound">Cylindrical</ref>&lt; _body_ &gt; &amp;</type>
         <definition>Cylindrical&lt; _body_ &gt; &amp; astrea::astro::Cylindrical&lt; _body_ &gt;::operator+=</definition>
         <argsstring>(const Cylindrical&lt; _body_ &gt; &amp;other)</argsstring>
         <name>operator+=</name>
         <qualifiedname>astrea::astro::Cylindrical::operator+=</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Cylindrical" kindref="compound">Cylindrical</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_body_</ref> &gt; &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Cylindrical" kindref="compound">Cylindrical</ref>&lt; _body_ &gt; &amp;</type>
           <declname>other</declname>
         </param>
         <briefdescription>
@@ -508,16 +508,16 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/angular_elements/Cylindrical.hpp" line="148" column="17" bodyfile="astrea/astro/astro/state/angular_elements/Cylindrical.ipp" bodystart="107" bodyend="113"/>
+        <location file="astrea/astro/astro/state/angular_elements/Cylindrical.hpp" line="148" column="17" bodyfile="astrea/astro/astro/state/angular_elements/Cylindrical.ipp" bodystart="106" bodyend="112"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Cylindrical_1a2bd762a5d7a0655436d487fc11a56cd1" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1Cylindrical" kindref="compound">Cylindrical</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_body_</ref> &gt;</type>
+        <type><ref refid="classastrea_1_1astro_1_1Cylindrical" kindref="compound">Cylindrical</ref>&lt; _body_ &gt;</type>
         <definition>Cylindrical&lt; _body_ &gt; astrea::astro::Cylindrical&lt; _body_ &gt;::operator-</definition>
         <argsstring>(const Cylindrical&lt; _body_ &gt; &amp;other) const</argsstring>
         <name>operator-</name>
         <qualifiedname>astrea::astro::Cylindrical::operator-</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Cylindrical" kindref="compound">Cylindrical</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_body_</ref> &gt; &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Cylindrical" kindref="compound">Cylindrical</ref>&lt; _body_ &gt; &amp;</type>
           <declname>other</declname>
         </param>
         <briefdescription>
@@ -526,16 +526,16 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/angular_elements/Cylindrical.hpp" line="149" column="17" bodyfile="astrea/astro/astro/state/angular_elements/Cylindrical.ipp" bodystart="116" bodyend="119"/>
+        <location file="astrea/astro/astro/state/angular_elements/Cylindrical.hpp" line="149" column="17" bodyfile="astrea/astro/astro/state/angular_elements/Cylindrical.ipp" bodystart="115" bodyend="118"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Cylindrical_1a54ee24a2d84379a00ee3ae1fadaf871a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1Cylindrical" kindref="compound">Cylindrical</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_body_</ref> &gt; &amp;</type>
+        <type><ref refid="classastrea_1_1astro_1_1Cylindrical" kindref="compound">Cylindrical</ref>&lt; _body_ &gt; &amp;</type>
         <definition>Cylindrical&lt; _body_ &gt; &amp; astrea::astro::Cylindrical&lt; _body_ &gt;::operator-=</definition>
         <argsstring>(const Cylindrical&lt; _body_ &gt; &amp;other)</argsstring>
         <name>operator-=</name>
         <qualifiedname>astrea::astro::Cylindrical::operator-=</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Cylindrical" kindref="compound">Cylindrical</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_body_</ref> &gt; &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Cylindrical" kindref="compound">Cylindrical</ref>&lt; _body_ &gt; &amp;</type>
           <declname>other</declname>
         </param>
         <briefdescription>
@@ -544,16 +544,16 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/angular_elements/Cylindrical.hpp" line="150" column="17" bodyfile="astrea/astro/astro/state/angular_elements/Cylindrical.ipp" bodystart="122" bodyend="128"/>
+        <location file="astrea/astro/astro/state/angular_elements/Cylindrical.hpp" line="150" column="17" bodyfile="astrea/astro/astro/state/angular_elements/Cylindrical.ipp" bodystart="121" bodyend="127"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Cylindrical_1a01a13b926a678ca7790f762437ae6cb2" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1Cylindrical" kindref="compound">Cylindrical</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_body_</ref> &gt;</type>
+        <type><ref refid="classastrea_1_1astro_1_1Cylindrical" kindref="compound">Cylindrical</ref>&lt; _body_ &gt;</type>
         <definition>Cylindrical&lt; _body_ &gt; astrea::astro::Cylindrical&lt; _body_ &gt;::operator*</definition>
         <argsstring>(const Unitless &amp;multiplier) const</argsstring>
         <name>operator*</name>
         <qualifiedname>astrea::astro::Cylindrical::operator*</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Unitless</ref> &amp;</type>
+          <type>const Unitless &amp;</type>
           <declname>multiplier</declname>
         </param>
         <briefdescription>
@@ -562,16 +562,16 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/angular_elements/Cylindrical.hpp" line="151" column="17" bodyfile="astrea/astro/astro/state/angular_elements/Cylindrical.ipp" bodystart="131" bodyend="134"/>
+        <location file="astrea/astro/astro/state/angular_elements/Cylindrical.hpp" line="151" column="17" bodyfile="astrea/astro/astro/state/angular_elements/Cylindrical.ipp" bodystart="130" bodyend="133"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Cylindrical_1ab4dd5a76bec059326d77c2c051339bac" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1Cylindrical" kindref="compound">Cylindrical</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_body_</ref> &gt; &amp;</type>
+        <type><ref refid="classastrea_1_1astro_1_1Cylindrical" kindref="compound">Cylindrical</ref>&lt; _body_ &gt; &amp;</type>
         <definition>Cylindrical&lt; _body_ &gt; &amp; astrea::astro::Cylindrical&lt; _body_ &gt;::operator*=</definition>
         <argsstring>(const Unitless &amp;multiplier)</argsstring>
         <name>operator*=</name>
         <qualifiedname>astrea::astro::Cylindrical::operator*=</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Unitless</ref> &amp;</type>
+          <type>const Unitless &amp;</type>
           <declname>multiplier</declname>
         </param>
         <briefdescription>
@@ -580,16 +580,16 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/angular_elements/Cylindrical.hpp" line="152" column="17" bodyfile="astrea/astro/astro/state/angular_elements/Cylindrical.ipp" bodystart="137" bodyend="143"/>
+        <location file="astrea/astro/astro/state/angular_elements/Cylindrical.hpp" line="152" column="17" bodyfile="astrea/astro/astro/state/angular_elements/Cylindrical.ipp" bodystart="136" bodyend="142"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Cylindrical_1a9f4d6611e7752c2ce87de56914db0f38" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
-        <type>std::vector&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Unitless</ref> &gt;</type>
+        <type>std::vector&lt; Unitless &gt;</type>
         <definition>std::vector&lt; Unitless &gt; astrea::astro::Cylindrical&lt; _body_ &gt;::operator/</definition>
         <argsstring>(const Cylindrical&lt; _body_ &gt; &amp;other) const</argsstring>
         <name>operator/</name>
         <qualifiedname>astrea::astro::Cylindrical::operator/</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Cylindrical" kindref="compound">Cylindrical</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_body_</ref> &gt; &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Cylindrical" kindref="compound">Cylindrical</ref>&lt; _body_ &gt; &amp;</type>
           <declname>other</declname>
         </param>
         <briefdescription>
@@ -598,16 +598,16 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/angular_elements/Cylindrical.hpp" line="153" column="17" bodyfile="astrea/astro/astro/state/angular_elements/Cylindrical.ipp" bodystart="146" bodyend="149"/>
+        <location file="astrea/astro/astro/state/angular_elements/Cylindrical.hpp" line="153" column="17" bodyfile="astrea/astro/astro/state/angular_elements/Cylindrical.ipp" bodystart="145" bodyend="148"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Cylindrical_1a6eb7203464f9ee034f1a1927856934c1" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1Cylindrical" kindref="compound">Cylindrical</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_body_</ref> &gt;</type>
+        <type><ref refid="classastrea_1_1astro_1_1Cylindrical" kindref="compound">Cylindrical</ref>&lt; _body_ &gt;</type>
         <definition>Cylindrical&lt; _body_ &gt; astrea::astro::Cylindrical&lt; _body_ &gt;::operator/</definition>
         <argsstring>(const Unitless &amp;divisor) const</argsstring>
         <name>operator/</name>
         <qualifiedname>astrea::astro::Cylindrical::operator/</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Unitless</ref> &amp;</type>
+          <type>const Unitless &amp;</type>
           <declname>divisor</declname>
         </param>
         <briefdescription>
@@ -616,16 +616,16 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/angular_elements/Cylindrical.hpp" line="154" column="17" bodyfile="astrea/astro/astro/state/angular_elements/Cylindrical.ipp" bodystart="152" bodyend="155"/>
+        <location file="astrea/astro/astro/state/angular_elements/Cylindrical.hpp" line="154" column="17" bodyfile="astrea/astro/astro/state/angular_elements/Cylindrical.ipp" bodystart="151" bodyend="154"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Cylindrical_1a3972680cbafd4c3024a51673dc738049" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1Cylindrical" kindref="compound">Cylindrical</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_body_</ref> &gt; &amp;</type>
+        <type><ref refid="classastrea_1_1astro_1_1Cylindrical" kindref="compound">Cylindrical</ref>&lt; _body_ &gt; &amp;</type>
         <definition>Cylindrical&lt; _body_ &gt; &amp; astrea::astro::Cylindrical&lt; _body_ &gt;::operator/=</definition>
         <argsstring>(const Unitless &amp;divisor)</argsstring>
         <name>operator/=</name>
         <qualifiedname>astrea::astro::Cylindrical::operator/=</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Unitless</ref> &amp;</type>
+          <type>const Unitless &amp;</type>
           <declname>divisor</declname>
         </param>
         <briefdescription>
@@ -634,7 +634,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/angular_elements/Cylindrical.hpp" line="155" column="17" bodyfile="astrea/astro/astro/state/angular_elements/Cylindrical.ipp" bodystart="158" bodyend="164"/>
+        <location file="astrea/astro/astro/state/angular_elements/Cylindrical.hpp" line="155" column="17" bodyfile="astrea/astro/astro/state/angular_elements/Cylindrical.ipp" bodystart="157" bodyend="163"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Cylindrical_1a7b691b79165cecf9287492216f3646f0" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="typedefs_8hpp_1a7493d5fafd58941bc3440b866a25638d" kindref="member">RadiusVector</ref>&lt; <ref refid="classastrea_1_1astro_1_1Cylindrical_1a6ef24e5387d60bd423ee9e0536f111a9" kindref="member">_fixed_frame_</ref> &gt;</type>
@@ -649,7 +649,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/angular_elements/Cylindrical.hpp" line="160" column="18" bodyfile="astrea/astro/astro/state/angular_elements/Cylindrical.ipp" bodystart="181" bodyend="184"/>
+        <location file="astrea/astro/astro/state/angular_elements/Cylindrical.hpp" line="160" column="18" bodyfile="astrea/astro/astro/state/angular_elements/Cylindrical.ipp" bodystart="180" bodyend="183"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Cylindrical_1a7fee5ba5c28537cd53bce21b4f130e19" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="typedefs_8hpp_1a7493d5fafd58941bc3440b866a25638d" kindref="member">RadiusVector</ref>&lt; <ref refid="classastrea_1_1astro_1_1Cylindrical_1a10c31af2a454aee32b181797990da3a3" kindref="member">_icrf_frame_</ref> &gt;</type>
@@ -658,7 +658,7 @@
         <name>get_position</name>
         <qualifiedname>astrea::astro::Cylindrical::get_position</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
           <declname>date</declname>
         </param>
         <briefdescription>
@@ -678,10 +678,10 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/angular_elements/Cylindrical.hpp" line="167" column="18" bodyfile="astrea/astro/astro/state/angular_elements/Cylindrical.ipp" bodystart="187" bodyend="190"/>
+        <location file="astrea/astro/astro/state/angular_elements/Cylindrical.hpp" line="167" column="18" bodyfile="astrea/astro/astro/state/angular_elements/Cylindrical.ipp" bodystart="186" bodyend="189"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Cylindrical_1a3cc2cb7acfb9724d62bdefcbdcc3c003" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Angle</ref> &amp;</type>
+        <type>const Angle &amp;</type>
         <definition>const Angle &amp; astrea::astro::Cylindrical&lt; _body_ &gt;::get_azimuth</definition>
         <argsstring>() const</argsstring>
         <name>get_azimuth</name>
@@ -695,7 +695,7 @@
         <location file="astrea/astro/astro/state/angular_elements/Cylindrical.hpp" line="169" column="17" bodyfile="astrea/astro/astro/state/angular_elements/Cylindrical.hpp" bodystart="169" bodyend="169"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Cylindrical_1ae899dfd79467e027b774c147ba305626" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Distance</ref> &amp;</type>
+        <type>const Distance &amp;</type>
         <definition>const Distance &amp; astrea::astro::Cylindrical&lt; _body_ &gt;::get_elevation</definition>
         <argsstring>() const</argsstring>
         <name>get_elevation</name>
@@ -709,7 +709,7 @@
         <location file="astrea/astro/astro/state/angular_elements/Cylindrical.hpp" line="170" column="20" bodyfile="astrea/astro/astro/state/angular_elements/Cylindrical.hpp" bodystart="170" bodyend="170"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Cylindrical_1acb9746e7875a8585193d782e63b9af8d" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Distance</ref> &amp;</type>
+        <type>const Distance &amp;</type>
         <definition>const Distance &amp; astrea::astro::Cylindrical&lt; _body_ &gt;::get_range</definition>
         <argsstring>() const</argsstring>
         <name>get_range</name>
@@ -723,25 +723,25 @@
         <location file="astrea/astro/astro/state/angular_elements/Cylindrical.hpp" line="171" column="20" bodyfile="astrea/astro/astro/state/angular_elements/Cylindrical.hpp" bodystart="171" bodyend="171"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Cylindrical_1a416d3bf20bec6d09e6ac22e66cedba25" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1Cylindrical" kindref="compound">Cylindrical</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_body_</ref> &gt;</type>
+        <type><ref refid="classastrea_1_1astro_1_1Cylindrical" kindref="compound">Cylindrical</ref>&lt; _body_ &gt;</type>
         <definition>Cylindrical&lt; _body_ &gt; astrea::astro::Cylindrical&lt; _body_ &gt;::interpolate</definition>
         <argsstring>(const Time &amp;thisTime, const Time &amp;otherTime, const Cylindrical&lt; _body_ &gt; &amp;other, const Time &amp;targetTime) const</argsstring>
         <name>interpolate</name>
         <qualifiedname>astrea::astro::Cylindrical::interpolate</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Time</ref> &amp;</type>
+          <type>const Time &amp;</type>
           <declname>thisTime</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Time</ref> &amp;</type>
+          <type>const Time &amp;</type>
           <declname>otherTime</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Cylindrical" kindref="compound">Cylindrical</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_body_</ref> &gt; &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Cylindrical" kindref="compound">Cylindrical</ref>&lt; _body_ &gt; &amp;</type>
           <declname>other</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Time</ref> &amp;</type>
+          <type>const Time &amp;</type>
           <declname>targetTime</declname>
         </param>
         <briefdescription>
@@ -750,7 +750,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/angular_elements/Cylindrical.hpp" line="174" column="9" bodyfile="astrea/astro/astro/state/angular_elements/Cylindrical.ipp" bodystart="168" bodyend="178"/>
+        <location file="astrea/astro/astro/state/angular_elements/Cylindrical.hpp" line="174" column="9" bodyfile="astrea/astro/astro/state/angular_elements/Cylindrical.ipp" bodystart="167" bodyend="177"/>
       </memberdef>
     </sectiondef>
     <briefdescription>

@@ -15,7 +15,6 @@
 * `#include <cmath>`
 * `#include <exception>`
 * `#include <mp-units/math.h>`
-* `#include <mp-units/systems/angular/math.h>`
 * `#include <mp-units/systems/si/math.h>`
 * `#include <astro/propagation/equations_of_motion/EquationsOfMotion.hpp>`
 * `#include <astro/propagation/force_models/ForceModel.hpp>`

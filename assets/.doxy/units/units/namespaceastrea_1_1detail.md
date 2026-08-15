@@ -35,7 +35,7 @@
 
 | Type | Name |
 | ---: | :--- |
-|  constexpr auto | [**angle\_unit**](#variable-angle_unit)   = `mp\_units::angular::unit\_symbols::rad`<br> |
+|  constexpr auto | [**angle\_unit**](#variable-angle_unit)   = `mp\_units::si::unit\_symbols::rad`<br> |
 |  constexpr auto | [**distance\_unit**](#variable-distance_unit)   = `mp\_units::si::unit\_symbols::km`<br> |
 |  constexpr auto | [**force\_unit**](#variable-force_unit)   = `(mass\_unit \* distance\_unit) / (time\_unit \* time\_unit)`<br> |
 |  constexpr auto | [**frequency\_unit**](#variable-frequency_unit)   = `mp\_units::si::unit\_symbols::Hz`<br> |

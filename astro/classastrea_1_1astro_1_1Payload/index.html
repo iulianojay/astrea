@@ -6238,7 +6238,7 @@ You're not viewing the latest version.
 
 
 <h1 id="class-astreaastropayload">Class astrea::astro::Payload<a class="headerlink" href="#class-astreaastropayload" title="Permanent link">&para;</a></h1>
-<p><strong>template &lt;<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>class</strong></a> <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Payload_T</strong></a>, <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>class</strong></a> PayloadParameters_T&gt;</strong></p>
+<p><strong>template &lt;class Payload_T, class PayloadParameters_T&gt;</strong></p>
 <p><a href="../annotated/"><strong>ClassList</strong></a> <strong>&gt;</strong> <a href="../namespaceastrea/"><strong>astrea</strong></a> <strong>&gt;</strong> <a href="../namespaceastrea_1_1astro/"><strong>astro</strong></a> <strong>&gt;</strong> <a href="./"><strong>Payload</strong></a></p>
 <p><a href="./"><em><strong>Payload</strong></em></a> <em>class representing a payload on a platform.</em><a href="#detailed-description">More...</a></p>
 <ul>
@@ -6262,7 +6262,7 @@ You're not viewing the latest version.
 <td style="text-align: left;"><a href="#function-get_name"><strong>get_name</strong></a> () const<br><em>Get the name of the payload.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> PayloadParameters_T &amp;</td>
+<td style="text-align: right;">const PayloadParameters_T &amp;</td>
 <td style="text-align: left;"><a href="#function-get_parameters-12"><strong>get_parameters</strong></a> () const<br><em>Get the payload parameters of the payload.</em></td>
 </tr>
 <tr>
@@ -6270,16 +6270,16 @@ You're not viewing the latest version.
 <td style="text-align: left;"><a href="#function-get_parameters-22"><strong>get_parameters</strong></a> () <br><em>Get the payload parameters of the payload.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1PayloadPlatform/"><strong>PayloadPlatform</strong></a>&lt; <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Payload_T</strong></a> &gt; *<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a></td>
+<td style="text-align: right;">const <a href="../classastrea_1_1astro_1_1PayloadPlatform/"><strong>PayloadPlatform</strong></a>&lt; Payload_T &gt; *const</td>
 <td style="text-align: left;"><a href="#function-get_parent"><strong>get_parent</strong></a> () const<br><em>Get the parent platform of the payload.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../structastrea_1_1astro_1_1CartesianVector/"><strong>CartesianVector</strong></a>&lt; <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Distance</strong></a>, frames::primary &gt;</td>
-<td style="text-align: left;"><a href="#function-get_position"><strong>get_position</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1Date/"><strong>Date</strong></a> &amp; date) const<br><em>Get the position of the payload in the primary frame.</em></td>
+<td style="text-align: right;"><a href="../structastrea_1_1astro_1_1CartesianVector/"><strong>CartesianVector</strong></a>&lt; Distance, frames::primary &gt;</td>
+<td style="text-align: left;"><a href="#function-get_position"><strong>get_position</strong></a> (const <a href="../classastrea_1_1astro_1_1Date/"><strong>Date</strong></a> &amp; date) const<br><em>Get the position of the payload in the primary frame.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../structastrea_1_1astro_1_1CartesianVector/"><strong>CartesianVector</strong></a>&lt; <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Velocity</strong></a>, frames::primary &gt;</td>
-<td style="text-align: left;"><a href="#function-get_velocity"><strong>get_velocity</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1Date/"><strong>Date</strong></a> &amp; date) const<br><em>Get the velocity of the payload in the primary frame. Assumes all payloads are fixed to their platform.</em></td>
+<td style="text-align: right;"><a href="../structastrea_1_1astro_1_1CartesianVector/"><strong>CartesianVector</strong></a>&lt; Velocity, frames::primary &gt;</td>
+<td style="text-align: left;"><a href="#function-get_velocity"><strong>get_velocity</strong></a> (const <a href="../classastrea_1_1astro_1_1Date/"><strong>Date</strong></a> &amp; date) const<br><em>Get the velocity of the payload in the primary frame. Assumes all payloads are fixed to their platform.</em></td>
 </tr>
 </tbody>
 </table>
@@ -6301,7 +6301,7 @@ You're not viewing the latest version.
 <td style="text-align: left;"><a href="#variable-_parameters"><strong>_parameters</strong></a>  <br><a href="./"><em><strong>Payload</strong></em></a> <em>parameters.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1PayloadPlatform/"><strong>PayloadPlatform</strong></a>&lt; <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Payload_T</strong></a> &gt; *</td>
+<td style="text-align: right;">const <a href="../classastrea_1_1astro_1_1PayloadPlatform/"><strong>PayloadPlatform</strong></a>&lt; Payload_T &gt; *</td>
 <td style="text-align: left;"><a href="#variable-_parent"><strong>_parent</strong></a>  <br><em>Parent platform.</em></td>
 </tr>
 </tbody>
@@ -6317,11 +6317,11 @@ You're not viewing the latest version.
 <tbody>
 <tr>
 <td style="text-align: right;"></td>
-<td style="text-align: left;"><a href="#function-payload"><strong>Payload</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Parent_T</strong></a> &amp; parent, <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> PayloadParameters_T &amp; parameters) <br><em>Constructs a</em> <a href="./"><em><strong>Payload</strong></em></a> <em>from a FieldOfView object.</em></td>
+<td style="text-align: left;"><a href="#function-payload"><strong>Payload</strong></a> (const Parent_T &amp; parent, const PayloadParameters_T &amp; parameters) <br><em>Constructs a</em> <a href="./"><em><strong>Payload</strong></em></a> <em>from a FieldOfView object.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>void</strong></a></td>
-<td style="text-align: left;"><a href="#function-set_parent"><strong>set_parent</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Parent_T</strong></a> &amp; parent) <br><em>Set the parent platform of the payload.</em></td>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-set_parent"><strong>set_parent</strong></a> (const Parent_T &amp; parent) <br><em>Set the parent platform of the payload.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">virtual</td>
@@ -6366,7 +6366,7 @@ You're not viewing the latest version.
 
 <h3 id="function-get_parent">function get_parent<a class="headerlink" href="#function-get_parent" title="Permanent link">&para;</a></h3>
 <p><em>Get the parent platform of the payload.</em> 
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kr">inline</span><span class="w"> </span><span class="k">const</span><span class="w">  </span><span class="n">PayloadPlatform</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">Payload_T</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Payload</span><span class="o">::</span><span class="n">get_parent</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kr">inline</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">PayloadPlatform</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">Payload_T</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">*</span><span class="k">const</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Payload</span><span class="o">::</span><span class="n">get_parent</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </span></code></pre></div></p>
 <p><strong>Returns:</strong></p>
 <p>const PayloadPlatform&lt;Payload_T, PayloadParameters_T&gt;* Pointer to the parent platform. </p>
@@ -6374,8 +6374,8 @@ You're not viewing the latest version.
 
 <h3 id="function-get_position">function get_position<a class="headerlink" href="#function-get_position" title="Permanent link">&para;</a></h3>
 <p><em>Get the position of the payload in the primary frame.</em> 
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="kr">inline</span><span class="w"> </span><span class="n">CartesianVector</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">Distance</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="n">frames</span><span class="o">::</span><span class="n">primary</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Payload</span><span class="o">::</span><span class="n">get_position</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Date</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">date</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="kr">inline</span><span class="w"> </span><span class="n">CartesianVector</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">Distance</span><span class="p">,</span><span class="w"> </span><span class="n">frames</span><span class="o">::</span><span class="n">primary</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Payload</span><span class="o">::</span><span class="n">get_position</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Date</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">date</span>
 </span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
 </span></code></pre></div></p>
 <p><strong>Parameters:</strong></p>
@@ -6388,8 +6388,8 @@ You're not viewing the latest version.
 
 <h3 id="function-get_velocity">function get_velocity<a class="headerlink" href="#function-get_velocity" title="Permanent link">&para;</a></h3>
 <p><em>Get the velocity of the payload in the primary frame. Assumes all payloads are fixed to their platform.</em> 
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="kr">inline</span><span class="w"> </span><span class="n">CartesianVector</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">Velocity</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="n">frames</span><span class="o">::</span><span class="n">primary</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Payload</span><span class="o">::</span><span class="n">get_velocity</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Date</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">date</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="kr">inline</span><span class="w"> </span><span class="n">CartesianVector</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">Velocity</span><span class="p">,</span><span class="w"> </span><span class="n">frames</span><span class="o">::</span><span class="n">primary</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Payload</span><span class="o">::</span><span class="n">get_velocity</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Date</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">date</span>
 </span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
 </span></code></pre></div></p>
 <p><strong>Parameters:</strong></p>
@@ -6420,9 +6420,9 @@ You're not viewing the latest version.
 <h2 id="protected-functions-documentation">Protected Functions Documentation<a class="headerlink" href="#protected-functions-documentation" title="Permanent link">&para;</a></h2>
 <h3 id="function-payload">function Payload<a class="headerlink" href="#function-payload" title="Permanent link">&para;</a></h3>
 <p><em>Constructs a</em> <a href="./"><em><strong>Payload</strong></em></a> <em>from a FieldOfView object.</em>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w">  </span><span class="nc">Parent_T</span><span class="o">&gt;</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">Parent_T</span><span class="o">&gt;</span>
 </span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="kr">inline</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Payload</span><span class="o">::</span><span class="n">Payload</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Parent_T</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">parent</span><span class="p">,</span>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Parent_T</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">parent</span><span class="p">,</span>
 </span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">PayloadParameters_T</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">parameters</span>
 </span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="p">)</span><span class="w"> </span>
 </span></code></pre></div></p>
@@ -6435,9 +6435,9 @@ You're not viewing the latest version.
 
 <h3 id="function-set_parent">function set_parent<a class="headerlink" href="#function-set_parent" title="Permanent link">&para;</a></h3>
 <p><em>Set the parent platform of the payload.</em> 
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w">  </span><span class="nc">Parent_T</span><span class="o">&gt;</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">Parent_T</span><span class="o">&gt;</span>
 </span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="kr">inline</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Payload</span><span class="o">::</span><span class="n">set_parent</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Parent_T</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">parent</span>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Parent_T</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">parent</span>
 </span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="p">)</span><span class="w"> </span>
 </span></code></pre></div></p>
 <p><strong>Template parameters:</strong></p>

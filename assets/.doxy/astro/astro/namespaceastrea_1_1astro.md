@@ -62,22 +62,22 @@
 | struct | [**BodyFixedFrame**](structastrea_1_1astro_1_1BodyFixedFrame.md) &lt;\_name\_, \_origin\_, \_axis\_&gt;<br>_Body-fixed frame defined by a celestial body and its reference axes. The origin is at the center of mass of the body, and the axes are fixed to the body._  |
 | class | [**Cartesian**](classastrea_1_1astro_1_1Cartesian.md) &lt;\_frame\_&gt;<br>_Class representing a_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _state vector in astrodynamics._ |
 | class | [**CartesianPartial**](classastrea_1_1astro_1_1CartesianPartial.md) &lt;\_frame\_&gt;<br>_Class representing a partial derivative of a_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _state vector._ |
-| struct | [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md) &lt;[**class**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Value\_T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), \_frame\_&gt;<br>_Class representing a 3D vector in_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _coordinates._ |
+| struct | [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md) &lt;class Value\_T, \_frame\_&gt;<br>_Class representing a 3D vector in_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _coordinates._ |
 | struct | [**CelestialBody**](structastrea_1_1astro_1_1CelestialBody.md) &lt;\_name\_, \_parent\_&gt;<br>[_**CelestialBody**_](structastrea_1_1astro_1_1CelestialBody.md) _class represents a celestial body in an astrodynamics system._ |
-| struct | [**CelestialBodyParameters**](structastrea_1_1astro_1_1CelestialBodyParameters.md) <br> |
+| struct | [**CelestialBodyParameters**](structastrea_1_1astro_1_1CelestialBodyParameters.md) <br>_Structure to hold the parameters of a celestial body._  |
 | struct | [**CelestialBodyTypePack**](structastrea_1_1astro_1_1CelestialBodyTypePack.md) &lt;typename...&gt;<br>_Type-list used to attach member bodies to a_ [_**Barycenter**_](structastrea_1_1astro_1_1Barycenter.md) _._ |
 | class | [**CircularRestrictedThreeBodyProblem**](classastrea_1_1astro_1_1CircularRestrictedThreeBodyProblem.md) <br>_Class implementing the Circular Restricted Three-Body Problem equations of motion._  |
-| class | [**Constellation**](classastrea_1_1astro_1_1Constellation.md) &lt;[**class**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Spacecraft\_T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)&gt;<br>_A_ [_**Constellation**_](classastrea_1_1astro_1_1Constellation.md) _is a collection of_[_**Spacecraft**_](classastrea_1_1astro_1_1Spacecraft.md) _, organized into Shells and/or Planes._ |
+| class | [**Constellation**](classastrea_1_1astro_1_1Constellation.md) &lt;class Spacecraft\_T&gt;<br>_A_ [_**Constellation**_](classastrea_1_1astro_1_1Constellation.md) _is a collection of_[_**Spacecraft**_](classastrea_1_1astro_1_1Spacecraft.md) _, organized into Shells and/or Planes._ |
 | class | [**CowellsMethod**](classastrea_1_1astro_1_1CowellsMethod.md) <br>_Class implementing Cowell's method for equations of motion._  |
 | class | [**Cylindrical**](classastrea_1_1astro_1_1Cylindrical.md) &lt;\_body\_&gt;<br>_Class representing a_ [_**Cylindrical**_](classastrea_1_1astro_1_1Cylindrical.md) _state vector in astrodynamics._ |
 | class | [**Date**](classastrea_1_1astro_1_1Date.md) <br>_Class representing a date in the astrea astro library._  |
-| struct | [**DcmInterface**](structastrea_1_1astro_1_1DcmInterface.md) &lt;[**typename**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Value\_T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), \_in\_frame\_, \_out\_frame\_&gt;<br>_Class representing a 3x3 matrix, used for matrices and their rates/accelerations._  |
+| struct | [**DcmInterface**](structastrea_1_1astro_1_1DcmInterface.md) &lt;typename Value\_T, \_in\_frame\_, \_out\_frame\_&gt;<br>_Class representing a 3x3 matrix, used for matrices and their rates/accelerations._  |
 | class | [**Deorbit**](classastrea_1_1astro_1_1Deorbit.md) <br>_A class representing a deorbit_ [_**Event**_](classastrea_1_1astro_1_1Event.md) _in the astrea astro platform. This class is used as a placeholder for Events that do not have a defined state or mass._ |
 | struct | [**DirectionCosineMatrix**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &lt;\_in\_frame\_, \_out\_frame\_&gt;<br>_Class representing a direction cosine matrix (DCM) for transforming vectors between state/frames._  |
 | class | [**DirectionCosineMatrixAccel**](structastrea_1_1astro_1_1DirectionCosineMatrixAccel.md) &lt;\_in\_frame\_, \_out\_frame\_&gt;<br>_Class representing a direction cosine matrix (DCM) for transforming vectors between state/frames._  |
 | struct | [**DirectionCosineMatrixRate**](structastrea_1_1astro_1_1DirectionCosineMatrixRate.md) &lt;\_in\_frame\_, \_out\_frame\_&gt;<br>_Class representing a direction cosine matrix (DCM) for transforming vectors between state/frames._  |
 | struct | [**DynamicAxis**](structastrea_1_1astro_1_1DynamicAxis.md) <br> |
-| struct | [**DynamicFrame**](structastrea_1_1astro_1_1DynamicFrame.md) &lt;[**typename**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Self**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), \_parent\_, \_self\_&gt;<br>_Base class for all dynamic state/frames._  |
+| struct | [**DynamicFrame**](structastrea_1_1astro_1_1DynamicFrame.md) &lt;typename Self, \_parent\_, \_self\_&gt;<br>_Base class for all dynamic state/frames._  |
 | struct | [**DynamicOrigin**](structastrea_1_1astro_1_1DynamicOrigin.md) <br> |
 | class | [**EquationsOfMotion**](classastrea_1_1astro_1_1EquationsOfMotion.md) <br>_Base class for equations of motion in astrodynamics._  |
 | class | [**Equinoctial**](classastrea_1_1astro_1_1Equinoctial.md) &lt;\_frame\_&gt;<br>_The_ [_**Equinoctial**_](classastrea_1_1astro_1_1Equinoctial.md) _class represents the equinoctial orbital elements._ |
@@ -86,9 +86,12 @@
 | class | [**EulerAngles**](classastrea_1_1astro_1_1EulerAngles.md) &lt;sequence, rotation\_type, \_in\_frame\_, \_out\_frame\_&gt;<br>_Class representing a sequence of angles (either Euler or Tait-Bryan) for attitude transformations between frames._  |
 | class | [**Event**](classastrea_1_1astro_1_1Event.md) <br>_A class representing a_ [_**Event**_](classastrea_1_1astro_1_1Event.md) _in the astrea astro platform. This class serves as a base for user-defined Events and provides a common interface._ |
 | class | [**EventDetector**](classastrea_1_1astro_1_1EventDetector.md) <br>_A class for detecting events in the astrea astro platform._  |
-| struct | [**ExtraRegisteredFrames**](structastrea_1_1astro_1_1ExtraRegisteredFrames.md) &lt;[**typename**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)&gt;<br>_Trait that users specialize to register additional_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _frames._ |
+| struct | [**ExtraRegisteredFrames**](structastrea_1_1astro_1_1ExtraRegisteredFrames.md) &lt;typename&gt;<br>_Trait that users specialize to register additional_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _frames._ |
 | struct | [**FixedOffsetAxis**](structastrea_1_1astro_1_1FixedOffsetAxis.md) &lt;\_parent\_, \_phi\_, \_theta\_, \_psi\_, \_sequence\_&gt;<br> |
 | struct | [**FixedOffsetFrame**](structastrea_1_1astro_1_1FixedOffsetFrame.md) &lt;auto...&gt;<br>_Class representing a fixed offset frame, which is defined by a fixed spatial and/or angular offset from a parent frame._  |
+| struct | [**FixedOffsetFrame&lt; \_name\_, \_parent\_, \_phi\_, \_theta\_, \_psi\_, \_sequence\_, Args... &gt;**](structastrea_1_1astro_1_1FixedOffsetFrame_3_01__name___00_01__parent___00_01__phi___00_01__theta96154ff31cb8eb7d055f0d1372ec2a1e.md) &lt;\_name\_, \_parent\_, \_phi\_, \_theta\_, \_psi\_, \_sequence\_, Args&gt;<br>_Specialization of_ [_**FixedOffsetFrame**_](structastrea_1_1astro_1_1FixedOffsetFrame.md) _for an angular offset with no spatial misalignment that lets the name be specified._ |
+| struct | [**FixedOffsetFrame&lt; \_name\_, \_parent\_, \_x\_, \_y\_, \_z\_, Args... &gt;**](structastrea_1_1astro_1_1FixedOffsetFrame_3_01__name___00_01__parent___00_01__x___00_01__y___00_01__z___00_01Args_8_8_8_01_4.md) &lt;\_name\_, \_parent\_, \_x\_, \_y\_, \_z\_, Args&gt;<br>_Specialization of_ [_**FixedOffsetFrame**_](structastrea_1_1astro_1_1FixedOffsetFrame.md) _for a spatial offset with no angular misalignment that lets the name be specified._ |
+| struct | [**FixedOffsetFrame&lt; \_name\_, \_parent\_, \_x\_, \_y\_, \_z\_, \_phi\_, \_theta\_, \_psi\_, \_sequence\_, Args... &gt;**](structastrea_1_1astro_1_1FixedOffsetFrame_3_01__name___00_01__parent___00_01__x___00_01__y___00_682f817510ea200b9f1d77fc37d45a92.md) &lt;\_name\_, \_parent\_, \_x\_, \_y\_, \_z\_, \_phi\_, \_theta\_, \_psi\_, \_sequence\_, Args&gt;<br>_Specialization of_ [_**FixedOffsetFrame**_](structastrea_1_1astro_1_1FixedOffsetFrame.md) _for a combined spatial and angular offset that lets the name be specified._ |
 | struct | [**FixedOffsetFrame&lt; \_parent\_, \_phi\_, \_theta\_, \_psi\_, \_sequence\_, Args... &gt;**](structastrea_1_1astro_1_1FixedOffsetFrame_3_01__parent___00_01__phi___00_01__theta___00_01__psi_9e091a834f5483531831878cbc7beda5.md) &lt;\_parent\_, \_phi\_, \_theta\_, \_psi\_, \_sequence\_, Args&gt;<br>_Specialization of_ [_**FixedOffsetFrame**_](structastrea_1_1astro_1_1FixedOffsetFrame.md) _for a pure angular offset (no spatial offset)._ |
 | struct | [**FixedOffsetFrame&lt; \_parent\_, \_x\_, \_y\_, \_z\_, Args... &gt;**](structastrea_1_1astro_1_1FixedOffsetFrame_3_01__parent___00_01__x___00_01__y___00_01__z___00_01Args_8_8_8_01_4.md) &lt;\_parent\_, \_x\_, \_y\_, \_z\_, Args&gt;<br>_Specialization of_ [_**FixedOffsetFrame**_](structastrea_1_1astro_1_1FixedOffsetFrame.md) _for a pure spatial offset (no angular misalignment)._ |
 | struct | [**FixedOffsetFrame&lt; \_parent\_, \_x\_, \_y\_, \_z\_, \_phi\_, \_theta\_, \_psi\_, \_sequence\_, Args... &gt;**](structastrea_1_1astro_1_1FixedOffsetFrame_3_01__parent___00_01__x___00_01__y___00_01__z___00_01_3721297a9a90e06cc0beab0e7a99da8d.md) &lt;\_parent\_, \_x\_, \_y\_, \_z\_, \_phi\_, \_theta\_, \_psi\_, \_sequence\_, Args&gt;<br>_Specialization of_ [_**FixedOffsetFrame**_](structastrea_1_1astro_1_1FixedOffsetFrame.md) _for a combined spatial and angular offset._ |
@@ -114,7 +117,7 @@
 | class | [**KeplerianPartial**](classastrea_1_1astro_1_1KeplerianPartial.md) &lt;\_frame\_&gt;<br>_Class representing a partial derivative of a_ [_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _state vector._ |
 | class | [**KeplerianVop**](classastrea_1_1astro_1_1KeplerianVop.md) <br>_Class implementing the_ [_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _VOP equations of motion._ |
 | class | [**LambertSolver**](classastrea_1_1astro_1_1LambertSolver.md) <br>_Class for solving Lambert's problem._  |
-| class | [**LegendreCache**](classastrea_1_1astro_1_1LegendreCache.md) &lt;\_body\_, \_degree\_, \_order\_&gt;<br> |
+| class | [**LegendreCache**](classastrea_1_1astro_1_1LegendreCache.md) &lt;\_body\_, \_degree\_, \_order\_&gt;<br>_Class to cache Legendre polynomial coefficients for a given celestial_ _body_ _, degree, and order._ |
 | class | [**NBodyForce**](classastrea_1_1astro_1_1NBodyForce.md) &lt;bodies&gt;<br>_Class to compute the gravitational force due to multiple celestial bodies._  |
 | class | [**NullEvent**](classastrea_1_1astro_1_1NullEvent.md) <br>_A class representing a null_ [_**Event**_](classastrea_1_1astro_1_1Event.md) _in the astrea astro platform. This class is used as a placeholder for Events that do not have a defined state or mass._ |
 | class | [**NullVehicle**](classastrea_1_1astro_1_1NullVehicle.md) <br>_A class representing a null vehicle in the astrea astro platform. This class is used as a placeholder for vehicles that do not have a defined state or mass._  |
@@ -124,17 +127,17 @@
 | struct | [**Origin**](structastrea_1_1astro_1_1Origin.md) &lt;mp\_units::symbol\_text, auto...&gt;<br> |
 | struct | [**Origin&lt; \_name\_ &gt;**](structastrea_1_1astro_1_1Origin_3_01__name___01_4.md) &lt;\_name\_&gt;<br> |
 | struct | [**Origin&lt; \_name\_, \_parent\_ &gt;**](structastrea_1_1astro_1_1Origin_3_01__name___00_01__parent___01_4.md) &lt;\_name\_, \_parent\_&gt;<br> |
-| class | [**Payload**](classastrea_1_1astro_1_1Payload.md) &lt;[**class**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Payload\_T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), [**class**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) PayloadParameters\_T&gt;<br>[_**Payload**_](classastrea_1_1astro_1_1Payload.md) _class representing a payload on a platform._ |
+| class | [**Payload**](classastrea_1_1astro_1_1Payload.md) &lt;class Payload\_T, class PayloadParameters\_T&gt;<br>[_**Payload**_](classastrea_1_1astro_1_1Payload.md) _class representing a payload on a platform._ |
 | class | [**PayloadParameters**](classastrea_1_1astro_1_1PayloadParameters.md) <br>_Class for storing and managing payload parameters._  |
-| class | [**PayloadPlatform**](classastrea_1_1astro_1_1PayloadPlatform.md) &lt;[**class**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Payload\_T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)&gt;<br>_The_ [_**PayloadPlatform**_](classastrea_1_1astro_1_1PayloadPlatform.md) _class represents a platform that can have payloads attached to it. It provides methods to attach payloads and retrieve the list of attached payloads._ |
+| class | [**PayloadPlatform**](classastrea_1_1astro_1_1PayloadPlatform.md) &lt;class Payload\_T&gt;<br>_The_ [_**PayloadPlatform**_](classastrea_1_1astro_1_1PayloadPlatform.md) _class represents a platform that can have payloads attached to it. It provides methods to attach payloads and retrieve the list of attached payloads._ |
 | struct | [**Perturbation**](structastrea_1_1astro_1_1Perturbation.md) <br>_Struct to hold the results of a perturbation force computation, including both acceleration and torque._  |
 | class | [**PerturbingForce**](classastrea_1_1astro_1_1PerturbingForce.md) <br>_Abstract base class for force models in astrodynamics._  |
-| class | [**Plane**](classastrea_1_1astro_1_1Plane.md) &lt;[**class**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Spacecraft\_T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)&gt;<br>_A_ [_**Plane**_](classastrea_1_1astro_1_1Plane.md) _is a collection of_[_**Spacecraft**_](classastrea_1_1astro_1_1Spacecraft.md) _that share the same orbital elements._ |
+| class | [**Plane**](classastrea_1_1astro_1_1Plane.md) &lt;class Spacecraft\_T&gt;<br>_A_ [_**Plane**_](classastrea_1_1astro_1_1Plane.md) _is a collection of_[_**Spacecraft**_](classastrea_1_1astro_1_1Spacecraft.md) _that share the same orbital elements._ |
 | class | [**Quaternion**](classastrea_1_1astro_1_1Quaternion.md) &lt;\_in\_frame\_, \_out\_frame\_&gt;<br>_Class representing a quaternion for attitude rotations between frames._  |
 | class | [**QuaternionPartial**](classastrea_1_1astro_1_1QuaternionPartial.md) &lt;\_in\_frame\_, \_out\_frame\_&gt;<br>_Class representing the partial derivative of a quaternion with respect to time, used for integration._  |
 | struct | [**ReferenceAxes**](structastrea_1_1astro_1_1ReferenceAxes.md) &lt;\_name\_&gt;<br> |
 | class | [**Schedule**](classastrea_1_1astro_1_1Schedule.md) <br>_A class representing a_ [_**Schedule**_](classastrea_1_1astro_1_1Schedule.md) _in the astrea astro library. The_[_**Schedule**_](classastrea_1_1astro_1_1Schedule.md) _is responsible for scheduling and managing Events that are set to trigger at specific Dates during propagation._ |
-| class | [**Shell**](classastrea_1_1astro_1_1Shell.md) &lt;[**class**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Spacecraft\_T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)&gt;<br>_A_ [_**Shell**_](classastrea_1_1astro_1_1Shell.md) _is a collection of planes, each containing a set of_[_**Spacecraft**_](classastrea_1_1astro_1_1Spacecraft.md) _. It is used to represent sub-constellations of satellites in orbit._ |
+| class | [**Shell**](classastrea_1_1astro_1_1Shell.md) &lt;class Spacecraft\_T&gt;<br>_A_ [_**Shell**_](classastrea_1_1astro_1_1Shell.md) _is a collection of planes, each containing a set of_[_**Spacecraft**_](classastrea_1_1astro_1_1Spacecraft.md) _. It is used to represent sub-constellations of satellites in orbit._ |
 | class | [**SolarRadiationPressure**](classastrea_1_1astro_1_1SolarRadiationPressure.md) <br>_Class to compute the solar radiation pressure force on a spacecraft._  |
 | class | [**Spacecraft**](classastrea_1_1astro_1_1Spacecraft.md) <br>_A class representing a spacecraft in the astrea astro platform. This class encapsulates the properties of a spacecraft, including its mass, dynamic coefficients, and surface areas._  |
 | class | [**Spherical**](classastrea_1_1astro_1_1Spherical.md) &lt;\_body\_&gt;<br>_Class representing a_ [_**Spherical**_](classastrea_1_1astro_1_1Spherical.md) _state vector in astrodynamics._ |
@@ -148,25 +151,26 @@
 | struct | [**TerrestrialTimeClock**](structastrea_1_1astro_1_1TerrestrialTimeClock.md) <br>_A clock implementation for Terrestrial Time (TT)._  |
 | class | [**Thruster**](classastrea_1_1astro_1_1Thruster.md) <br>[_**Thruster**_](classastrea_1_1astro_1_1Thruster.md) _class representing a thruster on a platform._ |
 | class | [**ThrusterParameters**](classastrea_1_1astro_1_1ThrusterParameters.md) <br>_Class for storing and managing thruster parameters._  |
+| struct | [**TopocentricFrame**](structastrea_1_1astro_1_1TopocentricFrame.md) &lt;\_name\_, \_parent\_, \_lat\_, \_lon\_, \_alt\_&gt;<br>_A frame that is topocentric to a given body, defined relative to some body-fixed frame by a specific latitude, longitude, and altitude._  |
 | class | [**TurnThrustersOff**](classastrea_1_1astro_1_1TurnThrustersOff.md) <br>_A class representing a_ [_**TurnThrustersOff**_](classastrea_1_1astro_1_1TurnThrustersOff.md) __[_**Event**_](classastrea_1_1astro_1_1Event.md) _in the astrea astro platform. This class is used as a placeholder for Events that do not have a defined state or mass._ |
 | class | [**TurnThrustersOn**](classastrea_1_1astro_1_1TurnThrustersOn.md) <br>_A class representing a_ [_**TurnThrustersOn**_](classastrea_1_1astro_1_1TurnThrustersOn.md) __[_**Event**_](classastrea_1_1astro_1_1Event.md) _in the astrea astro platform. This class is used as a placeholder for Events that do not have a defined state or mass._ |
 | class | [**TwoBody**](classastrea_1_1astro_1_1TwoBody.md) <br>_Class implementing the Two Body equations of motion._  |
 | class | [**TwoLineElements**](classastrea_1_1astro_1_1TwoLineElements.md) <br>_Class representing the two-line element (TLE) format for orbital data._  |
 | class | [**Vehicle**](classastrea_1_1astro_1_1Vehicle.md) <br>_A class representing a vehicle in the astrea astro platform. This class serves as a base for user-defined vehicles and provides a common interface._  |
-| struct | [**is\_cartesian\_vector**](structastrea_1_1astro_1_1is__cartesian__vector.md) &lt;[**class**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)&gt;<br> |
-| struct | [**is\_cartesian\_vector&lt; CartesianVector&lt; Value\_T, frame &gt; &gt;**](structastrea_1_1astro_1_1is__cartesian__vector_3_01CartesianVector_3_01Value__T_00_01frame_01_4_01_4.md) &lt;[**class**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Value\_T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), frame&gt;<br> |
+| struct | [**is\_cartesian\_vector**](structastrea_1_1astro_1_1is__cartesian__vector.md) &lt;class T&gt;<br> |
+| struct | [**is\_cartesian\_vector&lt; CartesianVector&lt; Value\_T, frame &gt; &gt;**](structastrea_1_1astro_1_1is__cartesian__vector_3_01CartesianVector_3_01Value__T_00_01frame_01_4_01_4.md) &lt;class Value\_T, frame&gt;<br> |
 
 
 ## Public Types
 
 | Type | Name |
 | ---: | :--- |
-| typedef [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; [**Acceleration**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), frame &gt; | [**AccelerationVector**](#typedef-accelerationvector)  <br>_Type alias for a vector representing acceleration in 3D space._  |
-| typedef std::tuple&lt; std::decay\_t&lt; [**decltype**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)(frames::primary)&gt; &gt; | [**AutomaticallyRegisteredFrames**](#typedef-automaticallyregisteredframes)  <br>_The built-in set of_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _frames known to astrea._ |
+| typedef [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; Acceleration, frame &gt; | [**AccelerationVector**](#typedef-accelerationvector)  <br>_Type alias for a vector representing acceleration in 3D space._  |
+| typedef std::tuple&lt; std::decay\_t&lt; decltype(frames::primary)&gt; &gt; | [**AutomaticallyRegisteredFrames**](#typedef-automaticallyregisteredframes)  <br>_The built-in set of_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _frames known to astrea._ |
 | typedef [**BarycentricCoordinateTimeClock::time\_point**](structastrea_1_1astro_1_1BarycentricCoordinateTimeClock.md#typedef-time_point) | [**BarycentricCoordinateTime**](#typedef-barycentriccoordinatetime)  <br>_A type alias for Barycentric Coordinate Time time points._  |
-| typedef std::chrono::time\_point&lt; [**BarycentricCoordinateTimeClock**](structastrea_1_1astro_1_1BarycentricCoordinateTimeClock.md), [**Duration**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt; | [**BarycentricCoordinateTimePoint**](#typedef-barycentriccoordinatetimepoint)  <br>_A time point type for_ [_**Geocentric**_](classastrea_1_1astro_1_1Geocentric.md) _Coordinate Time, using the_[_**BarycentricCoordinateTimeClock**_](structastrea_1_1astro_1_1BarycentricCoordinateTimeClock.md) _._ |
+| typedef std::chrono::time\_point&lt; [**BarycentricCoordinateTimeClock**](structastrea_1_1astro_1_1BarycentricCoordinateTimeClock.md), Duration &gt; | [**BarycentricCoordinateTimePoint**](#typedef-barycentriccoordinatetimepoint)  <br>_A time point type for_ [_**Geocentric**_](classastrea_1_1astro_1_1Geocentric.md) _Coordinate Time, using the_[_**BarycentricCoordinateTimeClock**_](structastrea_1_1astro_1_1BarycentricCoordinateTimeClock.md) _._ |
 | typedef [**BarycentricDynamicalTimeClock::time\_point**](structastrea_1_1astro_1_1BarycentricDynamicalTimeClock.md#typedef-time_point) | [**BarycentricDynamicalTime**](#typedef-barycentricdynamicaltime)  <br>_A type alias for Barycentric Dynamical Time time points._  |
-| typedef std::chrono::time\_point&lt; [**BarycentricDynamicalTimeClock**](structastrea_1_1astro_1_1BarycentricDynamicalTimeClock.md), [**Duration**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt; | [**BarycentricDynamicalTimePoint**](#typedef-barycentricdynamicaltimepoint)  <br>_A time point type for_ [_**Geocentric**_](classastrea_1_1astro_1_1Geocentric.md) _Coordinate Time, using the_[_**BarycentricDynamicalTimeClock**_](structastrea_1_1astro_1_1BarycentricDynamicalTimeClock.md) _._ |
+| typedef std::chrono::time\_point&lt; [**BarycentricDynamicalTimeClock**](structastrea_1_1astro_1_1BarycentricDynamicalTimeClock.md), Duration &gt; | [**BarycentricDynamicalTimePoint**](#typedef-barycentricdynamicaltimepoint)  <br>_A time point type for_ [_**Geocentric**_](classastrea_1_1astro_1_1Geocentric.md) _Coordinate Time, using the_[_**BarycentricDynamicalTimeClock**_](structastrea_1_1astro_1_1BarycentricDynamicalTimeClock.md) _._ |
 | typedef [**AngularVelocities**](classastrea_1_1astro_1_1AngularVelocities.md)&lt; [**frames::dynamic::body**](structastrea_1_1astro_1_1frames_1_1dynamic_1_1body.md), [**frames::earth::icrf**](structastrea_1_1astro_1_1frames_1_1earth_1_1icrf.md) &gt; | [**BodyAngleVelocities**](#typedef-bodyanglevelocities)  <br>_Type alias for a ICRF-&gt;body angle sequence velocity._  |
 | typedef [**EulerAngles**](classastrea_1_1astro_1_1EulerAngles.md)&lt; RotationSequence::ZXZ, RotationType::INTRINSIC, [**frames::dynamic::body**](structastrea_1_1astro_1_1frames_1_1dynamic_1_1body.md), [**frames::earth::icrf**](structastrea_1_1astro_1_1frames_1_1earth_1_1icrf.md) &gt; | [**BodyAngles**](#typedef-bodyangles)  <br>_Type alias for a ICRF-&gt;body angle sequence._  |
 | typedef [**AngularAccelerations**](classastrea_1_1astro_1_1AngularAccelerations.md)&lt; [**frames::dynamic::body**](structastrea_1_1astro_1_1frames_1_1dynamic_1_1body.md), [**frames::earth::icrf**](structastrea_1_1astro_1_1frames_1_1earth_1_1icrf.md) &gt; | [**BodyAngularAcceleration**](#typedef-bodyangularacceleration)  <br>_Type alias for a ICRF-&gt;body angle sequence acceleration._  |
@@ -174,32 +178,32 @@
 | typedef [**QuaternionPartial**](classastrea_1_1astro_1_1QuaternionPartial.md)&lt; [**frames::dynamic::body**](structastrea_1_1astro_1_1frames_1_1dynamic_1_1body.md), [**frames::earth::icrf**](structastrea_1_1astro_1_1frames_1_1earth_1_1icrf.md) &gt; | [**BodyQuaternionRate**](#typedef-bodyquaternionrate)  <br>_Type alias for a ICRF-&gt;body quaternion derivative._  |
 | typedef [**CircularRestrictedThreeBodyProblem**](classastrea_1_1astro_1_1CircularRestrictedThreeBodyProblem.md) | [**CR3BP**](#typedef-cr3bp)  <br> |
 | enum [**EnumType**](namespaceastrea_1_1astro.md#typedef-enumtype) | [**CelestialBodyType**](#enum-celestialbodytype)  <br>_Celestial body types._  |
-| typedef std::tuple&lt; mp\_units::quantity&lt; mp\_units::angular::unit\_symbols::rad/([**JulianCentury**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) \*[**JulianCentury**](classastrea_1_1astro_1_1DirectionCosineMatrix.md))&gt;, mp\_units::quantity&lt; mp\_units::angular::unit\_symbols::rad &gt;, mp\_units::quantity&lt; mp\_units::angular::unit\_symbols::rad &gt;, mp\_units::quantity&lt; mp\_units::angular::unit\_symbols::rad/[**JulianCentury**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt; &gt; | [**CoefficientPack**](#typedef-coefficientpack)  <br>_Type alias for a tuple of linear expansion coefficients._  |
+| typedef std::tuple&lt; mp\_units::quantity&lt; mp\_units::si::unit\_symbols::rad/(astrea::units::unit\_symbols::jc \*astrea::units::unit\_symbols::jc)&gt;, mp\_units::quantity&lt; mp\_units::si::unit\_symbols::rad &gt;, mp\_units::quantity&lt; mp\_units::si::unit\_symbols::rad &gt;, mp\_units::quantity&lt; mp\_units::si::unit\_symbols::rad/astrea::units::unit\_symbols::jc &gt; &gt; | [**CoefficientPack**](#typedef-coefficientpack)  <br>_Type alias for a tuple of linear expansion coefficients._  |
 | enum  | [**Coordinate**](#enum-coordinate)  <br> |
-| typedef [**DirectionCosineMatrix**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)&lt; [**\_in\_frame\_**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), [**\_out\_frame\_**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt; | [**DCM**](#typedef-dcm)  <br>_Alias for_ [_**DirectionCosineMatrix**_](classastrea_1_1astro_1_1DirectionCosineMatrix.md) _with a specific output frame type._ |
-| typedef [**DirectionCosineMatrixAccel**](structastrea_1_1astro_1_1DirectionCosineMatrixAccel.md)&lt; [**\_in\_frame\_**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), [**\_out\_frame\_**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt; | [**DcmAccel**](#typedef-dcmaccel)  <br>_Alias for_ [_**DirectionCosineMatrixAccel**_](structastrea_1_1astro_1_1DirectionCosineMatrixAccel.md) _with a specific output frame type._ |
-| typedef [**DirectionCosineMatrixRate**](structastrea_1_1astro_1_1DirectionCosineMatrixRate.md)&lt; [**\_in\_frame\_**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), [**\_out\_frame\_**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt; | [**DcmRate**](#typedef-dcmrate)  <br>_Alias for_ [_**DirectionCosineMatrixRate**_](structastrea_1_1astro_1_1DirectionCosineMatrixRate.md) _with a specific output frame type._ |
-| typedef [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; [**Unitless**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), frame &gt; | [**Direction**](#typedef-direction)  <br>_Type alias for a vector representing unit vectors in 3D space._  |
-| typedef [**uint32\_t**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**EnumType**](#typedef-enumtype)  <br>_Type definition for enumeration types._  |
-| typedef [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; [**Force**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), frame &gt; | [**ForceVector**](#typedef-forcevector)  <br>_Type alias for a vector representing force vectors in 3D space._  |
+| typedef [**DirectionCosineMatrix**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)&lt; \_in\_frame\_, \_out\_frame\_ &gt; | [**DCM**](#typedef-dcm)  <br>_Alias for_ [_**DirectionCosineMatrix**_](classastrea_1_1astro_1_1DirectionCosineMatrix.md) _with a specific output frame type._ |
+| typedef [**DirectionCosineMatrixAccel**](structastrea_1_1astro_1_1DirectionCosineMatrixAccel.md)&lt; \_in\_frame\_, \_out\_frame\_ &gt; | [**DcmAccel**](#typedef-dcmaccel)  <br>_Alias for_ [_**DirectionCosineMatrixAccel**_](structastrea_1_1astro_1_1DirectionCosineMatrixAccel.md) _with a specific output frame type._ |
+| typedef [**DirectionCosineMatrixRate**](structastrea_1_1astro_1_1DirectionCosineMatrixRate.md)&lt; \_in\_frame\_, \_out\_frame\_ &gt; | [**DcmRate**](#typedef-dcmrate)  <br>_Alias for_ [_**DirectionCosineMatrixRate**_](structastrea_1_1astro_1_1DirectionCosineMatrixRate.md) _with a specific output frame type._ |
+| typedef [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; Unitless, frame &gt; | [**Direction**](#typedef-direction)  <br>_Type alias for a vector representing unit vectors in 3D space._  |
+| typedef uint32\_t | [**EnumType**](#typedef-enumtype)  <br>_Type definition for enumeration types._  |
+| typedef [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; Force, frame &gt; | [**ForceVector**](#typedef-forcevector)  <br>_Type alias for a vector representing force vectors in 3D space._  |
 | enum [**EnumType**](namespaceastrea_1_1astro.md#typedef-enumtype) | [**FrameAxis**](#enum-frameaxis)  <br>_Reference frames axes._  |
-| typedef std::chrono::time\_point&lt; [**GeocentricCoordinateTimeClock**](structastrea_1_1astro_1_1GeocentricCoordinateTimeClock.md), [**Duration**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt; | [**GeocentricCoordinateDateTime**](#typedef-geocentriccoordinatedatetime)  <br>_A time point type for_ [_**Geocentric**_](classastrea_1_1astro_1_1Geocentric.md) _Coordinate Time, using the_[_**GeocentricCoordinateTimeClock**_](structastrea_1_1astro_1_1GeocentricCoordinateTimeClock.md) _._ |
+| typedef std::chrono::time\_point&lt; [**GeocentricCoordinateTimeClock**](structastrea_1_1astro_1_1GeocentricCoordinateTimeClock.md), Duration &gt; | [**GeocentricCoordinateDateTime**](#typedef-geocentriccoordinatedatetime)  <br>_A time point type for_ [_**Geocentric**_](classastrea_1_1astro_1_1Geocentric.md) _Coordinate Time, using the_[_**GeocentricCoordinateTimeClock**_](structastrea_1_1astro_1_1GeocentricCoordinateTimeClock.md) _._ |
 | typedef [**GeocentricCoordinateTimeClock::time\_point**](structastrea_1_1astro_1_1GeocentricCoordinateTimeClock.md#typedef-time_point) | [**GeocentricCoordinateTime**](#typedef-geocentriccoordinatetime)  <br>_A type alias for_ [_**Geocentric**_](classastrea_1_1astro_1_1Geocentric.md) _Coordinate Time time points._ |
 | typedef [**JulianDateClock::time\_point**](structastrea_1_1astro_1_1JulianDateClock.md#typedef-time_point) | [**JulianDate**](#typedef-juliandate)  <br>_A type alias for Julian_ [_**Date**_](classastrea_1_1astro_1_1Date.md) _time points._ |
-| typedef std::chrono::time\_point&lt; [**JulianDateClock**](structastrea_1_1astro_1_1JulianDateClock.md), [**Duration**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt; | [**JulianDateTime**](#typedef-juliandatetime)  <br>_A time point type for Julian Dates, using the_ [_**JulianDateClock**_](structastrea_1_1astro_1_1JulianDateClock.md) _._ |
-| typedef [**typename**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**detail::tuple\_to\_variant**](structastrea_1_1astro_1_1detail_1_1tuple__to__variant.md)&lt; [**typename**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**detail::multi\_tuple\_cat**](structastrea_1_1astro_1_1detail_1_1multi__tuple__cat.md)&lt; [**typename**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**detail::apply\_nttp\_template**](structastrea_1_1astro_1_1detail_1_1apply__nttp__template.md)&lt; [**CartesianPartial**](classastrea_1_1astro_1_1CartesianPartial.md), [**detail::AllRegisteredFrames**](namespaceastrea_1_1astro_1_1detail.md#typedef-allregisteredframes) &gt;::type, [**typename**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**detail::apply\_nttp\_template**](structastrea_1_1astro_1_1detail_1_1apply__nttp__template.md)&lt; [**FrameIndexedTypes**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), [**detail::AllRegisteredFrames**](namespaceastrea_1_1astro_1_1detail.md#typedef-allregisteredframes) &gt;::type... &gt;::type &gt;::type | [**OrbitalElementPartialVariant**](#typedef-orbitalelementpartialvariant)  <br> |
-| typedef [**typename**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**detail::tuple\_to\_variant**](structastrea_1_1astro_1_1detail_1_1tuple__to__variant.md)&lt; [**typename**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**detail::multi\_tuple\_cat**](structastrea_1_1astro_1_1detail_1_1multi__tuple__cat.md)&lt; [**typename**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**detail::apply\_nttp\_template**](structastrea_1_1astro_1_1detail_1_1apply__nttp__template.md)&lt; [**Cartesian**](classastrea_1_1astro_1_1Cartesian.md), [**detail::AllRegisteredFrames**](namespaceastrea_1_1astro_1_1detail.md#typedef-allregisteredframes) &gt;::type, [**typename**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**detail::apply\_nttp\_template**](structastrea_1_1astro_1_1detail_1_1apply__nttp__template.md)&lt; [**FrameIndexedTypes**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), [**detail::AllRegisteredFrames**](namespaceastrea_1_1astro_1_1detail.md#typedef-allregisteredframes) &gt;::type... &gt;::type &gt;::type | [**OrbitalElementVariant**](#typedef-orbitalelementvariant)  <br>_Variant of all frame-indexed element types expanded over every registered frame._  |
-| typedef [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; [**Distance**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), frame &gt; | [**RadiusVector**](#typedef-radiusvector)  <br>_Type alias for a vector representing a radius in 3D space._  |
+| typedef std::chrono::time\_point&lt; [**JulianDateClock**](structastrea_1_1astro_1_1JulianDateClock.md), Duration &gt; | [**JulianDateTime**](#typedef-juliandatetime)  <br>_A time point type for Julian Dates, using the_ [_**JulianDateClock**_](structastrea_1_1astro_1_1JulianDateClock.md) _._ |
+| typedef typename [**detail::tuple\_to\_variant**](structastrea_1_1astro_1_1detail_1_1tuple__to__variant.md)&lt; typename [**detail::multi\_tuple\_cat**](structastrea_1_1astro_1_1detail_1_1multi__tuple__cat.md)&lt; typename [**detail::apply\_nttp\_template**](structastrea_1_1astro_1_1detail_1_1apply__nttp__template.md)&lt; [**CartesianPartial**](classastrea_1_1astro_1_1CartesianPartial.md), [**detail::AllRegisteredFrames**](namespaceastrea_1_1astro_1_1detail.md#typedef-allregisteredframes) &gt;::type, typename [**detail::apply\_nttp\_template**](structastrea_1_1astro_1_1detail_1_1apply__nttp__template.md)&lt; FrameIndexedTypes, [**detail::AllRegisteredFrames**](namespaceastrea_1_1astro_1_1detail.md#typedef-allregisteredframes) &gt;::type... &gt;::type &gt;::type | [**OrbitalElementPartialVariant**](#typedef-orbitalelementpartialvariant)  <br> |
+| typedef typename [**detail::tuple\_to\_variant**](structastrea_1_1astro_1_1detail_1_1tuple__to__variant.md)&lt; typename [**detail::multi\_tuple\_cat**](structastrea_1_1astro_1_1detail_1_1multi__tuple__cat.md)&lt; typename [**detail::apply\_nttp\_template**](structastrea_1_1astro_1_1detail_1_1apply__nttp__template.md)&lt; [**Cartesian**](classastrea_1_1astro_1_1Cartesian.md), [**detail::AllRegisteredFrames**](namespaceastrea_1_1astro_1_1detail.md#typedef-allregisteredframes) &gt;::type, typename [**detail::apply\_nttp\_template**](structastrea_1_1astro_1_1detail_1_1apply__nttp__template.md)&lt; FrameIndexedTypes, [**detail::AllRegisteredFrames**](namespaceastrea_1_1astro_1_1detail.md#typedef-allregisteredframes) &gt;::type... &gt;::type &gt;::type | [**OrbitalElementVariant**](#typedef-orbitalelementvariant)  <br>_Variant of all frame-indexed element types expanded over every registered frame._  |
+| typedef [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; Distance, frame &gt; | [**RadiusVector**](#typedef-radiusvector)  <br>_Type alias for a vector representing a radius in 3D space._  |
 | enum  | [**RotationSequence**](#enum-rotationsequence)  <br>_Enum representing possible Euler angle sequences._  |
 | enum  | [**RotationType**](#enum-rotationtype)  <br>_Enum representing whether the rotation sequence is intrinsic or extrinsic._  |
 | enum [**EnumType**](namespaceastrea_1_1astro.md#typedef-enumtype) | [**StepMethod**](#enum-stepmethod)  <br>_Enumeration for different Runge-Kutta stepper methods._  |
 | enum [**EnumType**](namespaceastrea_1_1astro.md#typedef-enumtype) | [**SystemCenter**](#enum-systemcenter)  <br>_System center types._  |
-| typedef std::chrono::time\_point&lt; [**TerrestrialTimeClock**](structastrea_1_1astro_1_1TerrestrialTimeClock.md), [**Duration**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt; | [**TerrestrialDateTime**](#typedef-terrestrialdatetime)  <br>_A time point type for Terrestrial Time, using the_ [_**TerrestrialTimeClock**_](structastrea_1_1astro_1_1TerrestrialTimeClock.md) _._ |
+| typedef std::chrono::time\_point&lt; [**TerrestrialTimeClock**](structastrea_1_1astro_1_1TerrestrialTimeClock.md), Duration &gt; | [**TerrestrialDateTime**](#typedef-terrestrialdatetime)  <br>_A time point type for Terrestrial Time, using the_ [_**TerrestrialTimeClock**_](structastrea_1_1astro_1_1TerrestrialTimeClock.md) _._ |
 | typedef [**TerrestrialTimeClock::time\_point**](structastrea_1_1astro_1_1TerrestrialTimeClock.md#typedef-time_point) | [**TerrestrialTime**](#typedef-terrestrialtime)  <br>_A type alias for Terrestrial Time time points._  |
 | typedef [**PayloadPlatform**](classastrea_1_1astro_1_1PayloadPlatform.md)&lt; [**Thruster**](classastrea_1_1astro_1_1Thruster.md) &gt; | [**ThrusterPlatform**](#typedef-thrusterplatform)  <br>[_**Thruster**_](classastrea_1_1astro_1_1Thruster.md) _platform type definition._ |
-| typedef [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; [**Moment**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), frame &gt; | [**TorqueVector**](#typedef-torquevector)  <br>_Type alias for a vector representing moment vectors in 3D space._  |
-| typedef [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; [**Velocity**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), frame &gt; | [**VelocityVector**](#typedef-velocityvector)  <br>_Type alias for a vector representing velocity in 3D space._  |
-| typedef std::remove\_cv\_t&lt; std::remove\_reference\_t&lt; [**T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt; &gt; | [**remove\_cv\_ref**](#typedef-remove_cv_ref)  <br> |
+| typedef [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; Moment, frame &gt; | [**TorqueVector**](#typedef-torquevector)  <br>_Type alias for a vector representing moment vectors in 3D space._  |
+| typedef [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; Velocity, frame &gt; | [**VelocityVector**](#typedef-velocityvector)  <br>_Type alias for a vector representing velocity in 3D space._  |
+| typedef std::remove\_cv\_t&lt; std::remove\_reference\_t&lt; T &gt; &gt; | [**remove\_cv\_ref**](#typedef-remove_cv_ref)  <br> |
 
 
 
@@ -208,20 +212,20 @@
 
 | Type | Name |
 | ---: | :--- |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**bool**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**always\_false**](#variable-always_false)   = `[**false**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)`<br>_A helper variable template that is always false, used for static\_asserts in templates that should never be instantiated._  |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**bool**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**is\_cartesian\_vector\_v**](#variable-is_cartesian_vector_v)   = `[**is\_cartesian\_vector**](structastrea_1_1astro_1_1is__cartesian__vector.md)&lt;[**T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)&gt;::value`<br> |
+|  constexpr bool | [**always\_false**](#variable-always_false)   = `false`<br>_A helper variable template that is always false, used for static\_asserts in templates that should never be instantiated._  |
+|  constexpr bool | [**is\_cartesian\_vector\_v**](#variable-is_cartesian_vector_v)   = `[**is\_cartesian\_vector**](structastrea_1_1astro_1_1is__cartesian__vector.md)&lt;T&gt;::value`<br> |
 
 
 ## Public Static Attributes
 
 | Type | Name |
 | ---: | :--- |
-|  [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**astro::RadiusVector**](namespaceastrea_1_1astro.md#typedef-radiusvector)&lt; astro::frames::dynamic::ric &gt; | [**CENTER**](#variable-center)   = `/* multi line expression */`<br> |
-|  [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**size\_t**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**DEFAULT\_SHELL\_ID**](#variable-default_shell_id)   = `[**SIZE\_MAX**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)`<br> |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) mp\_units::quantity\_point | [**J2K**](#variable-j2k)   = `J2000`<br>_A constant representing the J2000 epoch in Julian_ [_**Date**_](classastrea_1_1astro_1_1Date.md) _format, used as a reference point._ |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) mp\_units::quantity\_point | [**MJDStart**](#variable-mjdstart)   = `MJD0`<br>_A constant representing the start of the Modified Julian_ [_**Date**_](classastrea_1_1astro_1_1Date.md) _epoch._ |
-|  [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**astro::RadiusVector**](namespaceastrea_1_1astro.md#typedef-radiusvector)&lt; astro::frames::dynamic::ric &gt; | [**NADIR\_RIC**](#variable-nadir_ric)   = `/* multi line expression */`<br> |
-|  [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**astro::RadiusVector**](namespaceastrea_1_1astro.md#typedef-radiusvector)&lt; astro::frames::dynamic::ric &gt; | [**RADIAL\_RIC**](#variable-radial_ric)   = `/* multi line expression */`<br> |
+|  const [**astro::RadiusVector**](namespaceastrea_1_1astro.md#typedef-radiusvector)&lt; astro::frames::dynamic::ric &gt; | [**CENTER**](#variable-center)   = `/* multi line expression */`<br> |
+|  const size\_t | [**DEFAULT\_SHELL\_ID**](#variable-default_shell_id)   = `SIZE\_MAX`<br> |
+|  constexpr mp\_units::quantity\_point | [**J2K**](#variable-j2k)   = `J2000`<br>_A constant representing the J2000 epoch in Julian_ [_**Date**_](classastrea_1_1astro_1_1Date.md) _format, used as a reference point._ |
+|  constexpr mp\_units::quantity\_point | [**MJDStart**](#variable-mjdstart)   = `MJD0`<br>_A constant representing the start of the Modified Julian_ [_**Date**_](classastrea_1_1astro_1_1Date.md) _epoch._ |
+|  const [**astro::RadiusVector**](namespaceastrea_1_1astro.md#typedef-radiusvector)&lt; astro::frames::dynamic::ric &gt; | [**NADIR\_RIC**](#variable-nadir_ric)   = `/* multi line expression */`<br> |
+|  const [**astro::RadiusVector**](namespaceastrea_1_1astro.md#typedef-radiusvector)&lt; astro::frames::dynamic::ric &gt; | [**RADIAL\_RIC**](#variable-radial_ric)   = `/* multi line expression */`<br> |
 
 
 
@@ -240,197 +244,202 @@
 
 | Type | Name |
 | ---: | :--- |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**bool**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**all\_have\_valid\_transformation**](#function-all_have_valid_transformation) () <br> |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**bool**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**all\_have\_valid\_transformation\_impl**](#function-all_have_valid_transformation_impl) (std::index\_sequence&lt; I... &gt;) <br> |
-|  [**Distance**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**calculate\_geocentric\_radius**](#function-calculate_geocentric_radius) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Angle**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & lat) <br>_Calculate the geocentric radius given latitude and Earth's radii._  |
-|  [**consteval**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**bool**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**check\_all\_bodies\_share\_a\_parent**](#function-check_all_bodies_share_a_parent) () <br>_Checks if all bodies in the pack share the same parent._  |
-|  [**consteval**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**auto**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**compose\_name**](#function-compose_name) () <br>_Helper function to compose the name of a_ [_**FixedOffsetFrame**_](structastrea_1_1astro_1_1FixedOffsetFrame.md) _based on its parent frame's name and its offset values. This generates a descriptive name that includes the parent frame and the specific offsets applied._ |
-|  [**consteval**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**auto**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**compose\_name**](#function-compose_name) () <br>_Helper function to compose the name of a_ [_**FixedOffsetFrame**_](structastrea_1_1astro_1_1FixedOffsetFrame.md) _with both spatial and angular offsets based on its parent frame's name and its offset values. This generates a descriptive name that includes the parent frame and the specific spatial and angular offsets applied._ |
-|  std::tuple&lt; [**Distance**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), [**Angle**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), [**Distance**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt; | [**convert\_body\_fixed\_to\_cylindrical**](#function-convert_body_fixed_to_cylindrical) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**RadiusVector**](namespaceastrea_1_1astro.md#typedef-radiusvector)&lt; \_frame\_ &gt; & rFixed) <br>_Convert a body-fixed radius vector to cylindrical coordinates._  |
-|  std::tuple&lt; [**Angle**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), [**Angle**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), [**Distance**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt; | [**convert\_body\_fixed\_to\_geocentric**](#function-convert_body_fixed_to_geocentric) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**RadiusVector**](namespaceastrea_1_1astro.md#typedef-radiusvector)&lt; frame &gt; & rEcef) <br>_Convert a vector from ECEF (Earth-Centered Earth-Fixed) to LLA (Latitude, Longitude, Altitude) coordinates._  |
-|  std::tuple&lt; [**Angle**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), [**Angle**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), [**Distance**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt; | [**convert\_body\_fixed\_to\_geodetic**](#function-convert_body_fixed_to_geodetic) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**RadiusVector**](namespaceastrea_1_1astro.md#typedef-radiusvector)&lt; frame &gt; & rBodyFixed) <br>_Convert a vector from ECEF (Earth-Centered Earth-Fixed) to LLA (Latitude, Longitude, Altitude) coordinates._  |
-|  std::tuple&lt; [**Distance**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), [**Angle**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), [**Angle**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt; | [**convert\_body\_fixed\_to\_spherical**](#function-convert_body_fixed_to_spherical) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**RadiusVector**](namespaceastrea_1_1astro.md#typedef-radiusvector)&lt; \_frame\_ &gt; & rFixed) <br>_Convert a body-fixed radius vector to spherical coordinates._  |
-|  [**RadiusVector**](namespaceastrea_1_1astro.md#typedef-radiusvector)&lt; \_frame\_ &gt; | [**convert\_cylindrical\_to\_body\_fixed**](#function-convert_cylindrical_to_body_fixed) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Distance**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & range, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Angle**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & azimuth, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Distance**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & elevation) <br>_Convert cylindrical coordinates to a body-fixed radius vector._  |
-|  [**Angle**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**convert\_eccentric\_anomaly\_to\_mean\_anomaly**](#function-convert_eccentric_anomaly_to_mean_anomaly) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Angle**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & ea, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Unitless**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) ecc) <br>_Convert the eccentric anomaly to the mean anomaly._  |
-|  [**RadiusVector**](namespaceastrea_1_1astro.md#typedef-radiusvector)&lt; \_frame\_ &gt; | [**convert\_geocentric\_to\_body\_fixed**](#function-convert_geocentric_to_body_fixed) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Angle**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & lat, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Angle**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & lon, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Distance**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & alt) <br>_Convert a vector from LLA (Latitude, Longitude, Altitude) to ECEF (Earth-Centered Earth-Fixed) coordinates._  |
-|  [**RadiusVector**](namespaceastrea_1_1astro.md#typedef-radiusvector)&lt; frame &gt; | [**convert\_geodetic\_to\_body\_fixed**](#function-convert_geodetic_to_body_fixed) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Angle**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & lat, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Angle**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & lon, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Distance**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & alt) <br>_Convert a vector from LLA (Latitude, Longitude, Altitude) to ECEF (Earth-Centered Earth-Fixed) coordinates._  |
-|  [**Angle**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**convert\_mean\_anomaly\_to\_eccentric\_anomaly**](#function-convert_mean_anomaly_to_eccentric_anomaly) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Angle**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & ma, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Unitless**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) ecc) <br>_Convert the mean anomaly to the eccentric anomaly using Newton's method._  |
-|  [**Angle**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**convert\_mean\_anomaly\_to\_true\_anomaly**](#function-convert_mean_anomaly_to_true_anomaly) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Angle**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & ma, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Unitless**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) ecc) <br>_Convert the mean anomaly to the true anomaly. Accurate to O(e^4)._  |
-|  [**RadiusVector**](namespaceastrea_1_1astro.md#typedef-radiusvector)&lt; \_frame\_ &gt; | [**convert\_spherical\_to\_body\_fixed**](#function-convert_spherical_to_body_fixed) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Distance**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & range, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Angle**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & inclination, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Angle**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & azimuth) <br>_Convert spherical coordinates to a body-fixed radius vector._  |
-|  [**Angle**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**convert\_true\_anomaly\_to\_mean\_anomaly**](#function-convert_true_anomaly_to_mean_anomaly) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Angle**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & ta, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Unitless**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) ecc) <br>_Convert the true anomaly to the mean anomaly. Accurate to O(e^5)._  |
-|  [**JulianDate**](namespaceastrea_1_1astro.md#typedef-juliandate) | [**epoch\_to\_julian\_date**](#function-epoch_to_julian_date) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) std::string & epoch, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) std::string format="%Y-%m-%d %[**H:**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)%[**M:**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)%[**S"**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)) <br>_Convert a string representation of a date to a JulianDate object._  |
-|  [**consteval**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**bool**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**equivalent**](#function-equivalent) ([**Lhs**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) lhs, [**Rhs**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) rhs) <br> |
-|  [**consteval**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**bool**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**equivalent**](#function-equivalent) ([**Lhs**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) lhs, [**Rhs**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) rhs) <br> |
-|  [**consteval**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**bool**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**equivalent**](#function-equivalent) ([**Lhs**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) t, [**Rhs**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) u) <br> |
-|  [**consteval**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**bool**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**equivalent1**](#function-equivalent1) ([**Lhs**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) lhs, [**Rhs**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) rhs) <br> |
-|  [**consteval**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**auto**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**f\_to\_fixed\_string**](#function-f_to_fixed_string) () <br>_Helper function to convert a double value to a fixed string at compile time. This is used for generating frame names that include the offset values._  |
-|  [**Density**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**find\_atmospheric\_density**](#function-find_atmospheric_density) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**State**](classastrea_1_1astro_1_1State.md) & state) <br>_Primary template for atmospheric density — returns zero by default._  |
-|  [**Density**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**find\_atmospheric\_density&lt; moons::Titan &gt;**](#function-find_atmospheric_density-moons::titan) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**State**](classastrea_1_1astro_1_1State.md) & state) <br> |
-|  [**Density**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**find\_atmospheric\_density&lt; planets::Earth &gt;**](#function-find_atmospheric_density-planets::earth) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**State**](classastrea_1_1astro_1_1State.md) & state) <br>_Find the atmospheric density for Earth using the configured atmosphere model._  |
-|  [**Density**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**find\_atmospheric\_density&lt; planets::Mars &gt;**](#function-find_atmospheric_density-planets::mars) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**State**](classastrea_1_1astro_1_1State.md) & state) <br> |
-|  [**Density**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**find\_atmospheric\_density&lt; planets::Venus &gt;**](#function-find_atmospheric_density-planets::venus) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**State**](classastrea_1_1astro_1_1State.md) & state) <br> |
-|  [**consteval**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**auto**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**find\_axis\_in\_ancestors**](#function-find_axis_in_ancestors) ([**Axis\_T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) axis, [**Axis\_U**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) target) <br> |
-|  [**consteval**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**auto**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**find\_common\_ancestor**](#function-find_common_ancestor) ([**Axis\_T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) axis, [**Axis\_U**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) axis\_u) <br> |
-|  [**consteval**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**auto**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**find\_common\_ancestor**](#function-find_common_ancestor) () <br>_Finds the closest common ancestor of the given celestial bodies._  |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; [**Acceleration**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), get\_parent\_frame([**\_body\_**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), [**axes::icrf**](structastrea_1_1astro_1_1axes_1_1icrf.md))&gt; | [**get\_acceleration\_at**](#function-get_acceleration_at) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Date**](classastrea_1_1astro_1_1Date.md) & date) <br>[_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _fallback for get\_acceleration\_at._ |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; [**Acceleration**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), frame &gt; | [**get\_acceleration\_at\_impl**](#function-get_acceleration_at_impl) ([**Date**](classastrea_1_1astro_1_1Date.md) date) <br> |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**auto**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**get\_acceleration\_relative\_to\_ancestor**](#function-get_acceleration_relative_to_ancestor) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Date**](classastrea_1_1astro_1_1Date.md) & date) <br>_Get the acceleration of a celestial body relative to the root at a specific date._  |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Angle**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**get\_axial\_tilt**](#function-get_axial_tilt) () <br>_Get the axial tilt of the celestial body._  |
-|  [**consteval**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**auto**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**get\_body\_fixed\_frame**](#function-get_body_fixed_frame) () <br>_Get the body-fixed rotating frame for a celestial body._  |
-|  [**consteval**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**CelestialBodyType**](namespaceastrea_1_1astro.md#enum-celestialbodytype) | [**get\_body\_type**](#function-get_body_type) () <br>_Get the type of the celestial body._  |
-|  [**consteval**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**CelestialBodyParameters**](structastrea_1_1astro_1_1CelestialBodyParameters.md) | [**get\_celestial\_body\_parameters**](#function-get_celestial_body_parameters) () = delete<br> |
-|  [**consteval**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**CelestialBodyParameters**](structastrea_1_1astro_1_1CelestialBodyParameters.md) | [**get\_celestial\_body\_parameters&lt; moons::Callisto &gt;**](#function-get_celestial_body_parameters-moons::callisto) () <br> |
-|  [**consteval**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**CelestialBodyParameters**](structastrea_1_1astro_1_1CelestialBodyParameters.md) | [**get\_celestial\_body\_parameters&lt; moons::Deimos &gt;**](#function-get_celestial_body_parameters-moons::deimos) () <br> |
-|  [**consteval**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**CelestialBodyParameters**](structastrea_1_1astro_1_1CelestialBodyParameters.md) | [**get\_celestial\_body\_parameters&lt; moons::Europa &gt;**](#function-get_celestial_body_parameters-moons::europa) () <br> |
-|  [**consteval**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**CelestialBodyParameters**](structastrea_1_1astro_1_1CelestialBodyParameters.md) | [**get\_celestial\_body\_parameters&lt; moons::Ganymede &gt;**](#function-get_celestial_body_parameters-moons::ganymede) () <br> |
-|  [**consteval**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**CelestialBodyParameters**](structastrea_1_1astro_1_1CelestialBodyParameters.md) | [**get\_celestial\_body\_parameters&lt; moons::Iapetus &gt;**](#function-get_celestial_body_parameters-moons::iapetus) () <br> |
-|  [**consteval**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**CelestialBodyParameters**](structastrea_1_1astro_1_1CelestialBodyParameters.md) | [**get\_celestial\_body\_parameters&lt; moons::Io &gt;**](#function-get_celestial_body_parameters-moons::io) () <br> |
-|  [**consteval**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**CelestialBodyParameters**](structastrea_1_1astro_1_1CelestialBodyParameters.md) | [**get\_celestial\_body\_parameters&lt; moons::Moon &gt;**](#function-get_celestial_body_parameters-moons::moon) () <br> |
-|  [**consteval**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**CelestialBodyParameters**](structastrea_1_1astro_1_1CelestialBodyParameters.md) | [**get\_celestial\_body\_parameters&lt; moons::Oberon &gt;**](#function-get_celestial_body_parameters-moons::oberon) () <br> |
-|  [**consteval**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**CelestialBodyParameters**](structastrea_1_1astro_1_1CelestialBodyParameters.md) | [**get\_celestial\_body\_parameters&lt; moons::Phobos &gt;**](#function-get_celestial_body_parameters-moons::phobos) () <br> |
-|  [**consteval**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**CelestialBodyParameters**](structastrea_1_1astro_1_1CelestialBodyParameters.md) | [**get\_celestial\_body\_parameters&lt; moons::Rhea &gt;**](#function-get_celestial_body_parameters-moons::rhea) () <br> |
-|  [**consteval**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**CelestialBodyParameters**](structastrea_1_1astro_1_1CelestialBodyParameters.md) | [**get\_celestial\_body\_parameters&lt; moons::Titan &gt;**](#function-get_celestial_body_parameters-moons::titan) () <br> |
-|  [**consteval**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**CelestialBodyParameters**](structastrea_1_1astro_1_1CelestialBodyParameters.md) | [**get\_celestial\_body\_parameters&lt; moons::Titania &gt;**](#function-get_celestial_body_parameters-moons::titania) () <br> |
-|  [**consteval**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**CelestialBodyParameters**](structastrea_1_1astro_1_1CelestialBodyParameters.md) | [**get\_celestial\_body\_parameters&lt; moons::Triton &gt;**](#function-get_celestial_body_parameters-moons::triton) () <br> |
-|  [**consteval**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**CelestialBodyParameters**](structastrea_1_1astro_1_1CelestialBodyParameters.md) | [**get\_celestial\_body\_parameters&lt; planets::Earth &gt;**](#function-get_celestial_body_parameters-planets::earth) () <br> |
-|  [**consteval**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**CelestialBodyParameters**](structastrea_1_1astro_1_1CelestialBodyParameters.md) | [**get\_celestial\_body\_parameters&lt; planets::Jupiter &gt;**](#function-get_celestial_body_parameters-planets::jupiter) () <br> |
-|  [**consteval**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**CelestialBodyParameters**](structastrea_1_1astro_1_1CelestialBodyParameters.md) | [**get\_celestial\_body\_parameters&lt; planets::Mars &gt;**](#function-get_celestial_body_parameters-planets::mars) () <br> |
-|  [**consteval**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**CelestialBodyParameters**](structastrea_1_1astro_1_1CelestialBodyParameters.md) | [**get\_celestial\_body\_parameters&lt; planets::Mercury &gt;**](#function-get_celestial_body_parameters-planets::mercury) () <br> |
-|  [**consteval**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**CelestialBodyParameters**](structastrea_1_1astro_1_1CelestialBodyParameters.md) | [**get\_celestial\_body\_parameters&lt; planets::Neptune &gt;**](#function-get_celestial_body_parameters-planets::neptune) () <br> |
-|  [**consteval**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**CelestialBodyParameters**](structastrea_1_1astro_1_1CelestialBodyParameters.md) | [**get\_celestial\_body\_parameters&lt; planets::Saturn &gt;**](#function-get_celestial_body_parameters-planets::saturn) () <br> |
-|  [**consteval**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**CelestialBodyParameters**](structastrea_1_1astro_1_1CelestialBodyParameters.md) | [**get\_celestial\_body\_parameters&lt; planets::Uranus &gt;**](#function-get_celestial_body_parameters-planets::uranus) () <br> |
-|  [**consteval**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**CelestialBodyParameters**](structastrea_1_1astro_1_1CelestialBodyParameters.md) | [**get\_celestial\_body\_parameters&lt; planets::Venus &gt;**](#function-get_celestial_body_parameters-planets::venus) () <br> |
-|  [**consteval**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**CelestialBodyParameters**](structastrea_1_1astro_1_1CelestialBodyParameters.md) | [**get\_celestial\_body\_parameters&lt; star::Sun &gt;**](#function-get_celestial_body_parameters-star::sun) () <br> |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**auto**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**get\_chebyshev\_table\_coefficients**](#function-get_chebyshev_table_coefficients) ([**Date**](classastrea_1_1astro_1_1Date.md) date) <br>_Get the Chebyshev polynomial coefficients for the celestial body at a specific date._  |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Distance**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**get\_crash\_radius**](#function-get_crash_radius) () <br>_Get the crash radius of the celestial body._  |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**DirectionCosineMatrix**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)&lt; frame, [**frame\_u**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt; | [**get\_dcm**](#function-get_dcm) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Date**](classastrea_1_1astro_1_1Date.md) & date) <br>_Get the Direction Cosine Matrix (DCM) for the J2000 to ICRF at a given date._  |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**DirectionCosineMatrix**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)&lt; in\_frame, out\_frame &gt; | [**get\_dcm**](#function-get_dcm) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Date**](classastrea_1_1astro_1_1Date.md) & date) <br>_Get the Direction Cosine Matrix (DCM) for the body-fixed frame at a given date._  |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**DirectionCosineMatrix**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)&lt; in\_frame, out\_frame &gt; | [**get\_dcm**](#function-get_dcm) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Date**](classastrea_1_1astro_1_1Date.md) & date) <br>_Get the Direction Cosine Matrix (DCM) for a synodic frame at a given date._  |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**DirectionCosineMatrix**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)&lt; parent, frame &gt; | [**get\_dcm**](#function-get_dcm) () <br>_Retrieves the direction cosine matrix representing the fixed angular offset from the parent frame to the given_ [_**FixedOffsetFrame**_](structastrea_1_1astro_1_1FixedOffsetFrame.md) _._ |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**DirectionCosineMatrix**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)&lt; in\_frame, out\_frame &gt; | [**get\_dcm**](#function-get_dcm) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Date**](classastrea_1_1astro_1_1Date.md) & date) <br>_DCM from any Earth-centred ICRF frame (including the canonical_ [_**frames::earth::icrf**_](structastrea_1_1astro_1_1frames_1_1earth_1_1icrf.md) _) to any Earth-centred body-fixed frame._ |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**DCM**](namespaceastrea_1_1astro.md#typedef-dcm)&lt; frame, [**frame\_u**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt; | [**get\_dcm**](#function-get_dcm) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Date**](classastrea_1_1astro_1_1Date.md) & date) = delete<br>_Get the Direction Cosine Matrix (DCM) for the J2000 to ICRF at a given date._  |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**DcmAccel**](namespaceastrea_1_1astro.md#typedef-dcmaccel)&lt; frame, [**frame\_u**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt; | [**get\_dcm\_accel**](#function-get_dcm_accel) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Date**](classastrea_1_1astro_1_1Date.md) & date) = delete<br> |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**auto**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**get\_dcm\_from\_root\_frame**](#function-get_dcm_from_root_frame) () <br>_Retrieves the accumulated direction cosine matrix from the root frame to the given_ [_**FixedOffsetFrame**_](structastrea_1_1astro_1_1FixedOffsetFrame.md) _by recursively composing the DCMs along the parent chain._ |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**DirectionCosineMatrix**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)&lt; in\_frame, out\_frame &gt; | [**get\_dcm\_rate**](#function-get_dcm_rate) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Date**](classastrea_1_1astro_1_1Date.md) & date) <br> |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**DcmRate**](namespaceastrea_1_1astro.md#typedef-dcmrate)&lt; frame, [**frame\_u**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt; | [**get\_dcm\_rate**](#function-get_dcm_rate) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Date**](classastrea_1_1astro_1_1Date.md) & date) = delete<br> |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Unitless**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**get\_eccentricity**](#function-get_eccentricity) ([**Date**](classastrea_1_1astro_1_1Date.md) date) <br>_Get the eccentricity of the celestial body._  |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**BodyUnitlessPerTime**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**get\_eccentricity\_rate**](#function-get_eccentricity_rate) () <br>_Get the eccentricity rate of the celestial body._  |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Distance**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**get\_equitorial\_radius**](#function-get_equitorial_radius) () <br>_Get the equatorial radius of the celestial body._  |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Angle**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**get\_inclination**](#function-get_inclination) ([**Date**](classastrea_1_1astro_1_1Date.md) date) <br>_Get the inclination of the celestial body._  |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**BodyAngularVelocity**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**get\_inclination\_rate**](#function-get_inclination_rate) () <br>_Get the inclination rate of the celestial body._  |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Unitless**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**get\_j2**](#function-get_j2) () <br>_Get the J2 gravitational coefficient of the celestial body._  |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Unitless**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**get\_j3**](#function-get_j3) () <br>_Get the J3 gravitational coefficient of the celestial body._  |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Keplerian**](classastrea_1_1astro_1_1Keplerian.md)&lt; get\_parent\_frame([**\_body\_**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), [**axes::icrf**](structastrea_1_1astro_1_1axes_1_1icrf.md))&gt; | [**get\_keplerian\_elements\_at**](#function-get_keplerian_elements_at) ([**Date**](classastrea_1_1astro_1_1Date.md) date) <br>_Get the_ [_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _elements of a celestial body at a specific date using a linear approximation._ |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) CoefficientPack | [**get\_linear\_expansion\_coefficients**](#function-get_linear_expansion_coefficients) () <br>_Get the linear expansion coefficients for the celestial body's mean anomaly correction._  |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) CoefficientPack | [**get\_linear\_expansion\_coefficients&lt; planets::Jupiter &gt;**](#function-get_linear_expansion_coefficients-planets::jupiter) () <br>_Get the linear expansion coefficients for Jupiter's orbital elements._  |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) CoefficientPack | [**get\_linear\_expansion\_coefficients&lt; planets::Neptune &gt;**](#function-get_linear_expansion_coefficients-planets::neptune) () <br>_Get the coefficients for the linear expansion of Neptune's orbital elements._  |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) CoefficientPack | [**get\_linear\_expansion\_coefficients&lt; planets::Saturn &gt;**](#function-get_linear_expansion_coefficients-planets::saturn) () <br>_Get the coefficients for the linear expansion of Saturn's orbital elements._  |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) CoefficientPack | [**get\_linear\_expansion\_coefficients&lt; planets::Uranus &gt;**](#function-get_linear_expansion_coefficients-planets::uranus) () <br>_Get the coefficients for the linear expansion of Uranus' orbital elements._  |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Angle**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**get\_longitude\_of\_perigee**](#function-get_longitude_of_perigee) ([**Date**](classastrea_1_1astro_1_1Date.md) date) <br>_Get the longitude of perigee of the celestial body._  |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**BodyAngularVelocity**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**get\_longitude\_of\_perigee\_rate**](#function-get_longitude_of_perigee_rate) () <br>_Get the longitude of perigee rate of the celestial body._  |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Mass**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**get\_mass**](#function-get_mass) () <br>_Get the mass of the celestial body._  |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Angle**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**get\_mean\_anomaly**](#function-get_mean_anomaly) ([**Date**](classastrea_1_1astro_1_1Date.md) date) <br>_Get the mean anomaly of the celestial body._  |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Angle**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**get\_mean\_longitude**](#function-get_mean_longitude) ([**Date**](classastrea_1_1astro_1_1Date.md) date) <br>_Get the mean longitude of the celestial body._  |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**BodyAngularVelocity**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**get\_mean\_longitude\_rate**](#function-get_mean_longitude_rate) () <br>_Get the mean longitude rate of the celestial body._  |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**GravParam**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**get\_mu**](#function-get_mu) () <br>_Get the gravitational parameter (mu) of the celestial body or barycenter._  |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**auto**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**get\_offset\_from\_frame**](#function-get_offset_from_frame) () <br>_Retrieves the fixed spatial offset from the parent frame to the given_ [_**FixedOffsetFrame**_](structastrea_1_1astro_1_1FixedOffsetFrame.md) _._ |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**auto**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**get\_offset\_from\_root\_frame**](#function-get_offset_from_root_frame) () <br>_Retrieves the accumulated fixed spatial offset from the root frame to the given_ [_**FixedOffsetFrame**_](structastrea_1_1astro_1_1FixedOffsetFrame.md) _by recursively summing the offsets along the parent chain._ |
-|  [**consteval**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**auto**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**get\_parent**](#function-get_parent) ([**Origin\_T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) origin) <br> |
-|  [**consteval**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**auto**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**get\_parent**](#function-get_parent) () <br>_Get the parent body of a celestial body._  |
-|  [**consteval**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**auto**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**get\_parent\_frame**](#function-get_parent_frame) ([**Origin\_T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) origin, [**Axis\_T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) axis) <br> |
-|  [**consteval**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**auto**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**get\_parent\_name**](#function-get_parent_name) ([**Origin\_T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) origin) <br> |
-|  [**consteval**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**auto**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**get\_planet\_from\_pack**](#function-get_planet_from_pack) () <br>_Returns the single PLANET in the pack (assumes exactly one exists)._  |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Distance**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**get\_polar\_radius**](#function-get_polar_radius) () <br>_Get the polar radius of the celestial body._  |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; [**Distance**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), get\_parent\_frame([**\_body\_**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), [**axes::icrf**](structastrea_1_1astro_1_1axes_1_1icrf.md))&gt; | [**get\_position\_at**](#function-get_position_at) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Date**](classastrea_1_1astro_1_1Date.md) & date) <br>[_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _fallback for get\_position\_at._ |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; [**Distance**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), frame &gt; | [**get\_position\_at\_impl**](#function-get_position_at_impl) ([**Date**](classastrea_1_1astro_1_1Date.md) date) <br>_Get the position of the celestial body at a specific date in a specified frame using Chebyshev polynomials._  |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**auto**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**get\_position\_relative\_to\_ancestor**](#function-get_position_relative_to_ancestor) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Date**](classastrea_1_1astro_1_1Date.md) & date) <br>_Get the position of a celestial body relative to the root at a specific date._  |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**auto**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**get\_relative\_acceleration**](#function-get_relative_acceleration) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Date**](classastrea_1_1astro_1_1Date.md) & date) <br>_Get the relative acceleration between two celestial bodies at a specific date._  |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**auto**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**get\_relative\_position**](#function-get_relative_position) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Date**](classastrea_1_1astro_1_1Date.md) & date) <br>_Get the relative position between two celestial bodies at a specific date._  |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**auto**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**get\_relative\_velocity**](#function-get_relative_velocity) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Date**](classastrea_1_1astro_1_1Date.md) & date) <br>_Get the relative position between two celestial bodies at a specific date._  |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**RotationSequence**](namespaceastrea_1_1astro.md#enum-rotationsequence) | [**get\_reverse\_sequence**](#function-get_reverse_sequence) ([**RotationSequence**](namespaceastrea_1_1astro.md#enum-rotationsequence) sequence) <br>_Get the reverse of a Tait-Bryan sequence (e.g., XYZ -&gt; ZYX)._  |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Angle**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**get\_right\_ascension**](#function-get_right_ascension) ([**Date**](classastrea_1_1astro_1_1Date.md) date) <br>_Get the right ascension of the celestial body._  |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**BodyAngularVelocity**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**get\_right\_ascension\_rate**](#function-get_right_ascension_rate) () <br>_Get the right ascension rate of the celestial body._  |
-|  [**consteval**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**auto**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**get\_root\_frame**](#function-get_root_frame) () <br> |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**AngularVelocity**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**get\_rotation\_rate**](#function-get_rotation_rate) () <br>_Get the rotation rate of the celestial body._  |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Distance**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**get\_semimajor**](#function-get_semimajor) ([**Date**](classastrea_1_1astro_1_1Date.md) date) <br>_Get the semimajor axis of the celestial body._  |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**InterplanetaryVelocity**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**get\_semimajor\_rate**](#function-get_semimajor_rate) () <br>_Get the semimajor axis rate of the celestial body._  |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) std::array&lt; [**int**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), 3 &gt; | [**get\_sequence\_numbers**](#function-get_sequence_numbers) ([**RotationSequence**](namespaceastrea_1_1astro.md#enum-rotationsequence) sequence) <br> |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Time**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**get\_sidereal\_period**](#function-get_sidereal_period) () <br>_Get the sidereal period of the celestial body._  |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Distance**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**get\_sphere\_of\_influence**](#function-get_sphere_of_influence) () <br>_Get the sphere of influence of the celestial body._  |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**auto**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**get\_time\_since\_reference\_epoch**](#function-get_time_since_reference_epoch) ([**Date**](classastrea_1_1astro_1_1Date.md) date) <br> |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Angle**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**get\_true\_anomaly**](#function-get_true_anomaly) ([**Date**](classastrea_1_1astro_1_1Date.md) date) <br>_Get the true anomaly of the celestial body._  |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) std::size\_t | [**get\_variant\_index**](#function-get_variant_index) () <br> |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; [**Velocity**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), get\_parent\_frame([**\_body\_**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), [**axes::icrf**](structastrea_1_1astro_1_1axes_1_1icrf.md))&gt; | [**get\_velocity\_at**](#function-get_velocity_at) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Date**](classastrea_1_1astro_1_1Date.md) & date) <br>[_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _fallback for get\_velocity\_at._ |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; [**Velocity**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), frame &gt; | [**get\_velocity\_at\_impl**](#function-get_velocity_at_impl) ([**Date**](classastrea_1_1astro_1_1Date.md) date) <br>_Get the velocity of the celestial body at a specific date in a specified frame using Chebyshev polynomials._  |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**auto**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**get\_velocity\_relative\_to\_ancestor**](#function-get_velocity_relative_to_ancestor) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Date**](classastrea_1_1astro_1_1Date.md) & date) <br>_Get the velocity of a celestial body relative to the root at a specific date._  |
-|  [**consteval**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**auto**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**has\_axis**](#function-has_axis) ([**Frame\_T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), [**Axis\_T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)) <br> |
-|  [**consteval**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**auto**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**has\_origin**](#function-has_origin) ([**Frame\_T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), [**Origin\_T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)) <br> |
-|  [**consteval**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**bool**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**has\_parent**](#function-has_parent) () <br>_Check if a celestial body has a parent body defined._  |
-|  [**consteval**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**bool**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**has\_same\_axis**](#function-has_same_axis) ([**T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) t, [**U**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) u) <br>_Concept to determine if two frames share the same axis._  |
-|  [**consteval**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**bool**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**has\_same\_origin**](#function-has_same_origin) ([**T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) t, [**U**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) u) <br>_Concept to determine if two frames share the same origin._  |
-|  [**consteval**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**bool**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**has\_same\_parent**](#function-has_same_parent) ([**T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) t, [**U**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) u) <br>_Helper function to determine if two frames share the same parent frame. This is used in the get\_dcm function for FixedOffsetFrames to ensure that the input and output frames share the same parent frame._  |
-|  [**consteval**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**bool**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**has\_same\_parent**](#function-has_same_parent) ([**T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) t, [**U**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) u) <br>_Specialization of has\_same\_parent for frames that are both derived frames. This checks if the parent types are the same._  |
-|  [**consteval**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**bool**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**has\_same\_parent**](#function-has_same_parent) ([**T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) t, [**U**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) u) <br>_Specialization of has\_same\_parent for frames that are both root frames. Root frames are considered to share the same parent (themselves)._  |
-|  [**consteval**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**bool**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**have\_same\_misalignment**](#function-have_same_misalignment) ([**Lhs**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) lhs, [**Rhs**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) rhs) <br> |
-|  [**consteval**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**bool**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**have\_same\_offsets**](#function-have_same_offsets) ([**Lhs**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) lhs, [**Rhs**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) rhs) <br> |
-|  [**consteval**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**bool**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**is\_aligned\_with\_parent**](#function-is_aligned_with_parent) ([**Frame\_T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) frame) <br> |
-|  [**consteval**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**bool**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**is\_ancestor\_of**](#function-is_ancestor_of) () <br>_Returns true if Ancestor is Body itself or appears anywhere in Body's parent chain._  |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**bool**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**is\_proper\_euler\_sequence**](#function-is_proper_euler_sequence) ([**RotationSequence**](namespaceastrea_1_1astro.md#enum-rotationsequence) sequence) <br> |
-|  [**consteval**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**bool**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**is\_same\_body**](#function-is_same_body) () <br>_Check if two celestial bodies are the same._  |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Angle**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**julian\_date\_to\_body\_sidereal\_time**](#function-julian_date_to_body_sidereal_time) ([**JulianDate**](namespaceastrea_1_1astro.md#typedef-juliandate) date) <br>_Compute the equivalent of Greenwich Sidereal Time for an arbitrary celestial body._  |
-|  [**Angle**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**julian\_date\_to\_sidereal\_time**](#function-julian_date_to_sidereal_time) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**JulianDate**](namespaceastrea_1_1astro.md#typedef-juliandate) & date) <br>_Convert a JulianDate to a string representation._  |
-|  [**consteval**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**auto**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**make\_frame**](#function-make_frame) ([**Origin\_T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) origin, [**Axis\_T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) axis) <br> |
-|  [**consteval**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**bool**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**misalignment\_is\_zero**](#function-misalignment_is_zero) ([**Axis\_T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) axis) <br> |
-|  [**consteval**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**bool**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**offset\_is\_zero**](#function-offset_is_zero) ([**Origin\_T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) origin) <br> |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; [**decltype**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)([**Value\_T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md){} \*[**Value\_U**](classastrea_1_1astro_1_1DirectionCosineMatrix.md){}), frame &gt; | [**operator\***](#function-operator) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Value\_U**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & scalar, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; [**Value\_T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), frame &gt; & vec) <br>_Scalar multiplication operator for_ [_**CartesianVector**_](structastrea_1_1astro_1_1CartesianVector.md) _._ |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**DcmInterface**](structastrea_1_1astro_1_1DcmInterface.md)&lt; [**decltype**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)([**Value\_T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md){} \*[**Value\_U**](classastrea_1_1astro_1_1DirectionCosineMatrix.md){}), in\_frame, out\_frame &gt; | [**operator\***](#function-operator_1) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Value\_T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & scalar, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**DcmInterface**](structastrea_1_1astro_1_1DcmInterface.md)&lt; [**Value\_U**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), in\_frame, out\_frame &gt; & matrix) <br>_Multiply the matrix by a scalar value (element-wise multiplication)._  |
-|  [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; [**decltype**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)([**MomentOfInertia**](classastrea_1_1astro_1_1DirectionCosineMatrix.md){} \*[**AngularVelocity**](classastrea_1_1astro_1_1DirectionCosineMatrix.md){}), in\_frame &gt; | [**operator\***](#function-operator_2) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**InertiaTensor**](classastrea_1_1astro_1_1InertiaTensor.md)&lt; in\_frame &gt; & inertiaTensor, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**AngularVelocities**](classastrea_1_1astro_1_1AngularVelocities.md)&lt; in\_frame, ref\_frame &gt; & vec) <br>_Scalar multiplication operator for_ [_**AngularVelocities**_](classastrea_1_1astro_1_1AngularVelocities.md) _with an_[_**InertiaTensor**_](classastrea_1_1astro_1_1InertiaTensor.md) _._ |
-|  [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; [**decltype**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)([**Value\_U**](classastrea_1_1astro_1_1DirectionCosineMatrix.md){} \*[**AngularAcceleration**](classastrea_1_1astro_1_1DirectionCosineMatrix.md){}), in\_frame &gt; | [**operator\***](#function-operator_3) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Value\_U**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & scalar, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**AngularAccelerations**](classastrea_1_1astro_1_1AngularAccelerations.md)&lt; in\_frame, ref\_frame &gt; & accel) <br>_Scalar multiplication operator for a quantity multiplied by_ [_**AngularAccelerations**_](classastrea_1_1astro_1_1AngularAccelerations.md) _, resulting in a_[_**CartesianVector**_](structastrea_1_1astro_1_1CartesianVector.md) _._ |
-|  [**AngularVelocities**](classastrea_1_1astro_1_1AngularVelocities.md)&lt; in\_frame, ref\_frame &gt; | [**operator\***](#function-operator_4) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Time**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & time, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**AngularAccelerations**](classastrea_1_1astro_1_1AngularAccelerations.md)&lt; in\_frame, ref\_frame &gt; & accel) <br>_Scalar multiplication operator for Time multiplied by_ [_**AngularAccelerations**_](classastrea_1_1astro_1_1AngularAccelerations.md) _, resulting in an_[_**AngularVelocities**_](classastrea_1_1astro_1_1AngularVelocities.md) _._ |
-|  [**EulerAngles**](classastrea_1_1astro_1_1EulerAngles.md)&lt; sequence, [**rotation\_type**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), [**\_in\_frame\_**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), [**\_out\_frame\_**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt; | [**operator\***](#function-operator_5) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Unitless**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & scalar, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**EulerAngles**](classastrea_1_1astro_1_1EulerAngles.md)&lt; sequence, [**rotation\_type**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), [**\_in\_frame\_**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), [**\_out\_frame\_**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt; & vec) <br>_Scalar multiplication operator for EulerAngless._  |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; [**decltype**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)([**Value\_T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md){} \*[**Value\_U**](classastrea_1_1astro_1_1DirectionCosineMatrix.md){}), frame &gt; | [**operator/**](#function-operator_6) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Value\_U**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & scalar, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; [**Value\_T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), frame &gt; & vec) <br>_Scalar division operator for_ [_**CartesianVector**_](structastrea_1_1astro_1_1CartesianVector.md) _._ |
-|  [**EulerAngles**](classastrea_1_1astro_1_1EulerAngles.md)&lt; sequence, [**rotation\_type**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), [**\_in\_frame\_**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), [**\_out\_frame\_**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt; | [**operator/**](#function-operator_7) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Unitless**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & scalar, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**EulerAngles**](classastrea_1_1astro_1_1EulerAngles.md)&lt; sequence, [**rotation\_type**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), [**\_in\_frame\_**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), [**\_out\_frame\_**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt; & vec) <br>_Scalar division operator for EulerAngless._  |
-|  std::ostream & | [**operator&lt;&lt;**](#function-operator_8) (std::ostream & os, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; [**Value\_T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), frame &gt; & state) <br>_Overload the output stream operator for_ [_**CartesianVector**_](structastrea_1_1astro_1_1CartesianVector.md) _._ |
-|  std::ostream & | [**operator&lt;&lt;**](#function-operator_9) (std::ostream & os, [**Cylindrical**](classastrea_1_1astro_1_1Cylindrical.md)&lt; [**\_body\_**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt; [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & elements) <br> |
-|  std::ostream & | [**operator&lt;&lt;**](#function-operator_10) (std::ostream & os, [**Geocentric**](classastrea_1_1astro_1_1Geocentric.md)&lt; [**\_body\_**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt; [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & elements) <br> |
-|  std::ostream & | [**operator&lt;&lt;**](#function-operator_11) (std::ostream & os, [**Geodetic**](classastrea_1_1astro_1_1Geodetic.md)&lt; [**\_body\_**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt; [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & elements) <br> |
-|  std::ostream & | [**operator&lt;&lt;**](#function-operator_12) (std::ostream & os, [**Spherical**](classastrea_1_1astro_1_1Spherical.md)&lt; [**\_body\_**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt; [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & elements) <br> |
-|  std::ostream & | [**operator&lt;&lt;**](#function-operator_13) (std::ostream & os, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**AngularVelocities**](classastrea_1_1astro_1_1AngularVelocities.md)&lt; in\_frame, ref\_frame &gt; & angleSequenceRate) <br>_Output stream operator for_ [_**AngularVelocities**_](classastrea_1_1astro_1_1AngularVelocities.md) _._ |
-|  std::ostream & | [**operator&lt;&lt;**](#function-operator_14) (std::ostream & os, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**AngularAccelerations**](classastrea_1_1astro_1_1AngularAccelerations.md)&lt; in\_frame, ref\_frame &gt; & angleSequenceAccel) <br>_Output stream operator for_ [_**AngularAccelerations**_](classastrea_1_1astro_1_1AngularAccelerations.md) _._ |
-|  std::ostream & | [**operator&lt;&lt;**](#function-operator_15) (std::ostream & os, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Attitude**](classastrea_1_1astro_1_1Attitude.md) & attitude) <br> |
-|  std::ostream & | [**operator&lt;&lt;**](#function-operator_16) (std::ostream & os, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**AttitudePartials**](classastrea_1_1astro_1_1AttitudePartials.md) & attitude) <br> |
-|  std::ostream & | [**operator&lt;&lt;**](#function-operator_17) (std::ostream & os, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**EulerAngles**](classastrea_1_1astro_1_1EulerAngles.md)&lt; sequence, [**rotation\_type**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), [**\_in\_frame\_**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), [**\_out\_frame\_**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt; & angleSequence) <br>_Output stream operator for_ [_**EulerAngles**_](classastrea_1_1astro_1_1EulerAngles.md) _._ |
-|  std::ostream & | [**operator&lt;&lt;**](#function-operator_18) (std::ostream & os, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Quaternion**](classastrea_1_1astro_1_1Quaternion.md)&lt; in\_frame, out\_frame &gt; & quaternion) <br>_Stream insertion operator for the_ [_**Quaternion**_](classastrea_1_1astro_1_1Quaternion.md) _class, allowing for easy printing of quaternion components._ |
-|  std::ostream & | [**operator&lt;&lt;**](#function-operator_19) (std::ostream & os, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**QuaternionPartial**](classastrea_1_1astro_1_1QuaternionPartial.md)&lt; in\_frame, out\_frame &gt; & quaternion) <br>_Stream insertion operator for the_ [_**QuaternionPartial**_](classastrea_1_1astro_1_1QuaternionPartial.md) _class, allowing for easy printing of quaternion derivative components._ |
-|  std::ostream & | [**operator&lt;&lt;**](#function-operator_20) (std::ostream & os, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) std::optional&lt; [**T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt; & opt) <br>_Overloaded output stream operator for an optional type._  |
-|  std::ostream & | [**operator&lt;&lt;**](#function-operator_21) (std::ostream & os, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**GeneralPerturbations**](structastrea_1_1astro_1_1GeneralPerturbations.md) & gp) <br>_Overloaded output stream operator for_ [_**GeneralPerturbations**_](structastrea_1_1astro_1_1GeneralPerturbations.md) _._ |
-|  std::ostream & | [**operator&lt;&lt;**](#function-operator_22) (std::ostream & os, [**TwoLineElements**](classastrea_1_1astro_1_1TwoLineElements.md) [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & elements) <br> |
-|  std::ostream & | [**operator&lt;&lt;**](#function-operator_23) (std::ostream & os, [**Cartesian**](classastrea_1_1astro_1_1Cartesian.md)&lt; \_frame\_ &gt; [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & elements) <br> |
-|  std::ostream & | [**operator&lt;&lt;**](#function-operator_24) (std::ostream & os, [**CartesianPartial**](classastrea_1_1astro_1_1CartesianPartial.md)&lt; \_frame\_ &gt; [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & elements) <br> |
-|  std::ostream & | [**operator&lt;&lt;**](#function-operator_25) (std::ostream & os, [**Equinoctial**](classastrea_1_1astro_1_1Equinoctial.md)&lt; \_frame\_ &gt; [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & elements) <br> |
-|  std::ostream & | [**operator&lt;&lt;**](#function-operator_26) (std::ostream & os, [**EquinoctialPartial**](classastrea_1_1astro_1_1EquinoctialPartial.md)&lt; \_frame\_ &gt; [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & elements) <br> |
-|  std::ostream & | [**operator&lt;&lt;**](#function-operator_27) (std::ostream & os, [**Keplerian**](classastrea_1_1astro_1_1Keplerian.md)&lt; \_frame\_ &gt; [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & elements) <br> |
-|  std::ostream & | [**operator&lt;&lt;**](#function-operator_28) (std::ostream & os, [**KeplerianPartial**](classastrea_1_1astro_1_1KeplerianPartial.md)&lt; \_frame\_ &gt; [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & elements) <br> |
-|  std::ostream & | [**operator&lt;&lt;**](#function-operator_29) (std::ostream & os, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**OrbitalElements**](classastrea_1_1astro_1_1OrbitalElements.md) & elements) <br> |
-|  std::ostream & | [**operator&lt;&lt;**](#function-operator_30) (std::ostream & os, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**OrbitalElementPartials**](classastrea_1_1astro_1_1OrbitalElementPartials.md) & elements) <br> |
-|  std::ostream & | [**operator&lt;&lt;**](#function-operator_31) (std::ostream & os, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**State**](classastrea_1_1astro_1_1State.md) & state) <br> |
-|  std::ostream & | [**operator&lt;&lt;**](#function-operator_32) (std::ostream & os, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Date**](classastrea_1_1astro_1_1Date.md) & obj) <br> |
-|  [**bool**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**planes\_are\_nearly\_equal**](#function-planes_are_nearly_equal) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**OrbitalElements**](classastrea_1_1astro_1_1OrbitalElements.md) & elem1, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**OrbitalElements**](classastrea_1_1astro_1_1OrbitalElements.md) & elem2, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Unitless**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & relTol) <br> |
-|  [**consteval**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**auto**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**quantity\_list\_to\_fixed\_string**](#function-quantity_list_to_fixed_string) () <br>_Helper function to convert a list of quantities to a comma-separated fixed string at compile time. This is used for generating frame names that include multiple offset values._  |
-|  [**consteval**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**auto**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**quantity\_to\_fixed\_string**](#function-quantity_to_fixed_string) () <br>_Helper function to convert a quantity to a fixed string at compile time, including its numerical value and unit symbol. This is used for generating frame names that include the offset values._  |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**auto**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**sin\_cos\_pack**](#function-sin_cos_pack) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Angle**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & angle) <br> |
-|  [**void**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**throw\_mismatched\_types**](#function-throw_mismatched_types) () <br>_Throws an exception for mismatched types in orbital elements._  |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**bool**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**variant\_contains**](#function-variant_contains) () <br>_Checks whether type T is one of the alternatives in VariantType._  |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Angle**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**wrap\_angle**](#function-wrap_angle) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Angle**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & angle) noexcept<br>_Sanitize an angle to ensure it is within the range [0, 2π)._  |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Angle**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**wrap\_angle\_to\_pi**](#function-wrap_angle_to_pi) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Angle**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & angle) noexcept<br>_Sanitize an angle to ensure it is within the range [0, π)._  |
+|  constexpr bool | [**all\_have\_valid\_transformation**](#function-all_have_valid_transformation) () <br> |
+|  constexpr bool | [**all\_have\_valid\_transformation\_impl**](#function-all_have_valid_transformation_impl) (std::index\_sequence&lt; I... &gt;) <br> |
+|  constexpr Distance | [**calculate\_geocentric\_radius**](#function-calculate_geocentric_radius) (const Angle & lat) <br>_Calculate the geocentric radius given latitude and Earth's radii._  |
+|  consteval bool | [**check\_all\_bodies\_share\_a\_parent**](#function-check_all_bodies_share_a_parent) () <br>_Checks if all bodies in the pack share the same parent._  |
+|  consteval auto | [**compose\_name**](#function-compose_name) () <br>_Helper function to compose the name of a_ [_**FixedOffsetFrame**_](structastrea_1_1astro_1_1FixedOffsetFrame.md) _based on its parent frame's name and its offset values. This generates a descriptive name that includes the parent frame and the specific offsets applied._ |
+|  consteval auto | [**compose\_name**](#function-compose_name) () <br>_Helper function to compose the name of a_ [_**FixedOffsetFrame**_](structastrea_1_1astro_1_1FixedOffsetFrame.md) _with both spatial and angular offsets based on its parent frame's name and its offset values. This generates a descriptive name that includes the parent frame and the specific spatial and angular offsets applied._ |
+|  std::tuple&lt; Distance, Angle, Distance &gt; | [**convert\_body\_fixed\_to\_cylindrical**](#function-convert_body_fixed_to_cylindrical) (const [**RadiusVector**](namespaceastrea_1_1astro.md#typedef-radiusvector)&lt; \_frame\_ &gt; & rFixed) <br>_Convert a body-fixed radius vector to cylindrical coordinates._  |
+|  constexpr std::tuple&lt; Angle, Angle, Distance &gt; | [**convert\_body\_fixed\_to\_geocentric**](#function-convert_body_fixed_to_geocentric) (const [**RadiusVector**](namespaceastrea_1_1astro.md#typedef-radiusvector)&lt; frame &gt; & rEcef) <br>_Convert a vector from ECEF (Earth-Centered Earth-Fixed) to LLA (Latitude, Longitude, Altitude) coordinates._  |
+|  std::tuple&lt; Angle, Angle, Distance &gt; | [**convert\_body\_fixed\_to\_geodetic**](#function-convert_body_fixed_to_geodetic) (const [**RadiusVector**](namespaceastrea_1_1astro.md#typedef-radiusvector)&lt; frame &gt; & rBodyFixed) <br>_Convert a vector from ECEF (Earth-Centered Earth-Fixed) to LLA (Latitude, Longitude, Altitude) coordinates._  |
+|  std::tuple&lt; Distance, Angle, Angle &gt; | [**convert\_body\_fixed\_to\_spherical**](#function-convert_body_fixed_to_spherical) (const [**RadiusVector**](namespaceastrea_1_1astro.md#typedef-radiusvector)&lt; \_frame\_ &gt; & rFixed) <br>_Convert a body-fixed radius vector to spherical coordinates._  |
+|  [**RadiusVector**](namespaceastrea_1_1astro.md#typedef-radiusvector)&lt; \_frame\_ &gt; | [**convert\_cylindrical\_to\_body\_fixed**](#function-convert_cylindrical_to_body_fixed) (const Distance & range, const Angle & azimuth, const Distance & elevation) <br>_Convert cylindrical coordinates to a body-fixed radius vector._  |
+|  Angle | [**convert\_eccentric\_anomaly\_to\_mean\_anomaly**](#function-convert_eccentric_anomaly_to_mean_anomaly) (const Angle & ea, const Unitless ecc) <br>_Convert the eccentric anomaly to the mean anomaly._  |
+|  constexpr [**RadiusVector**](namespaceastrea_1_1astro.md#typedef-radiusvector)&lt; \_frame\_ &gt; | [**convert\_geocentric\_to\_body\_fixed**](#function-convert_geocentric_to_body_fixed) (const Angle & lat, const Angle & lon, const Distance & alt) <br>_Convert a vector from LLA (Latitude, Longitude, Altitude) to ECEF (Earth-Centered Earth-Fixed) coordinates._  |
+|  constexpr [**RadiusVector**](namespaceastrea_1_1astro.md#typedef-radiusvector)&lt; frame &gt; | [**convert\_geodetic\_to\_body\_fixed**](#function-convert_geodetic_to_body_fixed) (const Angle & lat, const Angle & lon, const Distance & alt) <br>_Convert a vector from LLA (Latitude, Longitude, Altitude) to ECEF (Earth-Centered Earth-Fixed) coordinates._  |
+|  Angle | [**convert\_mean\_anomaly\_to\_eccentric\_anomaly**](#function-convert_mean_anomaly_to_eccentric_anomaly) (const Angle & ma, const Unitless ecc) <br>_Convert the mean anomaly to the eccentric anomaly using Newton's method._  |
+|  Angle | [**convert\_mean\_anomaly\_to\_true\_anomaly**](#function-convert_mean_anomaly_to_true_anomaly) (const Angle & ma, const Unitless ecc) <br>_Convert the mean anomaly to the true anomaly. Accurate to O(e^4)._  |
+|  [**RadiusVector**](namespaceastrea_1_1astro.md#typedef-radiusvector)&lt; \_frame\_ &gt; | [**convert\_spherical\_to\_body\_fixed**](#function-convert_spherical_to_body_fixed) (const Distance & range, const Angle & inclination, const Angle & azimuth) <br>_Convert spherical coordinates to a body-fixed radius vector._  |
+|  Angle | [**convert\_true\_anomaly\_to\_mean\_anomaly**](#function-convert_true_anomaly_to_mean_anomaly) (const Angle & ta, const Unitless ecc) <br>_Convert the true anomaly to the mean anomaly. Accurate to O(e^5)._  |
+|  [**JulianDate**](namespaceastrea_1_1astro.md#typedef-juliandate) | [**epoch\_to\_julian\_date**](#function-epoch_to_julian_date) (const std::string & epoch, const std::string format="%Y-%m-%d %H:%M:%S") <br>_Convert a string representation of a date to a JulianDate object._  |
+|  consteval bool | [**equivalent**](#function-equivalent) (Lhs lhs, Rhs rhs) <br> |
+|  consteval bool | [**equivalent**](#function-equivalent) (Lhs lhs, Rhs rhs) <br> |
+|  consteval bool | [**equivalent**](#function-equivalent) (Lhs lhs, Rhs rhs) <br>_Checks if two frames are equivalent, considering their parent frames and any fixed offsets (spatial or angular)._  |
+|  consteval bool | [**equivalent**](#function-equivalent) (Lhs t, Rhs u) <br> |
+|  consteval auto | [**f\_to\_fixed\_string**](#function-f_to_fixed_string) () <br>_Helper function to convert a double value to a fixed string at compile time. This is used for generating frame names that include the offset values._  |
+|  Density | [**find\_atmospheric\_density**](#function-find_atmospheric_density) (const [**State**](classastrea_1_1astro_1_1State.md) & state) <br>_Primary template for atmospheric density — returns zero by default._  |
+|  Density | [**find\_atmospheric\_density&lt; moons::Titan &gt;**](#function-find_atmospheric_density-moons::titan) (const [**State**](classastrea_1_1astro_1_1State.md) & state) <br> |
+|  Density | [**find\_atmospheric\_density&lt; planets::Earth &gt;**](#function-find_atmospheric_density-planets::earth) (const [**State**](classastrea_1_1astro_1_1State.md) & state) <br>_Find the atmospheric density for Earth using the configured atmosphere model._  |
+|  Density | [**find\_atmospheric\_density&lt; planets::Mars &gt;**](#function-find_atmospheric_density-planets::mars) (const [**State**](classastrea_1_1astro_1_1State.md) & state) <br> |
+|  Density | [**find\_atmospheric\_density&lt; planets::Venus &gt;**](#function-find_atmospheric_density-planets::venus) (const [**State**](classastrea_1_1astro_1_1State.md) & state) <br> |
+|  consteval auto | [**find\_axis\_in\_ancestors**](#function-find_axis_in_ancestors) (Axis\_T axis, Axis\_U target) <br> |
+|  consteval auto | [**find\_common\_ancestor**](#function-find_common_ancestor) (Axis\_T axis, Axis\_U axis\_u) <br> |
+|  consteval auto | [**find\_common\_ancestor**](#function-find_common_ancestor) () <br>_Finds the closest common ancestor of the given celestial bodies._  |
+|  constexpr [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; Acceleration, get\_parent\_frame(\_body\_, [**axes::icrf**](structastrea_1_1astro_1_1axes_1_1icrf.md))&gt; | [**get\_acceleration\_at**](#function-get_acceleration_at) (const [**Date**](classastrea_1_1astro_1_1Date.md) & date) <br>[_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _fallback for get\_acceleration\_at._ |
+|  constexpr [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; Acceleration, frame &gt; | [**get\_acceleration\_at\_impl**](#function-get_acceleration_at_impl) ([**Date**](classastrea_1_1astro_1_1Date.md) date) <br> |
+|  constexpr auto | [**get\_acceleration\_relative\_to\_ancestor**](#function-get_acceleration_relative_to_ancestor) (const [**Date**](classastrea_1_1astro_1_1Date.md) & date) <br>_Get the acceleration of a celestial body relative to the root at a specific date._  |
+|  constexpr Angle | [**get\_axial\_tilt**](#function-get_axial_tilt) () <br>_Get the axial tilt of the celestial body._  |
+|  consteval auto | [**get\_body\_fixed\_frame**](#function-get_body_fixed_frame) () <br>_Get the body-fixed rotating frame for a celestial body._  |
+|  consteval [**CelestialBodyType**](namespaceastrea_1_1astro.md#enum-celestialbodytype) | [**get\_body\_type**](#function-get_body_type) () <br>_Get the type of the celestial body._  |
+|  consteval [**CelestialBodyParameters**](structastrea_1_1astro_1_1CelestialBodyParameters.md) | [**get\_celestial\_body\_parameters**](#function-get_celestial_body_parameters) () = delete<br> |
+|  consteval [**CelestialBodyParameters**](structastrea_1_1astro_1_1CelestialBodyParameters.md) | [**get\_celestial\_body\_parameters&lt; moons::Callisto &gt;**](#function-get_celestial_body_parameters-moons::callisto) () <br> |
+|  consteval [**CelestialBodyParameters**](structastrea_1_1astro_1_1CelestialBodyParameters.md) | [**get\_celestial\_body\_parameters&lt; moons::Deimos &gt;**](#function-get_celestial_body_parameters-moons::deimos) () <br> |
+|  consteval [**CelestialBodyParameters**](structastrea_1_1astro_1_1CelestialBodyParameters.md) | [**get\_celestial\_body\_parameters&lt; moons::Europa &gt;**](#function-get_celestial_body_parameters-moons::europa) () <br> |
+|  consteval [**CelestialBodyParameters**](structastrea_1_1astro_1_1CelestialBodyParameters.md) | [**get\_celestial\_body\_parameters&lt; moons::Ganymede &gt;**](#function-get_celestial_body_parameters-moons::ganymede) () <br> |
+|  consteval [**CelestialBodyParameters**](structastrea_1_1astro_1_1CelestialBodyParameters.md) | [**get\_celestial\_body\_parameters&lt; moons::Iapetus &gt;**](#function-get_celestial_body_parameters-moons::iapetus) () <br> |
+|  consteval [**CelestialBodyParameters**](structastrea_1_1astro_1_1CelestialBodyParameters.md) | [**get\_celestial\_body\_parameters&lt; moons::Io &gt;**](#function-get_celestial_body_parameters-moons::io) () <br> |
+|  consteval [**CelestialBodyParameters**](structastrea_1_1astro_1_1CelestialBodyParameters.md) | [**get\_celestial\_body\_parameters&lt; moons::Moon &gt;**](#function-get_celestial_body_parameters-moons::moon) () <br> |
+|  consteval [**CelestialBodyParameters**](structastrea_1_1astro_1_1CelestialBodyParameters.md) | [**get\_celestial\_body\_parameters&lt; moons::Oberon &gt;**](#function-get_celestial_body_parameters-moons::oberon) () <br> |
+|  consteval [**CelestialBodyParameters**](structastrea_1_1astro_1_1CelestialBodyParameters.md) | [**get\_celestial\_body\_parameters&lt; moons::Phobos &gt;**](#function-get_celestial_body_parameters-moons::phobos) () <br> |
+|  consteval [**CelestialBodyParameters**](structastrea_1_1astro_1_1CelestialBodyParameters.md) | [**get\_celestial\_body\_parameters&lt; moons::Rhea &gt;**](#function-get_celestial_body_parameters-moons::rhea) () <br> |
+|  consteval [**CelestialBodyParameters**](structastrea_1_1astro_1_1CelestialBodyParameters.md) | [**get\_celestial\_body\_parameters&lt; moons::Titan &gt;**](#function-get_celestial_body_parameters-moons::titan) () <br> |
+|  consteval [**CelestialBodyParameters**](structastrea_1_1astro_1_1CelestialBodyParameters.md) | [**get\_celestial\_body\_parameters&lt; moons::Titania &gt;**](#function-get_celestial_body_parameters-moons::titania) () <br> |
+|  consteval [**CelestialBodyParameters**](structastrea_1_1astro_1_1CelestialBodyParameters.md) | [**get\_celestial\_body\_parameters&lt; moons::Triton &gt;**](#function-get_celestial_body_parameters-moons::triton) () <br> |
+|  consteval [**CelestialBodyParameters**](structastrea_1_1astro_1_1CelestialBodyParameters.md) | [**get\_celestial\_body\_parameters&lt; planets::Earth &gt;**](#function-get_celestial_body_parameters-planets::earth) () <br> |
+|  consteval [**CelestialBodyParameters**](structastrea_1_1astro_1_1CelestialBodyParameters.md) | [**get\_celestial\_body\_parameters&lt; planets::Jupiter &gt;**](#function-get_celestial_body_parameters-planets::jupiter) () <br> |
+|  consteval [**CelestialBodyParameters**](structastrea_1_1astro_1_1CelestialBodyParameters.md) | [**get\_celestial\_body\_parameters&lt; planets::Mars &gt;**](#function-get_celestial_body_parameters-planets::mars) () <br> |
+|  consteval [**CelestialBodyParameters**](structastrea_1_1astro_1_1CelestialBodyParameters.md) | [**get\_celestial\_body\_parameters&lt; planets::Mercury &gt;**](#function-get_celestial_body_parameters-planets::mercury) () <br> |
+|  consteval [**CelestialBodyParameters**](structastrea_1_1astro_1_1CelestialBodyParameters.md) | [**get\_celestial\_body\_parameters&lt; planets::Neptune &gt;**](#function-get_celestial_body_parameters-planets::neptune) () <br> |
+|  consteval [**CelestialBodyParameters**](structastrea_1_1astro_1_1CelestialBodyParameters.md) | [**get\_celestial\_body\_parameters&lt; planets::Saturn &gt;**](#function-get_celestial_body_parameters-planets::saturn) () <br> |
+|  consteval [**CelestialBodyParameters**](structastrea_1_1astro_1_1CelestialBodyParameters.md) | [**get\_celestial\_body\_parameters&lt; planets::Uranus &gt;**](#function-get_celestial_body_parameters-planets::uranus) () <br> |
+|  consteval [**CelestialBodyParameters**](structastrea_1_1astro_1_1CelestialBodyParameters.md) | [**get\_celestial\_body\_parameters&lt; planets::Venus &gt;**](#function-get_celestial_body_parameters-planets::venus) () <br> |
+|  consteval [**CelestialBodyParameters**](structastrea_1_1astro_1_1CelestialBodyParameters.md) | [**get\_celestial\_body\_parameters&lt; star::Sun &gt;**](#function-get_celestial_body_parameters-star::sun) () <br> |
+|  constexpr auto | [**get\_chebyshev\_table\_coefficients**](#function-get_chebyshev_table_coefficients) ([**Date**](classastrea_1_1astro_1_1Date.md) date) <br>_Get the Chebyshev polynomial coefficients for the celestial body at a specific date._  |
+|  constexpr Distance | [**get\_crash\_radius**](#function-get_crash_radius) () <br>_Get the crash radius of the celestial body._  |
+|  constexpr [**DirectionCosineMatrix**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)&lt; frame, frame\_u &gt; | [**get\_dcm**](#function-get_dcm) (const [**Date**](classastrea_1_1astro_1_1Date.md) & date) <br>_Get the Direction Cosine Matrix (DCM) for the J2000 to ICRF at a given date._  |
+|  constexpr [**DirectionCosineMatrix**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)&lt; in\_frame, out\_frame &gt; | [**get\_dcm**](#function-get_dcm) (const [**Date**](classastrea_1_1astro_1_1Date.md) & date) <br>_Get the Direction Cosine Matrix (DCM) for the body-fixed frame at a given date._  |
+|  constexpr [**DirectionCosineMatrix**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)&lt; in\_frame, out\_frame &gt; | [**get\_dcm**](#function-get_dcm) (const [**Date**](classastrea_1_1astro_1_1Date.md) & date) <br>_Get the Direction Cosine Matrix (DCM) for a synodic frame at a given date._  |
+|  constexpr [**DirectionCosineMatrix**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)&lt; parent, frame &gt; | [**get\_dcm**](#function-get_dcm) (const [**Date**](classastrea_1_1astro_1_1Date.md) & date) <br>_Retrieves the direction cosine matrix representing the fixed angular offset from the parent frame to the given_ [_**FixedOffsetFrame**_](structastrea_1_1astro_1_1FixedOffsetFrame.md) _._ |
+|  constexpr [**DirectionCosineMatrix**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)&lt; in\_frame, out\_frame &gt; | [**get\_dcm**](#function-get_dcm) (const [**Date**](classastrea_1_1astro_1_1Date.md) & date) <br>_DCM from any Earth-centred ICRF frame (including the canonical_ [_**frames::earth::icrf**_](structastrea_1_1astro_1_1frames_1_1earth_1_1icrf.md) _) to any Earth-centred body-fixed frame._ |
+|  constexpr [**DCM**](namespaceastrea_1_1astro.md#typedef-dcm)&lt; frame, frame\_u &gt; | [**get\_dcm**](#function-get_dcm) (const [**Date**](classastrea_1_1astro_1_1Date.md) & date) = delete<br>_Get the Direction Cosine Matrix (DCM) for the J2000 to ICRF at a given date._  |
+|  constexpr [**DirectionCosineMatrix**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)&lt; [**frames::earth::cep**](structastrea_1_1astro_1_1frames_1_1earth_1_1cep.md), frames::earth::itrf &gt; | [**get\_dcm&lt; frames::earth::cep, frames::earth::itrf &gt;**](#function-get_dcm-frames::earth::cep-frames::earth::itrf) (const [**Date**](classastrea_1_1astro_1_1Date.md) & date) <br> |
+|  constexpr [**DirectionCosineMatrix**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)&lt; [**frames::earth::icrf**](structastrea_1_1astro_1_1frames_1_1earth_1_1icrf.md), [**frames::earth::cep**](structastrea_1_1astro_1_1frames_1_1earth_1_1cep.md) &gt; | [**get\_dcm&lt; frames::earth::icrf, frames::earth::cep &gt;**](#function-get_dcm-frames::earth::icrf-frames::earth::cep) (const [**Date**](classastrea_1_1astro_1_1Date.md) & date) <br>_DCM from_ [_**frames::earth::icrf**_](structastrea_1_1astro_1_1frames_1_1earth_1_1icrf.md) _to_[_**frames::earth::cep**_](structastrea_1_1astro_1_1frames_1_1earth_1_1cep.md) _._ |
+|  constexpr [**DcmAccel**](namespaceastrea_1_1astro.md#typedef-dcmaccel)&lt; frame, frame\_u &gt; | [**get\_dcm\_accel**](#function-get_dcm_accel) (const [**Date**](classastrea_1_1astro_1_1Date.md) & date) = delete<br> |
+|  constexpr auto | [**get\_dcm\_from\_root\_frame**](#function-get_dcm_from_root_frame) () <br>_Retrieves the accumulated direction cosine matrix from the root frame to the given_ [_**FixedOffsetFrame**_](structastrea_1_1astro_1_1FixedOffsetFrame.md) _by recursively composing the DCMs along the parent chain._ |
+|  constexpr [**DirectionCosineMatrixRate**](structastrea_1_1astro_1_1DirectionCosineMatrixRate.md)&lt; in\_frame, out\_frame &gt; | [**get\_dcm\_rate**](#function-get_dcm_rate) (const [**Date**](classastrea_1_1astro_1_1Date.md) & date) <br>_Get the Direction Cosine Matrix (DCM) rate for the body-fixed frame at a given date._  |
+|  constexpr [**DcmRate**](namespaceastrea_1_1astro.md#typedef-dcmrate)&lt; frame, frame\_u &gt; | [**get\_dcm\_rate**](#function-get_dcm_rate) (const [**Date**](classastrea_1_1astro_1_1Date.md) & date) = delete<br>_Get the Direction Cosine Matrix (DCM) rate for the body-fixed frame at a given date._  |
+|  constexpr Unitless | [**get\_eccentricity**](#function-get_eccentricity) ([**Date**](classastrea_1_1astro_1_1Date.md) date) <br>_Get the eccentricity of the celestial body._  |
+|  constexpr BodyUnitlessPerTime | [**get\_eccentricity\_rate**](#function-get_eccentricity_rate) () <br>_Get the eccentricity rate of the celestial body._  |
+|  constexpr Distance | [**get\_equitorial\_radius**](#function-get_equitorial_radius) () <br>_Get the equatorial radius of the celestial body._  |
+|  constexpr auto | [**get\_gravity\_coefficient\_file**](#function-get_gravity_coefficient_file) () <br>_Get the full set of gravitational coefficients of the celestial body._  |
+|  constexpr Angle | [**get\_inclination**](#function-get_inclination) ([**Date**](classastrea_1_1astro_1_1Date.md) date) <br>_Get the inclination of the celestial body._  |
+|  constexpr BodyAngularVelocity | [**get\_inclination\_rate**](#function-get_inclination_rate) () <br>_Get the inclination rate of the celestial body._  |
+|  constexpr Unitless | [**get\_j2**](#function-get_j2) () <br>_Get the J2 gravitational coefficient of the celestial body._  |
+|  constexpr Unitless | [**get\_j3**](#function-get_j3) () <br>_Get the J3 gravitational coefficient of the celestial body._  |
+|  constexpr [**Keplerian**](classastrea_1_1astro_1_1Keplerian.md)&lt; get\_parent\_frame(\_body\_, [**axes::icrf**](structastrea_1_1astro_1_1axes_1_1icrf.md))&gt; | [**get\_keplerian\_elements\_at**](#function-get_keplerian_elements_at) ([**Date**](classastrea_1_1astro_1_1Date.md) date) <br>_Get the_ [_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _elements of a celestial body at a specific date using a linear approximation._ |
+|  constexpr CoefficientPack | [**get\_linear\_expansion\_coefficients**](#function-get_linear_expansion_coefficients) () <br>_Get the linear expansion coefficients for the celestial body's mean anomaly correction._  |
+|  constexpr CoefficientPack | [**get\_linear\_expansion\_coefficients&lt; planets::Jupiter &gt;**](#function-get_linear_expansion_coefficients-planets::jupiter) () <br>_Get the linear expansion coefficients for Jupiter's orbital elements._  |
+|  constexpr CoefficientPack | [**get\_linear\_expansion\_coefficients&lt; planets::Neptune &gt;**](#function-get_linear_expansion_coefficients-planets::neptune) () <br>_Get the coefficients for the linear expansion of Neptune's orbital elements._  |
+|  constexpr CoefficientPack | [**get\_linear\_expansion\_coefficients&lt; planets::Saturn &gt;**](#function-get_linear_expansion_coefficients-planets::saturn) () <br>_Get the coefficients for the linear expansion of Saturn's orbital elements._  |
+|  constexpr CoefficientPack | [**get\_linear\_expansion\_coefficients&lt; planets::Uranus &gt;**](#function-get_linear_expansion_coefficients-planets::uranus) () <br>_Get the coefficients for the linear expansion of Uranus' orbital elements._  |
+|  constexpr Angle | [**get\_longitude\_of\_perigee**](#function-get_longitude_of_perigee) ([**Date**](classastrea_1_1astro_1_1Date.md) date) <br>_Get the longitude of perigee of the celestial body._  |
+|  constexpr BodyAngularVelocity | [**get\_longitude\_of\_perigee\_rate**](#function-get_longitude_of_perigee_rate) () <br>_Get the longitude of perigee rate of the celestial body._  |
+|  constexpr Mass | [**get\_mass**](#function-get_mass) () <br>_Get the mass of the celestial body._  |
+|  constexpr Angle | [**get\_mean\_anomaly**](#function-get_mean_anomaly) ([**Date**](classastrea_1_1astro_1_1Date.md) date) <br>_Get the mean anomaly of the celestial body._  |
+|  constexpr Angle | [**get\_mean\_longitude**](#function-get_mean_longitude) ([**Date**](classastrea_1_1astro_1_1Date.md) date) <br>_Get the mean longitude of the celestial body._  |
+|  constexpr BodyAngularVelocity | [**get\_mean\_longitude\_rate**](#function-get_mean_longitude_rate) () <br>_Get the mean longitude rate of the celestial body._  |
+|  constexpr GravParam | [**get\_mu**](#function-get_mu) () <br>_Get the gravitational parameter (mu) of the celestial body or barycenter._  |
+|  constexpr auto | [**get\_offset\_from\_frame**](#function-get_offset_from_frame) () <br>_Retrieves the fixed spatial offset from the parent frame to the given_ [_**FixedOffsetFrame**_](structastrea_1_1astro_1_1FixedOffsetFrame.md) _._ |
+|  constexpr auto | [**get\_offset\_from\_root\_frame**](#function-get_offset_from_root_frame) () <br>_Retrieves the accumulated fixed spatial offset from the root frame to the given_ [_**FixedOffsetFrame**_](structastrea_1_1astro_1_1FixedOffsetFrame.md) _by recursively summing the offsets along the parent chain._ |
+|  consteval auto | [**get\_parent**](#function-get_parent) (Origin\_T origin) <br> |
+|  consteval auto | [**get\_parent**](#function-get_parent) () <br>_Get the parent body of a celestial body._  |
+|  consteval auto | [**get\_parent\_frame**](#function-get_parent_frame) (Origin\_T origin, Axis\_T axis) <br> |
+|  consteval auto | [**get\_parent\_name**](#function-get_parent_name) (Origin\_T origin) <br> |
+|  consteval auto | [**get\_planet\_from\_pack**](#function-get_planet_from_pack) () <br>_Returns the single PLANET in the pack (assumes exactly one exists)._  |
+|  constexpr Distance | [**get\_polar\_radius**](#function-get_polar_radius) () <br>_Get the polar radius of the celestial body._  |
+|  constexpr [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; Distance, get\_parent\_frame(\_body\_, [**axes::icrf**](structastrea_1_1astro_1_1axes_1_1icrf.md))&gt; | [**get\_position\_at**](#function-get_position_at) (const [**Date**](classastrea_1_1astro_1_1Date.md) & date) <br>[_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _fallback for get\_position\_at._ |
+|  constexpr [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; Distance, frame &gt; | [**get\_position\_at\_impl**](#function-get_position_at_impl) ([**Date**](classastrea_1_1astro_1_1Date.md) date) <br>_Get the position of the celestial body at a specific date in a specified frame using Chebyshev polynomials._  |
+|  constexpr auto | [**get\_position\_relative\_to\_ancestor**](#function-get_position_relative_to_ancestor) (const [**Date**](classastrea_1_1astro_1_1Date.md) & date) <br>_Get the position of a celestial body relative to the root at a specific date._  |
+|  constexpr auto | [**get\_relative\_acceleration**](#function-get_relative_acceleration) (const [**Date**](classastrea_1_1astro_1_1Date.md) & date) <br>_Get the relative acceleration between two celestial bodies at a specific date._  |
+|  constexpr auto | [**get\_relative\_position**](#function-get_relative_position) (const [**Date**](classastrea_1_1astro_1_1Date.md) & date) <br>_Get the relative position between two celestial bodies at a specific date._  |
+|  constexpr auto | [**get\_relative\_velocity**](#function-get_relative_velocity) (const [**Date**](classastrea_1_1astro_1_1Date.md) & date) <br>_Get the relative position between two celestial bodies at a specific date._  |
+|  constexpr [**RotationSequence**](namespaceastrea_1_1astro.md#enum-rotationsequence) | [**get\_reverse\_sequence**](#function-get_reverse_sequence) ([**RotationSequence**](namespaceastrea_1_1astro.md#enum-rotationsequence) sequence) <br>_Get the reverse of a Tait-Bryan sequence (e.g., XYZ -&gt; ZYX)._  |
+|  constexpr Angle | [**get\_right\_ascension**](#function-get_right_ascension) ([**Date**](classastrea_1_1astro_1_1Date.md) date) <br>_Get the right ascension of the celestial body._  |
+|  constexpr BodyAngularVelocity | [**get\_right\_ascension\_rate**](#function-get_right_ascension_rate) () <br>_Get the right ascension rate of the celestial body._  |
+|  consteval auto | [**get\_root\_frame**](#function-get_root_frame) () <br>_Retrieves the root frame of a given fixed offset frame by recursively traversing the parent chain._  |
+|  constexpr AngularVelocity | [**get\_rotation\_rate**](#function-get_rotation_rate) () <br>_Get the rotation rate of the celestial body._  |
+|  constexpr Distance | [**get\_semimajor**](#function-get_semimajor) ([**Date**](classastrea_1_1astro_1_1Date.md) date) <br>_Get the semimajor axis of the celestial body._  |
+|  constexpr InterplanetaryVelocity | [**get\_semimajor\_rate**](#function-get_semimajor_rate) () <br>_Get the semimajor axis rate of the celestial body._  |
+|  constexpr std::array&lt; int, 3 &gt; | [**get\_sequence\_numbers**](#function-get_sequence_numbers) ([**RotationSequence**](namespaceastrea_1_1astro.md#enum-rotationsequence) sequence) <br> |
+|  constexpr Time | [**get\_sidereal\_period**](#function-get_sidereal_period) () <br>_Get the sidereal period of the celestial body._  |
+|  constexpr Distance | [**get\_sphere\_of\_influence**](#function-get_sphere_of_influence) () <br>_Get the sphere of influence of the celestial body._  |
+|  constexpr auto | [**get\_time\_since\_reference\_epoch**](#function-get_time_since_reference_epoch) ([**Date**](classastrea_1_1astro_1_1Date.md) date) <br> |
+|  constexpr Angle | [**get\_true\_anomaly**](#function-get_true_anomaly) ([**Date**](classastrea_1_1astro_1_1Date.md) date) <br>_Get the true anomaly of the celestial body._  |
+|  constexpr std::size\_t | [**get\_variant\_index**](#function-get_variant_index) () <br> |
+|  constexpr [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; Velocity, get\_parent\_frame(\_body\_, [**axes::icrf**](structastrea_1_1astro_1_1axes_1_1icrf.md))&gt; | [**get\_velocity\_at**](#function-get_velocity_at) (const [**Date**](classastrea_1_1astro_1_1Date.md) & date) <br>[_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _fallback for get\_velocity\_at._ |
+|  constexpr [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; Velocity, frame &gt; | [**get\_velocity\_at\_impl**](#function-get_velocity_at_impl) ([**Date**](classastrea_1_1astro_1_1Date.md) date) <br>_Get the velocity of the celestial body at a specific date in a specified frame using Chebyshev polynomials._  |
+|  constexpr auto | [**get\_velocity\_relative\_to\_ancestor**](#function-get_velocity_relative_to_ancestor) (const [**Date**](classastrea_1_1astro_1_1Date.md) & date) <br>_Get the velocity of a celestial body relative to the root at a specific date._  |
+|  consteval auto | [**get\_x\_offset\_from\_lla**](#function-get_x_offset_from_lla) () <br>_Retrieves the X offset from the given latitude, longitude, and altitude relative to the parent body-fixed frame._  |
+|  consteval auto | [**get\_y\_offset\_from\_lla**](#function-get_y_offset_from_lla) () <br>_Retrieves the Y offset from the given latitude, longitude, and altitude relative to the parent body-fixed frame._  |
+|  consteval auto | [**get\_z\_offset\_from\_lla**](#function-get_z_offset_from_lla) () <br>_Retrieves the Z offset from the given latitude, longitude, and altitude relative to the parent body-fixed frame._  |
+|  consteval auto | [**has\_axis**](#function-has_axis) (Frame\_T, Axis\_T) <br> |
+|  consteval auto | [**has\_origin**](#function-has_origin) (Frame\_T, Origin\_T) <br> |
+|  consteval bool | [**has\_parent**](#function-has_parent) () <br>_Check if a celestial body has a parent body defined._  |
+|  consteval bool | [**has\_same\_axis**](#function-has_same_axis) (T t, U u) <br>_Concept to determine if two frames share the same axis._  |
+|  consteval bool | [**has\_same\_origin**](#function-has_same_origin) (T t, U u) <br>_Concept to determine if two frames share the same origin._  |
+|  consteval bool | [**has\_same\_parent**](#function-has_same_parent) (T t, U u) <br>_Helper function to determine if two frames share the same parent frame. This is used in the get\_dcm function for FixedOffsetFrames to ensure that the input and output frames share the same parent frame._  |
+|  consteval bool | [**has\_same\_parent**](#function-has_same_parent) (T t, U u) <br>_Specialization of has\_same\_parent for frames that are both derived frames. This checks if the parent types are the same._  |
+|  consteval bool | [**has\_same\_parent**](#function-has_same_parent) (T t, U u) <br>_Specialization of has\_same\_parent for frames that are both root frames. Root frames are considered to share the same parent (themselves)._  |
+|  consteval bool | [**have\_same\_misalignment**](#function-have_same_misalignment) (Lhs lhs, Rhs rhs) <br>_Checks if two fixed offset frames have the same angular misalignment._  |
+|  consteval bool | [**have\_same\_offsets**](#function-have_same_offsets) (Lhs lhs, Rhs rhs) <br>_Checks if two fixed offset frames have the same spatial offsets._  |
+|  consteval bool | [**is\_aligned\_with\_parent**](#function-is_aligned_with_parent) (Frame\_T frame) <br>_Checks if a fixed offset frame is aligned with its parent frame._  |
+|  consteval bool | [**is\_ancestor\_of**](#function-is_ancestor_of) () <br>_Returns true if Ancestor is Body itself or appears anywhere in Body's parent chain._  |
+|  constexpr bool | [**is\_proper\_euler\_sequence**](#function-is_proper_euler_sequence) ([**RotationSequence**](namespaceastrea_1_1astro.md#enum-rotationsequence) sequence) <br> |
+|  consteval bool | [**is\_same\_body**](#function-is_same_body) () <br>_Check if two celestial bodies are the same._  |
+|  constexpr Angle | [**julian\_date\_to\_body\_sidereal\_time**](#function-julian_date_to_body_sidereal_time) ([**JulianDate**](namespaceastrea_1_1astro.md#typedef-juliandate) date) <br>_Compute the equivalent of Greenwich Sidereal Time for an arbitrary celestial body._  |
+|  Angle | [**julian\_date\_to\_sidereal\_time**](#function-julian_date_to_sidereal_time) (const [**JulianDate**](namespaceastrea_1_1astro.md#typedef-juliandate) & date) <br>_Convert a JulianDate to a string representation._  |
+|  consteval auto | [**make\_frame**](#function-make_frame) (Origin\_T origin, Axis\_T axis) <br> |
+|  consteval bool | [**misalignment\_is\_zero**](#function-misalignment_is_zero) (Axis\_T axis) <br> |
+|  consteval bool | [**offset\_is\_zero**](#function-offset_is_zero) (Origin\_T origin) <br> |
+|  constexpr [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; decltype(Value\_T{} \*Value\_U{}), frame &gt; | [**operator\***](#function-operator) (const Value\_U & scalar, const [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; Value\_T, frame &gt; & vec) <br>_Scalar multiplication operator for_ [_**CartesianVector**_](structastrea_1_1astro_1_1CartesianVector.md) _._ |
+|  constexpr [**DcmInterface**](structastrea_1_1astro_1_1DcmInterface.md)&lt; decltype(Value\_T{} \*Value\_U{}), in\_frame, out\_frame &gt; | [**operator\***](#function-operator_1) (const Value\_T & scalar, const [**DcmInterface**](structastrea_1_1astro_1_1DcmInterface.md)&lt; Value\_U, in\_frame, out\_frame &gt; & matrix) <br>_Multiply the matrix by a scalar value (element-wise multiplication)._  |
+|  [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; decltype(MomentOfInertia{} \*AngularVelocity{}), in\_frame &gt; | [**operator\***](#function-operator_2) (const [**InertiaTensor**](classastrea_1_1astro_1_1InertiaTensor.md)&lt; in\_frame &gt; & inertiaTensor, const [**AngularVelocities**](classastrea_1_1astro_1_1AngularVelocities.md)&lt; in\_frame, ref\_frame &gt; & vec) <br>_Scalar multiplication operator for_ [_**AngularVelocities**_](classastrea_1_1astro_1_1AngularVelocities.md) _with an_[_**InertiaTensor**_](classastrea_1_1astro_1_1InertiaTensor.md) _._ |
+|  [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; decltype(Value\_U{} \*AngularAcceleration{}), in\_frame &gt; | [**operator\***](#function-operator_3) (const Value\_U & scalar, const [**AngularAccelerations**](classastrea_1_1astro_1_1AngularAccelerations.md)&lt; in\_frame, ref\_frame &gt; & accel) <br>_Scalar multiplication operator for a quantity multiplied by_ [_**AngularAccelerations**_](classastrea_1_1astro_1_1AngularAccelerations.md) _, resulting in a_[_**CartesianVector**_](structastrea_1_1astro_1_1CartesianVector.md) _._ |
+|  [**AngularVelocities**](classastrea_1_1astro_1_1AngularVelocities.md)&lt; in\_frame, ref\_frame &gt; | [**operator\***](#function-operator_4) (const Time & time, const [**AngularAccelerations**](classastrea_1_1astro_1_1AngularAccelerations.md)&lt; in\_frame, ref\_frame &gt; & accel) <br>_Scalar multiplication operator for Time multiplied by_ [_**AngularAccelerations**_](classastrea_1_1astro_1_1AngularAccelerations.md) _, resulting in an_[_**AngularVelocities**_](classastrea_1_1astro_1_1AngularVelocities.md) _._ |
+|  [**EulerAngles**](classastrea_1_1astro_1_1EulerAngles.md)&lt; sequence, rotation\_type, \_in\_frame\_, \_out\_frame\_ &gt; | [**operator\***](#function-operator_5) (const Unitless & scalar, const [**EulerAngles**](classastrea_1_1astro_1_1EulerAngles.md)&lt; sequence, rotation\_type, \_in\_frame\_, \_out\_frame\_ &gt; & vec) <br>_Scalar multiplication operator for EulerAngless._  |
+|  constexpr [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; decltype(Value\_T{} \*Value\_U{}), frame &gt; | [**operator/**](#function-operator_6) (const Value\_U & scalar, const [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; Value\_T, frame &gt; & vec) <br>_Scalar division operator for_ [_**CartesianVector**_](structastrea_1_1astro_1_1CartesianVector.md) _._ |
+|  [**EulerAngles**](classastrea_1_1astro_1_1EulerAngles.md)&lt; sequence, rotation\_type, \_in\_frame\_, \_out\_frame\_ &gt; | [**operator/**](#function-operator_7) (const Unitless & scalar, const [**EulerAngles**](classastrea_1_1astro_1_1EulerAngles.md)&lt; sequence, rotation\_type, \_in\_frame\_, \_out\_frame\_ &gt; & vec) <br>_Scalar division operator for EulerAngless._  |
+|  std::ostream & | [**operator&lt;&lt;**](#function-operator_8) (std::ostream & os, const [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; Value\_T, frame &gt; & state) <br>_Overload the output stream operator for_ [_**CartesianVector**_](structastrea_1_1astro_1_1CartesianVector.md) _._ |
+|  std::ostream & | [**operator&lt;&lt;**](#function-operator_9) (std::ostream & os, [**Cylindrical**](classastrea_1_1astro_1_1Cylindrical.md)&lt; \_body\_ &gt; const & elements) <br> |
+|  std::ostream & | [**operator&lt;&lt;**](#function-operator_10) (std::ostream & os, [**Geocentric**](classastrea_1_1astro_1_1Geocentric.md)&lt; \_body\_ &gt; const & elements) <br> |
+|  std::ostream & | [**operator&lt;&lt;**](#function-operator_11) (std::ostream & os, [**Geodetic**](classastrea_1_1astro_1_1Geodetic.md)&lt; \_body\_ &gt; const & elements) <br> |
+|  std::ostream & | [**operator&lt;&lt;**](#function-operator_12) (std::ostream & os, [**Spherical**](classastrea_1_1astro_1_1Spherical.md)&lt; \_body\_ &gt; const & elements) <br> |
+|  std::ostream & | [**operator&lt;&lt;**](#function-operator_13) (std::ostream & os, const [**AngularVelocities**](classastrea_1_1astro_1_1AngularVelocities.md)&lt; in\_frame, ref\_frame &gt; & angleSequenceRate) <br>_Output stream operator for_ [_**AngularVelocities**_](classastrea_1_1astro_1_1AngularVelocities.md) _._ |
+|  std::ostream & | [**operator&lt;&lt;**](#function-operator_14) (std::ostream & os, const [**AngularAccelerations**](classastrea_1_1astro_1_1AngularAccelerations.md)&lt; in\_frame, ref\_frame &gt; & angleSequenceAccel) <br>_Output stream operator for_ [_**AngularAccelerations**_](classastrea_1_1astro_1_1AngularAccelerations.md) _._ |
+|  std::ostream & | [**operator&lt;&lt;**](#function-operator_15) (std::ostream & os, const [**Attitude**](classastrea_1_1astro_1_1Attitude.md) & attitude) <br> |
+|  std::ostream & | [**operator&lt;&lt;**](#function-operator_16) (std::ostream & os, const [**AttitudePartials**](classastrea_1_1astro_1_1AttitudePartials.md) & attitude) <br> |
+|  std::ostream & | [**operator&lt;&lt;**](#function-operator_17) (std::ostream & os, const [**EulerAngles**](classastrea_1_1astro_1_1EulerAngles.md)&lt; sequence, rotation\_type, \_in\_frame\_, \_out\_frame\_ &gt; & angleSequence) <br>_Output stream operator for_ [_**EulerAngles**_](classastrea_1_1astro_1_1EulerAngles.md) _._ |
+|  std::ostream & | [**operator&lt;&lt;**](#function-operator_18) (std::ostream & os, const [**Quaternion**](classastrea_1_1astro_1_1Quaternion.md)&lt; in\_frame, out\_frame &gt; & quaternion) <br>_Stream insertion operator for the_ [_**Quaternion**_](classastrea_1_1astro_1_1Quaternion.md) _class, allowing for easy printing of quaternion components._ |
+|  std::ostream & | [**operator&lt;&lt;**](#function-operator_19) (std::ostream & os, const [**QuaternionPartial**](classastrea_1_1astro_1_1QuaternionPartial.md)&lt; in\_frame, out\_frame &gt; & quaternion) <br>_Stream insertion operator for the_ [_**QuaternionPartial**_](classastrea_1_1astro_1_1QuaternionPartial.md) _class, allowing for easy printing of quaternion derivative components._ |
+|  std::ostream & | [**operator&lt;&lt;**](#function-operator_20) (std::ostream & os, const std::optional&lt; T &gt; & opt) <br>_Overloaded output stream operator for an optional type._  |
+|  std::ostream & | [**operator&lt;&lt;**](#function-operator_21) (std::ostream & os, const [**GeneralPerturbations**](structastrea_1_1astro_1_1GeneralPerturbations.md) & gp) <br>_Overloaded output stream operator for_ [_**GeneralPerturbations**_](structastrea_1_1astro_1_1GeneralPerturbations.md) _._ |
+|  std::ostream & | [**operator&lt;&lt;**](#function-operator_22) (std::ostream & os, [**TwoLineElements**](classastrea_1_1astro_1_1TwoLineElements.md) const & elements) <br> |
+|  std::ostream & | [**operator&lt;&lt;**](#function-operator_23) (std::ostream & os, [**Cartesian**](classastrea_1_1astro_1_1Cartesian.md)&lt; \_frame\_ &gt; const & elements) <br> |
+|  std::ostream & | [**operator&lt;&lt;**](#function-operator_24) (std::ostream & os, [**CartesianPartial**](classastrea_1_1astro_1_1CartesianPartial.md)&lt; \_frame\_ &gt; const & elements) <br> |
+|  std::ostream & | [**operator&lt;&lt;**](#function-operator_25) (std::ostream & os, [**Equinoctial**](classastrea_1_1astro_1_1Equinoctial.md)&lt; \_frame\_ &gt; const & elements) <br> |
+|  std::ostream & | [**operator&lt;&lt;**](#function-operator_26) (std::ostream & os, [**EquinoctialPartial**](classastrea_1_1astro_1_1EquinoctialPartial.md)&lt; \_frame\_ &gt; const & elements) <br> |
+|  std::ostream & | [**operator&lt;&lt;**](#function-operator_27) (std::ostream & os, [**Keplerian**](classastrea_1_1astro_1_1Keplerian.md)&lt; \_frame\_ &gt; const & elements) <br> |
+|  std::ostream & | [**operator&lt;&lt;**](#function-operator_28) (std::ostream & os, [**KeplerianPartial**](classastrea_1_1astro_1_1KeplerianPartial.md)&lt; \_frame\_ &gt; const & elements) <br> |
+|  std::ostream & | [**operator&lt;&lt;**](#function-operator_29) (std::ostream & os, const [**OrbitalElements**](classastrea_1_1astro_1_1OrbitalElements.md) & elements) <br> |
+|  std::ostream & | [**operator&lt;&lt;**](#function-operator_30) (std::ostream & os, const [**OrbitalElementPartials**](classastrea_1_1astro_1_1OrbitalElementPartials.md) & elements) <br> |
+|  std::ostream & | [**operator&lt;&lt;**](#function-operator_31) (std::ostream & os, const [**State**](classastrea_1_1astro_1_1State.md) & state) <br> |
+|  std::ostream & | [**operator&lt;&lt;**](#function-operator_32) (std::ostream & os, const [**Date**](classastrea_1_1astro_1_1Date.md) & obj) <br> |
+|  bool | [**planes\_are\_nearly\_equal**](#function-planes_are_nearly_equal) (const [**OrbitalElements**](classastrea_1_1astro_1_1OrbitalElements.md) & elem1, const [**OrbitalElements**](classastrea_1_1astro_1_1OrbitalElements.md) & elem2, const Unitless & relTol) <br> |
+|  consteval auto | [**quantity\_list\_to\_fixed\_string**](#function-quantity_list_to_fixed_string) () <br>_Helper function to convert a list of quantities to a comma-separated fixed string at compile time. This is used for generating frame names that include multiple offset values._  |
+|  consteval auto | [**quantity\_to\_fixed\_string**](#function-quantity_to_fixed_string) () <br>_Helper function to convert a quantity to a fixed string at compile time, including its numerical value and unit symbol. This is used for generating frame names that include the offset values._  |
+|  void | [**throw\_mismatched\_types**](#function-throw_mismatched_types) () <br>_Throws an exception for mismatched types in orbital elements._  |
+|  constexpr bool | [**variant\_contains**](#function-variant_contains) () <br>_Checks whether type T is one of the alternatives in VariantType._  |
+|  constexpr Angle | [**wrap\_angle**](#function-wrap_angle) (const Angle & angle) noexcept<br>_Sanitize an angle to ensure it is within the range [0, 2π)._  |
+|  constexpr Angle | [**wrap\_angle\_to\_pi**](#function-wrap_angle_to_pi) (const Angle & angle) noexcept<br>_Sanitize an angle to ensure it is within the range [0, π)._  |
 
 
 ## Public Static Functions
 
 | Type | Name |
 | ---: | :--- |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**JulianDate**](namespaceastrea_1_1astro.md#typedef-juliandate) | [**J2000**](#function-j2000) ([**JulianDateClock::duration**](structastrea_1_1astro_1_1JulianDateClock.md#typedef-duration){ 2451545.0 }) <br>_A constant representing the J2000 epoch in Julian_ [_**Date**_](classastrea_1_1astro_1_1Date.md) _format._ |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**JulianDate**](namespaceastrea_1_1astro.md#typedef-juliandate) | [**MJD0**](#function-mjd0) ([**JulianDateClock::duration**](structastrea_1_1astro_1_1JulianDateClock.md#typedef-duration){ 2400000.5 }) <br>_A constant representing the Modified Julian_ [_**Date**_](classastrea_1_1astro_1_1Date.md) _epoch in Julian_[_**Date**_](classastrea_1_1astro_1_1Date.md) _format._ |
+|  constexpr [**JulianDate**](namespaceastrea_1_1astro.md#typedef-juliandate) | [**J2000**](#function-j2000) ([**JulianDateClock::duration**](structastrea_1_1astro_1_1JulianDateClock.md#typedef-duration){ 2451545.0 }) <br>_A constant representing the J2000 epoch in Julian_ [_**Date**_](classastrea_1_1astro_1_1Date.md) _format._ |
+|  constexpr [**JulianDate**](namespaceastrea_1_1astro.md#typedef-juliandate) | [**MJD0**](#function-mjd0) ([**JulianDateClock::duration**](structastrea_1_1astro_1_1JulianDateClock.md#typedef-duration){ 2400000.5 }) <br>_A constant representing the Modified Julian_ [_**Date**_](classastrea_1_1astro_1_1Date.md) _epoch in Julian_[_**Date**_](classastrea_1_1astro_1_1Date.md) _format._ |
 
 
 
@@ -686,7 +695,7 @@ enum astrea::astro::CelestialBodyType {
 
 _Type alias for a tuple of linear expansion coefficients._ 
 ```C++
-using astrea::astro::CoefficientPack = typedef std::tuple< mp_units::quantity<mp_units::angular::unit_symbols::rad / (JulianCentury * JulianCentury)>, mp_units::quantity<mp_units::angular::unit_symbols::rad>, mp_units::quantity<mp_units::angular::unit_symbols::rad>, mp_units::quantity<mp_units::angular::unit_symbols::rad / JulianCentury> >;
+using astrea::astro::CoefficientPack = typedef std::tuple< mp_units::quantity<mp_units::si::unit_symbols::rad / (astrea::units::unit_symbols::jc * astrea::units::unit_symbols::jc)>, mp_units::quantity<mp_units::si::unit_symbols::rad>, mp_units::quantity<mp_units::si::unit_symbols::rad>, mp_units::quantity<mp_units::si::unit_symbols::rad / astrea::units::unit_symbols::jc> >;
 ```
 
 
@@ -1326,7 +1335,7 @@ const astro::RadiusVector<astro::frames::dynamic::ric> astrea::astro::RADIAL_RIC
 
 ```C++
 template<typename Tuple, typename Primary>
-constexpr  bool astrea::astro::all_have_valid_transformation () 
+constexpr bool astrea::astro::all_have_valid_transformation () 
 ```
 
 
@@ -1340,7 +1349,7 @@ constexpr  bool astrea::astro::all_have_valid_transformation ()
 
 ```C++
 template<typename Tuple, typename Primary, std::size_t... I>
-constexpr  bool astrea::astro::all_have_valid_transformation_impl (
+constexpr bool astrea::astro::all_have_valid_transformation_impl (
     std::index_sequence< I... >
 ) 
 ```
@@ -1357,8 +1366,8 @@ constexpr  bool astrea::astro::all_have_valid_transformation_impl (
 _Calculate the geocentric radius given latitude and Earth's radii._ 
 ```C++
 template<IsCelestialBody auto body>
-Distance astrea::astro::calculate_geocentric_radius (
-    const  Angle & lat
+inline constexpr Distance astrea::astro::calculate_geocentric_radius (
+    const Angle & lat
 ) 
 ```
 
@@ -1394,7 +1403,7 @@ The geocentric radius.
 _Checks if all bodies in the pack share the same parent._ 
 ```C++
 template<IsCelestialReference auto first, IsCelestialReference auto... rest>
-consteval  bool astrea::astro::check_all_bodies_share_a_parent () 
+consteval bool astrea::astro::check_all_bodies_share_a_parent () 
 ```
 
 
@@ -1428,7 +1437,7 @@ true if all bodies share the same parent, false otherwise.
 _Helper function to compose the name of a_ [_**FixedOffsetFrame**_](structastrea_1_1astro_1_1FixedOffsetFrame.md) _based on its parent frame's name and its offset values. This generates a descriptive name that includes the parent frame and the specific offsets applied._
 ```C++
 template<mp_units::symbol_text _parent_name_, Distance _x_, Distance _y_, Distance _z_>
-inline consteval  auto astrea::astro::compose_name () 
+inline consteval auto astrea::astro::compose_name () 
 ```
 
 
@@ -1483,7 +1492,7 @@ A basic\_fixed\_string representing the composed name of the [**FixedOffsetFrame
 _Helper function to compose the name of a_ [_**FixedOffsetFrame**_](structastrea_1_1astro_1_1FixedOffsetFrame.md) _with both spatial and angular offsets based on its parent frame's name and its offset values. This generates a descriptive name that includes the parent frame and the specific spatial and angular offsets applied._
 ```C++
 template<mp_units::symbol_text _parent_name_, Distance _x_, Distance _y_, Distance _z_, Angle _phi_, Angle _theta_, Angle _psi_>
-inline consteval  auto astrea::astro::compose_name () 
+inline consteval auto astrea::astro::compose_name () 
 ```
 
 
@@ -1522,8 +1531,8 @@ A basic\_fixed\_string representing the composed name of the [**FixedOffsetFrame
 _Convert a body-fixed radius vector to cylindrical coordinates._ 
 ```C++
 template<IsFrame auto _frame_>
-std::tuple< Distance , Angle , Distance > astrea::astro::convert_body_fixed_to_cylindrical (
-    const  RadiusVector < _frame_ > & rFixed
+std::tuple< Distance, Angle, Distance > astrea::astro::convert_body_fixed_to_cylindrical (
+    const RadiusVector < _frame_ > & rFixed
 ) 
 ```
 
@@ -1557,8 +1566,8 @@ The range, azimuth, and elevation as a tuple.
 _Convert a vector from ECEF (Earth-Centered Earth-Fixed) to LLA (Latitude, Longitude, Altitude) coordinates._ 
 ```C++
 template<IsFrame auto frame>
-std::tuple< Angle , Angle , Distance > astrea::astro::convert_body_fixed_to_geocentric (
-    const  RadiusVector < frame > & rEcef
+inline constexpr std::tuple< Angle, Angle, Distance > astrea::astro::convert_body_fixed_to_geocentric (
+    const RadiusVector < frame > & rEcef
 ) 
 ```
 
@@ -1594,8 +1603,8 @@ The latitude, longitude, and altitude as a tuple.
 _Convert a vector from ECEF (Earth-Centered Earth-Fixed) to LLA (Latitude, Longitude, Altitude) coordinates._ 
 ```C++
 template<IsFrame auto frame>
-std::tuple< Angle , Angle , Distance > astrea::astro::convert_body_fixed_to_geodetic (
-    const  RadiusVector < frame > & rBodyFixed
+inline std::tuple< Angle, Angle, Distance > astrea::astro::convert_body_fixed_to_geodetic (
+    const RadiusVector < frame > & rBodyFixed
 ) 
 ```
 
@@ -1631,8 +1640,8 @@ The latitude, longitude, and altitude as a tuple.
 _Convert a body-fixed radius vector to spherical coordinates._ 
 ```C++
 template<IsFrame auto _frame_>
-std::tuple< Distance , Angle , Angle > astrea::astro::convert_body_fixed_to_spherical (
-    const  RadiusVector < _frame_ > & rFixed
+std::tuple< Distance, Angle, Angle > astrea::astro::convert_body_fixed_to_spherical (
+    const RadiusVector < _frame_ > & rFixed
 ) 
 ```
 
@@ -1667,9 +1676,9 @@ _Convert cylindrical coordinates to a body-fixed radius vector._
 ```C++
 template<IsFrame auto _frame_>
 RadiusVector < _frame_ > astrea::astro::convert_cylindrical_to_body_fixed (
-    const  Distance & range,
-    const  Angle & azimuth,
-    const  Distance & elevation
+    const Distance & range,
+    const Angle & azimuth,
+    const Distance & elevation
 ) 
 ```
 
@@ -1705,8 +1714,8 @@ The radius vector in the body-fixed frame.
 _Convert the eccentric anomaly to the mean anomaly._ 
 ```C++
 Angle astrea::astro::convert_eccentric_anomaly_to_mean_anomaly (
-    const  Angle & ea,
-    const  Unitless ecc
+    const Angle & ea,
+    const Unitless ecc
 ) 
 ```
 
@@ -1741,10 +1750,10 @@ The mean anomaly.
 _Convert a vector from LLA (Latitude, Longitude, Altitude) to ECEF (Earth-Centered Earth-Fixed) coordinates._ 
 ```C++
 template<IsFrame auto _frame_>
-RadiusVector < _frame_ > astrea::astro::convert_geocentric_to_body_fixed (
-    const  Angle & lat,
-    const  Angle & lon,
-    const  Distance & alt
+inline constexpr RadiusVector < _frame_ > astrea::astro::convert_geocentric_to_body_fixed (
+    const Angle & lat,
+    const Angle & lon,
+    const Distance & alt
 ) 
 ```
 
@@ -1780,10 +1789,10 @@ The radius vector in ECEF coordinates.
 _Convert a vector from LLA (Latitude, Longitude, Altitude) to ECEF (Earth-Centered Earth-Fixed) coordinates._ 
 ```C++
 template<IsFrame auto frame>
-RadiusVector < frame > astrea::astro::convert_geodetic_to_body_fixed (
-    const  Angle & lat,
-    const  Angle & lon,
-    const  Distance & alt
+inline constexpr RadiusVector < frame > astrea::astro::convert_geodetic_to_body_fixed (
+    const Angle & lat,
+    const Angle & lon,
+    const Distance & alt
 ) 
 ```
 
@@ -1821,8 +1830,8 @@ The radius vector in ECEF coordinates.
 _Convert the mean anomaly to the eccentric anomaly using Newton's method._ 
 ```C++
 Angle astrea::astro::convert_mean_anomaly_to_eccentric_anomaly (
-    const  Angle & ma,
-    const  Unitless ecc
+    const Angle & ma,
+    const Unitless ecc
 ) 
 ```
 
@@ -1857,8 +1866,8 @@ The eccentric anomaly.
 _Convert the mean anomaly to the true anomaly. Accurate to O(e^4)._ 
 ```C++
 Angle astrea::astro::convert_mean_anomaly_to_true_anomaly (
-    const  Angle & ma,
-    const  Unitless ecc
+    const Angle & ma,
+    const Unitless ecc
 ) 
 ```
 
@@ -1894,9 +1903,9 @@ _Convert spherical coordinates to a body-fixed radius vector._
 ```C++
 template<IsFrame auto _frame_>
 RadiusVector < _frame_ > astrea::astro::convert_spherical_to_body_fixed (
-    const  Distance & range,
-    const  Angle & inclination,
-    const  Angle & azimuth
+    const Distance & range,
+    const Angle & inclination,
+    const Angle & azimuth
 ) 
 ```
 
@@ -1932,8 +1941,8 @@ The radius vector in the body-fixed frame.
 _Convert the true anomaly to the mean anomaly. Accurate to O(e^5)._ 
 ```C++
 Angle astrea::astro::convert_true_anomaly_to_mean_anomaly (
-    const  Angle & ta,
-    const  Unitless ecc
+    const Angle & ta,
+    const Unitless ecc
 ) 
 ```
 
@@ -1969,7 +1978,7 @@ _Convert a string representation of a date to a JulianDate object._
 ```C++
 JulianDate astrea::astro::epoch_to_julian_date (
     const std::string & epoch,
-    const std::string format="%Y-%m-%d % H: % M: % S"
+    const std::string format="%Y-%m-%d %H:%M:%S"
 ) 
 ```
 
@@ -2002,8 +2011,25 @@ JulianDate The JulianDate representation of the input date.
 ### function equivalent 
 
 ```C++
+template<IsOrigin Lhs, IsOrigin Rhs>
+consteval bool astrea::astro::equivalent (
+    Lhs lhs,
+    Rhs rhs
+) 
+```
+
+
+
+
+<hr>
+
+
+
+### function equivalent 
+
+```C++
 template<IsAxis Lhs, IsAxis Rhs>
-consteval  bool astrea::astro::equivalent (
+consteval bool astrea::astro::equivalent (
     Lhs lhs,
     Rhs rhs
 ) 
@@ -2018,9 +2044,10 @@ consteval  bool astrea::astro::equivalent (
 
 ### function equivalent 
 
+_Checks if two frames are equivalent, considering their parent frames and any fixed offsets (spatial or angular)._ 
 ```C++
 template<IsFrame Lhs, IsFrame Rhs>
-consteval  bool astrea::astro::equivalent (
+consteval bool astrea::astro::equivalent (
     Lhs lhs,
     Rhs rhs
 ) 
@@ -2028,6 +2055,33 @@ consteval  bool astrea::astro::equivalent (
 
 
 
+
+
+**Template parameters:**
+
+
+* `Lhs` The type of the left-hand side frame. 
+* `Rhs` The type of the right-hand side frame. 
+
+
+
+**Parameters:**
+
+
+* `lhs` The left-hand side frame instance. 
+* `rhs` The right-hand side frame instance. 
+
+
+
+**Returns:**
+
+true if both frames are equivalent, false otherwise. 
+
+
+
+
+
+        
 
 <hr>
 
@@ -2037,7 +2091,7 @@ consteval  bool astrea::astro::equivalent (
 
 ```C++
 template<IsFrame Lhs, IsFrame Rhs>
-consteval  bool astrea::astro::equivalent (
+consteval bool astrea::astro::equivalent (
     Lhs t,
     Rhs u
 ) 
@@ -2046,22 +2100,32 @@ consteval  bool astrea::astro::equivalent (
 
 
 
-<hr>
+
+**Template parameters:**
+
+
+* `Lhs` The type of the left-hand side frame. 
+* `Rhs` The type of the right-hand side frame. 
 
 
 
-### function equivalent1 
+**Parameters:**
 
-```C++
-template<IsOrigin Lhs, IsOrigin Rhs>
-consteval  bool astrea::astro::equivalent1 (
-    Lhs lhs,
-    Rhs rhs
-) 
-```
+
+* `lhs` The left-hand side frame instance. 
+* `rhs` The right-hand side frame instance. 
 
 
 
+**Returns:**
+
+true if both frames are equivalent, false otherwise. 
+
+
+
+
+
+        
 
 <hr>
 
@@ -2072,7 +2136,7 @@ consteval  bool astrea::astro::equivalent1 (
 _Helper function to convert a double value to a fixed string at compile time. This is used for generating frame names that include the offset values._ 
 ```C++
 template<utilities::double_wrapper _N_>
-inline consteval  auto astrea::astro::f_to_fixed_string () 
+inline consteval auto astrea::astro::f_to_fixed_string () 
 ```
 
 
@@ -2106,7 +2170,7 @@ _Primary template for atmospheric density — returns zero by default._
 ```C++
 template<auto _body_>
 inline Density astrea::astro::find_atmospheric_density (
-    const  State & state
+    const State & state
 ) 
 ```
 
@@ -2122,7 +2186,7 @@ inline Density astrea::astro::find_atmospheric_density (
 ```C++
 template<>
 inline Density astrea::astro::find_atmospheric_density< moons::Titan > (
-    const  State & state
+    const State & state
 ) 
 ```
 
@@ -2139,7 +2203,7 @@ _Find the atmospheric density for Earth using the configured atmosphere model._
 ```C++
 template<>
 inline Density astrea::astro::find_atmospheric_density< planets::Earth > (
-    const  State & state
+    const State & state
 ) 
 ```
 
@@ -2173,7 +2237,7 @@ Density The atmospheric density at the position encoded in `state`.
 ```C++
 template<>
 inline Density astrea::astro::find_atmospheric_density< planets::Mars > (
-    const  State & state
+    const State & state
 ) 
 ```
 
@@ -2189,7 +2253,7 @@ inline Density astrea::astro::find_atmospheric_density< planets::Mars > (
 ```C++
 template<>
 inline Density astrea::astro::find_atmospheric_density< planets::Venus > (
-    const  State & state
+    const State & state
 ) 
 ```
 
@@ -2204,7 +2268,7 @@ inline Density astrea::astro::find_atmospheric_density< planets::Venus > (
 
 ```C++
 template<IsAxis Axis_T, IsAxis Axis_U>
-inline consteval  auto astrea::astro::find_axis_in_ancestors (
+inline consteval auto astrea::astro::find_axis_in_ancestors (
     Axis_T axis,
     Axis_U target
 ) 
@@ -2221,7 +2285,7 @@ inline consteval  auto astrea::astro::find_axis_in_ancestors (
 
 ```C++
 template<IsAxis Axis_T, IsAxis Axis_U>
-inline consteval  auto astrea::astro::find_common_ancestor (
+inline consteval auto astrea::astro::find_common_ancestor (
     Axis_T axis,
     Axis_U axis_u
 ) 
@@ -2239,7 +2303,7 @@ inline consteval  auto astrea::astro::find_common_ancestor (
 _Finds the closest common ancestor of the given celestial bodies._ 
 ```C++
 template<IsCelestialReference auto... bodies>
-consteval  auto astrea::astro::find_common_ancestor () 
+consteval auto astrea::astro::find_common_ancestor () 
 ```
 
 
@@ -2281,8 +2345,8 @@ The common ancestor body value.
 [_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _fallback for get\_acceleration\_at._
 ```C++
 template<auto _body_>
-inline constexpr  CartesianVector < Acceleration , get_parent_frame( _body_ , axes::icrf )> astrea::astro::get_acceleration_at (
-    const  Date & date
+inline constexpr CartesianVector < Acceleration, get_parent_frame(_body_, axes::icrf )> astrea::astro::get_acceleration_at (
+    const Date & date
 ) 
 ```
 
@@ -2301,7 +2365,7 @@ See get\_position\_at for usage notes.
 
 ```C++
 template<typename Table_T, IsFrame auto frame>
-inline constexpr  CartesianVector < Acceleration , frame > astrea::astro::get_acceleration_at_impl (
+inline constexpr CartesianVector < Acceleration, frame > astrea::astro::get_acceleration_at_impl (
     Date date
 ) 
 ```
@@ -2318,8 +2382,8 @@ inline constexpr  CartesianVector < Acceleration , frame > astrea::astro::get_ac
 _Get the acceleration of a celestial body relative to the root at a specific date._ 
 ```C++
 template<IsCelestialReference auto body, IsCelestialReference auto ancestor>
-constexpr  auto astrea::astro::get_acceleration_relative_to_ancestor (
-    const  Date & date
+constexpr auto astrea::astro::get_acceleration_relative_to_ancestor (
+    const Date & date
 ) 
 ```
 
@@ -2354,7 +2418,7 @@ CartesianVector&lt;Acceleration, frames::solar\_system\_barycenter::icrf&gt; The
 _Get the axial tilt of the celestial body._ 
 ```C++
 template<IsCelestialBody auto body>
-inline constexpr  Angle astrea::astro::get_axial_tilt () 
+inline constexpr Angle astrea::astro::get_axial_tilt () 
 ```
 
 
@@ -2380,7 +2444,7 @@ Angle Reference to the axial tilt of the celestial body.
 _Get the body-fixed rotating frame for a celestial body._ 
 ```C++
 template<IsCelestialBody auto body>
-inline consteval  auto astrea::astro::get_body_fixed_frame () 
+inline consteval auto astrea::astro::get_body_fixed_frame () 
 ```
 
 
@@ -2416,7 +2480,7 @@ A constexpr [**BodyFixedFrame**](structastrea_1_1astro_1_1BodyFixedFrame.md) val
 _Get the type of the celestial body._ 
 ```C++
 template<IsCelestialBody auto body>
-inline consteval  CelestialBodyType astrea::astro::get_body_type () 
+inline consteval CelestialBodyType astrea::astro::get_body_type () 
 ```
 
 
@@ -2441,7 +2505,7 @@ CelestialBodyType Reference to the type of the celestial body.
 
 ```C++
 template<auto _body_>
-inline consteval  CelestialBodyParameters astrea::astro::get_celestial_body_parameters () = delete
+inline consteval CelestialBodyParameters astrea::astro::get_celestial_body_parameters () = delete
 ```
 
 
@@ -2459,7 +2523,7 @@ Primary template — must be specialised for each body. Uses unconstrained auto 
 
 ```C++
 template<>
-inline consteval  CelestialBodyParameters astrea::astro::get_celestial_body_parameters< moons::Callisto > () 
+inline consteval CelestialBodyParameters astrea::astro::get_celestial_body_parameters< moons::Callisto > () 
 ```
 
 
@@ -2473,7 +2537,7 @@ inline consteval  CelestialBodyParameters astrea::astro::get_celestial_body_para
 
 ```C++
 template<>
-inline consteval  CelestialBodyParameters astrea::astro::get_celestial_body_parameters< moons::Deimos > () 
+inline consteval CelestialBodyParameters astrea::astro::get_celestial_body_parameters< moons::Deimos > () 
 ```
 
 
@@ -2487,7 +2551,7 @@ inline consteval  CelestialBodyParameters astrea::astro::get_celestial_body_para
 
 ```C++
 template<>
-inline consteval  CelestialBodyParameters astrea::astro::get_celestial_body_parameters< moons::Europa > () 
+inline consteval CelestialBodyParameters astrea::astro::get_celestial_body_parameters< moons::Europa > () 
 ```
 
 
@@ -2501,7 +2565,7 @@ inline consteval  CelestialBodyParameters astrea::astro::get_celestial_body_para
 
 ```C++
 template<>
-inline consteval  CelestialBodyParameters astrea::astro::get_celestial_body_parameters< moons::Ganymede > () 
+inline consteval CelestialBodyParameters astrea::astro::get_celestial_body_parameters< moons::Ganymede > () 
 ```
 
 
@@ -2515,7 +2579,7 @@ inline consteval  CelestialBodyParameters astrea::astro::get_celestial_body_para
 
 ```C++
 template<>
-inline consteval  CelestialBodyParameters astrea::astro::get_celestial_body_parameters< moons::Iapetus > () 
+inline consteval CelestialBodyParameters astrea::astro::get_celestial_body_parameters< moons::Iapetus > () 
 ```
 
 
@@ -2529,7 +2593,7 @@ inline consteval  CelestialBodyParameters astrea::astro::get_celestial_body_para
 
 ```C++
 template<>
-inline consteval  CelestialBodyParameters astrea::astro::get_celestial_body_parameters< moons::Io > () 
+inline consteval CelestialBodyParameters astrea::astro::get_celestial_body_parameters< moons::Io > () 
 ```
 
 
@@ -2543,7 +2607,7 @@ inline consteval  CelestialBodyParameters astrea::astro::get_celestial_body_para
 
 ```C++
 template<>
-inline consteval  CelestialBodyParameters astrea::astro::get_celestial_body_parameters< moons::Moon > () 
+inline consteval CelestialBodyParameters astrea::astro::get_celestial_body_parameters< moons::Moon > () 
 ```
 
 
@@ -2557,7 +2621,7 @@ inline consteval  CelestialBodyParameters astrea::astro::get_celestial_body_para
 
 ```C++
 template<>
-inline consteval  CelestialBodyParameters astrea::astro::get_celestial_body_parameters< moons::Oberon > () 
+inline consteval CelestialBodyParameters astrea::astro::get_celestial_body_parameters< moons::Oberon > () 
 ```
 
 
@@ -2571,7 +2635,7 @@ inline consteval  CelestialBodyParameters astrea::astro::get_celestial_body_para
 
 ```C++
 template<>
-inline consteval  CelestialBodyParameters astrea::astro::get_celestial_body_parameters< moons::Phobos > () 
+inline consteval CelestialBodyParameters astrea::astro::get_celestial_body_parameters< moons::Phobos > () 
 ```
 
 
@@ -2585,7 +2649,7 @@ inline consteval  CelestialBodyParameters astrea::astro::get_celestial_body_para
 
 ```C++
 template<>
-inline consteval  CelestialBodyParameters astrea::astro::get_celestial_body_parameters< moons::Rhea > () 
+inline consteval CelestialBodyParameters astrea::astro::get_celestial_body_parameters< moons::Rhea > () 
 ```
 
 
@@ -2599,7 +2663,7 @@ inline consteval  CelestialBodyParameters astrea::astro::get_celestial_body_para
 
 ```C++
 template<>
-inline consteval  CelestialBodyParameters astrea::astro::get_celestial_body_parameters< moons::Titan > () 
+inline consteval CelestialBodyParameters astrea::astro::get_celestial_body_parameters< moons::Titan > () 
 ```
 
 
@@ -2613,7 +2677,7 @@ inline consteval  CelestialBodyParameters astrea::astro::get_celestial_body_para
 
 ```C++
 template<>
-inline consteval  CelestialBodyParameters astrea::astro::get_celestial_body_parameters< moons::Titania > () 
+inline consteval CelestialBodyParameters astrea::astro::get_celestial_body_parameters< moons::Titania > () 
 ```
 
 
@@ -2627,7 +2691,7 @@ inline consteval  CelestialBodyParameters astrea::astro::get_celestial_body_para
 
 ```C++
 template<>
-inline consteval  CelestialBodyParameters astrea::astro::get_celestial_body_parameters< moons::Triton > () 
+inline consteval CelestialBodyParameters astrea::astro::get_celestial_body_parameters< moons::Triton > () 
 ```
 
 
@@ -2641,7 +2705,7 @@ inline consteval  CelestialBodyParameters astrea::astro::get_celestial_body_para
 
 ```C++
 template<>
-inline consteval  CelestialBodyParameters astrea::astro::get_celestial_body_parameters< planets::Earth > () 
+inline consteval CelestialBodyParameters astrea::astro::get_celestial_body_parameters< planets::Earth > () 
 ```
 
 
@@ -2655,7 +2719,7 @@ inline consteval  CelestialBodyParameters astrea::astro::get_celestial_body_para
 
 ```C++
 template<>
-inline consteval  CelestialBodyParameters astrea::astro::get_celestial_body_parameters< planets::Jupiter > () 
+inline consteval CelestialBodyParameters astrea::astro::get_celestial_body_parameters< planets::Jupiter > () 
 ```
 
 
@@ -2669,7 +2733,7 @@ inline consteval  CelestialBodyParameters astrea::astro::get_celestial_body_para
 
 ```C++
 template<>
-inline consteval  CelestialBodyParameters astrea::astro::get_celestial_body_parameters< planets::Mars > () 
+inline consteval CelestialBodyParameters astrea::astro::get_celestial_body_parameters< planets::Mars > () 
 ```
 
 
@@ -2683,7 +2747,7 @@ inline consteval  CelestialBodyParameters astrea::astro::get_celestial_body_para
 
 ```C++
 template<>
-inline consteval  CelestialBodyParameters astrea::astro::get_celestial_body_parameters< planets::Mercury > () 
+inline consteval CelestialBodyParameters astrea::astro::get_celestial_body_parameters< planets::Mercury > () 
 ```
 
 
@@ -2697,7 +2761,7 @@ inline consteval  CelestialBodyParameters astrea::astro::get_celestial_body_para
 
 ```C++
 template<>
-inline consteval  CelestialBodyParameters astrea::astro::get_celestial_body_parameters< planets::Neptune > () 
+inline consteval CelestialBodyParameters astrea::astro::get_celestial_body_parameters< planets::Neptune > () 
 ```
 
 
@@ -2711,7 +2775,7 @@ inline consteval  CelestialBodyParameters astrea::astro::get_celestial_body_para
 
 ```C++
 template<>
-inline consteval  CelestialBodyParameters astrea::astro::get_celestial_body_parameters< planets::Saturn > () 
+inline consteval CelestialBodyParameters astrea::astro::get_celestial_body_parameters< planets::Saturn > () 
 ```
 
 
@@ -2725,7 +2789,7 @@ inline consteval  CelestialBodyParameters astrea::astro::get_celestial_body_para
 
 ```C++
 template<>
-inline consteval  CelestialBodyParameters astrea::astro::get_celestial_body_parameters< planets::Uranus > () 
+inline consteval CelestialBodyParameters astrea::astro::get_celestial_body_parameters< planets::Uranus > () 
 ```
 
 
@@ -2739,7 +2803,7 @@ inline consteval  CelestialBodyParameters astrea::astro::get_celestial_body_para
 
 ```C++
 template<>
-inline consteval  CelestialBodyParameters astrea::astro::get_celestial_body_parameters< planets::Venus > () 
+inline consteval CelestialBodyParameters astrea::astro::get_celestial_body_parameters< planets::Venus > () 
 ```
 
 
@@ -2753,7 +2817,7 @@ inline consteval  CelestialBodyParameters astrea::astro::get_celestial_body_para
 
 ```C++
 template<>
-inline consteval  CelestialBodyParameters astrea::astro::get_celestial_body_parameters< star::Sun > () 
+inline consteval CelestialBodyParameters astrea::astro::get_celestial_body_parameters< star::Sun > () 
 ```
 
 
@@ -2768,7 +2832,7 @@ inline consteval  CelestialBodyParameters astrea::astro::get_celestial_body_para
 _Get the Chebyshev polynomial coefficients for the celestial body at a specific date._ 
 ```C++
 template<typename Table_T>
-inline constexpr  auto astrea::astro::get_chebyshev_table_coefficients (
+inline constexpr auto astrea::astro::get_chebyshev_table_coefficients (
     Date date
 ) 
 ```
@@ -2810,7 +2874,7 @@ A tuple containing references to the x, y, and z Chebyshev coefficient vectors.
 _Get the crash radius of the celestial body._ 
 ```C++
 template<IsCelestialBody auto body>
-inline constexpr  Distance astrea::astro::get_crash_radius () 
+inline constexpr Distance astrea::astro::get_crash_radius () 
 ```
 
 
@@ -2836,8 +2900,8 @@ Distance Reference to the crash radius of the celestial body.
 _Get the Direction Cosine Matrix (DCM) for the J2000 to ICRF at a given date._ 
 ```C++
 template<IsFrame auto frame, IsFrame auto frame_u>
-inline constexpr  DirectionCosineMatrix < frame, frame_u > astrea::astro::get_dcm (
-    const  Date & date
+inline constexpr DirectionCosineMatrix < frame, frame_u > astrea::astro::get_dcm (
+    const Date & date
 ) 
 ```
 
@@ -2871,8 +2935,8 @@ DirectionCosineMatrix&lt;frame, frame\_u&gt; The DCM from frame\_u to frame.
 _Get the Direction Cosine Matrix (DCM) for the body-fixed frame at a given date._ 
 ```C++
 template<IsFrame auto in_frame, IsFrame auto out_frame>
-inline constexpr  DirectionCosineMatrix < in_frame, out_frame > astrea::astro::get_dcm (
-    const  Date & date
+inline constexpr DirectionCosineMatrix < in_frame, out_frame > astrea::astro::get_dcm (
+    const Date & date
 ) 
 ```
 
@@ -2917,8 +2981,8 @@ DirectionCosineMatrix&lt;in\_frame, out\_frame&gt; The DCM from in\_frame to out
 _Get the Direction Cosine Matrix (DCM) for a synodic frame at a given date._ 
 ```C++
 template<IsFrame auto in_frame, IsFrame auto out_frame>
-inline constexpr  DirectionCosineMatrix < in_frame, out_frame > astrea::astro::get_dcm (
-    const  Date & date
+inline constexpr DirectionCosineMatrix < in_frame, out_frame > astrea::astro::get_dcm (
+    const Date & date
 ) 
 ```
 
@@ -2962,12 +3026,36 @@ DirectionCosineMatrix&lt;in\_frame, out\_frame&gt; The DCM from in\_frame to out
 
 _Retrieves the direction cosine matrix representing the fixed angular offset from the parent frame to the given_ [_**FixedOffsetFrame**_](structastrea_1_1astro_1_1FixedOffsetFrame.md) _._
 ```C++
-template<IsFrame auto frame, IsFrame auto parent>
-inline constexpr  DirectionCosineMatrix < parent, frame > astrea::astro::get_dcm () 
+template<IsFrame auto parent, IsFrame auto frame>
+inline constexpr DirectionCosineMatrix < parent, frame > astrea::astro::get_dcm (
+    const Date & date
+) 
 ```
 
 
 
+Get the Direction Cosine Matrix (DCM) for the J2000 to ICRF at a given date.
+
+
+
+
+**Template parameters:**
+
+
+* `frame` The [**FixedOffsetFrame**](structastrea_1_1astro_1_1FixedOffsetFrame.md) type for which to retrieve the DCM. 
+* `parent` The parent frame type to which the DCM should be obtained. 
+
+
+
+**Returns:**
+
+DirectionCosineMatrix&lt;parent, frame&gt; The direction cosine matrix from the parent frame to the given [**FixedOffsetFrame**](structastrea_1_1astro_1_1FixedOffsetFrame.md). 
+
+
+
+
+
+        
 
 <hr>
 
@@ -2978,8 +3066,8 @@ inline constexpr  DirectionCosineMatrix < parent, frame > astrea::astro::get_dcm
 _DCM from any Earth-centred ICRF frame (including the canonical_ [_**frames::earth::icrf**_](structastrea_1_1astro_1_1frames_1_1earth_1_1icrf.md) _) to any Earth-centred body-fixed frame._
 ```C++
 template<IsFrame auto in_frame, IsFrame auto out_frame>
-inline constexpr  DirectionCosineMatrix < in_frame, out_frame > astrea::astro::get_dcm (
-    const  Date & date
+inline constexpr DirectionCosineMatrix < in_frame, out_frame > astrea::astro::get_dcm (
+    const Date & date
 ) 
 ```
 
@@ -3002,8 +3090,8 @@ The explicit template&lt;&gt; specialisation was replaced with this constrained 
 _Get the Direction Cosine Matrix (DCM) for the J2000 to ICRF at a given date._ 
 ```C++
 template<IsFrame auto frame, IsFrame auto frame_u>
-inline constexpr  DCM < frame, frame_u > astrea::astro::get_dcm (
-    const  Date & date
+inline constexpr DCM < frame, frame_u > astrea::astro::get_dcm (
+    const Date & date
 ) = delete
 ```
 
@@ -3079,7 +3167,83 @@ DirectionCosineMatrix&lt;in\_frame, out\_frame&gt; The DCM from in\_frame to out
 Get the Direction Cosine Matrix (DCM) for the J2000 to ICRF at a given date.
 
 
+
+
+**Template parameters:**
+
+
+* `frame` The [**FixedOffsetFrame**](structastrea_1_1astro_1_1FixedOffsetFrame.md) type for which to retrieve the DCM. 
+* `parent` The parent frame type to which the DCM should be obtained. 
+
+
+
+**Returns:**
+
+DirectionCosineMatrix&lt;parent, frame&gt; The direction cosine matrix from the parent frame to the given [**FixedOffsetFrame**](structastrea_1_1astro_1_1FixedOffsetFrame.md).
+
+
+Get the Direction Cosine Matrix (DCM) for the J2000 to ICRF at a given date.
+
+
 The explicit template&lt;&gt; specialisation was replaced with this constrained template so that HasDcm&lt;earth::icrf, earth::earth\_fixed&gt; (and similar requires-expressions) can find this overload. GCC 15 does not locate explicit template&lt;&gt; specialisations when checking concept requires-expressions with constrained-auto NTTP arguments. 
+
+
+        
+
+<hr>
+
+
+
+### function get\_dcm&lt; frames::earth::cep, frames::earth::itrf &gt; 
+
+```C++
+template<>
+inline constexpr DirectionCosineMatrix < frames::earth::cep , frames::earth::itrf > astrea::astro::get_dcm< frames::earth::cep, frames::earth::itrf > (
+    const Date & date
+) 
+```
+
+
+
+
+<hr>
+
+
+
+### function get\_dcm&lt; frames::earth::icrf, frames::earth::cep &gt; 
+
+_DCM from_ [_**frames::earth::icrf**_](structastrea_1_1astro_1_1frames_1_1earth_1_1icrf.md) _to_[_**frames::earth::cep**_](structastrea_1_1astro_1_1frames_1_1earth_1_1cep.md) _._
+```C++
+template<>
+inline constexpr DirectionCosineMatrix < frames::earth::icrf , frames::earth::cep > astrea::astro::get_dcm< frames::earth::icrf, frames::earth::cep > (
+    const Date & date
+) 
+```
+
+
+
+
+
+**Parameters:**
+
+
+* `date` The date at which to compute the DCM. 
+
+
+
+**Returns:**
+
+DirectionCosineMatrix&lt;frames::earth::icrf, frames::earth::cep&gt; The DCM from [**frames::earth::icrf**](structastrea_1_1astro_1_1frames_1_1earth_1_1icrf.md) to [**frames::earth::cep**](structastrea_1_1astro_1_1frames_1_1earth_1_1cep.md) at the given date.
+
+
+
+
+**Note:**
+
+[https://gssc.esa.int/navipedia/index.php?title=ICRF\_to\_CEP](https://gssc.esa.int/navipedia/index.php?title=ICRF_to_CEP) 
+
+
+
 
 
         
@@ -3092,8 +3256,8 @@ The explicit template&lt;&gt; specialisation was replaced with this constrained 
 
 ```C++
 template<IsFrame auto frame, IsFrame auto frame_u>
-inline constexpr  DcmAccel < frame, frame_u > astrea::astro::get_dcm_accel (
-    const  Date & date
+inline constexpr DcmAccel < frame, frame_u > astrea::astro::get_dcm_accel (
+    const Date & date
 ) = delete
 ```
 
@@ -3109,7 +3273,7 @@ inline constexpr  DcmAccel < frame, frame_u > astrea::astro::get_dcm_accel (
 _Retrieves the accumulated direction cosine matrix from the root frame to the given_ [_**FixedOffsetFrame**_](structastrea_1_1astro_1_1FixedOffsetFrame.md) _by recursively composing the DCMs along the parent chain._
 ```C++
 template<IsFixedOffsetFrame auto frame>
-inline constexpr  auto astrea::astro::get_dcm_from_root_frame () 
+inline constexpr auto astrea::astro::get_dcm_from_root_frame () 
 ```
 
 
@@ -3121,31 +3285,85 @@ inline constexpr  auto astrea::astro::get_dcm_from_root_frame ()
 
 ### function get\_dcm\_rate 
 
+_Get the Direction Cosine Matrix (DCM) rate for the body-fixed frame at a given date._ 
 ```C++
 template<IsFrame auto in_frame, IsFrame auto out_frame>
-inline constexpr  DirectionCosineMatrix < in_frame, out_frame > astrea::astro::get_dcm_rate (
-    const  Date & date
+inline constexpr DirectionCosineMatrixRate < in_frame, out_frame > astrea::astro::get_dcm_rate (
+    const Date & date
 ) 
 ```
 
 
 
 
+
+**Template parameters:**
+
+
+* `in_frame` The input frame type, must be ICRF and share the same origin as out\_frame. 
+* `out_frame` The output frame type, must be FIXED\_ROTATING and share the same origin as in\_frame. 
+
+
+
+**Parameters:**
+
+
+* `date` The date for which to get the DCM rate. 
+
+
+
+**Returns:**
+
+DirectionCosineMatrixRate&lt;in\_frame, out\_frame&gt; The DCM rate from in\_frame to out\_frame. 
+
+
+
+
+
+        
+
 <hr>
 
 
 
 ### function get\_dcm\_rate 
 
+_Get the Direction Cosine Matrix (DCM) rate for the body-fixed frame at a given date._ 
 ```C++
 template<IsFrame auto frame, IsFrame auto frame_u>
-inline constexpr  DcmRate < frame, frame_u > astrea::astro::get_dcm_rate (
-    const  Date & date
+inline constexpr DcmRate < frame, frame_u > astrea::astro::get_dcm_rate (
+    const Date & date
 ) = delete
 ```
 
 
 
+
+
+**Template parameters:**
+
+
+* `in_frame` The input frame type, must be ICRF and share the same origin as out\_frame. 
+* `out_frame` The output frame type, must be FIXED\_ROTATING and share the same origin as in\_frame. 
+
+
+
+**Parameters:**
+
+
+* `date` The date for which to get the DCM rate. 
+
+
+
+**Returns:**
+
+DirectionCosineMatrixRate&lt;in\_frame, out\_frame&gt; The DCM rate from in\_frame to out\_frame. 
+
+
+
+
+
+        
 
 <hr>
 
@@ -3156,7 +3374,7 @@ inline constexpr  DcmRate < frame, frame_u > astrea::astro::get_dcm_rate (
 _Get the eccentricity of the celestial body._ 
 ```C++
 template<IsCelestialBody auto body>
-inline constexpr  Unitless astrea::astro::get_eccentricity (
+inline constexpr Unitless astrea::astro::get_eccentricity (
     Date date
 ) 
 ```
@@ -3184,7 +3402,7 @@ Unitless Reference to the eccentricity of the celestial body.
 _Get the eccentricity rate of the celestial body._ 
 ```C++
 template<IsCelestialBody auto body>
-inline constexpr  BodyUnitlessPerTime astrea::astro::get_eccentricity_rate () 
+inline constexpr BodyUnitlessPerTime astrea::astro::get_eccentricity_rate () 
 ```
 
 
@@ -3210,7 +3428,7 @@ BodyUnitlessPerTime Reference to the eccentricity rate of the celestial body.
 _Get the equatorial radius of the celestial body._ 
 ```C++
 template<IsCelestialBody auto body>
-inline constexpr  Distance astrea::astro::get_equitorial_radius () 
+inline constexpr Distance astrea::astro::get_equitorial_radius () 
 ```
 
 
@@ -3231,12 +3449,38 @@ Distance Reference to the equatorial radius of the celestial body.
 
 
 
+### function get\_gravity\_coefficient\_file 
+
+_Get the full set of gravitational coefficients of the celestial body._ 
+```C++
+template<IsCelestialBody auto body>
+inline constexpr auto astrea::astro::get_gravity_coefficient_file () 
+```
+
+
+
+
+
+**Returns:**
+
+Unitless Reference to the full set of gravitational coefficients of the celestial body. 
+
+
+
+
+
+        
+
+<hr>
+
+
+
 ### function get\_inclination 
 
 _Get the inclination of the celestial body._ 
 ```C++
 template<IsCelestialBody auto body>
-inline constexpr  Angle astrea::astro::get_inclination (
+inline constexpr Angle astrea::astro::get_inclination (
     Date date
 ) 
 ```
@@ -3264,7 +3508,7 @@ Angle Reference to the inclination of the celestial body.
 _Get the inclination rate of the celestial body._ 
 ```C++
 template<IsCelestialBody auto body>
-inline constexpr  BodyAngularVelocity astrea::astro::get_inclination_rate () 
+inline constexpr BodyAngularVelocity astrea::astro::get_inclination_rate () 
 ```
 
 
@@ -3290,7 +3534,7 @@ BodyAngularVelocity Reference to the inclination rate of the celestial body.
 _Get the J2 gravitational coefficient of the celestial body._ 
 ```C++
 template<IsCelestialBody auto body>
-inline constexpr  Unitless astrea::astro::get_j2 () 
+inline constexpr Unitless astrea::astro::get_j2 () 
 ```
 
 
@@ -3316,7 +3560,7 @@ Unitless Reference to the J2 coefficient of the celestial body.
 _Get the J3 gravitational coefficient of the celestial body._ 
 ```C++
 template<IsCelestialBody auto body>
-inline constexpr  Unitless astrea::astro::get_j3 () 
+inline constexpr Unitless astrea::astro::get_j3 () 
 ```
 
 
@@ -3342,7 +3586,7 @@ Unitless Reference to the J3 coefficient of the celestial body.
 _Get the_ [_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _elements of a celestial body at a specific date using a linear approximation._
 ```C++
 template<auto _body_>
-inline constexpr  Keplerian < get_parent_frame( _body_ , axes::icrf )> astrea::astro::get_keplerian_elements_at (
+inline constexpr Keplerian < get_parent_frame(_body_, axes::icrf )> astrea::astro::get_keplerian_elements_at (
     Date date
 ) 
 ```
@@ -3528,7 +3772,7 @@ CoefficientPack A tuple containing the coefficients for the linear expansion.
 _Get the longitude of perigee of the celestial body._ 
 ```C++
 template<IsCelestialBody auto body>
-inline constexpr  Angle astrea::astro::get_longitude_of_perigee (
+inline constexpr Angle astrea::astro::get_longitude_of_perigee (
     Date date
 ) 
 ```
@@ -3556,7 +3800,7 @@ Angle Reference to the longitude of perigee of the celestial body.
 _Get the longitude of perigee rate of the celestial body._ 
 ```C++
 template<IsCelestialBody auto body>
-inline constexpr  BodyAngularVelocity astrea::astro::get_longitude_of_perigee_rate () 
+inline constexpr BodyAngularVelocity astrea::astro::get_longitude_of_perigee_rate () 
 ```
 
 
@@ -3582,7 +3826,7 @@ BodyAngularVelocity Reference to the longitude of perigee rate of the celestial 
 _Get the mass of the celestial body._ 
 ```C++
 template<IsCelestialBody auto body>
-inline constexpr  Mass astrea::astro::get_mass () 
+inline constexpr Mass astrea::astro::get_mass () 
 ```
 
 
@@ -3608,7 +3852,7 @@ Mass Reference to the mass of the celestial body.
 _Get the mean anomaly of the celestial body._ 
 ```C++
 template<IsCelestialBody auto body>
-inline constexpr  Angle astrea::astro::get_mean_anomaly (
+inline constexpr Angle astrea::astro::get_mean_anomaly (
     Date date
 ) 
 ```
@@ -3636,7 +3880,7 @@ Angle Reference to the mean anomaly of the celestial body.
 _Get the mean longitude of the celestial body._ 
 ```C++
 template<IsCelestialBody auto body>
-inline constexpr  Angle astrea::astro::get_mean_longitude (
+inline constexpr Angle astrea::astro::get_mean_longitude (
     Date date
 ) 
 ```
@@ -3664,7 +3908,7 @@ Angle Reference to the mean longitude of the celestial body.
 _Get the mean longitude rate of the celestial body._ 
 ```C++
 template<IsCelestialBody auto body>
-inline constexpr  BodyAngularVelocity astrea::astro::get_mean_longitude_rate () 
+inline constexpr BodyAngularVelocity astrea::astro::get_mean_longitude_rate () 
 ```
 
 
@@ -3690,7 +3934,7 @@ BodyAngularVelocity Reference to the mean longitude rate of the celestial body.
 _Get the gravitational parameter (mu) of the celestial body or barycenter._ 
 ```C++
 template<IsCelestialReference auto body>
-inline constexpr  GravParam astrea::astro::get_mu () 
+inline constexpr GravParam astrea::astro::get_mu () 
 ```
 
 
@@ -3719,7 +3963,7 @@ GravParam The gravitational parameter.
 _Retrieves the fixed spatial offset from the parent frame to the given_ [_**FixedOffsetFrame**_](structastrea_1_1astro_1_1FixedOffsetFrame.md) _._
 ```C++
 template<IsFixedOffsetFrame auto frame>
-inline constexpr  auto astrea::astro::get_offset_from_frame () 
+inline constexpr auto astrea::astro::get_offset_from_frame () 
 ```
 
 
@@ -3734,7 +3978,7 @@ inline constexpr  auto astrea::astro::get_offset_from_frame ()
 _Retrieves the accumulated fixed spatial offset from the root frame to the given_ [_**FixedOffsetFrame**_](structastrea_1_1astro_1_1FixedOffsetFrame.md) _by recursively summing the offsets along the parent chain._
 ```C++
 template<IsFixedOffsetFrame auto frame>
-inline constexpr  auto astrea::astro::get_offset_from_root_frame () 
+inline constexpr auto astrea::astro::get_offset_from_root_frame () 
 ```
 
 
@@ -3748,7 +3992,7 @@ inline constexpr  auto astrea::astro::get_offset_from_root_frame ()
 
 ```C++
 template<IsOrigin Origin_T>
-inline consteval  auto astrea::astro::get_parent (
+inline consteval auto astrea::astro::get_parent (
     Origin_T origin
 ) 
 ```
@@ -3765,7 +4009,7 @@ inline consteval  auto astrea::astro::get_parent (
 _Get the parent body of a celestial body._ 
 ```C++
 template<IsCelestialReference auto body>
-consteval  auto astrea::astro::get_parent () 
+consteval auto astrea::astro::get_parent () 
 ```
 
 
@@ -3804,7 +4048,7 @@ The parent body of the given body.
 
 ```C++
 template<IsOrigin Origin_T, IsAxis Axis_T>
-inline consteval  auto astrea::astro::get_parent_frame (
+inline consteval auto astrea::astro::get_parent_frame (
     Origin_T origin,
     Axis_T axis
 ) 
@@ -3821,7 +4065,7 @@ inline consteval  auto astrea::astro::get_parent_frame (
 
 ```C++
 template<IsOrigin Origin_T>
-inline consteval  auto astrea::astro::get_parent_name (
+inline consteval auto astrea::astro::get_parent_name (
     Origin_T origin
 ) 
 ```
@@ -3838,7 +4082,7 @@ inline consteval  auto astrea::astro::get_parent_name (
 _Returns the single PLANET in the pack (assumes exactly one exists)._ 
 ```C++
 template<IsCelestialReference auto first, IsCelestialReference auto... rest>
-consteval  auto astrea::astro::get_planet_from_pack () 
+consteval auto astrea::astro::get_planet_from_pack () 
 ```
 
 
@@ -3879,7 +4123,7 @@ The celestial body in the pack that is a planet.
 _Get the polar radius of the celestial body._ 
 ```C++
 template<IsCelestialBody auto body>
-inline constexpr  Distance astrea::astro::get_polar_radius () 
+inline constexpr Distance astrea::astro::get_polar_radius () 
 ```
 
 
@@ -3905,8 +4149,8 @@ Distance Reference to the polar radius of the celestial body.
 [_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _fallback for get\_position\_at._
 ```C++
 template<auto _body_>
-inline constexpr  CartesianVector < Distance , get_parent_frame( _body_ , axes::icrf )> astrea::astro::get_position_at (
-    const  Date & date
+inline constexpr CartesianVector < Distance, get_parent_frame(_body_, axes::icrf )> astrea::astro::get_position_at (
+    const Date & date
 ) 
 ```
 
@@ -3932,7 +4176,7 @@ Bodies WITH an explicit get\_position\_at specialisation (e.g. Earth, Jupiter wh
 _Get the position of the celestial body at a specific date in a specified frame using Chebyshev polynomials._ 
 ```C++
 template<typename Table_T, IsFrame auto frame>
-inline constexpr  CartesianVector < Distance , frame > astrea::astro::get_position_at_impl (
+inline constexpr CartesianVector < Distance, frame > astrea::astro::get_position_at_impl (
     Date date
 ) 
 ```
@@ -3975,8 +4219,8 @@ CartesianVector&lt;Distance, frame&gt; The position of the celestial body at the
 _Get the position of a celestial body relative to the root at a specific date._ 
 ```C++
 template<IsCelestialReference auto body, IsCelestialReference auto ancestor>
-constexpr  auto astrea::astro::get_position_relative_to_ancestor (
-    const  Date & date
+constexpr auto astrea::astro::get_position_relative_to_ancestor (
+    const Date & date
 ) 
 ```
 
@@ -4011,8 +4255,8 @@ CartesianVector&lt;Distance, frames::solar\_system\_barycenter::icrf&gt; The pos
 _Get the relative acceleration between two celestial bodies at a specific date._ 
 ```C++
 template<IsCelestialReference auto body1, IsCelestialReference auto body2>
-constexpr  auto astrea::astro::get_relative_acceleration (
-    const  Date & date
+constexpr auto astrea::astro::get_relative_acceleration (
+    const Date & date
 ) 
 ```
 
@@ -4048,8 +4292,8 @@ CartesianVector&lt;Acceleration, frames::solar\_system\_barycenter::icrf&gt; The
 _Get the relative position between two celestial bodies at a specific date._ 
 ```C++
 template<IsCelestialReference auto body1, IsCelestialReference auto body2>
-constexpr  auto astrea::astro::get_relative_position (
-    const  Date & date
+constexpr auto astrea::astro::get_relative_position (
+    const Date & date
 ) 
 ```
 
@@ -4085,8 +4329,8 @@ CartesianVector&lt;Distance, frame&gt; The relative position vector from id2 to 
 _Get the relative position between two celestial bodies at a specific date._ 
 ```C++
 template<IsCelestialReference auto body1, IsCelestialReference auto body2>
-constexpr  auto astrea::astro::get_relative_velocity (
-    const  Date & date
+constexpr auto astrea::astro::get_relative_velocity (
+    const Date & date
 ) 
 ```
 
@@ -4121,7 +4365,7 @@ CartesianVector&lt;Velocity, frames::solar\_system\_barycenter::icrf&gt; The rel
 
 _Get the reverse of a Tait-Bryan sequence (e.g., XYZ -&gt; ZYX)._ 
 ```C++
-constexpr  RotationSequence astrea::astro::get_reverse_sequence (
+constexpr RotationSequence astrea::astro::get_reverse_sequence (
     RotationSequence sequence
 ) 
 ```
@@ -4138,7 +4382,7 @@ constexpr  RotationSequence astrea::astro::get_reverse_sequence (
 _Get the right ascension of the celestial body._ 
 ```C++
 template<IsCelestialBody auto body>
-inline constexpr  Angle astrea::astro::get_right_ascension (
+inline constexpr Angle astrea::astro::get_right_ascension (
     Date date
 ) 
 ```
@@ -4166,7 +4410,7 @@ Angle Reference to the right ascension of the celestial body.
 _Get the right ascension rate of the celestial body._ 
 ```C++
 template<IsCelestialBody auto body>
-inline constexpr  BodyAngularVelocity astrea::astro::get_right_ascension_rate () 
+inline constexpr BodyAngularVelocity astrea::astro::get_right_ascension_rate () 
 ```
 
 
@@ -4189,13 +4433,32 @@ BodyAngularVelocity Reference to the right ascension rate of the celestial body.
 
 ### function get\_root\_frame 
 
+_Retrieves the root frame of a given fixed offset frame by recursively traversing the parent chain._ 
 ```C++
 template<IsFixedOffsetFrame auto frame>
-consteval  auto astrea::astro::get_root_frame () 
+consteval auto astrea::astro::get_root_frame () 
 ```
 
 
 
+
+
+**Template parameters:**
+
+
+* `frame` The fixed offset frame. 
+
+
+
+**Returns:**
+
+The root frame of the given fixed offset frame. 
+
+
+
+
+
+        
 
 <hr>
 
@@ -4206,7 +4469,7 @@ consteval  auto astrea::astro::get_root_frame ()
 _Get the rotation rate of the celestial body._ 
 ```C++
 template<IsCelestialBody auto body>
-inline constexpr  AngularVelocity astrea::astro::get_rotation_rate () 
+inline constexpr AngularVelocity astrea::astro::get_rotation_rate () 
 ```
 
 
@@ -4232,7 +4495,7 @@ AngularVelocity Reference to the rotation rate of the celestial body.
 _Get the semimajor axis of the celestial body._ 
 ```C++
 template<IsCelestialBody auto body>
-inline constexpr  Distance astrea::astro::get_semimajor (
+inline constexpr Distance astrea::astro::get_semimajor (
     Date date
 ) 
 ```
@@ -4260,7 +4523,7 @@ Distance Reference to the semimajor axis of the celestial body.
 _Get the semimajor axis rate of the celestial body._ 
 ```C++
 template<IsCelestialBody auto body>
-inline constexpr  InterplanetaryVelocity astrea::astro::get_semimajor_rate () 
+inline constexpr InterplanetaryVelocity astrea::astro::get_semimajor_rate () 
 ```
 
 
@@ -4284,7 +4547,7 @@ InterplanetaryVelocity Reference to the semimajor axis rate of the celestial bod
 ### function get\_sequence\_numbers 
 
 ```C++
-constexpr std::array< int , 3 > astrea::astro::get_sequence_numbers (
+constexpr std::array< int, 3 > astrea::astro::get_sequence_numbers (
     RotationSequence sequence
 ) 
 ```
@@ -4301,7 +4564,7 @@ constexpr std::array< int , 3 > astrea::astro::get_sequence_numbers (
 _Get the sidereal period of the celestial body._ 
 ```C++
 template<IsCelestialBody auto body>
-inline constexpr  Time astrea::astro::get_sidereal_period () 
+inline constexpr Time astrea::astro::get_sidereal_period () 
 ```
 
 
@@ -4327,7 +4590,7 @@ Time Reference to the sidereal period of the celestial body.
 _Get the sphere of influence of the celestial body._ 
 ```C++
 template<IsCelestialBody auto body>
-inline constexpr  Distance astrea::astro::get_sphere_of_influence () 
+inline constexpr Distance astrea::astro::get_sphere_of_influence () 
 ```
 
 
@@ -4352,7 +4615,7 @@ Distance Reference to the sphere of influence of the celestial body.
 
 ```C++
 template<IsCelestialBody auto body>
-inline constexpr  auto astrea::astro::get_time_since_reference_epoch (
+inline constexpr auto astrea::astro::get_time_since_reference_epoch (
     Date date
 ) 
 ```
@@ -4369,7 +4632,7 @@ inline constexpr  auto astrea::astro::get_time_since_reference_epoch (
 _Get the true anomaly of the celestial body._ 
 ```C++
 template<IsCelestialBody auto body>
-inline constexpr  Angle astrea::astro::get_true_anomaly (
+inline constexpr Angle astrea::astro::get_true_anomaly (
     Date date
 ) 
 ```
@@ -4411,8 +4674,8 @@ constexpr std::size_t astrea::astro::get_variant_index ()
 [_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _fallback for get\_velocity\_at._
 ```C++
 template<auto _body_>
-inline constexpr  CartesianVector < Velocity , get_parent_frame( _body_ , axes::icrf )> astrea::astro::get_velocity_at (
-    const  Date & date
+inline constexpr CartesianVector < Velocity, get_parent_frame(_body_, axes::icrf )> astrea::astro::get_velocity_at (
+    const Date & date
 ) 
 ```
 
@@ -4432,7 +4695,7 @@ See get\_position\_at for usage notes.
 _Get the velocity of the celestial body at a specific date in a specified frame using Chebyshev polynomials._ 
 ```C++
 template<typename Table_T, IsFrame auto frame>
-inline constexpr  CartesianVector < Velocity , frame > astrea::astro::get_velocity_at_impl (
+inline constexpr CartesianVector < Velocity, frame > astrea::astro::get_velocity_at_impl (
     Date date
 ) 
 ```
@@ -4475,8 +4738,8 @@ CartesianVector&lt;Velocity, frame&gt; The velocity of the celestial body at the
 _Get the velocity of a celestial body relative to the root at a specific date._ 
 ```C++
 template<IsCelestialReference auto body, IsCelestialReference auto ancestor>
-constexpr  auto astrea::astro::get_velocity_relative_to_ancestor (
-    const  Date & date
+constexpr auto astrea::astro::get_velocity_relative_to_ancestor (
+    const Date & date
 ) 
 ```
 
@@ -4506,11 +4769,119 @@ CartesianVector&lt;Velocity, frames::solar\_system\_barycenter::icrf&gt; The vel
 
 
 
+### function get\_x\_offset\_from\_lla 
+
+_Retrieves the X offset from the given latitude, longitude, and altitude relative to the parent body-fixed frame._ 
+```C++
+template<IsBodyFixedFrame auto _parent_, Angle _lat_, Angle _lon_, Distance _alt_>
+inline consteval auto astrea::astro::get_x_offset_from_lla () 
+```
+
+
+
+
+
+**Template parameters:**
+
+
+* `_parent_` The parent body-fixed frame. 
+* `_lat_` The latitude in the parent frame. 
+* `_lon_` The longitude in the parent frame. 
+* `_alt_` The altitude in the parent frame. 
+
+
+
+**Returns:**
+
+The X offset in the parent frame. 
+
+
+
+
+
+        
+
+<hr>
+
+
+
+### function get\_y\_offset\_from\_lla 
+
+_Retrieves the Y offset from the given latitude, longitude, and altitude relative to the parent body-fixed frame._ 
+```C++
+template<IsBodyFixedFrame auto _parent_, Angle _lat_, Angle _lon_, Distance _alt_>
+inline consteval auto astrea::astro::get_y_offset_from_lla () 
+```
+
+
+
+
+
+**Template parameters:**
+
+
+* `_parent_` The parent body-fixed frame. 
+* `_lat_` The latitude in the parent frame. 
+* `_lon_` The longitude in the parent frame. 
+* `_alt_` The altitude in the parent frame. 
+
+
+
+**Returns:**
+
+The Y offset in the parent frame. 
+
+
+
+
+
+        
+
+<hr>
+
+
+
+### function get\_z\_offset\_from\_lla 
+
+_Retrieves the Z offset from the given latitude, longitude, and altitude relative to the parent body-fixed frame._ 
+```C++
+template<IsBodyFixedFrame auto _parent_, Angle _lat_, Angle _lon_, Distance _alt_>
+inline consteval auto astrea::astro::get_z_offset_from_lla () 
+```
+
+
+
+
+
+**Template parameters:**
+
+
+* `_parent_` The parent body-fixed frame. 
+* `_lat_` The latitude in the parent frame. 
+* `_lon_` The longitude in the parent frame. 
+* `_alt_` The altitude in the parent frame. 
+
+
+
+**Returns:**
+
+The Z offset in the parent frame. 
+
+
+
+
+
+        
+
+<hr>
+
+
+
 ### function has\_axis 
 
 ```C++
 template<IsFrame Frame_T, IsAxis Axis_T>
-inline consteval  auto astrea::astro::has_axis (
+inline consteval auto astrea::astro::has_axis (
     Frame_T,
     Axis_T
 ) 
@@ -4527,7 +4898,7 @@ inline consteval  auto astrea::astro::has_axis (
 
 ```C++
 template<IsFrame Frame_T, IsOrigin Origin_T>
-inline consteval  auto astrea::astro::has_origin (
+inline consteval auto astrea::astro::has_origin (
     Frame_T,
     Origin_T
 ) 
@@ -4545,7 +4916,7 @@ inline consteval  auto astrea::astro::has_origin (
 _Check if a celestial body has a parent body defined._ 
 ```C++
 template<IsCelestialReference auto body>
-consteval  bool astrea::astro::has_parent () 
+consteval bool astrea::astro::has_parent () 
 ```
 
 
@@ -4578,7 +4949,7 @@ true if the body has a parent, false otherwise.
 _Concept to determine if two frames share the same axis._ 
 ```C++
 template<IsFrame T, IsFrame U>
-consteval  bool astrea::astro::has_same_axis (
+consteval bool astrea::astro::has_same_axis (
     T t,
     U u
 ) 
@@ -4615,7 +4986,7 @@ true if both frames share the same axis, false otherwise.
 _Concept to determine if two frames share the same origin._ 
 ```C++
 template<IsFrame T, IsFrame U>
-consteval  bool astrea::astro::has_same_origin (
+consteval bool astrea::astro::has_same_origin (
     T t,
     U u
 ) 
@@ -4652,7 +5023,7 @@ true if both frames share the same origin, false otherwise.
 _Helper function to determine if two frames share the same parent frame. This is used in the get\_dcm function for FixedOffsetFrames to ensure that the input and output frames share the same parent frame._ 
 ```C++
 template<IsFrame T, IsFrame U>
-consteval  bool astrea::astro::has_same_parent (
+consteval bool astrea::astro::has_same_parent (
     T t,
     U u
 ) 
@@ -4697,7 +5068,7 @@ true if the frames share the same parent frame, false otherwise.
 _Specialization of has\_same\_parent for frames that are both derived frames. This checks if the parent types are the same._ 
 ```C++
 template<IsFrame T, IsFrame U>
-consteval  bool astrea::astro::has_same_parent (
+consteval bool astrea::astro::has_same_parent (
     T t,
     U u
 ) 
@@ -4742,7 +5113,7 @@ true if the frames share the same parent frame, false otherwise.
 _Specialization of has\_same\_parent for frames that are both root frames. Root frames are considered to share the same parent (themselves)._ 
 ```C++
 template<IsFrame T, IsFrame U>
-consteval  bool astrea::astro::has_same_parent (
+consteval bool astrea::astro::has_same_parent (
     T t,
     U u
 ) 
@@ -4784,9 +5155,10 @@ true if the frames share the same parent frame, false otherwise.
 
 ### function have\_same\_misalignment 
 
+_Checks if two fixed offset frames have the same angular misalignment._ 
 ```C++
 template<IsFixedOffsetFrame Lhs, IsFixedOffsetFrame Rhs>
-consteval  bool astrea::astro::have_same_misalignment (
+consteval bool astrea::astro::have_same_misalignment (
     Lhs lhs,
     Rhs rhs
 ) 
@@ -4794,6 +5166,33 @@ consteval  bool astrea::astro::have_same_misalignment (
 
 
 
+
+
+**Template parameters:**
+
+
+* `Lhs` The type of the left-hand side fixed offset frame. 
+* `Rhs` The type of the right-hand side fixed offset frame. 
+
+
+
+**Parameters:**
+
+
+* `lhs` The left-hand side fixed offset frame instance. 
+* `rhs` The right-hand side fixed offset frame instance. 
+
+
+
+**Returns:**
+
+true if both frames have the same angular misalignment, false otherwise. 
+
+
+
+
+
+        
 
 <hr>
 
@@ -4801,9 +5200,10 @@ consteval  bool astrea::astro::have_same_misalignment (
 
 ### function have\_same\_offsets 
 
+_Checks if two fixed offset frames have the same spatial offsets._ 
 ```C++
 template<IsFixedOffsetFrame Lhs, IsFixedOffsetFrame Rhs>
-consteval  bool astrea::astro::have_same_offsets (
+consteval bool astrea::astro::have_same_offsets (
     Lhs lhs,
     Rhs rhs
 ) 
@@ -4812,21 +5212,74 @@ consteval  bool astrea::astro::have_same_offsets (
 
 
 
+
+**Template parameters:**
+
+
+* `Lhs` The type of the left-hand side fixed offset frame. 
+* `Rhs` The type of the right-hand side fixed offset frame. 
+
+
+
+**Parameters:**
+
+
+* `lhs` The left-hand side fixed offset frame instance. 
+* `rhs` The right-hand side fixed offset frame instance. 
+
+
+
+**Returns:**
+
+true if both frames have the same spatial offsets, false otherwise. 
+
+
+
+
+
+        
+
 <hr>
 
 
 
 ### function is\_aligned\_with\_parent 
 
+_Checks if a fixed offset frame is aligned with its parent frame._ 
 ```C++
 template<IsFixedOffsetFrame Frame_T>
-consteval  bool astrea::astro::is_aligned_with_parent (
+consteval bool astrea::astro::is_aligned_with_parent (
     Frame_T frame
 ) 
 ```
 
 
 
+
+
+**Template parameters:**
+
+
+* `Frame_T` The type of the fixed offset frame. 
+
+
+
+**Parameters:**
+
+
+* `frame` The fixed offset frame instance. 
+
+
+
+**Returns:**
+
+true if the frame is aligned with its parent, false otherwise. 
+
+
+
+
+
+        
 
 <hr>
 
@@ -4837,7 +5290,7 @@ consteval  bool astrea::astro::is_aligned_with_parent (
 _Returns true if Ancestor is Body itself or appears anywhere in Body's parent chain._ 
 ```C++
 template<IsCelestialReference auto ancestor, IsCelestialReference auto body>
-consteval  bool astrea::astro::is_ancestor_of () 
+consteval bool astrea::astro::is_ancestor_of () 
 ```
 
 
@@ -4869,7 +5322,7 @@ true if Ancestor is the same as Body or is an ancestor of Body, false otherwise.
 ### function is\_proper\_euler\_sequence 
 
 ```C++
-constexpr  bool astrea::astro::is_proper_euler_sequence (
+constexpr bool astrea::astro::is_proper_euler_sequence (
     RotationSequence sequence
 ) 
 ```
@@ -4886,7 +5339,7 @@ constexpr  bool astrea::astro::is_proper_euler_sequence (
 _Check if two celestial bodies are the same._ 
 ```C++
 template<IsCelestialReference auto ancestor, IsCelestialReference auto body>
-consteval  bool astrea::astro::is_same_body () 
+consteval bool astrea::astro::is_same_body () 
 ```
 
 
@@ -4920,7 +5373,7 @@ true if the two bodies are the same, false otherwise.
 _Compute the equivalent of Greenwich Sidereal Time for an arbitrary celestial body._ 
 ```C++
 template<IsCelestialBody auto body>
-inline constexpr  Angle astrea::astro::julian_date_to_body_sidereal_time (
+inline constexpr Angle astrea::astro::julian_date_to_body_sidereal_time (
     JulianDate date
 ) 
 ```
@@ -4958,7 +5411,7 @@ Angle The body's prime meridian rotation angle, wrapped to [0, 2π).
 _Convert a JulianDate to a string representation._ 
 ```C++
 Angle astrea::astro::julian_date_to_sidereal_time (
-    const  JulianDate & date
+    const JulianDate & date
 ) 
 ```
 
@@ -4999,7 +5452,7 @@ std::string The string representation of the JulianDate.
 
 ```C++
 template<IsOrigin Origin_T, IsAxis Axis_T>
-inline consteval  auto astrea::astro::make_frame (
+inline consteval auto astrea::astro::make_frame (
     Origin_T origin,
     Axis_T axis
 ) 
@@ -5016,7 +5469,7 @@ inline consteval  auto astrea::astro::make_frame (
 
 ```C++
 template<IsAxis Axis_T>
-consteval  bool astrea::astro::misalignment_is_zero (
+consteval bool astrea::astro::misalignment_is_zero (
     Axis_T axis
 ) 
 ```
@@ -5032,7 +5485,7 @@ consteval  bool astrea::astro::misalignment_is_zero (
 
 ```C++
 template<IsOrigin Origin_T>
-consteval  bool astrea::astro::offset_is_zero (
+consteval bool astrea::astro::offset_is_zero (
     Origin_T origin
 ) 
 ```
@@ -5049,9 +5502,9 @@ consteval  bool astrea::astro::offset_is_zero (
 _Scalar multiplication operator for_ [_**CartesianVector**_](structastrea_1_1astro_1_1CartesianVector.md) _._
 ```C++
 template<typename Value_T, typename Value_U, IsFrame auto frame>
-inline constexpr  CartesianVector < decltype ( Value_T {} * Value_U {}), frame > astrea::astro::operator* (
-    const  Value_U & scalar,
-    const  CartesianVector < Value_T , frame > & vec
+inline constexpr CartesianVector < decltype(Value_T{} *Value_U{}), frame > astrea::astro::operator* (
+    const Value_U & scalar,
+    const CartesianVector < Value_T, frame > & vec
 ) 
 ```
 
@@ -5094,9 +5547,9 @@ inline constexpr  CartesianVector < decltype ( Value_T {} * Value_U {}), frame >
 _Multiply the matrix by a scalar value (element-wise multiplication)._ 
 ```C++
 template<typename Value_T, typename Value_U, IsFrame auto in_frame, IsFrame auto out_frame>
-inline constexpr  DcmInterface < decltype ( Value_T {} * Value_U {}), in_frame, out_frame > astrea::astro::operator* (
-    const  Value_T & scalar,
-    const  DcmInterface < Value_U , in_frame, out_frame > & matrix
+inline constexpr DcmInterface < decltype(Value_T{} *Value_U{}), in_frame, out_frame > astrea::astro::operator* (
+    const Value_T & scalar,
+    const DcmInterface < Value_U, in_frame, out_frame > & matrix
 ) 
 ```
 
@@ -5130,9 +5583,9 @@ inline constexpr  DcmInterface < decltype ( Value_T {} * Value_U {}), in_frame, 
 _Scalar multiplication operator for_ [_**AngularVelocities**_](classastrea_1_1astro_1_1AngularVelocities.md) _with an_[_**InertiaTensor**_](classastrea_1_1astro_1_1InertiaTensor.md) _._
 ```C++
 template<IsFrame auto in_frame, IsFrame auto ref_frame>
-CartesianVector < decltype ( MomentOfInertia {} * AngularVelocity {}), in_frame > astrea::astro::operator* (
-    const  InertiaTensor < in_frame > & inertiaTensor,
-    const  AngularVelocities < in_frame, ref_frame > & vec
+CartesianVector < decltype(MomentOfInertia{} *AngularVelocity{}), in_frame > astrea::astro::operator* (
+    const InertiaTensor < in_frame > & inertiaTensor,
+    const AngularVelocities < in_frame, ref_frame > & vec
 ) 
 ```
 
@@ -5177,9 +5630,9 @@ CartesianVector < decltype ( MomentOfInertia {} * AngularVelocity {}), in_frame 
 _Scalar multiplication operator for a quantity multiplied by_ [_**AngularAccelerations**_](classastrea_1_1astro_1_1AngularAccelerations.md) _, resulting in a_[_**CartesianVector**_](structastrea_1_1astro_1_1CartesianVector.md) _._
 ```C++
 template<typename Value_U, IsFrame auto in_frame, IsFrame auto ref_frame>
-CartesianVector < decltype ( Value_U {} * AngularAcceleration {}), in_frame > astrea::astro::operator* (
-    const  Value_U & scalar,
-    const  AngularAccelerations < in_frame, ref_frame > & accel
+CartesianVector < decltype(Value_U{} *AngularAcceleration{}), in_frame > astrea::astro::operator* (
+    const Value_U & scalar,
+    const AngularAccelerations < in_frame, ref_frame > & accel
 ) 
 ```
 
@@ -5226,8 +5679,8 @@ _Scalar multiplication operator for Time multiplied by_ [_**AngularAccelerations
 ```C++
 template<IsFrame auto in_frame, IsFrame auto ref_frame>
 AngularVelocities < in_frame, ref_frame > astrea::astro::operator* (
-    const  Time & time,
-    const  AngularAccelerations < in_frame, ref_frame > & accel
+    const Time & time,
+    const AngularAccelerations < in_frame, ref_frame > & accel
 ) 
 ```
 
@@ -5272,9 +5725,9 @@ AngularVelocities < in_frame, ref_frame > astrea::astro::operator* (
 _Scalar multiplication operator for EulerAngless._ 
 ```C++
 template<RotationSequence sequence, RotationType rotation_type, IsFrame auto _in_frame_, IsFrame auto _out_frame_>
-EulerAngles < sequence, rotation_type , _in_frame_ , _out_frame_ > astrea::astro::operator* (
-    const  Unitless & scalar,
-    const  EulerAngles < sequence, rotation_type , _in_frame_ , _out_frame_ > & vec
+EulerAngles < sequence, rotation_type, _in_frame_, _out_frame_ > astrea::astro::operator* (
+    const Unitless & scalar,
+    const EulerAngles < sequence, rotation_type, _in_frame_, _out_frame_ > & vec
 ) 
 ```
 
@@ -5317,9 +5770,9 @@ EulerAngles < sequence, rotation_type , _in_frame_ , _out_frame_ > astrea::astro
 _Scalar division operator for_ [_**CartesianVector**_](structastrea_1_1astro_1_1CartesianVector.md) _._
 ```C++
 template<typename Value_T, typename Value_U, IsFrame auto frame>
-inline constexpr  CartesianVector < decltype ( Value_T {} * Value_U {}), frame > astrea::astro::operator/ (
-    const  Value_U & scalar,
-    const  CartesianVector < Value_T , frame > & vec
+inline constexpr CartesianVector < decltype(Value_T{} *Value_U{}), frame > astrea::astro::operator/ (
+    const Value_U & scalar,
+    const CartesianVector < Value_T, frame > & vec
 ) 
 ```
 
@@ -5362,9 +5815,9 @@ inline constexpr  CartesianVector < decltype ( Value_T {} * Value_U {}), frame >
 _Scalar division operator for EulerAngless._ 
 ```C++
 template<RotationSequence sequence, RotationType rotation_type, IsFrame auto _in_frame_, IsFrame auto _out_frame_>
-EulerAngles < sequence, rotation_type , _in_frame_ , _out_frame_ > astrea::astro::operator/ (
-    const  Unitless & scalar,
-    const  EulerAngles < sequence, rotation_type , _in_frame_ , _out_frame_ > & vec
+EulerAngles < sequence, rotation_type, _in_frame_, _out_frame_ > astrea::astro::operator/ (
+    const Unitless & scalar,
+    const EulerAngles < sequence, rotation_type, _in_frame_, _out_frame_ > & vec
 ) 
 ```
 
@@ -5409,7 +5862,7 @@ _Overload the output stream operator for_ [_**CartesianVector**_](structastrea_1
 template<class Value_T, IsFrame auto frame>
 std::ostream & astrea::astro::operator<< (
     std::ostream & os,
-    const  CartesianVector < Value_T , frame > & state
+    const CartesianVector < Value_T, frame > & state
 ) 
 ```
 
@@ -5522,7 +5975,7 @@ _Output stream operator for_ [_**AngularVelocities**_](classastrea_1_1astro_1_1A
 template<IsFrame auto in_frame, IsFrame auto ref_frame>
 std::ostream & astrea::astro::operator<< (
     std::ostream & os,
-    const  AngularVelocities < in_frame, ref_frame > & angleSequenceRate
+    const AngularVelocities < in_frame, ref_frame > & angleSequenceRate
 ) 
 ```
 
@@ -5569,7 +6022,7 @@ _Output stream operator for_ [_**AngularAccelerations**_](classastrea_1_1astro_1
 template<IsFrame auto in_frame, IsFrame auto ref_frame>
 std::ostream & astrea::astro::operator<< (
     std::ostream & os,
-    const  AngularAccelerations < in_frame, ref_frame > & angleSequenceAccel
+    const AngularAccelerations < in_frame, ref_frame > & angleSequenceAccel
 ) 
 ```
 
@@ -5614,7 +6067,7 @@ std::ostream& The output stream after writing the [**AngularAccelerations**](cla
 ```C++
 std::ostream & astrea::astro::operator<< (
     std::ostream & os,
-    const  Attitude & attitude
+    const Attitude & attitude
 ) 
 ```
 
@@ -5630,7 +6083,7 @@ std::ostream & astrea::astro::operator<< (
 ```C++
 std::ostream & astrea::astro::operator<< (
     std::ostream & os,
-    const  AttitudePartials & attitude
+    const AttitudePartials & attitude
 ) 
 ```
 
@@ -5648,7 +6101,7 @@ _Output stream operator for_ [_**EulerAngles**_](classastrea_1_1astro_1_1EulerAn
 template<RotationSequence sequence, RotationType rotation_type, IsFrame auto _in_frame_, IsFrame auto _out_frame_>
 std::ostream & astrea::astro::operator<< (
     std::ostream & os,
-    const  EulerAngles < sequence, rotation_type , _in_frame_ , _out_frame_ > & angleSequence
+    const EulerAngles < sequence, rotation_type, _in_frame_, _out_frame_ > & angleSequence
 ) 
 ```
 
@@ -5695,7 +6148,7 @@ _Stream insertion operator for the_ [_**Quaternion**_](classastrea_1_1astro_1_1Q
 template<IsFrame auto in_frame, IsFrame auto out_frame>
 std::ostream & astrea::astro::operator<< (
     std::ostream & os,
-    const  Quaternion < in_frame, out_frame > & quaternion
+    const Quaternion < in_frame, out_frame > & quaternion
 ) 
 ```
 
@@ -5740,7 +6193,7 @@ _Stream insertion operator for the_ [_**QuaternionPartial**_](classastrea_1_1ast
 template<IsFrame auto in_frame, IsFrame auto out_frame>
 std::ostream & astrea::astro::operator<< (
     std::ostream & os,
-    const  QuaternionPartial < in_frame, out_frame > & quaternion
+    const QuaternionPartial < in_frame, out_frame > & quaternion
 ) 
 ```
 
@@ -5824,7 +6277,7 @@ _Overloaded output stream operator for_ [_**GeneralPerturbations**_](structastre
 ```C++
 std::ostream & astrea::astro::operator<< (
     std::ostream & os,
-    const  GeneralPerturbations & gp
+    const GeneralPerturbations & gp
 ) 
 ```
 
@@ -5862,7 +6315,7 @@ The output stream after writing the GP data.
 ```C++
 std::ostream & astrea::astro::operator<< (
     std::ostream & os,
-    TwoLineElements  const & elements
+    TwoLineElements const & elements
 ) 
 ```
 
@@ -5980,7 +6433,7 @@ std::ostream & astrea::astro::operator<< (
 ```C++
 std::ostream & astrea::astro::operator<< (
     std::ostream & os,
-    const  OrbitalElements & elements
+    const OrbitalElements & elements
 ) 
 ```
 
@@ -5996,7 +6449,7 @@ std::ostream & astrea::astro::operator<< (
 ```C++
 std::ostream & astrea::astro::operator<< (
     std::ostream & os,
-    const  OrbitalElementPartials & elements
+    const OrbitalElementPartials & elements
 ) 
 ```
 
@@ -6012,7 +6465,7 @@ std::ostream & astrea::astro::operator<< (
 ```C++
 std::ostream & astrea::astro::operator<< (
     std::ostream & os,
-    const  State & state
+    const State & state
 ) 
 ```
 
@@ -6028,7 +6481,7 @@ std::ostream & astrea::astro::operator<< (
 ```C++
 std::ostream & astrea::astro::operator<< (
     std::ostream & os,
-    const  Date & obj
+    const Date & obj
 ) 
 ```
 
@@ -6043,9 +6496,9 @@ std::ostream & astrea::astro::operator<< (
 
 ```C++
 inline bool astrea::astro::planes_are_nearly_equal (
-    const  OrbitalElements & elem1,
-    const  OrbitalElements & elem2,
-    const  Unitless & relTol
+    const OrbitalElements & elem1,
+    const OrbitalElements & elem2,
+    const Unitless & relTol
 ) 
 ```
 
@@ -6061,7 +6514,7 @@ inline bool astrea::astro::planes_are_nearly_equal (
 _Helper function to convert a list of quantities to a comma-separated fixed string at compile time. This is used for generating frame names that include multiple offset values._ 
 ```C++
 template<auto _first_, auto... _rest_>
-inline consteval  auto astrea::astro::quantity_list_to_fixed_string () 
+inline consteval auto astrea::astro::quantity_list_to_fixed_string () 
 ```
 
 
@@ -6095,7 +6548,7 @@ A basic\_fixed\_string representing the list of quantities as a comma-separated 
 _Helper function to convert a quantity to a fixed string at compile time, including its numerical value and unit symbol. This is used for generating frame names that include the offset values._ 
 ```C++
 template<auto _q_>
-inline consteval  auto astrea::astro::quantity_to_fixed_string () 
+inline consteval auto astrea::astro::quantity_to_fixed_string () 
 ```
 
 
@@ -6118,21 +6571,6 @@ A basic\_fixed\_string representing the quantity as a string, including its nume
 
 
         
-
-<hr>
-
-
-
-### function sin\_cos\_pack 
-
-```C++
-inline constexpr  auto astrea::astro::sin_cos_pack (
-    const  Angle & angle
-) 
-```
-
-
-
 
 <hr>
 
@@ -6168,7 +6606,7 @@ This function is used to throw an exception when the types of two orbital elemen
 _Checks whether type T is one of the alternatives in VariantType._ 
 ```C++
 template<typename VariantType, typename T, std::size_t index>
-constexpr  bool astrea::astro::variant_contains () 
+constexpr bool astrea::astro::variant_contains () 
 ```
 
 
@@ -6182,8 +6620,8 @@ constexpr  bool astrea::astro::variant_contains ()
 
 _Sanitize an angle to ensure it is within the range [0, 2π)._ 
 ```C++
-inline constexpr  Angle astrea::astro::wrap_angle (
-    const  Angle & angle
+inline constexpr Angle astrea::astro::wrap_angle (
+    const Angle & angle
 ) noexcept
 ```
 
@@ -6216,8 +6654,8 @@ The sanitized angle.
 
 _Sanitize an angle to ensure it is within the range [0, π)._ 
 ```C++
-inline constexpr  Angle astrea::astro::wrap_angle_to_pi (
-    const  Angle & angle
+inline constexpr Angle astrea::astro::wrap_angle_to_pi (
+    const Angle & angle
 ) noexcept
 ```
 
@@ -6252,7 +6690,7 @@ The sanitized angle.
 
 _A constant representing the J2000 epoch in Julian_ [_**Date**_](classastrea_1_1astro_1_1Date.md) _format._
 ```C++
-static constexpr  JulianDate astrea::astro::J2000 (
+static constexpr JulianDate astrea::astro::J2000 (
     JulianDateClock::duration { 2451545.0 }
 ) 
 ```
@@ -6272,7 +6710,7 @@ This is a commonly used epoch in astronomy, representing January 1, 2000, at 12:
 
 _A constant representing the Modified Julian_ [_**Date**_](classastrea_1_1astro_1_1Date.md) _epoch in Julian_[_**Date**_](classastrea_1_1astro_1_1Date.md) _format._
 ```C++
-static constexpr  JulianDate astrea::astro::MJD0 (
+static constexpr JulianDate astrea::astro::MJD0 (
     JulianDateClock::duration { 2400000.5 }
 ) 
 ```

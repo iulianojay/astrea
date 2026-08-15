@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="conceptastrea_1_1astro_1_1HasForceToDoubleVector" kind="concept">
+    <compoundname>astrea::astro::HasForceToDoubleVector</compoundname>
+    <includes refid="concepts_8hpp" local="no">concepts.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>typename T</type>
+      </param>
+    </templateparamlist>
+    <initializer>template&lt;typename T&gt;
+concept <ref refid="conceptastrea_1_1astro_1_1HasForceToDoubleVector" kindref="compound">astrea::astro::HasForceToDoubleVector</ref> =  requires(const T elements) {
+    { elements.force_to_double_vector() } -&gt; std::same_as&lt;std::vector&lt;double&gt;&gt;;
+}    </initializer>
+    <briefdescription>
+<para>Concept to check if a type can be converted to a vector of double. </para>
+    </briefdescription>
+    <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The type to check. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+    </detaileddescription>
+    <location file="astrea/astro/astro/types/concepts.hpp" line="92" column="1"/>
+  </compounddef>
+</doxygen>

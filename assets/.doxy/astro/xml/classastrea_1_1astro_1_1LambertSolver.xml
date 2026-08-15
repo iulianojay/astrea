@@ -96,12 +96,12 @@
     </sectiondef>
     <sectiondef kind="private-static-attrib">
       <memberdef kind="variable" id="classastrea_1_1astro_1_1LambertSolver_1a60ab768e95219097a1d8e20875edfc6c" prot="private" static="yes" constexpr="yes" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">unsigned</ref></type>
+        <type>constexpr unsigned</type>
         <definition>constexpr unsigned astrea::astro::LambertSolver::ITER_MAX</definition>
         <argsstring></argsstring>
         <name>ITER_MAX</name>
         <qualifiedname>astrea::astro::LambertSolver::ITER_MAX</qualifiedname>
-        <initializer>= 1<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e4</ref></initializer>
+        <initializer>= 1e4</initializer>
         <briefdescription>
 <para>Maximum number of iterations for the solver. </para>
         </briefdescription>
@@ -112,7 +112,7 @@
         <location file="astrea/astro/astro/propagation/analytic/LambertSolver.hpp" line="493" column="31" bodyfile="astrea/astro/astro/propagation/analytic/LambertSolver.hpp" bodystart="493" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1LambertSolver_1af1ade25f3c7902709aa8c4b274a23f39" prot="private" static="yes" constexpr="yes" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Unitless</ref></type>
+        <type>constexpr Unitless</type>
         <definition>constexpr Unitless astrea::astro::LambertSolver::TOL</definition>
         <argsstring></argsstring>
         <name>TOL</name>
@@ -166,7 +166,7 @@
       <memberdef kind="function" id="classastrea_1_1astro_1_1LambertSolver_1a70ae2146abcbf4d543f08f6930886d21" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
-            <type>IsFrame <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+            <type>IsFrame auto</type>
             <declname>_frame_</declname>
             <defname>_frame_</defname>
           </param>
@@ -177,15 +177,15 @@
         <name>solve</name>
         <qualifiedname>astrea::astro::LambertSolver::solve</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref>&lt; _frame_ &gt; &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref>&lt; _frame_ &gt; &amp;</type>
           <declname>state0</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Time</ref> &amp;</type>
+          <type>const Time &amp;</type>
           <declname>dt</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">GravParam</ref> &amp;</type>
+          <type>const GravParam &amp;</type>
           <declname>mu</declname>
         </param>
         <briefdescription>
@@ -228,7 +228,7 @@
       <memberdef kind="function" id="classastrea_1_1astro_1_1LambertSolver_1a807ccf104d31e9bb94804141614c9807" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
-            <type>IsFrame <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+            <type>IsFrame auto</type>
             <declname>_frame_</declname>
             <defname>_frame_</defname>
           </param>
@@ -239,23 +239,23 @@
         <name>solve</name>
         <qualifiedname>astrea::astro::LambertSolver::solve</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="typedefs_8hpp_1a7493d5fafd58941bc3440b866a25638d" kindref="member">RadiusVector</ref>&lt; _frame_ &gt; &amp;</type>
+          <type>const <ref refid="typedefs_8hpp_1a7493d5fafd58941bc3440b866a25638d" kindref="member">RadiusVector</ref>&lt; _frame_ &gt; &amp;</type>
           <declname>r0</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="typedefs_8hpp_1a7493d5fafd58941bc3440b866a25638d" kindref="member">RadiusVector</ref>&lt; _frame_ &gt; &amp;</type>
+          <type>const <ref refid="typedefs_8hpp_1a7493d5fafd58941bc3440b866a25638d" kindref="member">RadiusVector</ref>&lt; _frame_ &gt; &amp;</type>
           <declname>rf</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Time</ref> &amp;</type>
+          <type>const Time &amp;</type>
           <declname>dt</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">GravParam</ref> &amp;</type>
+          <type>const GravParam &amp;</type>
           <declname>mu</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1LambertSolver_1a0ec4a8a6decc6d151d417815d23089b2" kindref="member">OrbitDirection</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1LambertSolver_1a0ec4a8a6decc6d151d417815d23089b2" kindref="member">OrbitDirection</ref> &amp;</type>
           <declname>direction</declname>
         </param>
         <briefdescription>
@@ -314,7 +314,7 @@
       <memberdef kind="function" id="classastrea_1_1astro_1_1LambertSolver_1a9c860b68b543699fb7310de008eeda78" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
-            <type>IsFrame <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+            <type>IsFrame auto</type>
             <declname>_frame_</declname>
             <defname>_frame_</defname>
           </param>
@@ -325,23 +325,23 @@
         <name>solve</name>
         <qualifiedname>astrea::astro::LambertSolver::solve</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="typedefs_8hpp_1a7493d5fafd58941bc3440b866a25638d" kindref="member">RadiusVector</ref>&lt; _frame_ &gt; &amp;</type>
+          <type>const <ref refid="typedefs_8hpp_1a7493d5fafd58941bc3440b866a25638d" kindref="member">RadiusVector</ref>&lt; _frame_ &gt; &amp;</type>
           <declname>r0</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="typedefs_8hpp_1a7493d5fafd58941bc3440b866a25638d" kindref="member">RadiusVector</ref>&lt; _frame_ &gt; &amp;</type>
+          <type>const <ref refid="typedefs_8hpp_1a7493d5fafd58941bc3440b866a25638d" kindref="member">RadiusVector</ref>&lt; _frame_ &gt; &amp;</type>
           <declname>rf</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">GravParam</ref> &amp;</type>
+          <type>const GravParam &amp;</type>
           <declname>mu</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1LambertSolver_1a0ec4a8a6decc6d151d417815d23089b2" kindref="member">OrbitDirection</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1LambertSolver_1a0ec4a8a6decc6d151d417815d23089b2" kindref="member">OrbitDirection</ref> &amp;</type>
           <declname>direction</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1LambertSolver_1a1ff472c95857d65827b5180e7cda6297" kindref="member">SolutionType</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1LambertSolver_1a1ff472c95857d65827b5180e7cda6297" kindref="member">SolutionType</ref> &amp;</type>
           <declname>solutionType</declname>
         </param>
         <briefdescription>
@@ -400,7 +400,7 @@
       <memberdef kind="function" id="classastrea_1_1astro_1_1LambertSolver_1a382f5ebd72bd755ac95e2b65a055ec43" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
-            <type>IsFrame <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+            <type>IsFrame auto</type>
             <declname>_frame_</declname>
             <defname>_frame_</defname>
           </param>
@@ -411,31 +411,31 @@
         <name>solve</name>
         <qualifiedname>astrea::astro::LambertSolver::solve</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="typedefs_8hpp_1a7493d5fafd58941bc3440b866a25638d" kindref="member">RadiusVector</ref>&lt; _frame_ &gt; &amp;</type>
+          <type>const <ref refid="typedefs_8hpp_1a7493d5fafd58941bc3440b866a25638d" kindref="member">RadiusVector</ref>&lt; _frame_ &gt; &amp;</type>
           <declname>r0</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="typedefs_8hpp_1a7493d5fafd58941bc3440b866a25638d" kindref="member">RadiusVector</ref>&lt; _frame_ &gt; &amp;</type>
+          <type>const <ref refid="typedefs_8hpp_1a7493d5fafd58941bc3440b866a25638d" kindref="member">RadiusVector</ref>&lt; _frame_ &gt; &amp;</type>
           <declname>rf</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Time</ref> &amp;</type>
+          <type>const Time &amp;</type>
           <declname>dt</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">GravParam</ref> &amp;</type>
+          <type>const GravParam &amp;</type>
           <declname>mu</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1LambertSolver_1a0ec4a8a6decc6d151d417815d23089b2" kindref="member">OrbitDirection</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1LambertSolver_1a0ec4a8a6decc6d151d417815d23089b2" kindref="member">OrbitDirection</ref> &amp;</type>
           <declname>direction</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">unsigned</ref></type>
+          <type>unsigned</type>
           <declname>N</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1LambertSolver_1a41f9661af8e27e00ad4a653cfc8d217f" kindref="member">MultiRevBranch</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1LambertSolver_1a41f9661af8e27e00ad4a653cfc8d217f" kindref="member">MultiRevBranch</ref> &amp;</type>
           <declname>branch</declname>
         </param>
         <briefdescription>
@@ -516,13 +516,13 @@ Normalisation (Gooding 1990): n = (R0 + Rf) / 2 [km] λ = √(R0·Rf) · cos(Δ�
     </sectiondef>
     <sectiondef kind="private-static-func">
       <memberdef kind="function" id="classastrea_1_1astro_1_1LambertSolver_1adb96de44ab62d2db76ca643990253cfe" prot="private" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>std::pair&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Unitless</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Unitless</ref> &gt;</type>
+        <type>std::pair&lt; Unitless, Unitless &gt;</type>
         <definition>std::pair&lt; Unitless, Unitless &gt; astrea::astro::LambertSolver::evaluate_stumpff</definition>
         <argsstring>(const Unitless &amp;z)</argsstring>
         <name>evaluate_stumpff</name>
         <qualifiedname>astrea::astro::LambertSolver::evaluate_stumpff</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Unitless</ref> &amp;</type>
+          <type>const Unitless &amp;</type>
           <declname>z</declname>
         </param>
         <briefdescription>
@@ -544,7 +544,7 @@ Normalisation (Gooding 1990): n = (R0 + Rf) / 2 [km] λ = √(R0·Rf) · cos(Δ�
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/propagation/analytic/LambertSolver.hpp" line="502" column="22" bodyfile="astrea/astro/astro/propagation/analytic/LambertSolver.cpp" bodystart="39" bodyend="58"/>
+        <location file="astrea/astro/astro/propagation/analytic/LambertSolver.hpp" line="502" column="22" bodyfile="astrea/astro/astro/propagation/analytic/LambertSolver.cpp" bodystart="38" bodyend="57"/>
       </memberdef>
     </sectiondef>
     <briefdescription>

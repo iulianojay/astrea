@@ -6,22 +6,22 @@
     <innerclass refid="structastrea_1_1astro_1_1FixedOffsetAxis_1_1Misalignment" prot="public">astrea::astro::FixedOffsetAxis::Misalignment</innerclass>
     <templateparamlist>
       <param>
-        <type>IsAxis <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+        <type>IsAxis auto</type>
         <declname>_parent_</declname>
         <defname>_parent_</defname>
       </param>
       <param>
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Angle</ref></type>
+        <type>Angle</type>
         <declname>_phi_</declname>
         <defname>_phi_</defname>
       </param>
       <param>
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Angle</ref></type>
+        <type>Angle</type>
         <declname>_theta_</declname>
         <defname>_theta_</defname>
       </param>
       <param>
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Angle</ref></type>
+        <type>Angle</type>
         <declname>_psi_</declname>
         <defname>_psi_</defname>
       </param>
@@ -33,12 +33,12 @@
     </templateparamlist>
     <sectiondef kind="public-static-attrib">
       <memberdef kind="variable" id="structastrea_1_1astro_1_1FixedOffsetAxis_1a855479a3d6275b49a72a553540b8b2d1" prot="public" static="yes" constexpr="yes" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+        <type>constexpr auto</type>
         <definition>constexpr auto astrea::astro::FixedOffsetAxis&lt; _parent_, _phi_, _theta_, _psi_, _sequence_ &gt;::sequence</definition>
         <argsstring></argsstring>
         <name>sequence</name>
         <qualifiedname>astrea::astro::FixedOffsetAxis::sequence</qualifiedname>
-        <initializer>= <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_sequence_</ref></initializer>
+        <initializer>= _sequence_</initializer>
         <briefdescription>
 <para>The rotation sequence for the angular offset. </para>
         </briefdescription>
@@ -49,12 +49,12 @@
         <location file="astrea/astro/astro/frames/framework/FixedOffsetFrame.hpp" line="154" column="27" bodyfile="astrea/astro/astro/frames/framework/FixedOffsetFrame.hpp" bodystart="154" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structastrea_1_1astro_1_1FixedOffsetAxis_1a5b5a83fdb710356272f088effddeb2fc" prot="public" static="yes" constexpr="yes" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="structastrea_1_1astro_1_1FixedOffsetAxis_1_1Misalignment" kindref="compound">Misalignment</ref></type>
+        <type>constexpr <ref refid="structastrea_1_1astro_1_1FixedOffsetAxis_1_1Misalignment" kindref="compound">Misalignment</ref></type>
         <definition>constexpr Misalignment astrea::astro::FixedOffsetAxis&lt; _parent_, _phi_, _theta_, _psi_, _sequence_ &gt;::misalignment</definition>
         <argsstring></argsstring>
         <name>misalignment</name>
         <qualifiedname>astrea::astro::FixedOffsetAxis::misalignment</qualifiedname>
-        <initializer>{ <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_phi_</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_theta_</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_psi_</ref> }</initializer>
+        <initializer>{ _phi_, _theta_, _psi_ }</initializer>
         <briefdescription>
 <para>The fixed angular offset from the parent frame to this frame. </para>
         </briefdescription>

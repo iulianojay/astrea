@@ -43,7 +43,7 @@ This inheritance list is sorted roughly, but not completely, alphabetically:
 * **class** [**astrea::astro::Keplerian**](classastrea_1_1astro_1_1Keplerian.md) _The_ [_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _class represents the_[_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _orbital elements._
 * **class** [**astrea::astro::KeplerianPartial**](classastrea_1_1astro_1_1KeplerianPartial.md) _Class representing a partial derivative of a_ [_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _state vector._
 * **class** [**astrea::astro::LambertSolver**](classastrea_1_1astro_1_1LambertSolver.md) _Class for solving Lambert's problem._ 
-* **class** [**astrea::astro::LegendreCache**](classastrea_1_1astro_1_1LegendreCache.md) 
+* **class** [**astrea::astro::LegendreCache**](classastrea_1_1astro_1_1LegendreCache.md) _Class to cache Legendre polynomial coefficients for a given celestial_ _body_ _, degree, and order._
 * **class** [**astrea::astro::NullEvent**](classastrea_1_1astro_1_1NullEvent.md) _A class representing a null_ [_**Event**_](classastrea_1_1astro_1_1Event.md) _in the astrea astro platform. This class is used as a placeholder for Events that do not have a defined state or mass._
 * **class** [**astrea::astro::NullVehicle**](classastrea_1_1astro_1_1NullVehicle.md) _A class representing a null vehicle in the astrea astro platform. This class is used as a placeholder for vehicles that do not have a defined state or mass._ 
 * **class** [**astrea::astro::OrbitalElementPartials**](classastrea_1_1astro_1_1OrbitalElementPartials.md) _Class representing partial derivatives of orbital elements._ 
@@ -180,7 +180,7 @@ This inheritance list is sorted roughly, but not completely, alphabetically:
     * **struct** [**astrea::astro::BodyFixedFrame**](structastrea_1_1astro_1_1BodyFixedFrame.md) _Body-fixed frame defined by a celestial body and its reference axes. The origin is at the center of mass of the body, and the axes are fixed to the body._ 
     * **struct** [**astrea::astro::BodyFixedFrame**](structastrea_1_1astro_1_1BodyFixedFrame.md) _Body-fixed frame defined by a celestial body and its reference axes. The origin is at the center of mass of the body, and the axes are fixed to the body._ 
 * **struct** [**astrea::astro::CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md) _Class representing a 3D vector in_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _coordinates._
-* **struct** [**astrea::astro::CelestialBodyParameters**](structastrea_1_1astro_1_1CelestialBodyParameters.md) 
+* **struct** [**astrea::astro::CelestialBodyParameters**](structastrea_1_1astro_1_1CelestialBodyParameters.md) _Structure to hold the parameters of a celestial body._ 
 * **struct** [**astrea::astro::CelestialBodyTypePack**](structastrea_1_1astro_1_1CelestialBodyTypePack.md) _Type-list used to attach member bodies to a_ [_**Barycenter**_](structastrea_1_1astro_1_1Barycenter.md) _._
 * **struct** [**astrea::astro::DynamicFrame**](structastrea_1_1astro_1_1DynamicFrame.md) _Base class for all dynamic state/frames._ 
 * **struct** [**astrea::astro::Origin**](structastrea_1_1astro_1_1Origin.md) 

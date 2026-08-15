@@ -59,34 +59,34 @@ _Class to manage the history of states for an object over date._ [More...](#deta
 | Type | Name |
 | ---: | :--- |
 |   | [**StateHistory**](#function-statehistory-12) () = default<br>_Default constructor for_ [_**StateHistory**_](classastrea_1_1astro_1_1StateHistory.md) _._ |
-|   | [**StateHistory**](#function-statehistory-22) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) std::size\_t & objectId) <br>_Constructor that initializes_ [_**StateHistory**_](classastrea_1_1astro_1_1StateHistory.md) _with a specific object ID._ |
+|   | [**StateHistory**](#function-statehistory-22) (const std::size\_t & objectId) <br>_Constructor that initializes_ [_**StateHistory**_](classastrea_1_1astro_1_1StateHistory.md) _with a specific object ID._ |
 |  [**iterator**](classastrea_1_1astro_1_1StateHistory.md#typedef-iterator) | [**begin**](#function-begin-12) () <br>_Returns an iterator to the beginning of the state history._  |
 |  [**const\_iterator**](classastrea_1_1astro_1_1StateHistory.md#typedef-const_iterator) | [**begin**](#function-begin-22) () const<br>_Returns a constant iterator to the beginning of the state history._  |
 |  [**const\_iterator**](classastrea_1_1astro_1_1StateHistory.md#typedef-const_iterator) | [**cbegin**](#function-cbegin) () const<br>_Returns a constant iterator to the beginning of the state history._  |
 |  [**const\_iterator**](classastrea_1_1astro_1_1StateHistory.md#typedef-const_iterator) | [**cend**](#function-cend) () const<br>_Returns a constant iterator to the end of the state history._  |
-|  [**void**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**clear**](#function-clear) () <br>_Clears the state history, removing all stored states._  |
-|  [**void**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**convert\_to\_set**](#function-convert_to_set) () <br>_Converts the orbital elements of all states in the history to a different type._  |
-|  [**bool**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**empty**](#function-empty) () const<br>_Checks if the state history is empty._  |
+|  void | [**clear**](#function-clear) () <br>_Clears the state history, removing all stored states._  |
+|  void | [**convert\_to\_set**](#function-convert_to_set) () <br>_Converts the orbital elements of all states in the history to a different type._  |
+|  bool | [**empty**](#function-empty) () const<br>_Checks if the state history is empty._  |
 |  [**iterator**](classastrea_1_1astro_1_1StateHistory.md#typedef-iterator) | [**end**](#function-end-12) () <br>_Returns an iterator to the end of the state history._  |
 |  [**const\_iterator**](classastrea_1_1astro_1_1StateHistory.md#typedef-const_iterator) | [**end**](#function-end-22) () const<br>_Returns a constant iterator to the end of the state history._  |
-|  [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Date**](classastrea_1_1astro_1_1Date.md) & | [**epoch**](#function-epoch) () const<br>_Retrieves the epoch (first date) of the state history._  |
-|  [**void**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**fast\_append**](#function-fast_append) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**State**](classastrea_1_1astro_1_1State.md) & state) <br>_Appends a state to the end of the history without sorting._  |
-|  [**void**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**fast\_prepend**](#function-fast_prepend) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**State**](classastrea_1_1astro_1_1State.md) & state) <br>_Prepends a state to the beginning of the history without sorting._  |
+|  const [**Date**](classastrea_1_1astro_1_1Date.md) & | [**epoch**](#function-epoch) () const<br>_Retrieves the epoch (first date) of the state history._  |
+|  void | [**fast\_append**](#function-fast_append) (const [**State**](classastrea_1_1astro_1_1State.md) & state) <br>_Appends a state to the end of the history without sorting._  |
+|  void | [**fast\_prepend**](#function-fast_prepend) (const [**State**](classastrea_1_1astro_1_1State.md) & state) <br>_Prepends a state to the beginning of the history without sorting._  |
 |  [**State**](classastrea_1_1astro_1_1State.md) & | [**first**](#function-first-12) () <br>_Retrieves the first and last states in the history._  |
-|  [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**State**](classastrea_1_1astro_1_1State.md) & | [**first**](#function-first-22) () const<br>_Retrieves the first and last states in the history._  |
-|  [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**State**](classastrea_1_1astro_1_1State.md) & | [**get\_closest\_state**](#function-get_closest_state) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Date**](classastrea_1_1astro_1_1Date.md) & date) const<br>_Retrieves the closest state to a given date._  |
-|  [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) EventTimesMap & | [**get\_event\_times**](#function-get_event_times-12) () const<br>_Retrieves the event times recorded during propagation._  |
+|  const [**State**](classastrea_1_1astro_1_1State.md) & | [**first**](#function-first-22) () const<br>_Retrieves the first and last states in the history._  |
+|  const [**State**](classastrea_1_1astro_1_1State.md) & | [**get\_closest\_state**](#function-get_closest_state) (const [**Date**](classastrea_1_1astro_1_1Date.md) & date) const<br>_Retrieves the closest state to a given date._  |
+|  const EventTimesMap & | [**get\_event\_times**](#function-get_event_times-12) () const<br>_Retrieves the event times recorded during propagation._  |
 |  EventTimesMap & | [**get\_event\_times**](#function-get_event_times-22) () <br>_Retrieves the event times recorded during propagation._  |
 |  std::size\_t | [**get\_object\_id**](#function-get_object_id) () const<br>_Gets the object ID for this state history._  |
-|  [**State**](classastrea_1_1astro_1_1State.md) | [**get\_state\_at**](#function-get_state_at) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Date**](classastrea_1_1astro_1_1Date.md) & date, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**bool**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) allowApproximation=[**true**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)) const<br>_Retrieves the state at a specific date._  |
-|  [**void**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**insert**](#function-insert-12) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**State**](classastrea_1_1astro_1_1State.md) & state) <br>_Inserts a state at a specific date into the history._  |
-|  [**void**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**insert**](#function-insert-22) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**StateHistory**](classastrea_1_1astro_1_1StateHistory.md) & stateHistory) <br>_Inserts multiple states from another_ [_**StateHistory**_](classastrea_1_1astro_1_1StateHistory.md) _into this history._ |
+|  [**State**](classastrea_1_1astro_1_1State.md) | [**get\_state\_at**](#function-get_state_at) (const [**Date**](classastrea_1_1astro_1_1Date.md) & date, const bool allowApproximation=true) const<br>_Retrieves the state at a specific date._  |
+|  void | [**insert**](#function-insert-12) (const [**State**](classastrea_1_1astro_1_1State.md) & state) <br>_Inserts a state at a specific date into the history._  |
+|  void | [**insert**](#function-insert-22) (const [**StateHistory**](classastrea_1_1astro_1_1StateHistory.md) & stateHistory) <br>_Inserts multiple states from another_ [_**StateHistory**_](classastrea_1_1astro_1_1StateHistory.md) _into this history._ |
 |  [**State**](classastrea_1_1astro_1_1State.md) & | [**last**](#function-last-12) () <br>_Retrieves the last state in the history._  |
-|  [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**State**](classastrea_1_1astro_1_1State.md) & | [**last**](#function-last-22) () const<br>_Retrieves the last state in the history._  |
-|  [**void**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**set\_event\_times**](#function-set_event_times) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) EventTimesMap & eventTimes) <br>_Sets the event times recorded during propagation._  |
-|  [**void**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**set\_object\_id**](#function-set_object_id) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) std::size\_t & objectId) <br>_Sets the object ID for this state history._  |
+|  const [**State**](classastrea_1_1astro_1_1State.md) & | [**last**](#function-last-22) () const<br>_Retrieves the last state in the history._  |
+|  void | [**set\_event\_times**](#function-set_event_times) (const EventTimesMap & eventTimes) <br>_Sets the event times recorded during propagation._  |
+|  void | [**set\_object\_id**](#function-set_object_id) (const std::size\_t & objectId) <br>_Sets the object ID for this state history._  |
 |  std::size\_t | [**size**](#function-size) () const<br>_Get the number of states in the history._  |
-|  [**void**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**sort**](#function-sort) () <br>_Sorts the states in the history by date (epoch)._  |
+|  void | [**sort**](#function-sort) () <br>_Sorts the states in the history by date (epoch)._  |
 |   | [**~StateHistory**](#function-statehistory) () = default<br>_Destructor for_ [_**StateHistory**_](classastrea_1_1astro_1_1StateHistory.md) _._ |
 
 
@@ -418,7 +418,7 @@ const\_iterator A constant iterator to the position after the last state in the 
 
 _Retrieves the epoch (first date) of the state history._ 
 ```C++
-inline const  Date & astrea::astro::StateHistory::epoch () const
+inline const Date & astrea::astro::StateHistory::epoch () const
 ```
 
 
@@ -444,7 +444,7 @@ const [**Date**](classastrea_1_1astro_1_1Date.md)& Reference to the epoch of the
 _Appends a state to the end of the history without sorting._ 
 ```C++
 inline void astrea::astro::StateHistory::fast_append (
-    const  State & state
+    const State & state
 ) 
 ```
 
@@ -474,7 +474,7 @@ This method is faster than [**insert()**](classastrea_1_1astro_1_1StateHistory.m
 _Prepends a state to the beginning of the history without sorting._ 
 ```C++
 inline void astrea::astro::StateHistory::fast_prepend (
-    const  State & state
+    const State & state
 ) 
 ```
 
@@ -528,7 +528,7 @@ inline State & astrea::astro::StateHistory::first ()
 
 _Retrieves the first and last states in the history._ 
 ```C++
-inline const  State & astrea::astro::StateHistory::first () const
+inline const State & astrea::astro::StateHistory::first () const
 ```
 
 
@@ -553,8 +553,8 @@ const [**State**](classastrea_1_1astro_1_1State.md)& Reference to the first stat
 
 _Retrieves the closest state to a given date._ 
 ```C++
-const  State & astrea::astro::StateHistory::get_closest_state (
-    const  Date & date
+const State & astrea::astro::StateHistory::get_closest_state (
+    const Date & date
 ) const
 ```
 
@@ -666,8 +666,8 @@ std::size\_t The ID of the object for which this state history is maintained.
 _Retrieves the state at a specific date._ 
 ```C++
 State astrea::astro::StateHistory::get_state_at (
-    const  Date & date,
-    const  bool allowApproximation=true
+    const Date & date,
+    const bool allowApproximation=true
 ) const
 ```
 
@@ -712,7 +712,7 @@ Allowing the approximation is generally recommended and will only accept times w
 _Inserts a state at a specific date into the history._ 
 ```C++
 void astrea::astro::StateHistory::insert (
-    const  State & state
+    const State & state
 ) 
 ```
 
@@ -739,7 +739,7 @@ void astrea::astro::StateHistory::insert (
 _Inserts multiple states from another_ [_**StateHistory**_](classastrea_1_1astro_1_1StateHistory.md) _into this history._
 ```C++
 void astrea::astro::StateHistory::insert (
-    const  StateHistory & stateHistory
+    const StateHistory & stateHistory
 ) 
 ```
 
@@ -790,7 +790,7 @@ inline State & astrea::astro::StateHistory::last ()
 
 _Retrieves the last state in the history._ 
 ```C++
-inline const  State & astrea::astro::StateHistory::last () const
+inline const State & astrea::astro::StateHistory::last () const
 ```
 
 

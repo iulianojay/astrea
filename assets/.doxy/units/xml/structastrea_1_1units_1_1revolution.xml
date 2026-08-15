@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="structastrea_1_1units_1_1revolution" kind="struct" language="C++" prot="public" final="yes">
+    <compoundname>astrea::units::revolution</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">mp_units::named_unit&lt;&quot;rev&quot;, mp_units::mag&lt; 360 &gt; *mp_units::si::unit_symbols::deg &gt;</basecompoundref>
+    <includes refid="custom_8hpp" local="no">custom.hpp</includes>
+    <briefdescription>
+<para>Definition for a revolution as 360 degrees. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>astrea::units::revolution</label>
+        <link refid="structastrea_1_1units_1_1revolution"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>mp_units::named_unit&lt;&quot;rev&quot;, mp_units::mag&lt; 360 &gt; *mp_units::si::unit_symbols::deg &gt;</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>astrea::units::revolution</label>
+        <link refid="structastrea_1_1units_1_1revolution"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>mp_units::named_unit&lt;&quot;rev&quot;, mp_units::mag&lt; 360 &gt; *mp_units::si::unit_symbols::deg &gt;</label>
+      </node>
+    </collaborationgraph>
+    <location file="astrea/units/units/custom.hpp" line="51" column="17" bodyfile="astrea/units/units/custom.hpp" bodystart="51" bodyend="52"/>
+    <listofallmembers>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

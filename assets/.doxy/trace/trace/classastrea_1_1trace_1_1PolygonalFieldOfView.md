@@ -73,7 +73,7 @@ Inherits the following classes: [astrea::trace::FieldOfView](classastrea_1_1trac
 
 | Type | Name |
 | ---: | :--- |
-|   | [**PolygonalFieldOfView**](#function-polygonalfieldofview-13) (const Angle & halfConeAngle=std::numbers::pi/4.0 \*mp\_units::angular::unit\_symbols::rad, const int & nPoints=72) <br>_Constructor for_ [_**PolygonalFieldOfView**_](classastrea_1_1trace_1_1PolygonalFieldOfView.md) _._ |
+|   | [**PolygonalFieldOfView**](#function-polygonalfieldofview-13) (const Angle & halfConeAngle=std::numbers::pi/4.0 \*mp\_units::si::unit\_symbols::rad, const int & nPoints=72) <br>_Constructor for_ [_**PolygonalFieldOfView**_](classastrea_1_1trace_1_1PolygonalFieldOfView.md) _._ |
 |   | [**PolygonalFieldOfView**](#function-polygonalfieldofview-23) (const Angle & halfConeWidth, const Angle & halfConeHeight, const int & nPoints=72) <br>_Constructor for_ [_**PolygonalFieldOfView**_](classastrea_1_1trace_1_1PolygonalFieldOfView.md) _with specified half-cone width and height._ |
 |   | [**PolygonalFieldOfView**](#function-polygonalfieldofview-33) (const gtl::flat\_hash\_map&lt; Angle, Angle &gt; & points) <br>_Constructor for_ [_**PolygonalFieldOfView**_](classastrea_1_1trace_1_1PolygonalFieldOfView.md) _with a set of points._ |
 | virtual bool | [**contains**](#function-contains) (const astro::CartesianVector&lt; Distance, astro::frames::earth::icrf &gt; & boresight, const astro::CartesianVector&lt; Distance, astro::frames::earth::icrf &gt; & target) const<br>_Checks if a target is within the polygonal field of view._  |
@@ -162,7 +162,7 @@ This class represents a polygonal field of view defined by a set of points.
 _Constructor for_ [_**PolygonalFieldOfView**_](classastrea_1_1trace_1_1PolygonalFieldOfView.md) _._
 ```C++
 astrea::trace::PolygonalFieldOfView::PolygonalFieldOfView (
-    const Angle & halfConeAngle=std::numbers::pi/4.0 *mp_units::angular::unit_symbols::rad,
+    const Angle & halfConeAngle=std::numbers::pi/4.0 *mp_units::si::unit_symbols::rad,
     const int & nPoints=72
 ) 
 ```

@@ -6,7 +6,7 @@
     <includes refid="OblatenessForce_8hpp" local="no">OblatenessForce.hpp</includes>
     <templateparamlist>
       <param>
-        <type>IsCelestialBody <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+        <type>IsCelestialBody auto</type>
         <declname>_body_</declname>
         <defname>_body_</defname>
       </param>
@@ -25,7 +25,7 @@
     </templateparamlist>
     <sectiondef kind="private-attrib">
       <memberdef kind="variable" id="classastrea_1_1astro_1_1OblatenessForce_1a412020f517a94847be2b31d85af64587" prot="private" static="no" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1LegendreCache" kindref="compound">LegendreCache</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_body_</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_degree_</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_order_</ref> &gt;</type>
+        <type>const <ref refid="classastrea_1_1astro_1_1LegendreCache" kindref="compound">LegendreCache</ref>&lt; _body_, _degree_, _order_ &gt;</type>
         <definition>const LegendreCache&lt;_body_, _degree_, _order_&gt; astrea::astro::OblatenessForce&lt; _body_, _degree_, _order_ &gt;::_legendreCache</definition>
         <argsstring></argsstring>
         <name>_legendreCache</name>
@@ -37,7 +37,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/propagation/force_models/OblatenessForce.hpp" line="113" column="25" bodyfile="astrea/astro/astro/propagation/force_models/OblatenessForce.hpp" bodystart="113" bodyend="-1"/>
+        <location file="astrea/astro/astro/propagation/force_models/OblatenessForce.hpp" line="79" column="25" bodyfile="astrea/astro/astro/propagation/force_models/OblatenessForce.hpp" bodystart="79" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="public-func">
@@ -54,7 +54,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/propagation/force_models/OblatenessForce.hpp" line="92" column="5"/>
+        <location file="astrea/astro/astro/propagation/force_models/OblatenessForce.hpp" line="48" column="5"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1OblatenessForce_1a9ea646033a9a45751c4d2b1d4ff06704" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -69,7 +69,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/propagation/force_models/OblatenessForce.hpp" line="97" column="5"/>
+        <location file="astrea/astro/astro/propagation/force_models/OblatenessForce.hpp" line="53" column="5"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1OblatenessForce_1ada76327aaf44ae302337a0eba8cbdf02" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
         <type><ref refid="structastrea_1_1astro_1_1Perturbation" kindref="compound">Perturbation</ref></type>
@@ -79,18 +79,18 @@
         <qualifiedname>astrea::astro::OblatenessForce::compute_perturbation</qualifiedname>
         <reimplements refid="classastrea_1_1astro_1_1PerturbingForce_1ac9606ee76f4d3cc3e140770d1a43f567">compute_perturbation</reimplements>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
           <declname>state</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Vehicle" kindref="compound">Vehicle</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Vehicle" kindref="compound">Vehicle</ref> &amp;</type>
           <declname>vehicle</declname>
         </param>
         <briefdescription>
-<para>Computes the gravitational force using _order_ontenbruck &amp; Gill (2000) V and W recurrence relations. </para>
+<para>Computes the gravitational force using Montenbruck &amp; Gill (2000) V and W recurrence relations. </para>
         </briefdescription>
         <detaileddescription>
-<para>This method implements the algorithm from &quot;Satellite Orbits: _order_odels, _order_ethods and Applications&quot; by O. _order_ontenbruck and E. Gill (Springer, 2000), which uses V and W auxiliary functions with recurrence relations for more efficient and numerically stable computation.</para>
+<para>This method implements the algorithm from &quot;Satellite Orbits: Models, Methods and Applications&quot; by O. Montenbruck and E. Gill (Springer, 2000), which uses V and W auxiliary functions with recurrence relations for more efficient and numerically stable computation.</para>
 <para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername>state</parametername>
@@ -114,7 +114,26 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/propagation/force_models/OblatenessForce.hpp" line="110" column="18" bodyfile="astrea/astro/astro/propagation/force_models/OblatenessForce.ipp" bodystart="327" bodyend="438"/>
+        <location file="astrea/astro/astro/propagation/force_models/OblatenessForce.hpp" line="66" column="18" bodyfile="astrea/astro/astro/propagation/force_models/OblatenessForce.ipp" bodystart="164" bodyend="280"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1OblatenessForce_1adef72f921fe183b10e5148c5b7462801" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type>std::unique_ptr&lt; <ref refid="classastrea_1_1astro_1_1PerturbingForce" kindref="compound">PerturbingForce</ref> &gt;</type>
+        <definition>std::unique_ptr&lt; PerturbingForce &gt; astrea::astro::OblatenessForce&lt; _body_, _degree_, _order_ &gt;::clone</definition>
+        <argsstring>() const override</argsstring>
+        <name>clone</name>
+        <qualifiedname>astrea::astro::OblatenessForce::clone</qualifiedname>
+        <reimplements refid="classastrea_1_1astro_1_1PerturbingForce_1ab0f9c0b0cb7af63cfb7af2693822027f">clone</reimplements>
+        <briefdescription>
+<para>Creates a clone of the current <ref refid="classastrea_1_1astro_1_1OblatenessForce" kindref="compound">OblatenessForce</ref> object. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>std::unique_ptr&lt;PerturbingForce&gt; A unique pointer to the cloned <ref refid="classastrea_1_1astro_1_1OblatenessForce" kindref="compound">OblatenessForce</ref> object. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/OblatenessForce.hpp" line="73" column="21" bodyfile="astrea/astro/astro/propagation/force_models/OblatenessForce.hpp" bodystart="73" bodyend="76"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
@@ -146,9 +165,10 @@
         <link refid="classastrea_1_1astro_1_1PerturbingForce"/>
       </node>
     </collaborationgraph>
-    <location file="astrea/astro/astro/propagation/force_models/OblatenessForce.hpp" line="87" column="1" bodyfile="astrea/astro/astro/propagation/force_models/OblatenessForce.hpp" bodystart="87" bodyend="114"/>
+    <location file="astrea/astro/astro/propagation/force_models/OblatenessForce.hpp" line="39" column="1" bodyfile="astrea/astro/astro/propagation/force_models/OblatenessForce.hpp" bodystart="39" bodyend="80"/>
     <listofallmembers>
       <member refid="classastrea_1_1astro_1_1OblatenessForce_1a412020f517a94847be2b31d85af64587" prot="private" virt="non-virtual"><scope>astrea::astro::OblatenessForce</scope><name>_legendreCache</name></member>
+      <member refid="classastrea_1_1astro_1_1OblatenessForce_1adef72f921fe183b10e5148c5b7462801" prot="public" virt="virtual"><scope>astrea::astro::OblatenessForce</scope><name>clone</name></member>
       <member refid="classastrea_1_1astro_1_1OblatenessForce_1ada76327aaf44ae302337a0eba8cbdf02" prot="public" virt="virtual"><scope>astrea::astro::OblatenessForce</scope><name>compute_perturbation</name></member>
       <member refid="classastrea_1_1astro_1_1OblatenessForce_1abb41c3faec2834695a3d6f27a0b68832" prot="public" virt="non-virtual"><scope>astrea::astro::OblatenessForce</scope><name>OblatenessForce</name></member>
       <member refid="classastrea_1_1astro_1_1PerturbingForce_1a31d3645e85270aa1c1936252bb9a34a3" prot="public" virt="non-virtual"><scope>astrea::astro::OblatenessForce</scope><name>PerturbingForce</name></member>

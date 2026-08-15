@@ -37,11 +37,11 @@
 
 | Type | Name |
 | ---: | :--- |
-|  [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**double**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**a**](#variable-a)   = `/* multi line expression */`<br> |
-|  [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**double**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**b**](#variable-b)   = `{ 37.0 / 378.0, 0.0, 250.0 / 621.0, 125.0 / 594.0, 0.0, 512.0 / 1771.0 }`<br> |
-|  [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**double**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**bhat**](#variable-bhat)   = `{ 2825.0 / 27648.0, 0.0, 18575.0 / 48384.0, 13525.0 / 55296.0, 277.0 / 14336.0, 0.25 }`<br> |
-|  [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**double**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**c**](#variable-c)   = `{ 0.0, 0.2, 0.3, 0.6, 1.0, 0.875 }`<br> |
-|  [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) std::size\_t | [**nStages**](#variable-nstages)   = `6`<br> |
+|  const double | [**a**](#variable-a)   = `/* multi line expression */`<br> |
+|  const double | [**b**](#variable-b)   = `{ 37.0 / 378.0, 0.0, 250.0 / 621.0, 125.0 / 594.0, 0.0, 512.0 / 1771.0 }`<br> |
+|  const double | [**bhat**](#variable-bhat)   = `{ 2825.0 / 27648.0, 0.0, 18575.0 / 48384.0, 13525.0 / 55296.0, 277.0 / 14336.0, 0.25 }`<br> |
+|  const double | [**c**](#variable-c)   = `{ 0.0, 0.2, 0.3, 0.6, 1.0, 0.875 }`<br> |
+|  const std::size\_t | [**nStages**](#variable-nstages)   = `6`<br> |
 
 
 

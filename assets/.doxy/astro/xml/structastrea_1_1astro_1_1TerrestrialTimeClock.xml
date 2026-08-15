@@ -5,7 +5,7 @@
     <includes refid="TerrestrialTimeClock_8hpp" local="no">TerrestrialTimeClock.hpp</includes>
     <sectiondef kind="public-type">
       <memberdef kind="typedef" id="structastrea_1_1astro_1_1TerrestrialTimeClock_1a37feec6101c7a849dce8064af104ce1e" prot="public" static="no">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">double</ref></type>
+        <type>double</type>
         <definition>using astrea::astro::TerrestrialTimeClock::rep =  double</definition>
         <argsstring></argsstring>
         <name>rep</name>
@@ -67,12 +67,12 @@
     </sectiondef>
     <sectiondef kind="public-static-attrib">
       <memberdef kind="variable" id="structastrea_1_1astro_1_1TerrestrialTimeClock_1a25596bf932d16b95b298a075f96a7d01" prot="public" static="yes" constexpr="yes" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">bool</ref></type>
+        <type>constexpr bool</type>
         <definition>constexpr bool astrea::astro::TerrestrialTimeClock::is_steady</definition>
         <argsstring></argsstring>
         <name>is_steady</name>
         <qualifiedname>astrea::astro::TerrestrialTimeClock::is_steady</qualifiedname>
-        <initializer>= <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">false</ref></initializer>
+        <initializer>= false</initializer>
         <briefdescription>
 <para>TT is not a steady clock; it is anchored to TAI. </para>
         </briefdescription>
@@ -83,7 +83,7 @@
         <location file="astrea/astro/astro/time/clocks/TerrestrialTimeClock.hpp" line="53" column="27" bodyfile="astrea/astro/astro/time/clocks/TerrestrialTimeClock.hpp" bodystart="53" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structastrea_1_1astro_1_1TerrestrialTimeClock_1ac4bf9c89cd98620bda664649d1b5dad1" prot="public" static="yes" constexpr="yes" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="structastrea_1_1astro_1_1TerrestrialTimeClock_1a996c07a9dbb7cc81b01d1de5b59a2baf" kindref="member">duration</ref></type>
+        <type>constexpr <ref refid="structastrea_1_1astro_1_1TerrestrialTimeClock_1a996c07a9dbb7cc81b01d1de5b59a2baf" kindref="member">duration</ref></type>
         <definition>constexpr duration astrea::astro::TerrestrialTimeClock::tt_tai_offset</definition>
         <argsstring></argsstring>
         <name>tt_tai_offset</name>
@@ -104,16 +104,16 @@
       <memberdef kind="function" id="structastrea_1_1astro_1_1TerrestrialTimeClock_1a1725e3065cc647f221ad154b30bf3425" prot="public" static="yes" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
         <templateparamlist>
           <param>
-            <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">class</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Duration</ref></type>
+            <type>class Duration</type>
           </param>
         </templateparamlist>
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+        <type>auto</type>
         <definition>static auto astrea::astro::TerrestrialTimeClock::from_sys</definition>
         <argsstring>(std::chrono::sys_time&lt; Duration &gt; const &amp;timePoint) noexcept</argsstring>
         <name>from_sys</name>
         <qualifiedname>astrea::astro::TerrestrialTimeClock::from_sys</qualifiedname>
         <param>
-          <type>std::chrono::sys_time&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Duration</ref> &gt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> &amp;</type>
+          <type>std::chrono::sys_time&lt; Duration &gt; const &amp;</type>
           <declname>timePoint</declname>
         </param>
         <briefdescription>
@@ -139,7 +139,7 @@
 </parameterdescription>
 </parameteritem>
 </parameterlist>
-<simplesect kind="return"><para><ref refid="TerrestrialTimeClock_8hpp_1a20e0e0e8958fdca22cc0f9e1a58d7fa3" kindref="member">TerrestrialDateTime&lt;TerrestrialTimeClock::duration&gt;</ref> The converted TT time point. </para>
+<simplesect kind="return"><para>TerrestrialDateTime&lt;TerrestrialTimeClock::duration&gt; The converted TT time point. </para>
 </simplesect>
 </para>
         </detaileddescription>
@@ -150,16 +150,16 @@
       <memberdef kind="function" id="structastrea_1_1astro_1_1TerrestrialTimeClock_1a5d6cbad712768e14d595e718efef61ad" prot="public" static="yes" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
         <templateparamlist>
           <param>
-            <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">class</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Duration</ref></type>
+            <type>class Duration</type>
           </param>
         </templateparamlist>
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+        <type>auto</type>
         <definition>static auto astrea::astro::TerrestrialTimeClock::to_sys</definition>
         <argsstring>(TerrestrialDateTime&lt; Duration &gt; const &amp;timePoint) noexcept</argsstring>
         <name>to_sys</name>
         <qualifiedname>astrea::astro::TerrestrialTimeClock::to_sys</qualifiedname>
         <param>
-          <type><ref refid="TerrestrialTimeClock_8hpp_1a20e0e0e8958fdca22cc0f9e1a58d7fa3" kindref="member">TerrestrialDateTime</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Duration</ref> &gt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> &amp;</type>
+          <type><ref refid="TerrestrialTimeClock_8hpp_1a20e0e0e8958fdca22cc0f9e1a58d7fa3" kindref="member">TerrestrialDateTime</ref>&lt; Duration &gt; const &amp;</type>
           <declname>timePoint</declname>
         </param>
         <briefdescription>

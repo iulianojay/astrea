@@ -6,7 +6,7 @@
     <includes refid="Thruster_8hpp" local="no">Thruster.hpp</includes>
     <sectiondef kind="private-attrib">
       <memberdef kind="variable" id="classastrea_1_1astro_1_1Thruster_1afb2ace5dc9d3039075142d2b070e81d9" prot="private" static="no" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">friend</ref></type>
+        <type>friend</type>
         <definition>friend astrea::astro::Thruster::Payload&lt; Thruster, ThrusterParameters &gt;</definition>
         <argsstring></argsstring>
         <name>Payload&lt; Thruster, ThrusterParameters &gt;</name>
@@ -24,7 +24,7 @@
       <memberdef kind="function" id="classastrea_1_1astro_1_1Thruster_1a0ffc292989b70ba84226a434b5c03a86" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
-            <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">typename</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Parent_T</ref></type>
+            <type>typename Parent_T</type>
           </param>
         </templateparamlist>
         <type></type>
@@ -33,11 +33,11 @@
         <name>Thruster</name>
         <qualifiedname>astrea::astro::Thruster::Thruster</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Parent_T</ref> &amp;</type>
+          <type>const Parent_T &amp;</type>
           <declname>parent</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1ThrusterParameters" kindref="compound">ThrusterParameters</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1ThrusterParameters" kindref="compound">ThrusterParameters</ref> &amp;</type>
           <declname>parameters</declname>
         </param>
         <briefdescription>
@@ -102,7 +102,7 @@
         <location file="astrea/astro/astro/platforms/thrusters/Thruster.hpp" line="120" column="17" bodyfile="astrea/astro/astro/platforms/thrusters/Thruster.cpp" bodystart="24" bodyend="24"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Thruster_1a91310d9dc97049cae2d10ee55400ef81" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Velocity</ref></type>
+        <type>Velocity</type>
         <definition>Velocity astrea::astro::Thruster::get_impulsive_delta_v</definition>
         <argsstring>() const</argsstring>
         <name>get_impulsive_delta_v</name>
@@ -120,7 +120,7 @@
         <location file="astrea/astro/astro/platforms/thrusters/Thruster.hpp" line="127" column="14" bodyfile="astrea/astro/astro/platforms/thrusters/Thruster.cpp" bodystart="26" bodyend="29"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Thruster_1a07dfabba126970b22d0bc42010c0990d" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Force</ref></type>
+        <type>Force</type>
         <definition>Force astrea::astro::Thruster::get_thrust</definition>
         <argsstring>() const</argsstring>
         <name>get_thrust</name>
@@ -147,7 +147,7 @@
         <location file="astrea/astro/astro/platforms/thrusters/Thruster.hpp" line="135" column="11" bodyfile="astrea/astro/astro/platforms/thrusters/Thruster.cpp" bodystart="31" bodyend="31"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Thruster_1a91dc8acdeebfa4dfa75d0df4699f7893" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">void</ref></type>
+        <type>void</type>
         <definition>void astrea::astro::Thruster::switch_on</definition>
         <argsstring>()</argsstring>
         <name>switch_on</name>
@@ -162,7 +162,7 @@
         <location file="astrea/astro/astro/platforms/thrusters/Thruster.hpp" line="140" column="10" bodyfile="astrea/astro/astro/platforms/thrusters/Thruster.cpp" bodystart="33" bodyend="33"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Thruster_1ad7a624960fe8745b65d8b9bbaae34637" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">void</ref></type>
+        <type>void</type>
         <definition>void astrea::astro::Thruster::switch_off</definition>
         <argsstring>()</argsstring>
         <name>switch_off</name>
@@ -177,7 +177,7 @@
         <location file="astrea/astro/astro/platforms/thrusters/Thruster.hpp" line="145" column="10" bodyfile="astrea/astro/astro/platforms/thrusters/Thruster.cpp" bodystart="35" bodyend="35"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Thruster_1a43cbc8805749a196fbd00e4cf4ef199b" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">bool</ref></type>
+        <type>bool</type>
         <definition>bool astrea::astro::Thruster::is_on</definition>
         <argsstring>() const</argsstring>
         <name>is_on</name>

@@ -2,7 +2,7 @@
 
 # Struct astrea::astro::frames::VnbTag
 
-**template &lt;IsFrame [**auto**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) \_parent\_&gt;**
+**template &lt;IsFrame auto \_parent\_&gt;**
 
 
 
@@ -75,7 +75,7 @@ Inherits the following classes: [astrea::astro::Frame](structastrea_1_1astro_1_1
 
 | Type | Name |
 | ---: | :--- |
-|  [**VelocityNormalBinormal**](structastrea_1_1astro_1_1frames_1_1VelocityNormalBinormal.md)&lt; [**\_parent\_**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt; | [**instantaneous**](#function-instantaneous) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**RadiusVector**](namespaceastrea_1_1astro.md#typedef-radiusvector)&lt; [**\_parent\_**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt; & r, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**VelocityVector**](namespaceastrea_1_1astro.md#typedef-velocityvector)&lt; [**\_parent\_**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt; & v) const<br> |
+|  [**VelocityNormalBinormal**](structastrea_1_1astro_1_1frames_1_1VelocityNormalBinormal.md)&lt; \_parent\_ &gt; | [**instantaneous**](#function-instantaneous) (const [**RadiusVector**](namespaceastrea_1_1astro.md#typedef-radiusvector)&lt; \_parent\_ &gt; & r, const [**VelocityVector**](namespaceastrea_1_1astro.md#typedef-velocityvector)&lt; \_parent\_ &gt; & v) const<br> |
 
 
 
@@ -141,8 +141,8 @@ Inherits the following classes: [astrea::astro::Frame](structastrea_1_1astro_1_1
 
 ```C++
 inline VelocityNormalBinormal < _parent_ > astrea::astro::frames::VnbTag::instantaneous (
-    const  RadiusVector < _parent_ > & r,
-    const  VelocityVector < _parent_ > & v
+    const RadiusVector < _parent_ > & r,
+    const VelocityVector < _parent_ > & v
 ) const
 ```
 
@@ -152,5 +152,5 @@ inline VelocityNormalBinormal < _parent_ > astrea::astro::frames::VnbTag::instan
 <hr>
 
 ------------------------------
-The documentation for this class was generated from the following file `astrea/astro/astro/frames/definitions/VelocityNormalBinormal.hpp`
+The documentation for this class was generated from the following file `astrea/astro/astro/frames/definitions/dynamic_frames/VelocityNormalBinormal.hpp`
 

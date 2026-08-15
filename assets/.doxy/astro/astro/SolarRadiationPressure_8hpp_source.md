@@ -27,7 +27,7 @@ class SolarRadiationPressure : public PerturbingForce {
 
     Perturbation compute_perturbation(const State& state, const Vehicle& vehicle) const override;
 
-  private:
+    std::unique_ptr<PerturbingForce> clone() const override { return std::make_unique<SolarRadiationPressure>(*this); }
 };
 
 } // namespace astro

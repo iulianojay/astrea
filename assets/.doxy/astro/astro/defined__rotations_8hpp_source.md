@@ -28,7 +28,7 @@ template <IsFrame auto frame, IsFrame auto frame_u>
     requires(equivalent(frame.axis, axes::icrf) && equivalent(frame_u.axis, axes::j2000))
 inline constexpr DirectionCosineMatrix<frame, frame_u> get_dcm(const Date& date)
 {
-    using mp_units::angular::unit_symbols::rad;
+    using mp_units::si::unit_symbols::rad;
     static const Angle zeta0   = -8.0561e-8 * rad;
     static const Angle eta0    = -3.3060e-8 * rad;
     static const Angle dalpha0 = 7.0783e-8 * rad;
@@ -40,12 +40,12 @@ template <IsFrame auto in_frame, IsFrame auto out_frame>
 inline constexpr DirectionCosineMatrix<in_frame, out_frame> get_dcm(const Date& date)
 {
     const Angle gst = date.body_sidereal_time<out_frame.origin>();
-    return DirectionCosineMatrix<in_frame, out_frame>::Z(-gst);
+    return DirectionCosineMatrix<in_frame, out_frame>::Z(-gst); // TODO: add axial tilt for non-Earth bodies
 }
 
 template <IsFrame auto in_frame, IsFrame auto out_frame>
     requires(IsBodyFixedFrame<decltype(out_frame)> && equivalent(in_frame.axis, axes::icrf) && in_frame.origin != planets::Earth)
-inline constexpr DirectionCosineMatrix<in_frame, out_frame> get_dcm_rate(const Date& date)
+inline constexpr DirectionCosineMatrixRate<in_frame, out_frame> get_dcm_rate(const Date& date)
 {
     const Angle gst                    = date.body_sidereal_time<out_frame.origin>();
     const AngularVelocity rotationRate = get_rotation_rate<out_frame.origin>();
@@ -69,9 +69,9 @@ inline constexpr DirectionCosineMatrix<in_frame, out_frame> get_dcm(const Date& 
     return DirectionCosineMatrix<in_frame, out_frame>::from_vectors(r, y, h);
 }
 
-template <IsFrame auto frame, IsFrame auto parent>
+template <IsFrame auto parent, IsFrame auto frame>
     requires(IsFixedOffsetFrame<decltype(frame)> && equivalent(frame.parent.axis, parent.axis))
-inline constexpr DirectionCosineMatrix<parent, frame> get_dcm()
+inline constexpr DirectionCosineMatrix<parent, frame> get_dcm(const Date& date)
 {
     if constexpr (HasAngularOffset<decltype(frame)>) {
         return DirectionCosineMatrix<parent, frame>::template from_euler_angles<frame.axis.sequence>(

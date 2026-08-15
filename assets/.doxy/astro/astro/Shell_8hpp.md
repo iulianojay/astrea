@@ -44,7 +44,7 @@
 
 | Type | Name |
 | ---: | :--- |
-| class | [**Shell**](classastrea_1_1astro_1_1Shell.md) &lt;[**class**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Spacecraft\_T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)&gt;<br>_A_ [_**Shell**_](classastrea_1_1astro_1_1Shell.md) _is a collection of planes, each containing a set of_[_**Spacecraft**_](classastrea_1_1astro_1_1Spacecraft.md) _. It is used to represent sub-constellations of satellites in orbit._ |
+| class | [**Shell**](classastrea_1_1astro_1_1Shell.md) &lt;class Spacecraft\_T&gt;<br>_A_ [_**Shell**_](classastrea_1_1astro_1_1Shell.md) _is a collection of planes, each containing a set of_[_**Spacecraft**_](classastrea_1_1astro_1_1Spacecraft.md) _. It is used to represent sub-constellations of satellites in orbit._ |
 | class | [**sat\_iterator**](classastrea_1_1astro_1_1Shell_1_1sat__iterator.md) <br>_Iterator for iterating over all_ [_**Spacecraft**_](classastrea_1_1astro_1_1Spacecraft.md) _in the_[_**Shell**_](classastrea_1_1astro_1_1Shell.md) _._ |
 
 
@@ -117,7 +117,7 @@ Jay Iuliano ([iuliano.jay@gmail.com](mailto:iuliano.jay@gmail.com))
 
 **Copyright:**
 
-Copyright (c) 2025 Jay Iuliano
+Copyright (c) 2025-2026 Jay Iuliano
 
 
 The GNU Lesser General Public License (LGPL)

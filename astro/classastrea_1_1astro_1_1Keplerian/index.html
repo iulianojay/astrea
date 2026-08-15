@@ -6238,7 +6238,7 @@ You're not viewing the latest version.
 
 
 <h1 id="class-astreaastrokeplerian">Class astrea::astro::Keplerian<a class="headerlink" href="#class-astreaastrokeplerian" title="Permanent link">&para;</a></h1>
-<p><strong>template &lt;IsFrame <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>auto</strong></a> _frame_&gt;</strong></p>
+<p><strong>template &lt;IsFrame auto _frame_&gt;</strong></p>
 <p><a href="../annotated/"><strong>ClassList</strong></a> <strong>&gt;</strong> <a href="../namespaceastrea/"><strong>astrea</strong></a> <strong>&gt;</strong> <a href="../namespaceastrea_1_1astro/"><strong>astro</strong></a> <strong>&gt;</strong> <a href="./"><strong>Keplerian</strong></a></p>
 <p><em>The</em> <a href="./"><em><strong>Keplerian</strong></em></a> <em>class represents the</em><a href="./"><em><strong>Keplerian</strong></em></a> <em>orbital elements.</em><a href="#detailed-description">More...</a></p>
 <ul>
@@ -6254,7 +6254,7 @@ You're not viewing the latest version.
 </thead>
 <tbody>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>constexpr</strong></a> <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>auto</strong></a></td>
+<td style="text-align: right;">constexpr auto</td>
 <td style="text-align: left;"><a href="#variable-frame"><strong>frame</strong></a>   = <code>\_frame\_</code><br><em>The reference frame of the</em> <a href="./"><em><strong>Keplerian</strong></em></a> <em>elements.</em></td>
 </tr>
 </tbody>
@@ -6270,119 +6270,123 @@ You're not viewing the latest version.
 <tbody>
 <tr>
 <td style="text-align: right;"></td>
-<td style="text-align: left;"><a href="#function-keplerian-17"><strong>Keplerian</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Unitless</strong></a> scale=0.0 *astrea::detail::unitless) <br><em>Constructs a</em> <a href="./"><em><strong>Keplerian</strong></em></a> <em>object with default values.</em></td>
+<td style="text-align: left;"><a href="#function-keplerian-17"><strong>Keplerian</strong></a> (Unitless scale=0.0 *astrea::detail::unitless) <br><em>Constructs a</em> <a href="./"><em><strong>Keplerian</strong></em></a> <em>object with default values.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;"></td>
-<td style="text-align: left;"><a href="#function-keplerian-27"><strong>Keplerian</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Distance</strong></a> &amp; semimajor, <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Unitless</strong></a> &amp; eccentricity, <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Angle</strong></a> &amp; inclination, <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Angle</strong></a> &amp; rightAscension, <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Angle</strong></a> &amp; argPerigee, <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Angle</strong></a> &amp; trueAnomaly) <br><em>Constructs a</em> <a href="./"><em><strong>Keplerian</strong></em></a> <em>object with specified values.</em></td>
+<td style="text-align: left;"><a href="#function-keplerian-27"><strong>Keplerian</strong></a> (const Distance &amp; semimajor, const Unitless &amp; eccentricity, const Angle &amp; inclination, const Angle &amp; rightAscension, const Angle &amp; argPerigee, const Angle &amp; trueAnomaly) <br><em>Constructs a</em> <a href="./"><em><strong>Keplerian</strong></em></a> <em>object with specified values.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;"></td>
-<td style="text-align: left;"><a href="#function-keplerian-37"><strong>Keplerian</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="./"><strong>Keplerian</strong></a>&lt; _frame_ &gt; &amp; elements, <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>GravParam</strong></a> &amp; mu) <br><em>Constructs a</em> <a href="./"><em><strong>Keplerian</strong></em></a> <em>object from another</em><a href="./"><em><strong>Keplerian</strong></em></a> <em>object.</em></td>
+<td style="text-align: left;"><a href="#function-keplerian-37"><strong>Keplerian</strong></a> (const <a href="./"><strong>Keplerian</strong></a>&lt; _frame_ &gt; &amp; elements, const GravParam &amp; mu) <br><em>Constructs a</em> <a href="./"><em><strong>Keplerian</strong></em></a> <em>object from another</em><a href="./"><em><strong>Keplerian</strong></em></a> <em>object.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;"></td>
-<td style="text-align: left;"><a href="#function-keplerian-47"><strong>Keplerian</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1Cartesian/"><strong>Cartesian</strong></a>&lt; _frame_ &gt; &amp; elements, <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>GravParam</strong></a> &amp; mu) <br><em>Constructs a</em> <a href="./"><em><strong>Keplerian</strong></em></a> <em>object from</em><a href="../classastrea_1_1astro_1_1Cartesian/"><em><strong>Cartesian</strong></em></a> <em>elements.</em></td>
+<td style="text-align: left;"><a href="#function-keplerian-47"><strong>Keplerian</strong></a> (const <a href="../classastrea_1_1astro_1_1Cartesian/"><strong>Cartesian</strong></a>&lt; _frame_ &gt; &amp; elements, const GravParam &amp; mu) <br><em>Constructs a</em> <a href="./"><em><strong>Keplerian</strong></em></a> <em>object from</em><a href="../classastrea_1_1astro_1_1Cartesian/"><em><strong>Cartesian</strong></em></a> <em>elements.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;"></td>
-<td style="text-align: left;"><a href="#function-keplerian-57"><strong>Keplerian</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1Equinoctial/"><strong>Equinoctial</strong></a>&lt; _frame_ &gt; &amp; elements, <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>GravParam</strong></a> &amp; mu) <br><em>Constructs a</em> <a href="./"><em><strong>Keplerian</strong></em></a> <em>object from</em><a href="../classastrea_1_1astro_1_1Equinoctial/"><em><strong>Equinoctial</strong></em></a> <em>elements.</em></td>
+<td style="text-align: left;"><a href="#function-keplerian-57"><strong>Keplerian</strong></a> (const <a href="../classastrea_1_1astro_1_1Equinoctial/"><strong>Equinoctial</strong></a>&lt; _frame_ &gt; &amp; elements, const GravParam &amp; mu) <br><em>Constructs a</em> <a href="./"><em><strong>Keplerian</strong></em></a> <em>object from</em><a href="../classastrea_1_1astro_1_1Equinoctial/"><em><strong>Equinoctial</strong></em></a> <em>elements.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;"></td>
-<td style="text-align: left;"><a href="#function-keplerian-67"><strong>Keplerian</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="./"><strong>Keplerian</strong></a>&lt; _frame_ &gt; &amp; other) <br><em>Copy constructor for</em> <a href="./"><em><strong>Keplerian</strong></em></a> <em>.</em></td>
+<td style="text-align: left;"><a href="#function-keplerian-67"><strong>Keplerian</strong></a> (const <a href="./"><strong>Keplerian</strong></a>&lt; _frame_ &gt; &amp; other) <br><em>Copy constructor for</em> <a href="./"><em><strong>Keplerian</strong></em></a> <em>.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;"></td>
 <td style="text-align: left;"><a href="#function-keplerian-77"><strong>Keplerian</strong></a> (<a href="./"><strong>Keplerian</strong></a>&lt; _frame_ &gt; &amp;&amp; other) noexcept<br><em>Move constructor for</em> <a href="./"><em><strong>Keplerian</strong></em></a> <em>.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">std::vector&lt; <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Unitless</strong></a> &gt;</td>
-<td style="text-align: left;"><a href="#function-force_to_vector"><strong>force_to_vector</strong></a> () const<br><em>Converts the</em> <a href="./"><em><strong>Keplerian</strong></em></a> <em>state vector to a vector of unitless values.</em></td>
+<td style="text-align: right;">std::vector&lt; double &gt;</td>
+<td style="text-align: left;"><a href="#function-force_to_double_vector"><strong>force_to_double_vector</strong></a> () const<br><em>Converts the</em> <a href="./"><em><strong>Keplerian</strong></em></a> <em>state vector to a vector of unitless values.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Angle</strong></a> &amp;</td>
+<td style="text-align: right;">const Angle &amp;</td>
 <td style="text-align: left;"><a href="#function-get_argument_of_perigee"><strong>get_argument_of_perigee</strong></a> () const<br><em>Get the argument of perigee of the</em> <a href="./"><em><strong>Keplerian</strong></em></a> <em>state vector.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Unitless</strong></a> &amp;</td>
+<td style="text-align: right;">const Unitless &amp;</td>
 <td style="text-align: left;"><a href="#function-get_eccentricity"><strong>get_eccentricity</strong></a> () const<br><em>Get the eccentricity of the</em> <a href="./"><em><strong>Keplerian</strong></em></a> <em>state vector.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Angle</strong></a> &amp;</td>
+<td style="text-align: right;">const Angle &amp;</td>
 <td style="text-align: left;"><a href="#function-get_inclination"><strong>get_inclination</strong></a> () const<br><em>Get the inclination of the</em> <a href="./"><em><strong>Keplerian</strong></em></a> <em>state vector.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Angle</strong></a></td>
+<td style="text-align: right;">Angle</td>
 <td style="text-align: left;"><a href="#function-get_mean_anomaly"><strong>get_mean_anomaly</strong></a> () const<br><em>Get the mean anomaly of the</em> <a href="./"><em><strong>Keplerian</strong></em></a> <em>state vector.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>MeanMotion</strong></a></td>
-<td style="text-align: left;"><a href="#function-get_mean_motion"><strong>get_mean_motion</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>GravParam</strong></a> &amp; mu) const<br><em>Get the mean motion of the</em> <a href="./"><em><strong>Keplerian</strong></em></a> <em>state vector.</em></td>
+<td style="text-align: right;">MeanMotion</td>
+<td style="text-align: left;"><a href="#function-get_mean_motion"><strong>get_mean_motion</strong></a> (const GravParam &amp; mu) const<br><em>Get the mean motion of the</em> <a href="./"><em><strong>Keplerian</strong></em></a> <em>state vector.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Time</strong></a></td>
-<td style="text-align: left;"><a href="#function-get_orbital_period"><strong>get_orbital_period</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>GravParam</strong></a> &amp; mu) const<br><em>Get the orbital period of the</em> <a href="./"><em><strong>Keplerian</strong></em></a> <em>state vector.</em></td>
+<td style="text-align: right;">Time</td>
+<td style="text-align: left;"><a href="#function-get_orbital_period"><strong>get_orbital_period</strong></a> (const GravParam &amp; mu) const<br><em>Get the orbital period of the</em> <a href="./"><em><strong>Keplerian</strong></em></a> <em>state vector.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Angle</strong></a> &amp;</td>
+<td style="text-align: right;">const Angle &amp;</td>
 <td style="text-align: left;"><a href="#function-get_right_ascension"><strong>get_right_ascension</strong></a> () const<br><em>Get the right ascension of the ascending node of the</em> <a href="./"><em><strong>Keplerian</strong></em></a> <em>state vector.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Distance</strong></a> &amp;</td>
+<td style="text-align: right;">const Distance &amp;</td>
 <td style="text-align: left;"><a href="#function-get_semimajor"><strong>get_semimajor</strong></a> () const<br><em>Get the semimajor axis of the</em> <a href="./"><em><strong>Keplerian</strong></em></a> <em>state vector.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Angle</strong></a> &amp;</td>
+<td style="text-align: right;">SpecificAngularMomentum</td>
+<td style="text-align: left;"><a href="#function-get_specific_angular_momentum"><strong>get_specific_angular_momentum</strong></a> (const GravParam &amp; mu) const<br><em>Get the specific angular momentum of the</em> <a href="./"><em><strong>Keplerian</strong></em></a> <em>state vector.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">const Angle &amp;</td>
 <td style="text-align: left;"><a href="#function-get_true_anomaly"><strong>get_true_anomaly</strong></a> () const<br><em>Get the true anomaly of the</em> <a href="./"><em><strong>Keplerian</strong></em></a> <em>state vector.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="./"><strong>Keplerian</strong></a>&lt; <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>target_frame</strong></a> &gt;</td>
-<td style="text-align: left;"><a href="#function-in_frame"><strong>in_frame</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1Date/"><strong>Date</strong></a> &amp; epoch, <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>GravParam</strong></a> &amp; mu) const<br><em>Converts this</em> <a href="./"><em><strong>Keplerian</strong></em></a> <em>state to</em><a href="./"><em><strong>Keplerian</strong></em></a> <em>elements expressed in a different frame.</em></td>
+<td style="text-align: right;"><a href="./"><strong>Keplerian</strong></a>&lt; target_frame &gt;</td>
+<td style="text-align: left;"><a href="#function-in_frame"><strong>in_frame</strong></a> (const <a href="../classastrea_1_1astro_1_1Date/"><strong>Date</strong></a> &amp; epoch, const GravParam &amp; mu) const<br><em>Converts this</em> <a href="./"><em><strong>Keplerian</strong></em></a> <em>state to</em><a href="./"><em><strong>Keplerian</strong></em></a> <em>elements expressed in a different frame.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;"><a href="./"><strong>Keplerian</strong></a></td>
-<td style="text-align: left;"><a href="#function-interpolate"><strong>interpolate</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Time</strong></a> &amp; thisTime, <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Time</strong></a> &amp; otherTime, <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="./"><strong>Keplerian</strong></a>&lt; _frame_ &gt; &amp; other, <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>GravParam</strong></a> &amp; mu, <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Time</strong></a> &amp; targetTime) const<br><em>Interpolates between two</em> <a href="./"><em><strong>Keplerian</strong></em></a> <em>state vectors.</em></td>
+<td style="text-align: left;"><a href="#function-interpolate"><strong>interpolate</strong></a> (const Time &amp; thisTime, const Time &amp; otherTime, const <a href="./"><strong>Keplerian</strong></a>&lt; _frame_ &gt; &amp; other, const GravParam &amp; mu, const Time &amp; targetTime) const<br><em>Interpolates between two</em> <a href="./"><em><strong>Keplerian</strong></em></a> <em>state vectors.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>bool</strong></a></td>
-<td style="text-align: left;"><a href="#function-operator"><strong>operator!=</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="./"><strong>Keplerian</strong></a>&lt; _frame_ &gt; &amp; other) const<br><em>Checks if two</em> <a href="./"><em><strong>Keplerian</strong></em></a> <em>objects are not equal.</em></td>
+<td style="text-align: right;">bool</td>
+<td style="text-align: left;"><a href="#function-operator"><strong>operator!=</strong></a> (const <a href="./"><strong>Keplerian</strong></a>&lt; _frame_ &gt; &amp; other) const<br><em>Checks if two</em> <a href="./"><em><strong>Keplerian</strong></em></a> <em>objects are not equal.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;"><a href="./"><strong>Keplerian</strong></a></td>
-<td style="text-align: left;"><a href="#function-operator_1"><strong>operator*</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Unitless</strong></a> &amp; multiplier) const<br><em>Multiplies the</em> <a href="./"><em><strong>Keplerian</strong></em></a> <em>state vector by a scalar.</em></td>
+<td style="text-align: left;"><a href="#function-operator_1"><strong>operator*</strong></a> (const Unitless &amp; multiplier) const<br><em>Multiplies the</em> <a href="./"><em><strong>Keplerian</strong></em></a> <em>state vector by a scalar.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;"><a href="./"><strong>Keplerian</strong></a> &amp;</td>
-<td style="text-align: left;"><a href="#function-operator_2"><strong>operator*=</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Unitless</strong></a> &amp; multiplier) <br><em>Multiplies the</em> <a href="./"><em><strong>Keplerian</strong></em></a> <em>state vector by a scalar.</em></td>
+<td style="text-align: left;"><a href="#function-operator_2"><strong>operator*=</strong></a> (const Unitless &amp; multiplier) <br><em>Multiplies the</em> <a href="./"><em><strong>Keplerian</strong></em></a> <em>state vector by a scalar.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;"><a href="./"><strong>Keplerian</strong></a></td>
-<td style="text-align: left;"><a href="#function-operator_3"><strong>operator+</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="./"><strong>Keplerian</strong></a>&lt; _frame_ &gt; &amp; other) const<br><em>Adds two</em> <a href="./"><em><strong>Keplerian</strong></em></a> <em>objects.</em></td>
+<td style="text-align: left;"><a href="#function-operator_3"><strong>operator+</strong></a> (const <a href="./"><strong>Keplerian</strong></a>&lt; _frame_ &gt; &amp; other) const<br><em>Adds two</em> <a href="./"><em><strong>Keplerian</strong></em></a> <em>objects.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;"><a href="./"><strong>Keplerian</strong></a> &amp;</td>
-<td style="text-align: left;"><a href="#function-operator_4"><strong>operator+=</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="./"><strong>Keplerian</strong></a>&lt; _frame_ &gt; &amp; other) <br><em>Adds another</em> <a href="./"><em><strong>Keplerian</strong></em></a> <em>object to the current one.</em></td>
+<td style="text-align: left;"><a href="#function-operator_4"><strong>operator+=</strong></a> (const <a href="./"><strong>Keplerian</strong></a>&lt; _frame_ &gt; &amp; other) <br><em>Adds another</em> <a href="./"><em><strong>Keplerian</strong></em></a> <em>object to the current one.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;"><a href="./"><strong>Keplerian</strong></a></td>
-<td style="text-align: left;"><a href="#function-operator-"><strong>operator-</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="./"><strong>Keplerian</strong></a>&lt; _frame_ &gt; &amp; other) const<br><em>Subtracts another</em> <a href="./"><em><strong>Keplerian</strong></em></a> <em>object from the current one.</em></td>
+<td style="text-align: left;"><a href="#function-operator-"><strong>operator-</strong></a> (const <a href="./"><strong>Keplerian</strong></a>&lt; _frame_ &gt; &amp; other) const<br><em>Subtracts another</em> <a href="./"><em><strong>Keplerian</strong></em></a> <em>object from the current one.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;"><a href="./"><strong>Keplerian</strong></a> &amp;</td>
-<td style="text-align: left;"><a href="#function-operator-_1"><strong>operator-=</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="./"><strong>Keplerian</strong></a>&lt; _frame_ &gt; &amp; other) <br><em>Subtracts another</em> <a href="./"><em><strong>Keplerian</strong></em></a> <em>object from the current one.</em></td>
+<td style="text-align: left;"><a href="#function-operator-_1"><strong>operator-=</strong></a> (const <a href="./"><strong>Keplerian</strong></a>&lt; _frame_ &gt; &amp; other) <br><em>Subtracts another</em> <a href="./"><em><strong>Keplerian</strong></em></a> <em>object from the current one.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;"><a href="../classastrea_1_1astro_1_1KeplerianPartial/"><strong>KeplerianPartial</strong></a>&lt; _frame_ &gt;</td>
-<td style="text-align: left;"><a href="#function-operator_5"><strong>operator/</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Time</strong></a> &amp; time) const<br><em>Divides the</em> <a href="./"><em><strong>Keplerian</strong></em></a> <em>state vector by a time.</em></td>
+<td style="text-align: left;"><a href="#function-operator_5"><strong>operator/</strong></a> (const Time &amp; time) const<br><em>Divides the</em> <a href="./"><em><strong>Keplerian</strong></em></a> <em>state vector by a time.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;"><a href="./"><strong>Keplerian</strong></a></td>
-<td style="text-align: left;"><a href="#function-operator_6"><strong>operator/</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Unitless</strong></a> &amp; divisor) const<br><em>Divides the</em> <a href="./"><em><strong>Keplerian</strong></em></a> <em>state vector by another</em><a href="./"><em><strong>Keplerian</strong></em></a> <em>object.</em></td>
+<td style="text-align: left;"><a href="#function-operator_6"><strong>operator/</strong></a> (const Unitless &amp; divisor) const<br><em>Divides the</em> <a href="./"><em><strong>Keplerian</strong></em></a> <em>state vector by another</em><a href="./"><em><strong>Keplerian</strong></em></a> <em>object.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;"><a href="./"><strong>Keplerian</strong></a> &amp;</td>
-<td style="text-align: left;"><a href="#function-operator_7"><strong>operator/=</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Unitless</strong></a> &amp; divisor) <br><em>Divides the</em> <a href="./"><em><strong>Keplerian</strong></em></a> <em>state vector by a scalar.</em></td>
+<td style="text-align: left;"><a href="#function-operator_7"><strong>operator/=</strong></a> (const Unitless &amp; divisor) <br><em>Divides the</em> <a href="./"><em><strong>Keplerian</strong></em></a> <em>state vector by a scalar.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;"><a href="./"><strong>Keplerian</strong></a> &amp;</td>
@@ -6390,35 +6394,35 @@ You're not viewing the latest version.
 </tr>
 <tr>
 <td style="text-align: right;"><a href="./"><strong>Keplerian</strong></a> &amp;</td>
-<td style="text-align: left;"><a href="#function-operator_9"><strong>operator=</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="./"><strong>Keplerian</strong></a>&lt; _frame_ &gt; &amp; other) <br><em>Copy assignment operator for</em> <a href="./"><em><strong>Keplerian</strong></em></a> <em>.</em></td>
+<td style="text-align: left;"><a href="#function-operator_9"><strong>operator=</strong></a> (const <a href="./"><strong>Keplerian</strong></a>&lt; _frame_ &gt; &amp; other) <br><em>Copy assignment operator for</em> <a href="./"><em><strong>Keplerian</strong></em></a> <em>.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>bool</strong></a></td>
-<td style="text-align: left;"><a href="#function-operator_10"><strong>operator==</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="./"><strong>Keplerian</strong></a>&lt; _frame_ &gt; &amp; other) const<br><em>Checks if two</em> <a href="./"><em><strong>Keplerian</strong></em></a> <em>objects are equal.</em></td>
+<td style="text-align: right;">bool</td>
+<td style="text-align: left;"><a href="#function-operator_10"><strong>operator==</strong></a> (const <a href="./"><strong>Keplerian</strong></a>&lt; _frame_ &gt; &amp; other) const<br><em>Checks if two</em> <a href="./"><em><strong>Keplerian</strong></em></a> <em>objects are equal.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>void</strong></a></td>
-<td style="text-align: left;"><a href="#function-set_argument_of_perigee"><strong>set_argument_of_perigee</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Angle</strong></a> &amp; argPerigee) <br><em>Get the argument of perigee of the</em> <a href="./"><em><strong>Keplerian</strong></em></a> <em>state vector.</em></td>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-set_argument_of_perigee"><strong>set_argument_of_perigee</strong></a> (const Angle &amp; argPerigee) <br><em>Get the argument of perigee of the</em> <a href="./"><em><strong>Keplerian</strong></em></a> <em>state vector.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>void</strong></a></td>
-<td style="text-align: left;"><a href="#function-set_eccentricity"><strong>set_eccentricity</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Unitless</strong></a> &amp; eccentricity) <br><em>Set the eccentricity of the</em> <a href="./"><em><strong>Keplerian</strong></em></a> <em>state vector.</em></td>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-set_eccentricity"><strong>set_eccentricity</strong></a> (const Unitless &amp; eccentricity) <br><em>Set the eccentricity of the</em> <a href="./"><em><strong>Keplerian</strong></em></a> <em>state vector.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>void</strong></a></td>
-<td style="text-align: left;"><a href="#function-set_inclination"><strong>set_inclination</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Angle</strong></a> &amp; inclination) <br><em>Set the inclination of the</em> <a href="./"><em><strong>Keplerian</strong></em></a> <em>state vector.</em></td>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-set_inclination"><strong>set_inclination</strong></a> (const Angle &amp; inclination) <br><em>Set the inclination of the</em> <a href="./"><em><strong>Keplerian</strong></em></a> <em>state vector.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>void</strong></a></td>
-<td style="text-align: left;"><a href="#function-set_right_ascension"><strong>set_right_ascension</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Angle</strong></a> &amp; rightAscension) <br><em>Set the right ascension of the ascending node of the</em> <a href="./"><em><strong>Keplerian</strong></em></a> <em>state vector.</em></td>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-set_right_ascension"><strong>set_right_ascension</strong></a> (const Angle &amp; rightAscension) <br><em>Set the right ascension of the ascending node of the</em> <a href="./"><em><strong>Keplerian</strong></em></a> <em>state vector.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>void</strong></a></td>
-<td style="text-align: left;"><a href="#function-set_semimajor"><strong>set_semimajor</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Distance</strong></a> &amp; semimajor) <br><em>Set the semimajor axis of the</em> <a href="./"><em><strong>Keplerian</strong></em></a> <em>state vector.</em></td>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-set_semimajor"><strong>set_semimajor</strong></a> (const Distance &amp; semimajor) <br><em>Set the semimajor axis of the</em> <a href="./"><em><strong>Keplerian</strong></em></a> <em>state vector.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>void</strong></a></td>
-<td style="text-align: left;"><a href="#function-set_true_anomaly"><strong>set_true_anomaly</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Angle</strong></a> &amp; trueAnomaly) <br><em>Get the true anomaly of the</em> <a href="./"><em><strong>Keplerian</strong></em></a> <em>state vector.</em></td>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-set_true_anomaly"><strong>set_true_anomaly</strong></a> (const Angle &amp; trueAnomaly) <br><em>Get the true anomaly of the</em> <a href="./"><em><strong>Keplerian</strong></em></a> <em>state vector.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;"></td>
@@ -6481,12 +6485,12 @@ You're not viewing the latest version.
 <h3 id="function-keplerian-27">function Keplerian [2/7]<a class="headerlink" href="#function-keplerian-27" title="Permanent link">&para;</a></h3>
 <p><em>Constructs a</em> <a href="./"><em><strong>Keplerian</strong></em></a> <em>object with specified values.</em>
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kr">inline</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Keplerian</span><span class="o">::</span><span class="n">Keplerian</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Distance</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">semimajor</span><span class="p">,</span>
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Unitless</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">eccentricity</span><span class="p">,</span>
-</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Angle</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">inclination</span><span class="p">,</span>
-</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Angle</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">rightAscension</span><span class="p">,</span>
-</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Angle</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">argPerigee</span><span class="p">,</span>
-</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Angle</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">trueAnomaly</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Distance</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">semimajor</span><span class="p">,</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Unitless</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">eccentricity</span><span class="p">,</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Angle</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">inclination</span><span class="p">,</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Angle</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">rightAscension</span><span class="p">,</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Angle</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">argPerigee</span><span class="p">,</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Angle</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">trueAnomaly</span>
 </span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="p">)</span><span class="w"> </span>
 </span></code></pre></div></p>
 <p><strong>Parameters:</strong></p>
@@ -6503,8 +6507,8 @@ You're not viewing the latest version.
 <h3 id="function-keplerian-37">function Keplerian [3/7]<a class="headerlink" href="#function-keplerian-37" title="Permanent link">&para;</a></h3>
 <p><em>Constructs a</em> <a href="./"><em><strong>Keplerian</strong></em></a> <em>object from another</em><a href="./"><em><strong>Keplerian</strong></em></a> <em>object.</em>
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kr">inline</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Keplerian</span><span class="o">::</span><span class="n">Keplerian</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Keplerian</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">_frame_</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">elements</span><span class="p">,</span>
-</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">GravParam</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">mu</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Keplerian</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">_frame_</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">elements</span><span class="p">,</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">GravParam</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">mu</span>
 </span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="p">)</span><span class="w"> </span>
 </span></code></pre></div></p>
 <p><strong>Parameters:</strong></p>
@@ -6517,8 +6521,8 @@ You're not viewing the latest version.
 <h3 id="function-keplerian-47">function Keplerian [4/7]<a class="headerlink" href="#function-keplerian-47" title="Permanent link">&para;</a></h3>
 <p><em>Constructs a</em> <a href="./"><em><strong>Keplerian</strong></em></a> <em>object from</em><a href="../classastrea_1_1astro_1_1Cartesian/"><em><strong>Cartesian</strong></em></a> <em>elements.</em>
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Keplerian</span><span class="o">::</span><span class="n">Keplerian</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Cartesian</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">_frame_</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">elements</span><span class="p">,</span>
-</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">GravParam</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">mu</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Cartesian</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">_frame_</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">elements</span><span class="p">,</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">GravParam</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">mu</span>
 </span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="p">)</span><span class="w"> </span>
 </span></code></pre></div></p>
 <p><strong>Parameters:</strong></p>
@@ -6531,8 +6535,8 @@ You're not viewing the latest version.
 <h3 id="function-keplerian-57">function Keplerian [5/7]<a class="headerlink" href="#function-keplerian-57" title="Permanent link">&para;</a></h3>
 <p><em>Constructs a</em> <a href="./"><em><strong>Keplerian</strong></em></a> <em>object from</em><a href="../classastrea_1_1astro_1_1Equinoctial/"><em><strong>Equinoctial</strong></em></a> <em>elements.</em>
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Keplerian</span><span class="o">::</span><span class="n">Keplerian</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Equinoctial</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">_frame_</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">elements</span><span class="p">,</span>
-</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">GravParam</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">mu</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Equinoctial</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">_frame_</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">elements</span><span class="p">,</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">GravParam</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">mu</span>
 </span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="p">)</span><span class="w"> </span>
 </span></code></pre></div></p>
 <p><strong>Parameters:</strong></p>
@@ -6545,7 +6549,7 @@ You're not viewing the latest version.
 <h3 id="function-keplerian-67">function Keplerian [6/7]<a class="headerlink" href="#function-keplerian-67" title="Permanent link">&para;</a></h3>
 <p><em>Copy constructor for</em> <a href="./"><em><strong>Keplerian</strong></em></a> <em>.</em>
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Keplerian</span><span class="o">::</span><span class="n">Keplerian</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Keplerian</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">_frame_</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">other</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Keplerian</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">_frame_</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">other</span>
 </span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="p">)</span><span class="w"> </span>
 </span></code></pre></div></p>
 <p><strong>Parameters:</strong></p>
@@ -6566,9 +6570,9 @@ You're not viewing the latest version.
 </ul>
 <hr>
 
-<h3 id="function-force_to_vector">function force_to_vector<a class="headerlink" href="#function-force_to_vector" title="Permanent link">&para;</a></h3>
+<h3 id="function-force_to_double_vector">function force_to_double_vector<a class="headerlink" href="#function-force_to_double_vector" title="Permanent link">&para;</a></h3>
 <p><em>Converts the</em> <a href="./"><em><strong>Keplerian</strong></em></a> <em>state vector to a vector of unitless values.</em>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="n">Unitless</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Keplerian</span><span class="o">::</span><span class="n">force_to_vector</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Keplerian</span><span class="o">::</span><span class="n">force_to_double_vector</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </span></code></pre></div></p>
 <p><strong>Returns:</strong></p>
 <p>std::vector&lt;Unitless&gt; Vector containing the semimajor axis, eccentricity, inclination, right ascension, argument of perigee, and true anomaly components of the <a href="./"><strong>Keplerian</strong></a> state vector. </p>
@@ -6576,7 +6580,7 @@ You're not viewing the latest version.
 
 <h3 id="function-get_argument_of_perigee">function get_argument_of_perigee<a class="headerlink" href="#function-get_argument_of_perigee" title="Permanent link">&para;</a></h3>
 <p><em>Get the argument of perigee of the</em> <a href="./"><em><strong>Keplerian</strong></em></a> <em>state vector.</em>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="kr">inline</span><span class="w"> </span><span class="k">const</span><span class="w">  </span><span class="n">Angle</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Keplerian</span><span class="o">::</span><span class="n">get_argument_of_perigee</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="kr">inline</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Angle</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Keplerian</span><span class="o">::</span><span class="n">get_argument_of_perigee</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </span></code></pre></div></p>
 <p><strong>Returns:</strong></p>
 <p>const Angle&amp; Reference to the argument of perigee component of the <a href="./"><strong>Keplerian</strong></a> state vector. </p>
@@ -6584,7 +6588,7 @@ You're not viewing the latest version.
 
 <h3 id="function-get_eccentricity">function get_eccentricity<a class="headerlink" href="#function-get_eccentricity" title="Permanent link">&para;</a></h3>
 <p><em>Get the eccentricity of the</em> <a href="./"><em><strong>Keplerian</strong></em></a> <em>state vector.</em>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="kr">inline</span><span class="w"> </span><span class="k">const</span><span class="w">  </span><span class="n">Unitless</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Keplerian</span><span class="o">::</span><span class="n">get_eccentricity</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="kr">inline</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Unitless</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Keplerian</span><span class="o">::</span><span class="n">get_eccentricity</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </span></code></pre></div></p>
 <p><strong>Returns:</strong></p>
 <p>const Unitless&amp; Reference to the eccentricity component of the <a href="./"><strong>Keplerian</strong></a> state vector. </p>
@@ -6592,7 +6596,7 @@ You're not viewing the latest version.
 
 <h3 id="function-get_inclination">function get_inclination<a class="headerlink" href="#function-get_inclination" title="Permanent link">&para;</a></h3>
 <p><em>Get the inclination of the</em> <a href="./"><em><strong>Keplerian</strong></em></a> <em>state vector.</em>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="kr">inline</span><span class="w"> </span><span class="k">const</span><span class="w">  </span><span class="n">Angle</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Keplerian</span><span class="o">::</span><span class="n">get_inclination</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="kr">inline</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Angle</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Keplerian</span><span class="o">::</span><span class="n">get_inclination</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </span></code></pre></div></p>
 <p><strong>Returns:</strong></p>
 <p>const Angle&amp; Reference to the inclination component of the <a href="./"><strong>Keplerian</strong></a> state vector. </p>
@@ -6609,7 +6613,7 @@ You're not viewing the latest version.
 <h3 id="function-get_mean_motion">function get_mean_motion<a class="headerlink" href="#function-get_mean_motion" title="Permanent link">&para;</a></h3>
 <p><em>Get the mean motion of the</em> <a href="./"><em><strong>Keplerian</strong></em></a> <em>state vector.</em>
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="n">MeanMotion</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Keplerian</span><span class="o">::</span><span class="n">get_mean_motion</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">GravParam</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">mu</span>
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">GravParam</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">mu</span>
 </span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
 </span></code></pre></div></p>
 <p><strong>Parameters:</strong></p>
@@ -6623,7 +6627,7 @@ You're not viewing the latest version.
 <h3 id="function-get_orbital_period">function get_orbital_period<a class="headerlink" href="#function-get_orbital_period" title="Permanent link">&para;</a></h3>
 <p><em>Get the orbital period of the</em> <a href="./"><em><strong>Keplerian</strong></em></a> <em>state vector.</em>
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="n">Time</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Keplerian</span><span class="o">::</span><span class="n">get_orbital_period</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">GravParam</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">mu</span>
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">GravParam</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">mu</span>
 </span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
 </span></code></pre></div></p>
 <p><strong>Parameters:</strong></p>
@@ -6636,7 +6640,7 @@ You're not viewing the latest version.
 
 <h3 id="function-get_right_ascension">function get_right_ascension<a class="headerlink" href="#function-get_right_ascension" title="Permanent link">&para;</a></h3>
 <p><em>Get the right ascension of the ascending node of the</em> <a href="./"><em><strong>Keplerian</strong></em></a> <em>state vector.</em>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="kr">inline</span><span class="w"> </span><span class="k">const</span><span class="w">  </span><span class="n">Angle</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Keplerian</span><span class="o">::</span><span class="n">get_right_ascension</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="kr">inline</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Angle</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Keplerian</span><span class="o">::</span><span class="n">get_right_ascension</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </span></code></pre></div></p>
 <p><strong>Returns:</strong></p>
 <p>const Angle&amp; Reference to the right ascension component of the <a href="./"><strong>Keplerian</strong></a> state vector. </p>
@@ -6644,15 +6648,29 @@ You're not viewing the latest version.
 
 <h3 id="function-get_semimajor">function get_semimajor<a class="headerlink" href="#function-get_semimajor" title="Permanent link">&para;</a></h3>
 <p><em>Get the semimajor axis of the</em> <a href="./"><em><strong>Keplerian</strong></em></a> <em>state vector.</em>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="kr">inline</span><span class="w"> </span><span class="k">const</span><span class="w">  </span><span class="n">Distance</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Keplerian</span><span class="o">::</span><span class="n">get_semimajor</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="kr">inline</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Distance</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Keplerian</span><span class="o">::</span><span class="n">get_semimajor</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </span></code></pre></div></p>
 <p><strong>Returns:</strong></p>
 <p>const Distance&amp; Reference to the semimajor axis component of the <a href="./"><strong>Keplerian</strong></a> state vector. </p>
 <hr>
 
+<h3 id="function-get_specific_angular_momentum">function get_specific_angular_momentum<a class="headerlink" href="#function-get_specific_angular_momentum" title="Permanent link">&para;</a></h3>
+<p><em>Get the specific angular momentum of the</em> <a href="./"><em><strong>Keplerian</strong></em></a> <em>state vector.</em>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="n">SpecificAngularMomentum</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Keplerian</span><span class="o">::</span><span class="n">get_specific_angular_momentum</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">GravParam</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">mu</span>
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
+</span></code></pre></div></p>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>mu</code> Gravitational parameter of the central body </li>
+</ul>
+<p><strong>Returns:</strong></p>
+<p>SpecificAngularMomentum Specific angular momentum of the <a href="./"><strong>Keplerian</strong></a> state vector. </p>
+<hr>
+
 <h3 id="function-get_true_anomaly">function get_true_anomaly<a class="headerlink" href="#function-get_true_anomaly" title="Permanent link">&para;</a></h3>
 <p><em>Get the true anomaly of the</em> <a href="./"><em><strong>Keplerian</strong></em></a> <em>state vector.</em>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="kr">inline</span><span class="w"> </span><span class="k">const</span><span class="w">  </span><span class="n">Angle</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Keplerian</span><span class="o">::</span><span class="n">get_true_anomaly</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="kr">inline</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Angle</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Keplerian</span><span class="o">::</span><span class="n">get_true_anomaly</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </span></code></pre></div></p>
 <p><strong>Returns:</strong></p>
 <p>const Angle&amp; Reference to the true anomaly component of the <a href="./"><strong>Keplerian</strong></a> state vector. </p>
@@ -6660,11 +6678,11 @@ You're not viewing the latest version.
 
 <h3 id="function-in_frame">function in_frame<a class="headerlink" href="#function-in_frame" title="Permanent link">&para;</a></h3>
 <p><em>Converts this</em> <a href="./"><em><strong>Keplerian</strong></em></a> <em>state to</em><a href="./"><em><strong>Keplerian</strong></em></a> <em>elements expressed in a different frame.</em>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="k">template</span><span class="o">&lt;</span><span class="n">IsFrame</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">target_frame</span><span class="o">&gt;</span>
-</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="n">Keplerian</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">target_frame</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Keplerian</span><span class="o">::</span><span class="n">in_frame</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Date</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">epoch</span><span class="p">,</span>
-</span><span id="__span-18-4"><a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">GravParam</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">mu</span>
-</span><span id="__span-18-5"><a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="k">template</span><span class="o">&lt;</span><span class="n">IsFrame</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">target_frame</span><span class="o">&gt;</span>
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="n">Keplerian</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">target_frame</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Keplerian</span><span class="o">::</span><span class="n">in_frame</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Date</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">epoch</span><span class="p">,</span>
+</span><span id="__span-19-4"><a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">GravParam</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">mu</span>
+</span><span id="__span-19-5"><a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
 </span></code></pre></div></p>
 <p>First converts to <a href="../classastrea_1_1astro_1_1Cartesian/"><strong>Cartesian</strong></a> in the native frame, applies the physical frame transformation, then converts the result back to <a href="./"><strong>Keplerian</strong></a> elements.</p>
 <p><strong>Template parameters:</strong></p>
@@ -6682,13 +6700,13 @@ You're not viewing the latest version.
 
 <h3 id="function-interpolate">function interpolate<a class="headerlink" href="#function-interpolate" title="Permanent link">&para;</a></h3>
 <p><em>Interpolates between two</em> <a href="./"><em><strong>Keplerian</strong></em></a> <em>state vectors.</em>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="n">Keplerian</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Keplerian</span><span class="o">::</span><span class="n">interpolate</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Time</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">thisTime</span><span class="p">,</span>
-</span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Time</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">otherTime</span><span class="p">,</span>
-</span><span id="__span-19-4"><a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Keplerian</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">_frame_</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">other</span><span class="p">,</span>
-</span><span id="__span-19-5"><a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">GravParam</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">mu</span><span class="p">,</span>
-</span><span id="__span-19-6"><a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Time</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">targetTime</span>
-</span><span id="__span-19-7"><a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="n">Keplerian</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Keplerian</span><span class="o">::</span><span class="n">interpolate</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Time</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">thisTime</span><span class="p">,</span>
+</span><span id="__span-20-3"><a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Time</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">otherTime</span><span class="p">,</span>
+</span><span id="__span-20-4"><a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Keplerian</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">_frame_</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">other</span><span class="p">,</span>
+</span><span id="__span-20-5"><a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">GravParam</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">mu</span><span class="p">,</span>
+</span><span id="__span-20-6"><a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Time</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">targetTime</span>
+</span><span id="__span-20-7"><a id="__codelineno-20-7" name="__codelineno-20-7" href="#__codelineno-20-7"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
 </span></code></pre></div></p>
 <p>This method performs linear interpolation between two <a href="./"><strong>Keplerian</strong></a> state vectors at a specified target time.</p>
 <p><strong>Parameters:</strong></p>
@@ -6705,9 +6723,9 @@ You're not viewing the latest version.
 
 <h3 id="function-operator">function operator!=<a class="headerlink" href="#function-operator" title="Permanent link">&para;</a></h3>
 <p><em>Checks if two</em> <a href="./"><em><strong>Keplerian</strong></em></a> <em>objects are not equal.</em>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="kt">bool</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Keplerian</span><span class="o">::</span><span class="k">operator</span><span class="o">!=</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Keplerian</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">_frame_</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">other</span>
-</span><span id="__span-20-3"><a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="kt">bool</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Keplerian</span><span class="o">::</span><span class="k">operator</span><span class="o">!=</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Keplerian</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">_frame_</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">other</span>
+</span><span id="__span-21-3"><a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
 </span></code></pre></div></p>
 <p><strong>Parameters:</strong></p>
 <ul>
@@ -6719,9 +6737,9 @@ You're not viewing the latest version.
 
 <h3 id="function-operator_1">function operator*<a class="headerlink" href="#function-operator_1" title="Permanent link">&para;</a></h3>
 <p><em>Multiplies the</em> <a href="./"><em><strong>Keplerian</strong></em></a> <em>state vector by a scalar.</em>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="n">Keplerian</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Keplerian</span><span class="o">::</span><span class="k">operator</span><span class="o">*</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Unitless</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">multiplier</span>
-</span><span id="__span-21-3"><a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="n">Keplerian</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Keplerian</span><span class="o">::</span><span class="k">operator</span><span class="o">*</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Unitless</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">multiplier</span>
+</span><span id="__span-22-3"><a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
 </span></code></pre></div></p>
 <p><strong>Parameters:</strong></p>
 <ul>
@@ -6733,9 +6751,9 @@ You're not viewing the latest version.
 
 <h3 id="function-operator_2">function operator*=<a class="headerlink" href="#function-operator_2" title="Permanent link">&para;</a></h3>
 <p><em>Multiplies the</em> <a href="./"><em><strong>Keplerian</strong></em></a> <em>state vector by a scalar.</em>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="n">Keplerian</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Keplerian</span><span class="o">::</span><span class="k">operator</span><span class="o">*=</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Unitless</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">multiplier</span>
-</span><span id="__span-22-3"><a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a><span class="p">)</span><span class="w"> </span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="n">Keplerian</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Keplerian</span><span class="o">::</span><span class="k">operator</span><span class="o">*=</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Unitless</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">multiplier</span>
+</span><span id="__span-23-3"><a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a><span class="p">)</span><span class="w"> </span>
 </span></code></pre></div></p>
 <p><strong>Parameters:</strong></p>
 <ul>
@@ -6747,9 +6765,9 @@ You're not viewing the latest version.
 
 <h3 id="function-operator_3">function operator+<a class="headerlink" href="#function-operator_3" title="Permanent link">&para;</a></h3>
 <p><em>Adds two</em> <a href="./"><em><strong>Keplerian</strong></em></a> <em>objects.</em>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="n">Keplerian</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Keplerian</span><span class="o">::</span><span class="k">operator</span><span class="o">+</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Keplerian</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">_frame_</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">other</span>
-</span><span id="__span-23-3"><a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="n">Keplerian</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Keplerian</span><span class="o">::</span><span class="k">operator</span><span class="o">+</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-24-2"><a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Keplerian</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">_frame_</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">other</span>
+</span><span id="__span-24-3"><a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
 </span></code></pre></div></p>
 <p><strong>Parameters:</strong></p>
 <ul>
@@ -6761,9 +6779,9 @@ You're not viewing the latest version.
 
 <h3 id="function-operator_4">function operator+=<a class="headerlink" href="#function-operator_4" title="Permanent link">&para;</a></h3>
 <p><em>Adds another</em> <a href="./"><em><strong>Keplerian</strong></em></a> <em>object to the current one.</em>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="n">Keplerian</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Keplerian</span><span class="o">::</span><span class="k">operator</span><span class="o">+=</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-24-2"><a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Keplerian</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">_frame_</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">other</span>
-</span><span id="__span-24-3"><a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a><span class="p">)</span><span class="w"> </span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="n">Keplerian</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Keplerian</span><span class="o">::</span><span class="k">operator</span><span class="o">+=</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-25-2"><a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Keplerian</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">_frame_</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">other</span>
+</span><span id="__span-25-3"><a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a><span class="p">)</span><span class="w"> </span>
 </span></code></pre></div></p>
 <p><strong>Parameters:</strong></p>
 <ul>
@@ -6775,9 +6793,9 @@ You're not viewing the latest version.
 
 <h3 id="function-operator-">function operator-<a class="headerlink" href="#function-operator-" title="Permanent link">&para;</a></h3>
 <p><em>Subtracts another</em> <a href="./"><em><strong>Keplerian</strong></em></a> <em>object from the current one.</em>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="n">Keplerian</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Keplerian</span><span class="o">::</span><span class="k">operator</span><span class="o">-</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-25-2"><a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Keplerian</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">_frame_</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">other</span>
-</span><span id="__span-25-3"><a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="n">Keplerian</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Keplerian</span><span class="o">::</span><span class="k">operator</span><span class="o">-</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-26-2"><a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Keplerian</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">_frame_</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">other</span>
+</span><span id="__span-26-3"><a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
 </span></code></pre></div></p>
 <p><strong>Parameters:</strong></p>
 <ul>
@@ -6789,9 +6807,9 @@ You're not viewing the latest version.
 
 <h3 id="function-operator-_1">function operator-=<a class="headerlink" href="#function-operator-_1" title="Permanent link">&para;</a></h3>
 <p><em>Subtracts another</em> <a href="./"><em><strong>Keplerian</strong></em></a> <em>object from the current one.</em>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="n">Keplerian</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Keplerian</span><span class="o">::</span><span class="k">operator</span><span class="o">-=</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-26-2"><a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Keplerian</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">_frame_</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">other</span>
-</span><span id="__span-26-3"><a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a><span class="p">)</span><span class="w"> </span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-27-1"><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="n">Keplerian</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Keplerian</span><span class="o">::</span><span class="k">operator</span><span class="o">-=</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-27-2"><a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Keplerian</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">_frame_</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">other</span>
+</span><span id="__span-27-3"><a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a><span class="p">)</span><span class="w"> </span>
 </span></code></pre></div></p>
 <p><strong>Parameters:</strong></p>
 <ul>
@@ -6803,9 +6821,9 @@ You're not viewing the latest version.
 
 <h3 id="function-operator_5">function operator/<a class="headerlink" href="#function-operator_5" title="Permanent link">&para;</a></h3>
 <p><em>Divides the</em> <a href="./"><em><strong>Keplerian</strong></em></a> <em>state vector by a time.</em>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-27-1"><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="n">KeplerianPartial</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">_frame_</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Keplerian</span><span class="o">::</span><span class="k">operator</span><span class="o">/</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-27-2"><a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Time</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">time</span>
-</span><span id="__span-27-3"><a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-28-1"><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="n">KeplerianPartial</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">_frame_</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Keplerian</span><span class="o">::</span><span class="k">operator</span><span class="o">/</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-28-2"><a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Time</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">time</span>
+</span><span id="__span-28-3"><a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
 </span></code></pre></div></p>
 <p><strong>Parameters:</strong></p>
 <ul>
@@ -6817,9 +6835,9 @@ You're not viewing the latest version.
 
 <h3 id="function-operator_6">function operator/<a class="headerlink" href="#function-operator_6" title="Permanent link">&para;</a></h3>
 <p><em>Divides the</em> <a href="./"><em><strong>Keplerian</strong></em></a> <em>state vector by another</em><a href="./"><em><strong>Keplerian</strong></em></a> <em>object.</em>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-28-1"><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="n">Keplerian</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Keplerian</span><span class="o">::</span><span class="k">operator</span><span class="o">/</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-28-2"><a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Unitless</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">divisor</span>
-</span><span id="__span-28-3"><a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-29-1"><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="n">Keplerian</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Keplerian</span><span class="o">::</span><span class="k">operator</span><span class="o">/</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-29-2"><a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Unitless</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">divisor</span>
+</span><span id="__span-29-3"><a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
 </span></code></pre></div></p>
 <p><strong>Parameters:</strong></p>
 <ul>
@@ -6831,9 +6849,9 @@ You're not viewing the latest version.
 
 <h3 id="function-operator_7">function operator/=<a class="headerlink" href="#function-operator_7" title="Permanent link">&para;</a></h3>
 <p><em>Divides the</em> <a href="./"><em><strong>Keplerian</strong></em></a> <em>state vector by a scalar.</em>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-29-1"><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="n">Keplerian</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Keplerian</span><span class="o">::</span><span class="k">operator</span><span class="o">/=</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-29-2"><a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Unitless</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">divisor</span>
-</span><span id="__span-29-3"><a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a><span class="p">)</span><span class="w"> </span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-30-1"><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a><span class="n">Keplerian</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Keplerian</span><span class="o">::</span><span class="k">operator</span><span class="o">/=</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-30-2"><a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Unitless</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">divisor</span>
+</span><span id="__span-30-3"><a id="__codelineno-30-3" name="__codelineno-30-3" href="#__codelineno-30-3"></a><span class="p">)</span><span class="w"> </span>
 </span></code></pre></div></p>
 <p><strong>Parameters:</strong></p>
 <ul>
@@ -6845,9 +6863,9 @@ You're not viewing the latest version.
 
 <h3 id="function-operator_8">function operator=<a class="headerlink" href="#function-operator_8" title="Permanent link">&para;</a></h3>
 <p><em>Move assignment operator for</em> <a href="./"><em><strong>Keplerian</strong></em></a> <em>.</em>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-30-1"><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a><span class="n">Keplerian</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Keplerian</span><span class="o">::</span><span class="k">operator</span><span class="o">=</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-30-2"><a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a><span class="w">    </span><span class="n">Keplerian</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">_frame_</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">other</span>
-</span><span id="__span-30-3"><a id="__codelineno-30-3" name="__codelineno-30-3" href="#__codelineno-30-3"></a><span class="p">)</span><span class="w"> </span><span class="k">noexcept</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-31-1"><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a><span class="n">Keplerian</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Keplerian</span><span class="o">::</span><span class="k">operator</span><span class="o">=</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-31-2"><a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a><span class="w">    </span><span class="n">Keplerian</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">_frame_</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">other</span>
+</span><span id="__span-31-3"><a id="__codelineno-31-3" name="__codelineno-31-3" href="#__codelineno-31-3"></a><span class="p">)</span><span class="w"> </span><span class="k">noexcept</span>
 </span></code></pre></div></p>
 <p><strong>Parameters:</strong></p>
 <ul>
@@ -6859,9 +6877,9 @@ You're not viewing the latest version.
 
 <h3 id="function-operator_9">function operator=<a class="headerlink" href="#function-operator_9" title="Permanent link">&para;</a></h3>
 <p><em>Copy assignment operator for</em> <a href="./"><em><strong>Keplerian</strong></em></a> <em>.</em>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-31-1"><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a><span class="n">Keplerian</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Keplerian</span><span class="o">::</span><span class="k">operator</span><span class="o">=</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-31-2"><a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Keplerian</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">_frame_</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">other</span>
-</span><span id="__span-31-3"><a id="__codelineno-31-3" name="__codelineno-31-3" href="#__codelineno-31-3"></a><span class="p">)</span><span class="w"> </span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-32-1"><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a><span class="n">Keplerian</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Keplerian</span><span class="o">::</span><span class="k">operator</span><span class="o">=</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-32-2"><a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Keplerian</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">_frame_</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">other</span>
+</span><span id="__span-32-3"><a id="__codelineno-32-3" name="__codelineno-32-3" href="#__codelineno-32-3"></a><span class="p">)</span><span class="w"> </span>
 </span></code></pre></div></p>
 <p><strong>Parameters:</strong></p>
 <ul>
@@ -6873,9 +6891,9 @@ You're not viewing the latest version.
 
 <h3 id="function-operator_10">function operator==<a class="headerlink" href="#function-operator_10" title="Permanent link">&para;</a></h3>
 <p><em>Checks if two</em> <a href="./"><em><strong>Keplerian</strong></em></a> <em>objects are equal.</em>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-32-1"><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a><span class="kt">bool</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Keplerian</span><span class="o">::</span><span class="k">operator</span><span class="o">==</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-32-2"><a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Keplerian</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">_frame_</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">other</span>
-</span><span id="__span-32-3"><a id="__codelineno-32-3" name="__codelineno-32-3" href="#__codelineno-32-3"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-33-1"><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a><span class="kt">bool</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Keplerian</span><span class="o">::</span><span class="k">operator</span><span class="o">==</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-33-2"><a id="__codelineno-33-2" name="__codelineno-33-2" href="#__codelineno-33-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Keplerian</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">_frame_</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">other</span>
+</span><span id="__span-33-3"><a id="__codelineno-33-3" name="__codelineno-33-3" href="#__codelineno-33-3"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
 </span></code></pre></div></p>
 <p><strong>Parameters:</strong></p>
 <ul>
@@ -6887,62 +6905,62 @@ You're not viewing the latest version.
 
 <h3 id="function-set_argument_of_perigee">function set_argument_of_perigee<a class="headerlink" href="#function-set_argument_of_perigee" title="Permanent link">&para;</a></h3>
 <p><em>Get the argument of perigee of the</em> <a href="./"><em><strong>Keplerian</strong></em></a> <em>state vector.</em>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-33-1"><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a><span class="kr">inline</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Keplerian</span><span class="o">::</span><span class="n">set_argument_of_perigee</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-33-2"><a id="__codelineno-33-2" name="__codelineno-33-2" href="#__codelineno-33-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Angle</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">argPerigee</span>
-</span><span id="__span-33-3"><a id="__codelineno-33-3" name="__codelineno-33-3" href="#__codelineno-33-3"></a><span class="p">)</span><span class="w"> </span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-34-1"><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a><span class="kr">inline</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Keplerian</span><span class="o">::</span><span class="n">set_argument_of_perigee</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-34-2"><a id="__codelineno-34-2" name="__codelineno-34-2" href="#__codelineno-34-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Angle</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">argPerigee</span>
+</span><span id="__span-34-3"><a id="__codelineno-34-3" name="__codelineno-34-3" href="#__codelineno-34-3"></a><span class="p">)</span><span class="w"> </span>
 </span></code></pre></div></p>
 <hr>
 
 <h3 id="function-set_eccentricity">function set_eccentricity<a class="headerlink" href="#function-set_eccentricity" title="Permanent link">&para;</a></h3>
 <p><em>Set the eccentricity of the</em> <a href="./"><em><strong>Keplerian</strong></em></a> <em>state vector.</em>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-34-1"><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a><span class="kr">inline</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Keplerian</span><span class="o">::</span><span class="n">set_eccentricity</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-34-2"><a id="__codelineno-34-2" name="__codelineno-34-2" href="#__codelineno-34-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Unitless</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">eccentricity</span>
-</span><span id="__span-34-3"><a id="__codelineno-34-3" name="__codelineno-34-3" href="#__codelineno-34-3"></a><span class="p">)</span><span class="w"> </span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-35-1"><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a><span class="kr">inline</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Keplerian</span><span class="o">::</span><span class="n">set_eccentricity</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-35-2"><a id="__codelineno-35-2" name="__codelineno-35-2" href="#__codelineno-35-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Unitless</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">eccentricity</span>
+</span><span id="__span-35-3"><a id="__codelineno-35-3" name="__codelineno-35-3" href="#__codelineno-35-3"></a><span class="p">)</span><span class="w"> </span>
 </span></code></pre></div></p>
 <hr>
 
 <h3 id="function-set_inclination">function set_inclination<a class="headerlink" href="#function-set_inclination" title="Permanent link">&para;</a></h3>
 <p><em>Set the inclination of the</em> <a href="./"><em><strong>Keplerian</strong></em></a> <em>state vector.</em>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-35-1"><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a><span class="kr">inline</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Keplerian</span><span class="o">::</span><span class="n">set_inclination</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-35-2"><a id="__codelineno-35-2" name="__codelineno-35-2" href="#__codelineno-35-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Angle</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">inclination</span>
-</span><span id="__span-35-3"><a id="__codelineno-35-3" name="__codelineno-35-3" href="#__codelineno-35-3"></a><span class="p">)</span><span class="w"> </span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-36-1"><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a><span class="kr">inline</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Keplerian</span><span class="o">::</span><span class="n">set_inclination</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-36-2"><a id="__codelineno-36-2" name="__codelineno-36-2" href="#__codelineno-36-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Angle</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">inclination</span>
+</span><span id="__span-36-3"><a id="__codelineno-36-3" name="__codelineno-36-3" href="#__codelineno-36-3"></a><span class="p">)</span><span class="w"> </span>
 </span></code></pre></div></p>
 <hr>
 
 <h3 id="function-set_right_ascension">function set_right_ascension<a class="headerlink" href="#function-set_right_ascension" title="Permanent link">&para;</a></h3>
 <p><em>Set the right ascension of the ascending node of the</em> <a href="./"><em><strong>Keplerian</strong></em></a> <em>state vector.</em>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-36-1"><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a><span class="kr">inline</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Keplerian</span><span class="o">::</span><span class="n">set_right_ascension</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-36-2"><a id="__codelineno-36-2" name="__codelineno-36-2" href="#__codelineno-36-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Angle</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">rightAscension</span>
-</span><span id="__span-36-3"><a id="__codelineno-36-3" name="__codelineno-36-3" href="#__codelineno-36-3"></a><span class="p">)</span><span class="w"> </span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-37-1"><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a><span class="kr">inline</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Keplerian</span><span class="o">::</span><span class="n">set_right_ascension</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-37-2"><a id="__codelineno-37-2" name="__codelineno-37-2" href="#__codelineno-37-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Angle</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">rightAscension</span>
+</span><span id="__span-37-3"><a id="__codelineno-37-3" name="__codelineno-37-3" href="#__codelineno-37-3"></a><span class="p">)</span><span class="w"> </span>
 </span></code></pre></div></p>
 <hr>
 
 <h3 id="function-set_semimajor">function set_semimajor<a class="headerlink" href="#function-set_semimajor" title="Permanent link">&para;</a></h3>
 <p><em>Set the semimajor axis of the</em> <a href="./"><em><strong>Keplerian</strong></em></a> <em>state vector.</em>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-37-1"><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a><span class="kr">inline</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Keplerian</span><span class="o">::</span><span class="n">set_semimajor</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-37-2"><a id="__codelineno-37-2" name="__codelineno-37-2" href="#__codelineno-37-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Distance</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">semimajor</span>
-</span><span id="__span-37-3"><a id="__codelineno-37-3" name="__codelineno-37-3" href="#__codelineno-37-3"></a><span class="p">)</span><span class="w"> </span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-38-1"><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a><span class="kr">inline</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Keplerian</span><span class="o">::</span><span class="n">set_semimajor</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-38-2"><a id="__codelineno-38-2" name="__codelineno-38-2" href="#__codelineno-38-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Distance</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">semimajor</span>
+</span><span id="__span-38-3"><a id="__codelineno-38-3" name="__codelineno-38-3" href="#__codelineno-38-3"></a><span class="p">)</span><span class="w"> </span>
 </span></code></pre></div></p>
 <hr>
 
 <h3 id="function-set_true_anomaly">function set_true_anomaly<a class="headerlink" href="#function-set_true_anomaly" title="Permanent link">&para;</a></h3>
 <p><em>Get the true anomaly of the</em> <a href="./"><em><strong>Keplerian</strong></em></a> <em>state vector.</em>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-38-1"><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a><span class="kr">inline</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Keplerian</span><span class="o">::</span><span class="n">set_true_anomaly</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-38-2"><a id="__codelineno-38-2" name="__codelineno-38-2" href="#__codelineno-38-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Angle</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">trueAnomaly</span>
-</span><span id="__span-38-3"><a id="__codelineno-38-3" name="__codelineno-38-3" href="#__codelineno-38-3"></a><span class="p">)</span><span class="w"> </span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-39-1"><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a><span class="kr">inline</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Keplerian</span><span class="o">::</span><span class="n">set_true_anomaly</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-39-2"><a id="__codelineno-39-2" name="__codelineno-39-2" href="#__codelineno-39-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Angle</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">trueAnomaly</span>
+</span><span id="__span-39-3"><a id="__codelineno-39-3" name="__codelineno-39-3" href="#__codelineno-39-3"></a><span class="p">)</span><span class="w"> </span>
 </span></code></pre></div></p>
 <hr>
 
 <h3 id="function-keplerian">function ~Keplerian<a class="headerlink" href="#function-keplerian" title="Permanent link">&para;</a></h3>
 <p><em>Destructor for</em> <a href="./"><em><strong>Keplerian</strong></em></a> <em>.</em>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-39-1"><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Keplerian</span><span class="o">::~</span><span class="n">Keplerian</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">default</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-40-1"><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Keplerian</span><span class="o">::~</span><span class="n">Keplerian</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">default</span>
 </span></code></pre></div></p>
 <p>Cleans up the <a href="./"><strong>Keplerian</strong></a> object. </p>
 <hr>
 <h2 id="public-static-functions-documentation">Public Static Functions Documentation<a class="headerlink" href="#public-static-functions-documentation" title="Permanent link">&para;</a></h2>
 <h3 id="function-geo">function GEO<a class="headerlink" href="#function-geo" title="Permanent link">&para;</a></h3>
 <p><em>A static method to create</em> <a href="./"><em><strong>Keplerian</strong></em></a> <em>state vectors for a GEO orbit.</em>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-40-1"><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a><span class="k">static</span><span class="w"> </span><span class="n">Keplerian</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Keplerian</span><span class="o">::</span><span class="n">GEO</span><span class="w"> </span><span class="p">()</span><span class="w"> </span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-41-1"><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a><span class="k">static</span><span class="w"> </span><span class="n">Keplerian</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Keplerian</span><span class="o">::</span><span class="n">GEO</span><span class="w"> </span><span class="p">()</span><span class="w"> </span>
 </span></code></pre></div></p>
 <p>This method return predefined <a href="./"><strong>Keplerian</strong></a> state vectors for various types of orbits.</p>
 <p><strong>Parameters:</strong></p>
@@ -6955,7 +6973,7 @@ You're not viewing the latest version.
 
 <h3 id="function-gps">function GPS<a class="headerlink" href="#function-gps" title="Permanent link">&para;</a></h3>
 <p><em>A static method to create</em> <a href="./"><em><strong>Keplerian</strong></em></a> <em>state vectors for a GPS orbit.</em>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-41-1"><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a><span class="k">static</span><span class="w"> </span><span class="n">Keplerian</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Keplerian</span><span class="o">::</span><span class="n">GPS</span><span class="w"> </span><span class="p">()</span><span class="w"> </span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-42-1"><a id="__codelineno-42-1" name="__codelineno-42-1" href="#__codelineno-42-1"></a><span class="k">static</span><span class="w"> </span><span class="n">Keplerian</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Keplerian</span><span class="o">::</span><span class="n">GPS</span><span class="w"> </span><span class="p">()</span><span class="w"> </span>
 </span></code></pre></div></p>
 <p>This method return predefined <a href="./"><strong>Keplerian</strong></a> state vectors for various types of orbits.</p>
 <p><strong>Parameters:</strong></p>
@@ -6968,7 +6986,7 @@ You're not viewing the latest version.
 
 <h3 id="function-hmeo">function HMEO<a class="headerlink" href="#function-hmeo" title="Permanent link">&para;</a></h3>
 <p><em>A static method to create</em> <a href="./"><em><strong>Keplerian</strong></em></a> <em>state vectors for a HMEO orbit.</em>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-42-1"><a id="__codelineno-42-1" name="__codelineno-42-1" href="#__codelineno-42-1"></a><span class="k">static</span><span class="w"> </span><span class="n">Keplerian</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Keplerian</span><span class="o">::</span><span class="n">HMEO</span><span class="w"> </span><span class="p">()</span><span class="w"> </span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-43-1"><a id="__codelineno-43-1" name="__codelineno-43-1" href="#__codelineno-43-1"></a><span class="k">static</span><span class="w"> </span><span class="n">Keplerian</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Keplerian</span><span class="o">::</span><span class="n">HMEO</span><span class="w"> </span><span class="p">()</span><span class="w"> </span>
 </span></code></pre></div></p>
 <p>This method return predefined <a href="./"><strong>Keplerian</strong></a> state vectors for various types of orbits.</p>
 <p><strong>Parameters:</strong></p>
@@ -6981,7 +6999,7 @@ You're not viewing the latest version.
 
 <h3 id="function-leo">function LEO<a class="headerlink" href="#function-leo" title="Permanent link">&para;</a></h3>
 <p><em>A static method to create</em> <a href="./"><em><strong>Keplerian</strong></em></a> <em>state vectors for a LEO orbit.</em>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-43-1"><a id="__codelineno-43-1" name="__codelineno-43-1" href="#__codelineno-43-1"></a><span class="k">static</span><span class="w"> </span><span class="n">Keplerian</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Keplerian</span><span class="o">::</span><span class="n">LEO</span><span class="w"> </span><span class="p">()</span><span class="w"> </span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-44-1"><a id="__codelineno-44-1" name="__codelineno-44-1" href="#__codelineno-44-1"></a><span class="k">static</span><span class="w"> </span><span class="n">Keplerian</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Keplerian</span><span class="o">::</span><span class="n">LEO</span><span class="w"> </span><span class="p">()</span><span class="w"> </span>
 </span></code></pre></div></p>
 <p>This method return predefined <a href="./"><strong>Keplerian</strong></a> state vectors for various types of orbits.</p>
 <p><strong>Parameters:</strong></p>
@@ -6994,7 +7012,7 @@ You're not viewing the latest version.
 
 <h3 id="function-lmeo">function LMEO<a class="headerlink" href="#function-lmeo" title="Permanent link">&para;</a></h3>
 <p><em>A static method to create</em> <a href="./"><em><strong>Keplerian</strong></em></a> <em>state vectors for a LMEO orbit.</em>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-44-1"><a id="__codelineno-44-1" name="__codelineno-44-1" href="#__codelineno-44-1"></a><span class="k">static</span><span class="w"> </span><span class="n">Keplerian</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Keplerian</span><span class="o">::</span><span class="n">LMEO</span><span class="w"> </span><span class="p">()</span><span class="w"> </span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-45-1"><a id="__codelineno-45-1" name="__codelineno-45-1" href="#__codelineno-45-1"></a><span class="k">static</span><span class="w"> </span><span class="n">Keplerian</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Keplerian</span><span class="o">::</span><span class="n">LMEO</span><span class="w"> </span><span class="p">()</span><span class="w"> </span>
 </span></code></pre></div></p>
 <p>This method return predefined <a href="./"><strong>Keplerian</strong></a> state vectors for various types of orbits.</p>
 <p><strong>Parameters:</strong></p>

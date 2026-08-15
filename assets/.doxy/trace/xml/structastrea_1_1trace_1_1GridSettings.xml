@@ -16,7 +16,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/analysis/TraceConfig.hpp" line="111" column="17" bodyfile="astrea/trace/trace/analysis/TraceConfig.hpp" bodystart="111" bodyend="-1"/>
+        <location file="astrea/trace/trace/analysis/TraceConfig.hpp" line="110" column="17" bodyfile="astrea/trace/trace/analysis/TraceConfig.hpp" bodystart="110" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structastrea_1_1trace_1_1GridSettings_1ab7ccac92988018b84724760f533a4de5" prot="public" static="no" mutable="no">
         <type>Angle</type>
@@ -31,7 +31,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/analysis/TraceConfig.hpp" line="112" column="11" bodyfile="astrea/trace/trace/analysis/TraceConfig.hpp" bodystart="112" bodyend="-1"/>
+        <location file="astrea/trace/trace/analysis/TraceConfig.hpp" line="111" column="11" bodyfile="astrea/trace/trace/analysis/TraceConfig.hpp" bodystart="111" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structastrea_1_1trace_1_1GridSettings_1a94911ea80bd8835fa758db85d5daa957" prot="public" static="no" mutable="no">
         <type><ref refid="typedefs_8hpp_1adb267a53d491ab1e364558578b7aba52" kindref="member">LatRange</ref></type>
@@ -46,7 +46,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/analysis/TraceConfig.hpp" line="113" column="14" bodyfile="astrea/trace/trace/analysis/TraceConfig.hpp" bodystart="113" bodyend="-1"/>
+        <location file="astrea/trace/trace/analysis/TraceConfig.hpp" line="112" column="14" bodyfile="astrea/trace/trace/analysis/TraceConfig.hpp" bodystart="112" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structastrea_1_1trace_1_1GridSettings_1ad8efddf5f6e0fee3f6e64f994d814001" prot="public" static="no" mutable="no">
         <type><ref refid="typedefs_8hpp_1aef2e871664c74fcdae58e1b6db70c9b5" kindref="member">LonRange</ref></type>
@@ -61,7 +61,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/analysis/TraceConfig.hpp" line="114" column="14" bodyfile="astrea/trace/trace/analysis/TraceConfig.hpp" bodystart="114" bodyend="-1"/>
+        <location file="astrea/trace/trace/analysis/TraceConfig.hpp" line="113" column="14" bodyfile="astrea/trace/trace/analysis/TraceConfig.hpp" bodystart="113" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="public-func">
@@ -77,7 +77,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/analysis/TraceConfig.hpp" line="116" column="5"/>
+        <location file="astrea/trace/trace/analysis/TraceConfig.hpp" line="115" column="5"/>
       </memberdef>
       <memberdef kind="function" id="structastrea_1_1trace_1_1GridSettings_1a38fec2af578c41b5b790fd7fa594adb1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
@@ -95,14 +95,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/analysis/TraceConfig.hpp" line="118" column="5" bodyfile="astrea/trace/trace/analysis/TraceConfig.hpp" bodystart="118" bodyend="131"/>
+        <location file="astrea/trace/trace/analysis/TraceConfig.hpp" line="117" column="5" bodyfile="astrea/trace/trace/analysis/TraceConfig.hpp" bodystart="117" bodyend="130"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="astrea/trace/trace/analysis/TraceConfig.hpp" line="110" column="1" bodyfile="astrea/trace/trace/analysis/TraceConfig.hpp" bodystart="110" bodyend="132"/>
+    <location file="astrea/trace/trace/analysis/TraceConfig.hpp" line="109" column="1" bodyfile="astrea/trace/trace/analysis/TraceConfig.hpp" bodystart="109" bodyend="131"/>
     <listofallmembers>
       <member refid="structastrea_1_1trace_1_1GridSettings_1adbc2d04551bf94cd343c909c090c70b9" prot="public" virt="non-virtual"><scope>astrea::trace::GridSettings</scope><name>GridSettings</name></member>
       <member refid="structastrea_1_1trace_1_1GridSettings_1a38fec2af578c41b5b790fd7fa594adb1" prot="public" virt="non-virtual"><scope>astrea::trace::GridSettings</scope><name>GridSettings</name></member>

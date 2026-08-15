@@ -6277,7 +6277,7 @@ You're not viewing the latest version.
 </tr>
 <tr>
 <td style="text-align: right;"></td>
-<td style="text-align: left;"><a href="#function-statehistory-22"><strong>StateHistory</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> std::size_t &amp; objectId) <br><em>Constructor that initializes</em> <a href="./"><em><strong>StateHistory</strong></em></a> <em>with a specific object ID.</em></td>
+<td style="text-align: left;"><a href="#function-statehistory-22"><strong>StateHistory</strong></a> (const std::size_t &amp; objectId) <br><em>Constructor that initializes</em> <a href="./"><em><strong>StateHistory</strong></em></a> <em>with a specific object ID.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;"><a href="./#typedef-iterator"><strong>iterator</strong></a></td>
@@ -6296,15 +6296,15 @@ You're not viewing the latest version.
 <td style="text-align: left;"><a href="#function-cend"><strong>cend</strong></a> () const<br><em>Returns a constant iterator to the end of the state history.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>void</strong></a></td>
+<td style="text-align: right;">void</td>
 <td style="text-align: left;"><a href="#function-clear"><strong>clear</strong></a> () <br><em>Clears the state history, removing all stored states.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>void</strong></a></td>
+<td style="text-align: right;">void</td>
 <td style="text-align: left;"><a href="#function-convert_to_set"><strong>convert_to_set</strong></a> () <br><em>Converts the orbital elements of all states in the history to a different type.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>bool</strong></a></td>
+<td style="text-align: right;">bool</td>
 <td style="text-align: left;"><a href="#function-empty"><strong>empty</strong></a> () const<br><em>Checks if the state history is empty.</em></td>
 </tr>
 <tr>
@@ -6316,31 +6316,31 @@ You're not viewing the latest version.
 <td style="text-align: left;"><a href="#function-end-22"><strong>end</strong></a> () const<br><em>Returns a constant iterator to the end of the state history.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1Date/"><strong>Date</strong></a> &amp;</td>
+<td style="text-align: right;">const <a href="../classastrea_1_1astro_1_1Date/"><strong>Date</strong></a> &amp;</td>
 <td style="text-align: left;"><a href="#function-epoch"><strong>epoch</strong></a> () const<br><em>Retrieves the epoch (first date) of the state history.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>void</strong></a></td>
-<td style="text-align: left;"><a href="#function-fast_append"><strong>fast_append</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1State/"><strong>State</strong></a> &amp; state) <br><em>Appends a state to the end of the history without sorting.</em></td>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-fast_append"><strong>fast_append</strong></a> (const <a href="../classastrea_1_1astro_1_1State/"><strong>State</strong></a> &amp; state) <br><em>Appends a state to the end of the history without sorting.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>void</strong></a></td>
-<td style="text-align: left;"><a href="#function-fast_prepend"><strong>fast_prepend</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1State/"><strong>State</strong></a> &amp; state) <br><em>Prepends a state to the beginning of the history without sorting.</em></td>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-fast_prepend"><strong>fast_prepend</strong></a> (const <a href="../classastrea_1_1astro_1_1State/"><strong>State</strong></a> &amp; state) <br><em>Prepends a state to the beginning of the history without sorting.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;"><a href="../classastrea_1_1astro_1_1State/"><strong>State</strong></a> &amp;</td>
 <td style="text-align: left;"><a href="#function-first-12"><strong>first</strong></a> () <br><em>Retrieves the first and last states in the history.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1State/"><strong>State</strong></a> &amp;</td>
+<td style="text-align: right;">const <a href="../classastrea_1_1astro_1_1State/"><strong>State</strong></a> &amp;</td>
 <td style="text-align: left;"><a href="#function-first-22"><strong>first</strong></a> () const<br><em>Retrieves the first and last states in the history.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1State/"><strong>State</strong></a> &amp;</td>
-<td style="text-align: left;"><a href="#function-get_closest_state"><strong>get_closest_state</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1Date/"><strong>Date</strong></a> &amp; date) const<br><em>Retrieves the closest state to a given date.</em></td>
+<td style="text-align: right;">const <a href="../classastrea_1_1astro_1_1State/"><strong>State</strong></a> &amp;</td>
+<td style="text-align: left;"><a href="#function-get_closest_state"><strong>get_closest_state</strong></a> (const <a href="../classastrea_1_1astro_1_1Date/"><strong>Date</strong></a> &amp; date) const<br><em>Retrieves the closest state to a given date.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> EventTimesMap &amp;</td>
+<td style="text-align: right;">const EventTimesMap &amp;</td>
 <td style="text-align: left;"><a href="#function-get_event_times-12"><strong>get_event_times</strong></a> () const<br><em>Retrieves the event times recorded during propagation.</em></td>
 </tr>
 <tr>
@@ -6353,38 +6353,38 @@ You're not viewing the latest version.
 </tr>
 <tr>
 <td style="text-align: right;"><a href="../classastrea_1_1astro_1_1State/"><strong>State</strong></a></td>
-<td style="text-align: left;"><a href="#function-get_state_at"><strong>get_state_at</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1Date/"><strong>Date</strong></a> &amp; date, <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>bool</strong></a> allowApproximation=<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>true</strong></a>) const<br><em>Retrieves the state at a specific date.</em></td>
+<td style="text-align: left;"><a href="#function-get_state_at"><strong>get_state_at</strong></a> (const <a href="../classastrea_1_1astro_1_1Date/"><strong>Date</strong></a> &amp; date, const bool allowApproximation=true) const<br><em>Retrieves the state at a specific date.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>void</strong></a></td>
-<td style="text-align: left;"><a href="#function-insert-12"><strong>insert</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1State/"><strong>State</strong></a> &amp; state) <br><em>Inserts a state at a specific date into the history.</em></td>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-insert-12"><strong>insert</strong></a> (const <a href="../classastrea_1_1astro_1_1State/"><strong>State</strong></a> &amp; state) <br><em>Inserts a state at a specific date into the history.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>void</strong></a></td>
-<td style="text-align: left;"><a href="#function-insert-22"><strong>insert</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="./"><strong>StateHistory</strong></a> &amp; stateHistory) <br><em>Inserts multiple states from another</em> <a href="./"><em><strong>StateHistory</strong></em></a> <em>into this history.</em></td>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-insert-22"><strong>insert</strong></a> (const <a href="./"><strong>StateHistory</strong></a> &amp; stateHistory) <br><em>Inserts multiple states from another</em> <a href="./"><em><strong>StateHistory</strong></em></a> <em>into this history.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;"><a href="../classastrea_1_1astro_1_1State/"><strong>State</strong></a> &amp;</td>
 <td style="text-align: left;"><a href="#function-last-12"><strong>last</strong></a> () <br><em>Retrieves the last state in the history.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1State/"><strong>State</strong></a> &amp;</td>
+<td style="text-align: right;">const <a href="../classastrea_1_1astro_1_1State/"><strong>State</strong></a> &amp;</td>
 <td style="text-align: left;"><a href="#function-last-22"><strong>last</strong></a> () const<br><em>Retrieves the last state in the history.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>void</strong></a></td>
-<td style="text-align: left;"><a href="#function-set_event_times"><strong>set_event_times</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> EventTimesMap &amp; eventTimes) <br><em>Sets the event times recorded during propagation.</em></td>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-set_event_times"><strong>set_event_times</strong></a> (const EventTimesMap &amp; eventTimes) <br><em>Sets the event times recorded during propagation.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>void</strong></a></td>
-<td style="text-align: left;"><a href="#function-set_object_id"><strong>set_object_id</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> std::size_t &amp; objectId) <br><em>Sets the object ID for this state history.</em></td>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-set_object_id"><strong>set_object_id</strong></a> (const std::size_t &amp; objectId) <br><em>Sets the object ID for this state history.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">std::size_t</td>
 <td style="text-align: left;"><a href="#function-size"><strong>size</strong></a> () const<br><em>Get the number of states in the history.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>void</strong></a></td>
+<td style="text-align: right;">void</td>
 <td style="text-align: left;"><a href="#function-sort"><strong>sort</strong></a> () <br><em>Sorts the states in the history by date (epoch).</em></td>
 </tr>
 <tr>
@@ -6501,7 +6501,7 @@ You're not viewing the latest version.
 
 <h3 id="function-epoch">function epoch<a class="headerlink" href="#function-epoch" title="Permanent link">&para;</a></h3>
 <p><em>Retrieves the epoch (first date) of the state history.</em> 
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="kr">inline</span><span class="w"> </span><span class="k">const</span><span class="w">  </span><span class="n">Date</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">StateHistory</span><span class="o">::</span><span class="n">epoch</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="kr">inline</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Date</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">StateHistory</span><span class="o">::</span><span class="n">epoch</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </span></code></pre></div></p>
 <p><strong>Returns:</strong></p>
 <p>const <a href="../classastrea_1_1astro_1_1Date/"><strong>Date</strong></a>&amp; Reference to the epoch of the state history. </p>
@@ -6510,7 +6510,7 @@ You're not viewing the latest version.
 <h3 id="function-fast_append">function fast_append<a class="headerlink" href="#function-fast_append" title="Permanent link">&para;</a></h3>
 <p><em>Appends a state to the end of the history without sorting.</em> 
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="kr">inline</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">StateHistory</span><span class="o">::</span><span class="n">fast_append</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">State</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">state</span>
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">State</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">state</span>
 </span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="p">)</span><span class="w"> </span>
 </span></code></pre></div></p>
 <p>This method is faster than <a href="./#function-insert-12"><strong>insert()</strong></a> but does not maintain sorted order. Use with caution and only when you are sure the states are already sorted.</p>
@@ -6523,7 +6523,7 @@ You're not viewing the latest version.
 <h3 id="function-fast_prepend">function fast_prepend<a class="headerlink" href="#function-fast_prepend" title="Permanent link">&para;</a></h3>
 <p><em>Prepends a state to the beginning of the history without sorting.</em> 
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="kr">inline</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">StateHistory</span><span class="o">::</span><span class="n">fast_prepend</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">State</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">state</span>
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">State</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">state</span>
 </span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="p">)</span><span class="w"> </span>
 </span></code></pre></div></p>
 <p>This method is faster than <a href="./#function-insert-12"><strong>insert()</strong></a> but does not maintain sorted order. Use with caution and only when you are sure the states are already sorted.</p>
@@ -6543,7 +6543,7 @@ You're not viewing the latest version.
 
 <h3 id="function-first-22">function first [2/2]<a class="headerlink" href="#function-first-22" title="Permanent link">&para;</a></h3>
 <p><em>Retrieves the first and last states in the history.</em> 
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="kr">inline</span><span class="w"> </span><span class="k">const</span><span class="w">  </span><span class="n">State</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">StateHistory</span><span class="o">::</span><span class="n">first</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="kr">inline</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">State</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">StateHistory</span><span class="o">::</span><span class="n">first</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </span></code></pre></div></p>
 <p><strong>Returns:</strong></p>
 <p>const <a href="../classastrea_1_1astro_1_1State/"><strong>State</strong></a>&amp; Reference to the first state. </p>
@@ -6551,8 +6551,8 @@ You're not viewing the latest version.
 
 <h3 id="function-get_closest_state">function get_closest_state<a class="headerlink" href="#function-get_closest_state" title="Permanent link">&para;</a></h3>
 <p><em>Retrieves the closest state to a given date.</em> 
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="k">const</span><span class="w">  </span><span class="n">State</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">StateHistory</span><span class="o">::</span><span class="n">get_closest_state</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Date</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">date</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="k">const</span><span class="w"> </span><span class="n">State</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">StateHistory</span><span class="o">::</span><span class="n">get_closest_state</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Date</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">date</span>
 </span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
 </span></code></pre></div></p>
 <p>This function finds the state that is closest to the specified date, either before or after it, and returns it.</p>
@@ -6591,8 +6591,8 @@ You're not viewing the latest version.
 <h3 id="function-get_state_at">function get_state_at<a class="headerlink" href="#function-get_state_at" title="Permanent link">&para;</a></h3>
 <p><em>Retrieves the state at a specific date.</em> 
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="n">State</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">StateHistory</span><span class="o">::</span><span class="n">get_state_at</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Date</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">date</span><span class="p">,</span>
-</span><span id="__span-22-3"><a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="n">allowApproximation</span><span class="o">=</span><span class="nb">true</span>
+</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Date</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">date</span><span class="p">,</span>
+</span><span id="__span-22-3"><a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">allowApproximation</span><span class="o">=</span><span class="nb">true</span>
 </span><span id="__span-22-4"><a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
 </span></code></pre></div></p>
 <p>This function returns the state at the specified date, or the closest state if no exact match is found and allowApproximation is true, otherwise it interpolates to the given time.</p>
@@ -6610,7 +6610,7 @@ You're not viewing the latest version.
 <h3 id="function-insert-12">function insert [1/2]<a class="headerlink" href="#function-insert-12" title="Permanent link">&para;</a></h3>
 <p><em>Inserts a state at a specific date into the history.</em> 
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">StateHistory</span><span class="o">::</span><span class="n">insert</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">State</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">state</span>
+</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">State</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">state</span>
 </span><span id="__span-23-3"><a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a><span class="p">)</span><span class="w"> </span>
 </span></code></pre></div></p>
 <p><strong>Parameters:</strong></p>
@@ -6622,7 +6622,7 @@ You're not viewing the latest version.
 <h3 id="function-insert-22">function insert [2/2]<a class="headerlink" href="#function-insert-22" title="Permanent link">&para;</a></h3>
 <p><em>Inserts multiple states from another</em> <a href="./"><em><strong>StateHistory</strong></em></a> <em>into this history.</em>
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">StateHistory</span><span class="o">::</span><span class="n">insert</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-24-2"><a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">StateHistory</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">stateHistory</span>
+</span><span id="__span-24-2"><a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">StateHistory</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">stateHistory</span>
 </span><span id="__span-24-3"><a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a><span class="p">)</span><span class="w"> </span>
 </span></code></pre></div></p>
 <p><strong>Parameters:</strong></p>
@@ -6641,7 +6641,7 @@ You're not viewing the latest version.
 
 <h3 id="function-last-22">function last [2/2]<a class="headerlink" href="#function-last-22" title="Permanent link">&para;</a></h3>
 <p><em>Retrieves the last state in the history.</em> 
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="kr">inline</span><span class="w"> </span><span class="k">const</span><span class="w">  </span><span class="n">State</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">StateHistory</span><span class="o">::</span><span class="n">last</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="kr">inline</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">State</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">StateHistory</span><span class="o">::</span><span class="n">last</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </span></code></pre></div></p>
 <p><strong>Returns:</strong></p>
 <p>const <a href="../classastrea_1_1astro_1_1State/"><strong>State</strong></a>&amp; Reference to the last state. </p>

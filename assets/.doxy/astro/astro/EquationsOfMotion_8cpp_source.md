@@ -11,7 +11,7 @@
 /*
  * The GNU Lesser General Public License (LGPL)
  *
- * Copyright (c) 2026 Jay Iuliano
+ * Copyright (c) 2025-2026 Jay Iuliano
  *
  * This file is part of Astrea.
  * Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License
@@ -25,7 +25,7 @@
 
 #include <optional>
 
-#include <mp-units/systems/angular.h>
+#include <mp-units/systems/si.h>
 
 #include <astro/platforms/Vehicle.hpp>
 #include <astro/propagation/equations_of_motion/StateTransitionMatrix.hpp>
@@ -38,23 +38,23 @@
 #include <astro/types/typedefs.hpp>
 
 using namespace mp_units;
-using mp_units::angular::unit_symbols::rad;
 using mp_units::si::unit_symbols::kg;
 using mp_units::si::unit_symbols::m;
+using mp_units::si::unit_symbols::rad;
 using mp_units::si::unit_symbols::s;
 
 namespace astrea {
 namespace astro {
 
 EquationsOfMotion::EquationsOfMotion(const ForceModel& forces) :
-    forces(&forces)
+    forces(forces)
 {
 }
 
 StatePartial EquationsOfMotion::operator()(const State& state, const Vehicle& vehicle) const
 {
     // Find forces and torques caused by perturbations
-    const Perturbation perts = forces ? forces->compute_perturbations(state, vehicle) : Perturbation();
+    const Perturbation perts = (forces.size() > 0) ? forces.compute_perturbations(state, vehicle) : Perturbation();
 
     // Get vehicle-produced forces and torques
     const Perturbation control = vehicle.get_control_authority(state);

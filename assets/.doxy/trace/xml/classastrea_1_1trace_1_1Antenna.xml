@@ -102,7 +102,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/platforms/sensors/Antenna.hpp" line="280" column="9" bodyfile="astrea/trace/trace/platforms/sensors/Antenna.cpp" bodystart="34" bodyend="38"/>
+        <location file="astrea/trace/trace/platforms/sensors/Antenna.hpp" line="280" column="9" bodyfile="astrea/trace/trace/platforms/sensors/Antenna.cpp" bodystart="32" bodyend="36"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1trace_1_1Antenna_1a873ee85c06d71041371a7b8093da6e9e" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>CNR</type>
@@ -157,7 +157,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/platforms/sensors/Antenna.hpp" line="290" column="9" bodyfile="astrea/trace/trace/platforms/sensors/Antenna.cpp" bodystart="40" bodyend="44"/>
+        <location file="astrea/trace/trace/platforms/sensors/Antenna.hpp" line="290" column="9" bodyfile="astrea/trace/trace/platforms/sensors/Antenna.cpp" bodystart="38" bodyend="42"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1trace_1_1Antenna_1ae9663a2353427912cc04e39ea4dce985" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>Power</type>
@@ -212,7 +212,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/platforms/sensors/Antenna.hpp" line="300" column="11" bodyfile="astrea/trace/trace/platforms/sensors/Antenna.cpp" bodystart="46" bodyend="49"/>
+        <location file="astrea/trace/trace/platforms/sensors/Antenna.hpp" line="300" column="11" bodyfile="astrea/trace/trace/platforms/sensors/Antenna.cpp" bodystart="44" bodyend="47"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1trace_1_1Antenna_1a3c8b73694f5c02de3bb2c4c26c284c38" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>Gain</type>
@@ -243,7 +243,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/platforms/sensors/Antenna.hpp" line="308" column="10" bodyfile="astrea/trace/trace/platforms/sensors/Antenna.cpp" bodystart="51" bodyend="55"/>
+        <location file="astrea/trace/trace/platforms/sensors/Antenna.hpp" line="308" column="10" bodyfile="astrea/trace/trace/platforms/sensors/Antenna.cpp" bodystart="49" bodyend="53"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1trace_1_1Antenna_1af3a40a7c18a5f8d2cee552566612d5ce" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>Gain</type>
@@ -286,7 +286,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/platforms/sensors/Antenna.hpp" line="317" column="10" bodyfile="astrea/trace/trace/platforms/sensors/Antenna.cpp" bodystart="57" bodyend="60"/>
+        <location file="astrea/trace/trace/platforms/sensors/Antenna.hpp" line="317" column="10" bodyfile="astrea/trace/trace/platforms/sensors/Antenna.cpp" bodystart="55" bodyend="58"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1trace_1_1Antenna_1a00cb971ccc7a7bab213fc6b76786e8df" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>Gain</type>
@@ -329,7 +329,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/platforms/sensors/Antenna.hpp" line="326" column="10" bodyfile="astrea/trace/trace/platforms/sensors/Antenna.cpp" bodystart="62" bodyend="78"/>
+        <location file="astrea/trace/trace/platforms/sensors/Antenna.hpp" line="326" column="10" bodyfile="astrea/trace/trace/platforms/sensors/Antenna.cpp" bodystart="60" bodyend="76"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1trace_1_1Antenna_1a3aeba4608f83428aecae1bcb79245d04" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>Gain</type>
@@ -360,7 +360,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/platforms/sensors/Antenna.hpp" line="334" column="10" bodyfile="astrea/trace/trace/platforms/sensors/Antenna.cpp" bodystart="80" bodyend="83"/>
+        <location file="astrea/trace/trace/platforms/sensors/Antenna.hpp" line="334" column="10" bodyfile="astrea/trace/trace/platforms/sensors/Antenna.cpp" bodystart="78" bodyend="81"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1trace_1_1Antenna_1aee35a0c767d1a8e8c3bab1dce81f65db" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>Gain</type>
@@ -378,7 +378,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/platforms/sensors/Antenna.hpp" line="341" column="10" bodyfile="astrea/trace/trace/platforms/sensors/Antenna.cpp" bodystart="85" bodyend="88"/>
+        <location file="astrea/trace/trace/platforms/sensors/Antenna.hpp" line="341" column="10" bodyfile="astrea/trace/trace/platforms/sensors/Antenna.cpp" bodystart="83" bodyend="86"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1trace_1_1Antenna_1ae64ebe2f24a2b7420734dd4f30d50165" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>Gain</type>
@@ -396,7 +396,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/platforms/sensors/Antenna.hpp" line="348" column="10" bodyfile="astrea/trace/trace/platforms/sensors/Antenna.cpp" bodystart="90" bodyend="90"/>
+        <location file="astrea/trace/trace/platforms/sensors/Antenna.hpp" line="348" column="10" bodyfile="astrea/trace/trace/platforms/sensors/Antenna.cpp" bodystart="88" bodyend="88"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1trace_1_1Antenna_1a4c22a27c8aa0d1b7f6db8328e2d08261" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>Temperature</type>
@@ -414,7 +414,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/platforms/sensors/Antenna.hpp" line="355" column="17" bodyfile="astrea/trace/trace/platforms/sensors/Antenna.cpp" bodystart="91" bodyend="91"/>
+        <location file="astrea/trace/trace/platforms/sensors/Antenna.hpp" line="355" column="17" bodyfile="astrea/trace/trace/platforms/sensors/Antenna.cpp" bodystart="89" bodyend="89"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1trace_1_1Antenna_1ae34dd5d9f6723a78b2d1fba84c2445a0" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>Gain</type>
@@ -432,7 +432,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/platforms/sensors/Antenna.hpp" line="362" column="10" bodyfile="astrea/trace/trace/platforms/sensors/Antenna.cpp" bodystart="92" bodyend="92"/>
+        <location file="astrea/trace/trace/platforms/sensors/Antenna.hpp" line="362" column="10" bodyfile="astrea/trace/trace/platforms/sensors/Antenna.cpp" bodystart="90" bodyend="90"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1trace_1_1Antenna_1aaea5b02bd4d75caf2f7b3b5781fb42be" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>Gain</type>
@@ -450,7 +450,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/platforms/sensors/Antenna.hpp" line="369" column="10" bodyfile="astrea/trace/trace/platforms/sensors/Antenna.cpp" bodystart="93" bodyend="93"/>
+        <location file="astrea/trace/trace/platforms/sensors/Antenna.hpp" line="369" column="10" bodyfile="astrea/trace/trace/platforms/sensors/Antenna.cpp" bodystart="91" bodyend="91"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1trace_1_1Antenna_1af67b9e0fa5960f63ec44e82ff957473c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -479,7 +479,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/platforms/sensors/Antenna.hpp" line="376" column="10" bodyfile="astrea/trace/trace/platforms/sensors/Antenna.cpp" bodystart="95" bodyend="95"/>
+        <location file="astrea/trace/trace/platforms/sensors/Antenna.hpp" line="376" column="10" bodyfile="astrea/trace/trace/platforms/sensors/Antenna.cpp" bodystart="93" bodyend="93"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="private-func">
@@ -512,7 +512,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/platforms/sensors/Antenna.hpp" line="387" column="10" bodyfile="astrea/trace/trace/platforms/sensors/Antenna.cpp" bodystart="98" bodyend="102"/>
+        <location file="astrea/trace/trace/platforms/sensors/Antenna.hpp" line="387" column="10" bodyfile="astrea/trace/trace/platforms/sensors/Antenna.cpp" bodystart="96" bodyend="100"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1trace_1_1Antenna_1ac54b29bb9036eeee528a5e2df86aa56b" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>Gain</type>
@@ -543,7 +543,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/platforms/sensors/Antenna.hpp" line="395" column="10" bodyfile="astrea/trace/trace/platforms/sensors/Antenna.cpp" bodystart="104" bodyend="109"/>
+        <location file="astrea/trace/trace/platforms/sensors/Antenna.hpp" line="395" column="10" bodyfile="astrea/trace/trace/platforms/sensors/Antenna.cpp" bodystart="102" bodyend="107"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1trace_1_1Antenna_1aea90fdd1de1a90725bf45ab58eff08aa" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>Gain</type>
@@ -574,7 +574,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/platforms/sensors/Antenna.hpp" line="403" column="10" bodyfile="astrea/trace/trace/platforms/sensors/Antenna.cpp" bodystart="111" bodyend="115"/>
+        <location file="astrea/trace/trace/platforms/sensors/Antenna.hpp" line="403" column="10" bodyfile="astrea/trace/trace/platforms/sensors/Antenna.cpp" bodystart="109" bodyend="113"/>
       </memberdef>
     </sectiondef>
     <briefdescription>

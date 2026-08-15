@@ -341,7 +341,7 @@
       <member refid="classastrea_1_1trace_1_1GroundStation_1aa02547e4156317182568b01a7a0cfbbc" prot="public" virt="non-virtual"><scope>astrea::trace::GroundStation</scope><name>get_position</name></member>
       <member refid="classastrea_1_1trace_1_1GroundStation_1a6a57aad4c21f2f5912d91c3a84558d8d" prot="public" virt="non-virtual"><scope>astrea::trace::GroundStation</scope><name>get_position</name></member>
       <member refid="classastrea_1_1trace_1_1GroundStation_1ab297f3c3442da7955d6713b0c69b805d" prot="public" virt="non-virtual"><scope>astrea::trace::GroundStation</scope><name>get_velocity</name></member>
-      <member refid="classastrea_1_1trace_1_1GroundPoint_1af1ad0aabe7d3052c9aa763b71a44bae7" prot="public" virt="non-virtual"><scope>astrea::trace::GroundStation</scope><name>GroundPoint</name></member>
+      <member refid="classastrea_1_1trace_1_1GroundPoint_1a88a6cd34026bf2c4dbf71b0d3b9bb47f" prot="public" virt="non-virtual"><scope>astrea::trace::GroundStation</scope><name>GroundPoint</name></member>
       <member refid="classastrea_1_1trace_1_1GroundStation_1a81293896e0fd6e7dc2fc7f27f879449b" prot="public" virt="non-virtual"><scope>astrea::trace::GroundStation</scope><name>GroundStation</name></member>
       <member refid="classastrea_1_1trace_1_1GroundPoint_1ace6b8af2a097d94a4a01dfa9ed59c52a" prot="public" virt="non-virtual"><scope>astrea::trace::GroundStation</scope><name>operator==</name></member>
       <member refid="classastrea_1_1trace_1_1AccessObject_1aa7afccafee2c3bcb2b766cf9bf395799" prot="protected" virt="virtual"><scope>astrea::trace::GroundStation</scope><name>~AccessObject</name></member>

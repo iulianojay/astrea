@@ -4,7 +4,7 @@
     <compoundname>astrea::astro::detail::apply_nttp_template&lt; T, std::tuple&lt; Frames... &gt; &gt;</compoundname>
     <templateparamlist>
       <param>
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">template</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref> &gt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">class</ref></type>
+        <type>template&lt; auto &gt; class</type>
         <declname>T</declname>
         <defname>T</defname>
       </param>
@@ -16,7 +16,7 @@
     </templateparamlist>
     <sectiondef kind="public-type">
       <memberdef kind="typedef" id="structastrea_1_1astro_1_1detail_1_1apply__nttp__template_3_01T_00_01std_1_1tuple_3_01Frames_8_8_8_01_4_01_4_1a4111e9ec4db9a4c586dca7a5621a2801" prot="public" static="no">
-        <type>std::tuple&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">T</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Frames</ref>{}&gt;... &gt;</type>
+        <type>std::tuple&lt; T&lt; Frames{}&gt;... &gt;</type>
         <definition>using astrea::astro::detail::apply_nttp_template&lt; T, std::tuple&lt; Frames... &gt; &gt;::type =  std::tuple&lt;T&lt;Frames{}&gt;...&gt;</definition>
         <argsstring></argsstring>
         <name>type</name>

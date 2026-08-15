@@ -6238,7 +6238,7 @@ You're not viewing the latest version.
 
 
 <h1 id="class-astreaastroshell">Class astrea::astro::Shell<a class="headerlink" href="#class-astreaastroshell" title="Permanent link">&para;</a></h1>
-<p><strong>template &lt;<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>class</strong></a> <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Spacecraft_T</strong></a>&gt;</strong></p>
+<p><strong>template &lt;class Spacecraft_T&gt;</strong></p>
 <p><a href="../annotated/"><strong>ClassList</strong></a> <strong>&gt;</strong> <a href="../namespaceastrea/"><strong>astrea</strong></a> <strong>&gt;</strong> <a href="../namespaceastrea_1_1astro/"><strong>astro</strong></a> <strong>&gt;</strong> <a href="./"><strong>Shell</strong></a></p>
 <p><em>A</em> <a href="./"><em><strong>Shell</strong></em></a> <em>is a collection of planes, each containing a set of</em><a href="../classastrea_1_1astro_1_1Spacecraft/"><em><strong>Spacecraft</strong></em></a> <em>. It is used to represent sub-constellations of satellites in orbit.</em><a href="#detailed-description">More...</a></p>
 <ul>
@@ -6269,7 +6269,7 @@ You're not viewing the latest version.
 </thead>
 <tbody>
 <tr>
-<td style="text-align: right;">typedef <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1Shell_1_1sat__iterator/"><strong>sat_iterator</strong></a></td>
+<td style="text-align: right;">typedef const <a href="../classastrea_1_1astro_1_1Shell_1_1sat__iterator/"><strong>sat_iterator</strong></a></td>
 <td style="text-align: left;"><a href="#typedef-const_iterator"><strong>const_iterator</strong></a>  <br><em>Const iterator for iterating over all Planes in the</em> <a href="./"><em><strong>Shell</strong></em></a> <em>.</em></td>
 </tr>
 <tr>
@@ -6293,27 +6293,27 @@ You're not viewing the latest version.
 </tr>
 <tr>
 <td style="text-align: right;"></td>
-<td style="text-align: left;"><a href="#function-shell-24"><strong>Shell</strong></a> (std::vector&lt; <a href="../classastrea_1_1astro_1_1Plane/"><strong>Plane</strong></a>&lt; <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Spacecraft_T</strong></a> &gt; &gt; planes) <br><em>Constructor for</em> <a href="./"><em><strong>Shell</strong></em></a> <em>with a vector of planes.</em></td>
+<td style="text-align: left;"><a href="#function-shell-24"><strong>Shell</strong></a> (std::vector&lt; <a href="../classastrea_1_1astro_1_1Plane/"><strong>Plane</strong></a>&lt; Spacecraft_T &gt; &gt; planes) <br><em>Constructor for</em> <a href="./"><em><strong>Shell</strong></em></a> <em>with a vector of planes.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;"></td>
-<td style="text-align: left;"><a href="#function-shell-34"><strong>Shell</strong></a> (std::vector&lt; <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Spacecraft_T</strong></a> &gt; satellites) <br><em>Constructor for</em> <a href="./"><em><strong>Shell</strong></em></a> <em>with a vector of satellites.</em></td>
+<td style="text-align: left;"><a href="#function-shell-34"><strong>Shell</strong></a> (std::vector&lt; Spacecraft_T &gt; satellites) <br><em>Constructor for</em> <a href="./"><em><strong>Shell</strong></em></a> <em>with a vector of satellites.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;"></td>
-<td style="text-align: left;"><a href="#function-shell-44"><strong>Shell</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1Date/"><strong>Date</strong></a> &amp; epoch, <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Distance</strong></a> &amp; semimajor, <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Angle</strong></a> &amp; inclination, <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> std::size_t &amp; T, <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> std::size_t &amp; P, <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Unitless</strong></a> &amp; F, <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Angle</strong></a> &amp; anchorRAAN=0.0 *mp_units::angular::unit_symbols::rad, <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Angle</strong></a> &amp; anchorAnomaly=0.0 *mp_units::angular::unit_symbols::rad) <br><em>Constructor for</em> <a href="./"><em><strong>Shell</strong></em></a> <em>with a Walker parameters.</em></td>
+<td style="text-align: left;"><a href="#function-shell-44"><strong>Shell</strong></a> (const <a href="../classastrea_1_1astro_1_1Date/"><strong>Date</strong></a> &amp; epoch, const Distance &amp; semimajor, const Angle &amp; inclination, const std::size_t &amp; T, const std::size_t &amp; P, const Unitless &amp; F, const Angle &amp; anchorRAAN=0.0 *mp_units:<img alt="🇸🇮" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/1f1f8-1f1ee.svg" title=":si:" />:unit_symbols::rad, const Angle &amp; anchorAnomaly=0.0 *mp_units:<img alt="🇸🇮" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/1f1f8-1f1ee.svg" title=":si:" />:unit_symbols::rad) <br><em>Constructor for</em> <a href="./"><em><strong>Shell</strong></em></a> <em>with a Walker parameters.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>void</strong></a></td>
-<td style="text-align: left;"><a href="#function-add_plane"><strong>add_plane</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1Plane/"><strong>Plane</strong></a>&lt; <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Spacecraft_T</strong></a> &gt; &amp; plane) <br><em>Adds a plane to the shell.</em></td>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-add_plane"><strong>add_plane</strong></a> (const <a href="../classastrea_1_1astro_1_1Plane/"><strong>Plane</strong></a>&lt; Spacecraft_T &gt; &amp; plane) <br><em>Adds a plane to the shell.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>void</strong></a></td>
-<td style="text-align: left;"><a href="#function-add_spacecraft-12"><strong>add_spacecraft</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Spacecraft_T</strong></a> &amp; spacecraft, <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> std::size_t &amp; planeId) <br><em>Adds a spacecraft to a specific plane in the shell.</em></td>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-add_spacecraft-12"><strong>add_spacecraft</strong></a> (const Spacecraft_T &amp; spacecraft, const std::size_t &amp; planeId) <br><em>Adds a spacecraft to a specific plane in the shell.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>void</strong></a></td>
-<td style="text-align: left;"><a href="#function-add_spacecraft-22"><strong>add_spacecraft</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Spacecraft_T</strong></a> &amp; spacecraft) <br><em>Adds a spacecraft to the shell.</em></td>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-add_spacecraft-22"><strong>add_spacecraft</strong></a> (const Spacecraft_T &amp; spacecraft) <br><em>Adds a spacecraft to the shell.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;"><a href="./#typedef-iterator"><strong>iterator</strong></a></td>
@@ -6340,43 +6340,43 @@ You're not viewing the latest version.
 <td style="text-align: left;"><a href="#function-end-22"><strong>end</strong></a> () const<br><em>Get a const iterator to the end of the</em> <a href="./"><em><strong>Shell</strong></em></a> <em>.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> std::vector&lt; <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Spacecraft_T</strong></a> &gt;</td>
+<td style="text-align: right;">const std::vector&lt; Spacecraft_T &gt;</td>
 <td style="text-align: left;"><a href="#function-get_all_spacecraft"><strong>get_all_spacecraft</strong></a> () const<br><em>Returns a vector of all spacecraft in the shell.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> std::size_t</td>
+<td style="text-align: right;">const std::size_t</td>
 <td style="text-align: left;"><a href="#function-get_id"><strong>get_id</strong></a> () const<br></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1Plane/"><strong>Plane</strong></a>&lt; <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Spacecraft_T</strong></a> &gt; &amp;</td>
-<td style="text-align: left;"><a href="#function-get_plane"><strong>get_plane</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> std::size_t &amp; planeId) const<br><em>Returns a reference to a specific plane in the shell by its ID.</em></td>
+<td style="text-align: right;">const <a href="../classastrea_1_1astro_1_1Plane/"><strong>Plane</strong></a>&lt; Spacecraft_T &gt; &amp;</td>
+<td style="text-align: left;"><a href="#function-get_plane"><strong>get_plane</strong></a> (const std::size_t &amp; planeId) const<br><em>Returns a reference to a specific plane in the shell by its ID.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">std::vector&lt; <a href="../classastrea_1_1astro_1_1Plane/"><strong>Plane</strong></a>&lt; <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Spacecraft_T</strong></a> &gt; &gt; &amp;</td>
+<td style="text-align: right;">std::vector&lt; <a href="../classastrea_1_1astro_1_1Plane/"><strong>Plane</strong></a>&lt; Spacecraft_T &gt; &gt; &amp;</td>
 <td style="text-align: left;"><a href="#function-get_planes-12"><strong>get_planes</strong></a> () <br><em>Returns a reference to the vector of planes in the shell.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> std::vector&lt; <a href="../classastrea_1_1astro_1_1Plane/"><strong>Plane</strong></a>&lt; <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Spacecraft_T</strong></a> &gt; &gt; &amp;</td>
+<td style="text-align: right;">const std::vector&lt; <a href="../classastrea_1_1astro_1_1Plane/"><strong>Plane</strong></a>&lt; Spacecraft_T &gt; &gt; &amp;</td>
 <td style="text-align: left;"><a href="#function-get_planes-22"><strong>get_planes</strong></a> () const<br><em>Returns a constant reference to the vector of planes in the shell.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Spacecraft_T</strong></a> &amp;</td>
-<td style="text-align: left;"><a href="#function-get_spacecraft"><strong>get_spacecraft</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> std::size_t &amp; spacecraftId) const<br><em>Returns a reference to a specific spacecraft in the shell by its ID.</em></td>
+<td style="text-align: right;">const Spacecraft_T &amp;</td>
+<td style="text-align: left;"><a href="#function-get_spacecraft"><strong>get_spacecraft</strong></a> (const std::size_t &amp; spacecraftId) const<br><em>Returns a reference to a specific spacecraft in the shell by its ID.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> std::size_t</td>
+<td style="text-align: right;">const std::size_t</td>
 <td style="text-align: left;"><a href="#function-n_planes"><strong>n_planes</strong></a> () const<br><em>Returns the number of planes in the shell.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>void</strong></a></td>
-<td style="text-align: left;"><a href="#function-propagate-12"><strong>propagate</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Time</strong></a> &amp; propTime, <a href="../classastrea_1_1astro_1_1Integrator/"><strong>Integrator</strong></a> &amp; integrator) <br><em>Propagates the shell's spacecraft using the provided equations of motion and integrator.</em></td>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-propagate-12"><strong>propagate</strong></a> (const Time &amp; propTime, <a href="../classastrea_1_1astro_1_1Integrator/"><strong>Integrator</strong></a> &amp; integrator) <br><em>Propagates the shell's spacecraft using the provided equations of motion and integrator.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>void</strong></a></td>
-<td style="text-align: left;"><a href="#function-propagate-22"><strong>propagate</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1Date/"><strong>Date</strong></a> &amp; endEpoch, <a href="../classastrea_1_1astro_1_1Integrator/"><strong>Integrator</strong></a> &amp; integrator) <br><em>Propagates the shell's spacecraft using the provided equations of motion and integrator.</em></td>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-propagate-22"><strong>propagate</strong></a> (const <a href="../classastrea_1_1astro_1_1Date/"><strong>Date</strong></a> &amp; endEpoch, <a href="../classastrea_1_1astro_1_1Integrator/"><strong>Integrator</strong></a> &amp; integrator) <br><em>Propagates the shell's spacecraft using the provided equations of motion and integrator.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> std::size_t</td>
+<td style="text-align: right;">const std::size_t</td>
 <td style="text-align: left;"><a href="#function-size"><strong>size</strong></a> () const<br><em>Returns the size of the shell, which is the number of spacecraft it contains.</em></td>
 </tr>
 <tr>
@@ -6439,14 +6439,14 @@ You're not viewing the latest version.
 <h3 id="function-shell-44">function Shell [4/4]<a class="headerlink" href="#function-shell-44" title="Permanent link">&para;</a></h3>
 <p><em>Constructor for</em> <a href="./"><em><strong>Shell</strong></em></a> <em>with a Walker parameters.</em>
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Shell</span><span class="o">::</span><span class="n">Shell</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Date</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">epoch</span><span class="p">,</span>
-</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Distance</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">semimajor</span><span class="p">,</span>
-</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Angle</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">inclination</span><span class="p">,</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Date</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">epoch</span><span class="p">,</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Distance</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">semimajor</span><span class="p">,</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Angle</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">inclination</span><span class="p">,</span>
 </span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">T</span><span class="p">,</span>
 </span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">P</span><span class="p">,</span>
-</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Unitless</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">F</span><span class="p">,</span>
-</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Angle</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">anchorRAAN</span><span class="o">=</span><span class="mf">0.0</span><span class="w"> </span><span class="o">*</span><span class="n">mp_units</span><span class="o">::</span><span class="n">angular</span><span class="o">::</span><span class="n">unit_symbols</span><span class="o">::</span><span class="n">rad</span><span class="p">,</span>
-</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Angle</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">anchorAnomaly</span><span class="o">=</span><span class="mf">0.0</span><span class="w"> </span><span class="o">*</span><span class="n">mp_units</span><span class="o">::</span><span class="n">angular</span><span class="o">::</span><span class="n">unit_symbols</span><span class="o">::</span><span class="n">rad</span>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Unitless</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">F</span><span class="p">,</span>
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Angle</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">anchorRAAN</span><span class="o">=</span><span class="mf">0.0</span><span class="w"> </span><span class="o">*</span><span class="n">mp_units</span><span class="o">::</span><span class="n">si</span><span class="o">::</span><span class="n">unit_symbols</span><span class="o">::</span><span class="n">rad</span><span class="p">,</span>
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Angle</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">anchorAnomaly</span><span class="o">=</span><span class="mf">0.0</span><span class="w"> </span><span class="o">*</span><span class="n">mp_units</span><span class="o">::</span><span class="n">si</span><span class="o">::</span><span class="n">unit_symbols</span><span class="o">::</span><span class="n">rad</span>
 </span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="p">)</span><span class="w"> </span>
 </span></code></pre></div></p>
 <p><strong>Parameters:</strong></p>
@@ -6465,7 +6465,7 @@ You're not viewing the latest version.
 <h3 id="function-add_plane">function add_plane<a class="headerlink" href="#function-add_plane" title="Permanent link">&para;</a></h3>
 <p><em>Adds a plane to the shell.</em> 
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Shell</span><span class="o">::</span><span class="n">add_plane</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Plane</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">Spacecraft_T</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">plane</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Plane</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">Spacecraft_T</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">plane</span>
 </span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="p">)</span><span class="w"> </span>
 </span></code></pre></div></p>
 <p><strong>Parameters:</strong></p>
@@ -6477,7 +6477,7 @@ You're not viewing the latest version.
 <h3 id="function-add_spacecraft-12">function add_spacecraft [1/2]<a class="headerlink" href="#function-add_spacecraft-12" title="Permanent link">&para;</a></h3>
 <p><em>Adds a spacecraft to a specific plane in the shell.</em> 
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Shell</span><span class="o">::</span><span class="n">add_spacecraft</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Spacecraft_T</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">spacecraft</span><span class="p">,</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Spacecraft_T</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">spacecraft</span><span class="p">,</span>
 </span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">planeId</span>
 </span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="p">)</span><span class="w"> </span>
 </span></code></pre></div></p>
@@ -6491,7 +6491,7 @@ You're not viewing the latest version.
 <h3 id="function-add_spacecraft-22">function add_spacecraft [2/2]<a class="headerlink" href="#function-add_spacecraft-22" title="Permanent link">&para;</a></h3>
 <p><em>Adds a spacecraft to the shell.</em> 
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Shell</span><span class="o">::</span><span class="n">add_spacecraft</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Spacecraft_T</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">spacecraft</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Spacecraft_T</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">spacecraft</span>
 </span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="p">)</span><span class="w"> </span>
 </span></code></pre></div></p>
 <p><strong>Parameters:</strong></p>
@@ -6563,7 +6563,7 @@ You're not viewing the latest version.
 
 <h3 id="function-get_plane">function get_plane<a class="headerlink" href="#function-get_plane" title="Permanent link">&para;</a></h3>
 <p><em>Returns a reference to a specific plane in the shell by its ID.</em> 
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="k">const</span><span class="w">  </span><span class="n">Plane</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">Spacecraft_T</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Shell</span><span class="o">::</span><span class="n">get_plane</span><span class="w"> </span><span class="p">(</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="k">const</span><span class="w"> </span><span class="n">Plane</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">Spacecraft_T</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Shell</span><span class="o">::</span><span class="n">get_plane</span><span class="w"> </span><span class="p">(</span>
 </span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">planeId</span>
 </span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
 </span></code></pre></div></p>
@@ -6593,7 +6593,7 @@ You're not viewing the latest version.
 
 <h3 id="function-get_spacecraft">function get_spacecraft<a class="headerlink" href="#function-get_spacecraft" title="Permanent link">&para;</a></h3>
 <p><em>Returns a reference to a specific spacecraft in the shell by its ID.</em> 
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="k">const</span><span class="w">  </span><span class="n">Spacecraft_T</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Shell</span><span class="o">::</span><span class="n">get_spacecraft</span><span class="w"> </span><span class="p">(</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="k">const</span><span class="w"> </span><span class="n">Spacecraft_T</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Shell</span><span class="o">::</span><span class="n">get_spacecraft</span><span class="w"> </span><span class="p">(</span>
 </span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">spacecraftId</span>
 </span><span id="__span-20-3"><a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
 </span></code></pre></div></p>
@@ -6616,7 +6616,7 @@ You're not viewing the latest version.
 <h3 id="function-propagate-12">function propagate [1/2]<a class="headerlink" href="#function-propagate-12" title="Permanent link">&para;</a></h3>
 <p><em>Propagates the shell's spacecraft using the provided equations of motion and integrator.</em> 
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Shell</span><span class="o">::</span><span class="n">propagate</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Time</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">propTime</span><span class="p">,</span>
+</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Time</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">propTime</span><span class="p">,</span>
 </span><span id="__span-22-3"><a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a><span class="w">    </span><span class="n">Integrator</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">integrator</span>
 </span><span id="__span-22-4"><a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a><span class="p">)</span><span class="w"> </span>
 </span></code></pre></div></p>
@@ -6630,7 +6630,7 @@ You're not viewing the latest version.
 <h3 id="function-propagate-22">function propagate [2/2]<a class="headerlink" href="#function-propagate-22" title="Permanent link">&para;</a></h3>
 <p><em>Propagates the shell's spacecraft using the provided equations of motion and integrator.</em> 
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Shell</span><span class="o">::</span><span class="n">propagate</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Date</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">endEpoch</span><span class="p">,</span>
+</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Date</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">endEpoch</span><span class="p">,</span>
 </span><span id="__span-23-3"><a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a><span class="w">    </span><span class="n">Integrator</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">integrator</span>
 </span><span id="__span-23-4"><a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a><span class="p">)</span><span class="w"> </span>
 </span></code></pre></div></p>

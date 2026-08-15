@@ -11,7 +11,6 @@
 _Header file for the CelestialBody class, which represents a celestial body in an astrodynamics system._ [More...](#detailed-description)
 
 * `#include <mp-units/framework/symbol_text.h>`
-* `#include <mp-units/systems/angular.h>`
 * `#include <mp-units/systems/si.h>`
 * `#include <units/units.hpp>`
 * `#include <astro/astro.fwd.hpp>`
@@ -125,7 +124,7 @@ Jay Iuliano ([iuliano.jay@gmail.com](mailto:iuliano.jay@gmail.com))
 
 **Copyright:**
 
-Copyright (c) 2025 Jay Iuliano
+Copyright (c) 2025-2026 Jay Iuliano
 
 
 The GNU Lesser General Public License (LGPL)

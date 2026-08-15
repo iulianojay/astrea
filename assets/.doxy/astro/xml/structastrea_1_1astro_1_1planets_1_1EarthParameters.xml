@@ -17,14 +17,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/systems/celestial_bodies/Earth/Earth.hpp" line="40" column="26" bodyfile="astrea/astro/astro/systems/celestial_bodies/Earth/Earth.hpp" bodystart="40" bodyend="-1"/>
+        <location file="astrea/astro/astro/systems/celestial_bodies/Earth/Earth.hpp" line="41" column="26" bodyfile="astrea/astro/astro/systems/celestial_bodies/Earth/Earth.hpp" bodystart="41" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="astrea/astro/astro/systems/celestial_bodies/Earth/Earth.hpp" line="39" column="1" bodyfile="astrea/astro/astro/systems/celestial_bodies/Earth/Earth.hpp" bodystart="39" bodyend="41"/>
+    <location file="astrea/astro/astro/systems/celestial_bodies/Earth/Earth.hpp" line="40" column="1" bodyfile="astrea/astro/astro/systems/celestial_bodies/Earth/Earth.hpp" bodystart="40" bodyend="42"/>
     <listofallmembers>
       <member refid="structastrea_1_1astro_1_1planets_1_1EarthParameters_1a2ad322fcf6e680740b23f6a5de0d9abb" prot="public" virt="non-virtual"><scope>astrea::astro::planets::EarthParameters</scope><name>atmosphereModel</name></member>
     </listofallmembers>

@@ -39,7 +39,7 @@ _This file defines the PayloadPlatform class, which represents a platform that c
 
 | Type | Name |
 | ---: | :--- |
-| class | [**PayloadPlatform**](classastrea_1_1astro_1_1PayloadPlatform.md) &lt;[**class**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Payload\_T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)&gt;<br>_The_ [_**PayloadPlatform**_](classastrea_1_1astro_1_1PayloadPlatform.md) _class represents a platform that can have payloads attached to it. It provides methods to attach payloads and retrieve the list of attached payloads._ |
+| class | [**PayloadPlatform**](classastrea_1_1astro_1_1PayloadPlatform.md) &lt;class Payload\_T&gt;<br>_The_ [_**PayloadPlatform**_](classastrea_1_1astro_1_1PayloadPlatform.md) _class represents a platform that can have payloads attached to it. It provides methods to attach payloads and retrieve the list of attached payloads._ |
 
 
 
@@ -111,7 +111,7 @@ Jay Iuliano ([iuliano.jay@gmail.com](mailto:iuliano.jay@gmail.com))
 
 **Copyright:**
 
-Copyright (c) 2025 Jay Iuliano
+Copyright (c) 2025-2026 Jay Iuliano
 
 
 The GNU Lesser General Public License (LGPL)

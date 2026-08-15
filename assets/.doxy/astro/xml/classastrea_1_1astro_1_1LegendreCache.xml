@@ -2,9 +2,10 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
   <compounddef id="classastrea_1_1astro_1_1LegendreCache" kind="class" language="C++" prot="public">
     <compoundname>astrea::astro::LegendreCache</compoundname>
+    <includes refid="LegendreCache_8hpp" local="no">LegendreCache.hpp</includes>
     <templateparamlist>
       <param>
-        <type>IsCelestialBody <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+        <type>IsCelestialBody auto</type>
         <declname>_body_</declname>
         <defname>_body_</defname>
       </param>
@@ -21,10 +22,27 @@
         <defval>0</defval>
       </param>
     </templateparamlist>
+    <sectiondef kind="private-static-attrib">
+      <memberdef kind="variable" id="classastrea_1_1astro_1_1LegendreCache_1acac0bb03922d7a830cb2032e38221ccf" prot="private" static="yes" constexpr="yes" mutable="no">
+        <type>constexpr std::size_t</type>
+        <definition>constexpr std::size_t astrea::astro::LegendreCache&lt; _body_, _degree_, _order_ &gt;::_span</definition>
+        <argsstring></argsstring>
+        <name>_span</name>
+        <qualifiedname>astrea::astro::LegendreCache::_span</qualifiedname>
+        <initializer>= _order_ + 1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/LegendreCache.hpp" line="79" column="34" bodyfile="astrea/astro/astro/propagation/force_models/LegendreCache.hpp" bodystart="79" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
     <sectiondef kind="private-attrib">
-      <memberdef kind="variable" id="classastrea_1_1astro_1_1LegendreCache_1a4236e259a878b3d5c6fa9a4c6efcc779" prot="private" static="no" mutable="no">
-        <type>std::array&lt; std::array&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Unitless</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_order_</ref>+1 &gt;, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_degree_</ref>+1 &gt;</type>
-        <definition>std::array&lt;std::array&lt;Unitless, _order_ + 1&gt;, _degree_ + 1&gt; astrea::astro::LegendreCache&lt; _body_, _degree_, _order_ &gt;::_C</definition>
+      <memberdef kind="variable" id="classastrea_1_1astro_1_1LegendreCache_1a2eb5dc07a14c42d21dbc1ff816651a4f" prot="private" static="no" mutable="no">
+        <type>std::array&lt; Unitless, _span *(_degree_+1)&gt;</type>
+        <definition>std::array&lt;Unitless, _span*(_degree_ + 1)&gt; astrea::astro::LegendreCache&lt; _body_, _degree_, _order_ &gt;::_C</definition>
         <argsstring></argsstring>
         <name>_C</name>
         <qualifiedname>astrea::astro::LegendreCache::_C</qualifiedname>
@@ -36,11 +54,11 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/propagation/force_models/OblatenessForce.hpp" line="78" column="16" bodyfile="astrea/astro/astro/propagation/force_models/OblatenessForce.hpp" bodystart="78" bodyend="78"/>
+        <location file="astrea/astro/astro/propagation/force_models/LegendreCache.hpp" line="80" column="16" bodyfile="astrea/astro/astro/propagation/force_models/LegendreCache.hpp" bodystart="80" bodyend="80"/>
       </memberdef>
-      <memberdef kind="variable" id="classastrea_1_1astro_1_1LegendreCache_1a23bf0298f8bb394c27a593fe70321b15" prot="private" static="no" mutable="no">
-        <type>std::array&lt; std::array&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Unitless</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_order_</ref>+1 &gt;, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_degree_</ref>+1 &gt;</type>
-        <definition>std::array&lt;std::array&lt;Unitless, _order_ + 1&gt;, _degree_ + 1&gt; astrea::astro::LegendreCache&lt; _body_, _degree_, _order_ &gt;::_S</definition>
+      <memberdef kind="variable" id="classastrea_1_1astro_1_1LegendreCache_1a4bdfded967782e5b16c2936eb99a933d" prot="private" static="no" mutable="no">
+        <type>std::array&lt; Unitless, _span *(_degree_+1)&gt;</type>
+        <definition>std::array&lt;Unitless, _span*(_degree_ + 1)&gt; astrea::astro::LegendreCache&lt; _body_, _degree_, _order_ &gt;::_S</definition>
         <argsstring></argsstring>
         <name>_S</name>
         <qualifiedname>astrea::astro::LegendreCache::_S</qualifiedname>
@@ -52,7 +70,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/propagation/force_models/OblatenessForce.hpp" line="79" column="16" bodyfile="astrea/astro/astro/propagation/force_models/OblatenessForce.hpp" bodystart="79" bodyend="79"/>
+        <location file="astrea/astro/astro/propagation/force_models/LegendreCache.hpp" line="81" column="16" bodyfile="astrea/astro/astro/propagation/force_models/LegendreCache.hpp" bodystart="81" bodyend="81"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="public-func">
@@ -87,7 +105,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/propagation/force_models/OblatenessForce.hpp" line="42" column="5" bodyfile="astrea/astro/astro/propagation/force_models/OblatenessForce.ipp" bodystart="57" bodyend="139"/>
+        <location file="astrea/astro/astro/propagation/force_models/LegendreCache.hpp" line="53" column="5" bodyfile="astrea/astro/astro/propagation/force_models/LegendreCache.ipp" bodystart="37" bodyend="103"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1LegendreCache_1aa31f365db8304aba2f9564586efe3bb2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -102,20 +120,20 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/propagation/force_models/OblatenessForce.hpp" line="47" column="5"/>
+        <location file="astrea/astro/astro/propagation/force_models/LegendreCache.hpp" line="58" column="5"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1astro_1_1LegendreCache_1a014de565c0ec6672a0c937e8c43765f4" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Unitless</ref></type>
-        <definition>Unitless astrea::astro::LegendreCache&lt; _body_, _degree_, _order_ &gt;::get_cosine_coefficient</definition>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1LegendreCache_1ae9c32e33dbb7213595731dc07444cec1" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const Unitless &amp;</type>
+        <definition>const Unitless &amp; astrea::astro::LegendreCache&lt; _body_, _degree_, _order_ &gt;::get_cosine_coefficient</definition>
         <argsstring>(const std::size_t &amp;n, const std::size_t &amp;m) const</argsstring>
         <name>get_cosine_coefficient</name>
         <qualifiedname>astrea::astro::LegendreCache::get_cosine_coefficient</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> std::size_t &amp;</type>
+          <type>const std::size_t &amp;</type>
           <declname>n</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> std::size_t &amp;</type>
+          <type>const std::size_t &amp;</type>
           <declname>m</declname>
         </param>
         <briefdescription>
@@ -145,20 +163,20 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/propagation/force_models/OblatenessForce.hpp" line="56" column="14" bodyfile="astrea/astro/astro/propagation/force_models/OblatenessForce.ipp" bodystart="190" bodyend="193"/>
+        <location file="astrea/astro/astro/propagation/force_models/LegendreCache.hpp" line="67" column="20" bodyfile="astrea/astro/astro/propagation/force_models/LegendreCache.ipp" bodystart="107" bodyend="110"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1astro_1_1LegendreCache_1a4b344b14c58ac18d377f56e5b50a4467" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Unitless</ref></type>
-        <definition>Unitless astrea::astro::LegendreCache&lt; _body_, _degree_, _order_ &gt;::get_sine_coefficient</definition>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1LegendreCache_1a0cf4151d908f1515eede81936436e2d2" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const Unitless &amp;</type>
+        <definition>const Unitless &amp; astrea::astro::LegendreCache&lt; _body_, _degree_, _order_ &gt;::get_sine_coefficient</definition>
         <argsstring>(const std::size_t &amp;n, const std::size_t &amp;m) const</argsstring>
         <name>get_sine_coefficient</name>
         <qualifiedname>astrea::astro::LegendreCache::get_sine_coefficient</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> std::size_t &amp;</type>
+          <type>const std::size_t &amp;</type>
           <declname>n</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> std::size_t &amp;</type>
+          <type>const std::size_t &amp;</type>
           <declname>m</declname>
         </param>
         <briefdescription>
@@ -188,19 +206,47 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/propagation/force_models/OblatenessForce.hpp" line="65" column="14" bodyfile="astrea/astro/astro/propagation/force_models/OblatenessForce.ipp" bodystart="197" bodyend="200"/>
+        <location file="astrea/astro/astro/propagation/force_models/LegendreCache.hpp" line="76" column="20" bodyfile="astrea/astro/astro/propagation/force_models/LegendreCache.ipp" bodystart="114" bodyend="117"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
+<para>Class to cache Legendre polynomial coefficients for a given celestial <emphasis>body</emphasis>, degree, and order. </para>
     </briefdescription>
     <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>_body_</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The celestial <emphasis>body</emphasis> for which the Legendre coefficients are cached </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>_degree_</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The maximum degree of the spherical harmonics </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>_order_</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The maximum order of the spherical harmonics </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
     </detaileddescription>
-    <location file="astrea/astro/astro/propagation/force_models/OblatenessForce.hpp" line="34" column="1" bodyfile="astrea/astro/astro/propagation/force_models/OblatenessForce.hpp" bodystart="34" bodyend="80"/>
+    <location file="astrea/astro/astro/propagation/force_models/LegendreCache.hpp" line="41" column="1" bodyfile="astrea/astro/astro/propagation/force_models/LegendreCache.hpp" bodystart="41" bodyend="82"/>
     <listofallmembers>
-      <member refid="classastrea_1_1astro_1_1LegendreCache_1a4236e259a878b3d5c6fa9a4c6efcc779" prot="private" virt="non-virtual"><scope>astrea::astro::LegendreCache</scope><name>_C</name></member>
-      <member refid="classastrea_1_1astro_1_1LegendreCache_1a23bf0298f8bb394c27a593fe70321b15" prot="private" virt="non-virtual"><scope>astrea::astro::LegendreCache</scope><name>_S</name></member>
-      <member refid="classastrea_1_1astro_1_1LegendreCache_1a014de565c0ec6672a0c937e8c43765f4" prot="public" virt="non-virtual"><scope>astrea::astro::LegendreCache</scope><name>get_cosine_coefficient</name></member>
-      <member refid="classastrea_1_1astro_1_1LegendreCache_1a4b344b14c58ac18d377f56e5b50a4467" prot="public" virt="non-virtual"><scope>astrea::astro::LegendreCache</scope><name>get_sine_coefficient</name></member>
+      <member refid="classastrea_1_1astro_1_1LegendreCache_1a2eb5dc07a14c42d21dbc1ff816651a4f" prot="private" virt="non-virtual"><scope>astrea::astro::LegendreCache</scope><name>_C</name></member>
+      <member refid="classastrea_1_1astro_1_1LegendreCache_1a4bdfded967782e5b16c2936eb99a933d" prot="private" virt="non-virtual"><scope>astrea::astro::LegendreCache</scope><name>_S</name></member>
+      <member refid="classastrea_1_1astro_1_1LegendreCache_1acac0bb03922d7a830cb2032e38221ccf" prot="private" virt="non-virtual"><scope>astrea::astro::LegendreCache</scope><name>_span</name></member>
+      <member refid="classastrea_1_1astro_1_1LegendreCache_1ae9c32e33dbb7213595731dc07444cec1" prot="public" virt="non-virtual"><scope>astrea::astro::LegendreCache</scope><name>get_cosine_coefficient</name></member>
+      <member refid="classastrea_1_1astro_1_1LegendreCache_1a0cf4151d908f1515eede81936436e2d2" prot="public" virt="non-virtual"><scope>astrea::astro::LegendreCache</scope><name>get_sine_coefficient</name></member>
       <member refid="classastrea_1_1astro_1_1LegendreCache_1a650d6bfb0fb070b1ac48982aeb97bc2f" prot="public" virt="non-virtual"><scope>astrea::astro::LegendreCache</scope><name>LegendreCache</name></member>
       <member refid="classastrea_1_1astro_1_1LegendreCache_1aa31f365db8304aba2f9564586efe3bb2" prot="public" virt="non-virtual"><scope>astrea::astro::LegendreCache</scope><name>~LegendreCache</name></member>
     </listofallmembers>

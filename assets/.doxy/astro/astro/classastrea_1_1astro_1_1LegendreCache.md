@@ -2,7 +2,7 @@
 
 # Class astrea::astro::LegendreCache
 
-**template &lt;IsCelestialBody [**auto**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) \_body\_, std::size\_t \_degree\_, std::size\_t \_order\_&gt;**
+**template &lt;IsCelestialBody auto \_body\_, std::size\_t \_degree\_, std::size\_t \_order\_&gt;**
 
 
 
@@ -10,8 +10,9 @@
 
 
 
+_Class to cache Legendre polynomial coefficients for a given celestial_ _body_ _, degree, and order._[More...](#detailed-description)
 
-
+* `#include <LegendreCache.hpp>`
 
 
 
@@ -54,8 +55,8 @@
 | Type | Name |
 | ---: | :--- |
 |   | [**LegendreCache**](#function-legendrecache) () <br>_Builds the cache for Legendre polynomials and coefficients._  |
-|  [**Unitless**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**get\_cosine\_coefficient**](#function-get_cosine_coefficient) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) std::size\_t & n, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) std::size\_t & m) const<br>_Gets the cosine coefficient for given n and m._  |
-|  [**Unitless**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**get\_sine\_coefficient**](#function-get_sine_coefficient) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) std::size\_t & n, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) std::size\_t & m) const<br>_Gets the sine coefficient for given n and m._  |
+|  const Unitless & | [**get\_cosine\_coefficient**](#function-get_cosine_coefficient) (const std::size\_t & n, const std::size\_t & m) const<br>_Gets the cosine coefficient for given n and m._  |
+|  const Unitless & | [**get\_sine\_coefficient**](#function-get_sine_coefficient) (const std::size\_t & n, const std::size\_t & m) const<br>_Gets the sine coefficient for given n and m._  |
 |   | [**~LegendreCache**](#function-legendrecache) () = default<br>_Default destructor for_ [_**LegendreCache**_](classastrea_1_1astro_1_1LegendreCache.md) _._ |
 
 
@@ -85,6 +86,22 @@
 
 
 
+## Detailed Description
+
+
+
+
+**Template parameters:**
+
+
+* `_body_` The celestial _body_ for which the Legendre coefficients are cached 
+* `_degree_` The maximum degree of the spherical harmonics 
+* `_order_` The maximum order of the spherical harmonics 
+
+
+
+
+    
 ## Public Functions Documentation
 
 
@@ -120,7 +137,7 @@ astrea::astro::LegendreCache::LegendreCache ()
 
 _Gets the cosine coefficient for given n and m._ 
 ```C++
-Unitless astrea::astro::LegendreCache::get_cosine_coefficient (
+const Unitless & astrea::astro::LegendreCache::get_cosine_coefficient (
     const std::size_t & n,
     const std::size_t & m
 ) const
@@ -156,7 +173,7 @@ Unitless The value of the cosine coefficient Cnm
 
 _Gets the sine coefficient for given n and m._ 
 ```C++
-Unitless astrea::astro::LegendreCache::get_sine_coefficient (
+const Unitless & astrea::astro::LegendreCache::get_sine_coefficient (
     const std::size_t & n,
     const std::size_t & m
 ) const
@@ -201,5 +218,5 @@ astrea::astro::LegendreCache::~LegendreCache () = default
 <hr>
 
 ------------------------------
-The documentation for this class was generated from the following file `astrea/astro/astro/propagation/force_models/OblatenessForce.hpp`
+The documentation for this class was generated from the following file `astrea/astro/astro/propagation/force_models/LegendreCache.hpp`
 

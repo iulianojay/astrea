@@ -54,12 +54,13 @@ Inherited by the following classes: [astrea::astro::CircularRestrictedThreeBodyP
 | Type | Name |
 | ---: | :--- |
 |   | [**EquationsOfMotion**](#function-equationsofmotion-12) () = default<br>_Default constructor for the Equations of Motion class._  |
-|   | [**EquationsOfMotion**](#function-equationsofmotion-22) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**ForceModel**](classastrea_1_1astro_1_1ForceModel.md) & forces) <br>_Constructor for the Equations of Motion class that takes a_ [_**ForceModel**_](classastrea_1_1astro_1_1ForceModel.md) _._ |
-| virtual [**OrbitalElementPartials**](classastrea_1_1astro_1_1OrbitalElementPartials.md) | [**compute\_dynamics**](#function-compute_dynamics) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**State**](classastrea_1_1astro_1_1State.md) & state, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Vehicle**](classastrea_1_1astro_1_1Vehicle.md) & vehicle, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**ForceVector**](namespaceastrea_1_1astro.md#typedef-forcevector)&lt; frames::primary &gt; & perts, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**ForceVector**](namespaceastrea_1_1astro.md#typedef-forcevector)&lt; frames::primary &gt; & control) const = 0<br>_Computes the partial derivatives of the orbital elements._  |
-| virtual [**AttitudePartials**](classastrea_1_1astro_1_1AttitudePartials.md) | [**compute\_kinematics**](#function-compute_kinematics) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**State**](classastrea_1_1astro_1_1State.md) & state, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Vehicle**](classastrea_1_1astro_1_1Vehicle.md) & vehicle, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**TorqueVector**](namespaceastrea_1_1astro.md#typedef-torquevector)&lt; frames::primary &gt; & perts, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**TorqueVector**](namespaceastrea_1_1astro.md#typedef-torquevector)&lt; frames::primary &gt; & control) const<br>_Computes the kinematic partial derivatives of the attitude._  |
-| virtual [**StateTransitionMatrix**](classastrea_1_1astro_1_1StateTransitionMatrix.md) | [**compute\_stm**](#function-compute_stm) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**State**](classastrea_1_1astro_1_1State.md) & state, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Vehicle**](classastrea_1_1astro_1_1Vehicle.md) & vehicle) const<br>_Computes the state transition matrix (STM)._  |
-| virtual [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) std::size\_t | [**get\_expected\_set\_id**](#function-get_expected_set_id) () const = 0<br>_Returns the expected set of orbital elements for this method._  |
-|  [**StatePartial**](classastrea_1_1astro_1_1StatePartial.md) | [**operator()**](#function-operator) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**State**](classastrea_1_1astro_1_1State.md) & state, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Vehicle**](classastrea_1_1astro_1_1Vehicle.md) & vehicle) const<br>_Computes the partial derivatives of the state._  |
+|   | [**EquationsOfMotion**](#function-equationsofmotion-22) (const [**ForceModel**](classastrea_1_1astro_1_1ForceModel.md) & forces) <br>_Constructor for the Equations of Motion class that takes a_ [_**ForceModel**_](classastrea_1_1astro_1_1ForceModel.md) _._ |
+| virtual std::unique\_ptr&lt; [**EquationsOfMotion**](classastrea_1_1astro_1_1EquationsOfMotion.md) &gt; | [**clone**](#function-clone) () const = 0<br>_Creates a clone of the current_ [_**EquationsOfMotion**_](classastrea_1_1astro_1_1EquationsOfMotion.md) _object._ |
+| virtual [**OrbitalElementPartials**](classastrea_1_1astro_1_1OrbitalElementPartials.md) | [**compute\_dynamics**](#function-compute_dynamics) (const [**State**](classastrea_1_1astro_1_1State.md) & state, const [**Vehicle**](classastrea_1_1astro_1_1Vehicle.md) & vehicle, const [**ForceVector**](namespaceastrea_1_1astro.md#typedef-forcevector)&lt; frames::primary &gt; & perts, const [**ForceVector**](namespaceastrea_1_1astro.md#typedef-forcevector)&lt; frames::primary &gt; & control) const = 0<br>_Computes the partial derivatives of the orbital elements._  |
+| virtual [**AttitudePartials**](classastrea_1_1astro_1_1AttitudePartials.md) | [**compute\_kinematics**](#function-compute_kinematics) (const [**State**](classastrea_1_1astro_1_1State.md) & state, const [**Vehicle**](classastrea_1_1astro_1_1Vehicle.md) & vehicle, const [**TorqueVector**](namespaceastrea_1_1astro.md#typedef-torquevector)&lt; frames::primary &gt; & perts, const [**TorqueVector**](namespaceastrea_1_1astro.md#typedef-torquevector)&lt; frames::primary &gt; & control) const<br>_Computes the kinematic partial derivatives of the attitude._  |
+| virtual [**StateTransitionMatrix**](classastrea_1_1astro_1_1StateTransitionMatrix.md) | [**compute\_stm**](#function-compute_stm) (const [**State**](classastrea_1_1astro_1_1State.md) & state, const [**Vehicle**](classastrea_1_1astro_1_1Vehicle.md) & vehicle) const<br>_Computes the state transition matrix (STM)._  |
+| virtual constexpr std::size\_t | [**get\_expected\_set\_id**](#function-get_expected_set_id) () const = 0<br>_Returns the expected set of orbital elements for this method._  |
+|  [**StatePartial**](classastrea_1_1astro_1_1StatePartial.md) | [**operator()**](#function-operator) (const [**State**](classastrea_1_1astro_1_1State.md) & state, const [**Vehicle**](classastrea_1_1astro_1_1Vehicle.md) & vehicle) const<br>_Computes the partial derivatives of the state._  |
 | virtual  | [**~EquationsOfMotion**](#function-equationsofmotion) () = default<br>_Destructor for the Equations of Motion class._  |
 
 
@@ -73,7 +74,7 @@ Inherited by the following classes: [astrea::astro::CircularRestrictedThreeBodyP
 
 | Type | Name |
 | ---: | :--- |
-|  [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**ForceModel**](classastrea_1_1astro_1_1ForceModel.md) \* | [**forces**](#variable-forces)   = `[**nullptr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)`<br>_The force model used in the equations of motion._  |
+|  [**ForceModel**](classastrea_1_1astro_1_1ForceModel.md) | [**forces**](#variable-forces)  <br>_The force model used in the equations of motion._  |
 
 
 
@@ -118,7 +119,7 @@ astrea::astro::EquationsOfMotion::EquationsOfMotion () = default
 _Constructor for the Equations of Motion class that takes a_ [_**ForceModel**_](classastrea_1_1astro_1_1ForceModel.md) _._
 ```C++
 astrea::astro::EquationsOfMotion::EquationsOfMotion (
-    const  ForceModel & forces
+    const ForceModel & forces
 ) 
 ```
 
@@ -140,15 +141,40 @@ astrea::astro::EquationsOfMotion::EquationsOfMotion (
 
 
 
+### function clone 
+
+_Creates a clone of the current_ [_**EquationsOfMotion**_](classastrea_1_1astro_1_1EquationsOfMotion.md) _object._
+```C++
+virtual std::unique_ptr< EquationsOfMotion > astrea::astro::EquationsOfMotion::clone () const = 0
+```
+
+
+
+
+
+**Returns:**
+
+std::unique\_ptr&lt;EquationsOfMotion&gt; A unique pointer to the cloned [**EquationsOfMotion**](classastrea_1_1astro_1_1EquationsOfMotion.md) object. 
+
+
+
+
+
+        
+
+<hr>
+
+
+
 ### function compute\_dynamics 
 
 _Computes the partial derivatives of the orbital elements._ 
 ```C++
 virtual OrbitalElementPartials astrea::astro::EquationsOfMotion::compute_dynamics (
-    const  State & state,
-    const  Vehicle & vehicle,
-    const  ForceVector < frames::primary > & perts,
-    const  ForceVector < frames::primary > & control
+    const State & state,
+    const Vehicle & vehicle,
+    const ForceVector < frames::primary > & perts,
+    const ForceVector < frames::primary > & control
 ) const = 0
 ```
 
@@ -186,10 +212,10 @@ virtual OrbitalElementPartials astrea::astro::EquationsOfMotion::compute_dynamic
 _Computes the kinematic partial derivatives of the attitude._ 
 ```C++
 virtual AttitudePartials astrea::astro::EquationsOfMotion::compute_kinematics (
-    const  State & state,
-    const  Vehicle & vehicle,
-    const  TorqueVector < frames::primary > & perts,
-    const  TorqueVector < frames::primary > & control
+    const State & state,
+    const Vehicle & vehicle,
+    const TorqueVector < frames::primary > & perts,
+    const TorqueVector < frames::primary > & control
 ) const
 ```
 
@@ -226,8 +252,8 @@ virtual AttitudePartials astrea::astro::EquationsOfMotion::compute_kinematics (
 _Computes the state transition matrix (STM)._ 
 ```C++
 virtual StateTransitionMatrix astrea::astro::EquationsOfMotion::compute_stm (
-    const  State & state,
-    const  Vehicle & vehicle
+    const State & state,
+    const Vehicle & vehicle
 ) const
 ```
 
@@ -288,8 +314,8 @@ std::size\_t The expected set id of orbital elements.
 _Computes the partial derivatives of the state._ 
 ```C++
 StatePartial astrea::astro::EquationsOfMotion::operator() (
-    const  State & state,
-    const  Vehicle & vehicle
+    const State & state,
+    const Vehicle & vehicle
 ) const
 ```
 
@@ -339,7 +365,7 @@ virtual astrea::astro::EquationsOfMotion::~EquationsOfMotion () = default
 
 _The force model used in the equations of motion._ 
 ```C++
-const ForceModel* astrea::astro::EquationsOfMotion::forces;
+ForceModel astrea::astro::EquationsOfMotion::forces;
 ```
 
 

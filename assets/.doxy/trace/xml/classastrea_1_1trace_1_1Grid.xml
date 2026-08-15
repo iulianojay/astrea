@@ -136,10 +136,10 @@
         </inbodydescription>
         <location file="astrea/trace/trace/platforms/ground/Grid.hpp" line="67" column="5" bodyfile="astrea/trace/trace/platforms/ground/Grid.hpp" bodystart="67" bodyend="71"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1trace_1_1Grid_1a1dd954787e336643d596da01101486b5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="classastrea_1_1trace_1_1Grid_1adfb30d1a3bb69974823762f33b011e6e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
         <definition>astrea::trace::Grid&lt; _body_ &gt;::Grid</definition>
-        <argsstring>(const LatRange &amp;latRange, const LonRange &amp;lonRange, const GridType &amp;gridType, const Angle &amp;spacing=5.0 *mp_units::angular::unit_symbols::deg, const Unitless &amp;weight=0.0 *mp_units::one)</argsstring>
+        <argsstring>(const LatRange &amp;latRange, const LonRange &amp;lonRange, const GridType &amp;gridType, const Angle &amp;spacing=5.0 *mp_units::si::unit_symbols::deg, const Unitless &amp;weight=0.0 *mp_units::one)</argsstring>
         <name>Grid</name>
         <qualifiedname>astrea::trace::Grid::Grid</qualifiedname>
         <param>
@@ -157,7 +157,7 @@
         <param>
           <type>const Angle &amp;</type>
           <declname>spacing</declname>
-          <defval>5.0 *mp_units::angular::unit_symbols::deg</defval>
+          <defval>5.0 *mp_units::si::unit_symbols::deg</defval>
         </param>
         <param>
           <type>const Unitless &amp;</type>
@@ -977,7 +977,7 @@
       <member refid="classastrea_1_1trace_1_1Grid_1aa7c30c713ee89466365308c27419300c" prot="public" virt="non-virtual"><scope>astrea::trace::Grid</scope><name>get_grid_type</name></member>
       <member refid="classastrea_1_1trace_1_1Grid_1aff380ed3514ec9e771b49d5d45b6bdd8" prot="public" virt="non-virtual"><scope>astrea::trace::Grid</scope><name>Grid</name></member>
       <member refid="classastrea_1_1trace_1_1Grid_1a6b7d7882a6a844fc69cdba172c1a6cf7" prot="public" virt="non-virtual"><scope>astrea::trace::Grid</scope><name>Grid</name></member>
-      <member refid="classastrea_1_1trace_1_1Grid_1a1dd954787e336643d596da01101486b5" prot="public" virt="non-virtual"><scope>astrea::trace::Grid</scope><name>Grid</name></member>
+      <member refid="classastrea_1_1trace_1_1Grid_1adfb30d1a3bb69974823762f33b011e6e" prot="public" virt="non-virtual"><scope>astrea::trace::Grid</scope><name>Grid</name></member>
       <member refid="classastrea_1_1trace_1_1Grid_1a8fb1a15f168eb88d1a76f08c795e29af" prot="public" virt="non-virtual"><scope>astrea::trace::Grid</scope><name>iterator</name></member>
       <member refid="classastrea_1_1trace_1_1Grid_1a21109fe65138aeb4f47ccc249e0d4896" prot="public" virt="non-virtual"><scope>astrea::trace::Grid</scope><name>operator[]</name></member>
       <member refid="classastrea_1_1trace_1_1Grid_1a27f6672c9d0701e18b1da48d0134ced5" prot="public" virt="non-virtual"><scope>astrea::trace::Grid</scope><name>operator[]</name></member>

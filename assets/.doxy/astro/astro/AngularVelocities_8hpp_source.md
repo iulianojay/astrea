@@ -14,7 +14,7 @@
 #include <units/units.hpp>
 
 #include <astro/astro.fwd.hpp>
-#include <astro/frames/definitions/dynamic_frames.hpp>
+#include <astro/frames/definitions/dynamic_frames/tags.hpp>
 #include <astro/frames/framework/CartesianVector.hpp>
 #include <astro/frames/framework/DirectionCosineMatrix.hpp>
 #include <astro/frames/framework/frame_concepts.hpp>
@@ -165,11 +165,11 @@ class AngularVelocities {
         return _angularVelocities.cross(other._angularVelocities);
     }
 
-    std::vector<Unitless> force_to_vector() const
+    std::vector<double> force_to_double_vector() const
     {
-        return { _angularVelocities[0] / _angularVelocities[0].unit,
-                 _angularVelocities[1] / _angularVelocities[1].unit,
-                 _angularVelocities[2] / _angularVelocities[2].unit };
+        return { _angularVelocities[0].numerical_value_in(_angularVelocities[0].unit),
+                 _angularVelocities[1].numerical_value_in(_angularVelocities[1].unit),
+                 _angularVelocities[2].numerical_value_in(_angularVelocities[2].unit) };
     }
 
     AngularVelocities interpolate(const Time& thisTime, const Time& otherTime, const AngularVelocities& other, const Time& targetTime) const
@@ -189,9 +189,9 @@ class AngularVelocities {
   private:
     CartesianVector<AngularVelocity, in_frame> _angularVelocities;
 
-    static AngularVelocities from_vector(const std::vector<Unitless>& vec)
+    static AngularVelocities from_double_vector(const std::vector<double>& vec)
     {
-        using mp_units::angular::unit_symbols::rad;
+        using mp_units::si::unit_symbols::rad;
         using mp_units::si::unit_symbols::s;
 
         if (vec.size() != 3) {
@@ -299,11 +299,11 @@ class AngularAccelerations {
         return _angularAccels.cross(other._angularAccels);
     }
 
-    std::vector<Unitless> force_to_vector() const
+    std::vector<double> force_to_double_vector() const
     {
-        return { _angularAccels[0] / _angularAccels[0].unit,
-                 _angularAccels[1] / _angularAccels[1].unit,
-                 _angularAccels[2] / _angularAccels[2].unit };
+        return { _angularAccels[0].numerical_value_in(_angularAccels[0].unit),
+                 _angularAccels[1].numerical_value_in(_angularAccels[1].unit),
+                 _angularAccels[2].numerical_value_in(_angularAccels[2].unit) };
     }
 
   private:

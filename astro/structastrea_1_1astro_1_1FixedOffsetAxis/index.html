@@ -6238,7 +6238,7 @@ You're not viewing the latest version.
 
 
 <h1 id="struct-astreaastrofixedoffsetaxis">Struct astrea::astro::FixedOffsetAxis<a class="headerlink" href="#struct-astreaastrofixedoffsetaxis" title="Permanent link">&para;</a></h1>
-<p><strong>template &lt;IsAxis <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>auto</strong></a> _parent_, <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Angle</strong></a> _phi_, <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Angle</strong></a> _theta_, <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Angle</strong></a> _psi_, <a href="../namespaceastrea_1_1astro/#enum-rotationsequence"><strong>RotationSequence</strong></a> _sequence_&gt;</strong></p>
+<p><strong>template &lt;IsAxis auto _parent_, Angle _phi_, Angle _theta_, Angle _psi_, <a href="../namespaceastrea_1_1astro/#enum-rotationsequence"><strong>RotationSequence</strong></a> _sequence_&gt;</strong></p>
 <p><a href="../annotated/"><strong>ClassList</strong></a> <strong>&gt;</strong> <a href="../namespaceastrea/"><strong>astrea</strong></a> <strong>&gt;</strong> <a href="../namespaceastrea_1_1astro/"><strong>astro</strong></a> <strong>&gt;</strong> <a href="./"><strong>FixedOffsetAxis</strong></a></p>
 <p>Inherits the following classes: <a href="../structastrea_1_1astro_1_1Axis/">astrea::astro::Axis</a></p>
 <h2 id="classes">Classes<a class="headerlink" href="#classes" title="Permanent link">&para;</a></h2>
@@ -6266,12 +6266,12 @@ You're not viewing the latest version.
 </thead>
 <tbody>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>constexpr</strong></a> <a href="../structastrea_1_1astro_1_1FixedOffsetAxis_1_1Misalignment/"><strong>Misalignment</strong></a></td>
-<td style="text-align: left;"><a href="#variable-misalignment"><strong>misalignment</strong></a>   = <code>{ [**\_phi\_**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), [**\_theta\_**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), [**\_psi\_**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) }</code><br><em>The fixed angular offset from the parent frame to this frame.</em></td>
+<td style="text-align: right;">constexpr <a href="../structastrea_1_1astro_1_1FixedOffsetAxis_1_1Misalignment/"><strong>Misalignment</strong></a></td>
+<td style="text-align: left;"><a href="#variable-misalignment"><strong>misalignment</strong></a>   = <code>{ \_phi\_, \_theta\_, \_psi\_ }</code><br><em>The fixed angular offset from the parent frame to this frame.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>constexpr</strong></a> <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>auto</strong></a></td>
-<td style="text-align: left;"><a href="#variable-sequence"><strong>sequence</strong></a>   = <code>[**\_sequence\_**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)</code><br><em>The rotation sequence for the angular offset.</em></td>
+<td style="text-align: right;">constexpr auto</td>
+<td style="text-align: left;"><a href="#variable-sequence"><strong>sequence</strong></a>   = <code>\_sequence\_</code><br><em>The rotation sequence for the angular offset.</em></td>
 </tr>
 </tbody>
 </table>

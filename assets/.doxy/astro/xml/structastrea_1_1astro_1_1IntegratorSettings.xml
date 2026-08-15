@@ -4,7 +4,7 @@
     <compoundname>astrea::astro::IntegratorSettings</compoundname>
     <sectiondef kind="public-attrib">
       <memberdef kind="variable" id="structastrea_1_1astro_1_1IntegratorSettings_1ac02b0c02be043e623d377d1557e68619" prot="public" static="no" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Unitless</ref></type>
+        <type>Unitless</type>
         <definition>Unitless astrea::astro::IntegratorSettings::absTol</definition>
         <argsstring></argsstring>
         <name>absTol</name>
@@ -20,7 +20,7 @@
         <location file="astrea/astro/astro/propagation/numerical/Integrator.hpp" line="50" column="14" bodyfile="astrea/astro/astro/propagation/numerical/Integrator.hpp" bodystart="50" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structastrea_1_1astro_1_1IntegratorSettings_1aea6aad66db642340ad08ea16d3517612" prot="public" static="no" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Unitless</ref></type>
+        <type>Unitless</type>
         <definition>Unitless astrea::astro::IntegratorSettings::relTol</definition>
         <argsstring></argsstring>
         <name>relTol</name>
@@ -36,7 +36,7 @@
         <location file="astrea/astro/astro/propagation/numerical/Integrator.hpp" line="51" column="14" bodyfile="astrea/astro/astro/propagation/numerical/Integrator.hpp" bodystart="51" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structastrea_1_1astro_1_1IntegratorSettings_1abb88c247d40d6f4d5925b4b30ec4cf7c" prot="public" static="no" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">int</ref></type>
+        <type>int</type>
         <definition>int astrea::astro::IntegratorSettings::itMax</definition>
         <argsstring></argsstring>
         <name>itMax</name>
@@ -68,7 +68,7 @@
         <location file="astrea/astro/astro/propagation/numerical/Integrator.hpp" line="53" column="16" bodyfile="astrea/astro/astro/propagation/numerical/Integrator.hpp" bodystart="53" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structastrea_1_1astro_1_1IntegratorSettings_1a7eb6862ecd10744226b670bde028049b" prot="public" static="no" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Time</ref></type>
+        <type>Time</type>
         <definition>Time astrea::astro::IntegratorSettings::initialTimeStep</definition>
         <argsstring></argsstring>
         <name>initialTimeStep</name>
@@ -84,12 +84,12 @@
         <location file="astrea/astro/astro/propagation/numerical/Integrator.hpp" line="54" column="10" bodyfile="astrea/astro/astro/propagation/numerical/Integrator.hpp" bodystart="54" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structastrea_1_1astro_1_1IntegratorSettings_1a46b2b297cfa41da339ea5de23541ebd5" prot="public" static="no" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">bool</ref></type>
+        <type>bool</type>
         <definition>bool astrea::astro::IntegratorSettings::useFixedStep</definition>
         <argsstring></argsstring>
         <name>useFixedStep</name>
         <qualifiedname>astrea::astro::IntegratorSettings::useFixedStep</qualifiedname>
-        <initializer>= <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">false</ref></initializer>
+        <initializer>= false</initializer>
         <briefdescription>
 <para>Flag to indicate whether to use a fixed timestep. </para>
         </briefdescription>
@@ -100,7 +100,7 @@
         <location file="astrea/astro/astro/propagation/numerical/Integrator.hpp" line="55" column="10" bodyfile="astrea/astro/astro/propagation/numerical/Integrator.hpp" bodystart="55" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structastrea_1_1astro_1_1IntegratorSettings_1abc0bffb36815f76e4d015f1029a39064" prot="public" static="no" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Time</ref></type>
+        <type>Time</type>
         <definition>Time astrea::astro::IntegratorSettings::fixedTimeStep</definition>
         <argsstring></argsstring>
         <name>fixedTimeStep</name>

@@ -6253,27 +6253,27 @@ You're not viewing the latest version.
 </thead>
 <tbody>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>constexpr</strong></a></td>
-<td style="text-align: left;"><a href="#function-date-12"><strong>Date</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../namespaceastrea_1_1astro/#typedef-juliandate"><strong>JulianDate</strong></a> &amp; jdate=J2000) <br><em>Construct a</em> <a href="./"><em><strong>Date</strong></em></a> <em>object from a JulianDate.</em></td>
+<td style="text-align: right;">constexpr</td>
+<td style="text-align: left;"><a href="#function-date-12"><strong>Date</strong></a> (const <a href="../namespaceastrea_1_1astro/#typedef-juliandate"><strong>JulianDate</strong></a> &amp; jdate=J2000) <br><em>Construct a</em> <a href="./"><em><strong>Date</strong></em></a> <em>object from a JulianDate.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;"></td>
-<td style="text-align: left;"><a href="#function-date-22"><strong>Date</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> std::string &amp; epoch, <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> std::string &amp; format="%Y-%m-%d %<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>H:</strong></a>%<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>M:</strong></a>%<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>S"</strong></a>) <br><em>Construct a</em> <a href="./"><em><strong>Date</strong></em></a> <em>object from a JulianDate.</em></td>
+<td style="text-align: left;"><a href="#function-date-22"><strong>Date</strong></a> (const std::string &amp; epoch, const std::string &amp; format="%Y-%m-%d %H:%M:%S") <br><em>Construct a</em> <a href="./"><em><strong>Date</strong></em></a> <em>object from a JulianDate.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Angle</strong></a></td>
+<td style="text-align: right;">Angle</td>
 <td style="text-align: left;"><a href="#function-body_sidereal_time"><strong>body_sidereal_time</strong></a> () const<br><em>Get the equivalent of GMST for an arbitrary celestial body.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>int</strong></a></td>
-<td style="text-align: left;"><a href="#function-day_of_year"><strong>day_of_year</strong></a> () const<br></td>
+<td style="text-align: right;">int</td>
+<td style="text-align: left;"><a href="#function-day_of_year"><strong>day_of_year</strong></a> () const<br><em>Get the day of the year for this</em> <a href="./"><em><strong>Date</strong></em></a> <em>object.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">std::string</td>
 <td style="text-align: left;"><a href="#function-epoch"><strong>epoch</strong></a> () const<br><em>Get the epoch of this</em> <a href="./"><em><strong>Date</strong></em></a> <em>object as a string.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Angle</strong></a></td>
+<td style="text-align: right;">Angle</td>
 <td style="text-align: left;"><a href="#function-gmst"><strong>gmst</strong></a> () const<br><em>Get the Greenwich Mean Sidereal Time (GMST) for this</em> <a href="./"><em><strong>Date</strong></em></a> <em>around Earth.</em></td>
 </tr>
 <tr>
@@ -6281,7 +6281,7 @@ You're not viewing the latest version.
 <td style="text-align: left;"><a href="#function-gps"><strong>gps</strong></a> () const<br><em>Get the</em> <a href="./"><em><strong>Date</strong></em></a> <em>in GPS clock format.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">std::chrono::time_point&lt; <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Clock_T</strong></a> &gt;</td>
+<td style="text-align: right;">std::chrono::time_point&lt; Clock_T &gt;</td>
 <td style="text-align: left;"><a href="#function-in_clock"><strong>in_clock</strong></a> () const<br><em>Get the</em> <a href="./"><em><strong>Date</strong></em></a> <em>in a specified clock format.</em></td>
 </tr>
 <tr>
@@ -6289,44 +6289,44 @@ You're not viewing the latest version.
 <td style="text-align: left;"><a href="#function-jd"><strong>jd</strong></a> () const<br><em>Get the Julian date representation of this</em> <a href="./"><em><strong>Date</strong></em></a> <em>object.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>double</strong></a></td>
+<td style="text-align: right;">double</td>
 <td style="text-align: left;"><a href="#function-jdn"><strong>jdn</strong></a> () const<br><em>Get the Julian date in days since the epoch.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">std::chrono::duration&lt; <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>double</strong></a>, std::chrono::days::period &gt;</td>
+<td style="text-align: right;">std::chrono::duration&lt; double, std::chrono::days::period &gt;</td>
 <td style="text-align: left;"><a href="#function-mjd"><strong>mjd</strong></a> () const<br><em>Get the Modified Julian</em> <a href="./"><em><strong>Date</strong></em></a> <em>(MJD) representation of this</em><a href="./"><em><strong>Date</strong></em></a> <em>object.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;"><a href="./"><strong>Date</strong></a></td>
-<td style="text-align: left;"><a href="#function-operator"><strong>operator+</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Time</strong></a> &amp; time) const<br><em>Add a Time object to this</em> <a href="./"><em><strong>Date</strong></em></a> <em>object.</em></td>
+<td style="text-align: left;"><a href="#function-operator"><strong>operator+</strong></a> (const Time &amp; time) const<br><em>Add a Time object to this</em> <a href="./"><em><strong>Date</strong></em></a> <em>object.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;"><a href="./"><strong>Date</strong></a> &amp;</td>
-<td style="text-align: left;"><a href="#function-operator_1"><strong>operator+=</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Time</strong></a> &amp; time) <br><em>Add a Time object to this</em> <a href="./"><em><strong>Date</strong></em></a> <em>object in place.</em></td>
+<td style="text-align: left;"><a href="#function-operator_1"><strong>operator+=</strong></a> (const Time &amp; time) <br><em>Add a Time object to this</em> <a href="./"><em><strong>Date</strong></em></a> <em>object in place.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;"><a href="./"><strong>Date</strong></a></td>
-<td style="text-align: left;"><a href="#function-operator-"><strong>operator-</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Time</strong></a> &amp; time) const<br><em>Subtract a Time object from this</em> <a href="./"><em><strong>Date</strong></em></a> <em>object.</em></td>
+<td style="text-align: left;"><a href="#function-operator-"><strong>operator-</strong></a> (const Time &amp; time) const<br><em>Subtract a Time object from this</em> <a href="./"><em><strong>Date</strong></em></a> <em>object.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Time</strong></a></td>
-<td style="text-align: left;"><a href="#function-operator-_1"><strong>operator-</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="./"><strong>Date</strong></a> &amp; other) const<br><em>Subtract another</em> <a href="./"><em><strong>Date</strong></em></a> <em>object from this</em><a href="./"><em><strong>Date</strong></em></a> <em>object.</em></td>
+<td style="text-align: right;">Time</td>
+<td style="text-align: left;"><a href="#function-operator-_1"><strong>operator-</strong></a> (const <a href="./"><strong>Date</strong></a> &amp; other) const<br><em>Subtract another</em> <a href="./"><em><strong>Date</strong></em></a> <em>object from this</em><a href="./"><em><strong>Date</strong></em></a> <em>object.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;"><a href="./"><strong>Date</strong></a> &amp;</td>
-<td style="text-align: left;"><a href="#function-operator-_2"><strong>operator-=</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Time</strong></a> &amp; time) <br><em>Subtract a Time object from this</em> <a href="./"><em><strong>Date</strong></em></a> <em>object in place.</em></td>
+<td style="text-align: left;"><a href="#function-operator-_2"><strong>operator-=</strong></a> (const Time &amp; time) <br><em>Subtract a Time object from this</em> <a href="./"><em><strong>Date</strong></em></a> <em>object in place.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>auto</strong></a></td>
-<td style="text-align: left;"><a href="#function-operator"><strong>operator&lt;=&gt;</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="./"><strong>Date</strong></a> &amp; other) const<br><em>Compare this</em> <a href="./"><em><strong>Date</strong></em></a> <em>object with another</em><a href="./"><em><strong>Date</strong></em></a> <em>object.</em></td>
+<td style="text-align: right;">auto</td>
+<td style="text-align: left;"><a href="#function-operator"><strong>operator&lt;=&gt;</strong></a> (const <a href="./"><strong>Date</strong></a> &amp; other) const<br><em>Compare this</em> <a href="./"><em><strong>Date</strong></em></a> <em>object with another</em><a href="./"><em><strong>Date</strong></em></a> <em>object.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>bool</strong></a></td>
-<td style="text-align: left;"><a href="#function-operator_2"><strong>operator==</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="./"><strong>Date</strong></a> &amp; other) const<br><em>Check if this</em> <a href="./"><em><strong>Date</strong></em></a> <em>object is equal to another</em><a href="./"><em><strong>Date</strong></em></a> <em>object.</em></td>
+<td style="text-align: right;">bool</td>
+<td style="text-align: left;"><a href="#function-operator_2"><strong>operator==</strong></a> (const <a href="./"><strong>Date</strong></a> &amp; other) const<br><em>Check if this</em> <a href="./"><em><strong>Date</strong></em></a> <em>object is equal to another</em><a href="./"><em><strong>Date</strong></em></a> <em>object.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Time</strong></a></td>
-<td style="text-align: left;"><a href="#function-seconds_in_local_day"><strong>seconds_in_local_day</strong></a> () const<br></td>
+<td style="text-align: right;">Time</td>
+<td style="text-align: left;"><a href="#function-seconds_in_local_day"><strong>seconds_in_local_day</strong></a> () const<br><em>Get the seconds in the local day for this</em> <a href="./"><em><strong>Date</strong></em></a> <em>object.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">std::chrono::time_point&lt; std::chrono::system_clock &gt;</td>
@@ -6358,7 +6358,7 @@ You're not viewing the latest version.
 </tr>
 <tr>
 <td style="text-align: right;">std::chrono::year_month_day</td>
-<td style="text-align: left;"><a href="#function-year_month_day"><strong>year_month_day</strong></a> () const<br></td>
+<td style="text-align: left;"><a href="#function-year_month_day"><strong>year_month_day</strong></a> () const<br><em>Get the year, month, and day representation of this</em> <a href="./"><em><strong>Date</strong></em></a> <em>object.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;"></td>
@@ -6376,7 +6376,7 @@ You're not viewing the latest version.
 </thead>
 <tbody>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="./"><strong>Date</strong></a></td>
+<td style="text-align: right;">const <a href="./"><strong>Date</strong></a></td>
 <td style="text-align: left;"><a href="#function-now"><strong>now</strong></a> () noexcept<br><em>Get the current date and time as a</em> <a href="./"><em><strong>Date</strong></em></a> <em>object.</em></td>
 </tr>
 </tbody>
@@ -6387,7 +6387,7 @@ You're not viewing the latest version.
 <h3 id="function-date-12">function Date [1/2]<a class="headerlink" href="#function-date-12" title="Permanent link">&para;</a></h3>
 <p><em>Construct a</em> <a href="./"><em><strong>Date</strong></em></a> <em>object from a JulianDate.</em>
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kr">inline</span><span class="w"> </span><span class="k">constexpr</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Date</span><span class="o">::</span><span class="n">Date</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">JulianDate</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">jdate</span><span class="o">=</span><span class="n">J2000</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">JulianDate</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">jdate</span><span class="o">=</span><span class="n">J2000</span>
 </span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="p">)</span><span class="w"> </span>
 </span></code></pre></div></p>
 <p><strong>Parameters:</strong></p>
@@ -6400,7 +6400,7 @@ You're not viewing the latest version.
 <p><em>Construct a</em> <a href="./"><em><strong>Date</strong></em></a> <em>object from a JulianDate.</em>
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kr">inline</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Date</span><span class="o">::</span><span class="n">Date</span><span class="w"> </span><span class="p">(</span>
 </span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">epoch</span><span class="p">,</span>
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">format</span><span class="o">=</span><span class="s">&quot;%Y-%m-%d % H: % M: % S&quot;</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">format</span><span class="o">=</span><span class="s">&quot;%Y-%m-%d %H:%M:%S&quot;</span>
 </span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="p">)</span><span class="w"> </span>
 </span></code></pre></div></p>
 <p><strong>Parameters:</strong></p>
@@ -6425,8 +6425,11 @@ You're not viewing the latest version.
 <hr>
 
 <h3 id="function-day_of_year">function day_of_year<a class="headerlink" href="#function-day_of_year" title="Permanent link">&para;</a></h3>
+<p><em>Get the day of the year for this</em> <a href="./"><em><strong>Date</strong></em></a> <em>object.</em>
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kr">inline</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Date</span><span class="o">::</span><span class="n">day_of_year</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
-</span></code></pre></div>
+</span></code></pre></div></p>
+<p><strong>Returns:</strong></p>
+<p>int The day of the year for this <a href="./"><strong>Date</strong></a> object, starting from 1. </p>
 <hr>
 
 <h3 id="function-epoch">function epoch<a class="headerlink" href="#function-epoch" title="Permanent link">&para;</a></h3>
@@ -6455,7 +6458,7 @@ You're not viewing the latest version.
 
 <h3 id="function-in_clock">function in_clock<a class="headerlink" href="#function-in_clock" title="Permanent link">&para;</a></h3>
 <p><em>Get the</em> <a href="./"><em><strong>Date</strong></em></a> <em>in a specified clock format.</em>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w">  </span><span class="nc">Clock_T</span><span class="o">&gt;</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">Clock_T</span><span class="o">&gt;</span>
 </span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="kr">inline</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">time_point</span><span class="o">&lt;</span><span class="w"> </span><span class="n">Clock_T</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Date</span><span class="o">::</span><span class="n">in_clock</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </span></code></pre></div></p>
 <p><strong>Template parameters:</strong></p>
@@ -6484,7 +6487,7 @@ You're not viewing the latest version.
 
 <h3 id="function-mjd">function mjd<a class="headerlink" href="#function-mjd" title="Permanent link">&para;</a></h3>
 <p><em>Get the Modified Julian</em> <a href="./"><em><strong>Date</strong></em></a> <em>(MJD) representation of this</em><a href="./"><em><strong>Date</strong></em></a> <em>object.</em>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="kr">inline</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">duration</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">days</span><span class="o">::</span><span class="n">period</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Date</span><span class="o">::</span><span class="n">mjd</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="kr">inline</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">duration</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">double</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">days</span><span class="o">::</span><span class="n">period</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Date</span><span class="o">::</span><span class="n">mjd</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </span></code></pre></div></p>
 <p><strong>Returns:</strong></p>
 <p>std::chrono::duration&lt;double, std::chrono::days::period&gt; The Modified Julian <a href="./"><strong>Date</strong></a> representation of this <a href="./"><strong>Date</strong></a> object. </p>
@@ -6493,7 +6496,7 @@ You're not viewing the latest version.
 <h3 id="function-operator">function operator+<a class="headerlink" href="#function-operator" title="Permanent link">&para;</a></h3>
 <p><em>Add a Time object to this</em> <a href="./"><em><strong>Date</strong></em></a> <em>object.</em>
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="n">Date</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Date</span><span class="o">::</span><span class="k">operator</span><span class="o">+</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Time</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">time</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Time</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">time</span>
 </span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
 </span></code></pre></div></p>
 <p><strong>Parameters:</strong></p>
@@ -6507,7 +6510,7 @@ You're not viewing the latest version.
 <h3 id="function-operator_1">function operator+=<a class="headerlink" href="#function-operator_1" title="Permanent link">&para;</a></h3>
 <p><em>Add a Time object to this</em> <a href="./"><em><strong>Date</strong></em></a> <em>object in place.</em>
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="n">Date</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Date</span><span class="o">::</span><span class="k">operator</span><span class="o">+=</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Time</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">time</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Time</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">time</span>
 </span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="p">)</span><span class="w"> </span>
 </span></code></pre></div></p>
 <p><strong>Parameters:</strong></p>
@@ -6521,7 +6524,7 @@ You're not viewing the latest version.
 <h3 id="function-operator-">function operator-<a class="headerlink" href="#function-operator-" title="Permanent link">&para;</a></h3>
 <p><em>Subtract a Time object from this</em> <a href="./"><em><strong>Date</strong></em></a> <em>object.</em>
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="n">Date</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Date</span><span class="o">::</span><span class="k">operator</span><span class="o">-</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Time</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">time</span>
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Time</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">time</span>
 </span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
 </span></code></pre></div></p>
 <p><strong>Parameters:</strong></p>
@@ -6535,7 +6538,7 @@ You're not viewing the latest version.
 <h3 id="function-operator-_1">function operator-<a class="headerlink" href="#function-operator-_1" title="Permanent link">&para;</a></h3>
 <p><em>Subtract another</em> <a href="./"><em><strong>Date</strong></em></a> <em>object from this</em><a href="./"><em><strong>Date</strong></em></a> <em>object.</em>
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="n">Time</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Date</span><span class="o">::</span><span class="k">operator</span><span class="o">-</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Date</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">other</span>
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Date</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">other</span>
 </span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
 </span></code></pre></div></p>
 <p><strong>Parameters:</strong></p>
@@ -6549,7 +6552,7 @@ You're not viewing the latest version.
 <h3 id="function-operator-_2">function operator-=<a class="headerlink" href="#function-operator-_2" title="Permanent link">&para;</a></h3>
 <p><em>Subtract a Time object from this</em> <a href="./"><em><strong>Date</strong></em></a> <em>object in place.</em>
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="n">Date</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Date</span><span class="o">::</span><span class="k">operator</span><span class="o">-=</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Time</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">time</span>
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Time</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">time</span>
 </span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="p">)</span><span class="w"> </span>
 </span></code></pre></div></p>
 <p><strong>Parameters:</strong></p>
@@ -6563,7 +6566,7 @@ You're not viewing the latest version.
 <h3 id="function-operator_2">function operator&lt;=&gt;<a class="headerlink" href="#function-operator_2" title="Permanent link">&para;</a></h3>
 <p><em>Compare this</em> <a href="./"><em><strong>Date</strong></em></a> <em>object with another</em><a href="./"><em><strong>Date</strong></em></a> <em>object.</em>
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="kr">inline</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Date</span><span class="o">::</span><span class="k">operator</span><span class="o">&lt;=&gt;</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Date</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">other</span>
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Date</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">other</span>
 </span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
 </span></code></pre></div></p>
 <p><strong>Parameters:</strong></p>
@@ -6577,7 +6580,7 @@ You're not viewing the latest version.
 <h3 id="function-operator_3">function operator==<a class="headerlink" href="#function-operator_3" title="Permanent link">&para;</a></h3>
 <p><em>Check if this</em> <a href="./"><em><strong>Date</strong></em></a> <em>object is equal to another</em><a href="./"><em><strong>Date</strong></em></a> <em>object.</em>
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="kr">inline</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Date</span><span class="o">::</span><span class="k">operator</span><span class="o">==</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Date</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">other</span>
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Date</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">other</span>
 </span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
 </span></code></pre></div></p>
 <p><strong>Parameters:</strong></p>
@@ -6589,8 +6592,11 @@ You're not viewing the latest version.
 <hr>
 
 <h3 id="function-seconds_in_local_day">function seconds_in_local_day<a class="headerlink" href="#function-seconds_in_local_day" title="Permanent link">&para;</a></h3>
+<p><em>Get the seconds in the local day for this</em> <a href="./"><em><strong>Date</strong></em></a> <em>object.</em>
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="kr">inline</span><span class="w"> </span><span class="n">Time</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Date</span><span class="o">::</span><span class="n">seconds_in_local_day</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
-</span></code></pre></div>
+</span></code></pre></div></p>
+<p><strong>Returns:</strong></p>
+<p>Time The seconds in the local day for this <a href="./"><strong>Date</strong></a> object. </p>
 <hr>
 
 <h3 id="function-sys">function sys<a class="headerlink" href="#function-sys" title="Permanent link">&para;</a></h3>
@@ -6650,8 +6656,11 @@ You're not viewing the latest version.
 <hr>
 
 <h3 id="function-year_month_day">function year_month_day<a class="headerlink" href="#function-year_month_day" title="Permanent link">&para;</a></h3>
+<p><em>Get the year, month, and day representation of this</em> <a href="./"><em><strong>Date</strong></em></a> <em>object.</em>
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="kr">inline</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">year_month_day</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Date</span><span class="o">::</span><span class="n">year_month_day</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
-</span></code></pre></div>
+</span></code></pre></div></p>
+<p><strong>Returns:</strong></p>
+<p>std::chrono::year_month_day The year, month, and day representation of this <a href="./"><strong>Date</strong></a> object. </p>
 <hr>
 
 <h3 id="function-date">function ~Date<a class="headerlink" href="#function-date" title="Permanent link">&para;</a></h3>
@@ -6662,7 +6671,7 @@ You're not viewing the latest version.
 <h2 id="public-static-functions-documentation">Public Static Functions Documentation<a class="headerlink" href="#public-static-functions-documentation" title="Permanent link">&para;</a></h2>
 <h3 id="function-now">function now<a class="headerlink" href="#function-now" title="Permanent link">&para;</a></h3>
 <p><em>Get the current date and time as a</em> <a href="./"><em><strong>Date</strong></em></a> <em>object.</em>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-28-1"><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w">  </span><span class="n">Date</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Date</span><span class="o">::</span><span class="n">now</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">noexcept</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-28-1"><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Date</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Date</span><span class="o">::</span><span class="n">now</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">noexcept</span>
 </span></code></pre></div></p>
 <p><strong>Returns:</strong></p>
 <p>const <a href="./"><strong>Date</strong></a> The current date and time. </p>

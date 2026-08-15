@@ -70,7 +70,7 @@
 </simplesect>
 <simplesect kind="date"><para>2025-08-03</para>
 </simplesect>
-<simplesect kind="copyright"><para>Copyright (c) 2025 Jay Iuliano</para>
+<simplesect kind="copyright"><para>Copyright (c) 2025-2026 Jay Iuliano</para>
 </simplesect>
 The GNU Lesser General Public License (LGPL)</para>
 <para>This file is part of Astrea. Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. Astrea is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details. You should have received a copy of the GNU General Public License along with Astrea. If not, see <ulink url="https://www.gnu.org/licenses/">https://www.gnu.org/licenses/</ulink>. </para>
@@ -139,7 +139,7 @@ The GNU Lesser General Public License (LGPL)</para>
 <codeline lineno="97" refid="structastrea_1_1astro_1_1GeneralPerturbations_1ae526fcd1c3eb2eb8ba642f24ec034bb4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::optional&lt;std::string&gt;<sp/><ref refid="structastrea_1_1astro_1_1GeneralPerturbations_1ae526fcd1c3eb2eb8ba642f24ec034bb4" kindref="member">TLE_LINE2</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
 <codeline lineno="98"><highlight class="normal">};</highlight></codeline>
 <codeline lineno="99"><highlight class="normal"></highlight></codeline>
-<codeline lineno="109"><highlight class="normal">std::ostream&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">operator&lt;&lt;</ref>(std::ostream&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">os</ref>,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structastrea_1_1astro_1_1GeneralPerturbations" kindref="compound">GeneralPerturbations</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">gp</ref>);</highlight></codeline>
+<codeline lineno="109"><highlight class="normal">std::ostream&amp;<sp/><ref refid="CartesianVector_8hpp_1a0ed83a1f9e7ad3004c31b4dd1035d189" kindref="member">operator&lt;&lt;</ref>(std::ostream&amp;<sp/>os,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structastrea_1_1astro_1_1GeneralPerturbations" kindref="compound">GeneralPerturbations</ref>&amp;<sp/>gp);</highlight></codeline>
 <codeline lineno="110"><highlight class="normal"></highlight></codeline>
 <codeline lineno="111"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>astro</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="112"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>astrea</highlight></codeline>

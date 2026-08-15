@@ -12,7 +12,6 @@
 
 * `#include <astro/propagation/equations_of_motion/TwoBody.hpp>`
 * `#include <mp-units/math.h>`
-* `#include <mp-units/systems/angular/math.h>`
 * `#include <mp-units/systems/si/math.h>`
 * `#include <astro/frames/framework/CartesianVector.hpp>`
 * `#include <astro/platforms/Vehicle.hpp>`

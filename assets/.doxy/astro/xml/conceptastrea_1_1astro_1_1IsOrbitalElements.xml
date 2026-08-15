@@ -18,7 +18,7 @@ concept <ref refid="conceptastrea_1_1astro_1_1IsOrbitalElements" kindref="compou
     requires !std::is_same&lt;T, OrbitalElements&gt;::value;
     requires std::is_same&lt;T, Cartesian&lt;frames::primary&gt;&gt;::value || IsConstructableTo&lt;T, Cartesian&lt;frames::primary&gt;&gt; ||
                  HasDirectCartesianConversion&lt;T, frames::primary&gt;;
-    requires HasToVector&lt;T&gt;;
+    requires HasForceToDoubleVector&lt;T&gt;;
     requires HasMathOperators&lt;T&gt;;
     requires HasInPlaceMathOperators&lt;T&gt;;
 }    </initializer>

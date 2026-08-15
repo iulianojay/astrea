@@ -83,9 +83,10 @@ Inherited by the following classes: [astrea::astro::Origin&lt; \_name\_ &gt;](st
 
 ### friend equivalent 
 
+_Checks if two frames are equivalent, considering their parent frames and any fixed offsets (spatial or angular)._ 
 ```C++
 template<IsOrigin Lhs, IsOrigin Rhs>
-inline consteval  bool astrea::astro::detail::OriginBase::equivalent (
+inline consteval bool astrea::astro::detail::OriginBase::equivalent (
     Lhs lhs,
     Rhs rhs
 ) 
@@ -93,6 +94,33 @@ inline consteval  bool astrea::astro::detail::OriginBase::equivalent (
 
 
 
+
+
+**Template parameters:**
+
+
+* `Lhs` The type of the left-hand side frame. 
+* `Rhs` The type of the right-hand side frame. 
+
+
+
+**Parameters:**
+
+
+* `lhs` The left-hand side frame instance. 
+* `rhs` The right-hand side frame instance. 
+
+
+
+**Returns:**
+
+true if both frames are equivalent, false otherwise. 
+
+
+
+
+
+        
 
 <hr>
 
@@ -102,7 +130,7 @@ inline consteval  bool astrea::astro::detail::OriginBase::equivalent (
 
 ```C++
 template<IsOrigin Lhs, IsOrigin Rhs>
-inline consteval  bool astrea::astro::detail::OriginBase::operator== (
+inline consteval bool astrea::astro::detail::OriginBase::operator== (
     Lhs,
     Rhs
 ) 

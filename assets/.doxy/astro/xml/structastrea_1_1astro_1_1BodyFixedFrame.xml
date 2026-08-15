@@ -12,12 +12,12 @@
         <defname>_name_</defname>
       </param>
       <param>
-        <type>IsCelestialBody <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+        <type>IsCelestialBody auto</type>
         <declname>_origin_</declname>
         <defname>_origin_</defname>
       </param>
       <param>
-        <type>IsAxis <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+        <type>IsAxis auto</type>
         <declname>_axis_</declname>
         <defname>_axis_</defname>
         <defval>_origin_.reference_axes</defval>

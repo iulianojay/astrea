@@ -2,7 +2,7 @@
 
 # Struct astrea::astro::detail::tuple\_to\_variant
 
-**template &lt;[**typename**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Tuple**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), typename... Extra&gt;**
+**template &lt;typename Tuple, typename... Extra&gt;**
 
 
 

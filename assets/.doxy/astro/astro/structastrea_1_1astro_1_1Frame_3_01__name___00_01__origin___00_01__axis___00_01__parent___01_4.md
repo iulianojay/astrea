@@ -2,7 +2,7 @@
 
 # Struct astrea::astro::Frame&lt; \_name\_, \_origin\_, \_axis\_, \_parent\_ &gt;
 
-**template &lt;mp\_units::symbol\_text \_name\_, IsOrigin [**auto**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) \_origin\_, IsAxis [**auto**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) \_axis\_, IsFrame [**auto**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) \_parent\_&gt;**
+**template &lt;mp\_units::symbol\_text \_name\_, IsOrigin auto \_origin\_, IsAxis auto \_axis\_, IsFrame auto \_parent\_&gt;**
 
 
 
@@ -47,10 +47,10 @@ Inherits the following classes: [astrea::astro::detail::FrameBase](structastrea_
 
 | Type | Name |
 | ---: | :--- |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**auto**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**axis**](#variable-axis)   = `[**\_axis\_**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)`<br>_The axis type of the frame._  |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**auto**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**name**](#variable-name)   = `[**\_name\_**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)`<br>_The name of the frame._  |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**auto**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**origin**](#variable-origin)   = `[**\_origin\_**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)`<br>_The central body associated with the frame._  |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**auto**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**parent**](#variable-parent)   = `[**\_parent\_**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)`<br>_The parent frame of this frame._  |
+|  constexpr auto | [**axis**](#variable-axis)   = `\_axis\_`<br>_The axis type of the frame._  |
+|  constexpr auto | [**name**](#variable-name)   = `\_name\_`<br>_The name of the frame._  |
+|  constexpr auto | [**origin**](#variable-origin)   = `\_origin\_`<br>_The central body associated with the frame._  |
+|  constexpr auto | [**parent**](#variable-parent)   = `\_parent\_`<br>_The parent frame of this frame._  |
 
 
 

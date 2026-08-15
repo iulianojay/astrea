@@ -2,6 +2,7 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
   <compounddef id="namespaceastrea_1_1astro_1_1frames_1_1earth" kind="namespace" language="C++">
     <compoundname>astrea::astro::frames::earth</compoundname>
+    <innerclass refid="structastrea_1_1astro_1_1frames_1_1earth_1_1cep" prot="public">astrea::astro::frames::earth::cep</innerclass>
     <innerclass refid="structastrea_1_1astro_1_1frames_1_1earth_1_1earth__fixed" prot="public">astrea::astro::frames::earth::earth_fixed</innerclass>
     <innerclass refid="structastrea_1_1astro_1_1frames_1_1earth_1_1icrf" prot="public">astrea::astro::frames::earth::icrf</innerclass>
     <innerclass refid="structastrea_1_1astro_1_1frames_1_1earth_1_1j2000" prot="public">astrea::astro::frames::earth::j2000</innerclass>
@@ -34,6 +35,21 @@
         </inbodydescription>
         <location file="astrea/astro/astro/frames/definitions/body_centered_inertial_frames.hpp" line="53" column="7"/>
       </memberdef>
+      <memberdef kind="variable" id="body__centered__inertial__frames_8hpp_1acef5bff2345a2f3a1ffa71f0cba74cf5" prot="public" static="no" constexpr="yes" mutable="no">
+        <type>constexpr auto</type>
+        <definition>constexpr auto astrea::astro::frames::earth::eme2000</definition>
+        <argsstring></argsstring>
+        <name>eme2000</name>
+        <qualifiedname>astrea::astro::frames::earth::eme2000</qualifiedname>
+        <initializer>= <ref refid="structastrea_1_1astro_1_1frames_1_1earth_1_1j2000" kindref="compound">j2000</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/frames/definitions/body_centered_inertial_frames.hpp" line="54" column="23" bodyfile="astrea/astro/astro/frames/definitions/body_centered_inertial_frames.hpp" bodystart="54" bodyend="-1"/>
+      </memberdef>
       <memberdef kind="variable" id="body__fixed__frames_8hpp_1a93289c9f09609d1f0c482f72722d81b9" prot="public" static="no" mutable="no">
         <type><ref refid="structastrea_1_1astro_1_1frames_1_1earth_1_1earth__fixed" kindref="compound">astrea::astro::frames::earth::earth_fixed</ref></type>
         <definition>astrea::astro::frames::earth::earth_fixed astrea::astro::frames::earth::earth_fixed</definition>
@@ -46,7 +62,51 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/frames/definitions/body_fixed_frames.hpp" line="40" column="13"/>
+        <location file="astrea/astro/astro/frames/definitions/body_fixed_frames.hpp" line="41" column="13"/>
+      </memberdef>
+      <memberdef kind="variable" id="body__fixed__frames_8hpp_1a573d7d36ebe8845d136ca455e82ee826" prot="public" static="no" constexpr="yes" mutable="no">
+        <type>constexpr auto</type>
+        <definition>constexpr auto astrea::astro::frames::earth::ecef</definition>
+        <argsstring></argsstring>
+        <name>ecef</name>
+        <qualifiedname>astrea::astro::frames::earth::ecef</qualifiedname>
+        <initializer>= <ref refid="structastrea_1_1astro_1_1frames_1_1earth_1_1earth__fixed" kindref="compound">earth_fixed</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/frames/definitions/body_fixed_frames.hpp" line="42" column="23" bodyfile="astrea/astro/astro/frames/definitions/body_fixed_frames.hpp" bodystart="42" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="body__fixed__frames_8hpp_1a63fd2cbc987c392efb7b7ebe4b3007a5" prot="public" static="no" constexpr="yes" mutable="no">
+        <type>constexpr auto</type>
+        <definition>constexpr auto astrea::astro::frames::earth::itrf</definition>
+        <argsstring></argsstring>
+        <name>itrf</name>
+        <qualifiedname>astrea::astro::frames::earth::itrf</qualifiedname>
+        <initializer>= <ref refid="structastrea_1_1astro_1_1frames_1_1earth_1_1earth__fixed" kindref="compound">earth_fixed</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/frames/definitions/body_fixed_frames.hpp" line="43" column="23" bodyfile="astrea/astro/astro/frames/definitions/body_fixed_frames.hpp" bodystart="43" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="body__fixed__frames_8hpp_1a43690a472113f8ded0b647308f8edf50" prot="public" static="no" mutable="no">
+        <type><ref refid="structastrea_1_1astro_1_1frames_1_1earth_1_1cep" kindref="compound">astrea::astro::frames::earth::cep</ref></type>
+        <definition>astrea::astro::frames::earth::cep astrea::astro::frames::earth::cep</definition>
+        <argsstring></argsstring>
+        <name>cep</name>
+        <qualifiedname>astrea::astro::frames::earth::cep</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/frames/definitions/body_fixed_frames.hpp" line="49" column="5"/>
       </memberdef>
     </sectiondef>
     <briefdescription>

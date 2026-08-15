@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="namespaceastrea_1_1units" kind="namespace" language="C++">
+    <compoundname>astrea::units</compoundname>
+    <innerclass refid="structastrea_1_1units_1_1earth__radii" prot="public">astrea::units::earth_radii</innerclass>
+    <innerclass refid="structastrea_1_1units_1_1julian__century" prot="public">astrea::units::julian_century</innerclass>
+    <innerclass refid="structastrea_1_1units_1_1revolution" prot="public">astrea::units::revolution</innerclass>
+    <innerclass refid="structastrea_1_1units_1_1solar__flux__units" prot="public">astrea::units::solar_flux_units</innerclass>
+    <innernamespace refid="namespaceastrea_1_1units_1_1unit__symbols">astrea::units::unit_symbols</innernamespace>
+    <sectiondef kind="var">
+      <memberdef kind="variable" id="custom_8hpp_1afd690d0ecc5660f0e75ff67ca39ec97b" prot="public" static="no" mutable="no">
+        <type><ref refid="structastrea_1_1units_1_1julian__century" kindref="compound">astrea::units::julian_century</ref></type>
+        <definition>astrea::units::julian_century astrea::units::julian_century</definition>
+        <argsstring></argsstring>
+        <name>julian_century</name>
+        <qualifiedname>astrea::units::julian_century</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/units/units/custom.hpp" line="32" column="16"/>
+      </memberdef>
+      <memberdef kind="variable" id="custom_8hpp_1ac9355224d01a5db5d04a983064649b20" prot="public" static="no" mutable="no">
+        <type><ref refid="structastrea_1_1units_1_1earth__radii" kindref="compound">astrea::units::earth_radii</ref></type>
+        <definition>astrea::units::earth_radii astrea::units::earth_radii</definition>
+        <argsstring></argsstring>
+        <name>earth_radii</name>
+        <qualifiedname>astrea::units::earth_radii</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/units/units/custom.hpp" line="39" column="13"/>
+      </memberdef>
+      <memberdef kind="variable" id="custom_8hpp_1aea1a5dd5af471ef0a2f5b2ea68afe3e2" prot="public" static="no" mutable="no">
+        <type><ref refid="structastrea_1_1units_1_1solar__flux__units" kindref="compound">astrea::units::solar_flux_units</ref></type>
+        <definition>astrea::units::solar_flux_units astrea::units::solar_flux_units</definition>
+        <argsstring></argsstring>
+        <name>solar_flux_units</name>
+        <qualifiedname>astrea::units::solar_flux_units</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/units/units/custom.hpp" line="46" column="18"/>
+      </memberdef>
+      <memberdef kind="variable" id="custom_8hpp_1a5b88dbcd7b62d760f354df2988fbe5c6" prot="public" static="no" mutable="no">
+        <type><ref refid="structastrea_1_1units_1_1revolution" kindref="compound">astrea::units::revolution</ref></type>
+        <definition>astrea::units::revolution astrea::units::revolution</definition>
+        <argsstring></argsstring>
+        <name>revolution</name>
+        <qualifiedname>astrea::units::revolution</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/units/units/custom.hpp" line="52" column="12"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="astrea/units/units/custom.hpp" line="25" column="1"/>
+  </compounddef>
+</doxygen>

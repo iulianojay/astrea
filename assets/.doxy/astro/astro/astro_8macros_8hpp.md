@@ -78,6 +78,7 @@ _Macros for the astro module._ [More...](#detailed-description)
 
 | Type | Name |
 | ---: | :--- |
+| define  | [**\_ASTRO\_GRAV\_DATA\_ROOT\_**](astro_8macros_8hpp.md#define-_astro_grav_data_root_)  `\_ASTRO\_ROOT\_ "/data/gravity\_models"`<br> |
 | define  | [**\_ASTRO\_ROOT\_**](astro_8macros_8hpp.md#define-_astro_root_)  <br> |
 
 ## Detailed Description
@@ -101,7 +102,7 @@ Jay Iuliano ([iuliano.jay@gmail.com](mailto:iuliano.jay@gmail.com))
 
 **Copyright:**
 
-Copyright (c) 2025 Jay Iuliano
+Copyright (c) 2025-2026 Jay Iuliano
 
 
 The GNU Lesser General Public License (LGPL)
@@ -114,6 +115,19 @@ This file is part of Astrea. Astrea is free software: you can redistribute it an
 ## Macro Definition Documentation
 
 
+
+
+
+### define \_ASTRO\_GRAV\_DATA\_ROOT\_ 
+
+```C++
+#define _ASTRO_GRAV_DATA_ROOT_ `_ASTRO_ROOT_ "/data/gravity_models"`
+```
+
+
+
+
+<hr>
 
 
 

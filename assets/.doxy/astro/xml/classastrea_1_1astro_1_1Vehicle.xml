@@ -17,10 +17,10 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="876" column="21" bodyfile="astrea/astro/astro/platforms/Vehicle.hpp" bodystart="876" bodyend="-1"/>
+        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="875" column="21" bodyfile="astrea/astro/astro/platforms/Vehicle.hpp" bodystart="875" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1Vehicle_1a32ce50c72cd1b4a49d8087986d5e41e6" prot="private" static="no" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Mass</ref></type>
+        <type>Mass</type>
         <definition>Mass astrea::astro::Vehicle::_mass</definition>
         <argsstring></argsstring>
         <name>_mass</name>
@@ -32,7 +32,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="878" column="10" bodyfile="astrea/astro/astro/platforms/Vehicle.hpp" bodystart="878" bodyend="-1"/>
+        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="877" column="10" bodyfile="astrea/astro/astro/platforms/Vehicle.hpp" bodystart="877" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1Vehicle_1a8c71d430b6a45b5f4332d60ce875aaa5" prot="private" static="no" mutable="no">
         <type><ref refid="classastrea_1_1astro_1_1InertiaTensor" kindref="compound">InertiaTensor</ref>&lt; <ref refid="structastrea_1_1astro_1_1frames_1_1dynamic_1_1body" kindref="compound">frames::dynamic::body</ref> &gt;</type>
@@ -47,10 +47,10 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="879" column="19" bodyfile="astrea/astro/astro/platforms/Vehicle.hpp" bodystart="879" bodyend="-1"/>
+        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="878" column="19" bodyfile="astrea/astro/astro/platforms/Vehicle.hpp" bodystart="878" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1Vehicle_1a169854a7cd03ee9a44f9b3416f0ccea3" prot="private" static="no" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">SurfaceArea</ref></type>
+        <type>SurfaceArea</type>
         <definition>SurfaceArea astrea::astro::Vehicle::_ramArea</definition>
         <argsstring></argsstring>
         <name>_ramArea</name>
@@ -62,10 +62,10 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="880" column="17" bodyfile="astrea/astro/astro/platforms/Vehicle.hpp" bodystart="880" bodyend="-1"/>
+        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="879" column="17" bodyfile="astrea/astro/astro/platforms/Vehicle.hpp" bodystart="879" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1Vehicle_1a1fd1f9aff4c03107fd74e009216cd962" prot="private" static="no" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">SurfaceArea</ref></type>
+        <type>SurfaceArea</type>
         <definition>SurfaceArea astrea::astro::Vehicle::_liftArea</definition>
         <argsstring></argsstring>
         <name>_liftArea</name>
@@ -77,10 +77,10 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="881" column="17" bodyfile="astrea/astro/astro/platforms/Vehicle.hpp" bodystart="881" bodyend="-1"/>
+        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="880" column="17" bodyfile="astrea/astro/astro/platforms/Vehicle.hpp" bodystart="880" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1Vehicle_1a64ced253073864bae478d350ca55a5eb" prot="private" static="no" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">SurfaceArea</ref></type>
+        <type>SurfaceArea</type>
         <definition>SurfaceArea astrea::astro::Vehicle::_solarArea</definition>
         <argsstring></argsstring>
         <name>_solarArea</name>
@@ -92,10 +92,10 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="882" column="17" bodyfile="astrea/astro/astro/platforms/Vehicle.hpp" bodystart="882" bodyend="-1"/>
+        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="881" column="17" bodyfile="astrea/astro/astro/platforms/Vehicle.hpp" bodystart="881" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1Vehicle_1acbd8241f44289980ec821af964bea72e" prot="private" static="no" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Unitless</ref></type>
+        <type>Unitless</type>
         <definition>Unitless astrea::astro::Vehicle::_coefficientOfDrag</definition>
         <argsstring></argsstring>
         <name>_coefficientOfDrag</name>
@@ -107,10 +107,10 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="883" column="14" bodyfile="astrea/astro/astro/platforms/Vehicle.hpp" bodystart="883" bodyend="-1"/>
+        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="882" column="14" bodyfile="astrea/astro/astro/platforms/Vehicle.hpp" bodystart="882" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1Vehicle_1a4f0e26c7c624ccb668346b580bed7142" prot="private" static="no" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Unitless</ref></type>
+        <type>Unitless</type>
         <definition>Unitless astrea::astro::Vehicle::_coefficientOfLift</definition>
         <argsstring></argsstring>
         <name>_coefficientOfLift</name>
@@ -122,10 +122,10 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="884" column="14" bodyfile="astrea/astro/astro/platforms/Vehicle.hpp" bodystart="884" bodyend="-1"/>
+        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="883" column="14" bodyfile="astrea/astro/astro/platforms/Vehicle.hpp" bodystart="883" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1Vehicle_1ad22c8497bddb7ff3c3c1eacd63a9b0fb" prot="private" static="no" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Unitless</ref></type>
+        <type>Unitless</type>
         <definition>Unitless astrea::astro::Vehicle::_coefficientOfReflectivity</definition>
         <argsstring></argsstring>
         <name>_coefficientOfReflectivity</name>
@@ -137,7 +137,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="885" column="14" bodyfile="astrea/astro/astro/platforms/Vehicle.hpp" bodystart="885" bodyend="-1"/>
+        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="884" column="14" bodyfile="astrea/astro/astro/platforms/Vehicle.hpp" bodystart="884" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="public-func">
@@ -154,7 +154,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="699" column="5" bodyfile="astrea/astro/astro/platforms/Vehicle.cpp" bodystart="31" bodyend="34"/>
+        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="698" column="5" bodyfile="astrea/astro/astro/platforms/Vehicle.cpp" bodystart="30" bodyend="33"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Vehicle_1a9537c75383f303c913ee2fcb984eeafb" prot="public" static="no" const="no" explicit="yes" inline="yes" virt="non-virtual">
         <templateparamlist>
@@ -170,7 +170,7 @@
         <name>Vehicle</name>
         <qualifiedname>astrea::astro::Vehicle::Vehicle</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">T</ref> &amp;&amp;</type>
+          <type>T &amp;&amp;</type>
           <declname>x</declname>
         </param>
         <briefdescription>
@@ -199,7 +199,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="715" column="14" bodyfile="astrea/astro/astro/platforms/Vehicle.hpp" bodystart="715" bodyend="719"/>
+        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="714" column="14" bodyfile="astrea/astro/astro/platforms/Vehicle.hpp" bodystart="714" bodyend="718"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Vehicle_1ae14d808d54b71581dc7791ea53064539" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -208,7 +208,7 @@
         <name>Vehicle</name>
         <qualifiedname>astrea::astro::Vehicle::Vehicle</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Vehicle" kindref="compound">Vehicle</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Vehicle" kindref="compound">Vehicle</ref> &amp;</type>
           <defname>other</defname>
         </param>
         <briefdescription>
@@ -228,7 +228,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="726" column="5" bodyfile="astrea/astro/astro/platforms/Vehicle.cpp" bodystart="37" bodyend="48"/>
+        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="725" column="5" bodyfile="astrea/astro/astro/platforms/Vehicle.cpp" bodystart="36" bodyend="47"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Vehicle_1a7bacad65da7c21f00be153b2b73cb10a" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
         <type></type>
@@ -257,7 +257,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="733" column="5" bodyfile="astrea/astro/astro/platforms/Vehicle.cpp" bodystart="51" bodyend="62"/>
+        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="732" column="5" bodyfile="astrea/astro/astro/platforms/Vehicle.cpp" bodystart="50" bodyend="61"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Vehicle_1ad84baa620d49c19dfd1f7fdc8c332e60" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
         <type><ref refid="classastrea_1_1astro_1_1Vehicle" kindref="compound">Vehicle</ref> &amp;</type>
@@ -279,7 +279,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="740" column="13" bodyfile="astrea/astro/astro/platforms/Vehicle.cpp" bodystart="77" bodyend="91"/>
+        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="739" column="13" bodyfile="astrea/astro/astro/platforms/Vehicle.cpp" bodystart="76" bodyend="90"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Vehicle_1a80597f6866d2c52511df0da860a15184" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classastrea_1_1astro_1_1Vehicle" kindref="compound">Vehicle</ref> &amp;</type>
@@ -288,7 +288,7 @@
         <name>operator=</name>
         <qualifiedname>astrea::astro::Vehicle::operator=</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Vehicle" kindref="compound">Vehicle</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Vehicle" kindref="compound">Vehicle</ref> &amp;</type>
           <defname>other</defname>
         </param>
         <briefdescription>
@@ -310,7 +310,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="748" column="13" bodyfile="astrea/astro/astro/platforms/Vehicle.cpp" bodystart="94" bodyend="94"/>
+        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="747" column="13" bodyfile="astrea/astro/astro/platforms/Vehicle.cpp" bodystart="93" bodyend="93"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Vehicle_1a8c66aec6b5e7dc84d83fe45c0dfc3489" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
@@ -326,7 +326,7 @@
         <name>operator=</name>
         <qualifiedname>astrea::astro::Vehicle::operator=</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">T</ref> &amp;&amp;</type>
+          <type>T &amp;&amp;</type>
           <declname>x</declname>
         </param>
         <briefdescription>
@@ -357,7 +357,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="758" column="13" bodyfile="astrea/astro/astro/platforms/Vehicle.hpp" bodystart="758" bodyend="761"/>
+        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="757" column="13" bodyfile="astrea/astro/astro/platforms/Vehicle.hpp" bodystart="757" bodyend="760"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Vehicle_1ab94de25eb6d0cd4c1f40bafd994ca04b" prot="public" static="no" const="yes" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
         <templateparamlist>
@@ -367,7 +367,7 @@
             <defname>T</defname>
           </param>
         </templateparamlist>
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">T</ref> *</type>
+        <type>const T *</type>
         <definition>const T * astrea::astro::Vehicle::extract</definition>
         <argsstring>() const noexcept</argsstring>
         <name>extract</name>
@@ -391,7 +391,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="770" column="13" bodyfile="astrea/astro/astro/platforms/Vehicle.hpp" bodystart="770" bodyend="774"/>
+        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="769" column="13" bodyfile="astrea/astro/astro/platforms/Vehicle.hpp" bodystart="769" bodyend="773"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Vehicle_1a49d42d353646b817ca0026560314c363" prot="public" static="no" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
         <templateparamlist>
@@ -401,7 +401,7 @@
             <defname>T</defname>
           </param>
         </templateparamlist>
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">T</ref> *</type>
+        <type>T *</type>
         <definition>T * astrea::astro::Vehicle::extract_mutable_reference</definition>
         <argsstring>() noexcept</argsstring>
         <name>extract_mutable_reference</name>
@@ -425,10 +425,10 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="783" column="7" bodyfile="astrea/astro/astro/platforms/Vehicle.hpp" bodystart="783" bodyend="787"/>
+        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="782" column="7" bodyfile="astrea/astro/astro/platforms/Vehicle.hpp" bodystart="782" bodyend="786"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Vehicle_1a16c66589957a50f003a9c8a19643e8e7" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Mass</ref></type>
+        <type>Mass</type>
         <definition>Mass astrea::astro::Vehicle::get_mass</definition>
         <argsstring>() const</argsstring>
         <name>get_mass</name>
@@ -443,7 +443,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="794" column="10" bodyfile="astrea/astro/astro/platforms/Vehicle.hpp" bodystart="794" bodyend="794"/>
+        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="793" column="10" bodyfile="astrea/astro/astro/platforms/Vehicle.hpp" bodystart="793" bodyend="793"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Vehicle_1a29055671ceaf5addd3b5574d04375f97" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="classastrea_1_1astro_1_1InertiaTensor" kindref="compound">InertiaTensor</ref>&lt; <ref refid="structastrea_1_1astro_1_1frames_1_1dynamic_1_1body" kindref="compound">frames::dynamic::body</ref> &gt;</type>
@@ -461,10 +461,10 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="801" column="19" bodyfile="astrea/astro/astro/platforms/Vehicle.hpp" bodystart="801" bodyend="801"/>
+        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="800" column="19" bodyfile="astrea/astro/astro/platforms/Vehicle.hpp" bodystart="800" bodyend="800"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Vehicle_1a06c609fdabc553f73a32d16d4b86074b" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">SurfaceArea</ref></type>
+        <type>SurfaceArea</type>
         <definition>SurfaceArea astrea::astro::Vehicle::get_ram_area</definition>
         <argsstring>() const</argsstring>
         <name>get_ram_area</name>
@@ -479,10 +479,10 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="808" column="17" bodyfile="astrea/astro/astro/platforms/Vehicle.hpp" bodystart="808" bodyend="808"/>
+        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="807" column="17" bodyfile="astrea/astro/astro/platforms/Vehicle.hpp" bodystart="807" bodyend="807"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Vehicle_1aac239325de0d02d70d99a16b4cb45838" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">SurfaceArea</ref></type>
+        <type>SurfaceArea</type>
         <definition>SurfaceArea astrea::astro::Vehicle::get_lift_area</definition>
         <argsstring>() const</argsstring>
         <name>get_lift_area</name>
@@ -497,10 +497,10 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="815" column="17" bodyfile="astrea/astro/astro/platforms/Vehicle.hpp" bodystart="815" bodyend="815"/>
+        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="814" column="17" bodyfile="astrea/astro/astro/platforms/Vehicle.hpp" bodystart="814" bodyend="814"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Vehicle_1ad84b7bbd5e0e0e7bafbf6d608ba520fb" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">SurfaceArea</ref></type>
+        <type>SurfaceArea</type>
         <definition>SurfaceArea astrea::astro::Vehicle::get_solar_area</definition>
         <argsstring>() const</argsstring>
         <name>get_solar_area</name>
@@ -515,10 +515,10 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="822" column="17" bodyfile="astrea/astro/astro/platforms/Vehicle.hpp" bodystart="822" bodyend="822"/>
+        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="821" column="17" bodyfile="astrea/astro/astro/platforms/Vehicle.hpp" bodystart="821" bodyend="821"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Vehicle_1ab1befc5b53489849f43ffd59dfcbc421" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Unitless</ref></type>
+        <type>Unitless</type>
         <definition>Unitless astrea::astro::Vehicle::get_coefficient_of_drag</definition>
         <argsstring>() const</argsstring>
         <name>get_coefficient_of_drag</name>
@@ -533,10 +533,10 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="829" column="14" bodyfile="astrea/astro/astro/platforms/Vehicle.hpp" bodystart="829" bodyend="829"/>
+        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="828" column="14" bodyfile="astrea/astro/astro/platforms/Vehicle.hpp" bodystart="828" bodyend="828"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Vehicle_1a0eb8f3f76df98212fa7d5f80378c5503" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Unitless</ref></type>
+        <type>Unitless</type>
         <definition>Unitless astrea::astro::Vehicle::get_coefficient_of_lift</definition>
         <argsstring>() const</argsstring>
         <name>get_coefficient_of_lift</name>
@@ -551,10 +551,10 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="836" column="14" bodyfile="astrea/astro/astro/platforms/Vehicle.hpp" bodystart="836" bodyend="836"/>
+        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="835" column="14" bodyfile="astrea/astro/astro/platforms/Vehicle.hpp" bodystart="835" bodyend="835"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Vehicle_1af0f3012e96737f341aae3d56c2c58509" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Unitless</ref></type>
+        <type>Unitless</type>
         <definition>Unitless astrea::astro::Vehicle::get_coefficient_of_reflectivity</definition>
         <argsstring>() const</argsstring>
         <name>get_coefficient_of_reflectivity</name>
@@ -569,7 +569,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="843" column="14" bodyfile="astrea/astro/astro/platforms/Vehicle.hpp" bodystart="843" bodyend="843"/>
+        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="842" column="14" bodyfile="astrea/astro/astro/platforms/Vehicle.hpp" bodystart="842" bodyend="842"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Vehicle_1a2db62eaefe30b089ac7be16599f42674" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="structastrea_1_1astro_1_1Perturbation" kindref="compound">Perturbation</ref></type>
@@ -578,7 +578,7 @@
         <name>get_control_authority</name>
         <qualifiedname>astrea::astro::Vehicle::get_control_authority</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
           <declname>state</declname>
         </param>
         <briefdescription>
@@ -600,7 +600,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="851" column="18" bodyfile="astrea/astro/astro/platforms/Vehicle.hpp" bodystart="851" bodyend="851"/>
+        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="850" column="18" bodyfile="astrea/astro/astro/platforms/Vehicle.hpp" bodystart="850" bodyend="850"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Vehicle_1ad0b61d82f6f964b4fd3ce6fdc3d0f4fa" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>std::string</type>
@@ -618,10 +618,10 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="859" column="17" bodyfile="astrea/astro/astro/platforms/Vehicle.hpp" bodystart="859" bodyend="859"/>
+        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="858" column="17" bodyfile="astrea/astro/astro/platforms/Vehicle.hpp" bodystart="858" bodyend="858"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Vehicle_1aba08d0db9f46a7127aad1b7ddb644aef" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">void</ref> *</type>
+        <type>const void *</type>
         <definition>const void * astrea::astro::Vehicle::get_ptr</definition>
         <argsstring>() const</argsstring>
         <name>get_ptr</name>
@@ -636,10 +636,10 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="866" column="16" bodyfile="astrea/astro/astro/platforms/Vehicle.cpp" bodystart="97" bodyend="97"/>
+        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="865" column="16" bodyfile="astrea/astro/astro/platforms/Vehicle.cpp" bodystart="96" bodyend="96"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Vehicle_1a669f2d451eaec3bfd23dffc3322b29bd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">void</ref> *</type>
+        <type>void *</type>
         <definition>void * astrea::astro::Vehicle::get_ptr</definition>
         <argsstring>()</argsstring>
         <name>get_ptr</name>
@@ -654,12 +654,12 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="873" column="10" bodyfile="astrea/astro/astro/platforms/Vehicle.cpp" bodystart="98" bodyend="98"/>
+        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="872" column="10" bodyfile="astrea/astro/astro/platforms/Vehicle.cpp" bodystart="97" bodyend="97"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="private-func">
       <memberdef kind="function" id="classastrea_1_1astro_1_1Vehicle_1a7bfe1ef63d70232ad0e8098d8ba35969" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">void</ref></type>
+        <type>void</type>
         <definition>void astrea::astro::Vehicle::generic_ctor_impl</definition>
         <argsstring>()</argsstring>
         <name>generic_ctor_impl</name>
@@ -671,10 +671,10 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="705" column="10" bodyfile="astrea/astro/astro/platforms/Vehicle.cpp" bodystart="64" bodyend="74"/>
+        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="704" column="10" bodyfile="astrea/astro/astro/platforms/Vehicle.cpp" bodystart="63" bodyend="73"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Vehicle_1a5a1fa9f5ccd7e5ebd66ec0b342c1e62d" prot="private" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="structastrea_1_1astro_1_1detail_1_1VehicleInnerBase" kindref="compound">detail::VehicleInnerBase</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> *</type>
+        <type><ref refid="structastrea_1_1astro_1_1detail_1_1VehicleInnerBase" kindref="compound">detail::VehicleInnerBase</ref> const *</type>
         <definition>detail::VehicleInnerBase const  * astrea::astro::Vehicle::ptr</definition>
         <argsstring>() const</argsstring>
         <name>ptr</name>
@@ -689,7 +689,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="892" column="36" bodyfile="astrea/astro/astro/platforms/Vehicle.hpp" bodystart="892" bodyend="896"/>
+        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="891" column="36" bodyfile="astrea/astro/astro/platforms/Vehicle.hpp" bodystart="891" bodyend="895"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Vehicle_1a70eef0cbe8f2768ffe4755a6c33f8beb" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="structastrea_1_1astro_1_1detail_1_1VehicleInnerBase" kindref="compound">detail::VehicleInnerBase</ref> *</type>
@@ -707,7 +707,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="903" column="30" bodyfile="astrea/astro/astro/platforms/Vehicle.hpp" bodystart="903" bodyend="907"/>
+        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="902" column="30" bodyfile="astrea/astro/astro/platforms/Vehicle.hpp" bodystart="902" bodyend="906"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
@@ -715,7 +715,7 @@
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="693" column="1" bodyfile="astrea/astro/astro/platforms/Vehicle.hpp" bodystart="693" bodyend="908"/>
+    <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="692" column="1" bodyfile="astrea/astro/astro/platforms/Vehicle.hpp" bodystart="692" bodyend="907"/>
     <listofallmembers>
       <member refid="classastrea_1_1astro_1_1Vehicle_1acbd8241f44289980ec821af964bea72e" prot="private" virt="non-virtual"><scope>astrea::astro::Vehicle</scope><name>_coefficientOfDrag</name></member>
       <member refid="classastrea_1_1astro_1_1Vehicle_1a4f0e26c7c624ccb668346b580bed7142" prot="private" virt="non-virtual"><scope>astrea::astro::Vehicle</scope><name>_coefficientOfLift</name></member>

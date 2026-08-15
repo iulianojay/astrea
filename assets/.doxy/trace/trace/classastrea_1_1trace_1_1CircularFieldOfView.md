@@ -73,7 +73,7 @@ Inherits the following classes: [astrea::trace::FieldOfView](classastrea_1_1trac
 
 | Type | Name |
 | ---: | :--- |
-|   | [**CircularFieldOfView**](#function-circularfieldofview) (const Angle & halfConeAngle=std::numbers::pi/4.0 \*mp\_units::angular::unit\_symbols::rad) <br>_Constructor for_ [_**CircularFieldOfView**_](classastrea_1_1trace_1_1CircularFieldOfView.md) _._ |
+|   | [**CircularFieldOfView**](#function-circularfieldofview) (const Angle & halfConeAngle=std::numbers::pi/4.0 \*mp\_units::si::unit\_symbols::rad) <br>_Constructor for_ [_**CircularFieldOfView**_](classastrea_1_1trace_1_1CircularFieldOfView.md) _._ |
 | virtual bool | [**contains**](#function-contains) (const astro::CartesianVector&lt; Distance, astro::frames::earth::icrf &gt; & boresight, const astro::CartesianVector&lt; Distance, astro::frames::earth::icrf &gt; & target) const<br>_Checks if a target is within the circular field of view._  |
 | virtual Angle | [**max\_half\_angle**](#function-max_half_angle) () override const<br>_Returns the maximum off-boresight half-angle for this field of view._  |
 |   | [**~CircularFieldOfView**](#function-circularfieldofview) () = default<br>_Default destructor for_ [_**CircularFieldOfView**_](classastrea_1_1trace_1_1CircularFieldOfView.md) _._ |
@@ -160,7 +160,7 @@ This class represents a circular field of view defined by a half-cone angle.
 _Constructor for_ [_**CircularFieldOfView**_](classastrea_1_1trace_1_1CircularFieldOfView.md) _._
 ```C++
 astrea::trace::CircularFieldOfView::CircularFieldOfView (
-    const Angle & halfConeAngle=std::numbers::pi/4.0 *mp_units::angular::unit_symbols::rad
+    const Angle & halfConeAngle=std::numbers::pi/4.0 *mp_units::si::unit_symbols::rad
 ) 
 ```
 

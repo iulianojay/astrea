@@ -14,7 +14,7 @@
 #include <iosfwd>
 #include <optional>
 
-#include <astro/frames/definitions/dynamic_frames.hpp>
+#include <astro/frames/definitions/dynamic_frames/tags.hpp>
 #include <astro/state/attitude/Attitude.hpp>
 #include <astro/state/attitude/Quaternion.hpp>
 #include <astro/state/orbital_elements/OrbitalElements.hpp>
@@ -139,17 +139,17 @@ class State {
     Date _epoch; 
     std::optional<Attitude> _attitude; 
 
-    std::vector<Unitless> force_to_vector() const
+    std::vector<double> force_to_double_vector() const
     {
-        auto retval = _elements.force_to_vector();
+        auto retval = _elements.force_to_double_vector();
         if (_attitude.has_value()) {
-            const auto& attitudeVector = _attitude->force_to_vector();
+            const auto& attitudeVector = _attitude->force_to_double_vector();
             retval.insert(retval.end(), attitudeVector.begin(), attitudeVector.end());
         }
         return retval;
     }
 
-    static State from_vector(const std::vector<Unitless>& vec, const std::size_t idx);
+    static State from_double_vector(const std::vector<double>& vec, const std::size_t idx);
 
     State operator+(const State& other) const;
 
@@ -188,11 +188,11 @@ class StatePartial {
 
     const Date& get_epoch() const;
 
-    std::vector<Unitless> force_to_vector() const
+    std::vector<double> force_to_double_vector() const
     {
-        auto retval = _elementPartials.force_to_vector();
+        auto retval = _elementPartials.force_to_double_vector();
         if (_attitudePartial.has_value()) {
-            const auto& attitudeVector = _attitudePartial->force_to_vector();
+            const auto& attitudeVector = _attitudePartial->force_to_double_vector();
             retval.insert(retval.end(), attitudeVector.begin(), attitudeVector.end());
         }
         return retval;

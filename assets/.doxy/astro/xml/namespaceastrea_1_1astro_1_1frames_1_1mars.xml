@@ -18,7 +18,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/frames/definitions/body_centered_inertial_frames.hpp" line="65" column="6"/>
+        <location file="astrea/astro/astro/frames/definitions/body_centered_inertial_frames.hpp" line="66" column="6"/>
       </memberdef>
       <memberdef kind="variable" id="body__centered__inertial__frames_8hpp_1ae14673663eddb22af5ba31ab518c18ab" prot="public" static="no" mutable="no">
         <type><ref refid="structastrea_1_1astro_1_1frames_1_1mars_1_1j2000" kindref="compound">astrea::astro::frames::mars::j2000</ref></type>
@@ -32,7 +32,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/frames/definitions/body_centered_inertial_frames.hpp" line="67" column="7"/>
+        <location file="astrea/astro/astro/frames/definitions/body_centered_inertial_frames.hpp" line="68" column="7"/>
       </memberdef>
       <memberdef kind="variable" id="body__fixed__frames_8hpp_1aa5ecebbcbb646e4f3e617c03f71e9b26" prot="public" static="no" mutable="no">
         <type><ref refid="structastrea_1_1astro_1_1frames_1_1mars_1_1mars__fixed" kindref="compound">astrea::astro::frames::mars::mars_fixed</ref></type>
@@ -46,13 +46,13 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/frames/definitions/body_fixed_frames.hpp" line="50" column="12"/>
+        <location file="astrea/astro/astro/frames/definitions/body_fixed_frames.hpp" line="60" column="12"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="astrea/astro/astro/frames/definitions/body_centered_inertial_frames.hpp" line="63" column="1"/>
+    <location file="astrea/astro/astro/frames/definitions/body_centered_inertial_frames.hpp" line="64" column="1"/>
   </compounddef>
 </doxygen>

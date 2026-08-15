@@ -2,7 +2,7 @@
 
 # Struct astrea::astro::SynodicFrame
 
-**template &lt;mp\_units::symbol\_text \_name\_, IsBarycenter [**auto**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) \_origin\_, IsCelestialBody [**auto**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) \_primary\_, IsCelestialBody [**auto**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) \_secondary\_&gt;**
+**template &lt;mp\_units::symbol\_text \_name\_, IsBarycenter auto \_origin\_, IsCelestialBody auto \_primary\_, IsCelestialBody auto \_secondary\_&gt;**
 
 
 

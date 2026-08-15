@@ -11,7 +11,6 @@
 _Header file for trace configuration in the astrea trace library._ [More...](#detailed-description)
 
 * `#include <string>`
-* `#include <mp-units/systems/angular.h>`
 * `#include <mp-units/systems/si.h>`
 * `#include <nlohmann/json.hpp>`
 * `#include <astro/astro.hpp>`
@@ -120,7 +119,7 @@ Jay Iuliano ([iuliano.jay@gmail.com](mailto:iuliano.jay@gmail.com))
 
 **Copyright:**
 
-Copyright (c) 2025 Jay Iuliano
+Copyright (c) 2025-2026 Jay Iuliano
 
 
 The GNU Lesser General Public License (LGPL)

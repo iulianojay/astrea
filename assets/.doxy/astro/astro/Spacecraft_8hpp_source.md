@@ -17,7 +17,7 @@
 #include <utilities/IdProvider.hpp>
 
 #include <astro/astro.fwd.hpp>
-#include <astro/frames/definitions/dynamic_frames.hpp>
+#include <astro/frames/definitions/dynamic_frames/tags.hpp>
 #include <astro/frames/definitions/primary_frame.hpp>
 #include <astro/platforms/InertiaTensor.hpp>
 #include <astro/platforms/Vehicle.hpp>

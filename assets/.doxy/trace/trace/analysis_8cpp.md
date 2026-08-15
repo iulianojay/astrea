@@ -14,7 +14,6 @@
 * `#include <chrono>`
 * `#include <iostream>`
 * `#include <sstream>`
-* `#include <mp-units/systems/angular.h>`
 * `#include <mp-units/systems/si.h>`
 * `#include <astro/astro.hpp>`
 * `#include <utilities/StopWatch.hpp>`

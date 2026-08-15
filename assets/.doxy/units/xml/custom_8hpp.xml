@@ -2,9 +2,7 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
   <compounddef id="custom_8hpp" kind="file" language="C++">
     <compoundname>custom.hpp</compoundname>
-    <includes local="no">mp-units/systems/angular.h</includes>
     <includes local="no">mp-units/systems/iau.h</includes>
-    <includes local="no">mp-units/systems/isq_angle.h</includes>
     <includes local="no">mp-units/systems/si.h</includes>
     <includedby refid="typedefs_8hpp" local="no">astrea/units/units/typedefs.hpp</includedby>
     <includedby refid="units_8hpp" local="no">astrea/units/units/units.hpp</includedby>
@@ -16,21 +14,11 @@
         </childnode>
         <childnode refid="3" relation="include">
         </childnode>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="5" relation="include">
-        </childnode>
       </node>
       <node id="2">
-        <label>mp-units/systems/angular.h</label>
-      </node>
-      <node id="3">
         <label>mp-units/systems/iau.h</label>
       </node>
-      <node id="4">
-        <label>mp-units/systems/isq_angle.h</label>
-      </node>
-      <node id="5">
+      <node id="3">
         <label>mp-units/systems/si.h</label>
       </node>
     </incdepgraph>
@@ -70,10 +58,13 @@
         <link refid="units_8hpp"/>
       </node>
     </invincdepgraph>
-    <innerclass refid="structastrea_1_1JulianCentury" prot="public">astrea::JulianCentury</innerclass>
-    <innerclass refid="structastrea_1_1EarthRadii" prot="public">astrea::EarthRadii</innerclass>
-    <innerclass refid="structastrea_1_1SolarFluxUnits" prot="public">astrea::SolarFluxUnits</innerclass>
+    <innerclass refid="structastrea_1_1units_1_1julian__century" prot="public">astrea::units::julian_century</innerclass>
+    <innerclass refid="structastrea_1_1units_1_1earth__radii" prot="public">astrea::units::earth_radii</innerclass>
+    <innerclass refid="structastrea_1_1units_1_1solar__flux__units" prot="public">astrea::units::solar_flux_units</innerclass>
+    <innerclass refid="structastrea_1_1units_1_1revolution" prot="public">astrea::units::revolution</innerclass>
     <innernamespace refid="namespaceastrea">astrea</innernamespace>
+    <innernamespace refid="namespaceastrea_1_1units">astrea::units</innernamespace>
+    <innernamespace refid="namespaceastrea_1_1units_1_1unit__symbols">astrea::units::unit_symbols</innernamespace>
     <briefdescription>
 <para>Custom units for astrea project. </para>
     </briefdescription>
@@ -82,7 +73,7 @@
 </simplesect>
 <simplesect kind="date"><para>2025-08-02</para>
 </simplesect>
-<simplesect kind="copyright"><para>Copyright (c) 2025 Jay Iuliano</para>
+<simplesect kind="copyright"><para>Copyright (c) 2025-2026 Jay Iuliano</para>
 </simplesect>
 The GNU Lesser General Public License (LGPL)</para>
 <para>This file is part of Astrea. Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. Astrea is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details. You should have received a copy of the GNU General Public License along with Astrea. If not, see <ulink url="https://www.gnu.org/licenses/">https://www.gnu.org/licenses/</ulink>. </para>
@@ -91,25 +82,39 @@ The GNU Lesser General Public License (LGPL)</para>
 <codeline lineno="1"><highlight class="normal"></highlight></codeline>
 <codeline lineno="19"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="20"><highlight class="normal"></highlight></codeline>
-<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;mp-units/systems/angular.h&gt;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;mp-units/systems/iau.h&gt;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="23"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;mp-units/systems/isq_angle.h&gt;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;mp-units/systems/si.h&gt;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="25"><highlight class="normal"></highlight></codeline>
-<codeline lineno="26"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">astrea<sp/>{</highlight></codeline>
-<codeline lineno="27"><highlight class="normal"></highlight></codeline>
-<codeline lineno="31" refid="structastrea_1_1JulianCentury" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structastrea_1_1JulianCentury" kindref="compound">JulianCentury</ref><sp/>final<sp/>:<sp/>mp_units::named_unit&lt;&quot;JulianCentury&quot;,<sp/>mp_units::mag&lt;36525&gt;<sp/>*<sp/>mp_units::non_si::day&gt;<sp/>{</highlight></codeline>
-<codeline lineno="32"><highlight class="normal">}<sp/><ref refid="structastrea_1_1JulianCentury" kindref="compound">JulianCentury</ref>;</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;mp-units/systems/iau.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;mp-units/systems/si.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">astrea<sp/>{</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">units<sp/>{</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight></codeline>
+<codeline lineno="30" refid="structastrea_1_1units_1_1julian__century" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structastrea_1_1units_1_1julian__century" kindref="compound">julian_century</ref><sp/>final</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/>:<sp/>mp_units::named_unit&lt;&quot;Julian<sp/>Century&quot;,<sp/>mp_units::mag&lt;36525&gt;<sp/>*<sp/>mp_units::non_si::day&gt;<sp/>{</highlight></codeline>
+<codeline lineno="32"><highlight class="normal">}<sp/><ref refid="structastrea_1_1units_1_1julian__century" kindref="compound">julian_century</ref>;</highlight></codeline>
 <codeline lineno="33"><highlight class="normal"></highlight></codeline>
-<codeline lineno="37" refid="structastrea_1_1EarthRadii" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structastrea_1_1EarthRadii" kindref="compound">EarthRadii</ref><sp/>final</highlight></codeline>
-<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/>:<sp/>mp_units::named_unit&lt;&quot;EarthRadii&quot;,<sp/>mp_units::mag&lt;6378&gt;<sp/>*<sp/>mp_units::si::unit_symbols::km&gt;<sp/>{</highlight></codeline>
-<codeline lineno="39"><highlight class="normal">}<sp/><ref refid="structastrea_1_1EarthRadii" kindref="compound">EarthRadii</ref>;</highlight></codeline>
+<codeline lineno="37" refid="structastrea_1_1units_1_1earth__radii" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structastrea_1_1units_1_1earth__radii" kindref="compound">earth_radii</ref><sp/>final</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/>:<sp/>mp_units::named_unit&lt;&quot;Earth<sp/>Radii&quot;,<sp/>mp_units::mag&lt;6378&gt;<sp/>*<sp/>mp_units::si::unit_symbols::km&gt;<sp/>{</highlight></codeline>
+<codeline lineno="39"><highlight class="normal">}<sp/><ref refid="structastrea_1_1units_1_1earth__radii" kindref="compound">earth_radii</ref>;</highlight></codeline>
 <codeline lineno="40"><highlight class="normal"></highlight></codeline>
-<codeline lineno="44" refid="structastrea_1_1SolarFluxUnits" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structastrea_1_1SolarFluxUnits" kindref="compound">SolarFluxUnits</ref><sp/>final</highlight></codeline>
-<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/>:<sp/>mp_units::named_unit&lt;&quot;SolarFluxUnits&quot;,<sp/>mp_units::mag_power&lt;10,<sp/>-22&gt;<sp/>*<sp/>mp_units::si::unit_symbols::W<sp/>/<sp/>(pow&lt;2&gt;(mp_units::si::unit_symbols::m)<sp/>*<sp/>mp_units::si::unit_symbols::Hz)&gt;<sp/>{</highlight></codeline>
-<codeline lineno="46"><highlight class="normal">}<sp/><ref refid="structastrea_1_1SolarFluxUnits" kindref="compound">SolarFluxUnits</ref>;</highlight></codeline>
+<codeline lineno="44" refid="structastrea_1_1units_1_1solar__flux__units" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structastrea_1_1units_1_1solar__flux__units" kindref="compound">solar_flux_units</ref><sp/>final</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/>:<sp/>mp_units::named_unit&lt;&quot;Solar<sp/>Flux<sp/>Units&quot;,<sp/>mp_units::mag_power&lt;10,<sp/>-22&gt;<sp/>*<sp/>mp_units::si::unit_symbols::W<sp/>/<sp/>(pow&lt;2&gt;(mp_units::si::unit_symbols::m)<sp/>*<sp/>mp_units::si::unit_symbols::Hz)&gt;<sp/>{</highlight></codeline>
+<codeline lineno="46"><highlight class="normal">}<sp/><ref refid="structastrea_1_1units_1_1solar__flux__units" kindref="compound">solar_flux_units</ref>;</highlight></codeline>
 <codeline lineno="47"><highlight class="normal"></highlight></codeline>
-<codeline lineno="48"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>astrea</highlight></codeline>
+<codeline lineno="51" refid="structastrea_1_1units_1_1revolution" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structastrea_1_1units_1_1revolution" kindref="compound">revolution</ref><sp/>final<sp/>:<sp/>mp_units::named_unit&lt;&quot;rev&quot;,<sp/>mp_units::mag&lt;360&gt;<sp/>*<sp/>mp_units::si::unit_symbols::deg&gt;<sp/>{</highlight></codeline>
+<codeline lineno="52"><highlight class="normal">}<sp/><ref refid="structastrea_1_1units_1_1revolution" kindref="compound">revolution</ref>;</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">unit_symbols<sp/>{</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>jc<sp/><sp/>=<sp/><ref refid="structastrea_1_1units_1_1julian__century" kindref="compound">julian_century</ref>;</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>re<sp/><sp/>=<sp/><ref refid="structastrea_1_1units_1_1earth__radii" kindref="compound">earth_radii</ref>;</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>sfu<sp/>=<sp/><ref refid="structastrea_1_1units_1_1solar__flux__units" kindref="compound">solar_flux_units</ref>;</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>rev<sp/>=<sp/><ref refid="structastrea_1_1units_1_1revolution" kindref="compound">revolution</ref>;</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"></highlight></codeline>
+<codeline lineno="62"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>unit_symbols</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="63"><highlight class="normal"></highlight></codeline>
+<codeline lineno="64"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>units</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>astrea</highlight></codeline>
     </programlisting>
     <location file="astrea/units/units/custom.hpp"/>
   </compounddef>

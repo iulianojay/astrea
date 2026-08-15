@@ -40,22 +40,22 @@
         <location file="astrea/astro/astro/propagation/event_detection/Event.hpp" line="95" column="25"/>
       </memberdef>
       <memberdef kind="function" id="structastrea_1_1astro_1_1detail_1_1EventInnerBase_1ae917d85ee77be2d41702075e7aa24eda" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Unitless</ref></type>
+        <type>Unitless</type>
         <definition>virtual Unitless astrea::astro::detail::EventInnerBase::measure_event</definition>
         <argsstring>(const Time &amp;time, const State &amp;state, const Vehicle &amp;vehicle) const =0</argsstring>
         <name>measure_event</name>
         <qualifiedname>astrea::astro::detail::EventInnerBase::measure_event</qualifiedname>
         <reimplementedby refid="structastrea_1_1astro_1_1detail_1_1EventInner_1a11987a9bd7d4c6c6723835eeb7ff0673">measure_event</reimplementedby>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Time</ref> &amp;</type>
+          <type>const Time &amp;</type>
           <declname>time</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
           <declname>state</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Vehicle" kindref="compound">Vehicle</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Vehicle" kindref="compound">Vehicle</ref> &amp;</type>
           <declname>vehicle</declname>
         </param>
         <briefdescription>
@@ -98,7 +98,7 @@
         <location file="astrea/astro/astro/propagation/event_detection/Event.hpp" line="106" column="22"/>
       </memberdef>
       <memberdef kind="function" id="structastrea_1_1astro_1_1detail_1_1EventInnerBase_1a55faf23ad11862a521690ed0d5b6be23" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">bool</ref></type>
+        <type>bool</type>
         <definition>virtual bool astrea::astro::detail::EventInnerBase::is_terminal</definition>
         <argsstring>() const =0</argsstring>
         <name>is_terminal</name>
@@ -119,14 +119,14 @@
         <location file="astrea/astro/astro/propagation/event_detection/Event.hpp" line="114" column="18"/>
       </memberdef>
       <memberdef kind="function" id="structastrea_1_1astro_1_1detail_1_1EventInnerBase_1a067c4b36b7b8b89298ba49514c163a21" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">void</ref></type>
+        <type>void</type>
         <definition>virtual void astrea::astro::detail::EventInnerBase::trigger_action</definition>
         <argsstring>(const Time &amp;time, State &amp;state, Vehicle &amp;vehicle) const =0</argsstring>
         <name>trigger_action</name>
         <qualifiedname>astrea::astro::detail::EventInnerBase::trigger_action</qualifiedname>
         <reimplementedby refid="structastrea_1_1astro_1_1detail_1_1EventInner_1a592d6735aaeeaa55a155db47f3a9f247">trigger_action</reimplementedby>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Time</ref> &amp;</type>
+          <type>const Time &amp;</type>
           <declname>time</declname>
         </param>
         <param>
@@ -194,7 +194,7 @@
         <location file="astrea/astro/astro/propagation/event_detection/Event.hpp" line="131" column="29"/>
       </memberdef>
       <memberdef kind="function" id="structastrea_1_1astro_1_1detail_1_1EventInnerBase_1af7a151a79bfdbaf5537fb9fbfce698c9" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">void</ref> *</type>
+        <type>const void *</type>
         <definition>virtual const void * astrea::astro::detail::EventInnerBase::get_ptr</definition>
         <argsstring>() const =0</argsstring>
         <name>get_ptr</name>
@@ -213,7 +213,7 @@
         <location file="astrea/astro/astro/propagation/event_detection/Event.hpp" line="138" column="24"/>
       </memberdef>
       <memberdef kind="function" id="structastrea_1_1astro_1_1detail_1_1EventInnerBase_1a80949139a9947bdb9cc1a61d412398b2" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">void</ref> *</type>
+        <type>void *</type>
         <definition>virtual void * astrea::astro::detail::EventInnerBase::get_ptr</definition>
         <argsstring>()=0</argsstring>
         <name>get_ptr</name>
@@ -232,7 +232,7 @@
         <location file="astrea/astro/astro/propagation/event_detection/Event.hpp" line="145" column="18"/>
       </memberdef>
       <memberdef kind="function" id="structastrea_1_1astro_1_1detail_1_1EventInnerBase_1a2228400e93ef15846e3960cf00ec6e1a" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> std::type_info &amp;</type>
+        <type>const std::type_info &amp;</type>
         <definition>virtual const std::type_info &amp; astrea::astro::detail::EventInnerBase::type</definition>
         <argsstring>() const =0</argsstring>
         <name>type</name>

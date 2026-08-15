@@ -43,19 +43,19 @@
         <qualifiedname>astrea::astro::TwoBody::compute_dynamics</qualifiedname>
         <reimplements refid="classastrea_1_1astro_1_1EquationsOfMotion_1ab67532d179cbb6702762357fbfac1d2b">compute_dynamics</reimplements>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
           <declname>state</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Vehicle" kindref="compound">Vehicle</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Vehicle" kindref="compound">Vehicle</ref> &amp;</type>
           <declname>vehicle</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="typedefs_8hpp_1a5aa05e5cfe7a19c3304a534401cf2fc1" kindref="member">ForceVector</ref>&lt; frames::primary &gt; &amp;</type>
+          <type>const <ref refid="typedefs_8hpp_1a5aa05e5cfe7a19c3304a534401cf2fc1" kindref="member">ForceVector</ref>&lt; frames::primary &gt; &amp;</type>
           <declname>perts</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="typedefs_8hpp_1a5aa05e5cfe7a19c3304a534401cf2fc1" kindref="member">ForceVector</ref>&lt; frames::primary &gt; &amp;</type>
+          <type>const <ref refid="typedefs_8hpp_1a5aa05e5cfe7a19c3304a534401cf2fc1" kindref="member">ForceVector</ref>&lt; frames::primary &gt; &amp;</type>
           <declname>control</declname>
         </param>
         <briefdescription>
@@ -101,7 +101,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/propagation/equations_of_motion/TwoBody.hpp" line="56" column="28" bodyfile="astrea/astro/astro/propagation/equations_of_motion/TwoBody.cpp" bodystart="36" bodyend="55"/>
+        <location file="astrea/astro/astro/propagation/equations_of_motion/TwoBody.hpp" line="56" column="28" bodyfile="astrea/astro/astro/propagation/equations_of_motion/TwoBody.cpp" bodystart="35" bodyend="54"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1TwoBody_1adcd62d0f924b24b8b110fd603480600a" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
         <type><ref refid="classastrea_1_1astro_1_1StateTransitionMatrix" kindref="compound">StateTransitionMatrix</ref></type>
@@ -111,11 +111,11 @@
         <qualifiedname>astrea::astro::TwoBody::compute_stm</qualifiedname>
         <reimplements refid="classastrea_1_1astro_1_1EquationsOfMotion_1a6ce5bf0e6d75ba1061654281151ad604">compute_stm</reimplements>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
           <declname>state</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Vehicle" kindref="compound">Vehicle</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Vehicle" kindref="compound">Vehicle</ref> &amp;</type>
           <declname>vehicle</declname>
         </param>
         <briefdescription>
@@ -145,10 +145,10 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/propagation/equations_of_motion/TwoBody.hpp" line="70" column="27" bodyfile="astrea/astro/astro/propagation/equations_of_motion/TwoBody.cpp" bodystart="58" bodyend="108"/>
+        <location file="astrea/astro/astro/propagation/equations_of_motion/TwoBody.hpp" line="70" column="27" bodyfile="astrea/astro/astro/propagation/equations_of_motion/TwoBody.cpp" bodystart="57" bodyend="107"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1TwoBody_1ad5b6180227cb8634258c95fbf5714171" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" virt="virtual">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> std::size_t</type>
+        <type>constexpr std::size_t</type>
         <definition>constexpr std::size_t astrea::astro::TwoBody::get_expected_set_id</definition>
         <argsstring>() const override</argsstring>
         <name>get_expected_set_id</name>
@@ -165,6 +165,25 @@
         <inbodydescription>
         </inbodydescription>
         <location file="astrea/astro/astro/propagation/equations_of_motion/TwoBody.hpp" line="77" column="27" bodyfile="astrea/astro/astro/propagation/equations_of_motion/TwoBody.hpp" bodystart="77" bodyend="80"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1TwoBody_1af8959a83f340cb65d9597632af7c2c76" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type>std::unique_ptr&lt; <ref refid="classastrea_1_1astro_1_1EquationsOfMotion" kindref="compound">EquationsOfMotion</ref> &gt;</type>
+        <definition>std::unique_ptr&lt; EquationsOfMotion &gt; astrea::astro::TwoBody::clone</definition>
+        <argsstring>() const override</argsstring>
+        <name>clone</name>
+        <qualifiedname>astrea::astro::TwoBody::clone</qualifiedname>
+        <reimplements refid="classastrea_1_1astro_1_1EquationsOfMotion_1ad5dc873c125475e764c2ef09c520db5b">clone</reimplements>
+        <briefdescription>
+<para>Creates a clone of the current Two Body object. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>std::unique_ptr&lt;EquationsOfMotion&gt; A unique pointer to the cloned Two Body object. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/equations_of_motion/TwoBody.hpp" line="87" column="21" bodyfile="astrea/astro/astro/propagation/equations_of_motion/TwoBody.hpp" bodystart="87" bodyend="87"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
@@ -203,14 +222,15 @@
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="astrea/astro/astro/propagation/equations_of_motion/TwoBody.hpp" line="34" column="1" bodyfile="astrea/astro/astro/propagation/equations_of_motion/TwoBody.hpp" bodystart="34" bodyend="81"/>
+    <location file="astrea/astro/astro/propagation/equations_of_motion/TwoBody.hpp" line="34" column="1" bodyfile="astrea/astro/astro/propagation/equations_of_motion/TwoBody.hpp" bodystart="34" bodyend="88"/>
     <listofallmembers>
+      <member refid="classastrea_1_1astro_1_1TwoBody_1af8959a83f340cb65d9597632af7c2c76" prot="public" virt="virtual"><scope>astrea::astro::TwoBody</scope><name>clone</name></member>
       <member refid="classastrea_1_1astro_1_1TwoBody_1a4e7aaeaf0dbfea4298dc1965386bae2e" prot="public" virt="virtual"><scope>astrea::astro::TwoBody</scope><name>compute_dynamics</name></member>
       <member refid="classastrea_1_1astro_1_1EquationsOfMotion_1afe9c17968d211df71622538a6773198b" prot="public" virt="virtual"><scope>astrea::astro::TwoBody</scope><name>compute_kinematics</name></member>
       <member refid="classastrea_1_1astro_1_1TwoBody_1adcd62d0f924b24b8b110fd603480600a" prot="public" virt="virtual"><scope>astrea::astro::TwoBody</scope><name>compute_stm</name></member>
       <member refid="classastrea_1_1astro_1_1EquationsOfMotion_1a9314c62e49ba5c7e0cf8a632afca3fd4" prot="public" virt="non-virtual"><scope>astrea::astro::TwoBody</scope><name>EquationsOfMotion</name></member>
       <member refid="classastrea_1_1astro_1_1EquationsOfMotion_1a4eec33fb06db4d14c79cdfb0926cf3f4" prot="public" virt="non-virtual"><scope>astrea::astro::TwoBody</scope><name>EquationsOfMotion</name></member>
-      <member refid="classastrea_1_1astro_1_1EquationsOfMotion_1accb3b6b22bed036ca28ae4b4f592028a" prot="protected" virt="non-virtual"><scope>astrea::astro::TwoBody</scope><name>forces</name></member>
+      <member refid="classastrea_1_1astro_1_1EquationsOfMotion_1a7a83d5daad504e281d7edf9bb56c6b7b" prot="protected" virt="non-virtual"><scope>astrea::astro::TwoBody</scope><name>forces</name></member>
       <member refid="classastrea_1_1astro_1_1TwoBody_1ad5b6180227cb8634258c95fbf5714171" prot="public" virt="virtual"><scope>astrea::astro::TwoBody</scope><name>get_expected_set_id</name></member>
       <member refid="classastrea_1_1astro_1_1EquationsOfMotion_1ac1569de5b87e21bb5812c3f28e695396" prot="public" virt="non-virtual"><scope>astrea::astro::TwoBody</scope><name>operator()</name></member>
       <member refid="classastrea_1_1astro_1_1TwoBody_1a0be69c63313862a85b0e7da48867b128" prot="public" virt="non-virtual"><scope>astrea::astro::TwoBody</scope><name>TwoBody</name></member>

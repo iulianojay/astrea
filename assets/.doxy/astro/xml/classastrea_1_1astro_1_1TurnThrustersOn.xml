@@ -50,21 +50,21 @@
         <location file="astrea/astro/astro/propagation/event_detection/events/TurnThrustersOn.hpp" line="49" column="17" bodyfile="astrea/astro/astro/propagation/event_detection/events/TurnThrustersOn.cpp" bodystart="29" bodyend="29"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1TurnThrustersOn_1aeef814ed522b946da96c3d1932067165" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Unitless</ref></type>
+        <type>Unitless</type>
         <definition>Unitless astrea::astro::TurnThrustersOn::measure_event</definition>
         <argsstring>(const Time &amp;time, const State &amp;state, const Vehicle &amp;vehicle) const</argsstring>
         <name>measure_event</name>
         <qualifiedname>astrea::astro::TurnThrustersOn::measure_event</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Time</ref> &amp;</type>
+          <type>const Time &amp;</type>
           <declname>time</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
           <declname>state</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Vehicle" kindref="compound">Vehicle</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Vehicle" kindref="compound">Vehicle</ref> &amp;</type>
           <declname>vehicle</declname>
         </param>
         <briefdescription>
@@ -91,13 +91,13 @@
         <location file="astrea/astro/astro/propagation/event_detection/events/TurnThrustersOn.hpp" line="58" column="14" bodyfile="astrea/astro/astro/propagation/event_detection/events/TurnThrustersOn.cpp" bodystart="31" bodyend="35"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1TurnThrustersOn_1ad2e852746cd54a3afbc6733d66655129" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">void</ref></type>
+        <type>void</type>
         <definition>void astrea::astro::TurnThrustersOn::trigger_action</definition>
         <argsstring>(const Time &amp;time, State &amp;state, Vehicle &amp;vehicle) const</argsstring>
         <name>trigger_action</name>
         <qualifiedname>astrea::astro::TurnThrustersOn::trigger_action</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Time</ref> &amp;</type>
+          <type>const Time &amp;</type>
           <declname>time</declname>
         </param>
         <param>
@@ -144,7 +144,7 @@
         <location file="astrea/astro/astro/propagation/event_detection/events/TurnThrustersOn.hpp" line="67" column="10" bodyfile="astrea/astro/astro/propagation/event_detection/events/TurnThrustersOn.cpp" bodystart="37" bodyend="56"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1TurnThrustersOn_1a95f0919d443e85d3d1c784b7cc0f7d0a" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">bool</ref></type>
+        <type>bool</type>
         <definition>bool astrea::astro::TurnThrustersOn::is_terminal</definition>
         <argsstring>() const</argsstring>
         <name>is_terminal</name>

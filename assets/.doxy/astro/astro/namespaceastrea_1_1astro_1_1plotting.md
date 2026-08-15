@@ -51,15 +51,15 @@
 
 | Type | Name |
 | ---: | :--- |
-|  [**void**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**compare\_attitudes**](#function-compare_attitudes) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) std::vector&lt; [**StateHistory**](classastrea_1_1astro_1_1StateHistory.md) &gt; & trajectories, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) std::vector&lt; std::string &gt; & labels, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) std::filesystem::path & outfile) <br>_Compares the attitudes of multiple trajectories by plotting their Euler angles and angular rates._  |
-|  [**void**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**compare\_orbital\_elements**](#function-compare_orbital_elements) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) std::vector&lt; [**StateHistory**](classastrea_1_1astro_1_1StateHistory.md) &gt; & trajectories, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) std::vector&lt; std::string &gt; & labels, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) std::filesystem::path & outfile) <br>_Compares multiple trajectories by plotting their orbital elements._  |
-|  [**void**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**compare\_trajectories**](#function-compare_trajectories) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) std::vector&lt; [**StateHistory**](classastrea_1_1astro_1_1StateHistory.md) &gt; & trajectories, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) std::vector&lt; std::string &gt; & labels, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) std::filesystem::path & outfile) <br>_Compares multiple trajectories by plotting their_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _components._ |
-|  [**void**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**plot\_attitude**](#function-plot_attitude) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**StateHistory**](classastrea_1_1astro_1_1StateHistory.md) & trajectory, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) std::filesystem::path & outfile) <br>_Plots the attitude (XYZ intrinsic Euler angles and body angular rates) of a trajectory._  |
-|  [**void**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**plot\_difference\_attitude**](#function-plot_difference_attitude) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**StateHistory**](classastrea_1_1astro_1_1StateHistory.md) expected, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) std::vector&lt; [**StateHistory**](classastrea_1_1astro_1_1StateHistory.md) &gt; & trajectories, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) std::vector&lt; std::string &gt; & labels, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) std::filesystem::path & outfile) <br>_Plots the attitude difference between an expected trajectory and a set of trajectories._  |
-|  [**void**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**plot\_difference\_orbital\_elements**](#function-plot_difference_orbital_elements) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**StateHistory**](classastrea_1_1astro_1_1StateHistory.md) expected, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) std::vector&lt; [**StateHistory**](classastrea_1_1astro_1_1StateHistory.md) &gt; & trajectories, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) std::vector&lt; std::string &gt; & labels, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) std::filesystem::path & outfile) <br>_Compares multiple trajectories by plotting their orbital elements._  |
-|  [**void**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**plot\_difference\_trajectories**](#function-plot_difference_trajectories) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**StateHistory**](classastrea_1_1astro_1_1StateHistory.md) expected, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) std::vector&lt; [**StateHistory**](classastrea_1_1astro_1_1StateHistory.md) &gt; & trajectories, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) std::vector&lt; std::string &gt; & labels, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) std::filesystem::path & outfile) <br>_Compares multiple trajectories by plotting their_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _components._ |
-|  [**void**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**plot\_orbital\_elements**](#function-plot_orbital_elements) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**StateHistory**](classastrea_1_1astro_1_1StateHistory.md) & trajectory, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) std::filesystem::path & outfile) <br>_Plots the orbital elements of a trajectory._  |
-|  [**void**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**plot\_trajectory**](#function-plot_trajectory) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**StateHistory**](classastrea_1_1astro_1_1StateHistory.md) & trajectory, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) std::filesystem::path & outfile) <br>_Plots the_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _trajectory._ |
+|  void | [**compare\_attitudes**](#function-compare_attitudes) (const std::vector&lt; [**StateHistory**](classastrea_1_1astro_1_1StateHistory.md) &gt; & trajectories, const std::vector&lt; std::string &gt; & labels, const std::filesystem::path & outfile) <br>_Compares the attitudes of multiple trajectories by plotting their Euler angles and angular rates._  |
+|  void | [**compare\_orbital\_elements**](#function-compare_orbital_elements) (const std::vector&lt; [**StateHistory**](classastrea_1_1astro_1_1StateHistory.md) &gt; & trajectories, const std::vector&lt; std::string &gt; & labels, const std::filesystem::path & outfile) <br>_Compares multiple trajectories by plotting their orbital elements._  |
+|  void | [**compare\_trajectories**](#function-compare_trajectories) (const std::vector&lt; [**StateHistory**](classastrea_1_1astro_1_1StateHistory.md) &gt; & trajectories, const std::vector&lt; std::string &gt; & labels, const std::filesystem::path & outfile) <br>_Compares multiple trajectories by plotting their_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _components._ |
+|  void | [**plot\_attitude**](#function-plot_attitude) (const [**StateHistory**](classastrea_1_1astro_1_1StateHistory.md) & trajectory, const std::filesystem::path & outfile) <br>_Plots the attitude (XYZ intrinsic Euler angles and body angular rates) of a trajectory._  |
+|  void | [**plot\_difference\_attitude**](#function-plot_difference_attitude) (const [**StateHistory**](classastrea_1_1astro_1_1StateHistory.md) expected, const std::vector&lt; [**StateHistory**](classastrea_1_1astro_1_1StateHistory.md) &gt; & trajectories, const std::vector&lt; std::string &gt; & labels, const std::filesystem::path & outfile) <br>_Plots the attitude difference between an expected trajectory and a set of trajectories._  |
+|  void | [**plot\_difference\_orbital\_elements**](#function-plot_difference_orbital_elements) (const [**StateHistory**](classastrea_1_1astro_1_1StateHistory.md) expected, const std::vector&lt; [**StateHistory**](classastrea_1_1astro_1_1StateHistory.md) &gt; & trajectories, const std::vector&lt; std::string &gt; & labels, const std::filesystem::path & outfile) <br>_Compares multiple trajectories by plotting their orbital elements._  |
+|  void | [**plot\_difference\_trajectories**](#function-plot_difference_trajectories) (const [**StateHistory**](classastrea_1_1astro_1_1StateHistory.md) expected, const std::vector&lt; [**StateHistory**](classastrea_1_1astro_1_1StateHistory.md) &gt; & trajectories, const std::vector&lt; std::string &gt; & labels, const std::filesystem::path & outfile) <br>_Compares multiple trajectories by plotting their_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _components._ |
+|  void | [**plot\_orbital\_elements**](#function-plot_orbital_elements) (const [**StateHistory**](classastrea_1_1astro_1_1StateHistory.md) & trajectory, const std::filesystem::path & outfile) <br>_Plots the orbital elements of a trajectory._  |
+|  void | [**plot\_trajectory**](#function-plot_trajectory) (const [**StateHistory**](classastrea_1_1astro_1_1StateHistory.md) & trajectory, const std::filesystem::path & outfile) <br>_Plots the_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _trajectory._ |
 
 
 
@@ -191,7 +191,7 @@ void astrea::astro::plotting::compare_trajectories (
 _Plots the attitude (XYZ intrinsic Euler angles and body angular rates) of a trajectory._ 
 ```C++
 void astrea::astro::plotting::plot_attitude (
-    const  StateHistory & trajectory,
+    const StateHistory & trajectory,
     const std::filesystem::path & outfile
 ) 
 ```
@@ -220,7 +220,7 @@ void astrea::astro::plotting::plot_attitude (
 _Plots the attitude difference between an expected trajectory and a set of trajectories._ 
 ```C++
 void astrea::astro::plotting::plot_difference_attitude (
-    const  StateHistory expected,
+    const StateHistory expected,
     const std::vector< StateHistory > & trajectories,
     const std::vector< std::string > & labels,
     const std::filesystem::path & outfile
@@ -256,7 +256,7 @@ Differences are computed per Euler angle component (XYZ intrinsic) and per angul
 _Compares multiple trajectories by plotting their orbital elements._ 
 ```C++
 void astrea::astro::plotting::plot_difference_orbital_elements (
-    const  StateHistory expected,
+    const StateHistory expected,
     const std::vector< StateHistory > & trajectories,
     const std::vector< std::string > & labels,
     const std::filesystem::path & outfile
@@ -288,7 +288,7 @@ void astrea::astro::plotting::plot_difference_orbital_elements (
 _Compares multiple trajectories by plotting their_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _components._
 ```C++
 void astrea::astro::plotting::plot_difference_trajectories (
-    const  StateHistory expected,
+    const StateHistory expected,
     const std::vector< StateHistory > & trajectories,
     const std::vector< std::string > & labels,
     const std::filesystem::path & outfile
@@ -320,7 +320,7 @@ void astrea::astro::plotting::plot_difference_trajectories (
 _Plots the orbital elements of a trajectory._ 
 ```C++
 void astrea::astro::plotting::plot_orbital_elements (
-    const  StateHistory & trajectory,
+    const StateHistory & trajectory,
     const std::filesystem::path & outfile
 ) 
 ```
@@ -349,7 +349,7 @@ void astrea::astro::plotting::plot_orbital_elements (
 _Plots the_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _trajectory._
 ```C++
 void astrea::astro::plotting::plot_trajectory (
-    const  StateHistory & trajectory,
+    const StateHistory & trajectory,
     const std::filesystem::path & outfile
 ) 
 ```

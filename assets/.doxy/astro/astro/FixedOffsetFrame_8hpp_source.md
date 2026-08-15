@@ -116,7 +116,7 @@ template <IsAxis Axis_T>
 
 template <IsOrigin Lhs, IsOrigin Rhs>
     requires(HasSpatialOffset<Lhs> || HasSpatialOffset<Rhs>)
-[[nodiscard]] consteval bool equivalent1(Lhs lhs, Rhs rhs)
+[[nodiscard]] consteval bool equivalent(Lhs lhs, Rhs rhs)
 {
     if constexpr (HasSpatialOffset<Lhs> && !HasSpatialOffset<Rhs>) {
         return equivalent(lhs.parent, rhs) && offset_is_zero(lhs);
@@ -167,6 +167,18 @@ struct FixedOffsetFrame<_parent_, _x_, _y_, _z_, _phi_, _theta_, _psi_, _sequenc
           FixedOffsetAxis<_parent_.axis, _phi_, _theta_, _psi_, _sequence_>{},
           _parent_> {};
 
+template <mp_units::symbol_text _name_, IsFrame auto _parent_, Distance _x_, Distance _y_, Distance _z_, auto... Args>
+struct FixedOffsetFrame<_name_, _parent_, _x_, _y_, _z_, Args...>
+    : Frame<_name_, FixedOffsetOrigin<_parent_.origin, _x_, _y_, _z_>{}, _parent_.axis, _parent_> {};
+
+template <mp_units::symbol_text _name_, IsFrame auto _parent_, Angle _phi_, Angle _theta_, Angle _psi_, RotationSequence _sequence_, auto... Args>
+struct FixedOffsetFrame<_name_, _parent_, _phi_, _theta_, _psi_, _sequence_, Args...>
+    : Frame<_name_, _parent_.origin, FixedOffsetAxis<_parent_.axis, _phi_, _theta_, _psi_, _sequence_>{}, _parent_> {};
+
+template <mp_units::symbol_text _name_, IsFrame auto _parent_, Distance _x_, Distance _y_, Distance _z_, Angle _phi_, Angle _theta_, Angle _psi_, RotationSequence _sequence_, auto... Args>
+struct FixedOffsetFrame<_name_, _parent_, _x_, _y_, _z_, _phi_, _theta_, _psi_, _sequence_, Args...>
+    : Frame<_name_, FixedOffsetOrigin<_parent_.origin, _x_, _y_, _z_>{}, FixedOffsetAxis<_parent_.axis, _phi_, _theta_, _psi_, _sequence_>{}, _parent_> {
+};
 
 template <IsFixedOffsetFrame Frame_T>
 consteval bool is_aligned_with_parent(Frame_T frame)
@@ -268,13 +280,14 @@ inline constexpr auto get_offset_from_root_frame()
 template <IsFixedOffsetFrame auto frame>
 inline constexpr auto get_dcm_from_root_frame()
 {
+    static constexpr Date dummyDate;
     if constexpr (HasAngularOffset<std::remove_cv_t<decltype(frame)>>) {
         if constexpr (IsDerivedFrame<std::remove_cv_t<decltype(frame.parent)>>) {
             // DCM<grandparent, parent> * DCM<parent, child> = DCM<grandparent, child>
-            return get_dcm_from_root_frame<frame.parent>() * get_dcm<frame, frame.parent>();
+            return get_dcm_from_root_frame<frame.parent>() * get_dcm<frame.parent, frame>(dummyDate);
         }
         else {
-            return get_dcm<frame, frame.parent>();
+            return get_dcm<frame.parent, frame>(dummyDate);
         }
     }
     else {
@@ -282,7 +295,7 @@ inline constexpr auto get_dcm_from_root_frame()
             return get_dcm_from_root_frame<frame.parent>();
         }
         else {
-            return DirectionCosineMatrix<frame.parent, frame>::identity();
+            return DCM<frame.parent, frame>::identity();
         }
     }
 }

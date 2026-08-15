@@ -11,7 +11,7 @@
 /*
  * The GNU Lesser General Public License (LGPL)
  *
- * Copyright (c) 2025 Jay Iuliano
+ * Copyright (c) 2025-2026 Jay Iuliano
  *
  * This file is part of Astrea.
  * Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License
@@ -145,13 +145,13 @@ StateHistory Integrator::propagate_impl(const State& state0, const Time& propTim
 
         // Check for event
         if (check_event(time, state, vehicle)) {
-            std::cout << "Warning: Terminal conditions detected.";
+            std::cerr << "Warning: Terminal conditions detected.";
             break;
         }
 
         // Make sure state and time are valid
         if (!validate_state_and_time(time, state)) {
-            std::cout << "Integration Error: Invalid state or time (NaN or Inf). \n\n";
+            std::cerr << "Integration Error: Invalid state or time (NaN or Inf). \n\n";
             break;
         }
 
@@ -173,7 +173,7 @@ StateHistory Integrator::propagate_impl(const State& state0, const Time& propTim
 
                 // Catch underflow
                 if (time + timeStep == time) {
-                    std::cout << "Integration Error: Stepsize underflow. \n\n";
+                    std::cerr << "Integration Error: Stepsize underflow. \n\n";
                     interiorStepFailure = true;
                     break;
                 }
@@ -187,7 +187,7 @@ StateHistory Integrator::propagate_impl(const State& state0, const Time& propTim
 
             // Exceeded max inner loop iterations
             if (_variableStepIteration >= _MAX_VAR_STEP_ITER) {
-                std::cout
+                std::cerr
                     << "Integration Error: Max iterations exceeded. Unable to find stepsize within tolerance. \n\n";
                 interiorStepFailure = true;
                 break;
@@ -378,14 +378,14 @@ std::pair<State, State> Integrator::take_step(const Time& time, const Time& time
 
 Unitless Integrator::find_max_error(const State& stateNew, const State& stateError) const
 {
-    using mp_units::abs;
-    using mp_units::isinf;
-    using mp_units::isnan;
+    using std::abs;
+    using std::isinf;
+    using std::isnan;
 
     // Find max error from step
     Unitless maxError           = 0.0 * astrea::detail::unitless;
-    const auto stateErrorScaled = stateError.force_to_vector();
-    const auto stateNewScaled   = stateNew.force_to_vector();
+    const auto stateErrorScaled = stateError.force_to_double_vector();
+    const auto stateNewScaled   = stateNew.force_to_double_vector();
     for (std::size_t ii = 0; ii < stateErrorScaled.size(); ++ii) {
         // Error
         const auto err = abs(stateErrorScaled[ii]) / (_ABS_TOL + abs(stateNewScaled[ii]) * _REL_TOL);
@@ -509,7 +509,7 @@ bool Integrator::check_event(const Time& time, State& state, Vehicle& vehicle)
 bool Integrator::validate_state_and_time(const Time& time, const State& state) const
 {
     if (isinf(abs(time)) || isnan(abs(time))) { return false; }
-    for (const auto& x : state.force_to_vector()) {
+    for (const auto& x : state.force_to_double_vector()) {
         if (isinf(abs(x)) || isnan(abs(x))) { return false; }
     }
     return true;

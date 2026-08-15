@@ -12,8 +12,6 @@ _Header file for the GroundPoint class._ [More...](#detailed-description)
 
 * `#include <sstream>`
 * `#include <string>`
-* `#include <mp-units/systems/angular.h>`
-* `#include <mp-units/systems/isq_angle.h>`
 * `#include <mp-units/systems/si.h>`
 * `#include <astro/astro.fwd.hpp>`
 * `#include <astro/frames/framework/CartesianVector.hpp>`
@@ -122,7 +120,7 @@ Jay Iuliano ([iuliano.jay@gmail.com](mailto:iuliano.jay@gmail.com))
 
 **Copyright:**
 
-Copyright (c) 2025 Jay Iuliano
+Copyright (c) 2025-2026 Jay Iuliano
 
 
 The GNU Lesser General Public License (LGPL)

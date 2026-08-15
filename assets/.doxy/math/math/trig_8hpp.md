@@ -12,9 +12,9 @@ _Trigonometric functions for Angular and SI units._ [More...](#detailed-descript
 
 * `#include <cmath>`
 * `#include <numbers>`
+* `#include <gcem.hpp>`
 * `#include <mp-units/math.h>`
-* `#include <mp-units/systems/angular.h>`
-* `#include <mp-units/systems/si.h>`
+* `#include <mp-units/systems/si/math.h>`
 
 
 
@@ -107,7 +107,7 @@ Jay Iuliano ([iuliano.jay@gmail.com](mailto:iuliano.jay@gmail.com))
 
 **Copyright:**
 
-Copyright (c) 2025 Jay Iuliano
+Copyright (c) 2025-2026 Jay Iuliano
 
 
 The GNU Lesser General Public License (LGPL)

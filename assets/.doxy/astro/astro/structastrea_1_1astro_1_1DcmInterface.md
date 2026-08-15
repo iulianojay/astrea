@@ -2,7 +2,7 @@
 
 # Struct astrea::astro::DcmInterface
 
-**template &lt;[**typename**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Value\_T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), IsFrame [**auto**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) \_in\_frame\_, IsFrame [**auto**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) \_out\_frame\_&gt;**
+**template &lt;typename Value\_T, IsFrame auto \_in\_frame\_, IsFrame auto \_out\_frame\_&gt;**
 
 
 
@@ -40,8 +40,8 @@ _Class representing a 3x3 matrix, used for matrices and their rates/acceleration
 
 | Type | Name |
 | ---: | :--- |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**auto**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**in\_frame**](#variable-in_frame)   = `[**\_in\_frame\_**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)`<br>_The input frame of the matrix._  |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**auto**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**out\_frame**](#variable-out_frame)   = `[**\_out\_frame\_**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)`<br>_The output frame of the matrix._  |
+|  constexpr auto | [**in\_frame**](#variable-in_frame)   = `\_in\_frame\_`<br>_The input frame of the matrix._  |
+|  constexpr auto | [**out\_frame**](#variable-out_frame)   = `\_out\_frame\_`<br>_The output frame of the matrix._  |
 
 
 
@@ -60,25 +60,25 @@ _Class representing a 3x3 matrix, used for matrices and their rates/acceleration
 
 | Type | Name |
 | ---: | :--- |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**DcmInterface**](#function-dcminterface-14) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) std::array&lt; [**Value\_T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), 9 &gt; & matrix) <br>_Constructor for_ [_**DcmInterface**_](structastrea_1_1astro_1_1DcmInterface.md) _from an array of values._ |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**DcmInterface**](#function-dcminterface-24) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) std::array&lt; [**Value\_T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), 3 &gt; & row1, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) std::array&lt; [**Value\_T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), 3 &gt; & row2, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) std::array&lt; [**Value\_T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), 3 &gt; & row3) <br>_Constructor for_ [_**DcmInterface**_](structastrea_1_1astro_1_1DcmInterface.md) _from three rows represented as arrays._ |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**DcmInterface**](#function-dcminterface-34) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**DcmInterface**](structastrea_1_1astro_1_1DcmInterface.md)&lt; [**Value\_U**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), [**in\_frame\_u**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), [**out\_frame\_u**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt; & matrix) <br> |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**DcmInterface**](#function-dcminterface-44) ([**DcmInterface**](structastrea_1_1astro_1_1DcmInterface.md)&lt; [**Value\_U**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), [**in\_frame\_u**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), [**out\_frame\_u**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt; && matrix) <br> |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) std::array&lt; [**Value\_T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), 9 &gt; | [**data**](#function-data) () const<br>_Get the underlying data of the matrix as an array._  |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Value\_T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**determinant**](#function-determinant) () const<br>_Get the determinant of the matrix._  |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**void**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**normalize**](#function-normalize) () <br>_Normalizes the matrix to ensure it represents a valid rotation._  |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**DcmInterface**](structastrea_1_1astro_1_1DcmInterface.md)&lt; [**decltype**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)([**Value\_T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md){} \*[**Value\_U**](classastrea_1_1astro_1_1DirectionCosineMatrix.md){}), [**in\_frame**](structastrea_1_1astro_1_1DcmInterface.md#variable-in_frame), [**out\_frame**](structastrea_1_1astro_1_1DcmInterface.md#variable-out_frame) &gt; | [**operator\***](#function-operator) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**DcmInterface**](structastrea_1_1astro_1_1DcmInterface.md)&lt; [**Value\_U**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), [**in\_frame\_u**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), [**out\_frame\_u**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt; & other) const<br>_Compose two direction matrices (matrix multiplication)._  |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**DcmInterface**](structastrea_1_1astro_1_1DcmInterface.md)&lt; [**decltype**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)([**Value\_T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md){} \*[**Value\_U**](classastrea_1_1astro_1_1DirectionCosineMatrix.md){}), [**in\_frame**](structastrea_1_1astro_1_1DcmInterface.md#variable-in_frame), [**out\_frame\_u**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt; | [**operator\***](#function-operator_1) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**DcmInterface**](structastrea_1_1astro_1_1DcmInterface.md)&lt; [**Value\_U**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), [**in\_frame\_u**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), [**out\_frame\_u**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt; & other) const<br>_Compose two direction matrices (matrix multiplication)._  |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; [**decltype**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)([**Value\_T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md){} \*[**Value\_U**](classastrea_1_1astro_1_1DirectionCosineMatrix.md){}), [**out\_frame**](structastrea_1_1astro_1_1DcmInterface.md#variable-out_frame) &gt; | [**operator\***](#function-operator_2) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; [**Value\_U**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), [**in\_frame\_u**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt; & vec) const<br>_Multiply this matrix by a_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _vector._ |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**DcmInterface**](structastrea_1_1astro_1_1DcmInterface.md)&lt; [**decltype**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)([**Value\_T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md){} \*[**Value\_U**](classastrea_1_1astro_1_1DirectionCosineMatrix.md){}), [**in\_frame**](structastrea_1_1astro_1_1DcmInterface.md#variable-in_frame), [**out\_frame**](structastrea_1_1astro_1_1DcmInterface.md#variable-out_frame) &gt; | [**operator\***](#function-operator_3) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Value\_U**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & scalar) const<br>_Multiply the matrix by a scalar value (element-wise multiplication)._  |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**DcmInterface**](structastrea_1_1astro_1_1DcmInterface.md) | [**operator+**](#function-operator_4) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**DcmInterface**](structastrea_1_1astro_1_1DcmInterface.md)&lt; [**Value\_U**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), [**in\_frame\_u**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), [**out\_frame\_u**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt; & other) const<br>_Add two matrices together (element-wise addition)._  |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**DcmInterface**](structastrea_1_1astro_1_1DcmInterface.md) | [**operator-**](#function-operator-) () const<br>_Negate the matrix (element-wise negation)._  |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**DcmInterface**](structastrea_1_1astro_1_1DcmInterface.md) | [**operator-**](#function-operator-_1) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**DcmInterface**](structastrea_1_1astro_1_1DcmInterface.md)&lt; [**Value\_U**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), [**in\_frame\_u**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), [**out\_frame\_u**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt; & other) const<br>_Subtract another matrix from this one (element-wise subtraction)._  |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Value\_T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & | [**operator[]**](#function-operator_5) (std::size\_t row, std::size\_t col) <br>_Access operator for the elements of the matrix._  |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Value\_T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & | [**operator[]**](#function-operator_6) (std::size\_t row, std::size\_t col) const<br>_Const access operator for the elements of the matrix._  |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; [**Value\_T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), [**\_in\_frame\_**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt; | [**row**](#function-row) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) std::size\_t & idx) const<br>_Get a specific row of the matrix as a_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _vector._ |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Value\_T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**trace**](#function-trace) () const<br>_Get the trace of the matrix (the sum of the diagonal elements)._  |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**DcmInterface**](structastrea_1_1astro_1_1DcmInterface.md)&lt; [**Value\_T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), [**\_out\_frame\_**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), [**\_in\_frame\_**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt; | [**transpose**](#function-transpose) () const<br>_Transposes the matrix, effectively inverting the transformation._  |
+|  constexpr | [**DcmInterface**](#function-dcminterface-25) (const std::array&lt; Value\_T, 9 &gt; & matrix) <br>_Constructor for_ [_**DcmInterface**_](structastrea_1_1astro_1_1DcmInterface.md) _from an array of values._ |
+|  constexpr | [**DcmInterface**](#function-dcminterface-35) (const std::array&lt; Value\_T, 3 &gt; & row1, const std::array&lt; Value\_T, 3 &gt; & row2, const std::array&lt; Value\_T, 3 &gt; & row3) <br>_Constructor for_ [_**DcmInterface**_](structastrea_1_1astro_1_1DcmInterface.md) _from three rows represented as arrays._ |
+|  constexpr | [**DcmInterface**](#function-dcminterface-45) (const [**DcmInterface**](structastrea_1_1astro_1_1DcmInterface.md)&lt; Value\_U, in\_frame\_u, out\_frame\_u &gt; & matrix) <br> |
+|  constexpr | [**DcmInterface**](#function-dcminterface-55) ([**DcmInterface**](structastrea_1_1astro_1_1DcmInterface.md)&lt; Value\_U, in\_frame\_u, out\_frame\_u &gt; && matrix) <br> |
+|  constexpr std::array&lt; Value\_T, 9 &gt; | [**data**](#function-data) () const<br>_Get the underlying data of the matrix as an array._  |
+|  constexpr Value\_T | [**determinant**](#function-determinant) () const<br>_Get the determinant of the matrix._  |
+|  constexpr void | [**normalize**](#function-normalize) () <br>_Normalizes the matrix to ensure it represents a valid rotation._  |
+|  constexpr [**DcmInterface**](structastrea_1_1astro_1_1DcmInterface.md)&lt; decltype(Value\_T{} \*Value\_U{}), [**in\_frame**](structastrea_1_1astro_1_1DcmInterface.md#variable-in_frame), [**out\_frame**](structastrea_1_1astro_1_1DcmInterface.md#variable-out_frame) &gt; | [**operator\***](#function-operator) (const [**DcmInterface**](structastrea_1_1astro_1_1DcmInterface.md)&lt; Value\_U, in\_frame\_u, out\_frame\_u &gt; & other) const<br>_Compose two direction matrices (matrix multiplication)._  |
+|  constexpr [**DcmInterface**](structastrea_1_1astro_1_1DcmInterface.md)&lt; decltype(Value\_T{} \*Value\_U{}), [**in\_frame**](structastrea_1_1astro_1_1DcmInterface.md#variable-in_frame), out\_frame\_u &gt; | [**operator\***](#function-operator_1) (const [**DcmInterface**](structastrea_1_1astro_1_1DcmInterface.md)&lt; Value\_U, in\_frame\_u, out\_frame\_u &gt; & other) const<br>_Compose two direction matrices (matrix multiplication)._  |
+|  constexpr [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; decltype(Value\_T{} \*Value\_U{}), [**out\_frame**](structastrea_1_1astro_1_1DcmInterface.md#variable-out_frame) &gt; | [**operator\***](#function-operator_2) (const [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; Value\_U, in\_frame\_u &gt; & vec) const<br>_Multiply this matrix by a_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _vector._ |
+|  constexpr [**DcmInterface**](structastrea_1_1astro_1_1DcmInterface.md)&lt; decltype(Value\_T{} \*Value\_U{}), [**in\_frame**](structastrea_1_1astro_1_1DcmInterface.md#variable-in_frame), [**out\_frame**](structastrea_1_1astro_1_1DcmInterface.md#variable-out_frame) &gt; | [**operator\***](#function-operator_3) (const Value\_U & scalar) const<br>_Multiply the matrix by a scalar value (element-wise multiplication)._  |
+|  constexpr [**DcmInterface**](structastrea_1_1astro_1_1DcmInterface.md) | [**operator+**](#function-operator_4) (const [**DcmInterface**](structastrea_1_1astro_1_1DcmInterface.md)&lt; Value\_U, in\_frame\_u, out\_frame\_u &gt; & other) const<br>_Add two matrices together (element-wise addition)._  |
+|  constexpr [**DcmInterface**](structastrea_1_1astro_1_1DcmInterface.md) | [**operator-**](#function-operator-) () const<br>_Negate the matrix (element-wise negation)._  |
+|  constexpr [**DcmInterface**](structastrea_1_1astro_1_1DcmInterface.md) | [**operator-**](#function-operator-_1) (const [**DcmInterface**](structastrea_1_1astro_1_1DcmInterface.md)&lt; Value\_U, in\_frame\_u, out\_frame\_u &gt; & other) const<br>_Subtract another matrix from this one (element-wise subtraction)._  |
+|  constexpr Value\_T & | [**operator[]**](#function-operator_5) (std::size\_t row, std::size\_t col) <br>_Access operator for the elements of the matrix._  |
+|  constexpr const Value\_T & | [**operator[]**](#function-operator_6) (std::size\_t row, std::size\_t col) const<br>_Const access operator for the elements of the matrix._  |
+|  constexpr [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; Value\_T, \_in\_frame\_ &gt; | [**row**](#function-row) (const std::size\_t & idx) const<br>_Get a specific row of the matrix as a_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _vector._ |
+|  constexpr Value\_T | [**trace**](#function-trace) () const<br>_Get the trace of the matrix (the sum of the diagonal elements)._  |
+|  constexpr [**DcmInterface**](structastrea_1_1astro_1_1DcmInterface.md)&lt; Value\_T, \_out\_frame\_, \_in\_frame\_ &gt; | [**transpose**](#function-transpose) () const<br>_Transposes the matrix, effectively inverting the transformation._  |
 
 
 
@@ -91,7 +91,7 @@ _Class representing a 3x3 matrix, used for matrices and their rates/acceleration
 
 | Type | Name |
 | ---: | :--- |
-|  std::array&lt; [**Value\_T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), 9 &gt; | [**\_data**](#variable-_data)  <br>_3x3 matrix to hold the direction cosines._  |
+|  std::array&lt; Value\_T, 9 &gt; | [**\_data**](#variable-_data)  <br>_3x3 matrix to hold the direction cosines._  |
 
 
 
@@ -112,16 +112,16 @@ _Class representing a 3x3 matrix, used for matrices and their rates/acceleration
 
 | Type | Name |
 | ---: | :--- |
-|  std::array&lt; [**decltype**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)([**Value\_T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md){} \*[**Value\_U**](classastrea_1_1astro_1_1DirectionCosineMatrix.md){}), 9 &gt; | [**\_multiply**](#function-_multiply) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) std::array&lt; [**Value\_U**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), 9 &gt; & other) const<br> |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**void**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**\_normalize**](#function-_normalize) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Unitless**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & scale) <br>_Normalizes the matrix by scaling all elements by the given factor._  |
+|  std::array&lt; decltype(Value\_T{} \*Value\_U{}), 9 &gt; | [**\_multiply**](#function-_multiply) (const std::array&lt; Value\_U, 9 &gt; & other) const<br> |
+|  constexpr void | [**\_normalize**](#function-_normalize) (const Unitless & scale) <br>_Normalizes the matrix by scaling all elements by the given factor._  |
 
 
 ## Protected Static Functions
 
 | Type | Name |
 | ---: | :--- |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**DcmInterface**](structastrea_1_1astro_1_1DcmInterface.md) | [**identity**](#function-identity) () <br>_Creates an identity matrix (no rotation)._  |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**DcmInterface**](structastrea_1_1astro_1_1DcmInterface.md) | [**zero**](#function-zero) () <br>_Creates a zero matrix (invalid rotation)._  |
+|  constexpr [**DcmInterface**](structastrea_1_1astro_1_1DcmInterface.md) | [**identity**](#function-identity) () <br>_Creates an identity matrix (no rotation)._  |
+|  constexpr [**DcmInterface**](structastrea_1_1astro_1_1DcmInterface.md) | [**zero**](#function-zero) () <br>_Creates a zero matrix (invalid rotation)._  |
 
 
 ## Detailed Description
@@ -173,12 +173,12 @@ constexpr auto astrea::astro::DcmInterface< Value_T, _in_frame_, _out_frame_ >::
 
 
 
-### function DcmInterface [1/4]
+### function DcmInterface [2/5]
 
 _Constructor for_ [_**DcmInterface**_](structastrea_1_1astro_1_1DcmInterface.md) _from an array of values._
 ```C++
 inline constexpr astrea::astro::DcmInterface::DcmInterface (
-    const std::array< Value_T , 9 > & matrix
+    const std::array< Value_T, 9 > & matrix
 ) 
 ```
 
@@ -200,14 +200,14 @@ inline constexpr astrea::astro::DcmInterface::DcmInterface (
 
 
 
-### function DcmInterface [2/4]
+### function DcmInterface [3/5]
 
 _Constructor for_ [_**DcmInterface**_](structastrea_1_1astro_1_1DcmInterface.md) _from three rows represented as arrays._
 ```C++
 inline constexpr astrea::astro::DcmInterface::DcmInterface (
-    const std::array< Value_T , 3 > & row1,
-    const std::array< Value_T , 3 > & row2,
-    const std::array< Value_T , 3 > & row3
+    const std::array< Value_T, 3 > & row1,
+    const std::array< Value_T, 3 > & row2,
+    const std::array< Value_T, 3 > & row3
 ) 
 ```
 
@@ -231,12 +231,12 @@ inline constexpr astrea::astro::DcmInterface::DcmInterface (
 
 
 
-### function DcmInterface [3/4]
+### function DcmInterface [4/5]
 
 ```C++
-template<typename  Value_U, auto in_frame_u, auto out_frame_u>
+template<typename Value_U, auto in_frame_u, auto out_frame_u>
 inline constexpr astrea::astro::DcmInterface::DcmInterface (
-    const  DcmInterface < Value_U , in_frame_u , out_frame_u > & matrix
+    const DcmInterface < Value_U, in_frame_u, out_frame_u > & matrix
 ) 
 ```
 
@@ -247,12 +247,12 @@ inline constexpr astrea::astro::DcmInterface::DcmInterface (
 
 
 
-### function DcmInterface [4/4]
+### function DcmInterface [5/5]
 
 ```C++
-template<typename  Value_U, auto in_frame_u, auto out_frame_u>
+template<typename Value_U, auto in_frame_u, auto out_frame_u>
 inline constexpr astrea::astro::DcmInterface::DcmInterface (
-    DcmInterface < Value_U , in_frame_u , out_frame_u > && matrix
+    DcmInterface < Value_U, in_frame_u, out_frame_u > && matrix
 ) 
 ```
 
@@ -267,7 +267,7 @@ inline constexpr astrea::astro::DcmInterface::DcmInterface (
 
 _Get the underlying data of the matrix as an array._ 
 ```C++
-inline constexpr std::array< Value_T , 9 > astrea::astro::DcmInterface::data () const
+inline constexpr std::array< Value_T, 9 > astrea::astro::DcmInterface::data () const
 ```
 
 
@@ -292,7 +292,7 @@ std::array&lt;Value\_T, 9&gt; The elements of the matrix in row-major order.
 
 _Get the determinant of the matrix._ 
 ```C++
-inline constexpr  Value_T astrea::astro::DcmInterface::determinant () const
+inline constexpr Value_T astrea::astro::DcmInterface::determinant () const
 ```
 
 
@@ -317,7 +317,7 @@ Value\_T The determinant of the matrix.
 
 _Normalizes the matrix to ensure it represents a valid rotation._ 
 ```C++
-inline constexpr  void astrea::astro::DcmInterface::normalize () 
+inline constexpr void astrea::astro::DcmInterface::normalize () 
 ```
 
 
@@ -335,9 +335,9 @@ This method scales the elements of the matrix so that the determinant is 1, whic
 
 _Compose two direction matrices (matrix multiplication)._ 
 ```C++
-template<typename  Value_U, auto in_frame_u, auto out_frame_u>
-inline constexpr  DcmInterface < decltype ( Value_T {} * Value_U {}), in_frame , out_frame > astrea::astro::DcmInterface::operator* (
-    const  DcmInterface < Value_U , in_frame_u , out_frame_u > & other
+template<typename Value_U, auto in_frame_u, auto out_frame_u>
+inline constexpr DcmInterface < decltype(Value_T{} *Value_U{}), in_frame , out_frame > astrea::astro::DcmInterface::operator* (
+    const DcmInterface < Value_U, in_frame_u, out_frame_u > & other
 ) const
 ```
 
@@ -380,9 +380,9 @@ Note: This overload is identically-framed matrices so the output frame is the sa
 
 _Compose two direction matrices (matrix multiplication)._ 
 ```C++
-template<typename  Value_U, auto in_frame_u, auto out_frame_u>
-inline constexpr  DcmInterface < decltype ( Value_T {} * Value_U {}), in_frame , out_frame_u > astrea::astro::DcmInterface::operator* (
-    const  DcmInterface < Value_U , in_frame_u , out_frame_u > & other
+template<typename Value_U, auto in_frame_u, auto out_frame_u>
+inline constexpr DcmInterface < decltype(Value_T{} *Value_U{}), in_frame , out_frame_u > astrea::astro::DcmInterface::operator* (
+    const DcmInterface < Value_U, in_frame_u, out_frame_u > & other
 ) const
 ```
 
@@ -425,9 +425,9 @@ Note: This overload is for stacked rotations where mat\_1^2 \* mat\_2^3 -&gt; ma
 
 _Multiply this matrix by a_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _vector._
 ```C++
-template<typename  Value_U, auto in_frame_u>
-inline constexpr  CartesianVector < decltype ( Value_T {} * Value_U {}), out_frame > astrea::astro::DcmInterface::operator* (
-    const  CartesianVector < Value_U , in_frame_u > & vec
+template<typename Value_U, auto in_frame_u>
+inline constexpr CartesianVector < decltype(Value_T{} *Value_U{}), out_frame > astrea::astro::DcmInterface::operator* (
+    const CartesianVector < Value_U, in_frame_u > & vec
 ) const
 ```
 
@@ -468,9 +468,9 @@ inline constexpr  CartesianVector < decltype ( Value_T {} * Value_U {}), out_fra
 
 _Multiply the matrix by a scalar value (element-wise multiplication)._ 
 ```C++
-template<typename  Value_U>
-inline constexpr  DcmInterface < decltype ( Value_T {} * Value_U {}), in_frame , out_frame > astrea::astro::DcmInterface::operator* (
-    const  Value_U & scalar
+template<typename Value_U>
+inline constexpr DcmInterface < decltype(Value_T{} *Value_U{}), in_frame , out_frame > astrea::astro::DcmInterface::operator* (
+    const Value_U & scalar
 ) const
 ```
 
@@ -503,9 +503,9 @@ inline constexpr  DcmInterface < decltype ( Value_T {} * Value_U {}), in_frame ,
 
 _Add two matrices together (element-wise addition)._ 
 ```C++
-template<typename  Value_U, auto in_frame_u, auto out_frame_u>
-inline constexpr  DcmInterface astrea::astro::DcmInterface::operator+ (
-    const  DcmInterface < Value_U , in_frame_u , out_frame_u > & other
+template<typename Value_U, auto in_frame_u, auto out_frame_u>
+inline constexpr DcmInterface astrea::astro::DcmInterface::operator+ (
+    const DcmInterface < Value_U, in_frame_u, out_frame_u > & other
 ) const
 ```
 
@@ -538,7 +538,7 @@ inline constexpr  DcmInterface astrea::astro::DcmInterface::operator+ (
 
 _Negate the matrix (element-wise negation)._ 
 ```C++
-inline constexpr  DcmInterface astrea::astro::DcmInterface::operator- () const
+inline constexpr DcmInterface astrea::astro::DcmInterface::operator- () const
 ```
 
 
@@ -563,9 +563,9 @@ inline constexpr  DcmInterface astrea::astro::DcmInterface::operator- () const
 
 _Subtract another matrix from this one (element-wise subtraction)._ 
 ```C++
-template<typename  Value_U, auto in_frame_u, auto out_frame_u>
-inline constexpr  DcmInterface astrea::astro::DcmInterface::operator- (
-    const  DcmInterface < Value_U , in_frame_u , out_frame_u > & other
+template<typename Value_U, auto in_frame_u, auto out_frame_u>
+inline constexpr DcmInterface astrea::astro::DcmInterface::operator- (
+    const DcmInterface < Value_U, in_frame_u, out_frame_u > & other
 ) const
 ```
 
@@ -598,7 +598,7 @@ inline constexpr  DcmInterface astrea::astro::DcmInterface::operator- (
 
 _Access operator for the elements of the matrix._ 
 ```C++
-inline constexpr  Value_T & astrea::astro::DcmInterface::operator[] (
+inline constexpr Value_T & astrea::astro::DcmInterface::operator[] (
     std::size_t row,
     std::size_t col
 ) 
@@ -634,7 +634,7 @@ Value\_T& Reference to the element at the specified row and column.
 
 _Const access operator for the elements of the matrix._ 
 ```C++
-inline constexpr  const  Value_T & astrea::astro::DcmInterface::operator[] (
+inline constexpr const Value_T & astrea::astro::DcmInterface::operator[] (
     std::size_t row,
     std::size_t col
 ) const
@@ -670,7 +670,7 @@ const Value\_T& Reference to the element at the specified row and column.
 
 _Get a specific row of the matrix as a_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _vector._
 ```C++
-inline constexpr  CartesianVector < Value_T , _in_frame_ > astrea::astro::DcmInterface::row (
+inline constexpr CartesianVector < Value_T, _in_frame_ > astrea::astro::DcmInterface::row (
     const std::size_t & idx
 ) const
 ```
@@ -704,7 +704,7 @@ const [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt;Valu
 
 _Get the trace of the matrix (the sum of the diagonal elements)._ 
 ```C++
-inline constexpr  Value_T astrea::astro::DcmInterface::trace () const
+inline constexpr Value_T astrea::astro::DcmInterface::trace () const
 ```
 
 
@@ -729,7 +729,7 @@ Value\_T The trace of the matrix.
 
 _Transposes the matrix, effectively inverting the transformation._ 
 ```C++
-inline constexpr  DcmInterface < Value_T , _out_frame_ , _in_frame_ > astrea::astro::DcmInterface::transpose () const
+inline constexpr DcmInterface < Value_T, _out_frame_, _in_frame_ > astrea::astro::DcmInterface::transpose () const
 ```
 
 
@@ -771,9 +771,9 @@ std::array<Value_T, 9> astrea::astro::DcmInterface< Value_T, _in_frame_, _out_fr
 ### function \_multiply 
 
 ```C++
-template<typename  Value_U>
-inline std::array< decltype ( Value_T {} * Value_U {}), 9 > astrea::astro::DcmInterface::_multiply (
-    const std::array< Value_U , 9 > & other
+template<typename Value_U>
+inline std::array< decltype(Value_T{} *Value_U{}), 9 > astrea::astro::DcmInterface::_multiply (
+    const std::array< Value_U, 9 > & other
 ) const
 ```
 
@@ -788,8 +788,8 @@ inline std::array< decltype ( Value_T {} * Value_U {}), 9 > astrea::astro::DcmIn
 
 _Normalizes the matrix by scaling all elements by the given factor._ 
 ```C++
-inline constexpr  void astrea::astro::DcmInterface::_normalize (
-    const  Unitless & scale
+inline constexpr void astrea::astro::DcmInterface::_normalize (
+    const Unitless & scale
 ) 
 ```
 
@@ -817,7 +817,7 @@ inline constexpr  void astrea::astro::DcmInterface::_normalize (
 
 _Creates an identity matrix (no rotation)._ 
 ```C++
-static inline constexpr  DcmInterface astrea::astro::DcmInterface::identity () 
+static inline constexpr DcmInterface astrea::astro::DcmInterface::identity () 
 ```
 
 
@@ -842,7 +842,7 @@ static inline constexpr  DcmInterface astrea::astro::DcmInterface::identity ()
 
 _Creates a zero matrix (invalid rotation)._ 
 ```C++
-static inline constexpr  DcmInterface astrea::astro::DcmInterface::zero () 
+static inline constexpr DcmInterface astrea::astro::DcmInterface::zero () 
 ```
 
 
@@ -865,12 +865,28 @@ static inline constexpr  DcmInterface astrea::astro::DcmInterface::zero ()
 
 
 
+### friend DcmInterface [1/5]
+
+```C++
+template<typename Value_U, IsFrame auto in_frame_u, IsFrame auto out_frame_u>
+struct astrea::astro::DcmInterface::DcmInterface (
+    DcmInterface
+) 
+```
+
+
+
+
+<hr>
+
+
+
 ### friend operator&lt;&lt; 
 
 ```C++
 inline std::ostream & astrea::astro::DcmInterface::operator<< (
     std::ostream & os,
-    const  DcmInterface & matrix
+    const DcmInterface & matrix
 ) 
 ```
 

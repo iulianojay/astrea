@@ -11,7 +11,7 @@
 /*
  * The GNU Lesser General Public License (LGPL)
  *
- * Copyright (c) 2025 Jay Iuliano
+ * Copyright (c) 2025-2026 Jay Iuliano
  *
  * This file is part of Astrea.
  * Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License
@@ -23,8 +23,7 @@
 #include <trace/analysis/SpatialIndex.hpp>
 
 #include <mp-units/math.h>
-#include <mp-units/systems/angular/math.h>
-#include <mp-units/systems/isq_angle.h>
+#include <mp-units/systems/si/math.h>
 
 #include <astro/frames/framework/CartesianVector.hpp>
 #include <astro/state/angular_elements.hpp>
@@ -33,8 +32,8 @@
 
 
 using namespace mp_units;
-using namespace mp_units::angular;
-using mp_units::angular::unit_symbols::deg;
+using namespace mp_units::si;
+using mp_units::si::unit_symbols::deg;
 
 namespace astrea {
 namespace trace {

@@ -53,8 +53,8 @@ _A class representing a null_ [_**Event**_](classastrea_1_1astro_1_1Event.md) _i
 | Type | Name |
 | ---: | :--- |
 |  std::string | [**get\_name**](#function-get_name) () const<br>_Gets the name of the_ [_**Event**_](classastrea_1_1astro_1_1Event.md) _._ |
-|  [**bool**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**is\_terminal**](#function-is_terminal) () const<br>_Checks if the_ [_**Event**_](classastrea_1_1astro_1_1Event.md) _is a terminal_[_**Event**_](classastrea_1_1astro_1_1Event.md) _._ |
-|  [**Unitless**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**measure\_event**](#function-measure_event) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Time**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & time, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**State**](classastrea_1_1astro_1_1State.md) & state, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Vehicle**](classastrea_1_1astro_1_1Vehicle.md) & vehicle) const<br>_Detects if the_ [_**Event**_](classastrea_1_1astro_1_1Event.md) _is triggered by a_[_**Vehicle**_](classastrea_1_1astro_1_1Vehicle.md) _._ |
+|  bool | [**is\_terminal**](#function-is_terminal) () const<br>_Checks if the_ [_**Event**_](classastrea_1_1astro_1_1Event.md) _is a terminal_[_**Event**_](classastrea_1_1astro_1_1Event.md) _._ |
+|  Unitless | [**measure\_event**](#function-measure_event) (const Time & time, const [**State**](classastrea_1_1astro_1_1State.md) & state, const [**Vehicle**](classastrea_1_1astro_1_1Vehicle.md) & vehicle) const<br>_Detects if the_ [_**Event**_](classastrea_1_1astro_1_1Event.md) _is triggered by a_[_**Vehicle**_](classastrea_1_1astro_1_1Vehicle.md) _._ |
 
 
 
@@ -150,9 +150,9 @@ false If the [**Event**](classastrea_1_1astro_1_1Event.md) is not a terminal [**
 _Detects if the_ [_**Event**_](classastrea_1_1astro_1_1Event.md) _is triggered by a_[_**Vehicle**_](classastrea_1_1astro_1_1Vehicle.md) _._
 ```C++
 inline Unitless astrea::astro::NullEvent::measure_event (
-    const  Time & time,
-    const  State & state,
-    const  Vehicle & vehicle
+    const Time & time,
+    const State & state,
+    const Vehicle & vehicle
 ) const
 ```
 

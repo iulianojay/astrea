@@ -153,7 +153,7 @@ class Cartesian {
 
     const Velocity& get_vz() const { return _v.get_z(); }
 
-    std::vector<Unitless> force_to_vector() const;
+    std::vector<double> force_to_double_vector() const;
 
     Cartesian interpolate(const Time& thisTime, const Time& otherTime, const Cartesian<_frame_>& other, const GravParam& mu, const Time& targetTime) const;
 
@@ -161,7 +161,7 @@ class Cartesian {
     RadiusVector<_frame_> _r;   
     VelocityVector<_frame_> _v; 
 
-    static Cartesian from_vector(const std::vector<Unitless>& vec);
+    static Cartesian from_double_vector(const std::vector<double>& vec);
 };
 
 template <IsFrame auto _frame_>
@@ -201,7 +201,7 @@ class CartesianPartial {
 
     Cartesian<_frame_> operator*(const Time& time) const;
 
-    std::vector<Unitless> force_to_vector() const;
+    std::vector<double> force_to_double_vector() const;
 
   private:
     VelocityVector<_frame_> _v;     

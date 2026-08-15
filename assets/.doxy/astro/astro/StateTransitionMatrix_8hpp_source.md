@@ -33,13 +33,13 @@ class StateTransitionMatrix {
     template <std::size_t ii, std::size_t jj, mp_units::Quantity Value_T>
     void set(const Value_T& value)
     {
-        _stm[ii][jj] = value.numerical_value_in(value.unit) * mp_units::one;
+        _stm[ii][jj] = value.numerical_value_in(value.unit);
     }
 
-    std::vector<Unitless> force_to_vector() const;
+    std::vector<double> force_to_double_vector() const;
 
   private:
-    std::array<std::array<Unitless, 6>, 6> _stm; //, KeplerianStm, EquinoctialStm> _stm;
+    std::array<std::array<double, 6>, 6> _stm;
 };
 
 } // namespace astro

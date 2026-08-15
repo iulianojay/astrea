@@ -35,15 +35,15 @@ _Per-species empirical parameters for NRLMSISE-00 diffusive and mixed-region den
 
 | Type | Name |
 | ---: | :--- |
-|  [**Unitless**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**c3**](#variable-c3)  <br>_species-specific: zhm scale height (N2) or rc correction ratio (O, O2, H, N)_  |
-|  [**Unitless**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**c9**](#variable-c9)  <br>_anomalous O only: secondary thermal reference parameter_  |
-|  [**Distance**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**ha**](#variable-ha)  <br>_primary ccor correction scale height_  |
-|  [**Distance**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**hb**](#variable-hb)  <br>_secondary ccor correction scale height_  |
-|  [**Unitless**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**mix\_ratio**](#variable-mix_ratio)  <br>_dimensionless: mixing ratio / density correction factor_  |
+|  Unitless | [**c3**](#variable-c3)  <br>_species-specific: zhm scale height (N2) or rc correction ratio (O, O2, H, N)_  |
+|  Unitless | [**c9**](#variable-c9)  <br>_anomalous O only: secondary thermal reference parameter_  |
+|  Distance | [**ha**](#variable-ha)  <br>_primary ccor correction scale height_  |
+|  Distance | [**hb**](#variable-hb)  <br>_secondary ccor correction scale height_  |
+|  Unitless | [**mix\_ratio**](#variable-mix_ratio)  <br>_dimensionless: mixing ratio / density correction factor_  |
 |  NumberDensity | [**n\_ref**](#variable-n_ref)  <br>_cm⁻³: reference number density at lower boundary_  |
-|  [**Distance**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**za**](#variable-za)  <br>_primary ccor correction centre altitude (N2: unused, set to 0)_  |
-|  [**Distance**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**zb**](#variable-zb)  <br>_secondary ccor correction centre altitude_  |
-|  [**Distance**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**zh**](#variable-zh)  <br>_turbopause altitude_  |
+|  Distance | [**za**](#variable-za)  <br>_primary ccor correction centre altitude (N2: unused, set to 0)_  |
+|  Distance | [**zb**](#variable-zb)  <br>_secondary ccor correction centre altitude_  |
+|  Distance | [**zh**](#variable-zh)  <br>_turbopause altitude_  |
 
 
 

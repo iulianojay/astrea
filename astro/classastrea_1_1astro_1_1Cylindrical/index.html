@@ -6238,7 +6238,7 @@ You're not viewing the latest version.
 
 
 <h1 id="class-astreaastrocylindrical">Class astrea::astro::Cylindrical<a class="headerlink" href="#class-astreaastrocylindrical" title="Permanent link">&para;</a></h1>
-<p><strong>template &lt;IsCelestialBody <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>auto</strong></a> _body_&gt;</strong></p>
+<p><strong>template &lt;IsCelestialBody auto _body_&gt;</strong></p>
 <p><a href="../annotated/"><strong>ClassList</strong></a> <strong>&gt;</strong> <a href="../namespaceastrea/"><strong>astrea</strong></a> <strong>&gt;</strong> <a href="../namespaceastrea_1_1astro/"><strong>astro</strong></a> <strong>&gt;</strong> <a href="./"><strong>Cylindrical</strong></a></p>
 <p><em>Class representing a</em> <a href="./"><em><strong>Cylindrical</strong></em></a> <em>state vector in astrodynamics.</em><a href="#detailed-description">More...</a></p>
 <ul>
@@ -6254,16 +6254,16 @@ You're not viewing the latest version.
 </thead>
 <tbody>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>constexpr</strong></a> <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>auto</strong></a></td>
-<td style="text-align: left;"><a href="#variable-_fixed_frame_"><strong>_fixed_frame_</strong></a>   = <code>get\_body\_fixed\_frame&amp;lt;[**\_body\_**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)&amp;gt;()</code><br><em>Body-fixed rotating frame.</em></td>
+<td style="text-align: right;">constexpr auto</td>
+<td style="text-align: left;"><a href="#variable-_fixed_frame_"><strong>_fixed_frame_</strong></a>   = <code>get\_body\_fixed\_frame&amp;lt;\_body\_&amp;gt;()</code><br><em>Body-fixed rotating frame.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>constexpr</strong></a> <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>auto</strong></a></td>
-<td style="text-align: left;"><a href="#variable-_icrf_frame_"><strong>_icrf_frame_</strong></a>   = <code>make\_frame([**\_body\_**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), [**axes::icrf**](structastrea_1_1astro_1_1axes_1_1icrf.md))</code><br><em>Inertial frame for the body.</em></td>
+<td style="text-align: right;">constexpr auto</td>
+<td style="text-align: left;"><a href="#variable-_icrf_frame_"><strong>_icrf_frame_</strong></a>   = <code>make\_frame(\_body\_, [**axes::icrf**](structastrea_1_1astro_1_1axes_1_1icrf.md))</code><br><em>Inertial frame for the body.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>constexpr</strong></a> <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>auto</strong></a></td>
-<td style="text-align: left;"><a href="#variable-body"><strong>body</strong></a>   = <code>[**\_body\_**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)</code><br><em>The celestial body of this</em> <a href="./"><em><strong>Cylindrical</strong></em></a> <em>state.</em></td>
+<td style="text-align: right;">constexpr auto</td>
+<td style="text-align: left;"><a href="#variable-body"><strong>body</strong></a>   = <code>\_body\_</code><br><em>The celestial body of this</em> <a href="./"><em><strong>Cylindrical</strong></em></a> <em>state.</em></td>
 </tr>
 </tbody>
 </table>
@@ -6278,38 +6278,38 @@ You're not viewing the latest version.
 <tbody>
 <tr>
 <td style="text-align: right;"></td>
-<td style="text-align: left;"><a href="#function-cylindrical-17"><strong>Cylindrical</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Unitless</strong></a> scale=0.0 *astrea::detail::unitless) <br><em>Default constructor for</em> <a href="./"><em><strong>Cylindrical</strong></em></a> <em>.</em></td>
+<td style="text-align: left;"><a href="#function-cylindrical-17"><strong>Cylindrical</strong></a> (Unitless scale=0.0 *astrea::detail::unitless) <br><em>Default constructor for</em> <a href="./"><em><strong>Cylindrical</strong></em></a> <em>.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;"></td>
-<td style="text-align: left;"><a href="#function-cylindrical-27"><strong>Cylindrical</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Distance</strong></a> &amp; range, <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Angle</strong></a> &amp; azimuth, <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Distance</strong></a> &amp; elevation) <br><em>Constructor for</em> <a href="./"><em><strong>Cylindrical</strong></em></a> <em>with range, azimuth, and elevation.</em></td>
+<td style="text-align: left;"><a href="#function-cylindrical-27"><strong>Cylindrical</strong></a> (const Distance &amp; range, const Angle &amp; azimuth, const Distance &amp; elevation) <br><em>Constructor for</em> <a href="./"><em><strong>Cylindrical</strong></em></a> <em>with range, azimuth, and elevation.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;"></td>
-<td style="text-align: left;"><a href="#function-cylindrical-37"><strong>Cylindrical</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../namespaceastrea_1_1astro/#typedef-radiusvector"><strong>RadiusVector</strong></a>&lt; _frame_ &gt; &amp; r, <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1Date/"><strong>Date</strong></a> &amp; date) <br><em>Constructor for</em> <a href="./"><em><strong>Cylindrical</strong></em></a> <em>from any inertial radius vector centred on the same body.</em></td>
+<td style="text-align: left;"><a href="#function-cylindrical-37"><strong>Cylindrical</strong></a> (const <a href="../namespaceastrea_1_1astro/#typedef-radiusvector"><strong>RadiusVector</strong></a>&lt; _frame_ &gt; &amp; r, const <a href="../classastrea_1_1astro_1_1Date/"><strong>Date</strong></a> &amp; date) <br><em>Constructor for</em> <a href="./"><em><strong>Cylindrical</strong></em></a> <em>from any inertial radius vector centred on the same body.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;"></td>
-<td style="text-align: left;"><a href="#function-cylindrical-47"><strong>Cylindrical</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../namespaceastrea_1_1astro/#typedef-radiusvector"><strong>RadiusVector</strong></a>&lt; <a href="./#variable-_fixed_frame_"><strong>_fixed_frame_</strong></a> &gt; &amp; r) <br><em>Constructor for</em> <a href="./"><em><strong>Cylindrical</strong></em></a> <em>from a body-fixed radius vector.</em></td>
+<td style="text-align: left;"><a href="#function-cylindrical-47"><strong>Cylindrical</strong></a> (const <a href="../namespaceastrea_1_1astro/#typedef-radiusvector"><strong>RadiusVector</strong></a>&lt; <a href="./#variable-_fixed_frame_"><strong>_fixed_frame_</strong></a> &gt; &amp; r) <br><em>Constructor for</em> <a href="./"><em><strong>Cylindrical</strong></em></a> <em>from a body-fixed radius vector.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;"></td>
-<td style="text-align: left;"><a href="#function-cylindrical-57"><strong>Cylindrical</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>T</strong></a> &amp; elements, <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1Date/"><strong>Date</strong></a> &amp; date) <br><em>Constructor for</em> <a href="./"><em><strong>Cylindrical</strong></em></a> <em>from orbital elements.</em></td>
+<td style="text-align: left;"><a href="#function-cylindrical-57"><strong>Cylindrical</strong></a> (const T &amp; elements, const <a href="../classastrea_1_1astro_1_1Date/"><strong>Date</strong></a> &amp; date) <br><em>Constructor for</em> <a href="./"><em><strong>Cylindrical</strong></em></a> <em>from orbital elements.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;"></td>
-<td style="text-align: left;"><a href="#function-cylindrical-67"><strong>Cylindrical</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="./"><strong>Cylindrical</strong></a>&lt; <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>_body_</strong></a> &gt; &amp; other) <br><em>Copy constructor for</em> <a href="./"><em><strong>Cylindrical</strong></em></a> <em>.</em></td>
+<td style="text-align: left;"><a href="#function-cylindrical-67"><strong>Cylindrical</strong></a> (const <a href="./"><strong>Cylindrical</strong></a>&lt; _body_ &gt; &amp; other) <br><em>Copy constructor for</em> <a href="./"><em><strong>Cylindrical</strong></em></a> <em>.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;"></td>
-<td style="text-align: left;"><a href="#function-cylindrical-77"><strong>Cylindrical</strong></a> (<a href="./"><strong>Cylindrical</strong></a>&lt; <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>_body_</strong></a> &gt; &amp;&amp; other) noexcept<br><em>Move constructor for</em> <a href="./"><em><strong>Cylindrical</strong></em></a> <em>.</em></td>
+<td style="text-align: left;"><a href="#function-cylindrical-77"><strong>Cylindrical</strong></a> (<a href="./"><strong>Cylindrical</strong></a>&lt; _body_ &gt; &amp;&amp; other) noexcept<br><em>Move constructor for</em> <a href="./"><em><strong>Cylindrical</strong></em></a> <em>.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Angle</strong></a> &amp;</td>
+<td style="text-align: right;">const Angle &amp;</td>
 <td style="text-align: left;"><a href="#function-get_azimuth"><strong>get_azimuth</strong></a> () const<br></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Distance</strong></a> &amp;</td>
+<td style="text-align: right;">const Distance &amp;</td>
 <td style="text-align: left;"><a href="#function-get_elevation"><strong>get_elevation</strong></a> () const<br></td>
 </tr>
 <tr>
@@ -6318,67 +6318,67 @@ You're not viewing the latest version.
 </tr>
 <tr>
 <td style="text-align: right;"><a href="../namespaceastrea_1_1astro/#typedef-radiusvector"><strong>RadiusVector</strong></a>&lt; <a href="./#variable-_icrf_frame_"><strong>_icrf_frame_</strong></a> &gt;</td>
-<td style="text-align: left;"><a href="#function-get_position-22"><strong>get_position</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1Date/"><strong>Date</strong></a> &amp; date) const<br><em>Converts the</em> <a href="./"><em><strong>Cylindrical</strong></em></a> <em>state to an inertial radius vector.</em></td>
+<td style="text-align: left;"><a href="#function-get_position-22"><strong>get_position</strong></a> (const <a href="../classastrea_1_1astro_1_1Date/"><strong>Date</strong></a> &amp; date) const<br><em>Converts the</em> <a href="./"><em><strong>Cylindrical</strong></em></a> <em>state to an inertial radius vector.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Distance</strong></a> &amp;</td>
+<td style="text-align: right;">const Distance &amp;</td>
 <td style="text-align: left;"><a href="#function-get_range"><strong>get_range</strong></a> () const<br></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="./"><strong>Cylindrical</strong></a>&lt; <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>_body_</strong></a> &gt;</td>
-<td style="text-align: left;"><a href="#function-interpolate"><strong>interpolate</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Time</strong></a> &amp; thisTime, <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Time</strong></a> &amp; otherTime, <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="./"><strong>Cylindrical</strong></a>&lt; <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>_body_</strong></a> &gt; &amp; other, <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Time</strong></a> &amp; targetTime) const<br></td>
+<td style="text-align: right;"><a href="./"><strong>Cylindrical</strong></a>&lt; _body_ &gt;</td>
+<td style="text-align: left;"><a href="#function-interpolate"><strong>interpolate</strong></a> (const Time &amp; thisTime, const Time &amp; otherTime, const <a href="./"><strong>Cylindrical</strong></a>&lt; _body_ &gt; &amp; other, const Time &amp; targetTime) const<br></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>bool</strong></a></td>
-<td style="text-align: left;"><a href="#function-operator"><strong>operator!=</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="./"><strong>Cylindrical</strong></a>&lt; <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>_body_</strong></a> &gt; &amp; other) const<br></td>
+<td style="text-align: right;">bool</td>
+<td style="text-align: left;"><a href="#function-operator"><strong>operator!=</strong></a> (const <a href="./"><strong>Cylindrical</strong></a>&lt; _body_ &gt; &amp; other) const<br></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="./"><strong>Cylindrical</strong></a>&lt; <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>_body_</strong></a> &gt;</td>
-<td style="text-align: left;"><a href="#function-operator_1"><strong>operator*</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Unitless</strong></a> &amp; multiplier) const<br></td>
+<td style="text-align: right;"><a href="./"><strong>Cylindrical</strong></a>&lt; _body_ &gt;</td>
+<td style="text-align: left;"><a href="#function-operator_1"><strong>operator*</strong></a> (const Unitless &amp; multiplier) const<br></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="./"><strong>Cylindrical</strong></a>&lt; <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>_body_</strong></a> &gt; &amp;</td>
-<td style="text-align: left;"><a href="#function-operator_2"><strong>operator*=</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Unitless</strong></a> &amp; multiplier) <br></td>
+<td style="text-align: right;"><a href="./"><strong>Cylindrical</strong></a>&lt; _body_ &gt; &amp;</td>
+<td style="text-align: left;"><a href="#function-operator_2"><strong>operator*=</strong></a> (const Unitless &amp; multiplier) <br></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="./"><strong>Cylindrical</strong></a>&lt; <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>_body_</strong></a> &gt;</td>
-<td style="text-align: left;"><a href="#function-operator_3"><strong>operator+</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="./"><strong>Cylindrical</strong></a>&lt; <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>_body_</strong></a> &gt; &amp; other) const<br></td>
+<td style="text-align: right;"><a href="./"><strong>Cylindrical</strong></a>&lt; _body_ &gt;</td>
+<td style="text-align: left;"><a href="#function-operator_3"><strong>operator+</strong></a> (const <a href="./"><strong>Cylindrical</strong></a>&lt; _body_ &gt; &amp; other) const<br></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="./"><strong>Cylindrical</strong></a>&lt; <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>_body_</strong></a> &gt; &amp;</td>
-<td style="text-align: left;"><a href="#function-operator_4"><strong>operator+=</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="./"><strong>Cylindrical</strong></a>&lt; <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>_body_</strong></a> &gt; &amp; other) <br></td>
+<td style="text-align: right;"><a href="./"><strong>Cylindrical</strong></a>&lt; _body_ &gt; &amp;</td>
+<td style="text-align: left;"><a href="#function-operator_4"><strong>operator+=</strong></a> (const <a href="./"><strong>Cylindrical</strong></a>&lt; _body_ &gt; &amp; other) <br></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="./"><strong>Cylindrical</strong></a>&lt; <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>_body_</strong></a> &gt;</td>
-<td style="text-align: left;"><a href="#function-operator-"><strong>operator-</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="./"><strong>Cylindrical</strong></a>&lt; <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>_body_</strong></a> &gt; &amp; other) const<br></td>
+<td style="text-align: right;"><a href="./"><strong>Cylindrical</strong></a>&lt; _body_ &gt;</td>
+<td style="text-align: left;"><a href="#function-operator-"><strong>operator-</strong></a> (const <a href="./"><strong>Cylindrical</strong></a>&lt; _body_ &gt; &amp; other) const<br></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="./"><strong>Cylindrical</strong></a>&lt; <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>_body_</strong></a> &gt; &amp;</td>
-<td style="text-align: left;"><a href="#function-operator-_1"><strong>operator-=</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="./"><strong>Cylindrical</strong></a>&lt; <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>_body_</strong></a> &gt; &amp; other) <br></td>
+<td style="text-align: right;"><a href="./"><strong>Cylindrical</strong></a>&lt; _body_ &gt; &amp;</td>
+<td style="text-align: left;"><a href="#function-operator-_1"><strong>operator-=</strong></a> (const <a href="./"><strong>Cylindrical</strong></a>&lt; _body_ &gt; &amp; other) <br></td>
 </tr>
 <tr>
-<td style="text-align: right;">std::vector&lt; <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Unitless</strong></a> &gt;</td>
-<td style="text-align: left;"><a href="#function-operator_5"><strong>operator/</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="./"><strong>Cylindrical</strong></a>&lt; <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>_body_</strong></a> &gt; &amp; other) const<br></td>
+<td style="text-align: right;">std::vector&lt; Unitless &gt;</td>
+<td style="text-align: left;"><a href="#function-operator_5"><strong>operator/</strong></a> (const <a href="./"><strong>Cylindrical</strong></a>&lt; _body_ &gt; &amp; other) const<br></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="./"><strong>Cylindrical</strong></a>&lt; <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>_body_</strong></a> &gt;</td>
-<td style="text-align: left;"><a href="#function-operator_6"><strong>operator/</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Unitless</strong></a> &amp; divisor) const<br></td>
+<td style="text-align: right;"><a href="./"><strong>Cylindrical</strong></a>&lt; _body_ &gt;</td>
+<td style="text-align: left;"><a href="#function-operator_6"><strong>operator/</strong></a> (const Unitless &amp; divisor) const<br></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="./"><strong>Cylindrical</strong></a>&lt; <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>_body_</strong></a> &gt; &amp;</td>
-<td style="text-align: left;"><a href="#function-operator_7"><strong>operator/=</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Unitless</strong></a> &amp; divisor) <br></td>
+<td style="text-align: right;"><a href="./"><strong>Cylindrical</strong></a>&lt; _body_ &gt; &amp;</td>
+<td style="text-align: left;"><a href="#function-operator_7"><strong>operator/=</strong></a> (const Unitless &amp; divisor) <br></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="./"><strong>Cylindrical</strong></a>&lt; <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>_body_</strong></a> &gt; &amp;</td>
-<td style="text-align: left;"><a href="#function-operator_8"><strong>operator=</strong></a> (<a href="./"><strong>Cylindrical</strong></a>&lt; <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>_body_</strong></a> &gt; &amp;&amp; other) noexcept<br><em>Move assignment operator for</em> <a href="./"><em><strong>Cylindrical</strong></em></a> <em>.</em></td>
+<td style="text-align: right;"><a href="./"><strong>Cylindrical</strong></a>&lt; _body_ &gt; &amp;</td>
+<td style="text-align: left;"><a href="#function-operator_8"><strong>operator=</strong></a> (<a href="./"><strong>Cylindrical</strong></a>&lt; _body_ &gt; &amp;&amp; other) noexcept<br><em>Move assignment operator for</em> <a href="./"><em><strong>Cylindrical</strong></em></a> <em>.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="./"><strong>Cylindrical</strong></a>&lt; <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>_body_</strong></a> &gt; &amp;</td>
-<td style="text-align: left;"><a href="#function-operator_9"><strong>operator=</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="./"><strong>Cylindrical</strong></a>&lt; <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>_body_</strong></a> &gt; &amp; other) <br><em>Copy assignment operator for</em> <a href="./"><em><strong>Cylindrical</strong></em></a> <em>.</em></td>
+<td style="text-align: right;"><a href="./"><strong>Cylindrical</strong></a>&lt; _body_ &gt; &amp;</td>
+<td style="text-align: left;"><a href="#function-operator_9"><strong>operator=</strong></a> (const <a href="./"><strong>Cylindrical</strong></a>&lt; _body_ &gt; &amp; other) <br><em>Copy assignment operator for</em> <a href="./"><em><strong>Cylindrical</strong></em></a> <em>.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>bool</strong></a></td>
-<td style="text-align: left;"><a href="#function-operator_10"><strong>operator==</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="./"><strong>Cylindrical</strong></a>&lt; <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>_body_</strong></a> &gt; &amp; other) const<br></td>
+<td style="text-align: right;">bool</td>
+<td style="text-align: left;"><a href="#function-operator_10"><strong>operator==</strong></a> (const <a href="./"><strong>Cylindrical</strong></a>&lt; _body_ &gt; &amp; other) const<br></td>
 </tr>
 <tr>
 <td style="text-align: right;"></td>
@@ -6423,9 +6423,9 @@ You're not viewing the latest version.
 <h3 id="function-cylindrical-27">function Cylindrical [2/7]<a class="headerlink" href="#function-cylindrical-27" title="Permanent link">&para;</a></h3>
 <p><em>Constructor for</em> <a href="./"><em><strong>Cylindrical</strong></em></a> <em>with range, azimuth, and elevation.</em>
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kr">inline</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Cylindrical</span><span class="o">::</span><span class="n">Cylindrical</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Distance</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">range</span><span class="p">,</span>
-</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Angle</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">azimuth</span><span class="p">,</span>
-</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Distance</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">elevation</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Distance</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">range</span><span class="p">,</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Angle</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">azimuth</span><span class="p">,</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Distance</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">elevation</span>
 </span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="p">)</span><span class="w"> </span>
 </span></code></pre></div></p>
 <p><strong>Parameters:</strong></p>
@@ -6440,8 +6440,8 @@ You're not viewing the latest version.
 <p><em>Constructor for</em> <a href="./"><em><strong>Cylindrical</strong></em></a> <em>from any inertial radius vector centred on the same body.</em>
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">template</span><span class="o">&lt;</span><span class="k">auto</span><span class="w"> </span><span class="n">_frame_</span><span class="o">&gt;</span>
 </span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Cylindrical</span><span class="o">::</span><span class="n">Cylindrical</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">RadiusVector</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">_frame_</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">r</span><span class="p">,</span>
-</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Date</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">date</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">RadiusVector</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">_frame_</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">r</span><span class="p">,</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Date</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">date</span>
 </span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="p">)</span><span class="w"> </span>
 </span></code></pre></div></p>
 <p>Accepts any frame whose origin matches <em>body</em> and whose axis is the ICRF axis.</p>
@@ -6459,7 +6459,7 @@ You're not viewing the latest version.
 <h3 id="function-cylindrical-47">function Cylindrical [4/7]<a class="headerlink" href="#function-cylindrical-47" title="Permanent link">&para;</a></h3>
 <p><em>Constructor for</em> <a href="./"><em><strong>Cylindrical</strong></em></a> <em>from a body-fixed radius vector.</em>
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Cylindrical</span><span class="o">::</span><span class="n">Cylindrical</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">RadiusVector</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">_fixed_frame_</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">r</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">RadiusVector</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">_fixed_frame_</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">r</span>
 </span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="p">)</span><span class="w"> </span>
 </span></code></pre></div></p>
 <p><strong>Parameters:</strong></p>
@@ -6472,8 +6472,8 @@ You're not viewing the latest version.
 <p><em>Constructor for</em> <a href="./"><em><strong>Cylindrical</strong></em></a> <em>from orbital elements.</em>
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">template</span><span class="o">&lt;</span><span class="n">IsOrbitalElements</span><span class="w"> </span><span class="n">T</span><span class="o">&gt;</span>
 </span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="kr">inline</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Cylindrical</span><span class="o">::</span><span class="n">Cylindrical</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">T</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">elements</span><span class="p">,</span>
-</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Date</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">date</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">T</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">elements</span><span class="p">,</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Date</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">date</span>
 </span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="p">)</span><span class="w"> </span>
 </span></code></pre></div></p>
 <p><strong>Parameters:</strong></p>
@@ -6486,7 +6486,7 @@ You're not viewing the latest version.
 <h3 id="function-cylindrical-67">function Cylindrical [6/7]<a class="headerlink" href="#function-cylindrical-67" title="Permanent link">&para;</a></h3>
 <p><em>Copy constructor for</em> <a href="./"><em><strong>Cylindrical</strong></em></a> <em>.</em>
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Cylindrical</span><span class="o">::</span><span class="n">Cylindrical</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Cylindrical</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">_body_</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">other</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Cylindrical</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">_body_</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">other</span>
 </span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="p">)</span><span class="w"> </span>
 </span></code></pre></div></p>
 <hr>
@@ -6500,12 +6500,12 @@ You're not viewing the latest version.
 <hr>
 
 <h3 id="function-get_azimuth">function get_azimuth<a class="headerlink" href="#function-get_azimuth" title="Permanent link">&para;</a></h3>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="kr">inline</span><span class="w"> </span><span class="k">const</span><span class="w">  </span><span class="n">Angle</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Cylindrical</span><span class="o">::</span><span class="n">get_azimuth</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="kr">inline</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Angle</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Cylindrical</span><span class="o">::</span><span class="n">get_azimuth</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </span></code></pre></div>
 <hr>
 
 <h3 id="function-get_elevation">function get_elevation<a class="headerlink" href="#function-get_elevation" title="Permanent link">&para;</a></h3>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="kr">inline</span><span class="w"> </span><span class="k">const</span><span class="w">  </span><span class="n">Distance</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Cylindrical</span><span class="o">::</span><span class="n">get_elevation</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="kr">inline</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Distance</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Cylindrical</span><span class="o">::</span><span class="n">get_elevation</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </span></code></pre></div>
 <hr>
 
@@ -6518,7 +6518,7 @@ You're not viewing the latest version.
 <h3 id="function-get_position-22">function get_position [2/2]<a class="headerlink" href="#function-get_position-22" title="Permanent link">&para;</a></h3>
 <p><em>Converts the</em> <a href="./"><em><strong>Cylindrical</strong></em></a> <em>state to an inertial radius vector.</em>
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="n">RadiusVector</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">_icrf_frame_</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Cylindrical</span><span class="o">::</span><span class="n">get_position</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Date</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">date</span>
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Date</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">date</span>
 </span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
 </span></code></pre></div></p>
 <p><strong>Parameters:</strong></p>
@@ -6528,86 +6528,86 @@ You're not viewing the latest version.
 <hr>
 
 <h3 id="function-get_range">function get_range<a class="headerlink" href="#function-get_range" title="Permanent link">&para;</a></h3>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="kr">inline</span><span class="w"> </span><span class="k">const</span><span class="w">  </span><span class="n">Distance</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Cylindrical</span><span class="o">::</span><span class="n">get_range</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="kr">inline</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Distance</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Cylindrical</span><span class="o">::</span><span class="n">get_range</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </span></code></pre></div>
 <hr>
 
 <h3 id="function-interpolate">function interpolate<a class="headerlink" href="#function-interpolate" title="Permanent link">&para;</a></h3>
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="n">Cylindrical</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">_body_</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Cylindrical</span><span class="o">::</span><span class="n">interpolate</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Time</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">thisTime</span><span class="p">,</span>
-</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Time</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">otherTime</span><span class="p">,</span>
-</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Cylindrical</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">_body_</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">other</span><span class="p">,</span>
-</span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Time</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">targetTime</span>
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Time</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">thisTime</span><span class="p">,</span>
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Time</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">otherTime</span><span class="p">,</span>
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Cylindrical</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">_body_</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">other</span><span class="p">,</span>
+</span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Time</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">targetTime</span>
 </span><span id="__span-15-6"><a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
 </span></code></pre></div>
 <hr>
 
 <h3 id="function-operator">function operator!=<a class="headerlink" href="#function-operator" title="Permanent link">&para;</a></h3>
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="kt">bool</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Cylindrical</span><span class="o">::</span><span class="k">operator</span><span class="o">!=</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Cylindrical</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">_body_</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">other</span>
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Cylindrical</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">_body_</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">other</span>
 </span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
 </span></code></pre></div>
 <hr>
 
 <h3 id="function-operator_1">function operator*<a class="headerlink" href="#function-operator_1" title="Permanent link">&para;</a></h3>
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="n">Cylindrical</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">_body_</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Cylindrical</span><span class="o">::</span><span class="k">operator</span><span class="o">*</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Unitless</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">multiplier</span>
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Unitless</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">multiplier</span>
 </span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
 </span></code></pre></div>
 <hr>
 
 <h3 id="function-operator_2">function operator*=<a class="headerlink" href="#function-operator_2" title="Permanent link">&para;</a></h3>
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="n">Cylindrical</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">_body_</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Cylindrical</span><span class="o">::</span><span class="k">operator</span><span class="o">*=</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Unitless</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">multiplier</span>
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Unitless</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">multiplier</span>
 </span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="p">)</span><span class="w"> </span>
 </span></code></pre></div>
 <hr>
 
 <h3 id="function-operator_3">function operator+<a class="headerlink" href="#function-operator_3" title="Permanent link">&para;</a></h3>
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="n">Cylindrical</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">_body_</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Cylindrical</span><span class="o">::</span><span class="k">operator</span><span class="o">+</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Cylindrical</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">_body_</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">other</span>
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Cylindrical</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">_body_</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">other</span>
 </span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
 </span></code></pre></div>
 <hr>
 
 <h3 id="function-operator_4">function operator+=<a class="headerlink" href="#function-operator_4" title="Permanent link">&para;</a></h3>
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="n">Cylindrical</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">_body_</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Cylindrical</span><span class="o">::</span><span class="k">operator</span><span class="o">+=</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Cylindrical</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">_body_</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">other</span>
+</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Cylindrical</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">_body_</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">other</span>
 </span><span id="__span-20-3"><a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a><span class="p">)</span><span class="w"> </span>
 </span></code></pre></div>
 <hr>
 
 <h3 id="function-operator-">function operator-<a class="headerlink" href="#function-operator-" title="Permanent link">&para;</a></h3>
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="n">Cylindrical</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">_body_</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Cylindrical</span><span class="o">::</span><span class="k">operator</span><span class="o">-</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Cylindrical</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">_body_</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">other</span>
+</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Cylindrical</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">_body_</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">other</span>
 </span><span id="__span-21-3"><a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
 </span></code></pre></div>
 <hr>
 
 <h3 id="function-operator-_1">function operator-=<a class="headerlink" href="#function-operator-_1" title="Permanent link">&para;</a></h3>
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="n">Cylindrical</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">_body_</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Cylindrical</span><span class="o">::</span><span class="k">operator</span><span class="o">-=</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Cylindrical</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">_body_</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">other</span>
+</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Cylindrical</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">_body_</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">other</span>
 </span><span id="__span-22-3"><a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a><span class="p">)</span><span class="w"> </span>
 </span></code></pre></div>
 <hr>
 
 <h3 id="function-operator_5">function operator/<a class="headerlink" href="#function-operator_5" title="Permanent link">&para;</a></h3>
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="n">Unitless</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Cylindrical</span><span class="o">::</span><span class="k">operator</span><span class="o">/</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Cylindrical</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">_body_</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">other</span>
+</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Cylindrical</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">_body_</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">other</span>
 </span><span id="__span-23-3"><a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
 </span></code></pre></div>
 <hr>
 
 <h3 id="function-operator_6">function operator/<a class="headerlink" href="#function-operator_6" title="Permanent link">&para;</a></h3>
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="n">Cylindrical</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">_body_</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Cylindrical</span><span class="o">::</span><span class="k">operator</span><span class="o">/</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-24-2"><a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Unitless</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">divisor</span>
+</span><span id="__span-24-2"><a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Unitless</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">divisor</span>
 </span><span id="__span-24-3"><a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
 </span></code></pre></div>
 <hr>
 
 <h3 id="function-operator_7">function operator/=<a class="headerlink" href="#function-operator_7" title="Permanent link">&para;</a></h3>
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="n">Cylindrical</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">_body_</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Cylindrical</span><span class="o">::</span><span class="k">operator</span><span class="o">/=</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-25-2"><a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Unitless</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">divisor</span>
+</span><span id="__span-25-2"><a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Unitless</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">divisor</span>
 </span><span id="__span-25-3"><a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a><span class="p">)</span><span class="w"> </span>
 </span></code></pre></div>
 <hr>
@@ -6623,14 +6623,14 @@ You're not viewing the latest version.
 <h3 id="function-operator_9">function operator=<a class="headerlink" href="#function-operator_9" title="Permanent link">&para;</a></h3>
 <p><em>Copy assignment operator for</em> <a href="./"><em><strong>Cylindrical</strong></em></a> <em>.</em>
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-27-1"><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="n">Cylindrical</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">_body_</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Cylindrical</span><span class="o">::</span><span class="k">operator</span><span class="o">=</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-27-2"><a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Cylindrical</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">_body_</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">other</span>
+</span><span id="__span-27-2"><a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Cylindrical</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">_body_</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">other</span>
 </span><span id="__span-27-3"><a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a><span class="p">)</span><span class="w"> </span>
 </span></code></pre></div></p>
 <hr>
 
 <h3 id="function-operator_10">function operator==<a class="headerlink" href="#function-operator_10" title="Permanent link">&para;</a></h3>
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-28-1"><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="kt">bool</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Cylindrical</span><span class="o">::</span><span class="k">operator</span><span class="o">==</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-28-2"><a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Cylindrical</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">_body_</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">other</span>
+</span><span id="__span-28-2"><a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Cylindrical</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">_body_</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">other</span>
 </span><span id="__span-28-3"><a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
 </span></code></pre></div>
 <hr>

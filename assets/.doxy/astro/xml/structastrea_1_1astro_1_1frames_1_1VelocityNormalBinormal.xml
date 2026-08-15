@@ -6,14 +6,14 @@
     <includes refid="VelocityNormalBinormal_8hpp" local="no">VelocityNormalBinormal.hpp</includes>
     <templateparamlist>
       <param>
-        <type>IsFrame <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+        <type>IsFrame auto</type>
         <declname>_parent_</declname>
         <defname>_parent_</defname>
       </param>
     </templateparamlist>
     <sectiondef kind="public-type">
       <memberdef kind="typedef" id="structastrea_1_1astro_1_1frames_1_1VelocityNormalBinormal_1a39cecadc585d0e74d112404988d0d8b6" prot="public" static="no">
-        <type><ref refid="structastrea_1_1astro_1_1frames_1_1VnbTag" kindref="compound">VnbTag</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_parent_</ref> &gt;</type>
+        <type><ref refid="structastrea_1_1astro_1_1frames_1_1VnbTag" kindref="compound">VnbTag</ref>&lt; _parent_ &gt;</type>
         <definition>using astrea::astro::frames::VelocityNormalBinormal&lt; _parent_ &gt;::tag_type =  VnbTag&lt;_parent_&gt;</definition>
         <argsstring></argsstring>
         <name>tag_type</name>
@@ -25,12 +25,12 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/frames/definitions/VelocityNormalBinormal.hpp" line="52" column="5" bodyfile="astrea/astro/astro/frames/definitions/VelocityNormalBinormal.hpp" bodystart="52" bodyend="-1"/>
+        <location file="astrea/astro/astro/frames/definitions/dynamic_frames/VelocityNormalBinormal.hpp" line="52" column="5" bodyfile="astrea/astro/astro/frames/definitions/dynamic_frames/VelocityNormalBinormal.hpp" bodystart="52" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="public-static-attrib">
       <memberdef kind="variable" id="structastrea_1_1astro_1_1frames_1_1VelocityNormalBinormal_1ab9e6594308d4939f61b06879d5e42638" prot="public" static="yes" constexpr="yes" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="structastrea_1_1astro_1_1frames_1_1VelocityNormalBinormal_1a39cecadc585d0e74d112404988d0d8b6" kindref="member">tag_type</ref></type>
+        <type>constexpr <ref refid="structastrea_1_1astro_1_1frames_1_1VelocityNormalBinormal_1a39cecadc585d0e74d112404988d0d8b6" kindref="member">tag_type</ref></type>
         <definition>constexpr tag_type astrea::astro::frames::VelocityNormalBinormal&lt; _parent_ &gt;::tag</definition>
         <argsstring></argsstring>
         <name>tag</name>
@@ -43,15 +43,15 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/frames/definitions/VelocityNormalBinormal.hpp" line="53" column="38" bodyfile="astrea/astro/astro/frames/definitions/VelocityNormalBinormal.hpp" bodystart="53" bodyend="53"/>
+        <location file="astrea/astro/astro/frames/definitions/dynamic_frames/VelocityNormalBinormal.hpp" line="53" column="38" bodyfile="astrea/astro/astro/frames/definitions/dynamic_frames/VelocityNormalBinormal.hpp" bodystart="53" bodyend="53"/>
       </memberdef>
       <memberdef kind="variable" id="structastrea_1_1astro_1_1frames_1_1VelocityNormalBinormal_1aa37080bde3dd9ecf9024bcbbeae6661e" prot="public" static="yes" constexpr="yes" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+        <type>constexpr auto</type>
         <definition>constexpr auto astrea::astro::frames::VelocityNormalBinormal&lt; _parent_ &gt;::parent</definition>
         <argsstring></argsstring>
         <name>parent</name>
         <qualifiedname>astrea::astro::frames::VelocityNormalBinormal::parent</qualifiedname>
-        <initializer>= <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_parent_</ref></initializer>
+        <initializer>= _parent_</initializer>
         <briefdescription>
 <para>The reference frame of the VNB frame. </para>
         </briefdescription>
@@ -59,7 +59,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/frames/definitions/VelocityNormalBinormal.hpp" line="54" column="27" bodyfile="astrea/astro/astro/frames/definitions/VelocityNormalBinormal.hpp" bodystart="54" bodyend="-1"/>
+        <location file="astrea/astro/astro/frames/definitions/dynamic_frames/VelocityNormalBinormal.hpp" line="54" column="27" bodyfile="astrea/astro/astro/frames/definitions/dynamic_frames/VelocityNormalBinormal.hpp" bodystart="54" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="public-func">
@@ -70,11 +70,11 @@
         <name>VelocityNormalBinormal</name>
         <qualifiedname>astrea::astro::frames::VelocityNormalBinormal::VelocityNormalBinormal</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="typedefs_8hpp_1a7493d5fafd58941bc3440b866a25638d" kindref="member">RadiusVector</ref>&lt; <ref refid="structastrea_1_1astro_1_1frames_1_1VelocityNormalBinormal_1aa37080bde3dd9ecf9024bcbbeae6661e" kindref="member">parent</ref> &gt; &amp;</type>
+          <type>const <ref refid="typedefs_8hpp_1a7493d5fafd58941bc3440b866a25638d" kindref="member">RadiusVector</ref>&lt; <ref refid="structastrea_1_1astro_1_1frames_1_1VelocityNormalBinormal_1aa37080bde3dd9ecf9024bcbbeae6661e" kindref="member">parent</ref> &gt; &amp;</type>
           <declname>position</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="typedefs_8hpp_1a7d8b9c68f2d8d343d45e1bf14b6bfb18" kindref="member">VelocityVector</ref>&lt; <ref refid="structastrea_1_1astro_1_1frames_1_1VelocityNormalBinormal_1aa37080bde3dd9ecf9024bcbbeae6661e" kindref="member">parent</ref> &gt; &amp;</type>
+          <type>const <ref refid="typedefs_8hpp_1a7d8b9c68f2d8d343d45e1bf14b6bfb18" kindref="member">VelocityVector</ref>&lt; <ref refid="structastrea_1_1astro_1_1frames_1_1VelocityNormalBinormal_1aa37080bde3dd9ecf9024bcbbeae6661e" kindref="member">parent</ref> &gt; &amp;</type>
           <declname>velocity</declname>
         </param>
         <briefdescription>
@@ -102,7 +102,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/frames/definitions/VelocityNormalBinormal.hpp" line="62" column="5" bodyfile="astrea/astro/astro/frames/definitions/VelocityNormalBinormal.hpp" bodystart="62" bodyend="65"/>
+        <location file="astrea/astro/astro/frames/definitions/dynamic_frames/VelocityNormalBinormal.hpp" line="62" column="5" bodyfile="astrea/astro/astro/frames/definitions/dynamic_frames/VelocityNormalBinormal.hpp" bodystart="62" bodyend="65"/>
       </memberdef>
       <memberdef kind="function" id="structastrea_1_1astro_1_1frames_1_1VelocityNormalBinormal_1aafd9bd8cfbeb4b5ceb555d0b60dfeb26" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -117,7 +117,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/frames/definitions/VelocityNormalBinormal.hpp" line="67" column="5"/>
+        <location file="astrea/astro/astro/frames/definitions/dynamic_frames/VelocityNormalBinormal.hpp" line="67" column="5"/>
       </memberdef>
       <memberdef kind="function" id="structastrea_1_1astro_1_1frames_1_1VelocityNormalBinormal_1adaf0aca04bbb346dd08ead5bddc0f13f" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">DirectionCosineMatrix</ref>&lt; <ref refid="structastrea_1_1astro_1_1frames_1_1VelocityNormalBinormal_1aa37080bde3dd9ecf9024bcbbeae6661e" kindref="member">parent</ref>, <ref refid="structastrea_1_1astro_1_1frames_1_1VelocityNormalBinormal_1ab9e6594308d4939f61b06879d5e42638" kindref="member">tag</ref> &gt;</type>
@@ -126,7 +126,7 @@
         <name>get_dcm</name>
         <qualifiedname>astrea::astro::frames::VelocityNormalBinormal::get_dcm</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
           <declname>date</declname>
         </param>
         <briefdescription>
@@ -148,7 +148,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/frames/definitions/VelocityNormalBinormal.hpp" line="75" column="27" bodyfile="astrea/astro/astro/frames/definitions/VelocityNormalBinormal.hpp" bodystart="75" bodyend="82"/>
+        <location file="astrea/astro/astro/frames/definitions/dynamic_frames/VelocityNormalBinormal.hpp" line="75" column="27" bodyfile="astrea/astro/astro/frames/definitions/dynamic_frames/VelocityNormalBinormal.hpp" bodystart="75" bodyend="82"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
@@ -201,7 +201,7 @@
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="astrea/astro/astro/frames/definitions/VelocityNormalBinormal.hpp" line="50" column="1" bodyfile="astrea/astro/astro/frames/definitions/VelocityNormalBinormal.hpp" bodystart="50" bodyend="83"/>
+    <location file="astrea/astro/astro/frames/definitions/dynamic_frames/VelocityNormalBinormal.hpp" line="50" column="1" bodyfile="astrea/astro/astro/frames/definitions/dynamic_frames/VelocityNormalBinormal.hpp" bodystart="50" bodyend="83"/>
     <listofallmembers>
       <member refid="structastrea_1_1astro_1_1DynamicFrame_1ac453c49e5e6968958350c1266f114bc9" prot="protected" virt="non-virtual"><scope>astrea::astro::frames::VelocityNormalBinormal</scope><name>_position</name></member>
       <member refid="structastrea_1_1astro_1_1DynamicFrame_1ae3ec8897ba7023b335503f2e07f931ee" prot="protected" virt="non-virtual"><scope>astrea::astro::frames::VelocityNormalBinormal</scope><name>_velocity</name></member>

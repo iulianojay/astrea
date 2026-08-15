@@ -2,6 +2,7 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
   <compounddef id="namespaceastrea_1_1astro_1_1axes" kind="namespace" language="C++">
     <compoundname>astrea::astro::axes</compoundname>
+    <innerclass refid="structastrea_1_1astro_1_1axes_1_1cep" prot="public">astrea::astro::axes::cep</innerclass>
     <innerclass refid="structastrea_1_1astro_1_1axes_1_1icrf" prot="public">astrea::astro::axes::icrf</innerclass>
     <innerclass refid="structastrea_1_1astro_1_1axes_1_1j2000" prot="public">astrea::astro::axes::j2000</innerclass>
     <sectiondef kind="var">
@@ -32,6 +33,20 @@
         <inbodydescription>
         </inbodydescription>
         <location file="astrea/astro/astro/frames/framework/Axis.hpp" line="97" column="7"/>
+      </memberdef>
+      <memberdef kind="variable" id="Axis_8hpp_1a8f9ea8ab52c92885077c1eedc8544157" prot="public" static="no" mutable="no">
+        <type><ref refid="structastrea_1_1astro_1_1axes_1_1cep" kindref="compound">astrea::astro::axes::cep</ref></type>
+        <definition>astrea::astro::axes::cep astrea::astro::axes::cep</definition>
+        <argsstring></argsstring>
+        <name>cep</name>
+        <qualifiedname>astrea::astro::axes::cep</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/frames/framework/Axis.hpp" line="104" column="5"/>
       </memberdef>
     </sectiondef>
     <briefdescription>

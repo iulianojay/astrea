@@ -22,30 +22,31 @@ namespace astro {
 
 StateTransitionMatrix::StateTransitionMatrix(const EquationsOfMotion& eom, const State& state, const Vehicle& vehicle)
 {
-    const std::vector<Unitless> s0 = state.force_to_vector();
-    const std::size_t typeIdx      = state.get_elements().index();
-    const std::vector<Unitless> f0 = eom.compute_dynamics(state, vehicle, {}, {}).force_to_vector();
+    const std::vector<double> s0 = state.force_to_double_vector();
+    const std::size_t typeIdx    = state.get_elements().index();
+    const std::vector<double> f0 = eom.compute_dynamics(state, vehicle, {}, {}).force_to_double_vector();
 
     // The size of dsi will have different sensitivity based on the element type so we use a relative perturbation
-    const Unitless relPerturbation = 1.0e-8 * one;
+    const double relPerturbation = 1.0e-8;
     for (std::size_t ii = 0; ii < 6; ++ii) {
-        const auto& si     = s0[ii];
-        const Unitless dsi = si * relPerturbation;
+        const auto& si   = s0[ii];
+        const double dsi = si * relPerturbation;
 
         for (std::size_t jj = 0; jj < 6; ++jj) {
             // Perturb state
-            std::vector<Unitless> sPlusDs  = s0;
-            std::vector<Unitless> sMinusDs = s0;
+            std::vector<double> sPlusDs  = s0;
+            std::vector<double> sMinusDs = s0;
             sPlusDs[ii] += dsi;
             sMinusDs[ii] -= dsi;
 
             // Convert back to OrbitalElements
-            const State statePlus  = State::from_vector(sPlusDs, typeIdx);
-            const State stateMinus = State::from_vector(sMinusDs, typeIdx);
+            const State statePlus  = State::from_double_vector(sPlusDs, typeIdx);
+            const State stateMinus = State::from_double_vector(sMinusDs, typeIdx);
 
             // Compute f(s + dsi)
-            const std::vector<Unitless> fPerturbedPlus = eom.compute_dynamics(statePlus, vehicle, {}, {}).force_to_vector();
-            const std::vector<Unitless> fPerturbedMinus = eom.compute_dynamics(stateMinus, vehicle, {}, {}).force_to_vector();
+            const std::vector<double> fPerturbedPlus = eom.compute_dynamics(statePlus, vehicle, {}, {}).force_to_double_vector();
+            const std::vector<double> fPerturbedMinus =
+                eom.compute_dynamics(stateMinus, vehicle, {}, {}).force_to_double_vector();
 
             // Compute partial derivative
             _stm[jj][ii] = (fPerturbedPlus[jj] - fPerturbedMinus[jj]) / (2 * dsi);
@@ -54,9 +55,9 @@ StateTransitionMatrix::StateTransitionMatrix(const EquationsOfMotion& eom, const
 }
 
 
-std::vector<Unitless> StateTransitionMatrix::force_to_vector() const
+std::vector<double> StateTransitionMatrix::force_to_double_vector() const
 {
-    std::vector<Unitless> stmVector(36);
+    std::vector<double> stmVector(36);
     for (std::size_t ii = 0; ii < 6; ++ii) {
         for (std::size_t jj = 0; jj < 6; ++jj) {
             stmVector[ii * 6 + jj] = _stm[ii][jj];

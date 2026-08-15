@@ -10,12 +10,7 @@
 
 _Type traits for astrea astro library._ [More...](#detailed-description)
 
-* `#include <cstddef>`
-* `#include <initializer_list>`
-* `#include <string>`
-* `#include <tuple>`
 * `#include <type_traits>`
-* `#include <utility>`
 
 
 
@@ -108,7 +103,7 @@ Jay Iuliano ([iuliano.jay@gmail.com](mailto:iuliano.jay@gmail.com))
 
 **Copyright:**
 
-Copyright (c) 2025 Jay Iuliano
+Copyright (c) 2025-2026 Jay Iuliano
 
 
 The GNU Lesser General Public License (LGPL)

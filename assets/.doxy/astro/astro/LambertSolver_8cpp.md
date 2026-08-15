@@ -17,9 +17,8 @@
 * `#include <math.h>`
 * `#include <numbers>`
 * `#include <mp-units/math.h>`
-* `#include <mp-units/systems/angular/math.h>`
-* `#include <mp-units/systems/isq_angle.h>`
 * `#include <mp-units/systems/si.h>`
+* `#include <mp-units/systems/si/math.h>`
 * `#include <astro/frames/definitions.hpp>`
 * `#include <astro/frames/framework/CartesianVector.hpp>`
 * `#include <astro/state/orbital_elements/Cartesian.hpp>`
@@ -43,7 +42,6 @@
 | ---: | :--- |
 | namespace | [**astrea**](namespaceastrea.md) <br> |
 | namespace | [**astro**](namespaceastrea_1_1astro.md) <br> |
-| namespace | [**angular**](namespacemp__units_1_1angular.md) <br> |
 
 
 

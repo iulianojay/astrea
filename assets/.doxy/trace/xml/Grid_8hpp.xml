@@ -18,14 +18,14 @@
     <includedby refid="Plotter_8cpp" local="no">astrea/trace/trace/analysis/plots/Plotter.cpp</includedby>
     <includedby refid="trace_8hpp" local="no">astrea/trace/trace/trace.hpp</includedby>
     <incdepgraph>
-      <node id="22">
+      <node id="20">
         <label>trace/platforms/AccessObject.hpp</label>
         <link refid="AccessObject_8hpp"/>
-        <childnode refid="23" relation="include">
+        <childnode refid="21" relation="include">
         </childnode>
-        <childnode refid="24" relation="include">
+        <childnode refid="22" relation="include">
         </childnode>
-        <childnode refid="31" relation="include">
+        <childnode refid="29" relation="include">
         </childnode>
       </node>
       <node id="1">
@@ -49,9 +49,9 @@
         </childnode>
         <childnode refid="10" relation="include">
         </childnode>
-        <childnode refid="29" relation="include">
+        <childnode refid="27" relation="include">
         </childnode>
-        <childnode refid="31" relation="include">
+        <childnode refid="29" relation="include">
         </childnode>
       </node>
       <node id="10">
@@ -71,152 +71,142 @@
         </childnode>
         <childnode refid="17" relation="include">
         </childnode>
-        <childnode refid="18" relation="include">
-        </childnode>
-        <childnode refid="19" relation="include">
-        </childnode>
         <childnode refid="9" relation="include">
         </childnode>
-        <childnode refid="20" relation="include">
+        <childnode refid="18" relation="include">
         </childnode>
         <childnode refid="8" relation="include">
         </childnode>
-        <childnode refid="21" relation="include">
+        <childnode refid="19" relation="include">
         </childnode>
-        <childnode refid="22" relation="include">
+        <childnode refid="20" relation="include">
         </childnode>
-        <childnode refid="31" relation="include">
+        <childnode refid="29" relation="include">
+        </childnode>
+      </node>
+      <node id="22">
+        <label>trace/risesets/AccessArray.hpp</label>
+        <link refid="AccessArray_8hpp"/>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="33" relation="include">
         </childnode>
       </node>
       <node id="24">
-        <label>trace/risesets/AccessArray.hpp</label>
-        <link refid="AccessArray_8hpp"/>
-        <childnode refid="25" relation="include">
-        </childnode>
-        <childnode refid="26" relation="include">
-        </childnode>
-        <childnode refid="35" relation="include">
-        </childnode>
-      </node>
-      <node id="26">
         <label>trace/risesets/RiseSetArray.hpp</label>
         <link refid="RiseSetArray_8hpp"/>
         <childnode refid="6" relation="include">
         </childnode>
         <childnode refid="8" relation="include">
         </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
         <childnode refid="27" relation="include">
         </childnode>
         <childnode refid="29" relation="include">
         </childnode>
-        <childnode refid="31" relation="include">
-        </childnode>
       </node>
-      <node id="27">
+      <node id="25">
         <label>trace/risesets/riseset_utils.hpp</label>
         <link refid="riseset__utils_8hpp"/>
         <childnode refid="12" relation="include">
         </childnode>
         <childnode refid="8" relation="include">
         </childnode>
-        <childnode refid="28" relation="include">
+        <childnode refid="26" relation="include">
         </childnode>
       </node>
-      <node id="28">
+      <node id="26">
         <label>trace/trace.fwd.hpp</label>
         <link refid="trace_8fwd_8hpp"/>
         <childnode refid="9" relation="include">
         </childnode>
       </node>
-      <node id="35">
+      <node id="33">
         <label>trace/types/IdPair.hpp</label>
         <link refid="IdPair_8hpp_source"/>
-        <childnode refid="32" relation="include">
-        </childnode>
-        <childnode refid="36" relation="include">
-        </childnode>
-      </node>
-      <node id="29">
-        <label>trace/types/enums.hpp</label>
-        <link refid="enums_8hpp"/>
         <childnode refid="30" relation="include">
-        </childnode>
-        <childnode refid="12" relation="include">
-        </childnode>
-        <childnode refid="25" relation="include">
-        </childnode>
-        <childnode refid="31" relation="include">
-        </childnode>
-      </node>
-      <node id="31">
-        <label>trace/types/typedefs.hpp</label>
-        <link refid="typedefs_8hpp"/>
-        <childnode refid="32" relation="include">
-        </childnode>
-        <childnode refid="16" relation="include">
-        </childnode>
-        <childnode refid="33" relation="include">
         </childnode>
         <childnode refid="34" relation="include">
         </childnode>
+      </node>
+      <node id="27">
+        <label>trace/types/enums.hpp</label>
+        <link refid="enums_8hpp"/>
         <childnode refid="28" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+      </node>
+      <node id="29">
+        <label>trace/types/typedefs.hpp</label>
+        <link refid="typedefs_8hpp"/>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="31" relation="include">
+        </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
         </childnode>
       </node>
       <node id="2">
         <label>algorithm</label>
       </node>
-      <node id="30">
+      <node id="28">
         <label>array</label>
       </node>
-      <node id="16">
+      <node id="14">
         <label>astro/astro.fwd.hpp</label>
       </node>
-      <node id="33">
+      <node id="31">
         <label>astro/frames.hpp</label>
       </node>
-      <node id="17">
+      <node id="15">
         <label>astro/frames/framework/CartesianVector.hpp</label>
       </node>
-      <node id="18">
+      <node id="16">
         <label>astro/state/angular_elements.hpp</label>
       </node>
-      <node id="34">
+      <node id="32">
         <label>astro/systems.hpp</label>
       </node>
-      <node id="19">
+      <node id="17">
         <label>astro/systems/property_getters.hpp</label>
       </node>
       <node id="9">
         <label>astro/systems/system_concepts.hpp</label>
       </node>
-      <node id="20">
+      <node id="18">
         <label>astro/time/Date.hpp</label>
       </node>
       <node id="3">
         <label>cmath</label>
       </node>
-      <node id="32">
+      <node id="30">
         <label>cstdint</label>
       </node>
-      <node id="36">
+      <node id="34">
         <label>functional</label>
       </node>
-      <node id="25">
+      <node id="23">
         <label>gtl/phmap.hpp</label>
       </node>
-      <node id="23">
+      <node id="21">
         <label>memory</label>
       </node>
       <node id="7">
         <label>mp-units/math.h</label>
       </node>
       <node id="13">
-        <label>mp-units/systems/angular.h</label>
-      </node>
-      <node id="14">
-        <label>mp-units/systems/isq_angle.h</label>
-      </node>
-      <node id="15">
         <label>mp-units/systems/si.h</label>
       </node>
       <node id="4">
@@ -234,7 +224,7 @@
       <node id="8">
         <label>units/units.hpp</label>
       </node>
-      <node id="21">
+      <node id="19">
         <label>utilities/IdProvider.hpp</label>
       </node>
       <node id="6">
@@ -264,7 +254,7 @@
 </simplesect>
 <simplesect kind="date"><para>2025-08-03</para>
 </simplesect>
-<simplesect kind="copyright"><para>Copyright (c) 2025 Jay Iuliano</para>
+<simplesect kind="copyright"><para>Copyright (c) 2025-2026 Jay Iuliano</para>
 </simplesect>
 The GNU Lesser General Public License (LGPL)</para>
 <para>This file is part of Astrea. Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. Astrea is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details. You should have received a copy of the GNU General Public License along with Astrea. If not, see <ulink url="https://www.gnu.org/licenses/">https://www.gnu.org/licenses/</ulink>. </para>
@@ -306,11 +296,11 @@ The GNU Lesser General Public License (LGPL)</para>
 <codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
 <codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="72"><highlight class="normal"></highlight></codeline>
-<codeline lineno="82" refid="classastrea_1_1trace_1_1Grid_1a1dd954787e336643d596da01101486b5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1trace_1_1Grid_1a1dd954787e336643d596da01101486b5" kindref="member">Grid</ref>(</highlight></codeline>
+<codeline lineno="82" refid="classastrea_1_1trace_1_1Grid_1adfb30d1a3bb69974823762f33b011e6e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1trace_1_1Grid_1adfb30d1a3bb69974823762f33b011e6e" kindref="member">Grid</ref>(</highlight></codeline>
 <codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="typedefs_8hpp_1adb267a53d491ab1e364558578b7aba52" kindref="member">LatRange</ref>&amp;<sp/>latRange,</highlight></codeline>
 <codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="typedefs_8hpp_1aef2e871664c74fcdae58e1b6db70c9b5" kindref="member">LonRange</ref>&amp;<sp/>lonRange,</highlight></codeline>
 <codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="enums_8hpp_1a1e1be345d5d6782a8568d0550e205a4a" kindref="member">GridType</ref>&amp;<sp/>gridType,</highlight></codeline>
-<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Angle&amp;<sp/>spacing<sp/><sp/><sp/>=<sp/>5.0<sp/>*<sp/>mp_units::angular::unit_symbols::deg,</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Angle&amp;<sp/>spacing<sp/><sp/><sp/>=<sp/>5.0<sp/>*<sp/>mp_units::si::unit_symbols::deg,</highlight></codeline>
 <codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Unitless&amp;<sp/>weight<sp/>=<sp/>0.0<sp/>*<sp/>mp_units::one</highlight></codeline>
 <codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/>)<sp/>:</highlight></codeline>
 <codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_groundPoints(build_grid(latRange,<sp/>lonRange,<sp/>gridType,<sp/>spacing,<sp/>weight)),</highlight></codeline>

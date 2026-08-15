@@ -5,8 +5,6 @@
     <includes refid="Antenna_8hpp" local="no">trace/platforms/sensors/Antenna.hpp</includes>
     <includes local="no">stdexcept</includes>
     <includes local="no">mp-units/math.h</includes>
-    <includes local="no">mp-units/systems/angular.h</includes>
-    <includes local="no">mp-units/systems/isq_angle.h</includes>
     <includes local="no">mp-units/systems/si.h</includes>
     <includes local="no">astro/frames/definitions.hpp</includes>
     <includes local="no">astro/frames/framework/CartesianVector.hpp</includes>
@@ -35,10 +33,6 @@
         <childnode refid="34" relation="include">
         </childnode>
         <childnode refid="35" relation="include">
-        </childnode>
-        <childnode refid="36" relation="include">
-        </childnode>
-        <childnode refid="37" relation="include">
         </childnode>
       </node>
       <node id="2">
@@ -178,13 +172,13 @@
       <node id="24">
         <label>astro/frames.hpp</label>
       </node>
-      <node id="36">
+      <node id="34">
         <label>astro/frames/definitions.hpp</label>
       </node>
       <node id="5">
-        <label>astro/frames/definitions/dynamic_frames.hpp</label>
+        <label>astro/frames/definitions/dynamic_frames/tags.hpp</label>
       </node>
-      <node id="37">
+      <node id="35">
         <label>astro/frames/framework/CartesianVector.hpp</label>
       </node>
       <node id="11">
@@ -218,12 +212,6 @@
         <label>mp-units/math.h</label>
       </node>
       <node id="33">
-        <label>mp-units/systems/angular.h</label>
-      </node>
-      <node id="34">
-        <label>mp-units/systems/isq_angle.h</label>
-      </node>
-      <node id="35">
         <label>mp-units/systems/si.h</label>
       </node>
       <node id="29">
@@ -255,7 +243,7 @@
 <codeline lineno="1"><highlight class="comment">/*</highlight></codeline>
 <codeline lineno="2"><highlight class="comment"><sp/>*<sp/>The<sp/>GNU<sp/>Lesser<sp/>General<sp/>Public<sp/>License<sp/>(LGPL)</highlight></codeline>
 <codeline lineno="3"><highlight class="comment"><sp/>*</highlight></codeline>
-<codeline lineno="4"><highlight class="comment"><sp/>*<sp/>Copyright<sp/>(c)<sp/>2025<sp/>Jay<sp/>Iuliano</highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>*<sp/>Copyright<sp/>(c)<sp/>2025-2026<sp/>Jay<sp/>Iuliano</highlight></codeline>
 <codeline lineno="5"><highlight class="comment"><sp/>*</highlight></codeline>
 <codeline lineno="6"><highlight class="comment"><sp/>*<sp/>This<sp/>file<sp/>is<sp/>part<sp/>of<sp/>Astrea.</highlight></codeline>
 <codeline lineno="7"><highlight class="comment"><sp/>*<sp/>Astrea<sp/>is<sp/>free<sp/>software:<sp/>you<sp/>can<sp/>redistribute<sp/>it<sp/>and/or<sp/>modify<sp/>it<sp/>under<sp/>the<sp/>terms<sp/>of<sp/>the<sp/>GNU<sp/>Lesser<sp/>General<sp/>Public<sp/>License</highlight></codeline>
@@ -270,106 +258,104 @@
 <codeline lineno="16"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdexcept&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="17"><highlight class="normal"></highlight></codeline>
 <codeline lineno="18"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;mp-units/math.h&gt;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="19"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;mp-units/systems/angular.h&gt;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="20"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;mp-units/systems/isq_angle.h&gt;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;mp-units/systems/si.h&gt;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="22"><highlight class="normal"></highlight></codeline>
-<codeline lineno="23"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;astro/frames/definitions.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;astro/frames/framework/CartesianVector.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="25"><highlight class="normal"></highlight></codeline>
-<codeline lineno="26"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">astrea<sp/>{</highlight></codeline>
-<codeline lineno="27"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">trace<sp/>{</highlight></codeline>
-<codeline lineno="28"><highlight class="normal"></highlight></codeline>
-<codeline lineno="29"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">mp_units::one;</highlight></codeline>
-<codeline lineno="30"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">mp_units::pow;</highlight></codeline>
-<codeline lineno="31"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">mp_units::angular::sin;</highlight></codeline>
-<codeline lineno="32"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">mp_units::isq_angle::cotes_angle;</highlight></codeline>
-<codeline lineno="33"><highlight class="normal"></highlight></codeline>
-<codeline lineno="34"><highlight class="normal">CNR<sp/><ref refid="classastrea_1_1trace_1_1Antenna_1a7b8bb43f70b27f8e15035eea85ba23fb" kindref="member">Antenna::carrier_to_noise_ratio</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Antenna&amp;<sp/>receiver,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Distance&amp;<sp/>range,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Angle&amp;<sp/>offsetAngle)</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
-<codeline lineno="35"><highlight class="keyword"></highlight><highlight class="normal">{</highlight></codeline>
-<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/>std::runtime_error(</highlight><highlight class="stringliteral">&quot;CNR<sp/>calculation<sp/>not<sp/>yet<sp/>implemented.&quot;</highlight><highlight class="normal">);</highlight></codeline>
-<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>return<sp/>recieved_power(receiver,<sp/>range,<sp/>offsetAngle)<sp/>/<sp/>receiver.system_noise_temperature()<sp/>/<sp/>boltzmann_constant<sp/>*<sp/>_noiseBandwidth;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="38"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="39"><highlight class="normal"></highlight></codeline>
-<codeline lineno="40"><highlight class="normal">CNR<sp/><ref refid="classastrea_1_1trace_1_1Antenna_1a873ee85c06d71041371a7b8093da6e9e" kindref="member">Antenna::carrier_to_noise_density</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Antenna&amp;<sp/>receiver,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Distance&amp;<sp/>range,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Angle&amp;<sp/>offsetAngle)</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
-<codeline lineno="41"><highlight class="keyword"></highlight><highlight class="normal">{</highlight></codeline>
-<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/>std::runtime_error(</highlight><highlight class="stringliteral">&quot;CND<sp/>calculation<sp/>not<sp/>yet<sp/>implemented.&quot;</highlight><highlight class="normal">);</highlight></codeline>
-<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>return<sp/>recieved_power(receiver,<sp/>range,<sp/>offsetAngle)<sp/>/<sp/>receiver.system_noise_temperature()<sp/>/<sp/>boltzmann_constant;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="44"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="45"><highlight class="normal"></highlight></codeline>
-<codeline lineno="46"><highlight class="normal">Power<sp/><ref refid="classastrea_1_1trace_1_1Antenna_1ae9663a2353427912cc04e39ea4dce985" kindref="member">Antenna::recieved_power</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Antenna&amp;<sp/>receiver,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Distance&amp;<sp/>range,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Angle&amp;<sp/>offsetAngle)</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
-<codeline lineno="47"><highlight class="keyword"></highlight><highlight class="normal">{</highlight></codeline>
-<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_parameters.<ref refid="classastrea_1_1trace_1_1AntennaParameters_1a37fe81bec2314d30623978b03b4005ae" kindref="member">get_eirp</ref>()<sp/>*<sp/>receiver.gain()<sp/>*<sp/><ref refid="classastrea_1_1trace_1_1Antenna_1a3c8b73694f5c02de3bb2c4c26c284c38" kindref="member">free_space_loss</ref>(range)<sp/>*<sp/><ref refid="classastrea_1_1trace_1_1Antenna_1af3a40a7c18a5f8d2cee552566612d5ce" kindref="member">system_loss</ref>(receiver,<sp/>offsetAngle);</highlight></codeline>
-<codeline lineno="49"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="50"><highlight class="normal"></highlight></codeline>
-<codeline lineno="51"><highlight class="normal">Gain<sp/><ref refid="classastrea_1_1trace_1_1Antenna_1a3c8b73694f5c02de3bb2c4c26c284c38" kindref="member">Antenna::free_space_loss</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Distance&amp;<sp/>range)</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
-<codeline lineno="52"><highlight class="keyword"></highlight><highlight class="normal">{</highlight></codeline>
-<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>fixedLoss<sp/>=<sp/>pow&lt;2&gt;(1.0<sp/>/<sp/>(4.0<sp/>*<sp/>std::numbers::pi)<sp/>*<sp/>one);</highlight></codeline>
-<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>fixedLoss<sp/>*<sp/>pow&lt;2&gt;(_parameters.<ref refid="classastrea_1_1trace_1_1AntennaParameters_1a42c20f725b626e9a67b6caf565e901b3" kindref="member">get_wavelength</ref>()<sp/>/<sp/>range);</highlight></codeline>
-<codeline lineno="55"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="56"><highlight class="normal"></highlight></codeline>
-<codeline lineno="57"><highlight class="normal">Gain<sp/><ref refid="classastrea_1_1trace_1_1Antenna_1af3a40a7c18a5f8d2cee552566612d5ce" kindref="member">Antenna::system_loss</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Antenna&amp;<sp/>receiver,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Angle&amp;<sp/>offsetAngle)</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
-<codeline lineno="58"><highlight class="keyword"></highlight><highlight class="normal">{</highlight></codeline>
-<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_parameters.<ref refid="classastrea_1_1trace_1_1AntennaParameters_1abc7c446169f0481fda36581d53a58552" kindref="member">get_transmit_loss</ref>()<sp/>*<sp/><ref refid="classastrea_1_1trace_1_1Antenna_1a00cb971ccc7a7bab213fc6b76786e8df" kindref="member">mispointing_loss</ref>(receiver,<sp/>offsetAngle)<sp/>*<sp/><ref refid="classastrea_1_1trace_1_1Antenna_1aee35a0c767d1a8e8c3bab1dce81f65db" kindref="member">atmospheric_loss</ref>()<sp/>*<sp/>receiver.receiver_loss();</highlight></codeline>
-<codeline lineno="60"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="61"><highlight class="normal"></highlight></codeline>
-<codeline lineno="62"><highlight class="normal">Gain<sp/><ref refid="classastrea_1_1trace_1_1Antenna_1a00cb971ccc7a7bab213fc6b76786e8df" kindref="member">Antenna::mispointing_loss</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Antenna&amp;<sp/>receiver,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Angle&amp;<sp/>offsetAngle)</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
-<codeline lineno="63"><highlight class="keyword"></highlight><highlight class="normal">{</highlight></codeline>
-<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Including<sp/>polarization<sp/>losses<sp/>here</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/>Gain<sp/>mispointingLoss;</highlight></codeline>
-<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">switch</highlight><highlight class="normal"><sp/>(_parameters.<ref refid="classastrea_1_1trace_1_1AntennaParameters_1ae883e267fd3690ed17fc8ec59921c112" kindref="member">get_pattern</ref>())<sp/>{</highlight></codeline>
-<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>(PatternApproximation::BESSEL):<sp/>{</highlight></codeline>
-<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>mispointingLoss<sp/>=<sp/>bessel_loss_approximation(offsetAngle);</highlight></codeline>
-<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>(PatternApproximation::SINC_SQUARED):<sp/>{</highlight></codeline>
-<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>mispointingLoss<sp/>=<sp/>sinc_loss_approximation(offsetAngle);</highlight></codeline>
-<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">:<sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/>std::runtime_error(</highlight><highlight class="stringliteral">&quot;Unrecognized<sp/>pattern<sp/>approximation<sp/>for<sp/>mispointing<sp/>losses.&quot;</highlight><highlight class="normal">);</highlight></codeline>
-<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>mispointingLoss<sp/>*<sp/><ref refid="classastrea_1_1trace_1_1Antenna_1a3aeba4608f83428aecae1bcb79245d04" kindref="member">polarization_loss</ref>(receiver);</highlight></codeline>
-<codeline lineno="78"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="79"><highlight class="normal"></highlight></codeline>
-<codeline lineno="80"><highlight class="normal">Gain<sp/><ref refid="classastrea_1_1trace_1_1Antenna_1a3aeba4608f83428aecae1bcb79245d04" kindref="member">Antenna::polarization_loss</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Antenna&amp;<sp/>receiver)</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
-<codeline lineno="81"><highlight class="keyword"></highlight><highlight class="normal">{</highlight></codeline>
-<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1.0;<sp/></highlight><highlight class="comment">//<sp/>Ideal,<sp/>but<sp/>generally<sp/>considered<sp/>true<sp/>as<sp/>they<sp/>are<sp/>typically<sp/>small<sp/>or<sp/>zero<sp/>(exactly<sp/>zero<sp/>for<sp/>circular<sp/>polarization)</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="83"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="84"><highlight class="normal"></highlight></codeline>
-<codeline lineno="85"><highlight class="normal">Gain<sp/><ref refid="classastrea_1_1trace_1_1Antenna_1aee35a0c767d1a8e8c3bab1dce81f65db" kindref="member">Antenna::atmospheric_loss</ref>()</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
-<codeline lineno="86"><highlight class="keyword"></highlight><highlight class="normal">{</highlight></codeline>
-<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1.0;<sp/></highlight><highlight class="comment">//<sp/>Ideal,<sp/>definitely<sp/>not<sp/>true</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="88"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="89"><highlight class="normal"></highlight></codeline>
-<codeline lineno="90"><highlight class="normal">Gain<sp/><ref refid="classastrea_1_1trace_1_1Antenna_1ae64ebe2f24a2b7420734dd4f30d50165" kindref="member">Antenna::gain</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_parameters.<ref refid="classastrea_1_1trace_1_1AntennaParameters_1a77b97f24ebfc0087cab735fcc2614c5f" kindref="member">get_gain</ref>();<sp/>}</highlight></codeline>
-<codeline lineno="91"><highlight class="normal">Temperature<sp/><ref refid="classastrea_1_1trace_1_1Antenna_1a4c22a27c8aa0d1b7f6db8328e2d08261" kindref="member">Antenna::system_noise_temperature</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_parameters.<ref refid="classastrea_1_1trace_1_1AntennaParameters_1a3efa9a1f05205f36085145f2e0bfd32a" kindref="member">get_system_noise_temperature</ref>();<sp/>}</highlight></codeline>
-<codeline lineno="92"><highlight class="normal">Gain<sp/><ref refid="classastrea_1_1trace_1_1Antenna_1ae34dd5d9f6723a78b2d1fba84c2445a0" kindref="member">Antenna::receiver_loss</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_parameters.<ref refid="classastrea_1_1trace_1_1AntennaParameters_1ad11ec5691c0ba52b5a9cb19cc1f35708" kindref="member">get_receiver_loss</ref>();<sp/>}</highlight></codeline>
-<codeline lineno="93"><highlight class="normal">Gain<sp/><ref refid="classastrea_1_1trace_1_1Antenna_1aaea5b02bd4d75caf2f7b3b5781fb42be" kindref="member">Antenna::transmit_loss</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_parameters.<ref refid="classastrea_1_1trace_1_1AntennaParameters_1abc7c446169f0481fda36581d53a58552" kindref="member">get_transmit_loss</ref>();<sp/>}</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;mp-units/systems/si.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;astro/frames/definitions.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;astro/frames/framework/CartesianVector.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">astrea<sp/>{</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">trace<sp/>{</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">mp_units::one;</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">mp_units::pow;</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">mp_units::si::sin;</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">mp_units::si::unit_symbols::rad;</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal">CNR<sp/><ref refid="classastrea_1_1trace_1_1Antenna_1a7b8bb43f70b27f8e15035eea85ba23fb" kindref="member">Antenna::carrier_to_noise_ratio</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Antenna&amp;<sp/>receiver,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Distance&amp;<sp/>range,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Angle&amp;<sp/>offsetAngle)</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="33"><highlight class="keyword"></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/>std::runtime_error(</highlight><highlight class="stringliteral">&quot;CNR<sp/>calculation<sp/>not<sp/>yet<sp/>implemented.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>return<sp/>recieved_power(receiver,<sp/>range,<sp/>offsetAngle)<sp/>/<sp/>receiver.system_noise_temperature()<sp/>/<sp/>boltzmann_constant<sp/>*<sp/>_noiseBandwidth;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal">CNR<sp/><ref refid="classastrea_1_1trace_1_1Antenna_1a873ee85c06d71041371a7b8093da6e9e" kindref="member">Antenna::carrier_to_noise_density</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Antenna&amp;<sp/>receiver,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Distance&amp;<sp/>range,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Angle&amp;<sp/>offsetAngle)</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="39"><highlight class="keyword"></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/>std::runtime_error(</highlight><highlight class="stringliteral">&quot;CND<sp/>calculation<sp/>not<sp/>yet<sp/>implemented.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>return<sp/>recieved_power(receiver,<sp/>range,<sp/>offsetAngle)<sp/>/<sp/>receiver.system_noise_temperature()<sp/>/<sp/>boltzmann_constant;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal">Power<sp/><ref refid="classastrea_1_1trace_1_1Antenna_1ae9663a2353427912cc04e39ea4dce985" kindref="member">Antenna::recieved_power</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Antenna&amp;<sp/>receiver,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Distance&amp;<sp/>range,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Angle&amp;<sp/>offsetAngle)</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="45"><highlight class="keyword"></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_parameters.<ref refid="classastrea_1_1trace_1_1AntennaParameters_1a37fe81bec2314d30623978b03b4005ae" kindref="member">get_eirp</ref>()<sp/>*<sp/>receiver.gain()<sp/>*<sp/><ref refid="classastrea_1_1trace_1_1Antenna_1a3c8b73694f5c02de3bb2c4c26c284c38" kindref="member">free_space_loss</ref>(range)<sp/>*<sp/><ref refid="classastrea_1_1trace_1_1Antenna_1af3a40a7c18a5f8d2cee552566612d5ce" kindref="member">system_loss</ref>(receiver,<sp/>offsetAngle);</highlight></codeline>
+<codeline lineno="47"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal">Gain<sp/><ref refid="classastrea_1_1trace_1_1Antenna_1a3c8b73694f5c02de3bb2c4c26c284c38" kindref="member">Antenna::free_space_loss</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Distance&amp;<sp/>range)</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="50"><highlight class="keyword"></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>fixedLoss<sp/>=<sp/>pow&lt;2&gt;(1.0<sp/>/<sp/>(4.0<sp/>*<sp/>std::numbers::pi)<sp/>*<sp/>one);</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>fixedLoss<sp/>*<sp/>pow&lt;2&gt;(_parameters.<ref refid="classastrea_1_1trace_1_1AntennaParameters_1a42c20f725b626e9a67b6caf565e901b3" kindref="member">get_wavelength</ref>()<sp/>/<sp/>range);</highlight></codeline>
+<codeline lineno="53"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal">Gain<sp/><ref refid="classastrea_1_1trace_1_1Antenna_1af3a40a7c18a5f8d2cee552566612d5ce" kindref="member">Antenna::system_loss</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Antenna&amp;<sp/>receiver,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Angle&amp;<sp/>offsetAngle)</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="56"><highlight class="keyword"></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_parameters.<ref refid="classastrea_1_1trace_1_1AntennaParameters_1abc7c446169f0481fda36581d53a58552" kindref="member">get_transmit_loss</ref>()<sp/>*<sp/><ref refid="classastrea_1_1trace_1_1Antenna_1a00cb971ccc7a7bab213fc6b76786e8df" kindref="member">mispointing_loss</ref>(receiver,<sp/>offsetAngle)<sp/>*<sp/><ref refid="classastrea_1_1trace_1_1Antenna_1aee35a0c767d1a8e8c3bab1dce81f65db" kindref="member">atmospheric_loss</ref>()<sp/>*<sp/>receiver.receiver_loss();</highlight></codeline>
+<codeline lineno="58"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal">Gain<sp/><ref refid="classastrea_1_1trace_1_1Antenna_1a00cb971ccc7a7bab213fc6b76786e8df" kindref="member">Antenna::mispointing_loss</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Antenna&amp;<sp/>receiver,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Angle&amp;<sp/>offsetAngle)</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="61"><highlight class="keyword"></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Including<sp/>polarization<sp/>losses<sp/>here</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/>Gain<sp/>mispointingLoss;</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">switch</highlight><highlight class="normal"><sp/>(_parameters.<ref refid="classastrea_1_1trace_1_1AntennaParameters_1ae883e267fd3690ed17fc8ec59921c112" kindref="member">get_pattern</ref>())<sp/>{</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>(PatternApproximation::BESSEL):<sp/>{</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>mispointingLoss<sp/>=<sp/>bessel_loss_approximation(offsetAngle);</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>(PatternApproximation::SINC_SQUARED):<sp/>{</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>mispointingLoss<sp/>=<sp/>sinc_loss_approximation(offsetAngle);</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">:<sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/>std::runtime_error(</highlight><highlight class="stringliteral">&quot;Unrecognized<sp/>pattern<sp/>approximation<sp/>for<sp/>mispointing<sp/>losses.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>mispointingLoss<sp/>*<sp/><ref refid="classastrea_1_1trace_1_1Antenna_1a3aeba4608f83428aecae1bcb79245d04" kindref="member">polarization_loss</ref>(receiver);</highlight></codeline>
+<codeline lineno="76"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"></highlight></codeline>
+<codeline lineno="78"><highlight class="normal">Gain<sp/><ref refid="classastrea_1_1trace_1_1Antenna_1a3aeba4608f83428aecae1bcb79245d04" kindref="member">Antenna::polarization_loss</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Antenna&amp;<sp/>receiver)</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="79"><highlight class="keyword"></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1.0;<sp/></highlight><highlight class="comment">//<sp/>Ideal,<sp/>but<sp/>generally<sp/>considered<sp/>true<sp/>as<sp/>they<sp/>are<sp/>typically<sp/>small<sp/>or<sp/>zero<sp/>(exactly<sp/>zero<sp/>for<sp/>circular<sp/>polarization)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="81"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"></highlight></codeline>
+<codeline lineno="83"><highlight class="normal">Gain<sp/><ref refid="classastrea_1_1trace_1_1Antenna_1aee35a0c767d1a8e8c3bab1dce81f65db" kindref="member">Antenna::atmospheric_loss</ref>()</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="84"><highlight class="keyword"></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1.0;<sp/></highlight><highlight class="comment">//<sp/>Ideal,<sp/>definitely<sp/>not<sp/>true</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="86"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"></highlight></codeline>
+<codeline lineno="88"><highlight class="normal">Gain<sp/><ref refid="classastrea_1_1trace_1_1Antenna_1ae64ebe2f24a2b7420734dd4f30d50165" kindref="member">Antenna::gain</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_parameters.<ref refid="classastrea_1_1trace_1_1AntennaParameters_1a77b97f24ebfc0087cab735fcc2614c5f" kindref="member">get_gain</ref>();<sp/>}</highlight></codeline>
+<codeline lineno="89"><highlight class="normal">Temperature<sp/><ref refid="classastrea_1_1trace_1_1Antenna_1a4c22a27c8aa0d1b7f6db8328e2d08261" kindref="member">Antenna::system_noise_temperature</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_parameters.<ref refid="classastrea_1_1trace_1_1AntennaParameters_1a3efa9a1f05205f36085145f2e0bfd32a" kindref="member">get_system_noise_temperature</ref>();<sp/>}</highlight></codeline>
+<codeline lineno="90"><highlight class="normal">Gain<sp/><ref refid="classastrea_1_1trace_1_1Antenna_1ae34dd5d9f6723a78b2d1fba84c2445a0" kindref="member">Antenna::receiver_loss</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_parameters.<ref refid="classastrea_1_1trace_1_1AntennaParameters_1ad11ec5691c0ba52b5a9cb19cc1f35708" kindref="member">get_receiver_loss</ref>();<sp/>}</highlight></codeline>
+<codeline lineno="91"><highlight class="normal">Gain<sp/><ref refid="classastrea_1_1trace_1_1Antenna_1aaea5b02bd4d75caf2f7b3b5781fb42be" kindref="member">Antenna::transmit_loss</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_parameters.<ref refid="classastrea_1_1trace_1_1AntennaParameters_1abc7c446169f0481fda36581d53a58552" kindref="member">get_transmit_loss</ref>();<sp/>}</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"></highlight></codeline>
+<codeline lineno="93"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1trace_1_1Antenna_1af67b9e0fa5960f63ec44e82ff957473c" kindref="member">Antenna::set_pattern_approximation</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>PatternApproximation&amp;<sp/>pattern)<sp/>{<sp/>_parameters.<ref refid="classastrea_1_1trace_1_1AntennaParameters_1a92289414f4fae2423980157b565eb206" kindref="member">set_pattern</ref>(pattern);<sp/>}</highlight></codeline>
 <codeline lineno="94"><highlight class="normal"></highlight></codeline>
-<codeline lineno="95"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1trace_1_1Antenna_1af67b9e0fa5960f63ec44e82ff957473c" kindref="member">Antenna::set_pattern_approximation</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>PatternApproximation&amp;<sp/>pattern)<sp/>{<sp/>_parameters.<ref refid="classastrea_1_1trace_1_1AntennaParameters_1a92289414f4fae2423980157b565eb206" kindref="member">set_pattern</ref>(pattern);<sp/>}</highlight></codeline>
-<codeline lineno="96"><highlight class="normal"></highlight></codeline>
-<codeline lineno="97"><highlight class="normal"></highlight></codeline>
-<codeline lineno="98"><highlight class="normal">Gain<sp/>Antenna::bessel_loss_approximation(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Angle&amp;<sp/>offsetAngle)</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
-<codeline lineno="99"><highlight class="keyword"></highlight><highlight class="normal">{</highlight></codeline>
-<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>u<sp/>=<sp/>mispointing_loss_approximation_argument(offsetAngle);</highlight></codeline>
-<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>64.0<sp/>*<sp/>pow&lt;2&gt;(math::cyl_bessel_j(2.0,<sp/>u)<sp/>/<sp/>pow&lt;2&gt;(u));</highlight></codeline>
-<codeline lineno="102"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="103"><highlight class="normal"></highlight></codeline>
-<codeline lineno="104"><highlight class="normal">Gain<sp/>Antenna::sinc_loss_approximation(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Angle&amp;<sp/>offsetAngle)</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
-<codeline lineno="105"><highlight class="keyword"></highlight><highlight class="normal">{</highlight></codeline>
-<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>u<sp/><sp/><sp/><sp/><sp/>=<sp/>mispointing_loss_approximation_argument(offsetAngle);</highlight></codeline>
-<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>sincU<sp/>=<sp/>math::sinc(0.690<sp/>*<sp/>u<sp/>*<sp/>cotes_angle);</highlight></codeline>
-<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>sincU<sp/>*<sp/>sincU;</highlight></codeline>
-<codeline lineno="109"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="110"><highlight class="normal"></highlight></codeline>
-<codeline lineno="111"><highlight class="normal">Gain<sp/>Antenna::mispointing_loss_approximation_argument(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Angle&amp;<sp/>offsetAngle)</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
-<codeline lineno="112"><highlight class="keyword"></highlight><highlight class="normal">{</highlight></codeline>
-<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>ratio<sp/>=<sp/>std::numbers::pi<sp/>*<sp/>_parameters.<ref refid="classastrea_1_1trace_1_1AntennaParameters_1af9ffa32c7613f0dc3c22fa372b901413" kindref="member">get_diameter</ref>()<sp/>/<sp/>_parameters.<ref refid="classastrea_1_1trace_1_1AntennaParameters_1a42c20f725b626e9a67b6caf565e901b3" kindref="member">get_wavelength</ref>();</highlight></codeline>
-<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>ratio<sp/>*<sp/>sin(offsetAngle);</highlight></codeline>
-<codeline lineno="115"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="116"><highlight class="normal"></highlight></codeline>
-<codeline lineno="117"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>trace</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="118"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>astrea</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"></highlight></codeline>
+<codeline lineno="96"><highlight class="normal">Gain<sp/>Antenna::bessel_loss_approximation(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Angle&amp;<sp/>offsetAngle)</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="97"><highlight class="keyword"></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>u<sp/>=<sp/>mispointing_loss_approximation_argument(offsetAngle);</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>64.0<sp/>*<sp/>pow&lt;2&gt;(math::cyl_bessel_j(2.0,<sp/>u)<sp/>/<sp/>pow&lt;2&gt;(u));</highlight></codeline>
+<codeline lineno="100"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"></highlight></codeline>
+<codeline lineno="102"><highlight class="normal">Gain<sp/>Antenna::sinc_loss_approximation(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Angle&amp;<sp/>offsetAngle)</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="103"><highlight class="keyword"></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>u<sp/><sp/><sp/><sp/><sp/>=<sp/>mispointing_loss_approximation_argument(offsetAngle);</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>sincU<sp/>=<sp/>math::sinc(0.690<sp/>*<sp/>u<sp/>*<sp/>rad);</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>sincU<sp/>*<sp/>sincU;</highlight></codeline>
+<codeline lineno="107"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"></highlight></codeline>
+<codeline lineno="109"><highlight class="normal">Gain<sp/>Antenna::mispointing_loss_approximation_argument(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Angle&amp;<sp/>offsetAngle)</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="110"><highlight class="keyword"></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>ratio<sp/>=<sp/>std::numbers::pi<sp/>*<sp/>_parameters.<ref refid="classastrea_1_1trace_1_1AntennaParameters_1af9ffa32c7613f0dc3c22fa372b901413" kindref="member">get_diameter</ref>()<sp/>/<sp/>_parameters.<ref refid="classastrea_1_1trace_1_1AntennaParameters_1a42c20f725b626e9a67b6caf565e901b3" kindref="member">get_wavelength</ref>();</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>ratio<sp/>*<sp/>sin(offsetAngle);</highlight></codeline>
+<codeline lineno="113"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"></highlight></codeline>
+<codeline lineno="115"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>trace</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="116"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>astrea</highlight></codeline>
     </programlisting>
     <location file="astrea/trace/trace/platforms/sensors/Antenna.cpp"/>
   </compounddef>

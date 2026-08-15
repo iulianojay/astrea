@@ -17,7 +17,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/frames/definitions/body_centered_inertial_frames.hpp" line="233" column="6"/>
+        <location file="astrea/astro/astro/frames/definitions/body_centered_inertial_frames.hpp" line="234" column="6"/>
       </memberdef>
       <memberdef kind="variable" id="body__centered__inertial__frames_8hpp_1a0280fa80d3b11f94c6c5b3c504029249" prot="public" static="no" mutable="no">
         <type><ref refid="structastrea_1_1astro_1_1frames_1_1uranus__barycenter_1_1j2000" kindref="compound">astrea::astro::frames::uranus_barycenter::j2000</ref></type>
@@ -31,13 +31,13 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/frames/definitions/body_centered_inertial_frames.hpp" line="235" column="7"/>
+        <location file="astrea/astro/astro/frames/definitions/body_centered_inertial_frames.hpp" line="236" column="7"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="astrea/astro/astro/frames/definitions/body_centered_inertial_frames.hpp" line="231" column="1"/>
+    <location file="astrea/astro/astro/frames/definitions/body_centered_inertial_frames.hpp" line="232" column="1"/>
   </compounddef>
 </doxygen>

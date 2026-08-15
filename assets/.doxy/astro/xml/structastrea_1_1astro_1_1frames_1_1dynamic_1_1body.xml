@@ -31,7 +31,7 @@
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="astrea/astro/astro/frames/definitions/dynamic_frames.hpp" line="34" column="17" bodyfile="astrea/astro/astro/frames/definitions/dynamic_frames.hpp" bodystart="34" bodyend="35"/>
+    <location file="astrea/astro/astro/frames/definitions/dynamic_frames/tags.hpp" line="35" column="17" bodyfile="astrea/astro/astro/frames/definitions/dynamic_frames/tags.hpp" bodystart="35" bodyend="36"/>
     <listofallmembers>
     </listofallmembers>
   </compounddef>

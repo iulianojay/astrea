@@ -13,8 +13,8 @@ _A class representing an inertia matrix in the astrea astro platform._ [More...]
 * `#include <mp-units/framework.h>`
 * `#include <units/units.hpp>`
 * `#include <astro/astro.fwd.hpp>`
+* `#include <astro/frames/definitions/dynamic_frames/tags.hpp>`
 * `#include <astro/frames/framework/CartesianVector.hpp>`
-* `#include <astro/frames/definitions/dynamic_frames.hpp>`
 
 
 
@@ -112,7 +112,7 @@ Jay Iuliano ([iuliano.jay@gmail.com](mailto:iuliano.jay@gmail.com))
 
 **Copyright:**
 
-Copyright (c) 2025 Jay Iuliano
+Copyright (c) 2025-2026 Jay Iuliano
 
 
 The GNU Lesser General Public License (LGPL)

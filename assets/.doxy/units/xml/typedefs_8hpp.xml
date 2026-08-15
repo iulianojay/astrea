@@ -18,12 +18,8 @@
         </childnode>
         <childnode refid="7" relation="include">
         </childnode>
-        <childnode refid="8" relation="include">
-        </childnode>
-        <childnode refid="9" relation="include">
-        </childnode>
       </node>
-      <node id="10">
+      <node id="8">
         <label>units/detail.hpp</label>
         <link refid="detail_8hpp"/>
         <childnode refid="2" relation="include">
@@ -31,10 +27,6 @@
         <childnode refid="6" relation="include">
         </childnode>
         <childnode refid="7" relation="include">
-        </childnode>
-        <childnode refid="8" relation="include">
-        </childnode>
-        <childnode refid="9" relation="include">
         </childnode>
       </node>
       <node id="1">
@@ -48,7 +40,7 @@
         </childnode>
         <childnode refid="5" relation="include">
         </childnode>
-        <childnode refid="10" relation="include">
+        <childnode refid="8" relation="include">
         </childnode>
       </node>
       <node id="2">
@@ -58,15 +50,9 @@
         <label>mp-units/ext/format.h</label>
       </node>
       <node id="6">
-        <label>mp-units/systems/angular.h</label>
-      </node>
-      <node id="7">
         <label>mp-units/systems/iau.h</label>
       </node>
-      <node id="8">
-        <label>mp-units/systems/isq_angle.h</label>
-      </node>
-      <node id="9">
+      <node id="7">
         <label>mp-units/systems/si.h</label>
       </node>
       <node id="3">
@@ -110,7 +96,7 @@
 </simplesect>
 <simplesect kind="date"><para>2025-08-02</para>
 </simplesect>
-<simplesect kind="copyright"><para>Copyright (c) 2025 Jay Iuliano</para>
+<simplesect kind="copyright"><para>Copyright (c) 2025-2026 Jay Iuliano</para>
 </simplesect>
 The GNU Lesser General Public License (LGPL)</para>
 <para>This file is part of Astrea. Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. Astrea is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details. You should have received a copy of the GNU General Public License along with Astrea. If not, see <ulink url="https://www.gnu.org/licenses/">https://www.gnu.org/licenses/</ulink>. </para>
@@ -155,11 +141,11 @@ The GNU Lesser General Public License (LGPL)</para>
 <codeline lineno="90"><highlight class="normal"></highlight></codeline>
 <codeline lineno="94" refid="typedefs_8hpp_1ac731536c87104f12d3929445ade035e1" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="typedefs_8hpp_1ac731536c87104f12d3929445ade035e1" kindref="member">InterplanetaryDistance</ref><sp/>=<sp/>mp_units::quantity&lt;mp_units::iau::unit_symbols::au&gt;;</highlight></codeline>
 <codeline lineno="95"><highlight class="normal"></highlight></codeline>
-<codeline lineno="99" refid="typedefs_8hpp_1a1a1a9bf4b13ef65327c6471d4c5269ca" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="typedefs_8hpp_1a1a1a9bf4b13ef65327c6471d4c5269ca" kindref="member">InterplanetaryVelocity</ref><sp/>=<sp/>mp_units::quantity&lt;mp_units::iau::unit_symbols::au<sp/>/<sp/><ref refid="structastrea_1_1JulianCentury" kindref="compound">JulianCentury</ref>&gt;;</highlight></codeline>
+<codeline lineno="99" refid="typedefs_8hpp_1a21eafe045ab0055d538a90c43561fc0e" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="typedefs_8hpp_1a21eafe045ab0055d538a90c43561fc0e" kindref="member">InterplanetaryVelocity</ref><sp/>=<sp/>mp_units::quantity&lt;mp_units::iau::unit_symbols::au<sp/>/<sp/>astrea::units::unit_symbols::jc&gt;;</highlight></codeline>
 <codeline lineno="100"><highlight class="normal"></highlight></codeline>
-<codeline lineno="104" refid="typedefs_8hpp_1a234b77ed43fa3136baf692496b374310" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="typedefs_8hpp_1a234b77ed43fa3136baf692496b374310" kindref="member">BodyUnitlessPerTime</ref><sp/>=<sp/>mp_units::quantity&lt;detail::unitless<sp/>/<sp/><ref refid="structastrea_1_1JulianCentury" kindref="compound">JulianCentury</ref>&gt;;</highlight></codeline>
+<codeline lineno="104" refid="typedefs_8hpp_1a9985e7e30ad46074a668c42c9a2cc9f2" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="typedefs_8hpp_1a9985e7e30ad46074a668c42c9a2cc9f2" kindref="member">BodyUnitlessPerTime</ref><sp/>=<sp/>mp_units::quantity&lt;detail::unitless<sp/>/<sp/>astrea::units::unit_symbols::jc&gt;;</highlight></codeline>
 <codeline lineno="105"><highlight class="normal"></highlight></codeline>
-<codeline lineno="109" refid="typedefs_8hpp_1ac539fe47ee8c4fab867decd7a46a169b" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="typedefs_8hpp_1ac539fe47ee8c4fab867decd7a46a169b" kindref="member">BodyAngularVelocity</ref><sp/>=<sp/>mp_units::quantity&lt;detail::angle_unit<sp/>/<sp/><ref refid="structastrea_1_1JulianCentury" kindref="compound">JulianCentury</ref>&gt;;</highlight></codeline>
+<codeline lineno="109" refid="typedefs_8hpp_1a095bd57504ee817d196cd11a8dac5e43" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="typedefs_8hpp_1a095bd57504ee817d196cd11a8dac5e43" kindref="member">BodyAngularVelocity</ref><sp/>=<sp/>mp_units::quantity&lt;detail::angle_unit<sp/>/<sp/>astrea::units::unit_symbols::jc&gt;;</highlight></codeline>
 <codeline lineno="110"><highlight class="normal"></highlight></codeline>
 <codeline lineno="114" refid="typedefs_8hpp_1a680f5de6f0f3036b3f3cad75f9473780" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="typedefs_8hpp_1a680f5de6f0f3036b3f3cad75f9473780" kindref="member">Acceleration</ref><sp/>=<sp/>mp_units::quantity&lt;detail::distance_unit<sp/>/<sp/>mp_units::pow&lt;2&gt;(detail::time_unit)&gt;;</highlight></codeline>
 <codeline lineno="115"><highlight class="normal"></highlight></codeline>
@@ -173,7 +159,7 @@ The GNU Lesser General Public License (LGPL)</para>
 <codeline lineno="135"><highlight class="normal"></highlight></codeline>
 <codeline lineno="139" refid="typedefs_8hpp_1a64144981f1a71cc494a9cf4036e1947c" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="typedefs_8hpp_1a64144981f1a71cc494a9cf4036e1947c" kindref="member">MeanMotion2ndDer</ref><sp/>=<sp/>mp_units::quantity&lt;mp_units::one<sp/>/<sp/>mp_units::pow&lt;3&gt;(mp_units::non_si::day)&gt;;</highlight></codeline>
 <codeline lineno="140"><highlight class="normal"></highlight></codeline>
-<codeline lineno="144" refid="typedefs_8hpp_1a8767d002a30d8d5db5b72ff1b7735c89" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="typedefs_8hpp_1a8767d002a30d8d5db5b72ff1b7735c89" kindref="member">BallisticCoefficient</ref><sp/>=<sp/>mp_units::quantity&lt;mp_units::one<sp/>/<sp/><ref refid="structastrea_1_1EarthRadii" kindref="compound">EarthRadii</ref>&gt;;</highlight></codeline>
+<codeline lineno="144" refid="typedefs_8hpp_1a9d2e958f1ea9f070069446c9b17e54e1" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="typedefs_8hpp_1a9d2e958f1ea9f070069446c9b17e54e1" kindref="member">BallisticCoefficient</ref><sp/>=<sp/>mp_units::quantity&lt;mp_units::one<sp/>/<sp/>astrea::units::unit_symbols::re&gt;;</highlight></codeline>
 <codeline lineno="145"><highlight class="normal"></highlight></codeline>
 <codeline lineno="149" refid="typedefs_8hpp_1a0af4216f66acce6726601c081ee2a5e5" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="typedefs_8hpp_1a0af4216f66acce6726601c081ee2a5e5" kindref="member">Density</ref><sp/>=<sp/>mp_units::quantity&lt;detail::mass_unit<sp/>/<sp/>(mp_units::pow&lt;3&gt;(detail::distance_unit))&gt;;</highlight></codeline>
 <codeline lineno="150"><highlight class="normal"></highlight></codeline>
@@ -199,7 +185,7 @@ The GNU Lesser General Public License (LGPL)</para>
 <codeline lineno="200"><highlight class="normal"></highlight></codeline>
 <codeline lineno="204" refid="typedefs_8hpp_1ae8325067d3c122b46709768b059ca1f9" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="typedefs_8hpp_1ae8325067d3c122b46709768b059ca1f9" kindref="member">MomentOfInertia</ref><sp/>=<sp/>mp_units::quantity&lt;detail::mass_unit<sp/>*<sp/>mp_units::pow&lt;2&gt;(detail::distance_unit)&gt;;</highlight></codeline>
 <codeline lineno="205"><highlight class="normal"></highlight></codeline>
-<codeline lineno="209" refid="typedefs_8hpp_1a3332a6695993ea3e49b32c645d65bbe6" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="typedefs_8hpp_1a3332a6695993ea3e49b32c645d65bbe6" kindref="member">SolarFlux</ref><sp/>=<sp/>mp_units::quantity&lt;SolarFluxUnits&gt;;</highlight></codeline>
+<codeline lineno="209" refid="typedefs_8hpp_1a7f5e2fc5047071b3d6edb3c1761da650" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="typedefs_8hpp_1a7f5e2fc5047071b3d6edb3c1761da650" kindref="member">SolarFlux</ref><sp/>=<sp/>mp_units::quantity&lt;astrea::units::unit_symbols::sfu&gt;;</highlight></codeline>
 <codeline lineno="210"><highlight class="normal"></highlight></codeline>
 <codeline lineno="214" refid="typedefs_8hpp_1a51817992e45de73cf8ee362450d0dc9b" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="typedefs_8hpp_1a51817992e45de73cf8ee362450d0dc9b" kindref="member">Chirp</ref><sp/>=<sp/>mp_units::quantity&lt;mp_units::one<sp/>/<sp/>mp_units::pow&lt;2&gt;(detail::time_unit)&gt;;</highlight></codeline>
 <codeline lineno="215"><highlight class="normal"></highlight></codeline>

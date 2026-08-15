@@ -6238,7 +6238,7 @@ You're not viewing the latest version.
 
 
 <h1 id="class-astreaastroequinoctialpartial">Class astrea::astro::EquinoctialPartial<a class="headerlink" href="#class-astreaastroequinoctialpartial" title="Permanent link">&para;</a></h1>
-<p><strong>template &lt;IsFrame <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>auto</strong></a> _frame_&gt;</strong></p>
+<p><strong>template &lt;IsFrame auto _frame_&gt;</strong></p>
 <p><a href="../annotated/"><strong>ClassList</strong></a> <strong>&gt;</strong> <a href="../namespaceastrea/"><strong>astrea</strong></a> <strong>&gt;</strong> <a href="../namespaceastrea_1_1astro/"><strong>astro</strong></a> <strong>&gt;</strong> <a href="./"><strong>EquinoctialPartial</strong></a></p>
 <p><em>Class representing a partial derivative of an</em> <a href="../classastrea_1_1astro_1_1Equinoctial/"><em><strong>Equinoctial</strong></em></a> <em>state vector.</em></p>
 <ul>
@@ -6254,7 +6254,7 @@ You're not viewing the latest version.
 </thead>
 <tbody>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>constexpr</strong></a> <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>auto</strong></a></td>
+<td style="text-align: right;">constexpr auto</td>
 <td style="text-align: left;"><a href="#variable-frame"><strong>frame</strong></a>   = <code>\_frame\_</code><br><em>The reference frame of the</em> <a href="../classastrea_1_1astro_1_1Cartesian/"><em><strong>Cartesian</strong></em></a> <em>state vector.</em></td>
 </tr>
 </tbody>
@@ -6274,15 +6274,15 @@ You're not viewing the latest version.
 </tr>
 <tr>
 <td style="text-align: right;"></td>
-<td style="text-align: left;"><a href="#function-equinoctialpartial-22"><strong>EquinoctialPartial</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Velocity</strong></a> &amp; semilatusPartial, <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>UnitlessPerTime</strong></a> &amp; fPartial, <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>UnitlessPerTime</strong></a> &amp; gPartial, <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>UnitlessPerTime</strong></a> &amp; hPartial, <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>UnitlessPerTime</strong></a> &amp; kPartial, <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>AngularVelocity</strong></a> &amp; trueLongitudePartial) <br><em>Constructor for</em> <a href="./"><em><strong>EquinoctialPartial</strong></em></a> <em>with velocity and acceleration components.</em></td>
+<td style="text-align: left;"><a href="#function-equinoctialpartial-22"><strong>EquinoctialPartial</strong></a> (const Velocity &amp; semilatusPartial, const UnitlessPerTime &amp; fPartial, const UnitlessPerTime &amp; gPartial, const UnitlessPerTime &amp; hPartial, const UnitlessPerTime &amp; kPartial, const AngularVelocity &amp; trueLongitudePartial) <br><em>Constructor for</em> <a href="./"><em><strong>EquinoctialPartial</strong></em></a> <em>with velocity and acceleration components.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">std::vector&lt; <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Unitless</strong></a> &gt;</td>
-<td style="text-align: left;"><a href="#function-force_to_vector"><strong>force_to_vector</strong></a> () const<br><em>Converts the</em> <a href="./"><em><strong>EquinoctialPartial</strong></em></a> <em>state vector to a vector of unitless values.</em></td>
+<td style="text-align: right;">std::vector&lt; double &gt;</td>
+<td style="text-align: left;"><a href="#function-force_to_double_vector"><strong>force_to_double_vector</strong></a> () const<br><em>Converts the</em> <a href="./"><em><strong>EquinoctialPartial</strong></em></a> <em>state vector to a vector of unitless values.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;"><a href="../classastrea_1_1astro_1_1Equinoctial/"><strong>Equinoctial</strong></a>&lt; _frame_ &gt;</td>
-<td style="text-align: left;"><a href="#function-operator"><strong>operator*</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Time</strong></a> &amp; time) const<br><em>Multiplication operator for</em> <a href="./"><em><strong>EquinoctialPartial</strong></em></a> <em>.</em></td>
+<td style="text-align: left;"><a href="#function-operator"><strong>operator*</strong></a> (const Time &amp; time) const<br><em>Multiplication operator for</em> <a href="./"><em><strong>EquinoctialPartial</strong></em></a> <em>.</em></td>
 </tr>
 </tbody>
 </table>
@@ -6303,12 +6303,12 @@ You're not viewing the latest version.
 <h3 id="function-equinoctialpartial-22">function EquinoctialPartial [2/2]<a class="headerlink" href="#function-equinoctialpartial-22" title="Permanent link">&para;</a></h3>
 <p><em>Constructor for</em> <a href="./"><em><strong>EquinoctialPartial</strong></em></a> <em>with velocity and acceleration components.</em>
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kr">inline</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">EquinoctialPartial</span><span class="o">::</span><span class="n">EquinoctialPartial</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Velocity</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">semilatusPartial</span><span class="p">,</span>
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">UnitlessPerTime</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">fPartial</span><span class="p">,</span>
-</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">UnitlessPerTime</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">gPartial</span><span class="p">,</span>
-</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">UnitlessPerTime</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">hPartial</span><span class="p">,</span>
-</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">UnitlessPerTime</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">kPartial</span><span class="p">,</span>
-</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">AngularVelocity</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">trueLongitudePartial</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Velocity</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">semilatusPartial</span><span class="p">,</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">UnitlessPerTime</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">fPartial</span><span class="p">,</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">UnitlessPerTime</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">gPartial</span><span class="p">,</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">UnitlessPerTime</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">hPartial</span><span class="p">,</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">UnitlessPerTime</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">kPartial</span><span class="p">,</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">AngularVelocity</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">trueLongitudePartial</span>
 </span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="p">)</span><span class="w"> </span>
 </span></code></pre></div></p>
 <p><strong>Parameters:</strong></p>
@@ -6322,9 +6322,9 @@ You're not viewing the latest version.
 </ul>
 <hr>
 
-<h3 id="function-force_to_vector">function force_to_vector<a class="headerlink" href="#function-force_to_vector" title="Permanent link">&para;</a></h3>
+<h3 id="function-force_to_double_vector">function force_to_double_vector<a class="headerlink" href="#function-force_to_double_vector" title="Permanent link">&para;</a></h3>
 <p><em>Converts the</em> <a href="./"><em><strong>EquinoctialPartial</strong></em></a> <em>state vector to a vector of unitless values.</em>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="n">Unitless</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">EquinoctialPartial</span><span class="o">::</span><span class="n">force_to_vector</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">EquinoctialPartial</span><span class="o">::</span><span class="n">force_to_double_vector</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </span></code></pre></div></p>
 <p><strong>Returns:</strong></p>
 <p>std::vector&lt;Unitless&gt; Vector containing the components of the <a href="./"><strong>EquinoctialPartial</strong></a> state vector. </p>
@@ -6333,7 +6333,7 @@ You're not viewing the latest version.
 <h3 id="function-operator">function operator*<a class="headerlink" href="#function-operator" title="Permanent link">&para;</a></h3>
 <p><em>Multiplication operator for</em> <a href="./"><em><strong>EquinoctialPartial</strong></em></a> <em>.</em>
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">Equinoctial</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">_frame_</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">EquinoctialPartial</span><span class="o">::</span><span class="k">operator</span><span class="o">*</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Time</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">time</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Time</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">time</span>
 </span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
 </span></code></pre></div></p>
 <p><strong>Parameters:</strong></p>

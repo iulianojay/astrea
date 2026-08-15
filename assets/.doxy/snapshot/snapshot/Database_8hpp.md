@@ -13,9 +13,7 @@ _Database utility wrapper for the snapshot module._ [More...](#detailed-descript
 * `#include <sqlite3.h>`
 * `#include <vector>`
 * `#include <sqlite_orm/sqlite_orm.h>`
-* `#include <mp-units/systems/angular.h>`
 * `#include <mp-units/systems/iau.h>`
-* `#include <mp-units/systems/isq_angle.h>`
 * `#include <mp-units/systems/si.h>`
 * `#include <units/typedefs.hpp>`
 * `#include <astro/astro.macros.hpp>`
@@ -119,7 +117,7 @@ Jay Iuliano ([iuliano.jay@gmail.com](mailto:iuliano.jay@gmail.com))
 
 **Copyright:**
 
-Copyright (c) 2025 Jay Iuliano
+Copyright (c) 2025-2026 Jay Iuliano
 
 
 The GNU Lesser General Public License (LGPL)

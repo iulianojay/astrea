@@ -5,7 +5,7 @@
     <includes refid="JulianDateClock_8hpp" local="no">JulianDateClock.hpp</includes>
     <sectiondef kind="public-type">
       <memberdef kind="typedef" id="structastrea_1_1astro_1_1JulianDateClock_1aa3e0b77573c718173a728f780a9b9056" prot="public" static="no">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">double</ref></type>
+        <type>double</type>
         <definition>using astrea::astro::JulianDateClock::rep =  double</definition>
         <argsstring></argsstring>
         <name>rep</name>
@@ -67,13 +67,13 @@
     </sectiondef>
     <sectiondef kind="public-static-attrib">
       <memberdef kind="variable" id="structastrea_1_1astro_1_1JulianDateClock_1a52daa0cf2e58c9d28309de76e0161daa" prot="public" static="yes" constexpr="yes" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">bool</ref></type>
+        <type>constexpr bool</type>
         <definition>constexpr bool astrea::astro::JulianDateClock::is_steady</definition>
         <argsstring></argsstring>
         <name>is_steady</name>
         <qualifiedname>astrea::astro::JulianDateClock::is_steady</qualifiedname>
         <initializer>=
-        <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">false</ref></initializer>
+        false</initializer>
         <briefdescription>
 <para>Indicates that the clock is not steady, meaning it can be adjusted or may have leap seconds. </para>
         </briefdescription>
@@ -88,16 +88,16 @@
       <memberdef kind="function" id="structastrea_1_1astro_1_1JulianDateClock_1afc46f46d6db2fd7a056fe570945bcd4b" prot="public" static="yes" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
         <templateparamlist>
           <param>
-            <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">class</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Duration</ref></type>
+            <type>class Duration</type>
           </param>
         </templateparamlist>
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+        <type>auto</type>
         <definition>static auto astrea::astro::JulianDateClock::from_sys</definition>
         <argsstring>(std::chrono::sys_time&lt; Duration &gt; const &amp;timePoint) noexcept</argsstring>
         <name>from_sys</name>
         <qualifiedname>astrea::astro::JulianDateClock::from_sys</qualifiedname>
         <param>
-          <type>std::chrono::sys_time&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Duration</ref> &gt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> &amp;</type>
+          <type>std::chrono::sys_time&lt; Duration &gt; const &amp;</type>
           <declname>timePoint</declname>
         </param>
         <briefdescription>
@@ -133,16 +133,16 @@
       <memberdef kind="function" id="structastrea_1_1astro_1_1JulianDateClock_1ae7cf1ba2503e3372c059342b29c1dc42" prot="public" static="yes" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
         <templateparamlist>
           <param>
-            <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">class</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Duration</ref></type>
+            <type>class Duration</type>
           </param>
         </templateparamlist>
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+        <type>auto</type>
         <definition>static auto astrea::astro::JulianDateClock::to_sys</definition>
         <argsstring>(JulianDateTime&lt; Duration &gt; const &amp;timePoint) noexcept</argsstring>
         <name>to_sys</name>
         <qualifiedname>astrea::astro::JulianDateClock::to_sys</qualifiedname>
         <param>
-          <type><ref refid="JulianDateClock_8hpp_1a9cd2c18af82d89f0ac24f11106b7ccce" kindref="member">JulianDateTime</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Duration</ref> &gt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> &amp;</type>
+          <type><ref refid="JulianDateClock_8hpp_1a9cd2c18af82d89f0ac24f11106b7ccce" kindref="member">JulianDateTime</ref>&lt; Duration &gt; const &amp;</type>
           <declname>timePoint</declname>
         </param>
         <briefdescription>
@@ -173,7 +173,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/time/clocks/JulianDateClock.hpp" line="85" column="17" bodyfile="astrea/astro/astro/time/clocks/JulianDateClock.hpp" bodystart="85" bodyend="89"/>
+        <location file="astrea/astro/astro/time/clocks/JulianDateClock.hpp" line="85" column="17" bodyfile="astrea/astro/astro/time/clocks/JulianDateClock.hpp" bodystart="85" bodyend="90"/>
       </memberdef>
       <memberdef kind="function" id="structastrea_1_1astro_1_1JulianDateClock_1ad629535a9ad2523f179f2037e89e51ed" prot="public" static="yes" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
         <type><ref refid="structastrea_1_1astro_1_1JulianDateClock_1a9c2e49b361263c5df6adaa92e343f5cf" kindref="member">time_point</ref></type>
@@ -191,7 +191,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/time/clocks/JulianDateClock.hpp" line="96" column="23" bodyfile="astrea/astro/astro/time/clocks/JulianDateClock.hpp" bodystart="96" bodyend="100"/>
+        <location file="astrea/astro/astro/time/clocks/JulianDateClock.hpp" line="97" column="23" bodyfile="astrea/astro/astro/time/clocks/JulianDateClock.hpp" bodystart="97" bodyend="101"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
@@ -200,7 +200,7 @@
     <detaileddescription>
 <para>This clock is used to represent time points in Julian <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> format, which is commonly used in astronomy. It provides conversions to and from system clocks and supports arithmetic operations on Julian Dates. </para>
     </detaileddescription>
-    <location file="astrea/astro/astro/time/clocks/JulianDateClock.hpp" line="44" column="1" bodyfile="astrea/astro/astro/time/clocks/JulianDateClock.hpp" bodystart="44" bodyend="101"/>
+    <location file="astrea/astro/astro/time/clocks/JulianDateClock.hpp" line="44" column="1" bodyfile="astrea/astro/astro/time/clocks/JulianDateClock.hpp" bodystart="44" bodyend="102"/>
     <listofallmembers>
       <member refid="structastrea_1_1astro_1_1JulianDateClock_1aa78273e9b2b9f756f34e6ebf46809877" prot="public" virt="non-virtual"><scope>astrea::astro::JulianDateClock</scope><name>duration</name></member>
       <member refid="structastrea_1_1astro_1_1JulianDateClock_1afc46f46d6db2fd7a056fe570945bcd4b" prot="public" virt="non-virtual"><scope>astrea::astro::JulianDateClock</scope><name>from_sys</name></member>

@@ -6,12 +6,12 @@
     <includes refid="KeplerianVop_8hpp" local="no">KeplerianVop.hpp</includes>
     <sectiondef kind="private-attrib">
       <memberdef kind="variable" id="classastrea_1_1astro_1_1KeplerianVop_1a247118b792b293482d3b1950fd357353" prot="private" static="no" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Unitless</ref></type>
+        <type>const Unitless</type>
         <definition>const Unitless astrea::astro::KeplerianVop::checkTol</definition>
         <argsstring></argsstring>
         <name>checkTol</name>
         <qualifiedname>astrea::astro::KeplerianVop::checkTol</qualifiedname>
-        <initializer>= 1<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e</ref>-10 * mp_units::one</initializer>
+        <initializer>= 1e-10 * mp_units::one</initializer>
         <briefdescription>
 <para>Tolerance for checking conditions. </para>
         </briefdescription>
@@ -19,10 +19,10 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/propagation/equations_of_motion/KeplerianVop.hpp" line="80" column="20" bodyfile="astrea/astro/astro/propagation/equations_of_motion/KeplerianVop.hpp" bodystart="80" bodyend="-1"/>
+        <location file="astrea/astro/astro/propagation/equations_of_motion/KeplerianVop.hpp" line="87" column="20" bodyfile="astrea/astro/astro/propagation/equations_of_motion/KeplerianVop.hpp" bodystart="87" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1KeplerianVop_1af2c8395f3d1a1b23c6e1320df3032a33" prot="private" static="no" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">GravParam</ref></type>
+        <type>GravParam</type>
         <definition>GravParam astrea::astro::KeplerianVop::mu</definition>
         <argsstring></argsstring>
         <name>mu</name>
@@ -34,10 +34,10 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/propagation/equations_of_motion/KeplerianVop.hpp" line="81" column="15" bodyfile="astrea/astro/astro/propagation/equations_of_motion/KeplerianVop.hpp" bodystart="81" bodyend="-1"/>
+        <location file="astrea/astro/astro/propagation/equations_of_motion/KeplerianVop.hpp" line="88" column="15" bodyfile="astrea/astro/astro/propagation/equations_of_motion/KeplerianVop.hpp" bodystart="88" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1KeplerianVop_1af88bb2697097f99d2f4bd1502a361bc5" prot="private" static="no" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">bool</ref></type>
+        <type>bool</type>
         <definition>bool astrea::astro::KeplerianVop::doWarn</definition>
         <argsstring></argsstring>
         <name>doWarn</name>
@@ -49,7 +49,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/propagation/equations_of_motion/KeplerianVop.hpp" line="82" column="10" bodyfile="astrea/astro/astro/propagation/equations_of_motion/KeplerianVop.hpp" bodystart="82" bodyend="-1"/>
+        <location file="astrea/astro/astro/propagation/equations_of_motion/KeplerianVop.hpp" line="89" column="10" bodyfile="astrea/astro/astro/propagation/equations_of_motion/KeplerianVop.hpp" bodystart="89" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="public-func">
@@ -60,13 +60,13 @@
         <name>KeplerianVop</name>
         <qualifiedname>astrea::astro::KeplerianVop::KeplerianVop</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1ForceModel" kindref="compound">ForceModel</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1ForceModel" kindref="compound">ForceModel</ref> &amp;</type>
           <declname>forces</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">bool</ref></type>
+          <type>const bool</type>
           <declname>doWarn</declname>
-          <defval><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">true</ref></defval>
+          <defval>true</defval>
         </param>
         <briefdescription>
 <para>Constructor for the <ref refid="classastrea_1_1astro_1_1Keplerian" kindref="compound">Keplerian</ref> VOP class. </para>
@@ -93,7 +93,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/propagation/equations_of_motion/KeplerianVop.hpp" line="43" column="5" bodyfile="astrea/astro/astro/propagation/equations_of_motion/KeplerianVop.cpp" bodystart="40" bodyend="44"/>
+        <location file="astrea/astro/astro/propagation/equations_of_motion/KeplerianVop.hpp" line="43" column="5" bodyfile="astrea/astro/astro/propagation/equations_of_motion/KeplerianVop.cpp" bodystart="38" bodyend="42"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1KeplerianVop_1afbfadf10ec06652fe20b4a372052d69e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -118,19 +118,19 @@
         <qualifiedname>astrea::astro::KeplerianVop::compute_dynamics</qualifiedname>
         <reimplements refid="classastrea_1_1astro_1_1EquationsOfMotion_1ab67532d179cbb6702762357fbfac1d2b">compute_dynamics</reimplements>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
           <declname>state</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Vehicle" kindref="compound">Vehicle</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Vehicle" kindref="compound">Vehicle</ref> &amp;</type>
           <declname>vehicle</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="typedefs_8hpp_1a5aa05e5cfe7a19c3304a534401cf2fc1" kindref="member">ForceVector</ref>&lt; frames::primary &gt; &amp;</type>
+          <type>const <ref refid="typedefs_8hpp_1a5aa05e5cfe7a19c3304a534401cf2fc1" kindref="member">ForceVector</ref>&lt; frames::primary &gt; &amp;</type>
           <declname>perts</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="typedefs_8hpp_1a5aa05e5cfe7a19c3304a534401cf2fc1" kindref="member">ForceVector</ref>&lt; frames::primary &gt; &amp;</type>
+          <type>const <ref refid="typedefs_8hpp_1a5aa05e5cfe7a19c3304a534401cf2fc1" kindref="member">ForceVector</ref>&lt; frames::primary &gt; &amp;</type>
           <declname>control</declname>
         </param>
         <briefdescription>
@@ -176,10 +176,10 @@ Dr. Kira Abercromby, Orbits 351: Advanced Orbital Mechanics, Lecture 2: Variatio
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/propagation/equations_of_motion/KeplerianVop.hpp" line="62" column="28" bodyfile="astrea/astro/astro/propagation/equations_of_motion/KeplerianVop.cpp" bodystart="46" bodyend="110"/>
+        <location file="astrea/astro/astro/propagation/equations_of_motion/KeplerianVop.hpp" line="62" column="28" bodyfile="astrea/astro/astro/propagation/equations_of_motion/KeplerianVop.cpp" bodystart="44" bodyend="107"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1KeplerianVop_1a35f1fc62fb95a00ca036bc29b519a714" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" virt="virtual">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> std::size_t</type>
+        <type>constexpr std::size_t</type>
         <definition>constexpr std::size_t astrea::astro::KeplerianVop::get_expected_set_id</definition>
         <argsstring>() const override</argsstring>
         <name>get_expected_set_id</name>
@@ -197,20 +197,39 @@ Dr. Kira Abercromby, Orbits 351: Advanced Orbital Mechanics, Lecture 2: Variatio
         </inbodydescription>
         <location file="astrea/astro/astro/propagation/equations_of_motion/KeplerianVop.hpp" line="74" column="27" bodyfile="astrea/astro/astro/propagation/equations_of_motion/KeplerianVop.hpp" bodystart="74" bodyend="77"/>
       </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1KeplerianVop_1a5fa51d501f27a4b9831182d7cc7186fa" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type>std::unique_ptr&lt; <ref refid="classastrea_1_1astro_1_1EquationsOfMotion" kindref="compound">EquationsOfMotion</ref> &gt;</type>
+        <definition>std::unique_ptr&lt; EquationsOfMotion &gt; astrea::astro::KeplerianVop::clone</definition>
+        <argsstring>() const override</argsstring>
+        <name>clone</name>
+        <qualifiedname>astrea::astro::KeplerianVop::clone</qualifiedname>
+        <reimplements refid="classastrea_1_1astro_1_1EquationsOfMotion_1ad5dc873c125475e764c2ef09c520db5b">clone</reimplements>
+        <briefdescription>
+<para>Creates a clone of the current <ref refid="classastrea_1_1astro_1_1Keplerian" kindref="compound">Keplerian</ref> VOP object. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>std::unique_ptr&lt;EquationsOfMotion&gt; A unique pointer to the cloned <ref refid="classastrea_1_1astro_1_1Keplerian" kindref="compound">Keplerian</ref> VOP object. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/equations_of_motion/KeplerianVop.hpp" line="84" column="21" bodyfile="astrea/astro/astro/propagation/equations_of_motion/KeplerianVop.hpp" bodystart="84" bodyend="84"/>
+      </memberdef>
     </sectiondef>
     <sectiondef kind="private-func">
       <memberdef kind="function" id="classastrea_1_1astro_1_1KeplerianVop_1a29727d9a90739a8dd41717de4c3ef617" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">void</ref></type>
+        <type>void</type>
         <definition>void astrea::astro::KeplerianVop::check_degenerate</definition>
         <argsstring>(const Unitless &amp;ecc, const Angle &amp;inc) const</argsstring>
         <name>check_degenerate</name>
         <qualifiedname>astrea::astro::KeplerianVop::check_degenerate</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Unitless</ref> &amp;</type>
+          <type>const Unitless &amp;</type>
           <declname>ecc</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Angle</ref> &amp;</type>
+          <type>const Angle &amp;</type>
           <declname>inc</declname>
         </param>
         <briefdescription>
@@ -238,7 +257,7 @@ Dr. Kira Abercromby, Orbits 351: Advanced Orbital Mechanics, Lecture 2: Variatio
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/propagation/equations_of_motion/KeplerianVop.hpp" line="90" column="10" bodyfile="astrea/astro/astro/propagation/equations_of_motion/KeplerianVop.cpp" bodystart="112" bodyend="127"/>
+        <location file="astrea/astro/astro/propagation/equations_of_motion/KeplerianVop.hpp" line="97" column="10" bodyfile="astrea/astro/astro/propagation/equations_of_motion/KeplerianVop.cpp" bodystart="109" bodyend="124"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
@@ -277,17 +296,18 @@ Dr. Kira Abercromby, Orbits 351: Advanced Orbital Mechanics, Lecture 2: Variatio
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="astrea/astro/astro/propagation/equations_of_motion/KeplerianVop.hpp" line="34" column="1" bodyfile="astrea/astro/astro/propagation/equations_of_motion/KeplerianVop.hpp" bodystart="34" bodyend="91"/>
+    <location file="astrea/astro/astro/propagation/equations_of_motion/KeplerianVop.hpp" line="34" column="1" bodyfile="astrea/astro/astro/propagation/equations_of_motion/KeplerianVop.hpp" bodystart="34" bodyend="98"/>
     <listofallmembers>
       <member refid="classastrea_1_1astro_1_1KeplerianVop_1a29727d9a90739a8dd41717de4c3ef617" prot="private" virt="non-virtual"><scope>astrea::astro::KeplerianVop</scope><name>check_degenerate</name></member>
       <member refid="classastrea_1_1astro_1_1KeplerianVop_1a247118b792b293482d3b1950fd357353" prot="private" virt="non-virtual"><scope>astrea::astro::KeplerianVop</scope><name>checkTol</name></member>
+      <member refid="classastrea_1_1astro_1_1KeplerianVop_1a5fa51d501f27a4b9831182d7cc7186fa" prot="public" virt="virtual"><scope>astrea::astro::KeplerianVop</scope><name>clone</name></member>
       <member refid="classastrea_1_1astro_1_1KeplerianVop_1a49e1955be313e89794276b528633bd34" prot="public" virt="virtual"><scope>astrea::astro::KeplerianVop</scope><name>compute_dynamics</name></member>
       <member refid="classastrea_1_1astro_1_1EquationsOfMotion_1afe9c17968d211df71622538a6773198b" prot="public" virt="virtual"><scope>astrea::astro::KeplerianVop</scope><name>compute_kinematics</name></member>
       <member refid="classastrea_1_1astro_1_1EquationsOfMotion_1a6ce5bf0e6d75ba1061654281151ad604" prot="public" virt="virtual"><scope>astrea::astro::KeplerianVop</scope><name>compute_stm</name></member>
       <member refid="classastrea_1_1astro_1_1KeplerianVop_1af88bb2697097f99d2f4bd1502a361bc5" prot="private" virt="non-virtual"><scope>astrea::astro::KeplerianVop</scope><name>doWarn</name></member>
       <member refid="classastrea_1_1astro_1_1EquationsOfMotion_1a9314c62e49ba5c7e0cf8a632afca3fd4" prot="public" virt="non-virtual"><scope>astrea::astro::KeplerianVop</scope><name>EquationsOfMotion</name></member>
       <member refid="classastrea_1_1astro_1_1EquationsOfMotion_1a4eec33fb06db4d14c79cdfb0926cf3f4" prot="public" virt="non-virtual"><scope>astrea::astro::KeplerianVop</scope><name>EquationsOfMotion</name></member>
-      <member refid="classastrea_1_1astro_1_1EquationsOfMotion_1accb3b6b22bed036ca28ae4b4f592028a" prot="protected" virt="non-virtual"><scope>astrea::astro::KeplerianVop</scope><name>forces</name></member>
+      <member refid="classastrea_1_1astro_1_1EquationsOfMotion_1a7a83d5daad504e281d7edf9bb56c6b7b" prot="protected" virt="non-virtual"><scope>astrea::astro::KeplerianVop</scope><name>forces</name></member>
       <member refid="classastrea_1_1astro_1_1KeplerianVop_1a35f1fc62fb95a00ca036bc29b519a714" prot="public" virt="virtual"><scope>astrea::astro::KeplerianVop</scope><name>get_expected_set_id</name></member>
       <member refid="classastrea_1_1astro_1_1KeplerianVop_1a0cfd7b7924a6f08d1eda5f93b638a264" prot="public" virt="non-virtual"><scope>astrea::astro::KeplerianVop</scope><name>KeplerianVop</name></member>
       <member refid="classastrea_1_1astro_1_1KeplerianVop_1af2c8395f3d1a1b23c6e1320df3032a33" prot="private" virt="non-virtual"><scope>astrea::astro::KeplerianVop</scope><name>mu</name></member>

@@ -13,7 +13,7 @@ _Payload class definition for astrea access platform._ [More...](#detailed-descr
 * `#include <memory>`
 * `#include <utilities/IdProvider.hpp>`
 * `#include <astro/frames/definitions.hpp>`
-* `#include <astro/frames/definitions/dynamic_frames.hpp>`
+* `#include <astro/frames/definitions/dynamic_frames/tags.hpp>`
 * `#include <astro/frames/definitions/primary_frame.hpp>`
 * `#include <astro/frames/framework/CartesianVector.hpp>`
 * `#include <astro/platforms/PayloadPlatform.hpp>`
@@ -43,7 +43,7 @@ _Payload class definition for astrea access platform._ [More...](#detailed-descr
 
 | Type | Name |
 | ---: | :--- |
-| class | [**Payload**](classastrea_1_1astro_1_1Payload.md) &lt;[**class**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Payload\_T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), [**class**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) PayloadParameters\_T&gt;<br>[_**Payload**_](classastrea_1_1astro_1_1Payload.md) _class representing a payload on a platform._ |
+| class | [**Payload**](classastrea_1_1astro_1_1Payload.md) &lt;class Payload\_T, class PayloadParameters\_T&gt;<br>[_**Payload**_](classastrea_1_1astro_1_1Payload.md) _class representing a payload on a platform._ |
 | class | [**PayloadParameters**](classastrea_1_1astro_1_1PayloadParameters.md) <br>_Class for storing and managing payload parameters._  |
 
 
@@ -116,7 +116,7 @@ Jay Iuliano ([iuliano.jay@gmail.com](mailto:iuliano.jay@gmail.com))
 
 **Copyright:**
 
-Copyright (c) 2025 Jay Iuliano
+Copyright (c) 2025-2026 Jay Iuliano
 
 
 The GNU Lesser General Public License (LGPL)

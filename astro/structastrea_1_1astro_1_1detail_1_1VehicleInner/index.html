@@ -6238,7 +6238,7 @@ You're not viewing the latest version.
 
 
 <h1 id="struct-astreaastrodetailvehicleinner">Struct astrea::astro::detail::VehicleInner<a class="headerlink" href="#struct-astreaastrodetailvehicleinner" title="Permanent link">&para;</a></h1>
-<p><strong>template &lt;<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>typename</strong></a> <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>T</strong></a>&gt;</strong></p>
+<p><strong>template &lt;typename T&gt;</strong></p>
 <p><a href="../annotated/"><strong>ClassList</strong></a> <strong>&gt;</strong> <a href="../namespaceastrea/"><strong>astrea</strong></a> <strong>&gt;</strong> <a href="../namespaceastrea_1_1astro/"><strong>astro</strong></a> <strong>&gt;</strong> <a href="../namespaceastrea_1_1astro_1_1detail/"><strong>detail</strong></a> <strong>&gt;</strong> <a href="./"><strong>VehicleInner</strong></a></p>
 <p><em>A template class for vehicle inner implementations.</em> <a href="#detailed-description">More...</a></p>
 <ul>
@@ -6255,7 +6255,7 @@ You're not viewing the latest version.
 </thead>
 <tbody>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>T</strong></a></td>
+<td style="text-align: right;">T</td>
 <td style="text-align: left;"><a href="#variable-_value"><strong>_value</strong></a>  <br><em>The value of the vehicle inner implementation, which is the user-defined vehicle type.</em></td>
 </tr>
 </tbody>
@@ -6275,7 +6275,7 @@ You're not viewing the latest version.
 </tr>
 <tr>
 <td style="text-align: right;"></td>
-<td style="text-align: left;"><a href="#function-vehicleinner-25"><strong>VehicleInner</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="./"><strong>VehicleInner</strong></a> &amp;) = delete<br><em>Deleted copy assignment operator.</em></td>
+<td style="text-align: left;"><a href="#function-vehicleinner-25"><strong>VehicleInner</strong></a> (const <a href="./"><strong>VehicleInner</strong></a> &amp;) = delete<br><em>Deleted copy assignment operator.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;"></td>
@@ -6283,50 +6283,50 @@ You're not viewing the latest version.
 </tr>
 <tr>
 <td style="text-align: right;"></td>
-<td style="text-align: left;"><a href="#function-vehicleinner-45"><strong>VehicleInner</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>T</strong></a> &amp; x) <br><em>Constructs a</em> <a href="./"><em><strong>VehicleInner</strong></em></a> <em>with a given value.</em></td>
+<td style="text-align: left;"><a href="#function-vehicleinner-45"><strong>VehicleInner</strong></a> (const T &amp; x) <br><em>Constructs a</em> <a href="./"><em><strong>VehicleInner</strong></em></a> <em>with a given value.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;"></td>
-<td style="text-align: left;"><a href="#function-vehicleinner-55"><strong>VehicleInner</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>T</strong></a> &amp;&amp; x) <br><em>Constructs a</em> <a href="./"><em><strong>VehicleInner</strong></em></a> <em>with a given value.</em></td>
+<td style="text-align: left;"><a href="#function-vehicleinner-55"><strong>VehicleInner</strong></a> (T &amp;&amp; x) <br><em>Constructs a</em> <a href="./"><em><strong>VehicleInner</strong></em></a> <em>with a given value.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">virtual std::unique_ptr&lt; <a href="../structastrea_1_1astro_1_1detail_1_1VehicleInnerBase/"><strong>VehicleInnerBase</strong></a> &gt;</td>
 <td style="text-align: left;"><a href="#function-clone"><strong>clone</strong></a> () const<br><em>Clones the vehicle inner implementation.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">virtual <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Unitless</strong></a></td>
+<td style="text-align: right;">virtual Unitless</td>
 <td style="text-align: left;"><a href="#function-get_coefficient_of_drag"><strong>get_coefficient_of_drag</strong></a> () const<br><em>Gets the coefficient of drag of the vehicle or a default value.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">virtual <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Unitless</strong></a></td>
+<td style="text-align: right;">virtual Unitless</td>
 <td style="text-align: left;"><a href="#function-get_coefficient_of_lift"><strong>get_coefficient_of_lift</strong></a> () const<br><em>Gets the coefficient of lift of the vehicle or a default value.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">virtual <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Unitless</strong></a></td>
+<td style="text-align: right;">virtual Unitless</td>
 <td style="text-align: left;"><a href="#function-get_coefficient_of_reflectivity"><strong>get_coefficient_of_reflectivity</strong></a> () const<br><em>Gets the coefficient of reflectivity of the vehicle or a default value.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">virtual <a href="../structastrea_1_1astro_1_1Perturbation/"><strong>Perturbation</strong></a></td>
-<td style="text-align: left;"><a href="#function-get_control_authority"><strong>get_control_authority</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1State/"><strong>State</strong></a> &amp; state) const<br><em>Gets the control authority of the vehicle or a default value.</em></td>
+<td style="text-align: left;"><a href="#function-get_control_authority"><strong>get_control_authority</strong></a> (const <a href="../classastrea_1_1astro_1_1State/"><strong>State</strong></a> &amp; state) const<br><em>Gets the control authority of the vehicle or a default value.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;"><a href="../structastrea_1_1astro_1_1Perturbation/"><strong>Perturbation</strong></a></td>
-<td style="text-align: left;"><a href="#function-get_control_authority_impl-12"><strong>get_control_authority_impl</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>U</strong></a> &amp;, <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1State/"><strong>State</strong></a> &amp;) const<br><em>Gets the default thrust of the vehicle.</em></td>
+<td style="text-align: left;"><a href="#function-get_control_authority_impl-12"><strong>get_control_authority_impl</strong></a> (const U &amp;, const <a href="../classastrea_1_1astro_1_1State/"><strong>State</strong></a> &amp;) const<br><em>Gets the default thrust of the vehicle.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;"><a href="../structastrea_1_1astro_1_1Perturbation/"><strong>Perturbation</strong></a></td>
-<td style="text-align: left;"><a href="#function-get_control_authority_impl-22"><strong>get_control_authority_impl</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>U</strong></a> &amp; value, <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1State/"><strong>State</strong></a> &amp; state) const<br><em>Gets the thrust and torque of the vehicle.</em></td>
+<td style="text-align: left;"><a href="#function-get_control_authority_impl-22"><strong>get_control_authority_impl</strong></a> (const U &amp; value, const <a href="../classastrea_1_1astro_1_1State/"><strong>State</strong></a> &amp; state) const<br><em>Gets the thrust and torque of the vehicle.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">virtual <a href="../classastrea_1_1astro_1_1InertiaTensor/"><strong>InertiaTensor</strong></a>&lt; <a href="../structastrea_1_1astro_1_1frames_1_1dynamic_1_1body/"><strong>frames::dynamic::body</strong></a> &gt;</td>
 <td style="text-align: left;"><a href="#function-get_inertia_tensor"><strong>get_inertia_tensor</strong></a> () const<br><em>Gets the inertia tensor of the vehicle.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">virtual <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>SurfaceArea</strong></a></td>
+<td style="text-align: right;">virtual SurfaceArea</td>
 <td style="text-align: left;"><a href="#function-get_lift_area"><strong>get_lift_area</strong></a> () const<br><em>Gets the lift area of the vehicle or a default value.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">virtual <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Mass</strong></a></td>
+<td style="text-align: right;">virtual Mass</td>
 <td style="text-align: left;"><a href="#function-get_mass"><strong>get_mass</strong></a> () const<br><em>Gets the mass of the vehicle.</em></td>
 </tr>
 <tr>
@@ -6335,38 +6335,38 @@ You're not viewing the latest version.
 </tr>
 <tr>
 <td style="text-align: right;">std::string</td>
-<td style="text-align: left;"><a href="#function-get_name_impl-12"><strong>get_name_impl</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>U</strong></a> &amp;) const<br><em>Gets the default name of the vehicle.</em></td>
+<td style="text-align: left;"><a href="#function-get_name_impl-12"><strong>get_name_impl</strong></a> (const U &amp;) const<br><em>Gets the default name of the vehicle.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">std::string</td>
-<td style="text-align: left;"><a href="#function-get_name_impl-22"><strong>get_name_impl</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>U</strong></a> &amp; value) const<br><em>Gets the name of the vehicle.</em></td>
+<td style="text-align: left;"><a href="#function-get_name_impl-22"><strong>get_name_impl</strong></a> (const U &amp; value) const<br><em>Gets the name of the vehicle.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">virtual <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>void</strong></a> *</td>
+<td style="text-align: right;">virtual const void *</td>
 <td style="text-align: left;"><a href="#function-get_ptr-12"><strong>get_ptr</strong></a> () const<br><em>Gets a pointer to the internal vehicle instance.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">virtual <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>void</strong></a> *</td>
+<td style="text-align: right;">virtual void *</td>
 <td style="text-align: left;"><a href="#function-get_ptr-22"><strong>get_ptr</strong></a> () <br><em>Gets a pointer to the internal vehicle instance.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">virtual <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>SurfaceArea</strong></a></td>
+<td style="text-align: right;">virtual SurfaceArea</td>
 <td style="text-align: left;"><a href="#function-get_ram_area"><strong>get_ram_area</strong></a> () const<br><em>Gets the ram area of the vehicle or a default value.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">virtual <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>SurfaceArea</strong></a></td>
+<td style="text-align: right;">virtual SurfaceArea</td>
 <td style="text-align: left;"><a href="#function-get_solar_area"><strong>get_solar_area</strong></a> () const<br><em>Gets the solar area of the vehicle or a default value.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;"><a href="./"><strong>VehicleInner</strong></a> &amp;</td>
-<td style="text-align: left;"><a href="#function-operator"><strong>operator=</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="./"><strong>VehicleInner</strong></a> &amp;) = delete<br><em>Deleted copy assignment operator.</em></td>
+<td style="text-align: left;"><a href="#function-operator"><strong>operator=</strong></a> (const <a href="./"><strong>VehicleInner</strong></a> &amp;) = delete<br><em>Deleted copy assignment operator.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;"><a href="./"><strong>VehicleInner</strong></a> &amp;</td>
 <td style="text-align: left;"><a href="#function-operator_1"><strong>operator=</strong></a> (<a href="./"><strong>VehicleInner</strong></a> &amp;&amp;) = delete<br><em>Deleted move assignment operator.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">virtual <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> std::type_info &amp;</td>
+<td style="text-align: right;">virtual const std::type_info &amp;</td>
 <td style="text-align: left;"><a href="#function-type"><strong>type</strong></a> () const<br><em>Gets the type information of the internal vehicle instance.</em></td>
 </tr>
 </tbody>
@@ -6386,31 +6386,31 @@ You're not viewing the latest version.
 <td style="text-align: left;"><a href="../structastrea_1_1astro_1_1detail_1_1VehicleInnerBase/#function-clone"><strong>clone</strong></a> () const = 0<br><em>Clones the vehicle inner implementation.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">virtual <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Unitless</strong></a></td>
+<td style="text-align: right;">virtual Unitless</td>
 <td style="text-align: left;"><a href="../structastrea_1_1astro_1_1detail_1_1VehicleInnerBase/#function-get_coefficient_of_drag"><strong>get_coefficient_of_drag</strong></a> () const = 0<br><em>Gets the coefficient of drag of the vehicle.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">virtual <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Unitless</strong></a></td>
+<td style="text-align: right;">virtual Unitless</td>
 <td style="text-align: left;"><a href="../structastrea_1_1astro_1_1detail_1_1VehicleInnerBase/#function-get_coefficient_of_lift"><strong>get_coefficient_of_lift</strong></a> () const = 0<br><em>Gets the coefficient of lift of the vehicle.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">virtual <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Unitless</strong></a></td>
+<td style="text-align: right;">virtual Unitless</td>
 <td style="text-align: left;"><a href="../structastrea_1_1astro_1_1detail_1_1VehicleInnerBase/#function-get_coefficient_of_reflectivity"><strong>get_coefficient_of_reflectivity</strong></a> () const = 0<br><em>Gets the coefficient of reflectivity of the vehicle.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">virtual <a href="../structastrea_1_1astro_1_1Perturbation/"><strong>Perturbation</strong></a></td>
-<td style="text-align: left;"><a href="../structastrea_1_1astro_1_1detail_1_1VehicleInnerBase/#function-get_control_authority"><strong>get_control_authority</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1State/"><strong>State</strong></a> &amp; state) const = 0<br><em>Gets the control authority of the vehicle.</em></td>
+<td style="text-align: left;"><a href="../structastrea_1_1astro_1_1detail_1_1VehicleInnerBase/#function-get_control_authority"><strong>get_control_authority</strong></a> (const <a href="../classastrea_1_1astro_1_1State/"><strong>State</strong></a> &amp; state) const = 0<br><em>Gets the control authority of the vehicle.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">virtual <a href="../classastrea_1_1astro_1_1InertiaTensor/"><strong>InertiaTensor</strong></a>&lt; <a href="../structastrea_1_1astro_1_1frames_1_1dynamic_1_1body/"><strong>frames::dynamic::body</strong></a> &gt;</td>
 <td style="text-align: left;"><a href="../structastrea_1_1astro_1_1detail_1_1VehicleInnerBase/#function-get_inertia_tensor"><strong>get_inertia_tensor</strong></a> () const<br><em>Gets the inertia tensor of the vehicle.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">virtual <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>SurfaceArea</strong></a></td>
+<td style="text-align: right;">virtual SurfaceArea</td>
 <td style="text-align: left;"><a href="../structastrea_1_1astro_1_1detail_1_1VehicleInnerBase/#function-get_lift_area"><strong>get_lift_area</strong></a> () const = 0<br><em>Gets the lift area of the vehicle.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">virtual <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Mass</strong></a></td>
+<td style="text-align: right;">virtual Mass</td>
 <td style="text-align: left;"><a href="../structastrea_1_1astro_1_1detail_1_1VehicleInnerBase/#function-get_mass"><strong>get_mass</strong></a> () const = 0<br><em>Gets the mass of the vehicle.</em></td>
 </tr>
 <tr>
@@ -6418,23 +6418,23 @@ You're not viewing the latest version.
 <td style="text-align: left;"><a href="../structastrea_1_1astro_1_1detail_1_1VehicleInnerBase/#function-get_name"><strong>get_name</strong></a> () const = 0<br><em>Gets the name of the vehicle.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">virtual <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>void</strong></a> *</td>
+<td style="text-align: right;">virtual const void *</td>
 <td style="text-align: left;"><a href="../structastrea_1_1astro_1_1detail_1_1VehicleInnerBase/#function-get_ptr-12"><strong>get_ptr</strong></a> () const = 0<br><em>Gets a pointer to the internal vehicle instance.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">virtual <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>void</strong></a> *</td>
+<td style="text-align: right;">virtual void *</td>
 <td style="text-align: left;"><a href="../structastrea_1_1astro_1_1detail_1_1VehicleInnerBase/#function-get_ptr-22"><strong>get_ptr</strong></a> () = 0<br><em>Gets a pointer to the internal vehicle instance.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">virtual <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>SurfaceArea</strong></a></td>
+<td style="text-align: right;">virtual SurfaceArea</td>
 <td style="text-align: left;"><a href="../structastrea_1_1astro_1_1detail_1_1VehicleInnerBase/#function-get_ram_area"><strong>get_ram_area</strong></a> () const = 0<br><em>Gets the ram area of the vehicle.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">virtual <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>SurfaceArea</strong></a></td>
+<td style="text-align: right;">virtual SurfaceArea</td>
 <td style="text-align: left;"><a href="../structastrea_1_1astro_1_1detail_1_1VehicleInnerBase/#function-get_solar_area"><strong>get_solar_area</strong></a> () const = 0<br><em>Gets the solar area of the vehicle.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">virtual <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> std::type_info &amp;</td>
+<td style="text-align: right;">virtual const std::type_info &amp;</td>
 <td style="text-align: left;"><a href="../structastrea_1_1astro_1_1detail_1_1VehicleInnerBase/#function-type"><strong>type</strong></a> () const = 0<br><em>Gets the type information of the internal vehicle instance.</em></td>
 </tr>
 <tr>
@@ -6453,60 +6453,60 @@ You're not viewing the latest version.
 </thead>
 <tbody>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Unitless</strong></a></td>
-<td style="text-align: left;"><a href="#function-get_coefficient_of_drag_impl-12"><strong>get_coefficient_of_drag_impl</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>U</strong></a> &amp;) <br><em>Gets the default coefficient of drag of the vehicle.</em></td>
+<td style="text-align: right;">Unitless</td>
+<td style="text-align: left;"><a href="#function-get_coefficient_of_drag_impl-12"><strong>get_coefficient_of_drag_impl</strong></a> (const U &amp;) <br><em>Gets the default coefficient of drag of the vehicle.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Unitless</strong></a></td>
-<td style="text-align: left;"><a href="#function-get_coefficient_of_drag_impl-22"><strong>get_coefficient_of_drag_impl</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>U</strong></a> &amp; value) <br><em>Gets the coefficient of drag of the vehicle.</em></td>
+<td style="text-align: right;">Unitless</td>
+<td style="text-align: left;"><a href="#function-get_coefficient_of_drag_impl-22"><strong>get_coefficient_of_drag_impl</strong></a> (const U &amp; value) <br><em>Gets the coefficient of drag of the vehicle.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Unitless</strong></a></td>
-<td style="text-align: left;"><a href="#function-get_coefficient_of_lift_impl-12"><strong>get_coefficient_of_lift_impl</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>U</strong></a> &amp;) <br><em>Gets the default coefficient of lift of the vehicle.</em></td>
+<td style="text-align: right;">Unitless</td>
+<td style="text-align: left;"><a href="#function-get_coefficient_of_lift_impl-12"><strong>get_coefficient_of_lift_impl</strong></a> (const U &amp;) <br><em>Gets the default coefficient of lift of the vehicle.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Unitless</strong></a></td>
-<td style="text-align: left;"><a href="#function-get_coefficient_of_lift_impl-22"><strong>get_coefficient_of_lift_impl</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>U</strong></a> &amp; value) <br><em>Gets the coefficient of lift of the vehicle.</em></td>
+<td style="text-align: right;">Unitless</td>
+<td style="text-align: left;"><a href="#function-get_coefficient_of_lift_impl-22"><strong>get_coefficient_of_lift_impl</strong></a> (const U &amp; value) <br><em>Gets the coefficient of lift of the vehicle.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Unitless</strong></a></td>
-<td style="text-align: left;"><a href="#function-get_coefficient_of_reflectivity_impl-12"><strong>get_coefficient_of_reflectivity_impl</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>U</strong></a> &amp;) <br><em>Gets the default coefficient of reflectivity of the vehicle.</em></td>
+<td style="text-align: right;">Unitless</td>
+<td style="text-align: left;"><a href="#function-get_coefficient_of_reflectivity_impl-12"><strong>get_coefficient_of_reflectivity_impl</strong></a> (const U &amp;) <br><em>Gets the default coefficient of reflectivity of the vehicle.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Unitless</strong></a></td>
-<td style="text-align: left;"><a href="#function-get_coefficient_of_reflectivity_impl-22"><strong>get_coefficient_of_reflectivity_impl</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>U</strong></a> &amp; value) <br><em>Gets the coefficient of reflectivity of the vehicle.</em></td>
-</tr>
-<tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1InertiaTensor/"><strong>InertiaTensor</strong></a>&lt; <a href="../structastrea_1_1astro_1_1frames_1_1dynamic_1_1body/"><strong>frames::dynamic::body</strong></a> &gt;</td>
-<td style="text-align: left;"><a href="#function-get_inertia_tensor_impl-12"><strong>get_inertia_tensor_impl</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>U</strong></a> &amp;) <br><em>Gets the default inertia tensor of the vehicle.</em></td>
+<td style="text-align: right;">Unitless</td>
+<td style="text-align: left;"><a href="#function-get_coefficient_of_reflectivity_impl-22"><strong>get_coefficient_of_reflectivity_impl</strong></a> (const U &amp; value) <br><em>Gets the coefficient of reflectivity of the vehicle.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;"><a href="../classastrea_1_1astro_1_1InertiaTensor/"><strong>InertiaTensor</strong></a>&lt; <a href="../structastrea_1_1astro_1_1frames_1_1dynamic_1_1body/"><strong>frames::dynamic::body</strong></a> &gt;</td>
-<td style="text-align: left;"><a href="#function-get_inertia_tensor_impl-22"><strong>get_inertia_tensor_impl</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>U</strong></a> &amp; value) <br><em>Gets the inertia tensor of the vehicle.</em></td>
+<td style="text-align: left;"><a href="#function-get_inertia_tensor_impl-12"><strong>get_inertia_tensor_impl</strong></a> (const U &amp;) <br><em>Gets the default inertia tensor of the vehicle.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>SurfaceArea</strong></a></td>
-<td style="text-align: left;"><a href="#function-get_lift_area_impl-12"><strong>get_lift_area_impl</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>U</strong></a> &amp;) <br><em>Gets the default lift area of the vehicle.</em></td>
+<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1InertiaTensor/"><strong>InertiaTensor</strong></a>&lt; <a href="../structastrea_1_1astro_1_1frames_1_1dynamic_1_1body/"><strong>frames::dynamic::body</strong></a> &gt;</td>
+<td style="text-align: left;"><a href="#function-get_inertia_tensor_impl-22"><strong>get_inertia_tensor_impl</strong></a> (const U &amp; value) <br><em>Gets the inertia tensor of the vehicle.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>SurfaceArea</strong></a></td>
-<td style="text-align: left;"><a href="#function-get_lift_area_impl-22"><strong>get_lift_area_impl</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>U</strong></a> &amp; value) <br><em>Gets the lift area of the vehicle.</em></td>
+<td style="text-align: right;">SurfaceArea</td>
+<td style="text-align: left;"><a href="#function-get_lift_area_impl-12"><strong>get_lift_area_impl</strong></a> (const U &amp;) <br><em>Gets the default lift area of the vehicle.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>SurfaceArea</strong></a></td>
-<td style="text-align: left;"><a href="#function-get_ram_area_impl-12"><strong>get_ram_area_impl</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>U</strong></a> &amp;) <br><em>Gets the default ram area of the vehicle.</em></td>
+<td style="text-align: right;">SurfaceArea</td>
+<td style="text-align: left;"><a href="#function-get_lift_area_impl-22"><strong>get_lift_area_impl</strong></a> (const U &amp; value) <br><em>Gets the lift area of the vehicle.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>SurfaceArea</strong></a></td>
-<td style="text-align: left;"><a href="#function-get_ram_area_impl-22"><strong>get_ram_area_impl</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>U</strong></a> &amp; value) <br><em>Gets the ram area of the vehicle.</em></td>
+<td style="text-align: right;">SurfaceArea</td>
+<td style="text-align: left;"><a href="#function-get_ram_area_impl-12"><strong>get_ram_area_impl</strong></a> (const U &amp;) <br><em>Gets the default ram area of the vehicle.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>SurfaceArea</strong></a></td>
-<td style="text-align: left;"><a href="#function-get_solar_area_impl-12"><strong>get_solar_area_impl</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>U</strong></a> &amp;) <br><em>Gets the default solar area of the vehicle.</em></td>
+<td style="text-align: right;">SurfaceArea</td>
+<td style="text-align: left;"><a href="#function-get_ram_area_impl-22"><strong>get_ram_area_impl</strong></a> (const U &amp; value) <br><em>Gets the ram area of the vehicle.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>SurfaceArea</strong></a></td>
-<td style="text-align: left;"><a href="#function-get_solar_area_impl-22"><strong>get_solar_area_impl</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>U</strong></a> &amp; value) <br><em>Gets the solar area of the vehicle.</em></td>
+<td style="text-align: right;">SurfaceArea</td>
+<td style="text-align: left;"><a href="#function-get_solar_area_impl-12"><strong>get_solar_area_impl</strong></a> (const U &amp;) <br><em>Gets the default solar area of the vehicle.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">SurfaceArea</td>
+<td style="text-align: left;"><a href="#function-get_solar_area_impl-22"><strong>get_solar_area_impl</strong></a> (const U &amp; value) <br><em>Gets the solar area of the vehicle.</em></td>
 </tr>
 </tbody>
 </table>
@@ -6531,7 +6531,7 @@ You're not viewing the latest version.
 <h3 id="function-vehicleinner-25">function VehicleInner [2/5]<a class="headerlink" href="#function-vehicleinner-25" title="Permanent link">&para;</a></h3>
 <p><em>Deleted copy assignment operator.</em> 
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">detail</span><span class="o">::</span><span class="n">VehicleInner</span><span class="o">::</span><span class="n">VehicleInner</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">VehicleInner</span><span class="w"> </span><span class="o">&amp;</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">VehicleInner</span><span class="w"> </span><span class="o">&amp;</span>
 </span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">delete</span>
 </span></code></pre></div></p>
 <hr>
@@ -6547,7 +6547,7 @@ You're not viewing the latest version.
 <h3 id="function-vehicleinner-45">function VehicleInner [4/5]<a class="headerlink" href="#function-vehicleinner-45" title="Permanent link">&para;</a></h3>
 <p><em>Constructs a</em> <a href="./"><em><strong>VehicleInner</strong></em></a> <em>with a given value.</em>
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kr">inline</span><span class="w"> </span><span class="k">explicit</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">detail</span><span class="o">::</span><span class="n">VehicleInner</span><span class="o">::</span><span class="n">VehicleInner</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">T</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">x</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">T</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">x</span>
 </span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="p">)</span><span class="w"> </span>
 </span></code></pre></div></p>
 <p><strong>Parameters:</strong></p>
@@ -6607,7 +6607,7 @@ You're not viewing the latest version.
 <h3 id="function-get_control_authority">function get_control_authority<a class="headerlink" href="#function-get_control_authority" title="Permanent link">&para;</a></h3>
 <p><em>Gets the control authority of the vehicle or a default value.</em> 
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="kr">inline</span><span class="w"> </span><span class="k">virtual</span><span class="w"> </span><span class="n">Perturbation</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">detail</span><span class="o">::</span><span class="n">VehicleInner</span><span class="o">::</span><span class="n">get_control_authority</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">State</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">state</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">State</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">state</span>
 </span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
 </span></code></pre></div></p>
 <p><strong>Parameters:</strong></p>
@@ -6621,10 +6621,10 @@ You're not viewing the latest version.
 
 <h3 id="function-get_control_authority_impl-12">function get_control_authority_impl [1/2]<a class="headerlink" href="#function-get_control_authority_impl-12" title="Permanent link">&para;</a></h3>
 <p><em>Gets the default thrust of the vehicle.</em> 
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w">  </span><span class="nc">U</span><span class="o">&gt;</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">U</span><span class="o">&gt;</span>
 </span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="kr">inline</span><span class="w"> </span><span class="n">Perturbation</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">detail</span><span class="o">::</span><span class="n">VehicleInner</span><span class="o">::</span><span class="n">get_control_authority_impl</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">U</span><span class="w"> </span><span class="o">&amp;</span><span class="p">,</span>
-</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">State</span><span class="w"> </span><span class="o">&amp;</span>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">U</span><span class="w"> </span><span class="o">&amp;</span><span class="p">,</span>
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">State</span><span class="w"> </span><span class="o">&amp;</span>
 </span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
 </span></code></pre></div></p>
 <p><strong>Template parameters:</strong></p>
@@ -6642,10 +6642,10 @@ You're not viewing the latest version.
 
 <h3 id="function-get_control_authority_impl-22">function get_control_authority_impl [2/2]<a class="headerlink" href="#function-get_control_authority_impl-22" title="Permanent link">&para;</a></h3>
 <p><em>Gets the thrust and torque of the vehicle.</em> 
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w">  </span><span class="nc">U</span><span class="o">&gt;</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">U</span><span class="o">&gt;</span>
 </span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="kr">inline</span><span class="w"> </span><span class="n">Perturbation</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">detail</span><span class="o">::</span><span class="n">VehicleInner</span><span class="o">::</span><span class="n">get_control_authority_impl</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">U</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">value</span><span class="p">,</span>
-</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">State</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">state</span>
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">U</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">value</span><span class="p">,</span>
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">State</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">state</span>
 </span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
 </span></code></pre></div></p>
 <p><strong>Template parameters:</strong></p>
@@ -6699,9 +6699,9 @@ You're not viewing the latest version.
 
 <h3 id="function-get_name_impl-12">function get_name_impl [1/2]<a class="headerlink" href="#function-get_name_impl-12" title="Permanent link">&para;</a></h3>
 <p><em>Gets the default name of the vehicle.</em> 
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w">  </span><span class="nc">U</span><span class="o">&gt;</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">U</span><span class="o">&gt;</span>
 </span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="kr">inline</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">detail</span><span class="o">::</span><span class="n">VehicleInner</span><span class="o">::</span><span class="n">get_name_impl</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">U</span><span class="w"> </span><span class="o">&amp;</span>
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">U</span><span class="w"> </span><span class="o">&amp;</span>
 </span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
 </span></code></pre></div></p>
 <p><strong>Returns:</strong></p>
@@ -6710,9 +6710,9 @@ You're not viewing the latest version.
 
 <h3 id="function-get_name_impl-22">function get_name_impl [2/2]<a class="headerlink" href="#function-get_name_impl-22" title="Permanent link">&para;</a></h3>
 <p><em>Gets the name of the vehicle.</em> 
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w">  </span><span class="nc">U</span><span class="o">&gt;</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">U</span><span class="o">&gt;</span>
 </span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="kr">inline</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">detail</span><span class="o">::</span><span class="n">VehicleInner</span><span class="o">::</span><span class="n">get_name_impl</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">U</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">value</span>
+</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">U</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">value</span>
 </span><span id="__span-18-4"><a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
 </span></code></pre></div></p>
 <p><strong>Template parameters:</strong></p>
@@ -6729,7 +6729,7 @@ You're not viewing the latest version.
 
 <h3 id="function-get_ptr-12">function get_ptr [1/2]<a class="headerlink" href="#function-get_ptr-12" title="Permanent link">&para;</a></h3>
 <p><em>Gets a pointer to the internal vehicle instance.</em> 
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="kr">inline</span><span class="w"> </span><span class="k">virtual</span><span class="w"> </span><span class="k">const</span><span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">detail</span><span class="o">::</span><span class="n">VehicleInner</span><span class="o">::</span><span class="n">get_ptr</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="kr">inline</span><span class="w"> </span><span class="k">virtual</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">detail</span><span class="o">::</span><span class="n">VehicleInner</span><span class="o">::</span><span class="n">get_ptr</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </span></code></pre></div></p>
 <p><strong>Returns:</strong></p>
 <p>const void* A pointer to the internal vehicle instance. </p>
@@ -6766,7 +6766,7 @@ You're not viewing the latest version.
 <h3 id="function-operator">function operator=<a class="headerlink" href="#function-operator" title="Permanent link">&para;</a></h3>
 <p><em>Deleted copy assignment operator.</em> 
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="n">VehicleInner</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">detail</span><span class="o">::</span><span class="n">VehicleInner</span><span class="o">::</span><span class="k">operator</span><span class="o">=</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">VehicleInner</span><span class="w"> </span><span class="o">&amp;</span>
+</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">VehicleInner</span><span class="w"> </span><span class="o">&amp;</span>
 </span><span id="__span-23-3"><a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">delete</span>
 </span></code></pre></div></p>
 <hr>
@@ -6790,9 +6790,9 @@ You're not viewing the latest version.
 <h2 id="public-static-functions-documentation">Public Static Functions Documentation<a class="headerlink" href="#public-static-functions-documentation" title="Permanent link">&para;</a></h2>
 <h3 id="function-get_coefficient_of_drag_impl-12">function get_coefficient_of_drag_impl [1/2]<a class="headerlink" href="#function-get_coefficient_of_drag_impl-12" title="Permanent link">&para;</a></h3>
 <p><em>Gets the default coefficient of drag of the vehicle.</em> 
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w">  </span><span class="nc">U</span><span class="o">&gt;</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">U</span><span class="o">&gt;</span>
 </span><span id="__span-26-2"><a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a><span class="k">static</span><span class="w"> </span><span class="kr">inline</span><span class="w"> </span><span class="n">Unitless</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">detail</span><span class="o">::</span><span class="n">VehicleInner</span><span class="o">::</span><span class="n">get_coefficient_of_drag_impl</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-26-3"><a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">U</span><span class="w"> </span><span class="o">&amp;</span>
+</span><span id="__span-26-3"><a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">U</span><span class="w"> </span><span class="o">&amp;</span>
 </span><span id="__span-26-4"><a id="__codelineno-26-4" name="__codelineno-26-4" href="#__codelineno-26-4"></a><span class="p">)</span><span class="w"> </span>
 </span></code></pre></div></p>
 <p><strong>Template parameters:</strong></p>
@@ -6809,9 +6809,9 @@ You're not viewing the latest version.
 
 <h3 id="function-get_coefficient_of_drag_impl-22">function get_coefficient_of_drag_impl [2/2]<a class="headerlink" href="#function-get_coefficient_of_drag_impl-22" title="Permanent link">&para;</a></h3>
 <p><em>Gets the coefficient of drag of the vehicle.</em> 
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-27-1"><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w">  </span><span class="nc">U</span><span class="o">&gt;</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-27-1"><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">U</span><span class="o">&gt;</span>
 </span><span id="__span-27-2"><a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a><span class="k">static</span><span class="w"> </span><span class="kr">inline</span><span class="w"> </span><span class="n">Unitless</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">detail</span><span class="o">::</span><span class="n">VehicleInner</span><span class="o">::</span><span class="n">get_coefficient_of_drag_impl</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-27-3"><a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">U</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">value</span>
+</span><span id="__span-27-3"><a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">U</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">value</span>
 </span><span id="__span-27-4"><a id="__codelineno-27-4" name="__codelineno-27-4" href="#__codelineno-27-4"></a><span class="p">)</span><span class="w"> </span>
 </span></code></pre></div></p>
 <p><strong>Template parameters:</strong></p>
@@ -6828,9 +6828,9 @@ You're not viewing the latest version.
 
 <h3 id="function-get_coefficient_of_lift_impl-12">function get_coefficient_of_lift_impl [1/2]<a class="headerlink" href="#function-get_coefficient_of_lift_impl-12" title="Permanent link">&para;</a></h3>
 <p><em>Gets the default coefficient of lift of the vehicle.</em> 
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-28-1"><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w">  </span><span class="nc">U</span><span class="o">&gt;</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-28-1"><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">U</span><span class="o">&gt;</span>
 </span><span id="__span-28-2"><a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a><span class="k">static</span><span class="w"> </span><span class="kr">inline</span><span class="w"> </span><span class="n">Unitless</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">detail</span><span class="o">::</span><span class="n">VehicleInner</span><span class="o">::</span><span class="n">get_coefficient_of_lift_impl</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-28-3"><a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">U</span><span class="w"> </span><span class="o">&amp;</span>
+</span><span id="__span-28-3"><a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">U</span><span class="w"> </span><span class="o">&amp;</span>
 </span><span id="__span-28-4"><a id="__codelineno-28-4" name="__codelineno-28-4" href="#__codelineno-28-4"></a><span class="p">)</span><span class="w"> </span>
 </span></code></pre></div></p>
 <p><strong>Template parameters:</strong></p>
@@ -6847,9 +6847,9 @@ You're not viewing the latest version.
 
 <h3 id="function-get_coefficient_of_lift_impl-22">function get_coefficient_of_lift_impl [2/2]<a class="headerlink" href="#function-get_coefficient_of_lift_impl-22" title="Permanent link">&para;</a></h3>
 <p><em>Gets the coefficient of lift of the vehicle.</em> 
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-29-1"><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w">  </span><span class="nc">U</span><span class="o">&gt;</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-29-1"><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">U</span><span class="o">&gt;</span>
 </span><span id="__span-29-2"><a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a><span class="k">static</span><span class="w"> </span><span class="kr">inline</span><span class="w"> </span><span class="n">Unitless</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">detail</span><span class="o">::</span><span class="n">VehicleInner</span><span class="o">::</span><span class="n">get_coefficient_of_lift_impl</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-29-3"><a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">U</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">value</span>
+</span><span id="__span-29-3"><a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">U</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">value</span>
 </span><span id="__span-29-4"><a id="__codelineno-29-4" name="__codelineno-29-4" href="#__codelineno-29-4"></a><span class="p">)</span><span class="w"> </span>
 </span></code></pre></div></p>
 <p><strong>Template parameters:</strong></p>
@@ -6866,9 +6866,9 @@ You're not viewing the latest version.
 
 <h3 id="function-get_coefficient_of_reflectivity_impl-12">function get_coefficient_of_reflectivity_impl [1/2]<a class="headerlink" href="#function-get_coefficient_of_reflectivity_impl-12" title="Permanent link">&para;</a></h3>
 <p><em>Gets the default coefficient of reflectivity of the vehicle.</em> 
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-30-1"><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w">  </span><span class="nc">U</span><span class="o">&gt;</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-30-1"><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">U</span><span class="o">&gt;</span>
 </span><span id="__span-30-2"><a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a><span class="k">static</span><span class="w"> </span><span class="kr">inline</span><span class="w"> </span><span class="n">Unitless</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">detail</span><span class="o">::</span><span class="n">VehicleInner</span><span class="o">::</span><span class="n">get_coefficient_of_reflectivity_impl</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-30-3"><a id="__codelineno-30-3" name="__codelineno-30-3" href="#__codelineno-30-3"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">U</span><span class="w"> </span><span class="o">&amp;</span>
+</span><span id="__span-30-3"><a id="__codelineno-30-3" name="__codelineno-30-3" href="#__codelineno-30-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">U</span><span class="w"> </span><span class="o">&amp;</span>
 </span><span id="__span-30-4"><a id="__codelineno-30-4" name="__codelineno-30-4" href="#__codelineno-30-4"></a><span class="p">)</span><span class="w"> </span>
 </span></code></pre></div></p>
 <p><strong>Template parameters:</strong></p>
@@ -6885,9 +6885,9 @@ You're not viewing the latest version.
 
 <h3 id="function-get_coefficient_of_reflectivity_impl-22">function get_coefficient_of_reflectivity_impl [2/2]<a class="headerlink" href="#function-get_coefficient_of_reflectivity_impl-22" title="Permanent link">&para;</a></h3>
 <p><em>Gets the coefficient of reflectivity of the vehicle.</em> 
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-31-1"><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w">  </span><span class="nc">U</span><span class="o">&gt;</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-31-1"><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">U</span><span class="o">&gt;</span>
 </span><span id="__span-31-2"><a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a><span class="k">static</span><span class="w"> </span><span class="kr">inline</span><span class="w"> </span><span class="n">Unitless</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">detail</span><span class="o">::</span><span class="n">VehicleInner</span><span class="o">::</span><span class="n">get_coefficient_of_reflectivity_impl</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-31-3"><a id="__codelineno-31-3" name="__codelineno-31-3" href="#__codelineno-31-3"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">U</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">value</span>
+</span><span id="__span-31-3"><a id="__codelineno-31-3" name="__codelineno-31-3" href="#__codelineno-31-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">U</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">value</span>
 </span><span id="__span-31-4"><a id="__codelineno-31-4" name="__codelineno-31-4" href="#__codelineno-31-4"></a><span class="p">)</span><span class="w"> </span>
 </span></code></pre></div></p>
 <p><strong>Template parameters:</strong></p>
@@ -6904,9 +6904,9 @@ You're not viewing the latest version.
 
 <h3 id="function-get_inertia_tensor_impl-12">function get_inertia_tensor_impl [1/2]<a class="headerlink" href="#function-get_inertia_tensor_impl-12" title="Permanent link">&para;</a></h3>
 <p><em>Gets the default inertia tensor of the vehicle.</em> 
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-32-1"><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w">  </span><span class="nc">U</span><span class="o">&gt;</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-32-1"><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">U</span><span class="o">&gt;</span>
 </span><span id="__span-32-2"><a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a><span class="k">static</span><span class="w"> </span><span class="kr">inline</span><span class="w"> </span><span class="n">InertiaTensor</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">frames</span><span class="o">::</span><span class="n">dynamic</span><span class="o">::</span><span class="n">body</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">detail</span><span class="o">::</span><span class="n">VehicleInner</span><span class="o">::</span><span class="n">get_inertia_tensor_impl</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-32-3"><a id="__codelineno-32-3" name="__codelineno-32-3" href="#__codelineno-32-3"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">U</span><span class="w"> </span><span class="o">&amp;</span>
+</span><span id="__span-32-3"><a id="__codelineno-32-3" name="__codelineno-32-3" href="#__codelineno-32-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">U</span><span class="w"> </span><span class="o">&amp;</span>
 </span><span id="__span-32-4"><a id="__codelineno-32-4" name="__codelineno-32-4" href="#__codelineno-32-4"></a><span class="p">)</span><span class="w"> </span>
 </span></code></pre></div></p>
 <p><strong>Template parameters:</strong></p>
@@ -6923,9 +6923,9 @@ You're not viewing the latest version.
 
 <h3 id="function-get_inertia_tensor_impl-22">function get_inertia_tensor_impl [2/2]<a class="headerlink" href="#function-get_inertia_tensor_impl-22" title="Permanent link">&para;</a></h3>
 <p><em>Gets the inertia tensor of the vehicle.</em> 
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-33-1"><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w">  </span><span class="nc">U</span><span class="o">&gt;</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-33-1"><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">U</span><span class="o">&gt;</span>
 </span><span id="__span-33-2"><a id="__codelineno-33-2" name="__codelineno-33-2" href="#__codelineno-33-2"></a><span class="k">static</span><span class="w"> </span><span class="kr">inline</span><span class="w"> </span><span class="n">InertiaTensor</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">frames</span><span class="o">::</span><span class="n">dynamic</span><span class="o">::</span><span class="n">body</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">detail</span><span class="o">::</span><span class="n">VehicleInner</span><span class="o">::</span><span class="n">get_inertia_tensor_impl</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-33-3"><a id="__codelineno-33-3" name="__codelineno-33-3" href="#__codelineno-33-3"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">U</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">value</span>
+</span><span id="__span-33-3"><a id="__codelineno-33-3" name="__codelineno-33-3" href="#__codelineno-33-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">U</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">value</span>
 </span><span id="__span-33-4"><a id="__codelineno-33-4" name="__codelineno-33-4" href="#__codelineno-33-4"></a><span class="p">)</span><span class="w"> </span>
 </span></code></pre></div></p>
 <p><strong>Template parameters:</strong></p>
@@ -6942,9 +6942,9 @@ You're not viewing the latest version.
 
 <h3 id="function-get_lift_area_impl-12">function get_lift_area_impl [1/2]<a class="headerlink" href="#function-get_lift_area_impl-12" title="Permanent link">&para;</a></h3>
 <p><em>Gets the default lift area of the vehicle.</em> 
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-34-1"><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w">  </span><span class="nc">U</span><span class="o">&gt;</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-34-1"><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">U</span><span class="o">&gt;</span>
 </span><span id="__span-34-2"><a id="__codelineno-34-2" name="__codelineno-34-2" href="#__codelineno-34-2"></a><span class="k">static</span><span class="w"> </span><span class="kr">inline</span><span class="w"> </span><span class="n">SurfaceArea</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">detail</span><span class="o">::</span><span class="n">VehicleInner</span><span class="o">::</span><span class="n">get_lift_area_impl</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-34-3"><a id="__codelineno-34-3" name="__codelineno-34-3" href="#__codelineno-34-3"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">U</span><span class="w"> </span><span class="o">&amp;</span>
+</span><span id="__span-34-3"><a id="__codelineno-34-3" name="__codelineno-34-3" href="#__codelineno-34-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">U</span><span class="w"> </span><span class="o">&amp;</span>
 </span><span id="__span-34-4"><a id="__codelineno-34-4" name="__codelineno-34-4" href="#__codelineno-34-4"></a><span class="p">)</span><span class="w"> </span>
 </span></code></pre></div></p>
 <p><strong>Template parameters:</strong></p>
@@ -6961,9 +6961,9 @@ You're not viewing the latest version.
 
 <h3 id="function-get_lift_area_impl-22">function get_lift_area_impl [2/2]<a class="headerlink" href="#function-get_lift_area_impl-22" title="Permanent link">&para;</a></h3>
 <p><em>Gets the lift area of the vehicle.</em> 
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-35-1"><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w">  </span><span class="nc">U</span><span class="o">&gt;</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-35-1"><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">U</span><span class="o">&gt;</span>
 </span><span id="__span-35-2"><a id="__codelineno-35-2" name="__codelineno-35-2" href="#__codelineno-35-2"></a><span class="k">static</span><span class="w"> </span><span class="kr">inline</span><span class="w"> </span><span class="n">SurfaceArea</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">detail</span><span class="o">::</span><span class="n">VehicleInner</span><span class="o">::</span><span class="n">get_lift_area_impl</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-35-3"><a id="__codelineno-35-3" name="__codelineno-35-3" href="#__codelineno-35-3"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">U</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">value</span>
+</span><span id="__span-35-3"><a id="__codelineno-35-3" name="__codelineno-35-3" href="#__codelineno-35-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">U</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">value</span>
 </span><span id="__span-35-4"><a id="__codelineno-35-4" name="__codelineno-35-4" href="#__codelineno-35-4"></a><span class="p">)</span><span class="w"> </span>
 </span></code></pre></div></p>
 <p><strong>Template parameters:</strong></p>
@@ -6980,9 +6980,9 @@ You're not viewing the latest version.
 
 <h3 id="function-get_ram_area_impl-12">function get_ram_area_impl [1/2]<a class="headerlink" href="#function-get_ram_area_impl-12" title="Permanent link">&para;</a></h3>
 <p><em>Gets the default ram area of the vehicle.</em> 
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-36-1"><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w">  </span><span class="nc">U</span><span class="o">&gt;</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-36-1"><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">U</span><span class="o">&gt;</span>
 </span><span id="__span-36-2"><a id="__codelineno-36-2" name="__codelineno-36-2" href="#__codelineno-36-2"></a><span class="k">static</span><span class="w"> </span><span class="kr">inline</span><span class="w"> </span><span class="n">SurfaceArea</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">detail</span><span class="o">::</span><span class="n">VehicleInner</span><span class="o">::</span><span class="n">get_ram_area_impl</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-36-3"><a id="__codelineno-36-3" name="__codelineno-36-3" href="#__codelineno-36-3"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">U</span><span class="w"> </span><span class="o">&amp;</span>
+</span><span id="__span-36-3"><a id="__codelineno-36-3" name="__codelineno-36-3" href="#__codelineno-36-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">U</span><span class="w"> </span><span class="o">&amp;</span>
 </span><span id="__span-36-4"><a id="__codelineno-36-4" name="__codelineno-36-4" href="#__codelineno-36-4"></a><span class="p">)</span><span class="w"> </span>
 </span></code></pre></div></p>
 <p><strong>Template parameters:</strong></p>
@@ -6999,9 +6999,9 @@ You're not viewing the latest version.
 
 <h3 id="function-get_ram_area_impl-22">function get_ram_area_impl [2/2]<a class="headerlink" href="#function-get_ram_area_impl-22" title="Permanent link">&para;</a></h3>
 <p><em>Gets the ram area of the vehicle.</em> 
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-37-1"><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w">  </span><span class="nc">U</span><span class="o">&gt;</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-37-1"><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">U</span><span class="o">&gt;</span>
 </span><span id="__span-37-2"><a id="__codelineno-37-2" name="__codelineno-37-2" href="#__codelineno-37-2"></a><span class="k">static</span><span class="w"> </span><span class="kr">inline</span><span class="w"> </span><span class="n">SurfaceArea</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">detail</span><span class="o">::</span><span class="n">VehicleInner</span><span class="o">::</span><span class="n">get_ram_area_impl</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-37-3"><a id="__codelineno-37-3" name="__codelineno-37-3" href="#__codelineno-37-3"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">U</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">value</span>
+</span><span id="__span-37-3"><a id="__codelineno-37-3" name="__codelineno-37-3" href="#__codelineno-37-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">U</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">value</span>
 </span><span id="__span-37-4"><a id="__codelineno-37-4" name="__codelineno-37-4" href="#__codelineno-37-4"></a><span class="p">)</span><span class="w"> </span>
 </span></code></pre></div></p>
 <p><strong>Template parameters:</strong></p>
@@ -7018,9 +7018,9 @@ You're not viewing the latest version.
 
 <h3 id="function-get_solar_area_impl-12">function get_solar_area_impl [1/2]<a class="headerlink" href="#function-get_solar_area_impl-12" title="Permanent link">&para;</a></h3>
 <p><em>Gets the default solar area of the vehicle.</em> 
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-38-1"><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w">  </span><span class="nc">U</span><span class="o">&gt;</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-38-1"><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">U</span><span class="o">&gt;</span>
 </span><span id="__span-38-2"><a id="__codelineno-38-2" name="__codelineno-38-2" href="#__codelineno-38-2"></a><span class="k">static</span><span class="w"> </span><span class="kr">inline</span><span class="w"> </span><span class="n">SurfaceArea</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">detail</span><span class="o">::</span><span class="n">VehicleInner</span><span class="o">::</span><span class="n">get_solar_area_impl</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-38-3"><a id="__codelineno-38-3" name="__codelineno-38-3" href="#__codelineno-38-3"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">U</span><span class="w"> </span><span class="o">&amp;</span>
+</span><span id="__span-38-3"><a id="__codelineno-38-3" name="__codelineno-38-3" href="#__codelineno-38-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">U</span><span class="w"> </span><span class="o">&amp;</span>
 </span><span id="__span-38-4"><a id="__codelineno-38-4" name="__codelineno-38-4" href="#__codelineno-38-4"></a><span class="p">)</span><span class="w"> </span>
 </span></code></pre></div></p>
 <p><strong>Template parameters:</strong></p>
@@ -7037,9 +7037,9 @@ You're not viewing the latest version.
 
 <h3 id="function-get_solar_area_impl-22">function get_solar_area_impl [2/2]<a class="headerlink" href="#function-get_solar_area_impl-22" title="Permanent link">&para;</a></h3>
 <p><em>Gets the solar area of the vehicle.</em> 
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-39-1"><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w">  </span><span class="nc">U</span><span class="o">&gt;</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-39-1"><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">U</span><span class="o">&gt;</span>
 </span><span id="__span-39-2"><a id="__codelineno-39-2" name="__codelineno-39-2" href="#__codelineno-39-2"></a><span class="k">static</span><span class="w"> </span><span class="kr">inline</span><span class="w"> </span><span class="n">SurfaceArea</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">detail</span><span class="o">::</span><span class="n">VehicleInner</span><span class="o">::</span><span class="n">get_solar_area_impl</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-39-3"><a id="__codelineno-39-3" name="__codelineno-39-3" href="#__codelineno-39-3"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">U</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">value</span>
+</span><span id="__span-39-3"><a id="__codelineno-39-3" name="__codelineno-39-3" href="#__codelineno-39-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">U</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">value</span>
 </span><span id="__span-39-4"><a id="__codelineno-39-4" name="__codelineno-39-4" href="#__codelineno-39-4"></a><span class="p">)</span><span class="w"> </span>
 </span></code></pre></div></p>
 <p><strong>Template parameters:</strong></p>

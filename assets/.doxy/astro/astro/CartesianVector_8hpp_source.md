@@ -15,7 +15,7 @@
 #include <typeinfo>
 
 #include <mp-units/framework.h>
-#include <mp-units/systems/angular.h>
+#include <mp-units/systems/si.h>
 
 #include <units/units.hpp>
 
@@ -225,7 +225,7 @@ struct CartesianVector {
     inline constexpr Angle offset_angle(const CartesianVector<Value_U, frame>& other) const
     {
         using namespace mp_units;
-        using namespace mp_units::angular;
+        using namespace mp_units::si;
 
         const Value_T v1Mag = norm();
         const Value_U v2Mag = other.norm();

@@ -2,7 +2,7 @@
 
 # Struct astrea::astro::LambertSolver::Solution
 
-**template &lt;IsFrame [**auto**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) \_frame\_&gt;**
+**template &lt;IsFrame auto \_frame\_&gt;**
 
 
 
@@ -38,7 +38,7 @@ _Result structure for optimal Lambert solutions._
 
 | Type | Name |
 | ---: | :--- |
-|  [**Time**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**tof**](#variable-tof)  <br>_Time of flight for the transfer._  |
+|  Time | [**tof**](#variable-tof)  <br>_Time of flight for the transfer._  |
 |  [**VelocityVector**](namespaceastrea_1_1astro.md#typedef-velocityvector)&lt; \_frame\_ &gt; | [**v0**](#variable-v0)  <br>_Initial velocity vector at r0._  |
 |  [**VelocityVector**](namespaceastrea_1_1astro.md#typedef-velocityvector)&lt; \_frame\_ &gt; | [**vf**](#variable-vf)  <br>_Final velocity vector at rf._  |
 

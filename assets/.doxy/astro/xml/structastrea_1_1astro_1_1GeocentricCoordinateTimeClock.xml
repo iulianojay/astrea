@@ -5,7 +5,7 @@
     <includes refid="GeocentricCoordinateTimeClock_8hpp" local="no">GeocentricCoordinateTimeClock.hpp</includes>
     <sectiondef kind="public-type">
       <memberdef kind="typedef" id="structastrea_1_1astro_1_1GeocentricCoordinateTimeClock_1ac30f24f50590b3f7edbfd41fcbbb6d83" prot="public" static="no">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">double</ref></type>
+        <type>double</type>
         <definition>using astrea::astro::GeocentricCoordinateTimeClock::rep =  double</definition>
         <argsstring></argsstring>
         <name>rep</name>
@@ -67,12 +67,12 @@
     </sectiondef>
     <sectiondef kind="public-static-attrib">
       <memberdef kind="variable" id="structastrea_1_1astro_1_1GeocentricCoordinateTimeClock_1af42504eb381f24c655fff088cca465a1" prot="public" static="yes" constexpr="yes" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">bool</ref></type>
+        <type>constexpr bool</type>
         <definition>constexpr bool astrea::astro::GeocentricCoordinateTimeClock::is_steady</definition>
         <argsstring></argsstring>
         <name>is_steady</name>
         <qualifiedname>astrea::astro::GeocentricCoordinateTimeClock::is_steady</qualifiedname>
-        <initializer>= <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">false</ref></initializer>
+        <initializer>= false</initializer>
         <briefdescription>
 <para>TCG is not a steady clock; it is anchored to TAI. </para>
         </briefdescription>
@@ -83,12 +83,12 @@
         <location file="astrea/astro/astro/time/clocks/GeocentricCoordinateTimeClock.hpp" line="53" column="27" bodyfile="astrea/astro/astro/time/clocks/GeocentricCoordinateTimeClock.hpp" bodystart="53" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structastrea_1_1astro_1_1GeocentricCoordinateTimeClock_1a19e43edc67f541b26be1db254e1da17e" prot="public" static="yes" constexpr="yes" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="structastrea_1_1astro_1_1GeocentricCoordinateTimeClock_1ac30f24f50590b3f7edbfd41fcbbb6d83" kindref="member">rep</ref></type>
+        <type>constexpr <ref refid="structastrea_1_1astro_1_1GeocentricCoordinateTimeClock_1ac30f24f50590b3f7edbfd41fcbbb6d83" kindref="member">rep</ref></type>
         <definition>constexpr rep astrea::astro::GeocentricCoordinateTimeClock::Lg</definition>
         <argsstring></argsstring>
         <name>Lg</name>
         <qualifiedname>astrea::astro::GeocentricCoordinateTimeClock::Lg</qualifiedname>
-        <initializer>{ 6.969290134<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e</ref>-10 }</initializer>
+        <initializer>{ 6.969290134e-10 }</initializer>
         <briefdescription>
 <para>The dimensionless constant Lg, representing the rate difference between TCG and TT. </para>
         </briefdescription>
@@ -99,7 +99,7 @@
         <location file="astrea/astro/astro/time/clocks/GeocentricCoordinateTimeClock.hpp" line="54" column="26" bodyfile="astrea/astro/astro/time/clocks/GeocentricCoordinateTimeClock.hpp" bodystart="54" bodyend="54"/>
       </memberdef>
       <memberdef kind="variable" id="structastrea_1_1astro_1_1GeocentricCoordinateTimeClock_1a1012fdd4b7260e6c27bfcb835d279b44" prot="public" static="yes" constexpr="yes" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="structastrea_1_1astro_1_1JulianDateClock_1aa78273e9b2b9f756f34e6ebf46809877" kindref="member">JulianDateClock::duration</ref></type>
+        <type>constexpr <ref refid="structastrea_1_1astro_1_1JulianDateClock_1aa78273e9b2b9f756f34e6ebf46809877" kindref="member">JulianDateClock::duration</ref></type>
         <definition>constexpr JulianDateClock::duration astrea::astro::GeocentricCoordinateTimeClock::jdRef</definition>
         <argsstring></argsstring>
         <name>jdRef</name>
@@ -118,16 +118,16 @@
       <memberdef kind="function" id="structastrea_1_1astro_1_1GeocentricCoordinateTimeClock_1add335ec5f74000a643c9100908403db1" prot="public" static="yes" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
         <templateparamlist>
           <param>
-            <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">class</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Duration</ref></type>
+            <type>class Duration</type>
           </param>
         </templateparamlist>
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+        <type>auto</type>
         <definition>static auto astrea::astro::GeocentricCoordinateTimeClock::from_sys</definition>
         <argsstring>(std::chrono::sys_time&lt; Duration &gt; const &amp;timePoint) noexcept</argsstring>
         <name>from_sys</name>
         <qualifiedname>astrea::astro::GeocentricCoordinateTimeClock::from_sys</qualifiedname>
         <param>
-          <type>std::chrono::sys_time&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Duration</ref> &gt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> &amp;</type>
+          <type>std::chrono::sys_time&lt; Duration &gt; const &amp;</type>
           <declname>timePoint</declname>
         </param>
         <briefdescription>
@@ -164,16 +164,16 @@
       <memberdef kind="function" id="structastrea_1_1astro_1_1GeocentricCoordinateTimeClock_1a56454258a626f5b36ace50e03203128d" prot="public" static="yes" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
         <templateparamlist>
           <param>
-            <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">class</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Duration</ref></type>
+            <type>class Duration</type>
           </param>
         </templateparamlist>
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+        <type>auto</type>
         <definition>static auto astrea::astro::GeocentricCoordinateTimeClock::to_sys</definition>
         <argsstring>(GeocentricCoordinateDateTime&lt; Duration &gt; const &amp;timePoint) noexcept</argsstring>
         <name>to_sys</name>
         <qualifiedname>astrea::astro::GeocentricCoordinateTimeClock::to_sys</qualifiedname>
         <param>
-          <type><ref refid="GeocentricCoordinateTimeClock_8hpp_1a87abf472e9ffa2979105d0e311a70acc" kindref="member">GeocentricCoordinateDateTime</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Duration</ref> &gt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> &amp;</type>
+          <type><ref refid="GeocentricCoordinateTimeClock_8hpp_1a87abf472e9ffa2979105d0e311a70acc" kindref="member">GeocentricCoordinateDateTime</ref>&lt; Duration &gt; const &amp;</type>
           <declname>timePoint</declname>
         </param>
         <briefdescription>

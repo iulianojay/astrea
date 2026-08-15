@@ -17,7 +17,7 @@
 #include <units/units.hpp>
 
 #include <astro/astro.fwd.hpp>
-#include <astro/frames/definitions/dynamic_frames.hpp>
+#include <astro/frames/definitions/dynamic_frames/tags.hpp>
 
 namespace astrea {
 namespace trace {
@@ -38,7 +38,7 @@ class FieldOfView {
         const astro::CartesianVector<Distance, astro::frames::earth::icrf>& target
     ) const = 0;
 
-    virtual Angle max_half_angle() const { return std::numbers::pi / 2.0 * mp_units::angular::unit_symbols::rad; }
+    virtual Angle max_half_angle() const { return std::numbers::pi / 2.0 * mp_units::si::unit_symbols::rad; }
 };
 
 } // namespace trace

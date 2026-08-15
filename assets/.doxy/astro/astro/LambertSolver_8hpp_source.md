@@ -57,8 +57,8 @@ class LambertSolver {
     {
 
         using namespace mp_units;
-        using namespace mp_units::angular;
-        using mp_units::angular::unit_symbols::rad;
+        using namespace mp_units::si;
+        using mp_units::si::unit_symbols::rad;
 
         // Parse initial state
         const RadiusVector<_frame_> r0   = state0.get_position();
@@ -127,9 +127,9 @@ class LambertSolver {
     {
 
         using namespace mp_units;
-        using namespace mp_units::angular;
-        using mp_units::angular::unit_symbols::rad;
+        using namespace mp_units::si;
         using mp_units::si::unit_symbols::km;
+        using mp_units::si::unit_symbols::rad;
 
         // Constants
         const Distance R0   = r0.norm();
@@ -200,9 +200,9 @@ class LambertSolver {
     {
 
         using namespace mp_units;
-        using namespace mp_units::angular;
-        using mp_units::angular::unit_symbols::rad;
+        using namespace mp_units::si;
         using mp_units::si::unit_symbols::km;
+        using mp_units::si::unit_symbols::rad;
 
         const Distance R0   = r0.norm();
         const Distance Rf   = rf.norm();
@@ -261,8 +261,8 @@ class LambertSolver {
 
         // t_me = √(s³/8μ) · (π ∓ β₀ ± sin(β₀))
         const Time baseTime = sqrt(pow<3>(s) / (8.0 * mu));
-        const Time tof = (dtheta <= onePi) ? baseTime * (onePi / isq_angle::cotes_angle - beta0U + sinBeta0) : // short arc
-                             baseTime * (onePi / isq_angle::cotes_angle + beta0U - sinBeta0); // long arc
+        const Time tof      = (dtheta <= onePi) ? baseTime * (onePi / rad - beta0U + sinBeta0) : // short arc
+                                             baseTime * (onePi / rad + beta0U - sinBeta0);                  // long arc
 
         // Delegate to the existing r & r solver using the computed minimum-energy time
         const auto [v0Result, vfResult] = LambertSolver::solve(r0, rf, tof, mu, direction);
@@ -284,9 +284,9 @@ class LambertSolver {
     {
 
         using namespace mp_units;
-        using namespace mp_units::angular;
-        using mp_units::angular::unit_symbols::rad;
+        using namespace mp_units::si;
         using mp_units::si::unit_symbols::km;
+        using mp_units::si::unit_symbols::rad;
 
         if (N == 0) { throw std::invalid_argument("LambertSolver: N must be >= 1 for multi-rev solve"); }
 
@@ -317,7 +317,7 @@ class LambertSolver {
 
         auto T = [&](Unitless x) -> Unitless {
             const Unitless sig = sqrt(1.0 * one - lambdaSq * x * x);
-            return (NN * std::numbers::pi + atan2(sig, x) / isq_angle::cotes_angle - lambda * x * sig) / (1.0 - x * x);
+            return (NN * std::numbers::pi + atan2(sig, x) / rad - lambda * x * sig) / (1.0 - x * x);
         };
 
         auto dT = [&](Unitless x, Unitless Tx) -> Unitless {

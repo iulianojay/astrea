@@ -3,9 +3,9 @@
   <compounddef id="classastrea_1_1astro_1_1StateTransitionMatrix" kind="class" language="C++" prot="public">
     <compoundname>astrea::astro::StateTransitionMatrix</compoundname>
     <sectiondef kind="private-attrib">
-      <memberdef kind="variable" id="classastrea_1_1astro_1_1StateTransitionMatrix_1aaed05090c0895d2228562fa1dc588e96" prot="private" static="no" mutable="no">
-        <type>std::array&lt; std::array&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Unitless</ref>, 6 &gt;, 6 &gt;</type>
-        <definition>std::array&lt;std::array&lt;Unitless, 6&gt;, 6&gt; astrea::astro::StateTransitionMatrix::_stm</definition>
+      <memberdef kind="variable" id="classastrea_1_1astro_1_1StateTransitionMatrix_1a4d18d9064c7e4e00bdcba3ee51d930e4" prot="private" static="no" mutable="no">
+        <type>std::array&lt; std::array&lt; double, 6 &gt;, 6 &gt;</type>
+        <definition>std::array&lt;std::array&lt;double, 6&gt;, 6&gt; astrea::astro::StateTransitionMatrix::_stm</definition>
         <argsstring></argsstring>
         <name>_stm</name>
         <qualifiedname>astrea::astro::StateTransitionMatrix::_stm</qualifiedname>
@@ -56,15 +56,15 @@
         <name>StateTransitionMatrix</name>
         <qualifiedname>astrea::astro::StateTransitionMatrix::StateTransitionMatrix</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1EquationsOfMotion" kindref="compound">EquationsOfMotion</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1EquationsOfMotion" kindref="compound">EquationsOfMotion</ref> &amp;</type>
           <declname>eom</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
           <declname>state</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Vehicle" kindref="compound">Vehicle</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Vehicle" kindref="compound">Vehicle</ref> &amp;</type>
           <declname>vehicle</declname>
         </param>
         <briefdescription>
@@ -112,7 +112,7 @@
 <para>df/dsi = f(s + dsi) - f(s) / dsi units = (OEP - OEP)/OEi = OEP/OEi -&gt; i.e. [da/dt]/[a], [de/dt]/[a], [di/dt]/[a], [dOmega/dt]/[a], [domega/dt]/[a], [dM/dt]/[a]</para>
 <para>It might be possible to use fancy metaprogramming to deduce the units of each element based on the element type but that seems like a huge headache. For now, we force the elements into unitless quantities, converted using their underlying units, and then force a conversion back. This makes this function implicity unsafe from a unit perspective.</para>
         </inbodydescription>
-        <location file="astrea/astro/astro/propagation/equations_of_motion/StateTransitionMatrix.hpp" line="53" column="5" bodyfile="astrea/astro/astro/propagation/equations_of_motion/StateTransitionMatrix.cpp" bodystart="13" bodyend="60"/>
+        <location file="astrea/astro/astro/propagation/equations_of_motion/StateTransitionMatrix.hpp" line="53" column="5" bodyfile="astrea/astro/astro/propagation/equations_of_motion/StateTransitionMatrix.cpp" bodystart="13" bodyend="61"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1StateTransitionMatrix_1afe1cd0d1fb45a1ad503ae1c48c8e51cc" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
@@ -132,13 +132,13 @@
             <defname>Value_T</defname>
           </param>
         </templateparamlist>
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">void</ref></type>
+        <type>void</type>
         <definition>void astrea::astro::StateTransitionMatrix::set</definition>
         <argsstring>(const Value_T &amp;value)</argsstring>
         <name>set</name>
         <qualifiedname>astrea::astro::StateTransitionMatrix::set</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Value_T</ref> &amp;</type>
+          <type>const Value_T &amp;</type>
           <declname>value</declname>
         </param>
         <briefdescription>
@@ -179,12 +179,12 @@
         </inbodydescription>
         <location file="astrea/astro/astro/propagation/equations_of_motion/StateTransitionMatrix.hpp" line="66" column="10" bodyfile="astrea/astro/astro/propagation/equations_of_motion/StateTransitionMatrix.hpp" bodystart="66" bodyend="69"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1astro_1_1StateTransitionMatrix_1a33291a0dcf21fc12b71953a9a0e9d650" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
-        <type>std::vector&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Unitless</ref> &gt;</type>
-        <definition>std::vector&lt; Unitless &gt; astrea::astro::StateTransitionMatrix::force_to_vector</definition>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1StateTransitionMatrix_1a8d4f0be2e427f8c8831b26e2c46d6abc" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; double &gt;</type>
+        <definition>std::vector&lt; double &gt; astrea::astro::StateTransitionMatrix::force_to_double_vector</definition>
         <argsstring>() const</argsstring>
-        <name>force_to_vector</name>
-        <qualifiedname>astrea::astro::StateTransitionMatrix::force_to_vector</qualifiedname>
+        <name>force_to_double_vector</name>
+        <qualifiedname>astrea::astro::StateTransitionMatrix::force_to_double_vector</qualifiedname>
         <briefdescription>
 <para>Convert the STM to a vector of unitless quantities. </para>
         </briefdescription>
@@ -195,7 +195,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/propagation/equations_of_motion/StateTransitionMatrix.hpp" line="76" column="17" bodyfile="astrea/astro/astro/propagation/equations_of_motion/StateTransitionMatrix.cpp" bodystart="63" bodyend="72"/>
+        <location file="astrea/astro/astro/propagation/equations_of_motion/StateTransitionMatrix.hpp" line="76" column="17" bodyfile="astrea/astro/astro/propagation/equations_of_motion/StateTransitionMatrix.cpp" bodystart="64" bodyend="73"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
@@ -204,8 +204,8 @@
     </detaileddescription>
     <location file="astrea/astro/astro/propagation/equations_of_motion/StateTransitionMatrix.hpp" line="32" column="1" bodyfile="astrea/astro/astro/propagation/equations_of_motion/StateTransitionMatrix.hpp" bodystart="32" bodyend="80"/>
     <listofallmembers>
-      <member refid="classastrea_1_1astro_1_1StateTransitionMatrix_1aaed05090c0895d2228562fa1dc588e96" prot="private" virt="non-virtual"><scope>astrea::astro::StateTransitionMatrix</scope><name>_stm</name></member>
-      <member refid="classastrea_1_1astro_1_1StateTransitionMatrix_1a33291a0dcf21fc12b71953a9a0e9d650" prot="public" virt="non-virtual"><scope>astrea::astro::StateTransitionMatrix</scope><name>force_to_vector</name></member>
+      <member refid="classastrea_1_1astro_1_1StateTransitionMatrix_1a4d18d9064c7e4e00bdcba3ee51d930e4" prot="private" virt="non-virtual"><scope>astrea::astro::StateTransitionMatrix</scope><name>_stm</name></member>
+      <member refid="classastrea_1_1astro_1_1StateTransitionMatrix_1a8d4f0be2e427f8c8831b26e2c46d6abc" prot="public" virt="non-virtual"><scope>astrea::astro::StateTransitionMatrix</scope><name>force_to_double_vector</name></member>
       <member refid="classastrea_1_1astro_1_1StateTransitionMatrix_1afe1cd0d1fb45a1ad503ae1c48c8e51cc" prot="public" virt="non-virtual"><scope>astrea::astro::StateTransitionMatrix</scope><name>set</name></member>
       <member refid="classastrea_1_1astro_1_1StateTransitionMatrix_1a29c0bd90a12c66a7dfb452e2a1df900a" prot="public" virt="non-virtual"><scope>astrea::astro::StateTransitionMatrix</scope><name>StateTransitionMatrix</name></member>
       <member refid="classastrea_1_1astro_1_1StateTransitionMatrix_1a9db62e445b1f4c98f9eba317321dd5dd" prot="public" virt="non-virtual"><scope>astrea::astro::StateTransitionMatrix</scope><name>StateTransitionMatrix</name></member>

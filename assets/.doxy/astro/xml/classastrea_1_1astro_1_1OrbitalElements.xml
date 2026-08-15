@@ -23,7 +23,7 @@
     </sectiondef>
     <sectiondef kind="friend">
       <memberdef kind="friend" id="classastrea_1_1astro_1_1OrbitalElements_1acb390a49b18fb67071d138253f801962" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">class</ref></type>
+        <type>class</type>
         <definition>friend class StateTransitionMatrix</definition>
         <argsstring></argsstring>
         <name>StateTransitionMatrix</name>
@@ -40,7 +40,7 @@
         <location file="astrea/astro/astro/state/orbital_elements/OrbitalElements.hpp" line="104" column="18" bodyfile="astrea/astro/astro/state/orbital_elements/OrbitalElements.hpp" bodystart="104" bodyend="-1"/>
       </memberdef>
       <memberdef kind="friend" id="classastrea_1_1astro_1_1OrbitalElements_1a7edbf9e31116a21e4e18cd2dd004ae63" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">class</ref></type>
+        <type>class</type>
         <definition>friend class State</definition>
         <argsstring></argsstring>
         <name>State</name>
@@ -67,7 +67,7 @@
           <declname>os</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1OrbitalElements" kindref="compound">OrbitalElements</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1OrbitalElements" kindref="compound">OrbitalElements</ref> &amp;</type>
           <declname>state</declname>
         </param>
         <briefdescription>
@@ -81,7 +81,7 @@
     </sectiondef>
     <sectiondef kind="private-attrib">
       <memberdef kind="variable" id="classastrea_1_1astro_1_1OrbitalElements_1ad21b1bade65545900e4f1e5ac06b67b4" prot="private" static="no" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">ElementVariant</ref></type>
+        <type>ElementVariant</type>
         <definition>ElementVariant astrea::astro::OrbitalElements::_elements</definition>
         <argsstring></argsstring>
         <name>_elements</name>
@@ -115,7 +115,7 @@
       <memberdef kind="function" id="classastrea_1_1astro_1_1OrbitalElements_1a3c466e5f6256953c26ceac698f736809" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
-            <type>IsFrame <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+            <type>IsFrame auto</type>
             <declname>frame</declname>
             <defname>frame</defname>
           </param>
@@ -152,7 +152,7 @@
       <memberdef kind="function" id="classastrea_1_1astro_1_1OrbitalElements_1a1977442620fe96035fed4ae236a7ba78" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
-            <type>IsFrame <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+            <type>IsFrame auto</type>
             <declname>frame</declname>
             <defname>frame</defname>
           </param>
@@ -189,7 +189,7 @@
       <memberdef kind="function" id="classastrea_1_1astro_1_1OrbitalElements_1aa380adac762911a922391f5e245a22ac" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
-            <type>IsFrame <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+            <type>IsFrame auto</type>
             <declname>frame</declname>
             <defname>frame</defname>
           </param>
@@ -230,11 +230,11 @@
         <name>convert_to_set</name>
         <qualifiedname>astrea::astro::OrbitalElements::convert_to_set</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> std::size_t</type>
+          <type>const std::size_t</type>
           <declname>idx</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">GravParam</ref> &amp;</type>
+          <type>const GravParam &amp;</type>
           <declname>mu</declname>
         </param>
         <briefdescription>
@@ -274,11 +274,11 @@
         <name>convert_to_set</name>
         <qualifiedname>astrea::astro::OrbitalElements::convert_to_set</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> std::size_t</type>
+          <type>const std::size_t</type>
           <declname>idx</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">GravParam</ref> &amp;</type>
+          <type>const GravParam &amp;</type>
           <declname>mu</declname>
         </param>
         <briefdescription>
@@ -325,7 +325,7 @@
         <name>convert_to_set</name>
         <qualifiedname>astrea::astro::OrbitalElements::convert_to_set</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">GravParam</ref> &amp;</type>
+          <type>const GravParam &amp;</type>
           <declname>mu</declname>
         </param>
         <briefdescription>
@@ -372,7 +372,7 @@
         <name>convert_to_set</name>
         <qualifiedname>astrea::astro::OrbitalElements::convert_to_set</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">GravParam</ref> &amp;</type>
+          <type>const GravParam &amp;</type>
           <declname>mu</declname>
         </param>
         <briefdescription>
@@ -413,13 +413,13 @@
             <defname>T</defname>
           </param>
         </templateparamlist>
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">T</ref></type>
+        <type>T</type>
         <definition>T astrea::astro::OrbitalElements::in_element_set</definition>
         <argsstring>(const GravParam &amp;mu) const</argsstring>
         <name>in_element_set</name>
         <qualifiedname>astrea::astro::OrbitalElements::in_element_set</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">GravParam</ref> &amp;</type>
+          <type>const GravParam &amp;</type>
           <declname>mu</declname>
         </param>
         <briefdescription>
@@ -444,13 +444,13 @@
         <location file="astrea/astro/astro/state/orbital_elements/OrbitalElements.hpp" line="204" column="7" bodyfile="astrea/astro/astro/state/orbital_elements/OrbitalElements.hpp" bodystart="204" bodyend="207"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1OrbitalElements_1a59d9745c85da7f6520af68fddefb2167" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">bool</ref></type>
+        <type>bool</type>
         <definition>bool astrea::astro::OrbitalElements::operator==</definition>
         <argsstring>(const OrbitalElements &amp;other) const</argsstring>
         <name>operator==</name>
         <qualifiedname>astrea::astro::OrbitalElements::operator==</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1OrbitalElements" kindref="compound">OrbitalElements</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1OrbitalElements" kindref="compound">OrbitalElements</ref> &amp;</type>
           <declname>other</declname>
         </param>
         <briefdescription>
@@ -483,7 +483,7 @@
         <name>operator+</name>
         <qualifiedname>astrea::astro::OrbitalElements::operator+</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1OrbitalElements" kindref="compound">OrbitalElements</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1OrbitalElements" kindref="compound">OrbitalElements</ref> &amp;</type>
           <declname>other</declname>
         </param>
         <briefdescription>
@@ -514,7 +514,7 @@
         <name>operator+=</name>
         <qualifiedname>astrea::astro::OrbitalElements::operator+=</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1OrbitalElements" kindref="compound">OrbitalElements</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1OrbitalElements" kindref="compound">OrbitalElements</ref> &amp;</type>
           <declname>other</declname>
         </param>
         <briefdescription>
@@ -545,7 +545,7 @@
         <name>operator-</name>
         <qualifiedname>astrea::astro::OrbitalElements::operator-</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1OrbitalElements" kindref="compound">OrbitalElements</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1OrbitalElements" kindref="compound">OrbitalElements</ref> &amp;</type>
           <declname>other</declname>
         </param>
         <briefdescription>
@@ -576,7 +576,7 @@
         <name>operator-=</name>
         <qualifiedname>astrea::astro::OrbitalElements::operator-=</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1OrbitalElements" kindref="compound">OrbitalElements</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1OrbitalElements" kindref="compound">OrbitalElements</ref> &amp;</type>
           <declname>other</declname>
         </param>
         <briefdescription>
@@ -607,7 +607,7 @@
         <name>operator*</name>
         <qualifiedname>astrea::astro::OrbitalElements::operator*</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Unitless</ref> &amp;</type>
+          <type>const Unitless &amp;</type>
           <declname>multiplier</declname>
         </param>
         <briefdescription>
@@ -638,7 +638,7 @@
         <name>operator*=</name>
         <qualifiedname>astrea::astro::OrbitalElements::operator*=</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Unitless</ref> &amp;</type>
+          <type>const Unitless &amp;</type>
           <declname>multiplier</declname>
         </param>
         <briefdescription>
@@ -669,7 +669,7 @@
         <name>operator/</name>
         <qualifiedname>astrea::astro::OrbitalElements::operator/</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Time</ref> &amp;</type>
+          <type>const Time &amp;</type>
           <declname>divisor</declname>
         </param>
         <briefdescription>
@@ -693,12 +693,12 @@
         </inbodydescription>
         <location file="astrea/astro/astro/state/orbital_elements/OrbitalElements.hpp" line="272" column="28" bodyfile="astrea/astro/astro/state/orbital_elements/OrbitalElements.cpp" bodystart="115" bodyend="118"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1astro_1_1OrbitalElements_1a40d6d7c20b85e1760d57e79ca289481b" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
-        <type>std::vector&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Unitless</ref> &gt;</type>
-        <definition>std::vector&lt; Unitless &gt; astrea::astro::OrbitalElements::force_to_vector</definition>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1OrbitalElements_1a5b61d5ce5697bbe2a91f18ee7bd520f0" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; double &gt;</type>
+        <definition>std::vector&lt; double &gt; astrea::astro::OrbitalElements::force_to_double_vector</definition>
         <argsstring>() const</argsstring>
-        <name>force_to_vector</name>
-        <qualifiedname>astrea::astro::OrbitalElements::force_to_vector</qualifiedname>
+        <name>force_to_double_vector</name>
+        <qualifiedname>astrea::astro::OrbitalElements::force_to_double_vector</qualifiedname>
         <briefdescription>
 <para>Converts the <ref refid="classastrea_1_1astro_1_1OrbitalElements" kindref="compound">OrbitalElements</ref> to a vector of Unitless values. </para>
         </briefdescription>
@@ -718,7 +718,7 @@
         <name>operator/</name>
         <qualifiedname>astrea::astro::OrbitalElements::operator/</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Unitless</ref> &amp;</type>
+          <type>const Unitless &amp;</type>
           <declname>divisor</declname>
         </param>
         <briefdescription>
@@ -749,7 +749,7 @@
         <name>operator/=</name>
         <qualifiedname>astrea::astro::OrbitalElements::operator/=</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Unitless</ref> &amp;</type>
+          <type>const Unitless &amp;</type>
           <declname>divisor</declname>
         </param>
         <briefdescription>
@@ -780,23 +780,23 @@
         <name>interpolate</name>
         <qualifiedname>astrea::astro::OrbitalElements::interpolate</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Time</ref> &amp;</type>
+          <type>const Time &amp;</type>
           <declname>thisTime</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Time</ref> &amp;</type>
+          <type>const Time &amp;</type>
           <declname>otherTime</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1OrbitalElements" kindref="compound">OrbitalElements</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1OrbitalElements" kindref="compound">OrbitalElements</ref> &amp;</type>
           <declname>other</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">GravParam</ref> &amp;</type>
+          <type>const GravParam &amp;</type>
           <declname>mu</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Time</ref> &amp;</type>
+          <type>const Time &amp;</type>
           <declname>targetTime</declname>
         </param>
         <briefdescription>
@@ -853,7 +853,7 @@
         <location file="astrea/astro/astro/state/orbital_elements/OrbitalElements.hpp" line="308" column="9" bodyfile="astrea/astro/astro/state/orbital_elements/OrbitalElements.cpp" bodystart="135" bodyend="147"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1OrbitalElements_1a1964362f60e826ab7e7621c71969d559" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">ElementVariant</ref> &amp;</type>
+        <type>const ElementVariant &amp;</type>
         <definition>const OrbitalElements::ElementVariant &amp; astrea::astro::OrbitalElements::extract</definition>
         <argsstring>() const</argsstring>
         <name>extract</name>
@@ -871,7 +871,7 @@
         <location file="astrea/astro/astro/state/orbital_elements/OrbitalElements.hpp" line="315" column="26" bodyfile="astrea/astro/astro/state/orbital_elements/OrbitalElements.cpp" bodystart="149" bodyend="149"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1OrbitalElements_1a0e5e68d3905e2dccccd1149d330c26b0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">ElementVariant</ref> &amp;</type>
+        <type>ElementVariant &amp;</type>
         <definition>OrbitalElements::ElementVariant &amp; astrea::astro::OrbitalElements::extract</definition>
         <argsstring>()</argsstring>
         <name>extract</name>
@@ -889,7 +889,7 @@
         <location file="astrea/astro/astro/state/orbital_elements/OrbitalElements.hpp" line="322" column="20" bodyfile="astrea/astro/astro/state/orbital_elements/OrbitalElements.cpp" bodystart="150" bodyend="150"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1OrbitalElements_1a32a48f9f832fa6d820b43924bb0d5272" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> std::size_t</type>
+        <type>constexpr std::size_t</type>
         <definition>constexpr std::size_t astrea::astro::OrbitalElements::index</definition>
         <argsstring>() const</argsstring>
         <name>index</name>
@@ -909,7 +909,7 @@
       <memberdef kind="function" id="classastrea_1_1astro_1_1OrbitalElements_1ad5be7e7d831984c9202a6d8ce981b896" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
-            <type>IsFrame <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+            <type>IsFrame auto</type>
             <declname>target_frame</declname>
             <defname>target_frame</defname>
           </param>
@@ -920,11 +920,11 @@
         <name>in_frame</name>
         <qualifiedname>astrea::astro::OrbitalElements::in_frame</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
           <declname>epoch</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">GravParam</ref> &amp;</type>
+          <type>const GravParam &amp;</type>
           <declname>mu</declname>
         </param>
         <briefdescription>
@@ -971,10 +971,10 @@
       <memberdef kind="function" id="classastrea_1_1astro_1_1OrbitalElements_1a2cdb1edc459bb6412476b774db3942bc" prot="public" static="yes" constexpr="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
-            <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">typename</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">T</ref></type>
+            <type>typename T</type>
           </param>
         </templateparamlist>
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> std::size_t</type>
+        <type>constexpr std::size_t</type>
         <definition>static constexpr std::size_t astrea::astro::OrbitalElements::get_set_id</definition>
         <argsstring>()</argsstring>
         <name>get_set_id</name>
@@ -1009,11 +1009,11 @@
         <name>convert_to_set_impl</name>
         <qualifiedname>astrea::astro::OrbitalElements::convert_to_set_impl</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> std::size_t</type>
+          <type>const std::size_t</type>
           <declname>idx</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">GravParam</ref> &amp;</type>
+          <type>const GravParam &amp;</type>
           <declname>mu</declname>
         </param>
         <briefdescription>
@@ -1047,18 +1047,18 @@
       </memberdef>
     </sectiondef>
     <sectiondef kind="private-static-func">
-      <memberdef kind="function" id="classastrea_1_1astro_1_1OrbitalElements_1a1a01b2961fef768955c03a71056790aa" prot="private" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="classastrea_1_1astro_1_1OrbitalElements_1aab8e8bc03acad897c32e219304da6c1c" prot="private" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classastrea_1_1astro_1_1OrbitalElements" kindref="compound">OrbitalElements</ref></type>
-        <definition>OrbitalElements astrea::astro::OrbitalElements::from_vector</definition>
-        <argsstring>(const std::vector&lt; Unitless &gt; &amp;vec, const std::size_t idx)</argsstring>
-        <name>from_vector</name>
-        <qualifiedname>astrea::astro::OrbitalElements::from_vector</qualifiedname>
+        <definition>OrbitalElements astrea::astro::OrbitalElements::from_double_vector</definition>
+        <argsstring>(const std::vector&lt; double &gt; &amp;vec, const std::size_t idx)</argsstring>
+        <name>from_double_vector</name>
+        <qualifiedname>astrea::astro::OrbitalElements::from_double_vector</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> std::vector&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Unitless</ref> &gt; &amp;</type>
+          <type>const std::vector&lt; double &gt; &amp;</type>
           <declname>vec</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> std::size_t</type>
+          <type>const std::size_t</type>
           <declname>idx</declname>
         </param>
         <briefdescription>
@@ -1108,8 +1108,8 @@
       <member refid="classastrea_1_1astro_1_1OrbitalElements_1a8ec3edd31e70e18ca577d61b5815500f" prot="private" virt="non-virtual"><scope>astrea::astro::OrbitalElements</scope><name>ElementVariant</name></member>
       <member refid="classastrea_1_1astro_1_1OrbitalElements_1a1964362f60e826ab7e7621c71969d559" prot="public" virt="non-virtual"><scope>astrea::astro::OrbitalElements</scope><name>extract</name></member>
       <member refid="classastrea_1_1astro_1_1OrbitalElements_1a0e5e68d3905e2dccccd1149d330c26b0" prot="public" virt="non-virtual"><scope>astrea::astro::OrbitalElements</scope><name>extract</name></member>
-      <member refid="classastrea_1_1astro_1_1OrbitalElements_1a40d6d7c20b85e1760d57e79ca289481b" prot="public" virt="non-virtual"><scope>astrea::astro::OrbitalElements</scope><name>force_to_vector</name></member>
-      <member refid="classastrea_1_1astro_1_1OrbitalElements_1a1a01b2961fef768955c03a71056790aa" prot="private" virt="non-virtual"><scope>astrea::astro::OrbitalElements</scope><name>from_vector</name></member>
+      <member refid="classastrea_1_1astro_1_1OrbitalElements_1a5b61d5ce5697bbe2a91f18ee7bd520f0" prot="public" virt="non-virtual"><scope>astrea::astro::OrbitalElements</scope><name>force_to_double_vector</name></member>
+      <member refid="classastrea_1_1astro_1_1OrbitalElements_1aab8e8bc03acad897c32e219304da6c1c" prot="private" virt="non-virtual"><scope>astrea::astro::OrbitalElements</scope><name>from_double_vector</name></member>
       <member refid="classastrea_1_1astro_1_1OrbitalElements_1a2cdb1edc459bb6412476b774db3942bc" prot="public" virt="non-virtual"><scope>astrea::astro::OrbitalElements</scope><name>get_set_id</name></member>
       <member refid="classastrea_1_1astro_1_1OrbitalElements_1afd5fabef62ad4862b2ff7c76c0166ae9" prot="public" virt="non-virtual"><scope>astrea::astro::OrbitalElements</scope><name>in_element_set</name></member>
       <member refid="classastrea_1_1astro_1_1OrbitalElements_1ad5be7e7d831984c9202a6d8ce981b896" prot="public" virt="non-virtual"><scope>astrea::astro::OrbitalElements</scope><name>in_frame</name></member>

@@ -11,7 +11,7 @@
 
 
 * `#include <astro/propagation/event_detection/events/ImpulsiveBurn.hpp>`
-* `#include <mp-units/systems/angular.h>`
+* `#include <mp-units/systems/si.h>`
 * `#include <astro/platforms/Vehicle.hpp>`
 * `#include <astro/platforms/thrusters/Thruster.hpp>`
 * `#include <astro/platforms/vehicles/Spacecraft.hpp>`

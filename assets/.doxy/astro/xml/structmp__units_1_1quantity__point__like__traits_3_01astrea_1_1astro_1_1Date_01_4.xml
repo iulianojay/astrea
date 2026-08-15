@@ -18,7 +18,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/time/Date.hpp" line="311" column="5" bodyfile="astrea/astro/astro/time/Date.hpp" bodystart="311" bodyend="-1"/>
+        <location file="astrea/astro/astro/time/Date.hpp" line="326" column="5" bodyfile="astrea/astro/astro/time/Date.hpp" bodystart="326" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="public-static-attrib">
@@ -35,7 +35,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/time/Date.hpp" line="307" column="27" bodyfile="astrea/astro/astro/time/Date.hpp" bodystart="307" bodyend="-1"/>
+        <location file="astrea/astro/astro/time/Date.hpp" line="322" column="27" bodyfile="astrea/astro/astro/time/Date.hpp" bodystart="322" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structmp__units_1_1quantity__point__like__traits_3_01astrea_1_1astro_1_1Date_01_4_1a9277da33ffd3f9a933cfe354c651faef" prot="public" static="yes" constexpr="yes" mutable="no">
         <type>constexpr auto</type>
@@ -50,7 +50,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/time/Date.hpp" line="308" column="27" bodyfile="astrea/astro/astro/time/Date.hpp" bodystart="308" bodyend="-1"/>
+        <location file="astrea/astro/astro/time/Date.hpp" line="323" column="27" bodyfile="astrea/astro/astro/time/Date.hpp" bodystart="323" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structmp__units_1_1quantity__point__like__traits_3_01astrea_1_1astro_1_1Date_01_4_1a5e2ef30d470b76eedb4397ba807edef0" prot="public" static="yes" constexpr="yes" mutable="no">
         <type>constexpr bool</type>
@@ -65,7 +65,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/time/Date.hpp" line="309" column="27" bodyfile="astrea/astro/astro/time/Date.hpp" bodystart="309" bodyend="-1"/>
+        <location file="astrea/astro/astro/time/Date.hpp" line="324" column="27" bodyfile="astrea/astro/astro/time/Date.hpp" bodystart="324" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structmp__units_1_1quantity__point__like__traits_3_01astrea_1_1astro_1_1Date_01_4_1ac8f6709955f4c2d800da02402cf588de" prot="public" static="yes" constexpr="yes" mutable="no">
         <type>constexpr bool</type>
@@ -80,7 +80,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/time/Date.hpp" line="310" column="27" bodyfile="astrea/astro/astro/time/Date.hpp" bodystart="310" bodyend="-1"/>
+        <location file="astrea/astro/astro/time/Date.hpp" line="325" column="27" bodyfile="astrea/astro/astro/time/Date.hpp" bodystart="325" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="public-static-func">
@@ -100,7 +100,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/time/Date.hpp" line="312" column="26" bodyfile="astrea/astro/astro/time/Date.hpp" bodystart="312" bodyend="312"/>
+        <location file="astrea/astro/astro/time/Date.hpp" line="327" column="26" bodyfile="astrea/astro/astro/time/Date.hpp" bodystart="327" bodyend="327"/>
       </memberdef>
       <memberdef kind="function" id="structmp__units_1_1quantity__point__like__traits_3_01astrea_1_1astro_1_1Date_01_4_1ade3f8b426d278abbbeaec5a8a733974a" prot="public" static="yes" constexpr="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>constexpr <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">astrea::astro::Date</ref></type>
@@ -118,7 +118,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/time/Date.hpp" line="313" column="42" bodyfile="astrea/astro/astro/time/Date.hpp" bodystart="313" bodyend="318"/>
+        <location file="astrea/astro/astro/time/Date.hpp" line="328" column="42" bodyfile="astrea/astro/astro/time/Date.hpp" bodystart="328" bodyend="333"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
@@ -127,7 +127,7 @@
     <detaileddescription>
 <para>This specialization provides the necessary traits for using Date with mp-units. </para>
     </detaileddescription>
-    <location file="astrea/astro/astro/time/Date.hpp" line="306" column="1" bodyfile="astrea/astro/astro/time/Date.hpp" bodystart="306" bodyend="319"/>
+    <location file="astrea/astro/astro/time/Date.hpp" line="321" column="1" bodyfile="astrea/astro/astro/time/Date.hpp" bodystart="321" bodyend="334"/>
     <listofallmembers>
       <member refid="structmp__units_1_1quantity__point__like__traits_3_01astrea_1_1astro_1_1Date_01_4_1ac8f6709955f4c2d800da02402cf588de" prot="public" virt="non-virtual"><scope>mp_units::quantity_point_like_traits&lt; astrea::astro::Date &gt;</scope><name>explicit_export</name></member>
       <member refid="structmp__units_1_1quantity__point__like__traits_3_01astrea_1_1astro_1_1Date_01_4_1a5e2ef30d470b76eedb4397ba807edef0" prot="public" virt="non-virtual"><scope>mp_units::quantity_point_like_traits&lt; astrea::astro::Date &gt;</scope><name>explicit_import</name></member>

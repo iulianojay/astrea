@@ -11,29 +11,29 @@
         <defname>_name_</defname>
       </param>
       <param>
-        <type>IsOrigin <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+        <type>IsOrigin auto</type>
         <declname>_origin_</declname>
         <defname>_origin_</defname>
       </param>
       <param>
-        <type>IsAxis <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+        <type>IsAxis auto</type>
         <declname>_axis_</declname>
         <defname>_axis_</defname>
       </param>
       <param>
-        <type>IsFrame <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+        <type>IsFrame auto</type>
         <declname>_parent_</declname>
         <defname>_parent_</defname>
       </param>
     </templateparamlist>
     <sectiondef kind="public-static-attrib">
       <memberdef kind="variable" id="structastrea_1_1astro_1_1Frame_3_01__name___00_01__origin___00_01__axis___00_01__parent___01_4_1ad5d123a676d2c6226833358a3ac03d97" prot="public" static="yes" constexpr="yes" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+        <type>constexpr auto</type>
         <definition>constexpr auto astrea::astro::Frame&lt; _name_, _origin_, _axis_, _parent_ &gt;::name</definition>
         <argsstring></argsstring>
         <name>name</name>
         <qualifiedname>astrea::astro::Frame&lt; _name_, _origin_, _axis_, _parent_ &gt;::name</qualifiedname>
-        <initializer>= <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_name_</ref></initializer>
+        <initializer>= _name_</initializer>
         <briefdescription>
 <para>The name of the frame. </para>
         </briefdescription>
@@ -44,12 +44,12 @@
         <location file="astrea/astro/astro/frames/framework/Frame.hpp" line="86" column="27" bodyfile="astrea/astro/astro/frames/framework/Frame.hpp" bodystart="86" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structastrea_1_1astro_1_1Frame_3_01__name___00_01__origin___00_01__axis___00_01__parent___01_4_1ad8f85c059e09ae1682f64df401fa363f" prot="public" static="yes" constexpr="yes" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+        <type>constexpr auto</type>
         <definition>constexpr auto astrea::astro::Frame&lt; _name_, _origin_, _axis_, _parent_ &gt;::origin</definition>
         <argsstring></argsstring>
         <name>origin</name>
         <qualifiedname>astrea::astro::Frame&lt; _name_, _origin_, _axis_, _parent_ &gt;::origin</qualifiedname>
-        <initializer>= <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_origin_</ref></initializer>
+        <initializer>= _origin_</initializer>
         <briefdescription>
 <para>The central body associated with the frame. </para>
         </briefdescription>
@@ -60,12 +60,12 @@
         <location file="astrea/astro/astro/frames/framework/Frame.hpp" line="87" column="27" bodyfile="astrea/astro/astro/frames/framework/Frame.hpp" bodystart="87" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structastrea_1_1astro_1_1Frame_3_01__name___00_01__origin___00_01__axis___00_01__parent___01_4_1acd03b854d755e186f19ea6290da3c2c5" prot="public" static="yes" constexpr="yes" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+        <type>constexpr auto</type>
         <definition>constexpr auto astrea::astro::Frame&lt; _name_, _origin_, _axis_, _parent_ &gt;::axis</definition>
         <argsstring></argsstring>
         <name>axis</name>
         <qualifiedname>astrea::astro::Frame&lt; _name_, _origin_, _axis_, _parent_ &gt;::axis</qualifiedname>
-        <initializer>= <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_axis_</ref></initializer>
+        <initializer>= _axis_</initializer>
         <briefdescription>
 <para>The axis type of the frame. </para>
         </briefdescription>
@@ -76,12 +76,12 @@
         <location file="astrea/astro/astro/frames/framework/Frame.hpp" line="88" column="27" bodyfile="astrea/astro/astro/frames/framework/Frame.hpp" bodystart="88" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structastrea_1_1astro_1_1Frame_3_01__name___00_01__origin___00_01__axis___00_01__parent___01_4_1af99a49a25b434eaf16afc26e42a42eea" prot="public" static="yes" constexpr="yes" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+        <type>constexpr auto</type>
         <definition>constexpr auto astrea::astro::Frame&lt; _name_, _origin_, _axis_, _parent_ &gt;::parent</definition>
         <argsstring></argsstring>
         <name>parent</name>
         <qualifiedname>astrea::astro::Frame&lt; _name_, _origin_, _axis_, _parent_ &gt;::parent</qualifiedname>
-        <initializer>= <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_parent_</ref></initializer>
+        <initializer>= _parent_</initializer>
         <briefdescription>
 <para>The parent frame of this frame. </para>
         </briefdescription>

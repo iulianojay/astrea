@@ -5,9 +5,9 @@
     <includes local="no">numbers</includes>
     <includes local="no">unordered_map</includes>
     <includes local="no">mp-units/math.h</includes>
-    <includes local="no">mp-units/systems/angular/math.h</includes>
+    <includes local="no">mp-units/systems/si/math.h</includes>
     <includes local="no">astro/astro.fwd.hpp</includes>
-    <includes local="no">astro/frames/definitions/dynamic_frames.hpp</includes>
+    <includes local="no">astro/frames/definitions/dynamic_frames/tags.hpp</includes>
     <includes local="no">units/units.hpp</includes>
     <includes refid="FieldOfView_8hpp" local="no">trace/platforms/sensors/fov/FieldOfView.hpp</includes>
     <includedby refid="analysis_8cpp" local="no">astrea/trace/trace/analysis/analysis.cpp</includedby>
@@ -52,13 +52,13 @@
         <label>astro/astro.fwd.hpp</label>
       </node>
       <node id="7">
-        <label>astro/frames/definitions/dynamic_frames.hpp</label>
+        <label>astro/frames/definitions/dynamic_frames/tags.hpp</label>
       </node>
       <node id="4">
         <label>mp-units/math.h</label>
       </node>
       <node id="5">
-        <label>mp-units/systems/angular/math.h</label>
+        <label>mp-units/systems/si/math.h</label>
       </node>
       <node id="2">
         <label>numbers</label>
@@ -97,10 +97,10 @@
 <codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;unordered_map&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="23"><highlight class="normal"></highlight></codeline>
 <codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;mp-units/math.h&gt;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;mp-units/systems/angular/math.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;mp-units/systems/si/math.h&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="26"><highlight class="normal"></highlight></codeline>
 <codeline lineno="27"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;astro/astro.fwd.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="28"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;astro/frames/definitions/dynamic_frames.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;astro/frames/definitions/dynamic_frames/tags.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="29"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;units/units.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="30"><highlight class="normal"></highlight></codeline>
 <codeline lineno="31"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="FieldOfView_8hpp" kindref="compound">trace/platforms/sensors/fov/FieldOfView.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
@@ -110,7 +110,7 @@
 <codeline lineno="35"><highlight class="normal"></highlight></codeline>
 <codeline lineno="41" refid="classastrea_1_1trace_1_1CircularFieldOfView" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classastrea_1_1trace_1_1CircularFieldOfView" kindref="compound">CircularFieldOfView</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1trace_1_1FieldOfView" kindref="compound">FieldOfView</ref><sp/>{</highlight></codeline>
 <codeline lineno="42"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
-<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1trace_1_1CircularFieldOfView" kindref="compound">CircularFieldOfView</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Angle&amp;<sp/>halfConeAngle<sp/>=<sp/>std::numbers::pi<sp/>/<sp/>4.0<sp/>*<sp/>mp_units::angular::unit_symbols::rad);</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1trace_1_1CircularFieldOfView" kindref="compound">CircularFieldOfView</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Angle&amp;<sp/>halfConeAngle<sp/>=<sp/>std::numbers::pi<sp/>/<sp/>4.0<sp/>*<sp/>mp_units::si::unit_symbols::rad);</highlight></codeline>
 <codeline lineno="49"><highlight class="normal"></highlight></codeline>
 <codeline lineno="53" refid="classastrea_1_1trace_1_1CircularFieldOfView_1af5553e9b512fcf92a1a8c27ce761bc59" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1trace_1_1CircularFieldOfView_1af5553e9b512fcf92a1a8c27ce761bc59" kindref="member">~CircularFieldOfView</ref>()<sp/>=<sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="54"><highlight class="normal"></highlight></codeline>

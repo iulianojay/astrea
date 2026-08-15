@@ -1,0 +1,179 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="structastrea_1_1astro_1_1TopocentricFrame" kind="struct" language="C++" prot="public">
+    <compoundname>astrea::astro::TopocentricFrame</compoundname>
+    <basecompoundref refid="structastrea_1_1astro_1_1FixedOffsetFrame" prot="public" virt="non-virtual">astrea::astro::FixedOffsetFrame&lt; _name_, _parent_, get_x_offset_from_lla&lt; _parent_, _lat_, _lon_, _alt_ &gt;(), get_y_offset_from_lla&lt; _parent_, _lat_, _lon_, _alt_ &gt;(), get_z_offset_from_lla&lt; _parent_, _lat_, _lon_, _alt_ &gt;(), Angle(90.0 *mp_units::si::degree), _lat_, _lon_, RotationSequence::ZYX &gt;</basecompoundref>
+    <includes refid="TopocentricFrame_8hpp" local="no">TopocentricFrame.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>mp_units::symbol_text</type>
+        <declname>_name_</declname>
+        <defname>_name_</defname>
+      </param>
+      <param>
+        <type>IsBodyFixedFrame auto</type>
+        <declname>_parent_</declname>
+        <defname>_parent_</defname>
+      </param>
+      <param>
+        <type>Angle</type>
+        <declname>_lat_</declname>
+        <defname>_lat_</defname>
+      </param>
+      <param>
+        <type>Angle</type>
+        <declname>_lon_</declname>
+        <defname>_lon_</defname>
+      </param>
+      <param>
+        <type>Distance</type>
+        <declname>_alt_</declname>
+        <defname>_alt_</defname>
+      </param>
+    </templateparamlist>
+    <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="structastrea_1_1astro_1_1TopocentricFrame_1acf376a7ce3af0d41e6236bf4550ea048" prot="public" static="yes" constexpr="yes" mutable="no">
+        <type>constexpr auto</type>
+        <definition>constexpr auto astrea::astro::TopocentricFrame&lt; _name_, _parent_, _lat_, _lon_, _alt_ &gt;::lat</definition>
+        <argsstring></argsstring>
+        <name>lat</name>
+        <qualifiedname>astrea::astro::TopocentricFrame::lat</qualifiedname>
+        <initializer>= _lat_</initializer>
+        <briefdescription>
+<para>The latitude of the topocentric frame relative to the parent body. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/frames/framework/TopocentricFrame.hpp" line="107" column="27" bodyfile="astrea/astro/astro/frames/framework/TopocentricFrame.hpp" bodystart="107" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structastrea_1_1astro_1_1TopocentricFrame_1ad43fea10a958320654473a600b756fc5" prot="public" static="yes" constexpr="yes" mutable="no">
+        <type>constexpr auto</type>
+        <definition>constexpr auto astrea::astro::TopocentricFrame&lt; _name_, _parent_, _lat_, _lon_, _alt_ &gt;::lon</definition>
+        <argsstring></argsstring>
+        <name>lon</name>
+        <qualifiedname>astrea::astro::TopocentricFrame::lon</qualifiedname>
+        <initializer>= _lon_</initializer>
+        <briefdescription>
+<para>The longitude of the topocentric frame relative to the parent body. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/frames/framework/TopocentricFrame.hpp" line="108" column="27" bodyfile="astrea/astro/astro/frames/framework/TopocentricFrame.hpp" bodystart="108" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structastrea_1_1astro_1_1TopocentricFrame_1ab82dfd9be8d7f184f3e1c54926a41ddd" prot="public" static="yes" constexpr="yes" mutable="no">
+        <type>constexpr auto</type>
+        <definition>constexpr auto astrea::astro::TopocentricFrame&lt; _name_, _parent_, _lat_, _lon_, _alt_ &gt;::alt</definition>
+        <argsstring></argsstring>
+        <name>alt</name>
+        <qualifiedname>astrea::astro::TopocentricFrame::alt</qualifiedname>
+        <initializer>= _alt_</initializer>
+        <briefdescription>
+<para>The altitude of the topocentric frame relative to the parent body. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/frames/framework/TopocentricFrame.hpp" line="109" column="27" bodyfile="astrea/astro/astro/frames/framework/TopocentricFrame.hpp" bodystart="109" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structastrea_1_1astro_1_1TopocentricFrame_1a2f2b824a1666852a22e0b38be06218df" prot="public" static="yes" constexpr="yes" mutable="no">
+        <type>constexpr auto</type>
+        <definition>constexpr auto astrea::astro::TopocentricFrame&lt; _name_, _parent_, _lat_, _lon_, _alt_ &gt;::body</definition>
+        <argsstring></argsstring>
+        <name>body</name>
+        <qualifiedname>astrea::astro::TopocentricFrame::body</qualifiedname>
+        <initializer>= _parent_.origin</initializer>
+        <briefdescription>
+<para>The celestial body associated with the parent body-fixed frame. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/frames/framework/TopocentricFrame.hpp" line="110" column="27" bodyfile="astrea/astro/astro/frames/framework/TopocentricFrame.hpp" bodystart="110" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>A frame that is topocentric to a given body, defined relative to some body-fixed frame by a specific latitude, longitude, and altitude. </para>
+    </briefdescription>
+    <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>_name_</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The name of the topocentric frame. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>_parent_</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parent body-fixed frame from which this topocentric frame is derived. Must satisfy the IsBodyFixedFrame concept. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>_lat_</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The latitude in the parent frame. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>_lon_</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The longitude in the parent frame. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>_alt_</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The altitude in the parent frame. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>astrea::astro::FixedOffsetFrame&lt; _name_, _parent_, get_x_offset_from_lla&lt; _parent_, _lat_, _lon_, _alt_ &gt;(), get_y_offset_from_lla&lt; _parent_, _lat_, _lon_, _alt_ &gt;(), get_z_offset_from_lla&lt; _parent_, _lat_, _lon_, _alt_ &gt;(), Angle(90.0 *mp_units::si::degree), _lat_, _lon_, RotationSequence::ZYX &gt;</label>
+        <link refid="structastrea_1_1astro_1_1FixedOffsetFrame"/>
+      </node>
+      <node id="1">
+        <label>astrea::astro::TopocentricFrame&lt; _name_, _parent_, _lat_, _lon_, _alt_ &gt;</label>
+        <link refid="structastrea_1_1astro_1_1TopocentricFrame"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>astrea::astro::FixedOffsetFrame&lt; _name_, _parent_, get_x_offset_from_lla&lt; _parent_, _lat_, _lon_, _alt_ &gt;(), get_y_offset_from_lla&lt; _parent_, _lat_, _lon_, _alt_ &gt;(), get_z_offset_from_lla&lt; _parent_, _lat_, _lon_, _alt_ &gt;(), Angle(90.0 *mp_units::si::degree), _lat_, _lon_, RotationSequence::ZYX &gt;</label>
+        <link refid="structastrea_1_1astro_1_1FixedOffsetFrame"/>
+      </node>
+      <node id="1">
+        <label>astrea::astro::TopocentricFrame&lt; _name_, _parent_, _lat_, _lon_, _alt_ &gt;</label>
+        <link refid="structastrea_1_1astro_1_1TopocentricFrame"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="astrea/astro/astro/frames/framework/TopocentricFrame.hpp" line="96" column="1" bodyfile="astrea/astro/astro/frames/framework/TopocentricFrame.hpp" bodystart="105" bodyend="111"/>
+    <listofallmembers>
+      <member refid="structastrea_1_1astro_1_1TopocentricFrame_1ab82dfd9be8d7f184f3e1c54926a41ddd" prot="public" virt="non-virtual"><scope>astrea::astro::TopocentricFrame</scope><name>alt</name></member>
+      <member refid="structastrea_1_1astro_1_1TopocentricFrame_1a2f2b824a1666852a22e0b38be06218df" prot="public" virt="non-virtual"><scope>astrea::astro::TopocentricFrame</scope><name>body</name></member>
+      <member refid="structastrea_1_1astro_1_1TopocentricFrame_1acf376a7ce3af0d41e6236bf4550ea048" prot="public" virt="non-virtual"><scope>astrea::astro::TopocentricFrame</scope><name>lat</name></member>
+      <member refid="structastrea_1_1astro_1_1TopocentricFrame_1ad43fea10a958320654473a600b756fc5" prot="public" virt="non-virtual"><scope>astrea::astro::TopocentricFrame</scope><name>lon</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

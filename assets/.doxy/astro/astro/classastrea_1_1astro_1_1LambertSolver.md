@@ -72,10 +72,10 @@ _Class for solving Lambert's problem._ [More...](#detailed-description)
 
 | Type | Name |
 | ---: | :--- |
-|  [**Cartesian**](classastrea_1_1astro_1_1Cartesian.md)&lt; \_frame\_ &gt; | [**solve**](#function-solve-14) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Cartesian**](classastrea_1_1astro_1_1Cartesian.md)&lt; \_frame\_ &gt; & state0, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Time**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & dt, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**GravParam**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & mu) <br>_Solve Lambert's problem for a given initial and final state. Returns the minimum energy solution._  |
-|  std::pair&lt; [**VelocityVector**](namespaceastrea_1_1astro.md#typedef-velocityvector)&lt; \_frame\_ &gt;, [**VelocityVector**](namespaceastrea_1_1astro.md#typedef-velocityvector)&lt; \_frame\_ &gt; &gt; | [**solve**](#function-solve-24) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**RadiusVector**](namespaceastrea_1_1astro.md#typedef-radiusvector)&lt; \_frame\_ &gt; & r0, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**RadiusVector**](namespaceastrea_1_1astro.md#typedef-radiusvector)&lt; \_frame\_ &gt; & rf, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Time**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & dt, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**GravParam**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & mu, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**OrbitDirection**](classastrea_1_1astro_1_1LambertSolver.md#enum-orbitdirection) & direction) <br>_Solve Lambert's problem for a given initial and final state. Returns the minimum energy solution._  |
-|  [**Solution**](structastrea_1_1astro_1_1LambertSolver_1_1Solution.md)&lt; \_frame\_ &gt; | [**solve**](#function-solve-34) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**RadiusVector**](namespaceastrea_1_1astro.md#typedef-radiusvector)&lt; \_frame\_ &gt; & r0, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**RadiusVector**](namespaceastrea_1_1astro.md#typedef-radiusvector)&lt; \_frame\_ &gt; & rf, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**GravParam**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & mu, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**OrbitDirection**](classastrea_1_1astro_1_1LambertSolver.md#enum-orbitdirection) & direction, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**SolutionType**](classastrea_1_1astro_1_1LambertSolver.md#enum-solutiontype) & solutionType) <br>_Solve Lambert's problem for an optimal trajectory without a fixed time of flight._  |
-|  std::pair&lt; [**VelocityVector**](namespaceastrea_1_1astro.md#typedef-velocityvector)&lt; \_frame\_ &gt;, [**VelocityVector**](namespaceastrea_1_1astro.md#typedef-velocityvector)&lt; \_frame\_ &gt; &gt; | [**solve**](#function-solve-44) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**RadiusVector**](namespaceastrea_1_1astro.md#typedef-radiusvector)&lt; \_frame\_ &gt; & r0, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**RadiusVector**](namespaceastrea_1_1astro.md#typedef-radiusvector)&lt; \_frame\_ &gt; & rf, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Time**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & dt, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**GravParam**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & mu, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**OrbitDirection**](classastrea_1_1astro_1_1LambertSolver.md#enum-orbitdirection) & direction, [**unsigned**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) N, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**MultiRevBranch**](classastrea_1_1astro_1_1LambertSolver.md#enum-multirevbranch) & branch) <br>_Solve Lambert's problem for a multi-revolution transfer with a fixed time of flight._  |
+|  [**Cartesian**](classastrea_1_1astro_1_1Cartesian.md)&lt; \_frame\_ &gt; | [**solve**](#function-solve-14) (const [**Cartesian**](classastrea_1_1astro_1_1Cartesian.md)&lt; \_frame\_ &gt; & state0, const Time & dt, const GravParam & mu) <br>_Solve Lambert's problem for a given initial and final state. Returns the minimum energy solution._  |
+|  std::pair&lt; [**VelocityVector**](namespaceastrea_1_1astro.md#typedef-velocityvector)&lt; \_frame\_ &gt;, [**VelocityVector**](namespaceastrea_1_1astro.md#typedef-velocityvector)&lt; \_frame\_ &gt; &gt; | [**solve**](#function-solve-24) (const [**RadiusVector**](namespaceastrea_1_1astro.md#typedef-radiusvector)&lt; \_frame\_ &gt; & r0, const [**RadiusVector**](namespaceastrea_1_1astro.md#typedef-radiusvector)&lt; \_frame\_ &gt; & rf, const Time & dt, const GravParam & mu, const [**OrbitDirection**](classastrea_1_1astro_1_1LambertSolver.md#enum-orbitdirection) & direction) <br>_Solve Lambert's problem for a given initial and final state. Returns the minimum energy solution._  |
+|  [**Solution**](structastrea_1_1astro_1_1LambertSolver_1_1Solution.md)&lt; \_frame\_ &gt; | [**solve**](#function-solve-34) (const [**RadiusVector**](namespaceastrea_1_1astro.md#typedef-radiusvector)&lt; \_frame\_ &gt; & r0, const [**RadiusVector**](namespaceastrea_1_1astro.md#typedef-radiusvector)&lt; \_frame\_ &gt; & rf, const GravParam & mu, const [**OrbitDirection**](classastrea_1_1astro_1_1LambertSolver.md#enum-orbitdirection) & direction, const [**SolutionType**](classastrea_1_1astro_1_1LambertSolver.md#enum-solutiontype) & solutionType) <br>_Solve Lambert's problem for an optimal trajectory without a fixed time of flight._  |
+|  std::pair&lt; [**VelocityVector**](namespaceastrea_1_1astro.md#typedef-velocityvector)&lt; \_frame\_ &gt;, [**VelocityVector**](namespaceastrea_1_1astro.md#typedef-velocityvector)&lt; \_frame\_ &gt; &gt; | [**solve**](#function-solve-44) (const [**RadiusVector**](namespaceastrea_1_1astro.md#typedef-radiusvector)&lt; \_frame\_ &gt; & r0, const [**RadiusVector**](namespaceastrea_1_1astro.md#typedef-radiusvector)&lt; \_frame\_ &gt; & rf, const Time & dt, const GravParam & mu, const [**OrbitDirection**](classastrea_1_1astro_1_1LambertSolver.md#enum-orbitdirection) & direction, unsigned N, const [**MultiRevBranch**](classastrea_1_1astro_1_1LambertSolver.md#enum-multirevbranch) & branch) <br>_Solve Lambert's problem for a multi-revolution transfer with a fixed time of flight._  |
 
 
 
@@ -215,9 +215,9 @@ _Solve Lambert's problem for a given initial and final state. Returns the minimu
 ```C++
 template<IsFrame auto _frame_>
 static inline Cartesian < _frame_ > astrea::astro::LambertSolver::solve (
-    const  Cartesian < _frame_ > & state0,
-    const  Time & dt,
-    const  GravParam & mu
+    const Cartesian < _frame_ > & state0,
+    const Time & dt,
+    const GravParam & mu
 ) 
 ```
 
@@ -254,11 +254,11 @@ _Solve Lambert's problem for a given initial and final state. Returns the minimu
 ```C++
 template<IsFrame auto _frame_>
 static inline std::pair< VelocityVector < _frame_ >, VelocityVector < _frame_ > > astrea::astro::LambertSolver::solve (
-    const  RadiusVector < _frame_ > & r0,
-    const  RadiusVector < _frame_ > & rf,
-    const  Time & dt,
-    const  GravParam & mu,
-    const  OrbitDirection & direction
+    const RadiusVector < _frame_ > & r0,
+    const RadiusVector < _frame_ > & rf,
+    const Time & dt,
+    const GravParam & mu,
+    const OrbitDirection & direction
 ) 
 ```
 
@@ -297,11 +297,11 @@ _Solve Lambert's problem for an optimal trajectory without a fixed time of fligh
 ```C++
 template<IsFrame auto _frame_>
 static inline Solution < _frame_ > astrea::astro::LambertSolver::solve (
-    const  RadiusVector < _frame_ > & r0,
-    const  RadiusVector < _frame_ > & rf,
-    const  GravParam & mu,
-    const  OrbitDirection & direction,
-    const  SolutionType & solutionType
+    const RadiusVector < _frame_ > & r0,
+    const RadiusVector < _frame_ > & rf,
+    const GravParam & mu,
+    const OrbitDirection & direction,
+    const SolutionType & solutionType
 ) 
 ```
 
@@ -340,13 +340,13 @@ _Solve Lambert's problem for a multi-revolution transfer with a fixed time of fl
 ```C++
 template<IsFrame auto _frame_>
 static inline std::pair< VelocityVector < _frame_ >, VelocityVector < _frame_ > > astrea::astro::LambertSolver::solve (
-    const  RadiusVector < _frame_ > & r0,
-    const  RadiusVector < _frame_ > & rf,
-    const  Time & dt,
-    const  GravParam & mu,
-    const  OrbitDirection & direction,
+    const RadiusVector < _frame_ > & r0,
+    const RadiusVector < _frame_ > & rf,
+    const Time & dt,
+    const GravParam & mu,
+    const OrbitDirection & direction,
     unsigned N,
-    const  MultiRevBranch & branch
+    const MultiRevBranch & branch
 ) 
 ```
 

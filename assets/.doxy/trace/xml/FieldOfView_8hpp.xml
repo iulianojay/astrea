@@ -6,7 +6,7 @@
     <includes local="no">unordered_map</includes>
     <includes local="no">units/units.hpp</includes>
     <includes local="no">astro/astro.fwd.hpp</includes>
-    <includes local="no">astro/frames/definitions/dynamic_frames.hpp</includes>
+    <includes local="no">astro/frames/definitions/dynamic_frames/tags.hpp</includes>
     <includedby refid="Sensor_8hpp" local="no">astrea/trace/trace/platforms/sensors/Sensor.hpp</includedby>
     <includedby refid="CircularFieldOfView_8hpp" local="no">astrea/trace/trace/platforms/sensors/fov/CircularFieldOfView.hpp</includedby>
     <includedby refid="FieldOfView_8cpp" local="no">astrea/trace/trace/platforms/sensors/fov/FieldOfView.cpp</includedby>
@@ -31,7 +31,7 @@
         <label>astro/astro.fwd.hpp</label>
       </node>
       <node id="6">
-        <label>astro/frames/definitions/dynamic_frames.hpp</label>
+        <label>astro/frames/definitions/dynamic_frames/tags.hpp</label>
       </node>
       <node id="2">
         <label>numbers</label>
@@ -138,7 +138,7 @@
 </simplesect>
 <simplesect kind="date"><para>2025-08-03</para>
 </simplesect>
-<simplesect kind="copyright"><para>Copyright (c) 2025 Jay Iuliano</para>
+<simplesect kind="copyright"><para>Copyright (c) 2025-2026 Jay Iuliano</para>
 </simplesect>
 The GNU Lesser General Public License (LGPL)</para>
 <para>This file is part of Astrea. Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. Astrea is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details. You should have received a copy of the GNU General Public License along with Astrea. If not, see <ulink url="https://www.gnu.org/licenses/">https://www.gnu.org/licenses/</ulink>. </para>
@@ -153,7 +153,7 @@ The GNU Lesser General Public License (LGPL)</para>
 <codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;units/units.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="25"><highlight class="normal"></highlight></codeline>
 <codeline lineno="26"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;astro/astro.fwd.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="27"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;astro/frames/definitions/dynamic_frames.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;astro/frames/definitions/dynamic_frames/tags.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="28"><highlight class="normal"></highlight></codeline>
 <codeline lineno="29"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">astrea<sp/>{</highlight></codeline>
 <codeline lineno="30"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">trace<sp/>{</highlight></codeline>
@@ -174,7 +174,7 @@ The GNU Lesser General Public License (LGPL)</para>
 <codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>astro::CartesianVector&lt;Distance,<sp/>astro::frames::earth::icrf&gt;&amp;<sp/>target</highlight></codeline>
 <codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/>)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>=<sp/>0;</highlight></codeline>
 <codeline lineno="75"><highlight class="normal"></highlight></codeline>
-<codeline lineno="84" refid="classastrea_1_1trace_1_1FieldOfView_1aecfc83f0135def39939cce4108753388" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/>Angle<sp/><ref refid="classastrea_1_1trace_1_1FieldOfView_1aecfc83f0135def39939cce4108753388" kindref="member">max_half_angle</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>std::numbers::pi<sp/>/<sp/>2.0<sp/>*<sp/>mp_units::angular::unit_symbols::rad;<sp/>}</highlight></codeline>
+<codeline lineno="84" refid="classastrea_1_1trace_1_1FieldOfView_1aecfc83f0135def39939cce4108753388" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/>Angle<sp/><ref refid="classastrea_1_1trace_1_1FieldOfView_1aecfc83f0135def39939cce4108753388" kindref="member">max_half_angle</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>std::numbers::pi<sp/>/<sp/>2.0<sp/>*<sp/>mp_units::si::unit_symbols::rad;<sp/>}</highlight></codeline>
 <codeline lineno="85"><highlight class="normal">};</highlight></codeline>
 <codeline lineno="86"><highlight class="normal"></highlight></codeline>
 <codeline lineno="87"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>trace</highlight><highlight class="normal"></highlight></codeline>

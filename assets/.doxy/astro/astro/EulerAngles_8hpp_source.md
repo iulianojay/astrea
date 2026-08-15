@@ -172,21 +172,26 @@ class EulerAngles {
 
     DirectionCosineMatrix<_in_frame_, _out_frame_> to_dcm() const
     {
-        // Extrinsic sequences are applied in the order they are specified, while intrinsic sequences are applied in reverse order
-        static constexpr bool isIntrinsic = (rotation_type == RotationType::INTRINSIC);
-
-        const Angle& first  = _angles[isIntrinsic ? 2 : 0];
-        const Angle& second = _angles[1];
-        const Angle& third  = _angles[isIntrinsic ? 0 : 2];
-
-        return DirectionCosineMatrix<_in_frame_, _out_frame_>::template from_euler_angles<sequence>(first, second, third);
+        // Intrinsic sequences are applied directly in the order they are specified (the static DCM factories
+        // implement the intrinsic composition convention: R_seq0(a) * R_seq1(b) * R_seq2(c)).
+        // Extrinsic sequences are equivalent to the reverse sequence applied intrinsically with the angles in
+        // reverse order (e.g. extrinsic XYZ(a,b,c) == intrinsic ZYX(c,b,a)), so we dispatch to the reverse
+        // sequence's factory with the angle order reversed.
+        if constexpr (rotation_type == RotationType::INTRINSIC) {
+            return DirectionCosineMatrix<_in_frame_, _out_frame_>::template from_euler_angles<sequence>(_angles[0], _angles[1], _angles[2]);
+        }
+        else {
+            return DirectionCosineMatrix<_in_frame_, _out_frame_>::template from_euler_angles<get_reverse_sequence(sequence)>(
+                _angles[2], _angles[1], _angles[0]
+            );
+        }
     }
 
     template <RotationType rotation_u>
         requires(rotation_type != rotation_u)
     EulerAngles<get_reverse_sequence(sequence), rotation_u, _in_frame_, _out_frame_> to_rotation_type() const
     {
-        return { _angles };
+        return { _angles.reverse() };
     }
 
     template <RotationType rotation_u>
@@ -314,9 +319,11 @@ class EulerAngles {
 
     Angle norm() const { return _angles.norm(); }
 
-    std::vector<Unitless> force_to_vector() const
+    std::vector<double> force_to_double_vector() const
     {
-        return { _angles[0] / _angles[0].unit, _angles[1] / _angles[1].unit, _angles[2] / _angles[2].unit };
+        return { _angles[0].numerical_value_in(_angles[0].unit),
+                 _angles[1].numerical_value_in(_angles[1].unit),
+                 _angles[2].numerical_value_in(_angles[2].unit) };
     }
 
     EulerAngles<sequence, rotation_type, _in_frame_, _out_frame_> interpolate(
@@ -339,9 +346,9 @@ class EulerAngles {
         _angles[2] = wrap_angle(_angles[2]);       // ψ - [0, 2π)
     }
 
-    static EulerAngles<sequence, rotation_type, _in_frame_, _out_frame_> from_vector(const std::vector<Unitless>& vec)
+    static EulerAngles<sequence, rotation_type, _in_frame_, _out_frame_> from_double_vector(const std::vector<double>& vec)
     {
-        using mp_units::angular::unit_symbols::rad;
+        using mp_units::si::unit_symbols::rad;
 
         if (vec.size() != 3) {
             throw std::invalid_argument("Input vector must have exactly 3 components to convert to an EulerAngles.");

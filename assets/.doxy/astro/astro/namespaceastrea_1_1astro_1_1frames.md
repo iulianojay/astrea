@@ -78,6 +78,8 @@
 | struct | [**EastNorthUpTag**](structastrea_1_1astro_1_1frames_1_1EastNorthUpTag.md) &lt;\_parent\_&gt;<br>[_**Frame**_](structastrea_1_1astro_1_1Frame.md) _tag type for_[_**EastNorthUp**_](structastrea_1_1astro_1_1frames_1_1EastNorthUp.md) _, defined outside the class to allow use as a_[_**DynamicFrame**_](structastrea_1_1astro_1_1DynamicFrame.md) _NTTP._ |
 | struct | [**LocalHorizontalLocalVertical**](structastrea_1_1astro_1_1frames_1_1LocalHorizontalLocalVertical.md) &lt;\_parent\_&gt;<br>_Class representing the Local Horizontal, Local Vertical (LVLH) frame._  |
 | struct | [**LvlhTag**](structastrea_1_1astro_1_1frames_1_1LvlhTag.md) &lt;\_parent\_&gt;<br>[_**Frame**_](structastrea_1_1astro_1_1Frame.md) _tag type for_[_**LocalHorizontalLocalVertical**_](structastrea_1_1astro_1_1frames_1_1LocalHorizontalLocalVertical.md) _, defined outside the class to allow use as a_[_**DynamicFrame**_](structastrea_1_1astro_1_1DynamicFrame.md) _NTTP._ |
+| struct | [**Perifocal**](structastrea_1_1astro_1_1frames_1_1Perifocal.md) &lt;\_parent\_&gt;<br>_Class representing the_ [_**Perifocal**_](structastrea_1_1astro_1_1frames_1_1Perifocal.md) _(PQW) frame: P towards periapsis, W along the angular momentum vector, and Q completing the right-handed triad in the orbital plane._ |
+| struct | [**PerifocalTag**](structastrea_1_1astro_1_1frames_1_1PerifocalTag.md) &lt;\_parent\_&gt;<br>[_**Frame**_](structastrea_1_1astro_1_1Frame.md) _tag type for_[_**Perifocal**_](structastrea_1_1astro_1_1frames_1_1Perifocal.md) _, defined outside the class to allow use as a_[_**DynamicFrame**_](structastrea_1_1astro_1_1DynamicFrame.md) _NTTP._ |
 | struct | [**RadialInTrackCrossTrack**](structastrea_1_1astro_1_1frames_1_1RadialInTrackCrossTrack.md) &lt;\_parent\_&gt;<br>_Class representing the Radial, In-Track, Cross-Track (RIC) frame._  |
 | struct | [**RicTag**](structastrea_1_1astro_1_1frames_1_1RicTag.md) &lt;\_parent\_&gt;<br>[_**Frame**_](structastrea_1_1astro_1_1Frame.md) _tag type for_[_**RadialInTrackCrossTrack**_](structastrea_1_1astro_1_1frames_1_1RadialInTrackCrossTrack.md) _, defined outside the class to allow use as a_[_**DynamicFrame**_](structastrea_1_1astro_1_1DynamicFrame.md) _NTTP._ |
 | struct | [**VelocityNormalBinormal**](structastrea_1_1astro_1_1frames_1_1VelocityNormalBinormal.md) &lt;\_parent\_&gt;<br>_Class representing the Velocity, Normal, Binormal (VNB) frame._  |
@@ -92,12 +94,13 @@
 
 | Type | Name |
 | ---: | :--- |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**EastNorthUpTag**](structastrea_1_1astro_1_1frames_1_1EastNorthUpTag.md)&lt; [**\_parent\_**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt; | [**enu\_tag**](#variable-enu_tag)   = `{}`<br> |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**LvlhTag**](structastrea_1_1astro_1_1frames_1_1LvlhTag.md)&lt; [**\_parent\_**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt; | [**lvlh\_tag**](#variable-lvlh_tag)   = `{}`<br> |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**auto**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**primary**](#variable-primary)   = `[**frames::earth::icrf**](structastrea_1_1astro_1_1frames_1_1earth_1_1icrf.md)`<br> |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**auto**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**primary\_fixed**](#variable-primary_fixed)   = `[**frames::earth::earth\_fixed**](structastrea_1_1astro_1_1frames_1_1earth_1_1earth__fixed.md)`<br> |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**RicTag**](structastrea_1_1astro_1_1frames_1_1RicTag.md)&lt; [**\_parent\_**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt; | [**ric\_tag**](#variable-ric_tag)   = `{}`<br> |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**VnbTag**](structastrea_1_1astro_1_1frames_1_1VnbTag.md)&lt; [**\_parent\_**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt; | [**vnb\_tag**](#variable-vnb_tag)   = `{}`<br> |
+|  constexpr [**EastNorthUpTag**](structastrea_1_1astro_1_1frames_1_1EastNorthUpTag.md)&lt; \_parent\_ &gt; | [**enu\_tag**](#variable-enu_tag)   = `{}`<br> |
+|  constexpr [**LvlhTag**](structastrea_1_1astro_1_1frames_1_1LvlhTag.md)&lt; \_parent\_ &gt; | [**lvlh\_tag**](#variable-lvlh_tag)   = `{}`<br> |
+|  constexpr [**PerifocalTag**](structastrea_1_1astro_1_1frames_1_1PerifocalTag.md)&lt; \_parent\_ &gt; | [**perifocal\_tag**](#variable-perifocal_tag)   = `{}`<br> |
+|  constexpr auto | [**primary**](#variable-primary)   = `[**frames::earth::icrf**](structastrea_1_1astro_1_1frames_1_1earth_1_1icrf.md)`<br> |
+|  constexpr auto | [**primary\_fixed**](#variable-primary_fixed)   = `[**frames::earth::earth\_fixed**](structastrea_1_1astro_1_1frames_1_1earth_1_1earth__fixed.md)`<br> |
+|  constexpr [**RicTag**](structastrea_1_1astro_1_1frames_1_1RicTag.md)&lt; \_parent\_ &gt; | [**ric\_tag**](#variable-ric_tag)   = `{}`<br> |
+|  constexpr [**VnbTag**](structastrea_1_1astro_1_1frames_1_1VnbTag.md)&lt; \_parent\_ &gt; | [**vnb\_tag**](#variable-vnb_tag)   = `{}`<br> |
 
 
 
@@ -118,11 +121,11 @@
 
 | Type | Name |
 | ---: | :--- |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; [**Value\_T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), [**frame\_u**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt; | [**rotate\_vector\_into\_frame**](#function-rotate_vector_into_frame) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; [**Value\_T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), frame &gt; & vec, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Date**](classastrea_1_1astro_1_1Date.md) & date) <br>_Rotate a vector from one frame to another at a given date using the Direction Cosine Matrix (DCM)._  |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; [**Value\_T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), [**frame\_u**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt; | [**transform\_vector\_into\_frame**](#function-transform_vector_into_frame) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; [**Value\_T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), frame &gt; & vec, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Date**](classastrea_1_1astro_1_1Date.md) & date) <br>_Transform a vector from one frame to another at a given date, accounting for both rotation and translation._  |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; [**Velocity**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), [**frame\_u**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt; | [**transform\_vector\_into\_frame**](#function-transform_vector_into_frame) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; [**Velocity**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), frame &gt; & vec, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Date**](classastrea_1_1astro_1_1Date.md) & date, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; [**Distance**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), frame &gt; & position) <br>_Transform a velocity vector from one frame to another at a given date, accounting for both rotation and translation._  |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; [**Acceleration**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), [**frame\_u**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt; | [**transform\_vector\_into\_frame**](#function-transform_vector_into_frame) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; [**Acceleration**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), frame &gt; & vec, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Date**](classastrea_1_1astro_1_1Date.md) & date, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; [**Distance**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), frame &gt; & position, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; [**Velocity**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), frame &gt; & velocity) <br>_Transform an acceleration vector from one frame to another at a given date, accounting for both rotation and translation._  |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; [**Value\_T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), [**frame\_u**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt; | [**translate\_vector\_into\_frame**](#function-translate_vector_into_frame) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; [**Value\_T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), frame &gt; & vec, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Date**](classastrea_1_1astro_1_1Date.md) & date) <br>_Translate a vector from one frame to another at a given date by accounting for the center offset between the frames._  |
+|  constexpr [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; Value\_T, frame\_u &gt; | [**rotate\_vector\_into\_frame**](#function-rotate_vector_into_frame) (const [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; Value\_T, frame &gt; & vec, const [**Date**](classastrea_1_1astro_1_1Date.md) & date) <br>_Rotate a vector from one frame to another at a given date using the Direction Cosine Matrix (DCM)._  |
+|  constexpr [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; Value\_T, frame\_u &gt; | [**transform\_vector\_into\_frame**](#function-transform_vector_into_frame) (const [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; Value\_T, frame &gt; & vec, const [**Date**](classastrea_1_1astro_1_1Date.md) & date) <br>_Transform a vector from one frame to another at a given date, accounting for both rotation and translation._  |
+|  constexpr [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; Velocity, frame\_u &gt; | [**transform\_vector\_into\_frame**](#function-transform_vector_into_frame) (const [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; Velocity, frame &gt; & vec, const [**Date**](classastrea_1_1astro_1_1Date.md) & date, const [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; Distance, frame &gt; & position) <br>_Transform a velocity vector from one frame to another at a given date, accounting for both rotation and translation._  |
+|  constexpr [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; Acceleration, frame\_u &gt; | [**transform\_vector\_into\_frame**](#function-transform_vector_into_frame) (const [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; Acceleration, frame &gt; & vec, const [**Date**](classastrea_1_1astro_1_1Date.md) & date, const [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; Distance, frame &gt; & position, const [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; Velocity, frame &gt; & velocity) <br>_Transform an acceleration vector from one frame to another at a given date, accounting for both rotation and translation._  |
+|  constexpr [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; Value\_T, frame\_u &gt; | [**translate\_vector\_into\_frame**](#function-translate_vector_into_frame) (const [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; Value\_T, frame &gt; & vec, const [**Date**](classastrea_1_1astro_1_1Date.md) & date) <br>_Translate a vector from one frame to another at a given date by accounting for the center offset between the frames._  |
 
 
 
@@ -173,6 +176,19 @@ constexpr EastNorthUpTag<_parent_> astrea::astro::frames::enu_tag;
 
 ```C++
 constexpr LvlhTag<_parent_> astrea::astro::frames::lvlh_tag;
+```
+
+
+
+
+<hr>
+
+
+
+### variable perifocal\_tag 
+
+```C++
+constexpr PerifocalTag<_parent_> astrea::astro::frames::perifocal_tag;
 ```
 
 
@@ -241,9 +257,9 @@ constexpr VnbTag<_parent_> astrea::astro::frames::vnb_tag;
 _Rotate a vector from one frame to another at a given date using the Direction Cosine Matrix (DCM)._ 
 ```C++
 template<IsFrame auto frame_u, typename Value_T, IsFrame auto frame>
-inline constexpr  CartesianVector < Value_T , frame_u > astrea::astro::frames::rotate_vector_into_frame (
-    const  CartesianVector < Value_T , frame > & vec,
-    const  Date & date
+inline constexpr CartesianVector < Value_T, frame_u > astrea::astro::frames::rotate_vector_into_frame (
+    const CartesianVector < Value_T, frame > & vec,
+    const Date & date
 ) 
 ```
 
@@ -287,9 +303,9 @@ CartesianVector&lt;Value\_T, frame\_u&gt; A new [**CartesianVector**](structastr
 _Transform a vector from one frame to another at a given date, accounting for both rotation and translation._ 
 ```C++
 template<IsFrame auto frame_u, typename Value_T, IsFrame auto frame>
-inline constexpr  CartesianVector < Value_T , frame_u > astrea::astro::frames::transform_vector_into_frame (
-    const  CartesianVector < Value_T , frame > & vec,
-    const  Date & date
+inline constexpr CartesianVector < Value_T, frame_u > astrea::astro::frames::transform_vector_into_frame (
+    const CartesianVector < Value_T, frame > & vec,
+    const Date & date
 ) 
 ```
 
@@ -335,10 +351,10 @@ CartesianVector&lt;Value\_T, frame\_u&gt; A new [**CartesianVector**](structastr
 _Transform a velocity vector from one frame to another at a given date, accounting for both rotation and translation._ 
 ```C++
 template<IsFrame auto frame_u, IsFrame auto frame>
-inline constexpr  CartesianVector < Velocity , frame_u > astrea::astro::frames::transform_vector_into_frame (
-    const  CartesianVector < Velocity , frame > & vec,
-    const  Date & date,
-    const  CartesianVector < Distance , frame > & position
+inline constexpr CartesianVector < Velocity, frame_u > astrea::astro::frames::transform_vector_into_frame (
+    const CartesianVector < Velocity, frame > & vec,
+    const Date & date,
+    const CartesianVector < Distance, frame > & position
 ) 
 ```
 
@@ -382,11 +398,11 @@ CartesianVector&lt;Velocity, frame\_u&gt; A new velocity vector in the target fr
 _Transform an acceleration vector from one frame to another at a given date, accounting for both rotation and translation._ 
 ```C++
 template<IsFrame auto frame_u, IsFrame auto frame>
-inline constexpr  CartesianVector < Acceleration , frame_u > astrea::astro::frames::transform_vector_into_frame (
-    const  CartesianVector < Acceleration , frame > & vec,
-    const  Date & date,
-    const  CartesianVector < Distance , frame > & position,
-    const  CartesianVector < Velocity , frame > & velocity
+inline constexpr CartesianVector < Acceleration, frame_u > astrea::astro::frames::transform_vector_into_frame (
+    const CartesianVector < Acceleration, frame > & vec,
+    const Date & date,
+    const CartesianVector < Distance, frame > & position,
+    const CartesianVector < Velocity, frame > & velocity
 ) 
 ```
 
@@ -431,9 +447,9 @@ CartesianVector&lt;Acceleration, frame\_u&gt; A new acceleration vector in the t
 _Translate a vector from one frame to another at a given date by accounting for the center offset between the frames._ 
 ```C++
 template<IsFrame auto frame_u, typename Value_T, IsFrame auto frame>
-inline constexpr  CartesianVector < Value_T , frame_u > astrea::astro::frames::translate_vector_into_frame (
-    const  CartesianVector < Value_T , frame > & vec,
-    const  Date & date
+inline constexpr CartesianVector < Value_T, frame_u > astrea::astro::frames::translate_vector_into_frame (
+    const CartesianVector < Value_T, frame > & vec,
+    const Date & date
 ) 
 ```
 

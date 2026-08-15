@@ -9,14 +9,17 @@
       </param>
     </templateparamlist>
     <initializer>template&lt;typename T&gt;
-concept <ref refid="conceptastrea_1_1astro_1_1detail_1_1SymbolicConstant" kindref="compound">astrea::astro::detail::SymbolicConstant</ref> =  (!std::is_const_v&lt;T&gt;) &amp;&amp; (!std::is_reference_v&lt;T&gt;) &amp;&amp; std::is_empty_v&lt;T&gt; &amp;&amp;
+concept <ref refid="conceptastrea_1_1astro_1_1detail_1_1SymbolicConstant" kindref="compound">astrea::astro::detail::SymbolicConstant</ref> =  (!std::is_reference_v&lt;T&gt;) &amp;&amp; std::is_empty_v&lt;T&gt; &amp;&amp;
                            std::is_trivially_default_constructible_v&lt;T&gt; &amp;&amp; std::is_trivially_copy_constructible_v&lt;T&gt; &amp;&amp;
                            std::is_trivially_move_constructible_v&lt;T&gt; &amp;&amp; std::is_trivially_destructible_v&lt;T&gt;    </initializer>
     <briefdescription>
 <para>A symbolic constant is a type that is empty, trivially constructible, trivially copyable, trivially moveable, and trivially destructible. </para>
     </briefdescription>
     <detaileddescription>
+<para><simplesect kind="note"><para>mp-units uses (!std::is_const_v&lt;T&gt;) included here. I can&apos;t figure out why and it breaks my setup so I removed it. My guess is that it has to do with expression building (i.e. * km, etc) and we don&apos;t need that. std::is_final_v&lt;T&gt; is also used but we don&apos;t want it here since frames can be constructed on the fly. If someone knows how to do this while declaring &apos;final&apos;, let me know. </para>
+</simplesect>
+</para>
     </detaileddescription>
-    <location file="astrea/astro/astro/frames/framework/frame_concepts.hpp" line="41" column="1"/>
+    <location file="astrea/astro/astro/frames/framework/frame_concepts.hpp" line="46" column="1"/>
   </compounddef>
 </doxygen>

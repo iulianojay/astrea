@@ -36,7 +36,7 @@
 
 | Type | Name |
 | ---: | :--- |
-| struct | [**ExtraRegisteredFrames**](structastrea_1_1astro_1_1ExtraRegisteredFrames.md) &lt;[**typename**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)&gt;<br>_Trait that users specialize to register additional_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _frames._ |
+| struct | [**ExtraRegisteredFrames**](structastrea_1_1astro_1_1ExtraRegisteredFrames.md) &lt;typename&gt;<br>_Trait that users specialize to register additional_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _frames._ |
 
 
 

@@ -5,19 +5,19 @@
     <includes refid="Quaternion_8hpp" local="no">Quaternion.hpp</includes>
     <templateparamlist>
       <param>
-        <type>IsFrame <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+        <type>IsFrame auto</type>
         <declname>_in_frame_</declname>
         <defname>_in_frame_</defname>
       </param>
       <param>
-        <type>IsFrame <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+        <type>IsFrame auto</type>
         <declname>_out_frame_</declname>
         <defname>_out_frame_</defname>
       </param>
     </templateparamlist>
     <sectiondef kind="friend">
       <memberdef kind="friend" id="classastrea_1_1astro_1_1Quaternion_1a07fdd44fdce37f11b4956f47abf1b6b5" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">class</ref></type>
+        <type>class</type>
         <definition>friend class Attitude</definition>
         <argsstring></argsstring>
         <name>Attitude</name>
@@ -44,7 +44,7 @@
           <declname>os</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Quaternion" kindref="compound">Quaternion</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Quaternion" kindref="compound">Quaternion</ref> &amp;</type>
           <declname>quaternion</declname>
         </param>
         <briefdescription>
@@ -58,12 +58,12 @@
     </sectiondef>
     <sectiondef kind="public-static-attrib">
       <memberdef kind="variable" id="classastrea_1_1astro_1_1Quaternion_1a3b1d5eb2f2fd637b5ad3008bf3e7c2f6" prot="public" static="yes" constexpr="yes" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+        <type>constexpr auto</type>
         <definition>constexpr auto astrea::astro::Quaternion&lt; _in_frame_, _out_frame_ &gt;::in_frame</definition>
         <argsstring></argsstring>
         <name>in_frame</name>
         <qualifiedname>astrea::astro::Quaternion::in_frame</qualifiedname>
-        <initializer>= <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_in_frame_</ref></initializer>
+        <initializer>= _in_frame_</initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -73,12 +73,12 @@
         <location file="astrea/astro/astro/state/attitude/Quaternion.hpp" line="61" column="27" bodyfile="astrea/astro/astro/state/attitude/Quaternion.hpp" bodystart="61" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1Quaternion_1a9fb2c8b2aa21bb94be2abc843baf9ca7" prot="public" static="yes" constexpr="yes" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+        <type>constexpr auto</type>
         <definition>constexpr auto astrea::astro::Quaternion&lt; _in_frame_, _out_frame_ &gt;::out_frame</definition>
         <argsstring></argsstring>
         <name>out_frame</name>
         <qualifiedname>astrea::astro::Quaternion::out_frame</qualifiedname>
-        <initializer>= <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_out_frame_</ref></initializer>
+        <initializer>= _out_frame_</initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -90,7 +90,7 @@
     </sectiondef>
     <sectiondef kind="private-attrib">
       <memberdef kind="variable" id="classastrea_1_1astro_1_1Quaternion_1ac7da5b53d97b183d8a75caf5297e8fd9" prot="private" static="no" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Unitless</ref></type>
+        <type>Unitless</type>
         <definition>Unitless astrea::astro::Quaternion&lt; _in_frame_, _out_frame_ &gt;::_s</definition>
         <argsstring></argsstring>
         <name>_s</name>
@@ -102,10 +102,10 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/attitude/Quaternion.hpp" line="593" column="14" bodyfile="astrea/astro/astro/state/attitude/Quaternion.hpp" bodystart="593" bodyend="-1"/>
+        <location file="astrea/astro/astro/state/attitude/Quaternion.hpp" line="599" column="14" bodyfile="astrea/astro/astro/state/attitude/Quaternion.hpp" bodystart="599" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1Quaternion_1ad87ab9d648d884fc9002d25b6f1ed493" prot="private" static="no" mutable="no">
-        <type><ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Unitless</ref>, in_frame &gt;</type>
+        <type><ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; Unitless, in_frame &gt;</type>
         <definition>CartesianVector&lt;Unitless, in_frame&gt; astrea::astro::Quaternion&lt; _in_frame_, _out_frame_ &gt;::_u</definition>
         <argsstring></argsstring>
         <name>_u</name>
@@ -117,7 +117,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/attitude/Quaternion.hpp" line="594" column="21" bodyfile="astrea/astro/astro/state/attitude/Quaternion.hpp" bodystart="594" bodyend="-1"/>
+        <location file="astrea/astro/astro/state/attitude/Quaternion.hpp" line="600" column="21" bodyfile="astrea/astro/astro/state/attitude/Quaternion.hpp" bodystart="600" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="public-func">
@@ -143,7 +143,7 @@
         <name>Quaternion</name>
         <qualifiedname>astrea::astro::Quaternion::Quaternion</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Unitless</ref>, in_frame &gt; &amp;</type>
+          <type>const <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; Unitless, in_frame &gt; &amp;</type>
           <declname>vec</declname>
         </param>
         <briefdescription>
@@ -172,11 +172,11 @@
         <name>Quaternion</name>
         <qualifiedname>astrea::astro::Quaternion::Quaternion</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Unitless</ref> &amp;</type>
+          <type>const Unitless &amp;</type>
           <declname>s</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Unitless</ref>, in_frame &gt; &amp;</type>
+          <type>const <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; Unitless, in_frame &gt; &amp;</type>
           <declname>vec</declname>
         </param>
         <briefdescription>
@@ -213,19 +213,19 @@
         <name>Quaternion</name>
         <qualifiedname>astrea::astro::Quaternion::Quaternion</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Unitless</ref> &amp;</type>
+          <type>const Unitless &amp;</type>
           <declname>s</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Unitless</ref> &amp;</type>
+          <type>const Unitless &amp;</type>
           <declname>x</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Unitless</ref> &amp;</type>
+          <type>const Unitless &amp;</type>
           <declname>y</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Unitless</ref> &amp;</type>
+          <type>const Unitless &amp;</type>
           <declname>z</declname>
         </param>
         <briefdescription>
@@ -287,7 +287,7 @@
         <name>Quaternion</name>
         <qualifiedname>astrea::astro::Quaternion::Quaternion</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Quaternion" kindref="compound">Quaternion</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Quaternion" kindref="compound">Quaternion</ref> &amp;</type>
           <declname>other</declname>
         </param>
         <briefdescription>
@@ -325,7 +325,7 @@
         <name>operator=</name>
         <qualifiedname>astrea::astro::Quaternion::operator=</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Quaternion" kindref="compound">Quaternion</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Quaternion" kindref="compound">Quaternion</ref> &amp;</type>
           <declname>other</declname>
         </param>
         <briefdescription>
@@ -357,13 +357,13 @@
         <location file="astrea/astro/astro/state/attitude/Quaternion.hpp" line="133" column="16"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Quaternion_1aa50bb80272b3c35cc8cef367a5d0a012" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">bool</ref></type>
+        <type>bool</type>
         <definition>bool astrea::astro::Quaternion&lt; _in_frame_, _out_frame_ &gt;::operator==</definition>
         <argsstring>(const Quaternion &amp;other) const</argsstring>
         <name>operator==</name>
         <qualifiedname>astrea::astro::Quaternion::operator==</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Quaternion" kindref="compound">Quaternion</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Quaternion" kindref="compound">Quaternion</ref> &amp;</type>
           <declname>other</declname>
         </param>
         <briefdescription>
@@ -396,7 +396,7 @@
         <name>Quaternion</name>
         <qualifiedname>astrea::astro::Quaternion::Quaternion</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">DirectionCosineMatrix</ref>&lt; in_frame, out_frame &gt; &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">DirectionCosineMatrix</ref>&lt; in_frame, out_frame &gt; &amp;</type>
           <declname>dcm</declname>
         </param>
         <briefdescription>
@@ -439,7 +439,7 @@ Shepperd, S.W. &quot;Quaternion from rotation matrix.&quot; Journal of Guidance 
         <name>Quaternion</name>
         <qualifiedname>astrea::astro::Quaternion::Quaternion</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1EulerAngles" kindref="compound">EulerAngles</ref>&lt; sequence, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">rotation_type</ref>, in_frame, out_frame &gt; &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1EulerAngles" kindref="compound">EulerAngles</ref>&lt; sequence, rotation_type, in_frame, out_frame &gt; &amp;</type>
           <declname>angleSequence</declname>
         </param>
         <briefdescription>
@@ -487,11 +487,11 @@ Shepperd, S.W. &quot;Quaternion from rotation matrix.&quot; Journal of Guidance 
         <name>Quaternion</name>
         <qualifiedname>astrea::astro::Quaternion::Quaternion</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Angle</ref> &amp;</type>
+          <type>const Angle &amp;</type>
           <declname>angle</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Unitless</ref>, in_frame &gt; &amp;</type>
+          <type>const <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; Unitless, in_frame &gt; &amp;</type>
           <declname>axis</declname>
         </param>
         <briefdescription>
@@ -554,7 +554,7 @@ Shepperd, S.W. &quot;Quaternion from rotation matrix.&quot; Journal of Guidance 
             <defname>rotation_type</defname>
           </param>
         </templateparamlist>
-        <type><ref refid="classastrea_1_1astro_1_1EulerAngles" kindref="compound">EulerAngles</ref>&lt; sequence, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">rotation_type</ref>, in_frame, out_frame &gt;</type>
+        <type><ref refid="classastrea_1_1astro_1_1EulerAngles" kindref="compound">EulerAngles</ref>&lt; sequence, rotation_type, in_frame, out_frame &gt;</type>
         <definition>EulerAngles&lt; sequence, rotation_type, in_frame, out_frame &gt; astrea::astro::Quaternion&lt; _in_frame_, _out_frame_ &gt;::to_euler_angles</definition>
         <argsstring>() const</argsstring>
         <name>to_euler_angles</name>
@@ -597,7 +597,7 @@ Shepperd, S.W. &quot;Quaternion from rotation matrix.&quot; Journal of Guidance 
         <name>operator+</name>
         <qualifiedname>astrea::astro::Quaternion::operator+</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Quaternion" kindref="compound">Quaternion</ref>&lt; in_frame, out_frame &gt; &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Quaternion" kindref="compound">Quaternion</ref>&lt; in_frame, out_frame &gt; &amp;</type>
           <declname>other</declname>
         </param>
         <briefdescription>
@@ -628,7 +628,7 @@ Shepperd, S.W. &quot;Quaternion from rotation matrix.&quot; Journal of Guidance 
         <name>operator+=</name>
         <qualifiedname>astrea::astro::Quaternion::operator+=</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Quaternion" kindref="compound">Quaternion</ref>&lt; in_frame, out_frame &gt; &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Quaternion" kindref="compound">Quaternion</ref>&lt; in_frame, out_frame &gt; &amp;</type>
           <declname>other</declname>
         </param>
         <briefdescription>
@@ -677,7 +677,7 @@ Shepperd, S.W. &quot;Quaternion from rotation matrix.&quot; Journal of Guidance 
         <name>operator-</name>
         <qualifiedname>astrea::astro::Quaternion::operator-</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Quaternion" kindref="compound">Quaternion</ref>&lt; in_frame, out_frame &gt; &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Quaternion" kindref="compound">Quaternion</ref>&lt; in_frame, out_frame &gt; &amp;</type>
           <declname>other</declname>
         </param>
         <briefdescription>
@@ -708,7 +708,7 @@ Shepperd, S.W. &quot;Quaternion from rotation matrix.&quot; Journal of Guidance 
         <name>operator-=</name>
         <qualifiedname>astrea::astro::Quaternion::operator-=</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Quaternion" kindref="compound">Quaternion</ref>&lt; in_frame, out_frame &gt; &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Quaternion" kindref="compound">Quaternion</ref>&lt; in_frame, out_frame &gt; &amp;</type>
           <declname>other</declname>
         </param>
         <briefdescription>
@@ -739,7 +739,7 @@ Shepperd, S.W. &quot;Quaternion from rotation matrix.&quot; Journal of Guidance 
         <name>operator*</name>
         <qualifiedname>astrea::astro::Quaternion::operator*</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Unitless</ref> &amp;</type>
+          <type>const Unitless &amp;</type>
           <declname>scalar</declname>
         </param>
         <briefdescription>
@@ -770,7 +770,7 @@ Shepperd, S.W. &quot;Quaternion from rotation matrix.&quot; Journal of Guidance 
         <name>operator*=</name>
         <qualifiedname>astrea::astro::Quaternion::operator*=</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Unitless</ref> &amp;</type>
+          <type>const Unitless &amp;</type>
           <declname>scalar</declname>
         </param>
         <briefdescription>
@@ -801,7 +801,7 @@ Shepperd, S.W. &quot;Quaternion from rotation matrix.&quot; Journal of Guidance 
         <name>operator/</name>
         <qualifiedname>astrea::astro::Quaternion::operator/</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Unitless</ref> &amp;</type>
+          <type>const Unitless &amp;</type>
           <declname>scalar</declname>
         </param>
         <briefdescription>
@@ -832,7 +832,7 @@ Shepperd, S.W. &quot;Quaternion from rotation matrix.&quot; Journal of Guidance 
         <name>operator/=</name>
         <qualifiedname>astrea::astro::Quaternion::operator/=</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Unitless</ref> &amp;</type>
+          <type>const Unitless &amp;</type>
           <declname>scalar</declname>
         </param>
         <briefdescription>
@@ -859,18 +859,18 @@ Shepperd, S.W. &quot;Quaternion from rotation matrix.&quot; Journal of Guidance 
       <memberdef kind="function" id="classastrea_1_1astro_1_1Quaternion_1a14af6a03ba0276b2e033092e7005e33e" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
-            <type>IsFrame <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+            <type>IsFrame auto</type>
             <declname>out_frameu_</declname>
             <defname>out_frameu_</defname>
           </param>
         </templateparamlist>
-        <type><ref refid="classastrea_1_1astro_1_1Quaternion" kindref="compound">Quaternion</ref>&lt; in_frame, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">out_frameu_</ref> &gt;</type>
+        <type><ref refid="classastrea_1_1astro_1_1Quaternion" kindref="compound">Quaternion</ref>&lt; in_frame, out_frameu_ &gt;</type>
         <definition>Quaternion&lt; in_frame, out_frameu_ &gt; astrea::astro::Quaternion&lt; _in_frame_, _out_frame_ &gt;::operator*</definition>
         <argsstring>(const Quaternion&lt; out_frame, out_frameu_ &gt; &amp;other) const</argsstring>
         <name>operator*</name>
         <qualifiedname>astrea::astro::Quaternion::operator*</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Quaternion" kindref="compound">Quaternion</ref>&lt; out_frame, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">out_frameu_</ref> &gt; &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Quaternion" kindref="compound">Quaternion</ref>&lt; out_frame, out_frameu_ &gt; &amp;</type>
           <declname>other</declname>
         </param>
         <briefdescription>
@@ -910,7 +910,7 @@ Shepperd, S.W. &quot;Quaternion from rotation matrix.&quot; Journal of Guidance 
         <name>operator/</name>
         <qualifiedname>astrea::astro::Quaternion::operator/</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Time</ref> &amp;</type>
+          <type>const Time &amp;</type>
           <declname>dt</declname>
         </param>
         <briefdescription>
@@ -937,16 +937,16 @@ Shepperd, S.W. &quot;Quaternion from rotation matrix.&quot; Journal of Guidance 
       <memberdef kind="function" id="classastrea_1_1astro_1_1Quaternion_1a20dd2cc38a4b293fb5df4625289fa85a" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
-            <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">typename</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Value_T</ref></type>
+            <type>typename Value_T</type>
           </param>
         </templateparamlist>
-        <type><ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Value_T</ref>, out_frame &gt;</type>
+        <type><ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; Value_T, out_frame &gt;</type>
         <definition>CartesianVector&lt; Value_T, out_frame &gt; astrea::astro::Quaternion&lt; _in_frame_, _out_frame_ &gt;::rotate_vector</definition>
         <argsstring>(const CartesianVector&lt; Value_T, in_frame &gt; &amp;vec) const</argsstring>
         <name>rotate_vector</name>
         <qualifiedname>astrea::astro::Quaternion::rotate_vector</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Value_T</ref>, in_frame &gt; &amp;</type>
+          <type>const <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; Value_T, in_frame &gt; &amp;</type>
           <declname>vec</declname>
         </param>
         <briefdescription>
@@ -1025,7 +1025,7 @@ Shepperd, S.W. &quot;Quaternion from rotation matrix.&quot; Journal of Guidance 
         <location file="astrea/astro/astro/state/attitude/Quaternion.hpp" line="472" column="16" bodyfile="astrea/astro/astro/state/attitude/Quaternion.hpp" bodystart="472" bodyend="476"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Quaternion_1ab3feff1e9b39741873ea8cdbae15b0d2" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Unitless</ref></type>
+        <type>Unitless</type>
         <definition>Unitless astrea::astro::Quaternion&lt; _in_frame_, _out_frame_ &gt;::norm</definition>
         <argsstring>() const</argsstring>
         <name>norm</name>
@@ -1043,7 +1043,7 @@ Shepperd, S.W. &quot;Quaternion from rotation matrix.&quot; Journal of Guidance 
         <location file="astrea/astro/astro/state/attitude/Quaternion.hpp" line="482" column="14" bodyfile="astrea/astro/astro/state/attitude/Quaternion.hpp" bodystart="482" bodyend="482"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Quaternion_1ab1499ba76391fbe11172074957af4a36" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Unitless</ref></type>
+        <type>Unitless</type>
         <definition>Unitless astrea::astro::Quaternion&lt; _in_frame_, _out_frame_ &gt;::norm_squared</definition>
         <argsstring>() const</argsstring>
         <name>norm_squared</name>
@@ -1061,7 +1061,7 @@ Shepperd, S.W. &quot;Quaternion from rotation matrix.&quot; Journal of Guidance 
         <location file="astrea/astro/astro/state/attitude/Quaternion.hpp" line="488" column="14" bodyfile="astrea/astro/astro/state/attitude/Quaternion.hpp" bodystart="488" bodyend="488"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Quaternion_1af09126d7a0de535a104ff3bce56d5627" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">void</ref></type>
+        <type>void</type>
         <definition>void astrea::astro::Quaternion&lt; _in_frame_, _out_frame_ &gt;::normalize</definition>
         <argsstring>()</argsstring>
         <name>normalize</name>
@@ -1076,7 +1076,7 @@ Shepperd, S.W. &quot;Quaternion from rotation matrix.&quot; Journal of Guidance 
         <location file="astrea/astro/astro/state/attitude/Quaternion.hpp" line="493" column="10" bodyfile="astrea/astro/astro/state/attitude/Quaternion.hpp" bodystart="493" bodyend="508"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Quaternion_1ac0b1b8cebcecf0faf095283ab7dc6671" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Unitless</ref> &amp;</type>
+        <type>const Unitless &amp;</type>
         <definition>const Unitless &amp; astrea::astro::Quaternion&lt; _in_frame_, _out_frame_ &gt;::get_scalar_part</definition>
         <argsstring>() const</argsstring>
         <name>get_scalar_part</name>
@@ -1094,7 +1094,7 @@ Shepperd, S.W. &quot;Quaternion from rotation matrix.&quot; Journal of Guidance 
         <location file="astrea/astro/astro/state/attitude/Quaternion.hpp" line="515" column="20" bodyfile="astrea/astro/astro/state/attitude/Quaternion.hpp" bodystart="515" bodyend="515"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Quaternion_1af26b7517cb89ff9097d72dc1d96e380a" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Unitless</ref>, in_frame &gt; &amp;</type>
+        <type>const <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; Unitless, in_frame &gt; &amp;</type>
         <definition>const CartesianVector&lt; Unitless, in_frame &gt; &amp; astrea::astro::Quaternion&lt; _in_frame_, _out_frame_ &gt;::get_vector_part</definition>
         <argsstring>() const</argsstring>
         <name>get_vector_part</name>
@@ -1111,12 +1111,12 @@ Shepperd, S.W. &quot;Quaternion from rotation matrix.&quot; Journal of Guidance 
         </inbodydescription>
         <location file="astrea/astro/astro/state/attitude/Quaternion.hpp" line="522" column="27" bodyfile="astrea/astro/astro/state/attitude/Quaternion.hpp" bodystart="522" bodyend="522"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1astro_1_1Quaternion_1a68f3b4ddc94be41dda4b5bf2b2f18193" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type>std::vector&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Unitless</ref> &gt;</type>
-        <definition>std::vector&lt; Unitless &gt; astrea::astro::Quaternion&lt; _in_frame_, _out_frame_ &gt;::force_to_vector</definition>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Quaternion_1aa85cbfbd919d1d8d33b52919e937736a" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::vector&lt; double &gt;</type>
+        <definition>std::vector&lt; double &gt; astrea::astro::Quaternion&lt; _in_frame_, _out_frame_ &gt;::force_to_double_vector</definition>
         <argsstring>() const</argsstring>
-        <name>force_to_vector</name>
-        <qualifiedname>astrea::astro::Quaternion::force_to_vector</qualifiedname>
+        <name>force_to_double_vector</name>
+        <qualifiedname>astrea::astro::Quaternion::force_to_double_vector</qualifiedname>
         <briefdescription>
 <para>Converts the quaternion to a vector form for use in numerical integration. </para>
         </briefdescription>
@@ -1127,16 +1127,16 @@ Shepperd, S.W. &quot;Quaternion from rotation matrix.&quot; Journal of Guidance 
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/attitude/Quaternion.hpp" line="529" column="17" bodyfile="astrea/astro/astro/state/attitude/Quaternion.hpp" bodystart="529" bodyend="529"/>
+        <location file="astrea/astro/astro/state/attitude/Quaternion.hpp" line="529" column="17" bodyfile="astrea/astro/astro/state/attitude/Quaternion.hpp" bodystart="529" bodyend="535"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Quaternion_1a67a15d6797edb24923002e2a6b762fc6" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Unitless</ref></type>
+        <type>Unitless</type>
         <definition>Unitless astrea::astro::Quaternion&lt; _in_frame_, _out_frame_ &gt;::dot</definition>
         <argsstring>(const Quaternion&lt; in_frame, out_frame &gt; &amp;other) const</argsstring>
         <name>dot</name>
         <qualifiedname>astrea::astro::Quaternion::dot</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Quaternion" kindref="compound">Quaternion</ref>&lt; in_frame, out_frame &gt; &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Quaternion" kindref="compound">Quaternion</ref>&lt; in_frame, out_frame &gt; &amp;</type>
           <declname>other</declname>
         </param>
         <briefdescription>
@@ -1158,7 +1158,7 @@ Shepperd, S.W. &quot;Quaternion from rotation matrix.&quot; Journal of Guidance 
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/attitude/Quaternion.hpp" line="537" column="14" bodyfile="astrea/astro/astro/state/attitude/Quaternion.hpp" bodystart="537" bodyend="537"/>
+        <location file="astrea/astro/astro/state/attitude/Quaternion.hpp" line="543" column="14" bodyfile="astrea/astro/astro/state/attitude/Quaternion.hpp" bodystart="543" bodyend="543"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Quaternion_1ac5dd1b1634c35bc7ca43bea74f704e16" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="classastrea_1_1astro_1_1Quaternion" kindref="compound">Quaternion</ref>&lt; in_frame, out_frame &gt;</type>
@@ -1167,19 +1167,19 @@ Shepperd, S.W. &quot;Quaternion from rotation matrix.&quot; Journal of Guidance 
         <name>interpolate</name>
         <qualifiedname>astrea::astro::Quaternion::interpolate</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Time</ref> &amp;</type>
+          <type>const Time &amp;</type>
           <declname>thisTime</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Time</ref> &amp;</type>
+          <type>const Time &amp;</type>
           <declname>otherTime</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Quaternion" kindref="compound">Quaternion</ref>&lt; in_frame, out_frame &gt; &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Quaternion" kindref="compound">Quaternion</ref>&lt; in_frame, out_frame &gt; &amp;</type>
           <declname>other</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Time</ref> &amp;</type>
+          <type>const Time &amp;</type>
           <declname>targetTime</declname>
         </param>
         <briefdescription>
@@ -1227,18 +1227,18 @@ Shepperd, S.W. &quot;Quaternion from rotation matrix.&quot; Journal of Guidance 
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/attitude/Quaternion.hpp" line="552" column="9" bodyfile="astrea/astro/astro/state/attitude/Quaternion.hpp" bodystart="552" bodyend="590"/>
+        <location file="astrea/astro/astro/state/attitude/Quaternion.hpp" line="558" column="9" bodyfile="astrea/astro/astro/state/attitude/Quaternion.hpp" bodystart="558" bodyend="596"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="private-func">
       <memberdef kind="function" id="classastrea_1_1astro_1_1Quaternion_1a6dd2a20a73f4128da430d68ed1ecb63b" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">void</ref></type>
+        <type>void</type>
         <definition>void astrea::astro::Quaternion&lt; _in_frame_, _out_frame_ &gt;::_normalize</definition>
         <argsstring>(const Unitless &amp;scale)</argsstring>
         <name>_normalize</name>
         <qualifiedname>astrea::astro::Quaternion::_normalize</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Unitless</ref> &amp;</type>
+          <type>const Unitless &amp;</type>
           <declname>scale</declname>
         </param>
         <briefdescription>
@@ -1258,18 +1258,18 @@ Shepperd, S.W. &quot;Quaternion from rotation matrix.&quot; Journal of Guidance 
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/attitude/Quaternion.hpp" line="601" column="10" bodyfile="astrea/astro/astro/state/attitude/Quaternion.hpp" bodystart="601" bodyend="607"/>
+        <location file="astrea/astro/astro/state/attitude/Quaternion.hpp" line="607" column="10" bodyfile="astrea/astro/astro/state/attitude/Quaternion.hpp" bodystart="607" bodyend="613"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="private-static-func">
-      <memberdef kind="function" id="classastrea_1_1astro_1_1Quaternion_1a8215746b705766bda8687cf2f99403fa" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Quaternion_1ae83567b4963b62450e8b25213da6bf97" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="classastrea_1_1astro_1_1Quaternion" kindref="compound">Quaternion</ref>&lt; in_frame, out_frame &gt;</type>
-        <definition>static Quaternion&lt; in_frame, out_frame &gt; astrea::astro::Quaternion&lt; _in_frame_, _out_frame_ &gt;::from_vector</definition>
-        <argsstring>(const std::vector&lt; Unitless &gt; &amp;vec)</argsstring>
-        <name>from_vector</name>
-        <qualifiedname>astrea::astro::Quaternion::from_vector</qualifiedname>
+        <definition>static Quaternion&lt; in_frame, out_frame &gt; astrea::astro::Quaternion&lt; _in_frame_, _out_frame_ &gt;::from_double_vector</definition>
+        <argsstring>(const std::vector&lt; double &gt; &amp;vec)</argsstring>
+        <name>from_double_vector</name>
+        <qualifiedname>astrea::astro::Quaternion::from_double_vector</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> std::vector&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Unitless</ref> &gt; &amp;</type>
+          <type>const std::vector&lt; double &gt; &amp;</type>
           <declname>vec</declname>
         </param>
         <briefdescription>
@@ -1300,7 +1300,7 @@ Shepperd, S.W. &quot;Quaternion from rotation matrix.&quot; Journal of Guidance 
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/attitude/Quaternion.hpp" line="617" column="23" bodyfile="astrea/astro/astro/state/attitude/Quaternion.hpp" bodystart="617" bodyend="623"/>
+        <location file="astrea/astro/astro/state/attitude/Quaternion.hpp" line="623" column="23" bodyfile="astrea/astro/astro/state/attitude/Quaternion.hpp" bodystart="623" bodyend="629"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
@@ -1328,7 +1328,7 @@ Shepperd, S.W. &quot;Quaternion from rotation matrix.&quot; Journal of Guidance 
 </simplesect>
 </para>
     </detaileddescription>
-    <location file="astrea/astro/astro/state/attitude/Quaternion.hpp" line="51" column="1" bodyfile="astrea/astro/astro/state/attitude/Quaternion.hpp" bodystart="51" bodyend="624"/>
+    <location file="astrea/astro/astro/state/attitude/Quaternion.hpp" line="51" column="1" bodyfile="astrea/astro/astro/state/attitude/Quaternion.hpp" bodystart="51" bodyend="630"/>
     <listofallmembers>
       <member refid="classastrea_1_1astro_1_1Quaternion_1a6dd2a20a73f4128da430d68ed1ecb63b" prot="private" virt="non-virtual"><scope>astrea::astro::Quaternion</scope><name>_normalize</name></member>
       <member refid="classastrea_1_1astro_1_1Quaternion_1ac7da5b53d97b183d8a75caf5297e8fd9" prot="private" virt="non-virtual"><scope>astrea::astro::Quaternion</scope><name>_s</name></member>
@@ -1336,8 +1336,8 @@ Shepperd, S.W. &quot;Quaternion from rotation matrix.&quot; Journal of Guidance 
       <member refid="classastrea_1_1astro_1_1Quaternion_1a07fdd44fdce37f11b4956f47abf1b6b5" prot="private" virt="non-virtual"><scope>astrea::astro::Quaternion</scope><name>Attitude</name></member>
       <member refid="classastrea_1_1astro_1_1Quaternion_1a090cf0b582a4ae66350e183a315d3385" prot="public" virt="non-virtual"><scope>astrea::astro::Quaternion</scope><name>conjugate</name></member>
       <member refid="classastrea_1_1astro_1_1Quaternion_1a67a15d6797edb24923002e2a6b762fc6" prot="public" virt="non-virtual"><scope>astrea::astro::Quaternion</scope><name>dot</name></member>
-      <member refid="classastrea_1_1astro_1_1Quaternion_1a68f3b4ddc94be41dda4b5bf2b2f18193" prot="public" virt="non-virtual"><scope>astrea::astro::Quaternion</scope><name>force_to_vector</name></member>
-      <member refid="classastrea_1_1astro_1_1Quaternion_1a8215746b705766bda8687cf2f99403fa" prot="private" virt="non-virtual"><scope>astrea::astro::Quaternion</scope><name>from_vector</name></member>
+      <member refid="classastrea_1_1astro_1_1Quaternion_1aa85cbfbd919d1d8d33b52919e937736a" prot="public" virt="non-virtual"><scope>astrea::astro::Quaternion</scope><name>force_to_double_vector</name></member>
+      <member refid="classastrea_1_1astro_1_1Quaternion_1ae83567b4963b62450e8b25213da6bf97" prot="private" virt="non-virtual"><scope>astrea::astro::Quaternion</scope><name>from_double_vector</name></member>
       <member refid="classastrea_1_1astro_1_1Quaternion_1ac0b1b8cebcecf0faf095283ab7dc6671" prot="public" virt="non-virtual"><scope>astrea::astro::Quaternion</scope><name>get_scalar_part</name></member>
       <member refid="classastrea_1_1astro_1_1Quaternion_1af26b7517cb89ff9097d72dc1d96e380a" prot="public" virt="non-virtual"><scope>astrea::astro::Quaternion</scope><name>get_vector_part</name></member>
       <member refid="classastrea_1_1astro_1_1Quaternion_1a3b1d5eb2f2fd637b5ad3008bf3e7c2f6" prot="public" virt="non-virtual"><scope>astrea::astro::Quaternion</scope><name>in_frame</name></member>

@@ -19,7 +19,7 @@
 // Astro
 #include <astro/astro.fwd.hpp>
 #include <astro/frames/definitions.hpp>
-#include <astro/frames/definitions/dynamic_frames.hpp>
+#include <astro/frames/definitions/dynamic_frames/tags.hpp>
 #include <astro/state/attitude/AngularVelocities.hpp>
 #include <astro/state/attitude/EulerAngles.hpp>
 #include <astro/state/attitude/Quaternion.hpp>
@@ -90,7 +90,7 @@ class Attitude {
 
     AttitudePartials operator/(const Time& divisor) const;
 
-    std::vector<Unitless> force_to_vector() const;
+    std::vector<double> force_to_double_vector() const;
 
     Attitude operator/(const Unitless& divisor) const;
 
@@ -102,7 +102,7 @@ class Attitude {
     BodyQuaternion _orientation;          
     BodyAngleVelocities _angularVelocity; 
 
-    static Attitude from_vector(const std::vector<Unitless>& vec);
+    static Attitude from_double_vector(const std::vector<double>& vec);
 };
 
 class AttitudePartials {
@@ -118,7 +118,7 @@ class AttitudePartials {
 
     Attitude operator*(const Time& time) const;
 
-    std::vector<Unitless> force_to_vector() const;
+    std::vector<double> force_to_double_vector() const;
 
   private:
     BodyQuaternionRate _orientationRate; 

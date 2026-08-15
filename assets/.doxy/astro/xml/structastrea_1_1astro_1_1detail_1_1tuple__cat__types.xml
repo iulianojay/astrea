@@ -4,10 +4,10 @@
     <compoundname>astrea::astro::detail::tuple_cat_types</compoundname>
     <templateparamlist>
       <param>
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">typename</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">TupleA</ref></type>
+        <type>typename TupleA</type>
       </param>
       <param>
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">typename</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">TupleB</ref></type>
+        <type>typename TupleB</type>
       </param>
     </templateparamlist>
     <briefdescription>

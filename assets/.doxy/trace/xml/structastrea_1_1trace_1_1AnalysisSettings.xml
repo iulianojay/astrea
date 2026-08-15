@@ -16,7 +16,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/analysis/TraceConfig.hpp" line="36" column="10" bodyfile="astrea/trace/trace/analysis/TraceConfig.hpp" bodystart="36" bodyend="-1"/>
+        <location file="astrea/trace/trace/analysis/TraceConfig.hpp" line="35" column="10" bodyfile="astrea/trace/trace/analysis/TraceConfig.hpp" bodystart="35" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structastrea_1_1trace_1_1AnalysisSettings_1a6cd58da49e266064a1f853bcfe6fd9cb" prot="public" static="no" mutable="no">
         <type>Time</type>
@@ -31,7 +31,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/analysis/TraceConfig.hpp" line="37" column="10" bodyfile="astrea/trace/trace/analysis/TraceConfig.hpp" bodystart="37" bodyend="-1"/>
+        <location file="astrea/trace/trace/analysis/TraceConfig.hpp" line="36" column="10" bodyfile="astrea/trace/trace/analysis/TraceConfig.hpp" bodystart="36" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structastrea_1_1trace_1_1AnalysisSettings_1ac191fb12d55563bf85cf85774b1cc317" prot="public" static="no" mutable="no">
         <type>astro::Date</type>
@@ -46,7 +46,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/analysis/TraceConfig.hpp" line="38" column="17" bodyfile="astrea/trace/trace/analysis/TraceConfig.hpp" bodystart="38" bodyend="-1"/>
+        <location file="astrea/trace/trace/analysis/TraceConfig.hpp" line="37" column="17" bodyfile="astrea/trace/trace/analysis/TraceConfig.hpp" bodystart="37" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="public-func">
@@ -62,7 +62,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/analysis/TraceConfig.hpp" line="40" column="5"/>
+        <location file="astrea/trace/trace/analysis/TraceConfig.hpp" line="39" column="5"/>
       </memberdef>
       <memberdef kind="function" id="structastrea_1_1trace_1_1AnalysisSettings_1ae7f026162f40462c726317da1577ba53" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
@@ -80,7 +80,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/analysis/TraceConfig.hpp" line="42" column="5" bodyfile="astrea/trace/trace/analysis/TraceConfig.hpp" bodystart="42" bodyend="50"/>
+        <location file="astrea/trace/trace/analysis/TraceConfig.hpp" line="41" column="5" bodyfile="astrea/trace/trace/analysis/TraceConfig.hpp" bodystart="41" bodyend="49"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
@@ -99,7 +99,7 @@
         <label>Date</label>
       </node>
     </collaborationgraph>
-    <location file="astrea/trace/trace/analysis/TraceConfig.hpp" line="35" column="1" bodyfile="astrea/trace/trace/analysis/TraceConfig.hpp" bodystart="35" bodyend="51"/>
+    <location file="astrea/trace/trace/analysis/TraceConfig.hpp" line="34" column="1" bodyfile="astrea/trace/trace/analysis/TraceConfig.hpp" bodystart="34" bodyend="50"/>
     <listofallmembers>
       <member refid="structastrea_1_1trace_1_1AnalysisSettings_1a4410301bf3fad95051932e7b2c1bcd93" prot="public" virt="non-virtual"><scope>astrea::trace::AnalysisSettings</scope><name>AnalysisSettings</name></member>
       <member refid="structastrea_1_1trace_1_1AnalysisSettings_1ae7f026162f40462c726317da1577ba53" prot="public" virt="non-virtual"><scope>astrea::trace::AnalysisSettings</scope><name>AnalysisSettings</name></member>

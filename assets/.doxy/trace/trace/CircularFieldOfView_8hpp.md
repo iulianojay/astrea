@@ -13,9 +13,9 @@
 * `#include <numbers>`
 * `#include <unordered_map>`
 * `#include <mp-units/math.h>`
-* `#include <mp-units/systems/angular/math.h>`
+* `#include <mp-units/systems/si/math.h>`
 * `#include <astro/astro.fwd.hpp>`
-* `#include <astro/frames/definitions/dynamic_frames.hpp>`
+* `#include <astro/frames/definitions/dynamic_frames/tags.hpp>`
 * `#include <units/units.hpp>`
 * `#include <trace/platforms/sensors/fov/FieldOfView.hpp>`
 

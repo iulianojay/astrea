@@ -4,8 +4,8 @@
 
 ## e
 
-* [**EarthRadii**](structastrea_1_1EarthRadii.md)
-([**astrea**](namespaceastrea.md))
+* [**earth\_radii**](structastrea_1_1units_1_1earth__radii.md)
+([**astrea::units**](namespaceastrea_1_1units.md))
 
 
 ## h
@@ -16,13 +16,19 @@
 
 ## j
 
-* [**JulianCentury**](structastrea_1_1JulianCentury.md)
-([**astrea**](namespaceastrea.md))
+* [**julian\_century**](structastrea_1_1units_1_1julian__century.md)
+([**astrea::units**](namespaceastrea_1_1units.md))
+
+
+## r
+
+* [**revolution**](structastrea_1_1units_1_1revolution.md)
+([**astrea::units**](namespaceastrea_1_1units.md))
 
 
 ## s
 
-* [**SolarFluxUnits**](structastrea_1_1SolarFluxUnits.md)
-([**astrea**](namespaceastrea.md))
+* [**solar\_flux\_units**](structastrea_1_1units_1_1solar__flux__units.md)
+([**astrea::units**](namespaceastrea_1_1units.md))
 
 

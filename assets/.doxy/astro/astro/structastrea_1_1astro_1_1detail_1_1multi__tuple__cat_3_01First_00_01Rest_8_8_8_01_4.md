@@ -2,7 +2,7 @@
 
 # Struct astrea::astro::detail::multi\_tuple\_cat&lt; First, Rest... &gt;
 
-**template &lt;[**typename**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**First**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), typename... Rest&gt;**
+**template &lt;typename First, typename... Rest&gt;**
 
 
 
@@ -33,7 +33,7 @@
 
 | Type | Name |
 | ---: | :--- |
-| typedef [**typename**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**tuple\_cat\_types**](structastrea_1_1astro_1_1detail_1_1tuple__cat__types.md)&lt; [**First**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), [**typename**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**multi\_tuple\_cat**](structastrea_1_1astro_1_1detail_1_1multi__tuple__cat.md)&lt; Rest... &gt;::type &gt;::type | [**type**](#typedef-type)  <br> |
+| typedef typename [**tuple\_cat\_types**](structastrea_1_1astro_1_1detail_1_1tuple__cat__types.md)&lt; First, typename [**multi\_tuple\_cat**](structastrea_1_1astro_1_1detail_1_1multi__tuple__cat.md)&lt; Rest... &gt;::type &gt;::type | [**type**](#typedef-type)  <br> |
 
 
 

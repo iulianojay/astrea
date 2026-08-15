@@ -6,6 +6,8 @@
     <innerfile refid="AtmosphericForce_8hpp">AtmosphericForce.hpp</innerfile>
     <innerfile refid="ForceModel_8cpp">ForceModel.cpp</innerfile>
     <innerfile refid="ForceModel_8hpp">ForceModel.hpp</innerfile>
+    <innerfile refid="LegendreCache_8hpp">LegendreCache.hpp</innerfile>
+    <innerfile refid="LegendreCache_8ipp">LegendreCache.ipp</innerfile>
     <innerfile refid="NBodyForce_8hpp">NBodyForce.hpp</innerfile>
     <innerfile refid="OblatenessForce_8hpp">OblatenessForce.hpp</innerfile>
     <innerfile refid="OblatenessForce_8ipp">OblatenessForce.ipp</innerfile>

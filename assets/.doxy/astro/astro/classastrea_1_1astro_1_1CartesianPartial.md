@@ -2,7 +2,7 @@
 
 # Class astrea::astro::CartesianPartial
 
-**template &lt;IsFrame [**auto**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) \_frame\_&gt;**
+**template &lt;IsFrame auto \_frame\_&gt;**
 
 
 
@@ -40,7 +40,7 @@ _Class representing a partial derivative of a_ [_**Cartesian**_](classastrea_1_1
 
 | Type | Name |
 | ---: | :--- |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**auto**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**frame**](#variable-frame)   = `\_frame\_`<br>_The reference frame of the_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _state vector._ |
+|  constexpr auto | [**frame**](#variable-frame)   = `\_frame\_`<br>_The reference frame of the_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _state vector._ |
 
 
 
@@ -60,16 +60,16 @@ _Class representing a partial derivative of a_ [_**Cartesian**_](classastrea_1_1
 | Type | Name |
 | ---: | :--- |
 |   | [**CartesianPartial**](#function-cartesianpartial-13) () = default<br>_Default constructor for_ [_**CartesianPartial**_](classastrea_1_1astro_1_1CartesianPartial.md) _._ |
-|   | [**CartesianPartial**](#function-cartesianpartial-23) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Velocity**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & vx, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Velocity**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & vy, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Velocity**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & vz, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Acceleration**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & ax, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Acceleration**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & ay, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Acceleration**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & az) <br>_Constructor for_ [_**CartesianPartial**_](classastrea_1_1astro_1_1CartesianPartial.md) _with velocity and acceleration components._ |
-|   | [**CartesianPartial**](#function-cartesianpartial-33) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**VelocityVector**](namespaceastrea_1_1astro.md#typedef-velocityvector)&lt; \_frame\_ &gt; & v, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**AccelerationVector**](namespaceastrea_1_1astro.md#typedef-accelerationvector)&lt; \_frame\_ &gt; & a) <br>_Constructor for_ [_**CartesianPartial**_](classastrea_1_1astro_1_1CartesianPartial.md) _with velocity and acceleration vectors._ |
-|  std::vector&lt; [**Unitless**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt; | [**force\_to\_vector**](#function-force_to_vector) () const<br>_Converts the_ [_**CartesianPartial**_](classastrea_1_1astro_1_1CartesianPartial.md) _state vector to a vector of unitless values._ |
-|  [**Acceleration**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**get\_ax**](#function-get_ax) () const<br>_Get the ax value of the_ [_**CartesianPartial**_](classastrea_1_1astro_1_1CartesianPartial.md) _state vector._ |
-|  [**Acceleration**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**get\_ay**](#function-get_ay) () const<br>_Get the ay value of the_ [_**CartesianPartial**_](classastrea_1_1astro_1_1CartesianPartial.md) _state vector._ |
-|  [**Acceleration**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**get\_az**](#function-get_az) () const<br>_Get the az value of the_ [_**CartesianPartial**_](classastrea_1_1astro_1_1CartesianPartial.md) _state vector._ |
-|  [**Velocity**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**get\_vx**](#function-get_vx) () const<br>_Get the vx value of the_ [_**CartesianPartial**_](classastrea_1_1astro_1_1CartesianPartial.md) _state vector._ |
-|  [**Velocity**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**get\_vy**](#function-get_vy) () const<br>_Get the vy value of the_ [_**CartesianPartial**_](classastrea_1_1astro_1_1CartesianPartial.md) _state vector._ |
-|  [**Velocity**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**get\_vz**](#function-get_vz) () const<br>_Get the vz value of the_ [_**CartesianPartial**_](classastrea_1_1astro_1_1CartesianPartial.md) _state vector._ |
-|  [**Cartesian**](classastrea_1_1astro_1_1Cartesian.md)&lt; \_frame\_ &gt; | [**operator\***](#function-operator) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Time**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & time) const<br>_Multiplication operator for_ [_**CartesianPartial**_](classastrea_1_1astro_1_1CartesianPartial.md) _._ |
+|   | [**CartesianPartial**](#function-cartesianpartial-23) (const Velocity & vx, const Velocity & vy, const Velocity & vz, const Acceleration & ax, const Acceleration & ay, const Acceleration & az) <br>_Constructor for_ [_**CartesianPartial**_](classastrea_1_1astro_1_1CartesianPartial.md) _with velocity and acceleration components._ |
+|   | [**CartesianPartial**](#function-cartesianpartial-33) (const [**VelocityVector**](namespaceastrea_1_1astro.md#typedef-velocityvector)&lt; \_frame\_ &gt; & v, const [**AccelerationVector**](namespaceastrea_1_1astro.md#typedef-accelerationvector)&lt; \_frame\_ &gt; & a) <br>_Constructor for_ [_**CartesianPartial**_](classastrea_1_1astro_1_1CartesianPartial.md) _with velocity and acceleration vectors._ |
+|  std::vector&lt; double &gt; | [**force\_to\_double\_vector**](#function-force_to_double_vector) () const<br>_Converts the_ [_**CartesianPartial**_](classastrea_1_1astro_1_1CartesianPartial.md) _state vector to a vector of unitless values._ |
+|  Acceleration | [**get\_ax**](#function-get_ax) () const<br>_Get the ax value of the_ [_**CartesianPartial**_](classastrea_1_1astro_1_1CartesianPartial.md) _state vector._ |
+|  Acceleration | [**get\_ay**](#function-get_ay) () const<br>_Get the ay value of the_ [_**CartesianPartial**_](classastrea_1_1astro_1_1CartesianPartial.md) _state vector._ |
+|  Acceleration | [**get\_az**](#function-get_az) () const<br>_Get the az value of the_ [_**CartesianPartial**_](classastrea_1_1astro_1_1CartesianPartial.md) _state vector._ |
+|  Velocity | [**get\_vx**](#function-get_vx) () const<br>_Get the vx value of the_ [_**CartesianPartial**_](classastrea_1_1astro_1_1CartesianPartial.md) _state vector._ |
+|  Velocity | [**get\_vy**](#function-get_vy) () const<br>_Get the vy value of the_ [_**CartesianPartial**_](classastrea_1_1astro_1_1CartesianPartial.md) _state vector._ |
+|  Velocity | [**get\_vz**](#function-get_vz) () const<br>_Get the vz value of the_ [_**CartesianPartial**_](classastrea_1_1astro_1_1CartesianPartial.md) _state vector._ |
+|  [**Cartesian**](classastrea_1_1astro_1_1Cartesian.md)&lt; \_frame\_ &gt; | [**operator\***](#function-operator) (const Time & time) const<br>_Multiplication operator for_ [_**CartesianPartial**_](classastrea_1_1astro_1_1CartesianPartial.md) _._ |
 
 
 
@@ -145,12 +145,12 @@ astrea::astro::CartesianPartial::CartesianPartial () = default
 _Constructor for_ [_**CartesianPartial**_](classastrea_1_1astro_1_1CartesianPartial.md) _with velocity and acceleration components._
 ```C++
 inline astrea::astro::CartesianPartial::CartesianPartial (
-    const  Velocity & vx,
-    const  Velocity & vy,
-    const  Velocity & vz,
-    const  Acceleration & ax,
-    const  Acceleration & ay,
-    const  Acceleration & az
+    const Velocity & vx,
+    const Velocity & vy,
+    const Velocity & vz,
+    const Acceleration & ax,
+    const Acceleration & ay,
+    const Acceleration & az
 ) 
 ```
 
@@ -182,8 +182,8 @@ inline astrea::astro::CartesianPartial::CartesianPartial (
 _Constructor for_ [_**CartesianPartial**_](classastrea_1_1astro_1_1CartesianPartial.md) _with velocity and acceleration vectors._
 ```C++
 inline astrea::astro::CartesianPartial::CartesianPartial (
-    const  VelocityVector < _frame_ > & v,
-    const  AccelerationVector < _frame_ > & a
+    const VelocityVector < _frame_ > & v,
+    const AccelerationVector < _frame_ > & a
 ) 
 ```
 
@@ -206,11 +206,11 @@ inline astrea::astro::CartesianPartial::CartesianPartial (
 
 
 
-### function force\_to\_vector 
+### function force\_to\_double\_vector 
 
 _Converts the_ [_**CartesianPartial**_](classastrea_1_1astro_1_1CartesianPartial.md) _state vector to a vector of unitless values._
 ```C++
-std::vector< Unitless > astrea::astro::CartesianPartial::force_to_vector () const
+std::vector< double > astrea::astro::CartesianPartial::force_to_double_vector () const
 ```
 
 
@@ -386,7 +386,7 @@ Velocity The vz component of the [**CartesianPartial**](classastrea_1_1astro_1_1
 _Multiplication operator for_ [_**CartesianPartial**_](classastrea_1_1astro_1_1CartesianPartial.md) _._
 ```C++
 Cartesian < _frame_ > astrea::astro::CartesianPartial::operator* (
-    const  Time & time
+    const Time & time
 ) const
 ```
 

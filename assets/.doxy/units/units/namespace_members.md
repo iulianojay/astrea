@@ -37,7 +37,7 @@
 
 ## e
 
-* **EarthRadii** ([**astrea**](namespaceastrea.md))
+* **earth\_radii** ([**astrea::units**](namespaceastrea_1_1units.md))
 
 
 ## f
@@ -67,7 +67,8 @@
 
 ## j
 
-* **JulianCentury** ([**astrea**](namespaceastrea.md))
+* **jc** ([**astrea::units::unit\_symbols**](namespaceastrea_1_1units_1_1unit__symbols.md))
+* **julian\_century** ([**astrea::units**](namespaceastrea_1_1units.md))
 
 
 ## l
@@ -107,13 +108,21 @@
 * **pressure\_unit** ([**astrea::detail**](namespaceastrea_1_1detail.md))
 
 
+## r
+
+* **re** ([**astrea::units::unit\_symbols**](namespaceastrea_1_1units_1_1unit__symbols.md))
+* **rev** ([**astrea::units::unit\_symbols**](namespaceastrea_1_1units_1_1unit__symbols.md))
+* **revolution** ([**astrea::units**](namespaceastrea_1_1units.md))
+
+
 ## s
 
 * **SNR** ([**astrea**](namespaceastrea.md))
 * **SolarFlux** ([**astrea**](namespaceastrea.md))
-* **SolarFluxUnits** ([**astrea**](namespaceastrea.md))
 * **SpecificAngularMomentum** ([**astrea**](namespaceastrea.md))
 * **SurfaceArea** ([**astrea**](namespaceastrea.md))
+* **sfu** ([**astrea::units::unit\_symbols**](namespaceastrea_1_1units_1_1unit__symbols.md))
+* **solar\_flux\_units** ([**astrea::units**](namespaceastrea_1_1units.md))
 * **seconds** ([**astrea**](namespaceastrea.md))
 * **speed\_of\_light\_in\_vacuum** ([**astrea**](namespaceastrea.md))
 

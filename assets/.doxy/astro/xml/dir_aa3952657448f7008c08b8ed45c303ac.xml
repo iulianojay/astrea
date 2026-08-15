@@ -16,6 +16,7 @@
     <innerfile refid="frame__utilities_8hpp">frame_utilities.hpp</innerfile>
     <innerfile refid="Origin_8hpp">Origin.hpp</innerfile>
     <innerfile refid="SynodicFrame_8hpp">SynodicFrame.hpp</innerfile>
+    <innerfile refid="TopocentricFrame_8hpp">TopocentricFrame.hpp</innerfile>
     <briefdescription>
     </briefdescription>
     <detaileddescription>

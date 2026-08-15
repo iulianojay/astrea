@@ -24,6 +24,8 @@ class PerturbingForce {
     virtual ~PerturbingForce() = default;
 
     virtual Perturbation compute_perturbation(const State& state, const Vehicle& vehicle) const = 0;
+
+    virtual std::unique_ptr<PerturbingForce> clone() const = 0;
 };
 
 } // namespace astro

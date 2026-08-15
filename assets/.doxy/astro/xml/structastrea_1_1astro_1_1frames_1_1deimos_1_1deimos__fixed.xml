@@ -55,7 +55,7 @@
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="astrea/astro/astro/frames/definitions/body_fixed_frames.hpp" line="59" column="17" bodyfile="astrea/astro/astro/frames/definitions/body_fixed_frames.hpp" bodystart="59" bodyend="60"/>
+    <location file="astrea/astro/astro/frames/definitions/body_fixed_frames.hpp" line="69" column="17" bodyfile="astrea/astro/astro/frames/definitions/body_fixed_frames.hpp" bodystart="69" bodyend="70"/>
     <listofallmembers>
     </listofallmembers>
   </compounddef>

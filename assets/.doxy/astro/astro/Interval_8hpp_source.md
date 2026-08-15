@@ -20,7 +20,7 @@ class Interval {
   public:
     Interval(const Time& start, const Time& end) :
         start(start),
-        propTime(end){};
+        propTime(end) {};
 
     ~Interval() = default;
 

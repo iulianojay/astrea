@@ -2,7 +2,7 @@
 
 # Struct astrea::astro::detail::apply\_nttp\_template
 
-**template &lt;[**template**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)&lt; [**auto**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt; [**class**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) T, [**typename**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Tuple**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)&gt;**
+**template &lt;template&lt; auto &gt; class T, typename Tuple&gt;**
 
 
 

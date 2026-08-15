@@ -2,7 +2,7 @@
 
 # Struct astrea::astro::detail::apply\_template&lt; T, std::tuple&lt; Frames... &gt; &gt;
 
-**template &lt;[**template**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)&lt; [**typename**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt; [**class**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) T, typename... Frames&gt;**
+**template &lt;template&lt; typename &gt; class T, typename... Frames&gt;**
 
 
 
@@ -33,7 +33,7 @@
 
 | Type | Name |
 | ---: | :--- |
-| typedef std::tuple&lt; [**T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)&lt; [**Frames**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt;... &gt; | [**type**](#typedef-type)  <br> |
+| typedef std::tuple&lt; T&lt; Frames &gt;... &gt; | [**type**](#typedef-type)  <br> |
 
 
 

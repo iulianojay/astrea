@@ -12,7 +12,6 @@
 
 * `#include <astro/platforms/Vehicle.hpp>`
 * `#include <mp-units/math.h>`
-* `#include <mp-units/systems/angular/math.h>`
 * `#include <mp-units/systems/si/math.h>`
 * `#include <astro/platforms/vehicles/NullVehicle.hpp>`
 

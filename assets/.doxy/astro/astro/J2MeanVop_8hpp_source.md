@@ -35,11 +35,16 @@ class J2MeanVop : public EquationsOfMotion {
         const ForceVector<frames::primary>& control
     ) const override;
 
-    constexpr std::size_t get_expected_set_id() const override { return OrbitalElements::get_set_id<Keplerian<frames::primary>>(); };
+    constexpr std::size_t get_expected_set_id() const override
+    {
+        return OrbitalElements::get_set_id<Keplerian<frames::primary>>();
+    };
+
+    std::unique_ptr<EquationsOfMotion> clone() const override { return std::make_unique<J2MeanVop>(*this); }
 
   private:
-    const Unitless eccTol = 1e-10 * mp_units::one;                        
-    const Angle incTol    = 1e-10 * mp_units::angular::unit_symbols::rad; 
+    const Unitless eccTol = 1e-10 * mp_units::one;                   
+    const Angle incTol    = 1e-10 * mp_units::si::unit_symbols::rad; 
 };
 
 } // namespace astro

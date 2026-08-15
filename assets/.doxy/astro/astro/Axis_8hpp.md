@@ -44,6 +44,7 @@ _Definition for a Axis in astrea._ [More...](#detailed-description)
 | struct | [**Axis&lt; \_name\_ &gt;**](structastrea_1_1astro_1_1Axis_3_01__name___01_4.md) &lt;\_name\_&gt;<br> |
 | struct | [**Axis&lt; \_name\_, \_parent\_ &gt;**](structastrea_1_1astro_1_1Axis_3_01__name___00_01__parent___01_4.md) &lt;\_name\_, \_parent\_&gt;<br> |
 | struct | [**DynamicAxis**](structastrea_1_1astro_1_1DynamicAxis.md) <br> |
+| struct | [**cep**](structastrea_1_1astro_1_1axes_1_1cep.md) <br> |
 | struct | [**icrf**](structastrea_1_1astro_1_1axes_1_1icrf.md) <br> |
 | struct | [**j2000**](structastrea_1_1astro_1_1axes_1_1j2000.md) <br> |
 | struct | [**AxisBase**](structastrea_1_1astro_1_1detail_1_1AxisBase.md) <br> |
@@ -118,7 +119,7 @@ Jay Iuliano ([iuliano.jay@gmail.com](mailto:iuliano.jay@gmail.com))
 
 **Copyright:**
 
-Copyright (c) 2025 Jay Iuliano
+Copyright (c) 2025-2026 Jay Iuliano
 
 
 The GNU Lesser General Public License (LGPL)

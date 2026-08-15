@@ -59,7 +59,7 @@ _The NRLMSISE-00 atmospheric model for_ [_**Earth**_](structastrea_1_1astro_1_1p
 
 | Type | Name |
 | ---: | :--- |
-|  [**Density**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**find\_atmospheric\_density**](#function-find_atmospheric_density) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**State**](classastrea_1_1astro_1_1State.md) & state, [**double**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) f107a, [**double**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) f107, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) std::array&lt; [**double**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), 7 &gt; & ap) <br>_Find the atmospheric density at a given state using the NRLMSISE-00 model._  |
+|  Density | [**find\_atmospheric\_density**](#function-find_atmospheric_density) (const [**State**](classastrea_1_1astro_1_1State.md) & state, double f107a, double f107, const std::array&lt; double, 7 &gt; & ap) <br>_Find the atmospheric density at a given state using the NRLMSISE-00 model._  |
 
 
 
@@ -161,10 +161,10 @@ astrea::astro::planets::NRLMSISE00Atmosphere::NRLMSISE00Atmosphere () = delete
 _Find the atmospheric density at a given state using the NRLMSISE-00 model._ 
 ```C++
 static Density astrea::astro::planets::NRLMSISE00Atmosphere::find_atmospheric_density (
-    const  State & state,
+    const State & state,
     double f107a,
     double f107,
-    const std::array< double , 7 > & ap
+    const std::array< double, 7 > & ap
 ) 
 ```
 

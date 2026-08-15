@@ -19,16 +19,16 @@
             <defname>Rhs</defname>
           </param>
         </templateparamlist>
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">consteval</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">bool</ref></type>
+        <type>consteval bool</type>
         <definition>consteval bool operator==</definition>
         <argsstring>(Lhs, Rhs)</argsstring>
         <name>operator==</name>
         <qualifiedname>astrea::astro::detail::FrameBase::operator==</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Lhs</ref></type>
+          <type>Lhs</type>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Rhs</ref></type>
+          <type>Rhs</type>
         </param>
         <briefdescription>
         </briefdescription>

@@ -11,7 +11,7 @@
 /*
  * The GNU Lesser General Public License (LGPL)
  *
- * Copyright (c) 2025 Jay Iuliano
+ * Copyright (c) 2025-2026 Jay Iuliano
  *
  * This file is part of Astrea.
  * Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License
@@ -27,32 +27,37 @@
 
 // mp-units
 #include <mp-units/math.h>
-#include <mp-units/systems/angular/math.h>
 #include <mp-units/systems/si.h>
 #include <mp-units/systems/si/math.h>
+
+#include <math/interpolation.hpp>
+#include <math/trig.hpp>
 
 #include <astro/state/orbital_elements/Equinoctial.hpp>
 #include <astro/state/orbital_elements/Keplerian.hpp>
 #include <astro/systems/system_utilities.hpp>
 #include <astro/types/typedefs.hpp>
-#include <math/interpolation.hpp>
-
-namespace {
-using namespace mp_units;
-using namespace mp_units::non_si;
-using namespace mp_units::angular;
-using angular::unit_symbols::deg;
-using angular::unit_symbols::rad;
-using si::unit_symbols::km;
-using si::unit_symbols::s;
-} // namespace
 
 namespace astrea {
 namespace astro {
 
+namespace {
+
+// Perifocal Coordinates- we have to use this definition to avoid a log circular dependency issue
+inline constexpr struct peri : Frame<"fake perifocal frame for this calc only", DynamicOrigin{}, DynamicAxis{}> {
+} peri;
+
+} // namespace
+
 template <IsFrame auto _frame_>
 Cartesian<_frame_>::Cartesian(const Keplerian<_frame_>& elements, const GravParam& mu)
 {
+    using namespace mp_units;
+    using namespace mp_units::si;
+    using namespace mp_units::si;
+    using mp_units::si::unit_symbols::km;
+    using mp_units::si::unit_symbols::s;
+
     // Extract elements
     const auto& a     = elements.get_semimajor();
     const auto& ecc   = elements.get_eccentricity();
@@ -68,52 +73,39 @@ Cartesian<_frame_>::Cartesian(const Keplerian<_frame_>& elements, const GravPara
     }
 
     // Precalculate
-    const quantity cosTheta = cos(theta);
-    const quantity sinTheta = sin(theta);
+    const auto [sinTheta, cosTheta] = math::sin_cos_pack(theta);
+    const auto [sinW, cosW]         = math::sin_cos_pack(w);
+    const auto [sinRaan, cosRaan]   = math::sin_cos_pack(raan);
+    const auto [sinInc, cosInc]     = math::sin_cos_pack(inc);
 
-    const quantity cosW = cos(w);
-    const quantity sinW = sin(w);
+    const SpecificAngularMomentum h    = elements.get_specific_angular_momentum(mu);
+    const Distance radialCoefficient   = pow<2>(h) / mu / (1.0 + ecc * cosTheta);
+    const Velocity velocityCoefficient = mu / h;
 
-    const quantity cosRaan = cos(raan);
-    const quantity sinRaan = sin(raan);
-
-    const quantity cosInc = cos(inc);
-    const quantity sinInc = sin(inc);
-
-    const quantity h = sqrt(mu * a * (1.0 - ecc * ecc));
-    const quantity A = h * h / mu / (1.0 + ecc * cosTheta);
-    const quantity B = mu / h;
-
-    // Perifocal Coordinates
-    const quantity xPeri = A * cosTheta;
-    const quantity yPeri = A * sinTheta;
-
-    const quantity vxPeri = -B * sinTheta;
-    const quantity vyPeri = B * (ecc + cosTheta);
+    const RadiusVector<peri> rPeri{ radialCoefficient * cosTheta, radialCoefficient * sinTheta, Distance::zero() };
+    const VelocityVector<peri> vPeri{ -velocityCoefficient * sinTheta, velocityCoefficient * (ecc + cosTheta), Velocity::zero() };
 
     // Preallocate Dcm values for speed
-    const quantity DcmPeri2Eci11 = (cosW * cosRaan - sinW * cosInc * sinRaan);
-    const quantity DcmPeri2Eci12 = (-sinW * cosRaan - cosW * cosInc * sinRaan);
-
-    const quantity DcmPeri2Eci21 = (cosW * sinRaan + sinW * cosInc * cosRaan);
-    const quantity DcmPeri2Eci22 = (-sinW * sinRaan + cosW * cosInc * cosRaan);
-
-    const quantity DcmPeri2Eci31 = sinInc * sinW;
-    const quantity DcmPeri2Eci32 = sinInc * cosW;
+    const DCM<peri, _frame_> dcmPeri2Eci = {
+        { cosW * cosRaan - sinW * cosInc * sinRaan, -sinW * cosRaan - cosW * cosInc * sinRaan, sinInc * sinRaan },
+        { cosW * sinRaan + sinW * cosInc * cosRaan, -sinW * sinRaan + cosW * cosInc * cosRaan, -sinInc * cosRaan },
+        { sinInc * sinW, sinInc * cosW, cosInc }
+    };
 
     // Inertial position and _velocity
-    _r[0] = DcmPeri2Eci11 * xPeri + DcmPeri2Eci12 * yPeri;
-    _r[1] = DcmPeri2Eci21 * xPeri + DcmPeri2Eci22 * yPeri;
-    _r[2] = DcmPeri2Eci31 * xPeri + DcmPeri2Eci32 * yPeri;
-
-    _v[0] = DcmPeri2Eci11 * vxPeri + DcmPeri2Eci12 * vyPeri;
-    _v[1] = DcmPeri2Eci21 * vxPeri + DcmPeri2Eci22 * vyPeri;
-    _v[2] = DcmPeri2Eci31 * vxPeri + DcmPeri2Eci32 * vyPeri;
+    _r = dcmPeri2Eci * rPeri;
+    _v = dcmPeri2Eci * vPeri;
 }
 
 template <IsFrame auto _frame_>
 Cartesian<_frame_>::Cartesian(const Equinoctial<_frame_>& elements, const GravParam& mu)
 {
+    using namespace mp_units;
+    using namespace mp_units::si;
+    using namespace mp_units::si;
+    using mp_units::si::unit_symbols::km;
+    using mp_units::si::unit_symbols::s;
+
     // Extract
     const auto& semilatus     = elements.get_semilatus();
     const auto& f             = elements.get_f();
@@ -359,14 +351,15 @@ Cartesian<_frame_>
 }
 
 template <IsFrame auto _frame_>
-std::vector<Unitless> Cartesian<_frame_>::force_to_vector() const
+std::vector<double> Cartesian<_frame_>::force_to_double_vector() const
 {
-    return { _r[0] / _r[0].unit, _r[1] / _r[1].unit, _r[2] / _r[2].unit,
-             _v[0] / _v[0].unit, _v[1] / _v[1].unit, _v[2] / _v[2].unit };
+    return { _r[0].numerical_value_in(_r[0].unit), _r[1].numerical_value_in(_r[1].unit),
+             _r[2].numerical_value_in(_r[2].unit), _v[0].numerical_value_in(_v[0].unit),
+             _v[1].numerical_value_in(_v[1].unit), _v[2].numerical_value_in(_v[2].unit) };
 }
 
 template <IsFrame auto _frame_>
-Cartesian<_frame_> Cartesian<_frame_>::from_vector(const std::vector<Unitless>& vec)
+Cartesian<_frame_> Cartesian<_frame_>::from_double_vector(const std::vector<double>& vec)
 {
     if (vec.size() != 6) {
         throw std::runtime_error("Input vector must have exactly 6 elements to convert to Cartesian.");
@@ -389,10 +382,11 @@ Cartesian<_frame_> CartesianPartial<_frame_>::operator*(const Time& time) const
 }
 
 template <IsFrame auto _frame_>
-std::vector<Unitless> CartesianPartial<_frame_>::force_to_vector() const
+std::vector<double> CartesianPartial<_frame_>::force_to_double_vector() const
 {
-    return { _v[0] / _v[0].unit, _v[1] / _v[1].unit, _v[2] / _v[2].unit,
-             _a[0] / _a[0].unit, _a[1] / _a[1].unit, _a[2] / _a[2].unit };
+    return { _v[0].numerical_value_in(_v[0].unit), _v[1].numerical_value_in(_v[1].unit),
+             _v[2].numerical_value_in(_v[2].unit), _a[0].numerical_value_in(_a[0].unit),
+             _a[1].numerical_value_in(_a[1].unit), _a[2].numerical_value_in(_a[2].unit) };
 }
 
 template <IsFrame auto _frame_>

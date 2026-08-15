@@ -29,6 +29,7 @@
 
 | Type | Name |
 | ---: | :--- |
+| struct | [**cep**](structastrea_1_1astro_1_1axes_1_1cep.md) <br> |
 | struct | [**icrf**](structastrea_1_1astro_1_1axes_1_1icrf.md) <br> |
 | struct | [**j2000**](structastrea_1_1astro_1_1axes_1_1j2000.md) <br> |
 
@@ -41,6 +42,7 @@
 
 | Type | Name |
 | ---: | :--- |
+|  [**astrea::astro::axes::cep**](structastrea_1_1astro_1_1axes_1_1cep.md) | [**cep**](#variable-cep)  <br> |
 |  [**astrea::astro::axes::icrf**](structastrea_1_1astro_1_1axes_1_1icrf.md) | [**icrf**](#variable-icrf)  <br> |
 |  [**astrea::astro::axes::j2000**](structastrea_1_1astro_1_1axes_1_1j2000.md) | [**j2000**](#variable-j2000)  <br> |
 
@@ -89,6 +91,19 @@
 
 ## Public Attributes Documentation
 
+
+
+
+### variable cep 
+
+```C++
+astrea::astro::axes::cep astrea::astro::axes::cep;
+```
+
+
+
+
+<hr>
 
 
 

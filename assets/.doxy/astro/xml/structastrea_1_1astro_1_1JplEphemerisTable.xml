@@ -5,7 +5,7 @@
     <includes refid="JplEphemerisTable_8hpp" local="no">JplEphemerisTable.hpp</includes>
     <sectiondef kind="protected-static-attrib">
       <memberdef kind="variable" id="structastrea_1_1astro_1_1JplEphemerisTable_1ac40512122cf9e8b07f7ed97407b12df3" prot="protected" static="yes" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref></type>
+        <type>const <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref></type>
         <definition>const Date astrea::astro::JplEphemerisTable::START_DATE</definition>
         <argsstring></argsstring>
         <name>START_DATE</name>
@@ -21,7 +21,7 @@
         <location file="astrea/astro/astro/systems/celestial_bodies/JplEphemerisTable.hpp" line="48" column="23" bodyfile="astrea/astro/astro/systems/celestial_bodies/JplEphemerisTable.hpp" bodystart="48" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structastrea_1_1astro_1_1JplEphemerisTable_1af0a80679f79d25eea974159273b72ce1" prot="protected" static="yes" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref></type>
+        <type>const <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref></type>
         <definition>const Date astrea::astro::JplEphemerisTable::STOP_DATE</definition>
         <argsstring></argsstring>
         <name>STOP_DATE</name>
@@ -75,11 +75,11 @@
         <name>get_index</name>
         <qualifiedname>astrea::astro::JplEphemerisTable::get_index</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
           <declname>date</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Time</ref> &amp;</type>
+          <type>const Time &amp;</type>
           <declname>timePerPoly</declname>
         </param>
         <briefdescription>

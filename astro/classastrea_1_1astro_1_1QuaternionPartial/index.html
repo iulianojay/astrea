@@ -6238,7 +6238,7 @@ You're not viewing the latest version.
 
 
 <h1 id="class-astreaastroquaternionpartial">Class astrea::astro::QuaternionPartial<a class="headerlink" href="#class-astreaastroquaternionpartial" title="Permanent link">&para;</a></h1>
-<p><strong>template &lt;IsFrame <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>auto</strong></a> _in_frame_, IsFrame <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>auto</strong></a> _out_frame_&gt;</strong></p>
+<p><strong>template &lt;IsFrame auto _in_frame_, IsFrame auto _out_frame_&gt;</strong></p>
 <p><a href="../annotated/"><strong>ClassList</strong></a> <strong>&gt;</strong> <a href="../namespaceastrea/"><strong>astrea</strong></a> <strong>&gt;</strong> <a href="../namespaceastrea_1_1astro/"><strong>astro</strong></a> <strong>&gt;</strong> <a href="./"><strong>QuaternionPartial</strong></a></p>
 <p><em>Class representing the partial derivative of a quaternion with respect to time, used for integration.</em> <a href="#detailed-description">More...</a></p>
 <ul>
@@ -6254,12 +6254,12 @@ You're not viewing the latest version.
 </thead>
 <tbody>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>constexpr</strong></a> <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>auto</strong></a></td>
-<td style="text-align: left;"><a href="#variable-in_frame"><strong>in_frame</strong></a>   = <code>[**\_in\_frame\_**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)</code><br></td>
+<td style="text-align: right;">constexpr auto</td>
+<td style="text-align: left;"><a href="#variable-in_frame"><strong>in_frame</strong></a>   = <code>\_in\_frame\_</code><br></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>constexpr</strong></a> <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>auto</strong></a></td>
-<td style="text-align: left;"><a href="#variable-out_frame"><strong>out_frame</strong></a>   = <code>[**\_out\_frame\_**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)</code><br></td>
+<td style="text-align: right;">constexpr auto</td>
+<td style="text-align: left;"><a href="#variable-out_frame"><strong>out_frame</strong></a>   = <code>\_out\_frame\_</code><br></td>
 </tr>
 </tbody>
 </table>
@@ -6278,23 +6278,23 @@ You're not viewing the latest version.
 </tr>
 <tr>
 <td style="text-align: right;"></td>
-<td style="text-align: left;"><a href="#function-quaternionpartial-22"><strong>QuaternionPartial</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>UnitlessPerTime</strong></a> &amp; sDot, <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../structastrea_1_1astro_1_1CartesianVector/"><strong>CartesianVector</strong></a>&lt; <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>UnitlessPerTime</strong></a>, in_frame &gt; &amp; uDot) <br><em>Constructor for the</em> <a href="./"><em><strong>QuaternionPartial</strong></em></a> <em>class from a scalar and a</em><a href="../structastrea_1_1astro_1_1CartesianVector/"><em><strong>CartesianVector</strong></em></a> <em>.</em></td>
+<td style="text-align: left;"><a href="#function-quaternionpartial-22"><strong>QuaternionPartial</strong></a> (const UnitlessPerTime &amp; sDot, const <a href="../structastrea_1_1astro_1_1CartesianVector/"><strong>CartesianVector</strong></a>&lt; UnitlessPerTime, in_frame &gt; &amp; uDot) <br><em>Constructor for the</em> <a href="./"><em><strong>QuaternionPartial</strong></em></a> <em>class from a scalar and a</em><a href="../structastrea_1_1astro_1_1CartesianVector/"><em><strong>CartesianVector</strong></em></a> <em>.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">std::vector&lt; <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Unitless</strong></a> &gt;</td>
-<td style="text-align: left;"><a href="#function-force_to_vector"><strong>force_to_vector</strong></a> () const<br><em>Converts the quaternion derivative to a vector form for use in numerical integration.</em></td>
+<td style="text-align: right;">std::vector&lt; double &gt;</td>
+<td style="text-align: left;"><a href="#function-force_to_double_vector"><strong>force_to_double_vector</strong></a> () const<br><em>Converts the quaternion derivative to a vector form for use in numerical integration.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>UnitlessPerTime</strong></a> &amp;</td>
+<td style="text-align: right;">const UnitlessPerTime &amp;</td>
 <td style="text-align: left;"><a href="#function-get_scalar_part"><strong>get_scalar_part</strong></a> () const<br><em>Gets the scalar part of the quaternion.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../structastrea_1_1astro_1_1CartesianVector/"><strong>CartesianVector</strong></a>&lt; <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>UnitlessPerTime</strong></a>, in_frame &gt; &amp;</td>
+<td style="text-align: right;">const <a href="../structastrea_1_1astro_1_1CartesianVector/"><strong>CartesianVector</strong></a>&lt; UnitlessPerTime, in_frame &gt; &amp;</td>
 <td style="text-align: left;"><a href="#function-get_vector_part"><strong>get_vector_part</strong></a> () const<br><em>Gets the vector part of the quaternion as a</em> <a href="../structastrea_1_1astro_1_1CartesianVector/"><em><strong>CartesianVector</strong></em></a> <em>.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;"><a href="../classastrea_1_1astro_1_1Quaternion/"><strong>Quaternion</strong></a>&lt; in_frame, out_frame &gt;</td>
-<td style="text-align: left;"><a href="#function-operator"><strong>operator*</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Time</strong></a> &amp; dt) const<br><em>Multiplies the quaternion derivative by a time quantity to get a quaternion representing the change in attitude over that time interval.</em></td>
+<td style="text-align: left;"><a href="#function-operator"><strong>operator*</strong></a> (const Time &amp; dt) const<br><em>Multiplies the quaternion derivative by a time quantity to get a quaternion representing the change in attitude over that time interval.</em></td>
 </tr>
 </tbody>
 </table>
@@ -6324,8 +6324,8 @@ You're not viewing the latest version.
 <h3 id="function-quaternionpartial-22">function QuaternionPartial [2/2]<a class="headerlink" href="#function-quaternionpartial-22" title="Permanent link">&para;</a></h3>
 <p><em>Constructor for the</em> <a href="./"><em><strong>QuaternionPartial</strong></em></a> <em>class from a scalar and a</em><a href="../structastrea_1_1astro_1_1CartesianVector/"><em><strong>CartesianVector</strong></em></a> <em>.</em>
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kr">inline</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">QuaternionPartial</span><span class="o">::</span><span class="n">QuaternionPartial</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">UnitlessPerTime</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">sDot</span><span class="p">,</span>
-</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">CartesianVector</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">UnitlessPerTime</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="n">in_frame</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">uDot</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">UnitlessPerTime</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">sDot</span><span class="p">,</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">CartesianVector</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">UnitlessPerTime</span><span class="p">,</span><span class="w"> </span><span class="n">in_frame</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">uDot</span>
 </span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="p">)</span><span class="w"> </span>
 </span></code></pre></div></p>
 <p><strong>Parameters:</strong></p>
@@ -6335,9 +6335,9 @@ You're not viewing the latest version.
 </ul>
 <hr>
 
-<h3 id="function-force_to_vector">function force_to_vector<a class="headerlink" href="#function-force_to_vector" title="Permanent link">&para;</a></h3>
+<h3 id="function-force_to_double_vector">function force_to_double_vector<a class="headerlink" href="#function-force_to_double_vector" title="Permanent link">&para;</a></h3>
 <p><em>Converts the quaternion derivative to a vector form for use in numerical integration.</em> 
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kr">inline</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="n">Unitless</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">QuaternionPartial</span><span class="o">::</span><span class="n">force_to_vector</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kr">inline</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">QuaternionPartial</span><span class="o">::</span><span class="n">force_to_double_vector</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </span></code></pre></div></p>
 <p><strong>Returns:</strong></p>
 <p>A std::vector of Unitless quantities representing the components of the quaternion derivative, in the order [sDot, uDot_x, uDot_y, uDot_z]. </p>
@@ -6345,7 +6345,7 @@ You're not viewing the latest version.
 
 <h3 id="function-get_scalar_part">function get_scalar_part<a class="headerlink" href="#function-get_scalar_part" title="Permanent link">&para;</a></h3>
 <p><em>Gets the scalar part of the quaternion.</em> 
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="kr">inline</span><span class="w"> </span><span class="k">const</span><span class="w">  </span><span class="n">UnitlessPerTime</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">QuaternionPartial</span><span class="o">::</span><span class="n">get_scalar_part</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="kr">inline</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">UnitlessPerTime</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">QuaternionPartial</span><span class="o">::</span><span class="n">get_scalar_part</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </span></code></pre></div></p>
 <p><strong>Returns:</strong></p>
 <p>const UnitlessPerTime&amp; The scalar part of the quaternion. </p>
@@ -6353,7 +6353,7 @@ You're not viewing the latest version.
 
 <h3 id="function-get_vector_part">function get_vector_part<a class="headerlink" href="#function-get_vector_part" title="Permanent link">&para;</a></h3>
 <p><em>Gets the vector part of the quaternion as a</em> <a href="../structastrea_1_1astro_1_1CartesianVector/"><em><strong>CartesianVector</strong></em></a> <em>.</em>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="kr">inline</span><span class="w"> </span><span class="k">const</span><span class="w">  </span><span class="n">CartesianVector</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">UnitlessPerTime</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="n">in_frame</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">QuaternionPartial</span><span class="o">::</span><span class="n">get_vector_part</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="kr">inline</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">CartesianVector</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">UnitlessPerTime</span><span class="p">,</span><span class="w"> </span><span class="n">in_frame</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">QuaternionPartial</span><span class="o">::</span><span class="n">get_vector_part</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </span></code></pre></div></p>
 <p><strong>Returns:</strong></p>
 <p>const <a href="../structastrea_1_1astro_1_1CartesianVector/"><strong>CartesianVector&lt;UnitlessPerTime, in_frame&gt;</strong></a>&amp; The vector part of the quaternion. </p>
@@ -6362,7 +6362,7 @@ You're not viewing the latest version.
 <h3 id="function-operator">function operator*<a class="headerlink" href="#function-operator" title="Permanent link">&para;</a></h3>
 <p><em>Multiplies the quaternion derivative by a time quantity to get a quaternion representing the change in attitude over that time interval.</em> 
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="kr">inline</span><span class="w"> </span><span class="n">Quaternion</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">in_frame</span><span class="p">,</span><span class="w"> </span><span class="n">out_frame</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">QuaternionPartial</span><span class="o">::</span><span class="k">operator</span><span class="o">*</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Time</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">dt</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Time</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">dt</span>
 </span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
 </span></code></pre></div></p>
 <p><strong>Parameters:</strong></p>

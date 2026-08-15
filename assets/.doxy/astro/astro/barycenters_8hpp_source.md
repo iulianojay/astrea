@@ -14,7 +14,7 @@
 #include <astro/systems/Barycenter.hpp>
 
 #ifdef ASTREA_BUILD_EARTH_EPHEMERIS
-#include <ephemerides/Earth/EmbEphemerisTable.hpp>
+#include <astro/ephemerides/Earth/EmbEphemerisTable.hpp>
 #endif
 
 namespace astrea {

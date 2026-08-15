@@ -2,7 +2,7 @@
 
 # Struct astrea::astro::FixedOffsetFrame&lt; \_parent\_, \_x\_, \_y\_, \_z\_, Args... &gt;
 
-**template &lt;IsFrame [**auto**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) \_parent\_, [**Distance**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) \_x\_, [**Distance**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) \_y\_, [**Distance**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) \_z\_, auto... Args&gt;**
+**template &lt;IsFrame auto \_parent\_, Distance \_x\_, Distance \_y\_, Distance \_z\_, auto... Args&gt;**
 
 
 

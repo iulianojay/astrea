@@ -41,7 +41,7 @@ _Header file for the DynamicFrame class in the astro namespace._ [More...](#deta
 
 | Type | Name |
 | ---: | :--- |
-| struct | [**DynamicFrame**](structastrea_1_1astro_1_1DynamicFrame.md) &lt;[**typename**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Self**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), \_parent\_, \_self\_&gt;<br>_Base class for all dynamic state/frames._  |
+| struct | [**DynamicFrame**](structastrea_1_1astro_1_1DynamicFrame.md) &lt;typename Self, \_parent\_, \_self\_&gt;<br>_Base class for all dynamic state/frames._  |
 
 
 
@@ -113,7 +113,7 @@ Jay Iuliano ([iuliano.jay@gmail.com](mailto:iuliano.jay@gmail.com))
 
 **Copyright:**
 
-Copyright (c) 2025 Jay Iuliano
+Copyright (c) 2025-2026 Jay Iuliano
 
 
 The GNU Lesser General Public License (LGPL)

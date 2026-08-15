@@ -4,7 +4,7 @@
 
 
 
-[**FileList**](files.md) **>** [**astrea**](dir_b5324400686b7cece921533bb760c87a.md) **>** [**astro**](dir_1d4dcf10fc541574a93624f5c09a3d6f.md) **>** [**astro**](dir_84db6e3c60e44147f5214c05dc45afc2.md) **>** [**frames**](dir_45ba6462728f0c3fdeb841915d341ea3.md) **>** [**definitions**](dir_0fbce91be2e6463cb25c5b2d70c0c29c.md) **>** [**RadialInTrackCrossTrack.hpp**](RadialInTrackCrossTrack_8hpp.md)
+[**FileList**](files.md) **>** [**astrea**](dir_b5324400686b7cece921533bb760c87a.md) **>** [**astro**](dir_1d4dcf10fc541574a93624f5c09a3d6f.md) **>** [**astro**](dir_84db6e3c60e44147f5214c05dc45afc2.md) **>** [**frames**](dir_45ba6462728f0c3fdeb841915d341ea3.md) **>** [**definitions**](dir_0fbce91be2e6463cb25c5b2d70c0c29c.md) **>** [**dynamic\_frames**](dir_212f82f17a8a6ae9a0307bd639427aed.md) **>** [**RadialInTrackCrossTrack.hpp**](RadialInTrackCrossTrack_8hpp.md)
 
 [Go to the source code of this file](RadialInTrackCrossTrack_8hpp_source.md)
 
@@ -115,7 +115,7 @@ Jay Iuliano ([iuliano.jay@gmail.com](mailto:iuliano.jay@gmail.com))
 
 **Copyright:**
 
-Copyright (c) 2025 Jay Iuliano
+Copyright (c) 2025-2026 Jay Iuliano
 
 
 The GNU Lesser General Public License (LGPL)
@@ -127,5 +127,5 @@ This file is part of Astrea. Astrea is free software: you can redistribute it an
     
 
 ------------------------------
-The documentation for this class was generated from the following file `astrea/astro/astro/frames/definitions/RadialInTrackCrossTrack.hpp`
+The documentation for this class was generated from the following file `astrea/astro/astro/frames/definitions/dynamic_frames/RadialInTrackCrossTrack.hpp`
 

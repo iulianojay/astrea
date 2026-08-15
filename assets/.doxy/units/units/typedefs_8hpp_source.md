@@ -47,11 +47,11 @@ using AngularAcceleration = mp_units::quantity<detail::angle_unit / mp_units::po
 
 using InterplanetaryDistance = mp_units::quantity<mp_units::iau::unit_symbols::au>;
 
-using InterplanetaryVelocity = mp_units::quantity<mp_units::iau::unit_symbols::au / JulianCentury>;
+using InterplanetaryVelocity = mp_units::quantity<mp_units::iau::unit_symbols::au / astrea::units::unit_symbols::jc>;
 
-using BodyUnitlessPerTime = mp_units::quantity<detail::unitless / JulianCentury>;
+using BodyUnitlessPerTime = mp_units::quantity<detail::unitless / astrea::units::unit_symbols::jc>;
 
-using BodyAngularVelocity = mp_units::quantity<detail::angle_unit / JulianCentury>;
+using BodyAngularVelocity = mp_units::quantity<detail::angle_unit / astrea::units::unit_symbols::jc>;
 
 using Acceleration = mp_units::quantity<detail::distance_unit / mp_units::pow<2>(detail::time_unit)>;
 
@@ -65,7 +65,7 @@ using MeanMotion1stDer = mp_units::quantity<mp_units::one / mp_units::pow<2>(mp_
 
 using MeanMotion2ndDer = mp_units::quantity<mp_units::one / mp_units::pow<3>(mp_units::non_si::day)>;
 
-using BallisticCoefficient = mp_units::quantity<mp_units::one / EarthRadii>;
+using BallisticCoefficient = mp_units::quantity<mp_units::one / astrea::units::unit_symbols::re>;
 
 using Density = mp_units::quantity<detail::mass_unit / (mp_units::pow<3>(detail::distance_unit))>;
 
@@ -91,7 +91,7 @@ using Moment = mp_units::quantity<detail::force_unit * detail::distance_unit>;
 
 using MomentOfInertia = mp_units::quantity<detail::mass_unit * mp_units::pow<2>(detail::distance_unit)>;
 
-using SolarFlux = mp_units::quantity<SolarFluxUnits>;
+using SolarFlux = mp_units::quantity<astrea::units::unit_symbols::sfu>;
 
 using Chirp = mp_units::quantity<mp_units::one / mp_units::pow<2>(detail::time_unit)>;
 

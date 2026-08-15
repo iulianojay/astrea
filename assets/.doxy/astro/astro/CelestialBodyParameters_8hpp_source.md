@@ -44,6 +44,7 @@ struct CelestialBodyParameters {
     BodyAngularVelocity rightAscensionRate;     
     BodyAngularVelocity longitudeOfPerigeeRate; 
     BodyAngularVelocity meanLongitudeRate;      
+    const char* gravityCoefficientFile = "";    
 };
 
 } // namespace astro

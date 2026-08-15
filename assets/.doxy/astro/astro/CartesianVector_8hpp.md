@@ -13,7 +13,7 @@ _This file defines the CartesianVector class, which represents a 3D vector in Ca
 * `#include <array>`
 * `#include <typeinfo>`
 * `#include <mp-units/framework.h>`
-* `#include <mp-units/systems/angular.h>`
+* `#include <mp-units/systems/si.h>`
 * `#include <units/units.hpp>`
 * `#include <astro/astro.fwd.hpp>`
 * `#include <astro/frames/framework/Frame.hpp>`
@@ -43,9 +43,9 @@ _This file defines the CartesianVector class, which represents a 3D vector in Ca
 
 | Type | Name |
 | ---: | :--- |
-| struct | [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md) &lt;[**class**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Value\_T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), \_frame\_&gt;<br>_Class representing a 3D vector in_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _coordinates._ |
-| struct | [**is\_cartesian\_vector**](structastrea_1_1astro_1_1is__cartesian__vector.md) &lt;[**class**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)&gt;<br> |
-| struct | [**is\_cartesian\_vector&lt; CartesianVector&lt; Value\_T, frame &gt; &gt;**](structastrea_1_1astro_1_1is__cartesian__vector_3_01CartesianVector_3_01Value__T_00_01frame_01_4_01_4.md) &lt;[**class**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Value\_T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), frame&gt;<br> |
+| struct | [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md) &lt;class Value\_T, \_frame\_&gt;<br>_Class representing a 3D vector in_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _coordinates._ |
+| struct | [**is\_cartesian\_vector**](structastrea_1_1astro_1_1is__cartesian__vector.md) &lt;class T&gt;<br> |
+| struct | [**is\_cartesian\_vector&lt; CartesianVector&lt; Value\_T, frame &gt; &gt;**](structastrea_1_1astro_1_1is__cartesian__vector_3_01CartesianVector_3_01Value__T_00_01frame_01_4_01_4.md) &lt;class Value\_T, frame&gt;<br> |
 
 
 
@@ -117,7 +117,7 @@ Jay Iuliano ([iuliano.jay@gmail.com](mailto:iuliano.jay@gmail.com))
 
 **Copyright:**
 
-Copyright (c) 2025 Jay Iuliano
+Copyright (c) 2025-2026 Jay Iuliano
 
 
 The GNU Lesser General Public License (LGPL)

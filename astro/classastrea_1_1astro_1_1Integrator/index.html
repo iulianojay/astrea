@@ -6258,91 +6258,91 @@ You're not viewing the latest version.
 </tr>
 <tr>
 <td style="text-align: right;"></td>
-<td style="text-align: left;"><a href="#function-integrator-22"><strong>Integrator</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../structastrea_1_1astro_1_1IntegratorSettings/"><strong>IntegratorSettings</strong></a> &amp; settings) <br><em>Constructor for the</em> <a href="./"><em><strong>Integrator</strong></em></a> <em>class that takes an</em><a href="../structastrea_1_1astro_1_1IntegratorSettings/"><em><strong>IntegratorSettings</strong></em></a> <em>struct.</em></td>
+<td style="text-align: left;"><a href="#function-integrator-22"><strong>Integrator</strong></a> (const <a href="../structastrea_1_1astro_1_1IntegratorSettings/"><strong>IntegratorSettings</strong></a> &amp; settings) <br><em>Constructor for the</em> <a href="./"><em><strong>Integrator</strong></em></a> <em>class that takes an</em><a href="../structastrea_1_1astro_1_1IntegratorSettings/"><em><strong>IntegratorSettings</strong></em></a> <em>struct.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>void</strong></a></td>
-<td style="text-align: left;"><a href="#function-add_event"><strong>add_event</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1Event/"><strong>Event</strong></a> &amp; event) <br><em>Add an event to the integrator's event detector.</em></td>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-add_event"><strong>add_event</strong></a> (const <a href="../classastrea_1_1astro_1_1Event/"><strong>Event</strong></a> &amp; event) <br><em>Add an event to the integrator's event detector.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>void</strong></a></td>
-<td style="text-align: left;"><a href="#function-add_events"><strong>add_events</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> std::vector&lt; <a href="../classastrea_1_1astro_1_1Event/"><strong>Event</strong></a> &gt; &amp; events) <br><em>Add multiple events to the integrator's event detector.</em></td>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-add_events"><strong>add_events</strong></a> (const std::vector&lt; <a href="../classastrea_1_1astro_1_1Event/"><strong>Event</strong></a> &gt; &amp; events) <br><em>Add multiple events to the integrator's event detector.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>void</strong></a></td>
-<td style="text-align: left;"><a href="#function-add_step_watcher"><strong>add_step_watcher</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../structastrea_1_1astro_1_1StepWatcher/"><strong>StepWatcher</strong></a> &amp; watcher) <br><em>Add a step watcher function to be called at each step of the integration.</em></td>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-add_step_watcher"><strong>add_step_watcher</strong></a> (const <a href="../structastrea_1_1astro_1_1StepWatcher/"><strong>StepWatcher</strong></a> &amp; watcher) <br><em>Add a step watcher function to be called at each step of the integration.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>void</strong></a></td>
+<td style="text-align: right;">void</td>
 <td style="text-align: left;"><a href="#function-clear"><strong>clear</strong></a> () <br><em>Clear the schedule of events, removing all scheduled events from the integrator.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>void</strong></a></td>
+<td style="text-align: right;">void</td>
 <td style="text-align: left;"><a href="#function-clear_events"><strong>clear_events</strong></a> () <br><em>Clear all events from the integrator's event detector.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>void</strong></a></td>
+<td style="text-align: right;">void</td>
 <td style="text-align: left;"><a href="#function-clear_watchers"><strong>clear_watchers</strong></a> () <br><em>Clear all step watchers from the integrator.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>int</strong></a></td>
+<td style="text-align: right;">int</td>
 <td style="text-align: left;"><a href="#function-n_func_evals"><strong>n_func_evals</strong></a> () <br><em>Get the current timestep used by the integrator.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;"><a href="../classastrea_1_1astro_1_1StateHistory/"><strong>StateHistory</strong></a></td>
-<td style="text-align: left;"><a href="#function-propagate-12"><strong>propagate</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1State/"><strong>State</strong></a> &amp; state0, <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Time</strong></a> &amp; propTime, <a href="../classastrea_1_1astro_1_1Vehicle/"><strong>Vehicle</strong></a> vehicle) <br><em>Propagate the state of a vehicle over a specified time interval using the given equations of motion.</em></td>
+<td style="text-align: left;"><a href="#function-propagate-12"><strong>propagate</strong></a> (const <a href="../classastrea_1_1astro_1_1State/"><strong>State</strong></a> &amp; state0, const Time &amp; propTime, <a href="../classastrea_1_1astro_1_1Vehicle/"><strong>Vehicle</strong></a> vehicle) <br><em>Propagate the state of a vehicle over a specified time interval using the given equations of motion.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;"><a href="../classastrea_1_1astro_1_1StateHistory/"><strong>StateHistory</strong></a></td>
-<td style="text-align: left;"><a href="#function-propagate-22"><strong>propagate</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1State/"><strong>State</strong></a> &amp; state0, <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1Date/"><strong>Date</strong></a> &amp; endEpoch, <a href="../classastrea_1_1astro_1_1Vehicle/"><strong>Vehicle</strong></a> vehicle) <br><em>Propagate the state of a vehicle from its current epoch to a specified end epoch using the given equations of motion.</em></td>
+<td style="text-align: left;"><a href="#function-propagate-22"><strong>propagate</strong></a> (const <a href="../classastrea_1_1astro_1_1State/"><strong>State</strong></a> &amp; state0, const <a href="../classastrea_1_1astro_1_1Date/"><strong>Date</strong></a> &amp; endEpoch, <a href="../classastrea_1_1astro_1_1Vehicle/"><strong>Vehicle</strong></a> vehicle) <br><em>Propagate the state of a vehicle from its current epoch to a specified end epoch using the given equations of motion.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;"><a href="../classastrea_1_1astro_1_1State/"><strong>State</strong></a></td>
-<td style="text-align: left;"><a href="#function-propagate_no_storage-12"><strong>propagate_no_storage</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1State/"><strong>State</strong></a> &amp; state0, <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Time</strong></a> &amp; propTime, <a href="../classastrea_1_1astro_1_1Vehicle/"><strong>Vehicle</strong></a> vehicle) <br><em>Propagate the state of a vehicle over a specified time interval without storing the state history.</em></td>
+<td style="text-align: left;"><a href="#function-propagate_no_storage-12"><strong>propagate_no_storage</strong></a> (const <a href="../classastrea_1_1astro_1_1State/"><strong>State</strong></a> &amp; state0, const Time &amp; propTime, <a href="../classastrea_1_1astro_1_1Vehicle/"><strong>Vehicle</strong></a> vehicle) <br><em>Propagate the state of a vehicle over a specified time interval without storing the state history.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;"><a href="../classastrea_1_1astro_1_1State/"><strong>State</strong></a></td>
-<td style="text-align: left;"><a href="#function-propagate_no_storage-22"><strong>propagate_no_storage</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1State/"><strong>State</strong></a> &amp; state0, <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1Date/"><strong>Date</strong></a> &amp; endEpoch, <a href="../classastrea_1_1astro_1_1Vehicle/"><strong>Vehicle</strong></a> vehicle) <br><em>Propagate the state of a vehicle from its current epoch to a specified end epoch without storing the state history.</em></td>
+<td style="text-align: left;"><a href="#function-propagate_no_storage-22"><strong>propagate_no_storage</strong></a> (const <a href="../classastrea_1_1astro_1_1State/"><strong>State</strong></a> &amp; state0, const <a href="../classastrea_1_1astro_1_1Date/"><strong>Date</strong></a> &amp; endEpoch, <a href="../classastrea_1_1astro_1_1Vehicle/"><strong>Vehicle</strong></a> vehicle) <br><em>Propagate the state of a vehicle from its current epoch to a specified end epoch without storing the state history.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>void</strong></a></td>
-<td style="text-align: left;"><a href="#function-set_abs_tol"><strong>set_abs_tol</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Unitless</strong></a> &amp; absTol) <br><em>Set the absolute tolerance for the integrator.</em></td>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-set_abs_tol"><strong>set_abs_tol</strong></a> (const Unitless &amp; absTol) <br><em>Set the absolute tolerance for the integrator.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>void</strong></a></td>
-<td style="text-align: left;"><a href="#function-set_equations_of_motion"><strong>set_equations_of_motion</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>T</strong></a> &amp; eom) <br><em>Set the equations of motion to be used for propagation.</em></td>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-set_equations_of_motion"><strong>set_equations_of_motion</strong></a> (const T &amp; eom) <br><em>Set the equations of motion to be used for propagation.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>void</strong></a></td>
-<td style="text-align: left;"><a href="#function-set_initial_timestep"><strong>set_initial_timestep</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Time</strong></a> &amp; dt0) <br><em>Set the initial timestep for the integrator.</em></td>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-set_initial_timestep"><strong>set_initial_timestep</strong></a> (const Time &amp; dt0) <br><em>Set the initial timestep for the integrator.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>void</strong></a></td>
-<td style="text-align: left;"><a href="#function-set_max_iter"><strong>set_max_iter</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>int</strong></a> &amp; itMax) <br><em>Set the maximum number of iterations for the integrator.</em></td>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-set_max_iter"><strong>set_max_iter</strong></a> (const int &amp; itMax) <br><em>Set the maximum number of iterations for the integrator.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>void</strong></a></td>
-<td style="text-align: left;"><a href="#function-set_rel_tol"><strong>set_rel_tol</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Unitless</strong></a> &amp; relTol) <br><em>Set the relative tolerance for the integrator.</em></td>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-set_rel_tol"><strong>set_rel_tol</strong></a> (const Unitless &amp; relTol) <br><em>Set the relative tolerance for the integrator.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>void</strong></a></td>
-<td style="text-align: left;"><a href="#function-set_schedule"><strong>set_schedule</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1Schedule/"><strong>Schedule</strong></a> &amp; schedule) <br><em>Set the schedule of events to be tracked during propagation.</em></td>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-set_schedule"><strong>set_schedule</strong></a> (const <a href="../classastrea_1_1astro_1_1Schedule/"><strong>Schedule</strong></a> &amp; schedule) <br><em>Set the schedule of events to be tracked during propagation.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>void</strong></a></td>
-<td style="text-align: left;"><a href="#function-set_step_method"><strong>set_step_method</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../namespaceastrea_1_1astro/#enum-stepmethod"><strong>StepMethod</strong></a> &amp; stepMethod) <br><em>Set the step method for the integrator.</em></td>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-set_step_method"><strong>set_step_method</strong></a> (const <a href="../namespaceastrea_1_1astro/#enum-stepmethod"><strong>StepMethod</strong></a> &amp; stepMethod) <br><em>Set the step method for the integrator.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>void</strong></a></td>
-<td style="text-align: left;"><a href="#function-set_timestep"><strong>set_timestep</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Time</strong></a> &amp; fixedTimeStep) <br><em>Set the fixed timestep for the integrator.</em></td>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-set_timestep"><strong>set_timestep</strong></a> (const Time &amp; fixedTimeStep) <br><em>Set the fixed timestep for the integrator.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>void</strong></a></td>
-<td style="text-align: left;"><a href="#function-switch_fixed_timestep-12"><strong>switch_fixed_timestep</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>bool</strong></a> &amp; onOff) <br><em>Switch the fixed timestep mode on or off.</em></td>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-switch_fixed_timestep-12"><strong>switch_fixed_timestep</strong></a> (const bool &amp; onOff) <br><em>Switch the fixed timestep mode on or off.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>void</strong></a></td>
-<td style="text-align: left;"><a href="#function-switch_fixed_timestep-22"><strong>switch_fixed_timestep</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>bool</strong></a> &amp; onOff, <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Time</strong></a> &amp; fixedTimeStep) <br><em>Set the fixed timestep for the integrator.</em></td>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-switch_fixed_timestep-22"><strong>switch_fixed_timestep</strong></a> (const bool &amp; onOff, const Time &amp; fixedTimeStep) <br><em>Set the fixed timestep for the integrator.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;"></td>
@@ -6362,7 +6362,7 @@ You're not viewing the latest version.
 <h3 id="function-integrator-22">function Integrator [2/2]<a class="headerlink" href="#function-integrator-22" title="Permanent link">&para;</a></h3>
 <p><em>Constructor for the</em> <a href="./"><em><strong>Integrator</strong></em></a> <em>class that takes an</em><a href="../structastrea_1_1astro_1_1IntegratorSettings/"><em><strong>IntegratorSettings</strong></em></a> <em>struct.</em>
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kr">inline</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Integrator</span><span class="o">::</span><span class="n">Integrator</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">IntegratorSettings</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">settings</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">IntegratorSettings</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">settings</span>
 </span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="p">)</span><span class="w"> </span>
 </span></code></pre></div></p>
 <p><strong>Parameters:</strong></p>
@@ -6374,7 +6374,7 @@ You're not viewing the latest version.
 <h3 id="function-add_event">function add_event<a class="headerlink" href="#function-add_event" title="Permanent link">&para;</a></h3>
 <p><em>Add an event to the integrator's event detector.</em> 
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Integrator</span><span class="o">::</span><span class="n">add_event</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Event</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">event</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Event</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">event</span>
 </span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="p">)</span><span class="w"> </span>
 </span></code></pre></div></p>
 <p><strong>Parameters:</strong></p>
@@ -6398,7 +6398,7 @@ You're not viewing the latest version.
 <h3 id="function-add_step_watcher">function add_step_watcher<a class="headerlink" href="#function-add_step_watcher" title="Permanent link">&para;</a></h3>
 <p><em>Add a step watcher function to be called at each step of the integration.</em> 
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Integrator</span><span class="o">::</span><span class="n">add_step_watcher</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">StepWatcher</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">watcher</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">StepWatcher</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">watcher</span>
 </span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="p">)</span><span class="w"> </span>
 </span></code></pre></div></p>
 <p><strong>Parameters:</strong></p>
@@ -6442,8 +6442,8 @@ You're not viewing the latest version.
 <h3 id="function-propagate-12">function propagate [1/2]<a class="headerlink" href="#function-propagate-12" title="Permanent link">&para;</a></h3>
 <p><em>Propagate the state of a vehicle over a specified time interval using the given equations of motion.</em> 
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="n">StateHistory</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Integrator</span><span class="o">::</span><span class="n">propagate</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">State</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">state0</span><span class="p">,</span>
-</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Time</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">propTime</span><span class="p">,</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">State</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">state0</span><span class="p">,</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Time</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">propTime</span><span class="p">,</span>
 </span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="w">    </span><span class="n">Vehicle</span><span class="w"> </span><span class="n">vehicle</span>
 </span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="p">)</span><span class="w"> </span>
 </span></code></pre></div></p>
@@ -6460,8 +6460,8 @@ You're not viewing the latest version.
 <h3 id="function-propagate-22">function propagate [2/2]<a class="headerlink" href="#function-propagate-22" title="Permanent link">&para;</a></h3>
 <p><em>Propagate the state of a vehicle from its current epoch to a specified end epoch using the given equations of motion.</em> 
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="n">StateHistory</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Integrator</span><span class="o">::</span><span class="n">propagate</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">State</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">state0</span><span class="p">,</span>
-</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Date</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">endEpoch</span><span class="p">,</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">State</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">state0</span><span class="p">,</span>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Date</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">endEpoch</span><span class="p">,</span>
 </span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="w">    </span><span class="n">Vehicle</span><span class="w"> </span><span class="n">vehicle</span>
 </span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="p">)</span><span class="w"> </span>
 </span></code></pre></div></p>
@@ -6478,8 +6478,8 @@ You're not viewing the latest version.
 <h3 id="function-propagate_no_storage-12">function propagate_no_storage [1/2]<a class="headerlink" href="#function-propagate_no_storage-12" title="Permanent link">&para;</a></h3>
 <p><em>Propagate the state of a vehicle over a specified time interval without storing the state history.</em> 
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="n">State</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Integrator</span><span class="o">::</span><span class="n">propagate_no_storage</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">State</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">state0</span><span class="p">,</span>
-</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Time</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">propTime</span><span class="p">,</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">State</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">state0</span><span class="p">,</span>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Time</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">propTime</span><span class="p">,</span>
 </span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="w">    </span><span class="n">Vehicle</span><span class="w"> </span><span class="n">vehicle</span>
 </span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="p">)</span><span class="w"> </span>
 </span></code></pre></div></p>
@@ -6496,8 +6496,8 @@ You're not viewing the latest version.
 <h3 id="function-propagate_no_storage-22">function propagate_no_storage [2/2]<a class="headerlink" href="#function-propagate_no_storage-22" title="Permanent link">&para;</a></h3>
 <p><em>Propagate the state of a vehicle from its current epoch to a specified end epoch without storing the state history.</em> 
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="n">State</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Integrator</span><span class="o">::</span><span class="n">propagate_no_storage</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">State</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">state0</span><span class="p">,</span>
-</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Date</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">endEpoch</span><span class="p">,</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">State</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">state0</span><span class="p">,</span>
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Date</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">endEpoch</span><span class="p">,</span>
 </span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="w">    </span><span class="n">Vehicle</span><span class="w"> </span><span class="n">vehicle</span>
 </span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="p">)</span><span class="w"> </span>
 </span></code></pre></div></p>
@@ -6514,7 +6514,7 @@ You're not viewing the latest version.
 <h3 id="function-set_abs_tol">function set_abs_tol<a class="headerlink" href="#function-set_abs_tol" title="Permanent link">&para;</a></h3>
 <p><em>Set the absolute tolerance for the integrator.</em> 
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Integrator</span><span class="o">::</span><span class="n">set_abs_tol</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Unitless</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">absTol</span>
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Unitless</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">absTol</span>
 </span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="p">)</span><span class="w"> </span>
 </span></code></pre></div></p>
 <p><strong>Parameters:</strong></p>
@@ -6525,9 +6525,9 @@ You're not viewing the latest version.
 
 <h3 id="function-set_equations_of_motion">function set_equations_of_motion<a class="headerlink" href="#function-set_equations_of_motion" title="Permanent link">&para;</a></h3>
 <p><em>Set the equations of motion to be used for propagation.</em> 
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w">  </span><span class="nc">T</span><span class="o">&gt;</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span>
 </span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="kr">inline</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Integrator</span><span class="o">::</span><span class="n">set_equations_of_motion</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">T</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">eom</span>
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">T</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">eom</span>
 </span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="p">)</span><span class="w"> </span>
 </span></code></pre></div></p>
 <p><strong>Parameters:</strong></p>
@@ -6539,7 +6539,7 @@ You're not viewing the latest version.
 <h3 id="function-set_initial_timestep">function set_initial_timestep<a class="headerlink" href="#function-set_initial_timestep" title="Permanent link">&para;</a></h3>
 <p><em>Set the initial timestep for the integrator.</em> 
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Integrator</span><span class="o">::</span><span class="n">set_initial_timestep</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Time</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">dt0</span>
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Time</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">dt0</span>
 </span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="p">)</span><span class="w"> </span>
 </span></code></pre></div></p>
 <p><strong>Parameters:</strong></p>
@@ -6551,7 +6551,7 @@ You're not viewing the latest version.
 <h3 id="function-set_max_iter">function set_max_iter<a class="headerlink" href="#function-set_max_iter" title="Permanent link">&para;</a></h3>
 <p><em>Set the maximum number of iterations for the integrator.</em> 
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Integrator</span><span class="o">::</span><span class="n">set_max_iter</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">itMax</span>
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">itMax</span>
 </span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="p">)</span><span class="w"> </span>
 </span></code></pre></div></p>
 <p><strong>Parameters:</strong></p>
@@ -6563,7 +6563,7 @@ You're not viewing the latest version.
 <h3 id="function-set_rel_tol">function set_rel_tol<a class="headerlink" href="#function-set_rel_tol" title="Permanent link">&para;</a></h3>
 <p><em>Set the relative tolerance for the integrator.</em> 
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Integrator</span><span class="o">::</span><span class="n">set_rel_tol</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Unitless</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">relTol</span>
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Unitless</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">relTol</span>
 </span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="p">)</span><span class="w"> </span>
 </span></code></pre></div></p>
 <p><strong>Parameters:</strong></p>
@@ -6575,7 +6575,7 @@ You're not viewing the latest version.
 <h3 id="function-set_schedule">function set_schedule<a class="headerlink" href="#function-set_schedule" title="Permanent link">&para;</a></h3>
 <p><em>Set the schedule of events to be tracked during propagation.</em> 
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Integrator</span><span class="o">::</span><span class="n">set_schedule</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Schedule</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">schedule</span>
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Schedule</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">schedule</span>
 </span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="p">)</span><span class="w"> </span>
 </span></code></pre></div></p>
 <p><strong>Parameters:</strong></p>
@@ -6587,7 +6587,7 @@ You're not viewing the latest version.
 <h3 id="function-set_step_method">function set_step_method<a class="headerlink" href="#function-set_step_method" title="Permanent link">&para;</a></h3>
 <p><em>Set the step method for the integrator.</em> 
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Integrator</span><span class="o">::</span><span class="n">set_step_method</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">StepMethod</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">stepMethod</span>
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">StepMethod</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">stepMethod</span>
 </span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a><span class="p">)</span><span class="w"> </span>
 </span></code></pre></div></p>
 <p><strong>Parameters:</strong></p>
@@ -6599,7 +6599,7 @@ You're not viewing the latest version.
 <h3 id="function-set_timestep">function set_timestep<a class="headerlink" href="#function-set_timestep" title="Permanent link">&para;</a></h3>
 <p><em>Set the fixed timestep for the integrator.</em> 
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Integrator</span><span class="o">::</span><span class="n">set_timestep</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Time</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">fixedTimeStep</span>
+</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Time</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">fixedTimeStep</span>
 </span><span id="__span-20-3"><a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a><span class="p">)</span><span class="w"> </span>
 </span></code></pre></div></p>
 <p><strong>Parameters:</strong></p>
@@ -6611,7 +6611,7 @@ You're not viewing the latest version.
 <h3 id="function-switch_fixed_timestep-12">function switch_fixed_timestep [1/2]<a class="headerlink" href="#function-switch_fixed_timestep-12" title="Permanent link">&para;</a></h3>
 <p><em>Switch the fixed timestep mode on or off.</em> 
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Integrator</span><span class="o">::</span><span class="n">switch_fixed_timestep</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">onOff</span>
+</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">onOff</span>
 </span><span id="__span-21-3"><a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a><span class="p">)</span><span class="w"> </span>
 </span></code></pre></div></p>
 <p><strong>Parameters:</strong></p>
@@ -6623,8 +6623,8 @@ You're not viewing the latest version.
 <h3 id="function-switch_fixed_timestep-22">function switch_fixed_timestep [2/2]<a class="headerlink" href="#function-switch_fixed_timestep-22" title="Permanent link">&para;</a></h3>
 <p><em>Set the fixed timestep for the integrator.</em> 
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Integrator</span><span class="o">::</span><span class="n">switch_fixed_timestep</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">onOff</span><span class="p">,</span>
-</span><span id="__span-22-3"><a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Time</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">fixedTimeStep</span>
+</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">onOff</span><span class="p">,</span>
+</span><span id="__span-22-3"><a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Time</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">fixedTimeStep</span>
 </span><span id="__span-22-4"><a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a><span class="p">)</span><span class="w"> </span>
 </span></code></pre></div></p>
 <p><strong>Parameters:</strong></p>

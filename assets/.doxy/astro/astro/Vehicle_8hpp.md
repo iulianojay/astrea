@@ -16,7 +16,6 @@ _A class representing a vehicle in the astrea astro platform._ [More...](#detail
 * `#include <type_traits>`
 * `#include <units/units.hpp>`
 * `#include <astro/frames/definitions.hpp>`
-* `#include <astro/frames/definitions/dynamic_frames.hpp>`
 * `#include <astro/frames/framework/CartesianVector.hpp>`
 * `#include <astro/platforms/InertiaTensor.hpp>`
 * `#include <astro/propagation/force_models/Perturbation.hpp>`
@@ -51,7 +50,7 @@ _A class representing a vehicle in the astrea astro platform._ [More...](#detail
 | Type | Name |
 | ---: | :--- |
 | class | [**Vehicle**](classastrea_1_1astro_1_1Vehicle.md) <br>_A class representing a vehicle in the astrea astro platform. This class serves as a base for user-defined vehicles and provides a common interface._  |
-| struct | [**VehicleInner**](structastrea_1_1astro_1_1detail_1_1VehicleInner.md) &lt;[**typename**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)&gt;<br>_A template class for vehicle inner implementations._  |
+| struct | [**VehicleInner**](structastrea_1_1astro_1_1detail_1_1VehicleInner.md) &lt;typename T&gt;<br>_A template class for vehicle inner implementations._  |
 | struct | [**VehicleInnerBase**](structastrea_1_1astro_1_1detail_1_1VehicleInnerBase.md) <br>_Pure virtual base class for vehicle inner implementations._  |
 
 
@@ -124,7 +123,7 @@ Jay Iuliano ([iuliano.jay@gmail.com](mailto:iuliano.jay@gmail.com))
 
 **Copyright:**
 
-Copyright (c) 2025 Jay Iuliano
+Copyright (c) 2025-2026 Jay Iuliano
 
 
 The GNU Lesser General Public License (LGPL)

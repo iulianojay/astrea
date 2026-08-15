@@ -10,19 +10,19 @@
         <defname>_name_</defname>
       </param>
       <param>
-        <type>IsAxis <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+        <type>IsAxis auto</type>
         <declname>_parent_</declname>
         <defname>_parent_</defname>
       </param>
     </templateparamlist>
     <sectiondef kind="public-static-attrib">
       <memberdef kind="variable" id="structastrea_1_1astro_1_1Axis_3_01__name___00_01__parent___01_4_1a1e78e0c2451845a31657ca53810cb55f" prot="public" static="yes" constexpr="yes" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+        <type>constexpr auto</type>
         <definition>constexpr auto astrea::astro::Axis&lt; _name_, _parent_ &gt;::name</definition>
         <argsstring></argsstring>
         <name>name</name>
         <qualifiedname>astrea::astro::Axis&lt; _name_, _parent_ &gt;::name</qualifiedname>
-        <initializer>= <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_name_</ref></initializer>
+        <initializer>= _name_</initializer>
         <briefdescription>
 <para>The name of the axis. </para>
         </briefdescription>
@@ -33,12 +33,12 @@
         <location file="astrea/astro/astro/frames/framework/Axis.hpp" line="61" column="27" bodyfile="astrea/astro/astro/frames/framework/Axis.hpp" bodystart="61" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structastrea_1_1astro_1_1Axis_3_01__name___00_01__parent___01_4_1a04f3f2c9225c52105e944c7dba65d08f" prot="public" static="yes" constexpr="yes" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+        <type>constexpr auto</type>
         <definition>constexpr auto astrea::astro::Axis&lt; _name_, _parent_ &gt;::parent</definition>
         <argsstring></argsstring>
         <name>parent</name>
         <qualifiedname>astrea::astro::Axis&lt; _name_, _parent_ &gt;::parent</qualifiedname>
-        <initializer>= <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_parent_</ref></initializer>
+        <initializer>= _parent_</initializer>
         <briefdescription>
 <para>The parent axis of this axis, if any. </para>
         </briefdescription>

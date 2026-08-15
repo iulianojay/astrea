@@ -12,17 +12,17 @@
         <defname>_name_</defname>
       </param>
       <param>
-        <type>IsBarycenter <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+        <type>IsBarycenter auto</type>
         <declname>_origin_</declname>
         <defname>_origin_</defname>
       </param>
       <param>
-        <type>IsCelestialBody <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+        <type>IsCelestialBody auto</type>
         <declname>_primary_</declname>
         <defname>_primary_</defname>
       </param>
       <param>
-        <type>IsCelestialBody <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+        <type>IsCelestialBody auto</type>
         <declname>_secondary_</declname>
         <defname>_secondary_</defname>
       </param>

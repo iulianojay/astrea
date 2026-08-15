@@ -4,7 +4,7 @@
     <compoundname>astrea::astro::FixedOffsetAxis::Misalignment</compoundname>
     <sectiondef kind="public-attrib">
       <memberdef kind="variable" id="structastrea_1_1astro_1_1FixedOffsetAxis_1_1Misalignment_1affad65763f4df8dca3cb857c7a5d5836" prot="public" static="no" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Angle</ref></type>
+        <type>Angle</type>
         <definition>Angle astrea::astro::FixedOffsetAxis&lt; _parent_, _phi_, _theta_, _psi_, _sequence_ &gt;::Misalignment::phi</definition>
         <argsstring></argsstring>
         <name>phi</name>
@@ -18,7 +18,7 @@
         <location file="astrea/astro/astro/frames/framework/FixedOffsetFrame.hpp" line="156" column="15" bodyfile="astrea/astro/astro/frames/framework/FixedOffsetFrame.hpp" bodystart="156" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structastrea_1_1astro_1_1FixedOffsetAxis_1_1Misalignment_1a0cfe5d9edd145ca56c1e294288dc766a" prot="public" static="no" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Angle</ref></type>
+        <type>Angle</type>
         <definition>Angle astrea::astro::FixedOffsetAxis&lt; _parent_, _phi_, _theta_, _psi_, _sequence_ &gt;::Misalignment::theta</definition>
         <argsstring></argsstring>
         <name>theta</name>
@@ -32,7 +32,7 @@
         <location file="astrea/astro/astro/frames/framework/FixedOffsetFrame.hpp" line="157" column="15" bodyfile="astrea/astro/astro/frames/framework/FixedOffsetFrame.hpp" bodystart="157" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structastrea_1_1astro_1_1FixedOffsetAxis_1_1Misalignment_1a216d9c096fe2963194ed4c777dab53ce" prot="public" static="no" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Angle</ref></type>
+        <type>Angle</type>
         <definition>Angle astrea::astro::FixedOffsetAxis&lt; _parent_, _phi_, _theta_, _psi_, _sequence_ &gt;::Misalignment::psi</definition>
         <argsstring></argsstring>
         <name>psi</name>

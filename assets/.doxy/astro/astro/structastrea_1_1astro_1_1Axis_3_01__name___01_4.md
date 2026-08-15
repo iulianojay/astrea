@@ -46,7 +46,7 @@ Inherits the following classes: [astrea::astro::detail::AxisBase](structastrea_1
 
 | Type | Name |
 | ---: | :--- |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**auto**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**name**](#variable-name)   = `[**\_name\_**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)`<br>_The name of the axis._  |
+|  constexpr auto | [**name**](#variable-name)   = `\_name\_`<br>_The name of the axis._  |
 
 
 

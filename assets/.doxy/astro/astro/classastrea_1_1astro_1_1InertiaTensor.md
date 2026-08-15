@@ -2,7 +2,7 @@
 
 # Class astrea::astro::InertiaTensor
 
-**template &lt;IsFrame [**auto**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) \_frame\_&gt;**
+**template &lt;IsFrame auto \_frame\_&gt;**
 
 
 
@@ -54,14 +54,14 @@ _A class representing an inertia matrix in the astrea astro platform._ [More...]
 
 | Type | Name |
 | ---: | :--- |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**InertiaTensor**](#function-inertiatensor-14) () <br>_Default constructor for an inertia tensor._  |
-|   | [**InertiaTensor**](#function-inertiatensor-24) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**MomentOfInertia**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & Ixx, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**MomentOfInertia**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & Ixy, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**MomentOfInertia**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & Ixz, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**MomentOfInertia**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & Iyx, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**MomentOfInertia**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & Iyy, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**MomentOfInertia**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & Iyz, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**MomentOfInertia**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & Izx, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**MomentOfInertia**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & Izy, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**MomentOfInertia**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & Izz) <br>_Constructs an inertia tensor with the specified moments of inertia._  |
-|   | [**InertiaTensor**](#function-inertiatensor-34) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**MomentOfInertia**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & Ixx, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**MomentOfInertia**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & Iyy, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**MomentOfInertia**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & Izz) <br>_Constructs a diagonal inertia tensor with the specified moments of inertia along the principal axes._  |
-|   | [**InertiaTensor**](#function-inertiatensor-44) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**MomentOfInertia**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & Iii) <br>_Constructs a spherical inertia tensor with the specified moment of inertia about any axis._  |
-|  [**auto**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**determinant**](#function-determinant) () const<br>_Computes the determinant of the inertia tensor._  |
-|  [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; [**decltype**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)([**Value\_U**](classastrea_1_1astro_1_1DirectionCosineMatrix.md){}/[**MomentOfInertia**](classastrea_1_1astro_1_1DirectionCosineMatrix.md){}), \_frame\_ &gt; | [**inverse\_multiply**](#function-inverse_multiply) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; [**Value\_U**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), \_frame\_ &gt; & vec) const<br>_Multiplies the inertia tensor by a_ [_**CartesianVector**_](structastrea_1_1astro_1_1CartesianVector.md) _, effectively applying the inertia tensor to the vector._ |
-|  [**MomentOfInertia**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & | [**operator[]**](#function-operator) ([**size\_t**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) i, [**size\_t**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) j) <br>_Accesses the inertia tensor element at the specified row and column._  |
-|  [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**MomentOfInertia**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & | [**operator[]**](#function-operator_1) ([**size\_t**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) i, [**size\_t**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) j) const<br>_Accesses the inertia tensor element at the specified row and column (const version)._  |
+|  constexpr | [**InertiaTensor**](#function-inertiatensor-14) () <br>_Default constructor for an inertia tensor._  |
+|   | [**InertiaTensor**](#function-inertiatensor-24) (const MomentOfInertia & Ixx, const MomentOfInertia & Ixy, const MomentOfInertia & Ixz, const MomentOfInertia & Iyx, const MomentOfInertia & Iyy, const MomentOfInertia & Iyz, const MomentOfInertia & Izx, const MomentOfInertia & Izy, const MomentOfInertia & Izz) <br>_Constructs an inertia tensor with the specified moments of inertia._  |
+|   | [**InertiaTensor**](#function-inertiatensor-34) (const MomentOfInertia & Ixx, const MomentOfInertia & Iyy, const MomentOfInertia & Izz) <br>_Constructs a diagonal inertia tensor with the specified moments of inertia along the principal axes._  |
+|   | [**InertiaTensor**](#function-inertiatensor-44) (const MomentOfInertia & Iii) <br>_Constructs a spherical inertia tensor with the specified moment of inertia about any axis._  |
+|  auto | [**determinant**](#function-determinant) () const<br>_Computes the determinant of the inertia tensor._  |
+|  [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; decltype(Value\_U{}/MomentOfInertia{}), \_frame\_ &gt; | [**inverse\_multiply**](#function-inverse_multiply) (const [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; Value\_U, \_frame\_ &gt; & vec) const<br>_Multiplies the inertia tensor by a_ [_**CartesianVector**_](structastrea_1_1astro_1_1CartesianVector.md) _, effectively applying the inertia tensor to the vector._ |
+|  MomentOfInertia & | [**operator[]**](#function-operator) (size\_t i, size\_t j) <br>_Accesses the inertia tensor element at the specified row and column._  |
+|  const MomentOfInertia & | [**operator[]**](#function-operator_1) (size\_t i, size\_t j) const<br>_Accesses the inertia tensor element at the specified row and column (const version)._  |
 |   | [**~InertiaTensor**](#function-inertiatensor) () = default<br>_Default destructor for an inertia tensor._  |
 
 
@@ -129,15 +129,15 @@ inline constexpr astrea::astro::InertiaTensor::InertiaTensor ()
 _Constructs an inertia tensor with the specified moments of inertia._ 
 ```C++
 inline astrea::astro::InertiaTensor::InertiaTensor (
-    const  MomentOfInertia & Ixx,
-    const  MomentOfInertia & Ixy,
-    const  MomentOfInertia & Ixz,
-    const  MomentOfInertia & Iyx,
-    const  MomentOfInertia & Iyy,
-    const  MomentOfInertia & Iyz,
-    const  MomentOfInertia & Izx,
-    const  MomentOfInertia & Izy,
-    const  MomentOfInertia & Izz
+    const MomentOfInertia & Ixx,
+    const MomentOfInertia & Ixy,
+    const MomentOfInertia & Ixz,
+    const MomentOfInertia & Iyx,
+    const MomentOfInertia & Iyy,
+    const MomentOfInertia & Iyz,
+    const MomentOfInertia & Izx,
+    const MomentOfInertia & Izy,
+    const MomentOfInertia & Izz
 ) 
 ```
 
@@ -169,9 +169,9 @@ inline astrea::astro::InertiaTensor::InertiaTensor (
 _Constructs a diagonal inertia tensor with the specified moments of inertia along the principal axes._ 
 ```C++
 inline astrea::astro::InertiaTensor::InertiaTensor (
-    const  MomentOfInertia & Ixx,
-    const  MomentOfInertia & Iyy,
-    const  MomentOfInertia & Izz
+    const MomentOfInertia & Ixx,
+    const MomentOfInertia & Iyy,
+    const MomentOfInertia & Izz
 ) 
 ```
 
@@ -200,7 +200,7 @@ inline astrea::astro::InertiaTensor::InertiaTensor (
 _Constructs a spherical inertia tensor with the specified moment of inertia about any axis._ 
 ```C++
 inline astrea::astro::InertiaTensor::InertiaTensor (
-    const  MomentOfInertia & Iii
+    const MomentOfInertia & Iii
 ) 
 ```
 
@@ -251,9 +251,9 @@ auto The determinant of the inertia tensor.
 
 _Multiplies the inertia tensor by a_ [_**CartesianVector**_](structastrea_1_1astro_1_1CartesianVector.md) _, effectively applying the inertia tensor to the vector._
 ```C++
-template<typename  Value_U>
-inline CartesianVector < decltype ( Value_U {}/ MomentOfInertia {}), _frame_ > astrea::astro::InertiaTensor::inverse_multiply (
-    const  CartesianVector < Value_U , _frame_ > & vec
+template<typename Value_U>
+inline CartesianVector < decltype(Value_U{}/MomentOfInertia{}), _frame_ > astrea::astro::InertiaTensor::inverse_multiply (
+    const CartesianVector < Value_U, _frame_ > & vec
 ) const
 ```
 
@@ -285,7 +285,7 @@ inline MomentOfInertia & astrea::astro::InertiaTensor::operator[] (
 
 _Accesses the inertia tensor element at the specified row and column (const version)._ 
 ```C++
-inline const  MomentOfInertia & astrea::astro::InertiaTensor::operator[] (
+inline const MomentOfInertia & astrea::astro::InertiaTensor::operator[] (
     size_t i,
     size_t j
 ) const

@@ -6238,7 +6238,7 @@ You're not viewing the latest version.
 
 
 <h1 id="struct-astreaastroframeseastnorthuptag">Struct astrea::astro::frames::EastNorthUpTag<a class="headerlink" href="#struct-astreaastroframeseastnorthuptag" title="Permanent link">&para;</a></h1>
-<p><strong>template &lt;IsFrame <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>auto</strong></a> _parent_&gt;</strong></p>
+<p><strong>template &lt;IsFrame auto _parent_&gt;</strong></p>
 <p><a href="../annotated/"><strong>ClassList</strong></a> <strong>&gt;</strong> <a href="../namespaceastrea/"><strong>astrea</strong></a> <strong>&gt;</strong> <a href="../namespaceastrea_1_1astro/"><strong>astro</strong></a> <strong>&gt;</strong> <a href="../namespaceastrea_1_1astro_1_1frames/"><strong>frames</strong></a> <strong>&gt;</strong> <a href="./"><strong>EastNorthUpTag</strong></a></p>
 <p><a href="../structastrea_1_1astro_1_1Frame/"><em><strong>Frame</strong></em></a> <em>tag type for</em><a href="../structastrea_1_1astro_1_1frames_1_1EastNorthUp/"><em><strong>EastNorthUp</strong></em></a> <em>, defined outside the class to allow use as a</em><a href="../structastrea_1_1astro_1_1DynamicFrame/"><em><strong>DynamicFrame</strong></em></a> <em>NTTP.</em></p>
 <ul>
@@ -6255,22 +6255,22 @@ You're not viewing the latest version.
 </thead>
 <tbody>
 <tr>
-<td style="text-align: right;"><a href="../structastrea_1_1astro_1_1frames_1_1EastNorthUp/"><strong>EastNorthUp</strong></a>&lt; <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>_parent_</strong></a> &gt;</td>
-<td style="text-align: left;"><a href="#function-instantaneous"><strong>instantaneous</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../namespaceastrea_1_1astro/#typedef-radiusvector"><strong>RadiusVector</strong></a>&lt; <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>_parent_</strong></a> &gt; &amp; r, <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../namespaceastrea_1_1astro/#typedef-velocityvector"><strong>VelocityVector</strong></a>&lt; <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>_parent_</strong></a> &gt; &amp; v) const<br></td>
+<td style="text-align: right;"><a href="../structastrea_1_1astro_1_1frames_1_1EastNorthUp/"><strong>EastNorthUp</strong></a>&lt; _parent_ &gt;</td>
+<td style="text-align: left;"><a href="#function-instantaneous"><strong>instantaneous</strong></a> (const <a href="../namespaceastrea_1_1astro/#typedef-radiusvector"><strong>RadiusVector</strong></a>&lt; _parent_ &gt; &amp; r, const <a href="../namespaceastrea_1_1astro/#typedef-velocityvector"><strong>VelocityVector</strong></a>&lt; _parent_ &gt; &amp; v) const<br></td>
 </tr>
 </tbody>
 </table>
 <h2 id="public-functions-documentation">Public Functions Documentation<a class="headerlink" href="#public-functions-documentation" title="Permanent link">&para;</a></h2>
 <h3 id="function-instantaneous">function instantaneous<a class="headerlink" href="#function-instantaneous" title="Permanent link">&para;</a></h3>
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kr">inline</span><span class="w"> </span><span class="n">EastNorthUp</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">_parent_</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">frames</span><span class="o">::</span><span class="n">EastNorthUpTag</span><span class="o">::</span><span class="n">instantaneous</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">RadiusVector</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">_parent_</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">r</span><span class="p">,</span>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">VelocityVector</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">_parent_</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">v</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">RadiusVector</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">_parent_</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">r</span><span class="p">,</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">VelocityVector</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">_parent_</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">v</span>
 </span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
 </span></code></pre></div>
 <hr>
 
 <hr />
-<p>The documentation for this class was generated from the following file <code>astrea/astro/astro/frames/definitions/EastNorthUp.hpp</code></p>
+<p>The documentation for this class was generated from the following file <code>astrea/astro/astro/frames/definitions/dynamic_frames/EastNorthUp.hpp</code></p>
 
 
 

@@ -14,7 +14,7 @@
 #include <iosfwd>
 
 #include <mp-units/math.h>
-#include <mp-units/systems/angular/math.h>
+#include <mp-units/systems/si/math.h>
 
 // units
 #include <units/units.hpp>
@@ -115,7 +115,9 @@ template <IsFrame auto _frame_>
     requires(IsBodyFixedFrame<decltype(_frame_)>)
 std::tuple<Distance, Angle, Distance> convert_body_fixed_to_cylindrical(const RadiusVector<_frame_>& rFixed)
 {
+    using mp_units::si::acos;
     using mp_units::si::unit_symbols::km;
+
     const Distance range     = rFixed.norm();
     const Distance elevation = rFixed.get_z();
     Angle azimuth = acos(rFixed.get_x() / sqrt(rFixed.get_x() * rFixed.get_x() + rFixed.get_y() * rFixed.get_y()));
@@ -128,6 +130,9 @@ template <IsFrame auto _frame_>
     requires(IsBodyFixedFrame<decltype(_frame_)>)
 RadiusVector<_frame_> convert_cylindrical_to_body_fixed(const Distance& range, const Angle& azimuth, const Distance& elevation)
 {
+    using mp_units::si::cos;
+    using mp_units::si::sin;
+
     return RadiusVector<_frame_>(range * cos(azimuth), range * sin(azimuth), elevation);
 }
 

@@ -10,10 +10,9 @@
 
 _Mathematical operations for quantities.._ [More...](#detailed-description)
 
-* `#include <cmath>`
 * `#include <algorithm>`
+* `#include <cmath>`
 * `#include <mp-units/math.h>`
-* `#include <mp-units/systems/angular.h>`
 * `#include <mp-units/systems/si.h>`
 
 
@@ -107,7 +106,7 @@ Jay Iuliano ([iuliano.jay@gmail.com](mailto:iuliano.jay@gmail.com))
 
 **Copyright:**
 
-Copyright (c) 2025 Jay Iuliano
+Copyright (c) 2025-2026 Jay Iuliano
 
 
 The GNU Lesser General Public License (LGPL)

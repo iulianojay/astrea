@@ -35,9 +35,9 @@
 
 | Type | Name |
 | ---: | :--- |
-|  [**bool**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**crossEffect**](#variable-crosseffect)   = `[**true**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)`<br> |
-|  [**bool**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**fullAp**](#variable-fullap)   = `[**true**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)`<br> |
-|  [**bool**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**mainEffect**](#variable-maineffect)   = `[**true**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)`<br> |
+|  bool | [**crossEffect**](#variable-crosseffect)   = `true`<br> |
+|  bool | [**fullAp**](#variable-fullap)   = `true`<br> |
+|  bool | [**mainEffect**](#variable-maineffect)   = `true`<br> |
 
 
 

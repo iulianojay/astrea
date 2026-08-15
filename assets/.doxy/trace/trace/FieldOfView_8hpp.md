@@ -14,7 +14,7 @@ _Field of View (FoV) classes for representing different types of sensor fields o
 * `#include <unordered_map>`
 * `#include <units/units.hpp>`
 * `#include <astro/astro.fwd.hpp>`
-* `#include <astro/frames/definitions/dynamic_frames.hpp>`
+* `#include <astro/frames/definitions/dynamic_frames/tags.hpp>`
 
 
 
@@ -112,7 +112,7 @@ Jay Iuliano ([iuliano.jay@gmail.com](mailto:iuliano.jay@gmail.com))
 
 **Copyright:**
 
-Copyright (c) 2025 Jay Iuliano
+Copyright (c) 2025-2026 Jay Iuliano
 
 
 The GNU Lesser General Public License (LGPL)

@@ -14,11 +14,12 @@
 #include <units/units.hpp>
 
 #include <astro/astro.fwd.hpp>
+#include <astro/astro.macros.hpp>
 #include <astro/systems/CelestialBody.hpp>
 #include <astro/systems/celestial_bodies/Earth/Earth.hpp>
 
 #ifdef ASTREA_BUILD_EARTH_EPHEMERIS
-#include <ephemerides/Earth/MoonEphemerisTable.hpp>
+#include <astro/ephemerides/Earth/MoonEphemerisTable.hpp>
 #endif // ASTREA_BUILD_EARTH_EPHEMERIS
 
 namespace astrea {
@@ -35,9 +36,10 @@ template <>
 inline consteval CelestialBodyParameters get_celestial_body_parameters<moons::Moon>()
 {
     using namespace mp_units;
-    using mp_units::angular::unit_symbols::deg;
+    using astrea::units::unit_symbols::jc;
     using mp_units::iau::unit_symbols::au;
     using mp_units::non_si::day;
+    using mp_units::si::unit_symbols::deg;
     using mp_units::si::unit_symbols::kg;
     using mp_units::si::unit_symbols::km;
     using mp_units::si::unit_symbols::s;
@@ -61,12 +63,14 @@ inline consteval CelestialBodyParameters get_celestial_body_parameters<moons::Mo
              .rightAscension         = Angle(98.13908 * deg),
              .longitudeOfPerigee     = Angle(179.16058 * deg),
              .meanLongitude          = Angle(135.89122 * deg),
-             .semimajorAxisRate      = InterplanetaryVelocity(0.0 * km / JulianCentury),
-             .eccentricityRate       = BodyUnitlessPerTime(0.0 * one / JulianCentury),
-             .inclinationRate        = BodyAngularVelocity(0.0 * deg / JulianCentury),
-             .rightAscensionRate     = BodyAngularVelocity(6967741.9 * deg / JulianCentury),
-             .longitudeOfPerigeeRate = BodyAngularVelocity(28578547 * deg / JulianCentury),
-             .meanLongitudeRate      = BodyAngularVelocity(1761137860.75 * deg / JulianCentury) };
+             .semimajorAxisRate      = InterplanetaryVelocity(0.0 * km / jc),
+             .eccentricityRate       = BodyUnitlessPerTime(0.0 * one / jc),
+             .inclinationRate        = BodyAngularVelocity(0.0 * deg / jc),
+             .rightAscensionRate     = BodyAngularVelocity(6967741.9 * deg / jc),
+             .longitudeOfPerigeeRate = BodyAngularVelocity(28578547 * deg / jc),
+             .meanLongitudeRate      = BodyAngularVelocity(1761137860.75 * deg / jc),
+             // https://pds-geosciences.wustl.edu/grail/grail-l-lgrs-5-rdr-v1/grail_1001/shadr/ - normalized?
+             .gravityCoefficientFile = _ASTRO_GRAV_DATA_ROOT_ "/Earth/jggrx_0420a_sha.tab" };
 }
 
 #ifdef ASTREA_BUILD_EARTH_EPHEMERIS

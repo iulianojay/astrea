@@ -11,11 +11,10 @@
 
 #pragma once
 
-#include <cmath>
 #include <algorithm>
+#include <cmath>
 
 #include <mp-units/math.h>
-#include <mp-units/systems/angular.h>
 #include <mp-units/systems/si.h>
 
 namespace astrea {

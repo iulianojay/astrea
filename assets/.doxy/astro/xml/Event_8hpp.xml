@@ -12,32 +12,104 @@
     <includedby refid="Schedule_8hpp" local="no">astrea/astro/astro/propagation/event_detection/Schedule.hpp</includedby>
     <includedby refid="Integrator_8cpp" local="no">astrea/astro/astro/propagation/numerical/Integrator.cpp</includedby>
     <incdepgraph>
-      <node id="12">
+      <node id="17">
         <label>astro/astro.fwd.hpp</label>
         <link refid="astro_8fwd_8hpp"/>
         <childnode refid="5" relation="include">
         </childnode>
         <childnode refid="13" relation="include">
         </childnode>
-        <childnode refid="14" relation="include">
+        <childnode refid="18" relation="include">
         </childnode>
+      </node>
+      <node id="20">
+        <label>astro/astro.macros.hpp</label>
+        <link refid="astro_8macros_8hpp"/>
       </node>
       <node id="8">
         <label>astro/frames/definitions.hpp</label>
         <link refid="definitions_8hpp_source"/>
         <childnode refid="9" relation="include">
         </childnode>
-        <childnode refid="116" relation="include">
+        <childnode refid="102" relation="include">
         </childnode>
-        <childnode refid="117" relation="include">
+        <childnode refid="86" relation="include">
+        </childnode>
+        <childnode refid="103" relation="include">
+        </childnode>
+        <childnode refid="105" relation="include">
+        </childnode>
+        <childnode refid="123" relation="include">
+        </childnode>
+        <childnode refid="84" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>astro/frames/definitions/body_centered_inertial_frames.hpp</label>
+        <link refid="body__centered__inertial__frames_8hpp"/>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="102">
+        <label>astro/frames/definitions/body_fixed_frames.hpp</label>
+        <link refid="body__fixed__frames_8hpp"/>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="86">
+        <label>astro/frames/definitions/defined_rotations.hpp</label>
+        <link refid="defined__rotations_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="87" relation="include">
+        </childnode>
+        <childnode refid="90" relation="include">
+        </childnode>
+        <childnode refid="91" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+      </node>
+      <node id="103">
+        <label>astro/frames/definitions/defined_rotations_earth.hpp</label>
+        <link refid="defined__rotations__earth_8hpp"/>
+        <childnode refid="79" relation="include">
+        </childnode>
+        <childnode refid="81" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="104" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="102" relation="include">
+        </childnode>
+        <childnode refid="86" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="94" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+      </node>
+      <node id="105">
+        <label>astro/frames/definitions/dynamic_frames.hpp</label>
+        <link refid="dynamic__frames_8hpp"/>
+        <childnode refid="106" relation="include">
         </childnode>
         <childnode refid="118" relation="include">
-        </childnode>
-        <childnode refid="111" relation="include">
-        </childnode>
-        <childnode refid="112" relation="include">
-        </childnode>
-        <childnode refid="18" relation="include">
         </childnode>
         <childnode refid="119" relation="include">
         </childnode>
@@ -45,13 +117,385 @@
         </childnode>
         <childnode refid="121" relation="include">
         </childnode>
-        <childnode refid="16" relation="include">
+        <childnode refid="122" relation="include">
         </childnode>
       </node>
-      <node id="9">
-        <label>astro/frames/definitions/EastNorthUp.hpp</label>
+      <node id="106">
+        <label>astro/frames/definitions/dynamic_frames/EastNorthUp.hpp</label>
         <link refid="EastNorthUp_8hpp"/>
+        <childnode refid="79" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="84" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="87" relation="include">
+        </childnode>
+        <childnode refid="107" relation="include">
+        </childnode>
         <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="108" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+      </node>
+      <node id="118">
+        <label>astro/frames/definitions/dynamic_frames/LocalHorizontalLocalVertical.hpp</label>
+        <link refid="LocalHorizontalLocalVertical_8hpp"/>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="87" relation="include">
+        </childnode>
+        <childnode refid="107" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+      </node>
+      <node id="119">
+        <label>astro/frames/definitions/dynamic_frames/Perifocal.hpp</label>
+        <link refid="Perifocal_8hpp"/>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="87" relation="include">
+        </childnode>
+        <childnode refid="107" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="53" relation="include">
+        </childnode>
+      </node>
+      <node id="120">
+        <label>astro/frames/definitions/dynamic_frames/RadialInTrackCrossTrack.hpp</label>
+        <link refid="RadialInTrackCrossTrack_8hpp"/>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="87" relation="include">
+        </childnode>
+        <childnode refid="107" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+      </node>
+      <node id="121">
+        <label>astro/frames/definitions/dynamic_frames/VelocityNormalBinormal.hpp</label>
+        <link refid="VelocityNormalBinormal_8hpp"/>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="87" relation="include">
+        </childnode>
+        <childnode refid="107" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+      </node>
+      <node id="122">
+        <label>astro/frames/definitions/dynamic_frames/tags.hpp</label>
+        <link refid="tags_8hpp"/>
+        <childnode refid="106" relation="include">
+        </childnode>
+        <childnode refid="118" relation="include">
+        </childnode>
+        <childnode refid="119" relation="include">
+        </childnode>
+        <childnode refid="120" relation="include">
+        </childnode>
+        <childnode refid="121" relation="include">
+        </childnode>
+        <childnode refid="111" relation="include">
+        </childnode>
+        <childnode refid="107" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="113">
+        <label>astro/frames/definitions/frame_registry.fwd.hpp</label>
+        <link refid="frame__registry_8fwd_8hpp_source"/>
+        <childnode refid="112" relation="include">
+        </childnode>
+      </node>
+      <node id="111">
+        <label>astro/frames/definitions/frame_registry.hpp</label>
+        <link refid="frame__registry_8hpp"/>
+        <childnode refid="112" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="110" relation="include">
+        </childnode>
+        <childnode refid="113" relation="include">
+        </childnode>
+        <childnode refid="114" relation="include">
+        </childnode>
+        <childnode refid="84" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="114">
+        <label>astro/frames/definitions/primary_frame.hpp</label>
+        <link refid="primary__frame_8hpp"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="102" relation="include">
+        </childnode>
+      </node>
+      <node id="123">
+        <label>astro/frames/definitions/synodic_frames.hpp</label>
+        <link refid="synodic__frames_8hpp"/>
+        <childnode refid="124" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="84">
+        <label>astro/frames/definitions/transformations.hpp</label>
+        <link refid="transformations_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="85" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="86" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="87" relation="include">
+        </childnode>
+        <childnode refid="92" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="94" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>astro/frames/framework/Axis.hpp</label>
+        <link refid="Axis_8hpp"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="23">
+        <label>astro/frames/framework/BodyFixedFrame.hpp</label>
+        <link refid="BodyFixedFrame_8hpp_source"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+      </node>
+      <node id="25">
+        <label>astro/frames/framework/CartesianVector.hpp</label>
+        <link refid="CartesianVector_8hpp"/>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="89">
+        <label>astro/frames/framework/DcmInterface.hpp</label>
+        <link refid="DcmInterface_8hpp"/>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="88" relation="include">
+        </childnode>
+        <childnode refid="78" relation="include">
+        </childnode>
+        <childnode refid="45" relation="include">
+        </childnode>
+        <childnode refid="79" relation="include">
+        </childnode>
+        <childnode refid="85" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+      </node>
+      <node id="87">
+        <label>astro/frames/framework/DirectionCosineMatrix.hpp</label>
+        <link refid="DirectionCosineMatrix_8hpp"/>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="88" relation="include">
+        </childnode>
+        <childnode refid="78" relation="include">
+        </childnode>
+        <childnode refid="45" relation="include">
+        </childnode>
+        <childnode refid="79" relation="include">
+        </childnode>
+        <childnode refid="81" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="85" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="89" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+      </node>
+      <node id="90">
+        <label>astro/frames/framework/DirectionCosineMatrixAccel.hpp</label>
+        <link refid="DirectionCosineMatrixAccel_8hpp"/>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="88" relation="include">
+        </childnode>
+        <childnode refid="78" relation="include">
+        </childnode>
+        <childnode refid="45" relation="include">
+        </childnode>
+        <childnode refid="79" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="85" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="89" relation="include">
+        </childnode>
+        <childnode refid="87" relation="include">
+        </childnode>
+        <childnode refid="91" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+      </node>
+      <node id="91">
+        <label>astro/frames/framework/DirectionCosineMatrixRate.hpp</label>
+        <link refid="DirectionCosineMatrixRate_8hpp"/>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="88" relation="include">
+        </childnode>
+        <childnode refid="78" relation="include">
+        </childnode>
+        <childnode refid="45" relation="include">
+        </childnode>
+        <childnode refid="79" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="85" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="89" relation="include">
+        </childnode>
+        <childnode refid="87" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+      </node>
+      <node id="107">
+        <label>astro/frames/framework/DynamicFrame.hpp</label>
+        <link refid="DynamicFrame_8hpp"/>
+        <childnode refid="33" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="87" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="53" relation="include">
+        </childnode>
+      </node>
+      <node id="92">
+        <label>astro/frames/framework/FixedOffsetFrame.hpp</label>
+        <link refid="FixedOffsetFrame_8hpp"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="93" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="85" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>astro/frames/framework/Frame.hpp</label>
+        <link refid="Frame_8hpp"/>
+        <childnode refid="7" relation="include">
         </childnode>
         <childnode refid="11" relation="include">
         </childnode>
@@ -59,421 +503,37 @@
         </childnode>
         <childnode refid="12" relation="include">
         </childnode>
-        <childnode refid="16" relation="include">
-        </childnode>
-        <childnode refid="25" relation="include">
-        </childnode>
-        <childnode refid="19" relation="include">
-        </childnode>
-        <childnode refid="104" relation="include">
-        </childnode>
-        <childnode refid="29" relation="include">
-        </childnode>
-        <childnode refid="105" relation="include">
-        </childnode>
-        <childnode refid="35" relation="include">
-        </childnode>
-        <childnode refid="42" relation="include">
-        </childnode>
-      </node>
-      <node id="116">
-        <label>astro/frames/definitions/LocalHorizontalLocalVertical.hpp</label>
-        <link refid="LocalHorizontalLocalVertical_8hpp"/>
-        <childnode refid="12" relation="include">
-        </childnode>
-        <childnode refid="111" relation="include">
-        </childnode>
-        <childnode refid="25" relation="include">
-        </childnode>
-        <childnode refid="19" relation="include">
-        </childnode>
-        <childnode refid="104" relation="include">
-        </childnode>
-        <childnode refid="42" relation="include">
-        </childnode>
-      </node>
-      <node id="117">
-        <label>astro/frames/definitions/RadialInTrackCrossTrack.hpp</label>
-        <link refid="RadialInTrackCrossTrack_8hpp"/>
-        <childnode refid="12" relation="include">
-        </childnode>
-        <childnode refid="111" relation="include">
-        </childnode>
-        <childnode refid="25" relation="include">
-        </childnode>
-        <childnode refid="19" relation="include">
-        </childnode>
-        <childnode refid="104" relation="include">
-        </childnode>
-        <childnode refid="42" relation="include">
-        </childnode>
-      </node>
-      <node id="118">
-        <label>astro/frames/definitions/VelocityNormalBinormal.hpp</label>
-        <link refid="VelocityNormalBinormal_8hpp"/>
-        <childnode refid="12" relation="include">
-        </childnode>
-        <childnode refid="111" relation="include">
-        </childnode>
-        <childnode refid="25" relation="include">
-        </childnode>
-        <childnode refid="19" relation="include">
-        </childnode>
-        <childnode refid="104" relation="include">
-        </childnode>
-        <childnode refid="42" relation="include">
-        </childnode>
-      </node>
-      <node id="111">
-        <label>astro/frames/definitions/body_centered_inertial_frames.hpp</label>
-        <link refid="body__centered__inertial__frames_8hpp"/>
-        <childnode refid="29" relation="include">
-        </childnode>
-        <childnode refid="35" relation="include">
-        </childnode>
-      </node>
-      <node id="112">
-        <label>astro/frames/definitions/body_fixed_frames.hpp</label>
-        <link refid="body__fixed__frames_8hpp"/>
-        <childnode refid="39" relation="include">
-        </childnode>
-        <childnode refid="35" relation="include">
-        </childnode>
-      </node>
-      <node id="18">
-        <label>astro/frames/definitions/defined_rotations.hpp</label>
-        <link refid="defined__rotations_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="19" relation="include">
-        </childnode>
-        <childnode refid="33" relation="include">
-        </childnode>
-        <childnode refid="34" relation="include">
-        </childnode>
-        <childnode refid="29" relation="include">
-        </childnode>
-        <childnode refid="13" relation="include">
-        </childnode>
-        <childnode refid="35" relation="include">
-        </childnode>
-        <childnode refid="42" relation="include">
-        </childnode>
-      </node>
-      <node id="119">
-        <label>astro/frames/definitions/defined_rotations_earth.hpp</label>
-        <link refid="defined__rotations__earth_8hpp"/>
-        <childnode refid="7" relation="include">
-        </childnode>
-        <childnode refid="10" relation="include">
-        </childnode>
-        <childnode refid="111" relation="include">
-        </childnode>
-        <childnode refid="112" relation="include">
-        </childnode>
-        <childnode refid="18" relation="include">
-        </childnode>
-        <childnode refid="35" relation="include">
-        </childnode>
-        <childnode refid="94" relation="include">
-        </childnode>
-        <childnode refid="42" relation="include">
-        </childnode>
-      </node>
-      <node id="120">
-        <label>astro/frames/definitions/dynamic_frames.hpp</label>
-        <link refid="dynamic__frames_8hpp"/>
-        <childnode refid="9" relation="include">
-        </childnode>
-        <childnode refid="116" relation="include">
-        </childnode>
-        <childnode refid="117" relation="include">
-        </childnode>
-        <childnode refid="118" relation="include">
-        </childnode>
-        <childnode refid="108" relation="include">
-        </childnode>
-        <childnode refid="104" relation="include">
-        </childnode>
-        <childnode refid="29" relation="include">
-        </childnode>
-      </node>
-      <node id="109">
-        <label>astro/frames/definitions/frame_registry.fwd.hpp</label>
-        <link refid="frame__registry_8fwd_8hpp_source"/>
-        <childnode refid="102" relation="include">
-        </childnode>
-      </node>
-      <node id="108">
-        <label>astro/frames/definitions/frame_registry.hpp</label>
-        <link refid="frame__registry_8hpp"/>
-        <childnode refid="102" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
-        <childnode refid="107" relation="include">
-        </childnode>
-        <childnode refid="109" relation="include">
-        </childnode>
-        <childnode refid="110" relation="include">
-        </childnode>
-        <childnode refid="16" relation="include">
-        </childnode>
-        <childnode refid="13" relation="include">
-        </childnode>
-      </node>
-      <node id="110">
-        <label>astro/frames/definitions/primary_frame.hpp</label>
-        <link refid="primary__frame_8hpp"/>
-        <childnode refid="7" relation="include">
-        </childnode>
-        <childnode refid="111" relation="include">
-        </childnode>
-        <childnode refid="112" relation="include">
-        </childnode>
-      </node>
-      <node id="121">
-        <label>astro/frames/definitions/synodic_frames.hpp</label>
-        <link refid="synodic__frames_8hpp"/>
-        <childnode refid="122" relation="include">
-        </childnode>
-        <childnode refid="35" relation="include">
-        </childnode>
-      </node>
-      <node id="16">
-        <label>astro/frames/definitions/transformations.hpp</label>
-        <link refid="transformations_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="17" relation="include">
-        </childnode>
-        <childnode refid="12" relation="include">
-        </childnode>
-        <childnode refid="18" relation="include">
-        </childnode>
-        <childnode refid="25" relation="include">
-        </childnode>
-        <childnode refid="19" relation="include">
-        </childnode>
-        <childnode refid="13" relation="include">
-        </childnode>
-        <childnode refid="94" relation="include">
-        </childnode>
-      </node>
-      <node id="31">
-        <label>astro/frames/framework/Axis.hpp</label>
-        <link refid="Axis_8hpp"/>
-        <childnode refid="7" relation="include">
-        </childnode>
-        <childnode refid="30" relation="include">
-        </childnode>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="13" relation="include">
-        </childnode>
-      </node>
-      <node id="39">
-        <label>astro/frames/framework/BodyFixedFrame.hpp</label>
-        <link refid="BodyFixedFrame_8hpp_source"/>
-        <childnode refid="7" relation="include">
-        </childnode>
-        <childnode refid="30" relation="include">
-        </childnode>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="29" relation="include">
-        </childnode>
-        <childnode refid="13" relation="include">
-        </childnode>
-        <childnode refid="40" relation="include">
-        </childnode>
-      </node>
-      <node id="25">
-        <label>astro/frames/framework/CartesianVector.hpp</label>
-        <link refid="CartesianVector_8hpp"/>
-        <childnode refid="20" relation="include">
-        </childnode>
-        <childnode refid="26" relation="include">
-        </childnode>
-        <childnode refid="27" relation="include">
-        </childnode>
-        <childnode refid="28" relation="include">
-        </childnode>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="12" relation="include">
-        </childnode>
-        <childnode refid="29" relation="include">
-        </childnode>
-        <childnode refid="13" relation="include">
-        </childnode>
-      </node>
-      <node id="24">
-        <label>astro/frames/framework/DcmInterface.hpp</label>
-        <link refid="DcmInterface_8hpp"/>
-        <childnode refid="20" relation="include">
-        </childnode>
-        <childnode refid="21" relation="include">
-        </childnode>
-        <childnode refid="22" relation="include">
-        </childnode>
-        <childnode refid="23" relation="include">
-        </childnode>
-        <childnode refid="10" relation="include">
-        </childnode>
-        <childnode refid="17" relation="include">
-        </childnode>
-        <childnode refid="12" relation="include">
-        </childnode>
-        <childnode refid="25" relation="include">
-        </childnode>
-        <childnode refid="13" relation="include">
-        </childnode>
         <childnode refid="14" relation="include">
         </childnode>
-      </node>
-      <node id="19">
-        <label>astro/frames/framework/DirectionCosineMatrix.hpp</label>
-        <link refid="DirectionCosineMatrix_8hpp"/>
-        <childnode refid="20" relation="include">
-        </childnode>
-        <childnode refid="21" relation="include">
-        </childnode>
-        <childnode refid="22" relation="include">
-        </childnode>
-        <childnode refid="23" relation="include">
-        </childnode>
-        <childnode refid="10" relation="include">
-        </childnode>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="17" relation="include">
-        </childnode>
-        <childnode refid="12" relation="include">
-        </childnode>
-        <childnode refid="24" relation="include">
-        </childnode>
-        <childnode refid="13" relation="include">
-        </childnode>
-        <childnode refid="14" relation="include">
-        </childnode>
-      </node>
-      <node id="33">
-        <label>astro/frames/framework/DirectionCosineMatrixAccel.hpp</label>
-        <link refid="DirectionCosineMatrixAccel_8hpp"/>
-        <childnode refid="20" relation="include">
-        </childnode>
-        <childnode refid="21" relation="include">
-        </childnode>
-        <childnode refid="22" relation="include">
-        </childnode>
-        <childnode refid="23" relation="include">
-        </childnode>
-        <childnode refid="10" relation="include">
-        </childnode>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="17" relation="include">
-        </childnode>
-        <childnode refid="12" relation="include">
-        </childnode>
-        <childnode refid="24" relation="include">
-        </childnode>
-        <childnode refid="19" relation="include">
-        </childnode>
-        <childnode refid="34" relation="include">
-        </childnode>
-        <childnode refid="13" relation="include">
-        </childnode>
-        <childnode refid="14" relation="include">
-        </childnode>
-      </node>
-      <node id="34">
-        <label>astro/frames/framework/DirectionCosineMatrixRate.hpp</label>
-        <link refid="DirectionCosineMatrixRate_8hpp"/>
-        <childnode refid="20" relation="include">
-        </childnode>
-        <childnode refid="21" relation="include">
-        </childnode>
-        <childnode refid="22" relation="include">
-        </childnode>
-        <childnode refid="23" relation="include">
-        </childnode>
-        <childnode refid="10" relation="include">
-        </childnode>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="17" relation="include">
-        </childnode>
-        <childnode refid="12" relation="include">
-        </childnode>
-        <childnode refid="24" relation="include">
-        </childnode>
-        <childnode refid="19" relation="include">
-        </childnode>
-        <childnode refid="13" relation="include">
-        </childnode>
-        <childnode refid="14" relation="include">
-        </childnode>
-      </node>
-      <node id="104">
-        <label>astro/frames/framework/DynamicFrame.hpp</label>
-        <link refid="DynamicFrame_8hpp"/>
-        <childnode refid="45" relation="include">
-        </childnode>
-        <childnode refid="25" relation="include">
-        </childnode>
-        <childnode refid="19" relation="include">
-        </childnode>
-        <childnode refid="29" relation="include">
-        </childnode>
-        <childnode refid="42" relation="include">
-        </childnode>
-        <childnode refid="64" relation="include">
-        </childnode>
-      </node>
-      <node id="29">
-        <label>astro/frames/framework/Frame.hpp</label>
-        <link refid="Frame_8hpp"/>
-        <childnode refid="7" relation="include">
-        </childnode>
-        <childnode refid="30" relation="include">
-        </childnode>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="31" relation="include">
-        </childnode>
-        <childnode refid="32" relation="include">
-        </childnode>
         <childnode refid="13" relation="include">
         </childnode>
       </node>
-      <node id="32">
+      <node id="14">
         <label>astro/frames/framework/Origin.hpp</label>
         <link refid="Origin_8hpp"/>
         <childnode refid="7" relation="include">
         </childnode>
-        <childnode refid="30" relation="include">
+        <childnode refid="11" relation="include">
         </childnode>
         <childnode refid="2" relation="include">
         </childnode>
         <childnode refid="13" relation="include">
         </childnode>
       </node>
-      <node id="122">
+      <node id="124">
         <label>astro/frames/framework/SynodicFrame.hpp</label>
         <link refid="SynodicFrame_8hpp_source"/>
         <childnode refid="7" relation="include">
         </childnode>
-        <childnode refid="30" relation="include">
+        <childnode refid="11" relation="include">
         </childnode>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="29" relation="include">
+        <childnode refid="10" relation="include">
         </childnode>
         <childnode refid="13" relation="include">
         </childnode>
-        <childnode refid="40" relation="include">
+        <childnode refid="24" relation="include">
         </childnode>
       </node>
       <node id="13">
@@ -482,28 +542,28 @@
         <childnode refid="5" relation="include">
         </childnode>
       </node>
-      <node id="60">
+      <node id="49">
         <label>astro/frames/framework/frame_utilities.hpp</label>
         <link refid="frame__utilities_8hpp"/>
-        <childnode refid="29" relation="include">
+        <childnode refid="10" relation="include">
         </childnode>
         <childnode refid="13" relation="include">
         </childnode>
-        <childnode refid="40" relation="include">
+        <childnode refid="24" relation="include">
         </childnode>
       </node>
-      <node id="123">
+      <node id="125">
         <label>astro/platforms/InertiaTensor.hpp</label>
         <link refid="InertiaTensor_8hpp"/>
-        <childnode refid="27" relation="include">
+        <childnode refid="28" relation="include">
         </childnode>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="12" relation="include">
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="122" relation="include">
         </childnode>
         <childnode refid="25" relation="include">
-        </childnode>
-        <childnode refid="120" relation="include">
         </childnode>
       </node>
       <node id="3">
@@ -521,21 +581,19 @@
         </childnode>
         <childnode refid="8" relation="include">
         </childnode>
-        <childnode refid="120" relation="include">
-        </childnode>
         <childnode refid="25" relation="include">
         </childnode>
-        <childnode refid="123" relation="include">
+        <childnode refid="125" relation="include">
         </childnode>
-        <childnode refid="124" relation="include">
+        <childnode refid="126" relation="include">
         </childnode>
-        <childnode refid="42" relation="include">
+        <childnode refid="30" relation="include">
         </childnode>
-        <childnode refid="113" relation="include">
+        <childnode refid="115" relation="include">
         </childnode>
         <childnode refid="99" relation="include">
         </childnode>
-        <childnode refid="64" relation="include">
+        <childnode refid="53" relation="include">
         </childnode>
       </node>
       <node id="1">
@@ -545,459 +603,237 @@
         </childnode>
         <childnode refid="3" relation="include">
         </childnode>
-        <childnode refid="125" relation="include">
-        </childnode>
-        <childnode refid="113" relation="include">
-        </childnode>
-      </node>
-      <node id="124">
-        <label>astro/propagation/force_models/Perturbation.hpp</label>
-        <link refid="Perturbation_8hpp_source"/>
-        <childnode refid="38" relation="include">
-        </childnode>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="8" relation="include">
-        </childnode>
-        <childnode refid="110" relation="include">
-        </childnode>
-        <childnode refid="25" relation="include">
-        </childnode>
-        <childnode refid="64" relation="include">
-        </childnode>
-      </node>
-      <node id="125">
-        <label>astro/state/State.hpp</label>
-        <link refid="State_8hpp"/>
-        <childnode refid="44" relation="include">
-        </childnode>
-        <childnode refid="126" relation="include">
-        </childnode>
-        <childnode refid="120" relation="include">
-        </childnode>
         <childnode refid="127" relation="include">
-        </childnode>
-        <childnode refid="130" relation="include">
-        </childnode>
-        <childnode refid="106" relation="include">
-        </childnode>
-        <childnode refid="94" relation="include">
-        </childnode>
-        <childnode refid="42" relation="include">
-        </childnode>
-        <childnode refid="64" relation="include">
-        </childnode>
-      </node>
-      <node id="105">
-        <label>astro/state/angular_elements/Geodetic.hpp</label>
-        <link refid="Geodetic_8hpp"/>
-        <childnode refid="44" relation="include">
-        </childnode>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="12" relation="include">
-        </childnode>
-        <childnode refid="8" relation="include">
-        </childnode>
-        <childnode refid="25" relation="include">
-        </childnode>
-        <childnode refid="13" relation="include">
-        </childnode>
-        <childnode refid="106" relation="include">
-        </childnode>
-        <childnode refid="40" relation="include">
-        </childnode>
-        <childnode refid="94" relation="include">
-        </childnode>
-        <childnode refid="64" relation="include">
         </childnode>
         <childnode refid="115" relation="include">
         </childnode>
       </node>
-      <node id="115">
-        <label>astro/state/angular_elements/Geodetic.ipp</label>
-        <link refid="Geodetic_8ipp_source"/>
-        <childnode refid="88" relation="include">
-        </childnode>
+      <node id="126">
+        <label>astro/propagation/force_models/Perturbation.hpp</label>
+        <link refid="Perturbation_8hpp_source"/>
         <childnode refid="22" relation="include">
         </childnode>
-        <childnode refid="23" relation="include">
-        </childnode>
-        <childnode refid="10" relation="include">
-        </childnode>
-        <childnode refid="38" relation="include">
-        </childnode>
-        <childnode refid="11" relation="include">
-        </childnode>
-        <childnode refid="91" relation="include">
+        <childnode refid="2" relation="include">
         </childnode>
         <childnode refid="8" relation="include">
         </childnode>
-        <childnode refid="16" relation="include">
+        <childnode refid="114" relation="include">
         </childnode>
-        <childnode refid="89" relation="include">
+        <childnode refid="25" relation="include">
         </childnode>
-        <childnode refid="92" relation="include">
+        <childnode refid="53" relation="include">
+        </childnode>
+      </node>
+      <node id="127">
+        <label>astro/state/State.hpp</label>
+        <link refid="State_8hpp"/>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="128" relation="include">
+        </childnode>
+        <childnode refid="122" relation="include">
+        </childnode>
+        <childnode refid="129" relation="include">
+        </childnode>
+        <childnode refid="132" relation="include">
+        </childnode>
+        <childnode refid="109" relation="include">
         </childnode>
         <childnode refid="94" relation="include">
         </childnode>
-        <childnode refid="64" relation="include">
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="53" relation="include">
         </childnode>
       </node>
-      <node id="128">
+      <node id="108">
+        <label>astro/state/angular_elements/Geodetic.hpp</label>
+        <link refid="Geodetic_8hpp"/>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="81" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="109" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="94" relation="include">
+        </childnode>
+        <childnode refid="53" relation="include">
+        </childnode>
+        <childnode refid="117" relation="include">
+        </childnode>
+      </node>
+      <node id="117">
+        <label>astro/state/angular_elements/Geodetic.ipp</label>
+        <link refid="Geodetic_8ipp_source"/>
+        <childnode refid="77" relation="include">
+        </childnode>
+        <childnode refid="78" relation="include">
+        </childnode>
+        <childnode refid="45" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="79" relation="include">
+        </childnode>
+        <childnode refid="80" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="84" relation="include">
+        </childnode>
+        <childnode refid="82" relation="include">
+        </childnode>
+        <childnode refid="100" relation="include">
+        </childnode>
+        <childnode refid="94" relation="include">
+        </childnode>
+        <childnode refid="53" relation="include">
+        </childnode>
+      </node>
+      <node id="130">
         <label>astro/state/attitude/AngularVelocities.hpp</label>
         <link refid="AngularVelocities_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="12" relation="include">
+        <childnode refid="17" relation="include">
         </childnode>
-        <childnode refid="120" relation="include">
+        <childnode refid="122" relation="include">
         </childnode>
         <childnode refid="25" relation="include">
         </childnode>
-        <childnode refid="19" relation="include">
+        <childnode refid="87" relation="include">
         </childnode>
         <childnode refid="13" relation="include">
         </childnode>
-        <childnode refid="123" relation="include">
+        <childnode refid="125" relation="include">
         </childnode>
-        <childnode refid="129" relation="include">
+        <childnode refid="131" relation="include">
         </childnode>
-        <childnode refid="14" relation="include">
+        <childnode refid="18" relation="include">
         </childnode>
-        <childnode refid="56" relation="include">
-        </childnode>
-      </node>
-      <node id="127">
-        <label>astro/state/attitude/Attitude.hpp</label>
-        <link refid="Attitude_8hpp"/>
         <childnode refid="44" relation="include">
-        </childnode>
-        <childnode refid="107" relation="include">
-        </childnode>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="12" relation="include">
-        </childnode>
-        <childnode refid="8" relation="include">
-        </childnode>
-        <childnode refid="120" relation="include">
-        </childnode>
-        <childnode refid="128" relation="include">
-        </childnode>
-        <childnode refid="129" relation="include">
-        </childnode>
-        <childnode refid="130" relation="include">
-        </childnode>
-        <childnode refid="99" relation="include">
-        </childnode>
-        <childnode refid="64" relation="include">
-        </childnode>
-        <childnode refid="114" relation="include">
         </childnode>
       </node>
       <node id="129">
-        <label>astro/state/attitude/EulerAngles.hpp</label>
-        <link refid="EulerAngles_8hpp"/>
-        <childnode refid="91" relation="include">
+        <label>astro/state/attitude/Attitude.hpp</label>
+        <link refid="Attitude_8hpp"/>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="110" relation="include">
         </childnode>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="12" relation="include">
+        <childnode refid="17" relation="include">
         </childnode>
-        <childnode refid="25" relation="include">
+        <childnode refid="8" relation="include">
         </childnode>
-        <childnode refid="19" relation="include">
+        <childnode refid="122" relation="include">
         </childnode>
-        <childnode refid="13" relation="include">
-        </childnode>
-        <childnode refid="14" relation="include">
-        </childnode>
-        <childnode refid="56" relation="include">
-        </childnode>
-      </node>
-      <node id="133">
-        <label>astro/state/attitude/EulerAngles.ipp</label>
-        <link refid="EulerAngles_8ipp"/>
         <childnode refid="130" relation="include">
         </childnode>
-      </node>
-      <node id="130">
-        <label>astro/state/attitude/Quaternion.hpp</label>
-        <link refid="Quaternion_8hpp"/>
         <childnode refid="131" relation="include">
         </childnode>
         <childnode refid="132" relation="include">
         </childnode>
-        <childnode refid="23" relation="include">
+        <childnode refid="99" relation="include">
         </childnode>
-        <childnode refid="10" relation="include">
+        <childnode refid="53" relation="include">
         </childnode>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="12" relation="include">
-        </childnode>
-        <childnode refid="25" relation="include">
-        </childnode>
-        <childnode refid="19" relation="include">
-        </childnode>
-        <childnode refid="13" relation="include">
-        </childnode>
-        <childnode refid="129" relation="include">
-        </childnode>
-        <childnode refid="14" relation="include">
-        </childnode>
-        <childnode refid="133" relation="include">
+        <childnode refid="116" relation="include">
         </childnode>
       </node>
-      <node id="86">
-        <label>astro/state/orbital_elements/Cartesian.hpp</label>
-        <link refid="Cartesian_8hpp"/>
-        <childnode refid="44" relation="include">
+      <node id="131">
+        <label>astro/state/attitude/EulerAngles.hpp</label>
+        <link refid="EulerAngles_8hpp"/>
+        <childnode refid="80" relation="include">
         </childnode>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="12" relation="include">
+        <childnode refid="17" relation="include">
         </childnode>
         <childnode refid="25" relation="include">
-        </childnode>
-        <childnode refid="64" relation="include">
         </childnode>
         <childnode refid="87" relation="include">
         </childnode>
-      </node>
-      <node id="87">
-        <label>astro/state/orbital_elements/Cartesian.ipp</label>
-        <link refid="Cartesian_8ipp_source"/>
-        <childnode refid="88" relation="include">
+        <childnode refid="13" relation="include">
         </childnode>
-        <childnode refid="22" relation="include">
+        <childnode refid="18" relation="include">
         </childnode>
-        <childnode refid="23" relation="include">
-        </childnode>
-        <childnode refid="10" relation="include">
-        </childnode>
-        <childnode refid="38" relation="include">
-        </childnode>
-        <childnode refid="11" relation="include">
-        </childnode>
-        <childnode refid="89" relation="include">
-        </childnode>
-        <childnode refid="92" relation="include">
-        </childnode>
-        <childnode refid="94" relation="include">
-        </childnode>
-        <childnode refid="64" relation="include">
-        </childnode>
-        <childnode refid="91" relation="include">
-        </childnode>
-      </node>
-      <node id="89">
-        <label>astro/state/orbital_elements/Equinoctial.hpp</label>
-        <link refid="Equinoctial_8hpp"/>
         <childnode refid="44" relation="include">
         </childnode>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="12" relation="include">
-        </childnode>
-        <childnode refid="64" relation="include">
-        </childnode>
-        <childnode refid="90" relation="include">
+      </node>
+      <node id="134">
+        <label>astro/state/attitude/EulerAngles.ipp</label>
+        <link refid="EulerAngles_8ipp"/>
+        <childnode refid="132" relation="include">
         </childnode>
       </node>
-      <node id="90">
-        <label>astro/state/orbital_elements/Equinoctial.ipp</label>
-        <link refid="Equinoctial_8ipp_source"/>
-        <childnode refid="88" relation="include">
-        </childnode>
-        <childnode refid="22" relation="include">
-        </childnode>
-        <childnode refid="23" relation="include">
-        </childnode>
-        <childnode refid="10" relation="include">
-        </childnode>
-        <childnode refid="38" relation="include">
-        </childnode>
-        <childnode refid="11" relation="include">
-        </childnode>
-        <childnode refid="91" relation="include">
-        </childnode>
-        <childnode refid="16" relation="include">
-        </childnode>
-        <childnode refid="92" relation="include">
-        </childnode>
-        <childnode refid="94" relation="include">
-        </childnode>
-        <childnode refid="64" relation="include">
-        </childnode>
-        <childnode refid="56" relation="include">
-        </childnode>
-      </node>
-      <node id="92">
-        <label>astro/state/orbital_elements/Keplerian.hpp</label>
-        <link refid="Keplerian_8hpp"/>
-        <childnode refid="44" relation="include">
-        </childnode>
-        <childnode refid="23" relation="include">
-        </childnode>
-        <childnode refid="28" relation="include">
-        </childnode>
-        <childnode refid="38" relation="include">
-        </childnode>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="12" relation="include">
-        </childnode>
-        <childnode refid="64" relation="include">
+      <node id="132">
+        <label>astro/state/attitude/Quaternion.hpp</label>
+        <link refid="Quaternion_8hpp"/>
+        <childnode refid="133" relation="include">
         </childnode>
         <childnode refid="93" relation="include">
         </childnode>
-      </node>
-      <node id="93">
-        <label>astro/state/orbital_elements/Keplerian.ipp</label>
-        <link refid="Keplerian_8ipp_source"/>
-        <childnode refid="88" relation="include">
+        <childnode refid="45" relation="include">
         </childnode>
-        <childnode refid="22" relation="include">
-        </childnode>
-        <childnode refid="16" relation="include">
-        </childnode>
-        <childnode refid="86" relation="include">
-        </childnode>
-        <childnode refid="89" relation="include">
-        </childnode>
-        <childnode refid="64" relation="include">
-        </childnode>
-        <childnode refid="56" relation="include">
-        </childnode>
-        <childnode refid="91" relation="include">
-        </childnode>
-      </node>
-      <node id="106">
-        <label>astro/state/orbital_elements/OrbitalElements.hpp</label>
-        <link refid="OrbitalElements_8hpp"/>
-        <childnode refid="44" relation="include">
-        </childnode>
-        <childnode refid="107" relation="include">
+        <childnode refid="79" relation="include">
         </childnode>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="12" relation="include">
-        </childnode>
-        <childnode refid="108" relation="include">
-        </childnode>
-        <childnode refid="110" relation="include">
-        </childnode>
-        <childnode refid="86" relation="include">
-        </childnode>
-        <childnode refid="89" relation="include">
-        </childnode>
-        <childnode refid="92" relation="include">
-        </childnode>
-        <childnode refid="113" relation="include">
-        </childnode>
-        <childnode refid="114" relation="include">
-        </childnode>
-      </node>
-      <node id="58">
-        <label>astro/systems/Barycenter.hpp</label>
-        <link refid="Barycenter_8hpp"/>
-        <childnode refid="30" relation="include">
-        </childnode>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="31" relation="include">
-        </childnode>
-        <childnode refid="29" relation="include">
-        </childnode>
-        <childnode refid="32" relation="include">
-        </childnode>
-        <childnode refid="40" relation="include">
-        </childnode>
-      </node>
-      <node id="37">
-        <label>astro/systems/CelestialBody.hpp</label>
-        <link refid="CelestialBody_8hpp"/>
-        <childnode refid="30" relation="include">
-        </childnode>
-        <childnode refid="28" relation="include">
-        </childnode>
-        <childnode refid="38" relation="include">
-        </childnode>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="12" relation="include">
-        </childnode>
-        <childnode refid="31" relation="include">
-        </childnode>
-        <childnode refid="39" relation="include">
+        <childnode refid="17" relation="include">
         </childnode>
         <childnode refid="25" relation="include">
         </childnode>
-        <childnode refid="29" relation="include">
+        <childnode refid="87" relation="include">
         </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="131" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="134" relation="include">
+        </childnode>
+      </node>
+      <node id="75">
+        <label>astro/state/orbital_elements/Cartesian.hpp</label>
+        <link refid="Cartesian_8hpp"/>
         <childnode refid="32" relation="include">
         </childnode>
-        <childnode refid="41" relation="include">
-        </childnode>
-        <childnode refid="40" relation="include">
-        </childnode>
-        <childnode refid="42" relation="include">
-        </childnode>
-        <childnode refid="55" relation="include">
-        </childnode>
-      </node>
-      <node id="41">
-        <label>astro/systems/CelestialBodyParameters.hpp</label>
-        <link refid="CelestialBodyParameters_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="42" relation="include">
+        <childnode refid="17" relation="include">
         </childnode>
-      </node>
-      <node id="59">
-        <label>astro/systems/barycenters.hpp</label>
-        <link refid="barycenters_8hpp_source"/>
-        <childnode refid="60" relation="include">
+        <childnode refid="25" relation="include">
         </childnode>
-        <childnode refid="58" relation="include">
-        </childnode>
-      </node>
-      <node id="35">
-        <label>astro/systems/celestial_bodies.hpp</label>
-        <link refid="celestial__bodies_8hpp"/>
-        <childnode refid="36" relation="include">
-        </childnode>
-        <childnode refid="61" relation="include">
-        </childnode>
-        <childnode refid="62" relation="include">
-        </childnode>
-        <childnode refid="65" relation="include">
-        </childnode>
-        <childnode refid="66" relation="include">
-        </childnode>
-        <childnode refid="67" relation="include">
-        </childnode>
-        <childnode refid="63" relation="include">
-        </childnode>
-        <childnode refid="68" relation="include">
-        </childnode>
-        <childnode refid="69" relation="include">
-        </childnode>
-        <childnode refid="71" relation="include">
-        </childnode>
-        <childnode refid="72" relation="include">
-        </childnode>
-        <childnode refid="73" relation="include">
-        </childnode>
-        <childnode refid="74" relation="include">
+        <childnode refid="53" relation="include">
         </childnode>
         <childnode refid="76" relation="include">
         </childnode>
+      </node>
+      <node id="76">
+        <label>astro/state/orbital_elements/Cartesian.ipp</label>
+        <link refid="Cartesian_8ipp_source"/>
+        <childnode refid="77" relation="include">
+        </childnode>
         <childnode refid="78" relation="include">
         </childnode>
-        <childnode refid="77" relation="include">
+        <childnode refid="45" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
         </childnode>
         <childnode refid="79" relation="include">
         </childnode>
@@ -1005,336 +841,558 @@
         </childnode>
         <childnode refid="81" relation="include">
         </childnode>
+        <childnode refid="82" relation="include">
+        </childnode>
+        <childnode refid="100" relation="include">
+        </childnode>
+        <childnode refid="94" relation="include">
+        </childnode>
+        <childnode refid="53" relation="include">
+        </childnode>
+      </node>
+      <node id="82">
+        <label>astro/state/orbital_elements/Equinoctial.hpp</label>
+        <link refid="Equinoctial_8hpp"/>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="53" relation="include">
+        </childnode>
         <childnode refid="83" relation="include">
         </childnode>
-        <childnode refid="82" relation="include">
+      </node>
+      <node id="83">
+        <label>astro/state/orbital_elements/Equinoctial.ipp</label>
+        <link refid="Equinoctial_8ipp_source"/>
+        <childnode refid="77" relation="include">
+        </childnode>
+        <childnode refid="78" relation="include">
+        </childnode>
+        <childnode refid="45" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="79" relation="include">
+        </childnode>
+        <childnode refid="80" relation="include">
         </childnode>
         <childnode refid="84" relation="include">
         </childnode>
-        <childnode refid="85" relation="include">
+        <childnode refid="100" relation="include">
+        </childnode>
+        <childnode refid="94" relation="include">
+        </childnode>
+        <childnode refid="53" relation="include">
+        </childnode>
+        <childnode refid="44" relation="include">
         </childnode>
       </node>
-      <node id="36">
+      <node id="100">
+        <label>astro/state/orbital_elements/Keplerian.hpp</label>
+        <link refid="Keplerian_8hpp"/>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="45" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="53" relation="include">
+        </childnode>
+        <childnode refid="101" relation="include">
+        </childnode>
+      </node>
+      <node id="101">
+        <label>astro/state/orbital_elements/Keplerian.ipp</label>
+        <link refid="Keplerian_8ipp_source"/>
+        <childnode refid="77" relation="include">
+        </childnode>
+        <childnode refid="78" relation="include">
+        </childnode>
+        <childnode refid="84" relation="include">
+        </childnode>
+        <childnode refid="75" relation="include">
+        </childnode>
+        <childnode refid="82" relation="include">
+        </childnode>
+        <childnode refid="53" relation="include">
+        </childnode>
+        <childnode refid="44" relation="include">
+        </childnode>
+        <childnode refid="80" relation="include">
+        </childnode>
+      </node>
+      <node id="109">
+        <label>astro/state/orbital_elements/OrbitalElements.hpp</label>
+        <link refid="OrbitalElements_8hpp"/>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="110" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="111" relation="include">
+        </childnode>
+        <childnode refid="114" relation="include">
+        </childnode>
+        <childnode refid="75" relation="include">
+        </childnode>
+        <childnode refid="82" relation="include">
+        </childnode>
+        <childnode refid="100" relation="include">
+        </childnode>
+        <childnode refid="115" relation="include">
+        </childnode>
+        <childnode refid="116" relation="include">
+        </childnode>
+      </node>
+      <node id="47">
+        <label>astro/systems/Barycenter.hpp</label>
+        <link refid="Barycenter_8hpp"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+      </node>
+      <node id="21">
+        <label>astro/systems/CelestialBody.hpp</label>
+        <link refid="CelestialBody_8hpp"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="43" relation="include">
+        </childnode>
+      </node>
+      <node id="29">
+        <label>astro/systems/CelestialBodyParameters.hpp</label>
+        <link refid="CelestialBodyParameters_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+      </node>
+      <node id="48">
+        <label>astro/systems/barycenters.hpp</label>
+        <link refid="barycenters_8hpp_source"/>
+        <childnode refid="49" relation="include">
+        </childnode>
+        <childnode refid="47" relation="include">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>astro/systems/celestial_bodies.hpp</label>
+        <link refid="celestial__bodies_8hpp"/>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="50" relation="include">
+        </childnode>
+        <childnode refid="51" relation="include">
+        </childnode>
+        <childnode refid="54" relation="include">
+        </childnode>
+        <childnode refid="55" relation="include">
+        </childnode>
+        <childnode refid="56" relation="include">
+        </childnode>
+        <childnode refid="52" relation="include">
+        </childnode>
+        <childnode refid="57" relation="include">
+        </childnode>
+        <childnode refid="58" relation="include">
+        </childnode>
+        <childnode refid="60" relation="include">
+        </childnode>
+        <childnode refid="61" relation="include">
+        </childnode>
+        <childnode refid="62" relation="include">
+        </childnode>
+        <childnode refid="63" relation="include">
+        </childnode>
+        <childnode refid="65" relation="include">
+        </childnode>
+        <childnode refid="67" relation="include">
+        </childnode>
+        <childnode refid="66" relation="include">
+        </childnode>
+        <childnode refid="68" relation="include">
+        </childnode>
+        <childnode refid="69" relation="include">
+        </childnode>
+        <childnode refid="70" relation="include">
+        </childnode>
+        <childnode refid="72" relation="include">
+        </childnode>
+        <childnode refid="71" relation="include">
+        </childnode>
+        <childnode refid="73" relation="include">
+        </childnode>
+        <childnode refid="74" relation="include">
+        </childnode>
+      </node>
+      <node id="16">
         <label>astro/systems/celestial_bodies/Earth/Earth.hpp</label>
         <link refid="Earth_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="12" relation="include">
+        <childnode refid="17" relation="include">
         </childnode>
-        <childnode refid="37" relation="include">
+        <childnode refid="20" relation="include">
         </childnode>
-        <childnode refid="59" relation="include">
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="48" relation="include">
         </childnode>
       </node>
-      <node id="61">
+      <node id="50">
         <label>astro/systems/celestial_bodies/Earth/Moon.hpp</label>
         <link refid="Moon_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="12" relation="include">
+        <childnode refid="17" relation="include">
         </childnode>
-        <childnode refid="37" relation="include">
+        <childnode refid="20" relation="include">
         </childnode>
-        <childnode refid="36" relation="include">
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
         </childnode>
       </node>
-      <node id="62">
+      <node id="51">
         <label>astro/systems/celestial_bodies/Jupiter/Callisto.hpp</label>
         <link refid="Callisto_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="12" relation="include">
+        <childnode refid="17" relation="include">
         </childnode>
-        <childnode refid="37" relation="include">
+        <childnode refid="21" relation="include">
         </childnode>
-        <childnode refid="63" relation="include">
+        <childnode refid="52" relation="include">
         </childnode>
       </node>
-      <node id="65">
+      <node id="54">
         <label>astro/systems/celestial_bodies/Jupiter/Europa.hpp</label>
         <link refid="Europa_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="12" relation="include">
+        <childnode refid="17" relation="include">
         </childnode>
-        <childnode refid="37" relation="include">
+        <childnode refid="21" relation="include">
         </childnode>
-        <childnode refid="63" relation="include">
+        <childnode refid="52" relation="include">
         </childnode>
       </node>
-      <node id="66">
+      <node id="55">
         <label>astro/systems/celestial_bodies/Jupiter/Ganymede.hpp</label>
         <link refid="Ganymede_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="12" relation="include">
+        <childnode refid="17" relation="include">
         </childnode>
-        <childnode refid="37" relation="include">
+        <childnode refid="21" relation="include">
         </childnode>
-        <childnode refid="63" relation="include">
+        <childnode refid="52" relation="include">
         </childnode>
       </node>
-      <node id="67">
+      <node id="56">
         <label>astro/systems/celestial_bodies/Jupiter/Io.hpp</label>
         <link refid="Io_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="12" relation="include">
+        <childnode refid="17" relation="include">
         </childnode>
-        <childnode refid="37" relation="include">
+        <childnode refid="21" relation="include">
         </childnode>
-        <childnode refid="63" relation="include">
+        <childnode refid="52" relation="include">
         </childnode>
       </node>
-      <node id="63">
+      <node id="52">
         <label>astro/systems/celestial_bodies/Jupiter/Jupiter.hpp</label>
         <link refid="Jupiter_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="12" relation="include">
+        <childnode refid="17" relation="include">
         </childnode>
-        <childnode refid="37" relation="include">
+        <childnode refid="21" relation="include">
         </childnode>
-        <childnode refid="59" relation="include">
+        <childnode refid="48" relation="include">
         </childnode>
-        <childnode refid="64" relation="include">
+        <childnode refid="53" relation="include">
         </childnode>
       </node>
-      <node id="68">
+      <node id="57">
         <label>astro/systems/celestial_bodies/Mars/Deimos.hpp</label>
         <link refid="Deimos_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="12" relation="include">
+        <childnode refid="17" relation="include">
         </childnode>
-        <childnode refid="37" relation="include">
+        <childnode refid="21" relation="include">
         </childnode>
-        <childnode refid="69" relation="include">
+        <childnode refid="58" relation="include">
         </childnode>
       </node>
-      <node id="69">
+      <node id="58">
         <label>astro/systems/celestial_bodies/Mars/Mars.hpp</label>
         <link refid="Mars_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="70" relation="include">
-        </childnode>
-        <childnode refid="12" relation="include">
-        </childnode>
-        <childnode refid="37" relation="include">
-        </childnode>
         <childnode refid="59" relation="include">
         </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="48" relation="include">
+        </childnode>
       </node>
-      <node id="71">
+      <node id="60">
         <label>astro/systems/celestial_bodies/Mars/Phobos.hpp</label>
         <link refid="Phobos_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="12" relation="include">
+        <childnode refid="17" relation="include">
         </childnode>
-        <childnode refid="37" relation="include">
+        <childnode refid="21" relation="include">
         </childnode>
-        <childnode refid="69" relation="include">
+        <childnode refid="58" relation="include">
         </childnode>
       </node>
-      <node id="72">
+      <node id="61">
         <label>astro/systems/celestial_bodies/Mercury/Mercury.hpp</label>
         <link refid="Mercury_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="12" relation="include">
+        <childnode refid="17" relation="include">
         </childnode>
-        <childnode refid="37" relation="include">
+        <childnode refid="20" relation="include">
         </childnode>
-        <childnode refid="59" relation="include">
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="48" relation="include">
         </childnode>
       </node>
-      <node id="73">
+      <node id="62">
         <label>astro/systems/celestial_bodies/Neptune/Neptune.hpp</label>
         <link refid="Neptune_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="12" relation="include">
+        <childnode refid="17" relation="include">
         </childnode>
-        <childnode refid="37" relation="include">
+        <childnode refid="21" relation="include">
         </childnode>
-        <childnode refid="59" relation="include">
+        <childnode refid="48" relation="include">
         </childnode>
       </node>
-      <node id="74">
+      <node id="63">
         <label>astro/systems/celestial_bodies/Neptune/Triton.hpp</label>
         <link refid="Triton_8hpp"/>
-        <childnode refid="28" relation="include">
+        <childnode refid="64" relation="include">
         </childnode>
-        <childnode refid="75" relation="include">
-        </childnode>
-        <childnode refid="38" relation="include">
+        <childnode refid="22" relation="include">
         </childnode>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="12" relation="include">
+        <childnode refid="17" relation="include">
         </childnode>
-        <childnode refid="37" relation="include">
+        <childnode refid="21" relation="include">
         </childnode>
-        <childnode refid="73" relation="include">
+        <childnode refid="62" relation="include">
         </childnode>
       </node>
-      <node id="76">
+      <node id="65">
         <label>astro/systems/celestial_bodies/Saturn/Iapetus.hpp</label>
         <link refid="Iapetus_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="12" relation="include">
+        <childnode refid="17" relation="include">
         </childnode>
-        <childnode refid="37" relation="include">
+        <childnode refid="21" relation="include">
         </childnode>
-        <childnode refid="77" relation="include">
+        <childnode refid="66" relation="include">
         </childnode>
       </node>
-      <node id="78">
+      <node id="67">
         <label>astro/systems/celestial_bodies/Saturn/Rhea.hpp</label>
         <link refid="Rhea_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="12" relation="include">
+        <childnode refid="17" relation="include">
         </childnode>
-        <childnode refid="37" relation="include">
+        <childnode refid="21" relation="include">
         </childnode>
-        <childnode refid="77" relation="include">
+        <childnode refid="66" relation="include">
         </childnode>
       </node>
-      <node id="77">
+      <node id="66">
         <label>astro/systems/celestial_bodies/Saturn/Saturn.hpp</label>
         <link refid="Saturn_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="12" relation="include">
+        <childnode refid="17" relation="include">
         </childnode>
-        <childnode refid="37" relation="include">
+        <childnode refid="21" relation="include">
         </childnode>
-        <childnode refid="59" relation="include">
+        <childnode refid="48" relation="include">
         </childnode>
       </node>
-      <node id="79">
+      <node id="68">
         <label>astro/systems/celestial_bodies/Saturn/Titan.hpp</label>
         <link refid="Titan_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="70" relation="include">
+        <childnode refid="59" relation="include">
         </childnode>
-        <childnode refid="12" relation="include">
+        <childnode refid="17" relation="include">
         </childnode>
-        <childnode refid="37" relation="include">
+        <childnode refid="21" relation="include">
         </childnode>
-        <childnode refid="77" relation="include">
+        <childnode refid="66" relation="include">
         </childnode>
       </node>
-      <node id="80">
+      <node id="69">
         <label>astro/systems/celestial_bodies/Sun/Sun.hpp</label>
         <link refid="Sun_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="12" relation="include">
+        <childnode refid="17" relation="include">
         </childnode>
-        <childnode refid="37" relation="include">
+        <childnode refid="21" relation="include">
         </childnode>
-        <childnode refid="59" relation="include">
+        <childnode refid="48" relation="include">
         </childnode>
       </node>
-      <node id="81">
+      <node id="70">
         <label>astro/systems/celestial_bodies/Uranus/Oberon.hpp</label>
         <link refid="Oberon_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="12" relation="include">
+        <childnode refid="17" relation="include">
         </childnode>
-        <childnode refid="37" relation="include">
+        <childnode refid="21" relation="include">
         </childnode>
-        <childnode refid="82" relation="include">
+        <childnode refid="71" relation="include">
         </childnode>
       </node>
-      <node id="83">
+      <node id="72">
         <label>astro/systems/celestial_bodies/Uranus/Titania.hpp</label>
         <link refid="Titania_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="12" relation="include">
+        <childnode refid="17" relation="include">
         </childnode>
-        <childnode refid="37" relation="include">
+        <childnode refid="21" relation="include">
         </childnode>
-        <childnode refid="82" relation="include">
+        <childnode refid="71" relation="include">
         </childnode>
       </node>
-      <node id="82">
+      <node id="71">
         <label>astro/systems/celestial_bodies/Uranus/Uranus.hpp</label>
         <link refid="Uranus_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="12" relation="include">
+        <childnode refid="17" relation="include">
         </childnode>
-        <childnode refid="37" relation="include">
+        <childnode refid="21" relation="include">
         </childnode>
-        <childnode refid="59" relation="include">
+        <childnode refid="48" relation="include">
         </childnode>
       </node>
-      <node id="84">
+      <node id="73">
         <label>astro/systems/celestial_bodies/Venus/Venus.hpp</label>
         <link refid="Venus_8hpp"/>
-        <childnode refid="70" relation="include">
+        <childnode refid="59" relation="include">
         </childnode>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="12" relation="include">
+        <childnode refid="17" relation="include">
         </childnode>
-        <childnode refid="37" relation="include">
+        <childnode refid="20" relation="include">
         </childnode>
-        <childnode refid="59" relation="include">
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="48" relation="include">
         </childnode>
       </node>
-      <node id="85">
+      <node id="74">
         <label>astro/systems/default_property_getters.hpp</label>
         <link refid="default__property__getters_8hpp"/>
-        <childnode refid="60" relation="include">
+        <childnode refid="49" relation="include">
         </childnode>
-        <childnode refid="86" relation="include">
+        <childnode refid="75" relation="include">
         </childnode>
-        <childnode refid="92" relation="include">
+        <childnode refid="100" relation="include">
         </childnode>
-        <childnode refid="55" relation="include">
+        <childnode refid="43" relation="include">
         </childnode>
       </node>
-      <node id="55">
+      <node id="43">
         <label>astro/systems/property_getters.hpp</label>
         <link refid="property__getters_8hpp_source"/>
-        <childnode refid="45" relation="include">
+        <childnode refid="33" relation="include">
         </childnode>
-        <childnode refid="28" relation="include">
+        <childnode refid="22" relation="include">
         </childnode>
-        <childnode refid="38" relation="include">
+        <childnode refid="44" relation="include">
         </childnode>
-        <childnode refid="56" relation="include">
-        </childnode>
-        <childnode refid="57" relation="include">
+        <childnode refid="46" relation="include">
         </childnode>
         <childnode refid="2" relation="include">
         </childnode>
         <childnode refid="25" relation="include">
         </childnode>
-        <childnode refid="58" relation="include">
+        <childnode refid="47" relation="include">
         </childnode>
-        <childnode refid="37" relation="include">
+        <childnode refid="21" relation="include">
         </childnode>
-        <childnode refid="41" relation="include">
+        <childnode refid="29" relation="include">
         </childnode>
-        <childnode refid="40" relation="include">
+        <childnode refid="24" relation="include">
         </childnode>
-        <childnode refid="42" relation="include">
+        <childnode refid="30" relation="include">
         </childnode>
-        <childnode refid="14" relation="include">
+        <childnode refid="18" relation="include">
         </childnode>
       </node>
-      <node id="40">
+      <node id="24">
         <label>astro/systems/system_concepts.hpp</label>
         <link refid="system__concepts_8hpp"/>
         <childnode refid="5" relation="include">
@@ -1353,272 +1411,256 @@
         </childnode>
         <childnode refid="98" relation="include">
         </childnode>
-        <childnode refid="37" relation="include">
+        <childnode refid="21" relation="include">
         </childnode>
-        <childnode refid="59" relation="include">
+        <childnode refid="48" relation="include">
         </childnode>
-        <childnode refid="35" relation="include">
+        <childnode refid="15" relation="include">
         </childnode>
-        <childnode refid="55" relation="include">
+        <childnode refid="43" relation="include">
         </childnode>
-        <childnode refid="42" relation="include">
+        <childnode refid="30" relation="include">
         </childnode>
-        <childnode refid="14" relation="include">
+        <childnode refid="18" relation="include">
         </childnode>
         <childnode refid="99" relation="include">
         </childnode>
       </node>
-      <node id="42">
+      <node id="30">
         <label>astro/time/Date.hpp</label>
         <link refid="Date_8hpp"/>
-        <childnode refid="43" relation="include">
+        <childnode refid="31" relation="include">
         </childnode>
-        <childnode refid="44" relation="include">
+        <childnode refid="32" relation="include">
         </childnode>
-        <childnode refid="45" relation="include">
+        <childnode refid="33" relation="include">
         </childnode>
-        <childnode refid="46" relation="include">
+        <childnode refid="34" relation="include">
         </childnode>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="40" relation="include">
+        <childnode refid="24" relation="include">
         </childnode>
-        <childnode refid="47" relation="include">
+        <childnode refid="35" relation="include">
         </childnode>
       </node>
-      <node id="47">
+      <node id="35">
         <label>astro/time/clocks.hpp</label>
         <link refid="clocks_8hpp"/>
-        <childnode refid="48" relation="include">
+        <childnode refid="36" relation="include">
         </childnode>
-        <childnode refid="51" relation="include">
+        <childnode refid="39" relation="include">
         </childnode>
-        <childnode refid="54" relation="include">
+        <childnode refid="42" relation="include">
         </childnode>
-        <childnode refid="52" relation="include">
+        <childnode refid="40" relation="include">
         </childnode>
-        <childnode refid="53" relation="include">
+        <childnode refid="41" relation="include">
         </childnode>
       </node>
-      <node id="48">
+      <node id="36">
         <label>astro/time/clocks/BarycentricCoordinateTimeClock.hpp</label>
         <link refid="BarycentricCoordinateTimeClock_8hpp"/>
-        <childnode refid="43" relation="include">
+        <childnode refid="31" relation="include">
         </childnode>
-        <childnode refid="49" relation="include">
+        <childnode refid="37" relation="include">
         </childnode>
-        <childnode refid="50" relation="include">
+        <childnode refid="38" relation="include">
         </childnode>
-        <childnode refid="51" relation="include">
+        <childnode refid="39" relation="include">
         </childnode>
-        <childnode refid="52" relation="include">
+        <childnode refid="40" relation="include">
         </childnode>
       </node>
-      <node id="51">
+      <node id="39">
         <label>astro/time/clocks/BarycentricDynamicalTimeClock.hpp</label>
         <link refid="BarycentricDynamicalTimeClock_8hpp"/>
-        <childnode refid="43" relation="include">
+        <childnode refid="31" relation="include">
         </childnode>
-        <childnode refid="49" relation="include">
+        <childnode refid="37" relation="include">
         </childnode>
-        <childnode refid="50" relation="include">
+        <childnode refid="38" relation="include">
         </childnode>
-        <childnode refid="52" relation="include">
+        <childnode refid="40" relation="include">
         </childnode>
-        <childnode refid="53" relation="include">
+        <childnode refid="41" relation="include">
         </childnode>
       </node>
-      <node id="54">
+      <node id="42">
         <label>astro/time/clocks/GeocentricCoordinateTimeClock.hpp</label>
         <link refid="GeocentricCoordinateTimeClock_8hpp"/>
-        <childnode refid="43" relation="include">
+        <childnode refid="31" relation="include">
         </childnode>
-        <childnode refid="50" relation="include">
+        <childnode refid="38" relation="include">
         </childnode>
-        <childnode refid="52" relation="include">
+        <childnode refid="40" relation="include">
         </childnode>
-        <childnode refid="53" relation="include">
+        <childnode refid="41" relation="include">
         </childnode>
       </node>
-      <node id="52">
+      <node id="40">
         <label>astro/time/clocks/JulianDateClock.hpp</label>
         <link refid="JulianDateClock_8hpp"/>
-        <childnode refid="43" relation="include">
+        <childnode refid="31" relation="include">
         </childnode>
-        <childnode refid="46" relation="include">
+        <childnode refid="34" relation="include">
         </childnode>
       </node>
-      <node id="53">
+      <node id="41">
         <label>astro/time/clocks/TerrestrialTimeClock.hpp</label>
         <link refid="TerrestrialTimeClock_8hpp"/>
-        <childnode refid="43" relation="include">
+        <childnode refid="31" relation="include">
         </childnode>
-        <childnode refid="50" relation="include">
+        <childnode refid="38" relation="include">
         </childnode>
       </node>
-      <node id="113">
+      <node id="115">
         <label>astro/types/concepts.hpp</label>
         <link refid="concepts_8hpp"/>
         <childnode refid="5" relation="include">
         </childnode>
-        <childnode refid="14" relation="include">
+        <childnode refid="18" relation="include">
         </childnode>
         <childnode refid="99" relation="include">
         </childnode>
-        <childnode refid="64" relation="include">
+        <childnode refid="53" relation="include">
         </childnode>
       </node>
-      <node id="14">
+      <node id="18">
         <label>astro/types/enums.hpp</label>
         <link refid="enums_8hpp"/>
-        <childnode refid="15" relation="include">
+        <childnode refid="19" relation="include">
         </childnode>
       </node>
       <node id="99">
         <label>astro/types/type_traits.hpp</label>
         <link refid="type__traits_8hpp"/>
-        <childnode refid="100" relation="include">
-        </childnode>
-        <childnode refid="101" relation="include">
-        </childnode>
-        <childnode refid="45" relation="include">
-        </childnode>
-        <childnode refid="102" relation="include">
-        </childnode>
         <childnode refid="7" relation="include">
         </childnode>
-        <childnode refid="103" relation="include">
-        </childnode>
       </node>
-      <node id="64">
+      <node id="53">
         <label>astro/types/typedefs.hpp</label>
         <link refid="typedefs_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="12" relation="include">
+        <childnode refid="17" relation="include">
         </childnode>
       </node>
-      <node id="114">
+      <node id="116">
         <label>astro/types/variant_util.hpp</label>
         <link refid="variant__util_8hpp"/>
-        <childnode refid="107" relation="include">
+        <childnode refid="110" relation="include">
         </childnode>
       </node>
-      <node id="56">
+      <node id="44">
         <label>astro/utilities/conversions.hpp</label>
         <link refid="conversions_8hpp"/>
-        <childnode refid="49" relation="include">
+        <childnode refid="37" relation="include">
         </childnode>
-        <childnode refid="23" relation="include">
+        <childnode refid="45" relation="include">
         </childnode>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="12" relation="include">
+        <childnode refid="17" relation="include">
         </childnode>
       </node>
-      <node id="20">
+      <node id="26">
         <label>array</label>
+      </node>
+      <node id="104">
+        <label>astro/eop/EarthOrientationParameters.hpp</label>
       </node>
       <node id="4">
         <label>cassert</label>
       </node>
-      <node id="43">
+      <node id="31">
         <label>chrono</label>
       </node>
-      <node id="21">
+      <node id="88">
         <label>cmath</label>
       </node>
       <node id="5">
         <label>concepts</label>
       </node>
-      <node id="100">
-        <label>cstddef</label>
-      </node>
       <node id="98">
         <label>gtl/phmap.hpp</label>
       </node>
-      <node id="101">
-        <label>initializer_list</label>
-      </node>
-      <node id="88">
+      <node id="77">
         <label>iomanip</label>
       </node>
-      <node id="44">
+      <node id="32">
         <label>iosfwd</label>
       </node>
-      <node id="22">
+      <node id="78">
         <label>iostream</label>
       </node>
-      <node id="70">
+      <node id="59">
         <label>map</label>
       </node>
-      <node id="57">
+      <node id="46">
         <label>math/chebyshev_util.hpp</label>
       </node>
-      <node id="91">
+      <node id="80">
         <label>math/interpolation.hpp</label>
+      </node>
+      <node id="81">
+        <label>math/trig.hpp</label>
       </node>
       <node id="6">
         <label>memory</label>
       </node>
-      <node id="132">
+      <node id="93">
         <label>mp-units/core.h</label>
       </node>
-      <node id="27">
+      <node id="28">
         <label>mp-units/framework.h</label>
       </node>
-      <node id="30">
+      <node id="11">
         <label>mp-units/framework/symbol_text.h</label>
       </node>
-      <node id="23">
+      <node id="45">
         <label>mp-units/math.h</label>
       </node>
-      <node id="28">
-        <label>mp-units/systems/angular.h</label>
-      </node>
-      <node id="10">
-        <label>mp-units/systems/angular/math.h</label>
-      </node>
-      <node id="75">
+      <node id="64">
         <label>mp-units/systems/iau.h</label>
       </node>
-      <node id="38">
+      <node id="22">
         <label>mp-units/systems/si.h</label>
       </node>
-      <node id="46">
+      <node id="34">
         <label>mp-units/systems/si/chrono.h</label>
       </node>
-      <node id="11">
+      <node id="79">
         <label>mp-units/systems/si/math.h</label>
       </node>
-      <node id="49">
+      <node id="37">
         <label>numbers</label>
       </node>
-      <node id="126">
+      <node id="128">
         <label>optional</label>
       </node>
       <node id="95">
         <label>ranges</label>
       </node>
-      <node id="50">
+      <node id="38">
         <label>ratio</label>
       </node>
-      <node id="131">
+      <node id="133">
         <label>stdexcept</label>
       </node>
-      <node id="15">
+      <node id="19">
         <label>stdint.h</label>
       </node>
-      <node id="45">
+      <node id="33">
         <label>string</label>
       </node>
-      <node id="102">
+      <node id="112">
         <label>tuple</label>
       </node>
       <node id="7">
         <label>type_traits</label>
       </node>
-      <node id="26">
+      <node id="27">
         <label>typeinfo</label>
       </node>
       <node id="2">
@@ -1627,13 +1669,10 @@
       <node id="96">
         <label>unordered_set</label>
       </node>
-      <node id="17">
+      <node id="85">
         <label>utilities/string_util.hpp</label>
       </node>
-      <node id="103">
-        <label>utility</label>
-      </node>
-      <node id="107">
+      <node id="110">
         <label>variant</label>
       </node>
       <node id="97">
@@ -1730,7 +1769,7 @@
 </simplesect>
 <simplesect kind="date"><para>2025-08-02</para>
 </simplesect>
-<simplesect kind="copyright"><para>Copyright (c) 2025 Jay Iuliano</para>
+<simplesect kind="copyright"><para>Copyright (c) 2025-2026 Jay Iuliano</para>
 </simplesect>
 The GNU Lesser General Public License (LGPL)</para>
 <para>This file is part of Astrea. Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. Astrea is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details. You should have received a copy of the GNU General Public License along with Astrea. If not, see <ulink url="https://www.gnu.org/licenses/">https://www.gnu.org/licenses/</ulink>. </para>
@@ -1784,11 +1823,11 @@ The GNU Lesser General Public License (LGPL)</para>
 <codeline lineno="89"><highlight class="normal"></highlight></codeline>
 <codeline lineno="95" refid="structastrea_1_1astro_1_1detail_1_1EventInnerBase_1a11d819b696b5a04c18f07d56f4c9fab3" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/>std::string<sp/><ref refid="structastrea_1_1astro_1_1detail_1_1EventInnerBase_1a11d819b696b5a04c18f07d56f4c9fab3" kindref="member">get_name</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>=<sp/>0;</highlight></codeline>
 <codeline lineno="96"><highlight class="normal"></highlight></codeline>
-<codeline lineno="106" refid="structastrea_1_1astro_1_1detail_1_1EventInnerBase_1ae917d85ee77be2d41702075e7aa24eda" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Unitless</ref><sp/><ref refid="structastrea_1_1astro_1_1detail_1_1EventInnerBase_1ae917d85ee77be2d41702075e7aa24eda" kindref="member">measure_event</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Time</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">time</ref>,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">state</ref>,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1Vehicle" kindref="compound">Vehicle</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">vehicle</ref>)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="106" refid="structastrea_1_1astro_1_1detail_1_1EventInnerBase_1ae917d85ee77be2d41702075e7aa24eda" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/>Unitless<sp/><ref refid="structastrea_1_1astro_1_1detail_1_1EventInnerBase_1ae917d85ee77be2d41702075e7aa24eda" kindref="member">measure_event</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Time&amp;<sp/>time,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref>&amp;<sp/>state,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1Vehicle" kindref="compound">Vehicle</ref>&amp;<sp/>vehicle)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>=<sp/>0;</highlight></codeline>
 <codeline lineno="107"><highlight class="normal"></highlight></codeline>
 <codeline lineno="114" refid="structastrea_1_1astro_1_1detail_1_1EventInnerBase_1a55faf23ad11862a521690ed0d5b6be23" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="structastrea_1_1astro_1_1detail_1_1EventInnerBase_1a55faf23ad11862a521690ed0d5b6be23" kindref="member">is_terminal</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>=<sp/>0;</highlight></codeline>
 <codeline lineno="115"><highlight class="normal"></highlight></codeline>
-<codeline lineno="124" refid="structastrea_1_1astro_1_1detail_1_1EventInnerBase_1a067c4b36b7b8b89298ba49514c163a21" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="structastrea_1_1astro_1_1detail_1_1EventInnerBase_1a067c4b36b7b8b89298ba49514c163a21" kindref="member">trigger_action</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Time</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">time</ref>,<sp/><ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">state</ref>,<sp/><ref refid="classastrea_1_1astro_1_1Vehicle" kindref="compound">Vehicle</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">vehicle</ref>)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="124" refid="structastrea_1_1astro_1_1detail_1_1EventInnerBase_1a067c4b36b7b8b89298ba49514c163a21" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="structastrea_1_1astro_1_1detail_1_1EventInnerBase_1a067c4b36b7b8b89298ba49514c163a21" kindref="member">trigger_action</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Time&amp;<sp/>time,<sp/><ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref>&amp;<sp/>state,<sp/><ref refid="classastrea_1_1astro_1_1Vehicle" kindref="compound">Vehicle</ref>&amp;<sp/>vehicle)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>=<sp/>0;</highlight></codeline>
 <codeline lineno="125"><highlight class="normal"></highlight></codeline>
 <codeline lineno="131" refid="structastrea_1_1astro_1_1detail_1_1EventInnerBase_1a5c254c74f4d2e78faef761e71e51b301" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/>std::unique_ptr&lt;EventInnerBase&gt;<sp/><ref refid="structastrea_1_1astro_1_1detail_1_1EventInnerBase_1a5c254c74f4d2e78faef761e71e51b301" kindref="member">clone</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>=<sp/>0;</highlight></codeline>
 <codeline lineno="132"><highlight class="normal"></highlight></codeline>
@@ -1800,7 +1839,7 @@ The GNU Lesser General Public License (LGPL)</para>
 <codeline lineno="153"><highlight class="normal">};</highlight></codeline>
 <codeline lineno="154"><highlight class="normal"></highlight></codeline>
 <codeline lineno="160"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>T&gt;</highlight></codeline>
-<codeline lineno="161" refid="structastrea_1_1astro_1_1detail_1_1EventInner" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structastrea_1_1astro_1_1detail_1_1EventInner" kindref="compound">EventInner</ref><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">final</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="structastrea_1_1astro_1_1detail_1_1EventInnerBase" kindref="compound">EventInnerBase</ref><sp/>{</highlight></codeline>
+<codeline lineno="161" refid="structastrea_1_1astro_1_1detail_1_1EventInner" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structastrea_1_1astro_1_1detail_1_1EventInner" kindref="compound">EventInner</ref><sp/>final<sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="structastrea_1_1astro_1_1detail_1_1EventInnerBase" kindref="compound">EventInnerBase</ref><sp/>{</highlight></codeline>
 <codeline lineno="162"><highlight class="normal"></highlight></codeline>
 <codeline lineno="166" refid="structastrea_1_1astro_1_1detail_1_1EventInner_1a6fc7bf8d83539ac928665d6d9efe9f38" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structastrea_1_1astro_1_1detail_1_1EventInner_1a6fc7bf8d83539ac928665d6d9efe9f38" kindref="member">EventInner</ref>()<sp/>=<sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="167"><highlight class="normal"></highlight></codeline>
@@ -1812,52 +1851,52 @@ The GNU Lesser General Public License (LGPL)</para>
 <codeline lineno="182"><highlight class="normal"></highlight></codeline>
 <codeline lineno="186" refid="structastrea_1_1astro_1_1detail_1_1EventInner_1a5f181a7010f0c2268a4b8ae93721da1f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structastrea_1_1astro_1_1detail_1_1EventInner" kindref="compound">EventInner</ref>&amp;<sp/><ref refid="structastrea_1_1astro_1_1detail_1_1EventInner_1a5f181a7010f0c2268a4b8ae93721da1f" kindref="member">operator=</ref>(<ref refid="structastrea_1_1astro_1_1detail_1_1EventInner" kindref="compound">EventInner</ref>&amp;&amp;)<sp/>=<sp/></highlight><highlight class="keyword">delete</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="187"><highlight class="normal"></highlight></codeline>
-<codeline lineno="193" refid="structastrea_1_1astro_1_1detail_1_1EventInner_1a56c655327628fb5940c6fee6af5e7d49" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">explicit</highlight><highlight class="normal"><sp/><ref refid="structastrea_1_1astro_1_1detail_1_1EventInner_1a56c655327628fb5940c6fee6af5e7d49" kindref="member">EventInner</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">T</ref>&amp;<sp/>x)<sp/>:</highlight></codeline>
+<codeline lineno="193" refid="structastrea_1_1astro_1_1detail_1_1EventInner_1a56c655327628fb5940c6fee6af5e7d49" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">explicit</highlight><highlight class="normal"><sp/><ref refid="structastrea_1_1astro_1_1detail_1_1EventInner_1a56c655327628fb5940c6fee6af5e7d49" kindref="member">EventInner</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>T&amp;<sp/>x)<sp/>:</highlight></codeline>
 <codeline lineno="194"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structastrea_1_1astro_1_1detail_1_1EventInner_1a5fbdd85ef0de6bd7fbef33a5da593b35" kindref="member">_value</ref>(x)</highlight></codeline>
 <codeline lineno="195"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
 <codeline lineno="196"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="197"><highlight class="normal"></highlight></codeline>
-<codeline lineno="203" refid="structastrea_1_1astro_1_1detail_1_1EventInner_1a4fb6bb5e8d5ed2ea3384f55565fb779f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">explicit</highlight><highlight class="normal"><sp/><ref refid="structastrea_1_1astro_1_1detail_1_1EventInner_1a4fb6bb5e8d5ed2ea3384f55565fb779f" kindref="member">EventInner</ref>(<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">T</ref>&amp;&amp;<sp/>x)<sp/>:</highlight></codeline>
-<codeline lineno="204"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structastrea_1_1astro_1_1detail_1_1EventInner_1a5fbdd85ef0de6bd7fbef33a5da593b35" kindref="member">_value</ref>(std::<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">move</ref>(x))</highlight></codeline>
+<codeline lineno="203" refid="structastrea_1_1astro_1_1detail_1_1EventInner_1a4fb6bb5e8d5ed2ea3384f55565fb779f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">explicit</highlight><highlight class="normal"><sp/><ref refid="structastrea_1_1astro_1_1detail_1_1EventInner_1a4fb6bb5e8d5ed2ea3384f55565fb779f" kindref="member">EventInner</ref>(T&amp;&amp;<sp/>x)<sp/>:</highlight></codeline>
+<codeline lineno="204"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structastrea_1_1astro_1_1detail_1_1EventInner_1a5fbdd85ef0de6bd7fbef33a5da593b35" kindref="member">_value</ref>(std::move(x))</highlight></codeline>
 <codeline lineno="205"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
 <codeline lineno="206"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="207"><highlight class="normal"></highlight></codeline>
-<codeline lineno="213" refid="structastrea_1_1astro_1_1detail_1_1EventInner_1a23bfddb61e622920d25073e769735d30" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/><ref refid="structastrea_1_1astro_1_1detail_1_1EventInner_1a23bfddb61e622920d25073e769735d30" kindref="member">get_name</ref>()<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">override</ref><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">final</ref><sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="structastrea_1_1astro_1_1detail_1_1EventInner_1a5fbdd85ef0de6bd7fbef33a5da593b35" kindref="member">_value</ref>.get_name();<sp/>}</highlight></codeline>
+<codeline lineno="213" refid="structastrea_1_1astro_1_1detail_1_1EventInner_1a23bfddb61e622920d25073e769735d30" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/><ref refid="structastrea_1_1astro_1_1detail_1_1EventInner_1a23bfddb61e622920d25073e769735d30" kindref="member">get_name</ref>()<sp/>const<sp/>override<sp/>final<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="structastrea_1_1astro_1_1detail_1_1EventInner_1a5fbdd85ef0de6bd7fbef33a5da593b35" kindref="member">_value</ref>.get_name();<sp/>}</highlight></codeline>
 <codeline lineno="214"><highlight class="normal"></highlight></codeline>
-<codeline lineno="224" refid="structastrea_1_1astro_1_1detail_1_1EventInner_1a11987a9bd7d4c6c6723835eeb7ff0673" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Unitless</ref><sp/><ref refid="structastrea_1_1astro_1_1detail_1_1EventInner_1a11987a9bd7d4c6c6723835eeb7ff0673" kindref="member">measure_event</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Time</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">time</ref>,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">state</ref>,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1Vehicle" kindref="compound">Vehicle</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">vehicle</ref>)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">override</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">final</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="224" refid="structastrea_1_1astro_1_1detail_1_1EventInner_1a11987a9bd7d4c6c6723835eeb7ff0673" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>Unitless<sp/><ref refid="structastrea_1_1astro_1_1detail_1_1EventInner_1a11987a9bd7d4c6c6723835eeb7ff0673" kindref="member">measure_event</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Time&amp;<sp/>time,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref>&amp;<sp/>state,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1Vehicle" kindref="compound">Vehicle</ref>&amp;<sp/>vehicle)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">override</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">final</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="225"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
-<codeline lineno="226"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="structastrea_1_1astro_1_1detail_1_1EventInner_1a5fbdd85ef0de6bd7fbef33a5da593b35" kindref="member">_value</ref>.measure_event(<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">time</ref>,<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">state</ref>,<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">vehicle</ref>);</highlight></codeline>
+<codeline lineno="226"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="structastrea_1_1astro_1_1detail_1_1EventInner_1a5fbdd85ef0de6bd7fbef33a5da593b35" kindref="member">_value</ref>.measure_event(time,<sp/>state,<sp/>vehicle);</highlight></codeline>
 <codeline lineno="227"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="228"><highlight class="normal"></highlight></codeline>
-<codeline lineno="235" refid="structastrea_1_1astro_1_1detail_1_1EventInner_1a79c29d1eeec32a5a732e54716a4f7b39" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="structastrea_1_1astro_1_1detail_1_1EventInner_1a79c29d1eeec32a5a732e54716a4f7b39" kindref="member">is_terminal</ref>()<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">override</ref><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">final</ref><sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="structastrea_1_1astro_1_1detail_1_1EventInner_1a5fbdd85ef0de6bd7fbef33a5da593b35" kindref="member">_value</ref>.is_terminal();<sp/>}</highlight></codeline>
+<codeline lineno="235" refid="structastrea_1_1astro_1_1detail_1_1EventInner_1a79c29d1eeec32a5a732e54716a4f7b39" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="structastrea_1_1astro_1_1detail_1_1EventInner_1a79c29d1eeec32a5a732e54716a4f7b39" kindref="member">is_terminal</ref>()<sp/>const<sp/>override<sp/>final<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="structastrea_1_1astro_1_1detail_1_1EventInner_1a5fbdd85ef0de6bd7fbef33a5da593b35" kindref="member">_value</ref>.is_terminal();<sp/>}</highlight></codeline>
 <codeline lineno="236"><highlight class="normal"></highlight></codeline>
-<codeline lineno="245" refid="structastrea_1_1astro_1_1detail_1_1EventInner_1a592d6735aaeeaa55a155db47f3a9f247" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="structastrea_1_1astro_1_1detail_1_1EventInner_1a592d6735aaeeaa55a155db47f3a9f247" kindref="member">trigger_action</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Time</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">time</ref>,<sp/><ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">state</ref>,<sp/><ref refid="classastrea_1_1astro_1_1Vehicle" kindref="compound">Vehicle</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">vehicle</ref>)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">override</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">final</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="245" refid="structastrea_1_1astro_1_1detail_1_1EventInner_1a592d6735aaeeaa55a155db47f3a9f247" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="structastrea_1_1astro_1_1detail_1_1EventInner_1a592d6735aaeeaa55a155db47f3a9f247" kindref="member">trigger_action</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Time&amp;<sp/>time,<sp/><ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref>&amp;<sp/>state,<sp/><ref refid="classastrea_1_1astro_1_1Vehicle" kindref="compound">Vehicle</ref>&amp;<sp/>vehicle)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">override</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">final</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="246"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
-<codeline lineno="247"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="structastrea_1_1astro_1_1detail_1_1EventInner_1a48c711254848f4634e831d151cc51e3a" kindref="member">trigger_action_impl</ref>(<ref refid="structastrea_1_1astro_1_1detail_1_1EventInner_1a5fbdd85ef0de6bd7fbef33a5da593b35" kindref="member">_value</ref>,<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">time</ref>,<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">state</ref>,<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">vehicle</ref>);</highlight></codeline>
+<codeline lineno="247"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="structastrea_1_1astro_1_1detail_1_1EventInner_1a48c711254848f4634e831d151cc51e3a" kindref="member">trigger_action_impl</ref>(<ref refid="structastrea_1_1astro_1_1detail_1_1EventInner_1a5fbdd85ef0de6bd7fbef33a5da593b35" kindref="member">_value</ref>,<sp/>time,<sp/>state,<sp/>vehicle);</highlight></codeline>
 <codeline lineno="248"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="249"><highlight class="normal"></highlight></codeline>
 <codeline lineno="260"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>U&gt;</highlight></codeline>
 <codeline lineno="261"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">requires</highlight><highlight class="normal">(<ref refid="conceptastrea_1_1astro_1_1HasTriggerEvent" kindref="compound">HasTriggerEvent&lt;U&gt;</ref>)</highlight></codeline>
-<codeline lineno="262" refid="structastrea_1_1astro_1_1detail_1_1EventInner_1a48c711254848f4634e831d151cc51e3a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="structastrea_1_1astro_1_1detail_1_1EventInner_1a48c711254848f4634e831d151cc51e3a" kindref="member">trigger_action_impl</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">U</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">value</ref>,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Time</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">time</ref>,<sp/><ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">state</ref>,<sp/><ref refid="classastrea_1_1astro_1_1Vehicle" kindref="compound">Vehicle</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">vehicle</ref>)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="262" refid="structastrea_1_1astro_1_1detail_1_1EventInner_1a48c711254848f4634e831d151cc51e3a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="structastrea_1_1astro_1_1detail_1_1EventInner_1a48c711254848f4634e831d151cc51e3a" kindref="member">trigger_action_impl</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>U&amp;<sp/>value,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Time&amp;<sp/>time,<sp/><ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref>&amp;<sp/>state,<sp/><ref refid="classastrea_1_1astro_1_1Vehicle" kindref="compound">Vehicle</ref>&amp;<sp/>vehicle)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="263"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
-<codeline lineno="264"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">value</ref>.trigger_action(<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">time</ref>,<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">state</ref>,<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">vehicle</ref>);</highlight></codeline>
+<codeline lineno="264"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>value.trigger_action(time,<sp/>state,<sp/>vehicle);</highlight></codeline>
 <codeline lineno="265"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="266"><highlight class="normal"></highlight></codeline>
 <codeline lineno="277"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>U&gt;</highlight></codeline>
 <codeline lineno="278"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">requires</highlight><highlight class="normal">(!<ref refid="conceptastrea_1_1astro_1_1HasTriggerEvent" kindref="compound">HasTriggerEvent&lt;U&gt;</ref>)</highlight></codeline>
-<codeline lineno="279" refid="structastrea_1_1astro_1_1detail_1_1EventInner_1a78525e984e0429506ca3a168566c5c21" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="structastrea_1_1astro_1_1detail_1_1EventInner_1a78525e984e0429506ca3a168566c5c21" kindref="member">trigger_action_impl</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">U</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">value</ref>,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Time</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">time</ref>,<sp/><ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">state</ref>,<sp/><ref refid="classastrea_1_1astro_1_1Vehicle" kindref="compound">Vehicle</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">vehicle</ref>)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="279" refid="structastrea_1_1astro_1_1detail_1_1EventInner_1a78525e984e0429506ca3a168566c5c21" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="structastrea_1_1astro_1_1detail_1_1EventInner_1a78525e984e0429506ca3a168566c5c21" kindref="member">trigger_action_impl</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>U&amp;<sp/>value,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Time&amp;<sp/>time,<sp/><ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref>&amp;<sp/>state,<sp/><ref refid="classastrea_1_1astro_1_1Vehicle" kindref="compound">Vehicle</ref>&amp;<sp/>vehicle)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="280"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
 <codeline lineno="281"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="282"><highlight class="normal"></highlight></codeline>
-<codeline lineno="288" refid="structastrea_1_1astro_1_1detail_1_1EventInner_1a0afb2a857463c308b86de2d55c224a4a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::unique_ptr&lt;EventInnerBase&gt;<sp/><ref refid="structastrea_1_1astro_1_1detail_1_1EventInner_1a0afb2a857463c308b86de2d55c224a4a" kindref="member">clone</ref>()<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">final</ref><sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>std::make_unique&lt;EventInner&gt;(<ref refid="structastrea_1_1astro_1_1detail_1_1EventInner_1a5fbdd85ef0de6bd7fbef33a5da593b35" kindref="member">_value</ref>);<sp/>}</highlight></codeline>
+<codeline lineno="288" refid="structastrea_1_1astro_1_1detail_1_1EventInner_1a0afb2a857463c308b86de2d55c224a4a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::unique_ptr&lt;EventInnerBase&gt;<sp/><ref refid="structastrea_1_1astro_1_1detail_1_1EventInner_1a0afb2a857463c308b86de2d55c224a4a" kindref="member">clone</ref>()<sp/>const<sp/>final<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>std::make_unique&lt;EventInner&gt;(<ref refid="structastrea_1_1astro_1_1detail_1_1EventInner_1a5fbdd85ef0de6bd7fbef33a5da593b35" kindref="member">_value</ref>);<sp/>}</highlight></codeline>
 <codeline lineno="289"><highlight class="normal"></highlight></codeline>
-<codeline lineno="295" refid="structastrea_1_1astro_1_1detail_1_1EventInner_1aa245609543a92cfc90241e5eddb4208b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/><ref refid="structastrea_1_1astro_1_1detail_1_1EventInner_1aa245609543a92cfc90241e5eddb4208b" kindref="member">get_ptr</ref>()<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">final</ref><sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>&amp;<ref refid="structastrea_1_1astro_1_1detail_1_1EventInner_1a5fbdd85ef0de6bd7fbef33a5da593b35" kindref="member">_value</ref>;<sp/>}</highlight></codeline>
+<codeline lineno="295" refid="structastrea_1_1astro_1_1detail_1_1EventInner_1aa245609543a92cfc90241e5eddb4208b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/><ref refid="structastrea_1_1astro_1_1detail_1_1EventInner_1aa245609543a92cfc90241e5eddb4208b" kindref="member">get_ptr</ref>()<sp/>const<sp/>final<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>&amp;<ref refid="structastrea_1_1astro_1_1detail_1_1EventInner_1a5fbdd85ef0de6bd7fbef33a5da593b35" kindref="member">_value</ref>;<sp/>}</highlight></codeline>
 <codeline lineno="296"><highlight class="normal"></highlight></codeline>
-<codeline lineno="302" refid="structastrea_1_1astro_1_1detail_1_1EventInner_1ae8d23e667ccb64379cea6ed62656b5d9" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/><ref refid="structastrea_1_1astro_1_1detail_1_1EventInner_1ae8d23e667ccb64379cea6ed62656b5d9" kindref="member">get_ptr</ref>()<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">final</ref><sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>&amp;<ref refid="structastrea_1_1astro_1_1detail_1_1EventInner_1a5fbdd85ef0de6bd7fbef33a5da593b35" kindref="member">_value</ref>;<sp/>}</highlight></codeline>
+<codeline lineno="302" refid="structastrea_1_1astro_1_1detail_1_1EventInner_1ae8d23e667ccb64379cea6ed62656b5d9" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/><ref refid="structastrea_1_1astro_1_1detail_1_1EventInner_1ae8d23e667ccb64379cea6ed62656b5d9" kindref="member">get_ptr</ref>()<sp/>final<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>&amp;<ref refid="structastrea_1_1astro_1_1detail_1_1EventInner_1a5fbdd85ef0de6bd7fbef33a5da593b35" kindref="member">_value</ref>;<sp/>}</highlight></codeline>
 <codeline lineno="303"><highlight class="normal"></highlight></codeline>
-<codeline lineno="309" refid="structastrea_1_1astro_1_1detail_1_1EventInner_1a794b80c3a8c315fcaaa45447adbc9bd2" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::type_info&amp;<sp/><ref refid="structastrea_1_1astro_1_1detail_1_1EventInner_1a794b80c3a8c315fcaaa45447adbc9bd2" kindref="member">type</ref>()<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">final</ref><sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">typeid</highlight><highlight class="normal">(<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">T</ref>);<sp/>}</highlight></codeline>
+<codeline lineno="309" refid="structastrea_1_1astro_1_1detail_1_1EventInner_1a794b80c3a8c315fcaaa45447adbc9bd2" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::type_info&amp;<sp/><ref refid="structastrea_1_1astro_1_1detail_1_1EventInner_1a794b80c3a8c315fcaaa45447adbc9bd2" kindref="member">type</ref>()<sp/>const<sp/>final<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">typeid</highlight><highlight class="normal">(T);<sp/>}</highlight></codeline>
 <codeline lineno="310"><highlight class="normal"></highlight></codeline>
-<codeline lineno="311" refid="structastrea_1_1astro_1_1detail_1_1EventInner_1a5fbdd85ef0de6bd7fbef33a5da593b35" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">T</ref><sp/><ref refid="structastrea_1_1astro_1_1detail_1_1EventInner_1a5fbdd85ef0de6bd7fbef33a5da593b35" kindref="member">_value</ref>;<sp/></highlight></codeline>
+<codeline lineno="311" refid="structastrea_1_1astro_1_1detail_1_1EventInner_1a5fbdd85ef0de6bd7fbef33a5da593b35" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>T<sp/><ref refid="structastrea_1_1astro_1_1detail_1_1EventInner_1a5fbdd85ef0de6bd7fbef33a5da593b35" kindref="member">_value</ref>;<sp/></highlight></codeline>
 <codeline lineno="312"><highlight class="normal">};</highlight></codeline>
 <codeline lineno="313"><highlight class="normal"></highlight></codeline>
 <codeline lineno="314"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>detail</highlight><highlight class="normal"></highlight></codeline>
@@ -1882,52 +1921,52 @@ The GNU Lesser General Public License (LGPL)</para>
 <codeline lineno="348"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
 <codeline lineno="355"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>T&gt;</highlight></codeline>
 <codeline lineno="356"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">requires</highlight><highlight class="normal">(<ref refid="conceptastrea_1_1astro_1_1IsGenericallyConstructableEvent" kindref="compound">IsGenericallyConstructableEvent&lt;T&gt;</ref>)</highlight></codeline>
-<codeline lineno="357" refid="classastrea_1_1astro_1_1Event_1a2b7d3878a8fad1516ffb182c705ec1dd" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">explicit</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1Event_1a2b7d3878a8fad1516ffb182c705ec1dd" kindref="member">Event</ref>(<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">T</ref>&amp;&amp;<sp/>x)<sp/>:</highlight></codeline>
-<codeline lineno="358"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_ptr(std::make_unique&lt;<ref refid="structastrea_1_1astro_1_1detail_1_1EventInner" kindref="compound">detail::EventInner</ref>&lt;<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">remove_cv_ref&lt;T&gt;</ref>&gt;&gt;(std::forward&lt;T&gt;(x)))</highlight></codeline>
+<codeline lineno="357" refid="classastrea_1_1astro_1_1Event_1a2b7d3878a8fad1516ffb182c705ec1dd" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">explicit</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1Event_1a2b7d3878a8fad1516ffb182c705ec1dd" kindref="member">Event</ref>(T&amp;&amp;<sp/>x)<sp/>:</highlight></codeline>
+<codeline lineno="358"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_ptr(std::make_unique&lt;<ref refid="structastrea_1_1astro_1_1detail_1_1EventInner" kindref="compound">detail::EventInner</ref>&lt;remove_cv_ref&lt;T&gt;&gt;&gt;(std::forward&lt;T&gt;(x)))</highlight></codeline>
 <codeline lineno="359"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
 <codeline lineno="360"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>generic_ctor_impl();</highlight></codeline>
 <codeline lineno="361"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="362"><highlight class="normal"></highlight></codeline>
 <codeline lineno="368"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1Event_1a1e686382cbd219d7173069438e71c0ed" kindref="member">Event</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1Event" kindref="compound">Event</ref>&amp;);</highlight></codeline>
 <codeline lineno="369"><highlight class="normal"></highlight></codeline>
-<codeline lineno="375"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1Event_1a1e686382cbd219d7173069438e71c0ed" kindref="member">Event</ref>(<ref refid="classastrea_1_1astro_1_1Event" kindref="compound">Event</ref>&amp;&amp;)<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">noexcept</ref>;</highlight></codeline>
+<codeline lineno="375"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1Event_1a1e686382cbd219d7173069438e71c0ed" kindref="member">Event</ref>(<ref refid="classastrea_1_1astro_1_1Event" kindref="compound">Event</ref>&amp;&amp;)<sp/>noexcept;</highlight></codeline>
 <codeline lineno="376"><highlight class="normal"></highlight></codeline>
-<codeline lineno="382"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1Event" kindref="compound">Event</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">operator</ref>=(<ref refid="classastrea_1_1astro_1_1Event" kindref="compound">Event</ref>&amp;&amp;)<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">noexcept</ref>;</highlight></codeline>
+<codeline lineno="382"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1Event" kindref="compound">Event</ref>&amp;<sp/>operator=(<ref refid="classastrea_1_1astro_1_1Event" kindref="compound">Event</ref>&amp;&amp;)<sp/>noexcept;</highlight></codeline>
 <codeline lineno="383"><highlight class="normal"></highlight></codeline>
-<codeline lineno="390"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1Event" kindref="compound">Event</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">operator</ref>=(<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref><sp/><ref refid="classastrea_1_1astro_1_1Event" kindref="compound">Event</ref>&amp;);</highlight></codeline>
+<codeline lineno="390"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1Event" kindref="compound">Event</ref>&amp;<sp/>operator=(const<sp/><ref refid="classastrea_1_1astro_1_1Event" kindref="compound">Event</ref>&amp;);</highlight></codeline>
 <codeline lineno="391"><highlight class="normal"></highlight></codeline>
-<codeline lineno="399"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">template</ref><sp/>&lt;<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">typename</ref><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">T</ref>&gt;</highlight></codeline>
-<codeline lineno="400"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">requires</ref>(<ref refid="conceptastrea_1_1astro_1_1IsGenericallyConstructableEvent" kindref="compound">IsGenericallyConstructableEvent</ref>&lt;<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">T</ref>&gt;)</highlight></codeline>
-<codeline lineno="401" refid="classastrea_1_1astro_1_1Event_1a205c6de32c379aa52f2d61f9c354e8ad" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1Event" kindref="compound">Event</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">operator</ref>=(<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">T</ref>&amp;&amp;<sp/>x)</highlight></codeline>
+<codeline lineno="399"><highlight class="normal"><sp/><sp/><sp/><sp/>template<sp/>&lt;typename<sp/>T&gt;</highlight></codeline>
+<codeline lineno="400"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>requires(<ref refid="conceptastrea_1_1astro_1_1IsGenericallyConstructableEvent" kindref="compound">IsGenericallyConstructableEvent</ref>&lt;T&gt;)</highlight></codeline>
+<codeline lineno="401" refid="classastrea_1_1astro_1_1Event_1a205c6de32c379aa52f2d61f9c354e8ad" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1Event" kindref="compound">Event</ref>&amp;<sp/>operator=(T&amp;&amp;<sp/>x)</highlight></codeline>
 <codeline lineno="402"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
 <codeline lineno="403"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>(*</highlight><highlight class="keyword">this</highlight><highlight class="normal">)<sp/>=<sp/><ref refid="classastrea_1_1astro_1_1Event_1a1e686382cbd219d7173069438e71c0ed" kindref="member">Event</ref>(std::forward&lt;T&gt;(x));</highlight></codeline>
 <codeline lineno="404"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="405"><highlight class="normal"></highlight></codeline>
 <codeline lineno="412"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>T&gt;</highlight></codeline>
 <codeline lineno="413"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">requires</highlight><highlight class="normal">(<ref refid="conceptastrea_1_1astro_1_1IsGenericallyConstructableEvent" kindref="compound">IsGenericallyConstructableEvent&lt;T&gt;</ref>)</highlight></codeline>
-<codeline lineno="414" refid="classastrea_1_1astro_1_1Event_1a1b456b72d8b3cd6a92a488a65bc01d91" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">T</ref>*<sp/><ref refid="classastrea_1_1astro_1_1Event_1a1b456b72d8b3cd6a92a488a65bc01d91" kindref="member">extract</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">noexcept</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="414" refid="classastrea_1_1astro_1_1Event_1a1b456b72d8b3cd6a92a488a65bc01d91" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>T*<sp/><ref refid="classastrea_1_1astro_1_1Event_1a1b456b72d8b3cd6a92a488a65bc01d91" kindref="member">extract</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">noexcept</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="415"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
-<codeline lineno="416"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">p</ref><sp/>=<sp/></highlight><highlight class="keyword">static_cast&lt;</highlight><highlight class="keyword">const<sp/></highlight><highlight class="normal"><ref refid="structastrea_1_1astro_1_1detail_1_1EventInner" kindref="compound">detail::EventInner&lt;T&gt;</ref>*</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(ptr());</highlight></codeline>
-<codeline lineno="417"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>ptr()-&gt;<ref refid="structastrea_1_1astro_1_1detail_1_1EventInnerBase_1a2228400e93ef15846e3960cf00ec6e1a" kindref="member">type</ref>()<sp/>==<sp/></highlight><highlight class="keyword">typeid</highlight><highlight class="normal">(<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">T</ref>)<sp/>?<sp/>&amp;(<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">p</ref>-&gt;_value)<sp/>:<sp/></highlight><highlight class="keyword">nullptr</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="416"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>p<sp/>=<sp/></highlight><highlight class="keyword">static_cast&lt;</highlight><highlight class="keyword">const<sp/></highlight><highlight class="normal"><ref refid="structastrea_1_1astro_1_1detail_1_1EventInner" kindref="compound">detail::EventInner&lt;T&gt;</ref>*</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(ptr());</highlight></codeline>
+<codeline lineno="417"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>ptr()-&gt;<ref refid="structastrea_1_1astro_1_1detail_1_1EventInnerBase_1a2228400e93ef15846e3960cf00ec6e1a" kindref="member">type</ref>()<sp/>==<sp/></highlight><highlight class="keyword">typeid</highlight><highlight class="normal">(T)<sp/>?<sp/>&amp;(p-&gt;_value)<sp/>:<sp/></highlight><highlight class="keyword">nullptr</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="418"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="419"><highlight class="normal"></highlight></codeline>
 <codeline lineno="426"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;IsGenericallyConstructableEvent<sp/>T&gt;</highlight></codeline>
-<codeline lineno="427" refid="classastrea_1_1astro_1_1Event_1adf7c8e84034a1534ff1caf614f22a69e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">T</ref>*<sp/><ref refid="classastrea_1_1astro_1_1Event_1adf7c8e84034a1534ff1caf614f22a69e" kindref="member">extract_mutable_reference</ref>()<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">noexcept</ref></highlight></codeline>
+<codeline lineno="427" refid="classastrea_1_1astro_1_1Event_1adf7c8e84034a1534ff1caf614f22a69e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>T*<sp/><ref refid="classastrea_1_1astro_1_1Event_1adf7c8e84034a1534ff1caf614f22a69e" kindref="member">extract_mutable_reference</ref>()<sp/>noexcept</highlight></codeline>
 <codeline lineno="428"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
-<codeline lineno="429"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">p</ref><sp/>=<sp/></highlight><highlight class="keyword">static_cast&lt;</highlight><highlight class="normal"><ref refid="structastrea_1_1astro_1_1detail_1_1EventInner" kindref="compound">detail::EventInner&lt;T&gt;</ref>*</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(ptr());</highlight></codeline>
-<codeline lineno="430"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>ptr()-&gt;<ref refid="structastrea_1_1astro_1_1detail_1_1EventInnerBase_1a2228400e93ef15846e3960cf00ec6e1a" kindref="member">type</ref>()<sp/>==<sp/></highlight><highlight class="keyword">typeid</highlight><highlight class="normal">(<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">T</ref>)<sp/>?<sp/>&amp;(<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">p</ref>-&gt;_value)<sp/>:<sp/></highlight><highlight class="keyword">nullptr</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="429"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>p<sp/>=<sp/></highlight><highlight class="keyword">static_cast&lt;</highlight><highlight class="normal"><ref refid="structastrea_1_1astro_1_1detail_1_1EventInner" kindref="compound">detail::EventInner&lt;T&gt;</ref>*</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(ptr());</highlight></codeline>
+<codeline lineno="430"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>ptr()-&gt;<ref refid="structastrea_1_1astro_1_1detail_1_1EventInnerBase_1a2228400e93ef15846e3960cf00ec6e1a" kindref="member">type</ref>()<sp/>==<sp/></highlight><highlight class="keyword">typeid</highlight><highlight class="normal">(T)<sp/>?<sp/>&amp;(p-&gt;_value)<sp/>:<sp/></highlight><highlight class="keyword">nullptr</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="431"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="432"><highlight class="normal"></highlight></codeline>
-<codeline lineno="440" refid="classastrea_1_1astro_1_1Event_1ad1844833e3af4de65fcebc0c3a4f22d2" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Unitless</ref><sp/><ref refid="classastrea_1_1astro_1_1Event_1ad1844833e3af4de65fcebc0c3a4f22d2" kindref="member">measure_event</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Time</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">time</ref>,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">state</ref>,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1Vehicle" kindref="compound">Vehicle</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">vehicle</ref>)</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="440" refid="classastrea_1_1astro_1_1Event_1ad1844833e3af4de65fcebc0c3a4f22d2" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>Unitless<sp/><ref refid="classastrea_1_1astro_1_1Event_1ad1844833e3af4de65fcebc0c3a4f22d2" kindref="member">measure_event</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Time&amp;<sp/>time,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref>&amp;<sp/>state,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1Vehicle" kindref="compound">Vehicle</ref>&amp;<sp/>vehicle)</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
 <codeline lineno="441"><highlight class="keyword"><sp/><sp/><sp/><sp/></highlight><highlight class="normal">{</highlight></codeline>
-<codeline lineno="442"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>ptr()-&gt;<ref refid="structastrea_1_1astro_1_1detail_1_1EventInnerBase_1ae917d85ee77be2d41702075e7aa24eda" kindref="member">measure_event</ref>(<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">time</ref>,<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">state</ref>,<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">vehicle</ref>);</highlight></codeline>
+<codeline lineno="442"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>ptr()-&gt;<ref refid="structastrea_1_1astro_1_1detail_1_1EventInnerBase_1ae917d85ee77be2d41702075e7aa24eda" kindref="member">measure_event</ref>(time,<sp/>state,<sp/>vehicle);</highlight></codeline>
 <codeline lineno="443"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="444"><highlight class="normal"></highlight></codeline>
 <codeline lineno="451" refid="classastrea_1_1astro_1_1Event_1a4356cd7cbb0881be9ba9910ac5ba8105" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1Event_1a4356cd7cbb0881be9ba9910ac5ba8105" kindref="member">is_terminal</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>ptr()-&gt;<ref refid="structastrea_1_1astro_1_1detail_1_1EventInnerBase_1a55faf23ad11862a521690ed0d5b6be23" kindref="member">is_terminal</ref>();<sp/>}</highlight></codeline>
 <codeline lineno="452"><highlight class="normal"></highlight></codeline>
-<codeline lineno="461" refid="classastrea_1_1astro_1_1Event_1ac070b0f94043fd637667c4a2cc309efd" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1Event_1ac070b0f94043fd637667c4a2cc309efd" kindref="member">trigger_action</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Time</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">time</ref>,<sp/><ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">state</ref>,<sp/><ref refid="classastrea_1_1astro_1_1Vehicle" kindref="compound">Vehicle</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">vehicle</ref>)</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="461" refid="classastrea_1_1astro_1_1Event_1ac070b0f94043fd637667c4a2cc309efd" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1Event_1ac070b0f94043fd637667c4a2cc309efd" kindref="member">trigger_action</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Time&amp;<sp/>time,<sp/><ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref>&amp;<sp/>state,<sp/><ref refid="classastrea_1_1astro_1_1Vehicle" kindref="compound">Vehicle</ref>&amp;<sp/>vehicle)</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
 <codeline lineno="462"><highlight class="keyword"><sp/><sp/><sp/><sp/></highlight><highlight class="normal">{</highlight></codeline>
-<codeline lineno="463"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>ptr()-&gt;<ref refid="structastrea_1_1astro_1_1detail_1_1EventInnerBase_1a067c4b36b7b8b89298ba49514c163a21" kindref="member">trigger_action</ref>(<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">time</ref>,<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">state</ref>,<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">vehicle</ref>);</highlight></codeline>
+<codeline lineno="463"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>ptr()-&gt;<ref refid="structastrea_1_1astro_1_1detail_1_1EventInnerBase_1a067c4b36b7b8b89298ba49514c163a21" kindref="member">trigger_action</ref>(time,<sp/>state,<sp/>vehicle);</highlight></codeline>
 <codeline lineno="464"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="465"><highlight class="normal"></highlight></codeline>
 <codeline lineno="471" refid="classastrea_1_1astro_1_1Event_1a00489b772016b9db469dfe7ccbcbc9f1" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/><ref refid="classastrea_1_1astro_1_1Event_1a00489b772016b9db469dfe7ccbcbc9f1" kindref="member">get_name</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>ptr()-&gt;<ref refid="structastrea_1_1astro_1_1detail_1_1EventInnerBase_1a11d819b696b5a04c18f07d56f4c9fab3" kindref="member">get_name</ref>();<sp/>}</highlight></codeline>
@@ -1941,7 +1980,7 @@ The GNU Lesser General Public License (LGPL)</para>
 <codeline lineno="489"><highlight class="normal"></highlight></codeline>
 <codeline lineno="495"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structastrea_1_1astro_1_1detail_1_1EventInnerBase" kindref="compound">detail::EventInnerBase</ref><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">*<sp/>ptr()</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
 <codeline lineno="496"><highlight class="keyword"><sp/><sp/><sp/><sp/></highlight><highlight class="normal">{</highlight></codeline>
-<codeline lineno="497"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">assert</ref>(_ptr.get()<sp/>!=<sp/></highlight><highlight class="keyword">nullptr</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="497"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>assert(_ptr.get()<sp/>!=<sp/></highlight><highlight class="keyword">nullptr</highlight><highlight class="normal">);</highlight></codeline>
 <codeline lineno="498"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_ptr.get();</highlight></codeline>
 <codeline lineno="499"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="500"><highlight class="normal"></highlight></codeline>

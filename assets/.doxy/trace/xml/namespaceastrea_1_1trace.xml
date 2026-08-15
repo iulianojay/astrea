@@ -645,7 +645,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/analysis/analysis.cpp" line="50" column="5" bodyfile="astrea/trace/trace/analysis/analysis.cpp" bodystart="50" bodyend="102"/>
+        <location file="astrea/trace/trace/analysis/analysis.cpp" line="49" column="5" bodyfile="astrea/trace/trace/analysis/analysis.cpp" bodystart="49" bodyend="101"/>
       </memberdef>
       <memberdef kind="function" id="analysis_8cpp_1a06af763838a86e16bcb5e87723f541ac" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="structastrea_1_1trace_1_1AnalysisResult" kindref="compound">AnalysisResult</ref></type>
@@ -675,7 +675,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/analysis/analysis.cpp" line="104" column="16" bodyfile="astrea/trace/trace/analysis/analysis.cpp" bodystart="104" bodyend="186" declfile="astrea/trace/trace/analysis/analysis.hpp" declline="47" declcolumn="16"/>
+        <location file="astrea/trace/trace/analysis/analysis.cpp" line="103" column="16" bodyfile="astrea/trace/trace/analysis/analysis.cpp" bodystart="103" bodyend="185" declfile="astrea/trace/trace/analysis/analysis.hpp" declline="47" declcolumn="16"/>
       </memberdef>
       <memberdef kind="function" id="output_8hpp_1ac3903f13ee71145329aeae88d4e04524" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>auto</type>
@@ -750,7 +750,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/platforms/sensors/fov/FieldOfView.cpp" line="34" column="7" bodyfile="astrea/trace/trace/platforms/sensors/fov/FieldOfView.cpp" bodystart="34" bodyend="44"/>
+        <location file="astrea/trace/trace/platforms/sensors/fov/FieldOfView.cpp" line="32" column="7" bodyfile="astrea/trace/trace/platforms/sensors/fov/FieldOfView.cpp" bodystart="32" bodyend="42"/>
       </memberdef>
       <memberdef kind="function" id="FieldOfView_8hpp_1aab6ab444018491785782f8d25a3fbc07" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>Angle</type>

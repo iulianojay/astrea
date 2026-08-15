@@ -12,7 +12,6 @@
 #pragma once
 
 #include <mp-units/framework/symbol_text.h>
-#include <mp-units/systems/angular.h>
 #include <mp-units/systems/si.h>
 
 #include <units/units.hpp>

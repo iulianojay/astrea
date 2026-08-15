@@ -35,7 +35,6 @@
 
 * **epoch\_to\_julian\_date** ([**astrea::astro**](namespaceastrea_1_1astro.md))
 * **equivalent** ([**astrea::astro**](namespaceastrea_1_1astro.md))
-* **equivalent1** ([**astrea::astro**](namespaceastrea_1_1astro.md))
 
 
 ## f
@@ -84,12 +83,15 @@
 * **get\_chebyshev\_table\_coefficients** ([**astrea::astro**](namespaceastrea_1_1astro.md))
 * **get\_crash\_radius** ([**astrea::astro**](namespaceastrea_1_1astro.md))
 * **get\_dcm** ([**astrea::astro**](namespaceastrea_1_1astro.md))
+* **get\_dcm&lt; frames::earth::cep, frames::earth::itrf &gt;** ([**astrea::astro**](namespaceastrea_1_1astro.md))
+* **get\_dcm&lt; frames::earth::icrf, frames::earth::cep &gt;** ([**astrea::astro**](namespaceastrea_1_1astro.md))
 * **get\_dcm\_accel** ([**astrea::astro**](namespaceastrea_1_1astro.md))
 * **get\_dcm\_from\_root\_frame** ([**astrea::astro**](namespaceastrea_1_1astro.md))
 * **get\_dcm\_rate** ([**astrea::astro**](namespaceastrea_1_1astro.md))
 * **get\_eccentricity** ([**astrea::astro**](namespaceastrea_1_1astro.md))
 * **get\_eccentricity\_rate** ([**astrea::astro**](namespaceastrea_1_1astro.md))
 * **get\_equitorial\_radius** ([**astrea::astro**](namespaceastrea_1_1astro.md))
+* **get\_gravity\_coefficient\_file** ([**astrea::astro**](namespaceastrea_1_1astro.md))
 * **get\_inclination** ([**astrea::astro**](namespaceastrea_1_1astro.md))
 * **get\_inclination\_rate** ([**astrea::astro**](namespaceastrea_1_1astro.md))
 * **get\_j2** ([**astrea::astro**](namespaceastrea_1_1astro.md))
@@ -136,6 +138,9 @@
 * **get\_velocity\_at** ([**astrea::astro**](namespaceastrea_1_1astro.md))
 * **get\_velocity\_at\_impl** ([**astrea::astro**](namespaceastrea_1_1astro.md))
 * **get\_velocity\_relative\_to\_ancestor** ([**astrea::astro**](namespaceastrea_1_1astro.md))
+* **get\_x\_offset\_from\_lla** ([**astrea::astro**](namespaceastrea_1_1astro.md))
+* **get\_y\_offset\_from\_lla** ([**astrea::astro**](namespaceastrea_1_1astro.md))
+* **get\_z\_offset\_from\_lla** ([**astrea::astro**](namespaceastrea_1_1astro.md))
 
 
 ## h
@@ -200,11 +205,6 @@
 ## r
 
 * **rotate\_vector\_into\_frame** ([**astrea::astro::frames**](namespaceastrea_1_1astro_1_1frames.md))
-
-
-## s
-
-* **sin\_cos\_pack** ([**astrea::astro**](namespaceastrea_1_1astro.md))
 
 
 ## t

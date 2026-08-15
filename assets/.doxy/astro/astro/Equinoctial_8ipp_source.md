@@ -11,7 +11,7 @@
 /*
  * The GNU Lesser General Public License (LGPL)
  *
- * Copyright (c) 2025 Jay Iuliano
+ * Copyright (c) 2025-2026 Jay Iuliano
  *
  * This file is part of Astrea.
  * Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License
@@ -25,7 +25,6 @@
 #include <iostream>
 
 #include <mp-units/math.h>
-#include <mp-units/systems/angular/math.h>
 #include <mp-units/systems/si.h>
 #include <mp-units/systems/si/math.h>
 
@@ -36,14 +35,6 @@
 #include <astro/systems/system_utilities.hpp>
 #include <astro/types/typedefs.hpp>
 #include <astro/utilities/conversions.hpp>
-
-
-using namespace mp_units;
-using namespace mp_units::angular;
-using angular::unit_symbols::deg;
-using angular::unit_symbols::rad;
-using si::unit_symbols::km;
-using si::unit_symbols::s;
 
 namespace astrea {
 namespace astro {
@@ -77,6 +68,10 @@ Equinoctial<_frame_> Equinoctial<_frame_>::GEO(const GravParam& mu)
 template <IsFrame auto _frame_>
 Equinoctial<_frame_>::Equinoctial(const Keplerian<_frame_>& elements, const GravParam& mu)
 {
+    using namespace mp_units;
+    using namespace mp_units::si;
+    using namespace mp_units::si;
+
     // Get r and v
     const auto& a      = elements.get_semimajor();
     const auto& ecc    = elements.get_eccentricity();
@@ -269,14 +264,21 @@ Equinoctial<_frame_>
 }
 
 template <IsFrame auto _frame_>
-std::vector<Unitless> Equinoctial<_frame_>::force_to_vector() const
+std::vector<double> Equinoctial<_frame_>::force_to_double_vector() const
 {
-    return { _semilatus / _semilatus.unit, _f, _g, _h, _k, _trueLongitude / _trueLongitude.unit };
+    return { _semilatus.numerical_value_in(_semilatus.unit),
+             _f.numerical_value_in(_f.unit),
+             _g.numerical_value_in(_g.unit),
+             _h.numerical_value_in(_h.unit),
+             _k.numerical_value_in(_k.unit),
+             _trueLongitude.numerical_value_in(_trueLongitude.unit) };
 }
 
 template <IsFrame auto _frame_>
-Equinoctial<_frame_> Equinoctial<_frame_>::from_vector(const std::vector<Unitless>& vec)
+Equinoctial<_frame_> Equinoctial<_frame_>::from_double_vector(const std::vector<double>& vec)
 {
+    using mp_units::si::unit_symbols::km;
+    using mp_units::si::unit_symbols::rad;
     if (vec.size() != 6) {
         throw std::runtime_error("Input vector must have exactly 6 elements to convert to Equinoctial.");
     }
@@ -290,14 +292,14 @@ Equinoctial<_frame_> EquinoctialPartial<_frame_>::operator*(const Time& time) co
 }
 
 template <IsFrame auto _frame_>
-std::vector<Unitless> EquinoctialPartial<_frame_>::force_to_vector() const
+std::vector<double> EquinoctialPartial<_frame_>::force_to_double_vector() const
 {
-    return { _semilatusPartial / _semilatusPartial.unit,
-             _fPartial / _fPartial.unit,
-             _gPartial / _gPartial.unit,
-             _hPartial / _hPartial.unit,
-             _kPartial / _kPartial.unit,
-             _trueLongitudePartial / _trueLongitudePartial.unit };
+    return { _semilatusPartial.numerical_value_in(_semilatusPartial.unit),
+             _fPartial.numerical_value_in(_fPartial.unit),
+             _gPartial.numerical_value_in(_gPartial.unit),
+             _hPartial.numerical_value_in(_hPartial.unit),
+             _kPartial.numerical_value_in(_kPartial.unit),
+             _trueLongitudePartial.numerical_value_in(_trueLongitudePartial.unit) };
 }
 
 template <IsFrame auto _frame_>

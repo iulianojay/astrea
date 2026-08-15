@@ -27,7 +27,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/platforms/ground/GroundPoint.hpp" line="53" column="27" bodyfile="astrea/trace/trace/platforms/ground/GroundPoint.hpp" bodystart="53" bodyend="-1"/>
+        <location file="astrea/trace/trace/platforms/ground/GroundPoint.hpp" line="51" column="27" bodyfile="astrea/trace/trace/platforms/ground/GroundPoint.hpp" bodystart="51" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="protected-attrib">
@@ -44,7 +44,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/platforms/ground/GroundPoint.hpp" line="154" column="21" bodyfile="astrea/trace/trace/platforms/ground/GroundPoint.hpp" bodystart="154" bodyend="-1"/>
+        <location file="astrea/trace/trace/platforms/ground/GroundPoint.hpp" line="152" column="21" bodyfile="astrea/trace/trace/platforms/ground/GroundPoint.hpp" bodystart="152" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1trace_1_1GroundPoint_1a1cdb03820a0a6a1bcf796f2e071b9309" prot="protected" static="no" mutable="no">
         <type>std::size_t</type>
@@ -59,25 +59,25 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/platforms/ground/GroundPoint.hpp" line="155" column="17" bodyfile="astrea/trace/trace/platforms/ground/GroundPoint.hpp" bodystart="155" bodyend="-1"/>
+        <location file="astrea/trace/trace/platforms/ground/GroundPoint.hpp" line="153" column="17" bodyfile="astrea/trace/trace/platforms/ground/GroundPoint.hpp" bodystart="153" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="public-func">
-      <memberdef kind="function" id="classastrea_1_1trace_1_1GroundPoint_1af1ad0aabe7d3052c9aa763b71a44bae7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="classastrea_1_1trace_1_1GroundPoint_1a88a6cd34026bf2c4dbf71b0d3b9bb47f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
         <definition>astrea::trace::GroundPoint&lt; _body_ &gt;::GroundPoint</definition>
-        <argsstring>(const Angle &amp;latitude=0.0 *mp_units::angular::unit_symbols::deg, const Angle &amp;longitude=0.0 *mp_units::angular::unit_symbols::deg, const Distance &amp;altitude=0.0 *mp_units::si::unit_symbols::km)</argsstring>
+        <argsstring>(const Angle &amp;latitude=0.0 *mp_units::si::unit_symbols::deg, const Angle &amp;longitude=0.0 *mp_units::si::unit_symbols::deg, const Distance &amp;altitude=0.0 *mp_units::si::unit_symbols::km)</argsstring>
         <name>GroundPoint</name>
         <qualifiedname>astrea::trace::GroundPoint::GroundPoint</qualifiedname>
         <param>
           <type>const Angle &amp;</type>
           <declname>latitude</declname>
-          <defval>0.0 *mp_units::angular::unit_symbols::deg</defval>
+          <defval>0.0 *mp_units::si::unit_symbols::deg</defval>
         </param>
         <param>
           <type>const Angle &amp;</type>
           <declname>longitude</declname>
-          <defval>0.0 *mp_units::angular::unit_symbols::deg</defval>
+          <defval>0.0 *mp_units::si::unit_symbols::deg</defval>
         </param>
         <param>
           <type>const Distance &amp;</type>
@@ -117,7 +117,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/platforms/ground/GroundPoint.hpp" line="62" column="5" bodyfile="astrea/trace/trace/platforms/ground/GroundPoint.hpp" bodystart="62" bodyend="71"/>
+        <location file="astrea/trace/trace/platforms/ground/GroundPoint.hpp" line="60" column="5" bodyfile="astrea/trace/trace/platforms/ground/GroundPoint.hpp" bodystart="60" bodyend="69"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1trace_1_1GroundPoint_1a733b8970957a03d8fc88112559fe24e5" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
         <type></type>
@@ -131,7 +131,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/platforms/ground/GroundPoint.hpp" line="73" column="13"/>
+        <location file="astrea/trace/trace/platforms/ground/GroundPoint.hpp" line="71" column="13"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1trace_1_1GroundPoint_1ace6b8af2a097d94a4a01dfa9ed59c52a" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>bool</type>
@@ -150,7 +150,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/platforms/ground/GroundPoint.hpp" line="78" column="10" bodyfile="astrea/trace/trace/platforms/ground/GroundPoint.hpp" bodystart="78" bodyend="78"/>
+        <location file="astrea/trace/trace/platforms/ground/GroundPoint.hpp" line="76" column="10" bodyfile="astrea/trace/trace/platforms/ground/GroundPoint.hpp" bodystart="76" bodyend="76"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1trace_1_1GroundPoint_1a8167e2cd9ab9ffe3519a6b5967003991" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>const astro::Geodetic&lt; _body_ &gt; &amp;</type>
@@ -165,7 +165,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/platforms/ground/GroundPoint.hpp" line="83" column="27" bodyfile="astrea/trace/trace/platforms/ground/GroundPoint.hpp" bodystart="83" bodyend="83"/>
+        <location file="astrea/trace/trace/platforms/ground/GroundPoint.hpp" line="81" column="27" bodyfile="astrea/trace/trace/platforms/ground/GroundPoint.hpp" bodystart="81" bodyend="81"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1trace_1_1GroundPoint_1a05f023be2059280b1dfcb54a61c9e335" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>const Angle &amp;</type>
@@ -180,7 +180,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/platforms/ground/GroundPoint.hpp" line="88" column="17" bodyfile="astrea/trace/trace/platforms/ground/GroundPoint.hpp" bodystart="88" bodyend="88"/>
+        <location file="astrea/trace/trace/platforms/ground/GroundPoint.hpp" line="86" column="17" bodyfile="astrea/trace/trace/platforms/ground/GroundPoint.hpp" bodystart="86" bodyend="86"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1trace_1_1GroundPoint_1ae7d2fea4aea7ebe673b6926152247065" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>const Angle &amp;</type>
@@ -195,7 +195,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/platforms/ground/GroundPoint.hpp" line="93" column="17" bodyfile="astrea/trace/trace/platforms/ground/GroundPoint.hpp" bodystart="93" bodyend="93"/>
+        <location file="astrea/trace/trace/platforms/ground/GroundPoint.hpp" line="91" column="17" bodyfile="astrea/trace/trace/platforms/ground/GroundPoint.hpp" bodystart="91" bodyend="91"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1trace_1_1GroundPoint_1a626d1cc65cc0f558f5bbf537bd7053ef" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>const Distance &amp;</type>
@@ -210,7 +210,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/platforms/ground/GroundPoint.hpp" line="98" column="20" bodyfile="astrea/trace/trace/platforms/ground/GroundPoint.hpp" bodystart="98" bodyend="98"/>
+        <location file="astrea/trace/trace/platforms/ground/GroundPoint.hpp" line="96" column="20" bodyfile="astrea/trace/trace/platforms/ground/GroundPoint.hpp" bodystart="96" bodyend="96"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1trace_1_1GroundPoint_1a7f17ec6d2788c8085fe4e958fde15cdb" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
         <type>std::size_t</type>
@@ -227,7 +227,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/platforms/ground/GroundPoint.hpp" line="103" column="17" bodyfile="astrea/trace/trace/platforms/ground/GroundPoint.hpp" bodystart="103" bodyend="103"/>
+        <location file="astrea/trace/trace/platforms/ground/GroundPoint.hpp" line="101" column="17" bodyfile="astrea/trace/trace/platforms/ground/GroundPoint.hpp" bodystart="101" bodyend="101"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1trace_1_1GroundPoint_1a92bf8d186fbfc96056f5941502c0bd02" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>auto</type>
@@ -242,7 +242,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/platforms/ground/GroundPoint.hpp" line="108" column="10" bodyfile="astrea/trace/trace/platforms/ground/GroundPoint.hpp" bodystart="108" bodyend="108"/>
+        <location file="astrea/trace/trace/platforms/ground/GroundPoint.hpp" line="106" column="10" bodyfile="astrea/trace/trace/platforms/ground/GroundPoint.hpp" bodystart="106" bodyend="106"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1trace_1_1GroundPoint_1a15ab49f2077a751529d055db8b6ecf10" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>auto</type>
@@ -261,7 +261,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/platforms/ground/GroundPoint.hpp" line="113" column="10" bodyfile="astrea/trace/trace/platforms/ground/GroundPoint.hpp" bodystart="113" bodyend="113"/>
+        <location file="astrea/trace/trace/platforms/ground/GroundPoint.hpp" line="111" column="10" bodyfile="astrea/trace/trace/platforms/ground/GroundPoint.hpp" bodystart="111" bodyend="111"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1trace_1_1GroundPoint_1a99f3633bd696b98c70ca8d5378721f40" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>auto</type>
@@ -280,7 +280,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/platforms/ground/GroundPoint.hpp" line="118" column="10" bodyfile="astrea/trace/trace/platforms/ground/GroundPoint.hpp" bodystart="118" bodyend="134"/>
+        <location file="astrea/trace/trace/platforms/ground/GroundPoint.hpp" line="116" column="10" bodyfile="astrea/trace/trace/platforms/ground/GroundPoint.hpp" bodystart="116" bodyend="132"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1trace_1_1GroundPoint_1a1be41e8fab572b8c2003654f0f9011cb" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>std::string</type>
@@ -295,7 +295,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/platforms/ground/GroundPoint.hpp" line="139" column="17" bodyfile="astrea/trace/trace/platforms/ground/GroundPoint.hpp" bodystart="139" bodyend="151"/>
+        <location file="astrea/trace/trace/platforms/ground/GroundPoint.hpp" line="137" column="17" bodyfile="astrea/trace/trace/platforms/ground/GroundPoint.hpp" bodystart="137" bodyend="149"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
@@ -343,7 +343,7 @@
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="astrea/trace/trace/platforms/ground/GroundPoint.hpp" line="51" column="1" bodyfile="astrea/trace/trace/platforms/ground/GroundPoint.hpp" bodystart="51" bodyend="156"/>
+    <location file="astrea/trace/trace/platforms/ground/GroundPoint.hpp" line="49" column="1" bodyfile="astrea/trace/trace/platforms/ground/GroundPoint.hpp" bodystart="49" bodyend="154"/>
     <listofallmembers>
       <member refid="classastrea_1_1trace_1_1GroundPoint_1a1cdb03820a0a6a1bcf796f2e071b9309" prot="protected" virt="non-virtual"><scope>astrea::trace::GroundPoint</scope><name>_id</name></member>
       <member refid="classastrea_1_1trace_1_1GroundPoint_1a5b5895b7982723bb126921bd8aa93971" prot="protected" virt="non-virtual"><scope>astrea::trace::GroundPoint</scope><name>_lla</name></member>
@@ -362,7 +362,7 @@
       <member refid="classastrea_1_1trace_1_1GroundPoint_1a92bf8d186fbfc96056f5941502c0bd02" prot="public" virt="non-virtual"><scope>astrea::trace::GroundPoint</scope><name>get_position</name></member>
       <member refid="classastrea_1_1trace_1_1GroundPoint_1a15ab49f2077a751529d055db8b6ecf10" prot="public" virt="non-virtual"><scope>astrea::trace::GroundPoint</scope><name>get_position</name></member>
       <member refid="classastrea_1_1trace_1_1GroundPoint_1a99f3633bd696b98c70ca8d5378721f40" prot="public" virt="non-virtual"><scope>astrea::trace::GroundPoint</scope><name>get_velocity</name></member>
-      <member refid="classastrea_1_1trace_1_1GroundPoint_1af1ad0aabe7d3052c9aa763b71a44bae7" prot="public" virt="non-virtual"><scope>astrea::trace::GroundPoint</scope><name>GroundPoint</name></member>
+      <member refid="classastrea_1_1trace_1_1GroundPoint_1a88a6cd34026bf2c4dbf71b0d3b9bb47f" prot="public" virt="non-virtual"><scope>astrea::trace::GroundPoint</scope><name>GroundPoint</name></member>
       <member refid="classastrea_1_1trace_1_1GroundPoint_1ace6b8af2a097d94a4a01dfa9ed59c52a" prot="public" virt="non-virtual"><scope>astrea::trace::GroundPoint</scope><name>operator==</name></member>
       <member refid="classastrea_1_1trace_1_1AccessObject_1aa7afccafee2c3bcb2b766cf9bf395799" prot="protected" virt="virtual"><scope>astrea::trace::GroundPoint</scope><name>~AccessObject</name></member>
       <member refid="classastrea_1_1trace_1_1GroundPoint_1a733b8970957a03d8fc88112559fe24e5" prot="public" virt="virtual"><scope>astrea::trace::GroundPoint</scope><name>~GroundPoint</name></member>

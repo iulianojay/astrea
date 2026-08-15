@@ -5,7 +5,7 @@
     <includes refid="InertiaTensor_8hpp" local="no">InertiaTensor.hpp</includes>
     <templateparamlist>
       <param>
-        <type>IsFrame <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+        <type>IsFrame auto</type>
         <declname>_frame_</declname>
         <defname>_frame_</defname>
         <defval><ref refid="structastrea_1_1astro_1_1frames_1_1dynamic_1_1body" kindref="compound">frames::dynamic::body</ref></defval>
@@ -13,7 +13,7 @@
     </templateparamlist>
     <sectiondef kind="private-static-attrib">
       <memberdef kind="variable" id="classastrea_1_1astro_1_1InertiaTensor_1aa327ca84ddf88b8cc6d61a80e26c7321" prot="private" static="yes" constexpr="yes" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">MomentOfInertia</ref></type>
+        <type>constexpr MomentOfInertia</type>
         <definition>constexpr MomentOfInertia astrea::astro::InertiaTensor&lt; _frame_ &gt;::zero</definition>
         <argsstring></argsstring>
         <name>zero</name>
@@ -29,7 +29,7 @@
         <location file="astrea/astro/astro/platforms/InertiaTensor.hpp" line="40" column="38" bodyfile="astrea/astro/astro/platforms/InertiaTensor.hpp" bodystart="40" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1InertiaTensor_1aff30d3d69b7d5b8955e3a3ce498a6293" prot="private" static="yes" constexpr="yes" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">MomentOfInertia</ref></type>
+        <type>constexpr MomentOfInertia</type>
         <definition>constexpr MomentOfInertia astrea::astro::InertiaTensor&lt; _frame_ &gt;::one</definition>
         <argsstring></argsstring>
         <name>one</name>
@@ -47,7 +47,7 @@
     </sectiondef>
     <sectiondef kind="private-attrib">
       <memberdef kind="variable" id="classastrea_1_1astro_1_1InertiaTensor_1a0389d2bcc2ee18651814bc15b1f3074d" prot="private" static="no" mutable="no">
-        <type>std::array&lt; std::array&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">MomentOfInertia</ref>, 3 &gt;, 3 &gt;</type>
+        <type>std::array&lt; std::array&lt; MomentOfInertia, 3 &gt;, 3 &gt;</type>
         <definition>std::array&lt;std::array&lt;MomentOfInertia, 3&gt;, 3&gt; astrea::astro::InertiaTensor&lt; _frame_ &gt;::_tensor</definition>
         <argsstring></argsstring>
         <name>_tensor</name>
@@ -64,7 +64,7 @@
     </sectiondef>
     <sectiondef kind="public-func">
       <memberdef kind="function" id="classastrea_1_1astro_1_1InertiaTensor_1a193da6ce9801780890e91a8d4e0361ee" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref></type>
+        <type>constexpr</type>
         <definition>constexpr astrea::astro::InertiaTensor&lt; _frame_ &gt;::InertiaTensor</definition>
         <argsstring>()</argsstring>
         <name>InertiaTensor</name>
@@ -100,39 +100,39 @@
         <name>InertiaTensor</name>
         <qualifiedname>astrea::astro::InertiaTensor::InertiaTensor</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">MomentOfInertia</ref> &amp;</type>
+          <type>const MomentOfInertia &amp;</type>
           <declname>Ixx</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">MomentOfInertia</ref> &amp;</type>
+          <type>const MomentOfInertia &amp;</type>
           <declname>Ixy</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">MomentOfInertia</ref> &amp;</type>
+          <type>const MomentOfInertia &amp;</type>
           <declname>Ixz</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">MomentOfInertia</ref> &amp;</type>
+          <type>const MomentOfInertia &amp;</type>
           <declname>Iyx</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">MomentOfInertia</ref> &amp;</type>
+          <type>const MomentOfInertia &amp;</type>
           <declname>Iyy</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">MomentOfInertia</ref> &amp;</type>
+          <type>const MomentOfInertia &amp;</type>
           <declname>Iyz</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">MomentOfInertia</ref> &amp;</type>
+          <type>const MomentOfInertia &amp;</type>
           <declname>Izx</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">MomentOfInertia</ref> &amp;</type>
+          <type>const MomentOfInertia &amp;</type>
           <declname>Izy</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">MomentOfInertia</ref> &amp;</type>
+          <type>const MomentOfInertia &amp;</type>
           <declname>Izz</declname>
         </param>
         <briefdescription>
@@ -201,15 +201,15 @@
         <name>InertiaTensor</name>
         <qualifiedname>astrea::astro::InertiaTensor::InertiaTensor</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">MomentOfInertia</ref> &amp;</type>
+          <type>const MomentOfInertia &amp;</type>
           <declname>Ixx</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">MomentOfInertia</ref> &amp;</type>
+          <type>const MomentOfInertia &amp;</type>
           <declname>Iyy</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">MomentOfInertia</ref> &amp;</type>
+          <type>const MomentOfInertia &amp;</type>
           <declname>Izz</declname>
         </param>
         <briefdescription>
@@ -254,7 +254,7 @@
         <name>InertiaTensor</name>
         <qualifiedname>astrea::astro::InertiaTensor::InertiaTensor</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">MomentOfInertia</ref> &amp;</type>
+          <type>const MomentOfInertia &amp;</type>
           <declname>Iii</declname>
         </param>
         <briefdescription>
@@ -277,17 +277,17 @@
         <location file="astrea/astro/astro/platforms/InertiaTensor.hpp" line="101" column="5" bodyfile="astrea/astro/astro/platforms/InertiaTensor.hpp" bodystart="101" bodyend="104"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1InertiaTensor_1a4b3ad68c14fa8366cdabab259abfe0d9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">MomentOfInertia</ref> &amp;</type>
+        <type>MomentOfInertia &amp;</type>
         <definition>MomentOfInertia &amp; astrea::astro::InertiaTensor&lt; _frame_ &gt;::operator[]</definition>
         <argsstring>(size_t i, size_t j)</argsstring>
         <name>operator[]</name>
         <qualifiedname>astrea::astro::InertiaTensor::operator[]</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">size_t</ref></type>
+          <type>size_t</type>
           <declname>i</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">size_t</ref></type>
+          <type>size_t</type>
           <declname>j</declname>
         </param>
         <briefdescription>
@@ -300,17 +300,17 @@
         <location file="astrea/astro/astro/platforms/InertiaTensor.hpp" line="109" column="21" bodyfile="astrea/astro/astro/platforms/InertiaTensor.hpp" bodystart="109" bodyend="109"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1InertiaTensor_1af2eb8a40e802736e2e92ef6514a5d106" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">MomentOfInertia</ref> &amp;</type>
+        <type>const MomentOfInertia &amp;</type>
         <definition>const MomentOfInertia &amp; astrea::astro::InertiaTensor&lt; _frame_ &gt;::operator[]</definition>
         <argsstring>(size_t i, size_t j) const</argsstring>
         <name>operator[]</name>
         <qualifiedname>astrea::astro::InertiaTensor::operator[]</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">size_t</ref></type>
+          <type>size_t</type>
           <declname>i</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">size_t</ref></type>
+          <type>size_t</type>
           <declname>j</declname>
         </param>
         <briefdescription>
@@ -323,7 +323,7 @@
         <location file="astrea/astro/astro/platforms/InertiaTensor.hpp" line="114" column="27" bodyfile="astrea/astro/astro/platforms/InertiaTensor.hpp" bodystart="114" bodyend="114"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1InertiaTensor_1af0595e7e129cb90ede127acae83fdb41" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+        <type>auto</type>
         <definition>auto astrea::astro::InertiaTensor&lt; _frame_ &gt;::determinant</definition>
         <argsstring>() const</argsstring>
         <name>determinant</name>
@@ -343,16 +343,16 @@
       <memberdef kind="function" id="classastrea_1_1astro_1_1InertiaTensor_1a631f2f277e9dc2e21ca37696b3e39ffe" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
-            <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">typename</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Value_U</ref></type>
+            <type>typename Value_U</type>
           </param>
         </templateparamlist>
-        <type><ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">decltype</ref>(<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Value_U</ref>{}/<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">MomentOfInertia</ref>{}), _frame_ &gt;</type>
+        <type><ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; decltype(Value_U{}/MomentOfInertia{}), _frame_ &gt;</type>
         <definition>CartesianVector&lt; decltype(Value_U{}/MomentOfInertia{}), _frame_ &gt; astrea::astro::InertiaTensor&lt; _frame_ &gt;::inverse_multiply</definition>
         <argsstring>(const CartesianVector&lt; Value_U, _frame_ &gt; &amp;vec) const</argsstring>
         <name>inverse_multiply</name>
         <qualifiedname>astrea::astro::InertiaTensor::inverse_multiply</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Value_U</ref>, _frame_ &gt; &amp;</type>
+          <type>const <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; Value_U, _frame_ &gt; &amp;</type>
           <declname>vec</declname>
         </param>
         <briefdescription>

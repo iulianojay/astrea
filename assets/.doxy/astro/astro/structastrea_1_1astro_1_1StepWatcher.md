@@ -53,8 +53,8 @@ _Function wrapper class for watching the state of the integrator at each step. T
 | Type | Name |
 | ---: | :--- |
 |   | [**StepWatcher**](#function-stepwatcher-12) () = default<br>_Default constructor for_ [_**StepWatcher**_](structastrea_1_1astro_1_1StepWatcher.md) _._ |
-|   | [**StepWatcher**](#function-stepwatcher-22) ([**T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) && func) <br>_Constructor for_ [_**StepWatcher**_](structastrea_1_1astro_1_1StepWatcher.md) _that takes a function to be called at each step of the integration._ |
-|  [**void**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**operator()**](#function-operator) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Time**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & time, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**State**](classastrea_1_1astro_1_1State.md) & state, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Vehicle**](classastrea_1_1astro_1_1Vehicle.md) & vehicle) const<br>_Call the stored function with the given time, state, and vehicle._  |
+|   | [**StepWatcher**](#function-stepwatcher-22) (T && func) <br>_Constructor for_ [_**StepWatcher**_](structastrea_1_1astro_1_1StepWatcher.md) _that takes a function to be called at each step of the integration._ |
+|  void | [**operator()**](#function-operator) (const Time & time, const [**State**](classastrea_1_1astro_1_1State.md) & state, const [**Vehicle**](classastrea_1_1astro_1_1Vehicle.md) & vehicle) const<br>_Call the stored function with the given time, state, and vehicle._  |
 
 
 
@@ -106,7 +106,7 @@ astrea::astro::StepWatcher::StepWatcher () = default
 
 _Constructor for_ [_**StepWatcher**_](structastrea_1_1astro_1_1StepWatcher.md) _that takes a function to be called at each step of the integration._
 ```C++
-template<typename  T>
+template<typename T>
 inline astrea::astro::StepWatcher::StepWatcher (
     T && func
 ) 
@@ -135,9 +135,9 @@ inline astrea::astro::StepWatcher::StepWatcher (
 _Call the stored function with the given time, state, and vehicle._ 
 ```C++
 inline void astrea::astro::StepWatcher::operator() (
-    const  Time & time,
-    const  State & state,
-    const  Vehicle & vehicle
+    const Time & time,
+    const State & state,
+    const Vehicle & vehicle
 ) const
 ```
 

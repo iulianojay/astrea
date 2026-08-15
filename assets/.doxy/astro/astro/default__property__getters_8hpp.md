@@ -120,7 +120,7 @@ This file MUST be included AFTER all planet headers (and therefore after all get
 
 **Copyright:**
 
-Copyright (c) 2025 Jay Iuliano
+Copyright (c) 2025-2026 Jay Iuliano
 
 
 The GNU Lesser General Public License (LGPL)

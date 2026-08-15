@@ -5,7 +5,7 @@
     <includes refid="Constellation_8hpp" local="no">Constellation.hpp</includes>
     <sectiondef kind="private-type">
       <memberdef kind="typedef" id="classastrea_1_1astro_1_1Constellation_1_1sat__iterator_1a3130ec98588a2526635a818d5fe24636" prot="private" static="no">
-        <type><ref refid="classastrea_1_1astro_1_1Plane" kindref="compound">Plane</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Spacecraft_T</ref> &gt;<ref refid="classastrea_1_1astro_1_1Constellation_1a1a9a06dc66c5102bad51d3eced88a7e3" kindref="member">::iterator</ref></type>
+        <type><ref refid="classastrea_1_1astro_1_1Plane" kindref="compound">Plane</ref>&lt; Spacecraft_T &gt;<ref refid="classastrea_1_1astro_1_1Constellation_1a1a9a06dc66c5102bad51d3eced88a7e3" kindref="member">::iterator</ref></type>
         <definition>using astrea::astro::Constellation&lt; Spacecraft_T &gt;::sat_iterator::difference_type =  Plane&lt;Spacecraft_T&gt;::iterator</definition>
         <argsstring></argsstring>
         <name>difference_type</name>
@@ -19,7 +19,7 @@
         <location file="astrea/astro/astro/platforms/space/Constellation.hpp" line="470" column="9" bodyfile="astrea/astro/astro/platforms/space/Constellation.hpp" bodystart="470" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="classastrea_1_1astro_1_1Constellation_1_1sat__iterator_1a41fd18bbee045a2b87c46ce0a78662e6" prot="private" static="no">
-        <type><ref refid="classastrea_1_1astro_1_1Plane" kindref="compound">Plane</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Spacecraft_T</ref> &gt;<ref refid="classastrea_1_1astro_1_1Constellation_1a1a9a06dc66c5102bad51d3eced88a7e3" kindref="member">::iterator</ref></type>
+        <type><ref refid="classastrea_1_1astro_1_1Plane" kindref="compound">Plane</ref>&lt; Spacecraft_T &gt;<ref refid="classastrea_1_1astro_1_1Constellation_1a1a9a06dc66c5102bad51d3eced88a7e3" kindref="member">::iterator</ref></type>
         <definition>using astrea::astro::Constellation&lt; Spacecraft_T &gt;::sat_iterator::value_type =  Plane&lt;Spacecraft_T&gt;::iterator</definition>
         <argsstring></argsstring>
         <name>value_type</name>
@@ -33,7 +33,7 @@
         <location file="astrea/astro/astro/platforms/space/Constellation.hpp" line="471" column="9" bodyfile="astrea/astro/astro/platforms/space/Constellation.hpp" bodystart="471" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="classastrea_1_1astro_1_1Constellation_1_1sat__iterator_1a5dec4d47d98025da6ef61665efa67842" prot="private" static="no">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Plane" kindref="compound">Plane</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Spacecraft_T</ref> &gt;<ref refid="classastrea_1_1astro_1_1Constellation_1a1a9a06dc66c5102bad51d3eced88a7e3" kindref="member">::iterator</ref> *</type>
+        <type>const <ref refid="classastrea_1_1astro_1_1Plane" kindref="compound">Plane</ref>&lt; Spacecraft_T &gt;<ref refid="classastrea_1_1astro_1_1Constellation_1a1a9a06dc66c5102bad51d3eced88a7e3" kindref="member">::iterator</ref> *</type>
         <definition>using astrea::astro::Constellation&lt; Spacecraft_T &gt;::sat_iterator::pointer =  const Plane&lt;Spacecraft_T&gt;::iterator*</definition>
         <argsstring></argsstring>
         <name>pointer</name>
@@ -47,7 +47,7 @@
         <location file="astrea/astro/astro/platforms/space/Constellation.hpp" line="472" column="9" bodyfile="astrea/astro/astro/platforms/space/Constellation.hpp" bodystart="472" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="classastrea_1_1astro_1_1Constellation_1_1sat__iterator_1a1c02fbfe9b115dce7f3221ff3148deb1" prot="private" static="no">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Plane" kindref="compound">Plane</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Spacecraft_T</ref> &gt;<ref refid="classastrea_1_1astro_1_1Constellation_1a1a9a06dc66c5102bad51d3eced88a7e3" kindref="member">::iterator</ref> &amp;</type>
+        <type>const <ref refid="classastrea_1_1astro_1_1Plane" kindref="compound">Plane</ref>&lt; Spacecraft_T &gt;<ref refid="classastrea_1_1astro_1_1Constellation_1a1a9a06dc66c5102bad51d3eced88a7e3" kindref="member">::iterator</ref> &amp;</type>
         <definition>using astrea::astro::Constellation&lt; Spacecraft_T &gt;::sat_iterator::reference =  const Plane&lt;Spacecraft_T&gt;::iterator&amp;</definition>
         <argsstring></argsstring>
         <name>reference</name>
@@ -77,7 +77,7 @@
     </sectiondef>
     <sectiondef kind="private-attrib">
       <memberdef kind="variable" id="classastrea_1_1astro_1_1Constellation_1_1sat__iterator_1a406278c45446d00b8394e8740059bdde" prot="private" static="no" mutable="no">
-        <type>std::vector&lt; <ref refid="classastrea_1_1astro_1_1Shell" kindref="compound">Shell</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Spacecraft_T</ref> &gt; &gt;<ref refid="classastrea_1_1astro_1_1Constellation_1a1a9a06dc66c5102bad51d3eced88a7e3" kindref="member">::iterator</ref></type>
+        <type>std::vector&lt; <ref refid="classastrea_1_1astro_1_1Shell" kindref="compound">Shell</ref>&lt; Spacecraft_T &gt; &gt;<ref refid="classastrea_1_1astro_1_1Constellation_1a1a9a06dc66c5102bad51d3eced88a7e3" kindref="member">::iterator</ref></type>
         <definition>std::vector&lt;Shell&lt;Spacecraft_T&gt;&gt;::iterator astrea::astro::Constellation&lt; Spacecraft_T &gt;::sat_iterator::iterShell</definition>
         <argsstring></argsstring>
         <name>iterShell</name>
@@ -91,7 +91,7 @@
         <location file="astrea/astro/astro/platforms/space/Constellation.hpp" line="324" column="32" bodyfile="astrea/astro/astro/platforms/space/Constellation.hpp" bodystart="324" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1Constellation_1_1sat__iterator_1a91d57c79a43c67aaa067d5e289c472dd" prot="private" static="no" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1Shell" kindref="compound">Shell</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Spacecraft_T</ref> &gt;<ref refid="classastrea_1_1astro_1_1Constellation_1_1sat__iterator_1a1fae483275f85495ab7e5ad65da54918" kindref="member">::sat_iterator</ref></type>
+        <type><ref refid="classastrea_1_1astro_1_1Shell" kindref="compound">Shell</ref>&lt; Spacecraft_T &gt;<ref refid="classastrea_1_1astro_1_1Constellation_1_1sat__iterator_1a1fae483275f85495ab7e5ad65da54918" kindref="member">::sat_iterator</ref></type>
         <definition>Shell&lt;Spacecraft_T&gt;::sat_iterator astrea::astro::Constellation&lt; Spacecraft_T &gt;::sat_iterator::iterSat</definition>
         <argsstring></argsstring>
         <name>iterSat</name>
@@ -113,11 +113,11 @@
         <name>sat_iterator</name>
         <qualifiedname>astrea::astro::Constellation::sat_iterator::sat_iterator</qualifiedname>
         <param>
-          <type>std::vector&lt; <ref refid="classastrea_1_1astro_1_1Shell" kindref="compound">Shell</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Spacecraft_T</ref> &gt; &gt;<ref refid="classastrea_1_1astro_1_1Constellation_1a1a9a06dc66c5102bad51d3eced88a7e3" kindref="member">::iterator</ref></type>
+          <type>std::vector&lt; <ref refid="classastrea_1_1astro_1_1Shell" kindref="compound">Shell</ref>&lt; Spacecraft_T &gt; &gt;<ref refid="classastrea_1_1astro_1_1Constellation_1a1a9a06dc66c5102bad51d3eced88a7e3" kindref="member">::iterator</ref></type>
           <declname>_iterShell</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1Shell" kindref="compound">Shell</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Spacecraft_T</ref> &gt;::sat_iterator</type>
+          <type><ref refid="classastrea_1_1astro_1_1Shell" kindref="compound">Shell</ref>&lt; Spacecraft_T &gt;::sat_iterator</type>
           <declname>_iterSat</declname>
         </param>
         <briefdescription>
@@ -172,7 +172,7 @@
         <name>operator++</name>
         <qualifiedname>astrea::astro::Constellation::sat_iterator::operator++</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">int</ref></type>
+          <type>int</type>
         </param>
         <briefdescription>
 <para>Post-increment operator for the <ref refid="classastrea_1_1astro_1_1Constellation_1_1sat__iterator" kindref="compound">sat_iterator</ref>. </para>
@@ -211,7 +211,7 @@
         <name>operator--</name>
         <qualifiedname>astrea::astro::Constellation::sat_iterator::operator--</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">int</ref></type>
+          <type>int</type>
         </param>
         <briefdescription>
 <para>Post-decrement operator for the <ref refid="classastrea_1_1astro_1_1Constellation_1_1sat__iterator" kindref="compound">sat_iterator</ref>. </para>
@@ -226,13 +226,13 @@
         <location file="astrea/astro/astro/platforms/space/Constellation.hpp" line="387" column="22" bodyfile="astrea/astro/astro/platforms/space/Constellation.hpp" bodystart="387" bodyend="392"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Constellation_1_1sat__iterator_1aa36abeb4db4aa4f5019f2e92a8b0e438" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">bool</ref></type>
+        <type>bool</type>
         <definition>bool astrea::astro::Constellation&lt; Spacecraft_T &gt;::sat_iterator::operator==</definition>
         <argsstring>(const sat_iterator &amp;other) const</argsstring>
         <name>operator==</name>
         <qualifiedname>astrea::astro::Constellation::sat_iterator::operator==</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Constellation_1_1sat__iterator" kindref="compound">sat_iterator</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Constellation_1_1sat__iterator" kindref="compound">sat_iterator</ref> &amp;</type>
           <declname>other</declname>
         </param>
         <briefdescription>
@@ -257,13 +257,13 @@
         <location file="astrea/astro/astro/platforms/space/Constellation.hpp" line="400" column="14" bodyfile="astrea/astro/astro/platforms/space/Constellation.hpp" bodystart="400" bodyend="403"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Constellation_1_1sat__iterator_1a66e9f5f9d3ad75cc1f92203b9ccbe568" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">bool</ref></type>
+        <type>bool</type>
         <definition>bool astrea::astro::Constellation&lt; Spacecraft_T &gt;::sat_iterator::operator!=</definition>
         <argsstring>(const sat_iterator &amp;other) const</argsstring>
         <name>operator!=</name>
         <qualifiedname>astrea::astro::Constellation::sat_iterator::operator!=</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Constellation_1_1sat__iterator" kindref="compound">sat_iterator</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Constellation_1_1sat__iterator" kindref="compound">sat_iterator</ref> &amp;</type>
           <declname>other</declname>
         </param>
         <briefdescription>
@@ -288,13 +288,13 @@
         <location file="astrea/astro/astro/platforms/space/Constellation.hpp" line="411" column="14" bodyfile="astrea/astro/astro/platforms/space/Constellation.hpp" bodystart="411" bodyend="411"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Constellation_1_1sat__iterator_1a51ffd3a1aa50a92a653526bd54c6310e" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">bool</ref></type>
+        <type>bool</type>
         <definition>bool astrea::astro::Constellation&lt; Spacecraft_T &gt;::sat_iterator::operator&lt;</definition>
         <argsstring>(const sat_iterator &amp;other) const</argsstring>
         <name>operator&lt;</name>
         <qualifiedname>astrea::astro::Constellation::sat_iterator::operator&lt;</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Constellation_1_1sat__iterator" kindref="compound">sat_iterator</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Constellation_1_1sat__iterator" kindref="compound">sat_iterator</ref> &amp;</type>
           <declname>other</declname>
         </param>
         <briefdescription>
@@ -321,13 +321,13 @@
         <location file="astrea/astro/astro/platforms/space/Constellation.hpp" line="420" column="9" bodyfile="astrea/astro/astro/platforms/space/Constellation.hpp" bodystart="420" bodyend="423"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Constellation_1_1sat__iterator_1a967e73d26409ca13bec2e31c66fd3e70" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">bool</ref></type>
+        <type>bool</type>
         <definition>bool astrea::astro::Constellation&lt; Spacecraft_T &gt;::sat_iterator::operator&gt;</definition>
         <argsstring>(const sat_iterator &amp;other) const</argsstring>
         <name>operator&gt;</name>
         <qualifiedname>astrea::astro::Constellation::sat_iterator::operator&gt;</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Constellation_1_1sat__iterator" kindref="compound">sat_iterator</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Constellation_1_1sat__iterator" kindref="compound">sat_iterator</ref> &amp;</type>
           <declname>other</declname>
         </param>
         <briefdescription>
@@ -354,13 +354,13 @@
         <location file="astrea/astro/astro/platforms/space/Constellation.hpp" line="432" column="14" bodyfile="astrea/astro/astro/platforms/space/Constellation.hpp" bodystart="432" bodyend="435"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Constellation_1_1sat__iterator_1a81a273eb89935a7c471f87d6683f2a39" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">bool</ref></type>
+        <type>bool</type>
         <definition>bool astrea::astro::Constellation&lt; Spacecraft_T &gt;::sat_iterator::operator&lt;=</definition>
         <argsstring>(const sat_iterator &amp;other) const</argsstring>
         <name>operator&lt;=</name>
         <qualifiedname>astrea::astro::Constellation::sat_iterator::operator&lt;=</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Constellation_1_1sat__iterator" kindref="compound">sat_iterator</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Constellation_1_1sat__iterator" kindref="compound">sat_iterator</ref> &amp;</type>
           <declname>other</declname>
         </param>
         <briefdescription>
@@ -387,13 +387,13 @@
         <location file="astrea/astro/astro/platforms/space/Constellation.hpp" line="444" column="9" bodyfile="astrea/astro/astro/platforms/space/Constellation.hpp" bodystart="444" bodyend="447"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Constellation_1_1sat__iterator_1a4f0cf2d43cabad95cc526cf19792f621" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">bool</ref></type>
+        <type>bool</type>
         <definition>bool astrea::astro::Constellation&lt; Spacecraft_T &gt;::sat_iterator::operator&gt;=</definition>
         <argsstring>(const sat_iterator &amp;other) const</argsstring>
         <name>operator&gt;=</name>
         <qualifiedname>astrea::astro::Constellation::sat_iterator::operator&gt;=</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Constellation_1_1sat__iterator" kindref="compound">sat_iterator</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Constellation_1_1sat__iterator" kindref="compound">sat_iterator</ref> &amp;</type>
           <declname>other</declname>
         </param>
         <briefdescription>
@@ -420,7 +420,7 @@
         <location file="astrea/astro/astro/platforms/space/Constellation.hpp" line="456" column="14" bodyfile="astrea/astro/astro/platforms/space/Constellation.hpp" bodystart="456" bodyend="459"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Constellation_1_1sat__iterator_1a13792609ef96d12179b1bbd29ef6e027" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Spacecraft_T</ref></type>
+        <type>Spacecraft_T</type>
         <definition>Spacecraft_T astrea::astro::Constellation&lt; Spacecraft_T &gt;::sat_iterator::operator*</definition>
         <argsstring>()</argsstring>
         <name>operator*</name>

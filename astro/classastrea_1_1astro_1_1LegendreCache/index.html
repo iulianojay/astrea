@@ -6238,8 +6238,12 @@ You're not viewing the latest version.
 
 
 <h1 id="class-astreaastrolegendrecache">Class astrea::astro::LegendreCache<a class="headerlink" href="#class-astreaastrolegendrecache" title="Permanent link">&para;</a></h1>
-<p><strong>template &lt;IsCelestialBody <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>auto</strong></a> _body_, std::size_t _degree_, std::size_t _order_&gt;</strong></p>
+<p><strong>template &lt;IsCelestialBody auto _body_, std::size_t _degree_, std::size_t _order_&gt;</strong></p>
 <p><a href="../annotated/"><strong>ClassList</strong></a> <strong>&gt;</strong> <a href="../namespaceastrea/"><strong>astrea</strong></a> <strong>&gt;</strong> <a href="../namespaceastrea_1_1astro/"><strong>astro</strong></a> <strong>&gt;</strong> <a href="./"><strong>LegendreCache</strong></a></p>
+<p><em>Class to cache Legendre polynomial coefficients for a given celestial</em> <em>body</em> <em>, degree, and order.</em><a href="#detailed-description">More...</a></p>
+<ul>
+<li><code>#include &lt;LegendreCache.hpp&gt;</code></li>
+</ul>
 <h2 id="public-functions">Public Functions<a class="headerlink" href="#public-functions" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
@@ -6254,12 +6258,12 @@ You're not viewing the latest version.
 <td style="text-align: left;"><a href="#function-legendrecache"><strong>LegendreCache</strong></a> () <br><em>Builds the cache for Legendre polynomials and coefficients.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Unitless</strong></a></td>
-<td style="text-align: left;"><a href="#function-get_cosine_coefficient"><strong>get_cosine_coefficient</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> std::size_t &amp; n, <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> std::size_t &amp; m) const<br><em>Gets the cosine coefficient for given n and m.</em></td>
+<td style="text-align: right;">const Unitless &amp;</td>
+<td style="text-align: left;"><a href="#function-get_cosine_coefficient"><strong>get_cosine_coefficient</strong></a> (const std::size_t &amp; n, const std::size_t &amp; m) const<br><em>Gets the cosine coefficient for given n and m.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Unitless</strong></a></td>
-<td style="text-align: left;"><a href="#function-get_sine_coefficient"><strong>get_sine_coefficient</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> std::size_t &amp; n, <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> std::size_t &amp; m) const<br><em>Gets the sine coefficient for given n and m.</em></td>
+<td style="text-align: right;">const Unitless &amp;</td>
+<td style="text-align: left;"><a href="#function-get_sine_coefficient"><strong>get_sine_coefficient</strong></a> (const std::size_t &amp; n, const std::size_t &amp; m) const<br><em>Gets the sine coefficient for given n and m.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;"></td>
@@ -6267,6 +6271,13 @@ You're not viewing the latest version.
 </tr>
 </tbody>
 </table>
+<h2 id="detailed-description">Detailed Description<a class="headerlink" href="#detailed-description" title="Permanent link">&para;</a></h2>
+<p><strong>Template parameters:</strong></p>
+<ul>
+<li><code>_body_</code> The celestial <em>body</em> for which the Legendre coefficients are cached </li>
+<li><code>_degree_</code> The maximum degree of the spherical harmonics </li>
+<li><code>_order_</code> The maximum order of the spherical harmonics </li>
+</ul>
 <h2 id="public-functions-documentation">Public Functions Documentation<a class="headerlink" href="#public-functions-documentation" title="Permanent link">&para;</a></h2>
 <h3 id="function-legendrecache">function LegendreCache<a class="headerlink" href="#function-legendrecache" title="Permanent link">&para;</a></h3>
 <p><em>Builds the cache for Legendre polynomials and coefficients.</em> 
@@ -6281,7 +6292,7 @@ You're not viewing the latest version.
 
 <h3 id="function-get_cosine_coefficient">function get_cosine_coefficient<a class="headerlink" href="#function-get_cosine_coefficient" title="Permanent link">&para;</a></h3>
 <p><em>Gets the cosine coefficient for given n and m.</em> 
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">Unitless</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">LegendreCache</span><span class="o">::</span><span class="n">get_cosine_coefficient</span><span class="w"> </span><span class="p">(</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">const</span><span class="w"> </span><span class="n">Unitless</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">LegendreCache</span><span class="o">::</span><span class="n">get_cosine_coefficient</span><span class="w"> </span><span class="p">(</span>
 </span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">n</span><span class="p">,</span>
 </span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">m</span>
 </span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
@@ -6297,7 +6308,7 @@ You're not viewing the latest version.
 
 <h3 id="function-get_sine_coefficient">function get_sine_coefficient<a class="headerlink" href="#function-get_sine_coefficient" title="Permanent link">&para;</a></h3>
 <p><em>Gets the sine coefficient for given n and m.</em> 
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">Unitless</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">LegendreCache</span><span class="o">::</span><span class="n">get_sine_coefficient</span><span class="w"> </span><span class="p">(</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">const</span><span class="w"> </span><span class="n">Unitless</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">LegendreCache</span><span class="o">::</span><span class="n">get_sine_coefficient</span><span class="w"> </span><span class="p">(</span>
 </span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">n</span><span class="p">,</span>
 </span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">m</span>
 </span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
@@ -6318,7 +6329,7 @@ You're not viewing the latest version.
 <hr>
 
 <hr />
-<p>The documentation for this class was generated from the following file <code>astrea/astro/astro/propagation/force_models/OblatenessForce.hpp</code></p>
+<p>The documentation for this class was generated from the following file <code>astrea/astro/astro/propagation/force_models/LegendreCache.hpp</code></p>
 
 
 

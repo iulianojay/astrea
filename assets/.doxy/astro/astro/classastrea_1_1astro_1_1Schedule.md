@@ -53,14 +53,14 @@ _A class representing a_ [_**Schedule**_](classastrea_1_1astro_1_1Schedule.md) _
 | Type | Name |
 | ---: | :--- |
 |   | [**Schedule**](#function-schedule) () = default<br>_Default constructor for the_ [_**Schedule**_](classastrea_1_1astro_1_1Schedule.md) _class._ |
-|  [**void**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**clear**](#function-clear) () <br>_Clears all scheduled Events and their associated Dates from the_ [_**Schedule**_](classastrea_1_1astro_1_1Schedule.md) _._ |
-|  std::vector&lt; [**Event**](classastrea_1_1astro_1_1Event.md) &gt; | [**get\_events\_at**](#function-get_events_at) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Date**](classastrea_1_1astro_1_1Date.md) & date) const<br>_Retrieves the Events scheduled to trigger at a specific_ [_**Date**_](classastrea_1_1astro_1_1Date.md) _._ |
+|  void | [**clear**](#function-clear) () <br>_Clears all scheduled Events and their associated Dates from the_ [_**Schedule**_](classastrea_1_1astro_1_1Schedule.md) _._ |
+|  std::vector&lt; [**Event**](classastrea_1_1astro_1_1Event.md) &gt; | [**get\_events\_at**](#function-get_events_at) (const [**Date**](classastrea_1_1astro_1_1Date.md) & date) const<br>_Retrieves the Events scheduled to trigger at a specific_ [_**Date**_](classastrea_1_1astro_1_1Date.md) _._ |
 |  std::vector&lt; [**Date**](classastrea_1_1astro_1_1Date.md) &gt; | [**get\_scheduled\_dates**](#function-get_scheduled_dates) () const<br>_Retrieves all the Dates that have Events scheduled._  |
-|  [**void**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**remove\_events\_at**](#function-remove_events_at) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Date**](classastrea_1_1astro_1_1Date.md) & date) <br>_Removes all Events scheduled to trigger at a specific_ [_**Date**_](classastrea_1_1astro_1_1Date.md) _._ |
-|  [**void**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**remove\_events\_between**](#function-remove_events_between) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Date**](classastrea_1_1astro_1_1Date.md) & startDate, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Date**](classastrea_1_1astro_1_1Date.md) & endDate) <br>_Removes all Events scheduled to trigger between two Dates (inclusive)._  |
-|  [**void**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**schedule\_event**](#function-schedule_event-12) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Date**](classastrea_1_1astro_1_1Date.md) & date, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Event**](classastrea_1_1astro_1_1Event.md) & event) <br>_Schedules an_ [_**Event**_](classastrea_1_1astro_1_1Event.md) _to trigger at a specific_[_**Date**_](classastrea_1_1astro_1_1Date.md) _._ |
-|  [**void**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**schedule\_event**](#function-schedule_event-22) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) std::vector&lt; [**Date**](classastrea_1_1astro_1_1Date.md) &gt; & dates, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Event**](classastrea_1_1astro_1_1Event.md) & event) <br>_Schedules an_ [_**Event**_](classastrea_1_1astro_1_1Event.md) _to trigger at multiple Dates._ |
-|  [**void**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**trigger\_scheduled\_events**](#function-trigger_scheduled_events) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Date**](classastrea_1_1astro_1_1Date.md) & date, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Time**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & time, [**State**](classastrea_1_1astro_1_1State.md) & state, [**Vehicle**](classastrea_1_1astro_1_1Vehicle.md) & vehicle) const<br>_Triggers all Events scheduled to trigger at a specific_ [_**Date**_](classastrea_1_1astro_1_1Date.md) _._ |
+|  void | [**remove\_events\_at**](#function-remove_events_at) (const [**Date**](classastrea_1_1astro_1_1Date.md) & date) <br>_Removes all Events scheduled to trigger at a specific_ [_**Date**_](classastrea_1_1astro_1_1Date.md) _._ |
+|  void | [**remove\_events\_between**](#function-remove_events_between) (const [**Date**](classastrea_1_1astro_1_1Date.md) & startDate, const [**Date**](classastrea_1_1astro_1_1Date.md) & endDate) <br>_Removes all Events scheduled to trigger between two Dates (inclusive)._  |
+|  void | [**schedule\_event**](#function-schedule_event-12) (const [**Date**](classastrea_1_1astro_1_1Date.md) & date, const [**Event**](classastrea_1_1astro_1_1Event.md) & event) <br>_Schedules an_ [_**Event**_](classastrea_1_1astro_1_1Event.md) _to trigger at a specific_[_**Date**_](classastrea_1_1astro_1_1Date.md) _._ |
+|  void | [**schedule\_event**](#function-schedule_event-22) (const std::vector&lt; [**Date**](classastrea_1_1astro_1_1Date.md) &gt; & dates, const [**Event**](classastrea_1_1astro_1_1Event.md) & event) <br>_Schedules an_ [_**Event**_](classastrea_1_1astro_1_1Event.md) _to trigger at multiple Dates._ |
+|  void | [**trigger\_scheduled\_events**](#function-trigger_scheduled_events) (const [**Date**](classastrea_1_1astro_1_1Date.md) & date, const Time & time, [**State**](classastrea_1_1astro_1_1State.md) & state, [**Vehicle**](classastrea_1_1astro_1_1Vehicle.md) & vehicle) const<br>_Triggers all Events scheduled to trigger at a specific_ [_**Date**_](classastrea_1_1astro_1_1Date.md) _._ |
 
 
 
@@ -127,7 +127,7 @@ void astrea::astro::Schedule::clear ()
 _Retrieves the Events scheduled to trigger at a specific_ [_**Date**_](classastrea_1_1astro_1_1Date.md) _._
 ```C++
 std::vector< Event > astrea::astro::Schedule::get_events_at (
-    const  Date & date
+    const Date & date
 ) const
 ```
 
@@ -186,7 +186,7 @@ std::vector&lt;Date&gt; A vector of Dates that have Events scheduled.
 _Removes all Events scheduled to trigger at a specific_ [_**Date**_](classastrea_1_1astro_1_1Date.md) _._
 ```C++
 void astrea::astro::Schedule::remove_events_at (
-    const  Date & date
+    const Date & date
 ) 
 ```
 
@@ -213,8 +213,8 @@ void astrea::astro::Schedule::remove_events_at (
 _Removes all Events scheduled to trigger between two Dates (inclusive)._ 
 ```C++
 void astrea::astro::Schedule::remove_events_between (
-    const  Date & startDate,
-    const  Date & endDate
+    const Date & startDate,
+    const Date & endDate
 ) 
 ```
 
@@ -242,8 +242,8 @@ void astrea::astro::Schedule::remove_events_between (
 _Schedules an_ [_**Event**_](classastrea_1_1astro_1_1Event.md) _to trigger at a specific_[_**Date**_](classastrea_1_1astro_1_1Date.md) _._
 ```C++
 void astrea::astro::Schedule::schedule_event (
-    const  Date & date,
-    const  Event & event
+    const Date & date,
+    const Event & event
 ) 
 ```
 
@@ -272,7 +272,7 @@ _Schedules an_ [_**Event**_](classastrea_1_1astro_1_1Event.md) _to trigger at mu
 ```C++
 void astrea::astro::Schedule::schedule_event (
     const std::vector< Date > & dates,
-    const  Event & event
+    const Event & event
 ) 
 ```
 
@@ -300,8 +300,8 @@ void astrea::astro::Schedule::schedule_event (
 _Triggers all Events scheduled to trigger at a specific_ [_**Date**_](classastrea_1_1astro_1_1Date.md) _._
 ```C++
 void astrea::astro::Schedule::trigger_scheduled_events (
-    const  Date & date,
-    const  Time & time,
+    const Date & date,
+    const Time & time,
     State & state,
     Vehicle & vehicle
 ) const

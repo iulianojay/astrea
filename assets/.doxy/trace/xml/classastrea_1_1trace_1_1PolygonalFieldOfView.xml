@@ -26,7 +26,7 @@
         <argsstring></argsstring>
         <name>_minHalfAngle</name>
         <qualifiedname>astrea::trace::PolygonalFieldOfView::_minHalfAngle</qualifiedname>
-        <initializer>= 0.0 * mp_units::angular::unit_symbols::rad</initializer>
+        <initializer>= 0.0 * mp_units::si::unit_symbols::rad</initializer>
         <briefdescription>
 <para>Minimum off-boresight half angle. </para>
         </briefdescription>
@@ -54,16 +54,16 @@
       </memberdef>
     </sectiondef>
     <sectiondef kind="public-func">
-      <memberdef kind="function" id="classastrea_1_1trace_1_1PolygonalFieldOfView_1a57bc47f99079c7e580f1ae66b1b63308" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="classastrea_1_1trace_1_1PolygonalFieldOfView_1abe155797fd84f564812b6e0dd8cb2eb5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
         <definition>astrea::trace::PolygonalFieldOfView::PolygonalFieldOfView</definition>
-        <argsstring>(const Angle &amp;halfConeAngle=std::numbers::pi/4.0 *mp_units::angular::unit_symbols::rad, const int &amp;nPoints=72)</argsstring>
+        <argsstring>(const Angle &amp;halfConeAngle=std::numbers::pi/4.0 *mp_units::si::unit_symbols::rad, const int &amp;nPoints=72)</argsstring>
         <name>PolygonalFieldOfView</name>
         <qualifiedname>astrea::trace::PolygonalFieldOfView::PolygonalFieldOfView</qualifiedname>
         <param>
           <type>const Angle &amp;</type>
           <declname>halfConeAngle</declname>
-          <defval>std::numbers::pi/4.0 *mp_units::angular::unit_symbols::rad</defval>
+          <defval>std::numbers::pi/4.0 *mp_units::si::unit_symbols::rad</defval>
         </param>
         <param>
           <type>const int &amp;</type>
@@ -337,7 +337,7 @@
       <member refid="classastrea_1_1trace_1_1FieldOfView_1a81d04b924ac5862bd4b38072237bc3bb" prot="public" virt="non-virtual"><scope>astrea::trace::PolygonalFieldOfView</scope><name>FieldOfView</name></member>
       <member refid="classastrea_1_1trace_1_1PolygonalFieldOfView_1a7c1c848443028ab3115d6886b48571d7" prot="private" virt="non-virtual"><scope>astrea::trace::PolygonalFieldOfView</scope><name>find_min_and_max_angles</name></member>
       <member refid="classastrea_1_1trace_1_1PolygonalFieldOfView_1ac3b66a99fa67b73802346d2693cdcdc7" prot="public" virt="virtual"><scope>astrea::trace::PolygonalFieldOfView</scope><name>max_half_angle</name></member>
-      <member refid="classastrea_1_1trace_1_1PolygonalFieldOfView_1a57bc47f99079c7e580f1ae66b1b63308" prot="public" virt="non-virtual"><scope>astrea::trace::PolygonalFieldOfView</scope><name>PolygonalFieldOfView</name></member>
+      <member refid="classastrea_1_1trace_1_1PolygonalFieldOfView_1abe155797fd84f564812b6e0dd8cb2eb5" prot="public" virt="non-virtual"><scope>astrea::trace::PolygonalFieldOfView</scope><name>PolygonalFieldOfView</name></member>
       <member refid="classastrea_1_1trace_1_1PolygonalFieldOfView_1a398ce6e768a32ffd8c4e497ec2aa1345" prot="public" virt="non-virtual"><scope>astrea::trace::PolygonalFieldOfView</scope><name>PolygonalFieldOfView</name></member>
       <member refid="classastrea_1_1trace_1_1PolygonalFieldOfView_1aed8b1a5d877e7fa808f2fc131fde4e7f" prot="public" virt="non-virtual"><scope>astrea::trace::PolygonalFieldOfView</scope><name>PolygonalFieldOfView</name></member>
       <member refid="classastrea_1_1trace_1_1FieldOfView_1a7a73e0a1fcad3b8d1e6ac0cd7c13f0e1" prot="public" virt="non-virtual"><scope>astrea::trace::PolygonalFieldOfView</scope><name>~FieldOfView</name></member>

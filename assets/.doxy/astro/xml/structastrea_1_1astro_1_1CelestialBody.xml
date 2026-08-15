@@ -12,14 +12,14 @@
         <defname>_name_</defname>
       </param>
       <param>
-        <type>IsOrigin <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+        <type>IsOrigin auto</type>
         <declname>_parent_</declname>
         <defname>_parent_</defname>
       </param>
     </templateparamlist>
     <sectiondef kind="public-static-attrib">
       <memberdef kind="variable" id="structastrea_1_1astro_1_1CelestialBody_1acf9f4ab0b863acbbe71612a1eaecd795" prot="public" static="yes" constexpr="yes" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="structastrea_1_1astro_1_1ReferenceAxes" kindref="compound">ReferenceAxes</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_name_</ref> &gt;</type>
+        <type>constexpr <ref refid="structastrea_1_1astro_1_1ReferenceAxes" kindref="compound">ReferenceAxes</ref>&lt; _name_ &gt;</type>
         <definition>constexpr ReferenceAxes&lt;_name_&gt; astrea::astro::CelestialBody&lt; _name_, _parent_ &gt;::reference_axes</definition>
         <argsstring></argsstring>
         <name>reference_axes</name>
@@ -31,10 +31,10 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/systems/CelestialBody.hpp" line="59" column="36" bodyfile="astrea/astro/astro/systems/CelestialBody.hpp" bodystart="59" bodyend="59"/>
+        <location file="astrea/astro/astro/systems/CelestialBody.hpp" line="58" column="36" bodyfile="astrea/astro/astro/systems/CelestialBody.hpp" bodystart="58" bodyend="58"/>
       </memberdef>
       <memberdef kind="variable" id="structastrea_1_1astro_1_1CelestialBody_1a6f403339fafac7a7813ab6e153c86c8f" prot="public" static="yes" constexpr="yes" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="structastrea_1_1astro_1_1GeocentricAxes" kindref="compound">GeocentricAxes</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_name_</ref> &gt;</type>
+        <type>constexpr <ref refid="structastrea_1_1astro_1_1GeocentricAxes" kindref="compound">GeocentricAxes</ref>&lt; _name_ &gt;</type>
         <definition>constexpr GeocentricAxes&lt;_name_&gt; astrea::astro::CelestialBody&lt; _name_, _parent_ &gt;::geocentric_axes</definition>
         <argsstring></argsstring>
         <name>geocentric_axes</name>
@@ -46,7 +46,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/systems/CelestialBody.hpp" line="60" column="37" bodyfile="astrea/astro/astro/systems/CelestialBody.hpp" bodystart="60" bodyend="60"/>
+        <location file="astrea/astro/astro/systems/CelestialBody.hpp" line="59" column="37" bodyfile="astrea/astro/astro/systems/CelestialBody.hpp" bodystart="59" bodyend="59"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
@@ -102,7 +102,7 @@
         <link refid="structastrea_1_1astro_1_1detail_1_1OriginBase"/>
       </node>
     </collaborationgraph>
-    <location file="astrea/astro/astro/systems/CelestialBody.hpp" line="58" column="1" bodyfile="astrea/astro/astro/systems/CelestialBody.hpp" bodystart="58" bodyend="61"/>
+    <location file="astrea/astro/astro/systems/CelestialBody.hpp" line="57" column="1" bodyfile="astrea/astro/astro/systems/CelestialBody.hpp" bodystart="57" bodyend="60"/>
     <listofallmembers>
       <member refid="structastrea_1_1astro_1_1CelestialBody_1a6f403339fafac7a7813ab6e153c86c8f" prot="public" virt="non-virtual"><scope>astrea::astro::CelestialBody</scope><name>geocentric_axes</name></member>
       <member refid="structastrea_1_1astro_1_1Origin_3_01__name___00_01__parent___01_4_1a9091dfe3c437f00a4b14cdc412e1f66c" prot="public" virt="non-virtual"><scope>astrea::astro::CelestialBody</scope><name>name</name></member>

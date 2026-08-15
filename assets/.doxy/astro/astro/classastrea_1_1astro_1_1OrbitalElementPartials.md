@@ -56,11 +56,11 @@ _Class representing partial derivatives of orbital elements._ [More...](#detaile
 |   | [**OrbitalElementPartials**](#function-orbitalelementpartials-24) ([**CartesianPartial**](classastrea_1_1astro_1_1CartesianPartial.md)&lt; frame &gt; elements) <br>_Constructor initializing with_ [_**CartesianPartial**_](classastrea_1_1astro_1_1CartesianPartial.md) _elements._ |
 |   | [**OrbitalElementPartials**](#function-orbitalelementpartials-34) ([**KeplerianPartial**](classastrea_1_1astro_1_1KeplerianPartial.md)&lt; frame &gt; elements) <br>_Constructor initializing with_ [_**KeplerianPartial**_](classastrea_1_1astro_1_1KeplerianPartial.md) _elements._ |
 |   | [**OrbitalElementPartials**](#function-orbitalelementpartials-44) ([**EquinoctialPartial**](classastrea_1_1astro_1_1EquinoctialPartial.md)&lt; frame &gt; elements) <br>_Constructor initializing with_ [_**EquinoctialPartial**_](classastrea_1_1astro_1_1EquinoctialPartial.md) _elements._ |
-|  [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**PartialVariant**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & | [**extract**](#function-extract-12) () const<br>_Extracts the underlying orbital element partials as a variant._  |
-|  [**PartialVariant**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & | [**extract**](#function-extract-22) () <br>_Extracts the underlying orbital element partials as a variant._  |
-|  std::vector&lt; [**Unitless**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt; | [**force\_to\_vector**](#function-force_to_vector) () const<br>_Converts the_ [_**OrbitalElementPartials**_](classastrea_1_1astro_1_1OrbitalElementPartials.md) _to a vector of Unitless values._ |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) std::size\_t | [**index**](#function-index) () const<br>_Returns the index of the current orbital element partials in the variant._  |
-|  [**OrbitalElements**](classastrea_1_1astro_1_1OrbitalElements.md) | [**operator\***](#function-operator) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Time**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & time) const<br>_Converts the current orbital element partials to a specific type._  |
+|  const PartialVariant & | [**extract**](#function-extract-12) () const<br>_Extracts the underlying orbital element partials as a variant._  |
+|  PartialVariant & | [**extract**](#function-extract-22) () <br>_Extracts the underlying orbital element partials as a variant._  |
+|  std::vector&lt; double &gt; | [**force\_to\_double\_vector**](#function-force_to_double_vector) () const<br>_Converts the_ [_**OrbitalElementPartials**_](classastrea_1_1astro_1_1OrbitalElementPartials.md) _to a vector of Unitless values._ |
+|  constexpr std::size\_t | [**index**](#function-index) () const<br>_Returns the index of the current orbital element partials in the variant._  |
+|  [**OrbitalElements**](classastrea_1_1astro_1_1OrbitalElements.md) | [**operator\***](#function-operator) (const Time & time) const<br>_Converts the current orbital element partials to a specific type._  |
 
 
 
@@ -203,7 +203,7 @@ inline astrea::astro::OrbitalElementPartials::OrbitalElementPartials (
 
 _Extracts the underlying orbital element partials as a variant._ 
 ```C++
-const  PartialVariant & astrea::astro::OrbitalElementPartials::extract () const
+const PartialVariant & astrea::astro::OrbitalElementPartials::extract () const
 ```
 
 
@@ -249,11 +249,11 @@ PartialVariant& Reference to the underlying orbital element partials variant.
 
 
 
-### function force\_to\_vector 
+### function force\_to\_double\_vector 
 
 _Converts the_ [_**OrbitalElementPartials**_](classastrea_1_1astro_1_1OrbitalElementPartials.md) _to a vector of Unitless values._
 ```C++
-std::vector< Unitless > astrea::astro::OrbitalElementPartials::force_to_vector () const
+std::vector< double > astrea::astro::OrbitalElementPartials::force_to_double_vector () const
 ```
 
 
@@ -304,7 +304,7 @@ std::size\_t The index of the current orbital element partials in the variant.
 _Converts the current orbital element partials to a specific type._ 
 ```C++
 OrbitalElements astrea::astro::OrbitalElementPartials::operator* (
-    const  Time & time
+    const Time & time
 ) const
 ```
 

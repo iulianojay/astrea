@@ -2,7 +2,7 @@
 
 # Struct astrea::astro::FixedOffsetAxis
 
-**template &lt;IsAxis [**auto**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) \_parent\_, [**Angle**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) \_phi\_, [**Angle**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) \_theta\_, [**Angle**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) \_psi\_, [**RotationSequence**](namespaceastrea_1_1astro.md#enum-rotationsequence) \_sequence\_&gt;**
+**template &lt;IsAxis auto \_parent\_, Angle \_phi\_, Angle \_theta\_, Angle \_psi\_, [**RotationSequence**](namespaceastrea_1_1astro.md#enum-rotationsequence) \_sequence\_&gt;**
 
 
 
@@ -51,8 +51,8 @@ Inherits the following classes: [astrea::astro::Axis](structastrea_1_1astro_1_1A
 
 | Type | Name |
 | ---: | :--- |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Misalignment**](structastrea_1_1astro_1_1FixedOffsetAxis_1_1Misalignment.md) | [**misalignment**](#variable-misalignment)   = `{ [**\_phi\_**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), [**\_theta\_**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), [**\_psi\_**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) }`<br>_The fixed angular offset from the parent frame to this frame._  |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**auto**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**sequence**](#variable-sequence)   = `[**\_sequence\_**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)`<br>_The rotation sequence for the angular offset._  |
+|  constexpr [**Misalignment**](structastrea_1_1astro_1_1FixedOffsetAxis_1_1Misalignment.md) | [**misalignment**](#variable-misalignment)   = `{ \_phi\_, \_theta\_, \_psi\_ }`<br>_The fixed angular offset from the parent frame to this frame._  |
+|  constexpr auto | [**sequence**](#variable-sequence)   = `\_sequence\_`<br>_The rotation sequence for the angular offset._  |
 
 
 

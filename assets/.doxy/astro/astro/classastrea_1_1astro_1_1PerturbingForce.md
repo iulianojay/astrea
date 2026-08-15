@@ -54,7 +54,8 @@ Inherited by the following classes: [astrea::astro::AtmosphericForce](classastre
 | Type | Name |
 | ---: | :--- |
 |   | [**PerturbingForce**](#function-perturbingforce) () = default<br>_Default constructor for_ [_**PerturbingForce**_](classastrea_1_1astro_1_1PerturbingForce.md) _._ |
-| virtual [**Perturbation**](structastrea_1_1astro_1_1Perturbation.md) | [**compute\_perturbation**](#function-compute_perturbation) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**State**](classastrea_1_1astro_1_1State.md) & state, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Vehicle**](classastrea_1_1astro_1_1Vehicle.md) & vehicle) const = 0<br>_Computes the force acting on a vehicle at a given date and state._  |
+| virtual std::unique\_ptr&lt; [**PerturbingForce**](classastrea_1_1astro_1_1PerturbingForce.md) &gt; | [**clone**](#function-clone) () const = 0<br>_Creates a clone of the current_ [_**PerturbingForce**_](classastrea_1_1astro_1_1PerturbingForce.md) _object._ |
+| virtual [**Perturbation**](structastrea_1_1astro_1_1Perturbation.md) | [**compute\_perturbation**](#function-compute_perturbation) (const [**State**](classastrea_1_1astro_1_1State.md) & state, const [**Vehicle**](classastrea_1_1astro_1_1Vehicle.md) & vehicle) const = 0<br>_Computes the force acting on a vehicle at a given date and state._  |
 | virtual  | [**~PerturbingForce**](#function-perturbingforce) () = default<br>_Default destructor for_ [_**PerturbingForce**_](classastrea_1_1astro_1_1PerturbingForce.md) _._ |
 
 
@@ -110,13 +111,38 @@ astrea::astro::PerturbingForce::PerturbingForce () = default
 
 
 
+### function clone 
+
+_Creates a clone of the current_ [_**PerturbingForce**_](classastrea_1_1astro_1_1PerturbingForce.md) _object._
+```C++
+virtual std::unique_ptr< PerturbingForce > astrea::astro::PerturbingForce::clone () const = 0
+```
+
+
+
+
+
+**Returns:**
+
+std::unique\_ptr&lt;PerturbingForce&gt; A unique pointer to the cloned [**PerturbingForce**](classastrea_1_1astro_1_1PerturbingForce.md) object. 
+
+
+
+
+
+        
+
+<hr>
+
+
+
 ### function compute\_perturbation 
 
 _Computes the force acting on a vehicle at a given date and state._ 
 ```C++
 virtual Perturbation astrea::astro::PerturbingForce::compute_perturbation (
-    const  State & state,
-    const  Vehicle & vehicle
+    const State & state,
+    const Vehicle & vehicle
 ) const = 0
 ```
 

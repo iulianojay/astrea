@@ -34,7 +34,7 @@ _A clock implementation for Barycentric Dynamical Time (TDB)._ [More...](#detail
 | ---: | :--- |
 | typedef std::chrono::duration&lt; [**rep**](structastrea_1_1astro_1_1BarycentricDynamicalTimeClock.md#typedef-rep), [**period**](structastrea_1_1astro_1_1BarycentricDynamicalTimeClock.md#typedef-period) &gt; | [**duration**](#typedef-duration)  <br>_The duration type, representing time in seconds._  |
 | typedef std::ratio&lt; 1 &gt; | [**period**](#typedef-period)  <br>_The period type, seconds._  |
-| typedef [**double**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**rep**](#typedef-rep)  <br>_The representation type, a double for sub-second precision._  |
+| typedef double | [**rep**](#typedef-rep)  <br>_The representation type, a double for sub-second precision._  |
 | typedef std::chrono::time\_point&lt; [**BarycentricDynamicalTimeClock**](structastrea_1_1astro_1_1BarycentricDynamicalTimeClock.md) &gt; | [**time\_point**](#typedef-time_point)  <br>_The time point type for TDB, using_ [_**BarycentricDynamicalTimeClock**_](structastrea_1_1astro_1_1BarycentricDynamicalTimeClock.md) _._ |
 
 
@@ -46,8 +46,8 @@ _A clock implementation for Barycentric Dynamical Time (TDB)._ [More...](#detail
 
 | Type | Name |
 | ---: | :--- |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**bool**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**is\_steady**](#variable-is_steady)   = `[**false**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)`<br>_TDB is not a steady clock; it is anchored to TAI._  |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**auto**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**jdRef**](#variable-jdref)   = `[**JulianDateClock::duration**](structastrea_1_1astro_1_1JulianDateClock.md#typedef-duration){ 2451545.0 }`<br> |
+|  constexpr bool | [**is\_steady**](#variable-is_steady)   = `false`<br>_TDB is not a steady clock; it is anchored to TAI._  |
+|  constexpr auto | [**jdRef**](#variable-jdref)   = `[**JulianDateClock::duration**](structastrea_1_1astro_1_1JulianDateClock.md#typedef-duration){ 2451545.0 }`<br> |
 
 
 
@@ -68,9 +68,9 @@ _A clock implementation for Barycentric Dynamical Time (TDB)._ [More...](#detail
 
 | Type | Name |
 | ---: | :--- |
-|  [**auto**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**from\_sys**](#function-from_sys) (std::chrono::sys\_time&lt; [**Duration**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt; [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & timePoint) noexcept<br>_Converts a system time point to a Barycentric Dynamical Time time point._  |
+|  auto | [**from\_sys**](#function-from_sys) (std::chrono::sys\_time&lt; Duration &gt; const & timePoint) noexcept<br>_Converts a system time point to a Barycentric Dynamical Time time point._  |
 |  [**time\_point**](structastrea_1_1astro_1_1BarycentricDynamicalTimeClock.md#typedef-time_point) | [**now**](#function-now) () noexcept<br>_Gets the current time point in Barycentric Dynamical Time format._  |
-|  [**auto**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**to\_sys**](#function-to_sys) ([**BarycentricDynamicalTimePoint**](namespaceastrea_1_1astro.md#typedef-barycentricdynamicaltimepoint)&lt; [**Duration**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt; [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & timePoint) noexcept<br>_Converts a Barycentric Dynamical Time time point to a system time point._  |
+|  auto | [**to\_sys**](#function-to_sys) ([**BarycentricDynamicalTimePoint**](namespaceastrea_1_1astro.md#typedef-barycentricdynamicaltimepoint)&lt; Duration &gt; const & timePoint) noexcept<br>_Converts a Barycentric Dynamical Time time point to a system time point._  |
 
 
 
@@ -200,7 +200,7 @@ constexpr auto astrea::astro::BarycentricDynamicalTimeClock::jdRef;
 
 _Converts a system time point to a Barycentric Dynamical Time time point._ 
 ```C++
-template<class  Duration>
+template<class Duration>
 static inline auto astrea::astro::BarycentricDynamicalTimeClock::from_sys (
     std::chrono::sys_time< Duration > const & timePoint
 ) noexcept
@@ -270,7 +270,7 @@ static inline time_point astrea::astro::BarycentricDynamicalTimeClock::now () no
 
 _Converts a Barycentric Dynamical Time time point to a system time point._ 
 ```C++
-template<class  Duration>
+template<class Duration>
 static inline auto astrea::astro::BarycentricDynamicalTimeClock::to_sys (
     BarycentricDynamicalTimePoint < Duration > const & timePoint
 ) noexcept

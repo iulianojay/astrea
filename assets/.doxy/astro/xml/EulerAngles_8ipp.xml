@@ -47,7 +47,7 @@
         <childnode refid="10" relation="include">
         </childnode>
       </node>
-      <node id="27">
+      <node id="28">
         <label>astro/frames/framework/DcmInterface.hpp</label>
         <link refid="DcmInterface_8hpp"/>
         <childnode refid="14" relation="include">
@@ -60,7 +60,7 @@
         </childnode>
         <childnode refid="6" relation="include">
         </childnode>
-        <childnode refid="26" relation="include">
+        <childnode refid="27" relation="include">
         </childnode>
         <childnode refid="8" relation="include">
         </childnode>
@@ -84,13 +84,15 @@
         </childnode>
         <childnode refid="6" relation="include">
         </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
         <childnode refid="7" relation="include">
         </childnode>
-        <childnode refid="26" relation="include">
+        <childnode refid="27" relation="include">
         </childnode>
         <childnode refid="8" relation="include">
         </childnode>
-        <childnode refid="27" relation="include">
+        <childnode refid="28" relation="include">
         </childnode>
         <childnode refid="10" relation="include">
         </childnode>
@@ -131,10 +133,10 @@
         <childnode refid="9" relation="include">
         </childnode>
       </node>
-      <node id="28">
+      <node id="29">
         <label>astro/state/attitude/EulerAngles.hpp</label>
         <link refid="EulerAngles_8hpp"/>
-        <childnode refid="29" relation="include">
+        <childnode refid="30" relation="include">
         </childnode>
         <childnode refid="7" relation="include">
         </childnode>
@@ -148,7 +150,7 @@
         </childnode>
         <childnode refid="11" relation="include">
         </childnode>
-        <childnode refid="30" relation="include">
+        <childnode refid="31" relation="include">
         </childnode>
       </node>
       <node id="1">
@@ -178,7 +180,7 @@
         </childnode>
         <childnode refid="10" relation="include">
         </childnode>
-        <childnode refid="28" relation="include">
+        <childnode refid="29" relation="include">
         </childnode>
         <childnode refid="11" relation="include">
         </childnode>
@@ -191,10 +193,10 @@
         <childnode refid="12" relation="include">
         </childnode>
       </node>
-      <node id="30">
+      <node id="31">
         <label>astro/utilities/conversions.hpp</label>
         <link refid="conversions_8hpp"/>
-        <childnode refid="31" relation="include">
+        <childnode refid="32" relation="include">
         </childnode>
         <childnode refid="5" relation="include">
         </childnode>
@@ -215,8 +217,11 @@
       <node id="25">
         <label>iostream</label>
       </node>
-      <node id="29">
+      <node id="30">
         <label>math/interpolation.hpp</label>
+      </node>
+      <node id="26">
+        <label>math/trig.hpp</label>
       </node>
       <node id="4">
         <label>mp-units/core.h</label>
@@ -231,12 +236,12 @@
         <label>mp-units/math.h</label>
       </node>
       <node id="17">
-        <label>mp-units/systems/angular.h</label>
+        <label>mp-units/systems/si.h</label>
       </node>
       <node id="6">
-        <label>mp-units/systems/angular/math.h</label>
+        <label>mp-units/systems/si/math.h</label>
       </node>
-      <node id="31">
+      <node id="32">
         <label>numbers</label>
       </node>
       <node id="3">
@@ -254,7 +259,7 @@
       <node id="7">
         <label>units/units.hpp</label>
       </node>
-      <node id="26">
+      <node id="27">
         <label>utilities/string_util.hpp</label>
       </node>
     </incdepgraph>
@@ -446,7 +451,7 @@
 </simplesect>
 <simplesect kind="date"><para>2026-03-22</para>
 </simplesect>
-<simplesect kind="copyright"><para>Copyright (c) 2026 Jay Iuliano</para>
+<simplesect kind="copyright"><para>Copyright (c) 2025-2026 Jay Iuliano</para>
 </simplesect>
 The GNU Lesser General Public License (LGPL)</para>
 <para>This file is part of Astrea. Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. Astrea is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details. You should have received a copy of the GNU General Public License along with Astrea. If not, see <ulink url="https://www.gnu.org/licenses/">https://www.gnu.org/licenses/</ulink>. </para>
@@ -463,9 +468,9 @@ The GNU Lesser General Public License (LGPL)</para>
 <codeline lineno="26"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;RotationSequence<sp/>sequence,<sp/>RotationType<sp/>rotation_type,<sp/>IsFrame<sp/>auto<sp/>_in_frame_,<sp/>IsFrame<sp/>auto<sp/>_out_frame_&gt;</highlight></codeline>
 <codeline lineno="27"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;RotationSequence<sp/>sequence_u,<sp/>RotationType<sp/>rotation_type_u&gt;</highlight></codeline>
 <codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">requires</highlight><highlight class="normal">(!IsCompatibleEulerAngles&lt;sequence,<sp/>rotation_type,<sp/>_in_frame_,<sp/>_out_frame_,<sp/>sequence_u,<sp/>rotation_type_u,<sp/>_in_frame_,<sp/>_out_frame_&gt;)</highlight></codeline>
-<codeline lineno="29" refid="classastrea_1_1astro_1_1EulerAngles_1ae20dd96c8b8b789eab9bfe221c2f344f" refkind="member"><highlight class="normal"><ref refid="classastrea_1_1astro_1_1EulerAngles" kindref="compound">EulerAngles&lt;sequence, rotation_type, _in_frame_, _out_frame_&gt;::EulerAngles</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">EulerAngles&lt;sequence_u, rotation_type_u, _in_frame_, _out_frame_&gt;</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">other</ref>)</highlight></codeline>
+<codeline lineno="29" refid="classastrea_1_1astro_1_1EulerAngles_1ae20dd96c8b8b789eab9bfe221c2f344f" refkind="member"><highlight class="normal"><ref refid="classastrea_1_1astro_1_1EulerAngles" kindref="compound">EulerAngles&lt;sequence, rotation_type, _in_frame_, _out_frame_&gt;::EulerAngles</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1EulerAngles" kindref="compound">EulerAngles&lt;sequence_u, rotation_type_u, _in_frame_, _out_frame_&gt;</ref>&amp;<sp/>other)</highlight></codeline>
 <codeline lineno="30"><highlight class="normal">{</highlight></codeline>
-<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/>*</highlight><highlight class="keyword">this</highlight><highlight class="normal"><sp/>=<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Quaternion&lt;_in_frame_, _out_frame_&gt;</ref>(<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">other</ref>).template<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">to_euler_angles&lt;sequence, rotation_type&gt;</ref>();</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/>*</highlight><highlight class="keyword">this</highlight><highlight class="normal"><sp/>=<sp/><ref refid="classastrea_1_1astro_1_1Quaternion" kindref="compound">Quaternion&lt;_in_frame_, _out_frame_&gt;</ref>(other).template<sp/>to_euler_angles&lt;sequence,<sp/>rotation_type&gt;();</highlight></codeline>
 <codeline lineno="32"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="33"><highlight class="normal"></highlight></codeline>
 <codeline lineno="34"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>astro</highlight><highlight class="normal"></highlight></codeline>

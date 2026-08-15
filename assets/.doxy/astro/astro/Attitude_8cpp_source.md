@@ -11,7 +11,7 @@
 /*
  * The GNU Lesser General Public License (LGPL)
  *
- * Copyright (c) 2025 Jay Iuliano
+ * Copyright (c) 2025-2026 Jay Iuliano
  *
  * This file is part of Astrea.
  * Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License
@@ -24,7 +24,7 @@
 #include <astro/state/attitude/Attitude.hpp>
 
 using namespace mp_units;
-using mp_units::angular::unit_symbols::rad;
+using mp_units::si::unit_symbols::rad;
 using mp_units::si::unit_symbols::s;
 
 namespace astrea {
@@ -95,10 +95,10 @@ AttitudePartials Attitude::operator/(const Time& divisor) const
     return AttitudePartials(_orientation / divisor, _angularVelocity / divisor);
 }
 
-std::vector<Unitless> Attitude::force_to_vector() const
+std::vector<double> Attitude::force_to_double_vector() const
 {
-    std::vector<Unitless> retval  = _orientation.force_to_vector();
-    const auto angularVelocityVec = _angularVelocity.force_to_vector();
+    std::vector<double> retval    = _orientation.force_to_double_vector();
+    const auto angularVelocityVec = _angularVelocity.force_to_double_vector();
     retval.insert(retval.end(), angularVelocityVec.begin(), angularVelocityVec.end());
     return retval;
 }
@@ -128,7 +128,7 @@ Attitude Attitude::interpolate(const Time& thisTime, const Time& otherTime, cons
     );
 }
 
-Attitude Attitude::from_vector(const std::vector<Unitless>& vec)
+Attitude Attitude::from_double_vector(const std::vector<double>& vec)
 {
     if (vec.size() != 7) {
         throw std::runtime_error("Invalid vector size for Attitude conversion. Expected 7 elements (4 for quaternion, 3 for angular velocity).");
@@ -149,10 +149,10 @@ Attitude AttitudePartials::operator*(const Time& time) const
     return Attitude(_orientationRate * time, _angularAcceleration * time);
 }
 
-std::vector<Unitless> AttitudePartials::force_to_vector() const
+std::vector<double> AttitudePartials::force_to_double_vector() const
 {
-    std::vector<Unitless> retval      = _orientationRate.force_to_vector();
-    const auto angularAccelerationVec = _angularAcceleration.force_to_vector();
+    std::vector<double> retval        = _orientationRate.force_to_double_vector();
+    const auto angularAccelerationVec = _angularAcceleration.force_to_double_vector();
     retval.insert(retval.end(), angularAccelerationVec.begin(), angularAccelerationVec.end());
     return retval;
 }

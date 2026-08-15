@@ -1,13 +1,15 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygenindex xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="index.xsd" version="1.9.8" xml:lang="en-US">
-  <compound refid="structastrea_1_1EarthRadii" kind="struct"><name>astrea::EarthRadii</name>
+  <compound refid="structastrea_1_1units_1_1earth__radii" kind="struct"><name>astrea::units::earth_radii</name>
   </compound>
   <compound refid="structstd_1_1hash_3_01mp__units_1_1quantity_3_01R_00_01Rep_01_4_01_4" kind="struct"><name>std::hash&lt; mp_units::quantity&lt; R, Rep &gt; &gt;</name>
     <member refid="structstd_1_1hash_3_01mp__units_1_1quantity_3_01R_00_01Rep_01_4_01_4_1a7b343438f202d35cda910fb6ba60567e" kind="function"><name>operator()</name></member>
   </compound>
-  <compound refid="structastrea_1_1JulianCentury" kind="struct"><name>astrea::JulianCentury</name>
+  <compound refid="structastrea_1_1units_1_1julian__century" kind="struct"><name>astrea::units::julian_century</name>
   </compound>
-  <compound refid="structastrea_1_1SolarFluxUnits" kind="struct"><name>astrea::SolarFluxUnits</name>
+  <compound refid="structastrea_1_1units_1_1revolution" kind="struct"><name>astrea::units::revolution</name>
+  </compound>
+  <compound refid="structastrea_1_1units_1_1solar__flux__units" kind="struct"><name>astrea::units::solar_flux_units</name>
   </compound>
   <compound refid="namespaceastrea" kind="namespace"><name>astrea</name>
     <member refid="time_8hpp_1a0d37b40890ae4cdb604d24c5ebc0f369" kind="typedef"><name>nanoseconds</name></member>
@@ -33,16 +35,16 @@
     <member refid="typedefs_8hpp_1ae89815f4df4de419243bf37978b70023" kind="typedef"><name>AngularVelocity</name></member>
     <member refid="typedefs_8hpp_1a6520cdf22c5e7fbc6b6cf2b0e0cf45cb" kind="typedef"><name>AngularAcceleration</name></member>
     <member refid="typedefs_8hpp_1ac731536c87104f12d3929445ade035e1" kind="typedef"><name>InterplanetaryDistance</name></member>
-    <member refid="typedefs_8hpp_1a1a1a9bf4b13ef65327c6471d4c5269ca" kind="typedef"><name>InterplanetaryVelocity</name></member>
-    <member refid="typedefs_8hpp_1a234b77ed43fa3136baf692496b374310" kind="typedef"><name>BodyUnitlessPerTime</name></member>
-    <member refid="typedefs_8hpp_1ac539fe47ee8c4fab867decd7a46a169b" kind="typedef"><name>BodyAngularVelocity</name></member>
+    <member refid="typedefs_8hpp_1a21eafe045ab0055d538a90c43561fc0e" kind="typedef"><name>InterplanetaryVelocity</name></member>
+    <member refid="typedefs_8hpp_1a9985e7e30ad46074a668c42c9a2cc9f2" kind="typedef"><name>BodyUnitlessPerTime</name></member>
+    <member refid="typedefs_8hpp_1a095bd57504ee817d196cd11a8dac5e43" kind="typedef"><name>BodyAngularVelocity</name></member>
     <member refid="typedefs_8hpp_1a680f5de6f0f3036b3f3cad75f9473780" kind="typedef"><name>Acceleration</name></member>
     <member refid="typedefs_8hpp_1af2e95777c76ad6f8c33401e622844f91" kind="typedef"><name>SurfaceArea</name></member>
     <member refid="typedefs_8hpp_1af17856f96523805d535dab951a9379dc" kind="typedef"><name>GravParam</name></member>
     <member refid="typedefs_8hpp_1a3ab148f4a87cd84162f5744422ba0447" kind="typedef"><name>MeanMotion</name></member>
     <member refid="typedefs_8hpp_1a8dacdb1a2e3f4f2b1d49292d9e0ab622" kind="typedef"><name>MeanMotion1stDer</name></member>
     <member refid="typedefs_8hpp_1a64144981f1a71cc494a9cf4036e1947c" kind="typedef"><name>MeanMotion2ndDer</name></member>
-    <member refid="typedefs_8hpp_1a8767d002a30d8d5db5b72ff1b7735c89" kind="typedef"><name>BallisticCoefficient</name></member>
+    <member refid="typedefs_8hpp_1a9d2e958f1ea9f070069446c9b17e54e1" kind="typedef"><name>BallisticCoefficient</name></member>
     <member refid="typedefs_8hpp_1a0af4216f66acce6726601c081ee2a5e5" kind="typedef"><name>Density</name></member>
     <member refid="typedefs_8hpp_1a34659ce3f5ce5a3a7cffa511900891e9" kind="typedef"><name>Altitude</name></member>
     <member refid="typedefs_8hpp_1ad05638f2c98324c8eeefdc20b08733e9" kind="typedef"><name>Gain</name></member>
@@ -55,15 +57,12 @@
     <member refid="typedefs_8hpp_1a0c1e2ad627aa8aad05ab166fd0ec1bf1" kind="typedef"><name>Pressure</name></member>
     <member refid="typedefs_8hpp_1a1a82907e178e6486e013bb8b7d32c1f6" kind="typedef"><name>Moment</name></member>
     <member refid="typedefs_8hpp_1ae8325067d3c122b46709768b059ca1f9" kind="typedef"><name>MomentOfInertia</name></member>
-    <member refid="typedefs_8hpp_1a3332a6695993ea3e49b32c645d65bbe6" kind="typedef"><name>SolarFlux</name></member>
+    <member refid="typedefs_8hpp_1a7f5e2fc5047071b3d6edb3c1761da650" kind="typedef"><name>SolarFlux</name></member>
     <member refid="typedefs_8hpp_1a51817992e45de73cf8ee362450d0dc9b" kind="typedef"><name>Chirp</name></member>
     <member refid="constants_8hpp_1ae2529f1aa430f2dbfd071a8511a78310" kind="variable"><name>speed_of_light_in_vacuum</name></member>
     <member refid="constants_8hpp_1a8abc18858e1a30c20ea4e3f484dbbc22" kind="variable"><name>boltzmann_constant</name></member>
     <member refid="constants_8hpp_1a8452e0ddd0716b555506820a3d7dc24e" kind="variable"><name>PI</name></member>
     <member refid="constants_8hpp_1ada344bc6f289fe2f949dca23593ae1e5" kind="variable"><name>TWO_PI</name></member>
-    <member refid="custom_8hpp_1a1db3e4744ff3357fcbf011bceea7edc3" kind="variable"><name>JulianCentury</name></member>
-    <member refid="custom_8hpp_1a3765810844841cc68bb66ec2f0f9d61b" kind="variable"><name>EarthRadii</name></member>
-    <member refid="custom_8hpp_1a983b0fcaf367765a73a0c594e22681c2" kind="variable"><name>SolarFluxUnits</name></member>
     <member refid="constants_8hpp_1a87133aee2993f568ef1657bc1ddfe0e4" kind="function"><name>n_pi</name></member>
     <member refid="constants_8hpp_1a4a8f94136ac2b3408e6303af8171a232" kind="function"><name>n_pi_mag</name></member>
   </compound>
@@ -78,6 +77,18 @@
     <member refid="detail_8hpp_1a9919691090d2172bb25de9ecf39a922b" kind="variable"><name>temperature_unit</name></member>
     <member refid="detail_8hpp_1a186a9501654682b48e7e0f982000f640" kind="variable"><name>force_unit</name></member>
     <member refid="detail_8hpp_1acd0e3762b1144aaf30d5b8f84a962ede" kind="variable"><name>pressure_unit</name></member>
+  </compound>
+  <compound refid="namespaceastrea_1_1units" kind="namespace"><name>astrea::units</name>
+    <member refid="custom_8hpp_1afd690d0ecc5660f0e75ff67ca39ec97b" kind="variable"><name>julian_century</name></member>
+    <member refid="custom_8hpp_1ac9355224d01a5db5d04a983064649b20" kind="variable"><name>earth_radii</name></member>
+    <member refid="custom_8hpp_1aea1a5dd5af471ef0a2f5b2ea68afe3e2" kind="variable"><name>solar_flux_units</name></member>
+    <member refid="custom_8hpp_1a5b88dbcd7b62d760f354df2988fbe5c6" kind="variable"><name>revolution</name></member>
+  </compound>
+  <compound refid="namespaceastrea_1_1units_1_1unit__symbols" kind="namespace"><name>astrea::units::unit_symbols</name>
+    <member refid="custom_8hpp_1aafa743bb8273185cc1d73263f8b1b850" kind="variable"><name>jc</name></member>
+    <member refid="custom_8hpp_1a8bb1300cd578823748d6cee796f243b2" kind="variable"><name>re</name></member>
+    <member refid="custom_8hpp_1a9a123207350069946b6baeaaf225acf8" kind="variable"><name>sfu</name></member>
+    <member refid="custom_8hpp_1ac5e2a2853f4fb2a472fdb442d46aa804" kind="variable"><name>rev</name></member>
   </compound>
   <compound refid="namespacemp__units" kind="namespace"><name>mp_units</name>
   </compound>

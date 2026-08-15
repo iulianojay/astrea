@@ -18,16 +18,16 @@
             <defname>Rhs</defname>
           </param>
         </templateparamlist>
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">consteval</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">bool</ref></type>
+        <type>consteval bool</type>
         <definition>consteval bool operator==</definition>
         <argsstring>(Lhs, Rhs)</argsstring>
         <name>operator==</name>
         <qualifiedname>astrea::astro::detail::OriginBase::operator==</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Lhs</ref></type>
+          <type>Lhs</type>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Rhs</ref></type>
+          <type>Rhs</type>
         </param>
         <briefdescription>
         </briefdescription>
@@ -50,22 +50,60 @@
             <defname>Rhs</defname>
           </param>
         </templateparamlist>
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">consteval</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">bool</ref></type>
+        <type>consteval bool</type>
         <definition>consteval bool equivalent</definition>
         <argsstring>(Lhs, Rhs)</argsstring>
         <name>equivalent</name>
         <qualifiedname>astrea::astro::detail::OriginBase::equivalent</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Lhs</ref></type>
+          <type>Lhs</type>
           <defname>lhs</defname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Rhs</ref></type>
+          <type>Rhs</type>
           <defname>rhs</defname>
         </param>
         <briefdescription>
+<para>Checks if two frames are equivalent, considering their parent frames and any fixed offsets (spatial or angular). </para>
         </briefdescription>
         <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>Lhs</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The type of the left-hand side frame. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>Rhs</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The type of the right-hand side frame. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>lhs</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The left-hand side frame instance. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>rhs</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The right-hand side frame instance. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>true if both frames are equivalent, false otherwise. </para>
+</simplesect>
+</para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>

@@ -5,27 +5,27 @@
     <includes refid="DynamicFrame_8hpp" local="no">DynamicFrame.hpp</includes>
     <templateparamlist>
       <param>
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">typename</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Self</ref></type>
+        <type>typename Self</type>
       </param>
       <param>
-        <type>IsFrame <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+        <type>IsFrame auto</type>
         <declname>_parent_</declname>
         <defname>_parent_</defname>
       </param>
       <param>
-        <type>IsFrame <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+        <type>IsFrame auto</type>
         <declname>_self_</declname>
         <defname>_self_</defname>
       </param>
     </templateparamlist>
     <sectiondef kind="public-static-attrib">
       <memberdef kind="variable" id="structastrea_1_1astro_1_1DynamicFrame_1aa1ee0cb8336558b50097e5dbbc46ae38" prot="public" static="yes" constexpr="yes" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+        <type>constexpr auto</type>
         <definition>constexpr auto astrea::astro::DynamicFrame&lt; Self, _parent_, _self_ &gt;::parent</definition>
         <argsstring></argsstring>
         <name>parent</name>
         <qualifiedname>astrea::astro::DynamicFrame::parent</qualifiedname>
-        <initializer>= <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_parent_</ref></initializer>
+        <initializer>= _parent_</initializer>
         <briefdescription>
 <para>The reference frame of the dynamic frame. </para>
         </briefdescription>
@@ -76,11 +76,11 @@
         <name>DynamicFrame</name>
         <qualifiedname>astrea::astro::DynamicFrame::DynamicFrame</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="typedefs_8hpp_1a7493d5fafd58941bc3440b866a25638d" kindref="member">RadiusVector</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_parent_</ref> &gt; &amp;</type>
+          <type>const <ref refid="typedefs_8hpp_1a7493d5fafd58941bc3440b866a25638d" kindref="member">RadiusVector</ref>&lt; _parent_ &gt; &amp;</type>
           <declname>position</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="typedefs_8hpp_1a7d8b9c68f2d8d343d45e1bf14b6bfb18" kindref="member">VelocityVector</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_parent_</ref> &gt; &amp;</type>
+          <type>const <ref refid="typedefs_8hpp_1a7d8b9c68f2d8d343d45e1bf14b6bfb18" kindref="member">VelocityVector</ref>&lt; _parent_ &gt; &amp;</type>
           <declname>velocity</declname>
         </param>
         <briefdescription>
@@ -125,7 +125,7 @@
         <name>get_position</name>
         <qualifiedname>astrea::astro::DynamicFrame::get_position</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
           <declname>date</declname>
         </param>
         <briefdescription>
@@ -156,7 +156,7 @@
         <name>get_velocity</name>
         <qualifiedname>astrea::astro::DynamicFrame::get_velocity</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
           <declname>date</declname>
         </param>
         <briefdescription>
@@ -185,20 +185,20 @@
       <memberdef kind="function" id="structastrea_1_1astro_1_1DynamicFrame_1ab30c2f80af4655e55f3876043f6685ee" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
-            <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">typename</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Value_T</ref></type>
+            <type>typename Value_T</type>
           </param>
         </templateparamlist>
-        <type><ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Value_T</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_self_</ref> &gt;</type>
+        <type><ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; Value_T, _self_ &gt;</type>
         <definition>CartesianVector&lt; Value_T, _self_ &gt; astrea::astro::DynamicFrame&lt; Self, _parent_, _self_ &gt;::rotate_into_this_frame</definition>
         <argsstring>(const CartesianVector&lt; Value_T, parent &gt; &amp;vec, const Date &amp;date) const</argsstring>
         <name>rotate_into_this_frame</name>
         <qualifiedname>astrea::astro::DynamicFrame::rotate_into_this_frame</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Value_T</ref>, <ref refid="structastrea_1_1astro_1_1DynamicFrame_1aa1ee0cb8336558b50097e5dbbc46ae38" kindref="member">parent</ref> &gt; &amp;</type>
+          <type>const <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; Value_T, <ref refid="structastrea_1_1astro_1_1DynamicFrame_1aa1ee0cb8336558b50097e5dbbc46ae38" kindref="member">parent</ref> &gt; &amp;</type>
           <declname>vec</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
           <declname>date</declname>
         </param>
         <briefdescription>
@@ -242,20 +242,20 @@
       <memberdef kind="function" id="structastrea_1_1astro_1_1DynamicFrame_1af906f2f6b8410807bca486603ca7eda6" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
-            <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">typename</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Value_T</ref></type>
+            <type>typename Value_T</type>
           </param>
         </templateparamlist>
-        <type><ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Value_T</ref>, <ref refid="structastrea_1_1astro_1_1DynamicFrame_1aa1ee0cb8336558b50097e5dbbc46ae38" kindref="member">parent</ref> &gt;</type>
+        <type><ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; Value_T, <ref refid="structastrea_1_1astro_1_1DynamicFrame_1aa1ee0cb8336558b50097e5dbbc46ae38" kindref="member">parent</ref> &gt;</type>
         <definition>CartesianVector&lt; Value_T, parent &gt; astrea::astro::DynamicFrame&lt; Self, _parent_, _self_ &gt;::rotate_out_of_this_frame</definition>
         <argsstring>(const CartesianVector&lt; Value_T, _self_ &gt; &amp;vec, const Date &amp;date) const</argsstring>
         <name>rotate_out_of_this_frame</name>
         <qualifiedname>astrea::astro::DynamicFrame::rotate_out_of_this_frame</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Value_T</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_self_</ref> &gt; &amp;</type>
+          <type>const <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; Value_T, _self_ &gt; &amp;</type>
           <declname>vec</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
           <declname>date</declname>
         </param>
         <briefdescription>
@@ -297,17 +297,17 @@
         <location file="astrea/astro/astro/frames/framework/DynamicFrame.hpp" line="77" column="21" bodyfile="astrea/astro/astro/frames/framework/DynamicFrame.hpp" bodystart="77" bodyend="80"/>
       </memberdef>
       <memberdef kind="function" id="structastrea_1_1astro_1_1DynamicFrame_1ae55a44c3539d972bf965083861f2f282" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="typedefs_8hpp_1a7493d5fafd58941bc3440b866a25638d" kindref="member">RadiusVector</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_self_</ref> &gt;</type>
+        <type><ref refid="typedefs_8hpp_1a7493d5fafd58941bc3440b866a25638d" kindref="member">RadiusVector</ref>&lt; _self_ &gt;</type>
         <definition>RadiusVector&lt; _self_ &gt; astrea::astro::DynamicFrame&lt; Self, _parent_, _self_ &gt;::transform_to_this_frame</definition>
         <argsstring>(const RadiusVector&lt; parent &gt; &amp;vec, const Date &amp;date) const</argsstring>
         <name>transform_to_this_frame</name>
         <qualifiedname>astrea::astro::DynamicFrame::transform_to_this_frame</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="typedefs_8hpp_1a7493d5fafd58941bc3440b866a25638d" kindref="member">RadiusVector</ref>&lt; <ref refid="structastrea_1_1astro_1_1DynamicFrame_1aa1ee0cb8336558b50097e5dbbc46ae38" kindref="member">parent</ref> &gt; &amp;</type>
+          <type>const <ref refid="typedefs_8hpp_1a7493d5fafd58941bc3440b866a25638d" kindref="member">RadiusVector</ref>&lt; <ref refid="structastrea_1_1astro_1_1DynamicFrame_1aa1ee0cb8336558b50097e5dbbc46ae38" kindref="member">parent</ref> &gt; &amp;</type>
           <declname>vec</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
           <declname>date</declname>
         </param>
         <briefdescription>
@@ -355,11 +355,11 @@
         <name>transform_from_this_frame</name>
         <qualifiedname>astrea::astro::DynamicFrame::transform_from_this_frame</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="typedefs_8hpp_1a7493d5fafd58941bc3440b866a25638d" kindref="member">RadiusVector</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_self_</ref> &gt; &amp;</type>
+          <type>const <ref refid="typedefs_8hpp_1a7493d5fafd58941bc3440b866a25638d" kindref="member">RadiusVector</ref>&lt; _self_ &gt; &amp;</type>
           <declname>vec</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
           <declname>date</declname>
         </param>
         <briefdescription>
@@ -403,13 +403,13 @@
     </sectiondef>
     <sectiondef kind="private-func">
       <memberdef kind="function" id="structastrea_1_1astro_1_1DynamicFrame_1a8ed8d8302c126a18e2507758f541c124" prot="private" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">DirectionCosineMatrix</ref>&lt; <ref refid="structastrea_1_1astro_1_1DynamicFrame_1aa1ee0cb8336558b50097e5dbbc46ae38" kindref="member">parent</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_self_</ref> &gt;</type>
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">DirectionCosineMatrix</ref>&lt; <ref refid="structastrea_1_1astro_1_1DynamicFrame_1aa1ee0cb8336558b50097e5dbbc46ae38" kindref="member">parent</ref>, _self_ &gt;</type>
         <definition>DirectionCosineMatrix&lt; parent, _self_ &gt; astrea::astro::DynamicFrame&lt; Self, _parent_, _self_ &gt;::get_dcm_impl</definition>
         <argsstring>(const Date &amp;date) const</argsstring>
         <name>get_dcm_impl</name>
         <qualifiedname>astrea::astro::DynamicFrame::get_dcm_impl</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
           <declname>date</declname>
         </param>
         <briefdescription>

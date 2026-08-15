@@ -6261,7 +6261,7 @@ You're not viewing the latest version.
 <td style="text-align: left;"><a href="#typedef-period"><strong>period</strong></a>  <br><em>The period type, seconds.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">typedef <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>double</strong></a></td>
+<td style="text-align: right;">typedef double</td>
 <td style="text-align: left;"><a href="#typedef-rep"><strong>rep</strong></a>  <br><em>The representation type, a double for sub-second precision.</em></td>
 </tr>
 <tr>
@@ -6280,11 +6280,11 @@ You're not viewing the latest version.
 </thead>
 <tbody>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>constexpr</strong></a> <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>bool</strong></a></td>
-<td style="text-align: left;"><a href="#variable-is_steady"><strong>is_steady</strong></a>   = <code>[**false**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)</code><br><em>TDB is not a steady clock; it is anchored to TAI.</em></td>
+<td style="text-align: right;">constexpr bool</td>
+<td style="text-align: left;"><a href="#variable-is_steady"><strong>is_steady</strong></a>   = <code>false</code><br><em>TDB is not a steady clock; it is anchored to TAI.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>constexpr</strong></a> <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>auto</strong></a></td>
+<td style="text-align: right;">constexpr auto</td>
 <td style="text-align: left;"><a href="#variable-jdref"><strong>jdRef</strong></a>   = <code>[**JulianDateClock::duration**](structastrea_1_1astro_1_1JulianDateClock.md#typedef-duration){ 2451545.0 }</code><br></td>
 </tr>
 </tbody>
@@ -6299,16 +6299,16 @@ You're not viewing the latest version.
 </thead>
 <tbody>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>auto</strong></a></td>
-<td style="text-align: left;"><a href="#function-from_sys"><strong>from_sys</strong></a> (std::chrono::sys_time&lt; <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Duration</strong></a> &gt; <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> &amp; timePoint) noexcept<br><em>Converts a system time point to a Barycentric Dynamical Time time point.</em></td>
+<td style="text-align: right;">auto</td>
+<td style="text-align: left;"><a href="#function-from_sys"><strong>from_sys</strong></a> (std::chrono::sys_time&lt; Duration &gt; const &amp; timePoint) noexcept<br><em>Converts a system time point to a Barycentric Dynamical Time time point.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;"><a href="./#typedef-time_point"><strong>time_point</strong></a></td>
 <td style="text-align: left;"><a href="#function-now"><strong>now</strong></a> () noexcept<br><em>Gets the current time point in Barycentric Dynamical Time format.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>auto</strong></a></td>
-<td style="text-align: left;"><a href="#function-to_sys"><strong>to_sys</strong></a> (<a href="../namespaceastrea_1_1astro/#typedef-barycentricdynamicaltimepoint"><strong>BarycentricDynamicalTimePoint</strong></a>&lt; <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Duration</strong></a> &gt; <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> &amp; timePoint) noexcept<br><em>Converts a Barycentric Dynamical Time time point to a system time point.</em></td>
+<td style="text-align: right;">auto</td>
+<td style="text-align: left;"><a href="#function-to_sys"><strong>to_sys</strong></a> (<a href="../namespaceastrea_1_1astro/#typedef-barycentricdynamicaltimepoint"><strong>BarycentricDynamicalTimePoint</strong></a>&lt; Duration &gt; const &amp; timePoint) noexcept<br><em>Converts a Barycentric Dynamical Time time point to a system time point.</em></td>
 </tr>
 </tbody>
 </table>
@@ -6352,7 +6352,7 @@ You're not viewing the latest version.
 <h2 id="public-static-functions-documentation">Public Static Functions Documentation<a class="headerlink" href="#public-static-functions-documentation" title="Permanent link">&para;</a></h2>
 <h3 id="function-from_sys">function from_sys<a class="headerlink" href="#function-from_sys" title="Permanent link">&para;</a></h3>
 <p><em>Converts a system time point to a Barycentric Dynamical Time time point.</em> 
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">template</span><span class="o">&lt;</span><span class="k">class</span><span class="w">  </span><span class="nc">Duration</span><span class="o">&gt;</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">template</span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="nc">Duration</span><span class="o">&gt;</span>
 </span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="k">static</span><span class="w"> </span><span class="kr">inline</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">BarycentricDynamicalTimeClock</span><span class="o">::</span><span class="n">from_sys</span><span class="w"> </span><span class="p">(</span>
 </span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">sys_time</span><span class="o">&lt;</span><span class="w"> </span><span class="n">Duration</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">timePoint</span>
 </span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="p">)</span><span class="w"> </span><span class="k">noexcept</span>
@@ -6381,7 +6381,7 @@ You're not viewing the latest version.
 
 <h3 id="function-to_sys">function to_sys<a class="headerlink" href="#function-to_sys" title="Permanent link">&para;</a></h3>
 <p><em>Converts a Barycentric Dynamical Time time point to a system time point.</em> 
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="k">template</span><span class="o">&lt;</span><span class="k">class</span><span class="w">  </span><span class="nc">Duration</span><span class="o">&gt;</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="k">template</span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="nc">Duration</span><span class="o">&gt;</span>
 </span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="k">static</span><span class="w"> </span><span class="kr">inline</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">BarycentricDynamicalTimeClock</span><span class="o">::</span><span class="n">to_sys</span><span class="w"> </span><span class="p">(</span>
 </span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">    </span><span class="n">BarycentricDynamicalTimePoint</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">Duration</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">timePoint</span>
 </span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="p">)</span><span class="w"> </span><span class="k">noexcept</span>

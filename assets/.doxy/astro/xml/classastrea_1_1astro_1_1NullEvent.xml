@@ -23,21 +23,21 @@
         <location file="astrea/astro/astro/propagation/event_detection/events/NullEvent.hpp" line="40" column="17" bodyfile="astrea/astro/astro/propagation/event_detection/events/NullEvent.hpp" bodystart="40" bodyend="40"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1NullEvent_1ad2a5976750f919c12e02e967ef4cc1cb" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Unitless</ref></type>
+        <type>Unitless</type>
         <definition>Unitless astrea::astro::NullEvent::measure_event</definition>
         <argsstring>(const Time &amp;time, const State &amp;state, const Vehicle &amp;vehicle) const</argsstring>
         <name>measure_event</name>
         <qualifiedname>astrea::astro::NullEvent::measure_event</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Time</ref> &amp;</type>
+          <type>const Time &amp;</type>
           <declname>time</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
           <declname>state</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Vehicle" kindref="compound">Vehicle</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Vehicle" kindref="compound">Vehicle</ref> &amp;</type>
           <declname>vehicle</declname>
         </param>
         <briefdescription>
@@ -64,7 +64,7 @@
         <location file="astrea/astro/astro/propagation/event_detection/events/NullEvent.hpp" line="49" column="14" bodyfile="astrea/astro/astro/propagation/event_detection/events/NullEvent.hpp" bodystart="49" bodyend="52"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1NullEvent_1a5058196ba1fa464c9be14e8e2d0031d8" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">bool</ref></type>
+        <type>bool</type>
         <definition>bool astrea::astro::NullEvent::is_terminal</definition>
         <argsstring>() const</argsstring>
         <name>is_terminal</name>

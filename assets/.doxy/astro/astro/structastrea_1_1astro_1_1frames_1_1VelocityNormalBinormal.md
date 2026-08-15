@@ -2,7 +2,7 @@
 
 # Struct astrea::astro::frames::VelocityNormalBinormal
 
-**template &lt;IsFrame [**auto**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) \_parent\_&gt;**
+**template &lt;IsFrame auto \_parent\_&gt;**
 
 
 
@@ -35,7 +35,7 @@ Inherits the following classes: [astrea::astro::DynamicFrame](structastrea_1_1as
 
 | Type | Name |
 | ---: | :--- |
-| typedef [**VnbTag**](structastrea_1_1astro_1_1frames_1_1VnbTag.md)&lt; [**\_parent\_**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt; | [**tag\_type**](#typedef-tag_type)  <br>_Tag type for this frame._  |
+| typedef [**VnbTag**](structastrea_1_1astro_1_1frames_1_1VnbTag.md)&lt; \_parent\_ &gt; | [**tag\_type**](#typedef-tag_type)  <br>_Tag type for this frame._  |
 
 
 
@@ -52,8 +52,8 @@ Inherits the following classes: [astrea::astro::DynamicFrame](structastrea_1_1as
 
 | Type | Name |
 | ---: | :--- |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**auto**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**parent**](#variable-parent)   = `[**\_parent\_**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)`<br>_The reference frame of the VNB frame._  |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**tag\_type**](structastrea_1_1astro_1_1frames_1_1VelocityNormalBinormal.md#typedef-tag_type) | [**tag**](#variable-tag)   = `{}`<br>_Empty frame tag satisfying IsFrame._  |
+|  constexpr auto | [**parent**](#variable-parent)   = `\_parent\_`<br>_The reference frame of the VNB frame._  |
+|  constexpr [**tag\_type**](structastrea_1_1astro_1_1frames_1_1VelocityNormalBinormal.md#typedef-tag_type) | [**tag**](#variable-tag)   = `{}`<br>_Empty frame tag satisfying IsFrame._  |
 
 
 ## Public Static Attributes inherited from astrea::astro::DynamicFrame
@@ -62,7 +62,7 @@ See [astrea::astro::DynamicFrame](structastrea_1_1astro_1_1DynamicFrame.md)
 
 | Type | Name |
 | ---: | :--- |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**auto**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**parent**](structastrea_1_1astro_1_1DynamicFrame.md#variable-parent)   = `[**\_parent\_**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)`<br>_The reference frame of the dynamic frame._  |
+|  constexpr auto | [**parent**](structastrea_1_1astro_1_1DynamicFrame.md#variable-parent)   = `\_parent\_`<br>_The reference frame of the dynamic frame._  |
 
 
 
@@ -93,9 +93,9 @@ See [astrea::astro::DynamicFrame](structastrea_1_1astro_1_1DynamicFrame.md)
 
 | Type | Name |
 | ---: | :--- |
-|   | [**VelocityNormalBinormal**](#function-velocitynormalbinormal-12) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**RadiusVector**](namespaceastrea_1_1astro.md#typedef-radiusvector)&lt; [**parent**](structastrea_1_1astro_1_1frames_1_1VelocityNormalBinormal.md#variable-parent) &gt; & position, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**VelocityVector**](namespaceastrea_1_1astro.md#typedef-velocityvector)&lt; [**parent**](structastrea_1_1astro_1_1frames_1_1VelocityNormalBinormal.md#variable-parent) &gt; & velocity) <br>_Constructor for instantaneous dynamic state/frames._  |
+|   | [**VelocityNormalBinormal**](#function-velocitynormalbinormal-12) (const [**RadiusVector**](namespaceastrea_1_1astro.md#typedef-radiusvector)&lt; [**parent**](structastrea_1_1astro_1_1frames_1_1VelocityNormalBinormal.md#variable-parent) &gt; & position, const [**VelocityVector**](namespaceastrea_1_1astro.md#typedef-velocityvector)&lt; [**parent**](structastrea_1_1astro_1_1frames_1_1VelocityNormalBinormal.md#variable-parent) &gt; & velocity) <br>_Constructor for instantaneous dynamic state/frames._  |
 |   | [**VelocityNormalBinormal**](#function-velocitynormalbinormal-22) () = delete<br>_Default constructor is deleted to prevent instantiation without a parent frame._  |
-|  [**DirectionCosineMatrix**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)&lt; [**parent**](structastrea_1_1astro_1_1frames_1_1VelocityNormalBinormal.md#variable-parent), [**tag**](structastrea_1_1astro_1_1frames_1_1VelocityNormalBinormal.md#variable-tag) &gt; | [**get\_dcm**](#function-get_dcm) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Date**](classastrea_1_1astro_1_1Date.md) & date) const<br>_Gets the Direction Cosine Matrix (DCM) for the VNB frame at a given date._  |
+|  [**DirectionCosineMatrix**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)&lt; [**parent**](structastrea_1_1astro_1_1frames_1_1VelocityNormalBinormal.md#variable-parent), [**tag**](structastrea_1_1astro_1_1frames_1_1VelocityNormalBinormal.md#variable-tag) &gt; | [**get\_dcm**](#function-get_dcm) (const [**Date**](classastrea_1_1astro_1_1Date.md) & date) const<br>_Gets the Direction Cosine Matrix (DCM) for the VNB frame at a given date._  |
 
 
 ## Public Functions inherited from astrea::astro::DynamicFrame
@@ -104,10 +104,10 @@ See [astrea::astro::DynamicFrame](structastrea_1_1astro_1_1DynamicFrame.md)
 
 | Type | Name |
 | ---: | :--- |
-|  [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; [**Value\_T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), [**\_self\_**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt; | [**rotate\_into\_this\_frame**](structastrea_1_1astro_1_1DynamicFrame.md#function-rotate_into_this_frame) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; [**Value\_T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), [**parent**](structastrea_1_1astro_1_1DynamicFrame.md#variable-parent) &gt; & vec, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Date**](classastrea_1_1astro_1_1Date.md) & date) const<br>_Rotates a_ [_**CartesianVector**_](structastrea_1_1astro_1_1CartesianVector.md) _from the parent frame to this frame's coordinates._ |
-|  [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; [**Value\_T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), [**parent**](structastrea_1_1astro_1_1DynamicFrame.md#variable-parent) &gt; | [**rotate\_out\_of\_this\_frame**](structastrea_1_1astro_1_1DynamicFrame.md#function-rotate_out_of_this_frame) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; [**Value\_T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), [**\_self\_**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt; & vec, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Date**](classastrea_1_1astro_1_1Date.md) & date) const<br>_Rotates a_ [_**CartesianVector**_](structastrea_1_1astro_1_1CartesianVector.md) _from this frame's coordinates to the parent frame coordinates._ |
-|  [**RadiusVector**](namespaceastrea_1_1astro.md#typedef-radiusvector)&lt; [**parent**](structastrea_1_1astro_1_1DynamicFrame.md#variable-parent) &gt; | [**transform\_from\_this\_frame**](structastrea_1_1astro_1_1DynamicFrame.md#function-transform_from_this_frame) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**RadiusVector**](namespaceastrea_1_1astro.md#typedef-radiusvector)&lt; [**\_self\_**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt; & vec, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Date**](classastrea_1_1astro_1_1Date.md) & date) const<br>_Converts a_ [_**CartesianVector**_](structastrea_1_1astro_1_1CartesianVector.md) _from this frame's coordinates to the parent frame coordinates._ |
-|  [**RadiusVector**](namespaceastrea_1_1astro.md#typedef-radiusvector)&lt; [**\_self\_**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt; | [**transform\_to\_this\_frame**](structastrea_1_1astro_1_1DynamicFrame.md#function-transform_to_this_frame) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**RadiusVector**](namespaceastrea_1_1astro.md#typedef-radiusvector)&lt; [**parent**](structastrea_1_1astro_1_1DynamicFrame.md#variable-parent) &gt; & vec, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Date**](classastrea_1_1astro_1_1Date.md) & date) const<br>_Converts a_ [_**CartesianVector**_](structastrea_1_1astro_1_1CartesianVector.md) _from the parent frame to this frame's coordinates._ |
+|  [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; Value\_T, \_self\_ &gt; | [**rotate\_into\_this\_frame**](structastrea_1_1astro_1_1DynamicFrame.md#function-rotate_into_this_frame) (const [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; Value\_T, [**parent**](structastrea_1_1astro_1_1DynamicFrame.md#variable-parent) &gt; & vec, const [**Date**](classastrea_1_1astro_1_1Date.md) & date) const<br>_Rotates a_ [_**CartesianVector**_](structastrea_1_1astro_1_1CartesianVector.md) _from the parent frame to this frame's coordinates._ |
+|  [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; Value\_T, [**parent**](structastrea_1_1astro_1_1DynamicFrame.md#variable-parent) &gt; | [**rotate\_out\_of\_this\_frame**](structastrea_1_1astro_1_1DynamicFrame.md#function-rotate_out_of_this_frame) (const [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; Value\_T, \_self\_ &gt; & vec, const [**Date**](classastrea_1_1astro_1_1Date.md) & date) const<br>_Rotates a_ [_**CartesianVector**_](structastrea_1_1astro_1_1CartesianVector.md) _from this frame's coordinates to the parent frame coordinates._ |
+|  [**RadiusVector**](namespaceastrea_1_1astro.md#typedef-radiusvector)&lt; [**parent**](structastrea_1_1astro_1_1DynamicFrame.md#variable-parent) &gt; | [**transform\_from\_this\_frame**](structastrea_1_1astro_1_1DynamicFrame.md#function-transform_from_this_frame) (const [**RadiusVector**](namespaceastrea_1_1astro.md#typedef-radiusvector)&lt; \_self\_ &gt; & vec, const [**Date**](classastrea_1_1astro_1_1Date.md) & date) const<br>_Converts a_ [_**CartesianVector**_](structastrea_1_1astro_1_1CartesianVector.md) _from this frame's coordinates to the parent frame coordinates._ |
+|  [**RadiusVector**](namespaceastrea_1_1astro.md#typedef-radiusvector)&lt; \_self\_ &gt; | [**transform\_to\_this\_frame**](structastrea_1_1astro_1_1DynamicFrame.md#function-transform_to_this_frame) (const [**RadiusVector**](namespaceastrea_1_1astro.md#typedef-radiusvector)&lt; [**parent**](structastrea_1_1astro_1_1DynamicFrame.md#variable-parent) &gt; & vec, const [**Date**](classastrea_1_1astro_1_1Date.md) & date) const<br>_Converts a_ [_**CartesianVector**_](structastrea_1_1astro_1_1CartesianVector.md) _from the parent frame to this frame's coordinates._ |
 
 
 
@@ -170,9 +170,9 @@ See [astrea::astro::DynamicFrame](structastrea_1_1astro_1_1DynamicFrame.md)
 
 | Type | Name |
 | ---: | :--- |
-|   | [**DynamicFrame**](structastrea_1_1astro_1_1DynamicFrame.md#function-dynamicframe) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**RadiusVector**](namespaceastrea_1_1astro.md#typedef-radiusvector)&lt; [**\_parent\_**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt; & position, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**VelocityVector**](namespaceastrea_1_1astro.md#typedef-velocityvector)&lt; [**\_parent\_**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt; & velocity) <br>_Constructor for instantaneous dynamic state/frames._  |
-|  [**RadiusVector**](namespaceastrea_1_1astro.md#typedef-radiusvector)&lt; [**parent**](structastrea_1_1astro_1_1DynamicFrame.md#variable-parent) &gt; | [**get\_position**](structastrea_1_1astro_1_1DynamicFrame.md#function-get_position) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Date**](classastrea_1_1astro_1_1Date.md) & date) const<br>_Gets the inertial position vector at a given date._  |
-|  [**VelocityVector**](namespaceastrea_1_1astro.md#typedef-velocityvector)&lt; [**parent**](structastrea_1_1astro_1_1DynamicFrame.md#variable-parent) &gt; | [**get\_velocity**](structastrea_1_1astro_1_1DynamicFrame.md#function-get_velocity) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Date**](classastrea_1_1astro_1_1Date.md) & date) const<br>_Gets the inertial velocity vector at a given date._  |
+|   | [**DynamicFrame**](structastrea_1_1astro_1_1DynamicFrame.md#function-dynamicframe) (const [**RadiusVector**](namespaceastrea_1_1astro.md#typedef-radiusvector)&lt; \_parent\_ &gt; & position, const [**VelocityVector**](namespaceastrea_1_1astro.md#typedef-velocityvector)&lt; \_parent\_ &gt; & velocity) <br>_Constructor for instantaneous dynamic state/frames._  |
+|  [**RadiusVector**](namespaceastrea_1_1astro.md#typedef-radiusvector)&lt; [**parent**](structastrea_1_1astro_1_1DynamicFrame.md#variable-parent) &gt; | [**get\_position**](structastrea_1_1astro_1_1DynamicFrame.md#function-get_position) (const [**Date**](classastrea_1_1astro_1_1Date.md) & date) const<br>_Gets the inertial position vector at a given date._  |
+|  [**VelocityVector**](namespaceastrea_1_1astro.md#typedef-velocityvector)&lt; [**parent**](structastrea_1_1astro_1_1DynamicFrame.md#variable-parent) &gt; | [**get\_velocity**](structastrea_1_1astro_1_1DynamicFrame.md#function-get_velocity) (const [**Date**](classastrea_1_1astro_1_1Date.md) & date) const<br>_Gets the inertial velocity vector at a given date._  |
 
 
 
@@ -235,8 +235,8 @@ constexpr tag_type astrea::astro::frames::VelocityNormalBinormal< _parent_ >::ta
 _Constructor for instantaneous dynamic state/frames._ 
 ```C++
 inline astrea::astro::frames::VelocityNormalBinormal::VelocityNormalBinormal (
-    const  RadiusVector < parent > & position,
-    const  VelocityVector < parent > & velocity
+    const RadiusVector < parent > & position,
+    const VelocityVector < parent > & velocity
 ) 
 ```
 
@@ -278,7 +278,7 @@ astrea::astro::frames::VelocityNormalBinormal::VelocityNormalBinormal () = delet
 _Gets the Direction Cosine Matrix (DCM) for the VNB frame at a given date._ 
 ```C++
 inline DirectionCosineMatrix < parent , tag > astrea::astro::frames::VelocityNormalBinormal::get_dcm (
-    const  Date & date
+    const Date & date
 ) const
 ```
 
@@ -306,5 +306,5 @@ DirectionCosineMatrix&lt;parent, VelocityNormalBinormal&gt; The DCM from parent 
 <hr>
 
 ------------------------------
-The documentation for this class was generated from the following file `astrea/astro/astro/frames/definitions/VelocityNormalBinormal.hpp`
+The documentation for this class was generated from the following file `astrea/astro/astro/frames/definitions/dynamic_frames/VelocityNormalBinormal.hpp`
 

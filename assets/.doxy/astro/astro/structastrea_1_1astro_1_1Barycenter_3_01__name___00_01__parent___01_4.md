@@ -2,7 +2,7 @@
 
 # Struct astrea::astro::Barycenter&lt; \_name\_, \_parent\_ &gt;
 
-**template &lt;mp\_units::symbol\_text \_name\_, IsOrigin [**auto**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) \_parent\_&gt;**
+**template &lt;mp\_units::symbol\_text \_name\_, IsOrigin auto \_parent\_&gt;**
 
 
 
@@ -63,8 +63,8 @@ See [astrea::astro::Origin&lt; \_name\_, \_parent\_ &gt;](structastrea_1_1astro_
 
 | Type | Name |
 | ---: | :--- |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**auto**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**name**](structastrea_1_1astro_1_1Origin_3_01__name___00_01__parent___01_4.md#variable-name)   = `[**\_name\_**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)`<br>_The name of the origin._  |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**auto**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**parent**](structastrea_1_1astro_1_1Origin_3_01__name___00_01__parent___01_4.md#variable-parent)   = `[**\_parent\_**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)`<br>_The parent origin of this origin, if any._  |
+|  constexpr auto | [**name**](structastrea_1_1astro_1_1Origin_3_01__name___00_01__parent___01_4.md#variable-name)   = `\_name\_`<br>_The name of the origin._  |
+|  constexpr auto | [**parent**](structastrea_1_1astro_1_1Origin_3_01__name___00_01__parent___01_4.md#variable-parent)   = `\_parent\_`<br>_The parent origin of this origin, if any._  |
 
 
 

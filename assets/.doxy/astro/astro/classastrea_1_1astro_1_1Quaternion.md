@@ -2,7 +2,7 @@
 
 # Class astrea::astro::Quaternion
 
-**template &lt;IsFrame [**auto**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) \_in\_frame\_, IsFrame [**auto**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) \_out\_frame\_&gt;**
+**template &lt;IsFrame auto \_in\_frame\_, IsFrame auto \_out\_frame\_&gt;**
 
 
 
@@ -40,8 +40,8 @@ _Class representing a quaternion for attitude rotations between frames._ [More..
 
 | Type | Name |
 | ---: | :--- |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**auto**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**in\_frame**](#variable-in_frame)   = `[**\_in\_frame\_**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)`<br> |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**auto**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**out\_frame**](#variable-out_frame)   = `[**\_out\_frame\_**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)`<br> |
+|  constexpr auto | [**in\_frame**](#variable-in_frame)   = `\_in\_frame\_`<br> |
+|  constexpr auto | [**out\_frame**](#variable-out_frame)   = `\_out\_frame\_`<br> |
 
 
 
@@ -61,41 +61,41 @@ _Class representing a quaternion for attitude rotations between frames._ [More..
 | Type | Name |
 | ---: | :--- |
 |   | [**Quaternion**](#function-quaternion-19) () <br>_Default constructor for the_ [_**Quaternion**_](classastrea_1_1astro_1_1Quaternion.md) _class. Initializes to the identity quaternion (no rotation)._ |
-|   | [**Quaternion**](#function-quaternion-29) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; [**Unitless**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), in\_frame &gt; & vec) <br>_Constructor for the_ [_**Quaternion**_](classastrea_1_1astro_1_1Quaternion.md) _class from a_[_**CartesianVector**_](structastrea_1_1astro_1_1CartesianVector.md) _._ |
-|   | [**Quaternion**](#function-quaternion-39) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Unitless**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & s, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; [**Unitless**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), in\_frame &gt; & vec) <br>_Constructor for the_ [_**Quaternion**_](classastrea_1_1astro_1_1Quaternion.md) _class from a scalar and a_[_**CartesianVector**_](structastrea_1_1astro_1_1CartesianVector.md) _._ |
-|   | [**Quaternion**](#function-quaternion-49) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Unitless**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & s, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Unitless**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & x, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Unitless**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & y, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Unitless**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & z) <br>_Constructor for the_ [_**Quaternion**_](classastrea_1_1astro_1_1Quaternion.md) _class from individual components._ |
-|   | [**Quaternion**](#function-quaternion-59) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Quaternion**](classastrea_1_1astro_1_1Quaternion.md) & other) = default<br>_Default copy constructor._  |
+|   | [**Quaternion**](#function-quaternion-29) (const [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; Unitless, in\_frame &gt; & vec) <br>_Constructor for the_ [_**Quaternion**_](classastrea_1_1astro_1_1Quaternion.md) _class from a_[_**CartesianVector**_](structastrea_1_1astro_1_1CartesianVector.md) _._ |
+|   | [**Quaternion**](#function-quaternion-39) (const Unitless & s, const [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; Unitless, in\_frame &gt; & vec) <br>_Constructor for the_ [_**Quaternion**_](classastrea_1_1astro_1_1Quaternion.md) _class from a scalar and a_[_**CartesianVector**_](structastrea_1_1astro_1_1CartesianVector.md) _._ |
+|   | [**Quaternion**](#function-quaternion-49) (const Unitless & s, const Unitless & x, const Unitless & y, const Unitless & z) <br>_Constructor for the_ [_**Quaternion**_](classastrea_1_1astro_1_1Quaternion.md) _class from individual components._ |
+|   | [**Quaternion**](#function-quaternion-59) (const [**Quaternion**](classastrea_1_1astro_1_1Quaternion.md) & other) = default<br>_Default copy constructor._  |
 |   | [**Quaternion**](#function-quaternion-69) ([**Quaternion**](classastrea_1_1astro_1_1Quaternion.md) && other) = default<br>_Default move constructor._  |
-|   | [**Quaternion**](#function-quaternion-79) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**DirectionCosineMatrix**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)&lt; in\_frame, out\_frame &gt; & dcm) <br>_Constructor for the_ [_**Quaternion**_](classastrea_1_1astro_1_1Quaternion.md) _class from a Direction Cosine Matrix (DCM)._ |
-|   | [**Quaternion**](#function-quaternion-89) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**EulerAngles**](classastrea_1_1astro_1_1EulerAngles.md)&lt; sequence, [**rotation\_type**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), in\_frame, out\_frame &gt; & angleSequence) <br>_Constructor for the_ [_**Quaternion**_](classastrea_1_1astro_1_1Quaternion.md) _class from an Euler angle sequence._ |
-|   | [**Quaternion**](#function-quaternion-99) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Angle**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & angle, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; [**Unitless**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), in\_frame &gt; & axis) <br>_Constructor for the_ [_**Quaternion**_](classastrea_1_1astro_1_1Quaternion.md) _class from an angle and rotation axis._ |
+|   | [**Quaternion**](#function-quaternion-79) (const [**DirectionCosineMatrix**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)&lt; in\_frame, out\_frame &gt; & dcm) <br>_Constructor for the_ [_**Quaternion**_](classastrea_1_1astro_1_1Quaternion.md) _class from a Direction Cosine Matrix (DCM)._ |
+|   | [**Quaternion**](#function-quaternion-89) (const [**EulerAngles**](classastrea_1_1astro_1_1EulerAngles.md)&lt; sequence, rotation\_type, in\_frame, out\_frame &gt; & angleSequence) <br>_Constructor for the_ [_**Quaternion**_](classastrea_1_1astro_1_1Quaternion.md) _class from an Euler angle sequence._ |
+|   | [**Quaternion**](#function-quaternion-99) (const Angle & angle, const [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; Unitless, in\_frame &gt; & axis) <br>_Constructor for the_ [_**Quaternion**_](classastrea_1_1astro_1_1Quaternion.md) _class from an angle and rotation axis._ |
 |  [**Quaternion**](classastrea_1_1astro_1_1Quaternion.md)&lt; out\_frame, in\_frame &gt; | [**conjugate**](#function-conjugate) () const<br>_Computes the conjugate of the quaternion._  |
-|  [**Unitless**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**dot**](#function-dot) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Quaternion**](classastrea_1_1astro_1_1Quaternion.md)&lt; in\_frame, out\_frame &gt; & other) const<br>_Computes the dot product between this quaternion and another quaternion._  |
-|  std::vector&lt; [**Unitless**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt; | [**force\_to\_vector**](#function-force_to_vector) () const<br>_Converts the quaternion to a vector form for use in numerical integration._  |
-|  [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Unitless**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & | [**get\_scalar\_part**](#function-get_scalar_part) () const<br>_Gets the scalar part of the quaternion._  |
-|  [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; [**Unitless**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), in\_frame &gt; & | [**get\_vector\_part**](#function-get_vector_part) () const<br>_Gets the vector part of the quaternion as a_ [_**CartesianVector**_](structastrea_1_1astro_1_1CartesianVector.md) _._ |
-|  [**Quaternion**](classastrea_1_1astro_1_1Quaternion.md)&lt; in\_frame, out\_frame &gt; | [**interpolate**](#function-interpolate) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Time**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & thisTime, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Time**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & otherTime, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Quaternion**](classastrea_1_1astro_1_1Quaternion.md)&lt; in\_frame, out\_frame &gt; & other, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Time**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & targetTime) const<br>_Interpolates between this quaternion and another quaternion at a target time using SLERP._  |
+|  Unitless | [**dot**](#function-dot) (const [**Quaternion**](classastrea_1_1astro_1_1Quaternion.md)&lt; in\_frame, out\_frame &gt; & other) const<br>_Computes the dot product between this quaternion and another quaternion._  |
+|  std::vector&lt; double &gt; | [**force\_to\_double\_vector**](#function-force_to_double_vector) () const<br>_Converts the quaternion to a vector form for use in numerical integration._  |
+|  const Unitless & | [**get\_scalar\_part**](#function-get_scalar_part) () const<br>_Gets the scalar part of the quaternion._  |
+|  const [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; Unitless, in\_frame &gt; & | [**get\_vector\_part**](#function-get_vector_part) () const<br>_Gets the vector part of the quaternion as a_ [_**CartesianVector**_](structastrea_1_1astro_1_1CartesianVector.md) _._ |
+|  [**Quaternion**](classastrea_1_1astro_1_1Quaternion.md)&lt; in\_frame, out\_frame &gt; | [**interpolate**](#function-interpolate) (const Time & thisTime, const Time & otherTime, const [**Quaternion**](classastrea_1_1astro_1_1Quaternion.md)&lt; in\_frame, out\_frame &gt; & other, const Time & targetTime) const<br>_Interpolates between this quaternion and another quaternion at a target time using SLERP._  |
 |  [**Quaternion**](classastrea_1_1astro_1_1Quaternion.md)&lt; out\_frame, in\_frame &gt; | [**inverse**](#function-inverse) () const<br>_Computes the inverse of the quaternion._  |
-|  [**Unitless**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**norm**](#function-norm) () const<br>_Computes the norm of the quaternion._  |
-|  [**Unitless**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**norm\_squared**](#function-norm_squared) () const<br>_Computes the square of the magnitude of the quaternion (s^2 + u^2)._  |
-|  [**void**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**normalize**](#function-normalize) () <br>_Normalizes the quaternion to ensure it represents a valid rotation._  |
-|  [**Quaternion**](classastrea_1_1astro_1_1Quaternion.md)&lt; in\_frame, out\_frame &gt; | [**operator\***](#function-operator) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Unitless**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & scalar) const<br>_Multiplication operator for the_ [_**Quaternion**_](classastrea_1_1astro_1_1Quaternion.md) _class by a scalar unitless quantity._ |
-|  [**Quaternion**](classastrea_1_1astro_1_1Quaternion.md)&lt; in\_frame, [**out\_frameu\_**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt; | [**operator\***](#function-operator_1) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Quaternion**](classastrea_1_1astro_1_1Quaternion.md)&lt; out\_frame, [**out\_frameu\_**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt; & other) const<br>_Multiplication operator for the_ [_**Quaternion**_](classastrea_1_1astro_1_1Quaternion.md) _class._ |
-|  [**Quaternion**](classastrea_1_1astro_1_1Quaternion.md)&lt; in\_frame, out\_frame &gt; & | [**operator\*=**](#function-operator_2) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Unitless**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & scalar) <br>_Multiplication operator for the_ [_**Quaternion**_](classastrea_1_1astro_1_1Quaternion.md) _class by a scalar unitless quantity._ |
-|  [**Quaternion**](classastrea_1_1astro_1_1Quaternion.md)&lt; in\_frame, out\_frame &gt; | [**operator+**](#function-operator_3) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Quaternion**](classastrea_1_1astro_1_1Quaternion.md)&lt; in\_frame, out\_frame &gt; & other) const<br>_Addition operator for the_ [_**Quaternion**_](classastrea_1_1astro_1_1Quaternion.md) _class._ |
-|  [**Quaternion**](classastrea_1_1astro_1_1Quaternion.md)&lt; in\_frame, out\_frame &gt; & | [**operator+=**](#function-operator_4) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Quaternion**](classastrea_1_1astro_1_1Quaternion.md)&lt; in\_frame, out\_frame &gt; & other) <br>_In-place addition operator for the_ [_**Quaternion**_](classastrea_1_1astro_1_1Quaternion.md) _class._ |
+|  Unitless | [**norm**](#function-norm) () const<br>_Computes the norm of the quaternion._  |
+|  Unitless | [**norm\_squared**](#function-norm_squared) () const<br>_Computes the square of the magnitude of the quaternion (s^2 + u^2)._  |
+|  void | [**normalize**](#function-normalize) () <br>_Normalizes the quaternion to ensure it represents a valid rotation._  |
+|  [**Quaternion**](classastrea_1_1astro_1_1Quaternion.md)&lt; in\_frame, out\_frame &gt; | [**operator\***](#function-operator) (const Unitless & scalar) const<br>_Multiplication operator for the_ [_**Quaternion**_](classastrea_1_1astro_1_1Quaternion.md) _class by a scalar unitless quantity._ |
+|  [**Quaternion**](classastrea_1_1astro_1_1Quaternion.md)&lt; in\_frame, out\_frameu\_ &gt; | [**operator\***](#function-operator_1) (const [**Quaternion**](classastrea_1_1astro_1_1Quaternion.md)&lt; out\_frame, out\_frameu\_ &gt; & other) const<br>_Multiplication operator for the_ [_**Quaternion**_](classastrea_1_1astro_1_1Quaternion.md) _class._ |
+|  [**Quaternion**](classastrea_1_1astro_1_1Quaternion.md)&lt; in\_frame, out\_frame &gt; & | [**operator\*=**](#function-operator_2) (const Unitless & scalar) <br>_Multiplication operator for the_ [_**Quaternion**_](classastrea_1_1astro_1_1Quaternion.md) _class by a scalar unitless quantity._ |
+|  [**Quaternion**](classastrea_1_1astro_1_1Quaternion.md)&lt; in\_frame, out\_frame &gt; | [**operator+**](#function-operator_3) (const [**Quaternion**](classastrea_1_1astro_1_1Quaternion.md)&lt; in\_frame, out\_frame &gt; & other) const<br>_Addition operator for the_ [_**Quaternion**_](classastrea_1_1astro_1_1Quaternion.md) _class._ |
+|  [**Quaternion**](classastrea_1_1astro_1_1Quaternion.md)&lt; in\_frame, out\_frame &gt; & | [**operator+=**](#function-operator_4) (const [**Quaternion**](classastrea_1_1astro_1_1Quaternion.md)&lt; in\_frame, out\_frame &gt; & other) <br>_In-place addition operator for the_ [_**Quaternion**_](classastrea_1_1astro_1_1Quaternion.md) _class._ |
 |  [**Quaternion**](classastrea_1_1astro_1_1Quaternion.md)&lt; in\_frame, out\_frame &gt; | [**operator-**](#function-operator-) () const<br>_Unary negation operator for the_ [_**Quaternion**_](classastrea_1_1astro_1_1Quaternion.md) _class._ |
-|  [**Quaternion**](classastrea_1_1astro_1_1Quaternion.md)&lt; in\_frame, out\_frame &gt; | [**operator-**](#function-operator-_1) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Quaternion**](classastrea_1_1astro_1_1Quaternion.md)&lt; in\_frame, out\_frame &gt; & other) const<br>_Subtraction operator for the_ [_**Quaternion**_](classastrea_1_1astro_1_1Quaternion.md) _class._ |
-|  [**Quaternion**](classastrea_1_1astro_1_1Quaternion.md)&lt; in\_frame, out\_frame &gt; & | [**operator-=**](#function-operator-_2) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Quaternion**](classastrea_1_1astro_1_1Quaternion.md)&lt; in\_frame, out\_frame &gt; & other) <br>_In-place subtraction operator for the_ [_**Quaternion**_](classastrea_1_1astro_1_1Quaternion.md) _class._ |
-|  [**Quaternion**](classastrea_1_1astro_1_1Quaternion.md)&lt; in\_frame, out\_frame &gt; | [**operator/**](#function-operator_5) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Unitless**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & scalar) const<br>_Division operator for the_ [_**Quaternion**_](classastrea_1_1astro_1_1Quaternion.md) _class by a scalar unitless quantity._ |
-|  [**QuaternionPartial**](classastrea_1_1astro_1_1QuaternionPartial.md)&lt; in\_frame, out\_frame &gt; | [**operator/**](#function-operator_6) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Time**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & dt) const<br>_Division operator for the_ [_**Quaternion**_](classastrea_1_1astro_1_1Quaternion.md) _class by a scalar time quantity, resulting in a_[_**QuaternionPartial**_](classastrea_1_1astro_1_1QuaternionPartial.md) _._ |
-|  [**Quaternion**](classastrea_1_1astro_1_1Quaternion.md)&lt; in\_frame, out\_frame &gt; & | [**operator/=**](#function-operator_7) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Unitless**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & scalar) <br>_Division operator for the_ [_**Quaternion**_](classastrea_1_1astro_1_1Quaternion.md) _class by a scalar unitless quantity._ |
-|  [**Quaternion**](classastrea_1_1astro_1_1Quaternion.md) & | [**operator=**](#function-operator_8) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Quaternion**](classastrea_1_1astro_1_1Quaternion.md) & other) = default<br>_Default copy assignment operator._  |
+|  [**Quaternion**](classastrea_1_1astro_1_1Quaternion.md)&lt; in\_frame, out\_frame &gt; | [**operator-**](#function-operator-_1) (const [**Quaternion**](classastrea_1_1astro_1_1Quaternion.md)&lt; in\_frame, out\_frame &gt; & other) const<br>_Subtraction operator for the_ [_**Quaternion**_](classastrea_1_1astro_1_1Quaternion.md) _class._ |
+|  [**Quaternion**](classastrea_1_1astro_1_1Quaternion.md)&lt; in\_frame, out\_frame &gt; & | [**operator-=**](#function-operator-_2) (const [**Quaternion**](classastrea_1_1astro_1_1Quaternion.md)&lt; in\_frame, out\_frame &gt; & other) <br>_In-place subtraction operator for the_ [_**Quaternion**_](classastrea_1_1astro_1_1Quaternion.md) _class._ |
+|  [**Quaternion**](classastrea_1_1astro_1_1Quaternion.md)&lt; in\_frame, out\_frame &gt; | [**operator/**](#function-operator_5) (const Unitless & scalar) const<br>_Division operator for the_ [_**Quaternion**_](classastrea_1_1astro_1_1Quaternion.md) _class by a scalar unitless quantity._ |
+|  [**QuaternionPartial**](classastrea_1_1astro_1_1QuaternionPartial.md)&lt; in\_frame, out\_frame &gt; | [**operator/**](#function-operator_6) (const Time & dt) const<br>_Division operator for the_ [_**Quaternion**_](classastrea_1_1astro_1_1Quaternion.md) _class by a scalar time quantity, resulting in a_[_**QuaternionPartial**_](classastrea_1_1astro_1_1QuaternionPartial.md) _._ |
+|  [**Quaternion**](classastrea_1_1astro_1_1Quaternion.md)&lt; in\_frame, out\_frame &gt; & | [**operator/=**](#function-operator_7) (const Unitless & scalar) <br>_Division operator for the_ [_**Quaternion**_](classastrea_1_1astro_1_1Quaternion.md) _class by a scalar unitless quantity._ |
+|  [**Quaternion**](classastrea_1_1astro_1_1Quaternion.md) & | [**operator=**](#function-operator_8) (const [**Quaternion**](classastrea_1_1astro_1_1Quaternion.md) & other) = default<br>_Default copy assignment operator._  |
 |  [**Quaternion**](classastrea_1_1astro_1_1Quaternion.md) & | [**operator=**](#function-operator_9) ([**Quaternion**](classastrea_1_1astro_1_1Quaternion.md) && other) = default<br>_Default move assignment operator._  |
-|  [**bool**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**operator==**](#function-operator_10) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Quaternion**](classastrea_1_1astro_1_1Quaternion.md) & other) const<br>_Equality operator for_ [_**Quaternion**_](classastrea_1_1astro_1_1Quaternion.md) _._ |
-|  [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; [**Value\_T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), out\_frame &gt; | [**rotate\_vector**](#function-rotate_vector) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; [**Value\_T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), in\_frame &gt; & vec) const<br>_Rotates a vector from the input frame to the output frame using this quaternion._  |
+|  bool | [**operator==**](#function-operator_10) (const [**Quaternion**](classastrea_1_1astro_1_1Quaternion.md) & other) const<br>_Equality operator for_ [_**Quaternion**_](classastrea_1_1astro_1_1Quaternion.md) _._ |
+|  [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; Value\_T, out\_frame &gt; | [**rotate\_vector**](#function-rotate_vector) (const [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; Value\_T, in\_frame &gt; & vec) const<br>_Rotates a vector from the input frame to the output frame using this quaternion._  |
 |  [**DirectionCosineMatrix**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)&lt; in\_frame, out\_frame &gt; | [**to\_dcm**](#function-to_dcm) () const<br>_Get the scalar part of the quaternion._  |
-|  [**EulerAngles**](classastrea_1_1astro_1_1EulerAngles.md)&lt; sequence, [**rotation\_type**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), in\_frame, out\_frame &gt; | [**to\_euler\_angles**](#function-to_euler_angles) () const<br>_Convert the quaternion to an Euler angle sequence._  |
+|  [**EulerAngles**](classastrea_1_1astro_1_1EulerAngles.md)&lt; sequence, rotation\_type, in\_frame, out\_frame &gt; | [**to\_euler\_angles**](#function-to_euler_angles) () const<br>_Convert the quaternion to an Euler angle sequence._  |
 
 
 
@@ -198,7 +198,7 @@ inline astrea::astro::Quaternion::Quaternion ()
 _Constructor for the_ [_**Quaternion**_](classastrea_1_1astro_1_1Quaternion.md) _class from a_[_**CartesianVector**_](structastrea_1_1astro_1_1CartesianVector.md) _._
 ```C++
 inline astrea::astro::Quaternion::Quaternion (
-    const  CartesianVector < Unitless , in_frame > & vec
+    const CartesianVector < Unitless, in_frame > & vec
 ) 
 ```
 
@@ -225,8 +225,8 @@ inline astrea::astro::Quaternion::Quaternion (
 _Constructor for the_ [_**Quaternion**_](classastrea_1_1astro_1_1Quaternion.md) _class from a scalar and a_[_**CartesianVector**_](structastrea_1_1astro_1_1CartesianVector.md) _._
 ```C++
 inline astrea::astro::Quaternion::Quaternion (
-    const  Unitless & s,
-    const  CartesianVector < Unitless , in_frame > & vec
+    const Unitless & s,
+    const CartesianVector < Unitless, in_frame > & vec
 ) 
 ```
 
@@ -254,10 +254,10 @@ inline astrea::astro::Quaternion::Quaternion (
 _Constructor for the_ [_**Quaternion**_](classastrea_1_1astro_1_1Quaternion.md) _class from individual components._
 ```C++
 inline astrea::astro::Quaternion::Quaternion (
-    const  Unitless & s,
-    const  Unitless & x,
-    const  Unitless & y,
-    const  Unitless & z
+    const Unitless & s,
+    const Unitless & x,
+    const Unitless & y,
+    const Unitless & z
 ) 
 ```
 
@@ -294,7 +294,7 @@ inline astrea::astro::Quaternion::Quaternion (
 _Default copy constructor._ 
 ```C++
 astrea::astro::Quaternion::Quaternion (
-    const  Quaternion & other
+    const Quaternion & other
 ) = default
 ```
 
@@ -326,7 +326,7 @@ astrea::astro::Quaternion::Quaternion (
 _Constructor for the_ [_**Quaternion**_](classastrea_1_1astro_1_1Quaternion.md) _class from a Direction Cosine Matrix (DCM)._
 ```C++
 inline astrea::astro::Quaternion::Quaternion (
-    const  DirectionCosineMatrix < in_frame, out_frame > & dcm
+    const DirectionCosineMatrix < in_frame, out_frame > & dcm
 ) 
 ```
 
@@ -361,7 +361,7 @@ _Constructor for the_ [_**Quaternion**_](classastrea_1_1astro_1_1Quaternion.md) 
 ```C++
 template<RotationSequence sequence, RotationType rotation_type>
 inline astrea::astro::Quaternion::Quaternion (
-    const  EulerAngles < sequence, rotation_type , in_frame, out_frame > & angleSequence
+    const EulerAngles < sequence, rotation_type, in_frame, out_frame > & angleSequence
 ) 
 ```
 
@@ -403,8 +403,8 @@ This constructor converts the Euler angles to a DCM and { uses the DCM construct
 _Constructor for the_ [_**Quaternion**_](classastrea_1_1astro_1_1Quaternion.md) _class from an angle and rotation axis._
 ```C++
 inline astrea::astro::Quaternion::Quaternion (
-    const  Angle & angle,
-    const  CartesianVector < Unitless , in_frame > & axis
+    const Angle & angle,
+    const CartesianVector < Unitless, in_frame > & axis
 ) 
 ```
 
@@ -464,7 +464,7 @@ The conjugate of the quaternion.
 _Computes the dot product between this quaternion and another quaternion._ 
 ```C++
 inline Unitless astrea::astro::Quaternion::dot (
-    const  Quaternion < in_frame, out_frame > & other
+    const Quaternion < in_frame, out_frame > & other
 ) const
 ```
 
@@ -493,11 +493,11 @@ Unitless The dot product of this quaternion and the other quaternion, computed a
 
 
 
-### function force\_to\_vector 
+### function force\_to\_double\_vector 
 
 _Converts the quaternion to a vector form for use in numerical integration._ 
 ```C++
-inline std::vector< Unitless > astrea::astro::Quaternion::force_to_vector () const
+inline std::vector< double > astrea::astro::Quaternion::force_to_double_vector () const
 ```
 
 
@@ -522,7 +522,7 @@ A std::vector of Unitless quantities representing the components of the quaterni
 
 _Gets the scalar part of the quaternion._ 
 ```C++
-inline const  Unitless & astrea::astro::Quaternion::get_scalar_part () const
+inline const Unitless & astrea::astro::Quaternion::get_scalar_part () const
 ```
 
 
@@ -547,7 +547,7 @@ const Unitless& The scalar part of the quaternion.
 
 _Gets the vector part of the quaternion as a_ [_**CartesianVector**_](structastrea_1_1astro_1_1CartesianVector.md) _._
 ```C++
-inline const  CartesianVector < Unitless , in_frame > & astrea::astro::Quaternion::get_vector_part () const
+inline const CartesianVector < Unitless, in_frame > & astrea::astro::Quaternion::get_vector_part () const
 ```
 
 
@@ -573,10 +573,10 @@ const [**CartesianVector&lt;Unitless, in\_frame&gt;**](structastrea_1_1astro_1_1
 _Interpolates between this quaternion and another quaternion at a target time using SLERP._ 
 ```C++
 inline Quaternion < in_frame, out_frame > astrea::astro::Quaternion::interpolate (
-    const  Time & thisTime,
-    const  Time & otherTime,
-    const  Quaternion < in_frame, out_frame > & other,
-    const  Time & targetTime
+    const Time & thisTime,
+    const Time & otherTime,
+    const Quaternion < in_frame, out_frame > & other,
+    const Time & targetTime
 ) const
 ```
 
@@ -716,7 +716,7 @@ inline void astrea::astro::Quaternion::normalize ()
 _Multiplication operator for the_ [_**Quaternion**_](classastrea_1_1astro_1_1Quaternion.md) _class by a scalar unitless quantity._
 ```C++
 inline Quaternion < in_frame, out_frame > astrea::astro::Quaternion::operator* (
-    const  Unitless & scalar
+    const Unitless & scalar
 ) const
 ```
 
@@ -751,7 +751,7 @@ _Multiplication operator for the_ [_**Quaternion**_](classastrea_1_1astro_1_1Qua
 ```C++
 template<IsFrame auto out_frameu_>
 inline Quaternion < in_frame, out_frameu_ > astrea::astro::Quaternion::operator* (
-    const  Quaternion < out_frame, out_frameu_ > & other
+    const Quaternion < out_frame, out_frameu_ > & other
 ) const
 ```
 
@@ -792,7 +792,7 @@ A new quaternion that is the product of this quaternion and the other quaternion
 _Multiplication operator for the_ [_**Quaternion**_](classastrea_1_1astro_1_1Quaternion.md) _class by a scalar unitless quantity._
 ```C++
 inline Quaternion < in_frame, out_frame > & astrea::astro::Quaternion::operator*= (
-    const  Unitless & scalar
+    const Unitless & scalar
 ) 
 ```
 
@@ -826,7 +826,7 @@ The original quaternion. NO scaling is applied to the quaternion.
 _Addition operator for the_ [_**Quaternion**_](classastrea_1_1astro_1_1Quaternion.md) _class._
 ```C++
 inline Quaternion < in_frame, out_frame > astrea::astro::Quaternion::operator+ (
-    const  Quaternion < in_frame, out_frame > & other
+    const Quaternion < in_frame, out_frame > & other
 ) const
 ```
 
@@ -860,7 +860,7 @@ A new quaternion that is the sum of this quaternion and the other quaternion.
 _In-place addition operator for the_ [_**Quaternion**_](classastrea_1_1astro_1_1Quaternion.md) _class._
 ```C++
 inline Quaternion < in_frame, out_frame > & astrea::astro::Quaternion::operator+= (
-    const  Quaternion < in_frame, out_frame > & other
+    const Quaternion < in_frame, out_frame > & other
 ) 
 ```
 
@@ -919,7 +919,7 @@ A new quaternion that is the negation of this quaternion.
 _Subtraction operator for the_ [_**Quaternion**_](classastrea_1_1astro_1_1Quaternion.md) _class._
 ```C++
 inline Quaternion < in_frame, out_frame > astrea::astro::Quaternion::operator- (
-    const  Quaternion < in_frame, out_frame > & other
+    const Quaternion < in_frame, out_frame > & other
 ) const
 ```
 
@@ -953,7 +953,7 @@ A new quaternion that is the difference between this quaternion and the other qu
 _In-place subtraction operator for the_ [_**Quaternion**_](classastrea_1_1astro_1_1Quaternion.md) _class._
 ```C++
 inline Quaternion < in_frame, out_frame > & astrea::astro::Quaternion::operator-= (
-    const  Quaternion < in_frame, out_frame > & other
+    const Quaternion < in_frame, out_frame > & other
 ) 
 ```
 
@@ -987,7 +987,7 @@ inline Quaternion < in_frame, out_frame > & astrea::astro::Quaternion::operator-
 _Division operator for the_ [_**Quaternion**_](classastrea_1_1astro_1_1Quaternion.md) _class by a scalar unitless quantity._
 ```C++
 inline Quaternion < in_frame, out_frame > astrea::astro::Quaternion::operator/ (
-    const  Unitless & scalar
+    const Unitless & scalar
 ) const
 ```
 
@@ -1021,7 +1021,7 @@ The original quaternion. NO scaling is applied to the quaternion.
 _Division operator for the_ [_**Quaternion**_](classastrea_1_1astro_1_1Quaternion.md) _class by a scalar time quantity, resulting in a_[_**QuaternionPartial**_](classastrea_1_1astro_1_1QuaternionPartial.md) _._
 ```C++
 inline QuaternionPartial < in_frame, out_frame > astrea::astro::Quaternion::operator/ (
-    const  Time & dt
+    const Time & dt
 ) const
 ```
 
@@ -1055,7 +1055,7 @@ A new [**QuaternionPartial**](classastrea_1_1astro_1_1QuaternionPartial.md) that
 _Division operator for the_ [_**Quaternion**_](classastrea_1_1astro_1_1Quaternion.md) _class by a scalar unitless quantity._
 ```C++
 inline Quaternion < in_frame, out_frame > & astrea::astro::Quaternion::operator/= (
-    const  Unitless & scalar
+    const Unitless & scalar
 ) 
 ```
 
@@ -1089,7 +1089,7 @@ The original quaternion. NO scaling is applied to the quaternion.
 _Default copy assignment operator._ 
 ```C++
 Quaternion & astrea::astro::Quaternion::operator= (
-    const  Quaternion & other
+    const Quaternion & other
 ) = default
 ```
 
@@ -1121,7 +1121,7 @@ Quaternion & astrea::astro::Quaternion::operator= (
 _Equality operator for_ [_**Quaternion**_](classastrea_1_1astro_1_1Quaternion.md) _._
 ```C++
 inline bool astrea::astro::Quaternion::operator== (
-    const  Quaternion & other
+    const Quaternion & other
 ) const
 ```
 
@@ -1161,9 +1161,9 @@ false If the two quaternions are not equal.
 
 _Rotates a vector from the input frame to the output frame using this quaternion._ 
 ```C++
-template<typename  Value_T>
-inline CartesianVector < Value_T , out_frame > astrea::astro::Quaternion::rotate_vector (
-    const  CartesianVector < Value_T , in_frame > & vec
+template<typename Value_T>
+inline CartesianVector < Value_T, out_frame > astrea::astro::Quaternion::rotate_vector (
+    const CartesianVector < Value_T, in_frame > & vec
 ) const
 ```
 
@@ -1229,7 +1229,7 @@ Unitless The scalar part of the quaternion.
 _Convert the quaternion to an Euler angle sequence._ 
 ```C++
 template<RotationSequence sequence, RotationType rotation_type>
-inline EulerAngles < sequence, rotation_type , in_frame, out_frame > astrea::astro::Quaternion::to_euler_angles () const
+inline EulerAngles < sequence, rotation_type, in_frame, out_frame > astrea::astro::Quaternion::to_euler_angles () const
 ```
 
 

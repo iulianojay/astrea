@@ -86,7 +86,7 @@ Inherited by the following classes: [astrea::astro::Frame&lt; \_name\_, \_origin
 
 ```C++
 template<IsFrame Lhs, IsFrame Rhs>
-inline consteval  bool astrea::astro::detail::FrameBase::operator== (
+inline consteval bool astrea::astro::detail::FrameBase::operator== (
     Lhs,
     Rhs
 ) 

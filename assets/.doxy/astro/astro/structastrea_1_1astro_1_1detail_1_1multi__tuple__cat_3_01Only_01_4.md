@@ -2,7 +2,7 @@
 
 # Struct astrea::astro::detail::multi\_tuple\_cat&lt; Only &gt;
 
-**template &lt;[**typename**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Only**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)&gt;**
+**template &lt;typename Only&gt;**
 
 
 
@@ -33,7 +33,7 @@
 
 | Type | Name |
 | ---: | :--- |
-| typedef [**Only**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**type**](#typedef-type)  <br> |
+| typedef Only | [**type**](#typedef-type)  <br> |
 
 
 

@@ -37,7 +37,7 @@ _Header file for the CelestialBodyParameters class, which represents planetary d
 
 | Type | Name |
 | ---: | :--- |
-| struct | [**CelestialBodyParameters**](structastrea_1_1astro_1_1CelestialBodyParameters.md) <br> |
+| struct | [**CelestialBodyParameters**](structastrea_1_1astro_1_1CelestialBodyParameters.md) <br>_Structure to hold the parameters of a celestial body._  |
 
 
 
@@ -109,7 +109,7 @@ Jay Iuliano ([iuliano.jay@gmail.com](mailto:iuliano.jay@gmail.com))
 
 **Copyright:**
 
-Copyright (c) 2026 Jay Iuliano
+Copyright (c) 2025-2026 Jay Iuliano
 
 
 The GNU Lesser General Public License (LGPL)

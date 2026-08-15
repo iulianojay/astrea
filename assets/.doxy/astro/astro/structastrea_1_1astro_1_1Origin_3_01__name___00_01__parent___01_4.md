@@ -2,7 +2,7 @@
 
 # Struct astrea::astro::Origin&lt; \_name\_, \_parent\_ &gt;
 
-**template &lt;mp\_units::symbol\_text \_name\_, IsOrigin [**auto**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) \_parent\_&gt;**
+**template &lt;mp\_units::symbol\_text \_name\_, IsOrigin auto \_parent\_&gt;**
 
 
 
@@ -47,8 +47,8 @@ Inherited by the following classes: [astrea::astro::CelestialBody](structastrea_
 
 | Type | Name |
 | ---: | :--- |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**auto**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**name**](#variable-name)   = `[**\_name\_**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)`<br>_The name of the origin._  |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**auto**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**parent**](#variable-parent)   = `[**\_parent\_**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)`<br>_The parent origin of this origin, if any._  |
+|  constexpr auto | [**name**](#variable-name)   = `\_name\_`<br>_The name of the origin._  |
+|  constexpr auto | [**parent**](#variable-parent)   = `\_parent\_`<br>_The parent origin of this origin, if any._  |
 
 
 

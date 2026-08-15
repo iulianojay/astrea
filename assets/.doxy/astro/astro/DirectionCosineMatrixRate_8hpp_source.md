@@ -16,7 +16,7 @@
 #include <iostream>
 
 #include <mp-units/math.h>
-#include <mp-units/systems/angular/math.h>
+#include <mp-units/systems/si/math.h>
 
 #include <units/units.hpp>
 #include <utilities/string_util.hpp>
@@ -60,7 +60,7 @@ struct DirectionCosineMatrixRate : public DcmInterface<Frequency, _in_frame_, _o
         using namespace mp_units;
         using mp_units::si::unit_symbols::s;
 
-        const auto [sinTheta, cosTheta] = sin_cos_pack(theta);
+        const auto [sinTheta, cosTheta] = math::sin_cos_pack(theta);
         // Disolve angular unit
         const auto thetaDotUnitless = thetaDot / thetaDot.unit;
         return { { 0.0 * one / s, 0.0 * one / s, 0.0 * one / s },
@@ -73,7 +73,7 @@ struct DirectionCosineMatrixRate : public DcmInterface<Frequency, _in_frame_, _o
         using namespace mp_units;
         using mp_units::si::unit_symbols::s;
 
-        const auto [sinTheta, cosTheta] = sin_cos_pack(theta);
+        const auto [sinTheta, cosTheta] = math::sin_cos_pack(theta);
         // Disolve angular unit
         const auto thetaDotUnitless = thetaDot / thetaDot.unit;
         return { { -thetaDotUnitless * sinTheta, 0.0 * one / s, thetaDotUnitless * cosTheta },
@@ -86,7 +86,7 @@ struct DirectionCosineMatrixRate : public DcmInterface<Frequency, _in_frame_, _o
         using namespace mp_units;
         using mp_units::si::unit_symbols::s;
 
-        const auto [sinTheta, cosTheta] = sin_cos_pack(theta);
+        const auto [sinTheta, cosTheta] = math::sin_cos_pack(theta);
         // Disolve angular unit
         const auto thetaDotUnitless = thetaDot / thetaDot.unit;
         return { { -thetaDotUnitless * sinTheta, -thetaDotUnitless * cosTheta, 0.0 * one / s },

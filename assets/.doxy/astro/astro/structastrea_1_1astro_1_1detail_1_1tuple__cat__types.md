@@ -2,7 +2,7 @@
 
 # Struct astrea::astro::detail::tuple\_cat\_types
 
-**template &lt;[**typename**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**TupleA**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), [**typename**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**TupleB**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)&gt;**
+**template &lt;typename TupleA, typename TupleB&gt;**
 
 
 

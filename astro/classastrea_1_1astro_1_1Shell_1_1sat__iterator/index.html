@@ -6253,7 +6253,7 @@ You're not viewing the latest version.
 </thead>
 <tbody>
 <tr>
-<td style="text-align: right;">typedef <a href="../classastrea_1_1astro_1_1Plane/"><strong>Plane</strong></a>&lt; <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Spacecraft_T</strong></a> &gt;<a href="../classastrea_1_1astro_1_1Shell/#typedef-iterator"><strong>::iterator</strong></a></td>
+<td style="text-align: right;">typedef <a href="../classastrea_1_1astro_1_1Plane/"><strong>Plane</strong></a>&lt; Spacecraft_T &gt;<a href="../classastrea_1_1astro_1_1Shell/#typedef-iterator"><strong>::iterator</strong></a></td>
 <td style="text-align: left;"><a href="#typedef-difference_type"><strong>difference_type</strong></a>  <br></td>
 </tr>
 <tr>
@@ -6261,15 +6261,15 @@ You're not viewing the latest version.
 <td style="text-align: left;"><a href="#typedef-iterator_category"><strong>iterator_category</strong></a>  <br></td>
 </tr>
 <tr>
-<td style="text-align: right;">typedef <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1Plane/"><strong>Plane</strong></a>&lt; <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Spacecraft_T</strong></a> &gt;<a href="../classastrea_1_1astro_1_1Shell/#typedef-iterator"><strong>::iterator</strong></a> *</td>
+<td style="text-align: right;">typedef const <a href="../classastrea_1_1astro_1_1Plane/"><strong>Plane</strong></a>&lt; Spacecraft_T &gt;<a href="../classastrea_1_1astro_1_1Shell/#typedef-iterator"><strong>::iterator</strong></a> *</td>
 <td style="text-align: left;"><a href="#typedef-pointer"><strong>pointer</strong></a>  <br></td>
 </tr>
 <tr>
-<td style="text-align: right;">typedef <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1Plane/"><strong>Plane</strong></a>&lt; <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Spacecraft_T</strong></a> &gt;<a href="../classastrea_1_1astro_1_1Shell/#typedef-iterator"><strong>::iterator</strong></a> &amp;</td>
+<td style="text-align: right;">typedef const <a href="../classastrea_1_1astro_1_1Plane/"><strong>Plane</strong></a>&lt; Spacecraft_T &gt;<a href="../classastrea_1_1astro_1_1Shell/#typedef-iterator"><strong>::iterator</strong></a> &amp;</td>
 <td style="text-align: left;"><a href="#typedef-reference"><strong>reference</strong></a>  <br></td>
 </tr>
 <tr>
-<td style="text-align: right;">typedef <a href="../classastrea_1_1astro_1_1Plane/"><strong>Plane</strong></a>&lt; <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Spacecraft_T</strong></a> &gt;<a href="../classastrea_1_1astro_1_1Shell/#typedef-iterator"><strong>::iterator</strong></a></td>
+<td style="text-align: right;">typedef <a href="../classastrea_1_1astro_1_1Plane/"><strong>Plane</strong></a>&lt; Spacecraft_T &gt;<a href="../classastrea_1_1astro_1_1Shell/#typedef-iterator"><strong>::iterator</strong></a></td>
 <td style="text-align: left;"><a href="#typedef-value_type"><strong>value_type</strong></a>  <br></td>
 </tr>
 </tbody>
@@ -6284,11 +6284,11 @@ You're not viewing the latest version.
 </thead>
 <tbody>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>bool</strong></a></td>
-<td style="text-align: left;"><a href="#function-operator"><strong>operator!=</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="./"><strong>sat_iterator</strong></a> &amp; other) const<br><em>Inequality operator for the</em> <a href="./"><em><strong>sat_iterator</strong></em></a> <em>.</em></td>
+<td style="text-align: right;">bool</td>
+<td style="text-align: left;"><a href="#function-operator"><strong>operator!=</strong></a> (const <a href="./"><strong>sat_iterator</strong></a> &amp; other) const<br><em>Inequality operator for the</em> <a href="./"><em><strong>sat_iterator</strong></em></a> <em>.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Spacecraft_T</strong></a></td>
+<td style="text-align: right;">Spacecraft_T</td>
 <td style="text-align: left;"><a href="#function-operator_1"><strong>operator*</strong></a> () <br><em>Dereference operator for the</em> <a href="./"><em><strong>sat_iterator</strong></em></a> <em>.</em></td>
 </tr>
 <tr>
@@ -6297,7 +6297,7 @@ You're not viewing the latest version.
 </tr>
 <tr>
 <td style="text-align: right;"><a href="./"><strong>sat_iterator</strong></a></td>
-<td style="text-align: left;"><a href="#function-operator_3"><strong>operator++</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>int</strong></a>) <br><em>Post-increment operator for the</em> <a href="./"><em><strong>sat_iterator</strong></em></a> <em>.</em></td>
+<td style="text-align: left;"><a href="#function-operator_3"><strong>operator++</strong></a> (int) <br><em>Post-increment operator for the</em> <a href="./"><em><strong>sat_iterator</strong></em></a> <em>.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;"><a href="./"><strong>sat_iterator</strong></a> &amp;</td>
@@ -6305,31 +6305,31 @@ You're not viewing the latest version.
 </tr>
 <tr>
 <td style="text-align: right;"><a href="./"><strong>sat_iterator</strong></a></td>
-<td style="text-align: left;"><a href="#function-operator-_1"><strong>operator--</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>int</strong></a>) <br><em>Post-decrement operator for the</em> <a href="./"><em><strong>sat_iterator</strong></em></a> <em>.</em></td>
+<td style="text-align: left;"><a href="#function-operator-_1"><strong>operator--</strong></a> (int) <br><em>Post-decrement operator for the</em> <a href="./"><em><strong>sat_iterator</strong></em></a> <em>.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>bool</strong></a></td>
-<td style="text-align: left;"><a href="#function-operator_4"><strong>operator&lt;</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="./"><strong>sat_iterator</strong></a> &amp; other) const<br><em>Less than operator for the</em> <a href="./"><em><strong>sat_iterator</strong></em></a> <em>.</em></td>
+<td style="text-align: right;">bool</td>
+<td style="text-align: left;"><a href="#function-operator_4"><strong>operator&lt;</strong></a> (const <a href="./"><strong>sat_iterator</strong></a> &amp; other) const<br><em>Less than operator for the</em> <a href="./"><em><strong>sat_iterator</strong></em></a> <em>.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>bool</strong></a></td>
-<td style="text-align: left;"><a href="#function-operator_5"><strong>operator&lt;=</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="./"><strong>sat_iterator</strong></a> &amp; other) const<br><em>Less than or equal to operator for the</em> <a href="./"><em><strong>sat_iterator</strong></em></a> <em>.</em></td>
+<td style="text-align: right;">bool</td>
+<td style="text-align: left;"><a href="#function-operator_5"><strong>operator&lt;=</strong></a> (const <a href="./"><strong>sat_iterator</strong></a> &amp; other) const<br><em>Less than or equal to operator for the</em> <a href="./"><em><strong>sat_iterator</strong></em></a> <em>.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>bool</strong></a></td>
-<td style="text-align: left;"><a href="#function-operator_6"><strong>operator==</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="./"><strong>sat_iterator</strong></a> &amp; other) const<br><em>Comparison operators for the</em> <a href="./"><em><strong>sat_iterator</strong></em></a> <em>.</em></td>
+<td style="text-align: right;">bool</td>
+<td style="text-align: left;"><a href="#function-operator_6"><strong>operator==</strong></a> (const <a href="./"><strong>sat_iterator</strong></a> &amp; other) const<br><em>Comparison operators for the</em> <a href="./"><em><strong>sat_iterator</strong></em></a> <em>.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>bool</strong></a></td>
-<td style="text-align: left;"><a href="#function-operator_7"><strong>operator&gt;</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="./"><strong>sat_iterator</strong></a> &amp; other) const<br><em>Greater than operator for the</em> <a href="./"><em><strong>sat_iterator</strong></em></a> <em>.</em></td>
+<td style="text-align: right;">bool</td>
+<td style="text-align: left;"><a href="#function-operator_7"><strong>operator&gt;</strong></a> (const <a href="./"><strong>sat_iterator</strong></a> &amp; other) const<br><em>Greater than operator for the</em> <a href="./"><em><strong>sat_iterator</strong></em></a> <em>.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>bool</strong></a></td>
-<td style="text-align: left;"><a href="#function-operator_8"><strong>operator&gt;=</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="./"><strong>sat_iterator</strong></a> &amp; other) const<br><em>Greater than or equal to operator for the</em> <a href="./"><em><strong>sat_iterator</strong></em></a> <em>.</em></td>
+<td style="text-align: right;">bool</td>
+<td style="text-align: left;"><a href="#function-operator_8"><strong>operator&gt;=</strong></a> (const <a href="./"><strong>sat_iterator</strong></a> &amp; other) const<br><em>Greater than or equal to operator for the</em> <a href="./"><em><strong>sat_iterator</strong></em></a> <em>.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;"></td>
-<td style="text-align: left;"><a href="#function-sat_iterator"><strong>sat_iterator</strong></a> (std::vector&lt; <a href="../classastrea_1_1astro_1_1Plane/"><strong>Plane</strong></a>&lt; <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Spacecraft_T</strong></a> &gt; &gt;<a href="../classastrea_1_1astro_1_1Shell/#typedef-iterator"><strong>::iterator</strong></a> _iterPlane, <a href="../classastrea_1_1astro_1_1Plane/"><strong>Plane</strong></a>&lt; <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Spacecraft_T</strong></a> &gt;<a href="../classastrea_1_1astro_1_1Shell/#typedef-iterator"><strong>::iterator</strong></a> _iterSat) <br><em>Default constructor for</em> <a href="./"><em><strong>sat_iterator</strong></em></a> <em>. Initializes the iterator to the beginning of the first plane's spacecraft.</em></td>
+<td style="text-align: left;"><a href="#function-sat_iterator"><strong>sat_iterator</strong></a> (std::vector&lt; <a href="../classastrea_1_1astro_1_1Plane/"><strong>Plane</strong></a>&lt; Spacecraft_T &gt; &gt;<a href="../classastrea_1_1astro_1_1Shell/#typedef-iterator"><strong>::iterator</strong></a> _iterPlane, <a href="../classastrea_1_1astro_1_1Plane/"><strong>Plane</strong></a>&lt; Spacecraft_T &gt;<a href="../classastrea_1_1astro_1_1Shell/#typedef-iterator"><strong>::iterator</strong></a> _iterSat) <br><em>Default constructor for</em> <a href="./"><em><strong>sat_iterator</strong></em></a> <em>. Initializes the iterator to the beginning of the first plane's spacecraft.</em></td>
 </tr>
 </tbody>
 </table>
@@ -6362,7 +6362,7 @@ You're not viewing the latest version.
 <h3 id="function-operator">function operator!=<a class="headerlink" href="#function-operator" title="Permanent link">&para;</a></h3>
 <p><em>Inequality operator for the</em> <a href="./"><em><strong>sat_iterator</strong></em></a> <em>.</em>
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="kr">inline</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Shell</span><span class="o">::</span><span class="n">sat_iterator</span><span class="o">::</span><span class="k">operator</span><span class="o">!=</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">sat_iterator</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">other</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">sat_iterator</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">other</span>
 </span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
 </span></code></pre></div></p>
 <p><strong>Parameters:</strong></p>
@@ -6420,7 +6420,7 @@ You're not viewing the latest version.
 <h3 id="function-operator_4">function operator&lt;<a class="headerlink" href="#function-operator_4" title="Permanent link">&para;</a></h3>
 <p><em>Less than operator for the</em> <a href="./"><em><strong>sat_iterator</strong></em></a> <em>.</em>
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="kr">inline</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Shell</span><span class="o">::</span><span class="n">sat_iterator</span><span class="o">::</span><span class="k">operator</span><span class="o">&lt;</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">sat_iterator</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">other</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">sat_iterator</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">other</span>
 </span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
 </span></code></pre></div></p>
 <p><strong>Parameters:</strong></p>
@@ -6436,7 +6436,7 @@ You're not viewing the latest version.
 <h3 id="function-operator_5">function operator&lt;=<a class="headerlink" href="#function-operator_5" title="Permanent link">&para;</a></h3>
 <p><em>Less than or equal to operator for the</em> <a href="./"><em><strong>sat_iterator</strong></em></a> <em>.</em>
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="kr">inline</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Shell</span><span class="o">::</span><span class="n">sat_iterator</span><span class="o">::</span><span class="k">operator</span><span class="o">&lt;=</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">sat_iterator</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">other</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">sat_iterator</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">other</span>
 </span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
 </span></code></pre></div></p>
 <p><strong>Parameters:</strong></p>
@@ -6452,7 +6452,7 @@ You're not viewing the latest version.
 <h3 id="function-operator_6">function operator==<a class="headerlink" href="#function-operator_6" title="Permanent link">&para;</a></h3>
 <p><em>Comparison operators for the</em> <a href="./"><em><strong>sat_iterator</strong></em></a> <em>.</em>
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="kr">inline</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Shell</span><span class="o">::</span><span class="n">sat_iterator</span><span class="o">::</span><span class="k">operator</span><span class="o">==</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">sat_iterator</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">other</span>
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">sat_iterator</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">other</span>
 </span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
 </span></code></pre></div></p>
 <p><strong>Parameters:</strong></p>
@@ -6466,7 +6466,7 @@ You're not viewing the latest version.
 <h3 id="function-operator_7">function operator&gt;<a class="headerlink" href="#function-operator_7" title="Permanent link">&para;</a></h3>
 <p><em>Greater than operator for the</em> <a href="./"><em><strong>sat_iterator</strong></em></a> <em>.</em>
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="kr">inline</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Shell</span><span class="o">::</span><span class="n">sat_iterator</span><span class="o">::</span><span class="k">operator</span><span class="o">&gt;</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">sat_iterator</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">other</span>
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">sat_iterator</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">other</span>
 </span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
 </span></code></pre></div></p>
 <p><strong>Parameters:</strong></p>
@@ -6482,7 +6482,7 @@ You're not viewing the latest version.
 <h3 id="function-operator_8">function operator&gt;=<a class="headerlink" href="#function-operator_8" title="Permanent link">&para;</a></h3>
 <p><em>Greater than or equal to operator for the</em> <a href="./"><em><strong>sat_iterator</strong></em></a> <em>.</em>
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="kr">inline</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Shell</span><span class="o">::</span><span class="n">sat_iterator</span><span class="o">::</span><span class="k">operator</span><span class="o">&gt;=</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">sat_iterator</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">other</span>
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">sat_iterator</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">other</span>
 </span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
 </span></code></pre></div></p>
 <p><strong>Parameters:</strong></p>

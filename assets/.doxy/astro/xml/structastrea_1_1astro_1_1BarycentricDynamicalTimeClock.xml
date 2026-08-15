@@ -5,7 +5,7 @@
     <includes refid="BarycentricDynamicalTimeClock_8hpp" local="no">BarycentricDynamicalTimeClock.hpp</includes>
     <sectiondef kind="public-type">
       <memberdef kind="typedef" id="structastrea_1_1astro_1_1BarycentricDynamicalTimeClock_1a45a66d234135228bc5adfb8bdc598284" prot="public" static="no">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">double</ref></type>
+        <type>double</type>
         <definition>using astrea::astro::BarycentricDynamicalTimeClock::rep =  double</definition>
         <argsstring></argsstring>
         <name>rep</name>
@@ -67,12 +67,12 @@
     </sectiondef>
     <sectiondef kind="public-static-attrib">
       <memberdef kind="variable" id="structastrea_1_1astro_1_1BarycentricDynamicalTimeClock_1a91f3a313bba3fc362b245857aca397f0" prot="public" static="yes" constexpr="yes" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">bool</ref></type>
+        <type>constexpr bool</type>
         <definition>constexpr bool astrea::astro::BarycentricDynamicalTimeClock::is_steady</definition>
         <argsstring></argsstring>
         <name>is_steady</name>
         <qualifiedname>astrea::astro::BarycentricDynamicalTimeClock::is_steady</qualifiedname>
-        <initializer>= <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">false</ref></initializer>
+        <initializer>= false</initializer>
         <briefdescription>
 <para>TDB is not a steady clock; it is anchored to TAI. </para>
         </briefdescription>
@@ -83,7 +83,7 @@
         <location file="astrea/astro/astro/time/clocks/BarycentricDynamicalTimeClock.hpp" line="54" column="27" bodyfile="astrea/astro/astro/time/clocks/BarycentricDynamicalTimeClock.hpp" bodystart="54" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structastrea_1_1astro_1_1BarycentricDynamicalTimeClock_1aa2cebed4c0553f02cfb40c7825552736" prot="public" static="yes" constexpr="yes" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+        <type>constexpr auto</type>
         <definition>constexpr auto astrea::astro::BarycentricDynamicalTimeClock::jdRef</definition>
         <argsstring></argsstring>
         <name>jdRef</name>
@@ -102,16 +102,16 @@
       <memberdef kind="function" id="structastrea_1_1astro_1_1BarycentricDynamicalTimeClock_1a53447b49118b2928ed81d95bd8733fca" prot="public" static="yes" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
         <templateparamlist>
           <param>
-            <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">class</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Duration</ref></type>
+            <type>class Duration</type>
           </param>
         </templateparamlist>
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+        <type>auto</type>
         <definition>static auto astrea::astro::BarycentricDynamicalTimeClock::from_sys</definition>
         <argsstring>(std::chrono::sys_time&lt; Duration &gt; const &amp;timePoint) noexcept</argsstring>
         <name>from_sys</name>
         <qualifiedname>astrea::astro::BarycentricDynamicalTimeClock::from_sys</qualifiedname>
         <param>
-          <type>std::chrono::sys_time&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Duration</ref> &gt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> &amp;</type>
+          <type>std::chrono::sys_time&lt; Duration &gt; const &amp;</type>
           <declname>timePoint</declname>
         </param>
         <briefdescription>
@@ -148,16 +148,16 @@
       <memberdef kind="function" id="structastrea_1_1astro_1_1BarycentricDynamicalTimeClock_1a85cabd3909daf433bdb10ed60d8eb221" prot="public" static="yes" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
         <templateparamlist>
           <param>
-            <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">class</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Duration</ref></type>
+            <type>class Duration</type>
           </param>
         </templateparamlist>
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+        <type>auto</type>
         <definition>static auto astrea::astro::BarycentricDynamicalTimeClock::to_sys</definition>
         <argsstring>(BarycentricDynamicalTimePoint&lt; Duration &gt; const &amp;timePoint) noexcept</argsstring>
         <name>to_sys</name>
         <qualifiedname>astrea::astro::BarycentricDynamicalTimeClock::to_sys</qualifiedname>
         <param>
-          <type><ref refid="BarycentricDynamicalTimeClock_8hpp_1a22cdd8a19054041dc12e0770509db910" kindref="member">BarycentricDynamicalTimePoint</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Duration</ref> &gt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> &amp;</type>
+          <type><ref refid="BarycentricDynamicalTimeClock_8hpp_1a22cdd8a19054041dc12e0770509db910" kindref="member">BarycentricDynamicalTimePoint</ref>&lt; Duration &gt; const &amp;</type>
           <declname>timePoint</declname>
         </param>
         <briefdescription>

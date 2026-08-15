@@ -81,7 +81,7 @@ Inherited by the following classes: [astrea::trace::GroundStation](classastrea_1
 
 | Type | Name |
 | ---: | :--- |
-|   | [**GroundPoint**](#function-groundpoint) (const Angle & latitude=0.0 \*mp\_units::angular::unit\_symbols::deg, const Angle & longitude=0.0 \*mp\_units::angular::unit\_symbols::deg, const Distance & altitude=0.0 \*mp\_units::si::unit\_symbols::km) <br>_Constructs a_ [_**GroundPoint**_](classastrea_1_1trace_1_1GroundPoint.md) _with specified latitude, longitude, and altitude._ |
+|   | [**GroundPoint**](#function-groundpoint) (const Angle & latitude=0.0 \*mp\_units::si::unit\_symbols::deg, const Angle & longitude=0.0 \*mp\_units::si::unit\_symbols::deg, const Distance & altitude=0.0 \*mp\_units::si::unit\_symbols::km) <br>_Constructs a_ [_**GroundPoint**_](classastrea_1_1trace_1_1GroundPoint.md) _with specified latitude, longitude, and altitude._ |
 |  const Distance & | [**get\_altitude**](#function-get_altitude) () const<br>_Returns the altitude of the ground point above the surface._  |
 | virtual std::size\_t | [**get\_id**](#function-get_id) () override const<br>_Returns the unique identifier for this ground point._  |
 |  const Angle & | [**get\_latitude**](#function-get_latitude) () const<br>_Returns the latitude of the ground point._  |
@@ -214,8 +214,8 @@ constexpr auto astrea::trace::GroundPoint< _body_ >::body;
 _Constructs a_ [_**GroundPoint**_](classastrea_1_1trace_1_1GroundPoint.md) _with specified latitude, longitude, and altitude._
 ```C++
 inline astrea::trace::GroundPoint::GroundPoint (
-    const Angle & latitude=0.0 *mp_units::angular::unit_symbols::deg,
-    const Angle & longitude=0.0 *mp_units::angular::unit_symbols::deg,
+    const Angle & latitude=0.0 *mp_units::si::unit_symbols::deg,
+    const Angle & longitude=0.0 *mp_units::si::unit_symbols::deg,
     const Distance & altitude=0.0 *mp_units::si::unit_symbols::km
 ) 
 ```

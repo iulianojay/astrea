@@ -6258,67 +6258,67 @@ You're not viewing the latest version.
 </tr>
 <tr>
 <td style="text-align: right;"></td>
-<td style="text-align: left;"><a href="#function-attitude-23"><strong>Attitude</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../namespaceastrea_1_1astro/#typedef-bodyquaternion"><strong>BodyQuaternion</strong></a> &amp; orientation, <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../namespaceastrea_1_1astro/#typedef-bodyanglevelocities"><strong>BodyAngleVelocities</strong></a> &amp; angularVelocity) <br><em>Constructor initializing with</em> <a href="../classastrea_1_1astro_1_1Quaternion/"><em><strong>Quaternion</strong></em></a> <em>orientation.</em></td>
+<td style="text-align: left;"><a href="#function-attitude-23"><strong>Attitude</strong></a> (const <a href="../namespaceastrea_1_1astro/#typedef-bodyquaternion"><strong>BodyQuaternion</strong></a> &amp; orientation, const <a href="../namespaceastrea_1_1astro/#typedef-bodyanglevelocities"><strong>BodyAngleVelocities</strong></a> &amp; angularVelocity) <br><em>Constructor initializing with</em> <a href="../classastrea_1_1astro_1_1Quaternion/"><em><strong>Quaternion</strong></em></a> <em>orientation.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;"></td>
-<td style="text-align: left;"><a href="#function-attitude-33"><strong>Attitude</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1EulerAngles/"><strong>EulerAngles</strong></a>&lt; sequence, <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>rotationType</strong></a>, <a href="../structastrea_1_1astro_1_1frames_1_1dynamic_1_1body/"><strong>frames::dynamic::body</strong></a>, <a href="../structastrea_1_1astro_1_1frames_1_1earth_1_1icrf/"><strong>frames::earth::icrf</strong></a> &gt; &amp; angleSequence, <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../namespaceastrea_1_1astro/#typedef-bodyanglevelocities"><strong>BodyAngleVelocities</strong></a> &amp; angleSequenceVelocity) <br><em>Constructor initializing with</em> <a href="../classastrea_1_1astro_1_1EulerAngles/"><em><strong>EulerAngles</strong></em></a> <em>orientation.</em></td>
+<td style="text-align: left;"><a href="#function-attitude-33"><strong>Attitude</strong></a> (const <a href="../classastrea_1_1astro_1_1EulerAngles/"><strong>EulerAngles</strong></a>&lt; sequence, rotationType, <a href="../structastrea_1_1astro_1_1frames_1_1dynamic_1_1body/"><strong>frames::dynamic::body</strong></a>, <a href="../structastrea_1_1astro_1_1frames_1_1earth_1_1icrf/"><strong>frames::earth::icrf</strong></a> &gt; &amp; angleSequence, const <a href="../namespaceastrea_1_1astro/#typedef-bodyanglevelocities"><strong>BodyAngleVelocities</strong></a> &amp; angleSequenceVelocity) <br><em>Constructor initializing with</em> <a href="../classastrea_1_1astro_1_1EulerAngles/"><em><strong>EulerAngles</strong></em></a> <em>orientation.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">std::vector&lt; <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Unitless</strong></a> &gt;</td>
-<td style="text-align: left;"><a href="#function-force_to_vector"><strong>force_to_vector</strong></a> () const<br><em>Converts the</em> <a href="./"><em><strong>Attitude</strong></em></a> <em>to a vector of Unitless values.</em></td>
+<td style="text-align: right;">std::vector&lt; double &gt;</td>
+<td style="text-align: left;"><a href="#function-force_to_double_vector"><strong>force_to_double_vector</strong></a> () const<br><em>Converts the</em> <a href="./"><em><strong>Attitude</strong></em></a> <em>to a vector of Unitless values.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../namespaceastrea_1_1astro/#typedef-bodyanglevelocities"><strong>BodyAngleVelocities</strong></a> &amp;</td>
+<td style="text-align: right;">const <a href="../namespaceastrea_1_1astro/#typedef-bodyanglevelocities"><strong>BodyAngleVelocities</strong></a> &amp;</td>
 <td style="text-align: left;"><a href="#function-get_angular_velocity"><strong>get_angular_velocity</strong></a> () const<br><em>Gets the angular velocity as a BodyAngleVelocities.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../namespaceastrea_1_1astro/#typedef-bodyquaternion"><strong>BodyQuaternion</strong></a> &amp;</td>
+<td style="text-align: right;">const <a href="../namespaceastrea_1_1astro/#typedef-bodyquaternion"><strong>BodyQuaternion</strong></a> &amp;</td>
 <td style="text-align: left;"><a href="#function-get_orientation"><strong>get_orientation</strong></a> () const<br><em>Gets the orientation as a BodyQuaternion.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;"><a href="./"><strong>Attitude</strong></a></td>
-<td style="text-align: left;"><a href="#function-interpolate"><strong>interpolate</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Time</strong></a> &amp; thisTime, <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Time</strong></a> &amp; otherTime, <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="./"><strong>Attitude</strong></a> &amp; other, <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Time</strong></a> &amp; targetTime) const<br><em>Interpolates between two</em> <a href="./"><em><strong>Attitude</strong></em></a> <em>at a given time.</em></td>
+<td style="text-align: left;"><a href="#function-interpolate"><strong>interpolate</strong></a> (const Time &amp; thisTime, const Time &amp; otherTime, const <a href="./"><strong>Attitude</strong></a> &amp; other, const Time &amp; targetTime) const<br><em>Interpolates between two</em> <a href="./"><em><strong>Attitude</strong></em></a> <em>at a given time.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;"><a href="./"><strong>Attitude</strong></a></td>
-<td style="text-align: left;"><a href="#function-operator"><strong>operator*</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Unitless</strong></a> &amp; multiplier) const<br><em>Multiplies the</em> <a href="./"><em><strong>Attitude</strong></em></a> <em>by a scalar.</em></td>
+<td style="text-align: left;"><a href="#function-operator"><strong>operator*</strong></a> (const Unitless &amp; multiplier) const<br><em>Multiplies the</em> <a href="./"><em><strong>Attitude</strong></em></a> <em>by a scalar.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;"><a href="./"><strong>Attitude</strong></a> &amp;</td>
-<td style="text-align: left;"><a href="#function-operator_1"><strong>operator*=</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Unitless</strong></a> &amp; multiplier) <br><em>Multiplies the</em> <a href="./"><em><strong>Attitude</strong></em></a> <em>by a scalar.</em></td>
+<td style="text-align: left;"><a href="#function-operator_1"><strong>operator*=</strong></a> (const Unitless &amp; multiplier) <br><em>Multiplies the</em> <a href="./"><em><strong>Attitude</strong></em></a> <em>by a scalar.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;"><a href="./"><strong>Attitude</strong></a></td>
-<td style="text-align: left;"><a href="#function-operator_2"><strong>operator+</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="./"><strong>Attitude</strong></a> &amp; other) const<br><em>Adds two</em> <a href="./"><em><strong>Attitude</strong></em></a> <em>objects.</em></td>
+<td style="text-align: left;"><a href="#function-operator_2"><strong>operator+</strong></a> (const <a href="./"><strong>Attitude</strong></a> &amp; other) const<br><em>Adds two</em> <a href="./"><em><strong>Attitude</strong></em></a> <em>objects.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;"><a href="./"><strong>Attitude</strong></a> &amp;</td>
-<td style="text-align: left;"><a href="#function-operator_3"><strong>operator+=</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="./"><strong>Attitude</strong></a> &amp; other) <br><em>Adds another</em> <a href="./"><em><strong>Attitude</strong></em></a> <em>object to the current one.</em></td>
+<td style="text-align: left;"><a href="#function-operator_3"><strong>operator+=</strong></a> (const <a href="./"><strong>Attitude</strong></a> &amp; other) <br><em>Adds another</em> <a href="./"><em><strong>Attitude</strong></em></a> <em>object to the current one.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;"><a href="./"><strong>Attitude</strong></a></td>
-<td style="text-align: left;"><a href="#function-operator-"><strong>operator-</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="./"><strong>Attitude</strong></a> &amp; other) const<br><em>Subtracts another</em> <a href="./"><em><strong>Attitude</strong></em></a> <em>object from the current one.</em></td>
+<td style="text-align: left;"><a href="#function-operator-"><strong>operator-</strong></a> (const <a href="./"><strong>Attitude</strong></a> &amp; other) const<br><em>Subtracts another</em> <a href="./"><em><strong>Attitude</strong></em></a> <em>object from the current one.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;"><a href="./"><strong>Attitude</strong></a> &amp;</td>
-<td style="text-align: left;"><a href="#function-operator-_1"><strong>operator-=</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="./"><strong>Attitude</strong></a> &amp; other) <br><em>Subtracts another</em> <a href="./"><em><strong>Attitude</strong></em></a> <em>object from the current one.</em></td>
+<td style="text-align: left;"><a href="#function-operator-_1"><strong>operator-=</strong></a> (const <a href="./"><strong>Attitude</strong></a> &amp; other) <br><em>Subtracts another</em> <a href="./"><em><strong>Attitude</strong></em></a> <em>object from the current one.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;"><a href="../classastrea_1_1astro_1_1AttitudePartials/"><strong>AttitudePartials</strong></a></td>
-<td style="text-align: left;"><a href="#function-operator_4"><strong>operator/</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Time</strong></a> &amp; divisor) const<br><em>Divides the</em> <a href="./"><em><strong>Attitude</strong></em></a> <em>by a time.</em></td>
+<td style="text-align: left;"><a href="#function-operator_4"><strong>operator/</strong></a> (const Time &amp; divisor) const<br><em>Divides the</em> <a href="./"><em><strong>Attitude</strong></em></a> <em>by a time.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;"><a href="./"><strong>Attitude</strong></a></td>
-<td style="text-align: left;"><a href="#function-operator_5"><strong>operator/</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Unitless</strong></a> &amp; divisor) const<br><em>Divides the</em> <a href="./"><em><strong>Attitude</strong></em></a> <em>by a scalar.</em></td>
+<td style="text-align: left;"><a href="#function-operator_5"><strong>operator/</strong></a> (const Unitless &amp; divisor) const<br><em>Divides the</em> <a href="./"><em><strong>Attitude</strong></em></a> <em>by a scalar.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;"><a href="./"><strong>Attitude</strong></a> &amp;</td>
-<td style="text-align: left;"><a href="#function-operator_6"><strong>operator/=</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Unitless</strong></a> &amp; divisor) <br><em>Divides the</em> <a href="./"><em><strong>Attitude</strong></em></a> <em>by a scalar.</em></td>
+<td style="text-align: left;"><a href="#function-operator_6"><strong>operator/=</strong></a> (const Unitless &amp; divisor) <br><em>Divides the</em> <a href="./"><em><strong>Attitude</strong></em></a> <em>by a scalar.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>bool</strong></a></td>
-<td style="text-align: left;"><a href="#function-operator_7"><strong>operator==</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="./"><strong>Attitude</strong></a> &amp; other) const<br><em>Compares two</em> <a href="./"><em><strong>Attitude</strong></em></a> <em>objects for equality.</em></td>
+<td style="text-align: right;">bool</td>
+<td style="text-align: left;"><a href="#function-operator_7"><strong>operator==</strong></a> (const <a href="./"><strong>Attitude</strong></a> &amp; other) const<br><em>Compares two</em> <a href="./"><em><strong>Attitude</strong></em></a> <em>objects for equality.</em></td>
 </tr>
 </tbody>
 </table>
@@ -6334,8 +6334,8 @@ You're not viewing the latest version.
 <h3 id="function-attitude-23">function Attitude [2/3]<a class="headerlink" href="#function-attitude-23" title="Permanent link">&para;</a></h3>
 <p><em>Constructor initializing with</em> <a href="../classastrea_1_1astro_1_1Quaternion/"><em><strong>Quaternion</strong></em></a> <em>orientation.</em>
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Attitude</span><span class="o">::</span><span class="n">Attitude</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">BodyQuaternion</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">orientation</span><span class="p">,</span>
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">BodyAngleVelocities</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">angularVelocity</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">BodyQuaternion</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">orientation</span><span class="p">,</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">BodyAngleVelocities</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">angularVelocity</span>
 </span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="p">)</span><span class="w"> </span>
 </span></code></pre></div></p>
 <p><strong>Parameters:</strong></p>
@@ -6348,8 +6348,8 @@ You're not viewing the latest version.
 <p><em>Constructor initializing with</em> <a href="../classastrea_1_1astro_1_1EulerAngles/"><em><strong>EulerAngles</strong></em></a> <em>orientation.</em>
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">template</span><span class="o">&lt;</span><span class="n">RotationSequence</span><span class="w"> </span><span class="n">sequence</span><span class="p">,</span><span class="w"> </span><span class="n">RotationType</span><span class="w"> </span><span class="n">rotationType</span><span class="o">&gt;</span>
 </span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="kr">inline</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Attitude</span><span class="o">::</span><span class="n">Attitude</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">EulerAngles</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">sequence</span><span class="p">,</span><span class="w"> </span><span class="n">rotationType</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="n">frames</span><span class="o">::</span><span class="n">dynamic</span><span class="o">::</span><span class="n">body</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="n">frames</span><span class="o">::</span><span class="n">earth</span><span class="o">::</span><span class="n">icrf</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">angleSequence</span><span class="p">,</span>
-</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">BodyAngleVelocities</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">angleSequenceVelocity</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">EulerAngles</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">sequence</span><span class="p">,</span><span class="w"> </span><span class="n">rotationType</span><span class="p">,</span><span class="w"> </span><span class="n">frames</span><span class="o">::</span><span class="n">dynamic</span><span class="o">::</span><span class="n">body</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="n">frames</span><span class="o">::</span><span class="n">earth</span><span class="o">::</span><span class="n">icrf</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">angleSequence</span><span class="p">,</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">BodyAngleVelocities</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">angleSequenceVelocity</span>
 </span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="p">)</span><span class="w"> </span>
 </span></code></pre></div></p>
 <p><strong>Parameters:</strong></p>
@@ -6358,9 +6358,9 @@ You're not viewing the latest version.
 </ul>
 <hr>
 
-<h3 id="function-force_to_vector">function force_to_vector<a class="headerlink" href="#function-force_to_vector" title="Permanent link">&para;</a></h3>
+<h3 id="function-force_to_double_vector">function force_to_double_vector<a class="headerlink" href="#function-force_to_double_vector" title="Permanent link">&para;</a></h3>
 <p><em>Converts the</em> <a href="./"><em><strong>Attitude</strong></em></a> <em>to a vector of Unitless values.</em>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="n">Unitless</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Attitude</span><span class="o">::</span><span class="n">force_to_vector</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Attitude</span><span class="o">::</span><span class="n">force_to_double_vector</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </span></code></pre></div></p>
 <p><strong>Returns:</strong></p>
 <p>std::vector&lt;Unitless&gt; Vector containing the orientation as unitless values. </p>
@@ -6368,7 +6368,7 @@ You're not viewing the latest version.
 
 <h3 id="function-get_angular_velocity">function get_angular_velocity<a class="headerlink" href="#function-get_angular_velocity" title="Permanent link">&para;</a></h3>
 <p><em>Gets the angular velocity as a BodyAngleVelocities.</em> 
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kr">inline</span><span class="w"> </span><span class="k">const</span><span class="w">  </span><span class="n">BodyAngleVelocities</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Attitude</span><span class="o">::</span><span class="n">get_angular_velocity</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kr">inline</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">BodyAngleVelocities</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Attitude</span><span class="o">::</span><span class="n">get_angular_velocity</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </span></code></pre></div></p>
 <p><strong>Returns:</strong></p>
 <p>const BodyAngleVelocities&amp; The angular velocity as a BodyAngleVelocities. </p>
@@ -6376,7 +6376,7 @@ You're not viewing the latest version.
 
 <h3 id="function-get_orientation">function get_orientation<a class="headerlink" href="#function-get_orientation" title="Permanent link">&para;</a></h3>
 <p><em>Gets the orientation as a BodyQuaternion.</em> 
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="kr">inline</span><span class="w"> </span><span class="k">const</span><span class="w">  </span><span class="n">BodyQuaternion</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Attitude</span><span class="o">::</span><span class="n">get_orientation</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="kr">inline</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">BodyQuaternion</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Attitude</span><span class="o">::</span><span class="n">get_orientation</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </span></code></pre></div></p>
 <p><strong>Returns:</strong></p>
 <p>const BodyQuaternion&amp; The orientation as a BodyQuaternion. </p>
@@ -6385,10 +6385,10 @@ You're not viewing the latest version.
 <h3 id="function-interpolate">function interpolate<a class="headerlink" href="#function-interpolate" title="Permanent link">&para;</a></h3>
 <p><em>Interpolates between two</em> <a href="./"><em><strong>Attitude</strong></em></a> <em>at a given time.</em>
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="n">Attitude</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Attitude</span><span class="o">::</span><span class="n">interpolate</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Time</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">thisTime</span><span class="p">,</span>
-</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Time</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">otherTime</span><span class="p">,</span>
-</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Attitude</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">other</span><span class="p">,</span>
-</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Time</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">targetTime</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Time</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">thisTime</span><span class="p">,</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Time</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">otherTime</span><span class="p">,</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Attitude</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">other</span><span class="p">,</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Time</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">targetTime</span>
 </span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
 </span></code></pre></div></p>
 <p><strong>Parameters:</strong></p>
@@ -6405,7 +6405,7 @@ You're not viewing the latest version.
 <h3 id="function-operator">function operator*<a class="headerlink" href="#function-operator" title="Permanent link">&para;</a></h3>
 <p><em>Multiplies the</em> <a href="./"><em><strong>Attitude</strong></em></a> <em>by a scalar.</em>
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="n">Attitude</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Attitude</span><span class="o">::</span><span class="k">operator</span><span class="o">*</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Unitless</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">multiplier</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Unitless</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">multiplier</span>
 </span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
 </span></code></pre></div></p>
 <p><strong>Parameters:</strong></p>
@@ -6419,7 +6419,7 @@ You're not viewing the latest version.
 <h3 id="function-operator_1">function operator*=<a class="headerlink" href="#function-operator_1" title="Permanent link">&para;</a></h3>
 <p><em>Multiplies the</em> <a href="./"><em><strong>Attitude</strong></em></a> <em>by a scalar.</em>
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="n">Attitude</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Attitude</span><span class="o">::</span><span class="k">operator</span><span class="o">*=</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Unitless</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">multiplier</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Unitless</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">multiplier</span>
 </span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="p">)</span><span class="w"> </span>
 </span></code></pre></div></p>
 <p><strong>Parameters:</strong></p>
@@ -6433,7 +6433,7 @@ You're not viewing the latest version.
 <h3 id="function-operator_2">function operator+<a class="headerlink" href="#function-operator_2" title="Permanent link">&para;</a></h3>
 <p><em>Adds two</em> <a href="./"><em><strong>Attitude</strong></em></a> <em>objects.</em>
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="n">Attitude</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Attitude</span><span class="o">::</span><span class="k">operator</span><span class="o">+</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Attitude</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">other</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Attitude</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">other</span>
 </span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
 </span></code></pre></div></p>
 <p><strong>Parameters:</strong></p>
@@ -6447,7 +6447,7 @@ You're not viewing the latest version.
 <h3 id="function-operator_3">function operator+=<a class="headerlink" href="#function-operator_3" title="Permanent link">&para;</a></h3>
 <p><em>Adds another</em> <a href="./"><em><strong>Attitude</strong></em></a> <em>object to the current one.</em>
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="n">Attitude</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Attitude</span><span class="o">::</span><span class="k">operator</span><span class="o">+=</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Attitude</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">other</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Attitude</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">other</span>
 </span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="p">)</span><span class="w"> </span>
 </span></code></pre></div></p>
 <p><strong>Parameters:</strong></p>
@@ -6461,7 +6461,7 @@ You're not viewing the latest version.
 <h3 id="function-operator-">function operator-<a class="headerlink" href="#function-operator-" title="Permanent link">&para;</a></h3>
 <p><em>Subtracts another</em> <a href="./"><em><strong>Attitude</strong></em></a> <em>object from the current one.</em>
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="n">Attitude</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Attitude</span><span class="o">::</span><span class="k">operator</span><span class="o">-</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Attitude</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">other</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Attitude</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">other</span>
 </span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
 </span></code></pre></div></p>
 <p><strong>Parameters:</strong></p>
@@ -6475,7 +6475,7 @@ You're not viewing the latest version.
 <h3 id="function-operator-_1">function operator-=<a class="headerlink" href="#function-operator-_1" title="Permanent link">&para;</a></h3>
 <p><em>Subtracts another</em> <a href="./"><em><strong>Attitude</strong></em></a> <em>object from the current one.</em>
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="n">Attitude</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Attitude</span><span class="o">::</span><span class="k">operator</span><span class="o">-=</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Attitude</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">other</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Attitude</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">other</span>
 </span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="p">)</span><span class="w"> </span>
 </span></code></pre></div></p>
 <p><strong>Parameters:</strong></p>
@@ -6489,7 +6489,7 @@ You're not viewing the latest version.
 <h3 id="function-operator_4">function operator/<a class="headerlink" href="#function-operator_4" title="Permanent link">&para;</a></h3>
 <p><em>Divides the</em> <a href="./"><em><strong>Attitude</strong></em></a> <em>by a time.</em>
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="n">AttitudePartials</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Attitude</span><span class="o">::</span><span class="k">operator</span><span class="o">/</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Time</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">divisor</span>
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Time</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">divisor</span>
 </span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
 </span></code></pre></div></p>
 <p><strong>Parameters:</strong></p>
@@ -6503,7 +6503,7 @@ You're not viewing the latest version.
 <h3 id="function-operator_5">function operator/<a class="headerlink" href="#function-operator_5" title="Permanent link">&para;</a></h3>
 <p><em>Divides the</em> <a href="./"><em><strong>Attitude</strong></em></a> <em>by a scalar.</em>
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="n">Attitude</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Attitude</span><span class="o">::</span><span class="k">operator</span><span class="o">/</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Unitless</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">divisor</span>
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Unitless</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">divisor</span>
 </span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
 </span></code></pre></div></p>
 <p><strong>Parameters:</strong></p>
@@ -6517,7 +6517,7 @@ You're not viewing the latest version.
 <h3 id="function-operator_6">function operator/=<a class="headerlink" href="#function-operator_6" title="Permanent link">&para;</a></h3>
 <p><em>Divides the</em> <a href="./"><em><strong>Attitude</strong></em></a> <em>by a scalar.</em>
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="n">Attitude</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Attitude</span><span class="o">::</span><span class="k">operator</span><span class="o">/=</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Unitless</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">divisor</span>
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Unitless</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">divisor</span>
 </span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="p">)</span><span class="w"> </span>
 </span></code></pre></div></p>
 <p><strong>Parameters:</strong></p>
@@ -6531,7 +6531,7 @@ You're not viewing the latest version.
 <h3 id="function-operator_7">function operator==<a class="headerlink" href="#function-operator_7" title="Permanent link">&para;</a></h3>
 <p><em>Compares two</em> <a href="./"><em><strong>Attitude</strong></em></a> <em>objects for equality.</em>
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="kt">bool</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Attitude</span><span class="o">::</span><span class="k">operator</span><span class="o">==</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Attitude</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">other</span>
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Attitude</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">other</span>
 </span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
 </span></code></pre></div></p>
 <p><strong>Parameters:</strong></p>

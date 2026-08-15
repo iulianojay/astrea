@@ -27,7 +27,7 @@
     <innerclass refid="structastrea_1_1astro_1_1detail_1_1VehicleInnerBase" prot="public">astrea::astro::detail::VehicleInnerBase</innerclass>
     <sectiondef kind="typedef">
       <memberdef kind="typedef" id="frame__registry_8hpp_1a981a126ea173202029d90169be1383d8" prot="public" static="no">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">typename</ref> <ref refid="structastrea_1_1astro_1_1detail_1_1tuple__cat__types" kindref="compound">tuple_cat_types</ref>&lt; <ref refid="frame__registry_8hpp_1a036744f4f60261471e1ac2a8cb1bfa77" kindref="member">AutomaticallyRegisteredFrames</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">typename</ref> <ref refid="structastrea_1_1astro_1_1ExtraRegisteredFrames" kindref="compound">ExtraRegisteredFrames</ref>&lt;&gt;::type &gt;::type</type>
+        <type>typename <ref refid="structastrea_1_1astro_1_1detail_1_1tuple__cat__types" kindref="compound">tuple_cat_types</ref>&lt; <ref refid="frame__registry_8hpp_1a036744f4f60261471e1ac2a8cb1bfa77" kindref="member">AutomaticallyRegisteredFrames</ref>, typename <ref refid="structastrea_1_1astro_1_1ExtraRegisteredFrames" kindref="compound">ExtraRegisteredFrames</ref>&lt;&gt;::type &gt;::type</type>
         <definition>using astrea::astro::detail::AllRegisteredFrames = typedef typename tuple_cat_types&lt;AutomaticallyRegisteredFrames, typename ExtraRegisteredFrames&lt;&gt;::type&gt;::type</definition>
         <argsstring></argsstring>
         <name>AllRegisteredFrames</name>

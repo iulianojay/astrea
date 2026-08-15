@@ -6238,7 +6238,7 @@ You're not viewing the latest version.
 
 
 <h1 id="struct-astreaastrodetaileventinner">Struct astrea::astro::detail::EventInner<a class="headerlink" href="#struct-astreaastrodetaileventinner" title="Permanent link">&para;</a></h1>
-<p><strong>template &lt;<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>typename</strong></a> <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>T</strong></a>&gt;</strong></p>
+<p><strong>template &lt;typename T&gt;</strong></p>
 <p><a href="../annotated/"><strong>ClassList</strong></a> <strong>&gt;</strong> <a href="../namespaceastrea/"><strong>astrea</strong></a> <strong>&gt;</strong> <a href="../namespaceastrea_1_1astro/"><strong>astro</strong></a> <strong>&gt;</strong> <a href="../namespaceastrea_1_1astro_1_1detail/"><strong>detail</strong></a> <strong>&gt;</strong> <a href="./"><strong>EventInner</strong></a></p>
 <p><em>A template class for</em> <a href="../classastrea_1_1astro_1_1Event/"><em><strong>Event</strong></em></a> <em>inner implementations.</em><a href="#detailed-description">More...</a></p>
 <ul>
@@ -6255,7 +6255,7 @@ You're not viewing the latest version.
 </thead>
 <tbody>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>T</strong></a></td>
+<td style="text-align: right;">T</td>
 <td style="text-align: left;"><a href="#variable-_value"><strong>_value</strong></a>  <br><em>The value of the</em> <a href="../classastrea_1_1astro_1_1Event/"><em><strong>Event</strong></em></a> <em>inner implementation, which is the user-defined</em><a href="../classastrea_1_1astro_1_1Event/"><em><strong>Event</strong></em></a> <em>type.</em></td>
 </tr>
 </tbody>
@@ -6275,7 +6275,7 @@ You're not viewing the latest version.
 </tr>
 <tr>
 <td style="text-align: right;"></td>
-<td style="text-align: left;"><a href="#function-eventinner-25"><strong>EventInner</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="./"><strong>EventInner</strong></a> &amp;) = delete<br><em>Deleted copy assignment operator.</em></td>
+<td style="text-align: left;"><a href="#function-eventinner-25"><strong>EventInner</strong></a> (const <a href="./"><strong>EventInner</strong></a> &amp;) = delete<br><em>Deleted copy assignment operator.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;"></td>
@@ -6283,11 +6283,11 @@ You're not viewing the latest version.
 </tr>
 <tr>
 <td style="text-align: right;"></td>
-<td style="text-align: left;"><a href="#function-eventinner-45"><strong>EventInner</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>T</strong></a> &amp; x) <br><em>Constructs a</em> <a href="./"><em><strong>EventInner</strong></em></a> <em>with a given value.</em></td>
+<td style="text-align: left;"><a href="#function-eventinner-45"><strong>EventInner</strong></a> (const T &amp; x) <br><em>Constructs a</em> <a href="./"><em><strong>EventInner</strong></em></a> <em>with a given value.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;"></td>
-<td style="text-align: left;"><a href="#function-eventinner-55"><strong>EventInner</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>T</strong></a> &amp;&amp; x) <br><em>Constructs a</em> <a href="./"><em><strong>EventInner</strong></em></a> <em>with a given value.</em></td>
+<td style="text-align: left;"><a href="#function-eventinner-55"><strong>EventInner</strong></a> (T &amp;&amp; x) <br><em>Constructs a</em> <a href="./"><em><strong>EventInner</strong></em></a> <em>with a given value.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">virtual std::unique_ptr&lt; <a href="../structastrea_1_1astro_1_1detail_1_1EventInnerBase/"><strong>EventInnerBase</strong></a> &gt;</td>
@@ -6298,43 +6298,43 @@ You're not viewing the latest version.
 <td style="text-align: left;"><a href="#function-get_name"><strong>get_name</strong></a> () override const<br><em>Gets the name of the</em> <a href="../classastrea_1_1astro_1_1Event/"><em><strong>Event</strong></em></a> <em>.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">virtual <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>void</strong></a> *</td>
+<td style="text-align: right;">virtual const void *</td>
 <td style="text-align: left;"><a href="#function-get_ptr-12"><strong>get_ptr</strong></a> () const<br><em>Gets a pointer to the internal</em> <a href="../classastrea_1_1astro_1_1Event/"><em><strong>Event</strong></em></a> <em>instance.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">virtual <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>void</strong></a> *</td>
+<td style="text-align: right;">virtual void *</td>
 <td style="text-align: left;"><a href="#function-get_ptr-22"><strong>get_ptr</strong></a> () <br><em>Gets a pointer to the internal</em> <a href="../classastrea_1_1astro_1_1Event/"><em><strong>Event</strong></em></a> <em>instance.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">virtual <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>bool</strong></a></td>
+<td style="text-align: right;">virtual bool</td>
 <td style="text-align: left;"><a href="#function-is_terminal"><strong>is_terminal</strong></a> () override const<br><em>Checks if the</em> <a href="../classastrea_1_1astro_1_1Event/"><em><strong>Event</strong></em></a> <em>is a terminal</em><a href="../classastrea_1_1astro_1_1Event/"><em><strong>Event</strong></em></a> <em>.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">virtual <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Unitless</strong></a></td>
-<td style="text-align: left;"><a href="#function-measure_event"><strong>measure_event</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Time</strong></a> &amp; time, <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1State/"><strong>State</strong></a> &amp; state, <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1Vehicle/"><strong>Vehicle</strong></a> &amp; vehicle) override const<br><em>Detects if the</em> <a href="../classastrea_1_1astro_1_1Event/"><em><strong>Event</strong></em></a> <em>is triggered by a</em><a href="../classastrea_1_1astro_1_1Vehicle/"><em><strong>Vehicle</strong></em></a> <em>.</em></td>
+<td style="text-align: right;">virtual Unitless</td>
+<td style="text-align: left;"><a href="#function-measure_event"><strong>measure_event</strong></a> (const Time &amp; time, const <a href="../classastrea_1_1astro_1_1State/"><strong>State</strong></a> &amp; state, const <a href="../classastrea_1_1astro_1_1Vehicle/"><strong>Vehicle</strong></a> &amp; vehicle) override const<br><em>Detects if the</em> <a href="../classastrea_1_1astro_1_1Event/"><em><strong>Event</strong></em></a> <em>is triggered by a</em><a href="../classastrea_1_1astro_1_1Vehicle/"><em><strong>Vehicle</strong></em></a> <em>.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;"><a href="./"><strong>EventInner</strong></a> &amp;</td>
-<td style="text-align: left;"><a href="#function-operator"><strong>operator=</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="./"><strong>EventInner</strong></a> &amp;) = delete<br><em>Deleted copy assignment operator.</em></td>
+<td style="text-align: left;"><a href="#function-operator"><strong>operator=</strong></a> (const <a href="./"><strong>EventInner</strong></a> &amp;) = delete<br><em>Deleted copy assignment operator.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;"><a href="./"><strong>EventInner</strong></a> &amp;</td>
 <td style="text-align: left;"><a href="#function-operator_1"><strong>operator=</strong></a> (<a href="./"><strong>EventInner</strong></a> &amp;&amp;) = delete<br><em>Deleted move assignment operator.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">virtual <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>void</strong></a></td>
-<td style="text-align: left;"><a href="#function-trigger_action"><strong>trigger_action</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Time</strong></a> &amp; time, <a href="../classastrea_1_1astro_1_1State/"><strong>State</strong></a> &amp; state, <a href="../classastrea_1_1astro_1_1Vehicle/"><strong>Vehicle</strong></a> &amp; vehicle) override const<br><em>Triggers the</em> <a href="../classastrea_1_1astro_1_1Event/"><em><strong>Event</strong></em></a> <em>for a</em><a href="../classastrea_1_1astro_1_1Vehicle/"><em><strong>Vehicle</strong></em></a> <em>.</em></td>
+<td style="text-align: right;">virtual void</td>
+<td style="text-align: left;"><a href="#function-trigger_action"><strong>trigger_action</strong></a> (const Time &amp; time, <a href="../classastrea_1_1astro_1_1State/"><strong>State</strong></a> &amp; state, <a href="../classastrea_1_1astro_1_1Vehicle/"><strong>Vehicle</strong></a> &amp; vehicle) override const<br><em>Triggers the</em> <a href="../classastrea_1_1astro_1_1Event/"><em><strong>Event</strong></em></a> <em>for a</em><a href="../classastrea_1_1astro_1_1Vehicle/"><em><strong>Vehicle</strong></em></a> <em>.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>void</strong></a></td>
-<td style="text-align: left;"><a href="#function-trigger_action_impl-12"><strong>trigger_action_impl</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>U</strong></a> &amp; value, <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Time</strong></a> &amp; time, <a href="../classastrea_1_1astro_1_1State/"><strong>State</strong></a> &amp; state, <a href="../classastrea_1_1astro_1_1Vehicle/"><strong>Vehicle</strong></a> &amp; vehicle) const<br><em>Implementation of the trigger_action function for an</em> <a href="../classastrea_1_1astro_1_1Event/"><em><strong>Event</strong></em></a> <em>with a trigger.</em></td>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-trigger_action_impl-12"><strong>trigger_action_impl</strong></a> (const U &amp; value, const Time &amp; time, <a href="../classastrea_1_1astro_1_1State/"><strong>State</strong></a> &amp; state, <a href="../classastrea_1_1astro_1_1Vehicle/"><strong>Vehicle</strong></a> &amp; vehicle) const<br><em>Implementation of the trigger_action function for an</em> <a href="../classastrea_1_1astro_1_1Event/"><em><strong>Event</strong></em></a> <em>with a trigger.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>void</strong></a></td>
-<td style="text-align: left;"><a href="#function-trigger_action_impl-22"><strong>trigger_action_impl</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>U</strong></a> &amp; value, <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Time</strong></a> &amp; time, <a href="../classastrea_1_1astro_1_1State/"><strong>State</strong></a> &amp; state, <a href="../classastrea_1_1astro_1_1Vehicle/"><strong>Vehicle</strong></a> &amp; vehicle) const<br><em>Implementation of the trigger_action function for an</em> <a href="../classastrea_1_1astro_1_1Event/"><em><strong>Event</strong></em></a> <em>without a trigger. Does nothing.</em></td>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-trigger_action_impl-22"><strong>trigger_action_impl</strong></a> (const U &amp; value, const Time &amp; time, <a href="../classastrea_1_1astro_1_1State/"><strong>State</strong></a> &amp; state, <a href="../classastrea_1_1astro_1_1Vehicle/"><strong>Vehicle</strong></a> &amp; vehicle) const<br><em>Implementation of the trigger_action function for an</em> <a href="../classastrea_1_1astro_1_1Event/"><em><strong>Event</strong></em></a> <em>without a trigger. Does nothing.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">virtual <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> std::type_info &amp;</td>
+<td style="text-align: right;">virtual const std::type_info &amp;</td>
 <td style="text-align: left;"><a href="#function-type"><strong>type</strong></a> () const<br><em>Gets the type information of the internal vehicle instance.</em></td>
 </tr>
 </tbody>
@@ -6358,27 +6358,27 @@ You're not viewing the latest version.
 <td style="text-align: left;"><a href="../structastrea_1_1astro_1_1detail_1_1EventInnerBase/#function-get_name"><strong>get_name</strong></a> () const = 0<br><em>Gets the name of the</em> <a href="../classastrea_1_1astro_1_1Event/"><em><strong>Event</strong></em></a> <em>.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">virtual <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>void</strong></a> *</td>
+<td style="text-align: right;">virtual const void *</td>
 <td style="text-align: left;"><a href="../structastrea_1_1astro_1_1detail_1_1EventInnerBase/#function-get_ptr-12"><strong>get_ptr</strong></a> () const = 0<br><em>Gets a pointer to the internal</em> <a href="../classastrea_1_1astro_1_1Event/"><em><strong>Event</strong></em></a> <em>instance.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">virtual <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>void</strong></a> *</td>
+<td style="text-align: right;">virtual void *</td>
 <td style="text-align: left;"><a href="../structastrea_1_1astro_1_1detail_1_1EventInnerBase/#function-get_ptr-22"><strong>get_ptr</strong></a> () = 0<br><em>Gets a pointer to the internal</em> <a href="../classastrea_1_1astro_1_1Event/"><em><strong>Event</strong></em></a> <em>instance.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">virtual <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>bool</strong></a></td>
+<td style="text-align: right;">virtual bool</td>
 <td style="text-align: left;"><a href="../structastrea_1_1astro_1_1detail_1_1EventInnerBase/#function-is_terminal"><strong>is_terminal</strong></a> () const = 0<br><em>Checks if the</em> <a href="../classastrea_1_1astro_1_1Event/"><em><strong>Event</strong></em></a> <em>is a terminal</em><a href="../classastrea_1_1astro_1_1Event/"><em><strong>Event</strong></em></a> <em>.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">virtual <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Unitless</strong></a></td>
-<td style="text-align: left;"><a href="../structastrea_1_1astro_1_1detail_1_1EventInnerBase/#function-measure_event"><strong>measure_event</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Time</strong></a> &amp; time, <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1State/"><strong>State</strong></a> &amp; state, <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1Vehicle/"><strong>Vehicle</strong></a> &amp; vehicle) const = 0<br><em>Detects if the</em> <a href="../classastrea_1_1astro_1_1Event/"><em><strong>Event</strong></em></a> <em>is triggered by a</em><a href="../classastrea_1_1astro_1_1Vehicle/"><em><strong>Vehicle</strong></em></a> <em>.</em></td>
+<td style="text-align: right;">virtual Unitless</td>
+<td style="text-align: left;"><a href="../structastrea_1_1astro_1_1detail_1_1EventInnerBase/#function-measure_event"><strong>measure_event</strong></a> (const Time &amp; time, const <a href="../classastrea_1_1astro_1_1State/"><strong>State</strong></a> &amp; state, const <a href="../classastrea_1_1astro_1_1Vehicle/"><strong>Vehicle</strong></a> &amp; vehicle) const = 0<br><em>Detects if the</em> <a href="../classastrea_1_1astro_1_1Event/"><em><strong>Event</strong></em></a> <em>is triggered by a</em><a href="../classastrea_1_1astro_1_1Vehicle/"><em><strong>Vehicle</strong></em></a> <em>.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">virtual <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>void</strong></a></td>
-<td style="text-align: left;"><a href="../structastrea_1_1astro_1_1detail_1_1EventInnerBase/#function-trigger_action"><strong>trigger_action</strong></a> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Time</strong></a> &amp; time, <a href="../classastrea_1_1astro_1_1State/"><strong>State</strong></a> &amp; state, <a href="../classastrea_1_1astro_1_1Vehicle/"><strong>Vehicle</strong></a> &amp; vehicle) const = 0<br><em>Triggers the</em> <a href="../classastrea_1_1astro_1_1Event/"><em><strong>Event</strong></em></a> <em>for a</em><a href="../classastrea_1_1astro_1_1Vehicle/"><em><strong>Vehicle</strong></em></a> <em>.</em></td>
+<td style="text-align: right;">virtual void</td>
+<td style="text-align: left;"><a href="../structastrea_1_1astro_1_1detail_1_1EventInnerBase/#function-trigger_action"><strong>trigger_action</strong></a> (const Time &amp; time, <a href="../classastrea_1_1astro_1_1State/"><strong>State</strong></a> &amp; state, <a href="../classastrea_1_1astro_1_1Vehicle/"><strong>Vehicle</strong></a> &amp; vehicle) const = 0<br><em>Triggers the</em> <a href="../classastrea_1_1astro_1_1Event/"><em><strong>Event</strong></em></a> <em>for a</em><a href="../classastrea_1_1astro_1_1Vehicle/"><em><strong>Vehicle</strong></em></a> <em>.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">virtual <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>const</strong></a> std::type_info &amp;</td>
+<td style="text-align: right;">virtual const std::type_info &amp;</td>
 <td style="text-align: left;"><a href="../structastrea_1_1astro_1_1detail_1_1EventInnerBase/#function-type"><strong>type</strong></a> () const = 0<br><em>Gets the type information of the internal vehicle instance.</em></td>
 </tr>
 <tr>
@@ -6408,7 +6408,7 @@ You're not viewing the latest version.
 <h3 id="function-eventinner-25">function EventInner [2/5]<a class="headerlink" href="#function-eventinner-25" title="Permanent link">&para;</a></h3>
 <p><em>Deleted copy assignment operator.</em> 
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">detail</span><span class="o">::</span><span class="n">EventInner</span><span class="o">::</span><span class="n">EventInner</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">EventInner</span><span class="w"> </span><span class="o">&amp;</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">EventInner</span><span class="w"> </span><span class="o">&amp;</span>
 </span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">delete</span>
 </span></code></pre></div></p>
 <hr>
@@ -6424,7 +6424,7 @@ You're not viewing the latest version.
 <h3 id="function-eventinner-45">function EventInner [4/5]<a class="headerlink" href="#function-eventinner-45" title="Permanent link">&para;</a></h3>
 <p><em>Constructs a</em> <a href="./"><em><strong>EventInner</strong></em></a> <em>with a given value.</em>
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kr">inline</span><span class="w"> </span><span class="k">explicit</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">detail</span><span class="o">::</span><span class="n">EventInner</span><span class="o">::</span><span class="n">EventInner</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">T</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">x</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">T</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">x</span>
 </span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="p">)</span><span class="w"> </span>
 </span></code></pre></div></p>
 <p><strong>Parameters:</strong></p>
@@ -6465,7 +6465,7 @@ You're not viewing the latest version.
 
 <h3 id="function-get_ptr-12">function get_ptr [1/2]<a class="headerlink" href="#function-get_ptr-12" title="Permanent link">&para;</a></h3>
 <p><em>Gets a pointer to the internal</em> <a href="../classastrea_1_1astro_1_1Event/"><em><strong>Event</strong></em></a> <em>instance.</em>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="kr">inline</span><span class="w"> </span><span class="k">virtual</span><span class="w"> </span><span class="k">const</span><span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">detail</span><span class="o">::</span><span class="n">EventInner</span><span class="o">::</span><span class="n">get_ptr</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="kr">inline</span><span class="w"> </span><span class="k">virtual</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">detail</span><span class="o">::</span><span class="n">EventInner</span><span class="o">::</span><span class="n">get_ptr</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </span></code></pre></div></p>
 <p><strong>Returns:</strong></p>
 <p>const void* A pointer to the internal <a href="../classastrea_1_1astro_1_1Event/"><strong>Event</strong></a> instance. </p>
@@ -6495,9 +6495,9 @@ You're not viewing the latest version.
 <h3 id="function-measure_event">function measure_event<a class="headerlink" href="#function-measure_event" title="Permanent link">&para;</a></h3>
 <p><em>Detects if the</em> <a href="../classastrea_1_1astro_1_1Event/"><em><strong>Event</strong></em></a> <em>is triggered by a</em><a href="../classastrea_1_1astro_1_1Vehicle/"><em><strong>Vehicle</strong></em></a> <em>.</em>
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="kr">inline</span><span class="w"> </span><span class="k">virtual</span><span class="w"> </span><span class="n">Unitless</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">detail</span><span class="o">::</span><span class="n">EventInner</span><span class="o">::</span><span class="n">measure_event</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Time</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">time</span><span class="p">,</span>
-</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">State</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">state</span><span class="p">,</span>
-</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Vehicle</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">vehicle</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Time</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">time</span><span class="p">,</span>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">State</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">state</span><span class="p">,</span>
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Vehicle</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">vehicle</span>
 </span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="k">const</span>
 </span></code></pre></div></p>
 <p><strong>Parameters:</strong></p>
@@ -6516,7 +6516,7 @@ You're not viewing the latest version.
 <h3 id="function-operator">function operator=<a class="headerlink" href="#function-operator" title="Permanent link">&para;</a></h3>
 <p><em>Deleted copy assignment operator.</em> 
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="n">EventInner</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">detail</span><span class="o">::</span><span class="n">EventInner</span><span class="o">::</span><span class="k">operator</span><span class="o">=</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">EventInner</span><span class="w"> </span><span class="o">&amp;</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">EventInner</span><span class="w"> </span><span class="o">&amp;</span>
 </span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">delete</span>
 </span></code></pre></div></p>
 <hr>
@@ -6532,7 +6532,7 @@ You're not viewing the latest version.
 <h3 id="function-trigger_action">function trigger_action<a class="headerlink" href="#function-trigger_action" title="Permanent link">&para;</a></h3>
 <p><em>Triggers the</em> <a href="../classastrea_1_1astro_1_1Event/"><em><strong>Event</strong></em></a> <em>for a</em><a href="../classastrea_1_1astro_1_1Vehicle/"><em><strong>Vehicle</strong></em></a> <em>.</em>
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="kr">inline</span><span class="w"> </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">detail</span><span class="o">::</span><span class="n">EventInner</span><span class="o">::</span><span class="n">trigger_action</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Time</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">time</span><span class="p">,</span>
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Time</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">time</span><span class="p">,</span>
 </span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="w">    </span><span class="n">State</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">state</span><span class="p">,</span>
 </span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="w">    </span><span class="n">Vehicle</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">vehicle</span>
 </span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="k">const</span>
@@ -6550,10 +6550,10 @@ You're not viewing the latest version.
 
 <h3 id="function-trigger_action_impl-12">function trigger_action_impl [1/2]<a class="headerlink" href="#function-trigger_action_impl-12" title="Permanent link">&para;</a></h3>
 <p><em>Implementation of the trigger_action function for an</em> <a href="../classastrea_1_1astro_1_1Event/"><em><strong>Event</strong></em></a> <em>with a trigger.</em>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w">  </span><span class="nc">U</span><span class="o">&gt;</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">U</span><span class="o">&gt;</span>
 </span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="kr">inline</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">detail</span><span class="o">::</span><span class="n">EventInner</span><span class="o">::</span><span class="n">trigger_action_impl</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">U</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">value</span><span class="p">,</span>
-</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Time</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">time</span><span class="p">,</span>
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">U</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">value</span><span class="p">,</span>
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Time</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">time</span><span class="p">,</span>
 </span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a><span class="w">    </span><span class="n">State</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">state</span><span class="p">,</span>
 </span><span id="__span-15-6"><a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a><span class="w">    </span><span class="n">Vehicle</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">vehicle</span>
 </span><span id="__span-15-7"><a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
@@ -6575,10 +6575,10 @@ You're not viewing the latest version.
 
 <h3 id="function-trigger_action_impl-22">function trigger_action_impl [2/2]<a class="headerlink" href="#function-trigger_action_impl-22" title="Permanent link">&para;</a></h3>
 <p><em>Implementation of the trigger_action function for an</em> <a href="../classastrea_1_1astro_1_1Event/"><em><strong>Event</strong></em></a> <em>without a trigger. Does nothing.</em>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w">  </span><span class="nc">U</span><span class="o">&gt;</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">U</span><span class="o">&gt;</span>
 </span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="kr">inline</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">detail</span><span class="o">::</span><span class="n">EventInner</span><span class="o">::</span><span class="n">trigger_action_impl</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">U</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">value</span><span class="p">,</span>
-</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Time</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">time</span><span class="p">,</span>
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">U</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">value</span><span class="p">,</span>
+</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Time</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">time</span><span class="p">,</span>
 </span><span id="__span-16-5"><a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a><span class="w">    </span><span class="n">State</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">state</span><span class="p">,</span>
 </span><span id="__span-16-6"><a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a><span class="w">    </span><span class="n">Vehicle</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">vehicle</span>
 </span><span id="__span-16-7"><a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>

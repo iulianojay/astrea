@@ -61,6 +61,7 @@ _Header file for body-fixed frames. Just ECEF right now._ [More...](#detailed-de
 | ---: | :--- |
 | struct | [**callisto\_fixed**](structastrea_1_1astro_1_1frames_1_1callisto_1_1callisto__fixed.md) <br> |
 | struct | [**deimos\_fixed**](structastrea_1_1astro_1_1frames_1_1deimos_1_1deimos__fixed.md) <br> |
+| struct | [**cep**](structastrea_1_1astro_1_1frames_1_1earth_1_1cep.md) <br> |
 | struct | [**earth\_fixed**](structastrea_1_1astro_1_1frames_1_1earth_1_1earth__fixed.md) <br> |
 | struct | [**europa\_fixed**](structastrea_1_1astro_1_1frames_1_1europa_1_1europa__fixed.md) <br> |
 | struct | [**ganymede\_fixed**](structastrea_1_1astro_1_1frames_1_1ganymede_1_1ganymede__fixed.md) <br> |
@@ -151,7 +152,7 @@ Jay Iuliano ([iuliano.jay@gmail.com](mailto:iuliano.jay@gmail.com))
 
 **Copyright:**
 
-Copyright (c) 2025 Jay Iuliano
+Copyright (c) 2025-2026 Jay Iuliano
 
 
 The GNU Lesser General Public License (LGPL)

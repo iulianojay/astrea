@@ -13,6 +13,7 @@ _Header file for the base class of equations of motion._ [More...](#detailed-des
 * `#include <astro/astro.fwd.hpp>`
 * `#include <astro/frames/definitions.hpp>`
 * `#include <astro/frames/definitions/primary_frame.hpp>`
+* `#include <astro/propagation/force_models/ForceModel.hpp>`
 * `#include <astro/types/typedefs.hpp>`
 
 
@@ -111,7 +112,7 @@ Jay Iuliano ([iuliano.jay@gmail.com](mailto:iuliano.jay@gmail.com))
 
 **Copyright:**
 
-Copyright (c) 2025 Jay Iuliano
+Copyright (c) 2025-2026 Jay Iuliano
 
 
 The GNU Lesser General Public License (LGPL)

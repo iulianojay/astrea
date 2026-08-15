@@ -2,7 +2,7 @@
 
 # Struct astrea::astro::is\_cartesian\_vector&lt; CartesianVector&lt; Value\_T, frame &gt; &gt;
 
-**template &lt;[**class**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Value\_T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), IsFrame [**auto**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) frame&gt;**
+**template &lt;class Value\_T, IsFrame auto frame&gt;**
 
 
 

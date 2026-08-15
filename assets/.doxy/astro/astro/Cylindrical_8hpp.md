@@ -12,7 +12,7 @@ _This file defines the Cylindrical class and its associated methods._ [More...](
 
 * `#include <iosfwd>`
 * `#include <mp-units/math.h>`
-* `#include <mp-units/systems/angular/math.h>`
+* `#include <mp-units/systems/si/math.h>`
 * `#include <units/units.hpp>`
 * `#include <astro/astro.fwd.hpp>`
 * `#include <astro/frames/definitions.hpp>`
@@ -120,7 +120,7 @@ Jay Iuliano ([iuliano.jay@gmail.com](mailto:iuliano.jay@gmail.com))
 
 **Copyright:**
 
-Copyright (c) 2025 Jay Iuliano
+Copyright (c) 2025-2026 Jay Iuliano
 
 
 The GNU Lesser General Public License (LGPL)

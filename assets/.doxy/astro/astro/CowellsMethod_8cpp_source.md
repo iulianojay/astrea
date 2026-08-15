@@ -11,7 +11,7 @@
 /*
  * The GNU Lesser General Public License (LGPL)
  *
- * Copyright (c) 2025 Jay Iuliano
+ * Copyright (c) 2025-2026 Jay Iuliano
  *
  * This file is part of Astrea.
  * Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License
@@ -24,7 +24,6 @@
 #include <astro/propagation/equations_of_motion/CowellsMethod.hpp>
 
 #include <mp-units/math.h>
-#include <mp-units/systems/angular/math.h>
 #include <mp-units/systems/si.h>
 #include <mp-units/systems/si/math.h>
 
@@ -74,7 +73,7 @@ OrbitalElementPartials CowellsMethod::compute_dynamics(
 
 StateTransitionMatrix CowellsMethod::compute_stm(const State& state, const Vehicle& vehicle) const
 {
-    if (forces->size() == 0) {
+    if (forces.size() == 0) {
         // If no perturbations, use two-body STM
         const TwoBody twoBody;
         return twoBody.compute_stm(state, vehicle);

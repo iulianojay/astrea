@@ -12,7 +12,6 @@
 
 * `#include <astro/systems/celestial_bodies/Earth/atmosphere/JacciaRoberts.hpp>`
 * `#include <mp-units/core.h>`
-* `#include <mp-units/systems/angular.h>`
 * `#include <mp-units/systems/hep.h>`
 * `#include <mp-units/systems/si.h>`
 

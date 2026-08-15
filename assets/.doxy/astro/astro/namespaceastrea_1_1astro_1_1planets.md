@@ -73,19 +73,19 @@
 
 | Type | Name |
 | ---: | :--- |
-|  [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) std::map&lt; [**Altitude**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), std::tuple&lt; [**Density**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), [**Density**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt; &gt; | [**HARRIS\_PRIESTER\_ATMOSPHERE**](#variable-harris_priester_atmosphere)  <br> |
-|  [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) std::map&lt; [**Altitude**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), std::tuple&lt; [**Altitude**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), [**Density**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), [**Altitude**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt; &gt; | [**JACHIA\_ROBERTS\_ATMOSPHERE**](#variable-jachia_roberts_atmosphere)   = `/* multi line expression */`<br> |
-|  [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Angle**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**LAG**](#variable-lag)   = `30.0 \* deg`<br> |
-|  [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) std::array&lt; std::array&lt; NumberDensity, 150 &gt;, 9 &gt; | [**PD**](#variable-pd)  <br> |
-|  [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**double**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)[][] | [**PDL**](#variable-pdl)   = `/* multi line expression */`<br> |
-|  [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) std::array&lt; [**SpeciesModelParams**](structastrea_1_1astro_1_1planets_1_1SpeciesModelParams.md), 8 &gt; | [**PDM**](#variable-pdm)   = `/* multi line expression */`<br> |
-|  [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**double**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)[][] | [**PMA**](#variable-pma)  <br> |
-|  [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**double**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)[] | [**PS**](#variable-ps)   = `/* multi line expression */`<br> |
-|  [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**double**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**PT**](#variable-pt)   = `/* multi line expression */`<br> |
-|  [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**double**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)[][] | [**PTL**](#variable-ptl)  <br> |
-|  [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**BatesProfileParams**](structastrea_1_1astro_1_1planets_1_1BatesProfileParams.md) | [**PTM**](#variable-ptm)   = `/* multi line expression */`<br> |
-|  [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) AtomicMass | [**XMM**](#variable-xmm)   = `28.9500 \* u`<br>_Mean molecular mass of the well-mixed lower atmosphere (amu), corresponding to PDM[N2][4] in the Fortran source._  |
-|  [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**int**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**cosineExponent**](#variable-cosineexponent)   = `4`<br> |
+|  const std::map&lt; Altitude, std::tuple&lt; Density, Density &gt; &gt; | [**HARRIS\_PRIESTER\_ATMOSPHERE**](#variable-harris_priester_atmosphere)  <br> |
+|  const std::map&lt; Altitude, std::tuple&lt; Altitude, Density, Altitude &gt; &gt; | [**JACHIA\_ROBERTS\_ATMOSPHERE**](#variable-jachia_roberts_atmosphere)   = `/* multi line expression */`<br> |
+|  const Angle | [**LAG**](#variable-lag)   = `30.0 \* deg`<br> |
+|  const std::array&lt; std::array&lt; NumberDensity, 150 &gt;, 9 &gt; | [**PD**](#variable-pd)  <br> |
+|  const double[][] | [**PDL**](#variable-pdl)   = `/* multi line expression */`<br> |
+|  const std::array&lt; [**SpeciesModelParams**](structastrea_1_1astro_1_1planets_1_1SpeciesModelParams.md), 8 &gt; | [**PDM**](#variable-pdm)   = `/* multi line expression */`<br> |
+|  const double[][] | [**PMA**](#variable-pma)  <br> |
+|  const double[] | [**PS**](#variable-ps)   = `/* multi line expression */`<br> |
+|  const double | [**PT**](#variable-pt)   = `/* multi line expression */`<br> |
+|  const double[][] | [**PTL**](#variable-ptl)  <br> |
+|  const [**BatesProfileParams**](structastrea_1_1astro_1_1planets_1_1BatesProfileParams.md) | [**PTM**](#variable-ptm)   = `/* multi line expression */`<br> |
+|  const AtomicMass | [**XMM**](#variable-xmm)   = `28.9500 \* u`<br>_Mean molecular mass of the well-mixed lower atmosphere (amu), corresponding to PDM[N2][4] in the Fortran source._  |
+|  const int | [**cosineExponent**](#variable-cosineexponent)   = `4`<br> |
 
 
 

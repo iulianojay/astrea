@@ -14,6 +14,7 @@
 #include <astro/astro.fwd.hpp>
 #include <astro/frames/definitions.hpp>
 #include <astro/frames/definitions/primary_frame.hpp>
+#include <astro/propagation/force_models/ForceModel.hpp>
 #include <astro/types/typedefs.hpp>
 
 namespace astrea {
@@ -47,8 +48,10 @@ class EquationsOfMotion {
 
     virtual constexpr std::size_t get_expected_set_id() const = 0;
 
+    virtual std::unique_ptr<EquationsOfMotion> clone() const = 0;
+
   protected:
-    const ForceModel* forces = nullptr; 
+    ForceModel forces; 
 };
 
 } // namespace astro

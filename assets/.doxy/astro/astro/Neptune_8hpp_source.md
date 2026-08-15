@@ -18,7 +18,7 @@
 #include <astro/systems/barycenters.hpp>
 
 #ifdef ASTREA_BUILD_NEPTUNE_EPHEMERIS
-#include <ephemerides/Neptune/NeptuneEphemerisTable.hpp>
+#include <astro/ephemerides/Neptune/NeptuneEphemerisTable.hpp>
 #endif // ASTREA_BUILD_NEPTUNE_EPHEMERIS
 
 namespace astrea {
@@ -35,9 +35,10 @@ template <>
 inline consteval CelestialBodyParameters get_celestial_body_parameters<planets::Neptune>()
 {
     using namespace mp_units;
-    using mp_units::angular::unit_symbols::deg;
+    using astrea::units::unit_symbols::jc;
     using mp_units::iau::unit_symbols::au;
     using mp_units::non_si::day;
+    using mp_units::si::unit_symbols::deg;
     using mp_units::si::unit_symbols::kg;
     using mp_units::si::unit_symbols::km;
     using mp_units::si::unit_symbols::s;
@@ -61,12 +62,12 @@ inline consteval CelestialBodyParameters get_celestial_body_parameters<planets::
              .rightAscension         = Angle(131.78422574 * deg),
              .longitudeOfPerigee     = Angle(44.96476227 * deg),
              .meanLongitude          = Angle(-55.12002969 * deg),
-             .semimajorAxisRate      = InterplanetaryVelocity(0.00026291 * au / JulianCentury),
-             .eccentricityRate       = BodyUnitlessPerTime(0.00005105 * one / JulianCentury),
-             .inclinationRate        = BodyAngularVelocity(0.00035372 * deg / JulianCentury),
-             .rightAscensionRate     = BodyAngularVelocity(-0.00508664 * deg / JulianCentury),
-             .longitudeOfPerigeeRate = BodyAngularVelocity(-0.32241464 * deg / JulianCentury),
-             .meanLongitudeRate      = BodyAngularVelocity(218.45945325 * deg / JulianCentury) };
+             .semimajorAxisRate      = InterplanetaryVelocity(0.00026291 * au / jc),
+             .eccentricityRate       = BodyUnitlessPerTime(0.00005105 * one / jc),
+             .inclinationRate        = BodyAngularVelocity(0.00035372 * deg / jc),
+             .rightAscensionRate     = BodyAngularVelocity(-0.00508664 * deg / jc),
+             .longitudeOfPerigeeRate = BodyAngularVelocity(-0.32241464 * deg / jc),
+             .meanLongitudeRate      = BodyAngularVelocity(218.45945325 * deg / jc) };
 }
 
 #ifdef ASTREA_BUILD_NEPTUNE_EPHEMERIS
@@ -100,8 +101,9 @@ inline constexpr CartesianVector<Acceleration, get_parent_frame(planets::Neptune
 template <>
 inline constexpr CoefficientPack get_linear_expansion_coefficients<planets::Neptune>()
 {
-    using mp_units::angular::unit_symbols::rad;
-    return std::make_tuple(-0.00041348 * rad / (JulianCentury * JulianCentury), 0.68346318 * rad, -0.10162547 * rad, 7.67025000 * rad / JulianCentury);
+    using astrea::units::unit_symbols::jc;
+    using mp_units::si::unit_symbols::rad;
+    return std::make_tuple(-0.00041348 * rad / (jc * jc), 0.68346318 * rad, -0.10162547 * rad, 7.67025000 * rad / jc);
 }
 
 } // namespace astro

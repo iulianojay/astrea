@@ -14,7 +14,7 @@ _Header file for the DirectionCosineMatrixRate class in the astro namespace._ [M
 * `#include <cmath>`
 * `#include <iostream>`
 * `#include <mp-units/math.h>`
-* `#include <mp-units/systems/angular/math.h>`
+* `#include <mp-units/systems/si/math.h>`
 * `#include <units/units.hpp>`
 * `#include <utilities/string_util.hpp>`
 * `#include <astro/astro.fwd.hpp>`
@@ -119,7 +119,7 @@ Jay Iuliano ([iuliano.jay@gmail.com](mailto:iuliano.jay@gmail.com))
 
 **Copyright:**
 
-Copyright (c) 2025 Jay Iuliano
+Copyright (c) 2025-2026 Jay Iuliano
 
 
 The GNU Lesser General Public License (LGPL)

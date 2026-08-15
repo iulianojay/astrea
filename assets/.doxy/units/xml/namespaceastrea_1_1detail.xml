@@ -16,7 +16,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/units/units/detail.hpp" line="32" column="23" bodyfile="astrea/units/units/detail.hpp" bodystart="32" bodyend="-1"/>
+        <location file="astrea/units/units/detail.hpp" line="30" column="23" bodyfile="astrea/units/units/detail.hpp" bodystart="30" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="detail_8hpp_1af9e85dbf6ea8b2d7eea371ebc82dc03e" prot="public" static="no" constexpr="yes" mutable="no">
         <type>constexpr auto</type>
@@ -31,7 +31,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/units/units/detail.hpp" line="33" column="23" bodyfile="astrea/units/units/detail.hpp" bodystart="33" bodyend="-1"/>
+        <location file="astrea/units/units/detail.hpp" line="31" column="23" bodyfile="astrea/units/units/detail.hpp" bodystart="31" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="detail_8hpp_1ab7a236fdfbd27a0ff06c2d3371443c61" prot="public" static="no" constexpr="yes" mutable="no">
         <type>constexpr auto</type>
@@ -39,14 +39,14 @@
         <argsstring></argsstring>
         <name>angle_unit</name>
         <qualifiedname>astrea::detail::angle_unit</qualifiedname>
-        <initializer>= mp_units::angular::unit_symbols::rad</initializer>
+        <initializer>= mp_units::si::unit_symbols::rad</initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/units/units/detail.hpp" line="34" column="23" bodyfile="astrea/units/units/detail.hpp" bodystart="34" bodyend="-1"/>
+        <location file="astrea/units/units/detail.hpp" line="32" column="23" bodyfile="astrea/units/units/detail.hpp" bodystart="32" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="detail_8hpp_1af4d95065a5d7f98d7b612741d489da41" prot="public" static="no" constexpr="yes" mutable="no">
         <type>constexpr auto</type>
@@ -61,7 +61,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/units/units/detail.hpp" line="35" column="23" bodyfile="astrea/units/units/detail.hpp" bodystart="35" bodyend="-1"/>
+        <location file="astrea/units/units/detail.hpp" line="33" column="23" bodyfile="astrea/units/units/detail.hpp" bodystart="33" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="detail_8hpp_1ad1a9390502c4bdf63981fca270fc9216" prot="public" static="no" constexpr="yes" mutable="no">
         <type>constexpr auto</type>
@@ -76,7 +76,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/units/units/detail.hpp" line="36" column="23" bodyfile="astrea/units/units/detail.hpp" bodystart="36" bodyend="-1"/>
+        <location file="astrea/units/units/detail.hpp" line="34" column="23" bodyfile="astrea/units/units/detail.hpp" bodystart="34" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="detail_8hpp_1acae49779c0dd2e12a76deb5dab5cceec" prot="public" static="no" constexpr="yes" mutable="no">
         <type>constexpr auto</type>
@@ -91,7 +91,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/units/units/detail.hpp" line="37" column="23" bodyfile="astrea/units/units/detail.hpp" bodystart="37" bodyend="-1"/>
+        <location file="astrea/units/units/detail.hpp" line="35" column="23" bodyfile="astrea/units/units/detail.hpp" bodystart="35" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="detail_8hpp_1aeef7b4bcd211fd8743db04b6a68fa53e" prot="public" static="no" constexpr="yes" mutable="no">
         <type>constexpr auto</type>
@@ -106,7 +106,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/units/units/detail.hpp" line="38" column="23" bodyfile="astrea/units/units/detail.hpp" bodystart="38" bodyend="-1"/>
+        <location file="astrea/units/units/detail.hpp" line="36" column="23" bodyfile="astrea/units/units/detail.hpp" bodystart="36" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="detail_8hpp_1a9919691090d2172bb25de9ecf39a922b" prot="public" static="no" constexpr="yes" mutable="no">
         <type>constexpr auto</type>
@@ -121,7 +121,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/units/units/detail.hpp" line="39" column="23" bodyfile="astrea/units/units/detail.hpp" bodystart="39" bodyend="-1"/>
+        <location file="astrea/units/units/detail.hpp" line="37" column="23" bodyfile="astrea/units/units/detail.hpp" bodystart="37" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="detail_8hpp_1a186a9501654682b48e7e0f982000f640" prot="public" static="no" constexpr="yes" mutable="no">
         <type>constexpr auto</type>
@@ -136,7 +136,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/units/units/detail.hpp" line="40" column="23" bodyfile="astrea/units/units/detail.hpp" bodystart="40" bodyend="-1"/>
+        <location file="astrea/units/units/detail.hpp" line="38" column="23" bodyfile="astrea/units/units/detail.hpp" bodystart="38" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="detail_8hpp_1acd0e3762b1144aaf30d5b8f84a962ede" prot="public" static="no" constexpr="yes" mutable="no">
         <type>constexpr auto</type>
@@ -151,13 +151,13 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/units/units/detail.hpp" line="41" column="23" bodyfile="astrea/units/units/detail.hpp" bodystart="41" bodyend="-1"/>
+        <location file="astrea/units/units/detail.hpp" line="39" column="23" bodyfile="astrea/units/units/detail.hpp" bodystart="39" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="astrea/units/units/detail.hpp" line="30" column="1"/>
+    <location file="astrea/units/units/detail.hpp" line="28" column="1"/>
   </compounddef>
 </doxygen>

@@ -6242,8 +6242,10 @@ You're not viewing the latest version.
 <p><a href="../defined__rotations__earth_8hpp_source/">Go to the source code of this file</a></p>
 <p><em>Earth-specific DCM explicit specialisations.</em> <a href="#detailed-description">More...</a></p>
 <ul>
-<li><code>#include &lt;type_traits&gt;</code></li>
-<li><code>#include &lt;mp-units/systems/angular/math.h&gt;</code></li>
+<li><code>#include &lt;mp-units/systems/si/math.h&gt;</code></li>
+<li><code>#include &lt;math/trig.hpp&gt;</code></li>
+<li><code>#include &lt;units/units.hpp&gt;</code></li>
+<li><code>#include &lt;astro/eop/EarthOrientationParameters.hpp&gt;</code></li>
 <li><code>#include &lt;astro/frames/definitions/body_centered_inertial_frames.hpp&gt;</code></li>
 <li><code>#include &lt;astro/frames/definitions/body_fixed_frames.hpp&gt;</code></li>
 <li><code>#include &lt;astro/frames/definitions/defined_rotations.hpp&gt;</code></li>
@@ -6270,15 +6272,81 @@ You're not viewing the latest version.
 </tr>
 </tbody>
 </table>
+<h2 id="public-attributes">Public Attributes<a class="headerlink" href="#public-attributes" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">mp_units::quantity&lt; mp_units:<img alt="🇸🇮" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/1f1f8-1f1ee.svg" title=":si:" />:arcminute &gt;</td>
+<td style="text-align: left;"><a href="#variable-a0"><strong>a0</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">mp_units::quantity&lt; mp_units:<img alt="🇸🇮" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/1f1f8-1f1ee.svg" title=":si:" />:arcsecond &gt;</td>
+<td style="text-align: left;"><a href="#variable-a1"><strong>a1</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">mp_units::quantity&lt; mp_units:<img alt="🇸🇮" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/1f1f8-1f1ee.svg" title=":si:" />:arcminute &gt;</td>
+<td style="text-align: left;"><a href="#variable-b0"><strong>b0</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">mp_units::quantity&lt; mp_units:<img alt="🇸🇮" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/1f1f8-1f1ee.svg" title=":si:" />:arcsecond &gt;</td>
+<td style="text-align: left;"><a href="#variable-b1"><strong>b1</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">std::array&lt; int8_t, 5 &gt;</td>
+<td style="text-align: left;"><a href="#variable-k"><strong>k</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">Time</td>
+<td style="text-align: left;"><a href="#variable-period"><strong>period</strong></a>  <br></td>
+</tr>
+</tbody>
+</table>
 <h2 id="detailed-description">Detailed Description<a class="headerlink" href="#detailed-description" title="Permanent link">&para;</a></h2>
 <p><strong>Author:</strong></p>
 <p>Jay Iuliano (<a href="mailto:iuliano.jay@gmail.com">iuliano.jay@gmail.com</a>) </p>
-<p>This file is intentionally separate from <a href="../defined__rotations_8hpp/"><strong>defined_rotations.hpp</strong></a> so that the generic templates in <a href="../defined__rotations_8hpp/"><strong>defined_rotations.hpp</strong></a> can be included mid-way through the include graph (e.g. via <a href="../dynamic__frames_8hpp/"><strong>dynamic_frames.hpp</strong></a>) without pulling in frames::earth::*, which are only complete once <a href="../body__centered__inertial__frames_8hpp/"><strong>body_centered_inertial_frames.hpp</strong></a> and <a href="../body__fixed__frames_8hpp/"><strong>body_fixed_frames.hpp</strong></a> have both finished.</p>
+<p>This file is intentionally separate from <a href="../defined__rotations_8hpp/"><strong>defined_rotations.hpp</strong></a> so that the generic templates in <a href="../defined__rotations_8hpp/"><strong>defined_rotations.hpp</strong></a> can be included mid-way through the include graph (e.g. via dynamic/tags.hpp) without pulling in frames::earth::*, which are only complete once <a href="../body__centered__inertial__frames_8hpp/"><strong>body_centered_inertial_frames.hpp</strong></a> and <a href="../body__fixed__frames_8hpp/"><strong>body_fixed_frames.hpp</strong></a> have both finished.</p>
 <p>frames.hpp includes this file AFTER its two frame-instance headers, so by the time these specialisations are compiled all earth frame types are complete.</p>
 <p><strong>Copyright:</strong></p>
-<p>Copyright (c) 2025 Jay Iuliano</p>
+<p>Copyright (c) 2025-2026 Jay Iuliano</p>
 <p>The GNU Lesser General Public License (LGPL)</p>
 <p>This file is part of Astrea. </p>
+<h2 id="public-attributes-documentation">Public Attributes Documentation<a class="headerlink" href="#public-attributes-documentation" title="Permanent link">&para;</a></h2>
+<h3 id="variable-a0">variable a0<a class="headerlink" href="#variable-a0" title="Permanent link">&para;</a></h3>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">mp_units</span><span class="o">::</span><span class="n">quantity</span><span class="o">&lt;</span><span class="n">mp_units</span><span class="o">::</span><span class="n">si</span><span class="o">::</span><span class="n">arcminute</span><span class="o">&gt;</span><span class="w"> </span><span class="n">a0</span><span class="p">;</span>
+</span></code></pre></div>
+<hr>
+
+<h3 id="variable-a1">variable a1<a class="headerlink" href="#variable-a1" title="Permanent link">&para;</a></h3>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">mp_units</span><span class="o">::</span><span class="n">quantity</span><span class="o">&lt;</span><span class="n">mp_units</span><span class="o">::</span><span class="n">si</span><span class="o">::</span><span class="n">arcsecond</span><span class="o">&gt;</span><span class="w"> </span><span class="n">a1</span><span class="p">;</span>
+</span></code></pre></div>
+<hr>
+
+<h3 id="variable-b0">variable b0<a class="headerlink" href="#variable-b0" title="Permanent link">&para;</a></h3>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">mp_units</span><span class="o">::</span><span class="n">quantity</span><span class="o">&lt;</span><span class="n">mp_units</span><span class="o">::</span><span class="n">si</span><span class="o">::</span><span class="n">arcminute</span><span class="o">&gt;</span><span class="w"> </span><span class="n">b0</span><span class="p">;</span>
+</span></code></pre></div>
+<hr>
+
+<h3 id="variable-b1">variable b1<a class="headerlink" href="#variable-b1" title="Permanent link">&para;</a></h3>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">mp_units</span><span class="o">::</span><span class="n">quantity</span><span class="o">&lt;</span><span class="n">mp_units</span><span class="o">::</span><span class="n">si</span><span class="o">::</span><span class="n">arcsecond</span><span class="o">&gt;</span><span class="w"> </span><span class="n">b1</span><span class="p">;</span>
+</span></code></pre></div>
+<hr>
+
+<h3 id="variable-k">variable k<a class="headerlink" href="#variable-k" title="Permanent link">&para;</a></h3>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">std</span><span class="o">::</span><span class="n">array</span><span class="o">&lt;</span><span class="kt">int8_t</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="o">&gt;</span><span class="w"> </span><span class="n">k</span><span class="p">;</span>
+</span></code></pre></div>
+<hr>
+
+<h3 id="variable-period">variable period<a class="headerlink" href="#variable-period" title="Permanent link">&para;</a></h3>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">Time</span><span class="w"> </span><span class="n">period</span><span class="p">;</span>
+</span></code></pre></div>
+<hr>
+
 <hr />
 <p>The documentation for this class was generated from the following file <code>astrea/astro/astro/frames/definitions/defined_rotations_earth.hpp</code></p>
 

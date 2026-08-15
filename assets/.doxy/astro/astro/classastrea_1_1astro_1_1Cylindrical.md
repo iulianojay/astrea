@@ -2,7 +2,7 @@
 
 # Class astrea::astro::Cylindrical
 
-**template &lt;IsCelestialBody [**auto**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) \_body\_&gt;**
+**template &lt;IsCelestialBody auto \_body\_&gt;**
 
 
 
@@ -40,9 +40,9 @@ _Class representing a_ [_**Cylindrical**_](classastrea_1_1astro_1_1Cylindrical.m
 
 | Type | Name |
 | ---: | :--- |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**auto**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**\_fixed\_frame\_**](#variable-_fixed_frame_)   = `get\_body\_fixed\_frame&lt;[**\_body\_**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)&gt;()`<br>_Body-fixed rotating frame._  |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**auto**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**\_icrf\_frame\_**](#variable-_icrf_frame_)   = `make\_frame([**\_body\_**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), [**axes::icrf**](structastrea_1_1astro_1_1axes_1_1icrf.md))`<br>_Inertial frame for the body._  |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**auto**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**body**](#variable-body)   = `[**\_body\_**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)`<br>_The celestial body of this_ [_**Cylindrical**_](classastrea_1_1astro_1_1Cylindrical.md) _state._ |
+|  constexpr auto | [**\_fixed\_frame\_**](#variable-_fixed_frame_)   = `get\_body\_fixed\_frame&lt;\_body\_&gt;()`<br>_Body-fixed rotating frame._  |
+|  constexpr auto | [**\_icrf\_frame\_**](#variable-_icrf_frame_)   = `make\_frame(\_body\_, [**axes::icrf**](structastrea_1_1astro_1_1axes_1_1icrf.md))`<br>_Inertial frame for the body._  |
+|  constexpr auto | [**body**](#variable-body)   = `\_body\_`<br>_The celestial body of this_ [_**Cylindrical**_](classastrea_1_1astro_1_1Cylindrical.md) _state._ |
 
 
 
@@ -61,32 +61,32 @@ _Class representing a_ [_**Cylindrical**_](classastrea_1_1astro_1_1Cylindrical.m
 
 | Type | Name |
 | ---: | :--- |
-|   | [**Cylindrical**](#function-cylindrical-17) ([**Unitless**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) scale=0.0 \*astrea::detail::unitless) <br>_Default constructor for_ [_**Cylindrical**_](classastrea_1_1astro_1_1Cylindrical.md) _._ |
-|   | [**Cylindrical**](#function-cylindrical-27) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Distance**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & range, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Angle**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & azimuth, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Distance**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & elevation) <br>_Constructor for_ [_**Cylindrical**_](classastrea_1_1astro_1_1Cylindrical.md) _with range, azimuth, and elevation._ |
-|   | [**Cylindrical**](#function-cylindrical-37) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**RadiusVector**](namespaceastrea_1_1astro.md#typedef-radiusvector)&lt; \_frame\_ &gt; & r, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Date**](classastrea_1_1astro_1_1Date.md) & date) <br>_Constructor for_ [_**Cylindrical**_](classastrea_1_1astro_1_1Cylindrical.md) _from any inertial radius vector centred on the same body._ |
-|   | [**Cylindrical**](#function-cylindrical-47) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**RadiusVector**](namespaceastrea_1_1astro.md#typedef-radiusvector)&lt; [**\_fixed\_frame\_**](classastrea_1_1astro_1_1Cylindrical.md#variable-_fixed_frame_) &gt; & r) <br>_Constructor for_ [_**Cylindrical**_](classastrea_1_1astro_1_1Cylindrical.md) _from a body-fixed radius vector._ |
-|   | [**Cylindrical**](#function-cylindrical-57) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & elements, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Date**](classastrea_1_1astro_1_1Date.md) & date) <br>_Constructor for_ [_**Cylindrical**_](classastrea_1_1astro_1_1Cylindrical.md) _from orbital elements._ |
-|   | [**Cylindrical**](#function-cylindrical-67) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Cylindrical**](classastrea_1_1astro_1_1Cylindrical.md)&lt; [**\_body\_**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt; & other) <br>_Copy constructor for_ [_**Cylindrical**_](classastrea_1_1astro_1_1Cylindrical.md) _._ |
-|   | [**Cylindrical**](#function-cylindrical-77) ([**Cylindrical**](classastrea_1_1astro_1_1Cylindrical.md)&lt; [**\_body\_**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt; && other) noexcept<br>_Move constructor for_ [_**Cylindrical**_](classastrea_1_1astro_1_1Cylindrical.md) _._ |
-|  [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Angle**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & | [**get\_azimuth**](#function-get_azimuth) () const<br> |
-|  [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Distance**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & | [**get\_elevation**](#function-get_elevation) () const<br> |
+|   | [**Cylindrical**](#function-cylindrical-17) (Unitless scale=0.0 \*astrea::detail::unitless) <br>_Default constructor for_ [_**Cylindrical**_](classastrea_1_1astro_1_1Cylindrical.md) _._ |
+|   | [**Cylindrical**](#function-cylindrical-27) (const Distance & range, const Angle & azimuth, const Distance & elevation) <br>_Constructor for_ [_**Cylindrical**_](classastrea_1_1astro_1_1Cylindrical.md) _with range, azimuth, and elevation._ |
+|   | [**Cylindrical**](#function-cylindrical-37) (const [**RadiusVector**](namespaceastrea_1_1astro.md#typedef-radiusvector)&lt; \_frame\_ &gt; & r, const [**Date**](classastrea_1_1astro_1_1Date.md) & date) <br>_Constructor for_ [_**Cylindrical**_](classastrea_1_1astro_1_1Cylindrical.md) _from any inertial radius vector centred on the same body._ |
+|   | [**Cylindrical**](#function-cylindrical-47) (const [**RadiusVector**](namespaceastrea_1_1astro.md#typedef-radiusvector)&lt; [**\_fixed\_frame\_**](classastrea_1_1astro_1_1Cylindrical.md#variable-_fixed_frame_) &gt; & r) <br>_Constructor for_ [_**Cylindrical**_](classastrea_1_1astro_1_1Cylindrical.md) _from a body-fixed radius vector._ |
+|   | [**Cylindrical**](#function-cylindrical-57) (const T & elements, const [**Date**](classastrea_1_1astro_1_1Date.md) & date) <br>_Constructor for_ [_**Cylindrical**_](classastrea_1_1astro_1_1Cylindrical.md) _from orbital elements._ |
+|   | [**Cylindrical**](#function-cylindrical-67) (const [**Cylindrical**](classastrea_1_1astro_1_1Cylindrical.md)&lt; \_body\_ &gt; & other) <br>_Copy constructor for_ [_**Cylindrical**_](classastrea_1_1astro_1_1Cylindrical.md) _._ |
+|   | [**Cylindrical**](#function-cylindrical-77) ([**Cylindrical**](classastrea_1_1astro_1_1Cylindrical.md)&lt; \_body\_ &gt; && other) noexcept<br>_Move constructor for_ [_**Cylindrical**_](classastrea_1_1astro_1_1Cylindrical.md) _._ |
+|  const Angle & | [**get\_azimuth**](#function-get_azimuth) () const<br> |
+|  const Distance & | [**get\_elevation**](#function-get_elevation) () const<br> |
 |  [**RadiusVector**](namespaceastrea_1_1astro.md#typedef-radiusvector)&lt; [**\_fixed\_frame\_**](classastrea_1_1astro_1_1Cylindrical.md#variable-_fixed_frame_) &gt; | [**get\_position**](#function-get_position-12) () const<br>_Converts the_ [_**Cylindrical**_](classastrea_1_1astro_1_1Cylindrical.md) _state to a body-fixed radius vector._ |
-|  [**RadiusVector**](namespaceastrea_1_1astro.md#typedef-radiusvector)&lt; [**\_icrf\_frame\_**](classastrea_1_1astro_1_1Cylindrical.md#variable-_icrf_frame_) &gt; | [**get\_position**](#function-get_position-22) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Date**](classastrea_1_1astro_1_1Date.md) & date) const<br>_Converts the_ [_**Cylindrical**_](classastrea_1_1astro_1_1Cylindrical.md) _state to an inertial radius vector._ |
-|  [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Distance**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & | [**get\_range**](#function-get_range) () const<br> |
-|  [**Cylindrical**](classastrea_1_1astro_1_1Cylindrical.md)&lt; [**\_body\_**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt; | [**interpolate**](#function-interpolate) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Time**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & thisTime, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Time**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & otherTime, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Cylindrical**](classastrea_1_1astro_1_1Cylindrical.md)&lt; [**\_body\_**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt; & other, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Time**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & targetTime) const<br> |
-|  [**bool**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**operator!=**](#function-operator) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Cylindrical**](classastrea_1_1astro_1_1Cylindrical.md)&lt; [**\_body\_**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt; & other) const<br> |
-|  [**Cylindrical**](classastrea_1_1astro_1_1Cylindrical.md)&lt; [**\_body\_**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt; | [**operator\***](#function-operator_1) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Unitless**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & multiplier) const<br> |
-|  [**Cylindrical**](classastrea_1_1astro_1_1Cylindrical.md)&lt; [**\_body\_**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt; & | [**operator\*=**](#function-operator_2) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Unitless**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & multiplier) <br> |
-|  [**Cylindrical**](classastrea_1_1astro_1_1Cylindrical.md)&lt; [**\_body\_**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt; | [**operator+**](#function-operator_3) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Cylindrical**](classastrea_1_1astro_1_1Cylindrical.md)&lt; [**\_body\_**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt; & other) const<br> |
-|  [**Cylindrical**](classastrea_1_1astro_1_1Cylindrical.md)&lt; [**\_body\_**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt; & | [**operator+=**](#function-operator_4) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Cylindrical**](classastrea_1_1astro_1_1Cylindrical.md)&lt; [**\_body\_**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt; & other) <br> |
-|  [**Cylindrical**](classastrea_1_1astro_1_1Cylindrical.md)&lt; [**\_body\_**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt; | [**operator-**](#function-operator-) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Cylindrical**](classastrea_1_1astro_1_1Cylindrical.md)&lt; [**\_body\_**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt; & other) const<br> |
-|  [**Cylindrical**](classastrea_1_1astro_1_1Cylindrical.md)&lt; [**\_body\_**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt; & | [**operator-=**](#function-operator-_1) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Cylindrical**](classastrea_1_1astro_1_1Cylindrical.md)&lt; [**\_body\_**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt; & other) <br> |
-|  std::vector&lt; [**Unitless**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt; | [**operator/**](#function-operator_5) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Cylindrical**](classastrea_1_1astro_1_1Cylindrical.md)&lt; [**\_body\_**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt; & other) const<br> |
-|  [**Cylindrical**](classastrea_1_1astro_1_1Cylindrical.md)&lt; [**\_body\_**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt; | [**operator/**](#function-operator_6) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Unitless**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & divisor) const<br> |
-|  [**Cylindrical**](classastrea_1_1astro_1_1Cylindrical.md)&lt; [**\_body\_**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt; & | [**operator/=**](#function-operator_7) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Unitless**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & divisor) <br> |
-|  [**Cylindrical**](classastrea_1_1astro_1_1Cylindrical.md)&lt; [**\_body\_**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt; & | [**operator=**](#function-operator_8) ([**Cylindrical**](classastrea_1_1astro_1_1Cylindrical.md)&lt; [**\_body\_**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt; && other) noexcept<br>_Move assignment operator for_ [_**Cylindrical**_](classastrea_1_1astro_1_1Cylindrical.md) _._ |
-|  [**Cylindrical**](classastrea_1_1astro_1_1Cylindrical.md)&lt; [**\_body\_**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt; & | [**operator=**](#function-operator_9) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Cylindrical**](classastrea_1_1astro_1_1Cylindrical.md)&lt; [**\_body\_**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt; & other) <br>_Copy assignment operator for_ [_**Cylindrical**_](classastrea_1_1astro_1_1Cylindrical.md) _._ |
-|  [**bool**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**operator==**](#function-operator_10) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Cylindrical**](classastrea_1_1astro_1_1Cylindrical.md)&lt; [**\_body\_**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt; & other) const<br> |
+|  [**RadiusVector**](namespaceastrea_1_1astro.md#typedef-radiusvector)&lt; [**\_icrf\_frame\_**](classastrea_1_1astro_1_1Cylindrical.md#variable-_icrf_frame_) &gt; | [**get\_position**](#function-get_position-22) (const [**Date**](classastrea_1_1astro_1_1Date.md) & date) const<br>_Converts the_ [_**Cylindrical**_](classastrea_1_1astro_1_1Cylindrical.md) _state to an inertial radius vector._ |
+|  const Distance & | [**get\_range**](#function-get_range) () const<br> |
+|  [**Cylindrical**](classastrea_1_1astro_1_1Cylindrical.md)&lt; \_body\_ &gt; | [**interpolate**](#function-interpolate) (const Time & thisTime, const Time & otherTime, const [**Cylindrical**](classastrea_1_1astro_1_1Cylindrical.md)&lt; \_body\_ &gt; & other, const Time & targetTime) const<br> |
+|  bool | [**operator!=**](#function-operator) (const [**Cylindrical**](classastrea_1_1astro_1_1Cylindrical.md)&lt; \_body\_ &gt; & other) const<br> |
+|  [**Cylindrical**](classastrea_1_1astro_1_1Cylindrical.md)&lt; \_body\_ &gt; | [**operator\***](#function-operator_1) (const Unitless & multiplier) const<br> |
+|  [**Cylindrical**](classastrea_1_1astro_1_1Cylindrical.md)&lt; \_body\_ &gt; & | [**operator\*=**](#function-operator_2) (const Unitless & multiplier) <br> |
+|  [**Cylindrical**](classastrea_1_1astro_1_1Cylindrical.md)&lt; \_body\_ &gt; | [**operator+**](#function-operator_3) (const [**Cylindrical**](classastrea_1_1astro_1_1Cylindrical.md)&lt; \_body\_ &gt; & other) const<br> |
+|  [**Cylindrical**](classastrea_1_1astro_1_1Cylindrical.md)&lt; \_body\_ &gt; & | [**operator+=**](#function-operator_4) (const [**Cylindrical**](classastrea_1_1astro_1_1Cylindrical.md)&lt; \_body\_ &gt; & other) <br> |
+|  [**Cylindrical**](classastrea_1_1astro_1_1Cylindrical.md)&lt; \_body\_ &gt; | [**operator-**](#function-operator-) (const [**Cylindrical**](classastrea_1_1astro_1_1Cylindrical.md)&lt; \_body\_ &gt; & other) const<br> |
+|  [**Cylindrical**](classastrea_1_1astro_1_1Cylindrical.md)&lt; \_body\_ &gt; & | [**operator-=**](#function-operator-_1) (const [**Cylindrical**](classastrea_1_1astro_1_1Cylindrical.md)&lt; \_body\_ &gt; & other) <br> |
+|  std::vector&lt; Unitless &gt; | [**operator/**](#function-operator_5) (const [**Cylindrical**](classastrea_1_1astro_1_1Cylindrical.md)&lt; \_body\_ &gt; & other) const<br> |
+|  [**Cylindrical**](classastrea_1_1astro_1_1Cylindrical.md)&lt; \_body\_ &gt; | [**operator/**](#function-operator_6) (const Unitless & divisor) const<br> |
+|  [**Cylindrical**](classastrea_1_1astro_1_1Cylindrical.md)&lt; \_body\_ &gt; & | [**operator/=**](#function-operator_7) (const Unitless & divisor) <br> |
+|  [**Cylindrical**](classastrea_1_1astro_1_1Cylindrical.md)&lt; \_body\_ &gt; & | [**operator=**](#function-operator_8) ([**Cylindrical**](classastrea_1_1astro_1_1Cylindrical.md)&lt; \_body\_ &gt; && other) noexcept<br>_Move assignment operator for_ [_**Cylindrical**_](classastrea_1_1astro_1_1Cylindrical.md) _._ |
+|  [**Cylindrical**](classastrea_1_1astro_1_1Cylindrical.md)&lt; \_body\_ &gt; & | [**operator=**](#function-operator_9) (const [**Cylindrical**](classastrea_1_1astro_1_1Cylindrical.md)&lt; \_body\_ &gt; & other) <br>_Copy assignment operator for_ [_**Cylindrical**_](classastrea_1_1astro_1_1Cylindrical.md) _._ |
+|  bool | [**operator==**](#function-operator_10) (const [**Cylindrical**](classastrea_1_1astro_1_1Cylindrical.md)&lt; \_body\_ &gt; & other) const<br> |
 |   | [**~Cylindrical**](#function-cylindrical) () = default<br>_Default destructor for_ [_**Cylindrical**_](classastrea_1_1astro_1_1Cylindrical.md) _._ |
 
 
@@ -207,9 +207,9 @@ Initializes the [**Cylindrical**](classastrea_1_1astro_1_1Cylindrical.md) state 
 _Constructor for_ [_**Cylindrical**_](classastrea_1_1astro_1_1Cylindrical.md) _with range, azimuth, and elevation._
 ```C++
 inline astrea::astro::Cylindrical::Cylindrical (
-    const  Distance & range,
-    const  Angle & azimuth,
-    const  Distance & elevation
+    const Distance & range,
+    const Angle & azimuth,
+    const Distance & elevation
 ) 
 ```
 
@@ -239,8 +239,8 @@ _Constructor for_ [_**Cylindrical**_](classastrea_1_1astro_1_1Cylindrical.md) _f
 ```C++
 template<auto _frame_>
 astrea::astro::Cylindrical::Cylindrical (
-    const  RadiusVector < _frame_ > & r,
-    const  Date & date
+    const RadiusVector < _frame_ > & r,
+    const Date & date
 ) 
 ```
 
@@ -278,7 +278,7 @@ Accepts any frame whose origin matches _body_ and whose axis is the ICRF axis.
 _Constructor for_ [_**Cylindrical**_](classastrea_1_1astro_1_1Cylindrical.md) _from a body-fixed radius vector._
 ```C++
 astrea::astro::Cylindrical::Cylindrical (
-    const  RadiusVector < _fixed_frame_ > & r
+    const RadiusVector < _fixed_frame_ > & r
 ) 
 ```
 
@@ -306,8 +306,8 @@ _Constructor for_ [_**Cylindrical**_](classastrea_1_1astro_1_1Cylindrical.md) _f
 ```C++
 template<IsOrbitalElements T>
 inline astrea::astro::Cylindrical::Cylindrical (
-    const  T & elements,
-    const  Date & date
+    const T & elements,
+    const Date & date
 ) 
 ```
 
@@ -335,7 +335,7 @@ inline astrea::astro::Cylindrical::Cylindrical (
 _Copy constructor for_ [_**Cylindrical**_](classastrea_1_1astro_1_1Cylindrical.md) _._
 ```C++
 astrea::astro::Cylindrical::Cylindrical (
-    const  Cylindrical < _body_ > & other
+    const Cylindrical < _body_ > & other
 ) 
 ```
 
@@ -365,7 +365,7 @@ astrea::astro::Cylindrical::Cylindrical (
 ### function get\_azimuth 
 
 ```C++
-inline const  Angle & astrea::astro::Cylindrical::get_azimuth () const
+inline const Angle & astrea::astro::Cylindrical::get_azimuth () const
 ```
 
 
@@ -378,7 +378,7 @@ inline const  Angle & astrea::astro::Cylindrical::get_azimuth () const
 ### function get\_elevation 
 
 ```C++
-inline const  Distance & astrea::astro::Cylindrical::get_elevation () const
+inline const Distance & astrea::astro::Cylindrical::get_elevation () const
 ```
 
 
@@ -407,7 +407,7 @@ RadiusVector < _fixed_frame_ > astrea::astro::Cylindrical::get_position () const
 _Converts the_ [_**Cylindrical**_](classastrea_1_1astro_1_1Cylindrical.md) _state to an inertial radius vector._
 ```C++
 RadiusVector < _icrf_frame_ > astrea::astro::Cylindrical::get_position (
-    const  Date & date
+    const Date & date
 ) const
 ```
 
@@ -432,7 +432,7 @@ RadiusVector < _icrf_frame_ > astrea::astro::Cylindrical::get_position (
 ### function get\_range 
 
 ```C++
-inline const  Distance & astrea::astro::Cylindrical::get_range () const
+inline const Distance & astrea::astro::Cylindrical::get_range () const
 ```
 
 
@@ -446,10 +446,10 @@ inline const  Distance & astrea::astro::Cylindrical::get_range () const
 
 ```C++
 Cylindrical < _body_ > astrea::astro::Cylindrical::interpolate (
-    const  Time & thisTime,
-    const  Time & otherTime,
-    const  Cylindrical < _body_ > & other,
-    const  Time & targetTime
+    const Time & thisTime,
+    const Time & otherTime,
+    const Cylindrical < _body_ > & other,
+    const Time & targetTime
 ) const
 ```
 
@@ -464,7 +464,7 @@ Cylindrical < _body_ > astrea::astro::Cylindrical::interpolate (
 
 ```C++
 bool astrea::astro::Cylindrical::operator!= (
-    const  Cylindrical < _body_ > & other
+    const Cylindrical < _body_ > & other
 ) const
 ```
 
@@ -479,7 +479,7 @@ bool astrea::astro::Cylindrical::operator!= (
 
 ```C++
 Cylindrical < _body_ > astrea::astro::Cylindrical::operator* (
-    const  Unitless & multiplier
+    const Unitless & multiplier
 ) const
 ```
 
@@ -494,7 +494,7 @@ Cylindrical < _body_ > astrea::astro::Cylindrical::operator* (
 
 ```C++
 Cylindrical < _body_ > & astrea::astro::Cylindrical::operator*= (
-    const  Unitless & multiplier
+    const Unitless & multiplier
 ) 
 ```
 
@@ -509,7 +509,7 @@ Cylindrical < _body_ > & astrea::astro::Cylindrical::operator*= (
 
 ```C++
 Cylindrical < _body_ > astrea::astro::Cylindrical::operator+ (
-    const  Cylindrical < _body_ > & other
+    const Cylindrical < _body_ > & other
 ) const
 ```
 
@@ -524,7 +524,7 @@ Cylindrical < _body_ > astrea::astro::Cylindrical::operator+ (
 
 ```C++
 Cylindrical < _body_ > & astrea::astro::Cylindrical::operator+= (
-    const  Cylindrical < _body_ > & other
+    const Cylindrical < _body_ > & other
 ) 
 ```
 
@@ -539,7 +539,7 @@ Cylindrical < _body_ > & astrea::astro::Cylindrical::operator+= (
 
 ```C++
 Cylindrical < _body_ > astrea::astro::Cylindrical::operator- (
-    const  Cylindrical < _body_ > & other
+    const Cylindrical < _body_ > & other
 ) const
 ```
 
@@ -554,7 +554,7 @@ Cylindrical < _body_ > astrea::astro::Cylindrical::operator- (
 
 ```C++
 Cylindrical < _body_ > & astrea::astro::Cylindrical::operator-= (
-    const  Cylindrical < _body_ > & other
+    const Cylindrical < _body_ > & other
 ) 
 ```
 
@@ -569,7 +569,7 @@ Cylindrical < _body_ > & astrea::astro::Cylindrical::operator-= (
 
 ```C++
 std::vector< Unitless > astrea::astro::Cylindrical::operator/ (
-    const  Cylindrical < _body_ > & other
+    const Cylindrical < _body_ > & other
 ) const
 ```
 
@@ -584,7 +584,7 @@ std::vector< Unitless > astrea::astro::Cylindrical::operator/ (
 
 ```C++
 Cylindrical < _body_ > astrea::astro::Cylindrical::operator/ (
-    const  Unitless & divisor
+    const Unitless & divisor
 ) const
 ```
 
@@ -599,7 +599,7 @@ Cylindrical < _body_ > astrea::astro::Cylindrical::operator/ (
 
 ```C++
 Cylindrical < _body_ > & astrea::astro::Cylindrical::operator/= (
-    const  Unitless & divisor
+    const Unitless & divisor
 ) 
 ```
 
@@ -631,7 +631,7 @@ Cylindrical < _body_ > & astrea::astro::Cylindrical::operator= (
 _Copy assignment operator for_ [_**Cylindrical**_](classastrea_1_1astro_1_1Cylindrical.md) _._
 ```C++
 Cylindrical < _body_ > & astrea::astro::Cylindrical::operator= (
-    const  Cylindrical < _body_ > & other
+    const Cylindrical < _body_ > & other
 ) 
 ```
 
@@ -646,7 +646,7 @@ Cylindrical < _body_ > & astrea::astro::Cylindrical::operator= (
 
 ```C++
 bool astrea::astro::Cylindrical::operator== (
-    const  Cylindrical < _body_ > & other
+    const Cylindrical < _body_ > & other
 ) const
 ```
 

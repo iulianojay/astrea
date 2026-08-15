@@ -35,15 +35,15 @@
 
 | Type | Name |
 | ---: | :--- |
-|  [**quantity**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)&lt; K/km &gt; | [**S0**](#variable-s0)  <br> |
-|  [**quantity**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)&lt; K &gt; | [**TN11**](#variable-tn11)  <br> |
-|  [**quantity**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)&lt; K &gt; | [**TN12**](#variable-tn12)  <br> |
-|  [**quantity**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)&lt; K &gt; | [**TN13**](#variable-tn13)  <br> |
-|  [**quantity**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)&lt; K &gt; | [**TN14**](#variable-tn14)  <br> |
-|  [**quantity**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)&lt; K/km &gt; | [**Tgrad**](#variable-tgrad)  <br> |
-|  [**quantity**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)&lt; K &gt; | [**Tinf**](#variable-tinf)  <br> |
-|  [**quantity**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)&lt; K &gt; | [**Tlb0**](#variable-tlb0)  <br> |
-|  [**quantity**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)&lt; km &gt; | [**Zlb**](#variable-zlb)  <br> |
+|  quantity&lt; K/km &gt; | [**S0**](#variable-s0)  <br> |
+|  quantity&lt; K &gt; | [**TN11**](#variable-tn11)  <br> |
+|  quantity&lt; K &gt; | [**TN12**](#variable-tn12)  <br> |
+|  quantity&lt; K &gt; | [**TN13**](#variable-tn13)  <br> |
+|  quantity&lt; K &gt; | [**TN14**](#variable-tn14)  <br> |
+|  quantity&lt; K/km &gt; | [**Tgrad**](#variable-tgrad)  <br> |
+|  quantity&lt; K &gt; | [**Tinf**](#variable-tinf)  <br> |
+|  quantity&lt; K &gt; | [**Tlb0**](#variable-tlb0)  <br> |
+|  quantity&lt; km &gt; | [**Zlb**](#variable-zlb)  <br> |
 
 
 

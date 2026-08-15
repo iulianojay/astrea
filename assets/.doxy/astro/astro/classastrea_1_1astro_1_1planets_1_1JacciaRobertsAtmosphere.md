@@ -59,7 +59,7 @@ _The Jaccia-Roberts atmospheric model for_ [_**Earth**_](structastrea_1_1astro_1
 
 | Type | Name |
 | ---: | :--- |
-|  [**Density**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**find\_atmospheric\_density**](#function-find_atmospheric_density) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**State**](classastrea_1_1astro_1_1State.md) & state, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Distance**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) equitorialRadius, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Distance**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) polarRadius) <br>_Find the atmospheric density at a given state using the Jaccia-Roberts atmospheric model._  |
+|  Density | [**find\_atmospheric\_density**](#function-find_atmospheric_density) (const [**State**](classastrea_1_1astro_1_1State.md) & state, const Distance equitorialRadius, const Distance polarRadius) <br>_Find the atmospheric density at a given state using the Jaccia-Roberts atmospheric model._  |
 
 
 
@@ -112,9 +112,9 @@ astrea::astro::planets::JacciaRobertsAtmosphere::JacciaRobertsAtmosphere () = de
 _Find the atmospheric density at a given state using the Jaccia-Roberts atmospheric model._ 
 ```C++
 static Density astrea::astro::planets::JacciaRobertsAtmosphere::find_atmospheric_density (
-    const  State & state,
-    const  Distance equitorialRadius,
-    const  Distance polarRadius
+    const State & state,
+    const Distance equitorialRadius,
+    const Distance polarRadius
 ) 
 ```
 

@@ -12,8 +12,7 @@
 
 * `#include <trace/analysis/SpatialIndex.hpp>`
 * `#include <mp-units/math.h>`
-* `#include <mp-units/systems/angular/math.h>`
-* `#include <mp-units/systems/isq_angle.h>`
+* `#include <mp-units/systems/si/math.h>`
 * `#include <astro/frames/framework/CartesianVector.hpp>`
 * `#include <astro/state/angular_elements.hpp>`
 * `#include <trace/platforms/ground/GroundPoint.hpp>`

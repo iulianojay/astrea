@@ -2,10 +2,9 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
   <compounddef id="operations_8hpp" kind="file" language="C++">
     <compoundname>operations.hpp</compoundname>
-    <includes local="no">cmath</includes>
     <includes local="no">algorithm</includes>
+    <includes local="no">cmath</includes>
     <includes local="no">mp-units/math.h</includes>
-    <includes local="no">mp-units/systems/angular.h</includes>
     <includes local="no">mp-units/systems/si.h</includes>
     <includedby refid="math_8hpp" local="no">astrea/math/math/math.hpp</includedby>
     <incdepgraph>
@@ -20,22 +19,17 @@
         </childnode>
         <childnode refid="5" relation="include">
         </childnode>
-        <childnode refid="6" relation="include">
-        </childnode>
-      </node>
-      <node id="3">
-        <label>algorithm</label>
       </node>
       <node id="2">
+        <label>algorithm</label>
+      </node>
+      <node id="3">
         <label>cmath</label>
       </node>
       <node id="4">
         <label>mp-units/math.h</label>
       </node>
       <node id="5">
-        <label>mp-units/systems/angular.h</label>
-      </node>
-      <node id="6">
         <label>mp-units/systems/si.h</label>
       </node>
     </incdepgraph>
@@ -61,7 +55,7 @@
 </simplesect>
 <simplesect kind="date"><para>2025-08-03</para>
 </simplesect>
-<simplesect kind="copyright"><para>Copyright (c) 2025 Jay Iuliano</para>
+<simplesect kind="copyright"><para>Copyright (c) 2025-2026 Jay Iuliano</para>
 </simplesect>
 The GNU Lesser General Public License (LGPL)</para>
 <para>This file is part of Astrea. Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. Astrea is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details. You should have received a copy of the GNU General Public License along with Astrea. If not, see <ulink url="https://www.gnu.org/licenses/">https://www.gnu.org/licenses/</ulink>. </para>
@@ -70,82 +64,81 @@ The GNU Lesser General Public License (LGPL)</para>
 <codeline lineno="1"><highlight class="normal"></highlight></codeline>
 <codeline lineno="19"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="20"><highlight class="normal"></highlight></codeline>
-<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;cmath&gt;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;algorithm&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;algorithm&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;cmath&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="23"><highlight class="normal"></highlight></codeline>
 <codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;mp-units/math.h&gt;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;mp-units/systems/angular.h&gt;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="26"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;mp-units/systems/si.h&gt;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="27"><highlight class="normal"></highlight></codeline>
-<codeline lineno="28"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">astrea<sp/>{</highlight></codeline>
-<codeline lineno="29"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">math<sp/>{</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;mp-units/systems/si.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">astrea<sp/>{</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">math<sp/>{</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight></codeline>
 <codeline lineno="30"><highlight class="normal"></highlight></codeline>
-<codeline lineno="31"><highlight class="normal"></highlight></codeline>
-<codeline lineno="44"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;auto<sp/>R1,<sp/>auto<sp/>R2,<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Rep&gt;</highlight></codeline>
-<codeline lineno="45" refid="operations_8hpp_1a6becf69e0ffdf99e10bace14d2c088b4" refkind="member"><highlight class="normal">[[nodiscard]]<sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="operations_8hpp_1a6becf69e0ffdf99e10bace14d2c088b4" kindref="member">nearly_equal</ref>(</highlight></codeline>
-<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>mp_units::quantity&lt;R1,<sp/>Rep&gt;&amp;<sp/>x,</highlight></codeline>
-<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>mp_units::quantity&lt;R2,<sp/>Rep&gt;&amp;<sp/>y,</highlight></codeline>
-<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>mp_units::quantity&lt;mp_units::one,<sp/>Rep&gt;&amp;<sp/>relTol<sp/>=<sp/>0.0<sp/>*<sp/>mp_units::one,</highlight></codeline>
-<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>mp_units::quantity&lt;mp_units::one,<sp/>Rep&gt;&amp;<sp/>absTol<sp/>=<sp/>0.0<sp/>*<sp/>mp_units::one</highlight></codeline>
-<codeline lineno="50"><highlight class="normal">)<sp/></highlight><highlight class="keyword">noexcept</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="51"><highlight class="normal">{</highlight></codeline>
-<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Bring<sp/>both<sp/>to<sp/>the<sp/>same<sp/>unit<sp/>for<sp/>comparison</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>a<sp/>=<sp/>x.in(x.unit);</highlight></codeline>
-<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>b<sp/>=<sp/>y.in(x.unit);</highlight></codeline>
-<codeline lineno="55"><highlight class="normal"></highlight></codeline>
-<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Check<sp/>rel<sp/>tol</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(relTol<sp/>!=<sp/>0.0<sp/>*<sp/>mp_units::one)<sp/>{</highlight></codeline>
-<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(a<sp/>!=<sp/>0.0<sp/>*<sp/>R1<sp/>&amp;&amp;<sp/>b<sp/>!=<sp/>0.0<sp/>*<sp/>R1)<sp/>{</highlight></codeline>
-<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(abs((a<sp/>-<sp/>b)<sp/>/<sp/>a)<sp/>&gt;<sp/>relTol)<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;<sp/>}</highlight></codeline>
-<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="62"><highlight class="normal"></highlight></codeline>
-<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Check<sp/>abs<sp/>tol</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(absTol<sp/>!=<sp/>0.0<sp/>*<sp/>mp_units::one)<sp/>{</highlight></codeline>
-<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(abs(a<sp/>-<sp/>b)<sp/>&gt;<sp/>absTol<sp/>*<sp/>R1)<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;<sp/>}</highlight></codeline>
-<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="67"><highlight class="normal"></highlight></codeline>
-<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="69"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="70"><highlight class="normal"></highlight></codeline>
-<codeline lineno="80"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;auto<sp/>R,<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Rep&gt;</highlight></codeline>
-<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">requires</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">requires</highlight><highlight class="normal">(Rep<sp/>v)<sp/>{<sp/>max(v,<sp/>v);<sp/>}<sp/>||<sp/></highlight><highlight class="keyword">requires</highlight><highlight class="normal">(Rep<sp/>v)<sp/>{<sp/>std::max(v,<sp/>v);<sp/>}</highlight></codeline>
-<codeline lineno="82" refid="operations_8hpp_1a13c8a192d58b0225407e422267cdefde" refkind="member"><highlight class="normal">[[nodiscard]]<sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/>mp_units::quantity&lt;R,<sp/>Rep&gt;<sp/><ref refid="operations_8hpp_1a13c8a192d58b0225407e422267cdefde" kindref="member">max</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>mp_units::quantity&lt;R,<sp/>Rep&gt;&amp;<sp/>q1,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>mp_units::quantity&lt;R,<sp/>Rep&gt;&amp;<sp/>q2)<sp/></highlight><highlight class="keyword">noexcept</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="83"><highlight class="normal">{</highlight></codeline>
-<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">std::max;</highlight></codeline>
-<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>mp_units::quantity{<sp/><ref refid="operations_8hpp_1a13c8a192d58b0225407e422267cdefde" kindref="member">max</ref>(q1.numerical_value_in(q1.unit),<sp/>q2.numerical_value_in(q1.unit)),<sp/>q1.unit<sp/>};</highlight></codeline>
-<codeline lineno="86"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="87"><highlight class="normal"></highlight></codeline>
-<codeline lineno="97"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;auto<sp/>R,<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Rep&gt;</highlight></codeline>
-<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">requires</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">requires</highlight><highlight class="normal">(Rep<sp/>v)<sp/>{<sp/>min(v,<sp/>v);<sp/>}<sp/>||<sp/></highlight><highlight class="keyword">requires</highlight><highlight class="normal">(Rep<sp/>v)<sp/>{<sp/>std::min(v,<sp/>v);<sp/>}</highlight></codeline>
-<codeline lineno="99" refid="operations_8hpp_1a8c39995fb8abca15cc5143d5425f7d26" refkind="member"><highlight class="normal">[[nodiscard]]<sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/>mp_units::quantity&lt;R,<sp/>Rep&gt;<sp/><ref refid="operations_8hpp_1a8c39995fb8abca15cc5143d5425f7d26" kindref="member">min</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>mp_units::quantity&lt;R,<sp/>Rep&gt;&amp;<sp/>q1,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>mp_units::quantity&lt;R,<sp/>Rep&gt;&amp;<sp/>q2)<sp/></highlight><highlight class="keyword">noexcept</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="100"><highlight class="normal">{</highlight></codeline>
-<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">std::min;</highlight></codeline>
-<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>mp_units::quantity{<sp/><ref refid="operations_8hpp_1a8c39995fb8abca15cc5143d5425f7d26" kindref="member">min</ref>(q1.numerical_value_in(q1.unit),<sp/>q2.numerical_value_in(q1.unit)),<sp/>q1.unit<sp/>};</highlight></codeline>
-<codeline lineno="103"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="104"><highlight class="normal"></highlight></codeline>
-<codeline lineno="114"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;mp_units::ReferenceOf&lt;mp_units::dimensionless&gt;<sp/>auto<sp/>R1,<sp/>mp_units::ReferenceOf&lt;mp_units::dimensionless&gt;<sp/>auto<sp/>R2,<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Rep1,<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Rep2&gt;</highlight></codeline>
-<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">requires</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">requires</highlight><highlight class="normal">(Rep1<sp/>v1,<sp/>Rep2<sp/>v2)<sp/>{<sp/>pow(v1,<sp/>v2);<sp/>}<sp/>||<sp/></highlight><highlight class="keyword">requires</highlight><highlight class="normal">(Rep1<sp/>v1,<sp/>Rep2<sp/>v2)<sp/>{<sp/>std::pow(v1,<sp/>v2);<sp/>}</highlight></codeline>
-<codeline lineno="116"><highlight class="normal">[[nodiscard]]<sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/>mp_units::quantity&lt;mp_units::one,<sp/>Rep1&gt;</highlight></codeline>
-<codeline lineno="117" refid="operations_8hpp_1a366d78f9b21636bb268a3ed9049fa18b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="operations_8hpp_1a366d78f9b21636bb268a3ed9049fa18b" kindref="member">pow</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>mp_units::quantity&lt;R1,<sp/>Rep1&gt;&amp;<sp/>q,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>mp_units::quantity&lt;R2,<sp/>Rep2&gt;&amp;<sp/>n)<sp/></highlight><highlight class="keyword">noexcept</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="118"><highlight class="normal">{</highlight></codeline>
-<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">std::pow;</highlight></codeline>
-<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>mp_units::quantity{<sp/><ref refid="operations_8hpp_1a366d78f9b21636bb268a3ed9049fa18b" kindref="member">pow</ref>(q.numerical_value_in(mp_units::one),<sp/>n.numerical_value_in(mp_units::one)),<sp/>mp_units::one<sp/>};</highlight></codeline>
-<codeline lineno="121"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="122"><highlight class="normal"></highlight></codeline>
-<codeline lineno="123"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;auto<sp/>R,<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Rep&gt;</highlight></codeline>
-<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">requires</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">requires</highlight><highlight class="normal">(Rep<sp/>v)<sp/>{<sp/>clamp(v,<sp/>v,<sp/>v);<sp/>}<sp/>||<sp/></highlight><highlight class="keyword">requires</highlight><highlight class="normal">(Rep<sp/>v)<sp/>{<sp/>std::clamp(v,<sp/>v,<sp/>v);<sp/>}</highlight></codeline>
-<codeline lineno="125"><highlight class="normal">[[nodiscard]]<sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/>mp_units::quantity&lt;R,<sp/>Rep&gt;</highlight></codeline>
-<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/>clamp(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>mp_units::quantity&lt;R,<sp/>Rep&gt;&amp;<sp/>q,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>mp_units::quantity&lt;R,<sp/>Rep&gt;&amp;<sp/>low,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>mp_units::quantity&lt;R,<sp/>Rep&gt;&amp;<sp/>high)<sp/></highlight><highlight class="keyword">noexcept</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="127"><highlight class="normal">{</highlight></codeline>
-<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">std::clamp;</highlight></codeline>
-<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>mp_units::quantity{<sp/>clamp(q.numerical_value_in(q.unit),<sp/>low.numerical_value_in(q.unit),<sp/>high.numerical_value_in(q.unit)),</highlight></codeline>
-<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>q.unit<sp/>};</highlight></codeline>
-<codeline lineno="131"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;auto<sp/>R1,<sp/>auto<sp/>R2,<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Rep&gt;</highlight></codeline>
+<codeline lineno="44" refid="operations_8hpp_1a6becf69e0ffdf99e10bace14d2c088b4" refkind="member"><highlight class="normal">[[nodiscard]]<sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="operations_8hpp_1a6becf69e0ffdf99e10bace14d2c088b4" kindref="member">nearly_equal</ref>(</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>mp_units::quantity&lt;R1,<sp/>Rep&gt;&amp;<sp/>x,</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>mp_units::quantity&lt;R2,<sp/>Rep&gt;&amp;<sp/>y,</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>mp_units::quantity&lt;mp_units::one,<sp/>Rep&gt;&amp;<sp/>relTol<sp/>=<sp/>0.0<sp/>*<sp/>mp_units::one,</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>mp_units::quantity&lt;mp_units::one,<sp/>Rep&gt;&amp;<sp/>absTol<sp/>=<sp/>0.0<sp/>*<sp/>mp_units::one</highlight></codeline>
+<codeline lineno="49"><highlight class="normal">)<sp/></highlight><highlight class="keyword">noexcept</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Bring<sp/>both<sp/>to<sp/>the<sp/>same<sp/>unit<sp/>for<sp/>comparison</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>a<sp/>=<sp/>x.in(x.unit);</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>b<sp/>=<sp/>y.in(x.unit);</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Check<sp/>rel<sp/>tol</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(relTol<sp/>!=<sp/>0.0<sp/>*<sp/>mp_units::one)<sp/>{</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(a<sp/>!=<sp/>0.0<sp/>*<sp/>R1<sp/>&amp;&amp;<sp/>b<sp/>!=<sp/>0.0<sp/>*<sp/>R1)<sp/>{</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(abs((a<sp/>-<sp/>b)<sp/>/<sp/>a)<sp/>&gt;<sp/>relTol)<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;<sp/>}</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Check<sp/>abs<sp/>tol</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(absTol<sp/>!=<sp/>0.0<sp/>*<sp/>mp_units::one)<sp/>{</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(abs(a<sp/>-<sp/>b)<sp/>&gt;<sp/>absTol<sp/>*<sp/>R1)<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;<sp/>}</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"></highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="68"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"></highlight></codeline>
+<codeline lineno="79"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;auto<sp/>R,<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Rep&gt;</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">requires</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">requires</highlight><highlight class="normal">(Rep<sp/>v)<sp/>{<sp/>max(v,<sp/>v);<sp/>}<sp/>||<sp/></highlight><highlight class="keyword">requires</highlight><highlight class="normal">(Rep<sp/>v)<sp/>{<sp/>std::max(v,<sp/>v);<sp/>}</highlight></codeline>
+<codeline lineno="81" refid="operations_8hpp_1a13c8a192d58b0225407e422267cdefde" refkind="member"><highlight class="normal">[[nodiscard]]<sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/>mp_units::quantity&lt;R,<sp/>Rep&gt;<sp/><ref refid="operations_8hpp_1a13c8a192d58b0225407e422267cdefde" kindref="member">max</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>mp_units::quantity&lt;R,<sp/>Rep&gt;&amp;<sp/>q1,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>mp_units::quantity&lt;R,<sp/>Rep&gt;&amp;<sp/>q2)<sp/></highlight><highlight class="keyword">noexcept</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="82"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">std::max;</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>mp_units::quantity{<sp/><ref refid="operations_8hpp_1a13c8a192d58b0225407e422267cdefde" kindref="member">max</ref>(q1.numerical_value_in(q1.unit),<sp/>q2.numerical_value_in(q1.unit)),<sp/>q1.unit<sp/>};</highlight></codeline>
+<codeline lineno="85"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"></highlight></codeline>
+<codeline lineno="96"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;auto<sp/>R,<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Rep&gt;</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">requires</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">requires</highlight><highlight class="normal">(Rep<sp/>v)<sp/>{<sp/>min(v,<sp/>v);<sp/>}<sp/>||<sp/></highlight><highlight class="keyword">requires</highlight><highlight class="normal">(Rep<sp/>v)<sp/>{<sp/>std::min(v,<sp/>v);<sp/>}</highlight></codeline>
+<codeline lineno="98" refid="operations_8hpp_1a8c39995fb8abca15cc5143d5425f7d26" refkind="member"><highlight class="normal">[[nodiscard]]<sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/>mp_units::quantity&lt;R,<sp/>Rep&gt;<sp/><ref refid="operations_8hpp_1a8c39995fb8abca15cc5143d5425f7d26" kindref="member">min</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>mp_units::quantity&lt;R,<sp/>Rep&gt;&amp;<sp/>q1,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>mp_units::quantity&lt;R,<sp/>Rep&gt;&amp;<sp/>q2)<sp/></highlight><highlight class="keyword">noexcept</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="99"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">std::min;</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>mp_units::quantity{<sp/><ref refid="operations_8hpp_1a8c39995fb8abca15cc5143d5425f7d26" kindref="member">min</ref>(q1.numerical_value_in(q1.unit),<sp/>q2.numerical_value_in(q1.unit)),<sp/>q1.unit<sp/>};</highlight></codeline>
+<codeline lineno="102"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"></highlight></codeline>
+<codeline lineno="113"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;mp_units::ReferenceOf&lt;mp_units::dimensionless&gt;<sp/>auto<sp/>R1,<sp/>mp_units::ReferenceOf&lt;mp_units::dimensionless&gt;<sp/>auto<sp/>R2,<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Rep1,<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Rep2&gt;</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">requires</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">requires</highlight><highlight class="normal">(Rep1<sp/>v1,<sp/>Rep2<sp/>v2)<sp/>{<sp/>pow(v1,<sp/>v2);<sp/>}<sp/>||<sp/></highlight><highlight class="keyword">requires</highlight><highlight class="normal">(Rep1<sp/>v1,<sp/>Rep2<sp/>v2)<sp/>{<sp/>std::pow(v1,<sp/>v2);<sp/>}</highlight></codeline>
+<codeline lineno="115"><highlight class="normal">[[nodiscard]]<sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/>mp_units::quantity&lt;mp_units::one,<sp/>Rep1&gt;</highlight></codeline>
+<codeline lineno="116" refid="operations_8hpp_1a366d78f9b21636bb268a3ed9049fa18b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="operations_8hpp_1a366d78f9b21636bb268a3ed9049fa18b" kindref="member">pow</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>mp_units::quantity&lt;R1,<sp/>Rep1&gt;&amp;<sp/>q,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>mp_units::quantity&lt;R2,<sp/>Rep2&gt;&amp;<sp/>n)<sp/></highlight><highlight class="keyword">noexcept</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="117"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">std::pow;</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>mp_units::quantity{<sp/><ref refid="operations_8hpp_1a366d78f9b21636bb268a3ed9049fa18b" kindref="member">pow</ref>(q.numerical_value_in(mp_units::one),<sp/>n.numerical_value_in(mp_units::one)),<sp/>mp_units::one<sp/>};</highlight></codeline>
+<codeline lineno="120"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"></highlight></codeline>
+<codeline lineno="122"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;auto<sp/>R,<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Rep&gt;</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">requires</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">requires</highlight><highlight class="normal">(Rep<sp/>v)<sp/>{<sp/>clamp(v,<sp/>v,<sp/>v);<sp/>}<sp/>||<sp/></highlight><highlight class="keyword">requires</highlight><highlight class="normal">(Rep<sp/>v)<sp/>{<sp/>std::clamp(v,<sp/>v,<sp/>v);<sp/>}</highlight></codeline>
+<codeline lineno="124"><highlight class="normal">[[nodiscard]]<sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/>mp_units::quantity&lt;R,<sp/>Rep&gt;</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/>clamp(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>mp_units::quantity&lt;R,<sp/>Rep&gt;&amp;<sp/>q,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>mp_units::quantity&lt;R,<sp/>Rep&gt;&amp;<sp/>low,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>mp_units::quantity&lt;R,<sp/>Rep&gt;&amp;<sp/>high)<sp/></highlight><highlight class="keyword">noexcept</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="126"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">std::clamp;</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>mp_units::quantity{<sp/>clamp(q.numerical_value_in(q.unit),<sp/>low.numerical_value_in(q.unit),<sp/>high.numerical_value_in(q.unit)),</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>q.unit<sp/>};</highlight></codeline>
+<codeline lineno="130"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"></highlight></codeline>
 <codeline lineno="132"><highlight class="normal"></highlight></codeline>
-<codeline lineno="133"><highlight class="normal"></highlight></codeline>
-<codeline lineno="134"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>math</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="135"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>astrea</highlight></codeline>
+<codeline lineno="133"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>math</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="134"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>astrea</highlight></codeline>
     </programlisting>
     <location file="astrea/math/math/operations.hpp"/>
   </compounddef>

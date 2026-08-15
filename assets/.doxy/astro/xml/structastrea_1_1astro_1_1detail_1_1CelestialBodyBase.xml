@@ -305,7 +305,7 @@
         </childnode>
       </node>
     </inheritancegraph>
-    <location file="astrea/astro/astro/systems/CelestialBody.hpp" line="42" column="1" bodyfile="astrea/astro/astro/systems/CelestialBody.hpp" bodystart="42" bodyend="42"/>
+    <location file="astrea/astro/astro/systems/CelestialBody.hpp" line="41" column="1" bodyfile="astrea/astro/astro/systems/CelestialBody.hpp" bodystart="41" bodyend="41"/>
     <listofallmembers>
     </listofallmembers>
   </compounddef>

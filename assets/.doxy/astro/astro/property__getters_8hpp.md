@@ -11,7 +11,6 @@
 
 
 * `#include <string>`
-* `#include <mp-units/systems/angular.h>`
 * `#include <mp-units/systems/si.h>`
 * `#include <astro/utilities/conversions.hpp>`
 * `#include <math/chebyshev_util.hpp>`

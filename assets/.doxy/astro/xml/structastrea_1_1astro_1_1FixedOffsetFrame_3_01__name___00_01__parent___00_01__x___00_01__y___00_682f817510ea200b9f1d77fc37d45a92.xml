@@ -1,0 +1,166 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="structastrea_1_1astro_1_1FixedOffsetFrame_3_01__name___00_01__parent___00_01__x___00_01__y___00_682f817510ea200b9f1d77fc37d45a92" kind="struct" language="C++" prot="public">
+    <compoundname>astrea::astro::FixedOffsetFrame&lt; _name_, _parent_, _x_, _y_, _z_, _phi_, _theta_, _psi_, _sequence_, Args... &gt;</compoundname>
+    <basecompoundref refid="structastrea_1_1astro_1_1Frame" prot="public" virt="non-virtual">astrea::astro::Frame&lt; _name_, FixedOffsetOrigin&lt; _parent_.origin, _x_, _y_, _z_ &gt;{}, FixedOffsetAxis&lt; _parent_.axis, _phi_, _theta_, _psi_, _sequence_ &gt;{}, _parent_ &gt;</basecompoundref>
+    <includes refid="FixedOffsetFrame_8hpp" local="no">FixedOffsetFrame.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>mp_units::symbol_text</type>
+        <declname>_name_</declname>
+        <defname>_name_</defname>
+      </param>
+      <param>
+        <type>IsFrame auto</type>
+        <declname>_parent_</declname>
+        <defname>_parent_</defname>
+      </param>
+      <param>
+        <type>Distance</type>
+        <declname>_x_</declname>
+        <defname>_x_</defname>
+      </param>
+      <param>
+        <type>Distance</type>
+        <declname>_y_</declname>
+        <defname>_y_</defname>
+      </param>
+      <param>
+        <type>Distance</type>
+        <declname>_z_</declname>
+        <defname>_z_</defname>
+      </param>
+      <param>
+        <type>Angle</type>
+        <declname>_phi_</declname>
+        <defname>_phi_</defname>
+      </param>
+      <param>
+        <type>Angle</type>
+        <declname>_theta_</declname>
+        <defname>_theta_</defname>
+      </param>
+      <param>
+        <type>Angle</type>
+        <declname>_psi_</declname>
+        <defname>_psi_</defname>
+      </param>
+      <param>
+        <type><ref refid="enums_8hpp_1a96509098528d6e06b10894d5421b6862" kindref="member">RotationSequence</ref></type>
+        <declname>_sequence_</declname>
+        <defname>_sequence_</defname>
+      </param>
+      <param>
+        <type>auto...</type>
+        <declname>Args</declname>
+        <defname>Args</defname>
+      </param>
+    </templateparamlist>
+    <briefdescription>
+<para>Specialization of <ref refid="structastrea_1_1astro_1_1FixedOffsetFrame" kindref="compound">FixedOffsetFrame</ref> for a combined spatial and angular offset that lets the name be specified. </para>
+    </briefdescription>
+    <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>_name_</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The name of the frame. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>_parent_</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parent frame from which this frame is derived. Must satisfy the IsFrame concept. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>_x_</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The fixed offset in the x direction from the parent frame. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>_y_</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The fixed offset in the y direction from the parent frame. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>_z_</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The fixed offset in the z direction from the parent frame. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>_phi_</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The fixed offset angle around the x-axis from the parent frame. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>_theta_</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The fixed offset angle around the y-axis from the parent frame. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>_psi_</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The fixed offset angle around the z-axis from the parent frame. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>_sequence_</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The rotation sequence for applying the angular offsets. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>astrea::astro::Frame&lt; _name_, FixedOffsetOrigin&lt; _parent_.origin, _x_, _y_, _z_ &gt;{}, FixedOffsetAxis&lt; _parent_.axis, _phi_, _theta_, _psi_, _sequence_ &gt;{}, _parent_ &gt;</label>
+        <link refid="structastrea_1_1astro_1_1Frame"/>
+      </node>
+      <node id="1">
+        <label>astrea::astro::FixedOffsetFrame&lt; _name_, _parent_, _x_, _y_, _z_, _phi_, _theta_, _psi_, _sequence_, Args... &gt;</label>
+        <link refid="structastrea_1_1astro_1_1FixedOffsetFrame_3_01__name___00_01__parent___00_01__x___00_01__y___00_682f817510ea200b9f1d77fc37d45a92"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>astrea::astro::Frame&lt; _name_, FixedOffsetOrigin&lt; _parent_.origin, _x_, _y_, _z_ &gt;{}, FixedOffsetAxis&lt; _parent_.axis, _phi_, _theta_, _psi_, _sequence_ &gt;{}, _parent_ &gt;</label>
+        <link refid="structastrea_1_1astro_1_1Frame"/>
+      </node>
+      <node id="1">
+        <label>astrea::astro::FixedOffsetFrame&lt; _name_, _parent_, _x_, _y_, _z_, _phi_, _theta_, _psi_, _sequence_, Args... &gt;</label>
+        <link refid="structastrea_1_1astro_1_1FixedOffsetFrame_3_01__name___00_01__parent___00_01__x___00_01__y___00_682f817510ea200b9f1d77fc37d45a92"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="astrea/astro/astro/frames/framework/FixedOffsetFrame.hpp" line="314" column="1" bodyfile="astrea/astro/astro/frames/framework/FixedOffsetFrame.hpp" bodystart="315" bodyend="316"/>
+    <listofallmembers>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

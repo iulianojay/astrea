@@ -10,9 +10,7 @@
 
 _Custom units for astrea project._ [More...](#detailed-description)
 
-* `#include <mp-units/systems/angular.h>`
 * `#include <mp-units/systems/iau.h>`
-* `#include <mp-units/systems/isq_angle.h>`
 * `#include <mp-units/systems/si.h>`
 
 
@@ -32,15 +30,18 @@ _Custom units for astrea project._ [More...](#detailed-description)
 | Type | Name |
 | ---: | :--- |
 | namespace | [**astrea**](namespaceastrea.md) <br> |
+| namespace | [**units**](namespaceastrea_1_1units.md) <br> |
+| namespace | [**unit\_symbols**](namespaceastrea_1_1units_1_1unit__symbols.md) <br> |
 
 
 ## Classes
 
 | Type | Name |
 | ---: | :--- |
-| struct | [**EarthRadii**](structastrea_1_1EarthRadii.md) <br>_Definition for Earth Radii as 6378 km._  |
-| struct | [**JulianCentury**](structastrea_1_1JulianCentury.md) <br>_Definition for a Julian Century as 36525 days._  |
-| struct | [**SolarFluxUnits**](structastrea_1_1SolarFluxUnits.md) <br>_Definition for Solar Flux Units as 1e-22 W / (m^2 \* Hz)._  |
+| struct | [**earth\_radii**](structastrea_1_1units_1_1earth__radii.md) <br>_Definition for Earth Radii as 6378 km._  |
+| struct | [**julian\_century**](structastrea_1_1units_1_1julian__century.md) <br>_Definition for a Julian Century as 36525 days._  |
+| struct | [**revolution**](structastrea_1_1units_1_1revolution.md) <br>_Definition for a revolution as 360 degrees._  |
+| struct | [**solar\_flux\_units**](structastrea_1_1units_1_1solar__flux__units.md) <br>_Definition for Solar Flux Units as 1e-22 W / (m^2 \* Hz)._  |
 
 
 
@@ -112,7 +113,7 @@ Jay Iuliano ([iuliano.jay@gmail.com](mailto:iuliano.jay@gmail.com))
 
 **Copyright:**
 
-Copyright (c) 2025 Jay Iuliano
+Copyright (c) 2025-2026 Jay Iuliano
 
 
 The GNU Lesser General Public License (LGPL)

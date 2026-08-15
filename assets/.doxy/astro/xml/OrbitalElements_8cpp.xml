@@ -21,6 +21,10 @@
         <childnode refid="9" relation="include">
         </childnode>
       </node>
+      <node id="23">
+        <label>astro/astro.macros.hpp</label>
+        <link refid="astro_8macros_8hpp"/>
+      </node>
       <node id="16">
         <label>astro/frames/definitions/body_centered_inertial_frames.hpp</label>
         <link refid="body__centered__inertial__frames_8hpp"/>
@@ -29,7 +33,7 @@
         <childnode refid="21" relation="include">
         </childnode>
       </node>
-      <node id="106">
+      <node id="105">
         <label>astro/frames/definitions/body_fixed_frames.hpp</label>
         <link refid="body__fixed__frames_8hpp"/>
         <childnode refid="26" relation="include">
@@ -88,7 +92,7 @@
         </childnode>
         <childnode refid="16" relation="include">
         </childnode>
-        <childnode refid="106" relation="include">
+        <childnode refid="105" relation="include">
         </childnode>
       </node>
       <node id="86">
@@ -106,9 +110,11 @@
         </childnode>
         <childnode refid="89" relation="include">
         </childnode>
+        <childnode refid="94" relation="include">
+        </childnode>
         <childnode refid="8" relation="include">
         </childnode>
-        <childnode refid="94" relation="include">
+        <childnode refid="96" relation="include">
         </childnode>
       </node>
       <node id="19">
@@ -148,7 +154,7 @@
         </childnode>
         <childnode refid="31" relation="include">
         </childnode>
-        <childnode refid="24" relation="include">
+        <childnode refid="25" relation="include">
         </childnode>
         <childnode refid="5" relation="include">
         </childnode>
@@ -195,6 +201,8 @@
         <childnode refid="47" relation="include">
         </childnode>
         <childnode refid="81" relation="include">
+        </childnode>
+        <childnode refid="83" relation="include">
         </childnode>
         <childnode refid="5" relation="include">
         </childnode>
@@ -261,6 +269,28 @@
         <childnode refid="91" relation="include">
         </childnode>
         <childnode refid="89" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="94">
+        <label>astro/frames/framework/FixedOffsetFrame.hpp</label>
+        <link refid="FixedOffsetFrame_8hpp"/>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="95" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="87" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
         </childnode>
         <childnode refid="8" relation="include">
         </childnode>
@@ -336,24 +366,24 @@
         </childnode>
         <childnode refid="47" relation="include">
         </childnode>
-        <childnode refid="81" relation="include">
-        </childnode>
         <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="81" relation="include">
         </childnode>
         <childnode refid="82" relation="include">
         </childnode>
         <childnode refid="83" relation="include">
         </childnode>
-        <childnode refid="104" relation="include">
+        <childnode refid="84" relation="include">
         </childnode>
-        <childnode refid="94" relation="include">
+        <childnode refid="103" relation="include">
+        </childnode>
+        <childnode refid="96" relation="include">
         </childnode>
         <childnode refid="55" relation="include">
         </childnode>
-        <childnode refid="85" relation="include">
-        </childnode>
       </node>
-      <node id="83">
+      <node id="84">
         <label>astro/state/orbital_elements/Equinoctial.hpp</label>
         <link refid="Equinoctial_8hpp"/>
         <childnode refid="3" relation="include">
@@ -364,10 +394,10 @@
         </childnode>
         <childnode refid="55" relation="include">
         </childnode>
-        <childnode refid="84" relation="include">
+        <childnode refid="85" relation="include">
         </childnode>
       </node>
-      <node id="84">
+      <node id="85">
         <label>astro/state/orbital_elements/Equinoctial.ipp</label>
         <link refid="Equinoctial_8ipp_source"/>
         <childnode refid="79" relation="include">
@@ -376,33 +406,29 @@
         </childnode>
         <childnode refid="47" relation="include">
         </childnode>
-        <childnode refid="81" relation="include">
-        </childnode>
         <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="81" relation="include">
         </childnode>
         <childnode refid="82" relation="include">
         </childnode>
-        <childnode refid="85" relation="include">
-        </childnode>
         <childnode refid="86" relation="include">
         </childnode>
-        <childnode refid="104" relation="include">
+        <childnode refid="103" relation="include">
         </childnode>
-        <childnode refid="94" relation="include">
+        <childnode refid="96" relation="include">
         </childnode>
         <childnode refid="55" relation="include">
         </childnode>
         <childnode refid="46" relation="include">
         </childnode>
       </node>
-      <node id="104">
+      <node id="103">
         <label>astro/state/orbital_elements/Keplerian.hpp</label>
         <link refid="Keplerian_8hpp"/>
         <childnode refid="3" relation="include">
         </childnode>
         <childnode refid="47" relation="include">
-        </childnode>
-        <childnode refid="24" relation="include">
         </childnode>
         <childnode refid="25" relation="include">
         </childnode>
@@ -412,10 +438,10 @@
         </childnode>
         <childnode refid="55" relation="include">
         </childnode>
-        <childnode refid="105" relation="include">
+        <childnode refid="104" relation="include">
         </childnode>
       </node>
-      <node id="105">
+      <node id="104">
         <label>astro/state/orbital_elements/Keplerian.ipp</label>
         <link refid="Keplerian_8ipp_source"/>
         <childnode refid="79" relation="include">
@@ -426,13 +452,13 @@
         </childnode>
         <childnode refid="77" relation="include">
         </childnode>
-        <childnode refid="83" relation="include">
+        <childnode refid="84" relation="include">
         </childnode>
         <childnode refid="55" relation="include">
         </childnode>
         <childnode refid="46" relation="include">
         </childnode>
-        <childnode refid="85" relation="include">
+        <childnode refid="82" relation="include">
         </childnode>
       </node>
       <node id="1">
@@ -440,7 +466,7 @@
         <link refid="OrbitalElements_8cpp"/>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="109" relation="include">
+        <childnode refid="108" relation="include">
         </childnode>
         <childnode refid="90" relation="include">
         </childnode>
@@ -448,11 +474,11 @@
         </childnode>
         <childnode refid="80" relation="include">
         </childnode>
-        <childnode refid="110" relation="include">
+        <childnode refid="109" relation="include">
         </childnode>
         <childnode refid="47" relation="include">
         </childnode>
-        <childnode refid="111" relation="include">
+        <childnode refid="110" relation="include">
         </childnode>
       </node>
       <node id="2">
@@ -472,13 +498,13 @@
         </childnode>
         <childnode refid="77" relation="include">
         </childnode>
-        <childnode refid="83" relation="include">
+        <childnode refid="84" relation="include">
         </childnode>
-        <childnode refid="104" relation="include">
+        <childnode refid="103" relation="include">
+        </childnode>
+        <childnode refid="106" relation="include">
         </childnode>
         <childnode refid="107" relation="include">
-        </childnode>
-        <childnode refid="108" relation="include">
         </childnode>
       </node>
       <node id="49">
@@ -497,12 +523,10 @@
         <childnode refid="27" relation="include">
         </childnode>
       </node>
-      <node id="23">
+      <node id="24">
         <label>astro/systems/CelestialBody.hpp</label>
         <link refid="CelestialBody_8hpp"/>
         <childnode refid="18" relation="include">
-        </childnode>
-        <childnode refid="24" relation="include">
         </childnode>
         <childnode refid="25" relation="include">
         </childnode>
@@ -604,6 +628,8 @@
         </childnode>
         <childnode refid="23" relation="include">
         </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
         <childnode refid="50" relation="include">
         </childnode>
       </node>
@@ -616,6 +642,8 @@
         </childnode>
         <childnode refid="23" relation="include">
         </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
         <childnode refid="22" relation="include">
         </childnode>
       </node>
@@ -626,7 +654,7 @@
         </childnode>
         <childnode refid="6" relation="include">
         </childnode>
-        <childnode refid="23" relation="include">
+        <childnode refid="24" relation="include">
         </childnode>
         <childnode refid="54" relation="include">
         </childnode>
@@ -638,7 +666,7 @@
         </childnode>
         <childnode refid="6" relation="include">
         </childnode>
-        <childnode refid="23" relation="include">
+        <childnode refid="24" relation="include">
         </childnode>
         <childnode refid="54" relation="include">
         </childnode>
@@ -650,7 +678,7 @@
         </childnode>
         <childnode refid="6" relation="include">
         </childnode>
-        <childnode refid="23" relation="include">
+        <childnode refid="24" relation="include">
         </childnode>
         <childnode refid="54" relation="include">
         </childnode>
@@ -662,7 +690,7 @@
         </childnode>
         <childnode refid="6" relation="include">
         </childnode>
-        <childnode refid="23" relation="include">
+        <childnode refid="24" relation="include">
         </childnode>
         <childnode refid="54" relation="include">
         </childnode>
@@ -674,7 +702,7 @@
         </childnode>
         <childnode refid="6" relation="include">
         </childnode>
-        <childnode refid="23" relation="include">
+        <childnode refid="24" relation="include">
         </childnode>
         <childnode refid="50" relation="include">
         </childnode>
@@ -688,7 +716,7 @@
         </childnode>
         <childnode refid="6" relation="include">
         </childnode>
-        <childnode refid="23" relation="include">
+        <childnode refid="24" relation="include">
         </childnode>
         <childnode refid="60" relation="include">
         </childnode>
@@ -704,6 +732,8 @@
         </childnode>
         <childnode refid="23" relation="include">
         </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
         <childnode refid="50" relation="include">
         </childnode>
       </node>
@@ -714,7 +744,7 @@
         </childnode>
         <childnode refid="6" relation="include">
         </childnode>
-        <childnode refid="23" relation="include">
+        <childnode refid="24" relation="include">
         </childnode>
         <childnode refid="60" relation="include">
         </childnode>
@@ -728,6 +758,8 @@
         </childnode>
         <childnode refid="23" relation="include">
         </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
         <childnode refid="50" relation="include">
         </childnode>
       </node>
@@ -738,7 +770,7 @@
         </childnode>
         <childnode refid="6" relation="include">
         </childnode>
-        <childnode refid="23" relation="include">
+        <childnode refid="24" relation="include">
         </childnode>
         <childnode refid="50" relation="include">
         </childnode>
@@ -746,8 +778,6 @@
       <node id="65">
         <label>astro/systems/celestial_bodies/Neptune/Triton.hpp</label>
         <link refid="Triton_8hpp"/>
-        <childnode refid="24" relation="include">
-        </childnode>
         <childnode refid="66" relation="include">
         </childnode>
         <childnode refid="25" relation="include">
@@ -756,7 +786,7 @@
         </childnode>
         <childnode refid="6" relation="include">
         </childnode>
-        <childnode refid="23" relation="include">
+        <childnode refid="24" relation="include">
         </childnode>
         <childnode refid="64" relation="include">
         </childnode>
@@ -768,7 +798,7 @@
         </childnode>
         <childnode refid="6" relation="include">
         </childnode>
-        <childnode refid="23" relation="include">
+        <childnode refid="24" relation="include">
         </childnode>
         <childnode refid="68" relation="include">
         </childnode>
@@ -780,7 +810,7 @@
         </childnode>
         <childnode refid="6" relation="include">
         </childnode>
-        <childnode refid="23" relation="include">
+        <childnode refid="24" relation="include">
         </childnode>
         <childnode refid="68" relation="include">
         </childnode>
@@ -792,7 +822,7 @@
         </childnode>
         <childnode refid="6" relation="include">
         </childnode>
-        <childnode refid="23" relation="include">
+        <childnode refid="24" relation="include">
         </childnode>
         <childnode refid="50" relation="include">
         </childnode>
@@ -806,7 +836,7 @@
         </childnode>
         <childnode refid="6" relation="include">
         </childnode>
-        <childnode refid="23" relation="include">
+        <childnode refid="24" relation="include">
         </childnode>
         <childnode refid="68" relation="include">
         </childnode>
@@ -818,7 +848,7 @@
         </childnode>
         <childnode refid="6" relation="include">
         </childnode>
-        <childnode refid="23" relation="include">
+        <childnode refid="24" relation="include">
         </childnode>
         <childnode refid="50" relation="include">
         </childnode>
@@ -830,7 +860,7 @@
         </childnode>
         <childnode refid="6" relation="include">
         </childnode>
-        <childnode refid="23" relation="include">
+        <childnode refid="24" relation="include">
         </childnode>
         <childnode refid="73" relation="include">
         </childnode>
@@ -842,7 +872,7 @@
         </childnode>
         <childnode refid="6" relation="include">
         </childnode>
-        <childnode refid="23" relation="include">
+        <childnode refid="24" relation="include">
         </childnode>
         <childnode refid="73" relation="include">
         </childnode>
@@ -854,7 +884,7 @@
         </childnode>
         <childnode refid="6" relation="include">
         </childnode>
-        <childnode refid="23" relation="include">
+        <childnode refid="24" relation="include">
         </childnode>
         <childnode refid="50" relation="include">
         </childnode>
@@ -870,6 +900,8 @@
         </childnode>
         <childnode refid="23" relation="include">
         </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
         <childnode refid="50" relation="include">
         </childnode>
       </node>
@@ -880,7 +912,7 @@
         </childnode>
         <childnode refid="77" relation="include">
         </childnode>
-        <childnode refid="104" relation="include">
+        <childnode refid="103" relation="include">
         </childnode>
         <childnode refid="45" relation="include">
         </childnode>
@@ -889,8 +921,6 @@
         <label>astro/systems/property_getters.hpp</label>
         <link refid="property__getters_8hpp_source"/>
         <childnode refid="35" relation="include">
-        </childnode>
-        <childnode refid="24" relation="include">
         </childnode>
         <childnode refid="25" relation="include">
         </childnode>
@@ -904,7 +934,7 @@
         </childnode>
         <childnode refid="49" relation="include">
         </childnode>
-        <childnode refid="23" relation="include">
+        <childnode refid="24" relation="include">
         </childnode>
         <childnode refid="32" relation="include">
         </childnode>
@@ -921,20 +951,20 @@
         <childnode refid="7" relation="include">
         </childnode>
       </node>
-      <node id="94">
+      <node id="96">
         <label>astro/systems/system_utilities.hpp</label>
         <link refid="system__utilities_8hpp_source"/>
-        <childnode refid="95" relation="include">
-        </childnode>
-        <childnode refid="96" relation="include">
-        </childnode>
         <childnode refid="97" relation="include">
         </childnode>
         <childnode refid="98" relation="include">
         </childnode>
         <childnode refid="99" relation="include">
         </childnode>
-        <childnode refid="23" relation="include">
+        <childnode refid="100" relation="include">
+        </childnode>
+        <childnode refid="101" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
         </childnode>
         <childnode refid="50" relation="include">
         </childnode>
@@ -946,7 +976,7 @@
         </childnode>
         <childnode refid="9" relation="include">
         </childnode>
-        <childnode refid="100" relation="include">
+        <childnode refid="102" relation="include">
         </childnode>
       </node>
       <node id="33">
@@ -1037,14 +1067,14 @@
         <childnode refid="40" relation="include">
         </childnode>
       </node>
-      <node id="107">
+      <node id="106">
         <label>astro/types/concepts.hpp</label>
         <link refid="concepts_8hpp"/>
         <childnode refid="7" relation="include">
         </childnode>
         <childnode refid="9" relation="include">
         </childnode>
-        <childnode refid="100" relation="include">
+        <childnode refid="102" relation="include">
         </childnode>
         <childnode refid="55" relation="include">
         </childnode>
@@ -1055,20 +1085,10 @@
         <childnode refid="10" relation="include">
         </childnode>
       </node>
-      <node id="100">
+      <node id="102">
         <label>astro/types/type_traits.hpp</label>
         <link refid="type__traits_8hpp"/>
-        <childnode refid="101" relation="include">
-        </childnode>
-        <childnode refid="102" relation="include">
-        </childnode>
-        <childnode refid="35" relation="include">
-        </childnode>
-        <childnode refid="12" relation="include">
-        </childnode>
         <childnode refid="13" relation="include">
-        </childnode>
-        <childnode refid="103" relation="include">
         </childnode>
       </node>
       <node id="55">
@@ -1079,7 +1099,7 @@
         <childnode refid="6" relation="include">
         </childnode>
       </node>
-      <node id="108">
+      <node id="107">
         <label>astro/types/variant_util.hpp</label>
         <link refid="variant__util_8hpp"/>
         <childnode refid="4" relation="include">
@@ -1100,7 +1120,7 @@
       <node id="29">
         <label>array</label>
       </node>
-      <node id="109">
+      <node id="108">
         <label>cassert</label>
       </node>
       <node id="34">
@@ -1113,13 +1133,7 @@
         <label>concepts</label>
       </node>
       <node id="101">
-        <label>cstddef</label>
-      </node>
-      <node id="99">
         <label>gtl/phmap.hpp</label>
-      </node>
-      <node id="102">
-        <label>initializer_list</label>
       </node>
       <node id="79">
         <label>iomanip</label>
@@ -1136,14 +1150,20 @@
       <node id="48">
         <label>math/chebyshev_util.hpp</label>
       </node>
-      <node id="85">
+      <node id="82">
         <label>math/interpolation.hpp</label>
       </node>
-      <node id="111">
+      <node id="110">
         <label>math/operations.hpp</label>
       </node>
-      <node id="95">
+      <node id="83">
+        <label>math/trig.hpp</label>
+      </node>
+      <node id="97">
         <label>memory</label>
+      </node>
+      <node id="95">
+        <label>mp-units/core.h</label>
       </node>
       <node id="31">
         <label>mp-units/framework.h</label>
@@ -1154,12 +1174,6 @@
       <node id="47">
         <label>mp-units/math.h</label>
       </node>
-      <node id="24">
-        <label>mp-units/systems/angular.h</label>
-      </node>
-      <node id="81">
-        <label>mp-units/systems/angular/math.h</label>
-      </node>
       <node id="66">
         <label>mp-units/systems/iau.h</label>
       </node>
@@ -1169,19 +1183,19 @@
       <node id="36">
         <label>mp-units/systems/si/chrono.h</label>
       </node>
-      <node id="82">
+      <node id="81">
         <label>mp-units/systems/si/math.h</label>
       </node>
       <node id="39">
         <label>numbers</label>
       </node>
-      <node id="96">
+      <node id="98">
         <label>ranges</label>
       </node>
       <node id="40">
         <label>ratio</label>
       </node>
-      <node id="110">
+      <node id="109">
         <label>stdexcept</label>
       </node>
       <node id="10">
@@ -1202,19 +1216,16 @@
       <node id="5">
         <label>units/units.hpp</label>
       </node>
-      <node id="97">
+      <node id="99">
         <label>unordered_set</label>
       </node>
       <node id="87">
         <label>utilities/string_util.hpp</label>
       </node>
-      <node id="103">
-        <label>utility</label>
-      </node>
       <node id="4">
         <label>variant</label>
       </node>
-      <node id="98">
+      <node id="100">
         <label>vector</label>
       </node>
     </incdepgraph>
@@ -1228,7 +1239,7 @@
 <codeline lineno="1"><highlight class="comment">/*</highlight></codeline>
 <codeline lineno="2"><highlight class="comment"><sp/>*<sp/>The<sp/>GNU<sp/>Lesser<sp/>General<sp/>Public<sp/>License<sp/>(LGPL)</highlight></codeline>
 <codeline lineno="3"><highlight class="comment"><sp/>*</highlight></codeline>
-<codeline lineno="4"><highlight class="comment"><sp/>*<sp/>Copyright<sp/>(c)<sp/>2025<sp/>Jay<sp/>Iuliano</highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>*<sp/>Copyright<sp/>(c)<sp/>2025-2026<sp/>Jay<sp/>Iuliano</highlight></codeline>
 <codeline lineno="5"><highlight class="comment"><sp/>*</highlight></codeline>
 <codeline lineno="6"><highlight class="comment"><sp/>*<sp/>This<sp/>file<sp/>is<sp/>part<sp/>of<sp/>Astrea.</highlight></codeline>
 <codeline lineno="7"><highlight class="comment"><sp/>*<sp/>Astrea<sp/>is<sp/>free<sp/>software:<sp/>you<sp/>can<sp/>redistribute<sp/>it<sp/>and/or<sp/>modify<sp/>it<sp/>under<sp/>the<sp/>terms<sp/>of<sp/>the<sp/>GNU<sp/>Lesser<sp/>General<sp/>Public<sp/>License</highlight></codeline>
@@ -1353,9 +1364,9 @@
 <codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>*</highlight><highlight class="keyword">this</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="127"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="128"><highlight class="normal"></highlight></codeline>
-<codeline lineno="129"><highlight class="normal">std::vector&lt;Unitless&gt;<sp/><ref refid="classastrea_1_1astro_1_1OrbitalElements_1a40d6d7c20b85e1760d57e79ca289481b" kindref="member">OrbitalElements::force_to_vector</ref>()</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="129"><highlight class="normal">std::vector&lt;double&gt;<sp/><ref refid="classastrea_1_1astro_1_1OrbitalElements_1a5b61d5ce5697bbe2a91f18ee7bd520f0" kindref="member">OrbitalElements::force_to_double_vector</ref>()</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
 <codeline lineno="130"><highlight class="keyword"></highlight><highlight class="normal">{</highlight></codeline>
-<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>std::visit([&amp;](</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>x)<sp/>-&gt;<sp/>std::vector&lt;Unitless&gt;<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>x.force_to_vector();<sp/>},<sp/>_elements);</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>std::visit([&amp;](</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>x)<sp/>-&gt;<sp/>std::vector&lt;double&gt;<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>x.force_to_double_vector();<sp/>},<sp/>_elements);</highlight></codeline>
 <codeline lineno="132"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="133"><highlight class="normal"></highlight></codeline>
 <codeline lineno="134"><highlight class="normal">OrbitalElements</highlight></codeline>
@@ -1398,14 +1409,14 @@
 <codeline lineno="171"><highlight class="normal"><sp/><sp/><sp/><sp/>}(std::make_index_sequence&lt;std::variant_size_v&lt;ElementVariant&gt;&gt;{});</highlight></codeline>
 <codeline lineno="172"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="173"><highlight class="normal"></highlight></codeline>
-<codeline lineno="174"><highlight class="normal">OrbitalElements<sp/>OrbitalElements::from_vector(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;Unitless&gt;&amp;<sp/>vec,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::size_t<sp/>idx)</highlight></codeline>
+<codeline lineno="174"><highlight class="normal">OrbitalElements<sp/>OrbitalElements::from_double_vector(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;double&gt;&amp;<sp/>vec,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::size_t<sp/>idx)</highlight></codeline>
 <codeline lineno="175"><highlight class="normal">{</highlight></codeline>
 <codeline lineno="176"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>[&amp;]&lt;std::size_t...<sp/>Is&gt;(std::index_sequence&lt;Is...&gt;)<sp/>-&gt;<sp/><ref refid="classastrea_1_1astro_1_1OrbitalElements_1ad6e216f13bbe018cc3ae68e3a0716641" kindref="member">OrbitalElements</ref><sp/>{</highlight></codeline>
 <codeline lineno="177"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1OrbitalElements_1ad6e216f13bbe018cc3ae68e3a0716641" kindref="member">OrbitalElements</ref><sp/>result;</highlight></codeline>
 <codeline lineno="178"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>found<sp/>=</highlight></codeline>
-<codeline lineno="179"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>((Is<sp/>==<sp/>idx<sp/>?<sp/>(result<sp/>=<sp/><ref refid="classastrea_1_1astro_1_1OrbitalElements_1ad6e216f13bbe018cc3ae68e3a0716641" kindref="member">OrbitalElements</ref>(std::variant_alternative_t&lt;Is,<sp/>ElementVariant&gt;::from_vector(vec)),<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">)<sp/>:<sp/>false)<sp/>||</highlight></codeline>
+<codeline lineno="179"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>((Is<sp/>==<sp/>idx<sp/>?<sp/>(result<sp/>=<sp/><ref refid="classastrea_1_1astro_1_1OrbitalElements_1ad6e216f13bbe018cc3ae68e3a0716641" kindref="member">OrbitalElements</ref>(std::variant_alternative_t&lt;Is,<sp/>ElementVariant&gt;::from_double_vector(vec)),<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">)<sp/>:<sp/>false)<sp/>||</highlight></codeline>
 <codeline lineno="180"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>...);</highlight></codeline>
-<codeline lineno="181"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!found)<sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/>std::runtime_error(</highlight><highlight class="stringliteral">&quot;Invalid<sp/>orbital<sp/>element<sp/>set<sp/>index<sp/>for<sp/>from_vector.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="181"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!found)<sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/>std::runtime_error(</highlight><highlight class="stringliteral">&quot;Invalid<sp/>orbital<sp/>element<sp/>set<sp/>index<sp/>for<sp/>from_double_vector.&quot;</highlight><highlight class="normal">);</highlight></codeline>
 <codeline lineno="182"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>result;</highlight></codeline>
 <codeline lineno="183"><highlight class="normal"><sp/><sp/><sp/><sp/>}(std::make_index_sequence&lt;std::variant_size_v&lt;ElementVariant&gt;&gt;{});</highlight></codeline>
 <codeline lineno="184"><highlight class="normal">}</highlight></codeline>
@@ -1426,9 +1437,9 @@
 <codeline lineno="199"><highlight class="normal"></highlight></codeline>
 <codeline lineno="200"><highlight class="normal">OrbitalElementPartials::PartialVariant&amp;<sp/><ref refid="classastrea_1_1astro_1_1OrbitalElementPartials_1aa6cf08e6705405c2a1bedaff4a8b3618" kindref="member">OrbitalElementPartials::extract</ref>()<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_elements;<sp/>}</highlight></codeline>
 <codeline lineno="201"><highlight class="normal"></highlight></codeline>
-<codeline lineno="202"><highlight class="normal">std::vector&lt;Unitless&gt;<sp/><ref refid="classastrea_1_1astro_1_1OrbitalElementPartials_1ae95395ce01f850814828acebbdb080f4" kindref="member">OrbitalElementPartials::force_to_vector</ref>()</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="202"><highlight class="normal">std::vector&lt;double&gt;<sp/><ref refid="classastrea_1_1astro_1_1OrbitalElementPartials_1a00e2b47df24b873e55e0b90622759d76" kindref="member">OrbitalElementPartials::force_to_double_vector</ref>()</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
 <codeline lineno="203"><highlight class="keyword"></highlight><highlight class="normal">{</highlight></codeline>
-<codeline lineno="204"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>std::visit([&amp;](</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>x)<sp/>-&gt;<sp/>std::vector&lt;Unitless&gt;<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>x.force_to_vector();<sp/>},<sp/>_elements);</highlight></codeline>
+<codeline lineno="204"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>std::visit([&amp;](</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>x)<sp/>-&gt;<sp/>std::vector&lt;double&gt;<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>x.force_to_double_vector();<sp/>},<sp/>_elements);</highlight></codeline>
 <codeline lineno="205"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="206"><highlight class="normal"></highlight></codeline>
 <codeline lineno="207"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>throw_mismatched_types()</highlight></codeline>

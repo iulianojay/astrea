@@ -2,7 +2,7 @@
 
 # Struct astrea::astro::SynodicAxis
 
-**template &lt;IsCelestialBody [**auto**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) \_primary\_, IsCelestialBody [**auto**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) \_secondary\_&gt;**
+**template &lt;IsCelestialBody auto \_primary\_, IsCelestialBody auto \_secondary\_&gt;**
 
 
 
@@ -47,8 +47,8 @@ Inherits the following classes: [astrea::astro::Axis](structastrea_1_1astro_1_1A
 
 | Type | Name |
 | ---: | :--- |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**auto**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**primary**](#variable-primary)   = `[**\_primary\_**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)`<br> |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**auto**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**secondary**](#variable-secondary)   = `[**\_secondary\_**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)`<br> |
+|  constexpr auto | [**primary**](#variable-primary)   = `\_primary\_`<br> |
+|  constexpr auto | [**secondary**](#variable-secondary)   = `\_secondary\_`<br> |
 
 
 

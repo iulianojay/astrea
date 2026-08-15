@@ -117,7 +117,7 @@ See [astrea::trace::GroundPoint](classastrea_1_1trace_1_1GroundPoint.md)
 
 | Type | Name |
 | ---: | :--- |
-|   | [**GroundPoint**](classastrea_1_1trace_1_1GroundPoint.md#function-groundpoint) (const Angle & latitude=0.0 \*mp\_units::angular::unit\_symbols::deg, const Angle & longitude=0.0 \*mp\_units::angular::unit\_symbols::deg, const Distance & altitude=0.0 \*mp\_units::si::unit\_symbols::km) <br>_Constructs a_ [_**GroundPoint**_](classastrea_1_1trace_1_1GroundPoint.md) _with specified latitude, longitude, and altitude._ |
+|   | [**GroundPoint**](classastrea_1_1trace_1_1GroundPoint.md#function-groundpoint) (const Angle & latitude=0.0 \*mp\_units::si::unit\_symbols::deg, const Angle & longitude=0.0 \*mp\_units::si::unit\_symbols::deg, const Distance & altitude=0.0 \*mp\_units::si::unit\_symbols::km) <br>_Constructs a_ [_**GroundPoint**_](classastrea_1_1trace_1_1GroundPoint.md) _with specified latitude, longitude, and altitude._ |
 |  const Distance & | [**get\_altitude**](classastrea_1_1trace_1_1GroundPoint.md#function-get_altitude) () const<br>_Returns the altitude of the ground point above the surface._  |
 | virtual std::size\_t | [**get\_id**](classastrea_1_1trace_1_1GroundPoint.md#function-get_id) () override const<br>_Returns the unique identifier for this ground point._  |
 |  const Angle & | [**get\_latitude**](classastrea_1_1trace_1_1GroundPoint.md#function-get_latitude) () const<br>_Returns the latitude of the ground point._  |

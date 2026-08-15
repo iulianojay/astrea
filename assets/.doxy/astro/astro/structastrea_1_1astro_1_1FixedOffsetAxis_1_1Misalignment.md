@@ -35,9 +35,9 @@
 
 | Type | Name |
 | ---: | :--- |
-|  [**Angle**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**phi**](#variable-phi)  <br> |
-|  [**Angle**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**psi**](#variable-psi)  <br> |
-|  [**Angle**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**theta**](#variable-theta)  <br> |
+|  Angle | [**phi**](#variable-phi)  <br> |
+|  Angle | [**psi**](#variable-psi)  <br> |
+|  Angle | [**theta**](#variable-theta)  <br> |
 
 
 

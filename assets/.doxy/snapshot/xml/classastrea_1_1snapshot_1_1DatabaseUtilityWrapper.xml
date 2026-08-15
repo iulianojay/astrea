@@ -22,7 +22,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/snapshot/snapshot/database/Database.hpp" line="113" column="7" bodyfile="astrea/snapshot/snapshot/database/Database.hpp" bodystart="113" bodyend="-1"/>
+        <location file="astrea/snapshot/snapshot/database/Database.hpp" line="111" column="7" bodyfile="astrea/snapshot/snapshot/database/Database.hpp" bodystart="111" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="public-func">
@@ -54,7 +54,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/snapshot/snapshot/database/Database.hpp" line="60" column="5" bodyfile="astrea/snapshot/snapshot/database/Database.hpp" bodystart="60" bodyend="63"/>
+        <location file="astrea/snapshot/snapshot/database/Database.hpp" line="58" column="5" bodyfile="astrea/snapshot/snapshot/database/Database.hpp" bodystart="58" bodyend="61"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1snapshot_1_1DatabaseUtilityWrapper_1a14ee0ab279a6aff86c23d620d70ddc3d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -69,7 +69,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/snapshot/snapshot/database/Database.hpp" line="68" column="5"/>
+        <location file="astrea/snapshot/snapshot/database/Database.hpp" line="66" column="5"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1snapshot_1_1DatabaseUtilityWrapper_1a95a63422f211ef38a14970a315c68294" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classastrea_1_1snapshot_1_1DatabaseUtilityWrapper_1aa34d2fffb5fc8e1720d40807ac67acfa" kindref="member">const</ref> <ref refid="classastrea_1_1snapshot_1_1DatabaseUtilityWrapper_1aa34d2fffb5fc8e1720d40807ac67acfa" kindref="member">T</ref> &amp;</type>
@@ -87,7 +87,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/snapshot/snapshot/database/Database.hpp" line="75" column="13" bodyfile="astrea/snapshot/snapshot/database/Database.ipp" bodystart="9" bodyend="12"/>
+        <location file="astrea/snapshot/snapshot/database/Database.hpp" line="73" column="13" bodyfile="astrea/snapshot/snapshot/database/Database.ipp" bodystart="9" bodyend="12"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1snapshot_1_1DatabaseUtilityWrapper_1aa34d2fffb5fc8e1720d40807ac67acfa" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
@@ -134,7 +134,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/snapshot/snapshot/database/Database.hpp" line="85" column="17"/>
+        <location file="astrea/snapshot/snapshot/database/Database.hpp" line="83" column="17"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1snapshot_1_1DatabaseUtilityWrapper_1a447f7a5f151ae1741efeadc6ff7afe46" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>astro::GeneralPerturbations</type>
@@ -165,7 +165,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/snapshot/snapshot/database/Database.hpp" line="93" column="33" bodyfile="astrea/snapshot/snapshot/database/Database.ipp" bodystart="22" bodyend="32"/>
+        <location file="astrea/snapshot/snapshot/database/Database.hpp" line="91" column="33" bodyfile="astrea/snapshot/snapshot/database/Database.ipp" bodystart="22" bodyend="32"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1snapshot_1_1DatabaseUtilityWrapper_1a8cf6a9e403c22a8dfa21c1f80f8c93a3" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>std::vector&lt; astro::GeneralPerturbations &gt;</type>
@@ -196,7 +196,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/snapshot/snapshot/database/Database.hpp" line="101" column="17" bodyfile="astrea/snapshot/snapshot/database/Database.ipp" bodystart="35" bodyend="39"/>
+        <location file="astrea/snapshot/snapshot/database/Database.hpp" line="99" column="17" bodyfile="astrea/snapshot/snapshot/database/Database.ipp" bodystart="35" bodyend="39"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1snapshot_1_1DatabaseUtilityWrapper_1ac8159129dac87f845b6618cbb9ea1025" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>std::vector&lt; astro::GeneralPerturbations &gt;</type>
@@ -239,7 +239,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/snapshot/snapshot/database/Database.hpp" line="110" column="17" bodyfile="astrea/snapshot/snapshot/database/Database.ipp" bodystart="43" bodyend="51"/>
+        <location file="astrea/snapshot/snapshot/database/Database.hpp" line="108" column="17" bodyfile="astrea/snapshot/snapshot/database/Database.ipp" bodystart="43" bodyend="51"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1snapshot_1_1DatabaseUtilityWrapper_1aeb7f5c67ac41654da2808f870b3d7a93" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
@@ -283,7 +283,7 @@
 </parameterlist>
 </para>
     </detaileddescription>
-    <location file="astrea/snapshot/snapshot/database/Database.hpp" line="51" column="1" bodyfile="astrea/snapshot/snapshot/database/Database.hpp" bodystart="51" bodyend="114"/>
+    <location file="astrea/snapshot/snapshot/database/Database.hpp" line="49" column="1" bodyfile="astrea/snapshot/snapshot/database/Database.hpp" bodystart="49" bodyend="112"/>
     <listofallmembers>
       <member refid="classastrea_1_1snapshot_1_1DatabaseUtilityWrapper_1ac0986f667088af6520c69455c6065a40" prot="private" virt="non-virtual"><scope>astrea::snapshot::DatabaseUtilityWrapper</scope><name>_database</name></member>
       <member refid="classastrea_1_1snapshot_1_1DatabaseUtilityWrapper_1ace420c8f9c4ca101cfd6f121025d08cb" prot="public" virt="non-virtual"><scope>astrea::snapshot::DatabaseUtilityWrapper</scope><name>DatabaseUtilityWrapper</name></member>

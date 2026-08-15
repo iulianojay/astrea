@@ -6,22 +6,22 @@
     <includes refid="FixedOffsetFrame_8hpp" local="no">FixedOffsetFrame.hpp</includes>
     <templateparamlist>
       <param>
-        <type>IsFrame <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+        <type>IsFrame auto</type>
         <declname>_parent_</declname>
         <defname>_parent_</defname>
       </param>
       <param>
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Distance</ref></type>
+        <type>Distance</type>
         <declname>_x_</declname>
         <defname>_x_</defname>
       </param>
       <param>
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Distance</ref></type>
+        <type>Distance</type>
         <declname>_y_</declname>
         <defname>_y_</defname>
       </param>
       <param>
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Distance</ref></type>
+        <type>Distance</type>
         <declname>_z_</declname>
         <defname>_z_</defname>
       </param>

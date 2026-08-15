@@ -15,10 +15,10 @@
 #include <unordered_map>
 
 #include <mp-units/math.h>
-#include <mp-units/systems/angular/math.h>
+#include <mp-units/systems/si/math.h>
 
 #include <astro/astro.fwd.hpp>
-#include <astro/frames/definitions/dynamic_frames.hpp>
+#include <astro/frames/definitions/dynamic_frames/tags.hpp>
 #include <units/units.hpp>
 
 #include <trace/platforms/sensors/fov/FieldOfView.hpp>
@@ -28,7 +28,7 @@ namespace trace {
 
 class CircularFieldOfView : public FieldOfView {
   public:
-    CircularFieldOfView(const Angle& halfConeAngle = std::numbers::pi / 4.0 * mp_units::angular::unit_symbols::rad);
+    CircularFieldOfView(const Angle& halfConeAngle = std::numbers::pi / 4.0 * mp_units::si::unit_symbols::rad);
 
     ~CircularFieldOfView() = default;
 

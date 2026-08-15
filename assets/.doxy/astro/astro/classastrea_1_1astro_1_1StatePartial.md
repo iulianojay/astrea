@@ -52,10 +52,10 @@
 | Type | Name |
 | ---: | :--- |
 |   | [**StatePartial**](#function-statepartial-12) () = default<br>_Default constructor for_ [_**StatePartial**_](classastrea_1_1astro_1_1StatePartial.md) _._ |
-|   | [**StatePartial**](#function-statepartial-22) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Date**](classastrea_1_1astro_1_1Date.md) & epoch, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**OrbitalElementPartials**](classastrea_1_1astro_1_1OrbitalElementPartials.md) & elementPartials, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) std::optional&lt; [**AttitudePartials**](classastrea_1_1astro_1_1AttitudePartials.md) &gt; & attitudePartial=std::nullopt) <br>_Constructs a_ [_**StatePartial**_](classastrea_1_1astro_1_1StatePartial.md) _with given orbital element partials and astrodynamics system._ |
-|  std::vector&lt; [**Unitless**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt; | [**force\_to\_vector**](#function-force_to_vector) () const<br>_Converts the_ [_**State**_](classastrea_1_1astro_1_1State.md) _to a vector of Unitless values._ |
-|  [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Date**](classastrea_1_1astro_1_1Date.md) & | [**get\_epoch**](#function-get_epoch) () const<br>_Gets the epoch of the state partial._  |
-|  [**State**](classastrea_1_1astro_1_1State.md) | [**operator\***](#function-operator) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Time**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & time) const<br>_Multiplies the_ [_**StatePartial**_](classastrea_1_1astro_1_1StatePartial.md) _by a time to get a_[_**State**_](classastrea_1_1astro_1_1State.md) _._ |
+|   | [**StatePartial**](#function-statepartial-22) (const [**Date**](classastrea_1_1astro_1_1Date.md) & epoch, const [**OrbitalElementPartials**](classastrea_1_1astro_1_1OrbitalElementPartials.md) & elementPartials, const std::optional&lt; [**AttitudePartials**](classastrea_1_1astro_1_1AttitudePartials.md) &gt; & attitudePartial=std::nullopt) <br>_Constructs a_ [_**StatePartial**_](classastrea_1_1astro_1_1StatePartial.md) _with given orbital element partials and astrodynamics system._ |
+|  std::vector&lt; double &gt; | [**force\_to\_double\_vector**](#function-force_to_double_vector) () const<br>_Converts the_ [_**State**_](classastrea_1_1astro_1_1State.md) _to a vector of Unitless values._ |
+|  const [**Date**](classastrea_1_1astro_1_1Date.md) & | [**get\_epoch**](#function-get_epoch) () const<br>_Gets the epoch of the state partial._  |
+|  [**State**](classastrea_1_1astro_1_1State.md) | [**operator\***](#function-operator) (const Time & time) const<br>_Multiplies the_ [_**StatePartial**_](classastrea_1_1astro_1_1StatePartial.md) _by a time to get a_[_**State**_](classastrea_1_1astro_1_1State.md) _._ |
 
 
 
@@ -108,8 +108,8 @@ astrea::astro::StatePartial::StatePartial () = default
 _Constructs a_ [_**StatePartial**_](classastrea_1_1astro_1_1StatePartial.md) _with given orbital element partials and astrodynamics system._
 ```C++
 inline astrea::astro::StatePartial::StatePartial (
-    const  Date & epoch,
-    const  OrbitalElementPartials & elementPartials,
+    const Date & epoch,
+    const OrbitalElementPartials & elementPartials,
     const std::optional< AttitudePartials > & attitudePartial=std::nullopt
 ) 
 ```
@@ -135,11 +135,11 @@ inline astrea::astro::StatePartial::StatePartial (
 
 
 
-### function force\_to\_vector 
+### function force\_to\_double\_vector 
 
 _Converts the_ [_**State**_](classastrea_1_1astro_1_1State.md) _to a vector of Unitless values._
 ```C++
-inline std::vector< Unitless > astrea::astro::StatePartial::force_to_vector () const
+inline std::vector< double > astrea::astro::StatePartial::force_to_double_vector () const
 ```
 
 
@@ -164,7 +164,7 @@ std::vector&lt;Unitless&gt; Vector containing the orbital element partials and a
 
 _Gets the epoch of the state partial._ 
 ```C++
-const  Date & astrea::astro::StatePartial::get_epoch () const
+const Date & astrea::astro::StatePartial::get_epoch () const
 ```
 
 
@@ -190,7 +190,7 @@ const [**Date**](classastrea_1_1astro_1_1Date.md)& Reference to the epoch of the
 _Multiplies the_ [_**StatePartial**_](classastrea_1_1astro_1_1StatePartial.md) _by a time to get a_[_**State**_](classastrea_1_1astro_1_1State.md) _._
 ```C++
 State astrea::astro::StatePartial::operator* (
-    const  Time & time
+    const Time & time
 ) const
 ```
 

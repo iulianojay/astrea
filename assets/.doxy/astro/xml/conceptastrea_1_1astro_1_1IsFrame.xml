@@ -15,6 +15,6 @@ concept <ref refid="conceptastrea_1_1astro_1_1IsFrame" kindref="compound">astrea
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="astrea/astro/astro/frames/framework/frame_concepts.hpp" line="51" column="1"/>
+    <location file="astrea/astro/astro/frames/framework/frame_concepts.hpp" line="56" column="1"/>
   </compounddef>
 </doxygen>

@@ -88,7 +88,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" line="597" column="5" bodyfile="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" bodystart="597" bodyend="607"/>
+        <location file="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" line="596" column="5" bodyfile="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" bodystart="596" bodyend="606"/>
       </memberdef>
       <memberdef kind="enum" id="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1a371584d42d531377b0460fb90debe7ff" prot="private" static="no" strong="no">
         <type></type>
@@ -116,7 +116,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" line="609" column="5" bodyfile="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" bodystart="609" bodyend="609"/>
+        <location file="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" line="608" column="5" bodyfile="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" bodystart="608" bodyend="608"/>
       </memberdef>
       <memberdef kind="enum" id="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1a89fad0156805b564475cd170ec37c0de" prot="private" static="no" strong="no">
         <type></type>
@@ -313,12 +313,12 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" line="670" column="5" bodyfile="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" bodystart="670" bodyend="694"/>
+        <location file="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" line="669" column="5" bodyfile="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" bodystart="669" bodyend="693"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="private-static-attrib">
       <memberdef kind="variable" id="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1a96d04686f345ec9b6c8834d6d2ca0a35" prot="private" static="yes" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Angle</ref></type>
+        <type>const Angle</type>
         <definition>const Angle astrea::astro::planets::NRLMSISE00::LAT_REF</definition>
         <argsstring></argsstring>
         <name>LAT_REF</name>
@@ -331,10 +331,10 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" line="614" column="24" bodyfile="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" bodystart="614" bodyend="-1"/>
+        <location file="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" line="613" column="24" bodyfile="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" bodystart="613" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1afa5bb4b6a1385664af7cf313815868fd" prot="private" static="yes" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Acceleration</ref></type>
+        <type>const Acceleration</type>
         <definition>const Acceleration astrea::astro::planets::NRLMSISE00::G_REF</definition>
         <argsstring></argsstring>
         <name>G_REF</name>
@@ -347,10 +347,10 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" line="617" column="31" bodyfile="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" bodystart="617" bodyend="-1"/>
+        <location file="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" line="616" column="31" bodyfile="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" bodystart="616" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1aeefc09580ef40240e8de6dc4a11dd001" prot="private" static="yes" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+        <type>const auto</type>
         <definition>const auto astrea::astro::planets::NRLMSISE00::R_GAS</definition>
         <argsstring></argsstring>
         <name>R_GAS</name>
@@ -363,10 +363,10 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" line="622" column="23" bodyfile="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" bodystart="622" bodyend="-1"/>
+        <location file="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" line="621" column="23" bodyfile="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" bodystart="621" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1af7678adc2a2e755c82170c6846f9a11c" prot="private" static="yes" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> AtomicMass</type>
+        <type>const AtomicMass</type>
         <definition>const AtomicMass astrea::astro::planets::NRLMSISE00::H_MASS</definition>
         <argsstring></argsstring>
         <name>H_MASS</name>
@@ -379,10 +379,10 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" line="625" column="29" bodyfile="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" bodystart="625" bodyend="-1"/>
+        <location file="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" line="624" column="29" bodyfile="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" bodystart="624" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1ac43af814d5f6432b0aed2562c394562f" prot="private" static="yes" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> AtomicMass</type>
+        <type>const AtomicMass</type>
         <definition>const AtomicMass astrea::astro::planets::NRLMSISE00::HE_MASS</definition>
         <argsstring></argsstring>
         <name>HE_MASS</name>
@@ -395,10 +395,10 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" line="628" column="29" bodyfile="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" bodystart="628" bodyend="-1"/>
+        <location file="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" line="627" column="29" bodyfile="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" bodystart="627" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1a11ede295b09df83e11028e4b977ec45e" prot="private" static="yes" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> AtomicMass</type>
+        <type>const AtomicMass</type>
         <definition>const AtomicMass astrea::astro::planets::NRLMSISE00::N_MASS</definition>
         <argsstring></argsstring>
         <name>N_MASS</name>
@@ -411,10 +411,10 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" line="631" column="29" bodyfile="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" bodystart="631" bodyend="-1"/>
+        <location file="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" line="630" column="29" bodyfile="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" bodystart="630" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1a44df099086ffacd4373ff653fe9fc5d1" prot="private" static="yes" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> AtomicMass</type>
+        <type>const AtomicMass</type>
         <definition>const AtomicMass astrea::astro::planets::NRLMSISE00::N2_MASS</definition>
         <argsstring></argsstring>
         <name>N2_MASS</name>
@@ -427,10 +427,10 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" line="634" column="29" bodyfile="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" bodystart="634" bodyend="-1"/>
+        <location file="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" line="633" column="29" bodyfile="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" bodystart="633" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1a44a0f0b4c200583ef933bb7013c351d1" prot="private" static="yes" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> AtomicMass</type>
+        <type>const AtomicMass</type>
         <definition>const AtomicMass astrea::astro::planets::NRLMSISE00::O_MASS</definition>
         <argsstring></argsstring>
         <name>O_MASS</name>
@@ -443,10 +443,10 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" line="637" column="29" bodyfile="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" bodystart="637" bodyend="-1"/>
+        <location file="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" line="636" column="29" bodyfile="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" bodystart="636" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1ad304aafe9d3f6ceef29c987dc17eb0cb" prot="private" static="yes" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> AtomicMass</type>
+        <type>const AtomicMass</type>
         <definition>const AtomicMass astrea::astro::planets::NRLMSISE00::O2_MASS</definition>
         <argsstring></argsstring>
         <name>O2_MASS</name>
@@ -459,10 +459,10 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" line="640" column="29" bodyfile="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" bodystart="640" bodyend="-1"/>
+        <location file="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" line="639" column="29" bodyfile="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" bodystart="639" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1ad655806238f4f6758e8ea50c78834ccb" prot="private" static="yes" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> AtomicMass</type>
+        <type>const AtomicMass</type>
         <definition>const AtomicMass astrea::astro::planets::NRLMSISE00::AR_MASS</definition>
         <argsstring></argsstring>
         <name>AR_MASS</name>
@@ -475,10 +475,10 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" line="643" column="29" bodyfile="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" bodystart="643" bodyend="-1"/>
+        <location file="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" line="642" column="29" bodyfile="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" bodystart="642" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1a452c459d3ed2d4cf3c7e5063ed93ce4c" prot="private" static="yes" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">SolarFlux</ref></type>
+        <type>const SolarFlux</type>
         <definition>const SolarFlux astrea::astro::planets::NRLMSISE00::FLUX_REF</definition>
         <argsstring></argsstring>
         <name>FLUX_REF</name>
@@ -491,10 +491,10 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" line="648" column="28" bodyfile="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" bodystart="648" bodyend="-1"/>
+        <location file="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" line="647" column="28" bodyfile="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" bodystart="647" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1a6ff02864b39bdd929b2ded0620e748bd" prot="private" static="yes" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> std::array&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Distance</ref>, 5 &gt;</type>
+        <type>const std::array&lt; Distance, 5 &gt;</type>
         <definition>const std::array&lt;Distance, 5&gt; astrea::astro::planets::NRLMSISE00::ZN1</definition>
         <argsstring></argsstring>
         <name>ZN1</name>
@@ -507,10 +507,10 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" line="651" column="29" bodyfile="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" bodystart="651" bodyend="651"/>
+        <location file="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" line="650" column="29" bodyfile="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" bodystart="650" bodyend="650"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1ac13404175a707315e5714a6b92aecd8f" prot="private" static="yes" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> std::array&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Distance</ref>, 4 &gt;</type>
+        <type>const std::array&lt; Distance, 4 &gt;</type>
         <definition>const std::array&lt;Distance, 4&gt; astrea::astro::planets::NRLMSISE00::ZN2</definition>
         <argsstring></argsstring>
         <name>ZN2</name>
@@ -523,10 +523,10 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" line="654" column="29" bodyfile="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" bodystart="654" bodyend="654"/>
+        <location file="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" line="653" column="29" bodyfile="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" bodystart="653" bodyend="653"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1a9c37542d418952bed1df5203a2f84322" prot="private" static="yes" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> std::array&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Distance</ref>, 5 &gt;</type>
+        <type>const std::array&lt; Distance, 5 &gt;</type>
         <definition>const std::array&lt;Distance, 5&gt; astrea::astro::planets::NRLMSISE00::ZN3</definition>
         <argsstring></argsstring>
         <name>ZN3</name>
@@ -539,10 +539,10 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" line="657" column="29" bodyfile="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" bodystart="657" bodyend="657"/>
+        <location file="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" line="656" column="29" bodyfile="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" bodystart="656" bodyend="656"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1afa2139b530c31c03f3e6a748fcfd1a84" prot="private" static="yes" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Distance</ref></type>
+        <type>const Distance</type>
         <definition>const Distance astrea::astro::planets::NRLMSISE00::ZMIX</definition>
         <argsstring></argsstring>
         <name>ZMIX</name>
@@ -555,16 +555,16 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" line="660" column="27" bodyfile="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" bodystart="660" bodyend="-1"/>
+        <location file="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" line="659" column="27" bodyfile="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" bodystart="659" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1a3e3a8a3a73995487a63a1113904cca32" prot="private" static="yes" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> std::array&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">double</ref>, 10 &gt;</type>
+        <type>const std::array&lt; double, 10 &gt;</type>
         <definition>const std::array&lt;double, 10&gt; astrea::astro::planets::NRLMSISE00::PAVGM</definition>
         <argsstring></argsstring>
         <name>PAVGM</name>
         <qualifiedname>astrea::astro::planets::NRLMSISE00::PAVGM</qualifiedname>
-        <initializer>= { 2.61<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e2</ref>, 2.64<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e2</ref>,   2.29<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e2</ref>,   2.17<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e2</ref>, 2.17<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e2</ref>,
-                                                  2.23<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e2</ref>, 2.8676<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e2</ref>, -2.93940, 2.50,   0.0 }</initializer>
+        <initializer>= { 2.61e2, 2.64e2,   2.29e2,   2.17e2, 2.17e2,
+                                                  2.23e2, 2.8676e2, -2.93940, 2.50,   0.0 }</initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -572,10 +572,10 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" line="663" column="29" bodyfile="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" bodystart="663" bodyend="664"/>
+        <location file="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" line="662" column="29" bodyfile="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" bodystart="662" bodyend="663"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1a3900e944b068c140de9c9c0edd2d18c2" prot="private" static="yes" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Temperature</ref></type>
+        <type>const Temperature</type>
         <definition>const Temperature astrea::astro::planets::NRLMSISE00::MIN_TEMP</definition>
         <argsstring></argsstring>
         <name>MIN_TEMP</name>
@@ -588,7 +588,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" line="667" column="30" bodyfile="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" bodystart="667" bodyend="-1"/>
+        <location file="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" line="666" column="30" bodyfile="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" bodystart="666" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="private-attrib">
@@ -627,18 +627,18 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" line="702" column="24" bodyfile="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" bodystart="702" bodyend="724"/>
+        <location file="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" line="701" column="24" bodyfile="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" bodystart="701" bodyend="723"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="private-func">
       <memberdef kind="function" id="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1abdc07c2bac822a1a150697ba10b904be" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Density</ref></type>
+        <type>Density</type>
         <definition>Density astrea::astro::planets::NRLMSISE00::find_atmospheric_density</definition>
         <argsstring>(const State &amp;state)</argsstring>
         <name>find_atmospheric_density</name>
         <qualifiedname>astrea::astro::planets::NRLMSISE00::find_atmospheric_density</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
           <declname>state</declname>
         </param>
         <briefdescription>
@@ -647,16 +647,16 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" line="727" column="13" bodyfile="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" bodystart="727" bodyend="754"/>
+        <location file="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" line="726" column="13" bodyfile="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" bodystart="726" bodyend="753"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1a8a851176a02966eab493e10028c83986" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Time</ref></type>
+        <type>Time</type>
         <definition>Time astrea::astro::planets::NRLMSISE00::calculate_local_solar_time</definition>
         <argsstring>(const State &amp;state)</argsstring>
         <name>calculate_local_solar_time</name>
         <qualifiedname>astrea::astro::planets::NRLMSISE00::calculate_local_solar_time</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
           <declname>state</declname>
         </param>
         <briefdescription>
@@ -665,7 +665,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" line="756" column="10" bodyfile="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" bodystart="756" bodyend="770"/>
+        <location file="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" line="755" column="10" bodyfile="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" bodystart="755" bodyend="769"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
@@ -844,7 +844,7 @@
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" line="594" column="1" bodyfile="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" bodystart="594" bodyend="2153"/>
+    <location file="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" line="593" column="1" bodyfile="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" bodystart="593" bodyend="2152"/>
     <listofallmembers>
       <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1a89fad0156805b564475cd170ec37c0dea4f6dd3f9347a5e6f67c077c69072fd4b" prot="private" virt="non-virtual"><scope>astrea::astro::planets::NRLMSISE00</scope><name>ALL_120KM_GRADIENT_S_VARIATIONS</name></member>
       <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1a89fad0156805b564475cd170ec37c0deaafcb6faa68ba1eb59cb3bd04a565eb7e" prot="private" virt="non-virtual"><scope>astrea::astro::planets::NRLMSISE00</scope><name>ALL_EXOSPHERIC_TEMPERATURE_VARIATIONS</name></member>

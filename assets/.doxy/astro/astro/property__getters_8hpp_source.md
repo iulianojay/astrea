@@ -13,7 +13,6 @@
 
 #include <string>
 
-#include <mp-units/systems/angular.h>
 #include <mp-units/systems/si.h>
 
 #include <astro/utilities/conversions.hpp>
@@ -37,16 +36,17 @@ namespace astrea {
 namespace astro {
 
 using CoefficientPack = std::tuple<
-    mp_units::quantity<mp_units::angular::unit_symbols::rad / (JulianCentury * JulianCentury)>,
-    mp_units::quantity<mp_units::angular::unit_symbols::rad>,
-    mp_units::quantity<mp_units::angular::unit_symbols::rad>,
-    mp_units::quantity<mp_units::angular::unit_symbols::rad / JulianCentury>>;
+    mp_units::quantity<mp_units::si::unit_symbols::rad / (astrea::units::unit_symbols::jc * astrea::units::unit_symbols::jc)>,
+    mp_units::quantity<mp_units::si::unit_symbols::rad>,
+    mp_units::quantity<mp_units::si::unit_symbols::rad>,
+    mp_units::quantity<mp_units::si::unit_symbols::rad / astrea::units::unit_symbols::jc>>;
 
 template <IsCelestialReference auto body>
 inline constexpr CoefficientPack get_linear_expansion_coefficients()
 {
-    using namespace mp_units::angular::unit_symbols;
-    return std::make_tuple(0.0 * rad / (JulianCentury * JulianCentury), 0.0 * rad, 0.0 * rad, 0.0 * rad / JulianCentury);
+    using astrea::units::unit_symbols::jc;
+    using mp_units::si::unit_symbols::rad;
+    return std::make_tuple(0.0 * rad / (jc * jc), 0.0 * rad, 0.0 * rad, 0.0 * rad / jc);
 }
 
 template <IsCelestialBody auto body>
@@ -109,6 +109,12 @@ inline constexpr Unitless get_j3()
 };
 
 template <IsCelestialBody auto body>
+inline constexpr auto get_gravity_coefficient_file()
+{
+    return get_celestial_body_parameters<body>().gravityCoefficientFile;
+};
+
+template <IsCelestialBody auto body>
 inline constexpr Angle get_axial_tilt()
 {
     return get_celestial_body_parameters<body>().axialTilt;
@@ -129,35 +135,40 @@ inline constexpr Time get_sidereal_period()
 template <IsCelestialBody auto body>
 inline constexpr Distance get_semimajor(Date date)
 {
-    const mp_units::quantity<JulianCentury> T = get_time_since_reference_epoch<body>(date);
+    using astrea::units::unit_symbols::jc;
+    const mp_units::quantity<jc> T = get_time_since_reference_epoch<body>(date);
     return get_celestial_body_parameters<body>().semimajorAxis + get_celestial_body_parameters<body>().semimajorAxisRate * T;
 };
 
 template <IsCelestialBody auto body>
 inline constexpr Unitless get_eccentricity(Date date)
 {
-    const mp_units::quantity<JulianCentury> T = get_time_since_reference_epoch<body>(date);
+    using astrea::units::unit_symbols::jc;
+    const mp_units::quantity<jc> T = get_time_since_reference_epoch<body>(date);
     return get_celestial_body_parameters<body>().eccentricity + get_celestial_body_parameters<body>().eccentricityRate * T;
 };
 
 template <IsCelestialBody auto body>
 inline constexpr Angle get_inclination(Date date)
 {
-    const mp_units::quantity<JulianCentury> T = get_time_since_reference_epoch<body>(date);
+    using astrea::units::unit_symbols::jc;
+    const mp_units::quantity<jc> T = get_time_since_reference_epoch<body>(date);
     return get_celestial_body_parameters<body>().inclination + get_celestial_body_parameters<body>().inclinationRate * T;
 };
 
 template <IsCelestialBody auto body>
 inline constexpr Angle get_right_ascension(Date date)
 {
-    const mp_units::quantity<JulianCentury> T = get_time_since_reference_epoch<body>(date);
+    using astrea::units::unit_symbols::jc;
+    const mp_units::quantity<jc> T = get_time_since_reference_epoch<body>(date);
     return get_celestial_body_parameters<body>().rightAscension + get_celestial_body_parameters<body>().rightAscensionRate * T;
 };
 
 template <IsCelestialBody auto body>
 inline constexpr Angle get_longitude_of_perigee(Date date)
 {
-    const mp_units::quantity<JulianCentury> T = get_time_since_reference_epoch<body>(date);
+    using astrea::units::unit_symbols::jc;
+    const mp_units::quantity<jc> T = get_time_since_reference_epoch<body>(date);
     return get_celestial_body_parameters<body>().longitudeOfPerigee +
            get_celestial_body_parameters<body>().longitudeOfPerigeeRate * T;
 };
@@ -165,7 +176,8 @@ inline constexpr Angle get_longitude_of_perigee(Date date)
 template <IsCelestialBody auto body>
 inline constexpr Angle get_mean_longitude(Date date)
 {
-    const mp_units::quantity<JulianCentury> T = get_time_since_reference_epoch<body>(date);
+    using astrea::units::unit_symbols::jc;
+    const mp_units::quantity<jc> T = get_time_since_reference_epoch<body>(date);
     return get_celestial_body_parameters<body>().meanLongitude + get_celestial_body_parameters<body>().meanLongitudeRate * T;
 };
 

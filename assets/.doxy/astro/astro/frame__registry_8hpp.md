@@ -45,8 +45,8 @@ _Registration point for Cartesian frames used across astrea._ [More...](#detaile
 | ---: | :--- |
 | struct | [**apply\_nttp\_template&lt; T, std::tuple&lt; Frames... &gt; &gt;**](structastrea_1_1astro_1_1detail_1_1apply__nttp__template_3_01T_00_01std_1_1tuple_3_01Frames_8_8_8_01_4_01_4.md) &lt;T, Frames&gt;<br> |
 | struct | [**apply\_template&lt; T, std::tuple&lt; Frames... &gt; &gt;**](structastrea_1_1astro_1_1detail_1_1apply__template_3_01T_00_01std_1_1tuple_3_01Frames_8_8_8_01_4_01_4.md) &lt;T, Frames&gt;<br> |
-| struct | [**multi\_tuple\_cat&lt; First, Rest... &gt;**](structastrea_1_1astro_1_1detail_1_1multi__tuple__cat_3_01First_00_01Rest_8_8_8_01_4.md) &lt;[**typename**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**First**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), Rest&gt;<br> |
-| struct | [**multi\_tuple\_cat&lt; Only &gt;**](structastrea_1_1astro_1_1detail_1_1multi__tuple__cat_3_01Only_01_4.md) &lt;[**typename**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Only**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)&gt;<br> |
+| struct | [**multi\_tuple\_cat&lt; First, Rest... &gt;**](structastrea_1_1astro_1_1detail_1_1multi__tuple__cat_3_01First_00_01Rest_8_8_8_01_4.md) &lt;typename First, Rest&gt;<br> |
+| struct | [**multi\_tuple\_cat&lt; Only &gt;**](structastrea_1_1astro_1_1detail_1_1multi__tuple__cat_3_01Only_01_4.md) &lt;typename Only&gt;<br> |
 | struct | [**multi\_tuple\_cat&lt;&gt;**](structastrea_1_1astro_1_1detail_1_1multi__tuple__cat_3_4.md) &lt;&gt;<br> |
 | struct | [**tuple\_cat\_types&lt; std::tuple&lt; As... &gt;, std::tuple&lt; Bs... &gt; &gt;**](structastrea_1_1astro_1_1detail_1_1tuple__cat__types_3_01std_1_1tuple_3_01As_8_8_8_01_4_00_01std8cf8a2c8692dfec60c2615039d60391f.md) &lt;As, Bs&gt;<br> |
 | struct | [**tuple\_to\_variant&lt; std::tuple&lt; Ts... &gt;, Extra... &gt;**](structastrea_1_1astro_1_1detail_1_1tuple__to__variant_3_01std_1_1tuple_3_01Ts_8_8_8_01_4_00_01Extra_8_8_8_01_4.md) &lt;Ts, Extra&gt;<br> |
@@ -121,7 +121,7 @@ Jay Iuliano ([iuliano.jay@gmail.com](mailto:iuliano.jay@gmail.com))
 
 **Copyright:**
 
-Copyright (c) 2025 Jay Iuliano
+Copyright (c) 2025-2026 Jay Iuliano
 
 
 The GNU Lesser General Public License (LGPL)

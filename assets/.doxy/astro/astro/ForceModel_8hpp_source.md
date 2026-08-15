@@ -30,6 +30,14 @@ class ForceModel {
 
     ~ForceModel() = default;
 
+    ForceModel(const ForceModel& other);
+
+    ForceModel(ForceModel&&) noexcept = default;
+
+    ForceModel& operator=(const ForceModel& other);
+
+    ForceModel& operator=(ForceModel&&) noexcept = default;
+
     std::size_t size() const { return forces.size(); }
 
     template <typename T, typename... Args>

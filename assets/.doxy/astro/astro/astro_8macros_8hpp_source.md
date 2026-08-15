@@ -17,6 +17,12 @@
 static_assert(false, "_ASTRO_ROOT_ environment variable not set or passed to compiler.");
 
 #endif // _ASTRO_ROOT_
+
+#ifdef _ASTRO_ROOT_
+
+#define _ASTRO_GRAV_DATA_ROOT_ _ASTRO_ROOT_ "/data/gravity_models"
+
+#endif // _ASTRO_ROOT_
 ```
 
 

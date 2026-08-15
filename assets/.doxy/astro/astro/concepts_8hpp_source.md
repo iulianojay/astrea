@@ -47,8 +47,8 @@ concept HasIterpolate =
     };
 
 template <typename T>
-concept HasToVector = requires(const T elements) {
-    { elements.force_to_vector() } -> std::same_as<std::vector<Unitless>>;
+concept HasForceToDoubleVector = requires(const T elements) {
+    { elements.force_to_double_vector() } -> std::same_as<std::vector<double>>;
 };
 
 template <typename T>

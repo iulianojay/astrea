@@ -12,7 +12,7 @@
 
 * `#include <astro/propagation/equations_of_motion/EquationsOfMotion.hpp>`
 * `#include <optional>`
-* `#include <mp-units/systems/angular.h>`
+* `#include <mp-units/systems/si.h>`
 * `#include <astro/platforms/Vehicle.hpp>`
 * `#include <astro/propagation/equations_of_motion/StateTransitionMatrix.hpp>`
 * `#include <astro/propagation/force_models/ForceModel.hpp>`

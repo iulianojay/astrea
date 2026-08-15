@@ -6,7 +6,7 @@
     <includes local="no">cmath</includes>
     <includes local="no">iostream</includes>
     <includes local="no">mp-units/math.h</includes>
-    <includes local="no">mp-units/systems/angular/math.h</includes>
+    <includes local="no">mp-units/systems/si/math.h</includes>
     <includes local="no">utilities/string_util.hpp</includes>
     <includes refid="astro_8fwd_8hpp" local="no">astro/astro.fwd.hpp</includes>
     <includes refid="CartesianVector_8hpp" local="no">astro/frames/framework/CartesianVector.hpp</includes>
@@ -144,10 +144,10 @@
         <label>mp-units/math.h</label>
       </node>
       <node id="16">
-        <label>mp-units/systems/angular.h</label>
+        <label>mp-units/systems/si.h</label>
       </node>
       <node id="6">
-        <label>mp-units/systems/angular/math.h</label>
+        <label>mp-units/systems/si/math.h</label>
       </node>
       <node id="12">
         <label>stdint.h</label>
@@ -207,101 +207,115 @@
         </childnode>
         <childnode refid="43" relation="include">
         </childnode>
-        <childnode refid="46" relation="include">
+        <childnode refid="56" relation="include">
         </childnode>
-        <childnode refid="47" relation="include">
+        <childnode refid="57" relation="include">
         </childnode>
-        <childnode refid="48" relation="include">
+        <childnode refid="58" relation="include">
         </childnode>
-        <childnode refid="49" relation="include">
+        <childnode refid="50" relation="include">
         </childnode>
-        <childnode refid="53" relation="include">
-        </childnode>
-      </node>
-      <node id="3">
-        <label>astrea/astro/astro/frames/definitions/EastNorthUp.hpp</label>
-        <link refid="EastNorthUp_8hpp"/>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="55" relation="include">
+        <childnode refid="59" relation="include">
         </childnode>
       </node>
-      <node id="58">
-        <label>astrea/astro/astro/frames/definitions/LocalHorizontalLocalVertical.hpp</label>
-        <link refid="LocalHorizontalLocalVertical_8hpp"/>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="55" relation="include">
-        </childnode>
-      </node>
-      <node id="59">
-        <label>astrea/astro/astro/frames/definitions/RadialInTrackCrossTrack.hpp</label>
-        <link refid="RadialInTrackCrossTrack_8hpp"/>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="55" relation="include">
-        </childnode>
-      </node>
-      <node id="60">
-        <label>astrea/astro/astro/frames/definitions/VelocityNormalBinormal.hpp</label>
-        <link refid="VelocityNormalBinormal_8hpp"/>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="55" relation="include">
-        </childnode>
-      </node>
-      <node id="76">
+      <node id="75">
         <label>astrea/astro/astro/frames/definitions/body_centered_inertial_frames.hpp</label>
         <link refid="body__centered__inertial__frames_8hpp"/>
         <childnode refid="4" relation="include">
         </childnode>
-        <childnode refid="58" relation="include">
+        <childnode refid="61" relation="include">
         </childnode>
-        <childnode refid="59" relation="include">
-        </childnode>
-        <childnode refid="60" relation="include">
-        </childnode>
-        <childnode refid="62" relation="include">
+        <childnode refid="76" relation="include">
         </childnode>
         <childnode refid="77" relation="include">
         </childnode>
+        <childnode refid="78" relation="include">
+        </childnode>
+        <childnode refid="79" relation="include">
+        </childnode>
+        <childnode refid="80" relation="include">
+        </childnode>
       </node>
-      <node id="79">
+      <node id="82">
         <label>astrea/astro/astro/frames/definitions/body_fixed_frames.hpp</label>
         <link refid="body__fixed__frames_8hpp"/>
         <childnode refid="4" relation="include">
         </childnode>
-        <childnode refid="62" relation="include">
+        <childnode refid="61" relation="include">
         </childnode>
-        <childnode refid="77" relation="include">
+        <childnode refid="80" relation="include">
         </childnode>
       </node>
-      <node id="61">
+      <node id="3">
         <label>astrea/astro/astro/frames/definitions/defined_rotations.hpp</label>
         <link refid="defined__rotations_8hpp"/>
         <childnode refid="4" relation="include">
         </childnode>
+        <childnode refid="61" relation="include">
+        </childnode>
         <childnode refid="62" relation="include">
         </childnode>
-        <childnode refid="63" relation="include">
-        </childnode>
       </node>
-      <node id="62">
+      <node id="61">
         <label>astrea/astro/astro/frames/definitions/defined_rotations_earth.hpp</label>
         <link refid="defined__rotations__earth_8hpp"/>
         <childnode refid="4" relation="include">
         </childnode>
       </node>
-      <node id="55">
+      <node id="45">
         <label>astrea/astro/astro/frames/definitions/dynamic_frames.hpp</label>
         <link refid="dynamic__frames_8hpp"/>
         <childnode refid="4" relation="include">
         </childnode>
-        <childnode refid="56" relation="include">
+      </node>
+      <node id="44">
+        <label>astrea/astro/astro/frames/definitions/dynamic_frames/EastNorthUp.hpp</label>
+        <link refid="EastNorthUp_8hpp"/>
+        <childnode refid="45" relation="include">
+        </childnode>
+        <childnode refid="46" relation="include">
+        </childnode>
+      </node>
+      <node id="76">
+        <label>astrea/astro/astro/frames/definitions/dynamic_frames/LocalHorizontalLocalVertical.hpp</label>
+        <link refid="LocalHorizontalLocalVertical_8hpp"/>
+        <childnode refid="45" relation="include">
+        </childnode>
+        <childnode refid="46" relation="include">
+        </childnode>
+      </node>
+      <node id="77">
+        <label>astrea/astro/astro/frames/definitions/dynamic_frames/Perifocal.hpp</label>
+        <link refid="Perifocal_8hpp"/>
+        <childnode refid="45" relation="include">
+        </childnode>
+        <childnode refid="46" relation="include">
+        </childnode>
+      </node>
+      <node id="78">
+        <label>astrea/astro/astro/frames/definitions/dynamic_frames/RadialInTrackCrossTrack.hpp</label>
+        <link refid="RadialInTrackCrossTrack_8hpp"/>
+        <childnode refid="45" relation="include">
+        </childnode>
+        <childnode refid="46" relation="include">
+        </childnode>
+      </node>
+      <node id="79">
+        <label>astrea/astro/astro/frames/definitions/dynamic_frames/VelocityNormalBinormal.hpp</label>
+        <link refid="VelocityNormalBinormal_8hpp"/>
+        <childnode refid="45" relation="include">
+        </childnode>
+        <childnode refid="46" relation="include">
+        </childnode>
+      </node>
+      <node id="46">
+        <label>astrea/astro/astro/frames/definitions/dynamic_frames/tags.hpp</label>
+        <link refid="tags_8hpp"/>
+        <childnode refid="45" relation="include">
+        </childnode>
+        <childnode refid="47" relation="include">
         </childnode>
         <childnode refid="7" relation="include">
-        </childnode>
-        <childnode refid="14" relation="include">
         </childnode>
         <childnode refid="8" relation="include">
         </childnode>
@@ -309,33 +323,33 @@
         </childnode>
         <childnode refid="31" relation="include">
         </childnode>
+        <childnode refid="51" relation="include">
+        </childnode>
+        <childnode refid="48" relation="include">
+        </childnode>
         <childnode refid="50" relation="include">
         </childnode>
-        <childnode refid="57" relation="include">
-        </childnode>
-        <childnode refid="49" relation="include">
-        </childnode>
       </node>
-      <node id="64">
+      <node id="63">
         <label>astrea/astro/astro/frames/definitions/frame_registry.hpp</label>
         <link refid="frame__registry_8hpp"/>
-        <childnode refid="55" relation="include">
+        <childnode refid="46" relation="include">
         </childnode>
-        <childnode refid="65" relation="include">
-        </childnode>
-        <childnode refid="66" relation="include">
-        </childnode>
-      </node>
-      <node id="77">
-        <label>astrea/astro/astro/frames/definitions/primary_frame.hpp</label>
-        <link refid="primary__frame_8hpp"/>
         <childnode refid="64" relation="include">
         </childnode>
         <childnode refid="65" relation="include">
         </childnode>
+      </node>
+      <node id="80">
+        <label>astrea/astro/astro/frames/definitions/primary_frame.hpp</label>
+        <link refid="primary__frame_8hpp"/>
+        <childnode refid="63" relation="include">
+        </childnode>
+        <childnode refid="64" relation="include">
+        </childnode>
         <childnode refid="7" relation="include">
         </childnode>
-        <childnode refid="78" relation="include">
+        <childnode refid="81" relation="include">
         </childnode>
         <childnode refid="10" relation="include">
         </childnode>
@@ -343,23 +357,23 @@
         </childnode>
         <childnode refid="32" relation="include">
         </childnode>
-        <childnode refid="66" relation="include">
+        <childnode refid="65" relation="include">
         </childnode>
       </node>
-      <node id="80">
+      <node id="83">
         <label>astrea/astro/astro/frames/definitions/synodic_frames.hpp</label>
         <link refid="synodic__frames_8hpp"/>
         <childnode refid="4" relation="include">
         </childnode>
       </node>
-      <node id="63">
+      <node id="62">
         <label>astrea/astro/astro/frames/definitions/transformations.hpp</label>
         <link refid="transformations_8hpp"/>
         <childnode refid="4" relation="include">
         </childnode>
-        <childnode refid="3" relation="include">
+        <childnode refid="44" relation="include">
         </childnode>
-        <childnode refid="64" relation="include">
+        <childnode refid="63" relation="include">
         </childnode>
         <childnode refid="21" relation="include">
         </childnode>
@@ -367,16 +381,16 @@
         </childnode>
         <childnode refid="42" relation="include">
         </childnode>
-        <childnode refid="46" relation="include">
+        <childnode refid="56" relation="include">
         </childnode>
-        <childnode refid="48" relation="include">
+        <childnode refid="58" relation="include">
         </childnode>
-        <childnode refid="68" relation="include">
+        <childnode refid="67" relation="include">
         </childnode>
-        <childnode refid="72" relation="include">
+        <childnode refid="71" relation="include">
         </childnode>
       </node>
-      <node id="65">
+      <node id="64">
         <label>astrea/astro/astro/frames/framework.hpp</label>
         <link refid="framework_8hpp_source"/>
         <childnode refid="5" relation="include">
@@ -387,9 +401,9 @@
         <link refid="DcmInterface_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="82" relation="include">
+        <childnode refid="87" relation="include">
         </childnode>
-        <childnode refid="83" relation="include">
+        <childnode refid="88" relation="include">
         </childnode>
       </node>
       <node id="2">
@@ -397,64 +411,72 @@
         <link refid="DirectionCosineMatrix_8hpp"/>
         <childnode refid="3" relation="include">
         </childnode>
-        <childnode refid="58" relation="include">
+        <childnode refid="44" relation="include">
         </childnode>
-        <childnode refid="59" relation="include">
+        <childnode refid="76" relation="include">
         </childnode>
-        <childnode refid="60" relation="include">
+        <childnode refid="77" relation="include">
         </childnode>
-        <childnode refid="61" relation="include">
+        <childnode refid="78" relation="include">
         </childnode>
-        <childnode refid="63" relation="include">
+        <childnode refid="79" relation="include">
         </childnode>
-        <childnode refid="65" relation="include">
+        <childnode refid="62" relation="include">
         </childnode>
-        <childnode refid="82" relation="include">
+        <childnode refid="64" relation="include">
         </childnode>
-        <childnode refid="83" relation="include">
+        <childnode refid="87" relation="include">
         </childnode>
-        <childnode refid="84" relation="include">
+        <childnode refid="88" relation="include">
         </childnode>
-        <childnode refid="57" relation="include">
+        <childnode refid="89" relation="include">
         </childnode>
-        <childnode refid="85" relation="include">
+        <childnode refid="48" relation="include">
         </childnode>
-        <childnode refid="86" relation="include">
+        <childnode refid="90" relation="include">
+        </childnode>
+        <childnode refid="91" relation="include">
         </childnode>
       </node>
-      <node id="82">
+      <node id="87">
         <label>astrea/astro/astro/frames/framework/DirectionCosineMatrixAccel.hpp</label>
         <link refid="DirectionCosineMatrixAccel_8hpp"/>
-        <childnode refid="61" relation="include">
-        </childnode>
-        <childnode refid="65" relation="include">
-        </childnode>
-      </node>
-      <node id="83">
-        <label>astrea/astro/astro/frames/framework/DirectionCosineMatrixRate.hpp</label>
-        <link refid="DirectionCosineMatrixRate_8hpp"/>
-        <childnode refid="61" relation="include">
-        </childnode>
-        <childnode refid="65" relation="include">
-        </childnode>
-        <childnode refid="82" relation="include">
-        </childnode>
-      </node>
-      <node id="84">
-        <label>astrea/astro/astro/frames/framework/DynamicFrame.hpp</label>
-        <link refid="DynamicFrame_8hpp"/>
         <childnode refid="3" relation="include">
         </childnode>
-        <childnode refid="58" relation="include">
+        <childnode refid="64" relation="include">
         </childnode>
-        <childnode refid="59" relation="include">
+      </node>
+      <node id="88">
+        <label>astrea/astro/astro/frames/framework/DirectionCosineMatrixRate.hpp</label>
+        <link refid="DirectionCosineMatrixRate_8hpp"/>
+        <childnode refid="3" relation="include">
         </childnode>
-        <childnode refid="60" relation="include">
+        <childnode refid="64" relation="include">
         </childnode>
-        <childnode refid="55" relation="include">
+        <childnode refid="87" relation="include">
         </childnode>
-        <childnode refid="65" relation="include">
+      </node>
+      <node id="89">
+        <label>astrea/astro/astro/frames/framework/DynamicFrame.hpp</label>
+        <link refid="DynamicFrame_8hpp"/>
+        <childnode refid="44" relation="include">
         </childnode>
+        <childnode refid="76" relation="include">
+        </childnode>
+        <childnode refid="77" relation="include">
+        </childnode>
+        <childnode refid="78" relation="include">
+        </childnode>
+        <childnode refid="79" relation="include">
+        </childnode>
+        <childnode refid="46" relation="include">
+        </childnode>
+        <childnode refid="64" relation="include">
+        </childnode>
+      </node>
+      <node id="55">
+        <label>astrea/astro/astro/frames/framework/TopocentricFrame.hpp</label>
+        <link refid="TopocentricFrame_8hpp"/>
       </node>
       <node id="9">
         <label>astrea/astro/astro/platforms.hpp</label>
@@ -462,14 +484,14 @@
         <childnode refid="6" relation="include">
         </childnode>
       </node>
-      <node id="56">
+      <node id="47">
         <label>astrea/astro/astro/platforms/InertiaTensor.hpp</label>
         <link refid="InertiaTensor_8hpp"/>
         <childnode refid="14" relation="include">
         </childnode>
         <childnode refid="10" relation="include">
         </childnode>
-        <childnode refid="57" relation="include">
+        <childnode refid="48" relation="include">
         </childnode>
       </node>
       <node id="7">
@@ -478,7 +500,7 @@
         <childnode refid="8" relation="include">
         </childnode>
       </node>
-      <node id="78">
+      <node id="81">
         <label>astrea/astro/astro/platforms/PayloadPlatform.hpp</label>
         <link refid="PayloadPlatform_8hpp"/>
         <childnode refid="7" relation="include">
@@ -647,6 +669,8 @@
         </childnode>
         <childnode refid="26" relation="include">
         </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
         <childnode refid="27" relation="include">
         </childnode>
         <childnode refid="28" relation="include">
@@ -654,6 +678,18 @@
         <childnode refid="29" relation="include">
         </childnode>
         <childnode refid="30" relation="include">
+        </childnode>
+      </node>
+      <node id="85">
+        <label>astrea/astro/astro/propagation/force_models/LegendreCache.hpp</label>
+        <link refid="LegendreCache_8hpp"/>
+        <childnode refid="22" relation="include">
+        </childnode>
+      </node>
+      <node id="84">
+        <label>astrea/astro/astro/propagation/force_models/LegendreCache.ipp</label>
+        <link refid="LegendreCache_8ipp_source"/>
+        <childnode refid="85" relation="include">
         </childnode>
       </node>
       <node id="20">
@@ -724,7 +760,7 @@
         <childnode refid="6" relation="include">
         </childnode>
       </node>
-      <node id="50">
+      <node id="51">
         <label>astrea/astro/astro/state/State.hpp</label>
         <link refid="State_8hpp"/>
         <childnode refid="15" relation="include">
@@ -737,12 +773,12 @@
         </childnode>
         <childnode refid="39" relation="include">
         </childnode>
-        <childnode refid="51" relation="include">
+        <childnode refid="52" relation="include">
         </childnode>
-        <childnode refid="44" relation="include">
+        <childnode refid="53" relation="include">
         </childnode>
       </node>
-      <node id="51">
+      <node id="52">
         <label>astrea/astro/astro/state/StateHistory.hpp</label>
         <link refid="StateHistory_8hpp"/>
         <childnode refid="10" relation="include">
@@ -785,148 +821,150 @@
       <node id="43">
         <label>astrea/astro/astro/state/angular_elements/Geodetic.hpp</label>
         <link refid="Geodetic_8hpp"/>
-        <childnode refid="3" relation="include">
+        <childnode refid="44" relation="include">
+        </childnode>
+        <childnode refid="55" relation="include">
         </childnode>
         <childnode refid="38" relation="include">
         </childnode>
-        <childnode refid="44" relation="include">
+        <childnode refid="53" relation="include">
         </childnode>
       </node>
-      <node id="46">
+      <node id="56">
         <label>astrea/astro/astro/state/angular_elements/Geodetic.ipp</label>
         <link refid="Geodetic_8ipp_source"/>
         <childnode refid="43" relation="include">
         </childnode>
       </node>
-      <node id="47">
+      <node id="57">
         <label>astrea/astro/astro/state/angular_elements/Spherical.hpp</label>
         <link refid="Spherical_8hpp"/>
         <childnode refid="38" relation="include">
         </childnode>
       </node>
-      <node id="48">
+      <node id="58">
         <label>astrea/astro/astro/state/angular_elements/Spherical.ipp</label>
         <link refid="Spherical_8ipp_source"/>
-        <childnode refid="47" relation="include">
+        <childnode refid="57" relation="include">
         </childnode>
       </node>
-      <node id="52">
+      <node id="49">
         <label>astrea/astro/astro/state/attitude.hpp</label>
         <link refid="attitude_8hpp"/>
         <childnode refid="39" relation="include">
         </childnode>
       </node>
-      <node id="57">
+      <node id="48">
         <label>astrea/astro/astro/state/attitude/AngularVelocities.hpp</label>
         <link refid="AngularVelocities_8hpp"/>
-        <childnode refid="52" relation="include">
-        </childnode>
         <childnode refid="49" relation="include">
         </childnode>
+        <childnode refid="50" relation="include">
+        </childnode>
       </node>
-      <node id="49">
+      <node id="50">
         <label>astrea/astro/astro/state/attitude/Attitude.hpp</label>
         <link refid="Attitude_8hpp"/>
-        <childnode refid="50" relation="include">
+        <childnode refid="51" relation="include">
         </childnode>
-        <childnode refid="52" relation="include">
+        <childnode refid="49" relation="include">
         </childnode>
       </node>
-      <node id="85">
+      <node id="90">
         <label>astrea/astro/astro/state/attitude/EulerAngles.hpp</label>
         <link refid="EulerAngles_8hpp"/>
-        <childnode refid="52" relation="include">
-        </childnode>
-        <childnode refid="57" relation="include">
-        </childnode>
         <childnode refid="49" relation="include">
         </childnode>
-        <childnode refid="86" relation="include">
+        <childnode refid="48" relation="include">
         </childnode>
-      </node>
-      <node id="87">
-        <label>astrea/astro/astro/state/attitude/EulerAngles.ipp</label>
-        <link refid="EulerAngles_8ipp"/>
-        <childnode refid="86" relation="include">
-        </childnode>
-      </node>
-      <node id="86">
-        <label>astrea/astro/astro/state/attitude/Quaternion.hpp</label>
-        <link refid="Quaternion_8hpp"/>
         <childnode refid="50" relation="include">
         </childnode>
-        <childnode refid="52" relation="include">
+        <childnode refid="91" relation="include">
+        </childnode>
+      </node>
+      <node id="92">
+        <label>astrea/astro/astro/state/attitude/EulerAngles.ipp</label>
+        <link refid="EulerAngles_8ipp"/>
+        <childnode refid="91" relation="include">
+        </childnode>
+      </node>
+      <node id="91">
+        <label>astrea/astro/astro/state/attitude/Quaternion.hpp</label>
+        <link refid="Quaternion_8hpp"/>
+        <childnode refid="51" relation="include">
         </childnode>
         <childnode refid="49" relation="include">
         </childnode>
-        <childnode refid="87" relation="include">
+        <childnode refid="50" relation="include">
+        </childnode>
+        <childnode refid="92" relation="include">
         </childnode>
       </node>
-      <node id="54">
+      <node id="60">
         <label>astrea/astro/astro/state/orbital_data_formats.hpp</label>
         <link refid="orbital__data__formats_8hpp"/>
         <childnode refid="39" relation="include">
         </childnode>
       </node>
-      <node id="53">
+      <node id="59">
         <label>astrea/astro/astro/state/orbital_data_formats/TwoLineElements.hpp</label>
         <link refid="TwoLineElements_8hpp"/>
-        <childnode refid="54" relation="include">
+        <childnode refid="60" relation="include">
         </childnode>
       </node>
-      <node id="67">
+      <node id="66">
         <label>astrea/astro/astro/state/orbital_elements.hpp</label>
         <link refid="orbital__elements_8hpp"/>
         <childnode refid="39" relation="include">
         </childnode>
       </node>
-      <node id="71">
+      <node id="70">
         <label>astrea/astro/astro/state/orbital_elements/Cartesian.hpp</label>
         <link refid="Cartesian_8hpp"/>
         <childnode refid="21" relation="include">
         </childnode>
-        <childnode refid="67" relation="include">
-        </childnode>
-        <childnode refid="72" relation="include">
-        </childnode>
         <childnode refid="66" relation="include">
         </childnode>
-        <childnode refid="74" relation="include">
-        </childnode>
-      </node>
-      <node id="70">
-        <label>astrea/astro/astro/state/orbital_elements/Cartesian.ipp</label>
-        <link refid="Cartesian_8ipp_source"/>
         <childnode refid="71" relation="include">
+        </childnode>
+        <childnode refid="65" relation="include">
+        </childnode>
+        <childnode refid="73" relation="include">
         </childnode>
       </node>
       <node id="69">
+        <label>astrea/astro/astro/state/orbital_elements/Cartesian.ipp</label>
+        <link refid="Cartesian_8ipp_source"/>
+        <childnode refid="70" relation="include">
+        </childnode>
+      </node>
+      <node id="68">
         <label>astrea/astro/astro/state/orbital_elements/Equinoctial.hpp</label>
         <link refid="Equinoctial_8hpp"/>
         <childnode refid="40" relation="include">
         </childnode>
         <childnode refid="42" relation="include">
         </childnode>
-        <childnode refid="46" relation="include">
+        <childnode refid="56" relation="include">
         </childnode>
-        <childnode refid="48" relation="include">
-        </childnode>
-        <childnode refid="67" relation="include">
-        </childnode>
-        <childnode refid="70" relation="include">
-        </childnode>
-        <childnode refid="72" relation="include">
+        <childnode refid="58" relation="include">
         </childnode>
         <childnode refid="66" relation="include">
         </childnode>
-      </node>
-      <node id="68">
-        <label>astrea/astro/astro/state/orbital_elements/Equinoctial.ipp</label>
-        <link refid="Equinoctial_8ipp_source"/>
         <childnode refid="69" relation="include">
         </childnode>
+        <childnode refid="71" relation="include">
+        </childnode>
+        <childnode refid="65" relation="include">
+        </childnode>
       </node>
-      <node id="73">
+      <node id="67">
+        <label>astrea/astro/astro/state/orbital_elements/Equinoctial.ipp</label>
+        <link refid="Equinoctial_8ipp_source"/>
+        <childnode refid="68" relation="include">
+        </childnode>
+      </node>
+      <node id="72">
         <label>astrea/astro/astro/state/orbital_elements/Keplerian.hpp</label>
         <link refid="Keplerian_8hpp"/>
         <childnode refid="12" relation="include">
@@ -935,30 +973,30 @@
         </childnode>
         <childnode refid="42" relation="include">
         </childnode>
-        <childnode refid="46" relation="include">
+        <childnode refid="56" relation="include">
         </childnode>
-        <childnode refid="48" relation="include">
+        <childnode refid="58" relation="include">
         </childnode>
-        <childnode refid="53" relation="include">
-        </childnode>
-        <childnode refid="67" relation="include">
-        </childnode>
-        <childnode refid="70" relation="include">
-        </childnode>
-        <childnode refid="68" relation="include">
+        <childnode refid="59" relation="include">
         </childnode>
         <childnode refid="66" relation="include">
         </childnode>
-        <childnode refid="74" relation="include">
+        <childnode refid="69" relation="include">
         </childnode>
-      </node>
-      <node id="72">
-        <label>astrea/astro/astro/state/orbital_elements/Keplerian.ipp</label>
-        <link refid="Keplerian_8ipp_source"/>
+        <childnode refid="67" relation="include">
+        </childnode>
+        <childnode refid="65" relation="include">
+        </childnode>
         <childnode refid="73" relation="include">
         </childnode>
       </node>
-      <node id="66">
+      <node id="71">
+        <label>astrea/astro/astro/state/orbital_elements/Keplerian.ipp</label>
+        <link refid="Keplerian_8ipp_source"/>
+        <childnode refid="72" relation="include">
+        </childnode>
+      </node>
+      <node id="65">
         <label>astrea/astro/astro/state/orbital_elements/OrbitalElements.hpp</label>
         <link refid="OrbitalElements_8hpp"/>
         <childnode refid="25" relation="include">
@@ -977,7 +1015,7 @@
         </childnode>
         <childnode refid="21" relation="include">
         </childnode>
-        <childnode refid="50" relation="include">
+        <childnode refid="51" relation="include">
         </childnode>
         <childnode refid="37" relation="include">
         </childnode>
@@ -985,63 +1023,65 @@
         </childnode>
         <childnode refid="43" relation="include">
         </childnode>
-        <childnode refid="47" relation="include">
+        <childnode refid="57" relation="include">
         </childnode>
-        <childnode refid="67" relation="include">
+        <childnode refid="66" relation="include">
         </childnode>
       </node>
-      <node id="45">
+      <node id="54">
         <label>astrea/astro/astro/systems.hpp</label>
         <link refid="systems_8hpp"/>
         <childnode refid="6" relation="include">
         </childnode>
       </node>
-      <node id="44">
+      <node id="53">
         <label>astrea/astro/astro/systems/atmosphere.hpp</label>
         <link refid="atmosphere_8hpp_source"/>
-        <childnode refid="45" relation="include">
-        </childnode>
-      </node>
-      <node id="75">
-        <label>astrea/astro/astro/systems/celestial_bodies.hpp</label>
-        <link refid="celestial__bodies_8hpp"/>
-        <childnode refid="3" relation="include">
-        </childnode>
-        <childnode refid="76" relation="include">
-        </childnode>
-        <childnode refid="79" relation="include">
-        </childnode>
-        <childnode refid="61" relation="include">
-        </childnode>
-        <childnode refid="62" relation="include">
-        </childnode>
-        <childnode refid="80" relation="include">
-        </childnode>
-        <childnode refid="45" relation="include">
-        </childnode>
-        <childnode refid="81" relation="include">
+        <childnode refid="54" relation="include">
         </childnode>
       </node>
       <node id="74">
-        <label>astrea/astro/astro/systems/default_property_getters.hpp</label>
-        <link refid="default__property__getters_8hpp"/>
-        <childnode refid="45" relation="include">
-        </childnode>
+        <label>astrea/astro/astro/systems/celestial_bodies.hpp</label>
+        <link refid="celestial__bodies_8hpp"/>
         <childnode refid="75" relation="include">
         </childnode>
+        <childnode refid="82" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="61" relation="include">
+        </childnode>
+        <childnode refid="44" relation="include">
+        </childnode>
+        <childnode refid="83" relation="include">
+        </childnode>
+        <childnode refid="84" relation="include">
+        </childnode>
+        <childnode refid="54" relation="include">
+        </childnode>
+        <childnode refid="86" relation="include">
+        </childnode>
       </node>
-      <node id="81">
+      <node id="73">
+        <label>astrea/astro/astro/systems/default_property_getters.hpp</label>
+        <link refid="default__property__getters_8hpp"/>
+        <childnode refid="54" relation="include">
+        </childnode>
+        <childnode refid="74" relation="include">
+        </childnode>
+      </node>
+      <node id="86">
         <label>astrea/astro/astro/systems/system_utilities.hpp</label>
         <link refid="system__utilities_8hpp_source"/>
-        <childnode refid="62" relation="include">
+        <childnode refid="61" relation="include">
         </childnode>
-        <childnode refid="63" relation="include">
+        <childnode refid="62" relation="include">
         </childnode>
         <childnode refid="20" relation="include">
         </childnode>
         <childnode refid="21" relation="include">
         </childnode>
-        <childnode refid="50" relation="include">
+        <childnode refid="51" relation="include">
         </childnode>
         <childnode refid="37" relation="include">
         </childnode>
@@ -1053,17 +1093,17 @@
         </childnode>
         <childnode refid="43" relation="include">
         </childnode>
-        <childnode refid="46" relation="include">
+        <childnode refid="56" relation="include">
         </childnode>
-        <childnode refid="47" relation="include">
+        <childnode refid="57" relation="include">
         </childnode>
-        <childnode refid="48" relation="include">
+        <childnode refid="58" relation="include">
         </childnode>
-        <childnode refid="70" relation="include">
+        <childnode refid="69" relation="include">
         </childnode>
-        <childnode refid="68" relation="include">
+        <childnode refid="67" relation="include">
         </childnode>
-        <childnode refid="45" relation="include">
+        <childnode refid="54" relation="include">
         </childnode>
       </node>
     </invincdepgraph>
@@ -1078,7 +1118,7 @@
 </simplesect>
 <simplesect kind="date"><para>2025-08-05</para>
 </simplesect>
-<simplesect kind="copyright"><para>Copyright (c) 2025 Jay Iuliano</para>
+<simplesect kind="copyright"><para>Copyright (c) 2025-2026 Jay Iuliano</para>
 </simplesect>
 The GNU Lesser General Public License (LGPL)</para>
 <para>This file is part of Astrea. Astrea is free software: you cosAlphan redistribute it and/or modify it under the terms of the GNU Lesser General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. Astrea is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details. You should have received a copy of the GNU General Public License along with Astrea. If not, see <ulink url="https://www.gnu.org/licenses/">https://www.gnu.org/licenses/</ulink>. </para>
@@ -1092,7 +1132,7 @@ The GNU Lesser General Public License (LGPL)</para>
 <codeline lineno="23"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;iostream&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="24"><highlight class="normal"></highlight></codeline>
 <codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;mp-units/math.h&gt;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="26"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;mp-units/systems/angular/math.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;mp-units/systems/si/math.h&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="27"><highlight class="normal"></highlight></codeline>
 <codeline lineno="28"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;utilities/string_util.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="29"><highlight class="normal"></highlight></codeline>
@@ -1109,206 +1149,209 @@ The GNU Lesser General Public License (LGPL)</para>
 <codeline lineno="45"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Value_T,<sp/>IsFrame<sp/>auto<sp/>_in_frame_,<sp/>IsFrame<sp/>auto<sp/>_out_frame_&gt;</highlight></codeline>
 <codeline lineno="46" refid="structastrea_1_1astro_1_1DcmInterface" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structastrea_1_1astro_1_1DcmInterface" kindref="compound">DcmInterface</ref><sp/>{</highlight></codeline>
 <codeline lineno="47"><highlight class="normal"></highlight></codeline>
-<codeline lineno="48" refid="structastrea_1_1astro_1_1DcmInterface_1a97be6a75b21573986b830738c7bcd4a7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a97be6a75b21573986b830738c7bcd4a7" kindref="member">in_frame</ref><sp/><sp/>=<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_in_frame_</ref>;<sp/><sp/></highlight></codeline>
-<codeline lineno="49" refid="structastrea_1_1astro_1_1DcmInterface_1ad1da3a11fbd2eaaf6ceb629c4679b5e0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1ad1da3a11fbd2eaaf6ceb629c4679b5e0" kindref="member">out_frame</ref><sp/>=<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_out_frame_</ref>;<sp/></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Value_U,<sp/>IsFrame<sp/>auto<sp/>in_frame_u,<sp/>IsFrame<sp/>auto<sp/>out_frame_u&gt;</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">friend</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structastrea_1_1astro_1_1DcmInterface" kindref="compound">DcmInterface</ref>;</highlight></codeline>
 <codeline lineno="50"><highlight class="normal"></highlight></codeline>
-<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">friend</highlight><highlight class="normal"><sp/>std::ostream&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">operator&lt;&lt;</ref>(std::ostream&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">os</ref>,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structastrea_1_1astro_1_1DcmInterface" kindref="compound">DcmInterface</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">matrix</ref>)</highlight></codeline>
-<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
-<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(std::size_t<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">i</ref><sp/>=<sp/>0;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">i</ref><sp/>&lt;<sp/>3;<sp/>++<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">i</ref>)<sp/>{</highlight></codeline>
-<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">os</ref><sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;|<sp/>&quot;</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(std::size_t<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">j</ref><sp/>=<sp/>0;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">j</ref><sp/>&lt;<sp/>3;<sp/>++<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">j</ref>)<sp/>{</highlight></codeline>
-<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">os</ref><sp/>&lt;&lt;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">matrix</ref>[<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">i</ref>,<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">j</ref>]<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;<sp/>&quot;</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">os</ref><sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;|\n&quot;</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">os</ref>;</highlight></codeline>
-<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="62"><highlight class="normal"></highlight></codeline>
-<codeline lineno="68" refid="structastrea_1_1astro_1_1DcmInterface_1a15a722c4753d19be8d1d0a185c382f49" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a15a722c4753d19be8d1d0a185c382f49" kindref="member">DcmInterface</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::array&lt;Value_T,<sp/>9&gt;&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">matrix</ref>)<sp/>:</highlight></codeline>
-<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>{<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">matrix</ref><sp/>}</highlight></codeline>
-<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
-<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="72"><highlight class="normal"></highlight></codeline>
-<codeline lineno="80" refid="structastrea_1_1astro_1_1DcmInterface_1ab43cc271116cb7f145f353ffd60f0b41" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1ab43cc271116cb7f145f353ffd60f0b41" kindref="member">DcmInterface</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::array&lt;Value_T,<sp/>3&gt;&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">row1</ref>,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::array&lt;Value_T,<sp/>3&gt;&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">row2</ref>,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::array&lt;Value_T,<sp/>3&gt;&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">row3</ref>)<sp/>:</highlight></codeline>
-<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>{<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">row1</ref>[0],<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">row1</ref>[1],<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">row1</ref>[2],<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">row2</ref>[0],<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">row2</ref>[1],<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">row2</ref>[2],<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">row3</ref>[0],<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">row3</ref>[1],<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">row3</ref>[2]<sp/>}</highlight></codeline>
-<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
-<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="84"><highlight class="normal"></highlight></codeline>
-<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Value_U,<sp/>auto<sp/>in_frame_u,<sp/>auto<sp/>out_frame_u&gt;</highlight></codeline>
-<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">requires</highlight><highlight class="normal">(</highlight><highlight class="keyword">requires</highlight><highlight class="normal"><sp/>{<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Value_T</ref>{<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Value_U</ref>{}<sp/>};<sp/>}<sp/>&amp;&amp;<sp/>equivalent(<ref refid="structastrea_1_1astro_1_1DcmInterface_1a97be6a75b21573986b830738c7bcd4a7" kindref="member">in_frame</ref>,<sp/>in_frame_u)<sp/>&amp;&amp;<sp/>equivalent(<ref refid="structastrea_1_1astro_1_1DcmInterface_1ad1da3a11fbd2eaaf6ceb629c4679b5e0" kindref="member">out_frame</ref>,<sp/>out_frame_u))</highlight></codeline>
-<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a15a722c4753d19be8d1d0a185c382f49" kindref="member">DcmInterface</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>DcmInterface&lt;Value_U,<sp/>in_frame_u,<sp/>out_frame_u&gt;&amp;<sp/>matrix)<sp/>:</highlight></codeline>
-<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>{<sp/>matrix.<ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref><sp/>}</highlight></codeline>
-<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
-<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="91"><highlight class="normal"></highlight></codeline>
-<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Value_U,<sp/>auto<sp/>in_frame_u,<sp/>auto<sp/>out_frame_u&gt;</highlight></codeline>
-<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">requires</highlight><highlight class="normal">(</highlight><highlight class="keyword">requires</highlight><highlight class="normal"><sp/>{<sp/>Value_T{<sp/>Value_U{}<sp/>};<sp/>}<sp/>&amp;&amp;<sp/>equivalent(<ref refid="structastrea_1_1astro_1_1DcmInterface_1a97be6a75b21573986b830738c7bcd4a7" kindref="member">in_frame</ref>,<sp/>in_frame_u)<sp/>&amp;&amp;<sp/>equivalent(<ref refid="structastrea_1_1astro_1_1DcmInterface_1ad1da3a11fbd2eaaf6ceb629c4679b5e0" kindref="member">out_frame</ref>,<sp/>out_frame_u))</highlight></codeline>
-<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a15a722c4753d19be8d1d0a185c382f49" kindref="member">DcmInterface</ref>(DcmInterface&lt;Value_U,<sp/>in_frame_u,<sp/>out_frame_u&gt;&amp;&amp;<sp/>matrix)<sp/>:</highlight></codeline>
-<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>{<sp/>std::move(matrix._data)<sp/>}</highlight></codeline>
-<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
-<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="98"><highlight class="normal"></highlight></codeline>
-<codeline lineno="106" refid="structastrea_1_1astro_1_1DcmInterface_1a473de739a35c7b812f87f4ffcb420832" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Value_T</ref>&amp;<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a473de739a35c7b812f87f4ffcb420832" kindref="member">operator[]</ref>(std::size_t<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1abc192d4a40875c4973570c42b97d3fc5" kindref="member">row</ref>,<sp/>std::size_t<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">col</ref>)<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[<ref refid="structastrea_1_1astro_1_1DcmInterface_1abc192d4a40875c4973570c42b97d3fc5" kindref="member">row</ref><sp/>*<sp/>3<sp/>+<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">col</ref>];<sp/>}</highlight></codeline>
-<codeline lineno="107"><highlight class="normal"></highlight></codeline>
-<codeline lineno="115" refid="structastrea_1_1astro_1_1DcmInterface_1afa37976598d95d7eb9e579494b0b3e48" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Value_T</ref>&amp;<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1afa37976598d95d7eb9e579494b0b3e48" kindref="member">operator[]</ref>(std::size_t<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1abc192d4a40875c4973570c42b97d3fc5" kindref="member">row</ref>,<sp/>std::size_t<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">col</ref>)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[<ref refid="structastrea_1_1astro_1_1DcmInterface_1abc192d4a40875c4973570c42b97d3fc5" kindref="member">row</ref><sp/>*<sp/>3<sp/>+<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">col</ref>];<sp/>}</highlight></codeline>
-<codeline lineno="116"><highlight class="normal"></highlight></codeline>
-<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Value_U,<sp/>auto<sp/>in_frame_u,<sp/>auto<sp/>out_frame_u&gt;</highlight></codeline>
-<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">requires</highlight><highlight class="normal">(equivalent(<ref refid="structastrea_1_1astro_1_1DcmInterface_1a97be6a75b21573986b830738c7bcd4a7" kindref="member">in_frame</ref>,<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">in_frame_u</ref>)<sp/>&amp;&amp;<sp/>equivalent(<ref refid="structastrea_1_1astro_1_1DcmInterface_1ad1da3a11fbd2eaaf6ceb629c4679b5e0" kindref="member">out_frame</ref>,<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">out_frame_u</ref>))</highlight></codeline>
-<codeline lineno="125" refid="structastrea_1_1astro_1_1DcmInterface_1ae6d056075b72aabcbab32283ccf728bb" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/><ref refid="structastrea_1_1astro_1_1DcmInterface" kindref="compound">DcmInterface</ref><sp/></highlight><highlight class="keyword">operator</highlight><highlight class="normal">+(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">DcmInterface&lt;Value_U, in_frame_u, out_frame_u&gt;</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">other</ref>)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
-<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>{<sp/>{<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[0]<sp/>+<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">other</ref>.<ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[0],</highlight></codeline>
-<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[1]<sp/>+<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">other</ref>.<ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[1],</highlight></codeline>
-<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[2]<sp/>+<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">other</ref>.<ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[2],</highlight></codeline>
-<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[3]<sp/>+<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">other</ref>.<ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[3],</highlight></codeline>
-<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[4]<sp/>+<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">other</ref>.<ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[4],</highlight></codeline>
-<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[5]<sp/>+<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">other</ref>.<ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[5],</highlight></codeline>
-<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[6]<sp/>+<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">other</ref>.<ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[6],</highlight></codeline>
-<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[7]<sp/>+<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">other</ref>.<ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[7],</highlight></codeline>
-<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[8]<sp/>+<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">other</ref>.<ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[8]<sp/>}<sp/>};</highlight></codeline>
-<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="137"><highlight class="normal"></highlight></codeline>
-<codeline lineno="143" refid="structastrea_1_1astro_1_1DcmInterface_1a30723a4c1e490bddf21357fb7899a6ed" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/><ref refid="structastrea_1_1astro_1_1DcmInterface" kindref="compound">DcmInterface</ref><sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a30723a4c1e490bddf21357fb7899a6ed" kindref="member">operator-</ref>()</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
-<codeline lineno="144"><highlight class="keyword"><sp/><sp/><sp/><sp/></highlight><highlight class="normal">{</highlight></codeline>
-<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>{<sp/>{<sp/>-<ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[0],<sp/>-<ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[1],<sp/>-<ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[2],<sp/>-<ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[3],<sp/>-<ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[4],<sp/>-<ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[5],<sp/>-<ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[6],<sp/>-<ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[7],<sp/>-<ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[8]<sp/>}<sp/>};</highlight></codeline>
-<codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="147"><highlight class="normal"></highlight></codeline>
-<codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Value_U,<sp/>auto<sp/>in_frame_u,<sp/>auto<sp/>out_frame_u&gt;</highlight></codeline>
-<codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">requires</highlight><highlight class="normal">(equivalent(<ref refid="structastrea_1_1astro_1_1DcmInterface_1a97be6a75b21573986b830738c7bcd4a7" kindref="member">in_frame</ref>,<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">in_frame_u</ref>)<sp/>&amp;&amp;<sp/>equivalent(<ref refid="structastrea_1_1astro_1_1DcmInterface_1ad1da3a11fbd2eaaf6ceb629c4679b5e0" kindref="member">out_frame</ref>,<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">out_frame_u</ref>))</highlight></codeline>
-<codeline lineno="156" refid="structastrea_1_1astro_1_1DcmInterface_1afd71e9c382e0b5c4d68ec37a2f884f8d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/><ref refid="structastrea_1_1astro_1_1DcmInterface" kindref="compound">DcmInterface</ref><sp/></highlight><highlight class="keyword">operator</highlight><highlight class="normal">-(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">DcmInterface&lt;Value_U, in_frame_u, out_frame_u&gt;</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">other</ref>)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
-<codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>*</highlight><highlight class="keyword">this</highlight><highlight class="normal"><sp/>+<sp/>(-<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">other</ref>);</highlight></codeline>
-<codeline lineno="159"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="160"><highlight class="normal"></highlight></codeline>
-<codeline lineno="170"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Value_U,<sp/>auto<sp/>in_frame_u,<sp/>auto<sp/>out_frame_u&gt;</highlight></codeline>
-<codeline lineno="171"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">requires</highlight><highlight class="normal">(equivalent(<ref refid="structastrea_1_1astro_1_1DcmInterface_1a97be6a75b21573986b830738c7bcd4a7" kindref="member">in_frame</ref>,<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">in_frame_u</ref>)<sp/>&amp;&amp;<sp/>equivalent(<ref refid="structastrea_1_1astro_1_1DcmInterface_1ad1da3a11fbd2eaaf6ceb629c4679b5e0" kindref="member">out_frame</ref>,<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">out_frame_u</ref>))</highlight></codeline>
-<codeline lineno="172"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/><ref refid="structastrea_1_1astro_1_1DcmInterface" kindref="compound">DcmInterface</ref>&lt;</highlight><highlight class="keyword">decltype</highlight><highlight class="normal">(<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Value_T</ref>{}<sp/>*<sp/>Value_U{}),<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a97be6a75b21573986b830738c7bcd4a7" kindref="member">in_frame</ref>,<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1ad1da3a11fbd2eaaf6ceb629c4679b5e0" kindref="member">out_frame</ref>&gt;</highlight></codeline>
-<codeline lineno="173" refid="structastrea_1_1astro_1_1DcmInterface_1ab2ce6540f87db2510d7d0120e4da93e7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">operator</highlight><highlight class="normal">*(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">DcmInterface&lt;Value_U, in_frame_u, out_frame_u&gt;</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">other</ref>)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="174"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
-<codeline lineno="175"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_multiply(<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">other</ref>.<ref refid="structastrea_1_1astro_1_1DcmInterface_1a62b273617fa7a7d343353b0ba2837fa1" kindref="member">data</ref>());</highlight></codeline>
-<codeline lineno="176"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="177"><highlight class="normal"></highlight></codeline>
-<codeline lineno="187"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Value_U,<sp/>auto<sp/>in_frame_u,<sp/>auto<sp/>out_frame_u&gt;</highlight></codeline>
-<codeline lineno="188"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">requires</highlight><highlight class="normal">(!(equivalent(<ref refid="structastrea_1_1astro_1_1DcmInterface_1a97be6a75b21573986b830738c7bcd4a7" kindref="member">in_frame</ref>,<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">in_frame_u</ref>)<sp/>&amp;&amp;<sp/>equivalent(<ref refid="structastrea_1_1astro_1_1DcmInterface_1ad1da3a11fbd2eaaf6ceb629c4679b5e0" kindref="member">out_frame</ref>,<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">out_frame_u</ref>))<sp/>&amp;&amp;<sp/>equivalent(<ref refid="structastrea_1_1astro_1_1DcmInterface_1ad1da3a11fbd2eaaf6ceb629c4679b5e0" kindref="member">out_frame</ref>,<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">in_frame_u</ref>))</highlight></codeline>
-<codeline lineno="189"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/><ref refid="structastrea_1_1astro_1_1DcmInterface" kindref="compound">DcmInterface</ref>&lt;</highlight><highlight class="keyword">decltype</highlight><highlight class="normal">(<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Value_T</ref>{}<sp/>*<sp/>Value_U{}),<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a97be6a75b21573986b830738c7bcd4a7" kindref="member">in_frame</ref>,<sp/>out_frame_u&gt;</highlight></codeline>
-<codeline lineno="190" refid="structastrea_1_1astro_1_1DcmInterface_1a638b3f83502dd0690135fc50cacb2d31" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">operator</highlight><highlight class="normal">*(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">DcmInterface&lt;Value_U, in_frame_u, out_frame_u&gt;</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">other</ref>)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="191"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
-<codeline lineno="192"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_multiply(<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">other</ref>.<ref refid="structastrea_1_1astro_1_1DcmInterface_1a62b273617fa7a7d343353b0ba2837fa1" kindref="member">data</ref>());</highlight></codeline>
-<codeline lineno="193"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="194"><highlight class="normal"></highlight></codeline>
-<codeline lineno="203"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Value_U,<sp/>auto<sp/>in_frame_u&gt;</highlight></codeline>
-<codeline lineno="204"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">requires</highlight><highlight class="normal">(equivalent(<ref refid="structastrea_1_1astro_1_1DcmInterface_1a97be6a75b21573986b830738c7bcd4a7" kindref="member">in_frame</ref>,<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">in_frame_u</ref>))</highlight></codeline>
-<codeline lineno="205"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/><ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt;</highlight><highlight class="keyword">decltype</highlight><highlight class="normal">(<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Value_T</ref>{}<sp/>*<sp/>Value_U{}),<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1ad1da3a11fbd2eaaf6ceb629c4679b5e0" kindref="member">out_frame</ref>&gt;</highlight></codeline>
-<codeline lineno="206" refid="structastrea_1_1astro_1_1DcmInterface_1a7c7edfbb79b165dd0dc2327b0e0328ec" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">operator</highlight><highlight class="normal">*(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">CartesianVector&lt;Value_U, in_frame_u&gt;</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">vec</ref>)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="207"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
-<codeline lineno="208"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>{<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1abc192d4a40875c4973570c42b97d3fc5" kindref="member">row</ref>(0).dot(<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">vec</ref>),<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1abc192d4a40875c4973570c42b97d3fc5" kindref="member">row</ref>(1).dot(<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">vec</ref>),<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1abc192d4a40875c4973570c42b97d3fc5" kindref="member">row</ref>(2).dot(<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">vec</ref>)<sp/>};</highlight></codeline>
-<codeline lineno="209"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="210"><highlight class="normal"></highlight></codeline>
-<codeline lineno="217"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Value_U&gt;</highlight></codeline>
-<codeline lineno="218"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">requires</highlight><highlight class="normal">(std::is_arithmetic_v&lt;Value_U&gt;<sp/>||<sp/>mp_units::Quantity&lt;Value_U&gt;)</highlight></codeline>
-<codeline lineno="219" refid="structastrea_1_1astro_1_1DcmInterface_1abc0bff04bbdc1abc84a46a794df38de4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/><ref refid="structastrea_1_1astro_1_1DcmInterface" kindref="compound">DcmInterface</ref>&lt;</highlight><highlight class="keyword">decltype</highlight><highlight class="normal">(<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Value_T</ref>{}<sp/>*<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Value_U</ref>{}),<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a97be6a75b21573986b830738c7bcd4a7" kindref="member">in_frame</ref>,<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1ad1da3a11fbd2eaaf6ceb629c4679b5e0" kindref="member">out_frame</ref>&gt;<sp/></highlight><highlight class="keyword">operator</highlight><highlight class="normal">*(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Value_U&amp;<sp/>scalar)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="220"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
-<codeline lineno="221"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>{<sp/>{<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[0]<sp/>*<sp/>scalar,<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[1]<sp/>*<sp/>scalar,<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[2]<sp/>*<sp/>scalar<sp/>},</highlight></codeline>
-<codeline lineno="222"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[3]<sp/>*<sp/>scalar,<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[4]<sp/>*<sp/>scalar,<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[5]<sp/>*<sp/>scalar<sp/>},</highlight></codeline>
-<codeline lineno="223"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[6]<sp/>*<sp/>scalar,<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[7]<sp/>*<sp/>scalar,<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[8]<sp/>*<sp/>scalar<sp/>}<sp/>};</highlight></codeline>
-<codeline lineno="224"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="225"><highlight class="normal"></highlight></codeline>
-<codeline lineno="232" refid="structastrea_1_1astro_1_1DcmInterface_1abc192d4a40875c4973570c42b97d3fc5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">CartesianVector&lt;Value_T, _in_frame_&gt;</ref><sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1abc192d4a40875c4973570c42b97d3fc5" kindref="member">row</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::size_t&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">idx</ref>)</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
-<codeline lineno="233"><highlight class="keyword"><sp/><sp/><sp/><sp/></highlight><highlight class="normal">{</highlight></codeline>
-<codeline lineno="234"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>{<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">idx</ref><sp/>*<sp/>3<sp/>+<sp/>0],<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">idx</ref><sp/>*<sp/>3<sp/>+<sp/>1],<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">idx</ref><sp/>*<sp/>3<sp/>+<sp/>2]<sp/>};</highlight></codeline>
-<codeline lineno="235"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="236"><highlight class="normal"></highlight></codeline>
-<codeline lineno="242" refid="structastrea_1_1astro_1_1DcmInterface_1a125c845e66fc94b94ba7e552dca2ca4e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">DcmInterface&lt;Value_T, _out_frame_, _in_frame_&gt;</ref><sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a125c845e66fc94b94ba7e552dca2ca4e" kindref="member">transpose</ref>()</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
-<codeline lineno="243"><highlight class="keyword"><sp/><sp/><sp/><sp/></highlight><highlight class="normal">{</highlight></codeline>
-<codeline lineno="244"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>{<sp/>{<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[0],<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[3],<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[6]<sp/>},<sp/>{<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[1],<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[4],<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[7]<sp/>},<sp/>{<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[2],<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[5],<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[8]<sp/>}<sp/>};</highlight></codeline>
-<codeline lineno="245"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="246"><highlight class="normal"></highlight></codeline>
-<codeline lineno="252" refid="structastrea_1_1astro_1_1DcmInterface_1a67c8b821d1bb9ccbfc81961c5fb012da" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Value_T</ref><sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a67c8b821d1bb9ccbfc81961c5fb012da" kindref="member">trace</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[0]<sp/>+<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[4]<sp/>+<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[8];<sp/>}</highlight></codeline>
-<codeline lineno="253"><highlight class="normal"></highlight></codeline>
-<codeline lineno="259" refid="structastrea_1_1astro_1_1DcmInterface_1a2315bb7302b2c649f58b65947533cf02" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Value_T</ref><sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a2315bb7302b2c649f58b65947533cf02" kindref="member">determinant</ref>()</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
-<codeline lineno="260"><highlight class="keyword"><sp/><sp/><sp/><sp/></highlight><highlight class="normal">{</highlight></codeline>
-<codeline lineno="261"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[0]<sp/>*<sp/>(<ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[4]<sp/>*<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[8]<sp/>-<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[5]<sp/>*<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[7])<sp/>-</highlight></codeline>
-<codeline lineno="262"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[1]<sp/>*<sp/>(<ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[3]<sp/>*<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[8]<sp/>-<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[5]<sp/>*<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[6])<sp/>+<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[2]<sp/>*<sp/>(<ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[3]<sp/>*<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[7]<sp/>-<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[4]<sp/>*<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[6]);</highlight></codeline>
-<codeline lineno="263"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="264"><highlight class="normal"></highlight></codeline>
-<codeline lineno="272" refid="structastrea_1_1astro_1_1DcmInterface_1afdefad21f497cf49cc1fd6818d03e5d9" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1afdefad21f497cf49cc1fd6818d03e5d9" kindref="member">normalize</ref>()</highlight></codeline>
-<codeline lineno="273"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
-<codeline lineno="274"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/>namespace<sp/></highlight><highlight class="normal">mp_units;</highlight></codeline>
-<codeline lineno="275"><highlight class="normal"></highlight></codeline>
-<codeline lineno="276"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Unitless</ref><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">det</ref><sp/>=<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a2315bb7302b2c649f58b65947533cf02" kindref="member">determinant</ref>().force_in(one);</highlight></codeline>
-<codeline lineno="277"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">is_eq_zero</ref>(<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">det</ref>))<sp/>{</highlight></codeline>
-<codeline lineno="278"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/>std::runtime_error(</highlight><highlight class="stringliteral">&quot;Cannot<sp/>normalize<sp/>a<sp/>zero-value<sp/>determinant<sp/>matrix.<sp/>The<sp/>matrix<sp/>is<sp/>likely<sp/>singular.&quot;</highlight><highlight class="normal">);</highlight></codeline>
-<codeline lineno="279"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="280"><highlight class="normal"></highlight></codeline>
-<codeline lineno="281"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>For<sp/>3x3<sp/>matrices,<sp/>determinant<sp/>scales<sp/>as<sp/>k^3<sp/>where<sp/>k<sp/>is<sp/>the<sp/>scaling<sp/>factor</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="282"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Use<sp/>linear<sp/>approximation<sp/>when<sp/>determinant<sp/>is<sp/>close<sp/>to<sp/>1:<sp/>k<sp/>≈<sp/>1<sp/>-<sp/>(det-1)/3</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="283"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>https://stackoverflow.com/questions/11667783/quaternion-and-normalization</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="284"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">abs</ref>(1.0<sp/>*<sp/>one<sp/>-<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">det</ref>)<sp/>&lt;<sp/>2.107342e-08<sp/>*<sp/>one)<sp/>{<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1acfc3d24723f5a2201b53310700e070f0" kindref="member">_normalize</ref>(1.0<sp/>*<sp/>one<sp/>-<sp/>(<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">det</ref><sp/>-<sp/>1.0<sp/>*<sp/>one)<sp/>/<sp/>3.0);<sp/>}</highlight></codeline>
-<codeline lineno="285"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
-<codeline lineno="286"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Exact<sp/>formula:<sp/>k<sp/>=<sp/>(1/det)^(1/3)<sp/>to<sp/>make<sp/>k^3<sp/>*<sp/>det<sp/>=<sp/>1</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="287"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1acfc3d24723f5a2201b53310700e070f0" kindref="member">_normalize</ref>(1.0<sp/>*<sp/>one<sp/>/<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">cbrt</ref>(<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">det</ref>));</highlight></codeline>
-<codeline lineno="288"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="289"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="290"><highlight class="normal"></highlight></codeline>
-<codeline lineno="296" refid="structastrea_1_1astro_1_1DcmInterface_1a62b273617fa7a7d343353b0ba2837fa1" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/>std::array&lt;Value_T,<sp/>9&gt;<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a62b273617fa7a7d343353b0ba2837fa1" kindref="member">data</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>;<sp/>}</highlight></codeline>
-<codeline lineno="297"><highlight class="normal"></highlight></codeline>
-<codeline lineno="298"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">protected</highlight><highlight class="normal">:</highlight></codeline>
-<codeline lineno="299" refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::array&lt;Value_T,<sp/>9&gt;<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>;<sp/></highlight></codeline>
+<codeline lineno="51" refid="structastrea_1_1astro_1_1DcmInterface_1a97be6a75b21573986b830738c7bcd4a7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a97be6a75b21573986b830738c7bcd4a7" kindref="member">in_frame</ref><sp/><sp/>=<sp/>_in_frame_;<sp/><sp/></highlight></codeline>
+<codeline lineno="52" refid="structastrea_1_1astro_1_1DcmInterface_1ad1da3a11fbd2eaaf6ceb629c4679b5e0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1ad1da3a11fbd2eaaf6ceb629c4679b5e0" kindref="member">out_frame</ref><sp/>=<sp/>_out_frame_;<sp/></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">friend</highlight><highlight class="normal"><sp/>std::ostream&amp;<sp/>operator&lt;&lt;(std::ostream&amp;<sp/>os,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structastrea_1_1astro_1_1DcmInterface" kindref="compound">DcmInterface</ref>&amp;<sp/>matrix)</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(std::size_t<sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>3;<sp/>++i)<sp/>{</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>os<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;|<sp/>&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(std::size_t<sp/>j<sp/>=<sp/>0;<sp/>j<sp/>&lt;<sp/>3;<sp/>++j)<sp/>{</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>os<sp/>&lt;&lt;<sp/>matrix[i,<sp/>j]<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;<sp/>&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>os<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;|\n&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>os;</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"></highlight></codeline>
+<codeline lineno="71" refid="structastrea_1_1astro_1_1DcmInterface_1a15a722c4753d19be8d1d0a185c382f49" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a15a722c4753d19be8d1d0a185c382f49" kindref="member">DcmInterface</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::array&lt;Value_T,<sp/>9&gt;&amp;<sp/>matrix)<sp/>:</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>{<sp/>matrix<sp/>}</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"></highlight></codeline>
+<codeline lineno="83" refid="structastrea_1_1astro_1_1DcmInterface_1ab43cc271116cb7f145f353ffd60f0b41" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1ab43cc271116cb7f145f353ffd60f0b41" kindref="member">DcmInterface</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::array&lt;Value_T,<sp/>3&gt;&amp;<sp/>row1,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::array&lt;Value_T,<sp/>3&gt;&amp;<sp/>row2,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::array&lt;Value_T,<sp/>3&gt;&amp;<sp/>row3)<sp/>:</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>{<sp/>row1[0],<sp/>row1[1],<sp/>row1[2],<sp/>row2[0],<sp/>row2[1],<sp/>row2[2],<sp/>row3[0],<sp/>row3[1],<sp/>row3[2]<sp/>}</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"></highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Value_U,<sp/>auto<sp/>in_frame_u,<sp/>auto<sp/>out_frame_u&gt;</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">requires</highlight><highlight class="normal">(</highlight><highlight class="keyword">requires</highlight><highlight class="normal"><sp/>{<sp/>Value_T{<sp/>Value_U{}<sp/>};<sp/>}<sp/>&amp;&amp;<sp/>equivalent(<ref refid="structastrea_1_1astro_1_1DcmInterface_1a97be6a75b21573986b830738c7bcd4a7" kindref="member">in_frame</ref>,<sp/>in_frame_u)<sp/>&amp;&amp;<sp/>equivalent(<ref refid="structastrea_1_1astro_1_1DcmInterface_1ad1da3a11fbd2eaaf6ceb629c4679b5e0" kindref="member">out_frame</ref>,<sp/>out_frame_u))</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/>DcmInterface(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>DcmInterface&lt;Value_U,<sp/>in_frame_u,<sp/>out_frame_u&gt;&amp;<sp/>matrix)<sp/>:</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>{<sp/>matrix._data<sp/>}</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"></highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Value_U,<sp/>auto<sp/>in_frame_u,<sp/>auto<sp/>out_frame_u&gt;</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">requires</highlight><highlight class="normal">(</highlight><highlight class="keyword">requires</highlight><highlight class="normal"><sp/>{<sp/>Value_T{<sp/>Value_U{}<sp/>};<sp/>}<sp/>&amp;&amp;<sp/>equivalent(<ref refid="structastrea_1_1astro_1_1DcmInterface_1a97be6a75b21573986b830738c7bcd4a7" kindref="member">in_frame</ref>,<sp/>in_frame_u)<sp/>&amp;&amp;<sp/>equivalent(<ref refid="structastrea_1_1astro_1_1DcmInterface_1ad1da3a11fbd2eaaf6ceb629c4679b5e0" kindref="member">out_frame</ref>,<sp/>out_frame_u))</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/>DcmInterface(DcmInterface&lt;Value_U,<sp/>in_frame_u,<sp/>out_frame_u&gt;&amp;&amp;<sp/>matrix)<sp/>:</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>{<sp/>std::move(matrix._data)<sp/>}</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"></highlight></codeline>
+<codeline lineno="109" refid="structastrea_1_1astro_1_1DcmInterface_1a473de739a35c7b812f87f4ffcb420832" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/>Value_T&amp;<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a473de739a35c7b812f87f4ffcb420832" kindref="member">operator[]</ref>(std::size_t<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1abc192d4a40875c4973570c42b97d3fc5" kindref="member">row</ref>,<sp/>std::size_t<sp/>col)<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[<ref refid="structastrea_1_1astro_1_1DcmInterface_1abc192d4a40875c4973570c42b97d3fc5" kindref="member">row</ref><sp/>*<sp/>3<sp/>+<sp/>col];<sp/>}</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"></highlight></codeline>
+<codeline lineno="118" refid="structastrea_1_1astro_1_1DcmInterface_1afa37976598d95d7eb9e579494b0b3e48" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Value_T&amp;<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1afa37976598d95d7eb9e579494b0b3e48" kindref="member">operator[]</ref>(std::size_t<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1abc192d4a40875c4973570c42b97d3fc5" kindref="member">row</ref>,<sp/>std::size_t<sp/>col)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[<ref refid="structastrea_1_1astro_1_1DcmInterface_1abc192d4a40875c4973570c42b97d3fc5" kindref="member">row</ref><sp/>*<sp/>3<sp/>+<sp/>col];<sp/>}</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"></highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Value_U,<sp/>auto<sp/>in_frame_u,<sp/>auto<sp/>out_frame_u&gt;</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">requires</highlight><highlight class="normal">(equivalent(<ref refid="structastrea_1_1astro_1_1DcmInterface_1a97be6a75b21573986b830738c7bcd4a7" kindref="member">in_frame</ref>,<sp/>in_frame_u)<sp/>&amp;&amp;<sp/>equivalent(<ref refid="structastrea_1_1astro_1_1DcmInterface_1ad1da3a11fbd2eaaf6ceb629c4679b5e0" kindref="member">out_frame</ref>,<sp/>out_frame_u))</highlight></codeline>
+<codeline lineno="128" refid="structastrea_1_1astro_1_1DcmInterface_1ae6d056075b72aabcbab32283ccf728bb" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/><ref refid="structastrea_1_1astro_1_1DcmInterface" kindref="compound">DcmInterface</ref><sp/></highlight><highlight class="keyword">operator</highlight><highlight class="normal">+(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structastrea_1_1astro_1_1DcmInterface" kindref="compound">DcmInterface&lt;Value_U, in_frame_u, out_frame_u&gt;</ref>&amp;<sp/>other)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>{<sp/>{<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[0]<sp/>+<sp/>other.<ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[0],</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[1]<sp/>+<sp/>other.<ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[1],</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[2]<sp/>+<sp/>other.<ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[2],</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[3]<sp/>+<sp/>other.<ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[3],</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[4]<sp/>+<sp/>other.<ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[4],</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[5]<sp/>+<sp/>other.<ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[5],</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[6]<sp/>+<sp/>other.<ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[6],</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[7]<sp/>+<sp/>other.<ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[7],</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[8]<sp/>+<sp/>other.<ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[8]<sp/>}<sp/>};</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"></highlight></codeline>
+<codeline lineno="146" refid="structastrea_1_1astro_1_1DcmInterface_1a30723a4c1e490bddf21357fb7899a6ed" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/><ref refid="structastrea_1_1astro_1_1DcmInterface" kindref="compound">DcmInterface</ref><sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a30723a4c1e490bddf21357fb7899a6ed" kindref="member">operator-</ref>()</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="147"><highlight class="keyword"><sp/><sp/><sp/><sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>{<sp/>{<sp/>-<ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[0],<sp/>-<ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[1],<sp/>-<ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[2],<sp/>-<ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[3],<sp/>-<ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[4],<sp/>-<ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[5],<sp/>-<ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[6],<sp/>-<ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[7],<sp/>-<ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[8]<sp/>}<sp/>};</highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="150"><highlight class="normal"></highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Value_U,<sp/>auto<sp/>in_frame_u,<sp/>auto<sp/>out_frame_u&gt;</highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">requires</highlight><highlight class="normal">(equivalent(<ref refid="structastrea_1_1astro_1_1DcmInterface_1a97be6a75b21573986b830738c7bcd4a7" kindref="member">in_frame</ref>,<sp/>in_frame_u)<sp/>&amp;&amp;<sp/>equivalent(<ref refid="structastrea_1_1astro_1_1DcmInterface_1ad1da3a11fbd2eaaf6ceb629c4679b5e0" kindref="member">out_frame</ref>,<sp/>out_frame_u))</highlight></codeline>
+<codeline lineno="159" refid="structastrea_1_1astro_1_1DcmInterface_1afd71e9c382e0b5c4d68ec37a2f884f8d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/><ref refid="structastrea_1_1astro_1_1DcmInterface" kindref="compound">DcmInterface</ref><sp/></highlight><highlight class="keyword">operator</highlight><highlight class="normal">-(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structastrea_1_1astro_1_1DcmInterface" kindref="compound">DcmInterface&lt;Value_U, in_frame_u, out_frame_u&gt;</ref>&amp;<sp/>other)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>*</highlight><highlight class="keyword">this</highlight><highlight class="normal"><sp/>+<sp/>(-other);</highlight></codeline>
+<codeline lineno="162"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="163"><highlight class="normal"></highlight></codeline>
+<codeline lineno="173"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Value_U,<sp/>auto<sp/>in_frame_u,<sp/>auto<sp/>out_frame_u&gt;</highlight></codeline>
+<codeline lineno="174"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">requires</highlight><highlight class="normal">(equivalent(<ref refid="structastrea_1_1astro_1_1DcmInterface_1a97be6a75b21573986b830738c7bcd4a7" kindref="member">in_frame</ref>,<sp/>in_frame_u)<sp/>&amp;&amp;<sp/>equivalent(<ref refid="structastrea_1_1astro_1_1DcmInterface_1ad1da3a11fbd2eaaf6ceb629c4679b5e0" kindref="member">out_frame</ref>,<sp/>out_frame_u))</highlight></codeline>
+<codeline lineno="175"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/><ref refid="structastrea_1_1astro_1_1DcmInterface" kindref="compound">DcmInterface</ref>&lt;</highlight><highlight class="keyword">decltype</highlight><highlight class="normal">(Value_T{}<sp/>*<sp/>Value_U{}),<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a97be6a75b21573986b830738c7bcd4a7" kindref="member">in_frame</ref>,<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1ad1da3a11fbd2eaaf6ceb629c4679b5e0" kindref="member">out_frame</ref>&gt;</highlight></codeline>
+<codeline lineno="176" refid="structastrea_1_1astro_1_1DcmInterface_1ab2ce6540f87db2510d7d0120e4da93e7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">operator</highlight><highlight class="normal">*(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structastrea_1_1astro_1_1DcmInterface" kindref="compound">DcmInterface&lt;Value_U, in_frame_u, out_frame_u&gt;</ref>&amp;<sp/>other)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="177"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="178"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_multiply(other.<ref refid="structastrea_1_1astro_1_1DcmInterface_1a62b273617fa7a7d343353b0ba2837fa1" kindref="member">data</ref>());</highlight></codeline>
+<codeline lineno="179"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="180"><highlight class="normal"></highlight></codeline>
+<codeline lineno="190"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Value_U,<sp/>auto<sp/>in_frame_u,<sp/>auto<sp/>out_frame_u&gt;</highlight></codeline>
+<codeline lineno="191"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">requires</highlight><highlight class="normal">(!(equivalent(<ref refid="structastrea_1_1astro_1_1DcmInterface_1a97be6a75b21573986b830738c7bcd4a7" kindref="member">in_frame</ref>,<sp/>in_frame_u)<sp/>&amp;&amp;<sp/>equivalent(<ref refid="structastrea_1_1astro_1_1DcmInterface_1ad1da3a11fbd2eaaf6ceb629c4679b5e0" kindref="member">out_frame</ref>,<sp/>out_frame_u))<sp/>&amp;&amp;<sp/>equivalent(<ref refid="structastrea_1_1astro_1_1DcmInterface_1ad1da3a11fbd2eaaf6ceb629c4679b5e0" kindref="member">out_frame</ref>,<sp/>in_frame_u))</highlight></codeline>
+<codeline lineno="192"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/><ref refid="structastrea_1_1astro_1_1DcmInterface" kindref="compound">DcmInterface</ref>&lt;</highlight><highlight class="keyword">decltype</highlight><highlight class="normal">(Value_T{}<sp/>*<sp/>Value_U{}),<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a97be6a75b21573986b830738c7bcd4a7" kindref="member">in_frame</ref>,<sp/>out_frame_u&gt;</highlight></codeline>
+<codeline lineno="193" refid="structastrea_1_1astro_1_1DcmInterface_1a638b3f83502dd0690135fc50cacb2d31" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">operator</highlight><highlight class="normal">*(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structastrea_1_1astro_1_1DcmInterface" kindref="compound">DcmInterface&lt;Value_U, in_frame_u, out_frame_u&gt;</ref>&amp;<sp/>other)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="194"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="195"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_multiply(other.<ref refid="structastrea_1_1astro_1_1DcmInterface_1a62b273617fa7a7d343353b0ba2837fa1" kindref="member">data</ref>());</highlight></codeline>
+<codeline lineno="196"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="197"><highlight class="normal"></highlight></codeline>
+<codeline lineno="206"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Value_U,<sp/>auto<sp/>in_frame_u&gt;</highlight></codeline>
+<codeline lineno="207"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">requires</highlight><highlight class="normal">(equivalent(<ref refid="structastrea_1_1astro_1_1DcmInterface_1a97be6a75b21573986b830738c7bcd4a7" kindref="member">in_frame</ref>,<sp/>in_frame_u))</highlight></codeline>
+<codeline lineno="208"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/><ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt;</highlight><highlight class="keyword">decltype</highlight><highlight class="normal">(Value_T{}<sp/>*<sp/>Value_U{}),<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1ad1da3a11fbd2eaaf6ceb629c4679b5e0" kindref="member">out_frame</ref>&gt;</highlight></codeline>
+<codeline lineno="209" refid="structastrea_1_1astro_1_1DcmInterface_1a7c7edfbb79b165dd0dc2327b0e0328ec" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">operator</highlight><highlight class="normal">*(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector&lt;Value_U, in_frame_u&gt;</ref>&amp;<sp/>vec)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="210"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="211"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>{<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1abc192d4a40875c4973570c42b97d3fc5" kindref="member">row</ref>(0).<ref refid="structastrea_1_1astro_1_1CartesianVector_1a8123262db04868e5ac160cd71de675b1" kindref="member">dot</ref>(vec),<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1abc192d4a40875c4973570c42b97d3fc5" kindref="member">row</ref>(1).dot(vec),<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1abc192d4a40875c4973570c42b97d3fc5" kindref="member">row</ref>(2).dot(vec)<sp/>};</highlight></codeline>
+<codeline lineno="212"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="213"><highlight class="normal"></highlight></codeline>
+<codeline lineno="220"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Value_U&gt;</highlight></codeline>
+<codeline lineno="221"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">requires</highlight><highlight class="normal">(std::is_arithmetic_v&lt;Value_U&gt;<sp/>||<sp/>mp_units::Quantity&lt;Value_U&gt;)</highlight></codeline>
+<codeline lineno="222" refid="structastrea_1_1astro_1_1DcmInterface_1abc0bff04bbdc1abc84a46a794df38de4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/><ref refid="structastrea_1_1astro_1_1DcmInterface" kindref="compound">DcmInterface</ref>&lt;</highlight><highlight class="keyword">decltype</highlight><highlight class="normal">(Value_T{}<sp/>*<sp/>Value_U{}),<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a97be6a75b21573986b830738c7bcd4a7" kindref="member">in_frame</ref>,<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1ad1da3a11fbd2eaaf6ceb629c4679b5e0" kindref="member">out_frame</ref>&gt;<sp/></highlight><highlight class="keyword">operator</highlight><highlight class="normal">*(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Value_U&amp;<sp/>scalar)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="223"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="224"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>{<sp/>{<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[0]<sp/>*<sp/>scalar,<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[1]<sp/>*<sp/>scalar,<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[2]<sp/>*<sp/>scalar<sp/>},</highlight></codeline>
+<codeline lineno="225"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[3]<sp/>*<sp/>scalar,<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[4]<sp/>*<sp/>scalar,<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[5]<sp/>*<sp/>scalar<sp/>},</highlight></codeline>
+<codeline lineno="226"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[6]<sp/>*<sp/>scalar,<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[7]<sp/>*<sp/>scalar,<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[8]<sp/>*<sp/>scalar<sp/>}<sp/>};</highlight></codeline>
+<codeline lineno="227"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="228"><highlight class="normal"></highlight></codeline>
+<codeline lineno="235" refid="structastrea_1_1astro_1_1DcmInterface_1abc192d4a40875c4973570c42b97d3fc5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/><ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector&lt;Value_T, _in_frame_&gt;</ref><sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1abc192d4a40875c4973570c42b97d3fc5" kindref="member">row</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::size_t&amp;<sp/>idx)</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="236"><highlight class="keyword"><sp/><sp/><sp/><sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="237"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>{<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[idx<sp/>*<sp/>3<sp/>+<sp/>0],<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[idx<sp/>*<sp/>3<sp/>+<sp/>1],<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[idx<sp/>*<sp/>3<sp/>+<sp/>2]<sp/>};</highlight></codeline>
+<codeline lineno="238"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="239"><highlight class="normal"></highlight></codeline>
+<codeline lineno="245" refid="structastrea_1_1astro_1_1DcmInterface_1a125c845e66fc94b94ba7e552dca2ca4e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/><ref refid="structastrea_1_1astro_1_1DcmInterface" kindref="compound">DcmInterface&lt;Value_T, _out_frame_, _in_frame_&gt;</ref><sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a125c845e66fc94b94ba7e552dca2ca4e" kindref="member">transpose</ref>()</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="246"><highlight class="keyword"><sp/><sp/><sp/><sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="247"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>{<sp/>{<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[0],<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[3],<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[6]<sp/>},<sp/>{<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[1],<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[4],<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[7]<sp/>},<sp/>{<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[2],<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[5],<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[8]<sp/>}<sp/>};</highlight></codeline>
+<codeline lineno="248"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="249"><highlight class="normal"></highlight></codeline>
+<codeline lineno="255" refid="structastrea_1_1astro_1_1DcmInterface_1a67c8b821d1bb9ccbfc81961c5fb012da" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/>Value_T<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a67c8b821d1bb9ccbfc81961c5fb012da" kindref="member">trace</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[0]<sp/>+<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[4]<sp/>+<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[8];<sp/>}</highlight></codeline>
+<codeline lineno="256"><highlight class="normal"></highlight></codeline>
+<codeline lineno="262" refid="structastrea_1_1astro_1_1DcmInterface_1a2315bb7302b2c649f58b65947533cf02" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/>Value_T<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a2315bb7302b2c649f58b65947533cf02" kindref="member">determinant</ref>()</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="263"><highlight class="keyword"><sp/><sp/><sp/><sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="264"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[0]<sp/>*<sp/>(<ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[4]<sp/>*<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[8]<sp/>-<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[5]<sp/>*<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[7])<sp/>-</highlight></codeline>
+<codeline lineno="265"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[1]<sp/>*<sp/>(<ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[3]<sp/>*<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[8]<sp/>-<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[5]<sp/>*<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[6])<sp/>+<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[2]<sp/>*<sp/>(<ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[3]<sp/>*<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[7]<sp/>-<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[4]<sp/>*<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[6]);</highlight></codeline>
+<codeline lineno="266"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="267"><highlight class="normal"></highlight></codeline>
+<codeline lineno="275" refid="structastrea_1_1astro_1_1DcmInterface_1afdefad21f497cf49cc1fd6818d03e5d9" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1afdefad21f497cf49cc1fd6818d03e5d9" kindref="member">normalize</ref>()</highlight></codeline>
+<codeline lineno="276"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="277"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/>namespace<sp/></highlight><highlight class="normal">mp_units;</highlight></codeline>
+<codeline lineno="278"><highlight class="normal"></highlight></codeline>
+<codeline lineno="279"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Unitless<sp/>det<sp/>=<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a2315bb7302b2c649f58b65947533cf02" kindref="member">determinant</ref>().force_in(one);</highlight></codeline>
+<codeline lineno="280"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(is_eq_zero(det))<sp/>{</highlight></codeline>
+<codeline lineno="281"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/>std::runtime_error(</highlight><highlight class="stringliteral">&quot;Cannot<sp/>normalize<sp/>a<sp/>zero-value<sp/>determinant<sp/>matrix.<sp/>The<sp/>matrix<sp/>is<sp/>likely<sp/>singular.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="282"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="283"><highlight class="normal"></highlight></codeline>
+<codeline lineno="284"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>For<sp/>3x3<sp/>matrices,<sp/>determinant<sp/>scales<sp/>as<sp/>k^3<sp/>where<sp/>k<sp/>is<sp/>the<sp/>scaling<sp/>factor</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="285"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Use<sp/>linear<sp/>approximation<sp/>when<sp/>determinant<sp/>is<sp/>close<sp/>to<sp/>1:<sp/>k<sp/>≈<sp/>1<sp/>-<sp/>(det-1)/3</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="286"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>https://stackoverflow.com/questions/11667783/quaternion-and-normalization</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="287"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(abs(1.0<sp/>*<sp/>one<sp/>-<sp/>det)<sp/>&lt;<sp/>2.107342e-08<sp/>*<sp/>one)<sp/>{<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1acfc3d24723f5a2201b53310700e070f0" kindref="member">_normalize</ref>(1.0<sp/>*<sp/>one<sp/>-<sp/>(det<sp/>-<sp/>1.0<sp/>*<sp/>one)<sp/>/<sp/>3.0);<sp/>}</highlight></codeline>
+<codeline lineno="288"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="289"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Exact<sp/>formula:<sp/>k<sp/>=<sp/>(1/det)^(1/3)<sp/>to<sp/>make<sp/>k^3<sp/>*<sp/>det<sp/>=<sp/>1</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="290"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1acfc3d24723f5a2201b53310700e070f0" kindref="member">_normalize</ref>(1.0<sp/>*<sp/>one<sp/>/<sp/>cbrt(det));</highlight></codeline>
+<codeline lineno="291"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="292"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="293"><highlight class="normal"></highlight></codeline>
+<codeline lineno="299" refid="structastrea_1_1astro_1_1DcmInterface_1a62b273617fa7a7d343353b0ba2837fa1" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/>std::array&lt;Value_T,<sp/>9&gt;<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a62b273617fa7a7d343353b0ba2837fa1" kindref="member">data</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>;<sp/>}</highlight></codeline>
 <codeline lineno="300"><highlight class="normal"></highlight></codeline>
-<codeline lineno="306" refid="structastrea_1_1astro_1_1DcmInterface_1acfc3d24723f5a2201b53310700e070f0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1acfc3d24723f5a2201b53310700e070f0" kindref="member">_normalize</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Unitless</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">scale</ref>)</highlight></codeline>
-<codeline lineno="307"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
-<codeline lineno="308"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/>namespace<sp/></highlight><highlight class="normal">mp_units;</highlight></codeline>
-<codeline lineno="309"><highlight class="normal"></highlight></codeline>
-<codeline lineno="310"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">element</ref><sp/>:<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>)<sp/>{</highlight></codeline>
-<codeline lineno="311"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">element</ref><sp/>*=<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">scale</ref>;</highlight></codeline>
-<codeline lineno="312"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Avoid<sp/>very<sp/>small<sp/>values<sp/>that<sp/>should<sp/>be<sp/>zero</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="313"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(mp_units::abs(<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">element</ref>)<sp/>&lt;<sp/>1.0e-15<sp/>*<sp/>one)<sp/>{<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">element</ref><sp/>=<sp/>0.0<sp/>*<sp/>one;<sp/>}</highlight></codeline>
-<codeline lineno="314"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="315"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="316"><highlight class="normal"></highlight></codeline>
-<codeline lineno="317"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Helper<sp/>function<sp/>for<sp/>matrix<sp/>multiplication</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="318"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Value_U&gt;</highlight></codeline>
-<codeline lineno="319"><highlight class="normal"><sp/><sp/><sp/><sp/>std::array&lt;</highlight><highlight class="keyword">decltype</highlight><highlight class="normal">(<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Value_T</ref>{}<sp/>*<sp/>Value_U{}),<sp/>9&gt;<sp/>_multiply(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::array&lt;Value_U,<sp/>9&gt;&amp;<sp/>other)</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
-<codeline lineno="320"><highlight class="keyword"><sp/><sp/><sp/><sp/></highlight><highlight class="normal">{</highlight></codeline>
-<codeline lineno="321"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>lmao<sp/>whatever</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="322"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>{<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[0]<sp/>*<sp/>other[0]<sp/>+<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[1]<sp/>*<sp/>other[3]<sp/>+<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[2]<sp/>*<sp/>other[6],</highlight></codeline>
-<codeline lineno="323"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[0]<sp/>*<sp/>other[1]<sp/>+<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[1]<sp/>*<sp/>other[4]<sp/>+<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[2]<sp/>*<sp/>other[7],</highlight></codeline>
-<codeline lineno="324"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[0]<sp/>*<sp/>other[2]<sp/>+<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[1]<sp/>*<sp/>other[5]<sp/>+<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[2]<sp/>*<sp/>other[8],</highlight></codeline>
-<codeline lineno="325"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[3]<sp/>*<sp/>other[0]<sp/>+<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[4]<sp/>*<sp/>other[3]<sp/>+<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[5]<sp/>*<sp/>other[6],</highlight></codeline>
-<codeline lineno="326"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[3]<sp/>*<sp/>other[1]<sp/>+<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[4]<sp/>*<sp/>other[4]<sp/>+<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[5]<sp/>*<sp/>other[7],</highlight></codeline>
-<codeline lineno="327"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[3]<sp/>*<sp/>other[2]<sp/>+<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[4]<sp/>*<sp/>other[5]<sp/>+<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[5]<sp/>*<sp/>other[8],</highlight></codeline>
-<codeline lineno="328"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[6]<sp/>*<sp/>other[0]<sp/>+<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[7]<sp/>*<sp/>other[3]<sp/>+<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[8]<sp/>*<sp/>other[6],</highlight></codeline>
-<codeline lineno="329"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[6]<sp/>*<sp/>other[1]<sp/>+<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[7]<sp/>*<sp/>other[4]<sp/>+<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[8]<sp/>*<sp/>other[7],</highlight></codeline>
-<codeline lineno="330"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[6]<sp/>*<sp/>other[2]<sp/>+<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[7]<sp/>*<sp/>other[5]<sp/>+<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[8]<sp/>*<sp/>other[8]<sp/>};</highlight></codeline>
-<codeline lineno="331"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="332"><highlight class="normal"></highlight></codeline>
-<codeline lineno="338" refid="structastrea_1_1astro_1_1DcmInterface_1abffe5fcb4ea0cb166734e7ffc724681d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/><ref refid="structastrea_1_1astro_1_1DcmInterface" kindref="compound">DcmInterface</ref><sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1abffe5fcb4ea0cb166734e7ffc724681d" kindref="member">identity</ref>()</highlight></codeline>
-<codeline lineno="339"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
-<codeline lineno="340"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>one<sp/>=<sp/>1.0<sp/>*<sp/>Value_T::unit;</highlight></codeline>
-<codeline lineno="341"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>{<sp/>{<sp/>one,<sp/>Value_T::zero(),<sp/>Value_T::zero()<sp/>},</highlight></codeline>
-<codeline lineno="342"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{<sp/>Value_T::zero(),<sp/>one,<sp/>Value_T::zero()<sp/>},</highlight></codeline>
-<codeline lineno="343"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{<sp/>Value_T::zero(),<sp/>Value_T::zero(),<sp/>one<sp/>}<sp/>};</highlight></codeline>
-<codeline lineno="344"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="345"><highlight class="normal"></highlight></codeline>
-<codeline lineno="351" refid="structastrea_1_1astro_1_1DcmInterface_1ad69e7a9e2b853b7dd6d9cedca3bba94d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/><ref refid="structastrea_1_1astro_1_1DcmInterface" kindref="compound">DcmInterface</ref><sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1ad69e7a9e2b853b7dd6d9cedca3bba94d" kindref="member">zero</ref>()</highlight></codeline>
-<codeline lineno="352"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
-<codeline lineno="353"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>{<sp/>{<sp/>Value_T::zero(),<sp/>Value_T::zero(),<sp/>Value_T::zero()<sp/>},</highlight></codeline>
-<codeline lineno="354"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{<sp/>Value_T::zero(),<sp/>Value_T::zero(),<sp/>Value_T::zero()<sp/>},</highlight></codeline>
-<codeline lineno="355"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{<sp/>Value_T::zero(),<sp/>Value_T::zero(),<sp/>Value_T::zero()<sp/>}<sp/>};</highlight></codeline>
-<codeline lineno="356"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="357"><highlight class="normal">};</highlight></codeline>
-<codeline lineno="358"><highlight class="normal"></highlight></codeline>
-<codeline lineno="359"><highlight class="normal"></highlight></codeline>
-<codeline lineno="366"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Value_T,<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Value_U,<sp/>IsFrame<sp/>auto<sp/>in_frame,<sp/>IsFrame<sp/>auto<sp/>out_frame&gt;</highlight></codeline>
-<codeline lineno="367"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">requires</highlight><highlight class="normal">(std::is_arithmetic_v&lt;Value_U&gt;<sp/>||<sp/>mp_units::Quantity&lt;Value_U&gt;)</highlight></codeline>
-<codeline lineno="368"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/>DcmInterface&lt;</highlight><highlight class="keyword">decltype</highlight><highlight class="normal">(Value_T{}<sp/>*<sp/>Value_U{}),<sp/>in_frame,<sp/>out_frame&gt;</highlight></codeline>
-<codeline lineno="369" refid="DcmInterface_8hpp_1a999440c3b33953cfa524ce9b39176e9a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">operator</highlight><highlight class="normal">*(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Value_T</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">scalar</ref>,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">DcmInterface&lt;Value_U, in_frame, out_frame&gt;</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">matrix</ref>)</highlight></codeline>
-<codeline lineno="370"><highlight class="normal">{</highlight></codeline>
-<codeline lineno="371"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">matrix</ref><sp/>*<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">scalar</ref>;</highlight></codeline>
-<codeline lineno="372"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="373"><highlight class="normal"></highlight></codeline>
-<codeline lineno="374"><highlight class="normal"></highlight></codeline>
-<codeline lineno="375"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>astro</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="376"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>astrea</highlight></codeline>
+<codeline lineno="301"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">protected</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="302" refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::array&lt;Value_T,<sp/>9&gt;<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>;<sp/></highlight></codeline>
+<codeline lineno="303"><highlight class="normal"></highlight></codeline>
+<codeline lineno="309" refid="structastrea_1_1astro_1_1DcmInterface_1acfc3d24723f5a2201b53310700e070f0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1acfc3d24723f5a2201b53310700e070f0" kindref="member">_normalize</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Unitless&amp;<sp/>scale)</highlight></codeline>
+<codeline lineno="310"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="311"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/>namespace<sp/></highlight><highlight class="normal">mp_units;</highlight></codeline>
+<codeline lineno="312"><highlight class="normal"></highlight></codeline>
+<codeline lineno="313"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>element<sp/>:<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="314"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>element<sp/>*=<sp/>scale;</highlight></codeline>
+<codeline lineno="315"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Avoid<sp/>very<sp/>small<sp/>values<sp/>that<sp/>should<sp/>be<sp/>zero</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="316"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(mp_units::abs(element)<sp/>&lt;<sp/>1.0e-15<sp/>*<sp/>one)<sp/>{<sp/>element<sp/>=<sp/>0.0<sp/>*<sp/>one;<sp/>}</highlight></codeline>
+<codeline lineno="317"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="318"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="319"><highlight class="normal"></highlight></codeline>
+<codeline lineno="320"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Helper<sp/>function<sp/>for<sp/>matrix<sp/>multiplication</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="321"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Value_U&gt;</highlight></codeline>
+<codeline lineno="322"><highlight class="normal"><sp/><sp/><sp/><sp/>std::array&lt;</highlight><highlight class="keyword">decltype</highlight><highlight class="normal">(Value_T{}<sp/>*<sp/>Value_U{}),<sp/>9&gt;<sp/>_multiply(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::array&lt;Value_U,<sp/>9&gt;&amp;<sp/>other)</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="323"><highlight class="keyword"><sp/><sp/><sp/><sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="324"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>lmao<sp/>whatever</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="325"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>{<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[0]<sp/>*<sp/>other[0]<sp/>+<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[1]<sp/>*<sp/>other[3]<sp/>+<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[2]<sp/>*<sp/>other[6],</highlight></codeline>
+<codeline lineno="326"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[0]<sp/>*<sp/>other[1]<sp/>+<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[1]<sp/>*<sp/>other[4]<sp/>+<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[2]<sp/>*<sp/>other[7],</highlight></codeline>
+<codeline lineno="327"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[0]<sp/>*<sp/>other[2]<sp/>+<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[1]<sp/>*<sp/>other[5]<sp/>+<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[2]<sp/>*<sp/>other[8],</highlight></codeline>
+<codeline lineno="328"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[3]<sp/>*<sp/>other[0]<sp/>+<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[4]<sp/>*<sp/>other[3]<sp/>+<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[5]<sp/>*<sp/>other[6],</highlight></codeline>
+<codeline lineno="329"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[3]<sp/>*<sp/>other[1]<sp/>+<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[4]<sp/>*<sp/>other[4]<sp/>+<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[5]<sp/>*<sp/>other[7],</highlight></codeline>
+<codeline lineno="330"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[3]<sp/>*<sp/>other[2]<sp/>+<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[4]<sp/>*<sp/>other[5]<sp/>+<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[5]<sp/>*<sp/>other[8],</highlight></codeline>
+<codeline lineno="331"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[6]<sp/>*<sp/>other[0]<sp/>+<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[7]<sp/>*<sp/>other[3]<sp/>+<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[8]<sp/>*<sp/>other[6],</highlight></codeline>
+<codeline lineno="332"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[6]<sp/>*<sp/>other[1]<sp/>+<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[7]<sp/>*<sp/>other[4]<sp/>+<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[8]<sp/>*<sp/>other[7],</highlight></codeline>
+<codeline lineno="333"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[6]<sp/>*<sp/>other[2]<sp/>+<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[7]<sp/>*<sp/>other[5]<sp/>+<sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" kindref="member">_data</ref>[8]<sp/>*<sp/>other[8]<sp/>};</highlight></codeline>
+<codeline lineno="334"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="335"><highlight class="normal"></highlight></codeline>
+<codeline lineno="341" refid="structastrea_1_1astro_1_1DcmInterface_1abffe5fcb4ea0cb166734e7ffc724681d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/><ref refid="structastrea_1_1astro_1_1DcmInterface" kindref="compound">DcmInterface</ref><sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1abffe5fcb4ea0cb166734e7ffc724681d" kindref="member">identity</ref>()</highlight></codeline>
+<codeline lineno="342"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="343"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>one<sp/>=<sp/>1.0<sp/>*<sp/>Value_T::unit;</highlight></codeline>
+<codeline lineno="344"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>{<sp/>{<sp/>one,<sp/>Value_T::zero(),<sp/>Value_T::zero()<sp/>},</highlight></codeline>
+<codeline lineno="345"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{<sp/>Value_T::zero(),<sp/>one,<sp/>Value_T::zero()<sp/>},</highlight></codeline>
+<codeline lineno="346"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{<sp/>Value_T::zero(),<sp/>Value_T::zero(),<sp/>one<sp/>}<sp/>};</highlight></codeline>
+<codeline lineno="347"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="348"><highlight class="normal"></highlight></codeline>
+<codeline lineno="354" refid="structastrea_1_1astro_1_1DcmInterface_1ad69e7a9e2b853b7dd6d9cedca3bba94d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/><ref refid="structastrea_1_1astro_1_1DcmInterface" kindref="compound">DcmInterface</ref><sp/><ref refid="structastrea_1_1astro_1_1DcmInterface_1ad69e7a9e2b853b7dd6d9cedca3bba94d" kindref="member">zero</ref>()</highlight></codeline>
+<codeline lineno="355"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="356"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>{<sp/>{<sp/>Value_T::zero(),<sp/>Value_T::zero(),<sp/>Value_T::zero()<sp/>},</highlight></codeline>
+<codeline lineno="357"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{<sp/>Value_T::zero(),<sp/>Value_T::zero(),<sp/>Value_T::zero()<sp/>},</highlight></codeline>
+<codeline lineno="358"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{<sp/>Value_T::zero(),<sp/>Value_T::zero(),<sp/>Value_T::zero()<sp/>}<sp/>};</highlight></codeline>
+<codeline lineno="359"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="360"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="361"><highlight class="normal"></highlight></codeline>
+<codeline lineno="362"><highlight class="normal"></highlight></codeline>
+<codeline lineno="369"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Value_T,<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Value_U,<sp/>IsFrame<sp/>auto<sp/>in_frame,<sp/>IsFrame<sp/>auto<sp/>out_frame&gt;</highlight></codeline>
+<codeline lineno="370"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">requires</highlight><highlight class="normal">(std::is_arithmetic_v&lt;Value_U&gt;<sp/>||<sp/>mp_units::Quantity&lt;Value_U&gt;)</highlight></codeline>
+<codeline lineno="371"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/>DcmInterface&lt;</highlight><highlight class="keyword">decltype</highlight><highlight class="normal">(Value_T{}<sp/>*<sp/>Value_U{}),<sp/>in_frame,<sp/>out_frame&gt;</highlight></codeline>
+<codeline lineno="372" refid="DcmInterface_8hpp_1a999440c3b33953cfa524ce9b39176e9a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">operator</highlight><highlight class="normal">*(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Value_T&amp;<sp/>scalar,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structastrea_1_1astro_1_1DcmInterface" kindref="compound">DcmInterface&lt;Value_U, in_frame, out_frame&gt;</ref>&amp;<sp/>matrix)</highlight></codeline>
+<codeline lineno="373"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="374"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>matrix<sp/>*<sp/>scalar;</highlight></codeline>
+<codeline lineno="375"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="376"><highlight class="normal"></highlight></codeline>
+<codeline lineno="377"><highlight class="normal"></highlight></codeline>
+<codeline lineno="378"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>astro</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="379"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>astrea</highlight></codeline>
     </programlisting>
     <location file="astrea/astro/astro/frames/framework/DcmInterface.hpp"/>
   </compounddef>

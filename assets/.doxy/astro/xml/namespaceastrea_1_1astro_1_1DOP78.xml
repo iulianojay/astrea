@@ -4,7 +4,7 @@
     <compoundname>astrea::astro::DOP78</compoundname>
     <sectiondef kind="var">
       <memberdef kind="variable" id="butcher__tableau_8hpp_1af7e33d6f9a0d4007f12d3b65d746006a" prot="public" static="yes" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> std::size_t</type>
+        <type>const std::size_t</type>
         <definition>const std::size_t astrea::astro::DOP78::nStages</definition>
         <argsstring></argsstring>
         <name>nStages</name>
@@ -19,7 +19,7 @@
         <location file="astrea/astro/astro/propagation/numerical/butcher_tableau.hpp" line="112" column="26" bodyfile="astrea/astro/astro/propagation/numerical/butcher_tableau.hpp" bodystart="112" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="butcher__tableau_8hpp_1a3d61f5e867119d48cead856076ce4355" prot="public" static="yes" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">double</ref></type>
+        <type>const double</type>
         <definition>const double astrea::astro::DOP78::c[13]</definition>
         <argsstring>[13]</argsstring>
         <name>c</name>
@@ -46,7 +46,7 @@
         <location file="astrea/astro/astro/propagation/numerical/butcher_tableau.hpp" line="114" column="21" bodyfile="astrea/astro/astro/propagation/numerical/butcher_tableau.hpp" bodystart="114" bodyend="126"/>
       </memberdef>
       <memberdef kind="variable" id="butcher__tableau_8hpp_1ac5551eda18c7480f4a1f11b4b0ff6a9c" prot="public" static="yes" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">double</ref></type>
+        <type>const double</type>
         <definition>const double astrea::astro::DOP78::b[13]</definition>
         <argsstring>[13]</argsstring>
         <name>b</name>
@@ -73,7 +73,7 @@
         <location file="astrea/astro/astro/propagation/numerical/butcher_tableau.hpp" line="127" column="21" bodyfile="astrea/astro/astro/propagation/numerical/butcher_tableau.hpp" bodystart="127" bodyend="139"/>
       </memberdef>
       <memberdef kind="variable" id="butcher__tableau_8hpp_1a28946925675bbde5d51796d9cd5159e1" prot="public" static="yes" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">double</ref></type>
+        <type>const double</type>
         <definition>const double astrea::astro::DOP78::bhat[13]</definition>
         <argsstring>[13]</argsstring>
         <name>bhat</name>
@@ -100,7 +100,7 @@
         <location file="astrea/astro/astro/propagation/numerical/butcher_tableau.hpp" line="140" column="21" bodyfile="astrea/astro/astro/propagation/numerical/butcher_tableau.hpp" bodystart="140" bodyend="152"/>
       </memberdef>
       <memberdef kind="variable" id="butcher__tableau_8hpp_1a457356af89817f58c40a0b21d3da5a3d" prot="public" static="yes" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">double</ref></type>
+        <type>const double</type>
         <definition>const double astrea::astro::DOP78::a[13][13]</definition>
         <argsstring>[13][13]</argsstring>
         <name>a</name>

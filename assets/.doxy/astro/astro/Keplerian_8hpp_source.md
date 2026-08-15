@@ -14,7 +14,6 @@
 #include <iosfwd>
 
 #include <mp-units/math.h>
-#include <mp-units/systems/angular.h>
 #include <mp-units/systems/si.h>
 
 #include <units/units.hpp>
@@ -136,9 +135,11 @@ class Keplerian {
 
     Time get_orbital_period(const GravParam& mu) const;
 
+    SpecificAngularMomentum get_specific_angular_momentum(const GravParam& mu) const;
+
     Keplerian interpolate(const Time& thisTime, const Time& otherTime, const Keplerian<_frame_>& other, const GravParam& mu, const Time& targetTime) const;
 
-    std::vector<Unitless> force_to_vector() const;
+    std::vector<double> force_to_double_vector() const;
 
     template <IsFrame auto target_frame>
     Keplerian<target_frame> in_frame(const Date& epoch, const GravParam& mu) const;
@@ -156,7 +157,7 @@ class Keplerian {
     Angle interpolate_angle(const std::array<Time, 2>& times, const std::array<Angle, 2>& angles, const Time& targetTime) const;
 
 
-    static Keplerian from_vector(const std::vector<Unitless>& vec);
+    static Keplerian from_double_vector(const std::vector<double>& vec);
 };
 
 template <IsFrame auto _frame_>
@@ -189,7 +190,7 @@ class KeplerianPartial {
 
     Keplerian<_frame_> operator*(const Time& time) const;
 
-    std::vector<Unitless> force_to_vector() const;
+    std::vector<double> force_to_double_vector() const;
 
   private:
     Velocity _semimajorPartial;             

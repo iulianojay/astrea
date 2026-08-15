@@ -16,7 +16,7 @@
 #include <utilities/IdProvider.hpp>
 
 #include <astro/frames/definitions.hpp>
-#include <astro/frames/definitions/dynamic_frames.hpp>
+#include <astro/frames/definitions/dynamic_frames/tags.hpp>
 #include <astro/frames/definitions/primary_frame.hpp>
 #include <astro/frames/framework/CartesianVector.hpp>
 #include <astro/platforms/PayloadPlatform.hpp>

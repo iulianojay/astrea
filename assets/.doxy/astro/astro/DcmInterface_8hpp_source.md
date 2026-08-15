@@ -16,7 +16,7 @@
 #include <iostream>
 
 #include <mp-units/math.h>
-#include <mp-units/systems/angular/math.h>
+#include <mp-units/systems/si/math.h>
 
 #include <utilities/string_util.hpp>
 
@@ -32,6 +32,9 @@ namespace astro {
 
 template <typename Value_T, IsFrame auto _in_frame_, IsFrame auto _out_frame_>
 struct DcmInterface {
+
+    template <typename Value_U, IsFrame auto in_frame_u, IsFrame auto out_frame_u>
+    friend struct DcmInterface;
 
     static constexpr auto in_frame  = _in_frame_;  
     static constexpr auto out_frame = _out_frame_; 

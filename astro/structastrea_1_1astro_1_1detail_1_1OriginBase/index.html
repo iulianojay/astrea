@@ -6242,17 +6242,30 @@ You're not viewing the latest version.
 <p>Inherited by the following classes: <a href="../structastrea_1_1astro_1_1Origin_3_01__name___01_4/">astrea::astro::Origin&lt; _name_ &gt;</a>,  <a href="../structastrea_1_1astro_1_1Origin_3_01__name___00_01__parent___01_4/">astrea::astro::Origin&lt; _name_, _parent_ &gt;</a></p>
 <h2 id="friends-documentation">Friends Documentation<a class="headerlink" href="#friends-documentation" title="Permanent link">&para;</a></h2>
 <h3 id="friend-equivalent">friend equivalent<a class="headerlink" href="#friend-equivalent" title="Permanent link">&para;</a></h3>
+<p><em>Checks if two frames are equivalent, considering their parent frames and any fixed offsets (spatial or angular).</em> 
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">template</span><span class="o">&lt;</span><span class="n">IsOrigin</span><span class="w"> </span><span class="n">Lhs</span><span class="p">,</span><span class="w"> </span><span class="n">IsOrigin</span><span class="w"> </span><span class="n">Rhs</span><span class="o">&gt;</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="kr">inline</span><span class="w"> </span><span class="k">consteval</span><span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">detail</span><span class="o">::</span><span class="n">OriginBase</span><span class="o">::</span><span class="n">equivalent</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="kr">inline</span><span class="w"> </span><span class="k">consteval</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">detail</span><span class="o">::</span><span class="n">OriginBase</span><span class="o">::</span><span class="n">equivalent</span><span class="w"> </span><span class="p">(</span>
 </span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="n">Lhs</span><span class="w"> </span><span class="n">lhs</span><span class="p">,</span>
 </span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="n">Rhs</span><span class="w"> </span><span class="n">rhs</span>
 </span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="p">)</span><span class="w"> </span>
-</span></code></pre></div>
+</span></code></pre></div></p>
+<p><strong>Template parameters:</strong></p>
+<ul>
+<li><code>Lhs</code> The type of the left-hand side frame. </li>
+<li><code>Rhs</code> The type of the right-hand side frame. </li>
+</ul>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>lhs</code> The left-hand side frame instance. </li>
+<li><code>rhs</code> The right-hand side frame instance. </li>
+</ul>
+<p><strong>Returns:</strong></p>
+<p>true if both frames are equivalent, false otherwise. </p>
 <hr>
 
 <h3 id="friend-operator">friend operator==<a class="headerlink" href="#friend-operator" title="Permanent link">&para;</a></h3>
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">template</span><span class="o">&lt;</span><span class="n">IsOrigin</span><span class="w"> </span><span class="n">Lhs</span><span class="p">,</span><span class="w"> </span><span class="n">IsOrigin</span><span class="w"> </span><span class="n">Rhs</span><span class="o">&gt;</span>
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="kr">inline</span><span class="w"> </span><span class="k">consteval</span><span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">detail</span><span class="o">::</span><span class="n">OriginBase</span><span class="o">::</span><span class="k">operator</span><span class="o">==</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="kr">inline</span><span class="w"> </span><span class="k">consteval</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">detail</span><span class="o">::</span><span class="n">OriginBase</span><span class="o">::</span><span class="k">operator</span><span class="o">==</span><span class="w"> </span><span class="p">(</span>
 </span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="n">Lhs</span><span class="p">,</span>
 </span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">    </span><span class="n">Rhs</span>
 </span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="p">)</span><span class="w"> </span>

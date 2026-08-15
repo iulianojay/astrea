@@ -10,6 +10,7 @@
 * **APOAPSIS** ([**astrea::astro::GeneralPerturbations**](structastrea_1_1astro_1_1GeneralPerturbations.md))
 * **ARG\_OF\_PERICENTER** ([**astrea::astro::GeneralPerturbations**](structastrea_1_1astro_1_1GeneralPerturbations.md))
 * **absTol** ([**astrea::astro::IntegratorSettings**](structastrea_1_1astro_1_1IntegratorSettings.md))
+* **alt** ([**astrea::astro::TopocentricFrame**](structastrea_1_1astro_1_1TopocentricFrame.md))
 * **atmosphereModel** ([**astrea::astro::planets::EarthParameters**](structastrea_1_1astro_1_1planets_1_1EarthParameters.md))
 * **AR\_MASS** ([**astrea::astro::planets::NRLMSISE00**](classastrea_1_1astro_1_1planets_1_1NRLMSISE00.md))
 * **ap** ([**astrea::astro::planets::NRLMSISE00::Output**](classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Output.md))
@@ -19,7 +20,7 @@
 
 ## b
 
-* **body** ([**astrea::astro::Cylindrical**](classastrea_1_1astro_1_1Cylindrical.md), [**astrea::astro::Geocentric**](classastrea_1_1astro_1_1Geocentric.md), [**astrea::astro::Geodetic**](classastrea_1_1astro_1_1Geodetic.md), [**astrea::astro::Spherical**](classastrea_1_1astro_1_1Spherical.md))
+* **body** ([**astrea::astro::Cylindrical**](classastrea_1_1astro_1_1Cylindrical.md), [**astrea::astro::Geocentric**](classastrea_1_1astro_1_1Geocentric.md), [**astrea::astro::Geodetic**](classastrea_1_1astro_1_1Geodetic.md), [**astrea::astro::Spherical**](classastrea_1_1astro_1_1Spherical.md), [**astrea::astro::TopocentricFrame**](structastrea_1_1astro_1_1TopocentricFrame.md))
 * **BSTAR** ([**astrea::astro::GeneralPerturbations**](structastrea_1_1astro_1_1GeneralPerturbations.md))
 
 
@@ -94,6 +95,7 @@
 ## g
 
 * **geocentric\_axes** ([**astrea::astro::CelestialBody**](structastrea_1_1astro_1_1CelestialBody.md))
+* **gravityCoefficientFile** ([**astrea::astro::CelestialBodyParameters**](structastrea_1_1astro_1_1CelestialBodyParameters.md))
 * **GP\_ID** ([**astrea::astro::GeneralPerturbations**](structastrea_1_1astro_1_1GeneralPerturbations.md))
 * **G\_REF** ([**astrea::astro::planets::NRLMSISE00**](classastrea_1_1astro_1_1planets_1_1NRLMSISE00.md))
 * **glat** ([**astrea::astro::planets::NRLMSISE00::Output**](classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Output.md))
@@ -139,9 +141,9 @@
 * **longitudeOfPerigeeRate** ([**astrea::astro::CelestialBodyParameters**](structastrea_1_1astro_1_1CelestialBodyParameters.md))
 * **LAUNCH\_DATE** ([**astrea::astro::GeneralPerturbations**](structastrea_1_1astro_1_1GeneralPerturbations.md))
 * **Lg** ([**astrea::astro::GeocentricCoordinateTimeClock**](structastrea_1_1astro_1_1GeocentricCoordinateTimeClock.md))
+* **lat** ([**astrea::astro::TopocentricFrame**](structastrea_1_1astro_1_1TopocentricFrame.md), [**astrea::astro::planets::NRLMSISE00::Output**](classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Output.md))
+* **lon** ([**astrea::astro::TopocentricFrame**](structastrea_1_1astro_1_1TopocentricFrame.md), [**astrea::astro::planets::NRLMSISE00::Output**](classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Output.md))
 * **LAT\_REF** ([**astrea::astro::planets::NRLMSISE00**](classastrea_1_1astro_1_1planets_1_1NRLMSISE00.md))
-* **lat** ([**astrea::astro::planets::NRLMSISE00::Output**](classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Output.md))
-* **lon** ([**astrea::astro::planets::NRLMSISE00::Output**](classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Output.md))
 
 
 ## m
@@ -193,7 +195,7 @@
 
 ## p
 
-* **parent** ([**astrea::astro::Axis&lt; \_name\_, \_parent\_ &gt;**](structastrea_1_1astro_1_1Axis_3_01__name___00_01__parent___01_4.md), [**astrea::astro::DynamicFrame**](structastrea_1_1astro_1_1DynamicFrame.md), [**astrea::astro::Frame&lt; \_name\_, \_origin\_, \_axis\_, \_parent\_ &gt;**](structastrea_1_1astro_1_1Frame_3_01__name___00_01__origin___00_01__axis___00_01__parent___01_4.md), [**astrea::astro::Origin&lt; \_name\_, \_parent\_ &gt;**](structastrea_1_1astro_1_1Origin_3_01__name___00_01__parent___01_4.md), [**astrea::astro::frames::LocalHorizontalLocalVertical**](structastrea_1_1astro_1_1frames_1_1LocalHorizontalLocalVertical.md), [**astrea::astro::frames::RadialInTrackCrossTrack**](structastrea_1_1astro_1_1frames_1_1RadialInTrackCrossTrack.md), [**astrea::astro::frames::VelocityNormalBinormal**](structastrea_1_1astro_1_1frames_1_1VelocityNormalBinormal.md))
+* **parent** ([**astrea::astro::Axis&lt; \_name\_, \_parent\_ &gt;**](structastrea_1_1astro_1_1Axis_3_01__name___00_01__parent___01_4.md), [**astrea::astro::DynamicFrame**](structastrea_1_1astro_1_1DynamicFrame.md), [**astrea::astro::Frame&lt; \_name\_, \_origin\_, \_axis\_, \_parent\_ &gt;**](structastrea_1_1astro_1_1Frame_3_01__name___00_01__origin___00_01__axis___00_01__parent___01_4.md), [**astrea::astro::Origin&lt; \_name\_, \_parent\_ &gt;**](structastrea_1_1astro_1_1Origin_3_01__name___00_01__parent___01_4.md), [**astrea::astro::frames::LocalHorizontalLocalVertical**](structastrea_1_1astro_1_1frames_1_1LocalHorizontalLocalVertical.md), [**astrea::astro::frames::Perifocal**](structastrea_1_1astro_1_1frames_1_1Perifocal.md), [**astrea::astro::frames::RadialInTrackCrossTrack**](structastrea_1_1astro_1_1frames_1_1RadialInTrackCrossTrack.md), [**astrea::astro::frames::VelocityNormalBinormal**](structastrea_1_1astro_1_1frames_1_1VelocityNormalBinormal.md))
 * **P0** ([**astrea::astro::BarycentricCoordinateTimeClock**](structastrea_1_1astro_1_1BarycentricCoordinateTimeClock.md))
 * **polarRadius** ([**astrea::astro::CelestialBodyParameters**](structastrea_1_1astro_1_1CelestialBodyParameters.md))
 * **phi** ([**astrea::astro::FixedOffsetAxis::Misalignment**](structastrea_1_1astro_1_1FixedOffsetAxis_1_1Misalignment.md))
@@ -267,7 +269,7 @@
 * **torque** ([**astrea::astro::Perturbation**](structastrea_1_1astro_1_1Perturbation.md))
 * **tt\_tai\_offset** ([**astrea::astro::TerrestrialTimeClock**](structastrea_1_1astro_1_1TerrestrialTimeClock.md))
 * **TwoLineElementsPartial** ([**astrea::astro::TwoLineElements**](classastrea_1_1astro_1_1TwoLineElements.md))
-* **tag** ([**astrea::astro::frames::EastNorthUp**](structastrea_1_1astro_1_1frames_1_1EastNorthUp.md), [**astrea::astro::frames::LocalHorizontalLocalVertical**](structastrea_1_1astro_1_1frames_1_1LocalHorizontalLocalVertical.md), [**astrea::astro::frames::RadialInTrackCrossTrack**](structastrea_1_1astro_1_1frames_1_1RadialInTrackCrossTrack.md), [**astrea::astro::frames::VelocityNormalBinormal**](structastrea_1_1astro_1_1frames_1_1VelocityNormalBinormal.md))
+* **tag** ([**astrea::astro::frames::EastNorthUp**](structastrea_1_1astro_1_1frames_1_1EastNorthUp.md), [**astrea::astro::frames::LocalHorizontalLocalVertical**](structastrea_1_1astro_1_1frames_1_1LocalHorizontalLocalVertical.md), [**astrea::astro::frames::Perifocal**](structastrea_1_1astro_1_1frames_1_1Perifocal.md), [**astrea::astro::frames::RadialInTrackCrossTrack**](structastrea_1_1astro_1_1frames_1_1RadialInTrackCrossTrack.md), [**astrea::astro::frames::VelocityNormalBinormal**](structastrea_1_1astro_1_1frames_1_1VelocityNormalBinormal.md))
 * **TN11** ([**astrea::astro::planets::BatesProfileParams**](structastrea_1_1astro_1_1planets_1_1BatesProfileParams.md))
 * **TN12** ([**astrea::astro::planets::BatesProfileParams**](structastrea_1_1astro_1_1planets_1_1BatesProfileParams.md))
 * **TN13** ([**astrea::astro::planets::BatesProfileParams**](structastrea_1_1astro_1_1planets_1_1BatesProfileParams.md))
@@ -405,6 +407,7 @@
 * **\_trueAnomalyPartial** ([**astrea::astro::KeplerianPartial**](classastrea_1_1astro_1_1KeplerianPartial.md))
 * **\_C** ([**astrea::astro::LegendreCache**](classastrea_1_1astro_1_1LegendreCache.md))
 * **\_S** ([**astrea::astro::LegendreCache**](classastrea_1_1astro_1_1LegendreCache.md))
+* **\_span** ([**astrea::astro::LegendreCache**](classastrea_1_1astro_1_1LegendreCache.md))
 * **\_mass** ([**astrea::astro::NullVehicle**](classastrea_1_1astro_1_1NullVehicle.md), [**astrea::astro::Spacecraft**](classastrea_1_1astro_1_1Spacecraft.md), [**astrea::astro::Vehicle**](classastrea_1_1astro_1_1Vehicle.md))
 * **\_legendreCache** ([**astrea::astro::OblatenessForce**](classastrea_1_1astro_1_1OblatenessForce.md))
 * **\_elements** ([**astrea::astro::OrbitalElementPartials**](classastrea_1_1astro_1_1OrbitalElementPartials.md), [**astrea::astro::OrbitalElements**](classastrea_1_1astro_1_1OrbitalElements.md), [**astrea::astro::State**](classastrea_1_1astro_1_1State.md), [**astrea::astro::TwoLineElements**](classastrea_1_1astro_1_1TwoLineElements.md))

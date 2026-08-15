@@ -35,9 +35,9 @@
 
 | Type | Name |
 | ---: | :--- |
-|  [**Distance**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**x**](#variable-x)  <br> |
-|  [**Distance**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**y**](#variable-y)  <br> |
-|  [**Distance**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**z**](#variable-z)  <br> |
+|  Distance | [**x**](#variable-x)  <br> |
+|  Distance | [**y**](#variable-y)  <br> |
+|  Distance | [**z**](#variable-z)  <br> |
 
 
 

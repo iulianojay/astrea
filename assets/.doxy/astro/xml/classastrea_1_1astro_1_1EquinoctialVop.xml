@@ -6,12 +6,12 @@
     <includes refid="EquinoctialVop_8hpp" local="no">EquinoctialVop.hpp</includes>
     <sectiondef kind="private-attrib">
       <memberdef kind="variable" id="classastrea_1_1astro_1_1EquinoctialVop_1a3d592a71a7e6407e9e058984543dc64c" prot="private" static="no" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Unitless</ref></type>
+        <type>const Unitless</type>
         <definition>const Unitless astrea::astro::EquinoctialVop::checkTol</definition>
         <argsstring></argsstring>
         <name>checkTol</name>
         <qualifiedname>astrea::astro::EquinoctialVop::checkTol</qualifiedname>
-        <initializer>= 1<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e</ref>-10 * mp_units::one</initializer>
+        <initializer>= 1e-10 * mp_units::one</initializer>
         <briefdescription>
 <para>Tolerance for checking conditions. </para>
         </briefdescription>
@@ -19,7 +19,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/propagation/equations_of_motion/EquinoctialVop.hpp" line="75" column="20" bodyfile="astrea/astro/astro/propagation/equations_of_motion/EquinoctialVop.hpp" bodystart="75" bodyend="-1"/>
+        <location file="astrea/astro/astro/propagation/equations_of_motion/EquinoctialVop.hpp" line="85" column="20" bodyfile="astrea/astro/astro/propagation/equations_of_motion/EquinoctialVop.hpp" bodystart="85" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="public-func">
@@ -30,7 +30,7 @@
         <name>EquinoctialVop</name>
         <qualifiedname>astrea::astro::EquinoctialVop::EquinoctialVop</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1ForceModel" kindref="compound">ForceModel</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1ForceModel" kindref="compound">ForceModel</ref> &amp;</type>
           <declname>forces</declname>
         </param>
         <briefdescription>
@@ -50,7 +50,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/propagation/equations_of_motion/EquinoctialVop.hpp" line="42" column="5" bodyfile="astrea/astro/astro/propagation/equations_of_motion/EquinoctialVop.cpp" bodystart="40" bodyend="43"/>
+        <location file="astrea/astro/astro/propagation/equations_of_motion/EquinoctialVop.hpp" line="42" column="5" bodyfile="astrea/astro/astro/propagation/equations_of_motion/EquinoctialVop.cpp" bodystart="38" bodyend="41"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1EquinoctialVop_1aa94667f60c270e8a1a5a43ef63dbeea5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -75,19 +75,19 @@
         <qualifiedname>astrea::astro::EquinoctialVop::compute_dynamics</qualifiedname>
         <reimplements refid="classastrea_1_1astro_1_1EquationsOfMotion_1ab67532d179cbb6702762357fbfac1d2b">compute_dynamics</reimplements>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
           <declname>state</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Vehicle" kindref="compound">Vehicle</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Vehicle" kindref="compound">Vehicle</ref> &amp;</type>
           <declname>vehicle</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="typedefs_8hpp_1a5aa05e5cfe7a19c3304a534401cf2fc1" kindref="member">ForceVector</ref>&lt; frames::primary &gt; &amp;</type>
+          <type>const <ref refid="typedefs_8hpp_1a5aa05e5cfe7a19c3304a534401cf2fc1" kindref="member">ForceVector</ref>&lt; frames::primary &gt; &amp;</type>
           <declname>perts</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="typedefs_8hpp_1a5aa05e5cfe7a19c3304a534401cf2fc1" kindref="member">ForceVector</ref>&lt; frames::primary &gt; &amp;</type>
+          <type>const <ref refid="typedefs_8hpp_1a5aa05e5cfe7a19c3304a534401cf2fc1" kindref="member">ForceVector</ref>&lt; frames::primary &gt; &amp;</type>
           <declname>control</declname>
         </param>
         <briefdescription>
@@ -133,10 +133,10 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/propagation/equations_of_motion/EquinoctialVop.hpp" line="60" column="28" bodyfile="astrea/astro/astro/propagation/equations_of_motion/EquinoctialVop.cpp" bodystart="45" bodyend="99"/>
+        <location file="astrea/astro/astro/propagation/equations_of_motion/EquinoctialVop.hpp" line="60" column="28" bodyfile="astrea/astro/astro/propagation/equations_of_motion/EquinoctialVop.cpp" bodystart="43" bodyend="97"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1EquinoctialVop_1a83b671e8cbcc944ede70026e9788c152" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" virt="virtual">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> std::size_t</type>
+        <type>constexpr std::size_t</type>
         <definition>constexpr std::size_t astrea::astro::EquinoctialVop::get_expected_set_id</definition>
         <argsstring>() const override</argsstring>
         <name>get_expected_set_id</name>
@@ -152,7 +152,26 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/propagation/equations_of_motion/EquinoctialVop.hpp" line="72" column="27" bodyfile="astrea/astro/astro/propagation/equations_of_motion/EquinoctialVop.hpp" bodystart="72" bodyend="72"/>
+        <location file="astrea/astro/astro/propagation/equations_of_motion/EquinoctialVop.hpp" line="72" column="27" bodyfile="astrea/astro/astro/propagation/equations_of_motion/EquinoctialVop.hpp" bodystart="72" bodyend="75"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1EquinoctialVop_1a7b16e6f04768e49135ef2713dcffb181" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type>std::unique_ptr&lt; <ref refid="classastrea_1_1astro_1_1EquationsOfMotion" kindref="compound">EquationsOfMotion</ref> &gt;</type>
+        <definition>std::unique_ptr&lt; EquationsOfMotion &gt; astrea::astro::EquinoctialVop::clone</definition>
+        <argsstring>() const override</argsstring>
+        <name>clone</name>
+        <qualifiedname>astrea::astro::EquinoctialVop::clone</qualifiedname>
+        <reimplements refid="classastrea_1_1astro_1_1EquationsOfMotion_1ad5dc873c125475e764c2ef09c520db5b">clone</reimplements>
+        <briefdescription>
+<para>Creates a clone of the current <ref refid="classastrea_1_1astro_1_1Equinoctial" kindref="compound">Equinoctial</ref> VOP object. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>std::unique_ptr&lt;EquationsOfMotion&gt; A unique pointer to the cloned <ref refid="classastrea_1_1astro_1_1Equinoctial" kindref="compound">Equinoctial</ref> VOP object. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/equations_of_motion/EquinoctialVop.hpp" line="82" column="21" bodyfile="astrea/astro/astro/propagation/equations_of_motion/EquinoctialVop.hpp" bodystart="82" bodyend="82"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
@@ -191,16 +210,17 @@
         <link refid="classastrea_1_1astro_1_1ForceModel"/>
       </node>
     </collaborationgraph>
-    <location file="astrea/astro/astro/propagation/equations_of_motion/EquinoctialVop.hpp" line="34" column="1" bodyfile="astrea/astro/astro/propagation/equations_of_motion/EquinoctialVop.hpp" bodystart="34" bodyend="76"/>
+    <location file="astrea/astro/astro/propagation/equations_of_motion/EquinoctialVop.hpp" line="34" column="1" bodyfile="astrea/astro/astro/propagation/equations_of_motion/EquinoctialVop.hpp" bodystart="34" bodyend="86"/>
     <listofallmembers>
       <member refid="classastrea_1_1astro_1_1EquinoctialVop_1a3d592a71a7e6407e9e058984543dc64c" prot="private" virt="non-virtual"><scope>astrea::astro::EquinoctialVop</scope><name>checkTol</name></member>
+      <member refid="classastrea_1_1astro_1_1EquinoctialVop_1a7b16e6f04768e49135ef2713dcffb181" prot="public" virt="virtual"><scope>astrea::astro::EquinoctialVop</scope><name>clone</name></member>
       <member refid="classastrea_1_1astro_1_1EquinoctialVop_1a0461ca48063861fe8af119b969551b8a" prot="public" virt="virtual"><scope>astrea::astro::EquinoctialVop</scope><name>compute_dynamics</name></member>
       <member refid="classastrea_1_1astro_1_1EquationsOfMotion_1afe9c17968d211df71622538a6773198b" prot="public" virt="virtual"><scope>astrea::astro::EquinoctialVop</scope><name>compute_kinematics</name></member>
       <member refid="classastrea_1_1astro_1_1EquationsOfMotion_1a6ce5bf0e6d75ba1061654281151ad604" prot="public" virt="virtual"><scope>astrea::astro::EquinoctialVop</scope><name>compute_stm</name></member>
       <member refid="classastrea_1_1astro_1_1EquationsOfMotion_1a9314c62e49ba5c7e0cf8a632afca3fd4" prot="public" virt="non-virtual"><scope>astrea::astro::EquinoctialVop</scope><name>EquationsOfMotion</name></member>
       <member refid="classastrea_1_1astro_1_1EquationsOfMotion_1a4eec33fb06db4d14c79cdfb0926cf3f4" prot="public" virt="non-virtual"><scope>astrea::astro::EquinoctialVop</scope><name>EquationsOfMotion</name></member>
       <member refid="classastrea_1_1astro_1_1EquinoctialVop_1a84a7175e292f8590c9b462b2258d4703" prot="public" virt="non-virtual"><scope>astrea::astro::EquinoctialVop</scope><name>EquinoctialVop</name></member>
-      <member refid="classastrea_1_1astro_1_1EquationsOfMotion_1accb3b6b22bed036ca28ae4b4f592028a" prot="protected" virt="non-virtual"><scope>astrea::astro::EquinoctialVop</scope><name>forces</name></member>
+      <member refid="classastrea_1_1astro_1_1EquationsOfMotion_1a7a83d5daad504e281d7edf9bb56c6b7b" prot="protected" virt="non-virtual"><scope>astrea::astro::EquinoctialVop</scope><name>forces</name></member>
       <member refid="classastrea_1_1astro_1_1EquinoctialVop_1a83b671e8cbcc944ede70026e9788c152" prot="public" virt="virtual"><scope>astrea::astro::EquinoctialVop</scope><name>get_expected_set_id</name></member>
       <member refid="classastrea_1_1astro_1_1EquationsOfMotion_1ac1569de5b87e21bb5812c3f28e695396" prot="public" virt="non-virtual"><scope>astrea::astro::EquinoctialVop</scope><name>operator()</name></member>
       <member refid="classastrea_1_1astro_1_1EquationsOfMotion_1ad66256a4c474903ebdb258eb9c2b94dc" prot="public" virt="virtual"><scope>astrea::astro::EquinoctialVop</scope><name>~EquationsOfMotion</name></member>

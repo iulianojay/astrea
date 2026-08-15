@@ -11,34 +11,12 @@
 
 #pragma once
 
-#include <astro/frames/definitions/EastNorthUp.hpp>
-#include <astro/frames/definitions/LocalHorizontalLocalVertical.hpp>
-#include <astro/frames/definitions/RadialInTrackCrossTrack.hpp>
-#include <astro/frames/definitions/VelocityNormalBinormal.hpp>
-#include <astro/frames/definitions/frame_registry.hpp>
-#include <astro/frames/framework/DynamicFrame.hpp>
-#include <astro/frames/framework/Frame.hpp>
-
-namespace astrea {
-namespace astro {
-namespace frames {
-namespace dynamic {
-
-inline constexpr struct body final : Frame<"body", DynamicOrigin{}, DynamicAxis{}> {
-} body;
-
-inline constexpr EastNorthUpTag<frames::primary> enu{};
-
-inline constexpr LvlhTag<frames::primary> lvlh{};
-
-inline constexpr RicTag<frames::primary> ric{};
-
-inline constexpr VnbTag<frames::primary> vnb{};
-
-} // namespace dynamic
-} // namespace frames
-} // namespace astro
-} // namespace astrea
+#include <astro/frames/definitions/dynamic_frames/EastNorthUp.hpp>
+#include <astro/frames/definitions/dynamic_frames/LocalHorizontalLocalVertical.hpp>
+#include <astro/frames/definitions/dynamic_frames/Perifocal.hpp>
+#include <astro/frames/definitions/dynamic_frames/RadialInTrackCrossTrack.hpp>
+#include <astro/frames/definitions/dynamic_frames/VelocityNormalBinormal.hpp>
+#include <astro/frames/definitions/dynamic_frames/tags.hpp>
 ```
 
 

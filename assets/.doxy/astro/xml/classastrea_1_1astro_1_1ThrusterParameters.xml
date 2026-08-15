@@ -6,7 +6,7 @@
     <includes refid="Thruster_8hpp" local="no">Thruster.hpp</includes>
     <sectiondef kind="protected-attrib">
       <memberdef kind="variable" id="classastrea_1_1astro_1_1ThrusterParameters_1ac10d9d2890fd0f63733ca0ca105f8b17" prot="protected" static="no" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Force</ref></type>
+        <type>Force</type>
         <definition>Force astrea::astro::ThrusterParameters::_thrust</definition>
         <argsstring></argsstring>
         <name>_thrust</name>
@@ -21,12 +21,12 @@
         <location file="astrea/astro/astro/platforms/thrusters/Thruster.hpp" line="83" column="11" bodyfile="astrea/astro/astro/platforms/thrusters/Thruster.hpp" bodystart="83" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1ThrusterParameters_1a8b2b0b810cdd5bcdf0f8e7cb689499e8" prot="protected" static="no" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">bool</ref></type>
+        <type>bool</type>
         <definition>bool astrea::astro::ThrusterParameters::_isOn</definition>
         <argsstring></argsstring>
         <name>_isOn</name>
         <qualifiedname>astrea::astro::ThrusterParameters::_isOn</qualifiedname>
-        <initializer>= <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">false</ref></initializer>
+        <initializer>= false</initializer>
         <briefdescription>
 <para><ref refid="classastrea_1_1astro_1_1Thruster" kindref="compound">Thruster</ref> state (on/off) </para>
         </briefdescription>
@@ -45,16 +45,16 @@
         <name>ThrusterParameters</name>
         <qualifiedname>astrea::astro::ThrusterParameters::ThrusterParameters</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Force</ref> &amp;</type>
+          <type>const Force &amp;</type>
           <declname>thrust</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Distance</ref>, frames::dynamic::ric &gt; &amp;</type>
+          <type>const <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; Distance, frames::dynamic::ric &gt; &amp;</type>
           <declname>boresight</declname>
           <defval>NADIR_RIC</defval>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Distance</ref>, frames::dynamic::ric &gt; &amp;</type>
+          <type>const <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; Distance, frames::dynamic::ric &gt; &amp;</type>
           <declname>attachmentPoint</declname>
           <defval>CENTER</defval>
         </param>
@@ -101,7 +101,7 @@
         <location file="astrea/astro/astro/platforms/thrusters/Thruster.hpp" line="56" column="13"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1ThrusterParameters_1a371ba45ffdccfaae9c2a96b555ee2f8b" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Force</ref></type>
+        <type>Force</type>
         <definition>Force astrea::astro::ThrusterParameters::get_thrust</definition>
         <argsstring>() const</argsstring>
         <name>get_thrust</name>
@@ -119,7 +119,7 @@
         <location file="astrea/astro/astro/platforms/thrusters/Thruster.hpp" line="63" column="11" bodyfile="astrea/astro/astro/platforms/thrusters/Thruster.hpp" bodystart="63" bodyend="63"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1ThrusterParameters_1a3a7daa392e69d7e86930f9c8832be2bd" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">bool</ref></type>
+        <type>bool</type>
         <definition>bool astrea::astro::ThrusterParameters::is_on</definition>
         <argsstring>() const</argsstring>
         <name>is_on</name>
@@ -144,7 +144,7 @@
         <location file="astrea/astro/astro/platforms/thrusters/Thruster.hpp" line="70" column="10" bodyfile="astrea/astro/astro/platforms/thrusters/Thruster.hpp" bodystart="70" bodyend="70"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1ThrusterParameters_1ace7d8bf1633505f9615479a613bb48b2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">void</ref></type>
+        <type>void</type>
         <definition>void astrea::astro::ThrusterParameters::switch_on</definition>
         <argsstring>()</argsstring>
         <name>switch_on</name>
@@ -159,7 +159,7 @@
         <location file="astrea/astro/astro/platforms/thrusters/Thruster.hpp" line="75" column="10" bodyfile="astrea/astro/astro/platforms/thrusters/Thruster.hpp" bodystart="75" bodyend="75"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1ThrusterParameters_1abf2f0f642363e5ae704511e654664713" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">void</ref></type>
+        <type>void</type>
         <definition>void astrea::astro::ThrusterParameters::switch_off</definition>
         <argsstring>()</argsstring>
         <name>switch_off</name>

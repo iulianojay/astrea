@@ -2,7 +2,7 @@
 
 # Struct astrea::astro::BodyFixedFrame
 
-**template &lt;mp\_units::symbol\_text \_name\_, IsCelestialBody [**auto**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) \_origin\_, IsAxis [**auto**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) \_axis\_&gt;**
+**template &lt;mp\_units::symbol\_text \_name\_, IsCelestialBody auto \_origin\_, IsAxis auto \_axis\_&gt;**
 
 
 

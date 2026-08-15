@@ -2,7 +2,7 @@
 
 # Class astrea::astro::Shell
 
-**template &lt;[**class**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Spacecraft\_T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)&gt;**
+**template &lt;class Spacecraft\_T&gt;**
 
 
 
@@ -39,7 +39,7 @@ _A_ [_**Shell**_](classastrea_1_1astro_1_1Shell.md) _is a collection of planes, 
 
 | Type | Name |
 | ---: | :--- |
-| typedef [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**sat\_iterator**](classastrea_1_1astro_1_1Shell_1_1sat__iterator.md) | [**const\_iterator**](#typedef-const_iterator)  <br>_Const iterator for iterating over all Planes in the_ [_**Shell**_](classastrea_1_1astro_1_1Shell.md) _._ |
+| typedef const [**sat\_iterator**](classastrea_1_1astro_1_1Shell_1_1sat__iterator.md) | [**const\_iterator**](#typedef-const_iterator)  <br>_Const iterator for iterating over all Planes in the_ [_**Shell**_](classastrea_1_1astro_1_1Shell.md) _._ |
 | typedef [**sat\_iterator**](classastrea_1_1astro_1_1Shell_1_1sat__iterator.md) | [**iterator**](#typedef-iterator)  <br>_Iterator for iterating over all Planes in the_ [_**Shell**_](classastrea_1_1astro_1_1Shell.md) _._ |
 
 
@@ -66,28 +66,28 @@ _A_ [_**Shell**_](classastrea_1_1astro_1_1Shell.md) _is a collection of planes, 
 | Type | Name |
 | ---: | :--- |
 |   | [**Shell**](#function-shell-14) () = default<br>_Default constructor for_ [_**Shell**_](classastrea_1_1astro_1_1Shell.md) _. Initializes an empty shell with no planes or spacecraft._ |
-|   | [**Shell**](#function-shell-24) (std::vector&lt; [**Plane**](classastrea_1_1astro_1_1Plane.md)&lt; [**Spacecraft\_T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt; &gt; planes) <br>_Constructor for_ [_**Shell**_](classastrea_1_1astro_1_1Shell.md) _with a vector of planes._ |
-|   | [**Shell**](#function-shell-34) (std::vector&lt; [**Spacecraft\_T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt; satellites) <br>_Constructor for_ [_**Shell**_](classastrea_1_1astro_1_1Shell.md) _with a vector of satellites._ |
-|   | [**Shell**](#function-shell-44) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Date**](classastrea_1_1astro_1_1Date.md) & epoch, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Distance**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & semimajor, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Angle**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & inclination, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) std::size\_t & T, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) std::size\_t & P, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Unitless**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & F, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Angle**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & anchorRAAN=0.0 \*mp\_units::angular::unit\_symbols::rad, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Angle**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & anchorAnomaly=0.0 \*mp\_units::angular::unit\_symbols::rad) <br>_Constructor for_ [_**Shell**_](classastrea_1_1astro_1_1Shell.md) _with a Walker parameters._ |
-|  [**void**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**add\_plane**](#function-add_plane) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Plane**](classastrea_1_1astro_1_1Plane.md)&lt; [**Spacecraft\_T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt; & plane) <br>_Adds a plane to the shell._  |
-|  [**void**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**add\_spacecraft**](#function-add_spacecraft-12) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Spacecraft\_T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & spacecraft, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) std::size\_t & planeId) <br>_Adds a spacecraft to a specific plane in the shell._  |
-|  [**void**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**add\_spacecraft**](#function-add_spacecraft-22) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Spacecraft\_T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & spacecraft) <br>_Adds a spacecraft to the shell._  |
+|   | [**Shell**](#function-shell-24) (std::vector&lt; [**Plane**](classastrea_1_1astro_1_1Plane.md)&lt; Spacecraft\_T &gt; &gt; planes) <br>_Constructor for_ [_**Shell**_](classastrea_1_1astro_1_1Shell.md) _with a vector of planes._ |
+|   | [**Shell**](#function-shell-34) (std::vector&lt; Spacecraft\_T &gt; satellites) <br>_Constructor for_ [_**Shell**_](classastrea_1_1astro_1_1Shell.md) _with a vector of satellites._ |
+|   | [**Shell**](#function-shell-44) (const [**Date**](classastrea_1_1astro_1_1Date.md) & epoch, const Distance & semimajor, const Angle & inclination, const std::size\_t & T, const std::size\_t & P, const Unitless & F, const Angle & anchorRAAN=0.0 \*mp\_units::si::unit\_symbols::rad, const Angle & anchorAnomaly=0.0 \*mp\_units::si::unit\_symbols::rad) <br>_Constructor for_ [_**Shell**_](classastrea_1_1astro_1_1Shell.md) _with a Walker parameters._ |
+|  void | [**add\_plane**](#function-add_plane) (const [**Plane**](classastrea_1_1astro_1_1Plane.md)&lt; Spacecraft\_T &gt; & plane) <br>_Adds a plane to the shell._  |
+|  void | [**add\_spacecraft**](#function-add_spacecraft-12) (const Spacecraft\_T & spacecraft, const std::size\_t & planeId) <br>_Adds a spacecraft to a specific plane in the shell._  |
+|  void | [**add\_spacecraft**](#function-add_spacecraft-22) (const Spacecraft\_T & spacecraft) <br>_Adds a spacecraft to the shell._  |
 |  [**iterator**](classastrea_1_1astro_1_1Shell.md#typedef-iterator) | [**begin**](#function-begin-12) () <br>_Get an iterator to the beginning of the_ [_**Shell**_](classastrea_1_1astro_1_1Shell.md) _._ |
 |  [**const\_iterator**](classastrea_1_1astro_1_1Shell.md#typedef-const_iterator) | [**begin**](#function-begin-22) () const<br>_Get a const iterator to the beginning of the_ [_**Shell**_](classastrea_1_1astro_1_1Shell.md) _._ |
 |  [**const\_iterator**](classastrea_1_1astro_1_1Shell.md#typedef-const_iterator) | [**cbegin**](#function-cbegin) () const<br>_Get a const iterator to the beginning of the_ [_**Shell**_](classastrea_1_1astro_1_1Shell.md) _._ |
 |  [**const\_iterator**](classastrea_1_1astro_1_1Shell.md#typedef-const_iterator) | [**cend**](#function-cend) () const<br>_Get a const iterator to the end of the_ [_**Shell**_](classastrea_1_1astro_1_1Shell.md) _._ |
 |  [**iterator**](classastrea_1_1astro_1_1Shell.md#typedef-iterator) | [**end**](#function-end-12) () <br>_Get an iterator to the end of the_ [_**Shell**_](classastrea_1_1astro_1_1Shell.md) _._ |
 |  [**const\_iterator**](classastrea_1_1astro_1_1Shell.md#typedef-const_iterator) | [**end**](#function-end-22) () const<br>_Get a const iterator to the end of the_ [_**Shell**_](classastrea_1_1astro_1_1Shell.md) _._ |
-|  [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) std::vector&lt; [**Spacecraft\_T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt; | [**get\_all\_spacecraft**](#function-get_all_spacecraft) () const<br>_Returns a vector of all spacecraft in the shell._  |
-|  [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) std::size\_t | [**get\_id**](#function-get_id) () const<br> |
-|  [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Plane**](classastrea_1_1astro_1_1Plane.md)&lt; [**Spacecraft\_T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt; & | [**get\_plane**](#function-get_plane) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) std::size\_t & planeId) const<br>_Returns a reference to a specific plane in the shell by its ID._  |
-|  std::vector&lt; [**Plane**](classastrea_1_1astro_1_1Plane.md)&lt; [**Spacecraft\_T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt; &gt; & | [**get\_planes**](#function-get_planes-12) () <br>_Returns a reference to the vector of planes in the shell._  |
-|  [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) std::vector&lt; [**Plane**](classastrea_1_1astro_1_1Plane.md)&lt; [**Spacecraft\_T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt; &gt; & | [**get\_planes**](#function-get_planes-22) () const<br>_Returns a constant reference to the vector of planes in the shell._  |
-|  [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Spacecraft\_T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & | [**get\_spacecraft**](#function-get_spacecraft) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) std::size\_t & spacecraftId) const<br>_Returns a reference to a specific spacecraft in the shell by its ID._  |
-|  [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) std::size\_t | [**n\_planes**](#function-n_planes) () const<br>_Returns the number of planes in the shell._  |
-|  [**void**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**propagate**](#function-propagate-12) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Time**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & propTime, [**Integrator**](classastrea_1_1astro_1_1Integrator.md) & integrator) <br>_Propagates the shell's spacecraft using the provided equations of motion and integrator._  |
-|  [**void**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**propagate**](#function-propagate-22) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Date**](classastrea_1_1astro_1_1Date.md) & endEpoch, [**Integrator**](classastrea_1_1astro_1_1Integrator.md) & integrator) <br>_Propagates the shell's spacecraft using the provided equations of motion and integrator._  |
-|  [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) std::size\_t | [**size**](#function-size) () const<br>_Returns the size of the shell, which is the number of spacecraft it contains._  |
+|  const std::vector&lt; Spacecraft\_T &gt; | [**get\_all\_spacecraft**](#function-get_all_spacecraft) () const<br>_Returns a vector of all spacecraft in the shell._  |
+|  const std::size\_t | [**get\_id**](#function-get_id) () const<br> |
+|  const [**Plane**](classastrea_1_1astro_1_1Plane.md)&lt; Spacecraft\_T &gt; & | [**get\_plane**](#function-get_plane) (const std::size\_t & planeId) const<br>_Returns a reference to a specific plane in the shell by its ID._  |
+|  std::vector&lt; [**Plane**](classastrea_1_1astro_1_1Plane.md)&lt; Spacecraft\_T &gt; &gt; & | [**get\_planes**](#function-get_planes-12) () <br>_Returns a reference to the vector of planes in the shell._  |
+|  const std::vector&lt; [**Plane**](classastrea_1_1astro_1_1Plane.md)&lt; Spacecraft\_T &gt; &gt; & | [**get\_planes**](#function-get_planes-22) () const<br>_Returns a constant reference to the vector of planes in the shell._  |
+|  const Spacecraft\_T & | [**get\_spacecraft**](#function-get_spacecraft) (const std::size\_t & spacecraftId) const<br>_Returns a reference to a specific spacecraft in the shell by its ID._  |
+|  const std::size\_t | [**n\_planes**](#function-n_planes) () const<br>_Returns the number of planes in the shell._  |
+|  void | [**propagate**](#function-propagate-12) (const Time & propTime, [**Integrator**](classastrea_1_1astro_1_1Integrator.md) & integrator) <br>_Propagates the shell's spacecraft using the provided equations of motion and integrator._  |
+|  void | [**propagate**](#function-propagate-22) (const [**Date**](classastrea_1_1astro_1_1Date.md) & endEpoch, [**Integrator**](classastrea_1_1astro_1_1Integrator.md) & integrator) <br>_Propagates the shell's spacecraft using the provided equations of motion and integrator._  |
+|  const std::size\_t | [**size**](#function-size) () const<br>_Returns the size of the shell, which is the number of spacecraft it contains._  |
 |   | [**~Shell**](#function-shell) () <br>_Destructor for_ [_**Shell**_](classastrea_1_1astro_1_1Shell.md) _. Cleans up the shell and its planes._ |
 
 
@@ -249,14 +249,14 @@ astrea::astro::Shell::Shell (
 _Constructor for_ [_**Shell**_](classastrea_1_1astro_1_1Shell.md) _with a Walker parameters._
 ```C++
 astrea::astro::Shell::Shell (
-    const  Date & epoch,
-    const  Distance & semimajor,
-    const  Angle & inclination,
+    const Date & epoch,
+    const Distance & semimajor,
+    const Angle & inclination,
     const std::size_t & T,
     const std::size_t & P,
-    const  Unitless & F,
-    const  Angle & anchorRAAN=0.0 *mp_units::angular::unit_symbols::rad,
-    const  Angle & anchorAnomaly=0.0 *mp_units::angular::unit_symbols::rad
+    const Unitless & F,
+    const Angle & anchorRAAN=0.0 *mp_units::si::unit_symbols::rad,
+    const Angle & anchorAnomaly=0.0 *mp_units::si::unit_symbols::rad
 ) 
 ```
 
@@ -290,7 +290,7 @@ astrea::astro::Shell::Shell (
 _Adds a plane to the shell._ 
 ```C++
 void astrea::astro::Shell::add_plane (
-    const  Plane < Spacecraft_T > & plane
+    const Plane < Spacecraft_T > & plane
 ) 
 ```
 
@@ -317,7 +317,7 @@ void astrea::astro::Shell::add_plane (
 _Adds a spacecraft to a specific plane in the shell._ 
 ```C++
 void astrea::astro::Shell::add_spacecraft (
-    const  Spacecraft_T & spacecraft,
+    const Spacecraft_T & spacecraft,
     const std::size_t & planeId
 ) 
 ```
@@ -346,7 +346,7 @@ void astrea::astro::Shell::add_spacecraft (
 _Adds a spacecraft to the shell._ 
 ```C++
 void astrea::astro::Shell::add_spacecraft (
-    const  Spacecraft_T & spacecraft
+    const Spacecraft_T & spacecraft
 ) 
 ```
 
@@ -560,7 +560,7 @@ inline const std::size_t astrea::astro::Shell::get_id () const
 
 _Returns a reference to a specific plane in the shell by its ID._ 
 ```C++
-const  Plane < Spacecraft_T > & astrea::astro::Shell::get_plane (
+const Plane < Spacecraft_T > & astrea::astro::Shell::get_plane (
     const std::size_t & planeId
 ) const
 ```
@@ -644,7 +644,7 @@ const std::vector&lt;Plane&lt;Spacecraft\_T&gt;&gt;& A constant reference to the
 
 _Returns a reference to a specific spacecraft in the shell by its ID._ 
 ```C++
-const  Spacecraft_T & astrea::astro::Shell::get_spacecraft (
+const Spacecraft_T & astrea::astro::Shell::get_spacecraft (
     const std::size_t & spacecraftId
 ) const
 ```
@@ -704,7 +704,7 @@ const std::size\_t The number of planes in the shell.
 _Propagates the shell's spacecraft using the provided equations of motion and integrator._ 
 ```C++
 void astrea::astro::Shell::propagate (
-    const  Time & propTime,
+    const Time & propTime,
     Integrator & integrator
 ) 
 ```
@@ -733,7 +733,7 @@ void astrea::astro::Shell::propagate (
 _Propagates the shell's spacecraft using the provided equations of motion and integrator._ 
 ```C++
 void astrea::astro::Shell::propagate (
-    const  Date & endEpoch,
+    const Date & endEpoch,
     Integrator & integrator
 ) 
 ```

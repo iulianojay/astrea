@@ -12,7 +12,7 @@
         <name>CowellsMethod</name>
         <qualifiedname>astrea::astro::CowellsMethod::CowellsMethod</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1ForceModel" kindref="compound">ForceModel</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1ForceModel" kindref="compound">ForceModel</ref> &amp;</type>
           <declname>forces</declname>
         </param>
         <briefdescription>
@@ -32,7 +32,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/propagation/equations_of_motion/CowellsMethod.hpp" line="42" column="5" bodyfile="astrea/astro/astro/propagation/equations_of_motion/CowellsMethod.cpp" bodystart="38" bodyend="41"/>
+        <location file="astrea/astro/astro/propagation/equations_of_motion/CowellsMethod.hpp" line="42" column="5" bodyfile="astrea/astro/astro/propagation/equations_of_motion/CowellsMethod.cpp" bodystart="37" bodyend="40"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1CowellsMethod_1a2d3b8affc812217f7a12c27d09d57304" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -57,19 +57,19 @@
         <qualifiedname>astrea::astro::CowellsMethod::compute_dynamics</qualifiedname>
         <reimplements refid="classastrea_1_1astro_1_1EquationsOfMotion_1ab67532d179cbb6702762357fbfac1d2b">compute_dynamics</reimplements>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
           <declname>state</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Vehicle" kindref="compound">Vehicle</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Vehicle" kindref="compound">Vehicle</ref> &amp;</type>
           <declname>vehicle</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="typedefs_8hpp_1a5aa05e5cfe7a19c3304a534401cf2fc1" kindref="member">ForceVector</ref>&lt; frames::primary &gt; &amp;</type>
+          <type>const <ref refid="typedefs_8hpp_1a5aa05e5cfe7a19c3304a534401cf2fc1" kindref="member">ForceVector</ref>&lt; frames::primary &gt; &amp;</type>
           <declname>perts</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="typedefs_8hpp_1a5aa05e5cfe7a19c3304a534401cf2fc1" kindref="member">ForceVector</ref>&lt; frames::primary &gt; &amp;</type>
+          <type>const <ref refid="typedefs_8hpp_1a5aa05e5cfe7a19c3304a534401cf2fc1" kindref="member">ForceVector</ref>&lt; frames::primary &gt; &amp;</type>
           <declname>control</declname>
         </param>
         <briefdescription>
@@ -99,7 +99,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/propagation/equations_of_motion/CowellsMethod.hpp" line="56" column="28" bodyfile="astrea/astro/astro/propagation/equations_of_motion/CowellsMethod.cpp" bodystart="43" bodyend="62"/>
+        <location file="astrea/astro/astro/propagation/equations_of_motion/CowellsMethod.hpp" line="56" column="28" bodyfile="astrea/astro/astro/propagation/equations_of_motion/CowellsMethod.cpp" bodystart="42" bodyend="61"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1CowellsMethod_1a095f73c5d8e627479475c083bae367f1" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
         <type><ref refid="classastrea_1_1astro_1_1StateTransitionMatrix" kindref="compound">StateTransitionMatrix</ref></type>
@@ -109,11 +109,11 @@
         <qualifiedname>astrea::astro::CowellsMethod::compute_stm</qualifiedname>
         <reimplements refid="classastrea_1_1astro_1_1EquationsOfMotion_1a6ce5bf0e6d75ba1061654281151ad604">compute_stm</reimplements>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
           <declname>state</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Vehicle" kindref="compound">Vehicle</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Vehicle" kindref="compound">Vehicle</ref> &amp;</type>
           <declname>vehicle</declname>
         </param>
         <briefdescription>
@@ -143,10 +143,10 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/propagation/equations_of_motion/CowellsMethod.hpp" line="70" column="27" bodyfile="astrea/astro/astro/propagation/equations_of_motion/CowellsMethod.cpp" bodystart="65" bodyend="73"/>
+        <location file="astrea/astro/astro/propagation/equations_of_motion/CowellsMethod.hpp" line="70" column="27" bodyfile="astrea/astro/astro/propagation/equations_of_motion/CowellsMethod.cpp" bodystart="64" bodyend="72"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1CowellsMethod_1a26fa70c22aac99bc9227c715a71676aa" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" virt="virtual">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> std::size_t</type>
+        <type>constexpr std::size_t</type>
         <definition>constexpr std::size_t astrea::astro::CowellsMethod::get_expected_set_id</definition>
         <argsstring>() const override</argsstring>
         <name>get_expected_set_id</name>
@@ -163,6 +163,25 @@
         <inbodydescription>
         </inbodydescription>
         <location file="astrea/astro/astro/propagation/equations_of_motion/CowellsMethod.hpp" line="77" column="27" bodyfile="astrea/astro/astro/propagation/equations_of_motion/CowellsMethod.hpp" bodystart="77" bodyend="80"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1CowellsMethod_1aa63597804b57bb809ae011d5d34f77c3" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type>std::unique_ptr&lt; <ref refid="classastrea_1_1astro_1_1EquationsOfMotion" kindref="compound">EquationsOfMotion</ref> &gt;</type>
+        <definition>std::unique_ptr&lt; EquationsOfMotion &gt; astrea::astro::CowellsMethod::clone</definition>
+        <argsstring>() const override</argsstring>
+        <name>clone</name>
+        <qualifiedname>astrea::astro::CowellsMethod::clone</qualifiedname>
+        <reimplements refid="classastrea_1_1astro_1_1EquationsOfMotion_1ad5dc873c125475e764c2ef09c520db5b">clone</reimplements>
+        <briefdescription>
+<para>Creates a clone of the current Cowell&apos;s Method object. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>std::unique_ptr&lt;EquationsOfMotion&gt; A unique pointer to the cloned Cowell&apos;s Method object. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/equations_of_motion/CowellsMethod.hpp" line="87" column="21" bodyfile="astrea/astro/astro/propagation/equations_of_motion/CowellsMethod.hpp" bodystart="87" bodyend="87"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
@@ -201,15 +220,16 @@
         <link refid="classastrea_1_1astro_1_1ForceModel"/>
       </node>
     </collaborationgraph>
-    <location file="astrea/astro/astro/propagation/equations_of_motion/CowellsMethod.hpp" line="34" column="1" bodyfile="astrea/astro/astro/propagation/equations_of_motion/CowellsMethod.hpp" bodystart="34" bodyend="81"/>
+    <location file="astrea/astro/astro/propagation/equations_of_motion/CowellsMethod.hpp" line="34" column="1" bodyfile="astrea/astro/astro/propagation/equations_of_motion/CowellsMethod.hpp" bodystart="34" bodyend="88"/>
     <listofallmembers>
+      <member refid="classastrea_1_1astro_1_1CowellsMethod_1aa63597804b57bb809ae011d5d34f77c3" prot="public" virt="virtual"><scope>astrea::astro::CowellsMethod</scope><name>clone</name></member>
       <member refid="classastrea_1_1astro_1_1CowellsMethod_1a796dd2eb6fc6588c65c3749aa5b8d908" prot="public" virt="virtual"><scope>astrea::astro::CowellsMethod</scope><name>compute_dynamics</name></member>
       <member refid="classastrea_1_1astro_1_1EquationsOfMotion_1afe9c17968d211df71622538a6773198b" prot="public" virt="virtual"><scope>astrea::astro::CowellsMethod</scope><name>compute_kinematics</name></member>
       <member refid="classastrea_1_1astro_1_1CowellsMethod_1a095f73c5d8e627479475c083bae367f1" prot="public" virt="virtual"><scope>astrea::astro::CowellsMethod</scope><name>compute_stm</name></member>
       <member refid="classastrea_1_1astro_1_1CowellsMethod_1a3d7c3579e9c9bf7cd9a3dc4e98055912" prot="public" virt="non-virtual"><scope>astrea::astro::CowellsMethod</scope><name>CowellsMethod</name></member>
       <member refid="classastrea_1_1astro_1_1EquationsOfMotion_1a9314c62e49ba5c7e0cf8a632afca3fd4" prot="public" virt="non-virtual"><scope>astrea::astro::CowellsMethod</scope><name>EquationsOfMotion</name></member>
       <member refid="classastrea_1_1astro_1_1EquationsOfMotion_1a4eec33fb06db4d14c79cdfb0926cf3f4" prot="public" virt="non-virtual"><scope>astrea::astro::CowellsMethod</scope><name>EquationsOfMotion</name></member>
-      <member refid="classastrea_1_1astro_1_1EquationsOfMotion_1accb3b6b22bed036ca28ae4b4f592028a" prot="protected" virt="non-virtual"><scope>astrea::astro::CowellsMethod</scope><name>forces</name></member>
+      <member refid="classastrea_1_1astro_1_1EquationsOfMotion_1a7a83d5daad504e281d7edf9bb56c6b7b" prot="protected" virt="non-virtual"><scope>astrea::astro::CowellsMethod</scope><name>forces</name></member>
       <member refid="classastrea_1_1astro_1_1CowellsMethod_1a26fa70c22aac99bc9227c715a71676aa" prot="public" virt="virtual"><scope>astrea::astro::CowellsMethod</scope><name>get_expected_set_id</name></member>
       <member refid="classastrea_1_1astro_1_1EquationsOfMotion_1ac1569de5b87e21bb5812c3f28e695396" prot="public" virt="non-virtual"><scope>astrea::astro::CowellsMethod</scope><name>operator()</name></member>
       <member refid="classastrea_1_1astro_1_1CowellsMethod_1a2d3b8affc812217f7a12c27d09d57304" prot="public" virt="non-virtual"><scope>astrea::astro::CowellsMethod</scope><name>~CowellsMethod</name></member>

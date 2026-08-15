@@ -41,7 +41,7 @@ _A class representing an Event in the astrea astro library._ [More...](#detailed
 | Type | Name |
 | ---: | :--- |
 | class | [**Event**](classastrea_1_1astro_1_1Event.md) <br>_A class representing a_ [_**Event**_](classastrea_1_1astro_1_1Event.md) _in the astrea astro platform. This class serves as a base for user-defined Events and provides a common interface._ |
-| struct | [**EventInner**](structastrea_1_1astro_1_1detail_1_1EventInner.md) &lt;[**typename**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)&gt;<br>_A template class for_ [_**Event**_](classastrea_1_1astro_1_1Event.md) _inner implementations._ |
+| struct | [**EventInner**](structastrea_1_1astro_1_1detail_1_1EventInner.md) &lt;typename T&gt;<br>_A template class for_ [_**Event**_](classastrea_1_1astro_1_1Event.md) _inner implementations._ |
 | struct | [**EventInnerBase**](structastrea_1_1astro_1_1detail_1_1EventInnerBase.md) <br>_Pure virtual base class for_ [_**Event**_](classastrea_1_1astro_1_1Event.md) _inner implementations._ |
 
 
@@ -114,7 +114,7 @@ Jay Iuliano ([iuliano.jay@gmail.com](mailto:iuliano.jay@gmail.com))
 
 **Copyright:**
 
-Copyright (c) 2025 Jay Iuliano
+Copyright (c) 2025-2026 Jay Iuliano
 
 
 The GNU Lesser General Public License (LGPL)

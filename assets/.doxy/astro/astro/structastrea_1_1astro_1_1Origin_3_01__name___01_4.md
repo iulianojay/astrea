@@ -47,7 +47,7 @@ Inherited by the following classes: [astrea::astro::Barycenter&lt; \_name\_ &gt;
 
 | Type | Name |
 | ---: | :--- |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**auto**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**name**](#variable-name)   = `[**\_name\_**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)`<br>_The name of the origin._  |
+|  constexpr auto | [**name**](#variable-name)   = `\_name\_`<br>_The name of the origin._  |
 
 
 

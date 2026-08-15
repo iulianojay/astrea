@@ -2,7 +2,7 @@
 
 # Struct astrea::astro::ExtraRegisteredFrames
 
-**template &lt;[**typename**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)&gt;**
+**template &lt;typename&gt;**
 
 
 

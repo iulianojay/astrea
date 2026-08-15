@@ -47,7 +47,7 @@
     </sectiondef>
     <sectiondef kind="private-attrib">
       <memberdef kind="variable" id="classastrea_1_1astro_1_1ImpulsiveBurn_1a55e48d513ecf89b8faae68e6c5860170" prot="private" static="no" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">unsigned</ref></type>
+        <type>const unsigned</type>
         <definition>const unsigned astrea::astro::ImpulsiveBurn::_nMaxTriggers</definition>
         <argsstring></argsstring>
         <name>_nMaxTriggers</name>
@@ -61,7 +61,7 @@
         <location file="astrea/astro/astro/propagation/event_detection/events/ImpulsiveBurn.hpp" line="207" column="20" bodyfile="astrea/astro/astro/propagation/event_detection/events/ImpulsiveBurn.hpp" bodystart="207" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1ImpulsiveBurn_1a812e2118494cbeb54f13a0b848c2f11c" prot="private" static="no" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> BurnTrigger</type>
+        <type>const BurnTrigger</type>
         <definition>const BurnTrigger astrea::astro::ImpulsiveBurn::_trigger</definition>
         <argsstring></argsstring>
         <name>_trigger</name>
@@ -75,7 +75,7 @@
         <location file="astrea/astro/astro/propagation/event_detection/events/ImpulsiveBurn.hpp" line="208" column="23" bodyfile="astrea/astro/astro/propagation/event_detection/events/ImpulsiveBurn.hpp" bodystart="208" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1ImpulsiveBurn_1ac5e4ff558b7388c5aace99d4c952a584" prot="private" static="no" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Angle</ref></type>
+        <type>const Angle</type>
         <definition>const Angle astrea::astro::ImpulsiveBurn::_triggerAnomaly</definition>
         <argsstring></argsstring>
         <name>_triggerAnomaly</name>
@@ -89,7 +89,7 @@
         <location file="astrea/astro/astro/propagation/event_detection/events/ImpulsiveBurn.hpp" line="209" column="17" bodyfile="astrea/astro/astro/propagation/event_detection/events/ImpulsiveBurn.hpp" bodystart="209" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1ImpulsiveBurn_1a560eb7d0bf823e5931313a39da4a4f9a" prot="private" static="no" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Distance</ref></type>
+        <type>const Distance</type>
         <definition>const Distance astrea::astro::ImpulsiveBurn::_triggerAltitude</definition>
         <argsstring></argsstring>
         <name>_triggerAltitude</name>
@@ -103,7 +103,7 @@
         <location file="astrea/astro/astro/propagation/event_detection/events/ImpulsiveBurn.hpp" line="210" column="20" bodyfile="astrea/astro/astro/propagation/event_detection/events/ImpulsiveBurn.hpp" bodystart="210" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1ImpulsiveBurn_1af0af710144f168fb8c6881b409e93a37" prot="private" static="no" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref></type>
+        <type>const <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref></type>
         <definition>const Date astrea::astro::ImpulsiveBurn::_triggerEpoch</definition>
         <argsstring></argsstring>
         <name>_triggerEpoch</name>
@@ -117,7 +117,7 @@
         <location file="astrea/astro/astro/propagation/event_detection/events/ImpulsiveBurn.hpp" line="211" column="16" bodyfile="astrea/astro/astro/propagation/event_detection/events/ImpulsiveBurn.hpp" bodystart="211" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1ImpulsiveBurn_1a086dc4ef59e619db9cf610b363d1c89c" prot="private" static="no" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="typedefs_8hpp_1a8fa3c7e51c589d90fee8a94914a859c1" kindref="member">Direction</ref>&lt; frames::dynamic::ric &gt;</type>
+        <type>const <ref refid="typedefs_8hpp_1a8fa3c7e51c589d90fee8a94914a859c1" kindref="member">Direction</ref>&lt; frames::dynamic::ric &gt;</type>
         <definition>const Direction&lt;frames::dynamic::ric&gt; astrea::astro::ImpulsiveBurn::_burnDirection</definition>
         <argsstring></argsstring>
         <name>_burnDirection</name>
@@ -165,21 +165,21 @@
         <location file="astrea/astro/astro/propagation/event_detection/events/ImpulsiveBurn.hpp" line="178" column="17" bodyfile="astrea/astro/astro/propagation/event_detection/events/ImpulsiveBurn.cpp" bodystart="31" bodyend="31"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1ImpulsiveBurn_1a6a56835141d67c671f0aaab79a178dfb" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Unitless</ref></type>
+        <type>Unitless</type>
         <definition>Unitless astrea::astro::ImpulsiveBurn::measure_event</definition>
         <argsstring>(const Time &amp;time, const State &amp;state, const Vehicle &amp;vehicle) const</argsstring>
         <name>measure_event</name>
         <qualifiedname>astrea::astro::ImpulsiveBurn::measure_event</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Time</ref> &amp;</type>
+          <type>const Time &amp;</type>
           <declname>time</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
           <declname>state</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Vehicle" kindref="compound">Vehicle</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Vehicle" kindref="compound">Vehicle</ref> &amp;</type>
           <declname>vehicle</declname>
         </param>
         <briefdescription>
@@ -206,13 +206,13 @@
         <location file="astrea/astro/astro/propagation/event_detection/events/ImpulsiveBurn.hpp" line="187" column="14" bodyfile="astrea/astro/astro/propagation/event_detection/events/ImpulsiveBurn.cpp" bodystart="33" bodyend="42"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1ImpulsiveBurn_1abde7c172225a3fb6457fae9377baaf50" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">void</ref></type>
+        <type>void</type>
         <definition>void astrea::astro::ImpulsiveBurn::trigger_action</definition>
         <argsstring>(const Time &amp;time, State &amp;state, Vehicle &amp;vehicle) const</argsstring>
         <name>trigger_action</name>
         <qualifiedname>astrea::astro::ImpulsiveBurn::trigger_action</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Time</ref> &amp;</type>
+          <type>const Time &amp;</type>
           <declname>time</declname>
         </param>
         <param>
@@ -259,7 +259,7 @@
         <location file="astrea/astro/astro/propagation/event_detection/events/ImpulsiveBurn.hpp" line="196" column="10" bodyfile="astrea/astro/astro/propagation/event_detection/events/ImpulsiveBurn.cpp" bodystart="80" bodyend="108"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1ImpulsiveBurn_1a3ca63a88814bcf6b2cd495946c20c229" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">bool</ref></type>
+        <type>bool</type>
         <definition>bool astrea::astro::ImpulsiveBurn::is_terminal</definition>
         <argsstring>() const</argsstring>
         <name>is_terminal</name>
@@ -287,15 +287,15 @@
         <name>trigger_at_true_anomaly</name>
         <qualifiedname>astrea::astro::ImpulsiveBurn::trigger_at_true_anomaly</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Angle</ref> &amp;</type>
+          <type>const Angle &amp;</type>
           <declname>triggerAnomaly</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="typedefs_8hpp_1a8fa3c7e51c589d90fee8a94914a859c1" kindref="member">Direction</ref>&lt; frames::dynamic::ric &gt;</type>
+          <type>const <ref refid="typedefs_8hpp_1a8fa3c7e51c589d90fee8a94914a859c1" kindref="member">Direction</ref>&lt; frames::dynamic::ric &gt;</type>
           <declname>burnDirection</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">unsigned</ref></type>
+          <type>const unsigned</type>
           <declname>nMaxTriggers</declname>
           <defval>0</defval>
         </param>
@@ -343,15 +343,15 @@
         <name>trigger_at_mean_anomaly</name>
         <qualifiedname>astrea::astro::ImpulsiveBurn::trigger_at_mean_anomaly</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Angle</ref> &amp;</type>
+          <type>const Angle &amp;</type>
           <declname>triggerAnomaly</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="typedefs_8hpp_1a8fa3c7e51c589d90fee8a94914a859c1" kindref="member">Direction</ref>&lt; frames::dynamic::ric &gt;</type>
+          <type>const <ref refid="typedefs_8hpp_1a8fa3c7e51c589d90fee8a94914a859c1" kindref="member">Direction</ref>&lt; frames::dynamic::ric &gt;</type>
           <declname>burnDirection</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">unsigned</ref></type>
+          <type>const unsigned</type>
           <declname>nMaxTriggers</declname>
           <defval>0</defval>
         </param>
@@ -399,15 +399,15 @@
         <name>trigger_at_altitude</name>
         <qualifiedname>astrea::astro::ImpulsiveBurn::trigger_at_altitude</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Distance</ref> &amp;</type>
+          <type>const Distance &amp;</type>
           <declname>triggerAltitude</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="typedefs_8hpp_1a8fa3c7e51c589d90fee8a94914a859c1" kindref="member">Direction</ref>&lt; frames::dynamic::ric &gt;</type>
+          <type>const <ref refid="typedefs_8hpp_1a8fa3c7e51c589d90fee8a94914a859c1" kindref="member">Direction</ref>&lt; frames::dynamic::ric &gt;</type>
           <declname>burnDirection</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">unsigned</ref></type>
+          <type>const unsigned</type>
           <declname>nMaxTriggers</declname>
           <defval>0</defval>
         </param>
@@ -455,15 +455,15 @@
         <name>trigger_at_epoch</name>
         <qualifiedname>astrea::astro::ImpulsiveBurn::trigger_at_epoch</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
           <declname>triggerEpoch</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="typedefs_8hpp_1a8fa3c7e51c589d90fee8a94914a859c1" kindref="member">Direction</ref>&lt; frames::dynamic::ric &gt;</type>
+          <type>const <ref refid="typedefs_8hpp_1a8fa3c7e51c589d90fee8a94914a859c1" kindref="member">Direction</ref>&lt; frames::dynamic::ric &gt;</type>
           <declname>burnDirection</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">unsigned</ref></type>
+          <type>const unsigned</type>
           <declname>nMaxTriggers</declname>
           <defval>0</defval>
         </param>
@@ -513,19 +513,19 @@
         <name>ImpulsiveBurn</name>
         <qualifiedname>astrea::astro::ImpulsiveBurn::ImpulsiveBurn</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">unsigned</ref></type>
+          <type>const unsigned</type>
           <declname>nMaxTriggers</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> BurnTrigger</type>
+          <type>const BurnTrigger</type>
           <declname>trigger</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="typedefs_8hpp_1a8fa3c7e51c589d90fee8a94914a859c1" kindref="member">Direction</ref>&lt; frames::dynamic::ric &gt;</type>
+          <type>const <ref refid="typedefs_8hpp_1a8fa3c7e51c589d90fee8a94914a859c1" kindref="member">Direction</ref>&lt; frames::dynamic::ric &gt;</type>
           <declname>burnDirection</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Angle</ref></type>
+          <type>const Angle</type>
           <declname>triggerAnomaly</declname>
           <defval>0.0 *astrea::detail::angle_unit</defval>
         </param>
@@ -571,19 +571,19 @@
         <name>ImpulsiveBurn</name>
         <qualifiedname>astrea::astro::ImpulsiveBurn::ImpulsiveBurn</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">unsigned</ref></type>
+          <type>const unsigned</type>
           <declname>nMaxTriggers</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> BurnTrigger</type>
+          <type>const BurnTrigger</type>
           <declname>trigger</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="typedefs_8hpp_1a8fa3c7e51c589d90fee8a94914a859c1" kindref="member">Direction</ref>&lt; frames::dynamic::ric &gt;</type>
+          <type>const <ref refid="typedefs_8hpp_1a8fa3c7e51c589d90fee8a94914a859c1" kindref="member">Direction</ref>&lt; frames::dynamic::ric &gt;</type>
           <declname>burnDirection</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Distance</ref></type>
+          <type>const Distance</type>
           <declname>triggerAltitude</declname>
         </param>
         <briefdescription>
@@ -628,19 +628,19 @@
         <name>ImpulsiveBurn</name>
         <qualifiedname>astrea::astro::ImpulsiveBurn::ImpulsiveBurn</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">unsigned</ref></type>
+          <type>const unsigned</type>
           <declname>nMaxTriggers</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> BurnTrigger</type>
+          <type>const BurnTrigger</type>
           <declname>trigger</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="typedefs_8hpp_1a8fa3c7e51c589d90fee8a94914a859c1" kindref="member">Direction</ref>&lt; frames::dynamic::ric &gt;</type>
+          <type>const <ref refid="typedefs_8hpp_1a8fa3c7e51c589d90fee8a94914a859c1" kindref="member">Direction</ref>&lt; frames::dynamic::ric &gt;</type>
           <declname>burnDirection</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref></type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref></type>
           <declname>triggerEpoch</declname>
         </param>
         <briefdescription>
@@ -679,21 +679,21 @@
         <location file="astrea/astro/astro/propagation/event_detection/events/ImpulsiveBurn.hpp" line="162" column="5" bodyfile="astrea/astro/astro/propagation/event_detection/events/ImpulsiveBurn.hpp" bodystart="162" bodyend="170"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1ImpulsiveBurn_1a98808c19446de0bc304c569b9164f0a4" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Unitless</ref></type>
+        <type>Unitless</type>
         <definition>Unitless astrea::astro::ImpulsiveBurn::measure_anomaly_event</definition>
         <argsstring>(const Time &amp;time, const State &amp;state, const Vehicle &amp;vehicle) const</argsstring>
         <name>measure_anomaly_event</name>
         <qualifiedname>astrea::astro::ImpulsiveBurn::measure_anomaly_event</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Time</ref> &amp;</type>
+          <type>const Time &amp;</type>
           <declname>time</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
           <declname>state</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Vehicle" kindref="compound">Vehicle</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Vehicle" kindref="compound">Vehicle</ref> &amp;</type>
           <declname>vehicle</declname>
         </param>
         <briefdescription>
@@ -720,21 +720,21 @@
         <location file="astrea/astro/astro/propagation/event_detection/events/ImpulsiveBurn.hpp" line="221" column="14" bodyfile="astrea/astro/astro/propagation/event_detection/events/ImpulsiveBurn.cpp" bodystart="45" bodyend="61"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1ImpulsiveBurn_1a9902bdfc89a6393dca655eee7feef244" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Unitless</ref></type>
+        <type>Unitless</type>
         <definition>Unitless astrea::astro::ImpulsiveBurn::measure_altitude_event</definition>
         <argsstring>(const Time &amp;time, const State &amp;state, const Vehicle &amp;vehicle) const</argsstring>
         <name>measure_altitude_event</name>
         <qualifiedname>astrea::astro::ImpulsiveBurn::measure_altitude_event</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Time</ref> &amp;</type>
+          <type>const Time &amp;</type>
           <declname>time</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
           <declname>state</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Vehicle" kindref="compound">Vehicle</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Vehicle" kindref="compound">Vehicle</ref> &amp;</type>
           <declname>vehicle</declname>
         </param>
         <briefdescription>
@@ -761,21 +761,21 @@
         <location file="astrea/astro/astro/propagation/event_detection/events/ImpulsiveBurn.hpp" line="230" column="14" bodyfile="astrea/astro/astro/propagation/event_detection/events/ImpulsiveBurn.cpp" bodystart="64" bodyend="71"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1ImpulsiveBurn_1a3d720f1faa69d08d0813f4297ad5a646" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Unitless</ref></type>
+        <type>Unitless</type>
         <definition>Unitless astrea::astro::ImpulsiveBurn::measure_epoch_event</definition>
         <argsstring>(const Time &amp;time, const State &amp;state, const Vehicle &amp;vehicle) const</argsstring>
         <name>measure_epoch_event</name>
         <qualifiedname>astrea::astro::ImpulsiveBurn::measure_epoch_event</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Time</ref> &amp;</type>
+          <type>const Time &amp;</type>
           <declname>time</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
           <declname>state</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Vehicle" kindref="compound">Vehicle</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Vehicle" kindref="compound">Vehicle</ref> &amp;</type>
           <declname>vehicle</declname>
         </param>
         <briefdescription>

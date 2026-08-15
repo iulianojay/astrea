@@ -16,7 +16,7 @@
 * `#include <numeric>`
 * `#include <unordered_set>`
 * `#include <mp-units/math.h>`
-* `#include <mp-units/systems/angular/math.h>`
+* `#include <mp-units/systems/si/math.h>`
 * `#include <astro/platforms/space/Constellation.hpp>`
 * `#include <astro/state/State.hpp>`
 * `#include <astro/state/StateHistory.hpp>`
@@ -53,7 +53,7 @@
 | namespace | [**trace**](namespaceastrea_1_1trace.md) <br> |
 | namespace | [**frames**](namespaceastro_1_1frames.md) <br> |
 | namespace | [**mp\_units**](namespacemp__units.md) <br> |
-| namespace | [**angular**](namespacemp__units_1_1angular.md) <br> |
+| namespace | [**si**](namespacemp__units_1_1si.md) <br> |
 
 
 ## Classes

@@ -2,7 +2,7 @@
 
 # Struct astrea::astro::Axis&lt; \_name\_, \_parent\_ &gt;
 
-**template &lt;mp\_units::symbol\_text \_name\_, IsAxis [**auto**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) \_parent\_&gt;**
+**template &lt;mp\_units::symbol\_text \_name\_, IsAxis auto \_parent\_&gt;**
 
 
 
@@ -46,8 +46,8 @@ Inherits the following classes: [astrea::astro::detail::AxisBase](structastrea_1
 
 | Type | Name |
 | ---: | :--- |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**auto**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**name**](#variable-name)   = `[**\_name\_**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)`<br>_The name of the axis._  |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**auto**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**parent**](#variable-parent)   = `[**\_parent\_**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)`<br>_The parent axis of this axis, if any._  |
+|  constexpr auto | [**name**](#variable-name)   = `\_name\_`<br>_The name of the axis._  |
+|  constexpr auto | [**parent**](#variable-parent)   = `\_parent\_`<br>_The parent axis of this axis, if any._  |
 
 
 

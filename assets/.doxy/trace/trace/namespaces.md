@@ -13,6 +13,6 @@ Here is a list of all namespaces with brief descriptions:
 * **namespace** [**frames**](namespaceastro_1_1frames.md) 
 * **namespace** [**matplot**](namespacematplot.md) 
 * **namespace** [**mp\_units**](namespacemp__units.md) 
-* **namespace** [**angular**](namespacemp__units_1_1angular.md) 
+* **namespace** [**si**](namespacemp__units_1_1si.md) 
 * **namespace** [**std**](namespacestd.md)     
 

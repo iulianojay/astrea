@@ -21,10 +21,6 @@
 
 | Type | Name |
 | ---: | :--- |
-| file | [**EastNorthUp.hpp**](EastNorthUp_8hpp.md) <br>_Header file for the EastNorthUp class in the astro namespace._  |
-| file | [**LocalHorizontalLocalVertical.hpp**](LocalHorizontalLocalVertical_8hpp.md) <br>_Header file for the LocalHorizontalLocalVertical class in the astro namespace._  |
-| file | [**RadialInTrackCrossTrack.hpp**](RadialInTrackCrossTrack_8hpp.md) <br>_Header file for the RadialInTrackCrossTrack class in the astro namespace._  |
-| file | [**VelocityNormalBinormal.hpp**](VelocityNormalBinormal_8hpp.md) <br>_Header file for the VelocityNormalBinormal class in the astro namespace._  |
 | file | [**body\_centered\_inertial\_frames.hpp**](body__centered__inertial__frames_8hpp.md) <br>_Header file for all (most? common?) body-centered inertial frames._  |
 | file | [**body\_fixed\_frames.hpp**](body__fixed__frames_8hpp.md) <br>_Header file for body-fixed frames. Just ECEF right now._  |
 | file | [**defined\_rotations.hpp**](defined__rotations_8hpp.md) <br>_Header file for defined rotations between common frames._  |
@@ -37,6 +33,11 @@
 | file | [**transformations.hpp**](transformations_8hpp.md) <br>_Definitions for frame transformations and other utilities._  |
 
 
+## Directories
+
+| Type | Name |
+| ---: | :--- |
+| dir | [**dynamic\_frames**](dir_212f82f17a8a6ae9a0307bd639427aed.md) <br> |
 
 
 

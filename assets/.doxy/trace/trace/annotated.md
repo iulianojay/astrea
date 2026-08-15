@@ -57,7 +57,7 @@ Here are the classes, structs, unions and interfaces with brief descriptions:
 * **namespace** [**frames**](namespaceastro_1_1frames.md) 
 * **namespace** [**matplot**](namespacematplot.md) 
 * **namespace** [**mp\_units**](namespacemp__units.md) 
-* **namespace** [**angular**](namespacemp__units_1_1angular.md) 
+* **namespace** [**si**](namespacemp__units_1_1si.md) 
 * **namespace** [**std**](namespacestd.md)     
     * **struct** [**hash&lt; astrea::trace::IdPair &gt;**](structstd_1_1hash_3_01astrea_1_1trace_1_1IdPair_01_4.md) _Specialization of std::hash for IdPair to allow it to be used as a key in hash-based containers._     
     * **struct** [**less&lt; astrea::trace::IdPair &gt;**](structstd_1_1less_3_01astrea_1_1trace_1_1IdPair_01_4.md) _Specialization of std::less for IdPair to allow it to be used in ordered containers._     

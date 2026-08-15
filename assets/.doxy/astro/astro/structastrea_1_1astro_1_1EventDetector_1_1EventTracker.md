@@ -35,11 +35,11 @@ _A struct for tracking events._
 
 | Type | Name |
 | ---: | :--- |
-|  std::set&lt; [**Time**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt; | [**detectionTimes**](#variable-detectiontimes)  <br>_The times at which the_ [_**Event**_](classastrea_1_1astro_1_1Event.md) _was detected._ |
+|  std::set&lt; Time &gt; | [**detectionTimes**](#variable-detectiontimes)  <br>_The times at which the_ [_**Event**_](classastrea_1_1astro_1_1Event.md) _was detected._ |
 |  [**Event**](classastrea_1_1astro_1_1Event.md) | [**event**](#variable-event)  <br>_The_ [_**Event**_](classastrea_1_1astro_1_1Event.md) _being tracked._ |
-|  [**bool**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**firstMeasurement**](#variable-firstmeasurement)  <br>_Whether this is the first measurement for the_ [_**Event**_](classastrea_1_1astro_1_1Event.md) _._ |
-|  [**Time**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**previousTime**](#variable-previoustime)  <br>_The previous time the_ [_**Event**_](classastrea_1_1astro_1_1Event.md) _was measured._ |
-|  [**Unitless**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**previousValue**](#variable-previousvalue)  <br>_The previous value the_ [_**Event**_](classastrea_1_1astro_1_1Event.md) _was measured at._ |
+|  bool | [**firstMeasurement**](#variable-firstmeasurement)  <br>_Whether this is the first measurement for the_ [_**Event**_](classastrea_1_1astro_1_1Event.md) _._ |
+|  Time | [**previousTime**](#variable-previoustime)  <br>_The previous time the_ [_**Event**_](classastrea_1_1astro_1_1Event.md) _was measured._ |
+|  Unitless | [**previousValue**](#variable-previousvalue)  <br>_The previous value the_ [_**Event**_](classastrea_1_1astro_1_1Event.md) _was measured at._ |
 
 
 

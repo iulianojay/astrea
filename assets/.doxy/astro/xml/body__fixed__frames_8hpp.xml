@@ -18,6 +18,10 @@
         <childnode refid="15" relation="include">
         </childnode>
       </node>
+      <node id="17">
+        <label>astro/astro.macros.hpp</label>
+        <link refid="astro_8macros_8hpp"/>
+      </node>
       <node id="1">
         <label>astrea/astro/astro/frames/definitions/body_fixed_frames.hpp</label>
         <link refid="body__fixed__frames_8hpp"/>
@@ -61,9 +65,11 @@
         </childnode>
         <childnode refid="82" relation="include">
         </childnode>
+        <childnode refid="87" relation="include">
+        </childnode>
         <childnode refid="8" relation="include">
         </childnode>
-        <childnode refid="87" relation="include">
+        <childnode refid="89" relation="include">
         </childnode>
       </node>
       <node id="7">
@@ -103,7 +109,7 @@
         </childnode>
         <childnode refid="23" relation="include">
         </childnode>
-        <childnode refid="18" relation="include">
+        <childnode refid="19" relation="include">
         </childnode>
         <childnode refid="5" relation="include">
         </childnode>
@@ -150,6 +156,8 @@
         <childnode refid="40" relation="include">
         </childnode>
         <childnode refid="74" relation="include">
+        </childnode>
+        <childnode refid="76" relation="include">
         </childnode>
         <childnode refid="5" relation="include">
         </childnode>
@@ -216,6 +224,28 @@
         <childnode refid="84" relation="include">
         </childnode>
         <childnode refid="82" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="87">
+        <label>astro/frames/framework/FixedOffsetFrame.hpp</label>
+        <link refid="FixedOffsetFrame_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="88" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="80" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
         </childnode>
         <childnode refid="8" relation="include">
         </childnode>
@@ -291,24 +321,24 @@
         </childnode>
         <childnode refid="40" relation="include">
         </childnode>
-        <childnode refid="74" relation="include">
-        </childnode>
         <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="74" relation="include">
         </childnode>
         <childnode refid="75" relation="include">
         </childnode>
         <childnode refid="76" relation="include">
         </childnode>
-        <childnode refid="98" relation="include">
+        <childnode refid="77" relation="include">
         </childnode>
-        <childnode refid="87" relation="include">
+        <childnode refid="96" relation="include">
+        </childnode>
+        <childnode refid="89" relation="include">
         </childnode>
         <childnode refid="48" relation="include">
         </childnode>
-        <childnode refid="78" relation="include">
-        </childnode>
       </node>
-      <node id="76">
+      <node id="77">
         <label>astro/state/orbital_elements/Equinoctial.hpp</label>
         <link refid="Equinoctial_8hpp"/>
         <childnode refid="27" relation="include">
@@ -319,10 +349,10 @@
         </childnode>
         <childnode refid="48" relation="include">
         </childnode>
-        <childnode refid="77" relation="include">
+        <childnode refid="78" relation="include">
         </childnode>
       </node>
-      <node id="77">
+      <node id="78">
         <label>astro/state/orbital_elements/Equinoctial.ipp</label>
         <link refid="Equinoctial_8ipp_source"/>
         <childnode refid="72" relation="include">
@@ -331,33 +361,29 @@
         </childnode>
         <childnode refid="40" relation="include">
         </childnode>
-        <childnode refid="74" relation="include">
-        </childnode>
         <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="74" relation="include">
         </childnode>
         <childnode refid="75" relation="include">
         </childnode>
-        <childnode refid="78" relation="include">
-        </childnode>
         <childnode refid="79" relation="include">
         </childnode>
-        <childnode refid="98" relation="include">
+        <childnode refid="96" relation="include">
         </childnode>
-        <childnode refid="87" relation="include">
+        <childnode refid="89" relation="include">
         </childnode>
         <childnode refid="48" relation="include">
         </childnode>
         <childnode refid="39" relation="include">
         </childnode>
       </node>
-      <node id="98">
+      <node id="96">
         <label>astro/state/orbital_elements/Keplerian.hpp</label>
         <link refid="Keplerian_8hpp"/>
         <childnode refid="27" relation="include">
         </childnode>
         <childnode refid="40" relation="include">
-        </childnode>
-        <childnode refid="18" relation="include">
         </childnode>
         <childnode refid="19" relation="include">
         </childnode>
@@ -367,10 +393,10 @@
         </childnode>
         <childnode refid="48" relation="include">
         </childnode>
-        <childnode refid="99" relation="include">
+        <childnode refid="97" relation="include">
         </childnode>
       </node>
-      <node id="99">
+      <node id="97">
         <label>astro/state/orbital_elements/Keplerian.ipp</label>
         <link refid="Keplerian_8ipp_source"/>
         <childnode refid="72" relation="include">
@@ -381,13 +407,13 @@
         </childnode>
         <childnode refid="70" relation="include">
         </childnode>
-        <childnode refid="76" relation="include">
+        <childnode refid="77" relation="include">
         </childnode>
         <childnode refid="48" relation="include">
         </childnode>
         <childnode refid="39" relation="include">
         </childnode>
-        <childnode refid="78" relation="include">
+        <childnode refid="75" relation="include">
         </childnode>
       </node>
       <node id="42">
@@ -406,12 +432,10 @@
         <childnode refid="11" relation="include">
         </childnode>
       </node>
-      <node id="17">
+      <node id="18">
         <label>astro/systems/CelestialBody.hpp</label>
         <link refid="CelestialBody_8hpp"/>
         <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="18" relation="include">
         </childnode>
         <childnode refid="19" relation="include">
         </childnode>
@@ -513,6 +537,8 @@
         </childnode>
         <childnode refid="17" relation="include">
         </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
         <childnode refid="43" relation="include">
         </childnode>
       </node>
@@ -525,6 +551,8 @@
         </childnode>
         <childnode refid="17" relation="include">
         </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
         <childnode refid="13" relation="include">
         </childnode>
       </node>
@@ -535,7 +563,7 @@
         </childnode>
         <childnode refid="14" relation="include">
         </childnode>
-        <childnode refid="17" relation="include">
+        <childnode refid="18" relation="include">
         </childnode>
         <childnode refid="47" relation="include">
         </childnode>
@@ -547,7 +575,7 @@
         </childnode>
         <childnode refid="14" relation="include">
         </childnode>
-        <childnode refid="17" relation="include">
+        <childnode refid="18" relation="include">
         </childnode>
         <childnode refid="47" relation="include">
         </childnode>
@@ -559,7 +587,7 @@
         </childnode>
         <childnode refid="14" relation="include">
         </childnode>
-        <childnode refid="17" relation="include">
+        <childnode refid="18" relation="include">
         </childnode>
         <childnode refid="47" relation="include">
         </childnode>
@@ -571,7 +599,7 @@
         </childnode>
         <childnode refid="14" relation="include">
         </childnode>
-        <childnode refid="17" relation="include">
+        <childnode refid="18" relation="include">
         </childnode>
         <childnode refid="47" relation="include">
         </childnode>
@@ -583,7 +611,7 @@
         </childnode>
         <childnode refid="14" relation="include">
         </childnode>
-        <childnode refid="17" relation="include">
+        <childnode refid="18" relation="include">
         </childnode>
         <childnode refid="43" relation="include">
         </childnode>
@@ -597,7 +625,7 @@
         </childnode>
         <childnode refid="14" relation="include">
         </childnode>
-        <childnode refid="17" relation="include">
+        <childnode refid="18" relation="include">
         </childnode>
         <childnode refid="53" relation="include">
         </childnode>
@@ -613,6 +641,8 @@
         </childnode>
         <childnode refid="17" relation="include">
         </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
         <childnode refid="43" relation="include">
         </childnode>
       </node>
@@ -623,7 +653,7 @@
         </childnode>
         <childnode refid="14" relation="include">
         </childnode>
-        <childnode refid="17" relation="include">
+        <childnode refid="18" relation="include">
         </childnode>
         <childnode refid="53" relation="include">
         </childnode>
@@ -637,6 +667,8 @@
         </childnode>
         <childnode refid="17" relation="include">
         </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
         <childnode refid="43" relation="include">
         </childnode>
       </node>
@@ -647,7 +679,7 @@
         </childnode>
         <childnode refid="14" relation="include">
         </childnode>
-        <childnode refid="17" relation="include">
+        <childnode refid="18" relation="include">
         </childnode>
         <childnode refid="43" relation="include">
         </childnode>
@@ -655,8 +687,6 @@
       <node id="58">
         <label>astro/systems/celestial_bodies/Neptune/Triton.hpp</label>
         <link refid="Triton_8hpp"/>
-        <childnode refid="18" relation="include">
-        </childnode>
         <childnode refid="59" relation="include">
         </childnode>
         <childnode refid="19" relation="include">
@@ -665,7 +695,7 @@
         </childnode>
         <childnode refid="14" relation="include">
         </childnode>
-        <childnode refid="17" relation="include">
+        <childnode refid="18" relation="include">
         </childnode>
         <childnode refid="57" relation="include">
         </childnode>
@@ -677,7 +707,7 @@
         </childnode>
         <childnode refid="14" relation="include">
         </childnode>
-        <childnode refid="17" relation="include">
+        <childnode refid="18" relation="include">
         </childnode>
         <childnode refid="61" relation="include">
         </childnode>
@@ -689,7 +719,7 @@
         </childnode>
         <childnode refid="14" relation="include">
         </childnode>
-        <childnode refid="17" relation="include">
+        <childnode refid="18" relation="include">
         </childnode>
         <childnode refid="61" relation="include">
         </childnode>
@@ -701,7 +731,7 @@
         </childnode>
         <childnode refid="14" relation="include">
         </childnode>
-        <childnode refid="17" relation="include">
+        <childnode refid="18" relation="include">
         </childnode>
         <childnode refid="43" relation="include">
         </childnode>
@@ -715,7 +745,7 @@
         </childnode>
         <childnode refid="14" relation="include">
         </childnode>
-        <childnode refid="17" relation="include">
+        <childnode refid="18" relation="include">
         </childnode>
         <childnode refid="61" relation="include">
         </childnode>
@@ -727,7 +757,7 @@
         </childnode>
         <childnode refid="14" relation="include">
         </childnode>
-        <childnode refid="17" relation="include">
+        <childnode refid="18" relation="include">
         </childnode>
         <childnode refid="43" relation="include">
         </childnode>
@@ -739,7 +769,7 @@
         </childnode>
         <childnode refid="14" relation="include">
         </childnode>
-        <childnode refid="17" relation="include">
+        <childnode refid="18" relation="include">
         </childnode>
         <childnode refid="66" relation="include">
         </childnode>
@@ -751,7 +781,7 @@
         </childnode>
         <childnode refid="14" relation="include">
         </childnode>
-        <childnode refid="17" relation="include">
+        <childnode refid="18" relation="include">
         </childnode>
         <childnode refid="66" relation="include">
         </childnode>
@@ -763,7 +793,7 @@
         </childnode>
         <childnode refid="14" relation="include">
         </childnode>
-        <childnode refid="17" relation="include">
+        <childnode refid="18" relation="include">
         </childnode>
         <childnode refid="43" relation="include">
         </childnode>
@@ -779,6 +809,8 @@
         </childnode>
         <childnode refid="17" relation="include">
         </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
         <childnode refid="43" relation="include">
         </childnode>
       </node>
@@ -789,7 +821,7 @@
         </childnode>
         <childnode refid="70" relation="include">
         </childnode>
-        <childnode refid="98" relation="include">
+        <childnode refid="96" relation="include">
         </childnode>
         <childnode refid="38" relation="include">
         </childnode>
@@ -798,8 +830,6 @@
         <label>astro/systems/property_getters.hpp</label>
         <link refid="property__getters_8hpp_source"/>
         <childnode refid="28" relation="include">
-        </childnode>
-        <childnode refid="18" relation="include">
         </childnode>
         <childnode refid="19" relation="include">
         </childnode>
@@ -813,7 +843,7 @@
         </childnode>
         <childnode refid="42" relation="include">
         </childnode>
-        <childnode refid="17" relation="include">
+        <childnode refid="18" relation="include">
         </childnode>
         <childnode refid="24" relation="include">
         </childnode>
@@ -830,20 +860,20 @@
         <childnode refid="9" relation="include">
         </childnode>
       </node>
-      <node id="87">
+      <node id="89">
         <label>astro/systems/system_utilities.hpp</label>
         <link refid="system__utilities_8hpp_source"/>
-        <childnode refid="88" relation="include">
-        </childnode>
-        <childnode refid="89" relation="include">
-        </childnode>
         <childnode refid="90" relation="include">
         </childnode>
         <childnode refid="91" relation="include">
         </childnode>
         <childnode refid="92" relation="include">
         </childnode>
-        <childnode refid="17" relation="include">
+        <childnode refid="93" relation="include">
+        </childnode>
+        <childnode refid="94" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
         </childnode>
         <childnode refid="43" relation="include">
         </childnode>
@@ -855,7 +885,7 @@
         </childnode>
         <childnode refid="15" relation="include">
         </childnode>
-        <childnode refid="93" relation="include">
+        <childnode refid="95" relation="include">
         </childnode>
       </node>
       <node id="25">
@@ -952,20 +982,10 @@
         <childnode refid="16" relation="include">
         </childnode>
       </node>
-      <node id="93">
+      <node id="95">
         <label>astro/types/type_traits.hpp</label>
         <link refid="type__traits_8hpp"/>
-        <childnode refid="94" relation="include">
-        </childnode>
-        <childnode refid="95" relation="include">
-        </childnode>
-        <childnode refid="28" relation="include">
-        </childnode>
-        <childnode refid="96" relation="include">
-        </childnode>
         <childnode refid="3" relation="include">
-        </childnode>
-        <childnode refid="97" relation="include">
         </childnode>
       </node>
       <node id="48">
@@ -1001,13 +1021,7 @@
         <label>concepts</label>
       </node>
       <node id="94">
-        <label>cstddef</label>
-      </node>
-      <node id="92">
         <label>gtl/phmap.hpp</label>
-      </node>
-      <node id="95">
-        <label>initializer_list</label>
       </node>
       <node id="72">
         <label>iomanip</label>
@@ -1024,11 +1038,17 @@
       <node id="41">
         <label>math/chebyshev_util.hpp</label>
       </node>
-      <node id="78">
+      <node id="75">
         <label>math/interpolation.hpp</label>
       </node>
-      <node id="88">
+      <node id="76">
+        <label>math/trig.hpp</label>
+      </node>
+      <node id="90">
         <label>memory</label>
+      </node>
+      <node id="88">
+        <label>mp-units/core.h</label>
       </node>
       <node id="23">
         <label>mp-units/framework.h</label>
@@ -1039,12 +1059,6 @@
       <node id="40">
         <label>mp-units/math.h</label>
       </node>
-      <node id="18">
-        <label>mp-units/systems/angular.h</label>
-      </node>
-      <node id="74">
-        <label>mp-units/systems/angular/math.h</label>
-      </node>
       <node id="59">
         <label>mp-units/systems/iau.h</label>
       </node>
@@ -1054,13 +1068,13 @@
       <node id="29">
         <label>mp-units/systems/si/chrono.h</label>
       </node>
-      <node id="75">
+      <node id="74">
         <label>mp-units/systems/si/math.h</label>
       </node>
       <node id="32">
         <label>numbers</label>
       </node>
-      <node id="89">
+      <node id="91">
         <label>ranges</label>
       </node>
       <node id="33">
@@ -1072,9 +1086,6 @@
       <node id="28">
         <label>string</label>
       </node>
-      <node id="96">
-        <label>tuple</label>
-      </node>
       <node id="3">
         <label>type_traits</label>
       </node>
@@ -1084,16 +1095,13 @@
       <node id="5">
         <label>units/units.hpp</label>
       </node>
-      <node id="90">
+      <node id="92">
         <label>unordered_set</label>
       </node>
       <node id="80">
         <label>utilities/string_util.hpp</label>
       </node>
-      <node id="97">
-        <label>utility</label>
-      </node>
-      <node id="91">
+      <node id="93">
         <label>vector</label>
       </node>
     </incdepgraph>
@@ -1139,23 +1147,15 @@
         </childnode>
         <childnode refid="41" relation="include">
         </childnode>
-        <childnode refid="52" relation="include">
-        </childnode>
-        <childnode refid="53" relation="include">
-        </childnode>
         <childnode refid="54" relation="include">
-        </childnode>
-        <childnode refid="47" relation="include">
         </childnode>
         <childnode refid="55" relation="include">
         </childnode>
-      </node>
-      <node id="42">
-        <label>astrea/astro/astro/frames/definitions/EastNorthUp.hpp</label>
-        <link refid="EastNorthUp_8hpp"/>
-        <childnode refid="2" relation="include">
+        <childnode refid="56" relation="include">
         </childnode>
-        <childnode refid="43" relation="include">
+        <childnode refid="48" relation="include">
+        </childnode>
+        <childnode refid="57" relation="include">
         </childnode>
       </node>
       <node id="1">
@@ -1163,12 +1163,12 @@
         <link refid="body__fixed__frames_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="57" relation="include">
+        <childnode refid="59" relation="include">
         </childnode>
-        <childnode refid="58" relation="include">
+        <childnode refid="60" relation="include">
         </childnode>
       </node>
-      <node id="57">
+      <node id="59">
         <label>astrea/astro/astro/frames/definitions/defined_rotations_earth.hpp</label>
         <link refid="defined__rotations__earth_8hpp"/>
         <childnode refid="2" relation="include">
@@ -1179,11 +1179,23 @@
         <link refid="dynamic__frames_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
+      </node>
+      <node id="42">
+        <label>astrea/astro/astro/frames/definitions/dynamic_frames/EastNorthUp.hpp</label>
+        <link refid="EastNorthUp_8hpp"/>
+        <childnode refid="43" relation="include">
+        </childnode>
         <childnode refid="44" relation="include">
         </childnode>
-        <childnode refid="5" relation="include">
+      </node>
+      <node id="44">
+        <label>astrea/astro/astro/frames/definitions/dynamic_frames/tags.hpp</label>
+        <link refid="tags_8hpp"/>
+        <childnode refid="43" relation="include">
         </childnode>
-        <childnode refid="12" relation="include">
+        <childnode refid="45" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
         </childnode>
         <childnode refid="6" relation="include">
         </childnode>
@@ -1191,33 +1203,33 @@
         </childnode>
         <childnode refid="29" relation="include">
         </childnode>
+        <childnode refid="49" relation="include">
+        </childnode>
+        <childnode refid="46" relation="include">
+        </childnode>
         <childnode refid="48" relation="include">
         </childnode>
-        <childnode refid="45" relation="include">
-        </childnode>
-        <childnode refid="47" relation="include">
-        </childnode>
       </node>
-      <node id="59">
+      <node id="61">
         <label>astrea/astro/astro/frames/definitions/frame_registry.hpp</label>
         <link refid="frame__registry_8hpp"/>
-        <childnode refid="43" relation="include">
+        <childnode refid="44" relation="include">
         </childnode>
-        <childnode refid="60" relation="include">
+        <childnode refid="62" relation="include">
         </childnode>
-        <childnode refid="61" relation="include">
+        <childnode refid="63" relation="include">
         </childnode>
       </node>
-      <node id="58">
+      <node id="60">
         <label>astrea/astro/astro/frames/definitions/primary_frame.hpp</label>
         <link refid="primary__frame_8hpp"/>
-        <childnode refid="59" relation="include">
+        <childnode refid="61" relation="include">
         </childnode>
-        <childnode refid="60" relation="include">
+        <childnode refid="62" relation="include">
         </childnode>
         <childnode refid="5" relation="include">
         </childnode>
-        <childnode refid="63" relation="include">
+        <childnode refid="65" relation="include">
         </childnode>
         <childnode refid="8" relation="include">
         </childnode>
@@ -1225,14 +1237,18 @@
         </childnode>
         <childnode refid="30" relation="include">
         </childnode>
-        <childnode refid="61" relation="include">
+        <childnode refid="63" relation="include">
         </childnode>
       </node>
-      <node id="60">
+      <node id="62">
         <label>astrea/astro/astro/frames/framework.hpp</label>
         <link refid="framework_8hpp_source"/>
         <childnode refid="3" relation="include">
         </childnode>
+      </node>
+      <node id="53">
+        <label>astrea/astro/astro/frames/framework/TopocentricFrame.hpp</label>
+        <link refid="TopocentricFrame_8hpp"/>
       </node>
       <node id="7">
         <label>astrea/astro/astro/platforms.hpp</label>
@@ -1240,14 +1256,14 @@
         <childnode refid="4" relation="include">
         </childnode>
       </node>
-      <node id="44">
+      <node id="45">
         <label>astrea/astro/astro/platforms/InertiaTensor.hpp</label>
         <link refid="InertiaTensor_8hpp"/>
         <childnode refid="12" relation="include">
         </childnode>
         <childnode refid="8" relation="include">
         </childnode>
-        <childnode refid="45" relation="include">
+        <childnode refid="46" relation="include">
         </childnode>
       </node>
       <node id="5">
@@ -1256,7 +1272,7 @@
         <childnode refid="6" relation="include">
         </childnode>
       </node>
-      <node id="63">
+      <node id="65">
         <label>astrea/astro/astro/platforms/PayloadPlatform.hpp</label>
         <link refid="PayloadPlatform_8hpp"/>
         <childnode refid="5" relation="include">
@@ -1425,6 +1441,8 @@
         </childnode>
         <childnode refid="24" relation="include">
         </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
         <childnode refid="25" relation="include">
         </childnode>
         <childnode refid="26" relation="include">
@@ -1502,7 +1520,7 @@
         <childnode refid="4" relation="include">
         </childnode>
       </node>
-      <node id="48">
+      <node id="49">
         <label>astrea/astro/astro/state/State.hpp</label>
         <link refid="State_8hpp"/>
         <childnode refid="13" relation="include">
@@ -1515,12 +1533,12 @@
         </childnode>
         <childnode refid="37" relation="include">
         </childnode>
-        <childnode refid="49" relation="include">
-        </childnode>
         <childnode refid="50" relation="include">
         </childnode>
+        <childnode refid="51" relation="include">
+        </childnode>
       </node>
-      <node id="49">
+      <node id="50">
         <label>astrea/astro/astro/state/StateHistory.hpp</label>
         <link refid="StateHistory_8hpp"/>
         <childnode refid="8" relation="include">
@@ -1565,70 +1583,72 @@
         <link refid="Geodetic_8hpp"/>
         <childnode refid="42" relation="include">
         </childnode>
+        <childnode refid="53" relation="include">
+        </childnode>
         <childnode refid="36" relation="include">
         </childnode>
-        <childnode refid="50" relation="include">
+        <childnode refid="51" relation="include">
         </childnode>
       </node>
-      <node id="52">
+      <node id="54">
         <label>astrea/astro/astro/state/angular_elements/Geodetic.ipp</label>
         <link refid="Geodetic_8ipp_source"/>
         <childnode refid="41" relation="include">
         </childnode>
       </node>
-      <node id="53">
+      <node id="55">
         <label>astrea/astro/astro/state/angular_elements/Spherical.hpp</label>
         <link refid="Spherical_8hpp"/>
         <childnode refid="36" relation="include">
         </childnode>
       </node>
-      <node id="54">
+      <node id="56">
         <label>astrea/astro/astro/state/angular_elements/Spherical.ipp</label>
         <link refid="Spherical_8ipp_source"/>
-        <childnode refid="53" relation="include">
+        <childnode refid="55" relation="include">
         </childnode>
       </node>
-      <node id="46">
+      <node id="47">
         <label>astrea/astro/astro/state/attitude.hpp</label>
         <link refid="attitude_8hpp"/>
         <childnode refid="37" relation="include">
         </childnode>
       </node>
-      <node id="45">
+      <node id="46">
         <label>astrea/astro/astro/state/attitude/AngularVelocities.hpp</label>
         <link refid="AngularVelocities_8hpp"/>
-        <childnode refid="46" relation="include">
+        <childnode refid="47" relation="include">
+        </childnode>
+        <childnode refid="48" relation="include">
+        </childnode>
+      </node>
+      <node id="48">
+        <label>astrea/astro/astro/state/attitude/Attitude.hpp</label>
+        <link refid="Attitude_8hpp"/>
+        <childnode refid="49" relation="include">
         </childnode>
         <childnode refid="47" relation="include">
         </childnode>
       </node>
-      <node id="47">
-        <label>astrea/astro/astro/state/attitude/Attitude.hpp</label>
-        <link refid="Attitude_8hpp"/>
-        <childnode refid="48" relation="include">
-        </childnode>
-        <childnode refid="46" relation="include">
-        </childnode>
-      </node>
-      <node id="56">
+      <node id="58">
         <label>astrea/astro/astro/state/orbital_data_formats.hpp</label>
         <link refid="orbital__data__formats_8hpp"/>
         <childnode refid="37" relation="include">
         </childnode>
       </node>
-      <node id="55">
+      <node id="57">
         <label>astrea/astro/astro/state/orbital_data_formats/TwoLineElements.hpp</label>
         <link refid="TwoLineElements_8hpp"/>
-        <childnode refid="56" relation="include">
+        <childnode refid="58" relation="include">
         </childnode>
       </node>
-      <node id="62">
+      <node id="64">
         <label>astrea/astro/astro/state/orbital_elements.hpp</label>
         <link refid="orbital__elements_8hpp"/>
         <childnode refid="37" relation="include">
         </childnode>
       </node>
-      <node id="61">
+      <node id="63">
         <label>astrea/astro/astro/state/orbital_elements/OrbitalElements.hpp</label>
         <link refid="OrbitalElements_8hpp"/>
         <childnode refid="23" relation="include">
@@ -1647,7 +1667,7 @@
         </childnode>
         <childnode refid="19" relation="include">
         </childnode>
-        <childnode refid="48" relation="include">
+        <childnode refid="49" relation="include">
         </childnode>
         <childnode refid="35" relation="include">
         </childnode>
@@ -1655,27 +1675,28 @@
         </childnode>
         <childnode refid="41" relation="include">
         </childnode>
-        <childnode refid="53" relation="include">
+        <childnode refid="55" relation="include">
         </childnode>
-        <childnode refid="62" relation="include">
+        <childnode refid="64" relation="include">
         </childnode>
       </node>
-      <node id="51">
+      <node id="52">
         <label>astrea/astro/astro/systems.hpp</label>
         <link refid="systems_8hpp"/>
         <childnode refid="4" relation="include">
         </childnode>
       </node>
-      <node id="50">
+      <node id="51">
         <label>astrea/astro/astro/systems/atmosphere.hpp</label>
         <link refid="atmosphere_8hpp_source"/>
-        <childnode refid="51" relation="include">
+        <childnode refid="52" relation="include">
         </childnode>
       </node>
     </invincdepgraph>
     <innerclass refid="structastrea_1_1astro_1_1frames_1_1mercury_1_1mercury__fixed" prot="public">astrea::astro::frames::mercury::mercury_fixed</innerclass>
     <innerclass refid="structastrea_1_1astro_1_1frames_1_1venus_1_1venus__fixed" prot="public">astrea::astro::frames::venus::venus_fixed</innerclass>
     <innerclass refid="structastrea_1_1astro_1_1frames_1_1earth_1_1earth__fixed" prot="public">astrea::astro::frames::earth::earth_fixed</innerclass>
+    <innerclass refid="structastrea_1_1astro_1_1frames_1_1earth_1_1cep" prot="public">astrea::astro::frames::earth::cep</innerclass>
     <innerclass refid="structastrea_1_1astro_1_1frames_1_1moon_1_1moon__fixed" prot="public">astrea::astro::frames::moon::moon_fixed</innerclass>
     <innerclass refid="structastrea_1_1astro_1_1frames_1_1mars_1_1mars__fixed" prot="public">astrea::astro::frames::mars::mars_fixed</innerclass>
     <innerclass refid="structastrea_1_1astro_1_1frames_1_1phobos_1_1phobos__fixed" prot="public">astrea::astro::frames::phobos::phobos_fixed</innerclass>
@@ -1726,7 +1747,7 @@
 </simplesect>
 <simplesect kind="date"><para>2025-08-05</para>
 </simplesect>
-<simplesect kind="copyright"><para>Copyright (c) 2025 Jay Iuliano</para>
+<simplesect kind="copyright"><para>Copyright (c) 2025-2026 Jay Iuliano</para>
 </simplesect>
 The GNU Lesser General Public License (LGPL)</para>
 <para>This file is part of Astrea. Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. Astrea is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details. You should have received a copy of the GNU General Public License along with Astrea. If not, see <ulink url="https://www.gnu.org/licenses/">https://www.gnu.org/licenses/</ulink>. </para>
@@ -1743,113 +1764,123 @@ The GNU Lesser General Public License (LGPL)</para>
 <codeline lineno="26"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">frames<sp/>{</highlight></codeline>
 <codeline lineno="27"><highlight class="normal"></highlight></codeline>
 <codeline lineno="28"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">mercury<sp/>{</highlight></codeline>
-<codeline lineno="29" refid="structastrea_1_1astro_1_1frames_1_1mercury_1_1mercury__fixed" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structastrea_1_1astro_1_1frames_1_1mercury_1_1mercury__fixed" kindref="compound">mercury_fixed</ref><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">final</ref><sp/>:<sp/><ref refid="structastrea_1_1astro_1_1BodyFixedFrame" kindref="compound">BodyFixedFrame</ref>&lt;&quot;Mercury<sp/>Fixed<sp/>Frame&quot;,<sp/>planets::Mercury&gt;<sp/>{</highlight></codeline>
+<codeline lineno="29" refid="structastrea_1_1astro_1_1frames_1_1mercury_1_1mercury__fixed" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structastrea_1_1astro_1_1frames_1_1mercury_1_1mercury__fixed" kindref="compound">mercury_fixed</ref><sp/>final<sp/>:<sp/><ref refid="structastrea_1_1astro_1_1BodyFixedFrame" kindref="compound">BodyFixedFrame</ref>&lt;&quot;Mercury<sp/>Fixed<sp/>Frame&quot;,<sp/>planets::Mercury&gt;<sp/>{</highlight></codeline>
 <codeline lineno="30"><highlight class="normal">}<sp/><ref refid="structastrea_1_1astro_1_1frames_1_1mercury_1_1mercury__fixed" kindref="compound">mercury_fixed</ref>;</highlight></codeline>
 <codeline lineno="31"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>mercury</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="32"><highlight class="normal"></highlight></codeline>
 <codeline lineno="33"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">venus<sp/>{</highlight></codeline>
-<codeline lineno="34" refid="structastrea_1_1astro_1_1frames_1_1venus_1_1venus__fixed" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structastrea_1_1astro_1_1frames_1_1venus_1_1venus__fixed" kindref="compound">venus_fixed</ref><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">final</ref><sp/>:<sp/><ref refid="structastrea_1_1astro_1_1BodyFixedFrame" kindref="compound">BodyFixedFrame</ref>&lt;&quot;Venus<sp/>Fixed<sp/>Frame&quot;,<sp/>planets::Venus&gt;<sp/>{</highlight></codeline>
+<codeline lineno="34" refid="structastrea_1_1astro_1_1frames_1_1venus_1_1venus__fixed" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structastrea_1_1astro_1_1frames_1_1venus_1_1venus__fixed" kindref="compound">venus_fixed</ref><sp/>final<sp/>:<sp/><ref refid="structastrea_1_1astro_1_1BodyFixedFrame" kindref="compound">BodyFixedFrame</ref>&lt;&quot;Venus<sp/>Fixed<sp/>Frame&quot;,<sp/>planets::Venus&gt;<sp/>{</highlight></codeline>
 <codeline lineno="35"><highlight class="normal">}<sp/><ref refid="structastrea_1_1astro_1_1frames_1_1venus_1_1venus__fixed" kindref="compound">venus_fixed</ref>;</highlight></codeline>
 <codeline lineno="36"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>venus</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="37"><highlight class="normal"></highlight></codeline>
 <codeline lineno="38"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">earth<sp/>{</highlight></codeline>
-<codeline lineno="39" refid="structastrea_1_1astro_1_1frames_1_1earth_1_1earth__fixed" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structastrea_1_1astro_1_1frames_1_1earth_1_1earth__fixed" kindref="compound">earth_fixed</ref><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">final</ref><sp/>:<sp/><ref refid="structastrea_1_1astro_1_1BodyFixedFrame" kindref="compound">BodyFixedFrame</ref>&lt;&quot;Earth<sp/>Fixed<sp/>Frame&quot;,<sp/>planets::Earth&gt;<sp/>{</highlight></codeline>
-<codeline lineno="40"><highlight class="normal">}<sp/><ref refid="structastrea_1_1astro_1_1frames_1_1earth_1_1earth__fixed" kindref="compound">earth_fixed</ref>;</highlight></codeline>
-<codeline lineno="41"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>earth</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="42"><highlight class="normal"></highlight></codeline>
-<codeline lineno="43"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">moon<sp/>{</highlight></codeline>
-<codeline lineno="44" refid="structastrea_1_1astro_1_1frames_1_1moon_1_1moon__fixed" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structastrea_1_1astro_1_1frames_1_1moon_1_1moon__fixed" kindref="compound">moon_fixed</ref><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">final</ref><sp/>:<sp/><ref refid="structastrea_1_1astro_1_1BodyFixedFrame" kindref="compound">BodyFixedFrame</ref>&lt;&quot;Moon<sp/>Fixed<sp/>Frame&quot;,<sp/>moons::Moon&gt;<sp/>{</highlight></codeline>
-<codeline lineno="45"><highlight class="normal">}<sp/><ref refid="structastrea_1_1astro_1_1frames_1_1moon_1_1moon__fixed" kindref="compound">moon_fixed</ref>;</highlight></codeline>
-<codeline lineno="46"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>moon</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="47"><highlight class="normal"></highlight></codeline>
-<codeline lineno="48"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">mars<sp/>{</highlight></codeline>
-<codeline lineno="49" refid="structastrea_1_1astro_1_1frames_1_1mars_1_1mars__fixed" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structastrea_1_1astro_1_1frames_1_1mars_1_1mars__fixed" kindref="compound">mars_fixed</ref><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">final</ref><sp/>:<sp/><ref refid="structastrea_1_1astro_1_1BodyFixedFrame" kindref="compound">BodyFixedFrame</ref>&lt;&quot;Mars<sp/>Fixed<sp/>Frame&quot;,<sp/>planets::Mars&gt;<sp/>{</highlight></codeline>
-<codeline lineno="50"><highlight class="normal">}<sp/><ref refid="structastrea_1_1astro_1_1frames_1_1mars_1_1mars__fixed" kindref="compound">mars_fixed</ref>;</highlight></codeline>
-<codeline lineno="51"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>mars</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight></codeline>
+<codeline lineno="40" refid="structastrea_1_1astro_1_1frames_1_1earth_1_1earth__fixed" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structastrea_1_1astro_1_1frames_1_1earth_1_1earth__fixed" kindref="compound">earth_fixed</ref><sp/>final<sp/>:<sp/><ref refid="structastrea_1_1astro_1_1BodyFixedFrame" kindref="compound">BodyFixedFrame</ref>&lt;&quot;Earth<sp/>Fixed<sp/>Frame&quot;,<sp/>planets::Earth&gt;<sp/>{</highlight></codeline>
+<codeline lineno="41"><highlight class="normal">}<sp/><ref refid="structastrea_1_1astro_1_1frames_1_1earth_1_1earth__fixed" kindref="compound">earth_fixed</ref>;</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>ecef<sp/>=<sp/><ref refid="structastrea_1_1astro_1_1frames_1_1earth_1_1earth__fixed" kindref="compound">earth_fixed</ref>;</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>itrf<sp/>=<sp/><ref refid="structastrea_1_1astro_1_1frames_1_1earth_1_1earth__fixed" kindref="compound">earth_fixed</ref>;</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight><highlight class="comment">//<sp/>TODO:<sp/>This<sp/>is<sp/>a<sp/>bit<sp/>out<sp/>of<sp/>line<sp/>with<sp/>the<sp/>reference<sp/>axis<sp/>definitions<sp/>attached<sp/>to<sp/>the<sp/>celestial<sp/>bodies</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight><highlight class="comment">//<sp/>since<sp/>this<sp/>is<sp/>also<sp/>technically<sp/>an<sp/>Earth-fixed<sp/>frame<sp/>and<sp/>uses<sp/>the<sp/>Earth<sp/>reference<sp/>axes.<sp/>It&apos;s<sp/>not<sp/>clear</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight><highlight class="comment">//<sp/>to<sp/>me<sp/>if<sp/>it<sp/>makes<sp/>sense<sp/>to<sp/>generalize<sp/>all<sp/>&quot;Body<sp/>Celestial<sp/>Pole&quot;<sp/>axes/frames<sp/>or<sp/>to<sp/>just<sp/>use<sp/>them<sp/>here.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="48" refid="structastrea_1_1astro_1_1frames_1_1earth_1_1cep" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structastrea_1_1astro_1_1frames_1_1earth_1_1cep" kindref="compound">cep</ref><sp/>:<sp/><ref refid="structastrea_1_1astro_1_1Frame" kindref="compound">Frame</ref>&lt;&quot;Earth<sp/>Celestial<sp/>Pole&quot;,<sp/>planets::Earth,<sp/>axes::cep&gt;<sp/>{</highlight></codeline>
+<codeline lineno="49"><highlight class="normal">}<sp/><ref refid="structastrea_1_1astro_1_1frames_1_1earth_1_1cep" kindref="compound">cep</ref>;</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>earth</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="52"><highlight class="normal"></highlight></codeline>
-<codeline lineno="53"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">phobos<sp/>{</highlight></codeline>
-<codeline lineno="54" refid="structastrea_1_1astro_1_1frames_1_1phobos_1_1phobos__fixed" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structastrea_1_1astro_1_1frames_1_1phobos_1_1phobos__fixed" kindref="compound">phobos_fixed</ref><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">final</ref><sp/>:<sp/><ref refid="structastrea_1_1astro_1_1BodyFixedFrame" kindref="compound">BodyFixedFrame</ref>&lt;&quot;Phobos<sp/>Fixed<sp/>Frame&quot;,<sp/>moons::Phobos&gt;<sp/>{</highlight></codeline>
-<codeline lineno="55"><highlight class="normal">}<sp/><ref refid="structastrea_1_1astro_1_1frames_1_1phobos_1_1phobos__fixed" kindref="compound">phobos_fixed</ref>;</highlight></codeline>
-<codeline lineno="56"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>phobos</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">moon<sp/>{</highlight></codeline>
+<codeline lineno="54" refid="structastrea_1_1astro_1_1frames_1_1moon_1_1moon__fixed" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structastrea_1_1astro_1_1frames_1_1moon_1_1moon__fixed" kindref="compound">moon_fixed</ref><sp/>final<sp/>:<sp/><ref refid="structastrea_1_1astro_1_1BodyFixedFrame" kindref="compound">BodyFixedFrame</ref>&lt;&quot;Moon<sp/>Fixed<sp/>Frame&quot;,<sp/>moons::Moon&gt;<sp/>{</highlight></codeline>
+<codeline lineno="55"><highlight class="normal">}<sp/><ref refid="structastrea_1_1astro_1_1frames_1_1moon_1_1moon__fixed" kindref="compound">moon_fixed</ref>;</highlight></codeline>
+<codeline lineno="56"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>moon</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="57"><highlight class="normal"></highlight></codeline>
-<codeline lineno="58"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">deimos<sp/>{</highlight></codeline>
-<codeline lineno="59" refid="structastrea_1_1astro_1_1frames_1_1deimos_1_1deimos__fixed" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structastrea_1_1astro_1_1frames_1_1deimos_1_1deimos__fixed" kindref="compound">deimos_fixed</ref><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">final</ref><sp/>:<sp/><ref refid="structastrea_1_1astro_1_1BodyFixedFrame" kindref="compound">BodyFixedFrame</ref>&lt;&quot;Deimos<sp/>Fixed<sp/>Frame&quot;,<sp/>moons::Deimos&gt;<sp/>{</highlight></codeline>
-<codeline lineno="60"><highlight class="normal">}<sp/><ref refid="structastrea_1_1astro_1_1frames_1_1deimos_1_1deimos__fixed" kindref="compound">deimos_fixed</ref>;</highlight></codeline>
-<codeline lineno="61"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>deimos</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">mars<sp/>{</highlight></codeline>
+<codeline lineno="59" refid="structastrea_1_1astro_1_1frames_1_1mars_1_1mars__fixed" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structastrea_1_1astro_1_1frames_1_1mars_1_1mars__fixed" kindref="compound">mars_fixed</ref><sp/>final<sp/>:<sp/><ref refid="structastrea_1_1astro_1_1BodyFixedFrame" kindref="compound">BodyFixedFrame</ref>&lt;&quot;Mars<sp/>Fixed<sp/>Frame&quot;,<sp/>planets::Mars&gt;<sp/>{</highlight></codeline>
+<codeline lineno="60"><highlight class="normal">}<sp/><ref refid="structastrea_1_1astro_1_1frames_1_1mars_1_1mars__fixed" kindref="compound">mars_fixed</ref>;</highlight></codeline>
+<codeline lineno="61"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>mars</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="62"><highlight class="normal"></highlight></codeline>
-<codeline lineno="63"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">jupiter<sp/>{</highlight></codeline>
-<codeline lineno="64" refid="structastrea_1_1astro_1_1frames_1_1jupiter_1_1jupiter__fixed" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structastrea_1_1astro_1_1frames_1_1jupiter_1_1jupiter__fixed" kindref="compound">jupiter_fixed</ref><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">final</ref><sp/>:<sp/><ref refid="structastrea_1_1astro_1_1BodyFixedFrame" kindref="compound">BodyFixedFrame</ref>&lt;&quot;Jupiter<sp/>Fixed<sp/>Frame&quot;,<sp/>planets::Jupiter&gt;<sp/>{</highlight></codeline>
-<codeline lineno="65"><highlight class="normal">}<sp/><ref refid="structastrea_1_1astro_1_1frames_1_1jupiter_1_1jupiter__fixed" kindref="compound">jupiter_fixed</ref>;</highlight></codeline>
-<codeline lineno="66"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>jupiter</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="63"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">phobos<sp/>{</highlight></codeline>
+<codeline lineno="64" refid="structastrea_1_1astro_1_1frames_1_1phobos_1_1phobos__fixed" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structastrea_1_1astro_1_1frames_1_1phobos_1_1phobos__fixed" kindref="compound">phobos_fixed</ref><sp/>final<sp/>:<sp/><ref refid="structastrea_1_1astro_1_1BodyFixedFrame" kindref="compound">BodyFixedFrame</ref>&lt;&quot;Phobos<sp/>Fixed<sp/>Frame&quot;,<sp/>moons::Phobos&gt;<sp/>{</highlight></codeline>
+<codeline lineno="65"><highlight class="normal">}<sp/><ref refid="structastrea_1_1astro_1_1frames_1_1phobos_1_1phobos__fixed" kindref="compound">phobos_fixed</ref>;</highlight></codeline>
+<codeline lineno="66"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>phobos</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="67"><highlight class="normal"></highlight></codeline>
-<codeline lineno="68"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">ganymede<sp/>{</highlight></codeline>
-<codeline lineno="69" refid="structastrea_1_1astro_1_1frames_1_1ganymede_1_1ganymede__fixed" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structastrea_1_1astro_1_1frames_1_1ganymede_1_1ganymede__fixed" kindref="compound">ganymede_fixed</ref><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">final</ref><sp/>:<sp/><ref refid="structastrea_1_1astro_1_1BodyFixedFrame" kindref="compound">BodyFixedFrame</ref>&lt;&quot;Ganymede<sp/>Fixed<sp/>Frame&quot;,<sp/>moons::Ganymede&gt;<sp/>{</highlight></codeline>
-<codeline lineno="70"><highlight class="normal">}<sp/><ref refid="structastrea_1_1astro_1_1frames_1_1ganymede_1_1ganymede__fixed" kindref="compound">ganymede_fixed</ref>;</highlight></codeline>
-<codeline lineno="71"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>ganymede</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="68"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">deimos<sp/>{</highlight></codeline>
+<codeline lineno="69" refid="structastrea_1_1astro_1_1frames_1_1deimos_1_1deimos__fixed" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structastrea_1_1astro_1_1frames_1_1deimos_1_1deimos__fixed" kindref="compound">deimos_fixed</ref><sp/>final<sp/>:<sp/><ref refid="structastrea_1_1astro_1_1BodyFixedFrame" kindref="compound">BodyFixedFrame</ref>&lt;&quot;Deimos<sp/>Fixed<sp/>Frame&quot;,<sp/>moons::Deimos&gt;<sp/>{</highlight></codeline>
+<codeline lineno="70"><highlight class="normal">}<sp/><ref refid="structastrea_1_1astro_1_1frames_1_1deimos_1_1deimos__fixed" kindref="compound">deimos_fixed</ref>;</highlight></codeline>
+<codeline lineno="71"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>deimos</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="72"><highlight class="normal"></highlight></codeline>
-<codeline lineno="73"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">callisto<sp/>{</highlight></codeline>
-<codeline lineno="74" refid="structastrea_1_1astro_1_1frames_1_1callisto_1_1callisto__fixed" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structastrea_1_1astro_1_1frames_1_1callisto_1_1callisto__fixed" kindref="compound">callisto_fixed</ref><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">final</ref><sp/>:<sp/><ref refid="structastrea_1_1astro_1_1BodyFixedFrame" kindref="compound">BodyFixedFrame</ref>&lt;&quot;Callisto<sp/>Fixed<sp/>Frame&quot;,<sp/>moons::Callisto&gt;<sp/>{</highlight></codeline>
-<codeline lineno="75"><highlight class="normal">}<sp/><ref refid="structastrea_1_1astro_1_1frames_1_1callisto_1_1callisto__fixed" kindref="compound">callisto_fixed</ref>;</highlight></codeline>
-<codeline lineno="76"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>callisto</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="73"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">jupiter<sp/>{</highlight></codeline>
+<codeline lineno="74" refid="structastrea_1_1astro_1_1frames_1_1jupiter_1_1jupiter__fixed" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structastrea_1_1astro_1_1frames_1_1jupiter_1_1jupiter__fixed" kindref="compound">jupiter_fixed</ref><sp/>final<sp/>:<sp/><ref refid="structastrea_1_1astro_1_1BodyFixedFrame" kindref="compound">BodyFixedFrame</ref>&lt;&quot;Jupiter<sp/>Fixed<sp/>Frame&quot;,<sp/>planets::Jupiter&gt;<sp/>{</highlight></codeline>
+<codeline lineno="75"><highlight class="normal">}<sp/><ref refid="structastrea_1_1astro_1_1frames_1_1jupiter_1_1jupiter__fixed" kindref="compound">jupiter_fixed</ref>;</highlight></codeline>
+<codeline lineno="76"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>jupiter</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="77"><highlight class="normal"></highlight></codeline>
-<codeline lineno="78"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">io<sp/>{</highlight></codeline>
-<codeline lineno="79" refid="structastrea_1_1astro_1_1frames_1_1io_1_1io__fixed" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structastrea_1_1astro_1_1frames_1_1io_1_1io__fixed" kindref="compound">io_fixed</ref><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">final</ref><sp/>:<sp/><ref refid="structastrea_1_1astro_1_1BodyFixedFrame" kindref="compound">BodyFixedFrame</ref>&lt;&quot;Io<sp/>Fixed<sp/>Frame&quot;,<sp/>moons::Io&gt;<sp/>{</highlight></codeline>
-<codeline lineno="80"><highlight class="normal">}<sp/><ref refid="structastrea_1_1astro_1_1frames_1_1io_1_1io__fixed" kindref="compound">io_fixed</ref>;</highlight></codeline>
-<codeline lineno="81"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>io</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="78"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">ganymede<sp/>{</highlight></codeline>
+<codeline lineno="79" refid="structastrea_1_1astro_1_1frames_1_1ganymede_1_1ganymede__fixed" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structastrea_1_1astro_1_1frames_1_1ganymede_1_1ganymede__fixed" kindref="compound">ganymede_fixed</ref><sp/>final<sp/>:<sp/><ref refid="structastrea_1_1astro_1_1BodyFixedFrame" kindref="compound">BodyFixedFrame</ref>&lt;&quot;Ganymede<sp/>Fixed<sp/>Frame&quot;,<sp/>moons::Ganymede&gt;<sp/>{</highlight></codeline>
+<codeline lineno="80"><highlight class="normal">}<sp/><ref refid="structastrea_1_1astro_1_1frames_1_1ganymede_1_1ganymede__fixed" kindref="compound">ganymede_fixed</ref>;</highlight></codeline>
+<codeline lineno="81"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>ganymede</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="82"><highlight class="normal"></highlight></codeline>
-<codeline lineno="83"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">europa<sp/>{</highlight></codeline>
-<codeline lineno="84" refid="structastrea_1_1astro_1_1frames_1_1europa_1_1europa__fixed" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structastrea_1_1astro_1_1frames_1_1europa_1_1europa__fixed" kindref="compound">europa_fixed</ref><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">final</ref><sp/>:<sp/><ref refid="structastrea_1_1astro_1_1BodyFixedFrame" kindref="compound">BodyFixedFrame</ref>&lt;&quot;Europa<sp/>Fixed<sp/>Frame&quot;,<sp/>moons::Europa&gt;<sp/>{</highlight></codeline>
-<codeline lineno="85"><highlight class="normal">}<sp/><ref refid="structastrea_1_1astro_1_1frames_1_1europa_1_1europa__fixed" kindref="compound">europa_fixed</ref>;</highlight></codeline>
-<codeline lineno="86"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>europa</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="83"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">callisto<sp/>{</highlight></codeline>
+<codeline lineno="84" refid="structastrea_1_1astro_1_1frames_1_1callisto_1_1callisto__fixed" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structastrea_1_1astro_1_1frames_1_1callisto_1_1callisto__fixed" kindref="compound">callisto_fixed</ref><sp/>final<sp/>:<sp/><ref refid="structastrea_1_1astro_1_1BodyFixedFrame" kindref="compound">BodyFixedFrame</ref>&lt;&quot;Callisto<sp/>Fixed<sp/>Frame&quot;,<sp/>moons::Callisto&gt;<sp/>{</highlight></codeline>
+<codeline lineno="85"><highlight class="normal">}<sp/><ref refid="structastrea_1_1astro_1_1frames_1_1callisto_1_1callisto__fixed" kindref="compound">callisto_fixed</ref>;</highlight></codeline>
+<codeline lineno="86"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>callisto</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="87"><highlight class="normal"></highlight></codeline>
-<codeline lineno="88"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">saturn<sp/>{</highlight></codeline>
-<codeline lineno="89" refid="structastrea_1_1astro_1_1frames_1_1saturn_1_1saturn__fixed" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structastrea_1_1astro_1_1frames_1_1saturn_1_1saturn__fixed" kindref="compound">saturn_fixed</ref><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">final</ref><sp/>:<sp/><ref refid="structastrea_1_1astro_1_1BodyFixedFrame" kindref="compound">BodyFixedFrame</ref>&lt;&quot;Saturn<sp/>Fixed<sp/>Frame&quot;,<sp/>planets::Saturn&gt;<sp/>{</highlight></codeline>
-<codeline lineno="90"><highlight class="normal">}<sp/><ref refid="structastrea_1_1astro_1_1frames_1_1saturn_1_1saturn__fixed" kindref="compound">saturn_fixed</ref>;</highlight></codeline>
-<codeline lineno="91"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>saturn</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="88"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">io<sp/>{</highlight></codeline>
+<codeline lineno="89" refid="structastrea_1_1astro_1_1frames_1_1io_1_1io__fixed" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structastrea_1_1astro_1_1frames_1_1io_1_1io__fixed" kindref="compound">io_fixed</ref><sp/>final<sp/>:<sp/><ref refid="structastrea_1_1astro_1_1BodyFixedFrame" kindref="compound">BodyFixedFrame</ref>&lt;&quot;Io<sp/>Fixed<sp/>Frame&quot;,<sp/>moons::Io&gt;<sp/>{</highlight></codeline>
+<codeline lineno="90"><highlight class="normal">}<sp/><ref refid="structastrea_1_1astro_1_1frames_1_1io_1_1io__fixed" kindref="compound">io_fixed</ref>;</highlight></codeline>
+<codeline lineno="91"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>io</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="92"><highlight class="normal"></highlight></codeline>
-<codeline lineno="93"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">titan<sp/>{</highlight></codeline>
-<codeline lineno="94" refid="structastrea_1_1astro_1_1frames_1_1titan_1_1titan__fixed" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structastrea_1_1astro_1_1frames_1_1titan_1_1titan__fixed" kindref="compound">titan_fixed</ref><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">final</ref><sp/>:<sp/><ref refid="structastrea_1_1astro_1_1BodyFixedFrame" kindref="compound">BodyFixedFrame</ref>&lt;&quot;Titan<sp/>Fixed<sp/>Frame&quot;,<sp/>moons::Titan&gt;<sp/>{</highlight></codeline>
-<codeline lineno="95"><highlight class="normal">}<sp/><ref refid="structastrea_1_1astro_1_1frames_1_1titan_1_1titan__fixed" kindref="compound">titan_fixed</ref>;</highlight></codeline>
-<codeline lineno="96"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>titan</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="93"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">europa<sp/>{</highlight></codeline>
+<codeline lineno="94" refid="structastrea_1_1astro_1_1frames_1_1europa_1_1europa__fixed" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structastrea_1_1astro_1_1frames_1_1europa_1_1europa__fixed" kindref="compound">europa_fixed</ref><sp/>final<sp/>:<sp/><ref refid="structastrea_1_1astro_1_1BodyFixedFrame" kindref="compound">BodyFixedFrame</ref>&lt;&quot;Europa<sp/>Fixed<sp/>Frame&quot;,<sp/>moons::Europa&gt;<sp/>{</highlight></codeline>
+<codeline lineno="95"><highlight class="normal">}<sp/><ref refid="structastrea_1_1astro_1_1frames_1_1europa_1_1europa__fixed" kindref="compound">europa_fixed</ref>;</highlight></codeline>
+<codeline lineno="96"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>europa</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="97"><highlight class="normal"></highlight></codeline>
-<codeline lineno="98"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">rhea<sp/>{</highlight></codeline>
-<codeline lineno="99" refid="structastrea_1_1astro_1_1frames_1_1rhea_1_1rhea__fixed" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structastrea_1_1astro_1_1frames_1_1rhea_1_1rhea__fixed" kindref="compound">rhea_fixed</ref><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">final</ref><sp/>:<sp/><ref refid="structastrea_1_1astro_1_1BodyFixedFrame" kindref="compound">BodyFixedFrame</ref>&lt;&quot;Rhea<sp/>Fixed<sp/>Frame&quot;,<sp/>moons::Rhea&gt;<sp/>{</highlight></codeline>
-<codeline lineno="100"><highlight class="normal">}<sp/><ref refid="structastrea_1_1astro_1_1frames_1_1rhea_1_1rhea__fixed" kindref="compound">rhea_fixed</ref>;</highlight></codeline>
-<codeline lineno="101"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>rhea</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="98"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">saturn<sp/>{</highlight></codeline>
+<codeline lineno="99" refid="structastrea_1_1astro_1_1frames_1_1saturn_1_1saturn__fixed" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structastrea_1_1astro_1_1frames_1_1saturn_1_1saturn__fixed" kindref="compound">saturn_fixed</ref><sp/>final<sp/>:<sp/><ref refid="structastrea_1_1astro_1_1BodyFixedFrame" kindref="compound">BodyFixedFrame</ref>&lt;&quot;Saturn<sp/>Fixed<sp/>Frame&quot;,<sp/>planets::Saturn&gt;<sp/>{</highlight></codeline>
+<codeline lineno="100"><highlight class="normal">}<sp/><ref refid="structastrea_1_1astro_1_1frames_1_1saturn_1_1saturn__fixed" kindref="compound">saturn_fixed</ref>;</highlight></codeline>
+<codeline lineno="101"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>saturn</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="102"><highlight class="normal"></highlight></codeline>
-<codeline lineno="103"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">iapetus<sp/>{</highlight></codeline>
-<codeline lineno="104" refid="structastrea_1_1astro_1_1frames_1_1iapetus_1_1iapetus__fixed" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structastrea_1_1astro_1_1frames_1_1iapetus_1_1iapetus__fixed" kindref="compound">iapetus_fixed</ref><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">final</ref><sp/>:<sp/><ref refid="structastrea_1_1astro_1_1BodyFixedFrame" kindref="compound">BodyFixedFrame</ref>&lt;&quot;Iapetus<sp/>Fixed<sp/>Frame&quot;,<sp/>moons::Iapetus&gt;<sp/>{</highlight></codeline>
-<codeline lineno="105"><highlight class="normal">}<sp/><ref refid="structastrea_1_1astro_1_1frames_1_1iapetus_1_1iapetus__fixed" kindref="compound">iapetus_fixed</ref>;</highlight></codeline>
-<codeline lineno="106"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>iapetus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="103"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">titan<sp/>{</highlight></codeline>
+<codeline lineno="104" refid="structastrea_1_1astro_1_1frames_1_1titan_1_1titan__fixed" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structastrea_1_1astro_1_1frames_1_1titan_1_1titan__fixed" kindref="compound">titan_fixed</ref><sp/>final<sp/>:<sp/><ref refid="structastrea_1_1astro_1_1BodyFixedFrame" kindref="compound">BodyFixedFrame</ref>&lt;&quot;Titan<sp/>Fixed<sp/>Frame&quot;,<sp/>moons::Titan&gt;<sp/>{</highlight></codeline>
+<codeline lineno="105"><highlight class="normal">}<sp/><ref refid="structastrea_1_1astro_1_1frames_1_1titan_1_1titan__fixed" kindref="compound">titan_fixed</ref>;</highlight></codeline>
+<codeline lineno="106"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>titan</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="107"><highlight class="normal"></highlight></codeline>
-<codeline lineno="108"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">uranus<sp/>{</highlight></codeline>
-<codeline lineno="109" refid="structastrea_1_1astro_1_1frames_1_1uranus_1_1uranus__fixed" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structastrea_1_1astro_1_1frames_1_1uranus_1_1uranus__fixed" kindref="compound">uranus_fixed</ref><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">final</ref><sp/>:<sp/><ref refid="structastrea_1_1astro_1_1BodyFixedFrame" kindref="compound">BodyFixedFrame</ref>&lt;&quot;Uranus<sp/>Fixed<sp/>Frame&quot;,<sp/>planets::Uranus&gt;<sp/>{</highlight></codeline>
-<codeline lineno="110"><highlight class="normal">}<sp/><ref refid="structastrea_1_1astro_1_1frames_1_1uranus_1_1uranus__fixed" kindref="compound">uranus_fixed</ref>;</highlight></codeline>
-<codeline lineno="111"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>uranus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="108"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">rhea<sp/>{</highlight></codeline>
+<codeline lineno="109" refid="structastrea_1_1astro_1_1frames_1_1rhea_1_1rhea__fixed" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structastrea_1_1astro_1_1frames_1_1rhea_1_1rhea__fixed" kindref="compound">rhea_fixed</ref><sp/>final<sp/>:<sp/><ref refid="structastrea_1_1astro_1_1BodyFixedFrame" kindref="compound">BodyFixedFrame</ref>&lt;&quot;Rhea<sp/>Fixed<sp/>Frame&quot;,<sp/>moons::Rhea&gt;<sp/>{</highlight></codeline>
+<codeline lineno="110"><highlight class="normal">}<sp/><ref refid="structastrea_1_1astro_1_1frames_1_1rhea_1_1rhea__fixed" kindref="compound">rhea_fixed</ref>;</highlight></codeline>
+<codeline lineno="111"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>rhea</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="112"><highlight class="normal"></highlight></codeline>
-<codeline lineno="113"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">titania<sp/>{</highlight></codeline>
-<codeline lineno="114" refid="structastrea_1_1astro_1_1frames_1_1titania_1_1titania__fixed" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structastrea_1_1astro_1_1frames_1_1titania_1_1titania__fixed" kindref="compound">titania_fixed</ref><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">final</ref><sp/>:<sp/><ref refid="structastrea_1_1astro_1_1BodyFixedFrame" kindref="compound">BodyFixedFrame</ref>&lt;&quot;Titania<sp/>Fixed<sp/>Frame&quot;,<sp/>moons::Titania&gt;<sp/>{</highlight></codeline>
-<codeline lineno="115"><highlight class="normal">}<sp/><ref refid="structastrea_1_1astro_1_1frames_1_1titania_1_1titania__fixed" kindref="compound">titania_fixed</ref>;</highlight></codeline>
-<codeline lineno="116"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>titania</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="113"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">iapetus<sp/>{</highlight></codeline>
+<codeline lineno="114" refid="structastrea_1_1astro_1_1frames_1_1iapetus_1_1iapetus__fixed" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structastrea_1_1astro_1_1frames_1_1iapetus_1_1iapetus__fixed" kindref="compound">iapetus_fixed</ref><sp/>final<sp/>:<sp/><ref refid="structastrea_1_1astro_1_1BodyFixedFrame" kindref="compound">BodyFixedFrame</ref>&lt;&quot;Iapetus<sp/>Fixed<sp/>Frame&quot;,<sp/>moons::Iapetus&gt;<sp/>{</highlight></codeline>
+<codeline lineno="115"><highlight class="normal">}<sp/><ref refid="structastrea_1_1astro_1_1frames_1_1iapetus_1_1iapetus__fixed" kindref="compound">iapetus_fixed</ref>;</highlight></codeline>
+<codeline lineno="116"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>iapetus</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="117"><highlight class="normal"></highlight></codeline>
-<codeline lineno="118"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">oberon<sp/>{</highlight></codeline>
-<codeline lineno="119" refid="structastrea_1_1astro_1_1frames_1_1oberon_1_1oberon__fixed" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structastrea_1_1astro_1_1frames_1_1oberon_1_1oberon__fixed" kindref="compound">oberon_fixed</ref><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">final</ref><sp/>:<sp/><ref refid="structastrea_1_1astro_1_1BodyFixedFrame" kindref="compound">BodyFixedFrame</ref>&lt;&quot;Oberon<sp/>Fixed<sp/>Frame&quot;,<sp/>moons::Oberon&gt;<sp/>{</highlight></codeline>
-<codeline lineno="120"><highlight class="normal">}<sp/><ref refid="structastrea_1_1astro_1_1frames_1_1oberon_1_1oberon__fixed" kindref="compound">oberon_fixed</ref>;</highlight></codeline>
-<codeline lineno="121"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>oberon</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="118"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">uranus<sp/>{</highlight></codeline>
+<codeline lineno="119" refid="structastrea_1_1astro_1_1frames_1_1uranus_1_1uranus__fixed" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structastrea_1_1astro_1_1frames_1_1uranus_1_1uranus__fixed" kindref="compound">uranus_fixed</ref><sp/>final<sp/>:<sp/><ref refid="structastrea_1_1astro_1_1BodyFixedFrame" kindref="compound">BodyFixedFrame</ref>&lt;&quot;Uranus<sp/>Fixed<sp/>Frame&quot;,<sp/>planets::Uranus&gt;<sp/>{</highlight></codeline>
+<codeline lineno="120"><highlight class="normal">}<sp/><ref refid="structastrea_1_1astro_1_1frames_1_1uranus_1_1uranus__fixed" kindref="compound">uranus_fixed</ref>;</highlight></codeline>
+<codeline lineno="121"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>uranus</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="122"><highlight class="normal"></highlight></codeline>
-<codeline lineno="123"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">neptune<sp/>{</highlight></codeline>
-<codeline lineno="124" refid="structastrea_1_1astro_1_1frames_1_1neptune_1_1neptune__fixed" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structastrea_1_1astro_1_1frames_1_1neptune_1_1neptune__fixed" kindref="compound">neptune_fixed</ref><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">final</ref><sp/>:<sp/><ref refid="structastrea_1_1astro_1_1BodyFixedFrame" kindref="compound">BodyFixedFrame</ref>&lt;&quot;Neptune<sp/>Fixed<sp/>Frame&quot;,<sp/>planets::Neptune&gt;<sp/>{</highlight></codeline>
-<codeline lineno="125"><highlight class="normal">}<sp/><ref refid="structastrea_1_1astro_1_1frames_1_1neptune_1_1neptune__fixed" kindref="compound">neptune_fixed</ref>;</highlight></codeline>
-<codeline lineno="126"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>neptune</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="123"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">titania<sp/>{</highlight></codeline>
+<codeline lineno="124" refid="structastrea_1_1astro_1_1frames_1_1titania_1_1titania__fixed" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structastrea_1_1astro_1_1frames_1_1titania_1_1titania__fixed" kindref="compound">titania_fixed</ref><sp/>final<sp/>:<sp/><ref refid="structastrea_1_1astro_1_1BodyFixedFrame" kindref="compound">BodyFixedFrame</ref>&lt;&quot;Titania<sp/>Fixed<sp/>Frame&quot;,<sp/>moons::Titania&gt;<sp/>{</highlight></codeline>
+<codeline lineno="125"><highlight class="normal">}<sp/><ref refid="structastrea_1_1astro_1_1frames_1_1titania_1_1titania__fixed" kindref="compound">titania_fixed</ref>;</highlight></codeline>
+<codeline lineno="126"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>titania</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="127"><highlight class="normal"></highlight></codeline>
-<codeline lineno="128"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">triton<sp/>{</highlight></codeline>
-<codeline lineno="129" refid="structastrea_1_1astro_1_1frames_1_1triton_1_1triton__fixed" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structastrea_1_1astro_1_1frames_1_1triton_1_1triton__fixed" kindref="compound">triton_fixed</ref><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">final</ref><sp/>:<sp/><ref refid="structastrea_1_1astro_1_1BodyFixedFrame" kindref="compound">BodyFixedFrame</ref>&lt;&quot;Triton<sp/>Fixed<sp/>Frame&quot;,<sp/>moons::Triton&gt;<sp/>{</highlight></codeline>
-<codeline lineno="130"><highlight class="normal">}<sp/><ref refid="structastrea_1_1astro_1_1frames_1_1triton_1_1triton__fixed" kindref="compound">triton_fixed</ref>;</highlight></codeline>
-<codeline lineno="131"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>triton</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="128"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">oberon<sp/>{</highlight></codeline>
+<codeline lineno="129" refid="structastrea_1_1astro_1_1frames_1_1oberon_1_1oberon__fixed" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structastrea_1_1astro_1_1frames_1_1oberon_1_1oberon__fixed" kindref="compound">oberon_fixed</ref><sp/>final<sp/>:<sp/><ref refid="structastrea_1_1astro_1_1BodyFixedFrame" kindref="compound">BodyFixedFrame</ref>&lt;&quot;Oberon<sp/>Fixed<sp/>Frame&quot;,<sp/>moons::Oberon&gt;<sp/>{</highlight></codeline>
+<codeline lineno="130"><highlight class="normal">}<sp/><ref refid="structastrea_1_1astro_1_1frames_1_1oberon_1_1oberon__fixed" kindref="compound">oberon_fixed</ref>;</highlight></codeline>
+<codeline lineno="131"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>oberon</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="132"><highlight class="normal"></highlight></codeline>
-<codeline lineno="133"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>frames</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="134"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>astro</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="135"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>astrea</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">neptune<sp/>{</highlight></codeline>
+<codeline lineno="134" refid="structastrea_1_1astro_1_1frames_1_1neptune_1_1neptune__fixed" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structastrea_1_1astro_1_1frames_1_1neptune_1_1neptune__fixed" kindref="compound">neptune_fixed</ref><sp/>final<sp/>:<sp/><ref refid="structastrea_1_1astro_1_1BodyFixedFrame" kindref="compound">BodyFixedFrame</ref>&lt;&quot;Neptune<sp/>Fixed<sp/>Frame&quot;,<sp/>planets::Neptune&gt;<sp/>{</highlight></codeline>
+<codeline lineno="135"><highlight class="normal">}<sp/><ref refid="structastrea_1_1astro_1_1frames_1_1neptune_1_1neptune__fixed" kindref="compound">neptune_fixed</ref>;</highlight></codeline>
+<codeline lineno="136"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>neptune</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="137"><highlight class="normal"></highlight></codeline>
+<codeline lineno="138"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">triton<sp/>{</highlight></codeline>
+<codeline lineno="139" refid="structastrea_1_1astro_1_1frames_1_1triton_1_1triton__fixed" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structastrea_1_1astro_1_1frames_1_1triton_1_1triton__fixed" kindref="compound">triton_fixed</ref><sp/>final<sp/>:<sp/><ref refid="structastrea_1_1astro_1_1BodyFixedFrame" kindref="compound">BodyFixedFrame</ref>&lt;&quot;Triton<sp/>Fixed<sp/>Frame&quot;,<sp/>moons::Triton&gt;<sp/>{</highlight></codeline>
+<codeline lineno="140"><highlight class="normal">}<sp/><ref refid="structastrea_1_1astro_1_1frames_1_1triton_1_1triton__fixed" kindref="compound">triton_fixed</ref>;</highlight></codeline>
+<codeline lineno="141"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>triton</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="142"><highlight class="normal"></highlight></codeline>
+<codeline lineno="143"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>frames</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="144"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>astro</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="145"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>astrea</highlight></codeline>
     </programlisting>
     <location file="astrea/astro/astro/frames/definitions/body_fixed_frames.hpp"/>
   </compounddef>

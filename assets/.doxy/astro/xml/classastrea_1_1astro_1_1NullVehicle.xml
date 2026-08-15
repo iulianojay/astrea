@@ -5,7 +5,7 @@
     <includes refid="NullVehicle_8hpp" local="no">NullVehicle.hpp</includes>
     <sectiondef kind="private-attrib">
       <memberdef kind="variable" id="classastrea_1_1astro_1_1NullVehicle_1a9f5e4c05463a54666c9b7c63f0ec6201" prot="private" static="no" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Mass</ref></type>
+        <type>Mass</type>
         <definition>Mass astrea::astro::NullVehicle::_mass</definition>
         <argsstring></argsstring>
         <name>_mass</name>
@@ -27,7 +27,7 @@
         <name>NullVehicle</name>
         <qualifiedname>astrea::astro::NullVehicle::NullVehicle</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Mass</ref> &amp;</type>
+          <type>const Mass &amp;</type>
           <declname>mass</declname>
           <defval>1.0 *mp_units::si::unit_symbols::kg</defval>
         </param>
@@ -69,7 +69,7 @@
         <location file="astrea/astro/astro/platforms/vehicles/NullVehicle.hpp" line="47" column="17" bodyfile="astrea/astro/astro/platforms/vehicles/NullVehicle.cpp" bodystart="31" bodyend="31"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1NullVehicle_1a31642268a6735ab90d5e5a96e7b9a21e" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Mass</ref></type>
+        <type>Mass</type>
         <definition>Mass astrea::astro::NullVehicle::get_mass</definition>
         <argsstring>() const</argsstring>
         <name>get_mass</name>

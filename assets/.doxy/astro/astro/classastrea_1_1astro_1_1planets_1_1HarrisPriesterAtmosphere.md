@@ -59,7 +59,7 @@ _The Harris-Priester atmospheric model for_ [_**Earth**_](structastrea_1_1astro_
 
 | Type | Name |
 | ---: | :--- |
-|  [**Density**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**find\_atmospheric\_density**](#function-find_atmospheric_density) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**State**](classastrea_1_1astro_1_1State.md) & state) <br>_Find the atmospheric density at a given state using the Harris-Priester atmospheric model._  |
+|  Density | [**find\_atmospheric\_density**](#function-find_atmospheric_density) (const [**State**](classastrea_1_1astro_1_1State.md) & state) <br>_Find the atmospheric density at a given state using the Harris-Priester atmospheric model._  |
 
 
 
@@ -112,7 +112,7 @@ astrea::astro::planets::HarrisPriesterAtmosphere::HarrisPriesterAtmosphere () = 
 _Find the atmospheric density at a given state using the Harris-Priester atmospheric model._ 
 ```C++
 static Density astrea::astro::planets::HarrisPriesterAtmosphere::find_atmospheric_density (
-    const  State & state
+    const State & state
 ) 
 ```
 

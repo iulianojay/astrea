@@ -20,7 +20,7 @@
 
 ## e
 
-* **EarthRadii** ([**astrea**](namespaceastrea.md))
+* **earth\_radii** ([**astrea::units**](namespaceastrea_1_1units.md))
 
 
 ## f
@@ -31,7 +31,8 @@
 
 ## j
 
-* **JulianCentury** ([**astrea**](namespaceastrea.md))
+* **jc** ([**astrea::units::unit\_symbols**](namespaceastrea_1_1units_1_1unit__symbols.md))
+* **julian\_century** ([**astrea::units**](namespaceastrea_1_1units.md))
 
 
 ## m
@@ -46,9 +47,17 @@
 * **pressure\_unit** ([**astrea::detail**](namespaceastrea_1_1detail.md))
 
 
+## r
+
+* **re** ([**astrea::units::unit\_symbols**](namespaceastrea_1_1units_1_1unit__symbols.md))
+* **rev** ([**astrea::units::unit\_symbols**](namespaceastrea_1_1units_1_1unit__symbols.md))
+* **revolution** ([**astrea::units**](namespaceastrea_1_1units.md))
+
+
 ## s
 
-* **SolarFluxUnits** ([**astrea**](namespaceastrea.md))
+* **sfu** ([**astrea::units::unit\_symbols**](namespaceastrea_1_1units_1_1unit__symbols.md))
+* **solar\_flux\_units** ([**astrea::units**](namespaceastrea_1_1units.md))
 * **speed\_of\_light\_in\_vacuum** ([**astrea**](namespaceastrea.md))
 
 

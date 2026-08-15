@@ -5,7 +5,7 @@
     <includes refid="StepWatcher_8hpp" local="no">StepWatcher.hpp</includes>
     <sectiondef kind="private-attrib">
       <memberdef kind="variable" id="structastrea_1_1astro_1_1StepWatcher_1a951bce8ff73a4937e8f3aed244b0163c" prot="private" static="no" mutable="no">
-        <type>std::function&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">void</ref>(<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Time</ref> &amp;, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Vehicle" kindref="compound">Vehicle</ref> &amp;)&gt;</type>
+        <type>std::function&lt; void(const Time &amp;, const <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;, const <ref refid="classastrea_1_1astro_1_1Vehicle" kindref="compound">Vehicle</ref> &amp;)&gt;</type>
         <definition>std::function&lt;void(const Time&amp;, const State&amp;, const Vehicle&amp;)&gt; astrea::astro::StepWatcher::_func</definition>
         <argsstring></argsstring>
         <name>_func</name>
@@ -39,7 +39,7 @@
       <memberdef kind="function" id="structastrea_1_1astro_1_1StepWatcher_1a7ad640e5940c89341af1500dee1ca35e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
-            <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">typename</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">T</ref></type>
+            <type>typename T</type>
           </param>
         </templateparamlist>
         <type></type>
@@ -48,7 +48,7 @@
         <name>StepWatcher</name>
         <qualifiedname>astrea::astro::StepWatcher::StepWatcher</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">T</ref> &amp;&amp;</type>
+          <type>T &amp;&amp;</type>
           <declname>func</declname>
         </param>
         <briefdescription>
@@ -71,21 +71,21 @@
         <location file="astrea/astro/astro/propagation/numerical/StepWatcher.hpp" line="44" column="5" bodyfile="astrea/astro/astro/propagation/numerical/StepWatcher.hpp" bodystart="44" bodyend="73"/>
       </memberdef>
       <memberdef kind="function" id="structastrea_1_1astro_1_1StepWatcher_1adb152db67350704c6191f506dfb085ac" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">void</ref></type>
+        <type>void</type>
         <definition>void astrea::astro::StepWatcher::operator()</definition>
         <argsstring>(const Time &amp;time, const State &amp;state, const Vehicle &amp;vehicle) const</argsstring>
         <name>operator()</name>
         <qualifiedname>astrea::astro::StepWatcher::operator()</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Time</ref> &amp;</type>
+          <type>const Time &amp;</type>
           <declname>time</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
           <declname>state</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Vehicle" kindref="compound">Vehicle</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Vehicle" kindref="compound">Vehicle</ref> &amp;</type>
           <declname>vehicle</declname>
         </param>
         <briefdescription>

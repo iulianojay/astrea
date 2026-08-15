@@ -10,7 +10,6 @@
 
 _Contains definitions for constant values used in astrea._ [More...](#detailed-description)
 
-* `#include <mp-units/systems/angular.h>`
 * `#include <mp-units/systems/si.h>`
 * `#include <units/detail.hpp>`
 * `#include <units/typedefs.hpp>`
@@ -105,7 +104,7 @@ Jay Iuliano ([iuliano.jay@gmail.com](mailto:iuliano.jay@gmail.com))
 
 **Copyright:**
 
-Copyright (c) 2025 Jay Iuliano
+Copyright (c) 2025-2026 Jay Iuliano
 
 
 The GNU Lesser General Public License (LGPL)

@@ -15,7 +15,7 @@
 
 #include <mp-units/core.h>
 #include <mp-units/math.h>
-#include <mp-units/systems/angular/math.h>
+#include <mp-units/systems/si/math.h>
 
 #include <units/units.hpp>
 
@@ -141,8 +141,8 @@ class Quaternion {
     }
 
     Quaternion(const Angle& angle, const CartesianVector<Unitless, in_frame>& axis) :
-        _s(mp_units::angular::cos(angle / 2.0)),
-        _u(axis * mp_units::angular::sin(angle / 2.0))
+        _s(mp_units::si::cos(angle / 2.0)),
+        _u(axis * mp_units::si::sin(angle / 2.0))
     {
     }
 
@@ -164,8 +164,8 @@ class Quaternion {
     EulerAngles<sequence, rotation_type, in_frame, out_frame> to_euler_angles() const
     {
         using namespace mp_units;
-        using namespace mp_units::angular;
-        using mp_units::angular::unit_symbols::rad;
+        using namespace mp_units::si;
+        using mp_units::si::unit_symbols::rad;
 
         const bool isProper = is_proper_euler_sequence(sequence);
         auto [i, j, k]      = get_sequence_numbers(sequence);
@@ -311,7 +311,13 @@ class Quaternion {
 
     const CartesianVector<Unitless, in_frame>& get_vector_part() const { return _u; }
 
-    std::vector<Unitless> force_to_vector() const { return { _s, _u[0], _u[1], _u[2] }; }
+    std::vector<double> force_to_double_vector() const
+    {
+        return { _s.numerical_value_in(_s.unit),
+                 _u[0].numerical_value_in(_u[0].unit),
+                 _u[1].numerical_value_in(_u[1].unit),
+                 _u[2].numerical_value_in(_u[2].unit) };
+    }
 
     Unitless dot(const Quaternion<in_frame, out_frame>& other) const { return _s * other._s + _u.dot(other._u); }
 
@@ -319,8 +325,8 @@ class Quaternion {
         interpolate(const Time& thisTime, const Time& otherTime, const Quaternion<in_frame, out_frame>& other, const Time& targetTime) const
     {
         using namespace mp_units;
-        using namespace mp_units::angular;
-        using mp_units::angular::unit_symbols::rad;
+        using namespace mp_units::si;
+        using mp_units::si::unit_symbols::rad;
 
         // Calculate angle between them.
         const Unitless cosHalfTheta = this->dot(other);
@@ -368,7 +374,7 @@ class Quaternion {
         _u[2] *= scale;
     }
 
-    static Quaternion<in_frame, out_frame> from_vector(const std::vector<Unitless>& vec)
+    static Quaternion<in_frame, out_frame> from_double_vector(const std::vector<double>& vec)
     {
         if (vec.size() != 4) {
             throw std::invalid_argument("Input vector must have exactly 4 components to convert to a Quaternion.");
@@ -403,9 +409,12 @@ class QuaternionPartial {
         return Quaternion<in_frame, out_frame>{ _sDot * dt, _uDot * dt };
     }
 
-    std::vector<Unitless> force_to_vector() const
+    std::vector<double> force_to_double_vector() const
     {
-        return { _sDot / _sDot.unit, _uDot[0] / _uDot[0].unit, _uDot[1] / _uDot[1].unit, _uDot[2] / _uDot[2].unit };
+        return { _sDot.numerical_value_in(_sDot.unit),
+                 _uDot[0].numerical_value_in(_uDot[0].unit),
+                 _uDot[1].numerical_value_in(_uDot[1].unit),
+                 _uDot[2].numerical_value_in(_uDot[2].unit) };
     }
 
   private:

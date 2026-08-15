@@ -6,25 +6,25 @@
     <includes refid="DirectionCosineMatrixAccel_8hpp" local="no">DirectionCosineMatrixAccel.hpp</includes>
     <templateparamlist>
       <param>
-        <type>IsFrame <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+        <type>IsFrame auto</type>
         <declname>_in_frame_</declname>
         <defname>_in_frame_</defname>
       </param>
       <param>
-        <type>IsFrame <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+        <type>IsFrame auto</type>
         <declname>_out_frame_</declname>
         <defname>_out_frame_</defname>
       </param>
     </templateparamlist>
     <sectiondef kind="public-func">
       <memberdef kind="function" id="structastrea_1_1astro_1_1DirectionCosineMatrixAccel_1a34ea9b034117ba73d9533ca654d169e5" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref></type>
+        <type>constexpr</type>
         <definition>constexpr astrea::astro::DirectionCosineMatrixAccel&lt; _in_frame_, _out_frame_ &gt;::DirectionCosineMatrixAccel</definition>
         <argsstring>(const std::array&lt; Chirp, 9 &gt; &amp;matrix)</argsstring>
         <name>DirectionCosineMatrixAccel</name>
         <qualifiedname>astrea::astro::DirectionCosineMatrixAccel::DirectionCosineMatrixAccel</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> std::array&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Chirp</ref>, 9 &gt; &amp;</type>
+          <type>const std::array&lt; Chirp, 9 &gt; &amp;</type>
           <declname>matrix</declname>
         </param>
         <briefdescription>
@@ -47,21 +47,21 @@
         <location file="astrea/astro/astro/frames/framework/DirectionCosineMatrixAccel.hpp" line="56" column="22" bodyfile="astrea/astro/astro/frames/framework/DirectionCosineMatrixAccel.hpp" bodystart="56" bodyend="59"/>
       </memberdef>
       <memberdef kind="function" id="structastrea_1_1astro_1_1DirectionCosineMatrixAccel_1a941665f980ed7655d025274a107fa7bd" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref></type>
+        <type>constexpr</type>
         <definition>constexpr astrea::astro::DirectionCosineMatrixAccel&lt; _in_frame_, _out_frame_ &gt;::DirectionCosineMatrixAccel</definition>
         <argsstring>(const std::array&lt; Chirp, 3 &gt; &amp;row1, const std::array&lt; Chirp, 3 &gt; &amp;row2, const std::array&lt; Chirp, 3 &gt; &amp;row3)</argsstring>
         <name>DirectionCosineMatrixAccel</name>
         <qualifiedname>astrea::astro::DirectionCosineMatrixAccel::DirectionCosineMatrixAccel</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> std::array&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Chirp</ref>, 3 &gt; &amp;</type>
+          <type>const std::array&lt; Chirp, 3 &gt; &amp;</type>
           <declname>row1</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> std::array&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Chirp</ref>, 3 &gt; &amp;</type>
+          <type>const std::array&lt; Chirp, 3 &gt; &amp;</type>
           <declname>row2</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> std::array&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Chirp</ref>, 3 &gt; &amp;</type>
+          <type>const std::array&lt; Chirp, 3 &gt; &amp;</type>
           <declname>row3</declname>
         </param>
         <briefdescription>
@@ -100,13 +100,13 @@
         <location file="astrea/astro/astro/frames/framework/DirectionCosineMatrixAccel.hpp" line="68" column="22" bodyfile="astrea/astro/astro/frames/framework/DirectionCosineMatrixAccel.hpp" bodystart="68" bodyend="71"/>
       </memberdef>
       <memberdef kind="function" id="structastrea_1_1astro_1_1DirectionCosineMatrixAccel_1ab0720992476e4e1e63f129b6307749ec" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref></type>
+        <type>constexpr</type>
         <definition>constexpr astrea::astro::DirectionCosineMatrixAccel&lt; _in_frame_, _out_frame_ &gt;::DirectionCosineMatrixAccel</definition>
         <argsstring>(const DcmInterface&lt; Chirp, _in_frame_, _out_frame_ &gt; &amp;matrix)</argsstring>
         <name>DirectionCosineMatrixAccel</name>
         <qualifiedname>astrea::astro::DirectionCosineMatrixAccel::DirectionCosineMatrixAccel</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="structastrea_1_1astro_1_1DcmInterface" kindref="compound">DcmInterface</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Chirp</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_in_frame_</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_out_frame_</ref> &gt; &amp;</type>
+          <type>const <ref refid="structastrea_1_1astro_1_1DcmInterface" kindref="compound">DcmInterface</ref>&lt; Chirp, _in_frame_, _out_frame_ &gt; &amp;</type>
           <declname>matrix</declname>
         </param>
         <briefdescription>
@@ -129,7 +129,7 @@
         <location file="astrea/astro/astro/frames/framework/DirectionCosineMatrixAccel.hpp" line="78" column="22" bodyfile="astrea/astro/astro/frames/framework/DirectionCosineMatrixAccel.hpp" bodystart="78" bodyend="81"/>
       </memberdef>
       <memberdef kind="function" id="structastrea_1_1astro_1_1DirectionCosineMatrixAccel_1a4659f1ba8efc0fbd3de23de4ce62d00b" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="structastrea_1_1astro_1_1DirectionCosineMatrixAccel" kindref="compound">DirectionCosineMatrixAccel</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_out_frame_</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_in_frame_</ref> &gt;</type>
+        <type>constexpr <ref refid="structastrea_1_1astro_1_1DirectionCosineMatrixAccel" kindref="compound">DirectionCosineMatrixAccel</ref>&lt; _out_frame_, _in_frame_ &gt;</type>
         <definition>constexpr DirectionCosineMatrixAccel&lt; _out_frame_, _in_frame_ &gt; astrea::astro::DirectionCosineMatrixAccel&lt; _in_frame_, _out_frame_ &gt;::transpose</definition>
         <argsstring>() const</argsstring>
         <name>transpose</name>
@@ -145,21 +145,21 @@
     </sectiondef>
     <sectiondef kind="public-static-func">
       <memberdef kind="function" id="structastrea_1_1astro_1_1DirectionCosineMatrixAccel_1a779ff2795417001ae385655bc057e828" prot="public" static="yes" constexpr="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="structastrea_1_1astro_1_1DirectionCosineMatrixAccel" kindref="compound">DirectionCosineMatrixAccel</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_in_frame_</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_out_frame_</ref> &gt;</type>
+        <type>constexpr <ref refid="structastrea_1_1astro_1_1DirectionCosineMatrixAccel" kindref="compound">DirectionCosineMatrixAccel</ref>&lt; _in_frame_, _out_frame_ &gt;</type>
         <definition>static constexpr DirectionCosineMatrixAccel&lt; _in_frame_, _out_frame_ &gt; astrea::astro::DirectionCosineMatrixAccel&lt; _in_frame_, _out_frame_ &gt;::X</definition>
         <argsstring>(const Angle &amp;theta, const AngularVelocity &amp;thetaDot, const AngularAcceleration &amp;thetaDotDot)</argsstring>
         <name>X</name>
         <qualifiedname>astrea::astro::DirectionCosineMatrixAccel::X</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Angle</ref> &amp;</type>
+          <type>const Angle &amp;</type>
           <declname>theta</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">AngularVelocity</ref> &amp;</type>
+          <type>const AngularVelocity &amp;</type>
           <declname>thetaDot</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">AngularAcceleration</ref> &amp;</type>
+          <type>const AngularAcceleration &amp;</type>
           <declname>thetaDotDot</declname>
         </param>
         <briefdescription>
@@ -192,21 +192,21 @@
         <location file="astrea/astro/astro/frames/framework/DirectionCosineMatrixAccel.hpp" line="91" column="9" bodyfile="astrea/astro/astro/frames/framework/DirectionCosineMatrixAccel.hpp" bodystart="91" bodyend="114"/>
       </memberdef>
       <memberdef kind="function" id="structastrea_1_1astro_1_1DirectionCosineMatrixAccel_1a20c99e9312caeb8409ac1b7b955f1556" prot="public" static="yes" constexpr="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="structastrea_1_1astro_1_1DirectionCosineMatrixAccel" kindref="compound">DirectionCosineMatrixAccel</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_in_frame_</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_out_frame_</ref> &gt;</type>
+        <type>constexpr <ref refid="structastrea_1_1astro_1_1DirectionCosineMatrixAccel" kindref="compound">DirectionCosineMatrixAccel</ref>&lt; _in_frame_, _out_frame_ &gt;</type>
         <definition>static constexpr DirectionCosineMatrixAccel&lt; _in_frame_, _out_frame_ &gt; astrea::astro::DirectionCosineMatrixAccel&lt; _in_frame_, _out_frame_ &gt;::Y</definition>
         <argsstring>(const Angle &amp;theta, const AngularVelocity &amp;thetaDot, const AngularAcceleration &amp;thetaDotDot)</argsstring>
         <name>Y</name>
         <qualifiedname>astrea::astro::DirectionCosineMatrixAccel::Y</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Angle</ref> &amp;</type>
+          <type>const Angle &amp;</type>
           <declname>theta</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">AngularVelocity</ref> &amp;</type>
+          <type>const AngularVelocity &amp;</type>
           <declname>thetaDot</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">AngularAcceleration</ref> &amp;</type>
+          <type>const AngularAcceleration &amp;</type>
           <declname>thetaDotDot</declname>
         </param>
         <briefdescription>
@@ -239,21 +239,21 @@
         <location file="astrea/astro/astro/frames/framework/DirectionCosineMatrixAccel.hpp" line="124" column="9" bodyfile="astrea/astro/astro/frames/framework/DirectionCosineMatrixAccel.hpp" bodystart="124" bodyend="147"/>
       </memberdef>
       <memberdef kind="function" id="structastrea_1_1astro_1_1DirectionCosineMatrixAccel_1a208238715794822b543e593ab4ef1935" prot="public" static="yes" constexpr="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="structastrea_1_1astro_1_1DirectionCosineMatrixAccel" kindref="compound">DirectionCosineMatrixAccel</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_in_frame_</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_out_frame_</ref> &gt;</type>
+        <type>constexpr <ref refid="structastrea_1_1astro_1_1DirectionCosineMatrixAccel" kindref="compound">DirectionCosineMatrixAccel</ref>&lt; _in_frame_, _out_frame_ &gt;</type>
         <definition>static constexpr DirectionCosineMatrixAccel&lt; _in_frame_, _out_frame_ &gt; astrea::astro::DirectionCosineMatrixAccel&lt; _in_frame_, _out_frame_ &gt;::Z</definition>
         <argsstring>(const Angle &amp;theta, const AngularVelocity &amp;thetaDot, const AngularAcceleration &amp;thetaDotDot)</argsstring>
         <name>Z</name>
         <qualifiedname>astrea::astro::DirectionCosineMatrixAccel::Z</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Angle</ref> &amp;</type>
+          <type>const Angle &amp;</type>
           <declname>theta</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">AngularVelocity</ref> &amp;</type>
+          <type>const AngularVelocity &amp;</type>
           <declname>thetaDot</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">AngularAcceleration</ref> &amp;</type>
+          <type>const AngularAcceleration &amp;</type>
           <declname>thetaDotDot</declname>
         </param>
         <briefdescription>
@@ -286,45 +286,45 @@
         <location file="astrea/astro/astro/frames/framework/DirectionCosineMatrixAccel.hpp" line="157" column="9" bodyfile="astrea/astro/astro/frames/framework/DirectionCosineMatrixAccel.hpp" bodystart="157" bodyend="180"/>
       </memberdef>
       <memberdef kind="function" id="structastrea_1_1astro_1_1DirectionCosineMatrixAccel_1a19716c3a28d71bc35b1a8740fe34c5c4" prot="public" static="yes" constexpr="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="structastrea_1_1astro_1_1DirectionCosineMatrixAccel" kindref="compound">DirectionCosineMatrixAccel</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_in_frame_</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_out_frame_</ref> &gt;</type>
+        <type>constexpr <ref refid="structastrea_1_1astro_1_1DirectionCosineMatrixAccel" kindref="compound">DirectionCosineMatrixAccel</ref>&lt; _in_frame_, _out_frame_ &gt;</type>
         <definition>static constexpr DirectionCosineMatrixAccel&lt; _in_frame_, _out_frame_ &gt; astrea::astro::DirectionCosineMatrixAccel&lt; _in_frame_, _out_frame_ &gt;::XZX</definition>
         <argsstring>(const Angle &amp;alpha, const Angle &amp;beta, const Angle &amp;gamma, const AngularVelocity &amp;alphaDot, const AngularVelocity &amp;betaDot, const AngularVelocity &amp;gammaDot, const AngularAcceleration &amp;alphaDotDot, const AngularAcceleration &amp;betaDotDot, const AngularAcceleration &amp;gammaDotDot)</argsstring>
         <name>XZX</name>
         <qualifiedname>astrea::astro::DirectionCosineMatrixAccel::XZX</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Angle</ref> &amp;</type>
+          <type>const Angle &amp;</type>
           <declname>alpha</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Angle</ref> &amp;</type>
+          <type>const Angle &amp;</type>
           <declname>beta</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Angle</ref> &amp;</type>
+          <type>const Angle &amp;</type>
           <declname>gamma</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">AngularVelocity</ref> &amp;</type>
+          <type>const AngularVelocity &amp;</type>
           <declname>alphaDot</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">AngularVelocity</ref> &amp;</type>
+          <type>const AngularVelocity &amp;</type>
           <declname>betaDot</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">AngularVelocity</ref> &amp;</type>
+          <type>const AngularVelocity &amp;</type>
           <declname>gammaDot</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">AngularAcceleration</ref> &amp;</type>
+          <type>const AngularAcceleration &amp;</type>
           <declname>alphaDotDot</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">AngularAcceleration</ref> &amp;</type>
+          <type>const AngularAcceleration &amp;</type>
           <declname>betaDotDot</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">AngularAcceleration</ref> &amp;</type>
+          <type>const AngularAcceleration &amp;</type>
           <declname>gammaDotDot</declname>
         </param>
         <briefdescription>
@@ -389,45 +389,45 @@
         <location file="astrea/astro/astro/frames/framework/DirectionCosineMatrixAccel.hpp" line="194" column="9" bodyfile="astrea/astro/astro/frames/framework/DirectionCosineMatrixAccel.hpp" bodystart="194" bodyend="217"/>
       </memberdef>
       <memberdef kind="function" id="structastrea_1_1astro_1_1DirectionCosineMatrixAccel_1a04263e00e86de9bc748676fdd586e051" prot="public" static="yes" constexpr="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="structastrea_1_1astro_1_1DirectionCosineMatrixAccel" kindref="compound">DirectionCosineMatrixAccel</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_in_frame_</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_out_frame_</ref> &gt;</type>
+        <type>constexpr <ref refid="structastrea_1_1astro_1_1DirectionCosineMatrixAccel" kindref="compound">DirectionCosineMatrixAccel</ref>&lt; _in_frame_, _out_frame_ &gt;</type>
         <definition>static constexpr DirectionCosineMatrixAccel&lt; _in_frame_, _out_frame_ &gt; astrea::astro::DirectionCosineMatrixAccel&lt; _in_frame_, _out_frame_ &gt;::XYX</definition>
         <argsstring>(const Angle &amp;alpha, const Angle &amp;beta, const Angle &amp;gamma, const AngularVelocity &amp;alphaDot, const AngularVelocity &amp;betaDot, const AngularVelocity &amp;gammaDot, const AngularAcceleration &amp;alphaDotDot, const AngularAcceleration &amp;betaDotDot, const AngularAcceleration &amp;gammaDotDot)</argsstring>
         <name>XYX</name>
         <qualifiedname>astrea::astro::DirectionCosineMatrixAccel::XYX</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Angle</ref> &amp;</type>
+          <type>const Angle &amp;</type>
           <declname>alpha</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Angle</ref> &amp;</type>
+          <type>const Angle &amp;</type>
           <declname>beta</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Angle</ref> &amp;</type>
+          <type>const Angle &amp;</type>
           <declname>gamma</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">AngularVelocity</ref> &amp;</type>
+          <type>const AngularVelocity &amp;</type>
           <declname>alphaDot</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">AngularVelocity</ref> &amp;</type>
+          <type>const AngularVelocity &amp;</type>
           <declname>betaDot</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">AngularVelocity</ref> &amp;</type>
+          <type>const AngularVelocity &amp;</type>
           <declname>gammaDot</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">AngularAcceleration</ref> &amp;</type>
+          <type>const AngularAcceleration &amp;</type>
           <declname>alphaDotDot</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">AngularAcceleration</ref> &amp;</type>
+          <type>const AngularAcceleration &amp;</type>
           <declname>betaDotDot</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">AngularAcceleration</ref> &amp;</type>
+          <type>const AngularAcceleration &amp;</type>
           <declname>gammaDotDot</declname>
         </param>
         <briefdescription>
@@ -492,45 +492,45 @@
         <location file="astrea/astro/astro/frames/framework/DirectionCosineMatrixAccel.hpp" line="231" column="9" bodyfile="astrea/astro/astro/frames/framework/DirectionCosineMatrixAccel.hpp" bodystart="231" bodyend="254"/>
       </memberdef>
       <memberdef kind="function" id="structastrea_1_1astro_1_1DirectionCosineMatrixAccel_1a61e363ea3f856f532d633d607c5d1d9f" prot="public" static="yes" constexpr="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="structastrea_1_1astro_1_1DirectionCosineMatrixAccel" kindref="compound">DirectionCosineMatrixAccel</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_in_frame_</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_out_frame_</ref> &gt;</type>
+        <type>constexpr <ref refid="structastrea_1_1astro_1_1DirectionCosineMatrixAccel" kindref="compound">DirectionCosineMatrixAccel</ref>&lt; _in_frame_, _out_frame_ &gt;</type>
         <definition>static constexpr DirectionCosineMatrixAccel&lt; _in_frame_, _out_frame_ &gt; astrea::astro::DirectionCosineMatrixAccel&lt; _in_frame_, _out_frame_ &gt;::YZY</definition>
         <argsstring>(const Angle &amp;alpha, const Angle &amp;beta, const Angle &amp;gamma, const AngularVelocity &amp;alphaDot, const AngularVelocity &amp;betaDot, const AngularVelocity &amp;gammaDot, const AngularAcceleration &amp;alphaDotDot, const AngularAcceleration &amp;betaDotDot, const AngularAcceleration &amp;gammaDotDot)</argsstring>
         <name>YZY</name>
         <qualifiedname>astrea::astro::DirectionCosineMatrixAccel::YZY</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Angle</ref> &amp;</type>
+          <type>const Angle &amp;</type>
           <declname>alpha</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Angle</ref> &amp;</type>
+          <type>const Angle &amp;</type>
           <declname>beta</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Angle</ref> &amp;</type>
+          <type>const Angle &amp;</type>
           <declname>gamma</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">AngularVelocity</ref> &amp;</type>
+          <type>const AngularVelocity &amp;</type>
           <declname>alphaDot</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">AngularVelocity</ref> &amp;</type>
+          <type>const AngularVelocity &amp;</type>
           <declname>betaDot</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">AngularVelocity</ref> &amp;</type>
+          <type>const AngularVelocity &amp;</type>
           <declname>gammaDot</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">AngularAcceleration</ref> &amp;</type>
+          <type>const AngularAcceleration &amp;</type>
           <declname>alphaDotDot</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">AngularAcceleration</ref> &amp;</type>
+          <type>const AngularAcceleration &amp;</type>
           <declname>betaDotDot</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">AngularAcceleration</ref> &amp;</type>
+          <type>const AngularAcceleration &amp;</type>
           <declname>gammaDotDot</declname>
         </param>
         <briefdescription>
@@ -595,45 +595,45 @@
         <location file="astrea/astro/astro/frames/framework/DirectionCosineMatrixAccel.hpp" line="268" column="9" bodyfile="astrea/astro/astro/frames/framework/DirectionCosineMatrixAccel.hpp" bodystart="268" bodyend="291"/>
       </memberdef>
       <memberdef kind="function" id="structastrea_1_1astro_1_1DirectionCosineMatrixAccel_1aafd7e79bd29cb2cb09f54fdb20b0d2fd" prot="public" static="yes" constexpr="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="structastrea_1_1astro_1_1DirectionCosineMatrixAccel" kindref="compound">DirectionCosineMatrixAccel</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_in_frame_</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_out_frame_</ref> &gt;</type>
+        <type>constexpr <ref refid="structastrea_1_1astro_1_1DirectionCosineMatrixAccel" kindref="compound">DirectionCosineMatrixAccel</ref>&lt; _in_frame_, _out_frame_ &gt;</type>
         <definition>static constexpr DirectionCosineMatrixAccel&lt; _in_frame_, _out_frame_ &gt; astrea::astro::DirectionCosineMatrixAccel&lt; _in_frame_, _out_frame_ &gt;::ZXZ</definition>
         <argsstring>(const Angle &amp;alpha, const Angle &amp;beta, const Angle &amp;gamma, const AngularVelocity &amp;alphaDot, const AngularVelocity &amp;betaDot, const AngularVelocity &amp;gammaDot, const AngularAcceleration &amp;alphaDotDot, const AngularAcceleration &amp;betaDotDot, const AngularAcceleration &amp;gammaDotDot)</argsstring>
         <name>ZXZ</name>
         <qualifiedname>astrea::astro::DirectionCosineMatrixAccel::ZXZ</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Angle</ref> &amp;</type>
+          <type>const Angle &amp;</type>
           <declname>alpha</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Angle</ref> &amp;</type>
+          <type>const Angle &amp;</type>
           <declname>beta</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Angle</ref> &amp;</type>
+          <type>const Angle &amp;</type>
           <declname>gamma</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">AngularVelocity</ref> &amp;</type>
+          <type>const AngularVelocity &amp;</type>
           <declname>alphaDot</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">AngularVelocity</ref> &amp;</type>
+          <type>const AngularVelocity &amp;</type>
           <declname>betaDot</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">AngularVelocity</ref> &amp;</type>
+          <type>const AngularVelocity &amp;</type>
           <declname>gammaDot</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">AngularAcceleration</ref> &amp;</type>
+          <type>const AngularAcceleration &amp;</type>
           <declname>alphaDotDot</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">AngularAcceleration</ref> &amp;</type>
+          <type>const AngularAcceleration &amp;</type>
           <declname>betaDotDot</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">AngularAcceleration</ref> &amp;</type>
+          <type>const AngularAcceleration &amp;</type>
           <declname>gammaDotDot</declname>
         </param>
         <briefdescription>
@@ -698,45 +698,45 @@
         <location file="astrea/astro/astro/frames/framework/DirectionCosineMatrixAccel.hpp" line="305" column="9" bodyfile="astrea/astro/astro/frames/framework/DirectionCosineMatrixAccel.hpp" bodystart="305" bodyend="328"/>
       </memberdef>
       <memberdef kind="function" id="structastrea_1_1astro_1_1DirectionCosineMatrixAccel_1a29260745254c566b62712a59bc97c87e" prot="public" static="yes" constexpr="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="structastrea_1_1astro_1_1DirectionCosineMatrixAccel" kindref="compound">DirectionCosineMatrixAccel</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_in_frame_</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_out_frame_</ref> &gt;</type>
+        <type>constexpr <ref refid="structastrea_1_1astro_1_1DirectionCosineMatrixAccel" kindref="compound">DirectionCosineMatrixAccel</ref>&lt; _in_frame_, _out_frame_ &gt;</type>
         <definition>static constexpr DirectionCosineMatrixAccel&lt; _in_frame_, _out_frame_ &gt; astrea::astro::DirectionCosineMatrixAccel&lt; _in_frame_, _out_frame_ &gt;::ZYZ</definition>
         <argsstring>(const Angle &amp;alpha, const Angle &amp;beta, const Angle &amp;gamma, const AngularVelocity &amp;alphaDot, const AngularVelocity &amp;betaDot, const AngularVelocity &amp;gammaDot, const AngularAcceleration &amp;alphaDotDot, const AngularAcceleration &amp;betaDotDot, const AngularAcceleration &amp;gammaDotDot)</argsstring>
         <name>ZYZ</name>
         <qualifiedname>astrea::astro::DirectionCosineMatrixAccel::ZYZ</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Angle</ref> &amp;</type>
+          <type>const Angle &amp;</type>
           <declname>alpha</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Angle</ref> &amp;</type>
+          <type>const Angle &amp;</type>
           <declname>beta</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Angle</ref> &amp;</type>
+          <type>const Angle &amp;</type>
           <declname>gamma</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">AngularVelocity</ref> &amp;</type>
+          <type>const AngularVelocity &amp;</type>
           <declname>alphaDot</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">AngularVelocity</ref> &amp;</type>
+          <type>const AngularVelocity &amp;</type>
           <declname>betaDot</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">AngularVelocity</ref> &amp;</type>
+          <type>const AngularVelocity &amp;</type>
           <declname>gammaDot</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">AngularAcceleration</ref> &amp;</type>
+          <type>const AngularAcceleration &amp;</type>
           <declname>alphaDotDot</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">AngularAcceleration</ref> &amp;</type>
+          <type>const AngularAcceleration &amp;</type>
           <declname>betaDotDot</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">AngularAcceleration</ref> &amp;</type>
+          <type>const AngularAcceleration &amp;</type>
           <declname>gammaDotDot</declname>
         </param>
         <briefdescription>
@@ -801,45 +801,45 @@
         <location file="astrea/astro/astro/frames/framework/DirectionCosineMatrixAccel.hpp" line="342" column="9" bodyfile="astrea/astro/astro/frames/framework/DirectionCosineMatrixAccel.hpp" bodystart="342" bodyend="365"/>
       </memberdef>
       <memberdef kind="function" id="structastrea_1_1astro_1_1DirectionCosineMatrixAccel_1a2d4d7baea088c3c3cd5d692a30eb0423" prot="public" static="yes" constexpr="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="structastrea_1_1astro_1_1DirectionCosineMatrixAccel" kindref="compound">DirectionCosineMatrixAccel</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_in_frame_</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_out_frame_</ref> &gt;</type>
+        <type>constexpr <ref refid="structastrea_1_1astro_1_1DirectionCosineMatrixAccel" kindref="compound">DirectionCosineMatrixAccel</ref>&lt; _in_frame_, _out_frame_ &gt;</type>
         <definition>static constexpr DirectionCosineMatrixAccel&lt; _in_frame_, _out_frame_ &gt; astrea::astro::DirectionCosineMatrixAccel&lt; _in_frame_, _out_frame_ &gt;::YXY</definition>
         <argsstring>(const Angle &amp;alpha, const Angle &amp;beta, const Angle &amp;gamma, const AngularVelocity &amp;alphaDot, const AngularVelocity &amp;betaDot, const AngularVelocity &amp;gammaDot, const AngularAcceleration &amp;alphaDotDot, const AngularAcceleration &amp;betaDotDot, const AngularAcceleration &amp;gammaDotDot)</argsstring>
         <name>YXY</name>
         <qualifiedname>astrea::astro::DirectionCosineMatrixAccel::YXY</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Angle</ref> &amp;</type>
+          <type>const Angle &amp;</type>
           <declname>alpha</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Angle</ref> &amp;</type>
+          <type>const Angle &amp;</type>
           <declname>beta</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Angle</ref> &amp;</type>
+          <type>const Angle &amp;</type>
           <declname>gamma</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">AngularVelocity</ref> &amp;</type>
+          <type>const AngularVelocity &amp;</type>
           <declname>alphaDot</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">AngularVelocity</ref> &amp;</type>
+          <type>const AngularVelocity &amp;</type>
           <declname>betaDot</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">AngularVelocity</ref> &amp;</type>
+          <type>const AngularVelocity &amp;</type>
           <declname>gammaDot</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">AngularAcceleration</ref> &amp;</type>
+          <type>const AngularAcceleration &amp;</type>
           <declname>alphaDotDot</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">AngularAcceleration</ref> &amp;</type>
+          <type>const AngularAcceleration &amp;</type>
           <declname>betaDotDot</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">AngularAcceleration</ref> &amp;</type>
+          <type>const AngularAcceleration &amp;</type>
           <declname>gammaDotDot</declname>
         </param>
         <briefdescription>
@@ -904,45 +904,45 @@
         <location file="astrea/astro/astro/frames/framework/DirectionCosineMatrixAccel.hpp" line="379" column="9" bodyfile="astrea/astro/astro/frames/framework/DirectionCosineMatrixAccel.hpp" bodystart="379" bodyend="402"/>
       </memberdef>
       <memberdef kind="function" id="structastrea_1_1astro_1_1DirectionCosineMatrixAccel_1a1e858c524cff54c1dedbce1022f4f0c2" prot="public" static="yes" constexpr="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="structastrea_1_1astro_1_1DirectionCosineMatrixAccel" kindref="compound">DirectionCosineMatrixAccel</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_in_frame_</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_out_frame_</ref> &gt;</type>
+        <type>constexpr <ref refid="structastrea_1_1astro_1_1DirectionCosineMatrixAccel" kindref="compound">DirectionCosineMatrixAccel</ref>&lt; _in_frame_, _out_frame_ &gt;</type>
         <definition>static constexpr DirectionCosineMatrixAccel&lt; _in_frame_, _out_frame_ &gt; astrea::astro::DirectionCosineMatrixAccel&lt; _in_frame_, _out_frame_ &gt;::XYZ</definition>
         <argsstring>(const Angle &amp;alpha, const Angle &amp;beta, const Angle &amp;gamma, const AngularVelocity &amp;alphaDot, const AngularVelocity &amp;betaDot, const AngularVelocity &amp;gammaDot, const AngularAcceleration &amp;alphaDotDot, const AngularAcceleration &amp;betaDotDot, const AngularAcceleration &amp;gammaDotDot)</argsstring>
         <name>XYZ</name>
         <qualifiedname>astrea::astro::DirectionCosineMatrixAccel::XYZ</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Angle</ref> &amp;</type>
+          <type>const Angle &amp;</type>
           <declname>alpha</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Angle</ref> &amp;</type>
+          <type>const Angle &amp;</type>
           <declname>beta</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Angle</ref> &amp;</type>
+          <type>const Angle &amp;</type>
           <declname>gamma</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">AngularVelocity</ref> &amp;</type>
+          <type>const AngularVelocity &amp;</type>
           <declname>alphaDot</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">AngularVelocity</ref> &amp;</type>
+          <type>const AngularVelocity &amp;</type>
           <declname>betaDot</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">AngularVelocity</ref> &amp;</type>
+          <type>const AngularVelocity &amp;</type>
           <declname>gammaDot</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">AngularAcceleration</ref> &amp;</type>
+          <type>const AngularAcceleration &amp;</type>
           <declname>alphaDotDot</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">AngularAcceleration</ref> &amp;</type>
+          <type>const AngularAcceleration &amp;</type>
           <declname>betaDotDot</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">AngularAcceleration</ref> &amp;</type>
+          <type>const AngularAcceleration &amp;</type>
           <declname>gammaDotDot</declname>
         </param>
         <briefdescription>
@@ -1007,45 +1007,45 @@
         <location file="astrea/astro/astro/frames/framework/DirectionCosineMatrixAccel.hpp" line="416" column="9" bodyfile="astrea/astro/astro/frames/framework/DirectionCosineMatrixAccel.hpp" bodystart="416" bodyend="439"/>
       </memberdef>
       <memberdef kind="function" id="structastrea_1_1astro_1_1DirectionCosineMatrixAccel_1a638b21e9759bb08a03a6848de41a4437" prot="public" static="yes" constexpr="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="structastrea_1_1astro_1_1DirectionCosineMatrixAccel" kindref="compound">DirectionCosineMatrixAccel</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_in_frame_</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_out_frame_</ref> &gt;</type>
+        <type>constexpr <ref refid="structastrea_1_1astro_1_1DirectionCosineMatrixAccel" kindref="compound">DirectionCosineMatrixAccel</ref>&lt; _in_frame_, _out_frame_ &gt;</type>
         <definition>static constexpr DirectionCosineMatrixAccel&lt; _in_frame_, _out_frame_ &gt; astrea::astro::DirectionCosineMatrixAccel&lt; _in_frame_, _out_frame_ &gt;::YZX</definition>
         <argsstring>(const Angle &amp;alpha, const Angle &amp;beta, const Angle &amp;gamma, const AngularVelocity &amp;alphaDot, const AngularVelocity &amp;betaDot, const AngularVelocity &amp;gammaDot, const AngularAcceleration &amp;alphaDotDot, const AngularAcceleration &amp;betaDotDot, const AngularAcceleration &amp;gammaDotDot)</argsstring>
         <name>YZX</name>
         <qualifiedname>astrea::astro::DirectionCosineMatrixAccel::YZX</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Angle</ref> &amp;</type>
+          <type>const Angle &amp;</type>
           <declname>alpha</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Angle</ref> &amp;</type>
+          <type>const Angle &amp;</type>
           <declname>beta</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Angle</ref> &amp;</type>
+          <type>const Angle &amp;</type>
           <declname>gamma</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">AngularVelocity</ref> &amp;</type>
+          <type>const AngularVelocity &amp;</type>
           <declname>alphaDot</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">AngularVelocity</ref> &amp;</type>
+          <type>const AngularVelocity &amp;</type>
           <declname>betaDot</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">AngularVelocity</ref> &amp;</type>
+          <type>const AngularVelocity &amp;</type>
           <declname>gammaDot</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">AngularAcceleration</ref> &amp;</type>
+          <type>const AngularAcceleration &amp;</type>
           <declname>alphaDotDot</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">AngularAcceleration</ref> &amp;</type>
+          <type>const AngularAcceleration &amp;</type>
           <declname>betaDotDot</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">AngularAcceleration</ref> &amp;</type>
+          <type>const AngularAcceleration &amp;</type>
           <declname>gammaDotDot</declname>
         </param>
         <briefdescription>
@@ -1110,45 +1110,45 @@
         <location file="astrea/astro/astro/frames/framework/DirectionCosineMatrixAccel.hpp" line="453" column="9" bodyfile="astrea/astro/astro/frames/framework/DirectionCosineMatrixAccel.hpp" bodystart="453" bodyend="476"/>
       </memberdef>
       <memberdef kind="function" id="structastrea_1_1astro_1_1DirectionCosineMatrixAccel_1a0b79c2c48fabad3f9b614518e972081f" prot="public" static="yes" constexpr="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="structastrea_1_1astro_1_1DirectionCosineMatrixAccel" kindref="compound">DirectionCosineMatrixAccel</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_in_frame_</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_out_frame_</ref> &gt;</type>
+        <type>constexpr <ref refid="structastrea_1_1astro_1_1DirectionCosineMatrixAccel" kindref="compound">DirectionCosineMatrixAccel</ref>&lt; _in_frame_, _out_frame_ &gt;</type>
         <definition>static constexpr DirectionCosineMatrixAccel&lt; _in_frame_, _out_frame_ &gt; astrea::astro::DirectionCosineMatrixAccel&lt; _in_frame_, _out_frame_ &gt;::ZXY</definition>
         <argsstring>(const Angle &amp;alpha, const Angle &amp;beta, const Angle &amp;gamma, const AngularVelocity &amp;alphaDot, const AngularVelocity &amp;betaDot, const AngularVelocity &amp;gammaDot, const AngularAcceleration &amp;alphaDotDot, const AngularAcceleration &amp;betaDotDot, const AngularAcceleration &amp;gammaDotDot)</argsstring>
         <name>ZXY</name>
         <qualifiedname>astrea::astro::DirectionCosineMatrixAccel::ZXY</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Angle</ref> &amp;</type>
+          <type>const Angle &amp;</type>
           <declname>alpha</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Angle</ref> &amp;</type>
+          <type>const Angle &amp;</type>
           <declname>beta</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Angle</ref> &amp;</type>
+          <type>const Angle &amp;</type>
           <declname>gamma</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">AngularVelocity</ref> &amp;</type>
+          <type>const AngularVelocity &amp;</type>
           <declname>alphaDot</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">AngularVelocity</ref> &amp;</type>
+          <type>const AngularVelocity &amp;</type>
           <declname>betaDot</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">AngularVelocity</ref> &amp;</type>
+          <type>const AngularVelocity &amp;</type>
           <declname>gammaDot</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">AngularAcceleration</ref> &amp;</type>
+          <type>const AngularAcceleration &amp;</type>
           <declname>alphaDotDot</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">AngularAcceleration</ref> &amp;</type>
+          <type>const AngularAcceleration &amp;</type>
           <declname>betaDotDot</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">AngularAcceleration</ref> &amp;</type>
+          <type>const AngularAcceleration &amp;</type>
           <declname>gammaDotDot</declname>
         </param>
         <briefdescription>
@@ -1213,45 +1213,45 @@
         <location file="astrea/astro/astro/frames/framework/DirectionCosineMatrixAccel.hpp" line="490" column="9" bodyfile="astrea/astro/astro/frames/framework/DirectionCosineMatrixAccel.hpp" bodystart="490" bodyend="513"/>
       </memberdef>
       <memberdef kind="function" id="structastrea_1_1astro_1_1DirectionCosineMatrixAccel_1af11c236cf96cbec347c07452d1313e4a" prot="public" static="yes" constexpr="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="structastrea_1_1astro_1_1DirectionCosineMatrixAccel" kindref="compound">DirectionCosineMatrixAccel</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_in_frame_</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_out_frame_</ref> &gt;</type>
+        <type>constexpr <ref refid="structastrea_1_1astro_1_1DirectionCosineMatrixAccel" kindref="compound">DirectionCosineMatrixAccel</ref>&lt; _in_frame_, _out_frame_ &gt;</type>
         <definition>static constexpr DirectionCosineMatrixAccel&lt; _in_frame_, _out_frame_ &gt; astrea::astro::DirectionCosineMatrixAccel&lt; _in_frame_, _out_frame_ &gt;::XZY</definition>
         <argsstring>(const Angle &amp;alpha, const Angle &amp;beta, const Angle &amp;gamma, const AngularVelocity &amp;alphaDot, const AngularVelocity &amp;betaDot, const AngularVelocity &amp;gammaDot, const AngularAcceleration &amp;alphaDotDot, const AngularAcceleration &amp;betaDotDot, const AngularAcceleration &amp;gammaDotDot)</argsstring>
         <name>XZY</name>
         <qualifiedname>astrea::astro::DirectionCosineMatrixAccel::XZY</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Angle</ref> &amp;</type>
+          <type>const Angle &amp;</type>
           <declname>alpha</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Angle</ref> &amp;</type>
+          <type>const Angle &amp;</type>
           <declname>beta</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Angle</ref> &amp;</type>
+          <type>const Angle &amp;</type>
           <declname>gamma</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">AngularVelocity</ref> &amp;</type>
+          <type>const AngularVelocity &amp;</type>
           <declname>alphaDot</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">AngularVelocity</ref> &amp;</type>
+          <type>const AngularVelocity &amp;</type>
           <declname>betaDot</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">AngularVelocity</ref> &amp;</type>
+          <type>const AngularVelocity &amp;</type>
           <declname>gammaDot</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">AngularAcceleration</ref> &amp;</type>
+          <type>const AngularAcceleration &amp;</type>
           <declname>alphaDotDot</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">AngularAcceleration</ref> &amp;</type>
+          <type>const AngularAcceleration &amp;</type>
           <declname>betaDotDot</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">AngularAcceleration</ref> &amp;</type>
+          <type>const AngularAcceleration &amp;</type>
           <declname>gammaDotDot</declname>
         </param>
         <briefdescription>
@@ -1316,45 +1316,45 @@
         <location file="astrea/astro/astro/frames/framework/DirectionCosineMatrixAccel.hpp" line="527" column="9" bodyfile="astrea/astro/astro/frames/framework/DirectionCosineMatrixAccel.hpp" bodystart="527" bodyend="538"/>
       </memberdef>
       <memberdef kind="function" id="structastrea_1_1astro_1_1DirectionCosineMatrixAccel_1a7196445201957c86ed4ee0328e9d5c12" prot="public" static="yes" constexpr="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="structastrea_1_1astro_1_1DirectionCosineMatrixAccel" kindref="compound">DirectionCosineMatrixAccel</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_in_frame_</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_out_frame_</ref> &gt;</type>
+        <type>constexpr <ref refid="structastrea_1_1astro_1_1DirectionCosineMatrixAccel" kindref="compound">DirectionCosineMatrixAccel</ref>&lt; _in_frame_, _out_frame_ &gt;</type>
         <definition>static constexpr DirectionCosineMatrixAccel&lt; _in_frame_, _out_frame_ &gt; astrea::astro::DirectionCosineMatrixAccel&lt; _in_frame_, _out_frame_ &gt;::ZYX</definition>
         <argsstring>(const Angle &amp;alpha, const Angle &amp;beta, const Angle &amp;gamma, const AngularVelocity &amp;alphaDot, const AngularVelocity &amp;betaDot, const AngularVelocity &amp;gammaDot, const AngularAcceleration &amp;alphaDotDot, const AngularAcceleration &amp;betaDotDot, const AngularAcceleration &amp;gammaDotDot)</argsstring>
         <name>ZYX</name>
         <qualifiedname>astrea::astro::DirectionCosineMatrixAccel::ZYX</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Angle</ref> &amp;</type>
+          <type>const Angle &amp;</type>
           <declname>alpha</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Angle</ref> &amp;</type>
+          <type>const Angle &amp;</type>
           <declname>beta</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Angle</ref> &amp;</type>
+          <type>const Angle &amp;</type>
           <declname>gamma</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">AngularVelocity</ref> &amp;</type>
+          <type>const AngularVelocity &amp;</type>
           <declname>alphaDot</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">AngularVelocity</ref> &amp;</type>
+          <type>const AngularVelocity &amp;</type>
           <declname>betaDot</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">AngularVelocity</ref> &amp;</type>
+          <type>const AngularVelocity &amp;</type>
           <declname>gammaDot</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">AngularAcceleration</ref> &amp;</type>
+          <type>const AngularAcceleration &amp;</type>
           <declname>alphaDotDot</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">AngularAcceleration</ref> &amp;</type>
+          <type>const AngularAcceleration &amp;</type>
           <declname>betaDotDot</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">AngularAcceleration</ref> &amp;</type>
+          <type>const AngularAcceleration &amp;</type>
           <declname>gammaDotDot</declname>
         </param>
         <briefdescription>
@@ -1419,45 +1419,45 @@
         <location file="astrea/astro/astro/frames/framework/DirectionCosineMatrixAccel.hpp" line="552" column="9" bodyfile="astrea/astro/astro/frames/framework/DirectionCosineMatrixAccel.hpp" bodystart="552" bodyend="563"/>
       </memberdef>
       <memberdef kind="function" id="structastrea_1_1astro_1_1DirectionCosineMatrixAccel_1aef54dc790dd5153f1bbd72823d4ddd41" prot="public" static="yes" constexpr="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="structastrea_1_1astro_1_1DirectionCosineMatrixAccel" kindref="compound">DirectionCosineMatrixAccel</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_in_frame_</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_out_frame_</ref> &gt;</type>
+        <type>constexpr <ref refid="structastrea_1_1astro_1_1DirectionCosineMatrixAccel" kindref="compound">DirectionCosineMatrixAccel</ref>&lt; _in_frame_, _out_frame_ &gt;</type>
         <definition>static constexpr DirectionCosineMatrixAccel&lt; _in_frame_, _out_frame_ &gt; astrea::astro::DirectionCosineMatrixAccel&lt; _in_frame_, _out_frame_ &gt;::YXZ</definition>
         <argsstring>(const Angle &amp;alpha, const Angle &amp;beta, const Angle &amp;gamma, const AngularVelocity &amp;alphaDot, const AngularVelocity &amp;betaDot, const AngularVelocity &amp;gammaDot, const AngularAcceleration &amp;alphaDotDot, const AngularAcceleration &amp;betaDotDot, const AngularAcceleration &amp;gammaDotDot)</argsstring>
         <name>YXZ</name>
         <qualifiedname>astrea::astro::DirectionCosineMatrixAccel::YXZ</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Angle</ref> &amp;</type>
+          <type>const Angle &amp;</type>
           <declname>alpha</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Angle</ref> &amp;</type>
+          <type>const Angle &amp;</type>
           <declname>beta</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Angle</ref> &amp;</type>
+          <type>const Angle &amp;</type>
           <declname>gamma</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">AngularVelocity</ref> &amp;</type>
+          <type>const AngularVelocity &amp;</type>
           <declname>alphaDot</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">AngularVelocity</ref> &amp;</type>
+          <type>const AngularVelocity &amp;</type>
           <declname>betaDot</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">AngularVelocity</ref> &amp;</type>
+          <type>const AngularVelocity &amp;</type>
           <declname>gammaDot</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">AngularAcceleration</ref> &amp;</type>
+          <type>const AngularAcceleration &amp;</type>
           <declname>alphaDotDot</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">AngularAcceleration</ref> &amp;</type>
+          <type>const AngularAcceleration &amp;</type>
           <declname>betaDotDot</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">AngularAcceleration</ref> &amp;</type>
+          <type>const AngularAcceleration &amp;</type>
           <declname>gammaDotDot</declname>
         </param>
         <briefdescription>
@@ -1529,45 +1529,45 @@
             <defname>sequence</defname>
           </param>
         </templateparamlist>
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="structastrea_1_1astro_1_1DirectionCosineMatrixAccel" kindref="compound">DirectionCosineMatrixAccel</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_in_frame_</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_out_frame_</ref> &gt;</type>
+        <type>constexpr <ref refid="structastrea_1_1astro_1_1DirectionCosineMatrixAccel" kindref="compound">DirectionCosineMatrixAccel</ref>&lt; _in_frame_, _out_frame_ &gt;</type>
         <definition>static constexpr DirectionCosineMatrixAccel&lt; _in_frame_, _out_frame_ &gt; astrea::astro::DirectionCosineMatrixAccel&lt; _in_frame_, _out_frame_ &gt;::from_euler_angles</definition>
         <argsstring>(const Angle &amp;alpha, const Angle &amp;beta, const Angle &amp;gamma, const AngularVelocity &amp;alphaDot, const AngularVelocity &amp;betaDot, const AngularVelocity &amp;gammaDot, const AngularAcceleration &amp;alphaDotDot, const AngularAcceleration &amp;betaDotDot, const AngularAcceleration &amp;gammaDotDot)</argsstring>
         <name>from_euler_angles</name>
         <qualifiedname>astrea::astro::DirectionCosineMatrixAccel::from_euler_angles</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Angle</ref> &amp;</type>
+          <type>const Angle &amp;</type>
           <declname>alpha</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Angle</ref> &amp;</type>
+          <type>const Angle &amp;</type>
           <declname>beta</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Angle</ref> &amp;</type>
+          <type>const Angle &amp;</type>
           <declname>gamma</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">AngularVelocity</ref> &amp;</type>
+          <type>const AngularVelocity &amp;</type>
           <declname>alphaDot</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">AngularVelocity</ref> &amp;</type>
+          <type>const AngularVelocity &amp;</type>
           <declname>betaDot</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">AngularVelocity</ref> &amp;</type>
+          <type>const AngularVelocity &amp;</type>
           <declname>gammaDot</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">AngularAcceleration</ref> &amp;</type>
+          <type>const AngularAcceleration &amp;</type>
           <declname>alphaDotDot</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">AngularAcceleration</ref> &amp;</type>
+          <type>const AngularAcceleration &amp;</type>
           <declname>betaDotDot</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">AngularAcceleration</ref> &amp;</type>
+          <type>const AngularAcceleration &amp;</type>
           <declname>gammaDotDot</declname>
         </param>
         <briefdescription>
@@ -1665,7 +1665,7 @@
         <location file="astrea/astro/astro/frames/framework/DirectionCosineMatrixAccel.hpp" line="606" column="56" bodyfile="astrea/astro/astro/frames/framework/DirectionCosineMatrixAccel.hpp" bodystart="606" bodyend="678"/>
       </memberdef>
       <memberdef kind="function" id="structastrea_1_1astro_1_1DirectionCosineMatrixAccel_1a2c632d9fb4cecacabf44d92b4992f01d" prot="public" static="yes" constexpr="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="structastrea_1_1astro_1_1DirectionCosineMatrixAccel" kindref="compound">DirectionCosineMatrixAccel</ref></type>
+        <type>constexpr <ref refid="structastrea_1_1astro_1_1DirectionCosineMatrixAccel" kindref="compound">DirectionCosineMatrixAccel</ref></type>
         <definition>static constexpr DirectionCosineMatrixAccel astrea::astro::DirectionCosineMatrixAccel&lt; _in_frame_, _out_frame_ &gt;::identity</definition>
         <argsstring>()</argsstring>
         <name>identity</name>
@@ -1679,7 +1679,7 @@
         <location file="astrea/astro/astro/frames/framework/DirectionCosineMatrixAccel.hpp" line="685" column="56" bodyfile="astrea/astro/astro/frames/framework/DirectionCosineMatrixAccel.hpp" bodystart="685" bodyend="688"/>
       </memberdef>
       <memberdef kind="function" id="structastrea_1_1astro_1_1DirectionCosineMatrixAccel_1aaec33db6ac6ce05b49d080c75aee8308" prot="public" static="yes" constexpr="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="structastrea_1_1astro_1_1DirectionCosineMatrixAccel" kindref="compound">DirectionCosineMatrixAccel</ref></type>
+        <type>constexpr <ref refid="structastrea_1_1astro_1_1DirectionCosineMatrixAccel" kindref="compound">DirectionCosineMatrixAccel</ref></type>
         <definition>static constexpr DirectionCosineMatrixAccel astrea::astro::DirectionCosineMatrixAccel&lt; _in_frame_, _out_frame_ &gt;::zero</definition>
         <argsstring>()</argsstring>
         <name>zero</name>

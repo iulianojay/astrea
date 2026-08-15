@@ -12,12 +12,10 @@
 
 * `#include <astro/propagation/equations_of_motion/EquinoctialVop.hpp>`
 * `#include <mp-units/math.h>`
-* `#include <mp-units/systems/angular/math.h>`
-* `#include <mp-units/systems/isq_angle.h>`
 * `#include <mp-units/systems/si.h>`
 * `#include <mp-units/systems/si/math.h>`
 * `#include <astro/frames/definitions.hpp>`
-* `#include <astro/frames/definitions/dynamic_frames.hpp>`
+* `#include <astro/frames/definitions/dynamic_frames/tags.hpp>`
 * `#include <astro/platforms/Vehicle.hpp>`
 * `#include <astro/propagation/force_models/ForceModel.hpp>`
 * `#include <astro/state/State.hpp>`

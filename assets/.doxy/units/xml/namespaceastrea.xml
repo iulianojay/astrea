@@ -2,10 +2,8 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
   <compounddef id="namespaceastrea" kind="namespace" language="C++">
     <compoundname>astrea</compoundname>
-    <innerclass refid="structastrea_1_1EarthRadii" prot="public">astrea::EarthRadii</innerclass>
-    <innerclass refid="structastrea_1_1JulianCentury" prot="public">astrea::JulianCentury</innerclass>
-    <innerclass refid="structastrea_1_1SolarFluxUnits" prot="public">astrea::SolarFluxUnits</innerclass>
     <innernamespace refid="namespaceastrea_1_1detail">astrea::detail</innernamespace>
+    <innernamespace refid="namespaceastrea_1_1units">astrea::units</innernamespace>
     <sectiondef kind="typedef">
       <memberdef kind="typedef" id="time_8hpp_1a0d37b40890ae4cdb604d24c5ebc0f369" prot="public" static="no">
         <type>std::chrono::duration&lt; double, std::nano &gt;</type>
@@ -342,9 +340,9 @@
         </inbodydescription>
         <location file="astrea/units/units/typedefs.hpp" line="94" column="1" bodyfile="astrea/units/units/typedefs.hpp" bodystart="94" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="typedef" id="typedefs_8hpp_1a1a1a9bf4b13ef65327c6471d4c5269ca" prot="public" static="no">
-        <type>mp_units::quantity&lt; mp_units::iau::unit_symbols::au/<ref refid="structastrea_1_1JulianCentury" kindref="compound">JulianCentury</ref> &gt;</type>
-        <definition>using astrea::InterplanetaryVelocity = typedef mp_units::quantity&lt;mp_units::iau::unit_symbols::au / JulianCentury&gt;</definition>
+      <memberdef kind="typedef" id="typedefs_8hpp_1a21eafe045ab0055d538a90c43561fc0e" prot="public" static="no">
+        <type>mp_units::quantity&lt; mp_units::iau::unit_symbols::au/astrea::units::unit_symbols::jc &gt;</type>
+        <definition>using astrea::InterplanetaryVelocity = typedef mp_units::quantity&lt;mp_units::iau::unit_symbols::au / astrea::units::unit_symbols::jc&gt;</definition>
         <argsstring></argsstring>
         <name>InterplanetaryVelocity</name>
         <qualifiedname>astrea::InterplanetaryVelocity</qualifiedname>
@@ -357,9 +355,9 @@
         </inbodydescription>
         <location file="astrea/units/units/typedefs.hpp" line="99" column="1" bodyfile="astrea/units/units/typedefs.hpp" bodystart="99" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="typedef" id="typedefs_8hpp_1a234b77ed43fa3136baf692496b374310" prot="public" static="no">
-        <type>mp_units::quantity&lt; detail::unitless/<ref refid="structastrea_1_1JulianCentury" kindref="compound">JulianCentury</ref> &gt;</type>
-        <definition>using astrea::BodyUnitlessPerTime = typedef mp_units::quantity&lt;detail::unitless / JulianCentury&gt;</definition>
+      <memberdef kind="typedef" id="typedefs_8hpp_1a9985e7e30ad46074a668c42c9a2cc9f2" prot="public" static="no">
+        <type>mp_units::quantity&lt; detail::unitless/astrea::units::unit_symbols::jc &gt;</type>
+        <definition>using astrea::BodyUnitlessPerTime = typedef mp_units::quantity&lt;detail::unitless / astrea::units::unit_symbols::jc&gt;</definition>
         <argsstring></argsstring>
         <name>BodyUnitlessPerTime</name>
         <qualifiedname>astrea::BodyUnitlessPerTime</qualifiedname>
@@ -372,9 +370,9 @@
         </inbodydescription>
         <location file="astrea/units/units/typedefs.hpp" line="104" column="1" bodyfile="astrea/units/units/typedefs.hpp" bodystart="104" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="typedef" id="typedefs_8hpp_1ac539fe47ee8c4fab867decd7a46a169b" prot="public" static="no">
-        <type>mp_units::quantity&lt; detail::angle_unit/<ref refid="structastrea_1_1JulianCentury" kindref="compound">JulianCentury</ref> &gt;</type>
-        <definition>using astrea::BodyAngularVelocity = typedef mp_units::quantity&lt;detail::angle_unit / JulianCentury&gt;</definition>
+      <memberdef kind="typedef" id="typedefs_8hpp_1a095bd57504ee817d196cd11a8dac5e43" prot="public" static="no">
+        <type>mp_units::quantity&lt; detail::angle_unit/astrea::units::unit_symbols::jc &gt;</type>
+        <definition>using astrea::BodyAngularVelocity = typedef mp_units::quantity&lt;detail::angle_unit / astrea::units::unit_symbols::jc&gt;</definition>
         <argsstring></argsstring>
         <name>BodyAngularVelocity</name>
         <qualifiedname>astrea::BodyAngularVelocity</qualifiedname>
@@ -477,9 +475,9 @@
         </inbodydescription>
         <location file="astrea/units/units/typedefs.hpp" line="139" column="1" bodyfile="astrea/units/units/typedefs.hpp" bodystart="139" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="typedef" id="typedefs_8hpp_1a8767d002a30d8d5db5b72ff1b7735c89" prot="public" static="no">
-        <type>mp_units::quantity&lt; mp_units::one/<ref refid="structastrea_1_1EarthRadii" kindref="compound">EarthRadii</ref> &gt;</type>
-        <definition>using astrea::BallisticCoefficient = typedef mp_units::quantity&lt;mp_units::one / EarthRadii&gt;</definition>
+      <memberdef kind="typedef" id="typedefs_8hpp_1a9d2e958f1ea9f070069446c9b17e54e1" prot="public" static="no">
+        <type>mp_units::quantity&lt; mp_units::one/astrea::units::unit_symbols::re &gt;</type>
+        <definition>using astrea::BallisticCoefficient = typedef mp_units::quantity&lt;mp_units::one / astrea::units::unit_symbols::re&gt;</definition>
         <argsstring></argsstring>
         <name>BallisticCoefficient</name>
         <qualifiedname>astrea::BallisticCoefficient</qualifiedname>
@@ -672,9 +670,9 @@
         </inbodydescription>
         <location file="astrea/units/units/typedefs.hpp" line="204" column="1" bodyfile="astrea/units/units/typedefs.hpp" bodystart="204" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="typedef" id="typedefs_8hpp_1a3332a6695993ea3e49b32c645d65bbe6" prot="public" static="no">
-        <type>mp_units::quantity&lt; <ref refid="structastrea_1_1SolarFluxUnits" kindref="compound">SolarFluxUnits</ref> &gt;</type>
-        <definition>using astrea::SolarFlux = typedef mp_units::quantity&lt;SolarFluxUnits&gt;</definition>
+      <memberdef kind="typedef" id="typedefs_8hpp_1a7f5e2fc5047071b3d6edb3c1761da650" prot="public" static="no">
+        <type>mp_units::quantity&lt; astrea::units::unit_symbols::sfu &gt;</type>
+        <definition>using astrea::SolarFlux = typedef mp_units::quantity&lt;astrea::units::unit_symbols::sfu&gt;</definition>
         <argsstring></argsstring>
         <name>SolarFlux</name>
         <qualifiedname>astrea::SolarFlux</qualifiedname>
@@ -717,7 +715,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/units/units/constants.hpp" line="29" column="20" bodyfile="astrea/units/units/constants.hpp" bodystart="29" bodyend="-1"/>
+        <location file="astrea/units/units/constants.hpp" line="28" column="20" bodyfile="astrea/units/units/constants.hpp" bodystart="28" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="constants_8hpp_1a8abc18858e1a30c20ea4e3f484dbbc22" prot="public" static="no" constexpr="yes" mutable="no">
         <type>constexpr auto</type>
@@ -732,7 +730,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/units/units/constants.hpp" line="30" column="16" bodyfile="astrea/units/units/constants.hpp" bodystart="30" bodyend="-1"/>
+        <location file="astrea/units/units/constants.hpp" line="29" column="16" bodyfile="astrea/units/units/constants.hpp" bodystart="29" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="constants_8hpp_1a8452e0ddd0716b555506820a3d7dc24e" prot="public" static="no" constexpr="yes" mutable="no">
         <type>constexpr <ref refid="typedefs_8hpp_1a0dec00c0cf893869d7348b3072f8f740" kindref="member">Angle</ref></type>
@@ -747,7 +745,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/units/units/constants.hpp" line="32" column="17" bodyfile="astrea/units/units/constants.hpp" bodystart="32" bodyend="-1"/>
+        <location file="astrea/units/units/constants.hpp" line="31" column="17" bodyfile="astrea/units/units/constants.hpp" bodystart="31" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="constants_8hpp_1ada344bc6f289fe2f949dca23593ae1e5" prot="public" static="no" constexpr="yes" mutable="no">
         <type>constexpr <ref refid="typedefs_8hpp_1a0dec00c0cf893869d7348b3072f8f740" kindref="member">Angle</ref></type>
@@ -762,49 +760,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/units/units/constants.hpp" line="33" column="17" bodyfile="astrea/units/units/constants.hpp" bodystart="33" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="custom_8hpp_1a1db3e4744ff3357fcbf011bceea7edc3" prot="public" static="no" mutable="no">
-        <type><ref refid="structastrea_1_1JulianCentury" kindref="compound">astrea::JulianCentury</ref></type>
-        <definition>astrea::JulianCentury astrea::JulianCentury</definition>
-        <argsstring></argsstring>
-        <name>JulianCentury</name>
-        <qualifiedname>astrea::JulianCentury</qualifiedname>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="astrea/units/units/custom.hpp" line="32" column="15"/>
-      </memberdef>
-      <memberdef kind="variable" id="custom_8hpp_1a3765810844841cc68bb66ec2f0f9d61b" prot="public" static="no" mutable="no">
-        <type><ref refid="structastrea_1_1EarthRadii" kindref="compound">astrea::EarthRadii</ref></type>
-        <definition>astrea::EarthRadii astrea::EarthRadii</definition>
-        <argsstring></argsstring>
-        <name>EarthRadii</name>
-        <qualifiedname>astrea::EarthRadii</qualifiedname>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="astrea/units/units/custom.hpp" line="39" column="12"/>
-      </memberdef>
-      <memberdef kind="variable" id="custom_8hpp_1a983b0fcaf367765a73a0c594e22681c2" prot="public" static="no" mutable="no">
-        <type><ref refid="structastrea_1_1SolarFluxUnits" kindref="compound">astrea::SolarFluxUnits</ref></type>
-        <definition>astrea::SolarFluxUnits astrea::SolarFluxUnits</definition>
-        <argsstring></argsstring>
-        <name>SolarFluxUnits</name>
-        <qualifiedname>astrea::SolarFluxUnits</qualifiedname>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="astrea/units/units/custom.hpp" line="46" column="16"/>
+        <location file="astrea/units/units/constants.hpp" line="32" column="17" bodyfile="astrea/units/units/constants.hpp" bodystart="32" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="func">
@@ -824,7 +780,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/units/units/constants.hpp" line="35" column="30" bodyfile="astrea/units/units/constants.hpp" bodystart="35" bodyend="38"/>
+        <location file="astrea/units/units/constants.hpp" line="34" column="30" bodyfile="astrea/units/units/constants.hpp" bodystart="34" bodyend="37"/>
       </memberdef>
       <memberdef kind="function" id="constants_8hpp_1a4a8f94136ac2b3408e6303af8171a232" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>constexpr mp_units::quantity&lt; detail::unitless &gt;</type>
@@ -842,13 +798,13 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/units/units/constants.hpp" line="40" column="30" bodyfile="astrea/units/units/constants.hpp" bodystart="40" bodyend="43"/>
+        <location file="astrea/units/units/constants.hpp" line="39" column="30" bodyfile="astrea/units/units/constants.hpp" bodystart="39" bodyend="42"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="astrea/units/units/constants.hpp" line="27" column="1"/>
+    <location file="astrea/units/units/constants.hpp" line="26" column="1"/>
   </compounddef>
 </doxygen>

@@ -6,7 +6,7 @@
     <includes refid="EastNorthUp_8hpp" local="no">EastNorthUp.hpp</includes>
     <templateparamlist>
       <param>
-        <type>IsFrame <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+        <type>IsFrame auto</type>
         <declname>_frame_</declname>
         <defname>_frame_</defname>
       </param>
@@ -25,12 +25,12 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/frames/definitions/EastNorthUp.hpp" line="60" column="5" bodyfile="astrea/astro/astro/frames/definitions/EastNorthUp.hpp" bodystart="60" bodyend="-1"/>
+        <location file="astrea/astro/astro/frames/definitions/dynamic_frames/EastNorthUp.hpp" line="59" column="5" bodyfile="astrea/astro/astro/frames/definitions/dynamic_frames/EastNorthUp.hpp" bodystart="59" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="public-static-attrib">
       <memberdef kind="variable" id="structastrea_1_1astro_1_1frames_1_1EastNorthUp_1ac462b924ca10553c7538e031bd166afb" prot="public" static="yes" constexpr="yes" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="structastrea_1_1astro_1_1frames_1_1EastNorthUp_1adac1b7b373dcc9fa7d706ad93f0a9fef" kindref="member">tag_type</ref></type>
+        <type>constexpr <ref refid="structastrea_1_1astro_1_1frames_1_1EastNorthUp_1adac1b7b373dcc9fa7d706ad93f0a9fef" kindref="member">tag_type</ref></type>
         <definition>constexpr tag_type astrea::astro::frames::EastNorthUp&lt; _frame_ &gt;::tag</definition>
         <argsstring></argsstring>
         <name>tag</name>
@@ -43,10 +43,10 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/frames/definitions/EastNorthUp.hpp" line="61" column="38" bodyfile="astrea/astro/astro/frames/definitions/EastNorthUp.hpp" bodystart="61" bodyend="61"/>
+        <location file="astrea/astro/astro/frames/definitions/dynamic_frames/EastNorthUp.hpp" line="60" column="38" bodyfile="astrea/astro/astro/frames/definitions/dynamic_frames/EastNorthUp.hpp" bodystart="60" bodyend="60"/>
       </memberdef>
       <memberdef kind="variable" id="structastrea_1_1astro_1_1frames_1_1EastNorthUp_1afbc9d4eea3c24be751cdcebc41c889bd" prot="public" static="yes" constexpr="yes" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+        <type>constexpr auto</type>
         <definition>constexpr auto astrea::astro::frames::EastNorthUp&lt; _frame_ &gt;::frame</definition>
         <argsstring></argsstring>
         <name>frame</name>
@@ -59,7 +59,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/frames/definitions/EastNorthUp.hpp" line="62" column="27" bodyfile="astrea/astro/astro/frames/definitions/EastNorthUp.hpp" bodystart="62" bodyend="-1"/>
+        <location file="astrea/astro/astro/frames/definitions/dynamic_frames/EastNorthUp.hpp" line="61" column="27" bodyfile="astrea/astro/astro/frames/definitions/dynamic_frames/EastNorthUp.hpp" bodystart="61" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="public-func">
@@ -70,11 +70,11 @@
         <name>EastNorthUp</name>
         <qualifiedname>astrea::astro::frames::EastNorthUp::EastNorthUp</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="typedefs_8hpp_1a7493d5fafd58941bc3440b866a25638d" kindref="member">RadiusVector</ref>&lt; <ref refid="structastrea_1_1astro_1_1frames_1_1EastNorthUp_1afbc9d4eea3c24be751cdcebc41c889bd" kindref="member">frame</ref> &gt; &amp;</type>
+          <type>const <ref refid="typedefs_8hpp_1a7493d5fafd58941bc3440b866a25638d" kindref="member">RadiusVector</ref>&lt; <ref refid="structastrea_1_1astro_1_1frames_1_1EastNorthUp_1afbc9d4eea3c24be751cdcebc41c889bd" kindref="member">frame</ref> &gt; &amp;</type>
           <declname>position</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="typedefs_8hpp_1a7d8b9c68f2d8d343d45e1bf14b6bfb18" kindref="member">VelocityVector</ref>&lt; <ref refid="structastrea_1_1astro_1_1frames_1_1EastNorthUp_1afbc9d4eea3c24be751cdcebc41c889bd" kindref="member">frame</ref> &gt; &amp;</type>
+          <type>const <ref refid="typedefs_8hpp_1a7d8b9c68f2d8d343d45e1bf14b6bfb18" kindref="member">VelocityVector</ref>&lt; <ref refid="structastrea_1_1astro_1_1frames_1_1EastNorthUp_1afbc9d4eea3c24be751cdcebc41c889bd" kindref="member">frame</ref> &gt; &amp;</type>
           <declname>velocity</declname>
         </param>
         <briefdescription>
@@ -102,7 +102,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/frames/definitions/EastNorthUp.hpp" line="70" column="5" bodyfile="astrea/astro/astro/frames/definitions/EastNorthUp.hpp" bodystart="70" bodyend="73"/>
+        <location file="astrea/astro/astro/frames/definitions/dynamic_frames/EastNorthUp.hpp" line="69" column="5" bodyfile="astrea/astro/astro/frames/definitions/dynamic_frames/EastNorthUp.hpp" bodystart="69" bodyend="72"/>
       </memberdef>
       <memberdef kind="function" id="structastrea_1_1astro_1_1frames_1_1EastNorthUp_1af016f5bb95fa9403567e36822bad1ac4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -117,7 +117,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/frames/definitions/EastNorthUp.hpp" line="75" column="5"/>
+        <location file="astrea/astro/astro/frames/definitions/dynamic_frames/EastNorthUp.hpp" line="74" column="5"/>
       </memberdef>
       <memberdef kind="function" id="structastrea_1_1astro_1_1frames_1_1EastNorthUp_1a40816378acca08fac177a5eeb8f90a8c" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">DirectionCosineMatrix</ref>&lt; <ref refid="structastrea_1_1astro_1_1frames_1_1EastNorthUp_1afbc9d4eea3c24be751cdcebc41c889bd" kindref="member">frame</ref>, <ref refid="structastrea_1_1astro_1_1frames_1_1EastNorthUp_1ac462b924ca10553c7538e031bd166afb" kindref="member">tag</ref> &gt;</type>
@@ -126,7 +126,7 @@
         <name>get_dcm</name>
         <qualifiedname>astrea::astro::frames::EastNorthUp::get_dcm</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
           <declname>date</declname>
         </param>
         <briefdescription>
@@ -148,7 +148,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/frames/definitions/EastNorthUp.hpp" line="83" column="27" bodyfile="astrea/astro/astro/frames/definitions/EastNorthUp.hpp" bodystart="83" bodyend="102"/>
+        <location file="astrea/astro/astro/frames/definitions/dynamic_frames/EastNorthUp.hpp" line="82" column="27" bodyfile="astrea/astro/astro/frames/definitions/dynamic_frames/EastNorthUp.hpp" bodystart="82" bodyend="103"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
@@ -201,7 +201,7 @@
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="astrea/astro/astro/frames/definitions/EastNorthUp.hpp" line="58" column="1" bodyfile="astrea/astro/astro/frames/definitions/EastNorthUp.hpp" bodystart="58" bodyend="103"/>
+    <location file="astrea/astro/astro/frames/definitions/dynamic_frames/EastNorthUp.hpp" line="57" column="1" bodyfile="astrea/astro/astro/frames/definitions/dynamic_frames/EastNorthUp.hpp" bodystart="57" bodyend="104"/>
     <listofallmembers>
       <member refid="structastrea_1_1astro_1_1DynamicFrame_1ac453c49e5e6968958350c1266f114bc9" prot="protected" virt="non-virtual"><scope>astrea::astro::frames::EastNorthUp</scope><name>_position</name></member>
       <member refid="structastrea_1_1astro_1_1DynamicFrame_1ae3ec8897ba7023b335503f2e07f931ee" prot="protected" virt="non-virtual"><scope>astrea::astro::frames::EastNorthUp</scope><name>_velocity</name></member>

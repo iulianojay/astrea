@@ -41,6 +41,8 @@ class TwoBody : public EquationsOfMotion {
     {
         return OrbitalElements::get_set_id<Cartesian<frames::primary>>();
     };
+
+    std::unique_ptr<EquationsOfMotion> clone() const override { return std::make_unique<TwoBody>(*this); }
 };
 
 } // namespace astro

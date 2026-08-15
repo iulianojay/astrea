@@ -81,10 +81,10 @@ template <IsFrame auto _parent_>
 struct RadialInTrackCrossTrack;
 template <IsFrame auto _parent_>
 struct VelocityNormalBinormal;
+template <IsFrame auto _parent_>
+struct Perifocal;
 
 } // namespace frames
-
-struct Perifocal;
 
 template <IsFrame auto _in_frame_, IsFrame auto _out_frame_>
 class DirectionCosineMatrix;

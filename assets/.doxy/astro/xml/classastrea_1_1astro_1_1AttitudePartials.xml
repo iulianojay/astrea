@@ -5,7 +5,7 @@
     <includes refid="Attitude_8hpp" local="no">Attitude.hpp</includes>
     <sectiondef kind="friend">
       <memberdef kind="friend" id="classastrea_1_1astro_1_1AttitudePartials_1a25727699d1ec42a09e2cc6a6a802f0db" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">class</ref></type>
+        <type>class</type>
         <definition>friend class StatePartial</definition>
         <argsstring></argsstring>
         <name>StatePartial</name>
@@ -32,7 +32,7 @@
           <declname>os</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1AttitudePartials" kindref="compound">AttitudePartials</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1AttitudePartials" kindref="compound">AttitudePartials</ref> &amp;</type>
           <declname>state</declname>
         </param>
         <briefdescription>
@@ -99,11 +99,11 @@
         <name>AttitudePartials</name>
         <qualifiedname>astrea::astro::AttitudePartials::AttitudePartials</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="Attitude_8hpp_1a2a1cc0993fc5e8a4d17064b7546a92d1" kindref="member">BodyQuaternionRate</ref> &amp;</type>
+          <type>const <ref refid="Attitude_8hpp_1a2a1cc0993fc5e8a4d17064b7546a92d1" kindref="member">BodyQuaternionRate</ref> &amp;</type>
           <declname>orientationRate</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="Attitude_8hpp_1ab4b6552a5badad4c5a76db3409a19bfe" kindref="member">BodyAngularAcceleration</ref> &amp;</type>
+          <type>const <ref refid="Attitude_8hpp_1ab4b6552a5badad4c5a76db3409a19bfe" kindref="member">BodyAngularAcceleration</ref> &amp;</type>
           <declname>angularAcceleration</declname>
         </param>
         <briefdescription>
@@ -140,7 +140,7 @@
         <name>operator*</name>
         <qualifiedname>astrea::astro::AttitudePartials::operator*</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Time</ref> &amp;</type>
+          <type>const Time &amp;</type>
           <declname>time</declname>
         </param>
         <briefdescription>
@@ -164,12 +164,12 @@
         </inbodydescription>
         <location file="astrea/astro/astro/state/attitude/Attitude.hpp" line="281" column="14" bodyfile="astrea/astro/astro/state/attitude/Attitude.cpp" bodystart="137" bodyend="140"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1astro_1_1AttitudePartials_1ace6b3d0e0d4365552489bc931342606f" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
-        <type>std::vector&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Unitless</ref> &gt;</type>
-        <definition>std::vector&lt; Unitless &gt; astrea::astro::AttitudePartials::force_to_vector</definition>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1AttitudePartials_1a08480fe7ba207b6afb77d7bb44d9e83c" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; double &gt;</type>
+        <definition>std::vector&lt; double &gt; astrea::astro::AttitudePartials::force_to_double_vector</definition>
         <argsstring>() const</argsstring>
-        <name>force_to_vector</name>
-        <qualifiedname>astrea::astro::AttitudePartials::force_to_vector</qualifiedname>
+        <name>force_to_double_vector</name>
+        <qualifiedname>astrea::astro::AttitudePartials::force_to_double_vector</qualifiedname>
         <briefdescription>
 <para>Converts the <ref refid="classastrea_1_1astro_1_1AttitudePartials" kindref="compound">AttitudePartials</ref> to a vector of Unitless values. </para>
         </briefdescription>
@@ -195,7 +195,7 @@
       <member refid="classastrea_1_1astro_1_1AttitudePartials_1a911232122be6d136e15568978a3e2045" prot="private" virt="non-virtual"><scope>astrea::astro::AttitudePartials</scope><name>_orientationRate</name></member>
       <member refid="classastrea_1_1astro_1_1AttitudePartials_1a62047979a51be9ab28a44d9736225b62" prot="public" virt="non-virtual"><scope>astrea::astro::AttitudePartials</scope><name>AttitudePartials</name></member>
       <member refid="classastrea_1_1astro_1_1AttitudePartials_1a4d9494816e54831bce376114eaf00a50" prot="public" virt="non-virtual"><scope>astrea::astro::AttitudePartials</scope><name>AttitudePartials</name></member>
-      <member refid="classastrea_1_1astro_1_1AttitudePartials_1ace6b3d0e0d4365552489bc931342606f" prot="public" virt="non-virtual"><scope>astrea::astro::AttitudePartials</scope><name>force_to_vector</name></member>
+      <member refid="classastrea_1_1astro_1_1AttitudePartials_1a08480fe7ba207b6afb77d7bb44d9e83c" prot="public" virt="non-virtual"><scope>astrea::astro::AttitudePartials</scope><name>force_to_double_vector</name></member>
       <member refid="classastrea_1_1astro_1_1AttitudePartials_1a0bc26dac6d3772721ede54980c782dd2" prot="public" virt="non-virtual"><scope>astrea::astro::AttitudePartials</scope><name>operator*</name></member>
       <member refid="classastrea_1_1astro_1_1AttitudePartials_1a5b752322266155984913816544e56eac" prot="private" virt="non-virtual"><scope>astrea::astro::AttitudePartials</scope><name>operator&lt;&lt;</name></member>
       <member refid="classastrea_1_1astro_1_1AttitudePartials_1a25727699d1ec42a09e2cc6a6a802f0db" prot="private" virt="non-virtual"><scope>astrea::astro::AttitudePartials</scope><name>StatePartial</name></member>

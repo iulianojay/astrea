@@ -6,24 +6,24 @@
     <includes refid="SynodicFrame_8hpp" local="no">SynodicFrame.hpp</includes>
     <templateparamlist>
       <param>
-        <type>IsCelestialBody <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+        <type>IsCelestialBody auto</type>
         <declname>_primary_</declname>
         <defname>_primary_</defname>
       </param>
       <param>
-        <type>IsCelestialBody <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+        <type>IsCelestialBody auto</type>
         <declname>_secondary_</declname>
         <defname>_secondary_</defname>
       </param>
     </templateparamlist>
     <sectiondef kind="public-static-attrib">
       <memberdef kind="variable" id="structastrea_1_1astro_1_1SynodicAxis_1a0101d82022c8e4da62665142b8fa622c" prot="public" static="yes" constexpr="yes" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+        <type>constexpr auto</type>
         <definition>constexpr auto astrea::astro::SynodicAxis&lt; _primary_, _secondary_ &gt;::primary</definition>
         <argsstring></argsstring>
         <name>primary</name>
         <qualifiedname>astrea::astro::SynodicAxis::primary</qualifiedname>
-        <initializer>= <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_primary_</ref></initializer>
+        <initializer>= _primary_</initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -33,12 +33,12 @@
         <location file="astrea/astro/astro/frames/framework/SynodicFrame.hpp" line="49" column="27" bodyfile="astrea/astro/astro/frames/framework/SynodicFrame.hpp" bodystart="49" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structastrea_1_1astro_1_1SynodicAxis_1ae0dff3361a458465bc41267d4071cce6" prot="public" static="yes" constexpr="yes" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+        <type>constexpr auto</type>
         <definition>constexpr auto astrea::astro::SynodicAxis&lt; _primary_, _secondary_ &gt;::secondary</definition>
         <argsstring></argsstring>
         <name>secondary</name>
         <qualifiedname>astrea::astro::SynodicAxis::secondary</qualifiedname>
-        <initializer>= <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_secondary_</ref></initializer>
+        <initializer>= _secondary_</initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>

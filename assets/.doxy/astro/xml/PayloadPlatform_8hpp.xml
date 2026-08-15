@@ -18,6 +18,10 @@
         <childnode refid="16" relation="include">
         </childnode>
       </node>
+      <node id="18">
+        <label>astro/astro.macros.hpp</label>
+        <link refid="astro_8macros_8hpp"/>
+      </node>
       <node id="5">
         <label>astro/frames/definitions/body_centered_inertial_frames.hpp</label>
         <link refid="body__centered__inertial__frames_8hpp"/>
@@ -26,7 +30,7 @@
         <childnode refid="13" relation="include">
         </childnode>
       </node>
-      <node id="102">
+      <node id="100">
         <label>astro/frames/definitions/body_fixed_frames.hpp</label>
         <link refid="body__fixed__frames_8hpp"/>
         <childnode refid="21" relation="include">
@@ -61,7 +65,7 @@
         </childnode>
         <childnode refid="5" relation="include">
         </childnode>
-        <childnode refid="102" relation="include">
+        <childnode refid="100" relation="include">
         </childnode>
       </node>
       <node id="82">
@@ -79,9 +83,11 @@
         </childnode>
         <childnode refid="85" relation="include">
         </childnode>
+        <childnode refid="90" relation="include">
+        </childnode>
         <childnode refid="10" relation="include">
         </childnode>
-        <childnode refid="90" relation="include">
+        <childnode refid="92" relation="include">
         </childnode>
       </node>
       <node id="9">
@@ -121,7 +127,7 @@
         </childnode>
         <childnode refid="26" relation="include">
         </childnode>
-        <childnode refid="19" relation="include">
+        <childnode refid="20" relation="include">
         </childnode>
         <childnode refid="8" relation="include">
         </childnode>
@@ -168,6 +174,8 @@
         <childnode refid="43" relation="include">
         </childnode>
         <childnode refid="77" relation="include">
+        </childnode>
+        <childnode refid="79" relation="include">
         </childnode>
         <childnode refid="8" relation="include">
         </childnode>
@@ -240,6 +248,28 @@
         <childnode refid="16" relation="include">
         </childnode>
       </node>
+      <node id="90">
+        <label>astro/frames/framework/FixedOffsetFrame.hpp</label>
+        <link refid="FixedOffsetFrame_8hpp"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="91" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="83" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+      </node>
       <node id="6">
         <label>astro/frames/framework/Frame.hpp</label>
         <link refid="Frame_8hpp"/>
@@ -291,7 +321,7 @@
         </childnode>
         <childnode refid="3" relation="include">
         </childnode>
-        <childnode refid="95" relation="include">
+        <childnode refid="97" relation="include">
         </childnode>
         <childnode refid="51" relation="include">
         </childnode>
@@ -321,24 +351,24 @@
         </childnode>
         <childnode refid="43" relation="include">
         </childnode>
-        <childnode refid="77" relation="include">
-        </childnode>
         <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="77" relation="include">
         </childnode>
         <childnode refid="78" relation="include">
         </childnode>
         <childnode refid="79" relation="include">
         </childnode>
-        <childnode refid="100" relation="include">
+        <childnode refid="80" relation="include">
         </childnode>
-        <childnode refid="90" relation="include">
+        <childnode refid="98" relation="include">
+        </childnode>
+        <childnode refid="92" relation="include">
         </childnode>
         <childnode refid="51" relation="include">
         </childnode>
-        <childnode refid="81" relation="include">
-        </childnode>
       </node>
-      <node id="79">
+      <node id="80">
         <label>astro/state/orbital_elements/Equinoctial.hpp</label>
         <link refid="Equinoctial_8hpp"/>
         <childnode refid="30" relation="include">
@@ -349,10 +379,10 @@
         </childnode>
         <childnode refid="51" relation="include">
         </childnode>
-        <childnode refid="80" relation="include">
+        <childnode refid="81" relation="include">
         </childnode>
       </node>
-      <node id="80">
+      <node id="81">
         <label>astro/state/orbital_elements/Equinoctial.ipp</label>
         <link refid="Equinoctial_8ipp_source"/>
         <childnode refid="75" relation="include">
@@ -361,33 +391,29 @@
         </childnode>
         <childnode refid="43" relation="include">
         </childnode>
-        <childnode refid="77" relation="include">
-        </childnode>
         <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="77" relation="include">
         </childnode>
         <childnode refid="78" relation="include">
         </childnode>
-        <childnode refid="81" relation="include">
-        </childnode>
         <childnode refid="82" relation="include">
         </childnode>
-        <childnode refid="100" relation="include">
+        <childnode refid="98" relation="include">
         </childnode>
-        <childnode refid="90" relation="include">
+        <childnode refid="92" relation="include">
         </childnode>
         <childnode refid="51" relation="include">
         </childnode>
         <childnode refid="42" relation="include">
         </childnode>
       </node>
-      <node id="100">
+      <node id="98">
         <label>astro/state/orbital_elements/Keplerian.hpp</label>
         <link refid="Keplerian_8hpp"/>
         <childnode refid="30" relation="include">
         </childnode>
         <childnode refid="43" relation="include">
-        </childnode>
-        <childnode refid="19" relation="include">
         </childnode>
         <childnode refid="20" relation="include">
         </childnode>
@@ -397,10 +423,10 @@
         </childnode>
         <childnode refid="51" relation="include">
         </childnode>
-        <childnode refid="101" relation="include">
+        <childnode refid="99" relation="include">
         </childnode>
       </node>
-      <node id="101">
+      <node id="99">
         <label>astro/state/orbital_elements/Keplerian.ipp</label>
         <link refid="Keplerian_8ipp_source"/>
         <childnode refid="75" relation="include">
@@ -411,13 +437,13 @@
         </childnode>
         <childnode refid="73" relation="include">
         </childnode>
-        <childnode refid="79" relation="include">
+        <childnode refid="80" relation="include">
         </childnode>
         <childnode refid="51" relation="include">
         </childnode>
         <childnode refid="42" relation="include">
         </childnode>
-        <childnode refid="81" relation="include">
+        <childnode refid="78" relation="include">
         </childnode>
       </node>
       <node id="45">
@@ -436,12 +462,10 @@
         <childnode refid="22" relation="include">
         </childnode>
       </node>
-      <node id="18">
+      <node id="19">
         <label>astro/systems/CelestialBody.hpp</label>
         <link refid="CelestialBody_8hpp"/>
         <childnode refid="7" relation="include">
-        </childnode>
-        <childnode refid="19" relation="include">
         </childnode>
         <childnode refid="20" relation="include">
         </childnode>
@@ -543,6 +567,8 @@
         </childnode>
         <childnode refid="18" relation="include">
         </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
         <childnode refid="46" relation="include">
         </childnode>
       </node>
@@ -555,6 +581,8 @@
         </childnode>
         <childnode refid="18" relation="include">
         </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
         <childnode refid="14" relation="include">
         </childnode>
       </node>
@@ -565,7 +593,7 @@
         </childnode>
         <childnode refid="15" relation="include">
         </childnode>
-        <childnode refid="18" relation="include">
+        <childnode refid="19" relation="include">
         </childnode>
         <childnode refid="50" relation="include">
         </childnode>
@@ -577,7 +605,7 @@
         </childnode>
         <childnode refid="15" relation="include">
         </childnode>
-        <childnode refid="18" relation="include">
+        <childnode refid="19" relation="include">
         </childnode>
         <childnode refid="50" relation="include">
         </childnode>
@@ -589,7 +617,7 @@
         </childnode>
         <childnode refid="15" relation="include">
         </childnode>
-        <childnode refid="18" relation="include">
+        <childnode refid="19" relation="include">
         </childnode>
         <childnode refid="50" relation="include">
         </childnode>
@@ -601,7 +629,7 @@
         </childnode>
         <childnode refid="15" relation="include">
         </childnode>
-        <childnode refid="18" relation="include">
+        <childnode refid="19" relation="include">
         </childnode>
         <childnode refid="50" relation="include">
         </childnode>
@@ -613,7 +641,7 @@
         </childnode>
         <childnode refid="15" relation="include">
         </childnode>
-        <childnode refid="18" relation="include">
+        <childnode refid="19" relation="include">
         </childnode>
         <childnode refid="46" relation="include">
         </childnode>
@@ -627,7 +655,7 @@
         </childnode>
         <childnode refid="15" relation="include">
         </childnode>
-        <childnode refid="18" relation="include">
+        <childnode refid="19" relation="include">
         </childnode>
         <childnode refid="56" relation="include">
         </childnode>
@@ -643,6 +671,8 @@
         </childnode>
         <childnode refid="18" relation="include">
         </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
         <childnode refid="46" relation="include">
         </childnode>
       </node>
@@ -653,7 +683,7 @@
         </childnode>
         <childnode refid="15" relation="include">
         </childnode>
-        <childnode refid="18" relation="include">
+        <childnode refid="19" relation="include">
         </childnode>
         <childnode refid="56" relation="include">
         </childnode>
@@ -667,6 +697,8 @@
         </childnode>
         <childnode refid="18" relation="include">
         </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
         <childnode refid="46" relation="include">
         </childnode>
       </node>
@@ -677,7 +709,7 @@
         </childnode>
         <childnode refid="15" relation="include">
         </childnode>
-        <childnode refid="18" relation="include">
+        <childnode refid="19" relation="include">
         </childnode>
         <childnode refid="46" relation="include">
         </childnode>
@@ -685,8 +717,6 @@
       <node id="61">
         <label>astro/systems/celestial_bodies/Neptune/Triton.hpp</label>
         <link refid="Triton_8hpp"/>
-        <childnode refid="19" relation="include">
-        </childnode>
         <childnode refid="62" relation="include">
         </childnode>
         <childnode refid="20" relation="include">
@@ -695,7 +725,7 @@
         </childnode>
         <childnode refid="15" relation="include">
         </childnode>
-        <childnode refid="18" relation="include">
+        <childnode refid="19" relation="include">
         </childnode>
         <childnode refid="60" relation="include">
         </childnode>
@@ -707,7 +737,7 @@
         </childnode>
         <childnode refid="15" relation="include">
         </childnode>
-        <childnode refid="18" relation="include">
+        <childnode refid="19" relation="include">
         </childnode>
         <childnode refid="64" relation="include">
         </childnode>
@@ -719,7 +749,7 @@
         </childnode>
         <childnode refid="15" relation="include">
         </childnode>
-        <childnode refid="18" relation="include">
+        <childnode refid="19" relation="include">
         </childnode>
         <childnode refid="64" relation="include">
         </childnode>
@@ -731,7 +761,7 @@
         </childnode>
         <childnode refid="15" relation="include">
         </childnode>
-        <childnode refid="18" relation="include">
+        <childnode refid="19" relation="include">
         </childnode>
         <childnode refid="46" relation="include">
         </childnode>
@@ -745,7 +775,7 @@
         </childnode>
         <childnode refid="15" relation="include">
         </childnode>
-        <childnode refid="18" relation="include">
+        <childnode refid="19" relation="include">
         </childnode>
         <childnode refid="64" relation="include">
         </childnode>
@@ -757,7 +787,7 @@
         </childnode>
         <childnode refid="15" relation="include">
         </childnode>
-        <childnode refid="18" relation="include">
+        <childnode refid="19" relation="include">
         </childnode>
         <childnode refid="46" relation="include">
         </childnode>
@@ -769,7 +799,7 @@
         </childnode>
         <childnode refid="15" relation="include">
         </childnode>
-        <childnode refid="18" relation="include">
+        <childnode refid="19" relation="include">
         </childnode>
         <childnode refid="69" relation="include">
         </childnode>
@@ -781,7 +811,7 @@
         </childnode>
         <childnode refid="15" relation="include">
         </childnode>
-        <childnode refid="18" relation="include">
+        <childnode refid="19" relation="include">
         </childnode>
         <childnode refid="69" relation="include">
         </childnode>
@@ -793,7 +823,7 @@
         </childnode>
         <childnode refid="15" relation="include">
         </childnode>
-        <childnode refid="18" relation="include">
+        <childnode refid="19" relation="include">
         </childnode>
         <childnode refid="46" relation="include">
         </childnode>
@@ -809,6 +839,8 @@
         </childnode>
         <childnode refid="18" relation="include">
         </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
         <childnode refid="46" relation="include">
         </childnode>
       </node>
@@ -819,7 +851,7 @@
         </childnode>
         <childnode refid="73" relation="include">
         </childnode>
-        <childnode refid="100" relation="include">
+        <childnode refid="98" relation="include">
         </childnode>
         <childnode refid="41" relation="include">
         </childnode>
@@ -828,8 +860,6 @@
         <label>astro/systems/property_getters.hpp</label>
         <link refid="property__getters_8hpp_source"/>
         <childnode refid="31" relation="include">
-        </childnode>
-        <childnode refid="19" relation="include">
         </childnode>
         <childnode refid="20" relation="include">
         </childnode>
@@ -843,7 +873,7 @@
         </childnode>
         <childnode refid="45" relation="include">
         </childnode>
-        <childnode refid="18" relation="include">
+        <childnode refid="19" relation="include">
         </childnode>
         <childnode refid="27" relation="include">
         </childnode>
@@ -860,20 +890,20 @@
         <childnode refid="11" relation="include">
         </childnode>
       </node>
-      <node id="90">
+      <node id="92">
         <label>astro/systems/system_utilities.hpp</label>
         <link refid="system__utilities_8hpp_source"/>
-        <childnode refid="91" relation="include">
-        </childnode>
-        <childnode refid="92" relation="include">
-        </childnode>
         <childnode refid="93" relation="include">
-        </childnode>
-        <childnode refid="2" relation="include">
         </childnode>
         <childnode refid="94" relation="include">
         </childnode>
-        <childnode refid="18" relation="include">
+        <childnode refid="95" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="96" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
         </childnode>
         <childnode refid="46" relation="include">
         </childnode>
@@ -885,7 +915,7 @@
         </childnode>
         <childnode refid="16" relation="include">
         </childnode>
-        <childnode refid="95" relation="include">
+        <childnode refid="97" relation="include">
         </childnode>
       </node>
       <node id="28">
@@ -982,20 +1012,10 @@
         <childnode refid="17" relation="include">
         </childnode>
       </node>
-      <node id="95">
+      <node id="97">
         <label>astro/types/type_traits.hpp</label>
         <link refid="type__traits_8hpp"/>
-        <childnode refid="96" relation="include">
-        </childnode>
-        <childnode refid="97" relation="include">
-        </childnode>
-        <childnode refid="31" relation="include">
-        </childnode>
-        <childnode refid="98" relation="include">
-        </childnode>
         <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="99" relation="include">
         </childnode>
       </node>
       <node id="51">
@@ -1031,13 +1051,7 @@
         <label>concepts</label>
       </node>
       <node id="96">
-        <label>cstddef</label>
-      </node>
-      <node id="94">
         <label>gtl/phmap.hpp</label>
-      </node>
-      <node id="97">
-        <label>initializer_list</label>
       </node>
       <node id="75">
         <label>iomanip</label>
@@ -1054,11 +1068,17 @@
       <node id="44">
         <label>math/chebyshev_util.hpp</label>
       </node>
-      <node id="81">
+      <node id="78">
         <label>math/interpolation.hpp</label>
       </node>
-      <node id="91">
+      <node id="79">
+        <label>math/trig.hpp</label>
+      </node>
+      <node id="93">
         <label>memory</label>
+      </node>
+      <node id="91">
+        <label>mp-units/core.h</label>
       </node>
       <node id="26">
         <label>mp-units/framework.h</label>
@@ -1069,12 +1089,6 @@
       <node id="43">
         <label>mp-units/math.h</label>
       </node>
-      <node id="19">
-        <label>mp-units/systems/angular.h</label>
-      </node>
-      <node id="77">
-        <label>mp-units/systems/angular/math.h</label>
-      </node>
       <node id="62">
         <label>mp-units/systems/iau.h</label>
       </node>
@@ -1084,13 +1098,13 @@
       <node id="32">
         <label>mp-units/systems/si/chrono.h</label>
       </node>
-      <node id="78">
+      <node id="77">
         <label>mp-units/systems/si/math.h</label>
       </node>
       <node id="35">
         <label>numbers</label>
       </node>
-      <node id="92">
+      <node id="94">
         <label>ranges</label>
       </node>
       <node id="36">
@@ -1102,9 +1116,6 @@
       <node id="31">
         <label>string</label>
       </node>
-      <node id="98">
-        <label>tuple</label>
-      </node>
       <node id="4">
         <label>type_traits</label>
       </node>
@@ -1114,14 +1125,11 @@
       <node id="8">
         <label>units/units.hpp</label>
       </node>
-      <node id="93">
+      <node id="95">
         <label>unordered_set</label>
       </node>
       <node id="83">
         <label>utilities/string_util.hpp</label>
-      </node>
-      <node id="99">
-        <label>utility</label>
       </node>
       <node id="2">
         <label>vector</label>
@@ -1200,7 +1208,7 @@
 </simplesect>
 <simplesect kind="date"><para>2025-08-03</para>
 </simplesect>
-<simplesect kind="copyright"><para>Copyright (c) 2025 Jay Iuliano</para>
+<simplesect kind="copyright"><para>Copyright (c) 2025-2026 Jay Iuliano</para>
 </simplesect>
 The GNU Lesser General Public License (LGPL)</para>
 <para>This file is part of Astrea. Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. Astrea is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details. You should have received a copy of the GNU General Public License along with Astrea. If not, see <ulink url="https://www.gnu.org/licenses/">https://www.gnu.org/licenses/</ulink>. </para>
@@ -1223,38 +1231,38 @@ The GNU Lesser General Public License (LGPL)</para>
 <codeline lineno="36" refid="classastrea_1_1astro_1_1PayloadPlatform" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classastrea_1_1astro_1_1PayloadPlatform" kindref="compound">PayloadPlatform</ref><sp/>{</highlight></codeline>
 <codeline lineno="37"><highlight class="normal"></highlight></codeline>
 <codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>This<sp/>is<sp/>cursed</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">PayloadParameters_T</ref><sp/>=<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">remove_cv_ref&lt;decltype(std::declval&lt;Payload_T&gt;</ref>().get_parameters())&gt;;</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">PayloadParameters_T<sp/>=<sp/>remove_cv_ref&lt;decltype(std::declval&lt;Payload_T&gt;().get_parameters())&gt;;</highlight></codeline>
 <codeline lineno="40"><highlight class="normal"></highlight></codeline>
 <codeline lineno="41"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">protected</highlight><highlight class="normal">:</highlight></codeline>
 <codeline lineno="45" refid="classastrea_1_1astro_1_1PayloadPlatform_1a2e49768644debc910afe81927cbd6ea7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1PayloadPlatform_1a2e49768644debc910afe81927cbd6ea7" kindref="member">PayloadPlatform</ref>()<sp/>=<sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="46"><highlight class="normal"></highlight></codeline>
 <codeline lineno="50" refid="classastrea_1_1astro_1_1PayloadPlatform_1ab65c6cfe2d13db85ba002c7098ea63d4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1PayloadPlatform_1ab65c6cfe2d13db85ba002c7098ea63d4" kindref="member">~PayloadPlatform</ref>()<sp/>=<sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="51"><highlight class="normal"></highlight></codeline>
-<codeline lineno="57" refid="classastrea_1_1astro_1_1PayloadPlatform_1a75b47d34dfa8b14241224689531711fc" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1PayloadPlatform_1a75b47d34dfa8b14241224689531711fc" kindref="member">PayloadPlatform</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1PayloadPlatform" kindref="compound">PayloadPlatform</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">other</ref>)</highlight></codeline>
+<codeline lineno="57" refid="classastrea_1_1astro_1_1PayloadPlatform_1a75b47d34dfa8b14241224689531711fc" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1PayloadPlatform_1a75b47d34dfa8b14241224689531711fc" kindref="member">PayloadPlatform</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1PayloadPlatform" kindref="compound">PayloadPlatform</ref>&amp;<sp/>other)</highlight></codeline>
 <codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
-<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_payloads<sp/>=<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">other</ref>._payloads;</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_payloads<sp/>=<sp/>other._payloads;</highlight></codeline>
 <codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1PayloadPlatform_1ad0189d4ba5ad26fc7c12ab9d590caa40" kindref="member">reset_payload_parentage</ref>();</highlight></codeline>
 <codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="62"><highlight class="normal"></highlight></codeline>
-<codeline lineno="68" refid="classastrea_1_1astro_1_1PayloadPlatform_1ac605a5b5aa3d6076a938c7f12566bbfa" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1PayloadPlatform_1ac605a5b5aa3d6076a938c7f12566bbfa" kindref="member">PayloadPlatform</ref>(<ref refid="classastrea_1_1astro_1_1PayloadPlatform" kindref="compound">PayloadPlatform</ref>&amp;&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">other</ref>)<sp/></highlight><highlight class="keyword">noexcept</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="68" refid="classastrea_1_1astro_1_1PayloadPlatform_1ac605a5b5aa3d6076a938c7f12566bbfa" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1PayloadPlatform_1ac605a5b5aa3d6076a938c7f12566bbfa" kindref="member">PayloadPlatform</ref>(<ref refid="classastrea_1_1astro_1_1PayloadPlatform" kindref="compound">PayloadPlatform</ref>&amp;&amp;<sp/>other)<sp/></highlight><highlight class="keyword">noexcept</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
-<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_payloads<sp/>=<sp/>std::move(<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">other</ref>._payloads);</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_payloads<sp/>=<sp/>std::move(other._payloads);</highlight></codeline>
 <codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1PayloadPlatform_1ad0189d4ba5ad26fc7c12ab9d590caa40" kindref="member">reset_payload_parentage</ref>();</highlight></codeline>
 <codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="73"><highlight class="normal"></highlight></codeline>
-<codeline lineno="80" refid="classastrea_1_1astro_1_1PayloadPlatform_1a5b86342be601a015b7350e019f751991" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1PayloadPlatform" kindref="compound">PayloadPlatform</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1PayloadPlatform_1a5b86342be601a015b7350e019f751991" kindref="member">operator=</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1PayloadPlatform" kindref="compound">PayloadPlatform</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">other</ref>)</highlight></codeline>
+<codeline lineno="80" refid="classastrea_1_1astro_1_1PayloadPlatform_1a5b86342be601a015b7350e019f751991" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1PayloadPlatform" kindref="compound">PayloadPlatform</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1PayloadPlatform_1a5b86342be601a015b7350e019f751991" kindref="member">operator=</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1PayloadPlatform" kindref="compound">PayloadPlatform</ref>&amp;<sp/>other)</highlight></codeline>
 <codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
-<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">this</highlight><highlight class="normal"><sp/>!=<sp/>&amp;<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">other</ref>)<sp/>{</highlight></codeline>
-<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_payloads<sp/>=<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">other</ref>._payloads;</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">this</highlight><highlight class="normal"><sp/>!=<sp/>&amp;other)<sp/>{</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_payloads<sp/>=<sp/>other._payloads;</highlight></codeline>
 <codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1PayloadPlatform_1ad0189d4ba5ad26fc7c12ab9d590caa40" kindref="member">reset_payload_parentage</ref>();</highlight></codeline>
 <codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>*</highlight><highlight class="keyword">this</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="88"><highlight class="normal"></highlight></codeline>
-<codeline lineno="95" refid="classastrea_1_1astro_1_1PayloadPlatform_1a9fd042c81cc39bab05b7168c6270c6c5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1PayloadPlatform" kindref="compound">PayloadPlatform</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1PayloadPlatform_1a9fd042c81cc39bab05b7168c6270c6c5" kindref="member">operator=</ref>(<ref refid="classastrea_1_1astro_1_1PayloadPlatform" kindref="compound">PayloadPlatform</ref>&amp;&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">other</ref>)<sp/></highlight><highlight class="keyword">noexcept</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="95" refid="classastrea_1_1astro_1_1PayloadPlatform_1a9fd042c81cc39bab05b7168c6270c6c5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1PayloadPlatform" kindref="compound">PayloadPlatform</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1PayloadPlatform_1a9fd042c81cc39bab05b7168c6270c6c5" kindref="member">operator=</ref>(<ref refid="classastrea_1_1astro_1_1PayloadPlatform" kindref="compound">PayloadPlatform</ref>&amp;&amp;<sp/>other)<sp/></highlight><highlight class="keyword">noexcept</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
-<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">this</highlight><highlight class="normal"><sp/>!=<sp/>&amp;<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">other</ref>)<sp/>{</highlight></codeline>
-<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_payloads<sp/>=<sp/>std::move(<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">other</ref>._payloads);</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">this</highlight><highlight class="normal"><sp/>!=<sp/>&amp;other)<sp/>{</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_payloads<sp/>=<sp/>std::move(other._payloads);</highlight></codeline>
 <codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1PayloadPlatform_1ad0189d4ba5ad26fc7c12ab9d590caa40" kindref="member">reset_payload_parentage</ref>();</highlight></codeline>
 <codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>*</highlight><highlight class="keyword">this</highlight><highlight class="normal">;</highlight></codeline>
@@ -1263,18 +1271,18 @@ The GNU Lesser General Public License (LGPL)</para>
 <codeline lineno="104"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
 <codeline lineno="110" refid="classastrea_1_1astro_1_1PayloadPlatform_1a9dbb3a6fcb1b3c5482728ca7cbb37627" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/>std::size_t<sp/><ref refid="classastrea_1_1astro_1_1PayloadPlatform_1a9dbb3a6fcb1b3c5482728ca7cbb37627" kindref="member">get_id</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>=<sp/>0;</highlight></codeline>
 <codeline lineno="111"><highlight class="normal"></highlight></codeline>
-<codeline lineno="118" refid="classastrea_1_1astro_1_1PayloadPlatform_1a13ee5b1977ccfc3b56774bf3a3c2feda" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">RadiusVector&lt;frames::primary&gt;</ref><sp/><ref refid="classastrea_1_1astro_1_1PayloadPlatform_1a13ee5b1977ccfc3b56774bf3a3c2feda" kindref="member">get_position</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">date</ref>)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="118" refid="classastrea_1_1astro_1_1PayloadPlatform_1a13ee5b1977ccfc3b56774bf3a3c2feda" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/><ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">RadiusVector&lt;frames::primary&gt;</ref><sp/><ref refid="classastrea_1_1astro_1_1PayloadPlatform_1a13ee5b1977ccfc3b56774bf3a3c2feda" kindref="member">get_position</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref>&amp;<sp/>date)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>=<sp/>0;</highlight></codeline>
 <codeline lineno="119"><highlight class="normal"></highlight></codeline>
-<codeline lineno="126" refid="classastrea_1_1astro_1_1PayloadPlatform_1a85e2df0e52efc544caef7856abc6bbcc" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">VelocityVector&lt;frames::primary&gt;</ref><sp/><ref refid="classastrea_1_1astro_1_1PayloadPlatform_1a85e2df0e52efc544caef7856abc6bbcc" kindref="member">get_velocity</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">date</ref>)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="126" refid="classastrea_1_1astro_1_1PayloadPlatform_1a85e2df0e52efc544caef7856abc6bbcc" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/><ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">VelocityVector&lt;frames::primary&gt;</ref><sp/><ref refid="classastrea_1_1astro_1_1PayloadPlatform_1a85e2df0e52efc544caef7856abc6bbcc" kindref="member">get_velocity</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref>&amp;<sp/>date)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>=<sp/>0;</highlight></codeline>
 <codeline lineno="127"><highlight class="normal"></highlight></codeline>
-<codeline lineno="133" refid="classastrea_1_1astro_1_1PayloadPlatform_1a1f39a69fc17a82b49a7aa6b15b61f65c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Mass</ref><sp/><ref refid="classastrea_1_1astro_1_1PayloadPlatform_1a1f39a69fc17a82b49a7aa6b15b61f65c" kindref="member">get_mass</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0.0<sp/>*<sp/>mp_units::si::unit_symbols::kg;<sp/>}</highlight></codeline>
+<codeline lineno="133" refid="classastrea_1_1astro_1_1PayloadPlatform_1a1f39a69fc17a82b49a7aa6b15b61f65c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/>Mass<sp/><ref refid="classastrea_1_1astro_1_1PayloadPlatform_1a1f39a69fc17a82b49a7aa6b15b61f65c" kindref="member">get_mass</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0.0<sp/>*<sp/>mp_units::si::unit_symbols::kg;<sp/>}</highlight></codeline>
 <codeline lineno="134"><highlight class="normal"></highlight></codeline>
-<codeline lineno="140" refid="classastrea_1_1astro_1_1PayloadPlatform_1a3fd1ddd8c83de855378361500772110d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1PayloadPlatform_1a3fd1ddd8c83de855378361500772110d" kindref="member">attach_payload</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">PayloadParameters_T</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">parameters</ref>)<sp/>{<sp/>_payloads.emplace_back(<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Payload_T</ref>(*</highlight><highlight class="keyword">this</highlight><highlight class="normal">,<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">parameters</ref>));<sp/>}</highlight></codeline>
+<codeline lineno="140" refid="classastrea_1_1astro_1_1PayloadPlatform_1a3fd1ddd8c83de855378361500772110d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1PayloadPlatform_1a3fd1ddd8c83de855378361500772110d" kindref="member">attach_payload</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>PayloadParameters_T&amp;<sp/>parameters)<sp/>{<sp/>_payloads.emplace_back(Payload_T(*</highlight><highlight class="keyword">this</highlight><highlight class="normal">,<sp/>parameters));<sp/>}</highlight></codeline>
 <codeline lineno="141"><highlight class="normal"></highlight></codeline>
-<codeline lineno="147" refid="classastrea_1_1astro_1_1PayloadPlatform_1a543013093f0f72b8d8992d49a1d5e666" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1PayloadPlatform_1a543013093f0f72b8d8992d49a1d5e666" kindref="member">attach_payloads</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;PayloadParameters_T&gt;&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">parameterPack</ref>)</highlight></codeline>
+<codeline lineno="147" refid="classastrea_1_1astro_1_1PayloadPlatform_1a543013093f0f72b8d8992d49a1d5e666" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1PayloadPlatform_1a543013093f0f72b8d8992d49a1d5e666" kindref="member">attach_payloads</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;PayloadParameters_T&gt;&amp;<sp/>parameterPack)</highlight></codeline>
 <codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
-<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">parameters</ref><sp/>:<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">parameterPack</ref>)<sp/>{</highlight></codeline>
-<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1PayloadPlatform_1a3fd1ddd8c83de855378361500772110d" kindref="member">attach_payload</ref>(<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">parameters</ref>);</highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>parameters<sp/>:<sp/>parameterPack)<sp/>{</highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1PayloadPlatform_1a3fd1ddd8c83de855378361500772110d" kindref="member">attach_payload</ref>(parameters);</highlight></codeline>
 <codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="153"><highlight class="normal"></highlight></codeline>
@@ -1287,8 +1295,8 @@ The GNU Lesser General Public License (LGPL)</para>
 <codeline lineno="170"><highlight class="normal"></highlight></codeline>
 <codeline lineno="174" refid="classastrea_1_1astro_1_1PayloadPlatform_1ad0189d4ba5ad26fc7c12ab9d590caa40" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1PayloadPlatform_1ad0189d4ba5ad26fc7c12ab9d590caa40" kindref="member">reset_payload_parentage</ref>()</highlight></codeline>
 <codeline lineno="175"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
-<codeline lineno="176"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">payload</ref><sp/>:<sp/>_payloads)<sp/>{</highlight></codeline>
-<codeline lineno="177"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">payload</ref>.set_parent(*</highlight><highlight class="keyword">this</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="176"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>payload<sp/>:<sp/>_payloads)<sp/>{</highlight></codeline>
+<codeline lineno="177"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>payload.set_parent(*</highlight><highlight class="keyword">this</highlight><highlight class="normal">);</highlight></codeline>
 <codeline lineno="178"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="179"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="180"><highlight class="normal">};</highlight></codeline>

@@ -122,7 +122,7 @@
         <name>StateHistory</name>
         <qualifiedname>astrea::astro::StateHistory::StateHistory</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> std::size_t &amp;</type>
+          <type>const std::size_t &amp;</type>
           <declname>objectId</declname>
         </param>
         <briefdescription>
@@ -160,13 +160,13 @@
         <location file="astrea/astro/astro/state/StateHistory.hpp" line="59" column="5"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1StateHistory_1a27786dfec3a8dd9f61ee686617825607" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">void</ref></type>
+        <type>void</type>
         <definition>void astrea::astro::StateHistory::insert</definition>
         <argsstring>(const State &amp;state)</argsstring>
         <name>insert</name>
         <qualifiedname>astrea::astro::StateHistory::insert</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
           <declname>state</declname>
         </param>
         <briefdescription>
@@ -189,13 +189,13 @@
         <location file="astrea/astro/astro/state/StateHistory.hpp" line="66" column="10" bodyfile="astrea/astro/astro/state/StateHistory.cpp" bodystart="26" bodyend="38"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1StateHistory_1a8de97b0bc15f1da2c8f3e3cdce339077" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">void</ref></type>
+        <type>void</type>
         <definition>void astrea::astro::StateHistory::insert</definition>
         <argsstring>(const StateHistory &amp;stateHistory)</argsstring>
         <name>insert</name>
         <qualifiedname>astrea::astro::StateHistory::insert</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1StateHistory" kindref="compound">StateHistory</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1StateHistory" kindref="compound">StateHistory</ref> &amp;</type>
           <declname>stateHistory</declname>
         </param>
         <briefdescription>
@@ -218,13 +218,13 @@
         <location file="astrea/astro/astro/state/StateHistory.hpp" line="73" column="10" bodyfile="astrea/astro/astro/state/StateHistory.cpp" bodystart="40" bodyend="45"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1StateHistory_1a0567ca29cdc734954f05a8fe06f63e16" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">void</ref></type>
+        <type>void</type>
         <definition>void astrea::astro::StateHistory::fast_append</definition>
         <argsstring>(const State &amp;state)</argsstring>
         <name>fast_append</name>
         <qualifiedname>astrea::astro::StateHistory::fast_append</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
           <declname>state</declname>
         </param>
         <briefdescription>
@@ -248,13 +248,13 @@
         <location file="astrea/astro/astro/state/StateHistory.hpp" line="83" column="10" bodyfile="astrea/astro/astro/state/StateHistory.hpp" bodystart="83" bodyend="83"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1StateHistory_1aa7014cb4c2ea45a04c5832b03dd66468" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">void</ref></type>
+        <type>void</type>
         <definition>void astrea::astro::StateHistory::fast_prepend</definition>
         <argsstring>(const State &amp;state)</argsstring>
         <name>fast_prepend</name>
         <qualifiedname>astrea::astro::StateHistory::fast_prepend</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
           <declname>state</declname>
         </param>
         <briefdescription>
@@ -296,7 +296,7 @@
         <location file="astrea/astro/astro/state/StateHistory.hpp" line="100" column="17" bodyfile="astrea/astro/astro/state/StateHistory.cpp" bodystart="47" bodyend="47"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1StateHistory_1a9fa6ea754df81dec56de3863a8310c59" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">bool</ref></type>
+        <type>bool</type>
         <definition>bool astrea::astro::StateHistory::empty</definition>
         <argsstring>() const</argsstring>
         <name>empty</name>
@@ -314,7 +314,7 @@
         <location file="astrea/astro/astro/state/StateHistory.hpp" line="107" column="10" bodyfile="astrea/astro/astro/state/StateHistory.cpp" bodystart="48" bodyend="48"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1StateHistory_1a098268c45fa4c22afba375da65521635" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">void</ref></type>
+        <type>void</type>
         <definition>void astrea::astro::StateHistory::clear</definition>
         <argsstring>()</argsstring>
         <name>clear</name>
@@ -329,7 +329,7 @@
         <location file="astrea/astro/astro/state/StateHistory.hpp" line="112" column="10" bodyfile="astrea/astro/astro/state/StateHistory.cpp" bodystart="49" bodyend="49"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1StateHistory_1adb6f8d071b513d4b58b9fae5d310220d" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
+        <type>const <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
         <definition>const Date &amp; astrea::astro::StateHistory::epoch</definition>
         <argsstring>() const</argsstring>
         <name>epoch</name>
@@ -365,7 +365,7 @@
         <location file="astrea/astro/astro/state/StateHistory.hpp" line="126" column="11" bodyfile="astrea/astro/astro/state/StateHistory.hpp" bodystart="126" bodyend="126"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1StateHistory_1aa2b6081a8750c26ecdd95d7a59a1cbc9" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
+        <type>const <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
         <definition>const State &amp; astrea::astro::StateHistory::first</definition>
         <argsstring>() const</argsstring>
         <name>first</name>
@@ -401,7 +401,7 @@
         <location file="astrea/astro/astro/state/StateHistory.hpp" line="140" column="11" bodyfile="astrea/astro/astro/state/StateHistory.hpp" bodystart="140" bodyend="140"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1StateHistory_1ad4c4be3d3281dc3cbb44ba26feba933a" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
+        <type>const <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
         <definition>const State &amp; astrea::astro::StateHistory::last</definition>
         <argsstring>() const</argsstring>
         <name>last</name>
@@ -419,13 +419,13 @@
         <location file="astrea/astro/astro/state/StateHistory.hpp" line="147" column="17" bodyfile="astrea/astro/astro/state/StateHistory.hpp" bodystart="147" bodyend="147"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1StateHistory_1a3b2baeec166baf2ece3f3c351565c773" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">void</ref></type>
+        <type>void</type>
         <definition>void astrea::astro::StateHistory::set_object_id</definition>
         <argsstring>(const std::size_t &amp;objectId)</argsstring>
         <name>set_object_id</name>
         <qualifiedname>astrea::astro::StateHistory::set_object_id</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> std::size_t &amp;</type>
+          <type>const std::size_t &amp;</type>
           <declname>objectId</declname>
         </param>
         <briefdescription>
@@ -466,13 +466,13 @@
         <location file="astrea/astro/astro/state/StateHistory.hpp" line="161" column="17" bodyfile="astrea/astro/astro/state/StateHistory.hpp" bodystart="161" bodyend="161"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1StateHistory_1a3eb207ecc4b7c94a68da783520a5b5bd" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
+        <type>const <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
         <definition>const State &amp; astrea::astro::StateHistory::get_closest_state</definition>
         <argsstring>(const Date &amp;date) const</argsstring>
         <name>get_closest_state</name>
         <qualifiedname>astrea::astro::StateHistory::get_closest_state</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
           <declname>date</declname>
         </param>
         <briefdescription>
@@ -504,13 +504,13 @@
         <name>get_state_at</name>
         <qualifiedname>astrea::astro::StateHistory::get_state_at</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
           <declname>date</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">bool</ref></type>
+          <type>const bool</type>
           <declname>allowApproximation</declname>
-          <defval><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">true</ref></defval>
+          <defval>true</defval>
         </param>
         <briefdescription>
 <para>Retrieves the state at a specific date. </para>
@@ -545,13 +545,13 @@
         <location file="astrea/astro/astro/state/StateHistory.hpp" line="186" column="11" bodyfile="astrea/astro/astro/state/StateHistory.cpp" bodystart="80" bodyend="132"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1StateHistory_1a002192e98398c08264df0aceb4374603" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">void</ref></type>
+        <type>void</type>
         <definition>void astrea::astro::StateHistory::set_event_times</definition>
         <argsstring>(const EventTimesMap &amp;eventTimes)</argsstring>
         <name>set_event_times</name>
         <qualifiedname>astrea::astro::StateHistory::set_event_times</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> EventTimesMap &amp;</type>
+          <type>const EventTimesMap &amp;</type>
           <declname>eventTimes</declname>
         </param>
         <briefdescription>
@@ -574,7 +574,7 @@
         <location file="astrea/astro/astro/state/StateHistory.hpp" line="193" column="10" bodyfile="astrea/astro/astro/state/StateHistory.hpp" bodystart="193" bodyend="193"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1StateHistory_1aa473c462385246e149c67c2523edb764" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> EventTimesMap &amp;</type>
+        <type>const EventTimesMap &amp;</type>
         <definition>const EventTimesMap &amp; astrea::astro::StateHistory::get_event_times</definition>
         <argsstring>() const</argsstring>
         <name>get_event_times</name>
@@ -718,7 +718,7 @@
         <location file="astrea/astro/astro/state/StateHistory.hpp" line="259" column="20" bodyfile="astrea/astro/astro/state/StateHistory.hpp" bodystart="259" bodyend="259"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1StateHistory_1a67bd90ca8cb1a8189d1bb6d09a8b4a29" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">void</ref></type>
+        <type>void</type>
         <definition>void astrea::astro::StateHistory::sort</definition>
         <argsstring>()</argsstring>
         <name>sort</name>
@@ -741,7 +741,7 @@
             <defname>T</defname>
           </param>
         </templateparamlist>
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">void</ref></type>
+        <type>void</type>
         <definition>void astrea::astro::StateHistory::convert_to_set</definition>
         <argsstring>()</argsstring>
         <name>convert_to_set</name>

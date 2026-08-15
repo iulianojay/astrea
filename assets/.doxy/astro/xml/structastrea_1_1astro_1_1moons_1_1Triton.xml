@@ -70,7 +70,7 @@
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="astrea/astro/astro/systems/celestial_bodies/Neptune/Triton.hpp" line="42" column="17" bodyfile="astrea/astro/astro/systems/celestial_bodies/Neptune/Triton.hpp" bodystart="42" bodyend="43"/>
+    <location file="astrea/astro/astro/systems/celestial_bodies/Neptune/Triton.hpp" line="41" column="17" bodyfile="astrea/astro/astro/systems/celestial_bodies/Neptune/Triton.hpp" bodystart="41" bodyend="42"/>
     <listofallmembers>
       <member refid="structastrea_1_1astro_1_1CelestialBody_1a6f403339fafac7a7813ab6e153c86c8f" prot="public" virt="non-virtual"><scope>astrea::astro::moons::Triton</scope><name>geocentric_axes</name></member>
       <member refid="structastrea_1_1astro_1_1Origin_3_01__name___00_01__parent___01_4_1a9091dfe3c437f00a4b14cdc412e1f66c" prot="public" virt="non-virtual"><scope>astrea::astro::moons::Triton</scope><name>name</name></member>

@@ -13,14 +13,14 @@
 * `#include <iomanip>`
 * `#include <iostream>`
 * `#include <mp-units/math.h>`
-* `#include <mp-units/systems/angular/math.h>`
 * `#include <mp-units/systems/si.h>`
 * `#include <mp-units/systems/si/math.h>`
+* `#include <math/interpolation.hpp>`
+* `#include <math/trig.hpp>`
 * `#include <astro/state/orbital_elements/Equinoctial.hpp>`
 * `#include <astro/state/orbital_elements/Keplerian.hpp>`
 * `#include <astro/systems/system_utilities.hpp>`
 * `#include <astro/types/typedefs.hpp>`
-* `#include <math/interpolation.hpp>`
 
 
 

@@ -35,16 +35,16 @@
       </memberdef>
     </sectiondef>
     <sectiondef kind="public-func">
-      <memberdef kind="function" id="classastrea_1_1trace_1_1CircularFieldOfView_1a8c942bd929e950fe2d7cfcba6d01fb14" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="classastrea_1_1trace_1_1CircularFieldOfView_1a083b01e6c0133797b7d1cea923cbbc24" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
         <definition>astrea::trace::CircularFieldOfView::CircularFieldOfView</definition>
-        <argsstring>(const Angle &amp;halfConeAngle=std::numbers::pi/4.0 *mp_units::angular::unit_symbols::rad)</argsstring>
+        <argsstring>(const Angle &amp;halfConeAngle=std::numbers::pi/4.0 *mp_units::si::unit_symbols::rad)</argsstring>
         <name>CircularFieldOfView</name>
         <qualifiedname>astrea::trace::CircularFieldOfView::CircularFieldOfView</qualifiedname>
         <param>
           <type>const Angle &amp;</type>
           <declname>halfConeAngle</declname>
-          <defval>std::numbers::pi/4.0 *mp_units::angular::unit_symbols::rad</defval>
+          <defval>std::numbers::pi/4.0 *mp_units::si::unit_symbols::rad</defval>
         </param>
         <briefdescription>
 <para>Constructor for <ref refid="classastrea_1_1trace_1_1CircularFieldOfView" kindref="compound">CircularFieldOfView</ref>. </para>
@@ -181,7 +181,7 @@
     <listofallmembers>
       <member refid="classastrea_1_1trace_1_1CircularFieldOfView_1a495b89cecec1748f24e8e6a20274a2b4" prot="private" virt="non-virtual"><scope>astrea::trace::CircularFieldOfView</scope><name>_cosHalfConeAngle</name></member>
       <member refid="classastrea_1_1trace_1_1CircularFieldOfView_1ae4ba3fd97987e5963a9c1c45537559e3" prot="private" virt="non-virtual"><scope>astrea::trace::CircularFieldOfView</scope><name>_halfConeAngle</name></member>
-      <member refid="classastrea_1_1trace_1_1CircularFieldOfView_1a8c942bd929e950fe2d7cfcba6d01fb14" prot="public" virt="non-virtual"><scope>astrea::trace::CircularFieldOfView</scope><name>CircularFieldOfView</name></member>
+      <member refid="classastrea_1_1trace_1_1CircularFieldOfView_1a083b01e6c0133797b7d1cea923cbbc24" prot="public" virt="non-virtual"><scope>astrea::trace::CircularFieldOfView</scope><name>CircularFieldOfView</name></member>
       <member refid="classastrea_1_1trace_1_1CircularFieldOfView_1a6653ae918da14811e07ab37e4fd99cc6" prot="public" virt="virtual"><scope>astrea::trace::CircularFieldOfView</scope><name>contains</name></member>
       <member refid="classastrea_1_1trace_1_1FieldOfView_1a81d04b924ac5862bd4b38072237bc3bb" prot="public" virt="non-virtual"><scope>astrea::trace::CircularFieldOfView</scope><name>FieldOfView</name></member>
       <member refid="classastrea_1_1trace_1_1CircularFieldOfView_1a29ff07554d053330704102a5b50ba291" prot="public" virt="virtual"><scope>astrea::trace::CircularFieldOfView</scope><name>max_half_angle</name></member>

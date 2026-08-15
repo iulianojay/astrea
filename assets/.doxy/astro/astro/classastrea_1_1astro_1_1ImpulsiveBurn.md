@@ -54,19 +54,19 @@ _A class representing an impulsive burn_ [_**Event**_](classastrea_1_1astro_1_1E
 | ---: | :--- |
 |   | [**ImpulsiveBurn**](#function-impulsiveburn-14) () <br> |
 |  std::string | [**get\_name**](#function-get_name) () const<br>_Gets the name of the_ [_**Event**_](classastrea_1_1astro_1_1Event.md) _._ |
-|  [**bool**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**is\_terminal**](#function-is_terminal) () const<br>_Checks if the_ [_**Event**_](classastrea_1_1astro_1_1Event.md) _is a terminal_[_**Event**_](classastrea_1_1astro_1_1Event.md) _._ |
-|  [**Unitless**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**measure\_event**](#function-measure_event) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Time**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & time, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**State**](classastrea_1_1astro_1_1State.md) & state, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Vehicle**](classastrea_1_1astro_1_1Vehicle.md) & vehicle) const<br>_Measures the anomaly as a trigger._  |
-|  [**void**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**trigger\_action**](#function-trigger_action) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Time**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & time, [**State**](classastrea_1_1astro_1_1State.md) & state, [**Vehicle**](classastrea_1_1astro_1_1Vehicle.md) & vehicle) const<br>_Triggers an impulsive burn._  |
+|  bool | [**is\_terminal**](#function-is_terminal) () const<br>_Checks if the_ [_**Event**_](classastrea_1_1astro_1_1Event.md) _is a terminal_[_**Event**_](classastrea_1_1astro_1_1Event.md) _._ |
+|  Unitless | [**measure\_event**](#function-measure_event) (const Time & time, const [**State**](classastrea_1_1astro_1_1State.md) & state, const [**Vehicle**](classastrea_1_1astro_1_1Vehicle.md) & vehicle) const<br>_Measures the anomaly as a trigger._  |
+|  void | [**trigger\_action**](#function-trigger_action) (const Time & time, [**State**](classastrea_1_1astro_1_1State.md) & state, [**Vehicle**](classastrea_1_1astro_1_1Vehicle.md) & vehicle) const<br>_Triggers an impulsive burn._  |
 
 
 ## Public Static Functions
 
 | Type | Name |
 | ---: | :--- |
-|  [**ImpulsiveBurn**](classastrea_1_1astro_1_1ImpulsiveBurn.md) | [**trigger\_at\_altitude**](#function-trigger_at_altitude) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Distance**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & triggerAltitude, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Direction**](namespaceastrea_1_1astro.md#typedef-direction)&lt; frames::dynamic::ric &gt; burnDirection, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**unsigned**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) nMaxTriggers=0) <br>_Constructs an_ [_**ImpulsiveBurn**_](classastrea_1_1astro_1_1ImpulsiveBurn.md) __[_**Event**_](classastrea_1_1astro_1_1Event.md) _that triggers at a specific altitude._ |
-|  [**ImpulsiveBurn**](classastrea_1_1astro_1_1ImpulsiveBurn.md) | [**trigger\_at\_epoch**](#function-trigger_at_epoch) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Date**](classastrea_1_1astro_1_1Date.md) & triggerEpoch, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Direction**](namespaceastrea_1_1astro.md#typedef-direction)&lt; frames::dynamic::ric &gt; burnDirection, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**unsigned**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) nMaxTriggers=0) <br>_Constructs an_ [_**ImpulsiveBurn**_](classastrea_1_1astro_1_1ImpulsiveBurn.md) __[_**Event**_](classastrea_1_1astro_1_1Event.md) _that triggers at a specific epoch._ |
-|  [**ImpulsiveBurn**](classastrea_1_1astro_1_1ImpulsiveBurn.md) | [**trigger\_at\_mean\_anomaly**](#function-trigger_at_mean_anomaly) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Angle**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & triggerAnomaly, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Direction**](namespaceastrea_1_1astro.md#typedef-direction)&lt; frames::dynamic::ric &gt; burnDirection, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**unsigned**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) nMaxTriggers=0) <br>_Constructs an_ [_**ImpulsiveBurn**_](classastrea_1_1astro_1_1ImpulsiveBurn.md) __[_**Event**_](classastrea_1_1astro_1_1Event.md) _that triggers at a specific mean anomaly._ |
-|  [**ImpulsiveBurn**](classastrea_1_1astro_1_1ImpulsiveBurn.md) | [**trigger\_at\_true\_anomaly**](#function-trigger_at_true_anomaly) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Angle**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & triggerAnomaly, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Direction**](namespaceastrea_1_1astro.md#typedef-direction)&lt; frames::dynamic::ric &gt; burnDirection, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**unsigned**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) nMaxTriggers=0) <br>_Constructs an_ [_**ImpulsiveBurn**_](classastrea_1_1astro_1_1ImpulsiveBurn.md) __[_**Event**_](classastrea_1_1astro_1_1Event.md) _that triggers at a specific true anomaly._ |
+|  [**ImpulsiveBurn**](classastrea_1_1astro_1_1ImpulsiveBurn.md) | [**trigger\_at\_altitude**](#function-trigger_at_altitude) (const Distance & triggerAltitude, const [**Direction**](namespaceastrea_1_1astro.md#typedef-direction)&lt; frames::dynamic::ric &gt; burnDirection, const unsigned nMaxTriggers=0) <br>_Constructs an_ [_**ImpulsiveBurn**_](classastrea_1_1astro_1_1ImpulsiveBurn.md) __[_**Event**_](classastrea_1_1astro_1_1Event.md) _that triggers at a specific altitude._ |
+|  [**ImpulsiveBurn**](classastrea_1_1astro_1_1ImpulsiveBurn.md) | [**trigger\_at\_epoch**](#function-trigger_at_epoch) (const [**Date**](classastrea_1_1astro_1_1Date.md) & triggerEpoch, const [**Direction**](namespaceastrea_1_1astro.md#typedef-direction)&lt; frames::dynamic::ric &gt; burnDirection, const unsigned nMaxTriggers=0) <br>_Constructs an_ [_**ImpulsiveBurn**_](classastrea_1_1astro_1_1ImpulsiveBurn.md) __[_**Event**_](classastrea_1_1astro_1_1Event.md) _that triggers at a specific epoch._ |
+|  [**ImpulsiveBurn**](classastrea_1_1astro_1_1ImpulsiveBurn.md) | [**trigger\_at\_mean\_anomaly**](#function-trigger_at_mean_anomaly) (const Angle & triggerAnomaly, const [**Direction**](namespaceastrea_1_1astro.md#typedef-direction)&lt; frames::dynamic::ric &gt; burnDirection, const unsigned nMaxTriggers=0) <br>_Constructs an_ [_**ImpulsiveBurn**_](classastrea_1_1astro_1_1ImpulsiveBurn.md) __[_**Event**_](classastrea_1_1astro_1_1Event.md) _that triggers at a specific mean anomaly._ |
+|  [**ImpulsiveBurn**](classastrea_1_1astro_1_1ImpulsiveBurn.md) | [**trigger\_at\_true\_anomaly**](#function-trigger_at_true_anomaly) (const Angle & triggerAnomaly, const [**Direction**](namespaceastrea_1_1astro.md#typedef-direction)&lt; frames::dynamic::ric &gt; burnDirection, const unsigned nMaxTriggers=0) <br>_Constructs an_ [_**ImpulsiveBurn**_](classastrea_1_1astro_1_1ImpulsiveBurn.md) __[_**Event**_](classastrea_1_1astro_1_1Event.md) _that triggers at a specific true anomaly._ |
 
 
 
@@ -173,9 +173,9 @@ false If the [**Event**](classastrea_1_1astro_1_1Event.md) is not a terminal [**
 _Measures the anomaly as a trigger._ 
 ```C++
 Unitless astrea::astro::ImpulsiveBurn::measure_event (
-    const  Time & time,
-    const  State & state,
-    const  Vehicle & vehicle
+    const Time & time,
+    const State & state,
+    const Vehicle & vehicle
 ) const
 ```
 
@@ -216,7 +216,7 @@ false If the [**Event**](classastrea_1_1astro_1_1Event.md) is not triggered by t
 _Triggers an impulsive burn._ 
 ```C++
 void astrea::astro::ImpulsiveBurn::trigger_action (
-    const  Time & time,
+    const Time & time,
     State & state,
     Vehicle & vehicle
 ) const
@@ -249,9 +249,9 @@ void astrea::astro::ImpulsiveBurn::trigger_action (
 _Constructs an_ [_**ImpulsiveBurn**_](classastrea_1_1astro_1_1ImpulsiveBurn.md) __[_**Event**_](classastrea_1_1astro_1_1Event.md) _that triggers at a specific altitude._
 ```C++
 static inline ImpulsiveBurn astrea::astro::ImpulsiveBurn::trigger_at_altitude (
-    const  Distance & triggerAltitude,
-    const  Direction < frames::dynamic::ric > burnDirection,
-    const  unsigned nMaxTriggers=0
+    const Distance & triggerAltitude,
+    const Direction < frames::dynamic::ric > burnDirection,
+    const unsigned nMaxTriggers=0
 ) 
 ```
 
@@ -287,9 +287,9 @@ static inline ImpulsiveBurn astrea::astro::ImpulsiveBurn::trigger_at_altitude (
 _Constructs an_ [_**ImpulsiveBurn**_](classastrea_1_1astro_1_1ImpulsiveBurn.md) __[_**Event**_](classastrea_1_1astro_1_1Event.md) _that triggers at a specific epoch._
 ```C++
 static inline ImpulsiveBurn astrea::astro::ImpulsiveBurn::trigger_at_epoch (
-    const  Date & triggerEpoch,
-    const  Direction < frames::dynamic::ric > burnDirection,
-    const  unsigned nMaxTriggers=0
+    const Date & triggerEpoch,
+    const Direction < frames::dynamic::ric > burnDirection,
+    const unsigned nMaxTriggers=0
 ) 
 ```
 
@@ -325,9 +325,9 @@ static inline ImpulsiveBurn astrea::astro::ImpulsiveBurn::trigger_at_epoch (
 _Constructs an_ [_**ImpulsiveBurn**_](classastrea_1_1astro_1_1ImpulsiveBurn.md) __[_**Event**_](classastrea_1_1astro_1_1Event.md) _that triggers at a specific mean anomaly._
 ```C++
 static inline ImpulsiveBurn astrea::astro::ImpulsiveBurn::trigger_at_mean_anomaly (
-    const  Angle & triggerAnomaly,
-    const  Direction < frames::dynamic::ric > burnDirection,
-    const  unsigned nMaxTriggers=0
+    const Angle & triggerAnomaly,
+    const Direction < frames::dynamic::ric > burnDirection,
+    const unsigned nMaxTriggers=0
 ) 
 ```
 
@@ -363,9 +363,9 @@ static inline ImpulsiveBurn astrea::astro::ImpulsiveBurn::trigger_at_mean_anomal
 _Constructs an_ [_**ImpulsiveBurn**_](classastrea_1_1astro_1_1ImpulsiveBurn.md) __[_**Event**_](classastrea_1_1astro_1_1Event.md) _that triggers at a specific true anomaly._
 ```C++
 static inline ImpulsiveBurn astrea::astro::ImpulsiveBurn::trigger_at_true_anomaly (
-    const  Angle & triggerAnomaly,
-    const  Direction < frames::dynamic::ric > burnDirection,
-    const  unsigned nMaxTriggers=0
+    const Angle & triggerAnomaly,
+    const Direction < frames::dynamic::ric > burnDirection,
+    const unsigned nMaxTriggers=0
 ) 
 ```
 

@@ -5,13 +5,13 @@
     <includes refid="Plane_8hpp" local="no">Plane.hpp</includes>
     <templateparamlist>
       <param>
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">class</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Spacecraft_T</ref></type>
+        <type>class Spacecraft_T</type>
         <defval><ref refid="classastrea_1_1astro_1_1Spacecraft" kindref="compound">Spacecraft</ref></defval>
       </param>
     </templateparamlist>
     <sectiondef kind="public-type">
       <memberdef kind="typedef" id="classastrea_1_1astro_1_1Plane_1aef044340b99f2e557d1daac0a697cfb0" prot="public" static="no">
-        <type>std::vector&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Spacecraft_T</ref> &gt;::iterator</type>
+        <type>std::vector&lt; Spacecraft_T &gt;::iterator</type>
         <definition>using astrea::astro::Plane&lt; Spacecraft_T &gt;::iterator =  std::vector&lt;Spacecraft_T&gt;::iterator</definition>
         <argsstring></argsstring>
         <name>iterator</name>
@@ -26,7 +26,7 @@
         <location file="astrea/astro/astro/platforms/space/Plane.hpp" line="126" column="5" bodyfile="astrea/astro/astro/platforms/space/Plane.hpp" bodystart="126" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="classastrea_1_1astro_1_1Plane_1a203d36f291a4f3950527168e422eff4c" prot="public" static="no">
-        <type>std::vector&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Spacecraft_T</ref> &gt;::const_iterator</type>
+        <type>std::vector&lt; Spacecraft_T &gt;::const_iterator</type>
         <definition>using astrea::astro::Plane&lt; Spacecraft_T &gt;::const_iterator =  std::vector&lt;Spacecraft_T&gt;::const_iterator</definition>
         <argsstring></argsstring>
         <name>const_iterator</name>
@@ -43,13 +43,13 @@
     </sectiondef>
     <sectiondef kind="friend">
       <memberdef kind="friend" id="classastrea_1_1astro_1_1Plane_1a70c5468a4dc3e4da6c346c2a44144070" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">class</ref></type>
+        <type>class</type>
         <definition>friend class Shell&lt; Spacecraft_T &gt;</definition>
         <argsstring></argsstring>
         <name>Shell&lt; Spacecraft_T &gt;</name>
         <qualifiedname>astrea::astro::Plane::Shell&lt; Spacecraft_T &gt;</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1Shell" kindref="compound">Shell</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Spacecraft_T</ref> &gt;</type>
+          <type><ref refid="classastrea_1_1astro_1_1Shell" kindref="compound">Shell</ref>&lt; Spacecraft_T &gt;</type>
         </param>
         <briefdescription>
         </briefdescription>
@@ -60,13 +60,13 @@
         <location file="astrea/astro/astro/platforms/space/Plane.hpp" line="41" column="5" bodyfile="astrea/astro/astro/platforms/space/Plane.hpp" bodystart="43" bodyend="-1"/>
       </memberdef>
       <memberdef kind="friend" id="classastrea_1_1astro_1_1Plane_1a995fe1462f10f08542f280628a421f2a" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">class</ref></type>
+        <type>class</type>
         <definition>friend class Constellation&lt; Spacecraft_T &gt;</definition>
         <argsstring></argsstring>
         <name>Constellation&lt; Spacecraft_T &gt;</name>
         <qualifiedname>astrea::astro::Plane::Constellation&lt; Spacecraft_T &gt;</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1Constellation" kindref="compound">Constellation</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Spacecraft_T</ref> &gt;</type>
+          <type><ref refid="classastrea_1_1astro_1_1Constellation" kindref="compound">Constellation</ref>&lt; Spacecraft_T &gt;</type>
         </param>
         <briefdescription>
         </briefdescription>
@@ -107,7 +107,7 @@
         <location file="astrea/astro/astro/platforms/space/Plane.hpp" line="184" column="21" bodyfile="astrea/astro/astro/platforms/space/Plane.hpp" bodystart="184" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1Plane_1a5be74ddccf8a873f428c72b7d51d30bb" prot="private" static="no" mutable="no">
-        <type>std::vector&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Spacecraft_T</ref> &gt;</type>
+        <type>std::vector&lt; Spacecraft_T &gt;</type>
         <definition>std::vector&lt;Spacecraft_T&gt; astrea::astro::Plane&lt; Spacecraft_T &gt;::satellites</definition>
         <argsstring></argsstring>
         <name>satellites</name>
@@ -121,7 +121,7 @@
         <location file="astrea/astro/astro/platforms/space/Plane.hpp" line="185" column="17" bodyfile="astrea/astro/astro/platforms/space/Plane.hpp" bodystart="185" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1Plane_1a5ca2880cc540dcb5d9412e4ec4544057" prot="private" static="no" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">bool</ref></type>
+        <type>bool</type>
         <definition>bool astrea::astro::Plane&lt; Spacecraft_T &gt;::strict</definition>
         <argsstring></argsstring>
         <name>strict</name>
@@ -158,7 +158,7 @@
         <name>Plane</name>
         <qualifiedname>astrea::astro::Plane::Plane</qualifiedname>
         <param>
-          <type>std::vector&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Spacecraft_T</ref> &gt;</type>
+          <type>std::vector&lt; Spacecraft_T &gt;</type>
           <declname>satellites</declname>
         </param>
         <briefdescription>
@@ -178,7 +178,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/platforms/space/Plane.hpp" line="57" column="5" bodyfile="astrea/astro/astro/platforms/space/Plane.ipp" bodystart="20" bodyend="39"/>
+        <location file="astrea/astro/astro/platforms/space/Plane.hpp" line="57" column="5" bodyfile="astrea/astro/astro/platforms/space/Plane.ipp" bodystart="37" bodyend="56"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Plane_1ae0c34dbf247a4a503a7c4661710c5539" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -196,13 +196,13 @@
         <location file="astrea/astro/astro/platforms/space/Plane.hpp" line="62" column="5"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Plane_1a9f49dd07082e4fa168157d41afec1dff" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">void</ref></type>
+        <type>void</type>
         <definition>void astrea::astro::Plane&lt; Spacecraft_T &gt;::add_spacecraft</definition>
         <argsstring>(const Spacecraft_T &amp;spacecraft)</argsstring>
         <name>add_spacecraft</name>
         <qualifiedname>astrea::astro::Plane::add_spacecraft</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Spacecraft_T</ref> &amp;</type>
+          <type>const Spacecraft_T &amp;</type>
           <declname>spacecraft</declname>
         </param>
         <briefdescription>
@@ -222,10 +222,10 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/platforms/space/Plane.hpp" line="69" column="10" bodyfile="astrea/astro/astro/platforms/space/Plane.ipp" bodystart="49" bodyend="52"/>
+        <location file="astrea/astro/astro/platforms/space/Plane.hpp" line="69" column="10" bodyfile="astrea/astro/astro/platforms/space/Plane.ipp" bodystart="66" bodyend="69"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Plane_1acbea31f6ed6908173209f73d78f93bad" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>std::vector&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Spacecraft_T</ref> &gt; &amp;</type>
+        <type>std::vector&lt; Spacecraft_T &gt; &amp;</type>
         <definition>std::vector&lt; Spacecraft_T &gt; &amp; astrea::astro::Plane&lt; Spacecraft_T &gt;::get_all_spacecraft</definition>
         <argsstring>()</argsstring>
         <name>get_all_spacecraft</name>
@@ -240,10 +240,10 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/platforms/space/Plane.hpp" line="76" column="17" bodyfile="astrea/astro/astro/platforms/space/Plane.ipp" bodystart="62" bodyend="65"/>
+        <location file="astrea/astro/astro/platforms/space/Plane.hpp" line="76" column="17" bodyfile="astrea/astro/astro/platforms/space/Plane.ipp" bodystart="79" bodyend="82"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Plane_1adbbf7d2e158dcf6c5f26f1a9db853db4" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> std::vector&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Spacecraft_T</ref> &gt; &amp;</type>
+        <type>const std::vector&lt; Spacecraft_T &gt; &amp;</type>
         <definition>const std::vector&lt; Spacecraft_T &gt; &amp; astrea::astro::Plane&lt; Spacecraft_T &gt;::get_all_spacecraft</definition>
         <argsstring>() const</argsstring>
         <name>get_all_spacecraft</name>
@@ -258,16 +258,16 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/platforms/space/Plane.hpp" line="83" column="23" bodyfile="astrea/astro/astro/platforms/space/Plane.ipp" bodystart="56" bodyend="59"/>
+        <location file="astrea/astro/astro/platforms/space/Plane.hpp" line="83" column="23" bodyfile="astrea/astro/astro/platforms/space/Plane.ipp" bodystart="73" bodyend="76"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Plane_1ab441d490db7d655fc617f772748dfb27" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Spacecraft_T</ref> &amp;</type>
+        <type>const Spacecraft_T &amp;</type>
         <definition>const Spacecraft_T &amp; astrea::astro::Plane&lt; Spacecraft_T &gt;::get_spacecraft</definition>
         <argsstring>(const std::size_t &amp;spacecraftId) const</argsstring>
         <name>get_spacecraft</name>
         <qualifiedname>astrea::astro::Plane::get_spacecraft</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> std::size_t &amp;</type>
+          <type>const std::size_t &amp;</type>
           <declname>spacecraftId</declname>
         </param>
         <briefdescription>
@@ -289,10 +289,10 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/platforms/space/Plane.hpp" line="91" column="24" bodyfile="astrea/astro/astro/platforms/space/Plane.ipp" bodystart="69" bodyend="75"/>
+        <location file="astrea/astro/astro/platforms/space/Plane.hpp" line="91" column="24" bodyfile="astrea/astro/astro/platforms/space/Plane.ipp" bodystart="86" bodyend="92"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Plane_1a700c2e59c772409c6e4c66be7784bb04" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1OrbitalElements" kindref="compound">OrbitalElements</ref> &amp;</type>
+        <type>const <ref refid="classastrea_1_1astro_1_1OrbitalElements" kindref="compound">OrbitalElements</ref> &amp;</type>
         <definition>const OrbitalElements &amp; astrea::astro::Plane&lt; Spacecraft_T &gt;::get_elements</definition>
         <argsstring>() const</argsstring>
         <name>get_elements</name>
@@ -310,7 +310,7 @@
         <location file="astrea/astro/astro/platforms/space/Plane.hpp" line="98" column="27" bodyfile="astrea/astro/astro/platforms/space/Plane.hpp" bodystart="98" bodyend="98"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Plane_1ab09fd7f8811b0ebdeac7014a42c1588e" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> std::size_t</type>
+        <type>const std::size_t</type>
         <definition>const size_t astrea::astro::Plane&lt; Spacecraft_T &gt;::size</definition>
         <argsstring>() const</argsstring>
         <name>size</name>
@@ -325,16 +325,16 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/platforms/space/Plane.hpp" line="105" column="23" bodyfile="astrea/astro/astro/platforms/space/Plane.ipp" bodystart="42" bodyend="45"/>
+        <location file="astrea/astro/astro/platforms/space/Plane.hpp" line="105" column="23" bodyfile="astrea/astro/astro/platforms/space/Plane.ipp" bodystart="59" bodyend="62"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Plane_1a6d477e8c0efa744dc282cffe30d06b79" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">void</ref></type>
+        <type>void</type>
         <definition>void astrea::astro::Plane&lt; Spacecraft_T &gt;::propagate</definition>
         <argsstring>(const Time &amp;propTime, Integrator &amp;integrator)</argsstring>
         <name>propagate</name>
         <qualifiedname>astrea::astro::Plane::propagate</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Time</ref> &amp;</type>
+          <type>const Time &amp;</type>
           <declname>propTime</declname>
         </param>
         <param>
@@ -366,16 +366,16 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/platforms/space/Plane.hpp" line="113" column="10" bodyfile="astrea/astro/astro/platforms/space/Plane.ipp" bodystart="79" bodyend="94"/>
+        <location file="astrea/astro/astro/platforms/space/Plane.hpp" line="113" column="10" bodyfile="astrea/astro/astro/platforms/space/Plane.ipp" bodystart="96" bodyend="111"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Plane_1af076b857fc6542dc2a4df31d394a8907" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">void</ref></type>
+        <type>void</type>
         <definition>void astrea::astro::Plane&lt; Spacecraft_T &gt;::propagate</definition>
         <argsstring>(const Date &amp;endEpoch, Integrator &amp;integrator)</argsstring>
         <name>propagate</name>
         <qualifiedname>astrea::astro::Plane::propagate</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
           <declname>endEpoch</declname>
         </param>
         <param>
@@ -407,7 +407,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/platforms/space/Plane.hpp" line="121" column="10" bodyfile="astrea/astro/astro/platforms/space/Plane.ipp" bodystart="98" bodyend="113"/>
+        <location file="astrea/astro/astro/platforms/space/Plane.hpp" line="121" column="10" bodyfile="astrea/astro/astro/platforms/space/Plane.ipp" bodystart="115" bodyend="130"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Plane_1a5b550a54d24373606dd1367814b48d48" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="classastrea_1_1astro_1_1Plane_1aef044340b99f2e557d1daac0a697cfb0" kindref="member">iterator</ref></type>
@@ -518,7 +518,7 @@
         <location file="astrea/astro/astro/platforms/space/Plane.hpp" line="173" column="20" bodyfile="astrea/astro/astro/platforms/space/Plane.hpp" bodystart="173" bodyend="173"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Plane_1ac0cd1f9e2fedbac01c5fc4d9ffcd2f13" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> std::size_t</type>
+        <type>const std::size_t</type>
         <definition>const std::size_t astrea::astro::Plane&lt; Spacecraft_T &gt;::get_id</definition>
         <argsstring>() const</argsstring>
         <name>get_id</name>

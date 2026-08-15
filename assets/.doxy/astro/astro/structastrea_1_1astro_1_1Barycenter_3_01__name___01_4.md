@@ -63,7 +63,7 @@ See [astrea::astro::Origin&lt; \_name\_ &gt;](structastrea_1_1astro_1_1Origin_3_
 
 | Type | Name |
 | ---: | :--- |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**auto**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**name**](structastrea_1_1astro_1_1Origin_3_01__name___01_4.md#variable-name)   = `[**\_name\_**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)`<br>_The name of the origin._  |
+|  constexpr auto | [**name**](structastrea_1_1astro_1_1Origin_3_01__name___01_4.md#variable-name)   = `\_name\_`<br>_The name of the origin._  |
 
 
 

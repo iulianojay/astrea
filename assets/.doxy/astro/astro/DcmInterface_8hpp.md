@@ -14,7 +14,7 @@ _Header file for the DcmInterface class in the astro namespace._ [More...](#deta
 * `#include <cmath>`
 * `#include <iostream>`
 * `#include <mp-units/math.h>`
-* `#include <mp-units/systems/angular/math.h>`
+* `#include <mp-units/systems/si/math.h>`
 * `#include <utilities/string_util.hpp>`
 * `#include <astro/astro.fwd.hpp>`
 * `#include <astro/frames/framework/CartesianVector.hpp>`
@@ -45,7 +45,7 @@ _Header file for the DcmInterface class in the astro namespace._ [More...](#deta
 
 | Type | Name |
 | ---: | :--- |
-| struct | [**DcmInterface**](structastrea_1_1astro_1_1DcmInterface.md) &lt;[**typename**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Value\_T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), \_in\_frame\_, \_out\_frame\_&gt;<br>_Class representing a 3x3 matrix, used for matrices and their rates/accelerations._  |
+| struct | [**DcmInterface**](structastrea_1_1astro_1_1DcmInterface.md) &lt;typename Value\_T, \_in\_frame\_, \_out\_frame\_&gt;<br>_Class representing a 3x3 matrix, used for matrices and their rates/accelerations._  |
 
 
 
@@ -117,7 +117,7 @@ Jay Iuliano ([iuliano.jay@gmail.com](mailto:iuliano.jay@gmail.com))
 
 **Copyright:**
 
-Copyright (c) 2025 Jay Iuliano
+Copyright (c) 2025-2026 Jay Iuliano
 
 
 The GNU Lesser General Public License (LGPL)

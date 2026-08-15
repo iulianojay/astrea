@@ -27,6 +27,6 @@ concept <ref refid="conceptastrea_1_1astro_1_1HasGetSolarArea" kindref="compound
 </parameterlist>
 </para>
     </detaileddescription>
-    <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="107" column="1"/>
+    <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="106" column="1"/>
   </compounddef>
 </doxygen>

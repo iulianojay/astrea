@@ -18,45 +18,29 @@
 #include <units/units.hpp>
 
 #include <astro/astro.fwd.hpp>
+#include <astro/propagation/force_models/LegendreCache.hpp>
 #include <astro/propagation/force_models/PerturbingForce.hpp>
 
 namespace astrea {
 namespace astro {
 
 template <IsCelestialBody auto _body_, std::size_t _degree_ = 2, std::size_t _order_ = 0>
-class LegendreCache {
-  public:
-    LegendreCache();
-
-    ~LegendreCache() = default;
-
-    Unitless get_cosine_coefficient(const std::size_t& n, const std::size_t& m) const;
-
-    Unitless get_sine_coefficient(const std::size_t& n, const std::size_t& m) const;
-
-    // /**
-    //  * @brief Computes the Legendre polynomial coefficients for the oblateness force.
-    //  *
-    //  * @param x Value at which to evaluate the Legendre polynomial
-    //  * @param degree Degree of the spherical harmonics
-    //  * @param order Order of the spherical harmonics
-    //  */
-    // std::vector<std::vector<Unitless>>
-    //     get_legendre_coefficients(const std::size_t& degree, const std::size_t& order, const Unitless& x) const;
-
-  private:
-    std::array<std::array<Unitless, _order_ + 1>, _degree_ + 1> _C{}; 
-    std::array<std::array<Unitless, _order_ + 1>, _degree_ + 1> _S{}; 
-};
-
-template <IsCelestialBody auto _body_, std::size_t _degree_ = 2, std::size_t _order_ = 0>
 class OblatenessForce : public PerturbingForce {
+
+    static_assert(_degree_ >= _order_, "Degree must be greater than or equal to the order");
+    static_assert(_degree_ >= 2 && _order_ >= 0, "Degree must be at least 2 and order must be non-negative");
+
   public:
     OblatenessForce() = default;
 
     ~OblatenessForce() = default;
 
     Perturbation compute_perturbation(const State& state, const Vehicle& vehicle) const;
+
+    std::unique_ptr<PerturbingForce> clone() const override
+    {
+        return std::make_unique<OblatenessForce<_body_, _degree_, _order_>>(*this);
+    }
 
   private:
     const LegendreCache<_body_, _degree_, _order_> _legendreCache; 

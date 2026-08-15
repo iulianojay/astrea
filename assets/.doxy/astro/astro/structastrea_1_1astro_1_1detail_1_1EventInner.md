@@ -2,7 +2,7 @@
 
 # Struct astrea::astro::detail::EventInner
 
-**template &lt;[**typename**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)&gt;**
+**template &lt;typename T&gt;**
 
 
 
@@ -43,7 +43,7 @@ Inherits the following classes: [astrea::astro::detail::EventInnerBase](structas
 
 | Type | Name |
 | ---: | :--- |
-|  [**T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**\_value**](#variable-_value)  <br>_The value of the_ [_**Event**_](classastrea_1_1astro_1_1Event.md) _inner implementation, which is the user-defined_[_**Event**_](classastrea_1_1astro_1_1Event.md) _type._ |
+|  T | [**\_value**](#variable-_value)  <br>_The value of the_ [_**Event**_](classastrea_1_1astro_1_1Event.md) _inner implementation, which is the user-defined_[_**Event**_](classastrea_1_1astro_1_1Event.md) _type._ |
 
 
 
@@ -81,22 +81,22 @@ Inherits the following classes: [astrea::astro::detail::EventInnerBase](structas
 | Type | Name |
 | ---: | :--- |
 |   | [**EventInner**](#function-eventinner-15) () = default<br>_Default constructor for_ [_**EventInner**_](structastrea_1_1astro_1_1detail_1_1EventInner.md) _._ |
-|   | [**EventInner**](#function-eventinner-25) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**EventInner**](structastrea_1_1astro_1_1detail_1_1EventInner.md) &) = delete<br>_Deleted copy assignment operator._  |
+|   | [**EventInner**](#function-eventinner-25) (const [**EventInner**](structastrea_1_1astro_1_1detail_1_1EventInner.md) &) = delete<br>_Deleted copy assignment operator._  |
 |   | [**EventInner**](#function-eventinner-35) ([**EventInner**](structastrea_1_1astro_1_1detail_1_1EventInner.md) &&) = delete<br>_Deleted move assignment operator._  |
-|   | [**EventInner**](#function-eventinner-45) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & x) <br>_Constructs a_ [_**EventInner**_](structastrea_1_1astro_1_1detail_1_1EventInner.md) _with a given value._ |
-|   | [**EventInner**](#function-eventinner-55) ([**T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) && x) <br>_Constructs a_ [_**EventInner**_](structastrea_1_1astro_1_1detail_1_1EventInner.md) _with a given value._ |
+|   | [**EventInner**](#function-eventinner-45) (const T & x) <br>_Constructs a_ [_**EventInner**_](structastrea_1_1astro_1_1detail_1_1EventInner.md) _with a given value._ |
+|   | [**EventInner**](#function-eventinner-55) (T && x) <br>_Constructs a_ [_**EventInner**_](structastrea_1_1astro_1_1detail_1_1EventInner.md) _with a given value._ |
 | virtual std::unique\_ptr&lt; [**EventInnerBase**](structastrea_1_1astro_1_1detail_1_1EventInnerBase.md) &gt; | [**clone**](#function-clone) () const<br>_Clones the_ [_**Event**_](classastrea_1_1astro_1_1Event.md) _inner implementation._ |
 | virtual std::string | [**get\_name**](#function-get_name) () override const<br>_Gets the name of the_ [_**Event**_](classastrea_1_1astro_1_1Event.md) _._ |
-| virtual [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**void**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) \* | [**get\_ptr**](#function-get_ptr-12) () const<br>_Gets a pointer to the internal_ [_**Event**_](classastrea_1_1astro_1_1Event.md) _instance._ |
-| virtual [**void**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) \* | [**get\_ptr**](#function-get_ptr-22) () <br>_Gets a pointer to the internal_ [_**Event**_](classastrea_1_1astro_1_1Event.md) _instance._ |
-| virtual [**bool**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**is\_terminal**](#function-is_terminal) () override const<br>_Checks if the_ [_**Event**_](classastrea_1_1astro_1_1Event.md) _is a terminal_[_**Event**_](classastrea_1_1astro_1_1Event.md) _._ |
-| virtual [**Unitless**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**measure\_event**](#function-measure_event) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Time**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & time, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**State**](classastrea_1_1astro_1_1State.md) & state, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Vehicle**](classastrea_1_1astro_1_1Vehicle.md) & vehicle) override const<br>_Detects if the_ [_**Event**_](classastrea_1_1astro_1_1Event.md) _is triggered by a_[_**Vehicle**_](classastrea_1_1astro_1_1Vehicle.md) _._ |
-|  [**EventInner**](structastrea_1_1astro_1_1detail_1_1EventInner.md) & | [**operator=**](#function-operator) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**EventInner**](structastrea_1_1astro_1_1detail_1_1EventInner.md) &) = delete<br>_Deleted copy assignment operator._  |
+| virtual const void \* | [**get\_ptr**](#function-get_ptr-12) () const<br>_Gets a pointer to the internal_ [_**Event**_](classastrea_1_1astro_1_1Event.md) _instance._ |
+| virtual void \* | [**get\_ptr**](#function-get_ptr-22) () <br>_Gets a pointer to the internal_ [_**Event**_](classastrea_1_1astro_1_1Event.md) _instance._ |
+| virtual bool | [**is\_terminal**](#function-is_terminal) () override const<br>_Checks if the_ [_**Event**_](classastrea_1_1astro_1_1Event.md) _is a terminal_[_**Event**_](classastrea_1_1astro_1_1Event.md) _._ |
+| virtual Unitless | [**measure\_event**](#function-measure_event) (const Time & time, const [**State**](classastrea_1_1astro_1_1State.md) & state, const [**Vehicle**](classastrea_1_1astro_1_1Vehicle.md) & vehicle) override const<br>_Detects if the_ [_**Event**_](classastrea_1_1astro_1_1Event.md) _is triggered by a_[_**Vehicle**_](classastrea_1_1astro_1_1Vehicle.md) _._ |
+|  [**EventInner**](structastrea_1_1astro_1_1detail_1_1EventInner.md) & | [**operator=**](#function-operator) (const [**EventInner**](structastrea_1_1astro_1_1detail_1_1EventInner.md) &) = delete<br>_Deleted copy assignment operator._  |
 |  [**EventInner**](structastrea_1_1astro_1_1detail_1_1EventInner.md) & | [**operator=**](#function-operator_1) ([**EventInner**](structastrea_1_1astro_1_1detail_1_1EventInner.md) &&) = delete<br>_Deleted move assignment operator._  |
-| virtual [**void**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**trigger\_action**](#function-trigger_action) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Time**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & time, [**State**](classastrea_1_1astro_1_1State.md) & state, [**Vehicle**](classastrea_1_1astro_1_1Vehicle.md) & vehicle) override const<br>_Triggers the_ [_**Event**_](classastrea_1_1astro_1_1Event.md) _for a_[_**Vehicle**_](classastrea_1_1astro_1_1Vehicle.md) _._ |
-|  [**void**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**trigger\_action\_impl**](#function-trigger_action_impl-12) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**U**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & value, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Time**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & time, [**State**](classastrea_1_1astro_1_1State.md) & state, [**Vehicle**](classastrea_1_1astro_1_1Vehicle.md) & vehicle) const<br>_Implementation of the trigger\_action function for an_ [_**Event**_](classastrea_1_1astro_1_1Event.md) _with a trigger._ |
-|  [**void**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**trigger\_action\_impl**](#function-trigger_action_impl-22) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**U**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & value, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Time**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & time, [**State**](classastrea_1_1astro_1_1State.md) & state, [**Vehicle**](classastrea_1_1astro_1_1Vehicle.md) & vehicle) const<br>_Implementation of the trigger\_action function for an_ [_**Event**_](classastrea_1_1astro_1_1Event.md) _without a trigger. Does nothing._ |
-| virtual [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) std::type\_info & | [**type**](#function-type) () const<br>_Gets the type information of the internal vehicle instance._  |
+| virtual void | [**trigger\_action**](#function-trigger_action) (const Time & time, [**State**](classastrea_1_1astro_1_1State.md) & state, [**Vehicle**](classastrea_1_1astro_1_1Vehicle.md) & vehicle) override const<br>_Triggers the_ [_**Event**_](classastrea_1_1astro_1_1Event.md) _for a_[_**Vehicle**_](classastrea_1_1astro_1_1Vehicle.md) _._ |
+|  void | [**trigger\_action\_impl**](#function-trigger_action_impl-12) (const U & value, const Time & time, [**State**](classastrea_1_1astro_1_1State.md) & state, [**Vehicle**](classastrea_1_1astro_1_1Vehicle.md) & vehicle) const<br>_Implementation of the trigger\_action function for an_ [_**Event**_](classastrea_1_1astro_1_1Event.md) _with a trigger._ |
+|  void | [**trigger\_action\_impl**](#function-trigger_action_impl-22) (const U & value, const Time & time, [**State**](classastrea_1_1astro_1_1State.md) & state, [**Vehicle**](classastrea_1_1astro_1_1Vehicle.md) & vehicle) const<br>_Implementation of the trigger\_action function for an_ [_**Event**_](classastrea_1_1astro_1_1Event.md) _without a trigger. Does nothing._ |
+| virtual const std::type\_info & | [**type**](#function-type) () const<br>_Gets the type information of the internal vehicle instance._  |
 
 
 ## Public Functions inherited from astrea::astro::detail::EventInnerBase
@@ -107,12 +107,12 @@ See [astrea::astro::detail::EventInnerBase](structastrea_1_1astro_1_1detail_1_1E
 | ---: | :--- |
 | virtual std::unique\_ptr&lt; [**EventInnerBase**](structastrea_1_1astro_1_1detail_1_1EventInnerBase.md) &gt; | [**clone**](structastrea_1_1astro_1_1detail_1_1EventInnerBase.md#function-clone) () const = 0<br>_Clones the_ [_**Event**_](classastrea_1_1astro_1_1Event.md) _inner implementation._ |
 | virtual std::string | [**get\_name**](structastrea_1_1astro_1_1detail_1_1EventInnerBase.md#function-get_name) () const = 0<br>_Gets the name of the_ [_**Event**_](classastrea_1_1astro_1_1Event.md) _._ |
-| virtual [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**void**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) \* | [**get\_ptr**](structastrea_1_1astro_1_1detail_1_1EventInnerBase.md#function-get_ptr-12) () const = 0<br>_Gets a pointer to the internal_ [_**Event**_](classastrea_1_1astro_1_1Event.md) _instance._ |
-| virtual [**void**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) \* | [**get\_ptr**](structastrea_1_1astro_1_1detail_1_1EventInnerBase.md#function-get_ptr-22) () = 0<br>_Gets a pointer to the internal_ [_**Event**_](classastrea_1_1astro_1_1Event.md) _instance._ |
-| virtual [**bool**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**is\_terminal**](structastrea_1_1astro_1_1detail_1_1EventInnerBase.md#function-is_terminal) () const = 0<br>_Checks if the_ [_**Event**_](classastrea_1_1astro_1_1Event.md) _is a terminal_[_**Event**_](classastrea_1_1astro_1_1Event.md) _._ |
-| virtual [**Unitless**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**measure\_event**](structastrea_1_1astro_1_1detail_1_1EventInnerBase.md#function-measure_event) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Time**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & time, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**State**](classastrea_1_1astro_1_1State.md) & state, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Vehicle**](classastrea_1_1astro_1_1Vehicle.md) & vehicle) const = 0<br>_Detects if the_ [_**Event**_](classastrea_1_1astro_1_1Event.md) _is triggered by a_[_**Vehicle**_](classastrea_1_1astro_1_1Vehicle.md) _._ |
-| virtual [**void**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**trigger\_action**](structastrea_1_1astro_1_1detail_1_1EventInnerBase.md#function-trigger_action) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Time**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & time, [**State**](classastrea_1_1astro_1_1State.md) & state, [**Vehicle**](classastrea_1_1astro_1_1Vehicle.md) & vehicle) const = 0<br>_Triggers the_ [_**Event**_](classastrea_1_1astro_1_1Event.md) _for a_[_**Vehicle**_](classastrea_1_1astro_1_1Vehicle.md) _._ |
-| virtual [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) std::type\_info & | [**type**](structastrea_1_1astro_1_1detail_1_1EventInnerBase.md#function-type) () const = 0<br>_Gets the type information of the internal vehicle instance._  |
+| virtual const void \* | [**get\_ptr**](structastrea_1_1astro_1_1detail_1_1EventInnerBase.md#function-get_ptr-12) () const = 0<br>_Gets a pointer to the internal_ [_**Event**_](classastrea_1_1astro_1_1Event.md) _instance._ |
+| virtual void \* | [**get\_ptr**](structastrea_1_1astro_1_1detail_1_1EventInnerBase.md#function-get_ptr-22) () = 0<br>_Gets a pointer to the internal_ [_**Event**_](classastrea_1_1astro_1_1Event.md) _instance._ |
+| virtual bool | [**is\_terminal**](structastrea_1_1astro_1_1detail_1_1EventInnerBase.md#function-is_terminal) () const = 0<br>_Checks if the_ [_**Event**_](classastrea_1_1astro_1_1Event.md) _is a terminal_[_**Event**_](classastrea_1_1astro_1_1Event.md) _._ |
+| virtual Unitless | [**measure\_event**](structastrea_1_1astro_1_1detail_1_1EventInnerBase.md#function-measure_event) (const Time & time, const [**State**](classastrea_1_1astro_1_1State.md) & state, const [**Vehicle**](classastrea_1_1astro_1_1Vehicle.md) & vehicle) const = 0<br>_Detects if the_ [_**Event**_](classastrea_1_1astro_1_1Event.md) _is triggered by a_[_**Vehicle**_](classastrea_1_1astro_1_1Vehicle.md) _._ |
+| virtual void | [**trigger\_action**](structastrea_1_1astro_1_1detail_1_1EventInnerBase.md#function-trigger_action) (const Time & time, [**State**](classastrea_1_1astro_1_1State.md) & state, [**Vehicle**](classastrea_1_1astro_1_1Vehicle.md) & vehicle) const = 0<br>_Triggers the_ [_**Event**_](classastrea_1_1astro_1_1Event.md) _for a_[_**Vehicle**_](classastrea_1_1astro_1_1Vehicle.md) _._ |
+| virtual const std::type\_info & | [**type**](structastrea_1_1astro_1_1detail_1_1EventInnerBase.md#function-type) () const = 0<br>_Gets the type information of the internal vehicle instance._  |
 | virtual  | [**~EventInnerBase**](structastrea_1_1astro_1_1detail_1_1EventInnerBase.md#function-eventinnerbase) () <br>_Destructor for_ [_**EventInnerBase**_](structastrea_1_1astro_1_1detail_1_1EventInnerBase.md) _._ |
 
 
@@ -222,7 +222,7 @@ astrea::astro::detail::EventInner::EventInner () = default
 _Deleted copy assignment operator._ 
 ```C++
 astrea::astro::detail::EventInner::EventInner (
-    const  EventInner &
+    const EventInner &
 ) = delete
 ```
 
@@ -254,7 +254,7 @@ astrea::astro::detail::EventInner::EventInner (
 _Constructs a_ [_**EventInner**_](structastrea_1_1astro_1_1detail_1_1EventInner.md) _with a given value._
 ```C++
 inline explicit astrea::astro::detail::EventInner::EventInner (
-    const  T & x
+    const T & x
 ) 
 ```
 
@@ -361,7 +361,7 @@ Implements [*astrea::astro::detail::EventInnerBase::get\_name*](structastrea_1_1
 
 _Gets a pointer to the internal_ [_**Event**_](classastrea_1_1astro_1_1Event.md) _instance._
 ```C++
-inline virtual const  void * astrea::astro::detail::EventInner::get_ptr () const
+inline virtual const void * astrea::astro::detail::EventInner::get_ptr () const
 ```
 
 
@@ -450,9 +450,9 @@ Implements [*astrea::astro::detail::EventInnerBase::is\_terminal*](structastrea_
 _Detects if the_ [_**Event**_](classastrea_1_1astro_1_1Event.md) _is triggered by a_[_**Vehicle**_](classastrea_1_1astro_1_1Vehicle.md) _._
 ```C++
 inline virtual Unitless astrea::astro::detail::EventInner::measure_event (
-    const  Time & time,
-    const  State & state,
-    const  Vehicle & vehicle
+    const Time & time,
+    const State & state,
+    const Vehicle & vehicle
 ) override const
 ```
 
@@ -497,7 +497,7 @@ Implements [*astrea::astro::detail::EventInnerBase::measure\_event*](structastre
 _Deleted copy assignment operator._ 
 ```C++
 EventInner & astrea::astro::detail::EventInner::operator= (
-    const  EventInner &
+    const EventInner &
 ) = delete
 ```
 
@@ -529,7 +529,7 @@ EventInner & astrea::astro::detail::EventInner::operator= (
 _Triggers the_ [_**Event**_](classastrea_1_1astro_1_1Event.md) _for a_[_**Vehicle**_](classastrea_1_1astro_1_1Vehicle.md) _._
 ```C++
 inline virtual void astrea::astro::detail::EventInner::trigger_action (
-    const  Time & time,
+    const Time & time,
     State & state,
     Vehicle & vehicle
 ) override const
@@ -568,10 +568,10 @@ Implements [*astrea::astro::detail::EventInnerBase::trigger\_action*](structastr
 
 _Implementation of the trigger\_action function for an_ [_**Event**_](classastrea_1_1astro_1_1Event.md) _with a trigger._
 ```C++
-template<typename  U>
+template<typename U>
 inline void astrea::astro::detail::EventInner::trigger_action_impl (
-    const  U & value,
-    const  Time & time,
+    const U & value,
+    const Time & time,
     State & state,
     Vehicle & vehicle
 ) const
@@ -616,10 +616,10 @@ inline void astrea::astro::detail::EventInner::trigger_action_impl (
 
 _Implementation of the trigger\_action function for an_ [_**Event**_](classastrea_1_1astro_1_1Event.md) _without a trigger. Does nothing._
 ```C++
-template<typename  U>
+template<typename U>
 inline void astrea::astro::detail::EventInner::trigger_action_impl (
-    const  U & value,
-    const  Time & time,
+    const U & value,
+    const Time & time,
     State & state,
     Vehicle & vehicle
 ) const

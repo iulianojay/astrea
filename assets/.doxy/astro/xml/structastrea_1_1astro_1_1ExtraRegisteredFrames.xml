@@ -5,8 +5,8 @@
     <includes refid="frame__registry_8fwd_8hpp" local="no">frame_registry.fwd.hpp</includes>
     <templateparamlist>
       <param>
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">typename</ref></type>
-        <defval><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">void</ref></defval>
+        <type>typename</type>
+        <defval>void</defval>
       </param>
     </templateparamlist>
     <sectiondef kind="public-type">

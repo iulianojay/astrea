@@ -120,7 +120,7 @@ class Equinoctial {
 
     const Angle& get_true_longitude() const { return _trueLongitude; }
 
-    std::vector<Unitless> force_to_vector() const;
+    std::vector<double> force_to_double_vector() const;
 
     Equinoctial
         interpolate(const Time& thisTime, const Time& otherTime, const Equinoctial<_frame_>& other, const GravParam& mu, const Time& targetTime) const;
@@ -133,7 +133,7 @@ class Equinoctial {
     Unitless _k;          
     Angle _trueLongitude; 
 
-    static Equinoctial from_vector(const std::vector<Unitless>& vec);
+    static Equinoctial from_double_vector(const std::vector<double>& vec);
 };
 
 template <IsFrame auto _frame_>
@@ -166,7 +166,7 @@ class EquinoctialPartial {
 
     Equinoctial<_frame_> operator*(const Time& time) const;
 
-    std::vector<Unitless> force_to_vector() const;
+    std::vector<double> force_to_double_vector() const;
 
   private:
     Velocity _semilatusPartial;            

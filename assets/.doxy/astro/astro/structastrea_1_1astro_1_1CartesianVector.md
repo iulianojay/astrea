@@ -2,7 +2,7 @@
 
 # Struct astrea::astro::CartesianVector
 
-**template &lt;[**class**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Value\_T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), IsFrame [**auto**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) \_frame\_&gt;**
+**template &lt;class Value\_T, IsFrame auto \_frame\_&gt;**
 
 
 
@@ -38,15 +38,15 @@ _Class representing a 3D vector in_ [_**Cartesian**_](classastrea_1_1astro_1_1Ca
 
 | Type | Name |
 | ---: | :--- |
-|  std::array&lt; [**Value\_T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), 3 &gt; | [**\_vector**](#variable-_vector)  <br>_Array to hold the x, y, and z components of the vector._  |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**decltype**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)([**Value\_T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md){} \*[**Value\_U**](classastrea_1_1astro_1_1DirectionCosineMatrix.md){} | [**dot**](#variable-dot)  <br>_Dot product of this vector with another_ [_**CartesianVector**_](structastrea_1_1astro_1_1CartesianVector.md) _._ |
+|  std::array&lt; Value\_T, 3 &gt; | [**\_vector**](#variable-_vector)  <br>_Array to hold the x, y, and z components of the vector._  |
+|  constexpr decltype(Value\_T{} \*Value\_U{} | [**dot**](#variable-dot)  <br>_Dot product of this vector with another_ [_**CartesianVector**_](structastrea_1_1astro_1_1CartesianVector.md) _._ |
 
 
 ## Public Static Attributes
 
 | Type | Name |
 | ---: | :--- |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**auto**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**frame**](#variable-frame)   = `\_frame\_`<br>_The reference frame of the vector._  |
+|  constexpr auto | [**frame**](#variable-frame)   = `\_frame\_`<br>_The reference frame of the vector._  |
 
 
 
@@ -65,50 +65,50 @@ _Class representing a 3D vector in_ [_**Cartesian**_](classastrea_1_1astro_1_1Ca
 
 | Type | Name |
 | ---: | :--- |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**CartesianVector**](#function-cartesianvector-16) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Value\_T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & x=Value\_T::zero(), [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Value\_T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & y=Value\_T::zero(), [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Value\_T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & z=Value\_T::zero()) <br>_Default constructor for_ [_**CartesianVector**_](structastrea_1_1astro_1_1CartesianVector.md) _._ |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**CartesianVector**](#function-cartesianvector-26) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) std::array&lt; [**Value\_T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), 3 &gt; & vec) <br>_Constructor for_ [_**CartesianVector**_](structastrea_1_1astro_1_1CartesianVector.md) _from an array of components._ |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**CartesianVector**](#function-cartesianvector-36) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md) &) = default<br> |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**CartesianVector**](#function-cartesianvector-46) ([**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md) &&) = default<br> |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**CartesianVector**](#function-cartesianvector-56) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; [**Value\_U**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), [**frame\_u**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt; & other) <br> |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**CartesianVector**](#function-cartesianvector-66) ([**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; [**Value\_U**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), [**frame\_u**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt; && other) <br> |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; [**decltype**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)([**Value\_T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md){} \*[**Value\_U**](classastrea_1_1astro_1_1DirectionCosineMatrix.md){}), [**frame**](structastrea_1_1astro_1_1CartesianVector.md#variable-frame) &gt; | [**cross**](#function-cross) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; [**Value\_U**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), [**frame**](structastrea_1_1astro_1_1CartesianVector.md#variable-frame) &gt; & other) const<br>_Cross product of this vector with another_ [_**CartesianVector**_](structastrea_1_1astro_1_1CartesianVector.md) _._ |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; [**Unitless**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), [**frame**](structastrea_1_1astro_1_1CartesianVector.md#variable-frame) &gt; | [**direction**](#function-direction) () const<br>_Normalize the vector to create a unit vector._  |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; [**Value\_T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), [**frame\_u**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt; | [**force\_frame\_conversion**](#function-force_frame_conversion) () const<br>_Copy constructor for_ [_**CartesianVector**_](structastrea_1_1astro_1_1CartesianVector.md) _that implicitly converts the frame._ |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Value\_T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & | [**get\_x**](#function-get_x-12) () <br>_Get the x value of the_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _vector._ |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Value\_T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & | [**get\_x**](#function-get_x-22) () const<br>_Get the x value of the_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _vector._ |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Value\_T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & | [**get\_y**](#function-get_y-12) () <br>_Get the y value of the_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _vector._ |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Value\_T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & | [**get\_y**](#function-get_y-22) () const<br>_Get the y value of the_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _vector._ |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Value\_T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & | [**get\_z**](#function-get_z-12) () <br>_Get the z value of the_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _vector._ |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Value\_T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & | [**get\_z**](#function-get_z-22) () const<br>_Get the z value of the_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _vector._ |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; [**Value\_T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), [**frame\_u**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt; | [**in\_frame**](#function-in_frame-16) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Date**](classastrea_1_1astro_1_1Date.md) & date) const<br>_No-op overload when calling in\_frame with the same frame._  |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; [**Value\_T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), [**frame\_u**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt; | [**in\_frame**](#function-in_frame-26) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Date**](classastrea_1_1astro_1_1Date.md) &, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; [**Distance**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), \_frame\_ &gt; &) const<br>_No-op overload when calling in\_frame with the same frame._  |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; [**Value\_T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), [**frame\_u**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt; | [**in\_frame**](#function-in_frame-36) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Date**](classastrea_1_1astro_1_1Date.md) &, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; [**Distance**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), \_frame\_ &gt; &, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; [**Velocity**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), \_frame\_ &gt; &) const<br>_No-op overload when calling in\_frame with the same frame._  |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; [**Value\_T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), [**frame\_u**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt; | [**in\_frame**](#function-in_frame-46) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Date**](classastrea_1_1astro_1_1Date.md) & date) const<br>_Rotate this vector into another frame at a given date._  |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; [**Velocity**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), [**frame\_u**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt; | [**in\_frame**](#function-in_frame-56) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Date**](classastrea_1_1astro_1_1Date.md) & date, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; [**Distance**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), \_frame\_ &gt; & position) const<br>_Rotate this vector into another frame at a given date, accounting for velocity aberration._  |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; [**Acceleration**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), [**frame\_u**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt; | [**in\_frame**](#function-in_frame-66) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Date**](classastrea_1_1astro_1_1Date.md) & date, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; [**Distance**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), \_frame\_ &gt; & position, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; [**Velocity**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), \_frame\_ &gt; & velocity) const<br>_Rotate this vector into another frame at a given date, accounting for velocity and acceleration aberration._  |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Value\_T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**norm**](#function-norm) () const<br>_Calculate the norm (magnitude) of the vector._  |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; [**Value\_T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), [**frame\_v**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt; | [**offset**](#function-offset) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; [**Value\_T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), [**frame\_u**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt; & other) const<br>_Calculate the offset vector from another vector in a different frame, resulting in a vector in a third frame._  |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Angle**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**offset\_angle**](#function-offset_angle) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; [**Value\_U**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), [**frame**](structastrea_1_1astro_1_1CartesianVector.md#variable-frame) &gt; & other) const<br>_Calculate the angle between this vector and another_ [_**CartesianVector**_](structastrea_1_1astro_1_1CartesianVector.md) _._ |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; [**decltype**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)([**Value\_T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md){} \*[**Value\_U**](classastrea_1_1astro_1_1DirectionCosineMatrix.md){}), [**frame**](structastrea_1_1astro_1_1CartesianVector.md#variable-frame) &gt; | [**operator\***](#function-operator) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Value\_U**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & scalar) const<br>_Scalar multiplication operator for_ [_**CartesianVector**_](structastrea_1_1astro_1_1CartesianVector.md) _._ |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md) & | [**operator\*=**](#function-operator_1) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Unitless**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & scalar) <br>_Scalar multiplication assignment operator for_ [_**CartesianVector**_](structastrea_1_1astro_1_1CartesianVector.md) _._ |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md) | [**operator+**](#function-operator_2) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md) & other) const<br>_Addition operator for_ [_**CartesianVector**_](structastrea_1_1astro_1_1CartesianVector.md) _._ |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md) & | [**operator+=**](#function-operator_3) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md) & other) <br>_Addition assignment operator for_ [_**CartesianVector**_](structastrea_1_1astro_1_1CartesianVector.md) _._ |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md) | [**operator-**](#function-operator-) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md) & other) const<br>_Subtraction operator for_ [_**CartesianVector**_](structastrea_1_1astro_1_1CartesianVector.md) _._ |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md) | [**operator-**](#function-operator-_1) () const<br>_Negation operator for_ [_**CartesianVector**_](structastrea_1_1astro_1_1CartesianVector.md) _._ |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md) & | [**operator-=**](#function-operator-_2) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md) & other) <br>_Subtraction assignment operator for_ [_**CartesianVector**_](structastrea_1_1astro_1_1CartesianVector.md) _._ |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; [**decltype**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)([**Value\_T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md){}/[**Value\_U**](classastrea_1_1astro_1_1DirectionCosineMatrix.md){}), [**frame**](structastrea_1_1astro_1_1CartesianVector.md#variable-frame) &gt; | [**operator/**](#function-operator_4) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Value\_U**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & scalar) const<br>_Scalar division operator for_ [_**CartesianVector**_](structastrea_1_1astro_1_1CartesianVector.md) _._ |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md) & | [**operator/=**](#function-operator_5) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Unitless**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & scalar) <br>_Scalar division assignment operator for_ [_**CartesianVector**_](structastrea_1_1astro_1_1CartesianVector.md) _._ |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md) & | [**operator=**](#function-operator_6) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md) &) = default<br> |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md) & | [**operator=**](#function-operator_7) ([**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md) &&) = default<br> |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md) | [**operator=**](#function-operator_8) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; [**Value\_U**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), [**frame**](structastrea_1_1astro_1_1CartesianVector.md#variable-frame) &gt; & other) const<br>_Copy constructor for_ [_**CartesianVector**_](structastrea_1_1astro_1_1CartesianVector.md) _that implicitly converts the unit._ |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**bool**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**operator==**](#function-operator_9) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md) & other) const<br>_Equality operator for_ [_**CartesianVector**_](structastrea_1_1astro_1_1CartesianVector.md) _(same type and frame)._ |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**bool**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**operator==**](#function-operator_10) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**OtherCart**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & other) const<br>_Equality operator for_ [_**CartesianVector**_](structastrea_1_1astro_1_1CartesianVector.md) _in a different frame or with an incompatible value type. Always returns false._ |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Value\_T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & | [**operator[]**](#function-operator_11) ([**size\_t**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) index) <br>_Access operator for vector components._  |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Value\_T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & | [**operator[]**](#function-operator_12) ([**size\_t**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) index) const<br>_Const access operator for vector components._  |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Value\_T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**p\_norm**](#function-p_norm) () const<br>_Calculate the p-norm of the vector._  |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md) | [**reverse**](#function-reverse) () const<br>_Return the reverse of the vector, which switches the x and z components. This is useful for converting between different rotation sequences._  |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; [**Value\_T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), [**frame\_v**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt; | [**translate**](#function-translate) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; [**Value\_T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), [**frame\_u**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt; & other) const<br>_Translate this vector by another vector in a different frame, resulting in a vector in a third frame._  |
-|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**~CartesianVector**](#function-cartesianvector) () = default<br>_Destructor for_ [_**CartesianVector**_](structastrea_1_1astro_1_1CartesianVector.md) _._ |
+|  constexpr | [**CartesianVector**](#function-cartesianvector-16) (const Value\_T & x=Value\_T::zero(), const Value\_T & y=Value\_T::zero(), const Value\_T & z=Value\_T::zero()) <br>_Default constructor for_ [_**CartesianVector**_](structastrea_1_1astro_1_1CartesianVector.md) _._ |
+|  constexpr | [**CartesianVector**](#function-cartesianvector-26) (const std::array&lt; Value\_T, 3 &gt; & vec) <br>_Constructor for_ [_**CartesianVector**_](structastrea_1_1astro_1_1CartesianVector.md) _from an array of components._ |
+|  constexpr | [**CartesianVector**](#function-cartesianvector-36) (const [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md) &) = default<br> |
+|  constexpr | [**CartesianVector**](#function-cartesianvector-46) ([**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md) &&) = default<br> |
+|  constexpr | [**CartesianVector**](#function-cartesianvector-56) (const [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; Value\_U, frame\_u &gt; & other) <br> |
+|  constexpr | [**CartesianVector**](#function-cartesianvector-66) ([**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; Value\_U, frame\_u &gt; && other) <br> |
+|  constexpr [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; decltype(Value\_T{} \*Value\_U{}), [**frame**](structastrea_1_1astro_1_1CartesianVector.md#variable-frame) &gt; | [**cross**](#function-cross) (const [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; Value\_U, [**frame**](structastrea_1_1astro_1_1CartesianVector.md#variable-frame) &gt; & other) const<br>_Cross product of this vector with another_ [_**CartesianVector**_](structastrea_1_1astro_1_1CartesianVector.md) _._ |
+|  constexpr [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; Unitless, [**frame**](structastrea_1_1astro_1_1CartesianVector.md#variable-frame) &gt; | [**direction**](#function-direction) () const<br>_Normalize the vector to create a unit vector._  |
+|  constexpr [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; Value\_T, frame\_u &gt; | [**force\_frame\_conversion**](#function-force_frame_conversion) () const<br>_Copy constructor for_ [_**CartesianVector**_](structastrea_1_1astro_1_1CartesianVector.md) _that implicitly converts the frame._ |
+|  constexpr Value\_T & | [**get\_x**](#function-get_x-12) () <br>_Get the x value of the_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _vector._ |
+|  constexpr const Value\_T & | [**get\_x**](#function-get_x-22) () const<br>_Get the x value of the_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _vector._ |
+|  constexpr Value\_T & | [**get\_y**](#function-get_y-12) () <br>_Get the y value of the_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _vector._ |
+|  constexpr const Value\_T & | [**get\_y**](#function-get_y-22) () const<br>_Get the y value of the_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _vector._ |
+|  constexpr Value\_T & | [**get\_z**](#function-get_z-12) () <br>_Get the z value of the_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _vector._ |
+|  constexpr const Value\_T & | [**get\_z**](#function-get_z-22) () const<br>_Get the z value of the_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _vector._ |
+|  constexpr [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; Value\_T, frame\_u &gt; | [**in\_frame**](#function-in_frame-16) (const [**Date**](classastrea_1_1astro_1_1Date.md) & date) const<br>_No-op overload when calling in\_frame with the same frame._  |
+|  constexpr [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; Value\_T, frame\_u &gt; | [**in\_frame**](#function-in_frame-26) (const [**Date**](classastrea_1_1astro_1_1Date.md) &, const [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; Distance, \_frame\_ &gt; &) const<br>_No-op overload when calling in\_frame with the same frame._  |
+|  constexpr [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; Value\_T, frame\_u &gt; | [**in\_frame**](#function-in_frame-36) (const [**Date**](classastrea_1_1astro_1_1Date.md) &, const [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; Distance, \_frame\_ &gt; &, const [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; Velocity, \_frame\_ &gt; &) const<br>_No-op overload when calling in\_frame with the same frame._  |
+|  constexpr [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; Value\_T, frame\_u &gt; | [**in\_frame**](#function-in_frame-46) (const [**Date**](classastrea_1_1astro_1_1Date.md) & date) const<br>_Rotate this vector into another frame at a given date._  |
+|  constexpr [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; Velocity, frame\_u &gt; | [**in\_frame**](#function-in_frame-56) (const [**Date**](classastrea_1_1astro_1_1Date.md) & date, const [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; Distance, \_frame\_ &gt; & position) const<br>_Rotate this vector into another frame at a given date, accounting for velocity aberration._  |
+|  constexpr [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; Acceleration, frame\_u &gt; | [**in\_frame**](#function-in_frame-66) (const [**Date**](classastrea_1_1astro_1_1Date.md) & date, const [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; Distance, \_frame\_ &gt; & position, const [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; Velocity, \_frame\_ &gt; & velocity) const<br>_Rotate this vector into another frame at a given date, accounting for velocity and acceleration aberration._  |
+|  constexpr Value\_T | [**norm**](#function-norm) () const<br>_Calculate the norm (magnitude) of the vector._  |
+|  constexpr [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; Value\_T, frame\_v &gt; | [**offset**](#function-offset) (const [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; Value\_T, frame\_u &gt; & other) const<br>_Calculate the offset vector from another vector in a different frame, resulting in a vector in a third frame._  |
+|  constexpr Angle | [**offset\_angle**](#function-offset_angle) (const [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; Value\_U, [**frame**](structastrea_1_1astro_1_1CartesianVector.md#variable-frame) &gt; & other) const<br>_Calculate the angle between this vector and another_ [_**CartesianVector**_](structastrea_1_1astro_1_1CartesianVector.md) _._ |
+|  constexpr [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; decltype(Value\_T{} \*Value\_U{}), [**frame**](structastrea_1_1astro_1_1CartesianVector.md#variable-frame) &gt; | [**operator\***](#function-operator) (const Value\_U & scalar) const<br>_Scalar multiplication operator for_ [_**CartesianVector**_](structastrea_1_1astro_1_1CartesianVector.md) _._ |
+|  constexpr [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md) & | [**operator\*=**](#function-operator_1) (const Unitless & scalar) <br>_Scalar multiplication assignment operator for_ [_**CartesianVector**_](structastrea_1_1astro_1_1CartesianVector.md) _._ |
+|  constexpr [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md) | [**operator+**](#function-operator_2) (const [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md) & other) const<br>_Addition operator for_ [_**CartesianVector**_](structastrea_1_1astro_1_1CartesianVector.md) _._ |
+|  constexpr [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md) & | [**operator+=**](#function-operator_3) (const [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md) & other) <br>_Addition assignment operator for_ [_**CartesianVector**_](structastrea_1_1astro_1_1CartesianVector.md) _._ |
+|  constexpr [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md) | [**operator-**](#function-operator-) (const [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md) & other) const<br>_Subtraction operator for_ [_**CartesianVector**_](structastrea_1_1astro_1_1CartesianVector.md) _._ |
+|  constexpr [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md) | [**operator-**](#function-operator-_1) () const<br>_Negation operator for_ [_**CartesianVector**_](structastrea_1_1astro_1_1CartesianVector.md) _._ |
+|  constexpr [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md) & | [**operator-=**](#function-operator-_2) (const [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md) & other) <br>_Subtraction assignment operator for_ [_**CartesianVector**_](structastrea_1_1astro_1_1CartesianVector.md) _._ |
+|  constexpr [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; decltype(Value\_T{}/Value\_U{}), [**frame**](structastrea_1_1astro_1_1CartesianVector.md#variable-frame) &gt; | [**operator/**](#function-operator_4) (const Value\_U & scalar) const<br>_Scalar division operator for_ [_**CartesianVector**_](structastrea_1_1astro_1_1CartesianVector.md) _._ |
+|  constexpr [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md) & | [**operator/=**](#function-operator_5) (const Unitless & scalar) <br>_Scalar division assignment operator for_ [_**CartesianVector**_](structastrea_1_1astro_1_1CartesianVector.md) _._ |
+|  constexpr [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md) & | [**operator=**](#function-operator_6) (const [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md) &) = default<br> |
+|  constexpr [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md) & | [**operator=**](#function-operator_7) ([**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md) &&) = default<br> |
+|  constexpr [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md) | [**operator=**](#function-operator_8) (const [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; Value\_U, [**frame**](structastrea_1_1astro_1_1CartesianVector.md#variable-frame) &gt; & other) const<br>_Copy constructor for_ [_**CartesianVector**_](structastrea_1_1astro_1_1CartesianVector.md) _that implicitly converts the unit._ |
+|  constexpr bool | [**operator==**](#function-operator_9) (const [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md) & other) const<br>_Equality operator for_ [_**CartesianVector**_](structastrea_1_1astro_1_1CartesianVector.md) _(same type and frame)._ |
+|  constexpr bool | [**operator==**](#function-operator_10) (const OtherCart & other) const<br>_Equality operator for_ [_**CartesianVector**_](structastrea_1_1astro_1_1CartesianVector.md) _in a different frame or with an incompatible value type. Always returns false._ |
+|  constexpr Value\_T & | [**operator[]**](#function-operator_11) (size\_t index) <br>_Access operator for vector components._  |
+|  constexpr const Value\_T & | [**operator[]**](#function-operator_12) (size\_t index) const<br>_Const access operator for vector components._  |
+|  constexpr Value\_T | [**p\_norm**](#function-p_norm) () const<br>_Calculate the p-norm of the vector._  |
+|  constexpr [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md) | [**reverse**](#function-reverse) () const<br>_Return the reverse of the vector, which switches the x and z components. This is useful for converting between different rotation sequences._  |
+|  constexpr [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; Value\_T, frame\_v &gt; | [**translate**](#function-translate) (const [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; Value\_T, frame\_u &gt; & other) const<br>_Translate this vector by another vector in a different frame, resulting in a vector in a third frame._  |
+|  constexpr | [**~CartesianVector**](#function-cartesianvector) () = default<br>_Destructor for_ [_**CartesianVector**_](structastrea_1_1astro_1_1CartesianVector.md) _._ |
 
 
 
@@ -235,9 +235,9 @@ constexpr auto astrea::astro::CartesianVector< Value_T, _frame_ >::frame;
 _Default constructor for_ [_**CartesianVector**_](structastrea_1_1astro_1_1CartesianVector.md) _._
 ```C++
 inline constexpr astrea::astro::CartesianVector::CartesianVector (
-    const  Value_T & x=Value_T::zero(),
-    const  Value_T & y=Value_T::zero(),
-    const  Value_T & z=Value_T::zero()
+    const Value_T & x=Value_T::zero(),
+    const Value_T & y=Value_T::zero(),
+    const Value_T & z=Value_T::zero()
 ) 
 ```
 
@@ -266,7 +266,7 @@ Initializes the vector components to zero.
 _Constructor for_ [_**CartesianVector**_](structastrea_1_1astro_1_1CartesianVector.md) _from an array of components._
 ```C++
 inline constexpr astrea::astro::CartesianVector::CartesianVector (
-    const std::array< Value_T , 3 > & vec
+    const std::array< Value_T, 3 > & vec
 ) 
 ```
 
@@ -292,7 +292,7 @@ inline constexpr astrea::astro::CartesianVector::CartesianVector (
 
 ```C++
 inline constexpr astrea::astro::CartesianVector::CartesianVector (
-    const  CartesianVector &
+    const CartesianVector &
 ) = default
 ```
 
@@ -321,9 +321,9 @@ inline constexpr astrea::astro::CartesianVector::CartesianVector (
 ### function CartesianVector [5/6]
 
 ```C++
-template<typename  Value_U, auto frame_u>
+template<typename Value_U, auto frame_u>
 inline constexpr astrea::astro::CartesianVector::CartesianVector (
-    const  CartesianVector < Value_U , frame_u > & other
+    const CartesianVector < Value_U, frame_u > & other
 ) 
 ```
 
@@ -337,9 +337,9 @@ inline constexpr astrea::astro::CartesianVector::CartesianVector (
 ### function CartesianVector [6/6]
 
 ```C++
-template<typename  Value_U, auto frame_u>
+template<typename Value_U, auto frame_u>
 inline constexpr astrea::astro::CartesianVector::CartesianVector (
-    CartesianVector < Value_U , frame_u > && other
+    CartesianVector < Value_U, frame_u > && other
 ) 
 ```
 
@@ -354,9 +354,9 @@ inline constexpr astrea::astro::CartesianVector::CartesianVector (
 
 _Cross product of this vector with another_ [_**CartesianVector**_](structastrea_1_1astro_1_1CartesianVector.md) _._
 ```C++
-template<typename  Value_U>
-inline constexpr  CartesianVector < decltype ( Value_T {} * Value_U {}), frame > astrea::astro::CartesianVector::cross (
-    const  CartesianVector < Value_U , frame > & other
+template<typename Value_U>
+inline constexpr CartesianVector < decltype(Value_T{} *Value_U{}), frame > astrea::astro::CartesianVector::cross (
+    const CartesianVector < Value_U, frame > & other
 ) const
 ```
 
@@ -396,7 +396,7 @@ inline constexpr  CartesianVector < decltype ( Value_T {} * Value_U {}), frame >
 
 _Normalize the vector to create a unit vector._ 
 ```C++
-inline constexpr  CartesianVector < Unitless , frame > astrea::astro::CartesianVector::direction () const
+inline constexpr CartesianVector < Unitless, frame > astrea::astro::CartesianVector::direction () const
 ```
 
 
@@ -429,7 +429,7 @@ If the norm is zero, returns a zero vector.
 _Copy constructor for_ [_**CartesianVector**_](structastrea_1_1astro_1_1CartesianVector.md) _that implicitly converts the frame._
 ```C++
 template<IsFrame auto frame_u>
-inline constexpr  CartesianVector < Value_T , frame_u > astrea::astro::CartesianVector::force_frame_conversion () const
+inline constexpr CartesianVector < Value_T, frame_u > astrea::astro::CartesianVector::force_frame_conversion () const
 ```
 
 
@@ -454,7 +454,7 @@ inline constexpr  CartesianVector < Value_T , frame_u > astrea::astro::Cartesian
 
 _Get the x value of the_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _vector._
 ```C++
-inline constexpr  Value_T & astrea::astro::CartesianVector::get_x () 
+inline constexpr Value_T & astrea::astro::CartesianVector::get_x () 
 ```
 
 
@@ -479,7 +479,7 @@ Value\_T& Reference to the x component of the [**Cartesian**](classastrea_1_1ast
 
 _Get the x value of the_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _vector._
 ```C++
-inline constexpr  const  Value_T & astrea::astro::CartesianVector::get_x () const
+inline constexpr const Value_T & astrea::astro::CartesianVector::get_x () const
 ```
 
 
@@ -504,7 +504,7 @@ const Value\_T& Reference to the x component of the [**Cartesian**](classastrea_
 
 _Get the y value of the_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _vector._
 ```C++
-inline constexpr  Value_T & astrea::astro::CartesianVector::get_y () 
+inline constexpr Value_T & astrea::astro::CartesianVector::get_y () 
 ```
 
 
@@ -529,7 +529,7 @@ Value\_T& Reference to the y component of the [**Cartesian**](classastrea_1_1ast
 
 _Get the y value of the_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _vector._
 ```C++
-inline constexpr  const  Value_T & astrea::astro::CartesianVector::get_y () const
+inline constexpr const Value_T & astrea::astro::CartesianVector::get_y () const
 ```
 
 
@@ -554,7 +554,7 @@ const Value\_T& Reference to the y component of the [**Cartesian**](classastrea_
 
 _Get the z value of the_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _vector._
 ```C++
-inline constexpr  Value_T & astrea::astro::CartesianVector::get_z () 
+inline constexpr Value_T & astrea::astro::CartesianVector::get_z () 
 ```
 
 
@@ -579,7 +579,7 @@ Value\_T& Reference to the z component of the [**Cartesian**](classastrea_1_1ast
 
 _Get the z value of the_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _vector._
 ```C++
-inline constexpr  const  Value_T & astrea::astro::CartesianVector::get_z () const
+inline constexpr const Value_T & astrea::astro::CartesianVector::get_z () const
 ```
 
 
@@ -605,8 +605,8 @@ const Value\_T& Reference to the z component of the [**Cartesian**](classastrea_
 _No-op overload when calling in\_frame with the same frame._ 
 ```C++
 template<IsFrame auto frame_u>
-inline constexpr  CartesianVector < Value_T , frame_u > astrea::astro::CartesianVector::in_frame (
-    const  Date & date
+inline constexpr CartesianVector < Value_T, frame_u > astrea::astro::CartesianVector::in_frame (
+    const Date & date
 ) const
 ```
 
@@ -647,9 +647,9 @@ CartesianVector&lt;Value\_T, frame\_u&gt; A new [**CartesianVector**](structastr
 _No-op overload when calling in\_frame with the same frame._ 
 ```C++
 template<IsFrame auto frame_u>
-inline constexpr  CartesianVector < Value_T , frame_u > astrea::astro::CartesianVector::in_frame (
-    const  Date &,
-    const  CartesianVector < Distance , _frame_ > &
+inline constexpr CartesianVector < Value_T, frame_u > astrea::astro::CartesianVector::in_frame (
+    const Date &,
+    const CartesianVector < Distance, _frame_ > &
 ) const
 ```
 
@@ -690,10 +690,10 @@ CartesianVector&lt;Value\_T, frame\_u&gt; A new [**CartesianVector**](structastr
 _No-op overload when calling in\_frame with the same frame._ 
 ```C++
 template<IsFrame auto frame_u>
-inline constexpr  CartesianVector < Value_T , frame_u > astrea::astro::CartesianVector::in_frame (
-    const  Date &,
-    const  CartesianVector < Distance , _frame_ > &,
-    const  CartesianVector < Velocity , _frame_ > &
+inline constexpr CartesianVector < Value_T, frame_u > astrea::astro::CartesianVector::in_frame (
+    const Date &,
+    const CartesianVector < Distance, _frame_ > &,
+    const CartesianVector < Velocity, _frame_ > &
 ) const
 ```
 
@@ -734,8 +734,8 @@ CartesianVector&lt;Value\_T, frame\_u&gt; A new [**CartesianVector**](structastr
 _Rotate this vector into another frame at a given date._ 
 ```C++
 template<IsFrame auto frame_u>
-inline constexpr  CartesianVector < Value_T , frame_u > astrea::astro::CartesianVector::in_frame (
-    const  Date & date
+inline constexpr CartesianVector < Value_T, frame_u > astrea::astro::CartesianVector::in_frame (
+    const Date & date
 ) const
 ```
 
@@ -783,9 +783,9 @@ CartesianVector&lt;Value\_T, frame\_u&gt; A new [**CartesianVector**](structastr
 _Rotate this vector into another frame at a given date, accounting for velocity aberration._ 
 ```C++
 template<IsFrame auto frame_u>
-inline constexpr  CartesianVector < Velocity , frame_u > astrea::astro::CartesianVector::in_frame (
-    const  Date & date,
-    const  CartesianVector < Distance , _frame_ > & position
+inline constexpr CartesianVector < Velocity, frame_u > astrea::astro::CartesianVector::in_frame (
+    const Date & date,
+    const CartesianVector < Distance, _frame_ > & position
 ) const
 ```
 
@@ -841,10 +841,10 @@ This is only valid for velocity vectors since velocity aberration is a function 
 _Rotate this vector into another frame at a given date, accounting for velocity and acceleration aberration._ 
 ```C++
 template<IsFrame auto frame_u>
-inline constexpr  CartesianVector < Acceleration , frame_u > astrea::astro::CartesianVector::in_frame (
-    const  Date & date,
-    const  CartesianVector < Distance , _frame_ > & position,
-    const  CartesianVector < Velocity , _frame_ > & velocity
+inline constexpr CartesianVector < Acceleration, frame_u > astrea::astro::CartesianVector::in_frame (
+    const Date & date,
+    const CartesianVector < Distance, _frame_ > & position,
+    const CartesianVector < Velocity, _frame_ > & velocity
 ) const
 ```
 
@@ -900,7 +900,7 @@ This is only valid for acceleration vectors since velocity and acceleration aber
 
 _Calculate the norm (magnitude) of the vector._ 
 ```C++
-inline constexpr  Value_T astrea::astro::CartesianVector::norm () const
+inline constexpr Value_T astrea::astro::CartesianVector::norm () const
 ```
 
 
@@ -933,8 +933,8 @@ T The norm of the vector.
 _Calculate the offset vector from another vector in a different frame, resulting in a vector in a third frame._ 
 ```C++
 template<IsFrame auto frame_u, IsFrame auto frame_v>
-inline constexpr  CartesianVector < Value_T , frame_v > astrea::astro::CartesianVector::offset (
-    const  CartesianVector < Value_T , frame_u > & other
+inline constexpr CartesianVector < Value_T, frame_v > astrea::astro::CartesianVector::offset (
+    const CartesianVector < Value_T, frame_u > & other
 ) const
 ```
 
@@ -982,9 +982,9 @@ It is the user's responsibility to ensure that this operation makes sense in the
 
 _Calculate the angle between this vector and another_ [_**CartesianVector**_](structastrea_1_1astro_1_1CartesianVector.md) _._
 ```C++
-template<typename  Value_U>
-inline constexpr  Angle astrea::astro::CartesianVector::offset_angle (
-    const  CartesianVector < Value_U , frame > & other
+template<typename Value_U>
+inline constexpr Angle astrea::astro::CartesianVector::offset_angle (
+    const CartesianVector < Value_U, frame > & other
 ) const
 ```
 
@@ -1031,9 +1031,9 @@ Angle The angle between the two vectors.
 
 _Scalar multiplication operator for_ [_**CartesianVector**_](structastrea_1_1astro_1_1CartesianVector.md) _._
 ```C++
-template<typename  Value_U>
-inline constexpr  CartesianVector < decltype ( Value_T {} * Value_U {}), frame > astrea::astro::CartesianVector::operator* (
-    const  Value_U & scalar
+template<typename Value_U>
+inline constexpr CartesianVector < decltype(Value_T{} *Value_U{}), frame > astrea::astro::CartesianVector::operator* (
+    const Value_U & scalar
 ) const
 ```
 
@@ -1073,8 +1073,8 @@ CartesianVector&lt;Value\_T \* Value\_U, frame&gt; A new [**CartesianVector**](s
 
 _Scalar multiplication assignment operator for_ [_**CartesianVector**_](structastrea_1_1astro_1_1CartesianVector.md) _._
 ```C++
-inline constexpr  CartesianVector & astrea::astro::CartesianVector::operator*= (
-    const  Unitless & scalar
+inline constexpr CartesianVector & astrea::astro::CartesianVector::operator*= (
+    const Unitless & scalar
 ) 
 ```
 
@@ -1107,8 +1107,8 @@ inline constexpr  CartesianVector & astrea::astro::CartesianVector::operator*= (
 
 _Addition operator for_ [_**CartesianVector**_](structastrea_1_1astro_1_1CartesianVector.md) _._
 ```C++
-inline constexpr  CartesianVector astrea::astro::CartesianVector::operator+ (
-    const  CartesianVector & other
+inline constexpr CartesianVector astrea::astro::CartesianVector::operator+ (
+    const CartesianVector & other
 ) const
 ```
 
@@ -1141,8 +1141,8 @@ inline constexpr  CartesianVector astrea::astro::CartesianVector::operator+ (
 
 _Addition assignment operator for_ [_**CartesianVector**_](structastrea_1_1astro_1_1CartesianVector.md) _._
 ```C++
-inline constexpr  CartesianVector & astrea::astro::CartesianVector::operator+= (
-    const  CartesianVector & other
+inline constexpr CartesianVector & astrea::astro::CartesianVector::operator+= (
+    const CartesianVector & other
 ) 
 ```
 
@@ -1175,8 +1175,8 @@ inline constexpr  CartesianVector & astrea::astro::CartesianVector::operator+= (
 
 _Subtraction operator for_ [_**CartesianVector**_](structastrea_1_1astro_1_1CartesianVector.md) _._
 ```C++
-inline constexpr  CartesianVector astrea::astro::CartesianVector::operator- (
-    const  CartesianVector & other
+inline constexpr CartesianVector astrea::astro::CartesianVector::operator- (
+    const CartesianVector & other
 ) const
 ```
 
@@ -1209,7 +1209,7 @@ inline constexpr  CartesianVector astrea::astro::CartesianVector::operator- (
 
 _Negation operator for_ [_**CartesianVector**_](structastrea_1_1astro_1_1CartesianVector.md) _._
 ```C++
-inline constexpr  CartesianVector astrea::astro::CartesianVector::operator- () const
+inline constexpr CartesianVector astrea::astro::CartesianVector::operator- () const
 ```
 
 
@@ -1234,8 +1234,8 @@ CartesianVector&lt;T&gt; A new [**CartesianVector**](structastrea_1_1astro_1_1Ca
 
 _Subtraction assignment operator for_ [_**CartesianVector**_](structastrea_1_1astro_1_1CartesianVector.md) _._
 ```C++
-inline constexpr  CartesianVector & astrea::astro::CartesianVector::operator-= (
-    const  CartesianVector & other
+inline constexpr CartesianVector & astrea::astro::CartesianVector::operator-= (
+    const CartesianVector & other
 ) 
 ```
 
@@ -1268,9 +1268,9 @@ inline constexpr  CartesianVector & astrea::astro::CartesianVector::operator-= (
 
 _Scalar division operator for_ [_**CartesianVector**_](structastrea_1_1astro_1_1CartesianVector.md) _._
 ```C++
-template<typename  Value_U>
-inline constexpr  CartesianVector < decltype ( Value_T {}/ Value_U {}), frame > astrea::astro::CartesianVector::operator/ (
-    const  Value_U & scalar
+template<typename Value_U>
+inline constexpr CartesianVector < decltype(Value_T{}/Value_U{}), frame > astrea::astro::CartesianVector::operator/ (
+    const Value_U & scalar
 ) const
 ```
 
@@ -1310,8 +1310,8 @@ inline constexpr  CartesianVector < decltype ( Value_T {}/ Value_U {}), frame > 
 
 _Scalar division assignment operator for_ [_**CartesianVector**_](structastrea_1_1astro_1_1CartesianVector.md) _._
 ```C++
-inline constexpr  CartesianVector & astrea::astro::CartesianVector::operator/= (
-    const  Unitless & scalar
+inline constexpr CartesianVector & astrea::astro::CartesianVector::operator/= (
+    const Unitless & scalar
 ) 
 ```
 
@@ -1343,8 +1343,8 @@ inline constexpr  CartesianVector & astrea::astro::CartesianVector::operator/= (
 ### function operator= 
 
 ```C++
-inline constexpr  CartesianVector & astrea::astro::CartesianVector::operator= (
-    const  CartesianVector &
+inline constexpr CartesianVector & astrea::astro::CartesianVector::operator= (
+    const CartesianVector &
 ) = default
 ```
 
@@ -1358,7 +1358,7 @@ inline constexpr  CartesianVector & astrea::astro::CartesianVector::operator= (
 ### function operator= 
 
 ```C++
-inline constexpr  CartesianVector & astrea::astro::CartesianVector::operator= (
+inline constexpr CartesianVector & astrea::astro::CartesianVector::operator= (
     CartesianVector &&
 ) = default
 ```
@@ -1374,9 +1374,9 @@ inline constexpr  CartesianVector & astrea::astro::CartesianVector::operator= (
 
 _Copy constructor for_ [_**CartesianVector**_](structastrea_1_1astro_1_1CartesianVector.md) _that implicitly converts the unit._
 ```C++
-template<typename  Value_U>
-inline constexpr  CartesianVector astrea::astro::CartesianVector::operator= (
-    const  CartesianVector < Value_U , frame > & other
+template<typename Value_U>
+inline constexpr CartesianVector astrea::astro::CartesianVector::operator= (
+    const CartesianVector < Value_U, frame > & other
 ) const
 ```
 
@@ -1402,8 +1402,8 @@ inline constexpr  CartesianVector astrea::astro::CartesianVector::operator= (
 
 _Equality operator for_ [_**CartesianVector**_](structastrea_1_1astro_1_1CartesianVector.md) _(same type and frame)._
 ```C++
-inline constexpr  bool astrea::astro::CartesianVector::operator== (
-    const  CartesianVector & other
+inline constexpr bool astrea::astro::CartesianVector::operator== (
+    const CartesianVector & other
 ) const
 ```
 
@@ -1443,9 +1443,9 @@ false If the two vectors are not equal.
 
 _Equality operator for_ [_**CartesianVector**_](structastrea_1_1astro_1_1CartesianVector.md) _in a different frame or with an incompatible value type. Always returns false._
 ```C++
-template<class  OtherCart>
-inline constexpr  bool astrea::astro::CartesianVector::operator== (
-    const  OtherCart & other
+template<class OtherCart>
+inline constexpr bool astrea::astro::CartesianVector::operator== (
+    const OtherCart & other
 ) const
 ```
 
@@ -1481,7 +1481,7 @@ false Always, since vectors in different frames or with incompatible types canno
 
 _Access operator for vector components._ 
 ```C++
-inline constexpr  Value_T & astrea::astro::CartesianVector::operator[] (
+inline constexpr Value_T & astrea::astro::CartesianVector::operator[] (
     size_t index
 ) 
 ```
@@ -1515,7 +1515,7 @@ Value\_T& Reference to the component at the specified index.
 
 _Const access operator for vector components._ 
 ```C++
-inline constexpr  const  Value_T & astrea::astro::CartesianVector::operator[] (
+inline constexpr const Value_T & astrea::astro::CartesianVector::operator[] (
     size_t index
 ) const
 ```
@@ -1550,7 +1550,7 @@ const Value\_T& Reference to the component at the specified index.
 _Calculate the p-norm of the vector._ 
 ```C++
 template<unsigned N>
-inline constexpr  Value_T astrea::astro::CartesianVector::p_norm () const
+inline constexpr Value_T astrea::astro::CartesianVector::p_norm () const
 ```
 
 
@@ -1582,7 +1582,7 @@ T The p-norm of the vector.
 
 _Return the reverse of the vector, which switches the x and z components. This is useful for converting between different rotation sequences._ 
 ```C++
-inline constexpr  CartesianVector astrea::astro::CartesianVector::reverse () const
+inline constexpr CartesianVector astrea::astro::CartesianVector::reverse () const
 ```
 
 
@@ -1597,8 +1597,8 @@ inline constexpr  CartesianVector astrea::astro::CartesianVector::reverse () con
 _Translate this vector by another vector in a different frame, resulting in a vector in a third frame._ 
 ```C++
 template<IsFrame auto frame_u, IsFrame auto frame_v>
-inline constexpr  CartesianVector < Value_T , frame_v > astrea::astro::CartesianVector::translate (
-    const  CartesianVector < Value_T , frame_u > & other
+inline constexpr CartesianVector < Value_T, frame_v > astrea::astro::CartesianVector::translate (
+    const CartesianVector < Value_T, frame_u > & other
 ) const
 ```
 

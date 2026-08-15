@@ -51,6 +51,6 @@ concept <ref refid="conceptastrea_1_1astro_1_1frames_1_1HasDcmRate" kindref="com
 </simplesect>
 </para>
     </detaileddescription>
-    <location file="astrea/astro/astro/frames/definitions/transformations.hpp" line="55" column="1"/>
+    <location file="astrea/astro/astro/frames/definitions/transformations.hpp" line="56" column="1"/>
   </compounddef>
 </doxygen>
