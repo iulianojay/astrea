@@ -42,7 +42,7 @@ jobs:
   wait-for-docker:
     runs-on: ubuntu-latest
     needs: check-docker-changes
-    if: >>
+    if: >
       (
         github.event_name == 'push' && github.ref == 'refs/heads/master'
       ) || (
