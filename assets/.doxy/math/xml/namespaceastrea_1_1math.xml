@@ -800,7 +800,7 @@ Numerical Recipes in Fortran 77: The Art of Scientific Computing, Page 189, Rout
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/math/math/operations.hpp" line="44" column="17" bodyfile="astrea/math/math/operations.hpp" bodystart="44" bodyend="68"/>
+        <location file="astrea/math/math/operations.hpp" line="45" column="17" bodyfile="astrea/math/math/operations.hpp" bodystart="45" bodyend="69"/>
       </memberdef>
       <memberdef kind="function" id="operations_8hpp_1a13c8a192d58b0225407e422267cdefde" prot="public" static="no" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
         <templateparamlist>
@@ -871,7 +871,7 @@ Numerical Recipes in Fortran 77: The Art of Scientific Computing, Page 189, Rout
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/math/math/operations.hpp" line="81" column="28" bodyfile="astrea/math/math/operations.hpp" bodystart="81" bodyend="85"/>
+        <location file="astrea/math/math/operations.hpp" line="82" column="28" bodyfile="astrea/math/math/operations.hpp" bodystart="82" bodyend="86"/>
       </memberdef>
       <memberdef kind="function" id="operations_8hpp_1a8c39995fb8abca15cc5143d5425f7d26" prot="public" static="no" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
         <templateparamlist>
@@ -942,7 +942,7 @@ Numerical Recipes in Fortran 77: The Art of Scientific Computing, Page 189, Rout
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/math/math/operations.hpp" line="98" column="28" bodyfile="astrea/math/math/operations.hpp" bodystart="98" bodyend="102"/>
+        <location file="astrea/math/math/operations.hpp" line="99" column="28" bodyfile="astrea/math/math/operations.hpp" bodystart="99" bodyend="103"/>
       </memberdef>
       <memberdef kind="function" id="operations_8hpp_1a366d78f9b21636bb268a3ed9049fa18b" prot="public" static="no" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
         <templateparamlist>
@@ -1021,7 +1021,7 @@ Numerical Recipes in Fortran 77: The Art of Scientific Computing, Page 189, Rout
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/math/math/operations.hpp" line="116" column="5" bodyfile="astrea/math/math/operations.hpp" bodystart="116" bodyend="120"/>
+        <location file="astrea/math/math/operations.hpp" line="117" column="5" bodyfile="astrea/math/math/operations.hpp" bodystart="117" bodyend="121"/>
       </memberdef>
       <memberdef kind="function" id="operations_8hpp_1adb10fbaa0dc54cf1caf8c15503499898" prot="public" static="no" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
         <templateparamlist>
@@ -1058,7 +1058,7 @@ Numerical Recipes in Fortran 77: The Art of Scientific Computing, Page 189, Rout
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/math/math/operations.hpp" line="125" column="5" bodyfile="astrea/math/math/operations.hpp" bodystart="125" bodyend="130"/>
+        <location file="astrea/math/math/operations.hpp" line="126" column="5" bodyfile="astrea/math/math/operations.hpp" bodystart="126" bodyend="131"/>
       </memberdef>
       <memberdef kind="function" id="trig_8hpp_1a71cffbdebf4defd2e8ba29c19824c8bc" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
         <templateparamlist>

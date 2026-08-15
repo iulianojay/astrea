@@ -13,6 +13,7 @@
 
 #include <algorithm>
 #include <cmath>
+#include <algorithm>
 
 #include <mp-units/math.h>
 #include <mp-units/systems/si.h>

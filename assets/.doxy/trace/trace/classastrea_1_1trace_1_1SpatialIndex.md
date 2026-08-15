@@ -53,7 +53,7 @@ _Spatial index for efficient ground point queries._ [More...](#detailed-descript
 | Type | Name |
 | ---: | :--- |
 |   | [**SpatialIndex**](#function-spatialindex-12) (const Angle & binSize=10.0 \*mp\_units::si::unit\_symbols::deg) <br>_Construct spatial index with specified bin size._  |
-|   | [**SpatialIndex**](#function-spatialindex-22) (const [**GroundPointRefVec**](namespaceastrea_1_1trace.md#typedef-groundpointrefvec) & groundPoints) <br> |
+|   | [**SpatialIndex**](#function-spatialindex-22) (const [**GroundPointRefVec**](namespaceastrea_1_1trace.md#typedef-groundpointrefvec) & groundPoints) <br>_Construct spatial index and populate with ground points._  |
 |  void | [**add\_ground\_point**](#function-add_ground_point) (std::size\_t groundPointIdx, const Angle & lat, const Angle & lon) <br>_Add a ground point to the index._  |
 |  void | [**clear**](#function-clear) () <br>_Clear all ground points from the index._  |
 |  std::vector&lt; std::size\_t &gt; | [**get\_all\_ground\_points**](#function-get_all_ground_points) () const<br>_Get all ground point indices._  |
@@ -127,6 +127,7 @@ astrea::trace::SpatialIndex::SpatialIndex (
 
 ### function SpatialIndex [2/2]
 
+_Construct spatial index and populate with ground points._ 
 ```C++
 astrea::trace::SpatialIndex::SpatialIndex (
     const GroundPointRefVec & groundPoints
@@ -135,6 +136,17 @@ astrea::trace::SpatialIndex::SpatialIndex (
 
 
 
+
+
+**Parameters:**
+
+
+* `groundPoints` Vector of ground points to add to the index 
+
+
+
+
+        
 
 <hr>
 
