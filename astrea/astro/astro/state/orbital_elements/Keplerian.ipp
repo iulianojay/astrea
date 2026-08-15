@@ -1,7 +1,7 @@
 /*
  * The GNU Lesser General Public License (LGPL)
  *
- * Copyright (c) 2025 Jay Iuliano
+ * Copyright (c) 2025-2026 Jay Iuliano
  *
  * This file is part of Astrea.
  * Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License
@@ -28,40 +28,40 @@ template <IsFrame auto _frame_>
 Keplerian<_frame_> Keplerian<_frame_>::LEO()
 {
     using mp_units::one;
-    using mp_units::angular::unit_symbols::rad;
     using mp_units::si::unit_symbols::km;
+    using mp_units::si::unit_symbols::rad;
     return Keplerian(7000.0 * km, 0.0 * one, 0.0 * rad, 0.0 * rad, 0.0 * rad, 0.0 * rad);
 }
 template <IsFrame auto _frame_>
 Keplerian<_frame_> Keplerian<_frame_>::LMEO()
 {
     using mp_units::one;
-    using mp_units::angular::unit_symbols::rad;
     using mp_units::si::unit_symbols::km;
+    using mp_units::si::unit_symbols::rad;
     return Keplerian(10000.0 * km, 0.0 * one, 0.0 * rad, 0.0 * rad, 0.0 * rad, 0.0 * rad);
 }
 template <IsFrame auto _frame_>
 Keplerian<_frame_> Keplerian<_frame_>::GPS()
 {
     using mp_units::one;
-    using mp_units::angular::unit_symbols::rad;
     using mp_units::si::unit_symbols::km;
+    using mp_units::si::unit_symbols::rad;
     return Keplerian(22000.0 * km, 0.0 * one, 0.0 * rad, 0.0 * rad, 0.0 * rad, 0.0 * rad);
 }
 template <IsFrame auto _frame_>
 Keplerian<_frame_> Keplerian<_frame_>::HMEO()
 {
     using mp_units::one;
-    using mp_units::angular::unit_symbols::rad;
     using mp_units::si::unit_symbols::km;
+    using mp_units::si::unit_symbols::rad;
     return Keplerian(30000.0 * km, 0.0 * one, 0.0 * rad, 0.0 * rad, 0.0 * rad, 0.0 * rad);
 }
 template <IsFrame auto _frame_>
 Keplerian<_frame_> Keplerian<_frame_>::GEO()
 {
     using mp_units::one;
-    using mp_units::angular::unit_symbols::rad;
     using mp_units::si::unit_symbols::km;
+    using mp_units::si::unit_symbols::rad;
     return Keplerian(42164.0 * km, 0.0 * one, 0.0 * rad, 0.0 * rad, 0.0 * rad, 0.0 * rad);
 }
 
@@ -69,11 +69,11 @@ template <IsFrame auto _frame_>
 Keplerian<_frame_>::Keplerian(const Cartesian<_frame_>& elements, const GravParam& mu)
 {
     using namespace mp_units;
-    using mp_units::angular::acos;
-    using mp_units::angular::atan2;
+    using mp_units::si::acos;
+    using mp_units::si::atan2;
 
-    using mp_units::angular::unit_symbols::rad;
     using mp_units::si::unit_symbols::km;
+    using mp_units::si::unit_symbols::rad;
     using mp_units::si::unit_symbols::s;
 
     /*
@@ -220,7 +220,7 @@ template <IsFrame auto _frame_>
 Keplerian<_frame_>::Keplerian(const Equinoctial<_frame_>& elements, const GravParam& mu)
 {
     using mp_units::sqrt;
-    using mp_units::angular::atan2;
+    using mp_units::si::atan2;
 
     const auto& semilatus     = elements.get_semilatus();
     const auto& f             = elements.get_f();
@@ -300,7 +300,8 @@ Angle Keplerian<_frame_>::get_mean_anomaly() const
 template <IsFrame auto _frame_>
 MeanMotion Keplerian<_frame_>::get_mean_motion(const GravParam& mu) const
 {
-    return sqrt(mu / (_semimajor * _semimajor * _semimajor));
+    using mp_units::pow;
+    return sqrt(mu / pow<3>(_semimajor));
 }
 
 template <IsFrame auto _frame_>
@@ -308,6 +309,13 @@ Time Keplerian<_frame_>::get_orbital_period(const GravParam& mu) const
 {
     const auto meanMotion = get_mean_motion(mu);
     return (2.0 * std::numbers::pi) / meanMotion;
+}
+
+template <IsFrame auto _frame_>
+SpecificAngularMomentum Keplerian<_frame_>::get_specific_angular_momentum(const GravParam& mu) const
+{
+    using mp_units::pow;
+    return sqrt(mu * _semimajor * (1.0 - pow<2>(_eccentricity)));
 }
 
 // Copy assignment operator
@@ -447,7 +455,7 @@ Keplerian<_frame_>
 template <IsFrame auto _frame_>
 Angle Keplerian<_frame_>::interpolate_angle(const std::array<Time, 2>& times, const std::array<Angle, 2>& angles, const Time& targetTime) const
 {
-    using mp_units::angular::unit_symbols::deg;
+    using mp_units::si::unit_symbols::deg;
     // These is an assumption on the size of the diff. If the time step is too big, this will cause errors
     // TODO: Catch large interpolation steps
     if (abs(angles[0] - angles[1]) > 300.0 * deg) {
@@ -481,8 +489,8 @@ void Keplerian<_frame_>::wrap_angles()
 template <IsFrame auto _frame_>
 Keplerian<_frame_> Keplerian<_frame_>::from_double_vector(const std::vector<double>& vec)
 {
-    using mp_units::angular::unit_symbols::rad;
     using mp_units::si::unit_symbols::km;
+    using mp_units::si::unit_symbols::rad;
     if (vec.size() != 6) {
         throw std::runtime_error("Input vector must have exactly 6 elements to convert to Keplerian.");
     }

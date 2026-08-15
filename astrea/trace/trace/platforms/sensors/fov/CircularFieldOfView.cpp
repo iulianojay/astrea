@@ -1,7 +1,7 @@
 /*
  * The GNU Lesser General Public License (LGPL)
  *
- * Copyright (c) 2025 Jay Iuliano
+ * Copyright (c) 2025-2026 Jay Iuliano
  *
  * This file is part of Astrea.
  * Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License
@@ -23,7 +23,7 @@ namespace astrea {
 namespace trace {
 
 using namespace mp_units;
-using namespace mp_units::angular;
+using namespace mp_units::si;
 using EciRadiusVec = astro::RadiusVector<astro::frames::earth::icrf>;
 
 CircularFieldOfView::CircularFieldOfView(const Angle& halfConeAngle) :

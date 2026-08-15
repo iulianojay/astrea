@@ -4,7 +4,7 @@
  * @brief Header file for the Ganymede class.
  * @date 2025-10-02
  *
- * @copyright Copyright (c) 2025 Jay Iuliano
+ * @copyright Copyright (c) 2025-2026 Jay Iuliano
  *
  * The GNU Lesser General Public License (LGPL)
  *
@@ -44,9 +44,10 @@ template <>
 inline consteval CelestialBodyParameters get_celestial_body_parameters<moons::Ganymede>()
 {
     using namespace mp_units;
-    using mp_units::angular::unit_symbols::deg;
+    using astrea::units::unit_symbols::jc;
     using mp_units::iau::unit_symbols::au;
     using mp_units::non_si::day;
+    using mp_units::si::unit_symbols::deg;
     using mp_units::si::unit_symbols::kg;
     using mp_units::si::unit_symbols::km;
     using mp_units::si::unit_symbols::s;
@@ -70,12 +71,12 @@ inline consteval CelestialBodyParameters get_celestial_body_parameters<moons::Ga
              .rightAscension         = Angle(63.552 * deg),
              .longitudeOfPerigee     = Angle(255.969 * deg),
              .meanLongitude          = Angle(573.509 * deg),
-             .semimajorAxisRate      = InterplanetaryVelocity(0.0 * km / JulianCentury),
-             .eccentricityRate       = BodyUnitlessPerTime(0.0 * one / JulianCentury),
-             .inclinationRate        = BodyAngularVelocity(0.0 * deg / JulianCentury),
-             .rightAscensionRate     = BodyAngularVelocity(976977.7 * deg / JulianCentury),
-             .longitudeOfPerigeeRate = BodyAngularVelocity(3016348.9 * deg / JulianCentury),
-             .meanLongitudeRate      = BodyAngularVelocity(6619278519.62 * deg / JulianCentury) };
+             .semimajorAxisRate      = InterplanetaryVelocity(0.0 * km / jc),
+             .eccentricityRate       = BodyUnitlessPerTime(0.0 * one / jc),
+             .inclinationRate        = BodyAngularVelocity(0.0 * deg / jc),
+             .rightAscensionRate     = BodyAngularVelocity(976977.7 * deg / jc),
+             .longitudeOfPerigeeRate = BodyAngularVelocity(3016348.9 * deg / jc),
+             .meanLongitudeRate      = BodyAngularVelocity(6619278519.62 * deg / jc) };
 }
 
 } // namespace astro

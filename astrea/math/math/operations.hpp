@@ -4,7 +4,7 @@
  * @brief Mathematical operations for quantities..
  * @date 2025-08-03
  *
- * @copyright Copyright (c) 2025 Jay Iuliano
+ * @copyright Copyright (c) 2025-2026 Jay Iuliano
  *
  * The GNU Lesser General Public License (LGPL)
  *
@@ -18,11 +18,10 @@
  */
 #pragma once
 
-#include <cmath>
 #include <algorithm>
+#include <cmath>
 
 #include <mp-units/math.h>
-#include <mp-units/systems/angular.h>
 #include <mp-units/systems/si.h>
 
 namespace astrea {

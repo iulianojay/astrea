@@ -4,7 +4,7 @@
  * @brief This file defines the Attitude class and its associated methods.
  * @date 2025-08-02
  *
- * @copyright Copyright (c) 2025 Jay Iuliano
+ * @copyright Copyright (c) 2025-2026 Jay Iuliano
  *
  * The GNU Lesser General Public License (LGPL)
  *
@@ -26,7 +26,7 @@
 // Astro
 #include <astro/astro.fwd.hpp>
 #include <astro/frames/definitions.hpp>
-#include <astro/frames/definitions/dynamic_frames.hpp>
+#include <astro/frames/definitions/dynamic_frames/tags.hpp>
 #include <astro/state/attitude/AngularVelocities.hpp>
 #include <astro/state/attitude/EulerAngles.hpp>
 #include <astro/state/attitude/Quaternion.hpp>

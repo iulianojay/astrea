@@ -4,7 +4,7 @@
  * @brief Header file for the DirectionCosineMatrixRate class in the astro namespace
  * @date 2025-08-05
  *
- * @copyright Copyright (c) 2025 Jay Iuliano
+ * @copyright Copyright (c) 2025-2026 Jay Iuliano
  *
  * The GNU Lesser General Public License (LGPL)
  *
@@ -23,7 +23,7 @@
 #include <iostream>
 
 #include <mp-units/math.h>
-#include <mp-units/systems/angular/math.h>
+#include <mp-units/systems/si/math.h>
 
 #include <units/units.hpp>
 #include <utilities/string_util.hpp>
@@ -98,7 +98,7 @@ struct DirectionCosineMatrixRate : public DcmInterface<Frequency, _in_frame_, _o
         using namespace mp_units;
         using mp_units::si::unit_symbols::s;
 
-        const auto [sinTheta, cosTheta] = sin_cos_pack(theta);
+        const auto [sinTheta, cosTheta] = math::sin_cos_pack(theta);
         // Disolve angular unit
         const auto thetaDotUnitless = thetaDot / thetaDot.unit;
         return { { 0.0 * one / s, 0.0 * one / s, 0.0 * one / s },
@@ -118,7 +118,7 @@ struct DirectionCosineMatrixRate : public DcmInterface<Frequency, _in_frame_, _o
         using namespace mp_units;
         using mp_units::si::unit_symbols::s;
 
-        const auto [sinTheta, cosTheta] = sin_cos_pack(theta);
+        const auto [sinTheta, cosTheta] = math::sin_cos_pack(theta);
         // Disolve angular unit
         const auto thetaDotUnitless = thetaDot / thetaDot.unit;
         return { { -thetaDotUnitless * sinTheta, 0.0 * one / s, thetaDotUnitless * cosTheta },
@@ -138,7 +138,7 @@ struct DirectionCosineMatrixRate : public DcmInterface<Frequency, _in_frame_, _o
         using namespace mp_units;
         using mp_units::si::unit_symbols::s;
 
-        const auto [sinTheta, cosTheta] = sin_cos_pack(theta);
+        const auto [sinTheta, cosTheta] = math::sin_cos_pack(theta);
         // Disolve angular unit
         const auto thetaDotUnitless = thetaDot / thetaDot.unit;
         return { { -thetaDotUnitless * sinTheta, -thetaDotUnitless * cosTheta, 0.0 * one / s },

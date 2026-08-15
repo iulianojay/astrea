@@ -1,7 +1,7 @@
 /*
  * The GNU Lesser General Public License (LGPL)
  *
- * Copyright (c) 2026 Jay Iuliano
+ * Copyright (c) 2025-2026 Jay Iuliano
  *
  * This file is part of Astrea.
  * Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License
@@ -20,7 +20,7 @@ using namespace astro;
 using namespace helios;
 
 using namespace mp_units;
-using mp_units::angular::unit_symbols::deg;
+using mp_units::si::unit_symbols::deg;
 using mp_units::si::unit_symbols::km;
 using mp_units::si::unit_symbols::min;
 using mp_units::si::unit_symbols::s;

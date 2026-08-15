@@ -4,7 +4,7 @@
  * @brief Contains utilities for outputting access analysis info.
  * @date 2025-08-03
  *
- * @copyright Copyright (c) 2025 Jay Iuliano
+ * @copyright Copyright (c) 2025-2026 Jay Iuliano
  *
  * The GNU Lesser General Public License (LGPL)
  *
@@ -40,7 +40,7 @@
 #include <trace/risesets/RiseSetArray.hpp>
 #include <trace/risesets/riseset_utils.hpp>
 
-using mp_units::angular::unit_symbols::deg;
+using mp_units::si::unit_symbols::deg;
 using mp_units::si::unit_symbols::km;
 using mp_units::si::unit_symbols::s;
 

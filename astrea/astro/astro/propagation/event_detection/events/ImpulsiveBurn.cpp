@@ -1,7 +1,7 @@
 /*
  * The GNU Lesser General Public License (LGPL)
  *
- * Copyright (c) 2025 Jay Iuliano
+ * Copyright (c) 2025-2026 Jay Iuliano
  *
  * This file is part of Astrea.
  * Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License
@@ -13,7 +13,7 @@
 
 #include <astro/propagation/event_detection/events/ImpulsiveBurn.hpp>
 
-#include <mp-units/systems/angular.h>
+#include <mp-units/systems/si.h>
 
 #include <astro/platforms/Vehicle.hpp>
 #include <astro/platforms/thrusters/Thruster.hpp>
@@ -21,8 +21,8 @@
 #include <astro/state/State.hpp>
 #include <astro/state/angular_elements/Geodetic.hpp>
 
-using mp_units::angular::unit_symbols::rad;
 using mp_units::si::unit_symbols::km;
+using mp_units::si::unit_symbols::rad;
 using mp_units::si::unit_symbols::s;
 
 namespace astrea {

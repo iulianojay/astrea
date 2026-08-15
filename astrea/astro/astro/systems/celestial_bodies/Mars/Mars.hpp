@@ -4,7 +4,7 @@
  * @brief Header file for the Mars class.
  * @date 2025-10-02
  *
- * @copyright Copyright (c) 2025 Jay Iuliano
+ * @copyright Copyright (c) 2025-2026 Jay Iuliano
  *
  * The GNU Lesser General Public License (LGPL)
  *
@@ -50,9 +50,10 @@ template <>
 inline consteval CelestialBodyParameters get_celestial_body_parameters<planets::Mars>()
 {
     using namespace mp_units;
-    using mp_units::angular::unit_symbols::deg;
+    using astrea::units::unit_symbols::jc;
     using mp_units::iau::unit_symbols::au;
     using mp_units::non_si::day;
+    using mp_units::si::unit_symbols::deg;
     using mp_units::si::unit_symbols::kg;
     using mp_units::si::unit_symbols::km;
     using mp_units::si::unit_symbols::s;
@@ -76,12 +77,12 @@ inline consteval CelestialBodyParameters get_celestial_body_parameters<planets::
              .rightAscension         = Angle(49.55953891 * deg),
              .longitudeOfPerigee     = Angle(-23.94362959 * deg),
              .meanLongitude          = Angle(-4.55343205 * deg),
-             .semimajorAxisRate      = InterplanetaryVelocity(0.00001847 * au / JulianCentury),
-             .eccentricityRate       = BodyUnitlessPerTime(0.00007882 * one / JulianCentury),
-             .inclinationRate        = BodyAngularVelocity(-0.00813131 * deg / JulianCentury),
-             .rightAscensionRate     = BodyAngularVelocity(-0.29257343 * deg / JulianCentury),
-             .longitudeOfPerigeeRate = BodyAngularVelocity(0.44441088 * deg / JulianCentury),
-             .meanLongitudeRate      = BodyAngularVelocity(19140.30268499 * deg / JulianCentury) };
+             .semimajorAxisRate      = InterplanetaryVelocity(0.00001847 * au / jc),
+             .eccentricityRate       = BodyUnitlessPerTime(0.00007882 * one / jc),
+             .inclinationRate        = BodyAngularVelocity(-0.00813131 * deg / jc),
+             .rightAscensionRate     = BodyAngularVelocity(-0.29257343 * deg / jc),
+             .longitudeOfPerigeeRate = BodyAngularVelocity(0.44441088 * deg / jc),
+             .meanLongitudeRate      = BodyAngularVelocity(19140.30268499 * deg / jc) };
 }
 
 /**

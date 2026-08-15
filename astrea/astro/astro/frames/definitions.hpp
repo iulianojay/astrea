@@ -9,7 +9,7 @@
  *
  * Depends on: frames/framework, astro/systems
  *
- * @copyright Copyright (c) 2025 Jay Iuliano
+ * @copyright Copyright (c) 2025-2026 Jay Iuliano
  *
  * The GNU Lesser General Public License (LGPL)
  *
@@ -17,10 +17,6 @@
  */
 #pragma once
 
-#include <astro/frames/definitions/EastNorthUp.hpp>
-#include <astro/frames/definitions/LocalHorizontalLocalVertical.hpp>
-#include <astro/frames/definitions/RadialInTrackCrossTrack.hpp>
-#include <astro/frames/definitions/VelocityNormalBinormal.hpp>
 #include <astro/frames/definitions/body_centered_inertial_frames.hpp>
 #include <astro/frames/definitions/body_fixed_frames.hpp>
 #include <astro/frames/definitions/defined_rotations.hpp>

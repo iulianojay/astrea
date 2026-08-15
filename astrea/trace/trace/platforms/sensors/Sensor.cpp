@@ -1,7 +1,7 @@
 /*
  * The GNU Lesser General Public License (LGPL)
  *
- * Copyright (c) 2025 Jay Iuliano
+ * Copyright (c) 2025-2026 Jay Iuliano
  *
  * This file is part of Astrea.
  * Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License
@@ -14,7 +14,7 @@
 #include <trace/platforms/sensors/Sensor.hpp>
 
 #include <astro/frames/definitions.hpp>
-#include <astro/frames/definitions/dynamic_frames.hpp>
+#include <astro/frames/definitions/dynamic_frames/tags.hpp>
 #include <astro/frames/framework/CartesianVector.hpp>
 
 namespace astrea {

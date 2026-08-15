@@ -1,7 +1,7 @@
 /*
  * The GNU Lesser General Public License (LGPL)
  *
- * Copyright (c) 2025 Jay Iuliano
+ * Copyright (c) 2025-2026 Jay Iuliano
  *
  * This file is part of Astrea.
  * Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License
@@ -45,7 +45,7 @@ TEST_F(DateTest, JulianDateToSiderealTime)
 {
     // Vallado, Ex. 3-5
     Date date("1992-08-20 12:14:00.0");
-    ASSERT_TRUE(math::nearly_equal(julian_date_to_sidereal_time(date.jd()), Angle(152.57878 * mp_units::angular::unit_symbols::deg), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(julian_date_to_sidereal_time(date.jd()), Angle(152.57878 * mp_units::si::unit_symbols::deg), REL_TOL));
 }
 
 TEST_F(DateTest, DefaultConstructor) { ASSERT_NO_THROW(Date()); }
@@ -130,5 +130,5 @@ TEST_F(DateTest, Epoch) { ASSERT_EQ(Date(J2000).epoch(), "2000-01-01 12:00:00.00
 
 TEST_F(DateTest, GMST)
 {
-    ASSERT_TRUE(math::nearly_equal(Date(J2000).gmst(), Angle(4.89496 * mp_units::angular::unit_symbols::rad), REL_TOL)); // Is this right? Who knows
+    ASSERT_TRUE(math::nearly_equal(Date(J2000).gmst(), Angle(4.89496 * mp_units::si::unit_symbols::rad), REL_TOL)); // Is this right? Who knows
 }
