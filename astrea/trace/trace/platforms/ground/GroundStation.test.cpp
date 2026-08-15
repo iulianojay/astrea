@@ -1,7 +1,7 @@
 /*
  * The GNU Lesser General Public License (LGPL)
  *
- * Copyright (c) 2025 Jay Iuliano
+ * Copyright (c) 2025-2026 Jay Iuliano
  *
  * This file is part of Astrea.
  * Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License
@@ -27,8 +27,8 @@ class GroundStationTest : public testing::Test {
 
     void SetUp() override
     {
-        latitude  = 0.5 * mp_units::angular::unit_symbols::rad;
-        longitude = 1.0 * mp_units::angular::unit_symbols::rad;
+        latitude  = 0.5 * mp_units::si::unit_symbols::rad;
+        longitude = 1.0 * mp_units::si::unit_symbols::rad;
         altitude  = 0.1 * mp_units::si::unit_symbols::km;
         name      = "TestStation";
         sensors   = {};

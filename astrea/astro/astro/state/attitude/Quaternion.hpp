@@ -4,7 +4,7 @@
  * @brief Class representing a quaternion for attitude transformations between state/frames.
  * @date 2026-03-22
  *
- * @copyright Copyright (c) 2026 Jay Iuliano
+ * @copyright Copyright (c) 2025-2026 Jay Iuliano
  *
  * The GNU Lesser General Public License (LGPL)
  *
@@ -22,7 +22,7 @@
 
 #include <mp-units/core.h>
 #include <mp-units/math.h>
-#include <mp-units/systems/angular/math.h>
+#include <mp-units/systems/si/math.h>
 
 #include <units/units.hpp>
 
@@ -232,8 +232,8 @@ class Quaternion {
      * formula: q = [cos(angle/2), axis * sin(angle/2)]
      */
     Quaternion(const Angle& angle, const CartesianVector<Unitless, in_frame>& axis) :
-        _s(mp_units::angular::cos(angle / 2.0)),
-        _u(axis * mp_units::angular::sin(angle / 2.0))
+        _s(mp_units::si::cos(angle / 2.0)),
+        _u(axis * mp_units::si::sin(angle / 2.0))
     {
     }
 
@@ -270,8 +270,8 @@ class Quaternion {
     EulerAngles<sequence, rotation_type, in_frame, out_frame> to_euler_angles() const
     {
         using namespace mp_units;
-        using namespace mp_units::angular;
-        using mp_units::angular::unit_symbols::rad;
+        using namespace mp_units::si;
+        using mp_units::si::unit_symbols::rad;
 
         const bool isProper = is_proper_euler_sequence(sequence);
         auto [i, j, k]      = get_sequence_numbers(sequence);
@@ -558,8 +558,8 @@ class Quaternion {
         interpolate(const Time& thisTime, const Time& otherTime, const Quaternion<in_frame, out_frame>& other, const Time& targetTime) const
     {
         using namespace mp_units;
-        using namespace mp_units::angular;
-        using mp_units::angular::unit_symbols::rad;
+        using namespace mp_units::si;
+        using mp_units::si::unit_symbols::rad;
 
         // Calculate angle between them.
         const Unitless cosHalfTheta = this->dot(other);

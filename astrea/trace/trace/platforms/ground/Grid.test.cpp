@@ -1,7 +1,7 @@
 /*
  * The GNU Lesser General Public License (LGPL)
  *
- * Copyright (c) 2025 Jay Iuliano
+ * Copyright (c) 2025-2026 Jay Iuliano
  *
  * This file is part of Astrea.
  * Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License
@@ -27,15 +27,15 @@ class GridTest : public testing::Test {
 
     void SetUp() override
     {
-        Angle lat1 = 0.0 * mp_units::angular::unit_symbols::deg;
-        Angle lon1 = 0.0 * mp_units::angular::unit_symbols::deg;
-        Angle lat4 = 10.0 * mp_units::angular::unit_symbols::deg;
-        Angle lon4 = 10.0 * mp_units::angular::unit_symbols::deg;
+        Angle lat1 = 0.0 * mp_units::si::unit_symbols::deg;
+        Angle lon1 = 0.0 * mp_units::si::unit_symbols::deg;
+        Angle lat4 = 10.0 * mp_units::si::unit_symbols::deg;
+        Angle lon4 = 10.0 * mp_units::si::unit_symbols::deg;
 
         corner1 = { lat1, lon1 };
         corner4 = { lat4, lon4 };
 
-        spacing = 5.0 * mp_units::angular::unit_symbols::deg;
+        spacing = 5.0 * mp_units::si::unit_symbols::deg;
         weight  = 0.0 * mp_units::one;
 
         grid           = Grid<astro::planets::Earth>(corner1, corner4, GridType::UNIFORM, spacing, weight);

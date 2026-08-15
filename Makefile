@@ -53,6 +53,8 @@ run_6dof_checkcases := OFF
 verbose_makefile := OFF
 warnings_as_errors := OFF
 username := $(shell whoami)
+eop_file := $(abspath ./astrea/astro/data/earth_orientation_parameters/eop.long)
+rebuild_eop := ON
 
 .DEFAULT_GOAL := install
 
@@ -75,6 +77,7 @@ build:
 	$(toolchain_make) \
 	$(toolchain_file) \
 	-DCMAKE_BUILD_TYPE=$(build_type) \
+	-DCMAKE_EXPORT_COMPILE_COMMANDS=ON \
 	-DCMAKE_INSTALL_PREFIX:PATH=$(install_path) \
 	-DCMAKE_CXX_FLAGS=-fdiagnostics-color=always \
 	-DCPM_SOURCE_CACHE=$(config_path)/.cpm-cache \
@@ -87,7 +90,9 @@ build:
 	-DBUILD_STATIC=$(build_static) \
 	-DBUILD_PROFILERS=$(build_profilers) \
 	-DBUILD_CHECKCASE_DATABASE=$(build_checkcase_db) \
-	-DBUILD_6DOF_CHECKCASES=$(run_6dof_checkcases)
+	-DBUILD_6DOF_CHECKCASES=$(run_6dof_checkcases) \
+	-DEOP_FILE=$(eop_file) \
+	-DREBUILD_EOP=$(rebuild_eop) \
 
 .PHONY: build-gcc
 build-gcc: gcc build

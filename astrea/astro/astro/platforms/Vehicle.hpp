@@ -4,7 +4,7 @@
  * @brief A class representing a vehicle in the astrea astro platform.
  * @date 2025-08-02
  *
- * @copyright Copyright (c) 2025 Jay Iuliano
+ * @copyright Copyright (c) 2025-2026 Jay Iuliano
  *
  * The GNU Lesser General Public License (LGPL)
  *
@@ -26,7 +26,6 @@
 #include <units/units.hpp>
 
 #include <astro/frames/definitions.hpp>
-#include <astro/frames/definitions/dynamic_frames.hpp>
 #include <astro/frames/framework/CartesianVector.hpp>
 #include <astro/platforms/InertiaTensor.hpp>
 #include <astro/propagation/force_models/Perturbation.hpp>

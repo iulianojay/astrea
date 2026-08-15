@@ -4,7 +4,7 @@
  * @brief Header file for the Venus class.
  * @date 2025-10-02
  *
- * @copyright Copyright (c) 2025 Jay Iuliano
+ * @copyright Copyright (c) 2025-2026 Jay Iuliano
  *
  * The GNU Lesser General Public License (LGPL)
  *
@@ -50,9 +50,10 @@ template <>
 inline consteval CelestialBodyParameters get_celestial_body_parameters<planets::Venus>()
 {
     using namespace mp_units;
-    using mp_units::angular::unit_symbols::deg;
+    using astrea::units::unit_symbols::jc;
     using mp_units::iau::unit_symbols::au;
     using mp_units::non_si::day;
+    using mp_units::si::unit_symbols::deg;
     using mp_units::si::unit_symbols::kg;
     using mp_units::si::unit_symbols::km;
     using mp_units::si::unit_symbols::s;
@@ -76,12 +77,12 @@ inline consteval CelestialBodyParameters get_celestial_body_parameters<planets::
              .rightAscension         = Angle(76.67984255 * deg),
              .longitudeOfPerigee     = Angle(131.60246718 * deg),
              .meanLongitude          = Angle(181.97909950 * deg),
-             .semimajorAxisRate      = InterplanetaryVelocity(0.00000390 * au / JulianCentury),
-             .eccentricityRate       = BodyUnitlessPerTime(-0.00004107 * one / JulianCentury),
-             .inclinationRate        = BodyAngularVelocity(-0.00078890 * deg / JulianCentury),
-             .rightAscensionRate     = BodyAngularVelocity(-0.27769418 * deg / JulianCentury),
-             .longitudeOfPerigeeRate = BodyAngularVelocity(0.00268329 * deg / JulianCentury),
-             .meanLongitudeRate      = BodyAngularVelocity(58517.81538729 * deg / JulianCentury) };
+             .semimajorAxisRate      = InterplanetaryVelocity(0.00000390 * au / jc),
+             .eccentricityRate       = BodyUnitlessPerTime(-0.00004107 * one / jc),
+             .inclinationRate        = BodyAngularVelocity(-0.00078890 * deg / jc),
+             .rightAscensionRate     = BodyAngularVelocity(-0.27769418 * deg / jc),
+             .longitudeOfPerigeeRate = BodyAngularVelocity(0.00268329 * deg / jc),
+             .meanLongitudeRate      = BodyAngularVelocity(58517.81538729 * deg / jc) };
 }
 
 #ifdef ASTREA_BUILD_VENUS_EPHEMERIS

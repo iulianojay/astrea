@@ -4,7 +4,7 @@
  * @brief Database utility wrapper for the snapshot module
  * @date 2025-08-03
  *
- * @copyright Copyright (c) 2025 Jay Iuliano
+ * @copyright Copyright (c) 2025-2026 Jay Iuliano
  *
  * The GNU Lesser General Public License (LGPL)
  *
@@ -24,9 +24,7 @@
 #include <sqlite_orm/sqlite_orm.h>
 
 // mp-units
-#include <mp-units/systems/angular.h>
 #include <mp-units/systems/iau.h>
-#include <mp-units/systems/isq_angle.h>
 #include <mp-units/systems/si.h>
 
 #include <units/typedefs.hpp>

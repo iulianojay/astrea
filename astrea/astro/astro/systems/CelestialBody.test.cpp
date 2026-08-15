@@ -1,7 +1,7 @@
 /*
  * The GNU Lesser General Public License (LGPL)
  *
- * Copyright (c) 2025 Jay Iuliano
+ * Copyright (c) 2025-2026 Jay Iuliano
  *
  * This file is part of Astrea.
  * Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License
@@ -29,14 +29,15 @@
 
 using namespace astrea;
 using namespace astro;
-using namespace mp_units;
+using astrea::units::unit_symbols::jc;
 
-using mp_units::angular::unit_symbols::deg;
-using mp_units::angular::unit_symbols::rad;
+using namespace mp_units;
 using mp_units::iau::unit_symbols::au;
 using mp_units::non_si::day;
+using mp_units::si::unit_symbols::deg;
 using mp_units::si::unit_symbols::kg;
 using mp_units::si::unit_symbols::km;
+using mp_units::si::unit_symbols::rad;
 using mp_units::si::unit_symbols::s;
 
 class CelestialBodyTest : public testing::Test {
@@ -168,32 +169,32 @@ TEST_F(CelestialBodyTest, GetMeanAnomaly)
 
 TEST_F(CelestialBodyTest, GetSemimajorRate)
 {
-    ASSERT_TRUE(math::nearly_equal(get_semimajor_rate<planets::Earth>(), InterplanetaryVelocity(0.00000562 * au / JulianCentury), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(get_semimajor_rate<planets::Earth>(), InterplanetaryVelocity(0.00000562 * au / jc), REL_TOL));
 }
 
 TEST_F(CelestialBodyTest, GetEccentricityRate)
 {
-    ASSERT_TRUE(math::nearly_equal(get_eccentricity_rate<planets::Earth>(), BodyUnitlessPerTime(-0.00004392 * one / JulianCentury), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(get_eccentricity_rate<planets::Earth>(), BodyUnitlessPerTime(-0.00004392 * one / jc), REL_TOL));
 }
 
 TEST_F(CelestialBodyTest, GetInclinationRate)
 {
-    ASSERT_TRUE(math::nearly_equal(get_inclination_rate<planets::Earth>(), BodyAngularVelocity(-0.01294668 * deg / JulianCentury), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(get_inclination_rate<planets::Earth>(), BodyAngularVelocity(-0.01294668 * deg / jc), REL_TOL));
 }
 
 TEST_F(CelestialBodyTest, GetRightAscensionRate)
 {
-    ASSERT_TRUE(math::nearly_equal(get_right_ascension_rate<planets::Earth>(), BodyAngularVelocity(0.0 * deg / JulianCentury), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(get_right_ascension_rate<planets::Earth>(), BodyAngularVelocity(0.0 * deg / jc), REL_TOL));
 }
 
 TEST_F(CelestialBodyTest, GetLongitudeOfPerigeeRate)
 {
-    ASSERT_TRUE(math::nearly_equal(get_longitude_of_perigee_rate<planets::Earth>(), BodyAngularVelocity(0.32327364 * deg / JulianCentury), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(get_longitude_of_perigee_rate<planets::Earth>(), BodyAngularVelocity(0.32327364 * deg / jc), REL_TOL));
 }
 
 TEST_F(CelestialBodyTest, GetMeanLongitudeRate)
 {
-    ASSERT_TRUE(math::nearly_equal(get_mean_longitude_rate<planets::Earth>(), BodyAngularVelocity(35999.37244981 * deg / JulianCentury), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(get_mean_longitude_rate<planets::Earth>(), BodyAngularVelocity(35999.37244981 * deg / jc), REL_TOL));
 }
 
 // Vallado, Ex. 8.5

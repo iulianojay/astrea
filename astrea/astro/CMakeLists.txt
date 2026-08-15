@@ -1,4 +1,4 @@
-# Copyright (c) 2025 Jay Iuliano
+# Copyright (c) 2025-2026 Jay Iuliano
 #
 # This file is part of Astrea.
 # Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License
@@ -79,10 +79,12 @@ set(ASTRO_HEADERS
     ${ASTRO_BASE}/frames/definitions/body_fixed_frames.hpp
     ${ASTRO_BASE}/frames/definitions/defined_rotations.hpp
     ${ASTRO_BASE}/frames/definitions/defined_rotations_earth.hpp
-    ${ASTRO_BASE}/frames/definitions/EastNorthUp.hpp
-    ${ASTRO_BASE}/frames/definitions/LocalHorizontalLocalVertical.hpp
-    ${ASTRO_BASE}/frames/definitions/RadialInTrackCrossTrack.hpp
-    ${ASTRO_BASE}/frames/definitions/VelocityNormalBinormal.hpp
+    ${ASTRO_BASE}/frames/definitions/dynamic_frames/EastNorthUp.hpp
+    ${ASTRO_BASE}/frames/definitions/dynamic_frames/LocalHorizontalLocalVertical.hpp
+    ${ASTRO_BASE}/frames/definitions/dynamic_frames/Perifocal.hpp
+    ${ASTRO_BASE}/frames/definitions/dynamic_frames/RadialInTrackCrossTrack.hpp
+    ${ASTRO_BASE}/frames/definitions/dynamic_frames/VelocityNormalBinormal.hpp
+    ${ASTRO_BASE}/frames/definitions/dynamic_frames/tags.hpp
     ${ASTRO_BASE}/frames/definitions/dynamic_frames.hpp
     ${ASTRO_BASE}/frames/definitions/transformations.hpp
 
@@ -223,6 +225,10 @@ set(BUILD_EPHEMERIDES(BUILD_SUN OR BUILD_MERCURY OR BUILD_EARTH OR BUILD_MARS OR
 set(EPHEMERIS_COMPILE_DEFINES "")
 generate_ephemeris_files(${CMAKE_CURRENT_LIST_DIR})
 
+# Build EoP files
+option(BUILD_EOP "Build Earth Orientation Parameters" ON)
+generate_eop_files(${CMAKE_CURRENT_LIST_DIR})
+
 # Includes
 set(ASTRO_DIRS
     ${CMAKE_CURRENT_LIST_DIR}
@@ -248,6 +254,9 @@ add_library(astrea::astro ALIAS ${PROJECT_NAME}_shared)
 
 if(${BUILD_EPHEMERIDES})
     add_dependencies(${PROJECT_NAME}_shared generated_ephemerides)
+endif()
+if(${BUILD_EOP})
+    add_dependencies(${PROJECT_NAME}_shared generated_eop_files)
 endif()
 
 set_target_properties      (${PROJECT_NAME}_shared PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ${PROJECT_NAME} CLEAN_DIRECT_OUTPUT 1 INSTALL_RPATH "$ORIGIN")
@@ -280,6 +289,9 @@ if(${BUILD_STATIC})
     if(${BUILD_EPHEMERIDES})
         add_dependencies(${PROJECT_NAME}_static generated_ephemerides)
     endif()
+    if(${BUILD_EOP})
+        add_dependencies(${PROJECT_NAME}_static generated_eop_files)
+    endif()
 
     set_target_properties      (${PROJECT_NAME}_static PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ${PROJECT_NAME} CLEAN_DIRECT_OUTPUT 1 SUFFIX .a.${PROJECT_VERSION})
     target_link_libraries      (${PROJECT_NAME}_static PUBLIC math_static utilities_static ${ASTRO_LIBS})
@@ -310,6 +322,13 @@ install(
 if(EXISTS "${CMAKE_CURRENT_BINARY_DIR}/include/ephemerides")
     install(
         DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/include/ephemerides
+        DESTINATION include/astro
+        FILES_MATCHING PATTERN *.hpp
+    )
+endif()
+if(EXISTS "${CMAKE_CURRENT_BINARY_DIR}/include/eop")
+    install(
+        DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/include/eop
         DESTINATION include/astro
         FILES_MATCHING PATTERN *.hpp
     )

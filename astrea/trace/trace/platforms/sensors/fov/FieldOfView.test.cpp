@@ -1,7 +1,7 @@
 /*
  * The GNU Lesser General Public License (LGPL)
  *
- * Copyright (c) 2025 Jay Iuliano
+ * Copyright (c) 2025-2026 Jay Iuliano
  *
  * This file is part of Astrea.
  * Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License
@@ -22,8 +22,8 @@ using namespace astrea;
 using namespace astro;
 using namespace trace;
 
-using mp_units::angular::unit_symbols::rad;
 using mp_units::si::unit_symbols::m;
+using mp_units::si::unit_symbols::rad;
 
 class FieldOfViewTest : public testing::Test {
   public:

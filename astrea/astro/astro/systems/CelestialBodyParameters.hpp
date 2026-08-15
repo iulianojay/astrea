@@ -4,7 +4,7 @@
  * @brief Header file for the CelestialBodyParameters class, which represents planetary data in an astrodynamics system.
  * @date 2026-03-01
  *
- * @copyright Copyright (c) 2026 Jay Iuliano
+ * @copyright Copyright (c) 2025-2026 Jay Iuliano
  *
  * The GNU Lesser General Public License (LGPL)
  *

@@ -4,7 +4,7 @@
  * @brief Header file for the DirectionCosineMatrix class in the astro namespace
  * @date 2025-08-05
  *
- * @copyright Copyright (c) 2025 Jay Iuliano
+ * @copyright Copyright (c) 2025-2026 Jay Iuliano
  *
  * The GNU Lesser General Public License (LGPL)
  *
@@ -23,7 +23,7 @@
 #include <iostream>
 
 #include <mp-units/math.h>
-#include <mp-units/systems/angular/math.h>
+#include <mp-units/systems/si/math.h>
 
 #include <math/trig.hpp>
 #include <units/units.hpp>
@@ -36,13 +36,6 @@
 
 namespace astrea {
 namespace astro {
-
-inline constexpr auto sin_cos_pack(const Angle& angle)
-{
-    using math::cos;
-    using math::sin;
-    return std::make_pair(sin(angle), cos(angle));
-}
 
 // TODO: Probably should use eigen instead of arrays, might not matter for these small matrices used in
 //  rotation but worth looking into
@@ -111,7 +104,7 @@ struct DirectionCosineMatrix : public DcmInterface<Unitless, _in_frame_, _out_fr
     static inline constexpr DirectionCosineMatrix<_in_frame_, _out_frame_> X(const Angle& theta)
     {
         using mp_units::one;
-        const auto [sinTheta, cosTheta] = sin_cos_pack(theta);
+        const auto [sinTheta, cosTheta] = math::sin_cos_pack(theta);
         return { { 1.0 * one, 0.0 * one, 0.0 * one }, { 0.0 * one, cosTheta, -sinTheta }, { 0.0 * one, sinTheta, cosTheta } };
     }
 
@@ -124,7 +117,7 @@ struct DirectionCosineMatrix : public DcmInterface<Unitless, _in_frame_, _out_fr
     static inline constexpr DirectionCosineMatrix<_in_frame_, _out_frame_> Y(const Angle& theta)
     {
         using mp_units::one;
-        const auto [sinTheta, cosTheta] = sin_cos_pack(theta);
+        const auto [sinTheta, cosTheta] = math::sin_cos_pack(theta);
         return { { cosTheta, 0.0 * one, sinTheta }, { 0.0 * one, 1.0 * one, 0.0 * one }, { -sinTheta, 0.0 * one, cosTheta } };
     }
 
@@ -137,7 +130,7 @@ struct DirectionCosineMatrix : public DcmInterface<Unitless, _in_frame_, _out_fr
     static inline constexpr DirectionCosineMatrix<_in_frame_, _out_frame_> Z(const Angle& theta)
     {
         using mp_units::one;
-        const auto [sinTheta, cosTheta] = sin_cos_pack(theta);
+        const auto [sinTheta, cosTheta] = math::sin_cos_pack(theta);
         return { { cosTheta, -sinTheta, 0.0 * one }, { sinTheta, cosTheta, 0.0 * one }, { 0.0 * one, 0.0 * one, 1.0 * one } };
     }
 
@@ -151,12 +144,14 @@ struct DirectionCosineMatrix : public DcmInterface<Unitless, _in_frame_, _out_fr
      */
     static inline constexpr DirectionCosineMatrix<_in_frame_, _out_frame_> XZX(const Angle& alpha, const Angle& beta, const Angle& gamma)
     {
-        const auto [sinAlpha, cosAlpha] = sin_cos_pack(alpha);
-        const auto [sinBeta, cosBeta]   = sin_cos_pack(beta);
-        const auto [sinGamma, cosGamma] = sin_cos_pack(gamma);
-        return { { cosBeta, -cosGamma * sinBeta, sinBeta * sinGamma },
-                 { cosAlpha * sinBeta, cosAlpha * cosBeta * cosGamma - sinAlpha * sinGamma, -cosGamma * sinAlpha - cosAlpha * cosBeta * sinGamma },
-                 { sinAlpha * sinBeta, cosAlpha * sinBeta + cosBeta * cosGamma * sinAlpha, cosAlpha * cosGamma - cosBeta * sinGamma * sinAlpha } };
+        const auto [sinAlpha, cosAlpha] = math::sin_cos_pack(alpha);
+        const auto [sinBeta, cosBeta]   = math::sin_cos_pack(beta);
+        const auto [sinGamma, cosGamma] = math::sin_cos_pack(gamma);
+        return { { cosBeta, -sinBeta * cosGamma, sinBeta * sinGamma },
+                 { sinBeta * cosAlpha, -sinAlpha * sinGamma + cosAlpha * cosBeta * cosGamma, -sinAlpha * cosGamma - sinGamma * cosAlpha * cosBeta },
+                 { sinAlpha * sinBeta,
+                   sinAlpha * cosBeta * cosGamma + sinGamma * cosAlpha,
+                   -sinAlpha * sinGamma * cosBeta + cosAlpha * cosGamma } };
     }
 
     /**
@@ -169,12 +164,14 @@ struct DirectionCosineMatrix : public DcmInterface<Unitless, _in_frame_, _out_fr
      */
     static inline constexpr DirectionCosineMatrix<_in_frame_, _out_frame_> XYX(const Angle& alpha, const Angle& beta, const Angle& gamma)
     {
-        const auto [sinAlpha, cosAlpha] = sin_cos_pack(alpha);
-        const auto [sinBeta, cosBeta]   = sin_cos_pack(beta);
-        const auto [sinGamma, cosGamma] = sin_cos_pack(gamma);
-        return { { cosBeta, sinBeta * sinGamma, cosGamma * sinBeta },
-                 { sinAlpha * sinBeta, cosAlpha * cosBeta - cosGamma * sinAlpha * sinBeta, -cosAlpha * sinGamma - cosBeta * cosGamma * sinAlpha },
-                 { -cosAlpha * sinBeta, cosGamma * cosAlpha * sinBeta + cosBeta * sinAlpha, cosAlpha * cosBeta * cosGamma - sinAlpha * sinGamma } };
+        const auto [sinAlpha, cosAlpha] = math::sin_cos_pack(alpha);
+        const auto [sinBeta, cosBeta]   = math::sin_cos_pack(beta);
+        const auto [sinGamma, cosGamma] = math::sin_cos_pack(gamma);
+        return { { cosBeta, sinBeta * sinGamma, sinBeta * cosGamma },
+                 { sinAlpha * sinBeta, -sinAlpha * sinGamma * cosBeta + cosAlpha * cosGamma, -sinAlpha * cosBeta * cosGamma - sinGamma * cosAlpha },
+                 { -sinBeta * cosAlpha,
+                   sinAlpha * cosGamma + sinGamma * cosAlpha * cosBeta,
+                   -sinAlpha * sinGamma + cosAlpha * cosBeta * cosGamma } };
     }
 
     /**
@@ -187,14 +184,14 @@ struct DirectionCosineMatrix : public DcmInterface<Unitless, _in_frame_, _out_fr
      */
     static inline constexpr DirectionCosineMatrix<_in_frame_, _out_frame_> YZY(const Angle& alpha, const Angle& beta, const Angle& gamma)
     {
-        const auto [sinAlpha, cosAlpha] = sin_cos_pack(alpha);
-        const auto [sinBeta, cosBeta]   = sin_cos_pack(beta);
-        const auto [sinGamma, cosGamma] = sin_cos_pack(gamma);
-        return {
-            { cosAlpha * cosBeta * cosGamma - sinAlpha * sinGamma, cosGamma * sinAlpha + cosAlpha * cosBeta * sinGamma, -cosAlpha * sinBeta },
-            { -cosGamma * sinBeta, sinBeta * sinGamma, cosBeta },
-            { cosBeta * cosGamma * sinAlpha + cosAlpha * sinGamma, cosAlpha * cosGamma - cosBeta * sinAlpha * sinGamma, sinAlpha * sinBeta }
-        };
+        const auto [sinAlpha, cosAlpha] = math::sin_cos_pack(alpha);
+        const auto [sinBeta, cosBeta]   = math::sin_cos_pack(beta);
+        const auto [sinGamma, cosGamma] = math::sin_cos_pack(gamma);
+        return { { -sinAlpha * sinGamma + cosAlpha * cosBeta * cosGamma, -sinBeta * cosAlpha, sinAlpha * cosGamma + sinGamma * cosAlpha * cosBeta },
+                 { sinBeta * cosGamma, cosBeta, sinBeta * sinGamma },
+                 { -sinAlpha * cosBeta * cosGamma - sinGamma * cosAlpha,
+                   sinAlpha * sinBeta,
+                   -sinAlpha * sinGamma * cosBeta + cosAlpha * cosGamma } };
     }
 
     /**
@@ -207,9 +204,9 @@ struct DirectionCosineMatrix : public DcmInterface<Unitless, _in_frame_, _out_fr
      */
     static inline constexpr DirectionCosineMatrix<_in_frame_, _out_frame_> ZXZ(const Angle& alpha, const Angle& beta, const Angle& gamma)
     {
-        const auto [sinAlpha, cosAlpha] = sin_cos_pack(alpha);
-        const auto [sinBeta, cosBeta]   = sin_cos_pack(beta);
-        const auto [sinGamma, cosGamma] = sin_cos_pack(gamma);
+        const auto [sinAlpha, cosAlpha] = math::sin_cos_pack(alpha);
+        const auto [sinBeta, cosBeta]   = math::sin_cos_pack(beta);
+        const auto [sinGamma, cosGamma] = math::sin_cos_pack(gamma);
         return { { cosAlpha * cosGamma - cosBeta * sinAlpha * sinGamma, -cosAlpha * sinGamma - cosBeta * cosGamma * sinAlpha, sinAlpha * sinBeta },
                  { cosGamma * sinAlpha + cosAlpha * cosBeta * sinGamma, cosAlpha * cosBeta * cosGamma - sinAlpha * sinGamma, -cosAlpha * sinBeta },
                  { sinBeta * sinGamma, cosGamma * sinBeta, cosBeta } };
@@ -225,9 +222,9 @@ struct DirectionCosineMatrix : public DcmInterface<Unitless, _in_frame_, _out_fr
      */
     static inline constexpr DirectionCosineMatrix<_in_frame_, _out_frame_> ZYZ(const Angle& alpha, const Angle& beta, const Angle& gamma)
     {
-        const auto [sinAlpha, cosAlpha] = sin_cos_pack(alpha);
-        const auto [sinBeta, cosBeta]   = sin_cos_pack(beta);
-        const auto [sinGamma, cosGamma] = sin_cos_pack(gamma);
+        const auto [sinAlpha, cosAlpha] = math::sin_cos_pack(alpha);
+        const auto [sinBeta, cosBeta]   = math::sin_cos_pack(beta);
+        const auto [sinGamma, cosGamma] = math::sin_cos_pack(gamma);
         return { { cosAlpha * cosBeta * cosGamma - sinAlpha * sinGamma, -cosGamma * sinAlpha - cosAlpha * cosBeta * sinGamma, cosAlpha * sinBeta },
                  { cosAlpha * sinGamma + cosBeta * cosGamma * sinAlpha, cosAlpha * cosGamma - cosBeta * sinAlpha * sinGamma, sinAlpha * sinBeta },
                  { -cosGamma * sinBeta, sinBeta * sinGamma, cosBeta } };
@@ -244,14 +241,14 @@ struct DirectionCosineMatrix : public DcmInterface<Unitless, _in_frame_, _out_fr
      */
     static inline constexpr DirectionCosineMatrix<_in_frame_, _out_frame_> YXY(const Angle& alpha, const Angle& beta, const Angle& gamma)
     {
-        const auto [sinAlpha, cosAlpha] = sin_cos_pack(alpha);
-        const auto [sinBeta, cosBeta]   = sin_cos_pack(beta);
-        const auto [sinGamma, cosGamma] = sin_cos_pack(gamma);
-        return { { cosAlpha * cosGamma - cosBeta * sinAlpha * sinGamma, sinBeta * sinGamma, cosGamma * sinAlpha + cosAlpha * cosBeta * sinGamma },
-                 { sinAlpha * sinBeta, cosBeta, -cosAlpha * sinBeta },
-                 { -cosBeta * cosGamma * sinAlpha - cosAlpha * sinGamma,
-                   cosGamma * sinBeta,
-                   cosAlpha * cosBeta * cosGamma - sinAlpha * sinGamma } };
+        const auto [sinAlpha, cosAlpha] = math::sin_cos_pack(alpha);
+        const auto [sinBeta, cosBeta]   = math::sin_cos_pack(beta);
+        const auto [sinGamma, cosGamma] = math::sin_cos_pack(gamma);
+        return { { -sinAlpha * sinGamma * cosBeta + cosAlpha * cosGamma, sinAlpha * sinBeta, sinAlpha * cosBeta * cosGamma + sinGamma * cosAlpha },
+                 { sinBeta * sinGamma, cosBeta, -sinBeta * cosGamma },
+                 { -sinAlpha * cosGamma - sinGamma * cosAlpha * cosBeta,
+                   sinBeta * cosAlpha,
+                   -sinAlpha * sinGamma + cosAlpha * cosBeta * cosGamma } };
     }
 
     /**
@@ -264,9 +261,9 @@ struct DirectionCosineMatrix : public DcmInterface<Unitless, _in_frame_, _out_fr
      */
     static inline constexpr DirectionCosineMatrix<_in_frame_, _out_frame_> XYZ(const Angle& alpha, const Angle& beta, const Angle& gamma)
     {
-        const auto [sinAlpha, cosAlpha] = sin_cos_pack(alpha);
-        const auto [sinBeta, cosBeta]   = sin_cos_pack(beta);
-        const auto [sinGamma, cosGamma] = sin_cos_pack(gamma);
+        const auto [sinAlpha, cosAlpha] = math::sin_cos_pack(alpha);
+        const auto [sinBeta, cosBeta]   = math::sin_cos_pack(beta);
+        const auto [sinGamma, cosGamma] = math::sin_cos_pack(gamma);
         return {
             { cosBeta * cosGamma, -cosBeta * sinGamma, sinBeta },
             { cosAlpha * sinGamma + cosGamma * sinAlpha * sinBeta, cosAlpha * cosGamma - sinAlpha * sinBeta * sinGamma, -cosBeta * sinAlpha },
@@ -284,12 +281,14 @@ struct DirectionCosineMatrix : public DcmInterface<Unitless, _in_frame_, _out_fr
      */
     static inline constexpr DirectionCosineMatrix<_in_frame_, _out_frame_> YZX(const Angle& alpha, const Angle& beta, const Angle& gamma)
     {
-        const auto [sinAlpha, cosAlpha] = sin_cos_pack(alpha);
-        const auto [sinBeta, cosBeta]   = sin_cos_pack(beta);
-        const auto [sinGamma, cosGamma] = sin_cos_pack(gamma);
-        return { { cosAlpha * cosBeta, -sinBeta, cosBeta * sinAlpha },
-                 { cosGamma * sinAlpha + cosAlpha * sinBeta * sinGamma, cosBeta * cosGamma, sinAlpha * sinBeta * sinGamma - cosAlpha * cosGamma },
-                 { sinAlpha * sinGamma - cosAlpha * cosGamma * sinBeta, cosGamma * sinBeta, cosAlpha * sinGamma + cosGamma * sinAlpha * sinBeta } };
+        const auto [sinAlpha, cosAlpha] = math::sin_cos_pack(alpha);
+        const auto [sinBeta, cosBeta]   = math::sin_cos_pack(beta);
+        const auto [sinGamma, cosGamma] = math::sin_cos_pack(gamma);
+        return { { cosAlpha * cosBeta, sinAlpha * sinGamma - sinBeta * cosAlpha * cosGamma, sinAlpha * cosGamma + sinBeta * sinGamma * cosAlpha },
+                 { sinBeta, cosBeta * cosGamma, -sinGamma * cosBeta },
+                 { -sinAlpha * cosBeta,
+                   sinAlpha * sinBeta * cosGamma + sinGamma * cosAlpha,
+                   -sinAlpha * sinBeta * sinGamma + cosAlpha * cosGamma } };
     }
 
     /**
@@ -302,12 +301,12 @@ struct DirectionCosineMatrix : public DcmInterface<Unitless, _in_frame_, _out_fr
      */
     static inline constexpr DirectionCosineMatrix<_in_frame_, _out_frame_> ZXY(const Angle& alpha, const Angle& beta, const Angle& gamma)
     {
-        const auto [sinAlpha, cosAlpha] = sin_cos_pack(alpha);
-        const auto [sinBeta, cosBeta]   = sin_cos_pack(beta);
-        const auto [sinGamma, cosGamma] = sin_cos_pack(gamma);
-        return { { cosAlpha * cosGamma - sinAlpha * sinBeta * sinGamma, -cosBeta * sinAlpha, cosAlpha * sinGamma + cosGamma * sinAlpha * sinBeta },
-                 { cosGamma * sinAlpha + cosAlpha * sinBeta * sinGamma, cosAlpha * cosBeta, sinAlpha * sinGamma - cosAlpha * cosGamma * sinBeta },
-                 { -cosGamma * sinBeta, sinBeta, cosBeta * cosGamma } };
+        const auto [sinAlpha, cosAlpha] = math::sin_cos_pack(alpha);
+        const auto [sinBeta, cosBeta]   = math::sin_cos_pack(beta);
+        const auto [sinGamma, cosGamma] = math::sin_cos_pack(gamma);
+        return { { -sinAlpha * sinBeta * sinGamma + cosAlpha * cosGamma, -sinAlpha * cosBeta, sinAlpha * sinBeta * cosGamma + sinGamma * cosAlpha },
+                 { sinAlpha * cosGamma + sinBeta * sinGamma * cosAlpha, cosAlpha * cosBeta, sinAlpha * sinGamma - sinBeta * cosAlpha * cosGamma },
+                 { -sinGamma * cosBeta, sinBeta, cosBeta * cosGamma } };
     }
 
     /**
@@ -320,7 +319,12 @@ struct DirectionCosineMatrix : public DcmInterface<Unitless, _in_frame_, _out_fr
      */
     static inline constexpr DirectionCosineMatrix<_in_frame_, _out_frame_> XZY(const Angle& alpha, const Angle& beta, const Angle& gamma)
     {
-        return DirectionCosineMatrix<_in_frame_, _out_frame_>::YZX(gamma, beta, alpha);
+        const auto [sinAlpha, cosAlpha] = math::sin_cos_pack(alpha);
+        const auto [sinBeta, cosBeta]   = math::sin_cos_pack(beta);
+        const auto [sinGamma, cosGamma] = math::sin_cos_pack(gamma);
+        return { { cosBeta * cosGamma, -sinBeta, sinGamma * cosBeta },
+                 { sinAlpha * sinGamma + sinBeta * cosAlpha * cosGamma, cosAlpha * cosBeta, -sinAlpha * cosGamma + sinBeta * sinGamma * cosAlpha },
+                 { sinAlpha * sinBeta * cosGamma - sinGamma * cosAlpha, sinAlpha * cosBeta, sinAlpha * sinBeta * sinGamma + cosAlpha * cosGamma } };
     }
 
     /**
@@ -333,7 +337,12 @@ struct DirectionCosineMatrix : public DcmInterface<Unitless, _in_frame_, _out_fr
      */
     static inline constexpr DirectionCosineMatrix<_in_frame_, _out_frame_> ZYX(const Angle& alpha, const Angle& beta, const Angle& gamma)
     {
-        return DirectionCosineMatrix<_in_frame_, _out_frame_>::XYZ(gamma, beta, alpha);
+        const auto [sinAlpha, cosAlpha] = math::sin_cos_pack(alpha);
+        const auto [sinBeta, cosBeta]   = math::sin_cos_pack(beta);
+        const auto [sinGamma, cosGamma] = math::sin_cos_pack(gamma);
+        return { { cosAlpha * cosBeta, -sinAlpha * cosGamma + sinBeta * sinGamma * cosAlpha, sinAlpha * sinGamma + sinBeta * cosAlpha * cosGamma },
+                 { sinAlpha * cosBeta, sinAlpha * sinBeta * sinGamma + cosAlpha * cosGamma, sinAlpha * sinBeta * cosGamma - sinGamma * cosAlpha },
+                 { -sinBeta, sinGamma * cosBeta, cosBeta * cosGamma } };
     }
 
     /**
@@ -346,7 +355,14 @@ struct DirectionCosineMatrix : public DcmInterface<Unitless, _in_frame_, _out_fr
      */
     static inline constexpr DirectionCosineMatrix<_in_frame_, _out_frame_> YXZ(const Angle& alpha, const Angle& beta, const Angle& gamma)
     {
-        return DirectionCosineMatrix<_in_frame_, _out_frame_>::ZXY(gamma, beta, alpha);
+        const auto [sinAlpha, cosAlpha] = math::sin_cos_pack(alpha);
+        const auto [sinBeta, cosBeta]   = math::sin_cos_pack(beta);
+        const auto [sinGamma, cosGamma] = math::sin_cos_pack(gamma);
+        return { { sinAlpha * sinBeta * sinGamma + cosAlpha * cosGamma, sinAlpha * sinBeta * cosGamma - sinGamma * cosAlpha, sinAlpha * cosBeta },
+                 { sinGamma * cosBeta, cosBeta * cosGamma, -sinBeta },
+                 { -sinAlpha * cosGamma + sinBeta * sinGamma * cosAlpha,
+                   sinAlpha * sinGamma + sinBeta * cosAlpha * cosGamma,
+                   cosAlpha * cosBeta } };
     }
 
     /**

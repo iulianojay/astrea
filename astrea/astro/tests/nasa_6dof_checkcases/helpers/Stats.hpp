@@ -4,7 +4,7 @@
  * @brief Header file for the Stats class, which computes statistical measures for a dataset.
  * @date 2025-08-02
  *
- * @copyright Copyright (c) 2025 Jay Iuliano
+ * @copyright Copyright (c) 2025-2026 Jay Iuliano
  *
  * The GNU Lesser General Public License (LGPL)
  *
@@ -21,8 +21,8 @@
 #include <vector>
 
 #include <mp-units/math.h>
-#include <mp-units/systems/angular/math.h>
 #include <mp-units/systems/international.h>
+#include <mp-units/systems/si/math.h>
 
 namespace astrea {
 namespace astro {
