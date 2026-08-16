@@ -21,11 +21,12 @@
 #include <units/units.hpp>
 
 #include <astro/astro.fwd.hpp>
+#include <astro/astro.macros.hpp>
 #include <astro/systems/CelestialBody.hpp>
 #include <astro/systems/barycenters.hpp>
 
 #ifdef ASTREA_BUILD_MERCURY_EPHEMERIS
-#include <ephemerides/Mercury/MercuryEphemerisTable.hpp>
+#include <astro/ephemerides/Mercury/MercuryEphemerisTable.hpp>
 #endif // ASTREA_BUILD_MERCURY_EPHEMERIS
 
 namespace astrea {
@@ -80,7 +81,9 @@ inline consteval CelestialBodyParameters get_celestial_body_parameters<planets::
              .inclinationRate        = BodyAngularVelocity(-0.00594749 * deg / jc),
              .rightAscensionRate     = BodyAngularVelocity(-0.12534081 * deg / jc),
              .longitudeOfPerigeeRate = BodyAngularVelocity(0.16047689 * deg / jc),
-             .meanLongitudeRate      = BodyAngularVelocity(149472.67411175 * deg / jc) };
+             .meanLongitudeRate      = BodyAngularVelocity(149472.67411175 * deg / jc),
+             // https://pds-geosciences.wustl.edu/messenger/mess-h-rss_mla-5-sdp-v1/messrs_1001/data/shadr/ - normalized
+             .gravityCoefficientFile = _ASTRO_GRAV_DATA_ROOT_ "/Mercury/jgmess_160a_sha.tab" };
 }
 
 #ifdef ASTREA_BUILD_MERCURY_EPHEMERIS

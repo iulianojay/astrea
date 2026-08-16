@@ -26,7 +26,7 @@
 #include <astro/types/typedefs.hpp>
 
 #ifdef ASTREA_BUILD_JUPITER_EPHEMERIS
-#include <ephemerides/Jupiter/JupiterEphemerisTable.hpp>
+#include <astro/ephemerides/Jupiter/JupiterEphemerisTable.hpp>
 #endif // ASTREA_BUILD_JUPITER_EPHEMERIS
 
 namespace astrea {

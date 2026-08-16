@@ -7,6 +7,15 @@
 # of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details. You should
 # have received a copy of the GNU General Public License along with Astrea. If not, see <https://www.gnu.org/licenses/>.
 
+# We always build math, units, utilities, and astro
+option(BUILD_TRACE "Build with trace enabled" ON)
+option(BUILD_SNAPSHOT "Build with snapshot enabled" ON)
+option(BUILD_HELIOS "Build with Helios enabled" ON)
+
+if (BUILD_HELIOS OR BUILD_TRACE)
+    set(BUILD_SNAPSHOT ON)
+endif()
+
 # Compiler flags - Platform specific
 if(MSVC)
     # MSVC (Visual Studio) flags
