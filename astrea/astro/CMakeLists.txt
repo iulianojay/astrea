@@ -246,7 +246,6 @@ set(ASTRO_LIBS
     mp-units::mp-units
     matplot
     nlohmann_json::nlohmann_json
-    sqlite_orm::sqlite_orm
     gtl
 )
 
