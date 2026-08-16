@@ -65,7 +65,6 @@ set(HELIOS_LIBS
     webui 
     OpenMP::OpenMP_CXX
     nlohmann_json::nlohmann_json
-    sqlite_orm::sqlite_orm
 )
 
 # Shared library
