@@ -8,7 +8,8 @@ updates:
     commit-message:
       prefix: "[dependabot]"
       prefix-development: "[dependabot]"
-    target-branch: "develop"
+    target-branch: "dev"
+    security-updates: true
     groups:
       all-deps:
         patterns:
@@ -22,7 +23,8 @@ updates:
     commit-message:
       prefix: "[dependabot]"
       prefix-development: "[dependabot]"
-    target-branch: "develop"
+    target-branch: "dev"
+    security-updates: true
     groups:
       all-deps:
         patterns:
@@ -36,7 +38,8 @@ updates:
     commit-message:
       prefix: "[dependabot]"
       prefix-development: "[dependabot]"
-    target-branch: "develop"
+    target-branch: "dev"
+    security-updates: true
     groups:
       all-deps:
         patterns:
