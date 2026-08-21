@@ -43,6 +43,8 @@ class State {
     friend class Integrator;
     friend class StateTransitionMatrix;
 
+    static constexpr auto MU = get_mu<frames::primary.origin>(); // Is this what we want?
+
   public:
     /**
      * @brief Default constructor for State.
@@ -70,9 +72,9 @@ class State {
      * @param epoch The epoch of the state.
      * @param attitude The attitude of the state.
      */
-    template <IsFrame auto frame>
-    State(Cartesian<frame> elements, const Date& epoch, const std::optional<Attitude>& attitude = std::nullopt) :
-        _elements(elements.template in_frame<frames::primary>(epoch)),
+    template <IsOrbitalElements T>
+    State(const T& elements, const Date& epoch, const std::optional<Attitude>& attitude = std::nullopt) :
+        _elements(elements.template in_frame<frames::primary>(epoch, MU)),
         _epoch(epoch),
         _attitude(attitude)
     {
@@ -188,7 +190,14 @@ class State {
     template <IsOrbitalElements T>
     T in_element_set() const
     {
-        return _elements.in_element_set<T>(get_mu());
+        // TODO: How do we do this?
+        // if constexpr (std::is_specialization_v<_elements, Cartesian>) {
+        //     // cartesian<a> -> cartesian<b> -> set2<b>
+        //     return _elements.template in_frame<T::frame>(_epoch, MU).in_element_set<T>(get_mu());
+        // }
+
+        // set1<a> -> set2<a> -> cartesian<a> -> cartesian<b> -> set2<b>
+        return _elements.in_element_set<T>(get_mu()).template in_frame<T::frame>(_epoch, MU);
     }
 
     /**
@@ -199,6 +208,19 @@ class State {
     RadiusVector<frames::primary> get_position() const
     {
         return in_element_set<Cartesian<frames::primary>>().get_position();
+    }
+
+    /**
+     * @brief Converts the state to a specified frame.
+     *
+     * @tparam _frame_ The frame to convert the state to.
+     * @return State A new State object with the converted orbital elements.
+     */
+    template <IsFrame auto _frame_>
+    State& in_frame()
+    {
+        _elements = _elements.in_frame<_frame_>(get_epoch(), MU);
+        return *this;
     }
 
     /**
