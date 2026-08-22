@@ -21,12 +21,12 @@ name: Publish Devcontainer
 on:
   workflow_dispatch:
   pull_request:
-    branches: [ "dev" ]
+    branches: [ "main" ]
     paths:
       - 'docker/Dockerfile.dev'
       - '.github/workflows/docker-publish-devcontainer.yml'
   push:
-    branches: [ "dev" ]
+    branches: [ "main" ]
     paths:
       - 'docker/Dockerfile.dev'
       - '.github/workflows/docker-publish-devcontainer.yml'

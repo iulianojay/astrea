@@ -25,7 +25,7 @@
 #include <astro/systems/barycenters.hpp>
 
 #ifdef ASTREA_BUILD_SUN_EPHEMERIS
-#include <ephemerides/Sun/SunEphemerisTable.hpp>
+#include <astro/ephemerides/Sun/SunEphemerisTable.hpp>
 #endif // ASTREA_BUILD_SUN_EPHEMERIS
 
 namespace astrea {

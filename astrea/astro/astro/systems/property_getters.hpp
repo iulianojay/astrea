@@ -181,6 +181,17 @@ inline constexpr Unitless get_j3()
 };
 
 /**
+ * @brief Get the full set of gravitational coefficients of the celestial body.
+ *
+ * @return Unitless Reference to the full set of gravitational coefficients of the celestial body.
+ */
+template <IsCelestialBody auto body>
+inline constexpr auto get_gravity_coefficient_file()
+{
+    return get_celestial_body_parameters<body>().gravityCoefficientFile;
+};
+
+/**
  * @brief Get the axial tilt of the celestial body.
  *
  * @return Angle Reference to the axial tilt of the celestial body.

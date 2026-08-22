@@ -5,7 +5,7 @@
 [![GitHub license](https://img.shields.io/github/license/iulianojay/astrea?cacheSeconds=3600&color=informational&label=License)](./LICENSE.LESSER)
 [![C++ Standard](https://img.shields.io/badge/C%2B%2B-23-blue)](https://en.cppreference.com/w/cpp/compiler_support#cpp23)
 
-[![Astrea CI](https://img.shields.io/github/actions/workflow/status/iulianojay/astrea/build-and-test.yml?branch=master&label=Astrea%20CI)](https://github.com/iulianojay/astrea/actions/workflows/build-and-test.yml)
+[![Astrea CI](https://img.shields.io/github/actions/workflow/status/iulianojay/astrea/build-and-test.yml?branch=main&label=Astrea%20CI)](https://github.com/iulianojay/astrea/actions/workflows/build-and-test.yml)
 ![Code Coverage](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/iulianojay/238a4a61ca19471caa1e39376158d625/raw/coverage.json)
 
 
@@ -17,7 +17,7 @@ Astrea is a high-performance, type-safe astrodynamics library designed for missi
 
 ## Overview
 
-This library features a comprehensive type system that prevents common errors in astrodynamics calculations through compile-time checks - namely a strongly typed units system developed on top of mp-units, strongly typed orbital elements with in-place conversions and type-erased containers, and a system of strongly-typed framed. All of these features offer a high level of performance and safety, while also providing a flexible and extensible architecture for custom applications.
+This library features a comprehensive type system that prevents common errors in astrodynamics calculations through compile-time checks - namely a strongly typed units system developed on top of mp-units, strongly typed orbital elements with in-place conversions and type-erased containers, and a independently developed system of strongly-typed frames. All of these features offer a high level of performance and safety, while also providing a flexible and extensible architecture for custom applications.
 
 ## Key Features
 

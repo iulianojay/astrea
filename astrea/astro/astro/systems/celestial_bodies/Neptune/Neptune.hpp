@@ -25,7 +25,7 @@
 #include <astro/systems/barycenters.hpp>
 
 #ifdef ASTREA_BUILD_NEPTUNE_EPHEMERIS
-#include <ephemerides/Neptune/NeptuneEphemerisTable.hpp>
+#include <astro/ephemerides/Neptune/NeptuneEphemerisTable.hpp>
 #endif // ASTREA_BUILD_NEPTUNE_EPHEMERIS
 
 namespace astrea {

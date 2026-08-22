@@ -25,7 +25,7 @@
 #include <astro/systems/barycenters.hpp>
 
 #ifdef ASTREA_BUILD_SATURN_EPHEMERIS
-#include <ephemerides/Saturn/SaturnEphemerisTable.hpp>
+#include <astro/ephemerides/Saturn/SaturnEphemerisTable.hpp>
 #endif // ASTREA_BUILD_SATURN_EPHEMERIS
 
 namespace astrea {
