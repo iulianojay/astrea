@@ -149,7 +149,14 @@ class State {
     template <IsOrbitalElements T>
     T in_element_set() const
     {
-        return _elements.in_element_set<T>(get_mu());
+        // TODO: How do we do this?
+        // if constexpr (std::is_specialization_v<_elements, Cartesian>) {
+        //     // cartesian<a> -> cartesian<b> -> set2<b>
+        //     return _elements.template in_frame<T::frame>(_epoch, get_mu()).in_element_set<T>(get_mu());
+        // }
+
+        // set1<a> -> set2<a> -> cartesian<a> -> cartesian<b> -> set2<b>
+        return _elements.in_element_set<T>(get_mu()).template in_frame<T::frame>(_epoch, get_mu());
     }
 
     /**
@@ -160,6 +167,19 @@ class State {
     RadiusVector<frames::earth::icrf> get_position() const
     {
         return in_element_set<Cartesian<frames::earth::icrf>>().get_position();
+    }
+
+    /**
+     * @brief Converts the state to a specified frame.
+     *
+     * @tparam _frame_ The frame to convert the state to.
+     * @return State A new State object with the converted orbital elements.
+     */
+    template <IsFrame auto _frame_>
+    State& in_frame()
+    {
+        _elements = _elements.in_frame<_frame_>(get_epoch(), get_mu());
+        return *this;
     }
 
     /**
@@ -331,13 +351,6 @@ class State {
      * @return StatePartial The resulting StatePartial after division.
      */
     StatePartial<OrbitalElements_T, Attitude_T> operator/(const Time& divisor) const;
-
-    /**
-     * @brief Validates that another State object belongs to the same astrodynamics system.
-     *
-     * @param other The other State object to validate against.
-     */
-    void validate_system(const State& other) const;
 };
 
 template <typename OrbitalElements_T, typename Attitude_T>

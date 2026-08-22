@@ -262,6 +262,8 @@ class Cartesian
     template <IsFrame auto target_frame>
     Cartesian<target_frame> in_frame(const Date& epoch) const
     {
+        if constexpr (equivalent(frame, target_frame)) { return *this; }
+
         const auto r = get_position();
         const auto v = get_velocity();
 
