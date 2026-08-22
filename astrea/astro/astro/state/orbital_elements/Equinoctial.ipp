@@ -324,6 +324,7 @@ template <IsFrame auto _frame_>
 template <IsFrame auto target_frame>
 Equinoctial<target_frame> Equinoctial<_frame_>::in_frame(const Date& epoch, const GravParam& mu) const
 {
+    if constexpr (equivalent(frame, target_frame)) { return *this; }
     return Equinoctial<target_frame>(Cartesian<_frame_>(*this, mu).template in_frame<target_frame>(epoch), mu);
 }
 

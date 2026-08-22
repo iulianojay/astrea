@@ -25,6 +25,7 @@
 #include <astro/state/attitude/Attitude.hpp>
 #include <astro/state/attitude/Quaternion.hpp>
 #include <astro/state/orbital_elements/OrbitalElements.hpp>
+#include <astro/systems/property_getters.hpp>
 #include <astro/systems/system_utilities.hpp>
 #include <astro/time/Date.hpp>
 #include <astro/types/typedefs.hpp>
@@ -66,13 +67,14 @@ class State {
     /**
      * @brief Constructs a State from a Cartesian in any frame, converting it to the primary frame.
      *
+     * @tparam T The type of the element set.
      * @param elements Cartesian elements in an arbitrary inertial frame.
      * @param epoch The epoch of the state.
      * @param attitude The attitude of the state.
      */
-    template <IsFrame auto frame>
-    State(Cartesian<frame> elements, const Date& epoch, const std::optional<Attitude>& attitude = std::nullopt) :
-        _elements(elements.template in_frame<frames::primary>(epoch)),
+    template <IsOrbitalElements T>
+    State(const T& elements, const Date& epoch, const std::optional<Attitude>& attitude = std::nullopt) :
+        _elements(elements.template in_frame<frames::primary>(epoch, astrea::astro::get_mu<T::frame.origin>())),
         _epoch(epoch),
         _attitude(attitude)
     {
@@ -188,7 +190,14 @@ class State {
     template <IsOrbitalElements T>
     T in_element_set() const
     {
-        return _elements.in_element_set<T>(get_mu());
+        // TODO: How do we do this?
+        // if constexpr (std::is_specialization_v<_elements, Cartesian>) {
+        //     // cartesian<a> -> cartesian<b> -> set2<b>
+        //     return _elements.template in_frame<T::frame>(_epoch, get_mu()).in_element_set<T>(get_mu());
+        // }
+
+        // set1<a> -> set2<a> -> cartesian<a> -> cartesian<b> -> set2<b>
+        return _elements.in_element_set<T>(get_mu()).template in_frame<T::frame>(_epoch, get_mu());
     }
 
     /**
@@ -199,6 +208,19 @@ class State {
     RadiusVector<frames::primary> get_position() const
     {
         return in_element_set<Cartesian<frames::primary>>().get_position();
+    }
+
+    /**
+     * @brief Converts the state to a specified frame.
+     *
+     * @tparam _frame_ The frame to convert the state to.
+     * @return State A new State object with the converted orbital elements.
+     */
+    template <IsFrame auto _frame_>
+    State& in_frame()
+    {
+        _elements = _elements.in_frame<_frame_>(get_epoch(), get_mu());
+        return *this;
     }
 
     /**
@@ -362,13 +384,6 @@ class State {
      * @return StatePartial The resulting StatePartial after division.
      */
     StatePartial operator/(const Time& divisor) const;
-
-    /**
-     * @brief Validates that another State object belongs to the same astrodynamics system.
-     *
-     * @param other The other State object to validate against.
-     */
-    void validate_system(const State& other) const;
 };
 
 class StatePartial {
