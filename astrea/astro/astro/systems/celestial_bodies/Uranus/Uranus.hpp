@@ -25,7 +25,7 @@
 #include <astro/systems/barycenters.hpp>
 
 #ifdef ASTREA_BUILD_URANUS_EPHEMERIS
-#include <ephemerides/Uranus/UranusEphemerisTable.hpp>
+#include <astro/ephemerides/Uranus/UranusEphemerisTable.hpp>
 #endif // ASTREA_BUILD_URANUS_EPHEMERIS
 
 namespace astrea {

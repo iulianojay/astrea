@@ -17,8 +17,7 @@ on:
   workflow_dispatch:
   push:
     branches:
-      - master
-      - dev
+      - main
     tags:
       - v*
     paths:

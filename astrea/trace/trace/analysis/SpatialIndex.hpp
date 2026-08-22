@@ -57,6 +57,11 @@ class SpatialIndex {
      */
     SpatialIndex(const Angle& binSize = 10.0 * mp_units::si::unit_symbols::deg);
 
+    /**
+     * @brief Construct spatial index and populate with ground points
+     *
+     * @param groundPoints Vector of ground points to add to the index
+     */
     SpatialIndex(const GroundPointRefVec& groundPoints);
 
     /**

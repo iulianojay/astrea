@@ -7,15 +7,33 @@
 # of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details. You should
 # have received a copy of the GNU General Public License along with Astrea. If not, see <https://www.gnu.org/licenses/>.
 
-# add_subdirectory(trace)
-add_subdirectory(astro)
-add_subdirectory(math)
-add_subdirectory(helios)
-# add_subdirectory(pathfinder)
-add_subdirectory(snapshot)
-add_subdirectory(utilities)
+message(STATUS "Targets:")
+message(STATUS "-- Units: ON")
+message(STATUS "-- Math: ON")
+message(STATUS "-- Utilities: ON")
+message(STATUS "-- Astro: ON")
+message(STATUS "-- Helios: ${BUILD_HELIOS}")
+message(STATUS "-- Trace: ${BUILD_TRACE}")
+message(STATUS "-- Snapshot: ${BUILD_SNAPSHOT}")
+message(STATUS "-- Dynamic Libs: ON")
+message(STATUS "-- Static Libs: ${BUILD_STATIC}")
+message(STATUS "-- Tests: ${BUILD_TESTS}")
+message(STATUS "-- Examples: ${BUILD_EXAMPLES}")
 
 # add_subdirectory(units) // ignore until it has compiled files in it
+add_subdirectory(math)
+add_subdirectory(utilities)
+add_subdirectory(astro)
+if (BUILD_SNAPSHOT)
+    add_subdirectory(snapshot)
+endif()
+if (BUILD_HELIOS)
+    add_subdirectory(helios)
+endif()
+if (BUILD_TRACE)
+    add_subdirectory(trace)
+endif()
+# add_subdirectory(pathfinder)
 
 # Install units headers (header-only, no compiled target yet)
 install(
@@ -30,10 +48,22 @@ target_link_libraries(astrea INTERFACE
     math_shared
     utilities_shared
     astro_shared
-    snapshot_shared
-    helios_shared
-    trace_shared
 )
+if (BUILD_SNAPSHOT)
+    target_link_libraries(astrea INTERFACE
+        snapshot_shared
+    )
+endif()
+if (BUILD_HELIOS)
+    target_link_libraries(astrea INTERFACE
+        helios_shared
+    )
+endif()
+if (BUILD_TRACE)
+    target_link_libraries(astrea INTERFACE
+        trace_shared
+    )
+endif()
 
 # Static aggregate target (only created when BUILD_STATIC is enabled)
 if(${BUILD_STATIC})
@@ -43,8 +73,20 @@ if(${BUILD_STATIC})
         math_static
         utilities_static
         astro_static
-        snapshot_static
-        helios_static
-        trace_static
     )
+    if (BUILD_SNAPSHOT)
+        target_link_libraries(astrea_static INTERFACE
+            snapshot_static
+        )
+    endif()
+    if (BUILD_HELIOS)
+        target_link_libraries(astrea_static INTERFACE
+            helios_static
+        )
+    endif()
+    if (BUILD_TRACE)
+        target_link_libraries(astrea_static INTERFACE
+            trace_static
+        )
+    endif()
 endif()
