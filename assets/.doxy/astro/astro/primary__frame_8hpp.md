@@ -10,7 +10,6 @@
 
 _Registration point for the primary frame used across astrea._ [More...](#detailed-description)
 
-* `#include <type_traits>`
 * `#include <astro/frames/definitions/body_centered_inertial_frames.hpp>`
 * `#include <astro/frames/definitions/body_fixed_frames.hpp>`
 

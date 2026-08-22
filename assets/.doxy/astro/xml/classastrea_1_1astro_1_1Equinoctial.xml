@@ -592,7 +592,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" line="209" column="17" bodyfile="astrea/astro/astro/state/orbital_elements/Equinoctial.ipp" bodystart="325" bodyend="328"/>
+        <location file="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" line="209" column="17" bodyfile="astrea/astro/astro/state/orbital_elements/Equinoctial.ipp" bodystart="325" bodyend="329"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Equinoctial_1a60ab7f31289907e0460cd5762022d850" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>

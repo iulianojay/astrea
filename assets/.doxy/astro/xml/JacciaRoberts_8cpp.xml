@@ -239,8 +239,6 @@
         <link refid="frame__registry_8hpp"/>
         <childnode refid="111" relation="include">
         </childnode>
-        <childnode refid="13" relation="include">
-        </childnode>
         <childnode refid="109" relation="include">
         </childnode>
         <childnode refid="112" relation="include">
@@ -255,8 +253,6 @@
       <node id="113">
         <label>astro/frames/definitions/primary_frame.hpp</label>
         <link refid="primary__frame_8hpp"/>
-        <childnode refid="13" relation="include">
-        </childnode>
         <childnode refid="11" relation="include">
         </childnode>
         <childnode refid="101" relation="include">
@@ -576,6 +572,8 @@
         <childnode refid="130" relation="include">
         </childnode>
         <childnode refid="108" relation="include">
+        </childnode>
+        <childnode refid="42" relation="include">
         </childnode>
         <childnode refid="92" relation="include">
         </childnode>

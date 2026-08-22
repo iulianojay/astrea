@@ -16,8 +16,9 @@ concept <ref refid="conceptastrea_1_1astro_1_1IsOrbitalElements" kindref="compou
     std::is_move_constructible&lt;T&gt;::value;
     std::is_destructible&lt;T&gt;::value;
     requires !std::is_same&lt;T, OrbitalElements&gt;::value;
-    requires std::is_same&lt;T, Cartesian&lt;frames::primary&gt;&gt;::value || IsConstructableTo&lt;T, Cartesian&lt;frames::primary&gt;&gt; ||
-                 HasDirectCartesianConversion&lt;T, frames::primary&gt;;
+    requires IsFrameAware&lt;T&gt;;
+    requires std::is_same&lt;T, Cartesian&lt;T::frame&gt;&gt;::value || IsConstructableTo&lt;T, Cartesian&lt;T::frame&gt;&gt; ||
+                 HasDirectCartesianConversion&lt;T, T::frame&gt;;
     requires HasForceToDoubleVector&lt;T&gt;;
     requires HasMathOperators&lt;T&gt;;
     requires HasInPlaceMathOperators&lt;T&gt;;
@@ -38,6 +39,6 @@ concept <ref refid="conceptastrea_1_1astro_1_1IsOrbitalElements" kindref="compou
 </parameterlist>
 </para>
     </detaileddescription>
-    <location file="astrea/astro/astro/state/orbital_elements/OrbitalElements.hpp" line="71" column="1"/>
+    <location file="astrea/astro/astro/state/orbital_elements/OrbitalElements.hpp" line="73" column="1"/>
   </compounddef>
 </doxygen>

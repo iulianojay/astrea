@@ -12,7 +12,6 @@
 #pragma once
 
 #include <tuple>
-#include <type_traits>
 #include <variant>
 
 #include <astro/frames/definitions/frame_registry.fwd.hpp>

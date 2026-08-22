@@ -25,14 +25,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/frames/definitions/frame_registry.hpp" line="86" column="5" bodyfile="astrea/astro/astro/frames/definitions/frame_registry.hpp" bodystart="86" bodyend="-1"/>
+        <location file="astrea/astro/astro/frames/definitions/frame_registry.hpp" line="85" column="5" bodyfile="astrea/astro/astro/frames/definitions/frame_registry.hpp" bodystart="85" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="astrea/astro/astro/frames/definitions/frame_registry.hpp" line="85" column="1" bodyfile="astrea/astro/astro/frames/definitions/frame_registry.hpp" bodystart="85" bodyend="87"/>
+    <location file="astrea/astro/astro/frames/definitions/frame_registry.hpp" line="84" column="1" bodyfile="astrea/astro/astro/frames/definitions/frame_registry.hpp" bodystart="84" bodyend="86"/>
     <listofallmembers>
       <member refid="structastrea_1_1astro_1_1detail_1_1multi__tuple__cat_3_01First_00_01Rest_8_8_8_01_4_1a43195f32beef27439a20a8e92cf214fd" prot="public" virt="non-virtual"><scope>astrea::astro::detail::multi_tuple_cat&lt; First, Rest... &gt;</scope><name>type</name></member>
     </listofallmembers>

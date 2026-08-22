@@ -11,7 +11,6 @@
 _Registration point for Cartesian frames used across astrea._ [More...](#detailed-description)
 
 * `#include <tuple>`
-* `#include <type_traits>`
 * `#include <variant>`
 * `#include <astro/frames/definitions/frame_registry.fwd.hpp>`
 * `#include <astro/frames/definitions/primary_frame.hpp>`

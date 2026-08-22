@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="conceptastrea_1_1astro_1_1IsFrameAware" kind="concept">
+    <compoundname>astrea::astro::IsFrameAware</compoundname>
+    <templateparamlist>
+      <param>
+        <type>typename T</type>
+      </param>
+    </templateparamlist>
+    <initializer>template&lt;typename T&gt;
+concept <ref refid="conceptastrea_1_1astro_1_1IsFrameAware" kindref="compound">astrea::astro::IsFrameAware</ref> =  requires { T::frame; }    </initializer>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="astrea/astro/astro/state/orbital_elements/OrbitalElements.hpp" line="61" column="1"/>
+  </compounddef>
+</doxygen>

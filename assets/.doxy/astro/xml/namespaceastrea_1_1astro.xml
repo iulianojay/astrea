@@ -499,7 +499,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/frames/definitions/frame_registry.hpp" line="38" column="1" bodyfile="astrea/astro/astro/frames/definitions/frame_registry.hpp" bodystart="38" bodyend="-1"/>
+        <location file="astrea/astro/astro/frames/definitions/frame_registry.hpp" line="37" column="1" bodyfile="astrea/astro/astro/frames/definitions/frame_registry.hpp" bodystart="37" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="DirectionCosineMatrix_8hpp_1acfdbdc91bebb7cb7fbf23fbaefdea062" prot="public" static="no">
         <templateparamlist>
@@ -765,7 +765,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/orbital_elements/OrbitalElements.hpp" line="388" column="1" bodyfile="astrea/astro/astro/state/orbital_elements/OrbitalElements.hpp" bodystart="390" bodyend="-1"/>
+        <location file="astrea/astro/astro/state/orbital_elements/OrbitalElements.hpp" line="391" column="1" bodyfile="astrea/astro/astro/state/orbital_elements/OrbitalElements.hpp" bodystart="393" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="property__getters_8hpp_1a5953ce5f38ca7cc5b49fb4c7b522c3b1" prot="public" static="no">
         <type>std::tuple&lt; mp_units::quantity&lt; mp_units::si::unit_symbols::rad/(astrea::units::unit_symbols::jc *astrea::units::unit_symbols::jc)&gt;, mp_units::quantity&lt; mp_units::si::unit_symbols::rad &gt;, mp_units::quantity&lt; mp_units::si::unit_symbols::rad &gt;, mp_units::quantity&lt; mp_units::si::unit_symbols::rad/astrea::units::unit_symbols::jc &gt; &gt;</type>
@@ -1726,7 +1726,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/frames/definitions/frame_registry.hpp" line="114" column="16" bodyfile="astrea/astro/astro/frames/definitions/frame_registry.hpp" bodystart="114" bodyend="117"/>
+        <location file="astrea/astro/astro/frames/definitions/frame_registry.hpp" line="113" column="16" bodyfile="astrea/astro/astro/frames/definitions/frame_registry.hpp" bodystart="113" bodyend="116"/>
       </memberdef>
       <memberdef kind="function" id="frame__registry_8hpp_1ad98c7f115b200e3a2831b8d23c8ff37b" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
@@ -1748,7 +1748,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/frames/definitions/frame_registry.hpp" line="120" column="16" bodyfile="astrea/astro/astro/frames/definitions/frame_registry.hpp" bodystart="120" bodyend="123"/>
+        <location file="astrea/astro/astro/frames/definitions/frame_registry.hpp" line="119" column="16" bodyfile="astrea/astro/astro/frames/definitions/frame_registry.hpp" bodystart="119" bodyend="122"/>
       </memberdef>
       <memberdef kind="function" id="Axis_8hpp_1a964f5d2e01d96ae104beee8c775bd98d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
@@ -5881,7 +5881,7 @@ Get the Direction Cosine Matrix (DCM) for the J2000 to ICRF at a given date.</pa
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/orbital_elements/OrbitalElements.cpp" line="207" column="6" bodyfile="astrea/astro/astro/state/orbital_elements/OrbitalElements.cpp" bodystart="207" bodyend="213" declfile="astrea/astro/astro/state/orbital_elements/OrbitalElements.hpp" declline="508" declcolumn="6"/>
+        <location file="astrea/astro/astro/state/orbital_elements/OrbitalElements.cpp" line="207" column="6" bodyfile="astrea/astro/astro/state/orbital_elements/OrbitalElements.cpp" bodystart="207" bodyend="213" declfile="astrea/astro/astro/state/orbital_elements/OrbitalElements.hpp" declline="511" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="State_8cpp_1a6264365e7fca8e49a15cc62e3ae378e4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>std::ostream &amp;</type>

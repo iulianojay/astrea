@@ -2,7 +2,6 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
   <compounddef id="primary__frame_8hpp" kind="file" language="C++">
     <compoundname>primary_frame.hpp</compoundname>
-    <includes local="no">type_traits</includes>
     <includes refid="body__centered__inertial__frames_8hpp" local="no">astro/frames/definitions/body_centered_inertial_frames.hpp</includes>
     <includes refid="body__fixed__frames_8hpp" local="no">astro/frames/definitions/body_fixed_frames.hpp</includes>
     <includedby refid="frame__registry_8hpp" local="no">astrea/astro/astro/frames/definitions/frame_registry.hpp</includedby>
@@ -28,10 +27,10 @@
         <label>astro/astro.macros.hpp</label>
         <link refid="astro_8macros_8hpp"/>
       </node>
-      <node id="3">
+      <node id="2">
         <label>astro/frames/definitions/body_centered_inertial_frames.hpp</label>
         <link refid="body__centered__inertial__frames_8hpp"/>
-        <childnode refid="4" relation="include">
+        <childnode refid="3" relation="include">
         </childnode>
         <childnode refid="11" relation="include">
         </childnode>
@@ -55,7 +54,7 @@
         </childnode>
         <childnode refid="87" relation="include">
         </childnode>
-        <childnode refid="4" relation="include">
+        <childnode refid="3" relation="include">
         </childnode>
         <childnode refid="8" relation="include">
         </childnode>
@@ -68,8 +67,6 @@
         <label>astrea/astro/astro/frames/definitions/primary_frame.hpp</label>
         <link refid="primary__frame_8hpp"/>
         <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="3" relation="include">
         </childnode>
         <childnode refid="99" relation="include">
         </childnode>
@@ -99,7 +96,7 @@
       <node id="7">
         <label>astro/frames/framework/Axis.hpp</label>
         <link refid="Axis_8hpp"/>
-        <childnode refid="2" relation="include">
+        <childnode refid="4" relation="include">
         </childnode>
         <childnode refid="5" relation="include">
         </childnode>
@@ -111,13 +108,13 @@
       <node id="19">
         <label>astro/frames/framework/BodyFixedFrame.hpp</label>
         <link refid="BodyFixedFrame_8hpp_source"/>
-        <childnode refid="2" relation="include">
+        <childnode refid="4" relation="include">
         </childnode>
         <childnode refid="5" relation="include">
         </childnode>
         <childnode refid="6" relation="include">
         </childnode>
-        <childnode refid="4" relation="include">
+        <childnode refid="3" relation="include">
         </childnode>
         <childnode refid="8" relation="include">
         </childnode>
@@ -139,7 +136,7 @@
         </childnode>
         <childnode refid="13" relation="include">
         </childnode>
-        <childnode refid="4" relation="include">
+        <childnode refid="3" relation="include">
         </childnode>
         <childnode refid="8" relation="include">
         </childnode>
@@ -257,7 +254,7 @@
       <node id="88">
         <label>astro/frames/framework/FixedOffsetFrame.hpp</label>
         <link refid="FixedOffsetFrame_8hpp"/>
-        <childnode refid="2" relation="include">
+        <childnode refid="4" relation="include">
         </childnode>
         <childnode refid="89" relation="include">
         </childnode>
@@ -269,17 +266,17 @@
         </childnode>
         <childnode refid="21" relation="include">
         </childnode>
-        <childnode refid="4" relation="include">
+        <childnode refid="3" relation="include">
         </childnode>
         <childnode refid="8" relation="include">
         </childnode>
         <childnode refid="14" relation="include">
         </childnode>
       </node>
-      <node id="4">
+      <node id="3">
         <label>astro/frames/framework/Frame.hpp</label>
         <link refid="Frame_8hpp"/>
-        <childnode refid="2" relation="include">
+        <childnode refid="4" relation="include">
         </childnode>
         <childnode refid="5" relation="include">
         </childnode>
@@ -295,7 +292,7 @@
       <node id="10">
         <label>astro/frames/framework/Origin.hpp</label>
         <link refid="Origin_8hpp"/>
-        <childnode refid="2" relation="include">
+        <childnode refid="4" relation="include">
         </childnode>
         <childnode refid="5" relation="include">
         </childnode>
@@ -313,7 +310,7 @@
       <node id="45">
         <label>astro/frames/framework/frame_utilities.hpp</label>
         <link refid="frame__utilities_8hpp"/>
-        <childnode refid="4" relation="include">
+        <childnode refid="3" relation="include">
         </childnode>
         <childnode refid="8" relation="include">
         </childnode>
@@ -449,7 +446,7 @@
         </childnode>
         <childnode refid="7" relation="include">
         </childnode>
-        <childnode refid="4" relation="include">
+        <childnode refid="3" relation="include">
         </childnode>
         <childnode refid="10" relation="include">
         </childnode>
@@ -473,7 +470,7 @@
         </childnode>
         <childnode refid="21" relation="include">
         </childnode>
-        <childnode refid="4" relation="include">
+        <childnode refid="3" relation="include">
         </childnode>
         <childnode refid="10" relation="include">
         </childnode>
@@ -1009,7 +1006,7 @@
       <node id="96">
         <label>astro/types/type_traits.hpp</label>
         <link refid="type__traits_8hpp"/>
-        <childnode refid="2" relation="include">
+        <childnode refid="4" relation="include">
         </childnode>
       </node>
       <node id="49">
@@ -1110,7 +1107,7 @@
       <node id="29">
         <label>string</label>
       </node>
-      <node id="2">
+      <node id="4">
         <label>type_traits</label>
       </node>
       <node id="23">
@@ -1721,25 +1718,23 @@ The GNU Lesser General Public License (LGPL)</para>
 <codeline lineno="1"><highlight class="normal"></highlight></codeline>
 <codeline lineno="19"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="20"><highlight class="normal"></highlight></codeline>
-<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;type_traits&gt;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="22"><highlight class="normal"></highlight></codeline>
-<codeline lineno="23"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="body__centered__inertial__frames_8hpp" kindref="compound">astro/frames/definitions/body_centered_inertial_frames.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="body__fixed__frames_8hpp" kindref="compound">astro/frames/definitions/body_fixed_frames.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="25"><highlight class="normal"></highlight></codeline>
-<codeline lineno="26"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">astrea<sp/>{</highlight></codeline>
-<codeline lineno="27"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">astro<sp/>{</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="body__centered__inertial__frames_8hpp" kindref="compound">astro/frames/definitions/body_centered_inertial_frames.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="body__fixed__frames_8hpp" kindref="compound">astro/frames/definitions/body_fixed_frames.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">astrea<sp/>{</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">astro<sp/>{</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">frames<sp/>{</highlight></codeline>
 <codeline lineno="28"><highlight class="normal"></highlight></codeline>
-<codeline lineno="29"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">frames<sp/>{</highlight></codeline>
-<codeline lineno="30"><highlight class="normal"></highlight></codeline>
-<codeline lineno="31"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>primary<sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>frames::earth::icrf;</highlight></codeline>
-<codeline lineno="32"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>primary_fixed<sp/>=<sp/>frames::earth::earth_fixed;</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>primary<sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>frames::earth::icrf;</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>primary_fixed<sp/>=<sp/>frames::earth::earth_fixed;</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>frames</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="33"><highlight class="normal"></highlight></codeline>
-<codeline lineno="34"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>frames</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="keyword">static_assert</highlight><highlight class="normal">(IsInertialFrame&lt;std::decay_t&lt;</highlight><highlight class="keyword">decltype</highlight><highlight class="normal">(frames::primary)&gt;&gt;,<sp/></highlight><highlight class="stringliteral">&quot;The<sp/>primary<sp/>frame<sp/>must<sp/>be<sp/>inertial.&quot;</highlight><highlight class="normal">);</highlight></codeline>
 <codeline lineno="35"><highlight class="normal"></highlight></codeline>
-<codeline lineno="36"><highlight class="normal"></highlight><highlight class="keyword">static_assert</highlight><highlight class="normal">(IsInertialFrame&lt;std::decay_t&lt;</highlight><highlight class="keyword">decltype</highlight><highlight class="normal">(frames::primary)&gt;&gt;,<sp/></highlight><highlight class="stringliteral">&quot;The<sp/>primary<sp/>frame<sp/>must<sp/>be<sp/>inertial.&quot;</highlight><highlight class="normal">);</highlight></codeline>
-<codeline lineno="37"><highlight class="normal"></highlight></codeline>
-<codeline lineno="38"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>astro</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="39"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>astrea</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>astro</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>astrea</highlight><highlight class="normal"></highlight></codeline>
     </programlisting>
     <location file="astrea/astro/astro/frames/definitions/primary_frame.hpp"/>
   </compounddef>

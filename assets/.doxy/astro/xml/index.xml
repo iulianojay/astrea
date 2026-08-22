@@ -2123,7 +2123,7 @@
     <member refid="classastrea_1_1astro_1_1State_1a0a8f23e29b06d31e46bb537160283218" kind="variable"><name>_attitude</name></member>
     <member refid="classastrea_1_1astro_1_1State_1a0fe3c2662708c99727051bf63f622873" kind="function"><name>State</name></member>
     <member refid="classastrea_1_1astro_1_1State_1a88e618236948a16c73dd0260f23dfef1" kind="function"><name>State</name></member>
-    <member refid="classastrea_1_1astro_1_1State_1a76eff8f1e7e2e4bacd15ca874f0d182f" kind="function"><name>State</name></member>
+    <member refid="classastrea_1_1astro_1_1State_1abd0693e0553959c9b585024900b59a05" kind="function"><name>State</name></member>
     <member refid="classastrea_1_1astro_1_1State_1a9ae8bc208ca84cc8edf69fe2f1c542ad" kind="function"><name>State</name></member>
     <member refid="classastrea_1_1astro_1_1State_1affd704af3b1b24a108d6426614cfd360" kind="function"><name>operator==</name></member>
     <member refid="classastrea_1_1astro_1_1State_1ab7d75676227e17edcd23a3a2401f0a94" kind="function"><name>get_elements</name></member>
@@ -2136,6 +2136,7 @@
     <member refid="classastrea_1_1astro_1_1State_1a9f0bb5b0bf79a09e39528ff6cf99d93a" kind="function"><name>convert_to_set</name></member>
     <member refid="classastrea_1_1astro_1_1State_1a1ece2e44cee20c4247d0b62cc5e810e7" kind="function"><name>in_element_set</name></member>
     <member refid="classastrea_1_1astro_1_1State_1a30d22c509e1a2c6609fa2fc34fcec591" kind="function"><name>get_position</name></member>
+    <member refid="classastrea_1_1astro_1_1State_1ab7abb271835fd9ecb5471b910a869288" kind="function"><name>in_frame</name></member>
     <member refid="classastrea_1_1astro_1_1State_1ab21eafb8046f18a3c4ce7dc26a063360" kind="function"><name>get_position_in_frame</name></member>
     <member refid="classastrea_1_1astro_1_1State_1a3df4858aee76ec4e4f69e4709b6e7b2c" kind="function"><name>get_velocity</name></member>
     <member refid="classastrea_1_1astro_1_1State_1a72dbff8878d3a98f412daf577a40e141" kind="function"><name>get_velocity_in_frame</name></member>
@@ -2152,7 +2153,6 @@
     <member refid="classastrea_1_1astro_1_1State_1a6612951d0d556c9af9962a753fb6b217" kind="function"><name>operator/</name></member>
     <member refid="classastrea_1_1astro_1_1State_1a2824d49cae9710187460ff16357a58b0" kind="function"><name>operator/=</name></member>
     <member refid="classastrea_1_1astro_1_1State_1ac3d8c5730f3705d9752db10397ab81b7" kind="function"><name>operator/</name></member>
-    <member refid="classastrea_1_1astro_1_1State_1a2f2fbcb51c80808acf7cbbea42e9461a" kind="function"><name>validate_system</name></member>
     <member refid="classastrea_1_1astro_1_1State_1a73f0effad3ea6266ac70dc7fc9d7ae72" kind="function"><name>from_double_vector</name></member>
   </compound>
   <compound refid="classastrea_1_1astro_1_1StateHistory" kind="class"><name>astrea::astro::StateHistory</name>
@@ -2582,6 +2582,8 @@
   <compound refid="conceptastrea_1_1astro_1_1IsFixedOffsetFrame" kind="concept"><name>astrea::astro::IsFixedOffsetFrame</name>
   </compound>
   <compound refid="conceptastrea_1_1astro_1_1IsFrame" kind="concept"><name>astrea::astro::IsFrame</name>
+  </compound>
+  <compound refid="conceptastrea_1_1astro_1_1IsFrameAware" kind="concept"><name>astrea::astro::IsFrameAware</name>
   </compound>
   <compound refid="conceptastrea_1_1astro_1_1IsGenericallyConstructableEvent" kind="concept"><name>astrea::astro::IsGenericallyConstructableEvent</name>
   </compound>

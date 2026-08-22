@@ -16,7 +16,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/State.hpp" line="428" column="10" bodyfile="astrea/astro/astro/state/State.hpp" bodystart="428" bodyend="-1"/>
+        <location file="astrea/astro/astro/state/State.hpp" line="443" column="10" bodyfile="astrea/astro/astro/state/State.hpp" bodystart="443" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1StatePartial_1a5b4b9f73b7252974c97f296f5e70c6e8" prot="private" static="no" mutable="no">
         <type><ref refid="classastrea_1_1astro_1_1OrbitalElementPartials" kindref="compound">OrbitalElementPartials</ref></type>
@@ -31,7 +31,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/State.hpp" line="429" column="28" bodyfile="astrea/astro/astro/state/State.hpp" bodystart="429" bodyend="-1"/>
+        <location file="astrea/astro/astro/state/State.hpp" line="444" column="28" bodyfile="astrea/astro/astro/state/State.hpp" bodystart="444" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1StatePartial_1a75bd6dd29c757f6211e44cb602587020" prot="private" static="no" mutable="no">
         <type>std::optional&lt; <ref refid="classastrea_1_1astro_1_1AttitudePartials" kindref="compound">AttitudePartials</ref> &gt;</type>
@@ -46,7 +46,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/State.hpp" line="430" column="19" bodyfile="astrea/astro/astro/state/State.hpp" bodystart="430" bodyend="-1"/>
+        <location file="astrea/astro/astro/state/State.hpp" line="445" column="19" bodyfile="astrea/astro/astro/state/State.hpp" bodystart="445" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="public-func">
@@ -63,7 +63,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/State.hpp" line="380" column="5"/>
+        <location file="astrea/astro/astro/state/State.hpp" line="395" column="5"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1StatePartial_1acdd6e7bcdb767cd1731b5836758f8bb1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
@@ -125,7 +125,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/State.hpp" line="390" column="5" bodyfile="astrea/astro/astro/state/State.hpp" bodystart="390" bodyend="395"/>
+        <location file="astrea/astro/astro/state/State.hpp" line="405" column="5" bodyfile="astrea/astro/astro/state/State.hpp" bodystart="405" bodyend="410"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1StatePartial_1a19594cd5e6164bd589443765bd6ad9db" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref></type>
@@ -156,7 +156,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/State.hpp" line="403" column="11" bodyfile="astrea/astro/astro/state/State.cpp" bodystart="116" bodyend="121"/>
+        <location file="astrea/astro/astro/state/State.hpp" line="418" column="11" bodyfile="astrea/astro/astro/state/State.cpp" bodystart="116" bodyend="121"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1StatePartial_1a53b6c6e7f49320b8d89ed7ec96631569" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>const <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
@@ -174,7 +174,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/State.hpp" line="410" column="16" bodyfile="astrea/astro/astro/state/State.cpp" bodystart="123" bodyend="123"/>
+        <location file="astrea/astro/astro/state/State.hpp" line="425" column="16" bodyfile="astrea/astro/astro/state/State.cpp" bodystart="123" bodyend="123"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1StatePartial_1a6bc5774b70a76637b3d7c8656149877d" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>std::vector&lt; double &gt;</type>
@@ -192,14 +192,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/State.hpp" line="417" column="17" bodyfile="astrea/astro/astro/state/State.hpp" bodystart="417" bodyend="425"/>
+        <location file="astrea/astro/astro/state/State.hpp" line="432" column="17" bodyfile="astrea/astro/astro/state/State.hpp" bodystart="432" bodyend="440"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="astrea/astro/astro/state/State.hpp" line="374" column="1" bodyfile="astrea/astro/astro/state/State.hpp" bodystart="374" bodyend="431"/>
+    <location file="astrea/astro/astro/state/State.hpp" line="389" column="1" bodyfile="astrea/astro/astro/state/State.hpp" bodystart="389" bodyend="446"/>
     <listofallmembers>
       <member refid="classastrea_1_1astro_1_1StatePartial_1a75bd6dd29c757f6211e44cb602587020" prot="private" virt="non-virtual"><scope>astrea::astro::StatePartial</scope><name>_attitudePartial</name></member>
       <member refid="classastrea_1_1astro_1_1StatePartial_1a5b4b9f73b7252974c97f296f5e70c6e8" prot="private" virt="non-virtual"><scope>astrea::astro::StatePartial</scope><name>_elementPartials</name></member>

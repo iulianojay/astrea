@@ -25,10 +25,10 @@
         <label>astro/astro.macros.hpp</label>
         <link refid="astro_8macros_8hpp"/>
       </node>
-      <node id="16">
+      <node id="15">
         <label>astro/frames/definitions/body_centered_inertial_frames.hpp</label>
         <link refid="body__centered__inertial__frames_8hpp"/>
-        <childnode refid="17" relation="include">
+        <childnode refid="16" relation="include">
         </childnode>
         <childnode refid="21" relation="include">
         </childnode>
@@ -52,7 +52,7 @@
         </childnode>
         <childnode refid="93" relation="include">
         </childnode>
-        <childnode refid="17" relation="include">
+        <childnode refid="16" relation="include">
         </childnode>
         <childnode refid="8" relation="include">
         </childnode>
@@ -61,7 +61,7 @@
         <childnode refid="33" relation="include">
         </childnode>
       </node>
-      <node id="14">
+      <node id="13">
         <label>astro/frames/definitions/frame_registry.fwd.hpp</label>
         <link refid="frame__registry_8fwd_8hpp_source"/>
         <childnode refid="12" relation="include">
@@ -72,25 +72,21 @@
         <link refid="frame__registry_8hpp"/>
         <childnode refid="12" relation="include">
         </childnode>
-        <childnode refid="13" relation="include">
-        </childnode>
         <childnode refid="4" relation="include">
         </childnode>
-        <childnode refid="14" relation="include">
+        <childnode refid="13" relation="include">
         </childnode>
-        <childnode refid="15" relation="include">
+        <childnode refid="14" relation="include">
         </childnode>
         <childnode refid="86" relation="include">
         </childnode>
         <childnode refid="8" relation="include">
         </childnode>
       </node>
-      <node id="15">
+      <node id="14">
         <label>astro/frames/definitions/primary_frame.hpp</label>
         <link refid="primary__frame_8hpp"/>
-        <childnode refid="13" relation="include">
-        </childnode>
-        <childnode refid="16" relation="include">
+        <childnode refid="15" relation="include">
         </childnode>
         <childnode refid="105" relation="include">
         </childnode>
@@ -120,7 +116,7 @@
       <node id="19">
         <label>astro/frames/framework/Axis.hpp</label>
         <link refid="Axis_8hpp"/>
-        <childnode refid="13" relation="include">
+        <childnode refid="17" relation="include">
         </childnode>
         <childnode refid="18" relation="include">
         </childnode>
@@ -132,13 +128,13 @@
       <node id="26">
         <label>astro/frames/framework/BodyFixedFrame.hpp</label>
         <link refid="BodyFixedFrame_8hpp_source"/>
-        <childnode refid="13" relation="include">
+        <childnode refid="17" relation="include">
         </childnode>
         <childnode refid="18" relation="include">
         </childnode>
         <childnode refid="5" relation="include">
         </childnode>
-        <childnode refid="17" relation="include">
+        <childnode refid="16" relation="include">
         </childnode>
         <childnode refid="8" relation="include">
         </childnode>
@@ -160,7 +156,7 @@
         </childnode>
         <childnode refid="6" relation="include">
         </childnode>
-        <childnode refid="17" relation="include">
+        <childnode refid="16" relation="include">
         </childnode>
         <childnode refid="8" relation="include">
         </childnode>
@@ -278,7 +274,7 @@
       <node id="94">
         <label>astro/frames/framework/FixedOffsetFrame.hpp</label>
         <link refid="FixedOffsetFrame_8hpp"/>
-        <childnode refid="13" relation="include">
+        <childnode refid="17" relation="include">
         </childnode>
         <childnode refid="95" relation="include">
         </childnode>
@@ -290,17 +286,17 @@
         </childnode>
         <childnode refid="28" relation="include">
         </childnode>
-        <childnode refid="17" relation="include">
+        <childnode refid="16" relation="include">
         </childnode>
         <childnode refid="8" relation="include">
         </childnode>
         <childnode refid="9" relation="include">
         </childnode>
       </node>
-      <node id="17">
+      <node id="16">
         <label>astro/frames/framework/Frame.hpp</label>
         <link refid="Frame_8hpp"/>
-        <childnode refid="13" relation="include">
+        <childnode refid="17" relation="include">
         </childnode>
         <childnode refid="18" relation="include">
         </childnode>
@@ -316,7 +312,7 @@
       <node id="20">
         <label>astro/frames/framework/Origin.hpp</label>
         <link refid="Origin_8hpp"/>
-        <childnode refid="13" relation="include">
+        <childnode refid="17" relation="include">
         </childnode>
         <childnode refid="18" relation="include">
         </childnode>
@@ -334,7 +330,7 @@
       <node id="51">
         <label>astro/frames/framework/frame_utilities.hpp</label>
         <link refid="frame__utilities_8hpp"/>
-        <childnode refid="17" relation="include">
+        <childnode refid="16" relation="include">
         </childnode>
         <childnode refid="8" relation="include">
         </childnode>
@@ -494,7 +490,7 @@
         </childnode>
         <childnode refid="11" relation="include">
         </childnode>
-        <childnode refid="15" relation="include">
+        <childnode refid="14" relation="include">
         </childnode>
         <childnode refid="77" relation="include">
         </childnode>
@@ -516,7 +512,7 @@
         </childnode>
         <childnode refid="19" relation="include">
         </childnode>
-        <childnode refid="17" relation="include">
+        <childnode refid="16" relation="include">
         </childnode>
         <childnode refid="20" relation="include">
         </childnode>
@@ -540,7 +536,7 @@
         </childnode>
         <childnode refid="28" relation="include">
         </childnode>
-        <childnode refid="17" relation="include">
+        <childnode refid="16" relation="include">
         </childnode>
         <childnode refid="20" relation="include">
         </childnode>
@@ -1088,7 +1084,7 @@
       <node id="102">
         <label>astro/types/type_traits.hpp</label>
         <link refid="type__traits_8hpp"/>
-        <childnode refid="13" relation="include">
+        <childnode refid="17" relation="include">
         </childnode>
       </node>
       <node id="55">
@@ -1207,7 +1203,7 @@
       <node id="12">
         <label>tuple</label>
       </node>
-      <node id="13">
+      <node id="17">
         <label>type_traits</label>
       </node>
       <node id="30">

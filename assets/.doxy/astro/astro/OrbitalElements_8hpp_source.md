@@ -33,6 +33,8 @@ using OrbitalElementVariant = typename detail::tuple_to_variant<typename detail:
     typename detail::apply_nttp_template<Cartesian, detail::AllRegisteredFrames>::type,
     typename detail::apply_nttp_template<FrameIndexedTypes, detail::AllRegisteredFrames>::type...>::type>::type;
 
+template <typename T>
+concept IsFrameAware = requires { T::frame; };
 
 template <typename T>
 concept IsOrbitalElements = requires(T) {
@@ -42,8 +44,9 @@ concept IsOrbitalElements = requires(T) {
     std::is_move_constructible<T>::value;
     std::is_destructible<T>::value;
     requires !std::is_same<T, OrbitalElements>::value;
-    requires std::is_same<T, Cartesian<frames::primary>>::value || IsConstructableTo<T, Cartesian<frames::primary>> ||
-                 HasDirectCartesianConversion<T, frames::primary>;
+    requires IsFrameAware<T>;
+    requires std::is_same<T, Cartesian<T::frame>>::value || IsConstructableTo<T, Cartesian<T::frame>> ||
+                 HasDirectCartesianConversion<T, T::frame>;
     requires HasForceToDoubleVector<T>;
     requires HasMathOperators<T>;
     requires HasInPlaceMathOperators<T>;

@@ -6262,7 +6262,7 @@ You're not viewing the latest version.
 </tr>
 <tr>
 <td style="text-align: right;"></td>
-<td style="text-align: left;"><a href="#function-state-34"><strong>State</strong></a> (<a href="../classastrea_1_1astro_1_1Cartesian/"><strong>Cartesian</strong></a>&lt; frame &gt; elements, const <a href="../classastrea_1_1astro_1_1Date/"><strong>Date</strong></a> &amp; epoch, const std::optional&lt; <a href="../classastrea_1_1astro_1_1Attitude/"><strong>Attitude</strong></a> &gt; &amp; attitude=std::nullopt) <br><em>Constructs a</em> <a href="./"><em><strong>State</strong></em></a> <em>from a</em><a href="../classastrea_1_1astro_1_1Cartesian/"><em><strong>Cartesian</strong></em></a> <em>in any frame, converting it to the primary frame.</em></td>
+<td style="text-align: left;"><a href="#function-state-34"><strong>State</strong></a> (const T &amp; elements, const <a href="../classastrea_1_1astro_1_1Date/"><strong>Date</strong></a> &amp; epoch, const std::optional&lt; <a href="../classastrea_1_1astro_1_1Attitude/"><strong>Attitude</strong></a> &gt; &amp; attitude=std::nullopt) <br><em>Constructs a</em> <a href="./"><em><strong>State</strong></em></a> <em>from a</em><a href="../classastrea_1_1astro_1_1Cartesian/"><em><strong>Cartesian</strong></em></a> <em>in any frame, converting it to the primary frame.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;"></td>
@@ -6321,6 +6321,10 @@ You're not viewing the latest version.
 <td style="text-align: left;"><a href="#function-in_element_set"><strong>in_element_set</strong></a> () const<br><em>Converts the current orbital elements to a specified type.</em></td>
 </tr>
 <tr>
+<td style="text-align: right;"><a href="./"><strong>State</strong></a> &amp;</td>
+<td style="text-align: left;"><a href="#function-in_frame"><strong>in_frame</strong></a> () <br><em>Converts the state to a specified frame.</em></td>
+</tr>
+<tr>
 <td style="text-align: right;">bool</td>
 <td style="text-align: left;"><a href="#function-operator"><strong>operator==</strong></a> (const <a href="./"><strong>State</strong></a> &amp; other) const<br><em>Checks if two</em> <a href="./"><em><strong>State</strong></em></a> <em>objects are equal.</em></td>
 </tr>
@@ -6363,13 +6367,17 @@ You're not viewing the latest version.
 
 <h3 id="function-state-34">function State [3/4]<a class="headerlink" href="#function-state-34" title="Permanent link">&para;</a></h3>
 <p><em>Constructs a</em> <a href="./"><em><strong>State</strong></em></a> <em>from a</em><a href="../classastrea_1_1astro_1_1Cartesian/"><em><strong>Cartesian</strong></em></a> <em>in any frame, converting it to the primary frame.</em>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">template</span><span class="o">&lt;</span><span class="n">IsFrame</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">frame</span><span class="o">&gt;</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">template</span><span class="o">&lt;</span><span class="n">IsOrbitalElements</span><span class="w"> </span><span class="n">T</span><span class="o">&gt;</span>
 </span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="kr">inline</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">State</span><span class="o">::</span><span class="n">State</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="n">Cartesian</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">frame</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">elements</span><span class="p">,</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">T</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">elements</span><span class="p">,</span>
 </span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Date</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">epoch</span><span class="p">,</span>
 </span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">optional</span><span class="o">&lt;</span><span class="w"> </span><span class="n">Attitude</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">attitude</span><span class="o">=</span><span class="n">std</span><span class="o">::</span><span class="n">nullopt</span>
 </span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="p">)</span><span class="w"> </span>
 </span></code></pre></div></p>
+<p><strong>Template parameters:</strong></p>
+<ul>
+<li><code>T</code> The type of the element set. </li>
+</ul>
 <p><strong>Parameters:</strong></p>
 <ul>
 <li><code>elements</code> <a href="../classastrea_1_1astro_1_1Cartesian/"><strong>Cartesian</strong></a> elements in an arbitrary inertial frame. </li>
@@ -6531,11 +6539,24 @@ You're not viewing the latest version.
 <p>The converted orbital elements. </p>
 <hr>
 
+<h3 id="function-in_frame">function in_frame<a class="headerlink" href="#function-in_frame" title="Permanent link">&para;</a></h3>
+<p><em>Converts the state to a specified frame.</em> 
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="k">template</span><span class="o">&lt;</span><span class="n">IsFrame</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">_frame_</span><span class="o">&gt;</span>
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="kr">inline</span><span class="w"> </span><span class="n">State</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">State</span><span class="o">::</span><span class="n">in_frame</span><span class="w"> </span><span class="p">()</span><span class="w"> </span>
+</span></code></pre></div></p>
+<p><strong>Template parameters:</strong></p>
+<ul>
+<li><code>_frame_</code> The frame to convert the state to. </li>
+</ul>
+<p><strong>Returns:</strong></p>
+<p><a href="./"><strong>State</strong></a> A new <a href="./"><strong>State</strong></a> object with the converted orbital elements. </p>
+<hr>
+
 <h3 id="function-operator">function operator==<a class="headerlink" href="#function-operator" title="Permanent link">&para;</a></h3>
 <p><em>Checks if two</em> <a href="./"><em><strong>State</strong></em></a> <em>objects are equal.</em>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="kt">bool</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">State</span><span class="o">::</span><span class="k">operator</span><span class="o">==</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">State</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">other</span>
-</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="kt">bool</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">State</span><span class="o">::</span><span class="k">operator</span><span class="o">==</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">State</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">other</span>
+</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
 </span></code></pre></div></p>
 <p><strong>Parameters:</strong></p>
 <ul>
@@ -6549,9 +6570,9 @@ You're not viewing the latest version.
 
 <h3 id="function-set_attitude">function set_attitude<a class="headerlink" href="#function-set_attitude" title="Permanent link">&para;</a></h3>
 <p><em>Sets the attitude of the state.</em> 
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="kr">inline</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">State</span><span class="o">::</span><span class="n">set_attitude</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Attitude</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">attitude</span>
-</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="p">)</span><span class="w"> </span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="kr">inline</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">State</span><span class="o">::</span><span class="n">set_attitude</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Attitude</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">attitude</span>
+</span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a><span class="p">)</span><span class="w"> </span>
 </span></code></pre></div></p>
 <p><strong>Parameters:</strong></p>
 <ul>
@@ -6561,11 +6582,11 @@ You're not viewing the latest version.
 
 <h3 id="function-set_elements">function set_elements<a class="headerlink" href="#function-set_elements" title="Permanent link">&para;</a></h3>
 <p><em>Sets the orbital elements of the state.</em> 
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="k">template</span><span class="o">&lt;</span><span class="n">IsOrbitalElements</span><span class="w"> </span><span class="n">T</span><span class="o">&gt;</span>
-</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="kr">inline</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">State</span><span class="o">::</span><span class="n">set_elements</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">T</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">elements</span><span class="p">,</span>
-</span><span id="__span-19-4"><a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">convertToOriginal</span><span class="o">=</span><span class="nb">false</span>
-</span><span id="__span-19-5"><a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a><span class="p">)</span><span class="w"> </span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="k">template</span><span class="o">&lt;</span><span class="n">IsOrbitalElements</span><span class="w"> </span><span class="n">T</span><span class="o">&gt;</span>
+</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="kr">inline</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">State</span><span class="o">::</span><span class="n">set_elements</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-20-3"><a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">T</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">elements</span><span class="p">,</span>
+</span><span id="__span-20-4"><a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">convertToOriginal</span><span class="o">=</span><span class="nb">false</span>
+</span><span id="__span-20-5"><a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a><span class="p">)</span><span class="w"> </span>
 </span></code></pre></div></p>
 <p><strong>Parameters:</strong></p>
 <ul>
@@ -6575,9 +6596,9 @@ You're not viewing the latest version.
 
 <h3 id="function-set_epoch">function set_epoch<a class="headerlink" href="#function-set_epoch" title="Permanent link">&para;</a></h3>
 <p><em>Sets the epoch of the state.</em> 
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="kr">inline</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">State</span><span class="o">::</span><span class="n">set_epoch</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Date</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">epoch</span>
-</span><span id="__span-20-3"><a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a><span class="p">)</span><span class="w"> </span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="kr">inline</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">State</span><span class="o">::</span><span class="n">set_epoch</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Date</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">epoch</span>
+</span><span id="__span-21-3"><a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a><span class="p">)</span><span class="w"> </span>
 </span></code></pre></div></p>
 <p><strong>Parameters:</strong></p>
 <ul>

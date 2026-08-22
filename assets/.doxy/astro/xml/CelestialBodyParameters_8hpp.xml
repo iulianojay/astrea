@@ -1167,6 +1167,8 @@
         <link refid="property__getters_8hpp_source"/>
         <childnode refid="85" relation="include">
         </childnode>
+        <childnode refid="55" relation="include">
+        </childnode>
         <childnode refid="2" relation="include">
         </childnode>
         <childnode refid="4" relation="include">

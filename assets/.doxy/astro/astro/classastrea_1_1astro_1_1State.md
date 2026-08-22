@@ -54,7 +54,7 @@ _Class representing the state of an astronomical object. This class encapsulates
 | ---: | :--- |
 |   | [**State**](#function-state-14) () = default<br>_Default constructor for_ [_**State**_](classastrea_1_1astro_1_1State.md) _._ |
 |   | [**State**](#function-state-24) (const [**OrbitalElements**](classastrea_1_1astro_1_1OrbitalElements.md) & elements, const [**Date**](classastrea_1_1astro_1_1Date.md) & epoch, const std::optional&lt; [**Attitude**](classastrea_1_1astro_1_1Attitude.md) &gt; & attitude=std::nullopt) <br>_Constructs a_ [_**State**_](classastrea_1_1astro_1_1State.md) _with given orbital elements, epoch, and astrodynamics system._ |
-|   | [**State**](#function-state-34) ([**Cartesian**](classastrea_1_1astro_1_1Cartesian.md)&lt; frame &gt; elements, const [**Date**](classastrea_1_1astro_1_1Date.md) & epoch, const std::optional&lt; [**Attitude**](classastrea_1_1astro_1_1Attitude.md) &gt; & attitude=std::nullopt) <br>_Constructs a_ [_**State**_](classastrea_1_1astro_1_1State.md) _from a_[_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _in any frame, converting it to the primary frame._ |
+|   | [**State**](#function-state-34) (const T & elements, const [**Date**](classastrea_1_1astro_1_1Date.md) & epoch, const std::optional&lt; [**Attitude**](classastrea_1_1astro_1_1Attitude.md) &gt; & attitude=std::nullopt) <br>_Constructs a_ [_**State**_](classastrea_1_1astro_1_1State.md) _from a_[_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _in any frame, converting it to the primary frame._ |
 |   | [**State**](#function-state-44) (const [**StateHistory**](classastrea_1_1astro_1_1StateHistory.md) & history) <br>_Constructs a_ [_**State**_](classastrea_1_1astro_1_1State.md) _from a_[_**StateHistory**_](classastrea_1_1astro_1_1StateHistory.md) _object._ |
 |  void | [**convert\_to\_set**](#function-convert_to_set-14) () <br>_Converts the orbital elements to a different type._  |
 |  [**State**](classastrea_1_1astro_1_1State.md) & | [**convert\_to\_set**](#function-convert_to_set-24) (const std::size\_t idx) <br>_Converts the orbital elements to a different type based on index._  |
@@ -69,6 +69,7 @@ _Class representing the state of an astronomical object. This class encapsulates
 |  [**VelocityVector**](namespaceastrea_1_1astro.md#typedef-velocityvector)&lt; frames::primary &gt; | [**get\_velocity**](#function-get_velocity) () const<br>_Gets the velocity vector from the state._  |
 |  [**VelocityVector**](namespaceastrea_1_1astro.md#typedef-velocityvector)&lt; \_frame\_ &gt; | [**get\_velocity\_in\_frame**](#function-get_velocity_in_frame) (const [**Date**](classastrea_1_1astro_1_1Date.md) & date) const<br>_Gets the velocity vector in a specified frame from the state._  |
 |  T | [**in\_element\_set**](#function-in_element_set) () const<br>_Converts the current orbital elements to a specified type._  |
+|  [**State**](classastrea_1_1astro_1_1State.md) & | [**in\_frame**](#function-in_frame) () <br>_Converts the state to a specified frame._  |
 |  bool | [**operator==**](#function-operator) (const [**State**](classastrea_1_1astro_1_1State.md) & other) const<br>_Checks if two_ [_**State**_](classastrea_1_1astro_1_1State.md) _objects are equal._ |
 |  void | [**set\_attitude**](#function-set_attitude) (const [**Attitude**](classastrea_1_1astro_1_1Attitude.md) & attitude) <br>_Sets the attitude of the state._  |
 |  void | [**set\_elements**](#function-set_elements) (const T & elements, const bool convertToOriginal=false) <br>_Sets the orbital elements of the state._  |
@@ -155,15 +156,22 @@ inline astrea::astro::State::State (
 
 _Constructs a_ [_**State**_](classastrea_1_1astro_1_1State.md) _from a_[_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _in any frame, converting it to the primary frame._
 ```C++
-template<IsFrame auto frame>
+template<IsOrbitalElements T>
 inline astrea::astro::State::State (
-    Cartesian < frame > elements,
+    const T & elements,
     const Date & epoch,
     const std::optional< Attitude > & attitude=std::nullopt
 ) 
 ```
 
 
+
+
+
+**Template parameters:**
+
+
+* `T` The type of the element set. 
 
 
 
@@ -577,6 +585,39 @@ inline T astrea::astro::State::in_element_set () const
 **Returns:**
 
 The converted orbital elements. 
+
+
+
+
+
+        
+
+<hr>
+
+
+
+### function in\_frame 
+
+_Converts the state to a specified frame._ 
+```C++
+template<IsFrame auto _frame_>
+inline State & astrea::astro::State::in_frame () 
+```
+
+
+
+
+
+**Template parameters:**
+
+
+* `_frame_` The frame to convert the state to. 
+
+
+
+**Returns:**
+
+[**State**](classastrea_1_1astro_1_1State.md) A new [**State**](classastrea_1_1astro_1_1State.md) object with the converted orbital elements. 
 
 
 
