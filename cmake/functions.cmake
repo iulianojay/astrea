@@ -214,7 +214,7 @@ function(generate_ephemeris_files PROJECT_SOURCE_DIRECTORY)
         OUTPUT
             ${BODY_EPHEMERIS_HEADERS}
             ${BODY_EPHEMERIS_SOURCES}
-        COMMAND ${Python3_EXECUTABLE} ${PROJECT_SOURCE_DIRECTORY}/pyastro/jpl_ephemeris_parser.py -o ${CMAKE_CURRENT_BINARY_DIR}/include/ephemerides --bodies ${PYTHONIC_BODIES}
+        COMMAND ${Python3_EXECUTABLE} ${PROJECT_SOURCE_DIRECTORY}/pyastro/jpl_ephemeris_parser.py -o ${CMAKE_CURRENT_BINARY_DIR}/include/astro/ephemerides --bodies ${PYTHONIC_BODIES}
         DEPENDS
             ${PROJECT_SOURCE_DIRECTORY}/pyastro/jpl_ephemeris_parser.py
         WORKING_DIRECTORY ${PROJECT_SOURCE_DIRECTORY}
@@ -232,7 +232,7 @@ endfunction()
 function(build_system_ephemeris BODY_SYSTEM SYSTEM_BODIES)
 
     set(ALL_BODIES ${ALL_BODIES} ${SYSTEM_BODIES} PARENT_SCOPE)
-    set(PLANETARY_BASE ${CMAKE_CURRENT_BINARY_DIR}/include/ephemerides)
+    set(PLANETARY_BASE ${CMAKE_CURRENT_BINARY_DIR}/include/astro/ephemerides)
 
     set(ALL_EPHEMERIS_HEADERS "")
     set(ALL_EPHEMERIS_SOURCES "")
@@ -269,7 +269,7 @@ function(generate_eop_files PROJECT_SOURCE_DIRECTORY)
         message(FATAL_ERROR "EOP file, ${EOP_FILE}, not found. Please provide a valid EOP file.")
     endif()
 
-    set(EOP_BASE ${CMAKE_CURRENT_BINARY_DIR}/include/eop)
+    set(EOP_BASE ${CMAKE_CURRENT_BINARY_DIR}/include/astro/eop)
     set(EOP_HEADERS "${EOP_BASE}/EarthOrientationParameters.hpp")
     set(EOP_SOURCES "${EOP_BASE}/EarthOrientationParameters.cpp")
 
@@ -283,7 +283,7 @@ function(generate_eop_files PROJECT_SOURCE_DIRECTORY)
         OUTPUT
             ${EOP_HEADERS}
             ${EOP_SOURCES}
-        COMMAND ${Python3_EXECUTABLE} ${PROJECT_SOURCE_DIRECTORY}/pyastro/eop_parser.py -o ${CMAKE_CURRENT_BINARY_DIR}/include/eop --infile ${EOP_FILE} --rebuild ${REBUILD_EOP}
+        COMMAND ${Python3_EXECUTABLE} ${PROJECT_SOURCE_DIRECTORY}/pyastro/eop_parser.py -o ${CMAKE_CURRENT_BINARY_DIR}/include/astro/eop --infile ${EOP_FILE} --rebuild ${REBUILD_EOP}
         DEPENDS
             ${PROJECT_SOURCE_DIRECTORY}/pyastro/eop_parser.py
         WORKING_DIRECTORY ${PROJECT_SOURCE_DIRECTORY}

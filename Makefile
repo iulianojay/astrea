@@ -74,17 +74,14 @@ install: build
 
 .PHONY: build
 build:
-	cmake -S . -B $(build_path) \
+	$(CMAKE) -S . -B $(build_path) \
 	$(toolchain_make) \
 	$(toolchain_file) \
 	-DCMAKE_CXX_COMPILER=$(cxx) \
 	-DCMAKE_C_COMPILER=$(cc) \
 	-DCMAKE_BUILD_TYPE=$(build_type) \
-	-DCMAKE_EXPORT_COMPILE_COMMANDS=ON \
 	-DCMAKE_INSTALL_PREFIX:PATH=$(install_path) \
-	-DCMAKE_CXX_FLAGS=-fdiagnostics-color=always \
 	-DCPM_SOURCE_CACHE=$(config_path)/.cpm-cache \
-	-DCMAKE_POLICY_VERSION_MINIMUM=3.5 \
 	-DCMAKE_CXX_COMPILER=$(cxx) \
 	-DCMAKE_C_COMPILER=$(cc) \
 	-DBUILD_TESTS=$(build_tests) \

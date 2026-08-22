@@ -23,11 +23,12 @@
 #include <map>
 
 #include <astro/astro.fwd.hpp>
+#include <astro/astro.macros.hpp>
 #include <astro/systems/CelestialBody.hpp>
 #include <astro/systems/barycenters.hpp>
 
 #ifdef ASTREA_BUILD_MARS_EPHEMERIS
-#include <ephemerides/Mars/MarsEphemerisTable.hpp>
+#include <astro/ephemerides/Mars/MarsEphemerisTable.hpp>
 #endif // ASTREA_BUILD_MARS_EPHEMERIS
 
 namespace astrea {
@@ -82,7 +83,9 @@ inline consteval CelestialBodyParameters get_celestial_body_parameters<planets::
              .inclinationRate        = BodyAngularVelocity(-0.00813131 * deg / jc),
              .rightAscensionRate     = BodyAngularVelocity(-0.29257343 * deg / jc),
              .longitudeOfPerigeeRate = BodyAngularVelocity(0.44441088 * deg / jc),
-             .meanLongitudeRate      = BodyAngularVelocity(19140.30268499 * deg / jc) };
+             .meanLongitudeRate      = BodyAngularVelocity(19140.30268499 * deg / jc),
+             // https://pds-geosciences.wustl.edu/mro/mro-m-rss-5-sdp-v1/mrors_1xxx/data/shadr/ - normalized?
+             .gravityCoefficientFile = _ASTRO_GRAV_DATA_ROOT_ "/Mars/jgmro_120f_sha.tab" };
 }
 
 /**
