@@ -18,7 +18,6 @@
  */
 #pragma once
 
-#include <cmath>
 #include <tuple>
 #include <type_traits>
 #include <utility>

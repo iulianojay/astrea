@@ -20,7 +20,6 @@
 
 #include <astro/astro.fwd.hpp>
 #include <astro/frames/definitions.hpp>
-#include <astro/frames/definitions/primary_frame.hpp>
 #include <astro/propagation/force_models/ForceModel.hpp>
 #include <astro/types/typedefs.hpp>
 

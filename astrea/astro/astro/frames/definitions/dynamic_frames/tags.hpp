@@ -23,7 +23,6 @@
 #include <astro/frames/definitions/dynamic_frames/Perifocal.hpp>
 #include <astro/frames/definitions/dynamic_frames/RadialInTrackCrossTrack.hpp>
 #include <astro/frames/definitions/dynamic_frames/VelocityNormalBinormal.hpp>
-#include <astro/frames/definitions/frame_registry.hpp>
 #include <astro/frames/framework/DynamicFrame.hpp>
 #include <astro/frames/framework/Frame.hpp>
 

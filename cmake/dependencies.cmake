@@ -42,6 +42,7 @@ CPMFindPackage(
     "MATPLOTPP_BUILD_SHARED_LIBS ON"
     "MATPLOTPP_BUILD_TESTS OFF"
     "BUILD_SHARED_LIBS ON"
+    SYSTEM YES
 )
 if(DEFINED matplotplusplus_SOURCE_DIR)
     install(DIRECTORY "${matplotplusplus_SOURCE_DIR}/source/matplot" DESTINATION include)
@@ -53,6 +54,7 @@ CPMFindPackage(
     GITHUB_REPOSITORY greg7mdp/gtl
     GIT_SHALLOW TRUE
     GIT_TAG v1.2.0
+    SYSTEM YES
 )
 if(DEFINED gtl_SOURCE_DIR)
     install(DIRECTORY "${gtl_SOURCE_DIR}/include/" DESTINATION include)
@@ -64,6 +66,7 @@ CPMFindPackage(
     GITHUB_REPOSITORY kthohr/gcem
     GIT_SHALLOW TRUE
     GIT_TAG v1.18.0
+    SYSTEM YES
 )
 
 # ---- Conan-managed test/benchmark packages ----
