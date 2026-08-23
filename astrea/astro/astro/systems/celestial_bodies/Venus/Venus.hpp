@@ -63,7 +63,7 @@ inline consteval CelestialBodyParameters get_celestial_body_parameters<planets::
              .referenceDate          = Date(J2000),
              .mu                     = GravParam(324860.0 * pow<3>(km) / pow<2>(s)),
              .mass                   = Mass(4.87 * (mag_power<10, 24> * kg)),
-             .equitorialRadius       = Distance(6051.8 * km),
+             .equatorialRadius       = Distance(6051.8 * km),
              .polarRadius            = Distance(6051.8 * km),
              .crashRadius            = Distance(6301.8 * km),
              .sphereOfInfluence      = Distance(0.061640255733634 * au),

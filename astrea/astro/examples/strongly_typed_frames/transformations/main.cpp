@@ -28,9 +28,9 @@ using mp_units::si::unit_symbols::s;
 
 int main()
 {
-    // Astrea handles abberations in frame transformations the same it handles standard transformations. By combining
+    // Astrea handles aberrations in frame transformations the same it handles standard transformations. By combining
     // strongly-typed units with the strongly-typed frames, it's possible to know, for example, whether a vector
-    // rotation requires translation, rotation, abberations, etc. Astrea provides some simple utilities to represent
+    // rotation requires translation, rotation, aberrations, etc. Astrea provides some simple utilities to represent
     // different CartesianVector types.
     CartesianVector<Distance, frames::earth::icrf> vec0; // A vector with units and frame information
     Direction<frames::earth::icrf> vec1;                 // A vector with frame information assumed to be Unitless
@@ -71,7 +71,7 @@ int main()
         a1.in_frame<frames::earth::earth_fixed>(epoch, r1, v1); // Transforms a1 from Frame1 to Frame2 at the given epoch
 
     // Sometimes it's desirable to apply a specific transformation, such as a pure rotation without translation or
-    // abberations. In this case, users can call the direct rotations
+    // aberrations. In this case, users can call the direct rotations
     auto v2NoAbberation = frames::rotate_vector_into_frame<frames::earth::earth_fixed>(v1, epoch);
 
     return 0;

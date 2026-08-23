@@ -1,7 +1,7 @@
 /**
  * @file atmospheric_density_specializations.hpp
  * @author Jay Iuliano (iuliano.jay@gmail.com)
- * @brief Explicit specialisations of find_atmospheric_density<body>(state) for all bodies with atmospheres.
+ * @brief Explicit specializations of find_atmospheric_density<body>(state) for all bodies with atmospheres.
  * @details This file is intentionally separate from the planet headers because it requires
  *          State.hpp (which pulls in frames.hpp) while the planet headers must remain
  *          lightweight to avoid circular includes during frame-system initialisation.

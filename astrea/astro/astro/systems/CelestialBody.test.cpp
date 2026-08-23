@@ -82,9 +82,9 @@ TEST_F(CelestialBodyTest, GetMass)
     ASSERT_TRUE(math::nearly_equal(get_mass<planets::Earth>(), Mass(5.97 * (mag_power<10, 24> * kg)), REL_TOL));
 }
 
-TEST_F(CelestialBodyTest, GetEquitorialRadius)
+TEST_F(CelestialBodyTest, GetequatorialRadius)
 {
-    ASSERT_TRUE(math::nearly_equal(get_equitorial_radius<planets::Earth>(), 6378.138 * km, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(get_equatorial_radius<planets::Earth>(), 6378.138 * km, REL_TOL));
 }
 
 TEST_F(CelestialBodyTest, GetPolarRadius)
@@ -292,7 +292,7 @@ inline consteval CelestialBodyParameters get_celestial_body_parameters<DummyBody
              .referenceDate          = Date(J2000),
              .mu                     = GravParam(1.32712440018e11 * km * km * km / (s * s)),
              .mass                   = Mass(1.989e30 * kg),
-             .equitorialRadius       = Distance(696340.0 * km),
+             .equatorialRadius       = Distance(696340.0 * km),
              .polarRadius            = Distance(696340.0 * km),
              .crashRadius            = Distance(696340.0 * km),
              .sphereOfInfluence      = Distance(0.0 * km),

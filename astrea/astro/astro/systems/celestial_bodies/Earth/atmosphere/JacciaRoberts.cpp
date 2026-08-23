@@ -62,7 +62,7 @@ static const std::map<Altitude, std::tuple<Altitude, Density, Altitude>> JACHIA_
     { 1100.0 * km, { 1000.0 * km, 2.019e-15 * kg / (pow<3>(m)), 268.00 * km } }
 };
 
-Density JacciaRobertsAtmosphere::find_atmospheric_density(const State& state, const Distance equitorialRadius, const Distance polarRadius)
+Density JacciaRobertsAtmosphere::find_atmospheric_density(const State& state, const Distance equatorialRadius, const Distance polarRadius)
 {
     const auto& position                       = state.get_position_in_frame<frames::earth::earth_fixed>();
     const auto [latitude, longitude, altitude] = convert_body_fixed_to_geodetic(position);

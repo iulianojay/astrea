@@ -56,7 +56,7 @@ inline consteval CelestialBodyParameters get_celestial_body_parameters<moons::Ia
              .referenceDate          = Date(J2000),
              .mu                     = GravParam(153.94 * pow<3>(km) / pow<2>(s)),
              .mass                   = Mass(0.00231 * (mag_power<10, 24> * kg)),
-             .equitorialRadius       = Distance(765.0 * km),
+             .equatorialRadius       = Distance(765.0 * km),
              .polarRadius            = Distance(762.0 * km),
              .crashRadius            = Distance(765.0 * km),
              .sphereOfInfluence      = Distance(3.67746912467e-04 * au),

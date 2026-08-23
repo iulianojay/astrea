@@ -56,7 +56,7 @@ inline consteval CelestialBodyParameters get_celestial_body_parameters<moons::Ph
              .referenceDate          = Date(JulianDate(JulianDateClock::duration{ 2433282.5 })),
              .mu                     = GravParam(9.85e-5 * pow<3>(km) / pow<2>(s)),
              .mass                   = Mass(2.4e-9 * (mag_power<10, 24> * kg)),
-             .equitorialRadius       = Distance(6.2 * km),
+             .equatorialRadius       = Distance(6.2 * km),
              .polarRadius            = Distance(5.1 * km),
              .crashRadius            = Distance(6.25 * km),
              .sphereOfInfluence      = Distance(9.98573371442e-07 * au),

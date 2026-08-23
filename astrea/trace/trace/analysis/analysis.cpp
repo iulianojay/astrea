@@ -116,7 +116,7 @@ AnalysisResult run_trace_analysis(const TraceConfig& config)
 
     // Build 3-shell Walker constellation
     const Distance altitude   = constellationSettings.altitude;
-    const Distance semimajor  = altitude + get_equitorial_radius<planets::Earth>();
+    const Distance semimajor  = altitude + get_equatorial_radius<planets::Earth>();
     const Angle inclination   = constellationSettings.inclination;
     const std::size_t nSats   = constellationSettings.nSats;
     const std::size_t nPlanes = constellationSettings.nPlanes;

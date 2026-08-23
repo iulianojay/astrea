@@ -120,9 +120,9 @@ inline constexpr Mass get_mass()
  * @return Distance Reference to the equatorial radius of the celestial body.
  */
 template <IsCelestialBody auto body>
-inline constexpr Distance get_equitorial_radius()
+inline constexpr Distance get_equatorial_radius()
 {
-    return get_celestial_body_parameters<body>().equitorialRadius;
+    return get_celestial_body_parameters<body>().equatorialRadius;
 };
 
 /**
@@ -543,9 +543,9 @@ inline constexpr Angle julian_date_to_body_sidereal_time(JulianDate date)
  * @brief Get the body-fixed rotating frame for a celestial body.
  *
  * Returns a Z-rotation body-fixed frame for @p body. For well-known bodies
- * (e.g. Earth) an explicit specialisation in the appropriate platform header
+ * (e.g. Earth) an explicit specialization in the appropriate platform header
  * returns the canonical named frame instance so that existing DCM
- * specialisations are reused.
+ * specializations are reused.
  *
  * @tparam body The celestial body NTTP.
  * @return A constexpr BodyFixedFrame value centred at body.

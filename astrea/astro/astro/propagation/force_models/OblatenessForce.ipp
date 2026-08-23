@@ -58,7 +58,7 @@ AccelerationVector<frames::primary>
 
     const Distance rho              = sqrt(xEcef * xEcef + yEcef * yEcef);
     const auto oneOverR             = 1.0 / rEci.norm();
-    const Unitless equitorialROverR = equitorialR * oneOverR;
+    const Unitless equatorialROverR = equatorialR * oneOverR;
 
     const Unitless sinLat = sin(latitude);
     const Unitless cosLat = cos(latitude);
@@ -103,7 +103,7 @@ AccelerationVector<frames::primary>
         }
 
         // Precalculate common terms
-        const Unitless rRatio = astrea::math::pow(equitorialROverR, nn);
+        const Unitless rRatio = astrea::math::pow(equatorialROverR, nn);
 
         //
         //  V      =  mu/r   * sum(n=0->_degree_) (Re/r)^n        * sum(m=0->min(n,M))       Pnm(sin(lat)) * (Cnm*cos(m*lon) + Snm*sin(m*lon))
@@ -168,7 +168,7 @@ Perturbation OblatenessForce<_body_, _degree_, _order_>::compute_perturbation(co
 
     // Central body properties
     const GravParam& mu         = get_mu<_body_>();
-    const Distance& equitorialR = get_equitorial_radius<_body_>();
+    const Distance& equatorialR = get_equatorial_radius<_body_>();
 
     // Transform position to body-fixed frame
     const Date date                                 = state.get_epoch();
@@ -185,7 +185,7 @@ Perturbation OblatenessForce<_body_, _degree_, _order_>::compute_perturbation(co
     const Unitless xOverR      = x / r;
     const Unitless yOverR      = y / r;
     const Unitless zOverR      = z / r;
-    const Unitless rEqOverR    = equitorialR / r;
+    const Unitless rEqOverR    = equatorialR / r;
     const Unitless zREqOverRSq = zOverR * rEqOverR;
     const Unitless rEqOverRSq  = pow<2>(rEqOverR);
 
@@ -270,10 +270,10 @@ Perturbation OblatenessForce<_body_, _degree_, _order_>::compute_perturbation(co
     }
 
     // Scale by mu/r^2
-    const Acceleration muOverR2 = mu / pow<2>(equitorialR);
+    const Acceleration muOverR2 = mu / pow<2>(equatorialR);
     const AccelerationVector<frames::primary_fixed> accelOblatenessEcef = { ax * muOverR2, ay * muOverR2, az * muOverR2 };
 
-    // Transform back to inertial frame without abberations - original values are in ecef, not w.r.t ecef
+    // Transform back to inertial frame without aberrations - original values are in ecef, not w.r.t ecef
     const AccelerationVector<frames::primary> accelOblatenessIcrf =
         frames::rotate_vector_into_frame<frames::primary>(accelOblatenessEcef, date);
     return { .force = (accelOblatenessIcrf * vehicle.get_mass()) };

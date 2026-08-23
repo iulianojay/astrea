@@ -300,7 +300,7 @@ class Geodetic {
  * @brief Convert a vector from ECEF (Earth-Centered Earth-Fixed) to LLA (Latitude, Longitude, Altitude) coordinates.
  *
  * @param rEcef The radius vector in ECEF coordinates.
- * @param rEquitorial The equatorial radius of the Earth.
+ * @param requatorial The equatorial radius of the Earth.
  * @param rPolar The polar radius of the Earth.
  * @return The latitude, longitude, and altitude as a tuple.
  */
@@ -321,9 +321,9 @@ inline std::tuple<Angle, Angle, Distance> convert_body_fixed_to_geodetic(const R
     const Distance& yEcef = rBodyFixed[1];
     const Distance& zEcef = rBodyFixed[2];
 
-    static const Distance rEquitorial = get_equitorial_radius<decltype(frame)::origin>();
+    static const Distance requatorial = get_equatorial_radius<decltype(frame)::origin>();
     static const Distance rPolar      = get_polar_radius<decltype(frame)::origin>();
-    static const Unitless f           = (rEquitorial - rPolar) / rEquitorial;
+    static const Unitless f           = (requatorial - rPolar) / requatorial;
     static const Unitless eSq         = (2.0 - f) * f;
 
     const auto xSqYSq = xEcef * xEcef + yEcef * yEcef;
@@ -334,7 +334,7 @@ inline std::tuple<Angle, Angle, Distance> convert_body_fixed_to_geodetic(const R
     unsigned ii  = 0;
     while (err > MAX_ERROR && ii < MAX_ITER) {
         const Unitless s = (zEcef + dz) / sqrt(xSqYSq + (zEcef + dz) * (zEcef + dz));
-        N                = rEquitorial / sqrt(1 - eSq * s * s);
+        N                = requatorial / sqrt(1 - eSq * s * s);
         err              = abs(dz - N * eSq * s);
         dz               = N * eSq * s;
         ++ii;
@@ -357,7 +357,7 @@ inline std::tuple<Angle, Angle, Distance> convert_body_fixed_to_geodetic(const R
  * @param lat The latitude in radians.
  * @param lon The longitude in radians.
  * @param alt The altitude in meters.
- * @param rEquitorial The equatorial radius of the Earth.
+ * @param requatorial The equatorial radius of the Earth.
  * @param rPolar The polar radius of the Earth.
  * @return The radius vector in ECEF coordinates.
  */
@@ -372,12 +372,12 @@ inline constexpr RadiusVector<frame> convert_geodetic_to_body_fixed(const Angle&
     const Unitless sinLat = sin(lat);
     const Unitless cosLat = cos(lat);
 
-    static constexpr Distance rEquitorial = get_equitorial_radius<decltype(frame)::origin>();
+    static constexpr Distance requatorial = get_equatorial_radius<decltype(frame)::origin>();
     static constexpr Distance rPolar      = get_polar_radius<decltype(frame)::origin>();
-    static constexpr Unitless f           = (rEquitorial - rPolar) / rEquitorial;
+    static constexpr Unitless f           = (requatorial - rPolar) / requatorial;
     static constexpr Unitless eSq         = (2.0 - f) * f;
 
-    const Distance N = rEquitorial / sqrt(1.0 - eSq * sinLat * sinLat);
+    const Distance N = requatorial / sqrt(1.0 - eSq * sinLat * sinLat);
 
     // Ecef coordinates
     return { (N + alt) * cosLat * cos(lon), (N + alt) * cosLat * sin(lon), ((1.0 - eSq) * N + alt) * sinLat };

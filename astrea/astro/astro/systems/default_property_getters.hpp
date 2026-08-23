@@ -6,17 +6,17 @@
  * @details This header provides:
  *   - get_keplerian_elements_at<_body_>  — JPL linear-approximation Keplerian elements.
  *   - get_position_at<_body_>  (primary template definition) — Keplerian fallback used for
- *     bodies that have no Chebyshev ephemeris specialisation (e.g. Phobos, Deimos).
+ *     bodies that have no Chebyshev ephemeris specialization (e.g. Phobos, Deimos).
  *   - get_velocity_at<_body_>  (primary template definition) — same fallback for velocity.
  *
  * Include order matters:
  *   CelestialBody.hpp already declares the primary templates (without a body) for
- *   get_position_at / get_velocity_at.  The planet specialisations (e.g. Earth, Jupiter)
+ *   get_position_at / get_velocity_at.  The planet specializations (e.g. Earth, Jupiter)
  *   are compiled when their individual planet headers are included.  This file provides
  *   the fall-through primary-template body for any remaining bodies.
  *
  *   This file MUST be included AFTER all planet headers (and therefore after all
- *   get_position_at explicit specialisations) so that the linker can select the correct
+ *   get_position_at explicit specializations) so that the linker can select the correct
  *   overload.  celestial_bodies.hpp includes it automatically at the bottom.
  *
  * @date 2025-08-02
@@ -83,11 +83,11 @@ inline constexpr Keplerian<get_parent_frame(_body_, axes::icrf)> get_keplerian_e
  * @brief Keplerian fallback for get_position_at.
  *
  * Used for bodies that have orbital element parameters but no Chebyshev ephemeris
- * specialisation (e.g. Phobos, Deimos, small moons).  The result is expressed in
+ * specialization (e.g. Phobos, Deimos, small moons).  The result is expressed in
  * the parent-body ICRF frame derived from the body's parent origin.
  *
- * Bodies WITH an explicit get_position_at specialisation (e.g. Earth, Jupiter when
- * ephemeris is enabled) use that specialisation in preference to this primary template.
+ * Bodies WITH an explicit get_position_at specialization (e.g. Earth, Jupiter when
+ * ephemeris is enabled) use that specialization in preference to this primary template.
  */
 template <auto _body_>
 inline constexpr CartesianVector<Distance, get_parent_frame(_body_, axes::icrf)> get_position_at(const Date& date)

@@ -42,6 +42,6 @@
 #include <astro/systems/celestial_bodies/Venus/Venus.hpp>
 
 // Keplerian-approximation fallback for get_position_at / get_velocity_at.
-// Included AFTER all planet specialisations so the fallback primary-template
-// definition does not shadow any explicit specialisation.
+// Included AFTER all planet specializations so the fallback primary-template
+// definition does not shadow any explicit specialization.
 #include <astro/systems/default_property_getters.hpp>

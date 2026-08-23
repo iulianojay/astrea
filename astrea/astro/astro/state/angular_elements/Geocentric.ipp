@@ -179,7 +179,7 @@ template <IsCelestialBody auto _body_>
 RadiusVector<Geocentric<_body_>::_fixed_frame_> Geocentric<_body_>::get_position() const
 {
     return convert_geocentric_to_body_fixed<_fixed_frame_>(
-        _latitude, _longitude, _altitude, get_equitorial_radius<_body_>(), get_polar_radius<_body_>()
+        _latitude, _longitude, _altitude, get_equatorial_radius<_body_>(), get_polar_radius<_body_>()
     );
 }
 

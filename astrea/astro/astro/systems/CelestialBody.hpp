@@ -67,7 +67,7 @@ struct CelestialBody : Origin<_name_, _parent_>, detail::CelestialBodyBase {
 // ---------------------------------------------------------------------------
 
 /// Primary template — must be specialised for each body.
-/// Uses unconstrained auto _body_ so GCC can match explicit specialisations
+/// Uses unconstrained auto _body_ so GCC can match explicit specializations
 /// of the form get_celestial_body_parameters<planets::Earth>().
 template <auto _body_>
 inline consteval CelestialBodyParameters get_celestial_body_parameters() = delete;
@@ -80,7 +80,7 @@ inline Density find_atmospheric_density(const State& state)
 }
 
 /// Primary template declarations for ephemeris position/velocity (NTTP-based).
-/// Explicit specialisations are provided in planet headers (Chebyshev ephemeris).
+/// Explicit specializations are provided in planet headers (Chebyshev ephemeris).
 /// The primary template definition (Keplerian fallback) is provided by
 /// default_property_getters.hpp, which celestial_bodies.hpp includes after all planet headers.
 template <auto _body_>
