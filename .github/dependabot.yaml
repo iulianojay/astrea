@@ -9,7 +9,6 @@ updates:
       prefix: "[dependabot]"
       prefix-development: "[dependabot]"
     target-branch: "main"
-    security-updates: true
     groups:
       all-deps:
         patterns:
@@ -24,7 +23,6 @@ updates:
       prefix: "[dependabot]"
       prefix-development: "[dependabot]"
     target-branch: "main"
-    security-updates: true
     groups:
       all-deps:
         patterns:
@@ -39,7 +37,6 @@ updates:
       prefix: "[dependabot]"
       prefix-development: "[dependabot]"
     target-branch: "main"
-    security-updates: true
     groups:
       all-deps:
         patterns:
