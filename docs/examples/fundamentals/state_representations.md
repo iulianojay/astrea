@@ -16,7 +16,7 @@ Cartesian cartesian{
 std::cout << "Cartesian: " << cartesian << std::endl;
 
 // Conversions are done through the constructors for each element set type
-GravParam mu = 398600.44189 * pow<3>(km) / pow<2>(s); // Earth
+static const GravParam mu = get_mu<planets::Earth>();
 Keplerian keplerian{ cartesian, mu };
 Equinoctial equinoctial{ keplerian, mu };
 
