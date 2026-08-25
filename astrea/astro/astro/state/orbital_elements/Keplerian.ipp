@@ -114,10 +114,9 @@ Keplerian<_frame_>::Keplerian(const Cartesian<_frame_>& elements, const GravPara
     }
 
     // Specific Relative Angular Momentum
-    const SpecificAngularMomentum hx = y * vz - z * vy; // h = cross(r, v)
-    const SpecificAngularMomentum hy = z * vx - x * vz;
-    const SpecificAngularMomentum hz = x * vy - y * vx;
-
+    const SpecificAngularMomentum hx    = y * vz - z * vy; // h = cross(r, v)
+    const SpecificAngularMomentum hy    = z * vx - x * vz;
+    const SpecificAngularMomentum hz    = x * vy - y * vx;
     const SpecificAngularMomentum normH = sqrt(hx * hx + hy * hy + hz * hz);
 
     // Setup
@@ -156,7 +155,7 @@ Keplerian<_frame_>::Keplerian(const Cartesian<_frame_>& elements, const GravPara
         _rightAscension = 0.0 * rad;
     }
     else {
-        const quantity nxOverNMag = math::clamp_within_floating_point_error(Nx / normN, -1.0 * one, 1.0 * one);
+        const Unitless nxOverNMag = math::clamp_within_floating_point_error(Nx / normN, -1.0 * one, 1.0 * one);
         _rightAscension           = (Ny > 0.0 * (km * km / s)) ? acos(nxOverNMag) : twoPiRad - acos(nxOverNMag);
         if (abs(_rightAscension - twoPiRad) < angularTol) { _rightAscension = 0.0 * rad; }
     }
@@ -164,17 +163,17 @@ Keplerian<_frame_>::Keplerian(const Cartesian<_frame_>& elements, const GravPara
     // True Anomaly (rad)
     if (_eccentricity == 0.0 * one) {    // No argument of perigee, use nodal line
         if (_inclination == 0.0 * rad) { // No nodal line, use true longitude
-            const quantity xOverR = math::clamp_within_floating_point_error(x / R, -1.0 * one, 1.0 * one);
+            const Unitless xOverR = math::clamp_within_floating_point_error(x / R, -1.0 * one, 1.0 * one);
             _trueAnomaly          = (vx <= 0.0 * km / s) ? acos(xOverR) : twoPiRad - acos(xOverR);
         }
         else { // Use argument of latitude
-            const quantity nDotROverMag =
+            const Unitless nDotROverMag =
                 math::clamp_within_floating_point_error((Nx * x + Ny * y) / (normN * R), -1.0 * one, 1.0 * one);
             _trueAnomaly = (z >= 0.0 * km) ? acos(nDotROverMag) : twoPiRad - acos(nDotROverMag);
         }
     }
     else {
-        const quantity eccDotROverMag =
+        const Unitless eccDotROverMag =
             math::clamp_within_floating_point_error((eccX * x + eccY * y + eccZ * z) / (_eccentricity * R), -1.0 * one, 1.0 * one);
         _trueAnomaly = (dotRV >= 0.0 * (km * km / s)) ? acos(eccDotROverMag) : twoPiRad - acos(eccDotROverMag);
     }
@@ -187,7 +186,7 @@ Keplerian<_frame_>::Keplerian(const Cartesian<_frame_>& elements, const GravPara
         _argPerigee = (hz > 0.0 * (km * km / s)) ? atan2(eccY, eccX) : 2 * piRad - atan2(eccY, eccX);
     }
     else {
-        const quantity eccDotNOverMag =
+        const Unitless eccDotNOverMag =
             math::clamp_within_floating_point_error((eccX * Nx + eccY * Ny) / (_eccentricity * normN), -1.0 * one, 1.0 * one);
         _argPerigee = (eccZ < 0.0 * one) ? twoPiRad - acos(eccDotNOverMag) : acos(eccDotNOverMag);
     }

@@ -163,8 +163,8 @@ template <auto R, typename Rep>
 {
     static const mp_units::quantity<R, Rep> tolerance = 2.0e-8 * q.unit; // Tolerance for floating-point comparison
 
-    if (q > high + tolerance) { return high; }
-    else if (q < low - tolerance) {
+    if (q > high && q < high + tolerance) { return high; }
+    else if (q < low && q > low - tolerance) {
         return low;
     }
     return q;
