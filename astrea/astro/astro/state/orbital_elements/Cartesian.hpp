@@ -20,14 +20,8 @@
 
 #include <iosfwd>
 
-// // avro
-// #include <avro/Decoder.hh>
-// #include <avro/Encoder.hh>
-// #include <avro/Specific.hh>
-
 #include <units/units.hpp>
 
-// astro
 #include <astro/astro.fwd.hpp>
 #include <astro/frames/framework/CartesianVector.hpp>
 #include <astro/types/typedefs.hpp>
