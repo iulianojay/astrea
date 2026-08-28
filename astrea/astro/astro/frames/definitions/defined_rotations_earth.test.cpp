@@ -194,7 +194,7 @@ TEST(GetDcmCepToItrf, SiderealRotationMatchesPublishedGmstAtJ2000)
 
     const auto [xp, yp] = get_polar_motion(Date(J2000));
     const DCM<frames::earth::cep, frames::earth::itrf> expected =
-        DCM<frames::earth::cep, frames::earth::itrf>::Z(gmstJ2000) *
+        DCM<frames::earth::cep, frames::earth::itrf>::Z(-gmstJ2000) *
         (DCM<frames::earth::itrf, frames::earth::itrf>::Y(-xp) * DCM<frames::earth::itrf, frames::earth::itrf>::X(-yp));
     const auto actual = get_dcm<frames::earth::cep, frames::earth::itrf>(Date(J2000));
     EXPECT_TRUE(nearly_equal(actual, expected, GMST_TOL, GMST_TOL));
