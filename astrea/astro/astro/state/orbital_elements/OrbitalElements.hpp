@@ -30,6 +30,7 @@
 #include <astro/state/orbital_elements/Cartesian.hpp>
 #include <astro/state/orbital_elements/Equinoctial.hpp>
 #include <astro/state/orbital_elements/Keplerian.hpp>
+#include <astro/state/orbital_elements/partials.hpp>
 #include <astro/types/concepts.hpp>
 #include <astro/types/variant_util.hpp>
 

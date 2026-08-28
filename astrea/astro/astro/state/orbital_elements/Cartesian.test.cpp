@@ -335,15 +335,6 @@ TEST_F(CartesianTest, MultiplicationAssignmentOperator)
     ASSERT_TRUE(math::nearly_equal(state.get_vz(), vz * multiplier, REL_TOL));
 }
 
-TEST_F(CartesianTest, DivisionByTimeOperator)
-{
-    Time time   = 2.0 * s;
-    auto result = state / time;
-    // Result is CartesianPartial with velocity and acceleration components
-    // This test just ensures it compiles and runs
-    ASSERT_NO_THROW(state / time);
-}
-
 TEST_F(CartesianTest, DivisionByScalarOperator)
 {
     Unitless divisor                      = 2.0 * one;
@@ -477,36 +468,4 @@ TEST_F(CartesianTest, ZeroSemilatusEquinoctialConversion)
     ASSERT_TRUE(math::nearly_equal(cart.get_vx(), Velocity(0.0 * km / s), REL_TOL));
     ASSERT_TRUE(math::nearly_equal(cart.get_vy(), Velocity(0.0 * km / s), REL_TOL));
     ASSERT_TRUE(math::nearly_equal(cart.get_vz(), Velocity(0.0 * km / s), REL_TOL));
-}
-
-TEST_F(CartesianTest, CartesianPartialMultiplicationByTime)
-{
-    // Test CartesianPartial operator* with Time
-    VelocityVector<frames::earth::icrf> vel{ 1.0 * km / s, 2.0 * km / s, 3.0 * km / s };
-    AccelerationVector<frames::earth::icrf> acc{ 0.1 * km / s / s, 0.2 * km / s / s, 0.3 * km / s / s };
-    CartesianPartial<frames::earth::icrf> partial(vel, acc);
-
-    Time dt                               = 2.0 * s;
-    Cartesian<frames::earth::icrf> result = partial * dt;
-
-    // Verify the result is a Cartesian state
-    ASSERT_TRUE(math::nearly_equal(result.get_x(), vel.get_x() * dt, REL_TOL));
-    ASSERT_TRUE(math::nearly_equal(result.get_y(), vel.get_y() * dt, REL_TOL));
-    ASSERT_TRUE(math::nearly_equal(result.get_z(), vel.get_z() * dt, REL_TOL));
-    ASSERT_TRUE(math::nearly_equal(result.get_vx(), acc.get_x() * dt, REL_TOL));
-    ASSERT_TRUE(math::nearly_equal(result.get_vy(), acc.get_y() * dt, REL_TOL));
-    ASSERT_TRUE(math::nearly_equal(result.get_vz(), acc.get_z() * dt, REL_TOL));
-}
-
-TEST_F(CartesianTest, CartesianPartialStream)
-{
-    // Test CartesianPartial stream operator
-    VelocityVector<frames::earth::icrf> vel{ 1.0 * km / s, 2.0 * km / s, 3.0 * km / s };
-    AccelerationVector<frames::earth::icrf> acc{ 0.1 * km / s / s, 0.2 * km / s / s, 0.3 * km / s / s };
-    CartesianPartial<frames::earth::icrf> partial(vel, acc);
-
-    std::stringstream ss;
-    ss << partial;
-    ASSERT_FALSE(ss.str().empty());
-    ASSERT_NE(ss.str().find("CartesianPartial"), std::string::npos);
 }

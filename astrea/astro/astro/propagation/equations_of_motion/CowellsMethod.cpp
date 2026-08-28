@@ -71,16 +71,5 @@ StateTransitionMatrix CowellsMethod::compute_stm(const State& state, const Vehic
     return StateTransitionMatrix(*this, state, vehicle);
 }
 
-
-StateTransitionMatrix CowellsMethod::compute_stm(const State& state, const Vehicle& vehicle) const
-{
-    if (forces->size() == 0) {
-        // If no perturbations, use two-body STM
-        const TwoBody twoBody;
-        return twoBody.compute_stm(state, vehicle);
-    }
-    return StateTransitionMatrix(*this, state, vehicle);
-}
-
 } // namespace astro
 } // namespace astrea

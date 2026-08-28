@@ -166,6 +166,9 @@ set(ASTRO_HEADERS
     ${ASTRO_BASE}/state/orbital_elements/Equinoctial.hpp
     ${ASTRO_BASE}/state/orbital_elements/Keplerian.hpp
     ${ASTRO_BASE}/state/orbital_elements/OrbitalElements.hpp
+    
+    ${ASTRO_BASE}/state/orbital_elements/partials/CartesianPartial.hpp
+    ${ASTRO_BASE}/state/orbital_elements/partials/KeplerianPartial.hpp
 
     ${ASTRO_BASE}/state/orbital_data_formats/TwoLineElements.hpp
     ${ASTRO_BASE}/state/orbital_data_formats/GeneralPerturbations.hpp
