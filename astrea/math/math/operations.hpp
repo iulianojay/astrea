@@ -20,7 +20,6 @@
 
 #include <algorithm>
 #include <cmath>
-#include <algorithm>
 
 #include <mp-units/math.h>
 #include <mp-units/systems/si.h>
@@ -120,6 +119,16 @@ template <mp_units::ReferenceOf<mp_units::dimensionless> auto R1, mp_units::Refe
     return mp_units::quantity{ pow(q.numerical_value_in(mp_units::one), n.numerical_value_in(mp_units::one)), mp_units::one };
 }
 
+/**
+ * @brief Clamps a quantity within a specified range.
+ *
+ * @tparam R The unit type (e.g., distance, time).
+ * @tparam Rep The representation type (e.g., double).
+ * @param q The quantity to be clamped.
+ * @param low The lower bound for the quantity.
+ * @param high The upper bound for the quantity.
+ * @return The clamped quantity, ensuring it lies within the specified range.
+ */
 template <auto R, typename Rep>
     requires requires(Rep v) { clamp(v, v, v); } || requires(Rep v) { std::clamp(v, v, v); }
 [[nodiscard]] inline mp_units::quantity<R, Rep>
@@ -128,6 +137,37 @@ template <auto R, typename Rep>
     using std::clamp;
     return mp_units::quantity{ clamp(q.numerical_value_in(q.unit), low.numerical_value_in(q.unit), high.numerical_value_in(q.unit)),
                                q.unit };
+}
+
+/**
+ * @brief Bounds a quantity within a specified range, accounting for floating-point errors.
+ *
+ * This function checks if the given quantity `q` is within the specified `high` and `low` bounds.
+ * If `q` is outside the bounds but within a small tolerance (2.0e-8) of the bounds, it will be clamped to the nearest
+ * bound. If it is beyond the tolerance, it will be returned as is.
+ *
+ * @tparam R The unit type (e.g., distance, time).
+ * @tparam Rep The representation type (e.g., double).
+ * @param q The quantity to be bounded.
+ * @param high The upper bound for the quantity.
+ * @param low The lower bound for the quantity.
+ * @return The bounded quantity, adjusted for floating-point errors if necessary.
+ */
+template <auto R, typename Rep>
+    requires requires(Rep v) { abs(v); } || requires(Rep v) { std::abs(v); }
+[[nodiscard]] inline mp_units::quantity<R, Rep> clamp_within_floating_point_error(
+    const mp_units::quantity<R, Rep>& q,
+    const mp_units::quantity<R, Rep>& low,
+    const mp_units::quantity<R, Rep>& high
+) noexcept
+{
+    static const mp_units::quantity<R, Rep> tolerance = 2.0e-8 * q.unit; // Tolerance for floating-point comparison
+
+    if (q > high && q < high + tolerance) { return high; }
+    else if (q < low && q > low - tolerance) {
+        return low;
+    }
+    return q;
 }
 
 

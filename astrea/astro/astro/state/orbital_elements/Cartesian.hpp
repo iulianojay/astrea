@@ -52,6 +52,9 @@ class Cartesian
     friend class OrbitalElements;
 
   public:
+    static constexpr auto frame = _frame_; //!< The reference frame of the Cartesian state vector.
+    template <IsFrame auto F>
+    using BaseType = Cartesian<F>;
     using Base_T::Base_T;
 
     /**

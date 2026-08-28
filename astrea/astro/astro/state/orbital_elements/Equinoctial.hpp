@@ -48,6 +48,9 @@ class Equinoctial
     friend class OrbitalElements;
 
   public:
+    static constexpr auto frame = _frame_; //!< The reference frame of the Equinoctial state vector.
+    template <IsFrame auto F>
+    using BaseType = Equinoctial<F>;
     using Base_T::Base_T;
 
     /**

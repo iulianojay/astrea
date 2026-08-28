@@ -49,6 +49,9 @@ class Keplerian : public OrbitalElementsInterface<Keplerian<_frame_>, _frame_, D
     friend class OrbitalElements;
 
   public:
+    static constexpr auto frame = _frame_; //!< The reference frame of the Keplerian elements.
+    template <IsFrame auto F>
+    using BaseType = Keplerian<F>;
     using Base_T::Base_T;
 
     /**
