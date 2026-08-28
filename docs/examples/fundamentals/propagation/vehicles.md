@@ -1,3 +1,5 @@
+[[PLACEHOLDER]]
+
 # Vehicles
 
 Astrea provides a comprehensive vehicle modeling system for spacecraft and other astronomical platforms. The vehicle architecture supports mass properties, aerodynamic characteristics, and coordinate frame management.

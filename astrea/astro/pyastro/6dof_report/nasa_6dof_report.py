@@ -45,7 +45,7 @@ class NASA6DOFReportGenerator:
         
         self.custom_introduction = \
 '''
-This report gives a simple overview of comaprisons between NASA's published 6DoF propagation checkcases and the propagators available in Astrea.
+This report gives a simple overview of comparisons between NASA's published 6DoF propagation checkcases and the propagators available in Astrea.
 The calculations, methodology, and process are currently undocumented as they are not yet complete, but much of it is easy enough to figure out
 by examining the source files for the tests and the associated documentation (astrea/astro/tests/nasa_6dof_checkcases). By default, the tests that
 produce these outputs are not run with standard tests as acceptance is complex and simply associating raw numerical precision with agreement is
