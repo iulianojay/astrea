@@ -40,7 +40,7 @@ template <IsFrame auto _frame_>
 class Equinoctial
     : public OrbitalElementsInterface<Equinoctial<_frame_>, _frame_, Distance, Unitless, Unitless, Unitless, Unitless, Angle> {
 
-    using Base_T =
+    using BaseType =
         OrbitalElementsInterface<Equinoctial<_frame_>, _frame_, Distance, Unitless, Unitless, Unitless, Unitless, Angle>;
 
     template <IsFrame auto frame>
@@ -50,8 +50,8 @@ class Equinoctial
   public:
     static constexpr auto frame = _frame_; //!< The reference frame of the Equinoctial state vector.
     template <IsFrame auto F>
-    using BaseType = Equinoctial<F>;
-    using Base_T::Base_T;
+    using Self = Equinoctial<F>;
+    using BaseType::BaseType;
 
     /**
      * @brief Default constructor for Equinoctial.
@@ -279,14 +279,14 @@ template <IsFrame auto _frame_>
 class EquinoctialPartial
     : public OrbitalElementsInterface<EquinoctialPartial<_frame_>, _frame_, Velocity, UnitlessPerTime, UnitlessPerTime, UnitlessPerTime, UnitlessPerTime, AngularVelocity> {
 
-    using Base_T =
+    using BaseType =
         OrbitalElementsInterface<EquinoctialPartial<_frame_>, _frame_, Velocity, UnitlessPerTime, UnitlessPerTime, UnitlessPerTime, UnitlessPerTime, AngularVelocity>;
 
     template <IsFrame auto frame>
     friend std::ostream& operator<<(std::ostream&, EquinoctialPartial<frame> const&);
 
   public:
-    using Base_T::Base_T;
+    using BaseType::BaseType;
 
     /**
      * @brief Default constructor for EquinoctialPartial.

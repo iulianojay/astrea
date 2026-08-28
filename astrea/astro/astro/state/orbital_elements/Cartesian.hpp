@@ -45,7 +45,8 @@ template <IsFrame auto _frame_>
 class Cartesian
     : public OrbitalElementsInterface<Cartesian<_frame_>, _frame_, Distance, Distance, Distance, Velocity, Velocity, Velocity> {
 
-    using Base_T = OrbitalElementsInterface<Cartesian<_frame_>, _frame_, Distance, Distance, Distance, Velocity, Velocity, Velocity>;
+    using BaseType =
+        OrbitalElementsInterface<Cartesian<_frame_>, _frame_, Distance, Distance, Distance, Velocity, Velocity, Velocity>;
 
     template <IsFrame auto frame>
     friend std::ostream& operator<<(std::ostream&, Cartesian<frame> const&);
@@ -54,8 +55,8 @@ class Cartesian
   public:
     static constexpr auto frame = _frame_; //!< The reference frame of the Cartesian state vector.
     template <IsFrame auto F>
-    using BaseType = Cartesian<F>;
-    using Base_T::Base_T;
+    using Self = Cartesian<F>;
+    using BaseType::BaseType;
 
     /**
      * @brief Default constructor for Cartesian.
@@ -71,7 +72,7 @@ class Cartesian
      * @param v Velocity vector
      */
     Cartesian(const RadiusVector<_frame_>& r, const VelocityVector<_frame_>& v) :
-        Base_T(r[0], r[1], r[2], v[0], v[1], v[2])
+        BaseType(r[0], r[1], r[2], v[0], v[1], v[2])
     {
     }
 
@@ -428,14 +429,14 @@ template <IsFrame auto _frame_>
 class CartesianPartial
     : public OrbitalElementsInterface<CartesianPartial<_frame_>, _frame_, Velocity, Velocity, Velocity, Acceleration, Acceleration, Acceleration> {
 
-    using Base_T =
+    using BaseType =
         OrbitalElementsInterface<CartesianPartial<_frame_>, _frame_, Velocity, Velocity, Velocity, Acceleration, Acceleration, Acceleration>;
 
     template <IsFrame auto frame>
     friend std::ostream& operator<<(std::ostream&, CartesianPartial<frame> const&);
 
   public:
-    using Base_T::Base_T;
+    using BaseType::BaseType;
 
     /**
      * @brief Default constructor for CartesianPartial.
@@ -449,7 +450,7 @@ class CartesianPartial
      * @param a Acceleration vector
      */
     CartesianPartial(const VelocityVector<_frame_>& v, const AccelerationVector<_frame_>& a) :
-        Base_T(v[0], v[1], v[2], a[0], a[1], a[2])
+        BaseType(v[0], v[1], v[2], a[0], a[1], a[2])
     {
     }
 

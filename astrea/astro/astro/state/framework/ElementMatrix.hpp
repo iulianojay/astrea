@@ -42,8 +42,8 @@ namespace astro {
 template <std::size_t _n_row_, std::size_t _n_col_, typename... Elements_T>
 struct ElementMatrix {
 
-    using BaseType = ElementMatrix<_n_row_, _n_col_, Elements_T...>; //!< The base type of the ElementMatrix for introspection
-    using TupleType = std::tuple<Elements_T...>;                     //!< The underlying tuple type of the ElementMatrix
+    using Self = ElementMatrix<_n_row_, _n_col_, Elements_T...>; //!< The base type of the ElementMatrix for introspection
+    using TupleType = std::tuple<Elements_T...>;                 //!< The underlying tuple type of the ElementMatrix
 
     template <mp_units::Quantity Partial_T>
     using partial_in =
@@ -117,7 +117,7 @@ struct ElementMatrix {
      * @param other The ElementMatrix to copy from.
      */
     template <typename... elements_u>
-        requires(IsCompatibleElementMatrix<BaseType, ElementMatrix<_n_row_, _n_col_, elements_u...>>)
+        requires(IsCompatibleElementMatrix<Self, ElementMatrix<_n_row_, _n_col_, elements_u...>>)
     ElementMatrix(const ElementMatrix<_n_row_, _n_col_, elements_u...>& other) :
         elements(other.elements)
     {
@@ -130,7 +130,7 @@ struct ElementMatrix {
      * @param other The ElementMatrix to move from.
      */
     template <typename... elements_u>
-        requires(IsCompatibleElementMatrix<BaseType, ElementMatrix<_n_row_, _n_col_, elements_u...>>)
+        requires(IsCompatibleElementMatrix<Self, ElementMatrix<_n_row_, _n_col_, elements_u...>>)
     ElementMatrix(ElementMatrix<_n_row_, _n_col_, elements_u...>&& other) noexcept :
         elements(std::move(other.elements))
     {
@@ -144,7 +144,7 @@ struct ElementMatrix {
      * @return A reference to the assigned ElementMatrix.
      */
     template <typename... elements_u>
-        requires(IsCompatibleElementMatrix<BaseType, ElementMatrix<_n_row_, _n_col_, elements_u...>>)
+        requires(IsCompatibleElementMatrix<Self, ElementMatrix<_n_row_, _n_col_, elements_u...>>)
     ElementMatrix& operator=(const ElementMatrix<_n_row_, _n_col_, elements_u...>& other)
     {
         elements = other.elements;
@@ -159,7 +159,7 @@ struct ElementMatrix {
      * @return A reference to the assigned ElementMatrix.
      */
     template <typename... elements_u>
-        requires(IsCompatibleElementMatrix<BaseType, ElementMatrix<_n_row_, _n_col_, elements_u...>>)
+        requires(IsCompatibleElementMatrix<Self, ElementMatrix<_n_row_, _n_col_, elements_u...>>)
     ElementMatrix& operator=(ElementMatrix<_n_row_, _n_col_, elements_u...>&& other) noexcept
     {
         elements = std::move(other.elements);
@@ -263,7 +263,7 @@ struct ElementMatrix {
      * @return A new ElementMatrix representing the sum of the two arrays.
      */
     template <typename... elements_u>
-        requires(IsCompatibleElementMatrix<BaseType, ElementMatrix<_n_row_, _n_col_, elements_u...>>)
+        requires(IsCompatibleElementMatrix<Self, ElementMatrix<_n_row_, _n_col_, elements_u...>>)
     inline constexpr ElementMatrix operator+(const ElementMatrix<_n_row_, _n_col_, elements_u...>& other) const
     {
         const auto& [... a] = elements;
@@ -279,7 +279,7 @@ struct ElementMatrix {
      * @return A reference to the modified ElementMatrix after addition.
      */
     template <typename... elements_u>
-        requires(IsCompatibleElementMatrix<BaseType, ElementMatrix<_n_row_, _n_col_, elements_u...>>)
+        requires(IsCompatibleElementMatrix<Self, ElementMatrix<_n_row_, _n_col_, elements_u...>>)
     inline constexpr ElementMatrix& operator+=(const ElementMatrix<_n_row_, _n_col_, elements_u...>& other)
     {
         return *this = *this + other;
@@ -304,7 +304,7 @@ struct ElementMatrix {
      * @return A new ElementMatrix representing the difference of the two arrays.
      */
     template <typename... elements_u>
-        requires(IsCompatibleElementMatrix<BaseType, ElementMatrix<_n_row_, _n_col_, elements_u...>>)
+        requires(IsCompatibleElementMatrix<Self, ElementMatrix<_n_row_, _n_col_, elements_u...>>)
     inline constexpr ElementMatrix operator-(const ElementMatrix<_n_row_, _n_col_, elements_u...>& other) const
     {
         const auto& [... a] = elements;
@@ -320,7 +320,7 @@ struct ElementMatrix {
      * @return A reference to the modified ElementMatrix after subtraction.
      */
     template <typename... elements_u>
-        requires(IsCompatibleElementMatrix<BaseType, ElementMatrix<_n_row_, _n_col_, elements_u...>>)
+        requires(IsCompatibleElementMatrix<Self, ElementMatrix<_n_row_, _n_col_, elements_u...>>)
     inline constexpr ElementMatrix& operator-=(const ElementMatrix<_n_row_, _n_col_, elements_u...>& other)
     {
         return *this = *this - other;
@@ -334,7 +334,7 @@ struct ElementMatrix {
      * @return True if all corresponding elements are equal, false otherwise.
      */
     template <typename... elements_u>
-        requires(IsCompatibleElementMatrix<BaseType, ElementMatrix<_n_row_, _n_col_, elements_u...>>)
+        requires(IsCompatibleElementMatrix<Self, ElementMatrix<_n_row_, _n_col_, elements_u...>>)
     inline constexpr bool operator==(const ElementMatrix<_n_row_, _n_col_, elements_u...>& other) const
     {
         const auto& [... a] = elements;
@@ -445,7 +445,7 @@ struct ElementMatrix {
             IsElementVector<_n_row_, _n_col_> &&                      // row or column vector
             IsElementVector<n_row_u, n_col_u> &&                      //
             (_n_row_ * _n_col_ == n_row_u * n_col_u) &&               // same size
-            IsUniform<BaseType> &&                                    // uniform element types
+            IsUniform<Self> &&                                        // uniform element types
             IsUniform<ElementMatrix<n_row_u, n_col_u, elements_u...>> //
         )
     inline constexpr auto dot(const ElementMatrix<n_row_u, n_col_u, elements_u...>& other) const
@@ -519,7 +519,7 @@ struct ElementMatrix {
     inline constexpr auto trace() const
     {
         static_assert(_n_row_ == _n_col_, "Trace is only defined for square matrices");
-        static_assert(IsUniform<BaseType>, "Trace is only defined for uniform element arrays");
+        static_assert(IsUniform<Self>, "Trace is only defined for uniform element arrays");
 
         const auto& [... a] = elements;
         return [&]<std::size_t... diagIdx>(std::index_sequence<diagIdx...>) {
@@ -536,7 +536,7 @@ struct ElementMatrix {
      */
     inline constexpr auto norm() const
     {
-        static_assert(IsUniform<BaseType>, "Norm is only defined for uniform element arrays");
+        static_assert(IsUniform<Self>, "Norm is only defined for uniform element arrays");
 
         const auto& [... a] = elements;
         if constexpr (_is_quantity_array) { return mp_units::sqrt(((a * a) + ...)); }
@@ -556,7 +556,7 @@ struct ElementMatrix {
     template <unsigned p>
     inline constexpr auto norm() const
     {
-        static_assert(IsUniform<BaseType>, "Norm is only defined for uniform element arrays");
+        static_assert(IsUniform<Self>, "Norm is only defined for uniform element arrays");
 
         const auto& [... a] = elements;
         if constexpr (_is_quantity_array) { return mp_units::pow<1, p>((mp_units::pow<p>(a) + ...)); }

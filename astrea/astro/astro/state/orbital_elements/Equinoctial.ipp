@@ -86,14 +86,14 @@ Equinoctial<_frame_>::Equinoctial(const Keplerian<_frame_>& elements, const Grav
 // Copy constructor
 template <IsFrame auto _frame_>
 Equinoctial<_frame_>::Equinoctial(const Equinoctial<_frame_>& other) :
-    Base_T(other._elements)
+    BaseType(other._elements)
 {
 }
 
 // Move constructor
 template <IsFrame auto _frame_>
 Equinoctial<_frame_>::Equinoctial(Equinoctial<_frame_>&& other) noexcept :
-    Base_T(std::move(other._elements))
+    BaseType(std::move(other._elements))
 {
 }
 

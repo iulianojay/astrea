@@ -242,14 +242,14 @@ Keplerian<_frame_>::Keplerian(const Equinoctial<_frame_>& elements, const GravPa
 // Copy constructor
 template <IsFrame auto _frame_>
 Keplerian<_frame_>::Keplerian(const Keplerian<_frame_>& other) :
-    Base_T(other._elements)
+    BaseType(other._elements)
 {
 }
 
 // Move constructor
 template <IsFrame auto _frame_>
 Keplerian<_frame_>::Keplerian(Keplerian<_frame_>&& other) noexcept :
-    Base_T(std::move(other._elements))
+    BaseType(std::move(other._elements))
 {
 }
 

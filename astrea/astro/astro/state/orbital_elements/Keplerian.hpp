@@ -42,7 +42,7 @@ namespace astro {
 template <IsFrame auto _frame_>
 class Keplerian : public OrbitalElementsInterface<Keplerian<_frame_>, _frame_, Distance, Unitless, Angle, Angle, Angle, Angle> {
 
-    using Base_T = OrbitalElementsInterface<Keplerian<_frame_>, _frame_, Distance, Unitless, Angle, Angle, Angle, Angle>;
+    using BaseType = OrbitalElementsInterface<Keplerian<_frame_>, _frame_, Distance, Unitless, Angle, Angle, Angle, Angle>;
 
     template <IsFrame auto frame>
     friend std::ostream& operator<<(std::ostream&, Keplerian<frame> const&);
@@ -50,9 +50,10 @@ class Keplerian : public OrbitalElementsInterface<Keplerian<_frame_>, _frame_, D
 
   public:
     static constexpr auto frame = _frame_; //!< The reference frame of the Keplerian elements.
+
     template <IsFrame auto F>
-    using BaseType = Keplerian<F>;
-    using Base_T::Base_T;
+    using Self = Keplerian<F>;
+    using BaseType::BaseType;
 
     /**
      * @brief Default constructor for Keplerian.
@@ -66,7 +67,7 @@ class Keplerian : public OrbitalElementsInterface<Keplerian<_frame_>, _frame_, D
      * @param sys The astrodynamics system context for conversion.
      */
     Keplerian(const Keplerian<_frame_>& other, const GravParam& mu) :
-        Base_T(other._elements)
+        BaseType(other._elements)
     {
     }
 
@@ -377,14 +378,14 @@ template <IsFrame auto _frame_>
 class KeplerianPartial
     : public OrbitalElementsInterface<KeplerianPartial<_frame_>, _frame_, Velocity, UnitlessPerTime, AngularVelocity, AngularVelocity, AngularVelocity, AngularVelocity> {
 
-    using Base_T =
+    using BaseType =
         OrbitalElementsInterface<KeplerianPartial<_frame_>, _frame_, Velocity, UnitlessPerTime, AngularVelocity, AngularVelocity, AngularVelocity, AngularVelocity>;
 
     template <IsFrame auto frame>
     friend std::ostream& operator<<(std::ostream&, KeplerianPartial<frame> const&);
 
   public:
-    using Base_T::Base_T;
+    using BaseType::BaseType;
 
     /**
      * @brief Default constructor for KeplerianPartial.
