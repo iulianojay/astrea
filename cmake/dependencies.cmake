@@ -49,10 +49,6 @@ if(sqlite3_amalgamation_ADDED)
     set(SQLite3_INCLUDE_DIR ${sqlite3_amalgamation_SOURCE_DIR} CACHE PATH "SQLite3 include directory" FORCE)
     set(SQLite3_LIBRARY SQLite3 CACHE STRING "SQLite3 library" FORCE)
     set(SQLite3_LIBRARIES SQLite::SQLite3 CACHE STRING "SQLite3 libraries" FORCE)
-    set(SQLite3_FOUND TRUE PARENT_SCOPE)
-    set(SQLite3_INCLUDE_DIR ${sqlite3_amalgamation_SOURCE_DIR} PARENT_SCOPE)
-    set(SQLite3_LIBRARY SQLite3 PARENT_SCOPE)
-    set(SQLite3_LIBRARIES SQLite::SQLite3 PARENT_SCOPE)
     mark_as_advanced(SQLite3_INCLUDE_DIR SQLite3_LIBRARY SQLite3_LIBRARIES)
 
     # Install and export the custom SQLite3 target for downstream usage
