@@ -250,6 +250,7 @@ set(ASTRO_LIBS
     matplot
     nlohmann_json::nlohmann_json
     gtl
+    nrlmsise00::nrlmsise00
 )
 
 # Shared library

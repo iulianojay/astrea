@@ -24,15 +24,39 @@
 #include <units/units.hpp>
 
 #include <astro/astro.fwd.hpp>
+#include <astro/state/State.hpp>
+#include <astro/state/angular_elements/Geodetic.hpp>
+#include <astro/systems/system_utilities.hpp>
 
 
 namespace astrea {
 namespace astro {
 
-inline constexpr atmos::CNrlmsise00 construct_default_model()
+
+Time calculate_local_solar_time(const State& state)
+{
+    using mp_units::non_si::unit_symbols::h;
+    using mp_units::si::atan2;
+    using mp_units::si::unit_symbols::rad;
+
+    const Date& date     = state.get_epoch();
+    const auto& position = state.get_position();
+
+    const auto sunDirection =
+        frames::rotate_vector_into_frame<frames::primary>(get_relative_position<star::Sun, planets::Earth>(date).direction(), date);
+
+    const Angle lst =
+        std::numbers::pi * rad + atan2(
+                                     sunDirection.get_x() * position.get_y() - sunDirection.get_y() * position.get_x(),
+                                     sunDirection.get_x() * position.get_x() + sunDirection.get_y() * position.get_y()
+                                 );
+    return lst * 12.0 / std::numbers::pi * h / rad;
+}
+
+inline constexpr std::array<int, 24> get_default_flags()
 {
     // Ostensibly, 0 is off, and 1 is on. It's not super well documented
-    const std::array<int, 24> flags = {
+    return std::array<int, 24>{
         0, // output in meters and kilograms instead of centimeters and grams -> NOTE: Don't touch this, the output units are hard coded
         1, // F10.7 effect on mean
         1, // time independent
@@ -58,8 +82,6 @@ inline constexpr atmos::CNrlmsise00 construct_default_model()
         1, // all TN3 var
         1  // turbo scale height var
     };
-
-    return atmos::CNrlmsise00(flags);
 }
 
 class Nrlmsise00Atmosphere {
@@ -98,15 +120,25 @@ class Nrlmsise00Atmosphere {
      *       established below 80 km and these parameters should be set to
      *       150., 150., and 4. respectively.
      */
-    static inline Density
-        find_atmospheric_density(const State& state, const SolarFlux& f107a, const SolarFlux& f107, const std::array<double, 7>& ap)
+    static inline Density find_atmospheric_density(
+        const State& state,
+        const SolarFlux& f107a,
+        const SolarFlux& f107,
+        std::array<double, 7>& ap,
+        const std::array<int, 24>& flags = get_default_flags()
+    )
     {
         using namespace mp_units;
+        using astrea::units::unit_symbols::sfu;
+        using mp_units::non_si::unit_symbols::h;
+        using mp_units::si::unit_symbols::cm;
         using mp_units::si::unit_symbols::deg;
         using mp_units::si::unit_symbols::g;
-        using mp_units::si::unit_symbols::h;
         using mp_units::si::unit_symbols::km;
         using mp_units::si::unit_symbols::s;
+
+        // Build the model every single time, cause we really needed a pimpl idiom for an open-source model
+        atmos::Nrlmsise00 model(flags);
 
         // compute day number in current year and the seconds within the day
         const Date& date = state.get_epoch();
@@ -128,20 +160,17 @@ class Nrlmsise00Atmosphere {
         const double lat_deg   = lat.numerical_value_in(deg);
         const double lon_deg   = lon.numerical_value_in(deg);
         const double lst_h     = lst.numerical_value_in(h);
-        const double f107a_sfu = f107a.numerical_value();
-        const double f107_sfu  = f107.numerical_value();
+        const double f107a_sfu = f107a.numerical_value_in(sfu);
+        const double f107_sfu  = f107.numerical_value_in(sfu);
 
         // Call the model
         std::array<double, 9> density      = { 0.0 };
         std::array<double, 2> temperatures = { 0.0 };
-        _model.gtd7(doy, sec_s, alt_km, lat_deg, lon_deg, lst_h, f107a_sfu, f107_sfu, ap, density, temperatures);
+        model.gtd7(doy, sec_s, alt_km, lat_deg, lon_deg, lst_h, f107a_sfu, f107_sfu, ap, density, temperatures);
 
         // Extract the total mass density (d[5])
-        return density[5] * g / mp_units::pow<3>(cm);
+        return density[5] * g / pow<3>(cm);
     }
-
-  private:
-    static atmos::CNrlmsise00 _model = construct_default_model(); ///< NRLMSISE00 model instance
 };
 
 } // namespace astro
