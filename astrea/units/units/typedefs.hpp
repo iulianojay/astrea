@@ -115,7 +115,7 @@ using Acceleration = mp_units::quantity<detail::distance_unit / (detail::time_un
 /**
  * @brief Definition for a surface area quantity.
  */
-using SurfaceArea = mp_units::quantity<(detail::distance_unit * detail::distance_unit)>;
+using SurfaceArea = mp_units::quantity<detail::distance_unit * detail::distance_unit>;
 
 /**
  * @brief Definition for a gravitational parameter quantity.

@@ -284,7 +284,6 @@ TEST_F(PayloadPlatformTest, SelfAssignment)
     platform.attach_payload(params1);
 
 #pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wself-assign-overloaded"
     platform = platform;
 #pragma GCC diagnostic pop
 

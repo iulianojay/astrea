@@ -105,7 +105,7 @@ Density HarrisPriesterAtmosphere::find_atmospheric_density(const State& state)
 
     // Diurnal bulge apex direction
     const RadiusVector<frames::solar_system_barycenter::icrf> sun2Earth =
-        get_relative_position<planets::Earth, Sun>(state.get_epoch());
+        get_relative_position<planets::Earth, star::Sun>(state.get_epoch());
     const Direction<frames::earth::icrf> sunDirection = -sun2Earth.direction().force_frame_conversion<frames::earth::icrf>();
     const Direction<frames::earth::icrf> bulgeDirection = DCM<frames::earth::icrf, frames::earth::icrf>::Z(DIURNAL_LAG) * sunDirection;
 

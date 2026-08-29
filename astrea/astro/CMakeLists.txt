@@ -65,7 +65,6 @@ set(ASTRO_SOURCES
     
     ${ASTRO_BASE}/systems/celestial_bodies/Earth/atmosphere/HarrisPriester.cpp
     ${ASTRO_BASE}/systems/celestial_bodies/Earth/atmosphere/JacciaRoberts.cpp
-    ${ASTRO_BASE}/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp
 
     ${ASTRO_BASE}/time/Date.cpp
 

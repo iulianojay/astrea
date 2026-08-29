@@ -167,6 +167,18 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(csv)
 
+# NRMLSISE00 model for atmospheric density
+CPMFindPackage(
+    NAME nrmlsise00
+    GITHUB_REPOSITORY alesmorse/nrlmsise-00
+    GIT_SHALLOW TRUE
+    VERSION 0.1.0
+    OPTIONS
+    "BUILD_TESTING OFF"
+    "BUILD_PYTHON OFF"
+    "DOXYGEN_FOUND OFF"
+)
+
 # Google test cause I Love massive endless macro heavy tools
 if (${BUILD_TESTS})
     CPMFindPackage(

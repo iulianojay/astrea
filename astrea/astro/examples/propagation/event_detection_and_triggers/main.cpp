@@ -79,8 +79,7 @@ int main()
 
     // Track period as a quasi-measure of the burn effect
     std::cout << "Initial State: " << elements << std::endl;
-    std::cout << "Initial Period: " << mp_units::quantity<min>(TWO_PI * sqrt(pow<3>(elements.get_semimajor()) / mu) / rad)
-              << std::endl;
+    std::cout << "Initial Period: " << elements.get_orbital_period(mu) << std::endl;
     std::cout << "Total Thrust: " << mp_units::quantity<kN>(thrusterParams.get_thrust()) << std::endl;
     std::cout << "Spacecraft Mass: " << sat.get_mass() << std::endl;
     std::cout << "Thruster Burn Time: " << mp_units::quantity<s>(1.0 * s) << std::endl;
@@ -102,7 +101,7 @@ int main()
         for (const Date& date : dates) {
             const Keplerian<frames::earth::icrf> elementsAfterBurn =
                 history.get_state_at(date + 60.0 * s).in_element_set<Keplerian<frames::earth::icrf>>();
-            mp_units::quantity<min> orbitalPeriod = TWO_PI * sqrt(pow<3>(elementsAfterBurn.get_semimajor()) / mu) / rad;
+            mp_units::quantity<min> orbitalPeriod = elementsAfterBurn.get_orbital_period(mu);
             std::cout << "\t" << orbitalPeriod << std::endl;
         }
     }

@@ -74,7 +74,7 @@ TEST_F(CelestialBodyTest, GetType) { ASSERT_EQ(get_body_type<planets::Earth>(), 
 
 TEST_F(CelestialBodyTest, GetMu)
 {
-    ASSERT_TRUE(math::nearly_equal(get_mu<planets::Earth>(), 398600.44189 * mp_units::pow<3>(km) / mp_units::pow<2>(s), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(get_mu<planets::Earth>(), 398600.44189 * pow<3>(km) / pow<2>(s), REL_TOL));
 }
 
 TEST_F(CelestialBodyTest, GetMass)
@@ -277,8 +277,8 @@ TEST_F(CelestialBodyTest, GetKeplerianElementsAt)
 
     // Should return the orbital elements with linear approximation
     ASSERT_GT(kep.get_semimajor().numerical_value_in(km), 0.0);
-    ASSERT_GE(kep.get_eccentricity().numerical_value_in(mp_units::one), 0.0);
-    ASSERT_LT(kep.get_eccentricity().numerical_value_in(mp_units::one), 1.0);
+    ASSERT_GE(kep.get_eccentricity().numerical_value_in(one), 0.0);
+    ASSERT_LT(kep.get_eccentricity().numerical_value_in(one), 1.0);
 }
 
 inline constexpr struct DummyBody : CelestialBody<"Dummy", star::Sun> {
