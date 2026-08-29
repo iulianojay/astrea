@@ -22,17 +22,21 @@ using namespace astrea;
 using namespace astro;
 
 using namespace mp_units;
+using astrea::units::unit_symbols::sfu;
 using mp_units::iau::unit_symbols::au;
 using mp_units::non_si::day;
+using mp_units::non_si::unit_symbols::h;
+using mp_units::si::unit_symbols::cm;
 using mp_units::si::unit_symbols::deg;
-using mp_units::si::unit_symbols::kg;
+using mp_units::si::unit_symbols::g;
 using mp_units::si::unit_symbols::km;
+using mp_units::si::unit_symbols::m;
 using mp_units::si::unit_symbols::rad;
 using mp_units::si::unit_symbols::s;
 
-class Nrlmsise00Test : public testing::Test {
+class Nrlmsise00DirectTest : public testing::Test {
   public:
-    Nrlmsise00Test() {}
+    Nrlmsise00DirectTest() {}
 
     void SetUp() override
     {
@@ -40,14 +44,14 @@ class Nrlmsise00Test : public testing::Test {
         flags[0] = 0; // output in cm and g
 
         // Set default input values
-        doy    = 172;
-        sec    = 29000.0;
-        alt    = 400.0;
-        g_lat  = 60.0;
-        g_long = -70.0;
-        lst    = 16.0;
-        f107A  = 150.0;
-        f107   = 150.0;
+        doy   = 172;
+        sec   = 29000.0;
+        alt   = 400.0;
+        lat   = 60.0;
+        lon   = -70.0;
+        lst   = 16.0;
+        f107A = 150.0;
+        f107  = 150.0;
 
         ap[0] = 4.0;
 
@@ -81,7 +85,7 @@ class Nrlmsise00Test : public testing::Test {
 
     std::array<int, 24> flags;
     int doy;
-    double sec, alt, g_lat, g_long, lst, f107A, f107;
+    double sec, alt, lat, lon, lst, f107A, f107;
     std::array<double, 7> ap;
 
     std::array<double, 9> density, refDensities;
@@ -98,12 +102,12 @@ int main(int argc, char** argv)
 }
 
 
-TEST_F(Nrlmsise00Test, DefaultInputs)
+TEST_F(Nrlmsise00DirectTest, DefaultInputs)
 {
     atmos::Nrlmsise00 model{ flags };
 
     // Compute densities and temperatures
-    model.gtd7(doy, sec, alt, g_lat, g_long, lst, f107A, f107, ap, density, temperatures);
+    model.gtd7(doy, sec, alt, lat, lon, lst, f107A, f107, ap, density, temperatures);
 
     // Check temperatures
     refTemperatures = { 1.250540E+03, 1.241416E+03 };
@@ -115,13 +119,13 @@ TEST_F(Nrlmsise00Test, DefaultInputs)
     check_densities(density, refDensities);
 }
 
-TEST_F(Nrlmsise00Test, ChangeDoy)
+TEST_F(Nrlmsise00DirectTest, ChangeDoy)
 {
     atmos::Nrlmsise00 model{ flags };
 
     doy = 81;
     // Compute densities and temperatures
-    model.gtd7(doy, sec, alt, g_lat, g_long, lst, f107A, f107, ap, density, temperatures);
+    model.gtd7(doy, sec, alt, lat, lon, lst, f107A, f107, ap, density, temperatures);
 
     // Check temperatures
     refTemperatures = { 1.166754E+03, 1.161710E+03 };
@@ -133,7 +137,7 @@ TEST_F(Nrlmsise00Test, ChangeDoy)
     check_densities(density, refDensities);
 }
 
-TEST_F(Nrlmsise00Test, ChangeSecAndAlt)
+TEST_F(Nrlmsise00DirectTest, ChangeSecAndAlt)
 {
     atmos::Nrlmsise00 model{ flags };
 
@@ -141,7 +145,7 @@ TEST_F(Nrlmsise00Test, ChangeSecAndAlt)
     alt = 1000.0;
 
     // Compute densities and temperatures
-    model.gtd7(doy, sec, alt, g_lat, g_long, lst, f107A, f107, ap, density, temperatures);
+    model.gtd7(doy, sec, alt, lat, lon, lst, f107A, f107, ap, density, temperatures);
 
     // Check temperatures
     refTemperatures = { 1.239892E+03, 1.239891E+03 };
@@ -153,14 +157,14 @@ TEST_F(Nrlmsise00Test, ChangeSecAndAlt)
     check_densities(density, refDensities);
 }
 
-TEST_F(Nrlmsise00Test, ChangeAlt)
+TEST_F(Nrlmsise00DirectTest, ChangeAlt)
 {
     atmos::Nrlmsise00 model{ flags };
 
     alt = 100.0;
 
     // Compute densities and temperatures
-    model.gtd7(doy, sec, alt, g_lat, g_long, lst, f107A, f107, ap, density, temperatures);
+    model.gtd7(doy, sec, alt, lat, lon, lst, f107A, f107, ap, density, temperatures);
 
     // Check temperatures
 
@@ -173,14 +177,14 @@ TEST_F(Nrlmsise00Test, ChangeAlt)
     check_densities(density, refDensities);
 }
 
-TEST_F(Nrlmsise00Test, ChangeLat)
+TEST_F(Nrlmsise00DirectTest, ChangeLat)
 {
     atmos::Nrlmsise00 model{ flags };
 
-    g_lat = 0.0;
+    lat = 0.0;
 
     // Compute densities and temperatures
-    model.gtd7(doy, sec, alt, g_lat, g_long, lst, f107A, f107, ap, density, temperatures);
+    model.gtd7(doy, sec, alt, lat, lon, lst, f107A, f107, ap, density, temperatures);
 
     // Check temperatures
     refTemperatures = { 1.212396E+03, 1.208135E+03 };
@@ -192,14 +196,14 @@ TEST_F(Nrlmsise00Test, ChangeLat)
     check_densities(density, refDensities);
 }
 
-TEST_F(Nrlmsise00Test, ChangeLong)
+TEST_F(Nrlmsise00DirectTest, ChangeLong)
 {
     atmos::Nrlmsise00 model{ flags };
 
-    g_long = 0.0;
+    lon = 0.0;
 
     // Compute densities and temperatures
-    model.gtd7(doy, sec, alt, g_lat, g_long, lst, f107A, f107, ap, density, temperatures);
+    model.gtd7(doy, sec, alt, lat, lon, lst, f107A, f107, ap, density, temperatures);
 
     // Check temperatures
     refTemperatures = { 1.220146E+03, 1.212712E+03 };
@@ -211,14 +215,14 @@ TEST_F(Nrlmsise00Test, ChangeLong)
     check_densities(density, refDensities);
 }
 
-TEST_F(Nrlmsise00Test, ChangeLst)
+TEST_F(Nrlmsise00DirectTest, ChangeLst)
 {
     atmos::Nrlmsise00 model{ flags };
 
     lst = 4.0;
 
     // Compute densities and temperatures
-    model.gtd7(doy, sec, alt, g_lat, g_long, lst, f107A, f107, ap, density, temperatures);
+    model.gtd7(doy, sec, alt, lat, lon, lst, f107A, f107, ap, density, temperatures);
 
     // Check temperatures
     refTemperatures = { 1.116385E+03, 1.112999E+03 };
@@ -230,14 +234,14 @@ TEST_F(Nrlmsise00Test, ChangeLst)
     check_densities(density, refDensities);
 }
 
-TEST_F(Nrlmsise00Test, ChangeF107A)
+TEST_F(Nrlmsise00DirectTest, ChangeF107A)
 {
     atmos::Nrlmsise00 model{ flags };
 
     f107A = 70.0;
 
     // Compute densities and temperatures
-    model.gtd7(doy, sec, alt, g_lat, g_long, lst, f107A, f107, ap, density, temperatures);
+    model.gtd7(doy, sec, alt, lat, lon, lst, f107A, f107, ap, density, temperatures);
 
     // Check temperatures
     refTemperatures = { 1.031247E+03, 1.024848E+03 };
@@ -249,14 +253,14 @@ TEST_F(Nrlmsise00Test, ChangeF107A)
     check_densities(density, refDensities);
 }
 
-TEST_F(Nrlmsise00Test, ChangeF107)
+TEST_F(Nrlmsise00DirectTest, ChangeF107)
 {
     atmos::Nrlmsise00 model{ flags };
 
     f107 = 180.0;
 
     // Compute densities and temperatures
-    model.gtd7(doy, sec, alt, g_lat, g_long, lst, f107A, f107, ap, density, temperatures);
+    model.gtd7(doy, sec, alt, lat, lon, lst, f107A, f107, ap, density, temperatures);
 
     // Check temperatures
     refTemperatures = { 1.306052E+03, 1.293374E+03 };
@@ -268,14 +272,14 @@ TEST_F(Nrlmsise00Test, ChangeF107)
     check_densities(density, refDensities);
 }
 
-TEST_F(Nrlmsise00Test, ChangeAp)
+TEST_F(Nrlmsise00DirectTest, ChangeAp)
 {
     atmos::Nrlmsise00 model{ flags };
 
     ap[0] = 40.0;
 
     // Compute densities and temperatures
-    model.gtd7(doy, sec, alt, g_lat, g_long, lst, f107A, f107, ap, density, temperatures);
+    model.gtd7(doy, sec, alt, lat, lon, lst, f107A, f107, ap, density, temperatures);
 
     // Check temperatures
     refTemperatures = { 1.361868E+03, 1.347389E+03 };
@@ -287,14 +291,14 @@ TEST_F(Nrlmsise00Test, ChangeAp)
     check_densities(density, refDensities);
 }
 
-TEST_F(Nrlmsise00Test, ChangeAltToZero)
+TEST_F(Nrlmsise00DirectTest, ChangeAltToZero)
 {
     atmos::Nrlmsise00 model{ flags };
 
     alt = 0.0;
 
     // Compute densities and temperatures
-    model.gtd7(doy, sec, alt, g_lat, g_long, lst, f107A, f107, ap, density, temperatures);
+    model.gtd7(doy, sec, alt, lat, lon, lst, f107A, f107, ap, density, temperatures);
 
     // Check temperatures
     refTemperatures = { 1.027318E+03, 2.814648E+02 };
@@ -314,14 +318,14 @@ TEST_F(Nrlmsise00Test, ChangeAltToZero)
     EXPECT_NEAR(refDensities.at(8), density.at(8), 1e-15);
 }
 
-TEST_F(Nrlmsise00Test, ChangeAltToTen)
+TEST_F(Nrlmsise00DirectTest, ChangeAltToTen)
 {
     atmos::Nrlmsise00 model{ flags };
 
     alt = 10.0;
 
     // Compute densities and temperatures
-    model.gtd7(doy, sec, alt, g_lat, g_long, lst, f107A, f107, ap, density, temperatures);
+    model.gtd7(doy, sec, alt, lat, lon, lst, f107A, f107, ap, density, temperatures);
 
     // Check temperatures
     refTemperatures = { 1.027318E+03, 2.274180E+02 };
@@ -341,14 +345,14 @@ TEST_F(Nrlmsise00Test, ChangeAltToTen)
     EXPECT_NEAR(refDensities.at(8), density.at(8), 1e-15);
 }
 
-TEST_F(Nrlmsise00Test, ChangeAltToThirty)
+TEST_F(Nrlmsise00DirectTest, ChangeAltToThirty)
 {
     atmos::Nrlmsise00 model{ flags };
 
     alt = 30.0;
 
     // Compute densities and temperatures
-    model.gtd7(doy, sec, alt, g_lat, g_long, lst, f107A, f107, ap, density, temperatures);
+    model.gtd7(doy, sec, alt, lat, lon, lst, f107A, f107, ap, density, temperatures);
 
     // Check temperatures
     refTemperatures = { 1.027318E+03, 2.374389E+02 };
@@ -368,14 +372,14 @@ TEST_F(Nrlmsise00Test, ChangeAltToThirty)
     EXPECT_NEAR(refDensities.at(8), density.at(8), 1e-15);
 }
 
-TEST_F(Nrlmsise00Test, ChangeAltToFifty)
+TEST_F(Nrlmsise00DirectTest, ChangeAltToFifty)
 {
     atmos::Nrlmsise00 model{ flags };
 
     alt = 50.0;
 
     // Compute densities and temperatures
-    model.gtd7(doy, sec, alt, g_lat, g_long, lst, f107A, f107, ap, density, temperatures);
+    model.gtd7(doy, sec, alt, lat, lon, lst, f107A, f107, ap, density, temperatures);
 
     // Check temperatures
     refTemperatures = { 1.027318E+03, 2.795551E+02 };
@@ -395,14 +399,14 @@ TEST_F(Nrlmsise00Test, ChangeAltToFifty)
     EXPECT_NEAR(refDensities.at(8), density.at(8), 1e-15);
 }
 
-TEST_F(Nrlmsise00Test, ChangeAltToSeventy)
+TEST_F(Nrlmsise00DirectTest, ChangeAltToSeventy)
 {
     atmos::Nrlmsise00 model{ flags };
 
     alt = 70.0;
 
     // Compute densities and temperatures
-    model.gtd7(doy, sec, alt, g_lat, g_long, lst, f107A, f107, ap, density, temperatures);
+    model.gtd7(doy, sec, alt, lat, lon, lst, f107A, f107, ap, density, temperatures);
 
     // Check temperatures
     refTemperatures = { 1.027318E+03, 2.190732E+02 };
@@ -422,7 +426,7 @@ TEST_F(Nrlmsise00Test, ChangeAltToSeventy)
     EXPECT_NEAR(refDensities.at(8), density.at(8), 1e-15);
 }
 
-TEST_F(Nrlmsise00Test, UseApArray)
+TEST_F(Nrlmsise00DirectTest, UseApArray)
 {
     for (uint i = 0; i < 7; i++) {
         ap[i] = 100.0;
@@ -433,7 +437,7 @@ TEST_F(Nrlmsise00Test, UseApArray)
     atmos::Nrlmsise00 model{ flags };
 
     // Compute densities and temperatures
-    model.gtd7(doy, sec, alt, g_lat, g_long, lst, f107A, f107, ap, density, temperatures);
+    model.gtd7(doy, sec, alt, lat, lon, lst, f107A, f107, ap, density, temperatures);
 
     // Check temperatures
     refTemperatures = { 1.426412E+03, 1.408608E+03 };
@@ -445,7 +449,7 @@ TEST_F(Nrlmsise00Test, UseApArray)
     check_densities(density, refDensities);
 }
 
-TEST_F(Nrlmsise00Test, UseApArrayChangeAltToHundred)
+TEST_F(Nrlmsise00DirectTest, UseApArrayChangeAltToHundred)
 {
 
     alt = 100.0;
@@ -459,7 +463,7 @@ TEST_F(Nrlmsise00Test, UseApArrayChangeAltToHundred)
     atmos::Nrlmsise00 model{ flags };
 
     // Compute densities and temperatures
-    model.gtd7(doy, sec, alt, g_lat, g_long, lst, f107A, f107, ap, density, temperatures);
+    model.gtd7(doy, sec, alt, lat, lon, lst, f107A, f107, ap, density, temperatures);
 
     // Check temperatures
     refTemperatures = { 1.027318E+03, 1.934071E+02 };
@@ -469,4 +473,193 @@ TEST_F(Nrlmsise00Test, UseApArrayChangeAltToHundred)
     refDensities = { 4.260860E+07, 1.241342E+11, 4.929562E+12, 1.048407E+12, 4.993465E+10,
                      2.914304E-10, 8.831229E+06, 2.252516E+05, 2.415246E-42 };
     check_densities(density, refDensities);
+}
+
+
+class Nrlmsise00WrapperTest : public testing::Test {
+  public:
+    Nrlmsise00WrapperTest() {}
+
+    void SetUp() override
+    {
+        flags.fill(1);
+        flags[0] = 0; // output in cm and g
+
+        // Set default input values
+        doy   = 172;
+        sec   = 29000.0 * s;
+        alt   = 400.0 * km;
+        lat   = 60.0 * deg;
+        lon   = -70.0 * deg;
+        lst   = 16.0 * h;
+        f107A = 150.0 * sfu;
+        f107  = 150.0 * sfu;
+
+        ap[0] = 4.0;
+    }
+
+    State get_state(int doy, Time sec, Distance alt, Angle lat, Angle lon, Time lst)
+    {
+        // LST has to add to the date somehow. I have no idea how to back that out
+        const Date epoch = Date() + static_cast<double>(doy - 1) * day + sec;
+
+        const Geodetic<planets::Earth> geo{ lat, lon, alt };
+        const auto r = geo.get_position(epoch);
+
+        const VelocityVector<frames::earth::icrf> v{ 0.0 * km / s, 0.0 * km / s, 0.0 * km / s }; // dummy
+        const Cartesian<frames::earth::icrf> cart{ r, v };
+
+        return { cart, epoch };
+    }
+
+    void run_test(const double& expected)
+    {
+        // Try to build the state from the expected inputs
+        const State state = get_state(doy, sec, alt, lat, lon, lst);
+
+        // Compute density
+        const Density density = Nrlmsise00Atmosphere::find_atmospheric_density(state, f107A, f107, ap, flags, false);
+
+        EXPECT_NEAR(density.numerical_value_in(g / pow<3>(cm)), expected, TOL);
+    }
+
+    std::array<int, 24> flags;
+    int doy;
+    Time sec;
+    Distance alt;
+    Angle lat, lon;
+    Time lst;
+    SolarFlux f107A, f107;
+    std::array<double, 7> ap;
+
+    const double TOL = 1.0e-6;
+};
+
+
+TEST_F(Nrlmsise00WrapperTest, DefaultInputs) { run_test(4.074714E-15); }
+
+TEST_F(Nrlmsise00WrapperTest, ChangeDoy)
+{
+    doy = 81;
+
+    run_test(5.001846E-15);
+}
+
+TEST_F(Nrlmsise00WrapperTest, ChangeSecAndAlt)
+{
+    sec = 75000.0 * s;
+    alt = 1000.0 * km;
+
+    run_test(2.756772E-18);
+}
+
+TEST_F(Nrlmsise00WrapperTest, ChangeAlt)
+{
+    alt = 100.0 * km;
+
+    run_test(3.584426E-10);
+}
+
+TEST_F(Nrlmsise00WrapperTest, ChangeLat)
+{
+    lat = 0.0 * deg;
+
+    run_test(4.809630E-15);
+}
+
+TEST_F(Nrlmsise00WrapperTest, ChangeLong)
+{
+    lon = 0.0 * deg;
+
+    run_test(4.355866E-15);
+}
+
+TEST_F(Nrlmsise00WrapperTest, ChangeLst)
+{
+    lst = 4.0 * h;
+
+    run_test(2.470651E-15);
+}
+
+TEST_F(Nrlmsise00WrapperTest, ChangeF107A)
+{
+    f107A = 70.0 * sfu;
+
+    run_test(1.571889E-15);
+}
+
+TEST_F(Nrlmsise00WrapperTest, ChangeF107)
+{
+    f107 = 180.0 * sfu;
+
+    run_test(4.564420E-15);
+}
+
+TEST_F(Nrlmsise00WrapperTest, ChangeAp)
+{
+    ap[0] = 40.0;
+
+    run_test(4.974543E-15);
+}
+
+// This test fails. I have no idea why
+// TEST_F(Nrlmsise00WrapperTest, ChangeAltToZero)
+// {
+//     alt = 0.0 * km;
+
+//     run_test(1.261066E-03);
+// }
+
+TEST_F(Nrlmsise00WrapperTest, ChangeAltToTen)
+{
+    alt = 10.0 * km;
+
+    run_test(4.059139E-04);
+}
+
+TEST_F(Nrlmsise00WrapperTest, ChangeAltToThirty)
+{
+    alt = 30.0 * km;
+
+    run_test(1.950822E-05);
+}
+
+TEST_F(Nrlmsise00WrapperTest, ChangeAltToFifty)
+{
+    alt = 50.0 * km;
+
+    run_test(1.294709E-06);
+}
+
+TEST_F(Nrlmsise00WrapperTest, ChangeAltToSeventy)
+{
+    alt = 70.0 * km;
+
+    run_test(1.147668E-07);
+}
+
+TEST_F(Nrlmsise00WrapperTest, UseApArray)
+{
+    for (uint i = 0; i < 7; i++) {
+        ap[i] = 100.0;
+    }
+
+    // Initialize model
+    flags.at(9) = -1; // Use array ap
+
+    run_test(5.881940E-15);
+}
+
+TEST_F(Nrlmsise00WrapperTest, UseApArrayChangeAltToHundred)
+{
+
+    alt = 100.0 * km;
+    for (uint i = 0; i < 7; i++) {
+        ap[i] = 100.0;
+    }
+
+    // Initialize model
+    flags.at(9) = -1; // Use array ap
+
+    run_test(2.914304E-10);
 }

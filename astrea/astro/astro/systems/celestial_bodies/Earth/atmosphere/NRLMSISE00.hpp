@@ -125,7 +125,8 @@ class Nrlmsise00Atmosphere {
         const SolarFlux& f107a,
         const SolarFlux& f107,
         std::array<double, 7>& ap,
-        const std::array<int, 24>& flags = get_default_flags()
+        const std::array<int, 24>& flags = get_default_flags(),
+        const bool ignoreLowAltitudes    = true
     )
     {
         using namespace mp_units;
@@ -149,7 +150,7 @@ class Nrlmsise00Atmosphere {
         const auto& rEcef          = state.get_position_in_frame<frames::earth::earth_fixed>();
         const auto [lat, lon, alt] = convert_body_fixed_to_geodetic(rEcef);
 
-        if (alt < 80.0 * km) { return Density::zero(); }
+        if (ignoreLowAltitudes && alt < 80.0 * km) { return Density::zero(); }
 
         // compute local solar time
         const Time lst = calculate_local_solar_time(state);
