@@ -191,7 +191,7 @@ class State {
     T in_element_set() const
     {
         using BaseInPrimary = typename T::template BaseType<frames::primary>;
-        const auto mu       = get_mu();
+        const auto mu       = this->get_mu();
         return _elements.in_element_set<BaseInPrimary>(mu).template in_frame<T::frame>(_epoch, mu);
     }
 

@@ -56,7 +56,7 @@ class AtmosphericForceTest : public testing::Test {
 
     Spacecraft sat;
     Date epoch;
-    AtmosphericForce atmoForce;
+    AtmosphericForce<planets::Earth> atmoForce;
 };
 
 
@@ -67,7 +67,7 @@ int main(int argc, char** argv)
 }
 
 
-TEST_F(AtmosphericForceTest, DefaultConstructor) { ASSERT_NO_THROW(AtmosphericForce()); }
+TEST_F(AtmosphericForceTest, DefaultConstructor) { ASSERT_NO_THROW(AtmosphericForce<planets::Earth>()); }
 
 // Vallado, Ex. 8.5
 TEST_F(AtmosphericForceTest, ComputeForceValladoEx85)
@@ -93,21 +93,21 @@ TEST_F(AtmosphericForceTest, ComputeForceValladoEx85)
 
 TEST_F(AtmosphericForceTest, MartianAtmosphere)
 {
-    AtmosphericForce martianAtmosphere;
+    AtmosphericForce<planets::Mars> martianAtmosphere;
     State state(Cartesian<frames::mars::icrf>::LEO(get_mu<planets::Mars>()), epoch);
     ASSERT_NO_THROW(martianAtmosphere.compute_perturbation(state, Vehicle(sat)));
 }
 
 TEST_F(AtmosphericForceTest, VenutianAtmosphere)
 {
-    AtmosphericForce venutianAtmosphere;
+    AtmosphericForce<planets::Venus> venutianAtmosphere;
     State state(Cartesian<frames::venus::icrf>::LEO(get_mu<planets::Venus>()), epoch);
     ASSERT_NO_THROW(venutianAtmosphere.compute_perturbation(state, Vehicle(sat)));
 }
 
 TEST_F(AtmosphericForceTest, TitanAtmosphere)
 {
-    AtmosphericForce titanAtmosphere;
+    AtmosphericForce<moons::Titan> titanAtmosphere;
     State state(Cartesian<frames::titan::icrf>::LEO(get_mu<moons::Titan>()), epoch);
     ASSERT_NO_THROW(titanAtmosphere.compute_perturbation(state, Vehicle(sat)));
 }

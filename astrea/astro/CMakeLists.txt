@@ -40,7 +40,6 @@ set(ASTRO_SOURCES
     ${ASTRO_BASE}/propagation/event_detection/events/TurnThrustersOff.cpp
 
     ${ASTRO_BASE}/propagation/force_models/ForceModel.cpp
-    ${ASTRO_BASE}/propagation/force_models/AtmosphericForce.cpp
     ${ASTRO_BASE}/propagation/force_models/SolarRadiationPressure.cpp
 
     ${ASTRO_BASE}/propagation/equations_of_motion/KeplerianVop.cpp

@@ -135,7 +135,7 @@ Density HarrisPriesterAtmosphere::find_atmospheric_density(const State& state)
 
         // Min exponential density interpolation
         const Density rhoMin = minDensity * math::pow(nextMinDensity / minDensity, dH);
-        if (is_eq_zero(cosPow)) { return rhoMin; }
+        if (cosPow == 0.0) { return rhoMin; }
         else {
             // Max exponential density interpolation
             const Density rhoMax = maxDensity * math::pow(nextMaxDensity / maxDensity, dH);

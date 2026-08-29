@@ -49,10 +49,10 @@ int main()
 
     // Force model
     ForceModel forces;
-    forces.add<OblatenessForce, 100, 100>();
+    forces.add<OblatenessForce, planets::Earth, 100, 100>();
     forces.add<SolarRadiationPressure>();
-    forces.add<AtmosphericForce>();
-    forces.add<NBodyForce>();
+    forces.add<AtmosphericForce, planets::Earth>();
+    forces.add<NBodyForce, planets::Earth, star::Sun, moons::Moon>();
 
     // Build EoMs
     CowellsMethod cm(forces);

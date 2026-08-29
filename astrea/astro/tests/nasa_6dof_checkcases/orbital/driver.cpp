@@ -761,7 +761,7 @@ TEST_F(Orbital6DofTest, Checkcase5C_SrpSolarMax)
 TEST_F(Orbital6DofTest, Checkcase6A_AtmosFixedSphere)
 {
     ForceModel forces;
-    forces.add<AtmosphericForce>();
+    forces.add<AtmosphericForce, planets::Earth>();
 
     const auto propagations = run_all_propagations(forces, ELLIPTIC, SPHERE);
 
@@ -772,7 +772,7 @@ TEST_F(Orbital6DofTest, Checkcase6A_AtmosFixedSphere)
 TEST_F(Orbital6DofTest, Checkcase6B_AtmosDynamicSphere)
 {
     ForceModel forces;
-    forces.add<AtmosphericForce>();
+    forces.add<AtmosphericForce, planets::Earth>();
 
     const auto propagations = run_all_propagations(forces, ELLIPTIC, SPHERE);
 
@@ -829,7 +829,7 @@ TEST_F(Orbital6DofTest, Checkcase7C_4x4Oblateness_NBody_Drag)
     ForceModel forces;
     forces.add<OblatenessForce, planets::Earth, 4, 4>();
     forces.add<NBodyForce, planets::Earth, star::Sun, moons::Moon>();
-    forces.add<AtmosphericForce>();
+    forces.add<AtmosphericForce, planets::Earth>();
 
     const auto propagations = run_all_propagations(forces, ELLIPTIC, SPHERE);
 
@@ -842,7 +842,7 @@ TEST_F(Orbital6DofTest, Checkcase7D_8x8Oblateness_NBody_Drag)
     ForceModel forces;
     forces.add<OblatenessForce, planets::Earth, 8, 8>();
     forces.add<NBodyForce, planets::Earth, star::Sun, moons::Moon>();
-    forces.add<AtmosphericForce>();
+    forces.add<AtmosphericForce, planets::Earth>();
 
     const auto propagations = run_all_propagations(forces, ELLIPTIC, SPHERE);
 

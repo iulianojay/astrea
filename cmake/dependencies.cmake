@@ -73,7 +73,7 @@ CPMFindPackage(
 # Units
 CPMFindPackage(
     NAME mp-units
-    VERSION 2.5.0
+    GIT_TAG master
     GITHUB_REPOSITORY mpusz/mp-units
     GIT_SHALLOW TRUE
     SOURCE_SUBDIR src

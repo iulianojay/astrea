@@ -370,7 +370,7 @@ struct VehicleInner final : public VehicleInnerBase {
         requires(!HasGetRamArea<U>)
     static SurfaceArea get_ram_area_impl(const U&)
     {
-        return 0.0 * mp_units::pow<2>(astrea::detail::distance_unit);
+        return SurfaceArea::zero();
     }
 
     /**
@@ -405,7 +405,7 @@ struct VehicleInner final : public VehicleInnerBase {
         requires(!HasGetLiftArea<U>)
     static SurfaceArea get_lift_area_impl(const U&)
     {
-        return 0.0 * mp_units::pow<2>(astrea::detail::distance_unit);
+        return SurfaceArea::zero();
     }
 
     /**
@@ -440,7 +440,7 @@ struct VehicleInner final : public VehicleInnerBase {
         requires(!HasGetSolarArea<U>)
     static SurfaceArea get_solar_area_impl(const U&)
     {
-        return 0.0 * mp_units::pow<2>(astrea::detail::distance_unit);
+        return SurfaceArea::zero();
     }
 
     /**
@@ -475,7 +475,7 @@ struct VehicleInner final : public VehicleInnerBase {
         requires(!HasGetCoefficientOfDrag<U>)
     static Unitless get_coefficient_of_drag_impl(const U&)
     {
-        return 0.0 * mp_units::one;
+        return Unitless::zero();
     }
 
     /**
@@ -510,7 +510,7 @@ struct VehicleInner final : public VehicleInnerBase {
         requires(!HasGetCoefficientOfLift<U>)
     static Unitless get_coefficient_of_lift_impl(const U&)
     {
-        return 0.0 * mp_units::one;
+        return Unitless::zero();
     }
 
     /**
@@ -545,7 +545,7 @@ struct VehicleInner final : public VehicleInnerBase {
         requires(!HasGetCoefficientOfReflectivity<U>)
     static Unitless get_coefficient_of_reflectivity_impl(const U&)
     {
-        return 0.0 * mp_units::one;
+        return Unitless::zero();
     }
 
     /**
