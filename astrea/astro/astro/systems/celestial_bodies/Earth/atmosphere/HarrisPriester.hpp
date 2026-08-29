@@ -24,7 +24,6 @@
 
 namespace astrea {
 namespace astro {
-namespace planets {
 
 /**
  * @brief The Harris-Priester atmospheric model for Earth.
@@ -43,6 +42,5 @@ class HarrisPriesterAtmosphere {
     static Density find_atmospheric_density(const State& state);
 };
 
-} // namespace planets
 } // namespace astro
 } // namespace astrea

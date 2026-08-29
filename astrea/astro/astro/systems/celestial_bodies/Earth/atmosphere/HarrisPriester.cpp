@@ -23,7 +23,6 @@
 
 namespace astrea {
 namespace astro {
-namespace planets {
 
 using namespace mp_units;
 using mp_units::non_si::day;
@@ -146,6 +145,5 @@ Density HarrisPriesterAtmosphere::find_atmospheric_density(const State& state)
     return Density::zero();
 }
 
-} // namespace planets
 } // namespace astro
 } // namespace astrea

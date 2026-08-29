@@ -11,7 +11,7 @@
  * have received a copy of the GNU General Public License along with Astrea. If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include <astro/systems/celestial_bodies/Earth/atmosphere/JacciaRoberts.hpp>
+#include <astro/systems/celestial_bodies/Earth/atmosphere/JacchiaRoberts.hpp>
 
 #include <map>
 
@@ -21,7 +21,6 @@
 
 namespace astrea {
 namespace astro {
-namespace planets {
 
 using namespace mp_units;
 using mp_units::non_si::day;
@@ -31,7 +30,7 @@ using mp_units::si::unit_symbols::m;
 using mp_units::si::unit_symbols::s;
 
 // Altitude Conditions(TABLE 7-4, Vallado)
-static const std::map<Altitude, std::tuple<Altitude, Density, Altitude>> JACHIA_ROBERTS_ATMOSPHERE = {
+static const std::map<Altitude, std::tuple<Altitude, Density, Altitude>> JACCHIA_ROBERTS_ATMOSPHERE = {
     { 25.0 * km, { 0.0 * km, 1.225 * kg / (pow<3>(m)), 7.249 * km } },
     { 30.0 * km, { 25.0 * km, 3.899e-2 * kg / (pow<3>(m)), 6.349 * km } },
     { 40.0 * km, { 30.0 * km, 1.774e-2 * kg / (pow<3>(m)), 6.682 * km } },
@@ -62,7 +61,7 @@ static const std::map<Altitude, std::tuple<Altitude, Density, Altitude>> JACHIA_
     { 1100.0 * km, { 1000.0 * km, 2.019e-15 * kg / (pow<3>(m)), 268.00 * km } }
 };
 
-Density JacciaRobertsAtmosphere::find_atmospheric_density(const State& state, const Distance equitorialRadius, const Distance polarRadius)
+Density JacchiaRobertsAtmosphere::find_atmospheric_density(const State& state, const Distance equitorialRadius, const Distance polarRadius)
 {
     const auto& position                       = state.get_position_in_frame<frames::earth::earth_fixed>();
     const auto [latitude, longitude, altitude] = convert_body_fixed_to_geodetic(position);
@@ -71,8 +70,8 @@ Density JacciaRobertsAtmosphere::find_atmospheric_density(const State& state, co
     Density referenceDensity;
     Distance scaleHeight;
 
-    const auto iter = JACHIA_ROBERTS_ATMOSPHERE.upper_bound(altitude);
-    if (iter != JACHIA_ROBERTS_ATMOSPHERE.end()) {
+    const auto iter = JACCHIA_ROBERTS_ATMOSPHERE.upper_bound(altitude);
+    if (iter != JACCHIA_ROBERTS_ATMOSPHERE.end()) {
         const auto atmo   = iter->second;
         referenceAltitude = std::get<0>(atmo);
         referenceDensity  = std::get<1>(atmo);
@@ -87,6 +86,5 @@ Density JacciaRobertsAtmosphere::find_atmospheric_density(const State& state, co
     return referenceDensity * exp((referenceAltitude - altitude) / scaleHeight);
 }
 
-} // namespace planets
 } // namespace astro
 } // namespace astrea

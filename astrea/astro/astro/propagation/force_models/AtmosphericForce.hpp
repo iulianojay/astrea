@@ -34,7 +34,7 @@ namespace astro {
  *
  * This class computes the atmospheric force on a vehicle based on its state and the celestial body's atmosphere.
  */
-template <IsCelestialBody auto _body_>
+template <IsCelestialBody auto _body_, planets::EarthAtmosphereModel _model_ = planets::EarthAtmosphereModel::HARRIS_PRIESTER>
 class AtmosphericForce : public PerturbingForce {
 
   public:
@@ -86,7 +86,13 @@ class AtmosphericForce : public PerturbingForce {
                                                               vz };
 
         // Exponential Drag Model
-        const Density atmosphericDensity = find_atmospheric_density<center>(state);
+        Density atmosphericDensity;
+        if constexpr (center == planets::Earth) {
+            atmosphericDensity = find_atmospheric_density<center, _model_>(state);
+        }
+        else {
+            atmosphericDensity = find_atmospheric_density<center>(state);
+        }
 
         // Accel due to drag
         const Velocity relVelMag         = relVelocity.norm();

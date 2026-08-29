@@ -73,7 +73,7 @@ template <auto _body_>
 inline consteval CelestialBodyParameters get_celestial_body_parameters() = delete;
 
 /// Primary template for atmospheric density — returns zero by default.
-template <auto _body_>
+template <auto _body_, auto...>
 inline Density find_atmospheric_density(const State& state)
 {
     return Density::zero();

@@ -1,7 +1,7 @@
 /**
- * @file NRLMSISE00.hpp
+ * @file Nrlmsise00.hpp
  * @author Jay Iuliano (iuliano.jay@gmail.com)
- * @brief Header file for the NRLMSISE00 class.
+ * @brief Header file for the Nrlmsise00 class.
  * @date 2026-05-01
  *
  * @copyright Copyright (c) 2025-2026 Jay Iuliano
@@ -33,7 +33,7 @@ namespace astrea {
 namespace astro {
 
 
-Time calculate_local_solar_time(const State& state)
+inline Time calculate_local_solar_time(const State& state)
 {
     using mp_units::non_si::unit_symbols::h;
     using mp_units::si::atan2;
@@ -53,43 +53,44 @@ Time calculate_local_solar_time(const State& state)
     return lst * 12.0 / std::numbers::pi * h / rad;
 }
 
-inline constexpr std::array<int, 24> get_default_flags()
-{
-    // Ostensibly, 0 is off, and 1 is on. It's not super well documented
-    return std::array<int, 24>{
-        0, // output in meters and kilograms instead of centimeters and grams -> NOTE: Don't touch this, the output units are hard coded
-        1, // F10.7 effect on mean
-        1, // time independent
-        1, // symmetrical annual
-        1, // symmetrical semiannual
-        1, // asymmetrical annual
-        1, // asymmetrical semiannual
-        1, // diurnal
-        1, // semidiurnal
-        1, // daily ap [when this is set to -1 (!) the pointer ap_a in struct nrlmsise_input must point to a struct ap_array]
-        1, // all UT/long effects
-        1, // longitudinal
-        1, // UT and mixed UT/long
-        1, // mixed AP/UT/LONG
-        1, // terdiurnal
-        1, // departures from diffusive equilibrium
-        1, // all TINF var
-        1, // all TLB var
-        1, // all TN1 var
-        1, // all S var
-        1, // all TN2 var
-        1, // all NLB var
-        1, // all TN3 var
-        1  // turbo scale height var
-    };
-}
-
 class Nrlmsise00Atmosphere {
   public:
     /**
      * @brief Deleted constructor — use static factory or find_atmospheric_density directly.
      */
     Nrlmsise00Atmosphere() = delete;
+
+
+    static inline constexpr std::array<int, 24> get_default_flags()
+    {
+        // Ostensibly, 0 is off, and 1 is on. It's not super well documented
+        return std::array<int, 24>{
+            0, // output in meters and kilograms instead of centimeters and grams -> NOTE: Don't touch this, the output units are hard coded
+            1, // F10.7 effect on mean
+            1, // time independent
+            1, // symmetrical annual
+            1, // symmetrical semiannual
+            1, // asymmetrical annual
+            1, // asymmetrical semiannual
+            1, // diurnal
+            1, // semidiurnal
+            1, // daily ap [when this is set to -1 (!) the pointer ap_a in struct nrlmsise_input must point to a struct ap_array]
+            1, // all UT/long effects
+            1, // longitudinal
+            1, // UT and mixed UT/long
+            1, // mixed AP/UT/LONG
+            1, // terdiurnal
+            1, // departures from diffusive equilibrium
+            1, // all TINF var
+            1, // all TLB var
+            1, // all TN1 var
+            1, // all S var
+            1, // all TN2 var
+            1, // all NLB var
+            1, // all TN3 var
+            1  // turbo scale height var
+        };
+    }
 
     /**
      * @brief Find the atmospheric density at a given state and solar/geomagnetic conditions.

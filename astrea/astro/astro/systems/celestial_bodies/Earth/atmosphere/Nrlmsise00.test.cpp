@@ -16,7 +16,7 @@
 #include <math/operations.hpp>
 #include <units/units.hpp>
 
-#include <astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.hpp>
+#include <astro/systems/celestial_bodies/Earth/atmosphere/Nrlmsise00.hpp>
 
 using namespace astrea;
 using namespace astro;

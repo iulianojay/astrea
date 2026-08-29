@@ -1,7 +1,7 @@
 /**
- * @file JacciaRoberts.hpp
+ * @file JacchiaRoberts.hpp
  * @author Jay Iuliano (iuliano.jay@gmail.com)
- * @brief Header file for the JacciaRoberts class.
+ * @brief Header file for the JacchiaRoberts class.
  * @date 2026-05-01
  *
  * @copyright Copyright (c) 2025-2026 Jay Iuliano
@@ -24,17 +24,16 @@
 
 namespace astrea {
 namespace astro {
-namespace planets {
 
 /**
  * @brief The Jaccia-Roberts atmospheric model for Earth.
  */
-class JacciaRobertsAtmosphere {
+class JacchiaRobertsAtmosphere {
   public:
     /**
      * @brief Deleted constructor
      */
-    JacciaRobertsAtmosphere() = delete;
+    JacchiaRobertsAtmosphere() = delete;
 
     /**
      * @brief Find the atmospheric density at a given state using the Jaccia-Roberts atmospheric model.
@@ -43,6 +42,5 @@ class JacciaRobertsAtmosphere {
     static Density find_atmospheric_density(const State& state, const Distance equitorialRadius, const Distance polarRadius);
 };
 
-} // namespace planets
 } // namespace astro
 } // namespace astrea

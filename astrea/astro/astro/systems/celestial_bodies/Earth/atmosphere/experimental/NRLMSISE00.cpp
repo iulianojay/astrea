@@ -1,7 +1,7 @@
 /**
- * @file NRLMSISE00.hpp
+ * @file Nrlmsise00.hpp
  * @author Jay Iuliano (iuliano.jay@gmail.com)
- * @brief Header file for the NRLMSISE00 class.
+ * @brief Header file for the Nrlmsise00 class.
  * @date 2026-05-01
  *
  * @copyright Copyright (c) 2025-2026 Jay Iuliano
@@ -15,7 +15,7 @@
  * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details. You should
  * have received a copy of the GNU General Public License along with Astrea. If not, see <https://www.gnu.org/licenses/>.
  */
-#include <astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.hpp>
+#include <astro/systems/celestial_bodies/Earth/atmosphere/Nrlmsise00.hpp>
 
 #include <mp-units/math.h>
 #include <mp-units/systems/hep.h>
@@ -2349,7 +2349,7 @@ class Output {
                         exp(log(tempLowerBound / tt) * (1.0 + thermalDiffusionCoefficient + gamma) - slope * gamma * zg2);
             }
             else {
-                throw new OrekitException(OrekitMessages.INFINITE_NRLMSISE00_DENSITY);
+                throw new OrekitException(OrekitMessages.INFINITE_Nrlmsise00_DENSITY);
             }
         }
 
