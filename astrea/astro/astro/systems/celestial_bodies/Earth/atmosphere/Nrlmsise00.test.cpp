@@ -16,7 +16,10 @@
 #include <math/operations.hpp>
 #include <units/units.hpp>
 
+#include <astro/state/State.hpp>
+#include <astro/systems.hpp>
 #include <astro/systems/celestial_bodies/Earth/atmosphere/Nrlmsise00.hpp>
+#include <astro/time/Date.hpp>
 
 using namespace astrea;
 using namespace astro;

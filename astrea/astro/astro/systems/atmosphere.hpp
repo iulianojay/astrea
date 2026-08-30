@@ -82,9 +82,8 @@ inline Density find_atmospheric_density<planets::Earth, planets::EarthAtmosphere
         0.0, // Average of eight 3 hr AP indicies from 12 to 33 hrs prior to current time
         0.0  // Average of eight 3 hr AP indicies from 36 to 57 hrs prior to current time
     };
-    const auto flags = Nrlmsise00Atmosphere::get_default_flags();
 
-    return Nrlmsise00Atmosphere::find_atmospheric_density(state, f107a, f107, ap, flags);
+    return Nrlmsise00Atmosphere::find_atmospheric_density(state, f107a, f107, ap);
 }
 
 // ---------------------------------------------------------------------------
