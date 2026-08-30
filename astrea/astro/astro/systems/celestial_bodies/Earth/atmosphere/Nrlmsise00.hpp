@@ -83,8 +83,6 @@ class Nrlmsise00Atmosphere {
     );
 
   private:
-    static atmos::Nrlmsise00 _model;
-
     /**
      * @brief Get the default flags for the Nrlmsise00 model.
      * @return The default flags for the Nrlmsise00 model.

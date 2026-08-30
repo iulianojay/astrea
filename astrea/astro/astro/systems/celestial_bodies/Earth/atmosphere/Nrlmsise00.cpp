@@ -81,8 +81,6 @@ std::array<int, 24> Nrlmsise00Atmosphere::get_default_flags()
     };
 }
 
-atmos::Nrlmsise00 Nrlmsise00Atmosphere::_model(Nrlmsise00Atmosphere::get_default_flags());
-
 Density Nrlmsise00Atmosphere::find_atmospheric_density(
     const State& state,
     const SolarFlux& f107a,
@@ -92,7 +90,7 @@ Density Nrlmsise00Atmosphere::find_atmospheric_density(
     const bool ignoreLowAltitudes
 )
 {
-    _model.set_switches(flags);
+    atmos::Nrlmsise00 model(flags);
 
     // compute day number in current year and the seconds within the day
     const Date& date = state.get_epoch();
@@ -120,7 +118,7 @@ Density Nrlmsise00Atmosphere::find_atmospheric_density(
     // Call the model
     std::array<double, 9> density      = { 0.0 };
     std::array<double, 2> temperatures = { 0.0 };
-    _model.gtd7(doy, sec_s, alt_km, lat_deg, lon_deg, lst_h, f107a_sfu, f107_sfu, ap, density, temperatures);
+    model.gtd7(doy, sec_s, alt_km, lat_deg, lon_deg, lst_h, f107a_sfu, f107_sfu, ap, density, temperatures);
 
     // Extract the total mass density (d[5])
     if (flags[0] == 0) {
