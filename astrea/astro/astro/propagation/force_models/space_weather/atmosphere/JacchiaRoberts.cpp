@@ -11,7 +11,7 @@
  * have received a copy of the GNU General Public License along with Astrea. If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include <astro/systems/celestial_bodies/Earth/atmosphere/JacchiaRoberts.hpp>
+#include <astro/propagation/force_models/space_weather/atmosphere/JacchiaRoberts.hpp>
 
 #include <map>
 

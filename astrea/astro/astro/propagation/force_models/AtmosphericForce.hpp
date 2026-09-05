@@ -24,6 +24,7 @@
 
 #include <astro/astro.fwd.hpp>
 #include <astro/propagation/force_models/PerturbingForce.hpp>
+#include <astro/propagation/force_models/space_weather/atmosphere.hpp>
 #include <astro/systems/system_concepts.hpp>
 
 namespace astrea {
@@ -67,8 +68,6 @@ class AtmosphericForce : public PerturbingForce {
         using mp_units::si::unit_symbols::s;
 
         // Extract
-        const AngularVelocity& bodyRotationRate = get_rotation_rate<center>();
-
         const RadiusVector<frames::primary>& r   = state.get_position();
         const VelocityVector<frames::primary>& v = state.get_velocity();
 
@@ -81,6 +80,7 @@ class AtmosphericForce : public PerturbingForce {
         const Velocity& vz = v.get_z();
 
         // Find velocity relative to atmosphere
+        static const AngularVelocity& bodyRotationRate    = get_rotation_rate<center>();
         const VelocityVector<frames::primary> relVelocity = { vx + y * bodyRotationRate.in(rad / s) / rad,
                                                               vy - x * bodyRotationRate.in(rad / s) / rad,
                                                               vz };
@@ -102,7 +102,7 @@ class AtmosphericForce : public PerturbingForce {
 
         const ForceVector<frames::primary> forceDrag = dragForceMag * (relVelocity / relVelMag);
 
-        // accel due to lift
+        // Accel due to lift
         const Angle angleOfAttack        = atan2(relVelocity.get_z(), relVelocity.get_x());
         const Unitless coefficientOfLift = vehicle.get_coefficient_of_lift();
         const SurfaceArea areaLift       = vehicle.get_lift_area();

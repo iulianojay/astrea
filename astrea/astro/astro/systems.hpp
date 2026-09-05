@@ -27,5 +27,3 @@
 #include <astro/systems/property_getters.hpp>
 #include <astro/systems/system_concepts.hpp>
 #include <astro/systems/system_utilities.hpp>
-
-#include <astro/systems/atmosphere.hpp>

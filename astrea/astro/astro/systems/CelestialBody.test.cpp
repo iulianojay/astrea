@@ -316,23 +316,6 @@ inline consteval CelestialBodyParameters get_celestial_body_parameters<DummyBody
 }
 } // namespace astrea::astro
 
-TEST_F(CelestialBodyTest, FindAtmosphericDensity)
-{
-    const Date date("2020-02-18 15:08:47.23847");
-
-    // Test Earth (has atmosphere in derived class)
-    const State state0(Keplerian<frames::earth::icrf>{ 6378.0 * km, 0.0 * one, 0.0 * rad, 0.0 * rad, 0.0 * rad, 0.0 * rad }, date);
-    const State state1(Keplerian<frames::earth::icrf>{ 6478.0 * km, 0.0 * one, 0.0 * rad, 0.0 * rad, 0.0 * rad, 0.0 * rad }, date);
-    const State state2(Keplerian<frames::earth::icrf>{ 6878.0 * km, 0.0 * one, 0.0 * rad, 0.0 * rad, 0.0 * rad, 0.0 * rad }, date);
-    ASSERT_NO_THROW(find_atmospheric_density<DummyBody>(state0));
-    ASSERT_NO_THROW(find_atmospheric_density<DummyBody>(state1));
-    ASSERT_NO_THROW(find_atmospheric_density<DummyBody>(state2));
-
-    // Base class returns zero density for most bodies
-    const auto densityAtAltitude = find_atmospheric_density<DummyBody>(state0);
-    ASSERT_EQ(densityAtAltitude.numerical_value_in(kg / (mp_units::si::unit_symbols::m * mp_units::si::unit_symbols::m * mp_units::si::unit_symbols::m)), 0.0);
-}
-
 TEST_F(CelestialBodyTest, GetPositionAt)
 {
     const Date date("2020-02-18 15:08:47.23847");

@@ -15,7 +15,7 @@
  * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details. You should
  * have received a copy of the GNU General Public License along with Astrea. If not, see <https://www.gnu.org/licenses/>.
  */
-#include <astro/systems/celestial_bodies/Earth/atmosphere/Nrlmsise00.hpp>
+#include <astro/propagation/force_models/space_weather/atmosphere/Nrlmsise00.hpp>
 
 #include <mp-units/math.h>
 #include <mp-units/systems/hep.h>

@@ -41,6 +41,10 @@ set(ASTRO_SOURCES
 
     ${ASTRO_BASE}/propagation/force_models/ForceModel.cpp
     ${ASTRO_BASE}/propagation/force_models/SolarRadiationPressure.cpp
+    
+    ${ASTRO_BASE}/propagation/force_models/space_weather/atmosphere/HarrisPriester.cpp
+    ${ASTRO_BASE}/propagation/force_models/space_weather/atmosphere/JacchiaRoberts.cpp
+    ${ASTRO_BASE}/propagation/force_models/space_weather/atmosphere/Nrlmsise00.cpp
 
     ${ASTRO_BASE}/propagation/equations_of_motion/KeplerianVop.cpp
     ${ASTRO_BASE}/propagation/equations_of_motion/CowellsMethod.cpp
@@ -62,10 +66,6 @@ set(ASTRO_SOURCES
     ${ASTRO_BASE}/state/orbital_data_formats/GeneralPerturbations.cpp
 
     ${ASTRO_BASE}/systems/celestial_bodies/JplEphemerisTable.cpp
-    
-    ${ASTRO_BASE}/systems/celestial_bodies/Earth/atmosphere/HarrisPriester.cpp
-    ${ASTRO_BASE}/systems/celestial_bodies/Earth/atmosphere/JacchiaRoberts.cpp
-    ${ASTRO_BASE}/systems/celestial_bodies/Earth/atmosphere/Nrlmsise00.cpp
 
     ${ASTRO_BASE}/time/Date.cpp
 
@@ -143,6 +143,10 @@ set(ASTRO_HEADERS
     ${ASTRO_BASE}/propagation/force_models/OblatenessForce.ipp
     ${ASTRO_BASE}/propagation/force_models/SolarRadiationPressure.hpp
 
+    ${ASTRO_BASE}/propagation/force_models/space_weather/atmosphere/JacchiaRoberts.hpp
+    ${ASTRO_BASE}/propagation/force_models/space_weather/atmosphere/HarrisPriester.hpp
+    ${ASTRO_BASE}/propagation/force_models/space_weather/atmosphere/Nrlmsise00.hpp
+
     ${ASTRO_BASE}/propagation/equations_of_motion/KeplerianVop.hpp
     ${ASTRO_BASE}/propagation/equations_of_motion/CowellsMethod.hpp
     ${ASTRO_BASE}/propagation/equations_of_motion/EquationsOfMotion.hpp
@@ -181,9 +185,6 @@ set(ASTRO_HEADERS
     ${ASTRO_BASE}/systems/celestial_bodies.hpp
     ${ASTRO_BASE}/systems/celestial_bodies/JplEphemerisTable.hpp
     ${ASTRO_BASE}/systems/celestial_bodies/Earth/Earth.hpp
-    ${ASTRO_BASE}/systems/celestial_bodies/Earth/atmosphere/JacchiaRoberts.hpp
-    ${ASTRO_BASE}/systems/celestial_bodies/Earth/atmosphere/HarrisPriester.hpp
-    ${ASTRO_BASE}/systems/celestial_bodies/Earth/atmosphere/Nrlmsise00.hpp
     ${ASTRO_BASE}/systems/celestial_bodies/Earth/Moon.hpp
     ${ASTRO_BASE}/systems/celestial_bodies/Mars/Deimos.hpp
     ${ASTRO_BASE}/systems/celestial_bodies/Mars/Mars.hpp
