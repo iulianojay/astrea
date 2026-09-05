@@ -166,6 +166,24 @@ class SpaceWeatherData {
     [[nodiscard]] SpaceWeatherParameters& at(std::size_t index);
 
     /**
+     * @brief Access the space weather parameters for the specified date.
+     *
+     * @param date Date of the space weather parameters to access.
+     * @return const SpaceWeatherParameters& Reference to the space weather parameters for the specified date.
+     * @throws std::out_of_range If no data exists for the specified date.
+     */
+    [[nodiscard]] const SpaceWeatherParameters& at(const Date& date) const;
+
+    /**
+     * @brief Access the space weather parameters for the specified date.
+     *
+     * @param date Date of the space weather parameters to access.
+     * @return SpaceWeatherParameters& Reference to the space weather parameters for the specified date.
+     * @throws std::out_of_range If no data exists for the specified date.
+     */
+    [[nodiscard]] SpaceWeatherParameters& at(const Date& date);
+
+    /**
      * @brief Access the optional start date for filtering the data.
      *
      * @return const std::optional<Date>& Optional start date.

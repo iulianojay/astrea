@@ -25,7 +25,6 @@
 
 #include <astro/astro.fwd.hpp>
 #include <astro/propagation/force_models/PerturbingForce.hpp>
-#include <astro/propagation/force_models/space_weather/SpaceWeatherProvider.hpp>
 #include <astro/propagation/force_models/space_weather/atmosphere.hpp>
 #include <astro/systems/system_concepts.hpp>
 
@@ -90,7 +89,17 @@ class AtmosphericForce : public PerturbingForce {
         // Exponential Drag Model
         Density atmosphericDensity;
         if constexpr (center == planets::Earth) {
-            atmosphericDensity = find_atmospheric_density<center, _model_>(state);
+            if constexpr (_model_ == planets::EarthAtmosphereModel::NRLMSISE00) {
+                static const auto& spaceWeatherData = get_space_weather_data();
+                if (!spaceWeatherData) {
+                    throw std::runtime_error("Space weather data is required for NRLMSISE-00 atmospheric model.");
+                }
+                const auto& spaceWeatherParameters = spaceWeatherData->at(state.get_epoch());
+                atmosphericDensity = find_atmospheric_density<center, _model_>(state, spaceWeatherParameters);
+            }
+            else {
+                atmosphericDensity = find_atmospheric_density<center, _model_>(state);
+            }
         }
         else {
             atmosphericDensity = find_atmospheric_density<center>(state);
@@ -120,19 +129,6 @@ class AtmosphericForce : public PerturbingForce {
      * @return std::unique_ptr<PerturbingForce> A unique pointer to the cloned AtmosphericForce object.
      */
     std::unique_ptr<PerturbingForce> clone() const override { return std::make_unique<AtmosphericForce>(*this); }
-
-    /**
-     * @brief Binds a shared space weather provider to this force.
-     *
-     * Default implementation is a no-op for forces that do not use space weather.
-     */
-    void bind_space_weather_provider(std::shared_ptr<const SpaceWeatherProvider> provider) override
-    {
-        _spaceWeatherProvider = std::move(provider);
-    }
-
-  private:
-    std::shared_ptr<const SpaceWeatherProvider> _spaceWeatherProvider; //!< Shared immutable space weather provider
 };
 
 } // namespace astro

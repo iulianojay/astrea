@@ -85,7 +85,7 @@ Density Nrlmsise00Atmosphere::find_atmospheric_density(
     const State& state,
     const SolarFlux& f107a,
     const SolarFlux& f107,
-    std::array<double, 7>& ap,
+    const std::array<Unitless, 8>& ap,
     const std::array<int, 24>& flags,
     const bool ignoreLowAltitudes
 )
@@ -115,10 +115,16 @@ Density Nrlmsise00Atmosphere::find_atmospheric_density(
     const double f107a_sfu = f107a.numerical_value_in(sfu);
     const double f107_sfu  = f107.numerical_value_in(sfu);
 
+    // NOTE: For some reason, the NRLMSISE-00 model expects the ap array to be a double array of size 7, not 8. The last element is ignored.
+    std::array<double, 7> ap_u = { ap[0].numerical_value_in(one), ap[1].numerical_value_in(one),
+                                   ap[2].numerical_value_in(one), ap[3].numerical_value_in(one),
+                                   ap[4].numerical_value_in(one), ap[5].numerical_value_in(one),
+                                   ap[6].numerical_value_in(one) };
+
     // Call the model
     std::array<double, 9> density      = { 0.0 };
     std::array<double, 2> temperatures = { 0.0 };
-    model.gtd7(doy, sec_s, alt_km, lat_deg, lon_deg, lst_h, f107a_sfu, f107_sfu, ap, density, temperatures);
+    model.gtd7(doy, sec_s, alt_km, lat_deg, lon_deg, lst_h, f107a_sfu, f107_sfu, ap_u, density, temperatures);
 
     // Extract the total mass density (d[5])
     if (flags[0] == 0) {

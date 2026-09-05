@@ -44,6 +44,27 @@ SpaceWeatherData::SpaceWeatherData(const std::filesystem::path& infile, std::opt
 
 [[nodiscard]] SpaceWeatherParameters& SpaceWeatherData::at(std::size_t index) { return _data.at(index); }
 
+[[nodiscard]] const SpaceWeatherParameters& SpaceWeatherData::at(const Date& date) const
+{
+    // TODO: You should be able to find the index in O(1) by diffing the date from the start date and using that as an index.
+    const auto ymd = date.year_month_day();
+    for (const auto& params : _data) {
+        const auto rowYmd = params.date.year_month_day();
+        if (rowYmd == ymd) { return params; }
+    }
+    throw std::out_of_range("No space weather data for the specified date.");
+}
+
+[[nodiscard]] SpaceWeatherParameters& SpaceWeatherData::at(const Date& date)
+{
+    const auto ymd = date.year_month_day();
+    for (auto& params : _data) {
+        const auto rowYmd = params.date.year_month_day();
+        if (rowYmd == ymd) { return params; }
+    }
+    throw std::out_of_range("No space weather data for the specified date.");
+}
+
 [[nodiscard]] const std::optional<Date>& SpaceWeatherData::startDate() const noexcept { return _startDate; }
 
 [[nodiscard]] const std::optional<Date>& SpaceWeatherData::endDate() const noexcept { return _endDate; }

@@ -498,7 +498,7 @@ class Nrlmsise00WrapperTest : public testing::Test {
         f107A = 150.0 * sfu;
         f107  = 150.0 * sfu;
 
-        ap[0] = 4.0;
+        ap[0] = 4.0 * one;
     }
 
     State get_state(int doy, Time sec, Distance alt, Angle lat, Angle lon, Time lst)
@@ -533,7 +533,7 @@ class Nrlmsise00WrapperTest : public testing::Test {
     Angle lat, lon;
     Time lst;
     SolarFlux f107A, f107;
-    std::array<double, 7> ap;
+    std::array<Unitless, 8> ap;
 
     const double TOL = 1.0e-6;
 };
@@ -600,7 +600,7 @@ TEST_F(Nrlmsise00WrapperTest, ChangeF107)
 
 TEST_F(Nrlmsise00WrapperTest, ChangeAp)
 {
-    ap[0] = 40.0;
+    ap[0] = 40.0 * one;
 
     run_test(4.974543E-15);
 }
@@ -644,7 +644,7 @@ TEST_F(Nrlmsise00WrapperTest, ChangeAltToSeventy)
 TEST_F(Nrlmsise00WrapperTest, UseApArray)
 {
     for (uint i = 0; i < 7; i++) {
-        ap[i] = 100.0;
+        ap[i] = 100.0 * one;
     }
 
     // Initialize model
@@ -658,7 +658,7 @@ TEST_F(Nrlmsise00WrapperTest, UseApArrayChangeAltToHundred)
 
     alt = 100.0 * km;
     for (uint i = 0; i < 7; i++) {
-        ap[i] = 100.0;
+        ap[i] = 100.0 * one;
     }
 
     // Initialize model

@@ -55,16 +55,6 @@ class ProviderAwareDummyForce : public PerturbingForce {
     }
 
     std::unique_ptr<PerturbingForce> clone() const override { return std::make_unique<ProviderAwareDummyForce>(*this); }
-
-    void bind_space_weather_provider(std::shared_ptr<const SpaceWeatherProvider> provider) override
-    {
-        _provider = std::move(provider);
-    }
-
-    [[nodiscard]] const std::shared_ptr<const SpaceWeatherProvider>& provider() const noexcept { return _provider; }
-
-  private:
-    std::shared_ptr<const SpaceWeatherProvider> _provider;
 };
 
 class ForceModelTest : public testing::Test {
@@ -157,7 +147,7 @@ TEST(ForceModelTest, AddForceBindsProvider)
     auto* ptr  = dynamic_cast<ProviderAwareDummyForce*>(base.get());
 
     ASSERT_NE(ptr, nullptr);
-    EXPECT_EQ(ptr->provider(), model.space_weather_provider());
+    EXPECT_EQ(ptr->get_space_weather_provider(), model.space_weather_provider());
 }
 
 TEST(ForceModelTest, CopyModelRebindsProviderOnClonedForces)
@@ -171,5 +161,5 @@ TEST(ForceModelTest, CopyModelRebindsProviderOnClonedForces)
     auto* ptr  = dynamic_cast<ProviderAwareDummyForce*>(base.get());
 
     ASSERT_NE(ptr, nullptr);
-    EXPECT_EQ(ptr->provider(), copied.space_weather_provider());
+    EXPECT_EQ(ptr->get_space_weather_provider(), copied.space_weather_provider());
 }

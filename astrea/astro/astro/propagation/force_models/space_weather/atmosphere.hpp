@@ -29,6 +29,7 @@
 
 #include <units/units.hpp>
 
+#include <astro/propagation/force_models/space_weather/SpaceWeatherData.hpp>
 #include <astro/propagation/force_models/space_weather/atmosphere/HarrisPriester.hpp>
 #include <astro/propagation/force_models/space_weather/atmosphere/JacchiaRoberts.hpp>
 #include <astro/propagation/force_models/space_weather/atmosphere/Nrlmsise00.hpp>
@@ -40,8 +41,8 @@ namespace astrea {
 namespace astro {
 
 /// Primary template for atmospheric density — returns zero by default.
-template <auto _body_, auto...>
-inline Density find_atmospheric_density(const State& state)
+template <auto _body_, auto..., typename... Args>
+inline Density find_atmospheric_density(const State&, const Args&...)
 {
     return Density::zero();
 }
@@ -76,23 +77,16 @@ inline Density find_atmospheric_density<planets::Earth, planets::EarthAtmosphere
  * @brief Find the atmospheric density for Earth using the NRLMSISE-00 model.
  *
  * @param state The current Cartesian state vector (position and velocity).
+ * @param spaceWeatherParameters The space weather parameters (F10.7, F10.7a, Ap) required by the NRLMSISE-00 model.
  * @return Density The atmospheric density at the position encoded in @p state.
  */
 template <>
-inline Density find_atmospheric_density<planets::Earth, planets::EarthAtmosphereModel::NRLMSISE00>(const State& state)
+inline Density
+    find_atmospheric_density<planets::Earth, planets::EarthAtmosphereModel::NRLMSISE00>(const State& state, const SpaceWeatherParameters& spaceWeatherParameters)
 {
-    // TODO: Figure out how to pass in the rest of the parameters (f107a, f107, ap, flags) to this function. For now, we use the defaults.
-    const SolarFlux f107a = 150.0 * astrea::units::unit_symbols::sfu;
-    const SolarFlux f107  = 150.0 * astrea::units::unit_symbols::sfu;
-    std::array<double, 7> ap{
-        4.0, // daily AP
-        0.0, // 3 hr AP index for current time
-        0.0, // 3 hr AP index for 3 hrs before current time
-        0.0, // 3 hr AP index for 6 hrs before current time
-        0.0, // 3 hr AP index for 9 hrs before current time
-        0.0, // Average of eight 3 hr AP indicies from 12 to 33 hrs prior to current time
-        0.0  // Average of eight 3 hr AP indicies from 36 to 57 hrs prior to current time
-    };
+    const auto f107a = spaceWeatherParameters.f107Adj.nominal;
+    const auto f107  = spaceWeatherParameters.f107Obs.nominal;
+    const auto ap    = spaceWeatherParameters.ap;
 
     return Nrlmsise00Atmosphere::find_atmospheric_density(state, f107a, f107, ap);
 }

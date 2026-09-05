@@ -77,7 +77,7 @@ class Nrlmsise00Atmosphere {
         const State& state,
         const SolarFlux& f107a,
         const SolarFlux& f107,
-        std::array<double, 7>& ap,
+        const std::array<Unitless, 8>& ap,
         const std::array<int, 24>& flags = get_default_flags(),
         const bool ignoreLowAltitudes    = true
     );
