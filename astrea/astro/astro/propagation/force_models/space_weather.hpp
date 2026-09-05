@@ -20,4 +20,6 @@
  */
 #pragma once
 
+#include <astro/propagation/force_models/space_weather/SpaceWeatherData.hpp>
 #include <astro/propagation/force_models/space_weather/atmosphere.hpp>
+#include <astro/propagation/force_models/space_weather/file_reader.hpp>
