@@ -276,8 +276,8 @@ struct DcmInterface {
     {
         using namespace mp_units;
 
-        const Unitless det = determinant().force_in(one);
-        if (is_eq_zero(det)) {
+        const Unitless det = determinant().in(one);
+        if (det == 0.0) {
             throw std::runtime_error("Cannot normalize a zero-value determinant matrix. The matrix is likely singular.");
         }
 

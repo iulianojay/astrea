@@ -80,7 +80,7 @@ PropagationResult propagate_many_objects(const std::vector<GeneralPerturbations>
             }
             if (settings.srp) { forceModel.add<SolarRadiationPressure>(); }
             if (settings.nBody) { forceModel.add<NBodyForce, moons::Moon, star::Sun>(); }
-            if (settings.drag) { forceModel.add<AtmosphericForce>(); }
+            if (settings.drag) { forceModel.add<AtmosphericForce, planets::Earth>(); }
             EquinoctialVop equinoctialVop{ forceModel };
             integrator.set_equations_of_motion(equinoctialVop);
         }

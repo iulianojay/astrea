@@ -86,10 +86,10 @@ Keplerian<_frame_>::Keplerian(const Cartesian<_frame_>& elements, const GravPara
 
         No idea how much of this is just wrong.
     */
-    static const Unitless tol     = 1.0e-10 * one;
-    static const Angle angularTol = 1.0e-10 * rad;
-    static const Angle piRad      = 1.0 * (mag<pi> * rad);
-    static const Angle twoPiRad   = 2.0 * (mag<pi> * rad);
+    static const Unitless TOL      = 1.0e-10 * one;
+    static const Angle ANGULAR_TOL = 1.0e-10 * rad;
+    static const Angle PI          = std::numbers::pi * rad;
+    static const Angle TWO_PI      = 2.0 * PI;
 
     // Get r and v
     const Distance& x  = elements.get_x();
@@ -144,11 +144,11 @@ Keplerian<_frame_>::Keplerian(const Cartesian<_frame_>& elements, const GravPara
         _eccentricity very close to 0 be exactly 0 to avoid issues where w and
         anomaly flail around wildly as ecc fluctuates.
     */
-    if (_eccentricity < tol) { _eccentricity = 0.0 * one; }
+    if (_eccentricity < TOL) { _eccentricity = 0.0 * one; }
 
     // Inclination (rad)
     _inclination = acos(hz / normH);
-    if (abs(_inclination - piRad) < angularTol) { _inclination = 0.0 * rad; }
+    if (abs(_inclination - PI) < ANGULAR_TOL) { _inclination = 0.0 * rad; }
 
     // Right Ascension of Ascending Node (rad)
     if (_inclination == 0.0 * rad) { // No nodal line
@@ -156,26 +156,26 @@ Keplerian<_frame_>::Keplerian(const Cartesian<_frame_>& elements, const GravPara
     }
     else {
         const Unitless nxOverNMag = math::clamp_within_floating_point_error(Nx / normN, -1.0 * one, 1.0 * one);
-        _rightAscension           = (Ny > 0.0 * (km * km / s)) ? acos(nxOverNMag) : twoPiRad - acos(nxOverNMag);
-        if (abs(_rightAscension - twoPiRad) < angularTol) { _rightAscension = 0.0 * rad; }
+        _rightAscension           = (Ny > 0.0 * (km * km / s)) ? acos(nxOverNMag) : TWO_PI - acos(nxOverNMag);
+        if (abs(_rightAscension - TWO_PI) < ANGULAR_TOL) { _rightAscension = 0.0 * rad; }
     }
 
     // True Anomaly (rad)
     if (_eccentricity == 0.0 * one) {    // No argument of perigee, use nodal line
         if (_inclination == 0.0 * rad) { // No nodal line, use true longitude
             const Unitless xOverR = math::clamp_within_floating_point_error(x / R, -1.0 * one, 1.0 * one);
-            _trueAnomaly          = (vx <= 0.0 * km / s) ? acos(xOverR) : twoPiRad - acos(xOverR);
+            _trueAnomaly          = (vx <= 0.0 * km / s) ? acos(xOverR) : TWO_PI - acos(xOverR);
         }
         else { // Use argument of latitude
             const Unitless nDotROverMag =
                 math::clamp_within_floating_point_error((Nx * x + Ny * y) / (normN * R), -1.0 * one, 1.0 * one);
-            _trueAnomaly = (z >= 0.0 * km) ? acos(nDotROverMag) : twoPiRad - acos(nDotROverMag);
+            _trueAnomaly = (z >= 0.0 * km) ? acos(nDotROverMag) : TWO_PI - acos(nDotROverMag);
         }
     }
     else {
         const Unitless eccDotROverMag =
             math::clamp_within_floating_point_error((eccX * x + eccY * y + eccZ * z) / (_eccentricity * R), -1.0 * one, 1.0 * one);
-        _trueAnomaly = (dotRV >= 0.0 * (km * km / s)) ? acos(eccDotROverMag) : twoPiRad - acos(eccDotROverMag);
+        _trueAnomaly = (dotRV >= 0.0 * (km * km / s)) ? acos(eccDotROverMag) : TWO_PI - acos(eccDotROverMag);
     }
 
     // Argument of Parigee (rad)
@@ -183,21 +183,21 @@ Keplerian<_frame_>::Keplerian(const Cartesian<_frame_>& elements, const GravPara
         _argPerigee = 0.0 * rad;
     }
     else if (_inclination == 0.0 * rad) { // No nodal line, use ecc vec
-        _argPerigee = (hz > 0.0 * (km * km / s)) ? atan2(eccY, eccX) : 2 * piRad - atan2(eccY, eccX);
+        _argPerigee = (hz > 0.0 * (km * km / s)) ? atan2(eccY, eccX) : 2 * PI - atan2(eccY, eccX);
     }
     else {
         const Unitless eccDotNOverMag =
             math::clamp_within_floating_point_error((eccX * Nx + eccY * Ny) / (_eccentricity * normN), -1.0 * one, 1.0 * one);
-        _argPerigee = (eccZ < 0.0 * one) ? twoPiRad - acos(eccDotNOverMag) : acos(eccDotNOverMag);
+        _argPerigee = (eccZ < 0.0 * one) ? TWO_PI - acos(eccDotNOverMag) : acos(eccDotNOverMag);
     }
 
     // Catch garbage
-    if (normN == 0.0 * (km * km / s) || abs(_argPerigee - twoPiRad) < angularTol) {
+    if (normN == 0.0 * (km * km / s) || abs(_argPerigee - TWO_PI) < ANGULAR_TOL) {
         _trueAnomaly += _argPerigee;
         _argPerigee = 0.0 * rad;
     }
 
-    if (abs(_trueAnomaly - twoPiRad) < angularTol) { _trueAnomaly = 0.0 * rad; }
+    if (abs(_trueAnomaly - TWO_PI) < ANGULAR_TOL) { _trueAnomaly = 0.0 * rad; }
 
     wrap_angles();
 }

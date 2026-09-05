@@ -73,7 +73,7 @@ CPMFindPackage(
 # Units
 CPMFindPackage(
     NAME mp-units
-    VERSION 2.5.0
+    GIT_TAG master
     GITHUB_REPOSITORY mpusz/mp-units
     GIT_SHALLOW TRUE
     SOURCE_SUBDIR src
@@ -166,6 +166,18 @@ FetchContent_Declare(
     GIT_TAG 3.1.0
 )
 FetchContent_MakeAvailable(csv)
+
+# NRMLSISE00 model for atmospheric density
+CPMFindPackage(
+    NAME nrlmsise00
+    GITHUB_REPOSITORY iulianojay/nrlmsise-00
+    GIT_SHALLOW TRUE
+    GIT_TAG improvement/remove-pimpl-update-build-system
+    OPTIONS
+    "BUILD_TESTING OFF"
+    "BUILD_PYTHON OFF"
+    "DOXYGEN_FOUND OFF"
+)
 
 # Google test cause I Love massive endless macro heavy tools
 if (${BUILD_TESTS})

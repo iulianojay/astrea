@@ -35,12 +35,6 @@ namespace astro {
 
 namespace planets {
 
-enum class EarthAtmosphereModel { JACHIA_ROBERTS, NRLMSISE00, DTM2000, HARRIS_PRIESTER };
-
-struct EarthParameters {
-    EarthAtmosphereModel atmosphereModel = EarthAtmosphereModel::JACHIA_ROBERTS; //!< The atmospheric model to use for Earth.
-};
-
 /**
  * @class Earth
  * @brief Represents the Earth celestial body.

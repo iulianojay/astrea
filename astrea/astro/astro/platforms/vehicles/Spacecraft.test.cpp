@@ -25,6 +25,7 @@ using namespace astrea;
 using namespace astro;
 using namespace mp_units;
 
+using namespace mp_units;
 using mp_units::si::unit_symbols::deg;
 using mp_units::si::unit_symbols::kg;
 using mp_units::si::unit_symbols::km;
@@ -125,42 +126,42 @@ TEST_F(SpacecraftTest, SetMass)
 
 TEST_F(SpacecraftTest, SetCoefficientOfDrag)
 {
-    Unitless newCd = 3.3 * mp_units::one;
+    Unitless newCd = 3.3 * one;
     spacecraft.set_coefficient_of_drag(newCd);
     ASSERT_EQ(spacecraft.get_coefficient_of_drag(), newCd);
 }
 
 TEST_F(SpacecraftTest, SetCoefficientOfLift)
 {
-    Unitless newCl = 2.2 * mp_units::one;
+    Unitless newCl = 2.2 * one;
     spacecraft.set_coefficient_of_lift(newCl);
     ASSERT_EQ(spacecraft.get_coefficient_of_lift(), newCl);
 }
 
 TEST_F(SpacecraftTest, SetCoefficientOfReflectivity)
 {
-    Unitless newCr = 4.4 * mp_units::one;
+    Unitless newCr = 4.4 * one;
     spacecraft.set_coefficient_of_reflectivity(newCr);
     ASSERT_EQ(spacecraft.get_coefficient_of_reflectivity(), newCr);
 }
 
 TEST_F(SpacecraftTest, SetRamArea)
 {
-    SurfaceArea newArea = 5.5 * mp_units::pow<2>(m);
+    SurfaceArea newArea = 5.5 * pow<2>(m);
     spacecraft.set_ram_area(newArea);
     ASSERT_EQ(spacecraft.get_ram_area(), newArea);
 }
 
 TEST_F(SpacecraftTest, SetSolarArea)
 {
-    SurfaceArea newArea = 6.6 * mp_units::pow<2>(m);
+    SurfaceArea newArea = 6.6 * pow<2>(m);
     spacecraft.set_solar_area(newArea);
     ASSERT_EQ(spacecraft.get_solar_area(), newArea);
 }
 
 TEST_F(SpacecraftTest, SetLiftArea)
 {
-    SurfaceArea newArea = 7.7 * mp_units::pow<2>(m);
+    SurfaceArea newArea = 7.7 * pow<2>(m);
     spacecraft.set_lift_area(newArea);
     ASSERT_EQ(spacecraft.get_lift_area(), newArea);
 }
