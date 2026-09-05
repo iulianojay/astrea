@@ -10,7 +10,8 @@
  * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details. You should
  * have received a copy of the GNU General Public License along with Astrea. If not, see <https://www.gnu.org/licenses/>.
  */
-#include <filesystem>
+#include <astro/propagation/force_models/space_weather/file_reader.hpp>
+
 #include <fstream>
 #include <sstream>
 #include <stdexcept>
@@ -22,20 +23,20 @@
 #include <units/units.hpp>
 #include <utilities/string_util.hpp>
 
-#include <astro/propagation/force_models/space_weather/file_reader.hpp>
-
 namespace astrea {
 namespace astro {
-namespace space_weather {
 
 using namespace mp_units;
 using astrea::units::unit_symbols::sfu;
 
-SpaceWeatherData read_space_weather_file(const std::string& filePath, std::optional<Date> startDate, std::optional<Date> endDate)
+std::vector<SpaceWeatherParameters>
+    read_space_weather_file(const std::filesystem::path& filePath, std::optional<Date> startDate, std::optional<Date> endDate)
 {
     // Check if the file exists
     std::ifstream file(filePath);
-    if (!file.is_open()) { throw std::runtime_error("Failed to open space weather file: " + filePath); }
+    if (!file.is_open()) {
+        throw std::runtime_error(std::string("Failed to open space weather file: ") + filePath.string());
+    }
 
     // Speed up the read by checking dates
     int startYear = 0, startMonth = 0, startDay = 0;
@@ -57,8 +58,8 @@ SpaceWeatherData read_space_weather_file(const std::string& filePath, std::optio
 
     // Read the file
     std::string line;
-    MeasurementType measurementType;
-    SpaceWeatherData spaceWeatherParams;
+    MeasurementType measurementType = MeasurementType::OBSERVED; // Default to OBSERVED if not specified
+    std::vector<SpaceWeatherParameters> spaceWeatherParams;
     while (std::getline(file, line)) {
         // Skip comments and empty lines
         if (line.empty() || line[0] == '#') { continue; }
@@ -141,6 +142,5 @@ SpaceWeatherData read_space_weather_file(const std::string& filePath, std::optio
     return spaceWeatherParams;
 }
 
-} // namespace space_weather
 } // namespace astro
 } // namespace astrea

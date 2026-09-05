@@ -18,6 +18,8 @@
  */
 #pragma once
 
+#include <memory>
+
 #include <astro/astro.fwd.hpp>
 #include <astro/propagation/force_models/Perturbation.hpp>
 
@@ -56,6 +58,13 @@ class PerturbingForce {
      * @return std::unique_ptr<PerturbingForce> A unique pointer to the cloned PerturbingForce object.
      */
     virtual std::unique_ptr<PerturbingForce> clone() const = 0;
+
+    /**
+     * @brief Binds a shared space weather provider to this force.
+     *
+     * Default implementation is a no-op for forces that do not use space weather.
+     */
+    virtual void bind_space_weather_provider(std::shared_ptr<const SpaceWeatherProvider> provider) { (void)provider; }
 };
 
 } // namespace astro

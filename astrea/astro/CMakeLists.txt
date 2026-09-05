@@ -46,6 +46,7 @@ set(ASTRO_SOURCES
     ${ASTRO_BASE}/propagation/force_models/space_weather/atmosphere/JacchiaRoberts.cpp
     ${ASTRO_BASE}/propagation/force_models/space_weather/atmosphere/Nrlmsise00.cpp
     ${ASTRO_BASE}/propagation/force_models/space_weather/file_reader.cpp
+    ${ASTRO_BASE}/propagation/force_models/space_weather/SpaceWeatherData.cpp
 
     ${ASTRO_BASE}/propagation/equations_of_motion/KeplerianVop.cpp
     ${ASTRO_BASE}/propagation/equations_of_motion/CowellsMethod.cpp
@@ -148,6 +149,7 @@ set(ASTRO_HEADERS
     ${ASTRO_BASE}/propagation/force_models/space_weather/atmosphere/HarrisPriester.hpp
     ${ASTRO_BASE}/propagation/force_models/space_weather/atmosphere/Nrlmsise00.hpp
     ${ASTRO_BASE}/propagation/force_models/space_weather/SpaceWeatherData.hpp
+    ${ASTRO_BASE}/propagation/force_models/space_weather/SpaceWeatherProvider.hpp
     ${ASTRO_BASE}/propagation/force_models/space_weather/file_reader.hpp
 
     ${ASTRO_BASE}/propagation/equations_of_motion/KeplerianVop.hpp

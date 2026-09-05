@@ -18,14 +18,15 @@
  */
 #pragma once
 
+#include <filesystem>
 #include <optional>
+#include <vector>
 
 #include <astro/propagation/force_models/space_weather/SpaceWeatherData.hpp>
 #include <astro/time/Date.hpp>
 
 namespace astrea {
 namespace astro {
-namespace space_weather {
 
 /**
  * @brief Reads space weather data from a file and returns it as a SpaceWeatherData object.
@@ -33,11 +34,10 @@ namespace space_weather {
  * @param filePath The path to the space weather data file.
  * @param startDate Optional start date for filtering the data. If provided, only data on or after this date will be included.
  * @param endDate Optional end date for filtering the data. If provided, only data on or before this date will be included.
- * @return A SpaceWeatherData object containing the parsed space weather data.
+ * @return A vector of SpaceWeatherParameters containing the parsed space weather data.
  */
-SpaceWeatherData
-    read_space_weather_file(const std::string& filePath, std::optional<Date> startDate = std::nullopt, std::optional<Date> endDate = std::nullopt);
+std::vector<SpaceWeatherParameters>
+    read_space_weather_file(const std::filesystem::path& filePath, std::optional<Date> startDate = std::nullopt, std::optional<Date> endDate = std::nullopt);
 
-} // namespace space_weather
 } // namespace astro
 } // namespace astrea
