@@ -68,24 +68,10 @@ std::vector<SpaceWeatherParameters>
 
         // 0  1  2  3    4  5  6  7  8  9  10 11 12 13 14   15  16  17  18  19  20  21  22  23 24 25  26    27 28    29 30    31    32
         // yy mm dd BSRN ND Kp Kp Kp Kp Kp Kp Kp Kp Sum Ap  Ap  Ap  Ap  Ap  Ap  Ap  Ap  Avg Cp C9 ISN F10.7 Q  Ctr81 Lst81 F10.7 Ctr81 Lst81
-        const auto tokens = astrea::utilities::split(line, " ");
-
-        // Check if the date is within the specified range
-        const int year  = std::stoi(tokens[0]);
-        const int month = std::stoi(tokens[1]);
-        const int day   = std::stoi(tokens[2]);
-
-        // there's probably a better way to do this
-        if (startDate.has_value()) {
-            if (year < startYear) { continue; }
-            if (year == startYear && month < startMonth) { continue; }
-            if (year == startYear && month == startMonth && day < startDay) { continue; }
-        }
-        if (endDate.has_value()) {
-            if (year > endYear) { break; }
-            if (year == endYear && month > endMonth) { break; }
-            if (year == endYear && month == endMonth && day > endDay) { break; }
-        }
+        auto tokens = astrea::utilities::split(line, " ");
+        tokens.erase(
+            std::remove_if(tokens.begin(), tokens.end(), [](const std::string& s) { return s.empty(); }), tokens.end()
+        );
 
         // Check for measurement type
         if (line.find("OBSERVED") != std::string::npos) {
@@ -105,6 +91,25 @@ std::vector<SpaceWeatherParameters>
             continue;
         }
         row.measurement = measurementType;
+
+        // Check if the date is within the specified range
+        if (!std::isdigit(line[0])) { continue; }
+
+        const int year  = std::stoi(tokens[0]);
+        const int month = std::stoi(tokens[1]);
+        const int day   = std::stoi(tokens[2]);
+
+        // there's probably a better way to do this
+        if (startDate.has_value()) {
+            if (year < startYear) { continue; }
+            if (year == startYear && month < startMonth) { continue; }
+            if (year == startYear && month == startMonth && day < startDay) { continue; }
+        }
+        if (endDate.has_value()) {
+            if (year > endYear) { break; }
+            if (year == endYear && month > endMonth) { break; }
+            if (year == endYear && month == endMonth && day > endDay) { break; }
+        }
 
         // Construct the date from the first three tokens (year, month, day)
         row.date = Date(tokens[0] + " " + tokens[1] + " " + tokens[2], "%Y %m %d");
