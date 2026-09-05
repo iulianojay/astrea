@@ -35,8 +35,6 @@ namespace astro {
 
 namespace planets {
 
-enum class EarthAtmosphereModel { JACCHIA_ROBERTS, NRLMSISE00, DTM2000, HARRIS_PRIESTER };
-
 /**
  * @class Earth
  * @brief Represents the Earth celestial body.

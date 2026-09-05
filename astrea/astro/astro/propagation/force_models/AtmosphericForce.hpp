@@ -36,7 +36,7 @@ namespace astro {
  *
  * This class computes the atmospheric force on a vehicle based on its state and the celestial body's atmosphere.
  */
-template <IsCelestialBody auto _body_, planets::EarthAtmosphereModel _model_ = planets::EarthAtmosphereModel::HARRIS_PRIESTER>
+template <IsCelestialBody auto _body_, EarthAtmosphereModel _model_ = EarthAtmosphereModel::HARRIS_PRIESTER>
 class AtmosphericForce : public PerturbingForce {
 
   public:
@@ -89,7 +89,7 @@ class AtmosphericForce : public PerturbingForce {
         // Exponential Drag Model
         Density atmosphericDensity;
         if constexpr (center == planets::Earth) {
-            if constexpr (_model_ == planets::EarthAtmosphereModel::NRLMSISE00) {
+            if constexpr (_model_ == EarthAtmosphereModel::NRLMSISE00) {
                 static const auto& spaceWeatherData = get_space_weather_data();
                 if (!spaceWeatherData) {
                     throw std::runtime_error("Space weather data is required for NRLMSISE-00 atmospheric model.");

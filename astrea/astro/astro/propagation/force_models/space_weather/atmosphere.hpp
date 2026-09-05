@@ -40,6 +40,11 @@
 namespace astrea {
 namespace astro {
 
+/**
+ * @brief Enumeration of supported Earth atmosphere models.
+ */
+enum class EarthAtmosphereModel { JACCHIA_ROBERTS, NRLMSISE00, HARRIS_PRIESTER };
+
 /// Primary template for atmospheric density — returns zero by default.
 template <auto _body_, auto..., typename... Args>
 inline Density find_atmospheric_density(const State&, const Args&...)
@@ -54,7 +59,7 @@ inline Density find_atmospheric_density(const State&, const Args&...)
  * @return Density The atmospheric density at the position encoded in @p state.
  */
 template <>
-inline Density find_atmospheric_density<planets::Earth, planets::EarthAtmosphereModel::JACCHIA_ROBERTS>(const State& state)
+inline Density find_atmospheric_density<planets::Earth, EarthAtmosphereModel::JACCHIA_ROBERTS>(const State& state)
 {
     static const auto equatorialRadius = get_equitorial_radius<planets::Earth>();
     static const auto polarRadius      = get_polar_radius<planets::Earth>();
@@ -68,7 +73,7 @@ inline Density find_atmospheric_density<planets::Earth, planets::EarthAtmosphere
  * @return Density The atmospheric density at the position encoded in @p state.
  */
 template <>
-inline Density find_atmospheric_density<planets::Earth, planets::EarthAtmosphereModel::HARRIS_PRIESTER>(const State& state)
+inline Density find_atmospheric_density<planets::Earth, EarthAtmosphereModel::HARRIS_PRIESTER>(const State& state)
 {
     return HarrisPriesterAtmosphere::find_atmospheric_density(state);
 }
@@ -82,7 +87,7 @@ inline Density find_atmospheric_density<planets::Earth, planets::EarthAtmosphere
  */
 template <>
 inline Density
-    find_atmospheric_density<planets::Earth, planets::EarthAtmosphereModel::NRLMSISE00>(const State& state, const SpaceWeatherParameters& spaceWeatherParameters)
+    find_atmospheric_density<planets::Earth, EarthAtmosphereModel::NRLMSISE00>(const State& state, const SpaceWeatherParameters& spaceWeatherParameters)
 {
     const auto f107a = spaceWeatherParameters.f107Adj.nominal;
     const auto f107  = spaceWeatherParameters.f107Obs.nominal;

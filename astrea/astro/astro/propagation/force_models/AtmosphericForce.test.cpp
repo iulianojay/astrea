@@ -119,7 +119,7 @@ TEST_F(AtmosphericForceTest, TitanAtmosphere)
 
 TEST_F(AtmosphericForceTest, Nrlmsise00ThrowsWithoutSpaceWeatherData)
 {
-    AtmosphericForce<planets::Earth, planets::EarthAtmosphereModel::NRLMSISE00> nrlmsiseForce;
+    AtmosphericForce<planets::Earth, EarthAtmosphereModel::NRLMSISE00> nrlmsiseForce;
     State state(Cartesian<frames::earth::icrf>::LEO(get_mu<planets::Earth>()), epoch);
 
     EXPECT_THROW((void)nrlmsiseForce.compute_perturbation(state, Vehicle(sat)), std::runtime_error);
@@ -127,7 +127,7 @@ TEST_F(AtmosphericForceTest, Nrlmsise00ThrowsWithoutSpaceWeatherData)
 
 TEST_F(AtmosphericForceTest, Nrlmsise00UsesBoundSpaceWeatherDataDateLookup)
 {
-    AtmosphericForce<planets::Earth, planets::EarthAtmosphereModel::NRLMSISE00> nrlmsiseForce;
+    AtmosphericForce<planets::Earth, EarthAtmosphereModel::NRLMSISE00> nrlmsiseForce;
     State state(Cartesian<frames::earth::icrf>::LEO(get_mu<planets::Earth>()), epoch);
 
     const std::filesystem::path infile = std::string(_ASTRO_ROOT_) + "/data/space_weather/SpaceWeather-All-v1.2.txt";
@@ -142,7 +142,7 @@ TEST_F(AtmosphericForceTest, Nrlmsise00UsesBoundSpaceWeatherDataDateLookup)
 
 TEST_F(AtmosphericForceTest, Nrlmsise00ComputesWithValidBoundSpaceWeatherData)
 {
-    AtmosphericForce<planets::Earth, planets::EarthAtmosphereModel::NRLMSISE00> nrlmsiseForce;
+    AtmosphericForce<planets::Earth, EarthAtmosphereModel::NRLMSISE00> nrlmsiseForce;
     State state(Cartesian<frames::earth::icrf>::LEO(get_mu<planets::Earth>()), epoch);
 
     const std::filesystem::path infile = std::string(_ASTRO_ROOT_) + "/data/space_weather/SpaceWeather-All-v1.2.txt";

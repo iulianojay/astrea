@@ -27,7 +27,8 @@ namespace astrea {
 namespace astro {
 
 /**
- * @brief Lightweight provider that shares an immutable space weather data snapshot.
+ * @brief Lightweight provider that shares an immutable space weather data snapshot. Using this layer of abstraction
+ * for now to enable data hot-swapping in the future if needed.
  */
 class SpaceWeatherProvider {
   public:
