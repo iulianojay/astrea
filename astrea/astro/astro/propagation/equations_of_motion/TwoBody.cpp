@@ -50,7 +50,7 @@ OrbitalElementPartials TwoBody::compute_dynamics(
     const auto muOverR3 = mu / pow<3>(R);
 
     // Dynamics
-    return CartesianPartial<frames::primary>(v, -muOverR3 * r + control / vehicle.get_mass());
+    return CartesianPartial<frames::primary>(v, -muOverR3 * r + control / vehicle.get_mass(state));
 }
 
 

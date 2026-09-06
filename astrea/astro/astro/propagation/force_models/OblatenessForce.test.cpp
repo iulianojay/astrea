@@ -74,7 +74,7 @@ TEST_F(OblatenessForceTest, ComputeForceValladoEx85)
                                          -1.568251 * km / s, -3.702348 * km / s, -6.479485 * km / s };
     State state(cart, epoch);
     const auto [force, torque] = OblatenessForce<planets::Earth, 2, 2>().compute_perturbation(state, Vehicle(sat));
-    const AccelerationVector<frames::earth::icrf> accel = force / sat.get_mass();
+    const AccelerationVector<frames::earth::icrf> accel = force / sat.get_mass(state);
 
     // Vallado Ex. 8.5 expected results
     const AccelerationVector<frames::earth::earth_fixed> expectedEcef{ -1.151903e-6 * km / (s * s),

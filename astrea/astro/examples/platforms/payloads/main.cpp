@@ -37,7 +37,7 @@ struct MyPayloadParameters : public PayloadParameters {
         _mass(mass)
     {
     }
-    Mass get_mass() const { return _mass; }
+    Mass get_mass(const State& state) const { return _mass; }
 
   private:
     Mass _mass;
@@ -57,7 +57,7 @@ struct MyPayload : public Payload<MyPayload, MyPayloadParameters> {
 
     std::size_t get_id() const { return _id; }
 
-    Mass get_mass() const { return get_parameters().get_mass(); }
+    Mass get_mass(const State& state) const { return get_parameters().get_mass(state); }
 
   private:
     std::size_t _id;
@@ -85,7 +85,7 @@ int main()
     spacecraft.attach_payload({ 200.0 * kg });
     const auto payloads = spacecraft.get_payloads();
     for (const auto& payload : payloads) {
-        std::cout << "Payload ID: " << payload.get_id() << ", Mass: " << payload.get_mass() << std::endl;
+        std::cout << "Payload ID: " << payload.get_id() << ", Mass: " << payload.get_mass(State()) << std::endl;
     }
     return 0;
 }

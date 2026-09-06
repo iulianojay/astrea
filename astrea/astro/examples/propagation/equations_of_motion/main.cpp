@@ -75,7 +75,7 @@ int main()
             const auto v = cartesian.get_velocity();
 
             // Compute the partials
-            CartesianPartial<frames::earth::icrf> partials(v, -mu / (R * R * R) * r + control / vehicle.get_mass());
+            CartesianPartial<frames::earth::icrf> partials(v, -mu / (R * R * R) * r + control / vehicle.get_mass(state));
 
             return partials;
         }

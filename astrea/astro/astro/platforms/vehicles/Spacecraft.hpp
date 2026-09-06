@@ -130,56 +130,56 @@ class Spacecraft : public ThrusterPlatform {
      *
      * @return Mass The mass of the spacecraft.
      */
-    Mass get_mass() const;
+    Mass get_mass(const State& state) const;
 
     /**
      * @brief Gets the inertia tensor of the spacecraft.
      *
      * @return InertiaTensor<frames::dynamic::body> The inertia tensor of the spacecraft.
      */
-    InertiaTensor<frames::dynamic::body> get_inertia_tensor() const;
+    InertiaTensor<frames::dynamic::body> get_inertia_tensor(const State& state) const;
 
     /**
      * @brief Gets the coefficients of drag, lift, and reflectivity.
      *
      * @return Unitless The coefficient of drag.
      */
-    Unitless get_coefficient_of_drag() const;
+    Unitless get_coefficient_of_drag(const State& state) const;
 
     /**
      * @brief Gets the coefficient of lift.
      *
      * @return Unitless The coefficient of lift.
      */
-    Unitless get_coefficient_of_lift() const;
+    Unitless get_coefficient_of_lift(const State& state) const;
 
     /**
      * @brief Gets the coefficient of reflectivity.
      *
      * @return Unitless The coefficient of reflectivity.
      */
-    Unitless get_coefficient_of_reflectivity() const;
+    Unitless get_coefficient_of_reflectivity(const State& state) const;
 
     /**
      * @brief Gets the surface areas for ram, solar, and lift.
      *
      * @return SurfaceArea The ram area of the spacecraft.
      */
-    SurfaceArea get_ram_area() const;
+    SurfaceArea get_ram_area(const State& state) const;
 
     /**
      * @brief Gets the solar area of the spacecraft.
      *
      * @return SurfaceArea The solar area of the spacecraft.
      */
-    SurfaceArea get_solar_area() const;
+    SurfaceArea get_solar_area(const State& state) const;
 
     /**
      * @brief Gets the lift area of the spacecraft.
      *
      * @return SurfaceArea The lift area of the spacecraft.
      */
-    SurfaceArea get_lift_area() const;
+    SurfaceArea get_lift_area(const State& state) const;
 
     /**
      * @brief Gets the thrust of the spacecraft.

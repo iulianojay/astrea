@@ -107,16 +107,16 @@ class AtmosphericForce : public PerturbingForce {
 
         // Accel due to drag
         const Velocity relVelMag         = relVelocity.norm();
-        const Unitless coefficientOfDrag = vehicle.get_coefficient_of_drag();
-        const SurfaceArea areaRam        = vehicle.get_ram_area();
+        const Unitless coefficientOfDrag = vehicle.get_coefficient_of_drag(state);
+        const SurfaceArea areaRam        = vehicle.get_ram_area(state);
         const Force dragForceMag         = -0.5 * coefficientOfDrag * areaRam * atmosphericDensity * pow<2>(relVelMag);
 
         const ForceVector<frames::primary> forceDrag = dragForceMag * (relVelocity / relVelMag);
 
         // Accel due to lift
         const Angle angleOfAttack        = atan2(relVelocity.get_z(), relVelocity.get_x());
-        const Unitless coefficientOfLift = vehicle.get_coefficient_of_lift();
-        const SurfaceArea areaLift       = vehicle.get_lift_area();
+        const Unitless coefficientOfLift = vehicle.get_coefficient_of_lift(state);
+        const SurfaceArea areaLift       = vehicle.get_lift_area(state);
         const Force liftForceMag = 0.5 * coefficientOfLift * areaLift * atmosphericDensity * pow<2>(relVelMag) * sin(angleOfAttack);
         const ForceVector<frames::primary> forceLift = liftForceMag * (r / R); // just assume radial lift for now
 
