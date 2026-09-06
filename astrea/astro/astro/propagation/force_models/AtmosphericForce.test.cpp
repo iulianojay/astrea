@@ -13,12 +13,17 @@
 
 #include <gtest/gtest.h>
 
+#include <filesystem>
+#include <memory>
+
 #include <math/operations.hpp>
 #include <units/units.hpp>
 
 #include <astro/platforms/Vehicle.hpp>
 #include <astro/platforms/vehicles/Spacecraft.hpp>
 #include <astro/propagation/force_models/AtmosphericForce.hpp>
+#include <astro/propagation/force_models/space_weather/SpaceWeatherData.hpp>
+#include <astro/propagation/force_models/space_weather/SpaceWeatherProvider.hpp>
 #include <astro/state/orbital_elements/Cartesian.hpp>
 #include <astro/systems/system_utilities.hpp>
 #include <astro/time/Date.hpp>
@@ -56,7 +61,7 @@ class AtmosphericForceTest : public testing::Test {
 
     Spacecraft sat;
     Date epoch;
-    AtmosphericForce atmoForce;
+    AtmosphericForce<planets::Earth> atmoForce;
 };
 
 
@@ -67,7 +72,7 @@ int main(int argc, char** argv)
 }
 
 
-TEST_F(AtmosphericForceTest, DefaultConstructor) { ASSERT_NO_THROW(AtmosphericForce()); }
+TEST_F(AtmosphericForceTest, DefaultConstructor) { ASSERT_NO_THROW(AtmosphericForce<planets::Earth>()); }
 
 // Vallado, Ex. 8.5
 TEST_F(AtmosphericForceTest, ComputeForceValladoEx85)
@@ -76,7 +81,7 @@ TEST_F(AtmosphericForceTest, ComputeForceValladoEx85)
                                                -1.568251 * km / s, -3.702348 * km / s, -6.479485 * km / s };
     const State state(cart, epoch);
     const auto [force, torque]                          = atmoForce.compute_perturbation(state, Vehicle(sat));
-    const AccelerationVector<frames::earth::icrf> accel = force / sat.get_mass();
+    const AccelerationVector<frames::earth::icrf> accel = force / sat.get_mass(state);
 
     const AccelerationVector<frames::earth::earth_fixed> expectedEcef{ 1.4553e-9 * km / (s * s),
                                                                        1.5354e-9 * km / (s * s),
@@ -93,21 +98,57 @@ TEST_F(AtmosphericForceTest, ComputeForceValladoEx85)
 
 TEST_F(AtmosphericForceTest, MartianAtmosphere)
 {
-    AtmosphericForce martianAtmosphere;
+    AtmosphericForce<planets::Mars> martianAtmosphere;
     State state(Cartesian<frames::mars::icrf>::LEO(get_mu<planets::Mars>()), epoch);
     ASSERT_NO_THROW(martianAtmosphere.compute_perturbation(state, Vehicle(sat)));
 }
 
 TEST_F(AtmosphericForceTest, VenutianAtmosphere)
 {
-    AtmosphericForce venutianAtmosphere;
+    AtmosphericForce<planets::Venus> venutianAtmosphere;
     State state(Cartesian<frames::venus::icrf>::LEO(get_mu<planets::Venus>()), epoch);
     ASSERT_NO_THROW(venutianAtmosphere.compute_perturbation(state, Vehicle(sat)));
 }
 
 TEST_F(AtmosphericForceTest, TitanAtmosphere)
 {
-    AtmosphericForce titanAtmosphere;
+    AtmosphericForce<moons::Titan> titanAtmosphere;
     State state(Cartesian<frames::titan::icrf>::LEO(get_mu<moons::Titan>()), epoch);
     ASSERT_NO_THROW(titanAtmosphere.compute_perturbation(state, Vehicle(sat)));
+}
+
+TEST_F(AtmosphericForceTest, Nrlmsise00ThrowsWithoutSpaceWeatherData)
+{
+    AtmosphericForce<planets::Earth, EarthAtmosphereModel::NRLMSISE00> nrlmsiseForce;
+    State state(Cartesian<frames::earth::icrf>::LEO(get_mu<planets::Earth>()), epoch);
+
+    EXPECT_THROW((void)nrlmsiseForce.compute_perturbation(state, Vehicle(sat)), std::runtime_error);
+}
+
+TEST_F(AtmosphericForceTest, Nrlmsise00UsesBoundSpaceWeatherDataDateLookup)
+{
+    AtmosphericForce<planets::Earth, EarthAtmosphereModel::NRLMSISE00> nrlmsiseForce;
+    State state(Cartesian<frames::earth::icrf>::LEO(get_mu<planets::Earth>()), epoch);
+
+    const std::filesystem::path infile = std::string(_ASTRO_ROOT_) + "/data/space_weather/SpaceWeather-All-v1.2.txt";
+
+    // Date range intentionally excludes the test epoch date; model must fail if it actually reads the data.
+    SpaceWeatherData weatherData(infile, Date("1957 10 01", "%Y %m %d"), Date("1957 10 31", "%Y %m %d"));
+    auto provider = std::make_shared<const SpaceWeatherProvider>(std::move(weatherData));
+    nrlmsiseForce.bind_space_weather_provider(provider);
+
+    EXPECT_THROW((void)nrlmsiseForce.compute_perturbation(state, Vehicle(sat)), std::out_of_range);
+}
+
+TEST_F(AtmosphericForceTest, Nrlmsise00ComputesWithValidBoundSpaceWeatherData)
+{
+    AtmosphericForce<planets::Earth, EarthAtmosphereModel::NRLMSISE00> nrlmsiseForce;
+    State state(Cartesian<frames::earth::icrf>::LEO(get_mu<planets::Earth>()), epoch);
+
+    const std::filesystem::path infile = std::string(_ASTRO_ROOT_) + "/data/space_weather/SpaceWeather-All-v1.2.txt";
+    SpaceWeatherData weatherData(infile);
+    auto provider = std::make_shared<const SpaceWeatherProvider>(std::move(weatherData));
+    nrlmsiseForce.bind_space_weather_provider(provider);
+
+    EXPECT_NO_THROW((void)nrlmsiseForce.compute_perturbation(state, Vehicle(sat)));
 }

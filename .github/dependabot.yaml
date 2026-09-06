@@ -1,15 +1,16 @@
 version: 2
+
 updates:
   - package-ecosystem: "uv"
     directory: "/"
     schedule:
       interval: "daily"
       timezone: "Europe/Helsinki"
+    target-branch: "main"
     commit-message:
       prefix: "[dependabot]"
       prefix-development: "[dependabot]"
     target-branch: "main"
-    security-updates: true
     groups:
       all-deps:
         patterns:
@@ -20,11 +21,11 @@ updates:
     schedule:
       interval: "daily"
       timezone: "Europe/Helsinki"
+    target-branch: "main"
     commit-message:
       prefix: "[dependabot]"
       prefix-development: "[dependabot]"
     target-branch: "main"
-    security-updates: true
     groups:
       all-deps:
         patterns:
@@ -35,11 +36,11 @@ updates:
     schedule:
       interval: "daily"
       timezone: "Europe/Helsinki"
+    target-branch: "main"
     commit-message:
       prefix: "[dependabot]"
       prefix-development: "[dependabot]"
     target-branch: "main"
-    security-updates: true
     groups:
       all-deps:
         patterns:

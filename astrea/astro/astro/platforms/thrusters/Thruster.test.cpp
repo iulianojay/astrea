@@ -18,6 +18,7 @@
 
 #include <astro/platforms/thrusters/Thruster.hpp>
 #include <astro/platforms/vehicles/Spacecraft.hpp>
+#include <astro/state/State.hpp>
 
 using namespace astrea;
 using namespace astro;
@@ -36,6 +37,7 @@ class ThrusterTest : public testing::Test {
     Force thrust{ 1.0 * N };
     ThrusterParameters params{ thrust };
     Spacecraft sat;
+    State state;
     Thruster thruster{ sat, params };
 };
 
@@ -50,5 +52,5 @@ TEST_F(ThrusterTest, GetId) { ASSERT_EQ(thruster.get_id(), 0); }
 
 TEST_F(ThrusterTest, GetImpulsiveDeltaV)
 {
-    ASSERT_TRUE(math::nearly_equal(thruster.get_impulsive_delta_v(), thrust / sat.get_mass() * 1.0 * s, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(thruster.get_impulsive_delta_v(), thrust / sat.get_mass(state) * 1.0 * s, REL_TOL));
 }

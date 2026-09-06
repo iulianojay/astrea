@@ -355,7 +355,7 @@ inline constexpr DirectionCosineMatrix<frames::earth::cep, frames::earth::itrf>
 
     // Diurnal rotation
     const Angle gst = julian_date_to_sidereal_time(date.jd());
-    const auto Rs   = DCM<frames::earth::cep, frames::earth::itrf>::Z(gst);
+    const auto Rs   = DCM<frames::earth::cep, frames::earth::itrf>::Z(-gst);
 
     // Polar motion
     const auto [xp, yp] = get_polar_motion(date);

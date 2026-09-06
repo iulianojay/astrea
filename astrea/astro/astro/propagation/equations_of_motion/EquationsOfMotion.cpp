@@ -72,7 +72,7 @@ AttitudePartials EquationsOfMotion::compute_kinematics(
     const Attitude& attitude                                  = state.get_attitude().value();
     const BodyQuaternion& q                                   = attitude.get_orientation();
     const BodyAngleVelocities& w                              = attitude.get_angular_velocity();
-    const InertiaTensor<frames::dynamic::body>& inertiaTensor = vehicle.get_inertia_tensor();
+    const InertiaTensor<frames::dynamic::body>& inertiaTensor = vehicle.get_inertia_tensor(state);
 
     // Compute angular acceleration
     const DCM<frames::primary, frames::dynamic::body> dcm    = q.to_dcm().transpose();

@@ -1,7 +1,7 @@
 /**
- * @file JacciaRoberts.hpp
+ * @file HarrisPriester.hpp
  * @author Jay Iuliano (iuliano.jay@gmail.com)
- * @brief Header file for the JacciaRoberts class.
+ * @brief Header file for the HarrisPriester class.
  * @date 2026-05-01
  *
  * @copyright Copyright (c) 2025-2026 Jay Iuliano
@@ -24,25 +24,23 @@
 
 namespace astrea {
 namespace astro {
-namespace planets {
 
 /**
- * @brief The Jaccia-Roberts atmospheric model for Earth.
+ * @brief The Harris-Priester atmospheric model for Earth.
  */
-class JacciaRobertsAtmosphere {
+class HarrisPriesterAtmosphere {
   public:
     /**
      * @brief Deleted constructor
      */
-    JacciaRobertsAtmosphere() = delete;
+    HarrisPriesterAtmosphere() = delete;
 
     /**
-     * @brief Find the atmospheric density at a given state using the Jaccia-Roberts atmospheric model.
+     * @brief Find the atmospheric density at a given state using the Harris-Priester atmospheric model.
      * @return Density The atmospheric density at the given state.
      */
-    static Density find_atmospheric_density(const State& state, const Distance equatorialRadius, const Distance polarRadius);
+    static Density find_atmospheric_density(const State& state);
 };
 
-} // namespace planets
 } // namespace astro
 } // namespace astrea

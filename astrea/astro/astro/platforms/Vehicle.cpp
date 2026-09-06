@@ -34,58 +34,22 @@ Vehicle::Vehicle() :
 
 // Copy constructor
 Vehicle::Vehicle(const Vehicle& other) :
-    _ptr(other._ptr->clone()),
-    _mass(other._mass),
-    _inertiaTensor(other._inertiaTensor),
-    _ramArea(other._ramArea),
-    _liftArea(other._liftArea),
-    _solarArea(other._solarArea),
-    _coefficientOfDrag(other._coefficientOfDrag),
-    _coefficientOfLift(other._coefficientOfLift),
-    _coefficientOfReflectivity(other._coefficientOfReflectivity)
+    _ptr(other._ptr->clone())
 {
 }
 
 // Move constructor
 Vehicle::Vehicle(Vehicle&& other) noexcept :
-    _ptr(std::move(other._ptr)),
-    _mass(std::move(other._mass)),
-    _inertiaTensor(std::move(other._inertiaTensor)),
-    _ramArea(std::move(other._ramArea)),
-    _liftArea(std::move(other._liftArea)),
-    _solarArea(std::move(other._solarArea)),
-    _coefficientOfDrag(std::move(other._coefficientOfDrag)),
-    _coefficientOfLift(std::move(other._coefficientOfLift)),
-    _coefficientOfReflectivity(std::move(other._coefficientOfReflectivity))
+    _ptr(std::move(other._ptr))
 {
 }
 
-void Vehicle::generic_ctor_impl()
-{
-    _mass                      = ptr()->get_mass();
-    _inertiaTensor             = ptr()->get_inertia_tensor();
-    _ramArea                   = ptr()->get_ram_area();
-    _liftArea                  = ptr()->get_lift_area();
-    _solarArea                 = ptr()->get_solar_area();
-    _coefficientOfDrag         = ptr()->get_coefficient_of_drag();
-    _coefficientOfLift         = ptr()->get_coefficient_of_lift();
-    _coefficientOfReflectivity = ptr()->get_coefficient_of_reflectivity();
-}
+void Vehicle::generic_ctor_impl() {}
 
 // Move assignment operator
 Vehicle& Vehicle::operator=(Vehicle&& other) noexcept
 {
-    if (this != &other) {
-        _ptr                       = std::move(other._ptr);
-        _mass                      = std::move(other._mass);
-        _inertiaTensor             = std::move(other._inertiaTensor);
-        _ramArea                   = std::move(other._ramArea);
-        _liftArea                  = std::move(other._liftArea);
-        _solarArea                 = std::move(other._solarArea);
-        _coefficientOfDrag         = std::move(other._coefficientOfDrag);
-        _coefficientOfLift         = std::move(other._coefficientOfLift);
-        _coefficientOfReflectivity = std::move(other._coefficientOfReflectivity);
-    }
+    if (this != &other) { _ptr = std::move(other._ptr); }
     return *this;
 }
 

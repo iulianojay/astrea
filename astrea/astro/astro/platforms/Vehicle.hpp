@@ -29,6 +29,7 @@
 #include <astro/frames/framework/CartesianVector.hpp>
 #include <astro/platforms/InertiaTensor.hpp>
 #include <astro/propagation/force_models/Perturbation.hpp>
+#include <astro/state/State.hpp>
 #include <astro/time/Date.hpp>
 #include <astro/types/concepts.hpp>
 #include <astro/types/type_traits.hpp>
@@ -43,8 +44,8 @@ namespace astro {
  * @tparam T The type to check.
  */
 template <typename T>
-concept HasGetMass = requires(const T vehicle) {
-    { vehicle.get_mass() } -> std::same_as<Mass>;
+concept HasGetMass = requires(const T vehicle, const State& state) {
+    { vehicle.get_mass(state) } -> std::same_as<Mass>;
 };
 
 /**
@@ -53,8 +54,8 @@ concept HasGetMass = requires(const T vehicle) {
  * @tparam T The type to check.
  */
 template <typename T>
-concept HasGetInertiaTensor = requires(const T vehicle) {
-    { vehicle.get_inertia_tensor() } -> std::same_as<InertiaTensor<frames::dynamic::body>>;
+concept HasGetInertiaTensor = requires(const T vehicle, const State& state) {
+    { vehicle.get_inertia_tensor(state) } -> std::same_as<InertiaTensor<frames::dynamic::body>>;
 };
 
 /**
@@ -63,8 +64,8 @@ concept HasGetInertiaTensor = requires(const T vehicle) {
  * @tparam T The type to check.
  */
 template <typename T>
-concept HasGetRamArea = requires(const T vehicle) {
-    { vehicle.get_ram_area() } -> std::same_as<SurfaceArea>;
+concept HasGetRamArea = requires(const T vehicle, const State& state) {
+    { vehicle.get_ram_area(state) } -> std::same_as<SurfaceArea>;
 };
 
 /**
@@ -73,8 +74,8 @@ concept HasGetRamArea = requires(const T vehicle) {
  * @tparam T The type to check.
  */
 template <typename T>
-concept HasGetCoefficientOfDrag = requires(const T vehicle) {
-    { vehicle.get_coefficient_of_drag() } -> std::same_as<Unitless>;
+concept HasGetCoefficientOfDrag = requires(const T vehicle, const State& state) {
+    { vehicle.get_coefficient_of_drag(state) } -> std::same_as<Unitless>;
 };
 
 /**
@@ -83,8 +84,8 @@ concept HasGetCoefficientOfDrag = requires(const T vehicle) {
  * @tparam T The type to check.
  */
 template <typename T>
-concept HasGetLiftArea = requires(const T vehicle) {
-    { vehicle.get_lift_area() } -> std::same_as<SurfaceArea>;
+concept HasGetLiftArea = requires(const T vehicle, const State& state) {
+    { vehicle.get_lift_area(state) } -> std::same_as<SurfaceArea>;
 };
 
 /**
@@ -93,8 +94,8 @@ concept HasGetLiftArea = requires(const T vehicle) {
  * @tparam T The type to check.
  */
 template <typename T>
-concept HasGetCoefficientOfLift = requires(const T vehicle) {
-    { vehicle.get_coefficient_of_lift() } -> std::same_as<Unitless>;
+concept HasGetCoefficientOfLift = requires(const T vehicle, const State& state) {
+    { vehicle.get_coefficient_of_lift(state) } -> std::same_as<Unitless>;
 };
 
 /**
@@ -103,8 +104,8 @@ concept HasGetCoefficientOfLift = requires(const T vehicle) {
  * @tparam T The type to check.
  */
 template <typename T>
-concept HasGetSolarArea = requires(const T vehicle) {
-    { vehicle.get_solar_area() } -> std::same_as<SurfaceArea>;
+concept HasGetSolarArea = requires(const T vehicle, const State& state) {
+    { vehicle.get_solar_area(state) } -> std::same_as<SurfaceArea>;
 };
 
 /**
@@ -113,8 +114,8 @@ concept HasGetSolarArea = requires(const T vehicle) {
  * @tparam T The type to check.
  */
 template <typename T>
-concept HasGetCoefficientOfReflectivity = requires(const T vehicle) {
-    { vehicle.get_coefficient_of_reflectivity() } -> std::same_as<Unitless>;
+concept HasGetCoefficientOfReflectivity = requires(const T vehicle, const State& state) {
+    { vehicle.get_coefficient_of_reflectivity(state) } -> std::same_as<Unitless>;
 };
 
 /**
@@ -157,16 +158,18 @@ struct VehicleInnerBase {
     /**
      * @brief Gets the mass of the vehicle.
      *
+     * @param state The state of the vehicle for which to get the mass.
      * @return Mass The mass of the vehicle.
      */
-    virtual Mass get_mass() const = 0;
+    virtual Mass get_mass(const State& state) const = 0;
 
     /**
      * @brief Gets the inertia tensor of the vehicle.
      *
+     * @param state The state of the vehicle for which to get the inertia tensor.
      * @return InertiaTensor<frames::dynamic::body> The inertia tensor of the vehicle.
      */
-    virtual InertiaTensor<frames::dynamic::body> get_inertia_tensor() const
+    virtual InertiaTensor<frames::dynamic::body> get_inertia_tensor(const State& state) const
     {
         return InertiaTensor<frames::dynamic::body>();
     }
@@ -174,44 +177,50 @@ struct VehicleInnerBase {
     /**
      * @brief Gets the ram area of the vehicle.
      *
+     * @param state The state of the vehicle for which to get the ram area.
      * @return SurfaceArea The ram area of the vehicle.
      */
-    virtual SurfaceArea get_ram_area() const = 0;
+    virtual SurfaceArea get_ram_area(const State& state) const = 0;
 
     /**
      * @brief Gets the lift area of the vehicle.
      *
+     * @param state The state of the vehicle for which to get the lift area.
      * @return SurfaceArea The lift area of the vehicle.
      */
-    virtual SurfaceArea get_lift_area() const = 0;
+    virtual SurfaceArea get_lift_area(const State& state) const = 0;
 
     /**
      * @brief Gets the solar area of the vehicle.
      *
+     * @param state The state of the vehicle for which to get the solar area.
      * @return SurfaceArea The solar area of the vehicle.
      */
-    virtual SurfaceArea get_solar_area() const = 0;
+    virtual SurfaceArea get_solar_area(const State& state) const = 0;
 
     /**
      * @brief Gets the coefficient of drag of the vehicle.
      *
+     * @param state The state of the vehicle for which to get the coefficient of drag.
      * @return Unitless The coefficient of drag of the vehicle.
      */
-    virtual Unitless get_coefficient_of_drag() const = 0;
+    virtual Unitless get_coefficient_of_drag(const State& state) const = 0;
 
     /**
      * @brief Gets the coefficient of lift of the vehicle.
      *
+     * @param state The state of the vehicle for which to get the coefficient of lift.
      * @return Unitless The coefficient of lift of the vehicle.
      */
-    virtual Unitless get_coefficient_of_lift() const = 0;
+    virtual Unitless get_coefficient_of_lift(const State& state) const = 0;
 
     /**
      * @brief Gets the coefficient of reflectivity of the vehicle.
      *
+     * @param state The state of the vehicle for which to get the coefficient of reflectivity.
      * @return Unitless The coefficient of reflectivity of the vehicle.
      */
-    virtual Unitless get_coefficient_of_reflectivity() const = 0;
+    virtual Unitless get_coefficient_of_reflectivity(const State& state) const = 0;
 
     /**
      * @brief Gets the control authority of the vehicle.
@@ -313,27 +322,33 @@ struct VehicleInner final : public VehicleInnerBase {
     /**
      * @brief Gets the mass of the vehicle.
      *
+     * @param state The current state of the vehicle.
      * @return Mass The mass of the vehicle.
      */
-    Mass get_mass() const final { return _value.get_mass(); }
+    Mass get_mass(const State& state) const final { return _value.get_mass(state); }
 
     /**
      * @brief Gets the inertia tensor of the vehicle.
      *
+     * @param state The current state of the vehicle.
      * @return InertiaTensor<frames::dynamic::body> The inertia tensor of the vehicle.
      */
-    InertiaTensor<frames::dynamic::body> get_inertia_tensor() const final { return get_inertia_tensor_impl(_value); }
+    InertiaTensor<frames::dynamic::body> get_inertia_tensor(const State& state) const final
+    {
+        return get_inertia_tensor_impl(_value, state);
+    }
 
     /**
      * @brief Gets the default inertia tensor of the vehicle.
      *
      * @tparam U The type of the vehicle implementation.
      * @param value The vehicle instance to get the inertia tensor from.
+     * @param state The current state of the vehicle.
      * @return InertiaTensor<frames::dynamic::body> The inertia tensor of the vehicle.
      */
     template <typename U>
         requires(!HasGetInertiaTensor<U>)
-    static InertiaTensor<frames::dynamic::body> get_inertia_tensor_impl(const U&)
+    static InertiaTensor<frames::dynamic::body> get_inertia_tensor_impl(const U&, const State&)
     {
         return InertiaTensor<frames::dynamic::body>();
     }
@@ -343,34 +358,37 @@ struct VehicleInner final : public VehicleInnerBase {
      *
      * @tparam U The type of the vehicle implementation.
      * @param value The vehicle instance to get the inertia tensor from.
+     * @param state The current state of the vehicle.
      * @return InertiaTensor<frames::dynamic::body> The inertia tensor of the vehicle.
      */
     template <typename U>
         requires(HasGetInertiaTensor<U>)
-    static InertiaTensor<frames::dynamic::body> get_inertia_tensor_impl(const U& value)
+    static InertiaTensor<frames::dynamic::body> get_inertia_tensor_impl(const U& value, const State& state)
     {
-        return value.get_inertia_tensor();
+        return value.get_inertia_tensor(state);
     }
 
     /**
      * @brief Gets the ram area of the vehicle or a default value.
      *
+     * @param state The current state of the vehicle.
      * @return SurfaceArea The ram area of the vehicle.
      */
-    SurfaceArea get_ram_area() const final { return get_ram_area_impl(_value); }
+    SurfaceArea get_ram_area(const State& state) const final { return get_ram_area_impl(_value, state); }
 
     /**
      * @brief Gets the default ram area of the vehicle.
      *
      * @tparam U The type of the vehicle implementation.
      * @param value The vehicle instance to get the ram area from.
+     * @param state The current state of the vehicle.
      * @return SurfaceArea The ram area of the vehicle.
      */
     template <typename U>
         requires(!HasGetRamArea<U>)
-    static SurfaceArea get_ram_area_impl(const U&)
+    static SurfaceArea get_ram_area_impl(const U&, const State&)
     {
-        return 0.0 * mp_units::pow<2>(astrea::detail::distance_unit);
+        return SurfaceArea::zero();
     }
 
     /**
@@ -378,34 +396,37 @@ struct VehicleInner final : public VehicleInnerBase {
      *
      * @tparam U The type of the vehicle implementation.
      * @param value The vehicle instance to get the ram area from.
+     * @param state The current state of the vehicle.
      * @return SurfaceArea The ram area of the vehicle.
      */
     template <typename U>
         requires(HasGetRamArea<U>)
-    static SurfaceArea get_ram_area_impl(const U& value)
+    static SurfaceArea get_ram_area_impl(const U& value, const State& state)
     {
-        return value.get_ram_area();
+        return value.get_ram_area(state);
     }
 
     /**
      * @brief Gets the lift area of the vehicle or a default value.
      *
+     * @param state The current state of the vehicle.
      * @return SurfaceArea The lift area of the vehicle.
      */
-    SurfaceArea get_lift_area() const final { return get_lift_area_impl(_value); }
+    SurfaceArea get_lift_area(const State& state) const final { return get_lift_area_impl(_value, state); }
 
     /**
      * @brief Gets the default lift area of the vehicle.
      *
      * @tparam U The type of the vehicle implementation.
      * @param value The vehicle instance to get the lift area from.
+     * @param state The current state of the vehicle.
      * @return SurfaceArea The lift area of the vehicle.
      */
     template <typename U>
         requires(!HasGetLiftArea<U>)
-    static SurfaceArea get_lift_area_impl(const U&)
+    static SurfaceArea get_lift_area_impl(const U&, const State&)
     {
-        return 0.0 * mp_units::pow<2>(astrea::detail::distance_unit);
+        return SurfaceArea::zero();
     }
 
     /**
@@ -413,34 +434,37 @@ struct VehicleInner final : public VehicleInnerBase {
      *
      * @tparam U The type of the vehicle implementation.
      * @param value The vehicle instance to get the lift area from.
+     * @param state The current state of the vehicle.
      * @return SurfaceArea The lift area of the vehicle.
      */
     template <typename U>
         requires(HasGetLiftArea<U>)
-    static SurfaceArea get_lift_area_impl(const U& value)
+    static SurfaceArea get_lift_area_impl(const U& value, const State& state)
     {
-        return value.get_lift_area();
+        return value.get_lift_area(state);
     }
 
     /**
      * @brief Gets the solar area of the vehicle or a default value.
      *
+     * @param state The current state of the vehicle.
      * @return SurfaceArea The solar area of the vehicle.
      */
-    SurfaceArea get_solar_area() const final { return get_solar_area_impl(_value); }
+    SurfaceArea get_solar_area(const State& state) const final { return get_solar_area_impl(_value, state); }
 
     /**
      * @brief Gets the default solar area of the vehicle.
      *
      * @tparam U The type of the vehicle implementation.
      * @param value The vehicle instance to get the solar area from.
+     * @param state The current state of the vehicle.
      * @return SurfaceArea The solar area of the vehicle.
      */
     template <typename U>
         requires(!HasGetSolarArea<U>)
-    static SurfaceArea get_solar_area_impl(const U&)
+    static SurfaceArea get_solar_area_impl(const U&, const State&)
     {
-        return 0.0 * mp_units::pow<2>(astrea::detail::distance_unit);
+        return SurfaceArea::zero();
     }
 
     /**
@@ -448,34 +472,40 @@ struct VehicleInner final : public VehicleInnerBase {
      *
      * @tparam U The type of the vehicle implementation.
      * @param value The vehicle instance to get the solar area from.
+     * @param state The current state of the vehicle.
      * @return SurfaceArea The solar area of the vehicle.
      */
     template <typename U>
         requires(HasGetSolarArea<U>)
-    static SurfaceArea get_solar_area_impl(const U& value)
+    static SurfaceArea get_solar_area_impl(const U& value, const State& state)
     {
-        return value.get_solar_area();
+        return value.get_solar_area(state);
     }
 
     /**
      * @brief Gets the coefficient of drag of the vehicle or a default value.
      *
+     * @param state The current state of the vehicle.
      * @return Unitless The coefficient of drag of the vehicle.
      */
-    Unitless get_coefficient_of_drag() const final { return get_coefficient_of_drag_impl(_value); }
+    Unitless get_coefficient_of_drag(const State& state) const final
+    {
+        return get_coefficient_of_drag_impl(_value, state);
+    }
 
     /**
      * @brief Gets the default coefficient of drag of the vehicle.
      *
      * @tparam U The type of the vehicle implementation.
      * @param value The vehicle instance to get the coefficient of drag from.
+     * @param state The current state of the vehicle.
      * @return Unitless The coefficient of drag of the vehicle.
      */
     template <typename U>
         requires(!HasGetCoefficientOfDrag<U>)
-    static Unitless get_coefficient_of_drag_impl(const U&)
+    static Unitless get_coefficient_of_drag_impl(const U&, const State&)
     {
-        return 0.0 * mp_units::one;
+        return Unitless::zero();
     }
 
     /**
@@ -483,34 +513,40 @@ struct VehicleInner final : public VehicleInnerBase {
      *
      * @tparam U The type of the vehicle implementation.
      * @param value The vehicle instance to get the coefficient of drag from.
+     * @param state The current state of the vehicle.
      * @return Unitless The coefficient of drag of the vehicle.
      */
     template <typename U>
         requires(HasGetCoefficientOfDrag<U>)
-    static Unitless get_coefficient_of_drag_impl(const U& value)
+    static Unitless get_coefficient_of_drag_impl(const U& value, const State& state)
     {
-        return value.get_coefficient_of_drag();
+        return value.get_coefficient_of_drag(state);
     }
 
     /**
      * @brief Gets the coefficient of lift of the vehicle or a default value.
      *
+     * @param state The current state of the vehicle.
      * @return Unitless The coefficient of lift of the vehicle.
      */
-    Unitless get_coefficient_of_lift() const final { return get_coefficient_of_lift_impl(_value); }
+    Unitless get_coefficient_of_lift(const State& state) const final
+    {
+        return get_coefficient_of_lift_impl(_value, state);
+    }
 
     /**
      * @brief Gets the default coefficient of lift of the vehicle.
      *
      * @tparam U The type of the vehicle implementation.
      * @param value The vehicle instance to get the coefficient of lift from.
+     * @param state The current state of the vehicle.
      * @return Unitless The coefficient of lift of the vehicle.
      */
     template <typename U>
         requires(!HasGetCoefficientOfLift<U>)
-    static Unitless get_coefficient_of_lift_impl(const U&)
+    static Unitless get_coefficient_of_lift_impl(const U&, const State&)
     {
-        return 0.0 * mp_units::one;
+        return Unitless::zero();
     }
 
     /**
@@ -518,34 +554,40 @@ struct VehicleInner final : public VehicleInnerBase {
      *
      * @tparam U The type of the vehicle implementation.
      * @param value The vehicle instance to get the coefficient of lift from.
+     * @param state The current state of the vehicle.
      * @return Unitless The coefficient of lift of the vehicle.
      */
     template <typename U>
         requires(HasGetCoefficientOfLift<U>)
-    static Unitless get_coefficient_of_lift_impl(const U& value)
+    static Unitless get_coefficient_of_lift_impl(const U& value, const State& state)
     {
-        return value.get_coefficient_of_lift();
+        return value.get_coefficient_of_lift(state);
     }
 
     /**
      * @brief Gets the coefficient of reflectivity of the vehicle or a default value.
      *
+     * @param state The current state of the vehicle.
      * @return Unitless The coefficient of reflectivity of the vehicle.
      */
-    Unitless get_coefficient_of_reflectivity() const final { return get_coefficient_of_reflectivity_impl(_value); }
+    Unitless get_coefficient_of_reflectivity(const State& state) const final
+    {
+        return get_coefficient_of_reflectivity_impl(_value, state);
+    }
 
     /**
      * @brief Gets the default coefficient of reflectivity of the vehicle.
      *
      * @tparam U The type of the vehicle implementation.
      * @param value The vehicle instance to get the coefficient of reflectivity from.
+     * @param state The current state of the vehicle.
      * @return Unitless The coefficient of reflectivity of the vehicle.
      */
     template <typename U>
         requires(!HasGetCoefficientOfReflectivity<U>)
-    static Unitless get_coefficient_of_reflectivity_impl(const U&)
+    static Unitless get_coefficient_of_reflectivity_impl(const U&, const State&)
     {
-        return 0.0 * mp_units::one;
+        return Unitless::zero();
     }
 
     /**
@@ -553,13 +595,14 @@ struct VehicleInner final : public VehicleInnerBase {
      *
      * @tparam U The type of the vehicle implementation.
      * @param value The vehicle instance to get the coefficient of reflectivity from.
+     * @param state The current state of the vehicle.
      * @return Unitless The coefficient of reflectivity of the vehicle.
      */
     template <typename U>
         requires(HasGetCoefficientOfReflectivity<U>)
-    static Unitless get_coefficient_of_reflectivity_impl(const U& value)
+    static Unitless get_coefficient_of_reflectivity_impl(const U& value, const State& state)
     {
-        return value.get_coefficient_of_reflectivity();
+        return value.get_coefficient_of_reflectivity(state);
     }
 
     /**
@@ -788,58 +831,72 @@ class Vehicle {
     /**
      * @brief Gets the mass of the vehicle.
      *
+     * @param state The current state of the vehicle.
      * @return Mass The mass of the vehicle.
      */
-    Mass get_mass() const { return ptr()->get_mass(); }
+    Mass get_mass(const State& state) const { return ptr()->get_mass(state); }
 
     /**
      * @brief Gets the inertia tensor of the vehicle.
      *
+     * @param state The current state of the vehicle.
      * @return InertiaTensor<frames::dynamic::body> The inertia tensor of the vehicle.
      */
-    InertiaTensor<frames::dynamic::body> get_inertia_tensor() const { return ptr()->get_inertia_tensor(); }
+    InertiaTensor<frames::dynamic::body> get_inertia_tensor(const State& state) const
+    {
+        return ptr()->get_inertia_tensor(state);
+    }
 
     /**
      * @brief Get the ram area of the vehicle.
      *
+     * @param state The current state of the vehicle.
      * @return SurfaceArea The ram area of the vehicle.
      */
-    SurfaceArea get_ram_area() const { return ptr()->get_ram_area(); }
+    SurfaceArea get_ram_area(const State& state) const { return ptr()->get_ram_area(state); }
 
     /**
      * @brief Get the lift area of the vehicle.
      *
+     * @param state The current state of the vehicle.
      * @return SurfaceArea The lift area of the vehicle.
      */
-    SurfaceArea get_lift_area() const { return ptr()->get_lift_area(); }
+    SurfaceArea get_lift_area(const State& state) const { return ptr()->get_lift_area(state); }
 
     /**
      * @brief Get the solar area of the vehicle.
      *
+     * @param state The current state of the vehicle.
      * @return SurfaceArea The solar area of the vehicle.
      */
-    SurfaceArea get_solar_area() const { return ptr()->get_solar_area(); }
+    SurfaceArea get_solar_area(const State& state) const { return ptr()->get_solar_area(state); }
 
     /**
      * @brief Gets the coefficient of drag.
      *
+     * @param state The current state of the vehicle.
      * @return Unitless The coefficient of drag.
      */
-    Unitless get_coefficient_of_drag() const { return ptr()->get_coefficient_of_drag(); }
+    Unitless get_coefficient_of_drag(const State& state) const { return ptr()->get_coefficient_of_drag(state); }
 
     /**
      * @brief Gets the coefficient of lift.
      *
+     * @param state The current state of the vehicle.
      * @return Unitless The coefficient of lift.
      */
-    Unitless get_coefficient_of_lift() const { return ptr()->get_coefficient_of_lift(); }
+    Unitless get_coefficient_of_lift(const State& state) const { return ptr()->get_coefficient_of_lift(state); }
 
     /**
      * @brief Gets the coefficient of reflectivity.
      *
+     * @param state The current state of the vehicle.
      * @return Unitless The coefficient of reflectivity.
      */
-    Unitless get_coefficient_of_reflectivity() const { return ptr()->get_coefficient_of_reflectivity(); }
+    Unitless get_coefficient_of_reflectivity(const State& state) const
+    {
+        return ptr()->get_coefficient_of_reflectivity(state);
+    }
 
     /**
      * @brief Gets the control authority of the vehicle.
@@ -873,15 +930,6 @@ class Vehicle {
 
   private:
     std::unique_ptr<detail::VehicleInnerBase> _ptr; //!< Pointer to the internal vehicle implementation, which can be a user-defined type
-
-    Mass _mass;                                          //!< Mass of the vehicle
-    InertiaTensor<frames::dynamic::body> _inertiaTensor; //!< Inertia tensor of the vehicle
-    SurfaceArea _ramArea;                                //!< Ram area of the vehicle
-    SurfaceArea _liftArea;                               //!< Lift area of the vehicle
-    SurfaceArea _solarArea;                              //!< Solar area of the vehicle
-    Unitless _coefficientOfDrag;                         //!< Coefficient of drag of the vehicle
-    Unitless _coefficientOfLift;                         //!< Coefficient of lift of the vehicle
-    Unitless _coefficientOfReflectivity;                 //!< Coefficient of reflectivity of the vehicle
 
     /**
      * @brief Gets a pointer to the internal vehicle instance.

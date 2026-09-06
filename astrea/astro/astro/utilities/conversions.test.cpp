@@ -33,6 +33,9 @@ using mp_units::si::unit_symbols::km;
 using mp_units::si::unit_symbols::rad;
 using mp_units::si::unit_symbols::s;
 
+static const Angle PI     = std::numbers::pi * rad;
+static const Angle TWO_PI = 2.0 * std::numbers::pi * rad;
+
 class ConversionTest : public testing::Test {
   public:
     // Test Options
@@ -84,12 +87,12 @@ class ConversionTest : public testing::Test {
 
     std::random_device rd;
     std::default_random_engine rng;
-    mp_units::uniform_real_distribution<Distance> semimajorDist;
-    mp_units::uniform_real_distribution<Unitless> eccDist;
-    mp_units::uniform_real_distribution<Angle> incDist;
-    mp_units::uniform_real_distribution<Angle> raanDist;
-    mp_units::uniform_real_distribution<Angle> wDist;
-    mp_units::uniform_real_distribution<Angle> thetaDist;
+    mp_units::utility::uniform_real_distribution<Distance> semimajorDist;
+    mp_units::utility::uniform_real_distribution<Unitless> eccDist;
+    mp_units::utility::uniform_real_distribution<Angle> incDist;
+    mp_units::utility::uniform_real_distribution<Angle> raanDist;
+    mp_units::utility::uniform_real_distribution<Angle> wDist;
+    mp_units::utility::uniform_real_distribution<Angle> thetaDist;
 
     template <typename T>
     OrbitalElements random_elements()

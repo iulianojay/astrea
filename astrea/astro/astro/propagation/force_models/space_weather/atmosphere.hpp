@@ -25,41 +25,83 @@
  */
 #pragma once
 
+#include <mp-units/systems/si.h>
+
 #include <units/units.hpp>
 
+#include <astro/propagation/force_models/space_weather/SpaceWeatherData.hpp>
+#include <astro/propagation/force_models/space_weather/atmosphere/HarrisPriester.hpp>
+#include <astro/propagation/force_models/space_weather/atmosphere/JacchiaRoberts.hpp>
+#include <astro/propagation/force_models/space_weather/atmosphere/Nrlmsise00.hpp>
 #include <astro/state/State.hpp>
 #include <astro/state/angular_elements/Geodetic.hpp>
-#include <astro/systems/celestial_bodies/Earth/Earth.hpp>
-#include <astro/systems/celestial_bodies/Earth/atmosphere/HarrisPriester.hpp>
-#include <astro/systems/celestial_bodies/Earth/atmosphere/JacciaRoberts.hpp>
-#include <astro/systems/celestial_bodies/Mars/Mars.hpp>
-#include <astro/systems/celestial_bodies/Saturn/Titan.hpp>
-#include <astro/systems/celestial_bodies/Venus/Venus.hpp>
-#include <astro/systems/property_getters.hpp>
+#include <astro/systems/celestial_bodies.hpp>
 
 namespace astrea {
 namespace astro {
 
-// ---------------------------------------------------------------------------
-// Earth
-// ---------------------------------------------------------------------------
+/**
+ * @brief Enumeration of supported Earth atmosphere models.
+ */
+enum class EarthAtmosphereModel { JACCHIA_ROBERTS, NRLMSISE00, HARRIS_PRIESTER };
+
+/// Primary template for atmospheric density — returns zero by default.
+template <auto _body_, auto..., typename... Args>
+inline Density find_atmospheric_density(const State&, const Args&...)
+{
+    return Density::zero();
+}
 
 /**
- * @brief Find the atmospheric density for Earth using the configured atmosphere model.
+ * @brief Find the atmospheric density for Earth using the Jacchia-Roberts model.
  *
  * @param state The current Cartesian state vector (position and velocity).
  * @return Density The atmospheric density at the position encoded in @p state.
  */
 template <>
-inline Density find_atmospheric_density<planets::Earth>(const State& state)
+inline Density find_atmospheric_density<planets::Earth, EarthAtmosphereModel::JACCHIA_ROBERTS>(const State& state)
 {
-    return planets::HarrisPriesterAtmosphere::find_atmospheric_density(state);
+    static const auto equatorialRadius = get_equitorial_radius<planets::Earth>();
+    static const auto polarRadius      = get_polar_radius<planets::Earth>();
+    return JacchiaRobertsAtmosphere::find_atmospheric_density(state, equatorialRadius, polarRadius);
 }
 
-// ---------------------------------------------------------------------------
-// Venus
-// ---------------------------------------------------------------------------
+/**
+ * @brief Find the atmospheric density for Earth using the Harris-Priester model.
+ *
+ * @param state The current Cartesian state vector (position and velocity).
+ * @return Density The atmospheric density at the position encoded in @p state.
+ */
+template <>
+inline Density find_atmospheric_density<planets::Earth, EarthAtmosphereModel::HARRIS_PRIESTER>(const State& state)
+{
+    return HarrisPriesterAtmosphere::find_atmospheric_density(state);
+}
 
+/**
+ * @brief Find the atmospheric density for Earth using the NRLMSISE-00 model.
+ *
+ * @param state The current Cartesian state vector (position and velocity).
+ * @param spaceWeatherParameters The space weather parameters (F10.7, F10.7a, Ap) required by the NRLMSISE-00 model.
+ * @return Density The atmospheric density at the position encoded in @p state.
+ */
+template <>
+inline Density
+    find_atmospheric_density<planets::Earth, EarthAtmosphereModel::NRLMSISE00>(const State& state, const SpaceWeatherParameters& spaceWeatherParameters)
+{
+    const auto f107a = spaceWeatherParameters.f107Adj.nominal;
+    const auto f107  = spaceWeatherParameters.f107Obs.nominal;
+    const auto ap    = spaceWeatherParameters.ap;
+
+    return Nrlmsise00Atmosphere::find_atmospheric_density(state, f107a, f107, ap);
+}
+
+/**
+ * @brief Find the atmospheric density for Venus using a tabulated model.
+ *
+ * @param state The current Cartesian state vector (position and velocity).
+ * @return Density The atmospheric density at the position encoded in @p state.
+ */
 template <>
 inline Density find_atmospheric_density<planets::Venus>(const State& state)
 {
@@ -69,7 +111,7 @@ inline Density find_atmospheric_density<planets::Venus>(const State& state)
     using mp_units::si::unit_symbols::m;
 
     // Altitude Conditions(TABLE 7-4, Vallado)
-    static const std::map<Altitude, Density> venutianAtmosphere = {
+    static const std::map<Altitude, Density> venetianAtmosphere = {
         // km, kg/m^3
         { 3.0 * km, 5.53e1 * kg / (pow<3>(m)) },    { 6.0 * km, 4.75e1 * kg / (pow<3>(m)) },
         { 9.0 * km, 4.02e1 * kg / (pow<3>(m)) },    { 12.0 * km, 3.44e1 * kg / (pow<3>(m)) },
@@ -98,14 +140,16 @@ inline Density find_atmospheric_density<planets::Venus>(const State& state)
     const auto& position                       = state.get_position_in_frame<frames::venus::venus_fixed>();
     const auto [latitude, longitude, altitude] = convert_body_fixed_to_geodetic(position);
 
-    const auto iter = venutianAtmosphere.upper_bound(altitude);
-    return (iter != venutianAtmosphere.end()) ? iter->second : Density::zero();
+    const auto iter = venetianAtmosphere.upper_bound(altitude);
+    return (iter != venetianAtmosphere.end()) ? iter->second : Density::zero();
 }
 
-// ---------------------------------------------------------------------------
-// Mars
-// ---------------------------------------------------------------------------
-
+/**
+ * @brief Find the atmospheric density for Mars using a tabulated model.
+ *
+ * @param state The current Cartesian state vector (position and velocity).
+ * @return Density The atmospheric density at the position encoded in @p state.
+ */
 template <>
 inline Density find_atmospheric_density<planets::Mars>(const State& state)
 {
@@ -136,32 +180,32 @@ inline Density find_atmospheric_density<planets::Mars>(const State& state)
     const auto& position                       = state.get_position_in_frame<frames::mars::mars_fixed>();
     const auto [latitude, longitude, altitude] = convert_body_fixed_to_geodetic(position);
 
-    Unitless altitudeValue = altitude / astrea::detail::distance_unit;
+    const Unitless altitudeValue = altitude / altitude.unit;
     if (altitude <= 80.0 * km) {
         const auto iter = martianAtmosphere.upper_bound(altitude);
         return (iter != martianAtmosphere.end()) ? iter->second : Density::zero();
     }
     else if (altitude < 200.0 * km) {
-        return exp(-2.55314e-10 * mp_units::pow<5>(altitudeValue) + 2.31927e-7 * mp_units::pow<4>(altitudeValue) -
-                   8.33206e-5 * mp_units::pow<3>(altitudeValue) + 0.0151947 * mp_units::pow<2>(altitudeValue) -
-                   1.52799 * altitudeValue + 48.69659) *
-               kg / mp_units::pow<3>(km);
+        return exp(-2.55314e-10 * pow<5>(altitudeValue) + 2.31927e-7 * pow<4>(altitudeValue) -
+                   8.33206e-5 * pow<3>(altitudeValue) + 0.0151947 * pow<2>(altitudeValue) - 1.52799 * altitudeValue + 48.69659) *
+               kg / pow<3>(km);
     }
     else if (altitude < 300.0 * km) {
-        return exp(2.65472e-11 * mp_units::pow<5>(altitudeValue) - 2.45558e-8 * mp_units::pow<4>(altitudeValue) +
-                   6.31410e-6 * mp_units::pow<3>(altitudeValue) + 4.73359e-4 * mp_units::pow<2>(altitudeValue) -
-                   0.443712 * altitudeValue + 23.79408) *
-               kg / mp_units::pow<3>(km);
+        return exp(2.65472e-11 * pow<5>(altitudeValue) - 2.45558e-8 * pow<4>(altitudeValue) + 6.31410e-6 * pow<3>(altitudeValue) +
+                   4.73359e-4 * pow<2>(altitudeValue) - 0.443712 * altitudeValue + 23.79408) *
+               kg / pow<3>(km);
     }
     else {
         return Density::zero();
     }
 }
 
-// ---------------------------------------------------------------------------
-// Titan
-// ---------------------------------------------------------------------------
-
+/**
+ * @brief Find the atmospheric density for Titan using a tabulated model.
+ *
+ * @param state The current Cartesian state vector (position and velocity).
+ * @return Density The atmospheric density at the position encoded in @p state.
+ */
 template <>
 inline Density find_atmospheric_density<moons::Titan>(const State& state)
 {

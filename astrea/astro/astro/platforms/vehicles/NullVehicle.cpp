@@ -30,7 +30,7 @@ NullVehicle::NullVehicle(const Mass& mass) :
 
 NullVehicle* NullVehicle::clone() const { return new NullVehicle(*this); }
 
-Mass NullVehicle::get_mass() const { return _mass; }
+Mass NullVehicle::get_mass(const State& state) const { return _mass; }
 
 std::string NullVehicle::get_name() const { return "NullVehicle"; }
 

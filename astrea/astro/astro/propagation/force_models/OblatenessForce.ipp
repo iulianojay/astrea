@@ -276,7 +276,7 @@ Perturbation OblatenessForce<_body_, _degree_, _order_>::compute_perturbation(co
     // Transform back to inertial frame without aberrations - original values are in ecef, not w.r.t ecef
     const AccelerationVector<frames::primary> accelOblatenessIcrf =
         frames::rotate_vector_into_frame<frames::primary>(accelOblatenessEcef, date);
-    return { .force = (accelOblatenessIcrf * vehicle.get_mass()) };
+    return { .force = (accelOblatenessIcrf * vehicle.get_mass(state)) };
 }
 
 } // namespace astro

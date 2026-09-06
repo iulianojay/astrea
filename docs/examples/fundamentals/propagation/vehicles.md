@@ -21,7 +21,7 @@ class Satellite {
 public:
     Satellite(Mass mass, Area ramArea) : _mass(mass), _ramArea(ramArea) {}
     
-    Mass get_mass() const { return _mass; }
+    Mass get_mass(const State& state) const { return _mass; }
     Area get_ram_area() const { return _ramArea; }
     
 private:
@@ -45,8 +45,8 @@ Ensures vehicles provide mass information:
 
 ```cpp
 template <typename T>
-concept HasGetMass = requires(T vehicle) {
-    { vehicle.get_mass() } -> std::same_as<Mass>;
+concept HasGetMass = requires(T vehicle, const State& state) {
+    { vehicle.get_mass(state) } -> std::same_as<Mass>;
 };
 ```
 
@@ -78,7 +78,7 @@ Vehicles can model comprehensive physical characteristics:
 class DetailedSatellite {
 public:
     // Required mass property
-    Mass get_mass() const { return _dryMass + _propellantMass; }
+    Mass get_mass(const State& state) const { return _dryMass + _propellantMass; }
     
     // Aerodynamic properties
     Area get_ram_area() const { return _crossSectionalArea; }

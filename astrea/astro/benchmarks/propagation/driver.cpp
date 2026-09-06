@@ -72,7 +72,7 @@ static void BenchmarkPropagation(benchmark::State& state)
                 forces.add<OblatenessForce, planets::Earth, 70, 70>();
             }
         }
-        if (perturb & kDrag) { forces.add<AtmosphericForce>(); }
+        if (perturb & kDrag) { forces.add<AtmosphericForce, planets::Earth>(); }
         if (perturb & kNBody) { forces.add<NBodyForce, planets::Earth, moons::Moon, star::Sun>(); }
         if (perturb & kSRP) { forces.add<SolarRadiationPressure>(); }
     }

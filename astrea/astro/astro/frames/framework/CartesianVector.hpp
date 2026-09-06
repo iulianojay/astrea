@@ -405,7 +405,7 @@ struct CartesianVector {
         using namespace mp_units;
 
         const Value_T n = norm();
-        if (is_eq_zero(n)) {
+        if (n == 0.0) {
             // Return zero vector if norm is zero
             return CartesianVector<Unitless, frame>(0.0 * mp_units::one, 0.0 * mp_units::one, 0.0 * mp_units::one);
         }
@@ -429,7 +429,7 @@ struct CartesianVector {
         const Value_T v1Mag = norm();
         const Value_U v2Mag = other.norm();
 
-        if (is_eq_zero(v1Mag) || is_eq_zero(v2Mag)) {
+        if (v1Mag == 0.0 || v2Mag == 0.0) {
             throw std::runtime_error("Cannot calculate angle with zero-magnitude vector");
         }
 

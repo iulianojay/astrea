@@ -72,13 +72,6 @@ struct CelestialBody : Origin<_name_, _parent_>, detail::CelestialBodyBase {
 template <auto _body_>
 inline consteval CelestialBodyParameters get_celestial_body_parameters() = delete;
 
-/// Primary template for atmospheric density — returns zero by default.
-template <auto _body_>
-inline Density find_atmospheric_density(const State& state)
-{
-    return Density::zero();
-}
-
 /// Primary template declarations for ephemeris position/velocity (NTTP-based).
 /// Explicit specializations are provided in planet headers (Chebyshev ephemeris).
 /// The primary template definition (Keplerian fallback) is provided by

@@ -40,6 +40,7 @@ class VehicleTest : public testing::Test {
     Spacecraft satWithHistory;
     Vehicle vehicle;
     Vehicle vehicleWithHistory;
+    State state;
 };
 
 int main(int argc, char** argv)
@@ -68,50 +69,50 @@ TEST_F(VehicleTest, MoveAssignment)
 
 TEST_F(VehicleTest, GetMass)
 {
-    Mass vehicleMass = vehicle.get_mass();
-    Mass satMass     = sat.get_mass();
+    Mass vehicleMass = vehicle.get_mass(state);
+    Mass satMass     = sat.get_mass(state);
     ASSERT_EQ(vehicleMass, satMass);
 }
 
 TEST_F(VehicleTest, GetRamArea)
 {
-    SurfaceArea vehicleRamArea = vehicle.get_ram_area();
-    SurfaceArea satRamArea     = sat.get_ram_area();
+    SurfaceArea vehicleRamArea = vehicle.get_ram_area(state);
+    SurfaceArea satRamArea     = sat.get_ram_area(state);
     ASSERT_EQ(vehicleRamArea, satRamArea);
 }
 
 TEST_F(VehicleTest, GetLiftArea)
 {
-    SurfaceArea vehicleLiftArea = vehicle.get_lift_area();
-    SurfaceArea satLiftArea     = sat.get_lift_area();
+    SurfaceArea vehicleLiftArea = vehicle.get_lift_area(state);
+    SurfaceArea satLiftArea     = sat.get_lift_area(state);
     ASSERT_EQ(vehicleLiftArea, satLiftArea);
 }
 
 TEST_F(VehicleTest, GetSolarArea)
 {
-    SurfaceArea vehicleSolarArea = vehicle.get_solar_area();
-    SurfaceArea satSolarArea     = sat.get_solar_area();
+    SurfaceArea vehicleSolarArea = vehicle.get_solar_area(state);
+    SurfaceArea satSolarArea     = sat.get_solar_area(state);
     ASSERT_EQ(vehicleSolarArea, satSolarArea);
 }
 
 TEST_F(VehicleTest, GetCoefficientOfDrag)
 {
-    Unitless vehicleDragCoefficient = vehicle.get_coefficient_of_drag();
-    Unitless satDragCoefficient     = sat.get_coefficient_of_drag();
+    Unitless vehicleDragCoefficient = vehicle.get_coefficient_of_drag(state);
+    Unitless satDragCoefficient     = sat.get_coefficient_of_drag(state);
     ASSERT_EQ(vehicleDragCoefficient, satDragCoefficient);
 }
 
 TEST_F(VehicleTest, GetCoefficientOfLift)
 {
-    Unitless vehicleLiftCoefficient = vehicle.get_coefficient_of_lift();
-    Unitless satLiftCoefficient     = sat.get_coefficient_of_lift();
+    Unitless vehicleLiftCoefficient = vehicle.get_coefficient_of_lift(state);
+    Unitless satLiftCoefficient     = sat.get_coefficient_of_lift(state);
     ASSERT_EQ(vehicleLiftCoefficient, satLiftCoefficient);
 }
 
 TEST_F(VehicleTest, GetCoefficientOfReflectivity)
 {
-    Unitless vehicleReflectivityCoefficient = vehicle.get_coefficient_of_reflectivity();
-    Unitless satReflectivityCoefficient     = sat.get_coefficient_of_reflectivity();
+    Unitless vehicleReflectivityCoefficient = vehicle.get_coefficient_of_reflectivity(state);
+    Unitless satReflectivityCoefficient     = sat.get_coefficient_of_reflectivity(state);
     ASSERT_EQ(vehicleReflectivityCoefficient, satReflectivityCoefficient);
 }
 
@@ -133,12 +134,12 @@ TEST_F(VehicleTest, ExtractMutableReference)
     // Test extracting the correct type (Spacecraft)
     auto* spacecraftPtr = vehicle.extract_mutable_reference<Spacecraft>();
     ASSERT_NE(spacecraftPtr, nullptr);
-    ASSERT_EQ(spacecraftPtr->get_mass(), sat.get_mass());
+    ASSERT_EQ(spacecraftPtr->get_mass(state), sat.get_mass(state));
 
     // Test with vehicle that has history
     auto* spacecraftWithHistoryPtr = vehicleWithHistory.extract_mutable_reference<Spacecraft>();
     ASSERT_NE(spacecraftWithHistoryPtr, nullptr);
-    ASSERT_EQ(spacecraftWithHistoryPtr->get_mass(), satWithHistory.get_mass());
+    ASSERT_EQ(spacecraftWithHistoryPtr->get_mass(state), satWithHistory.get_mass(state));
 
     // Test extracting wrong type - should return nullptr
     // Note: This would need a different vehicle type to test properly,
