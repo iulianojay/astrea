@@ -19,7 +19,6 @@ _Header file for the systems module._ [More...](#detailed-description)
 * `#include <astro/systems/property_getters.hpp>`
 * `#include <astro/systems/system_concepts.hpp>`
 * `#include <astro/systems/system_utilities.hpp>`
-* `#include <astro/systems/atmosphere.hpp>`
 
 
 

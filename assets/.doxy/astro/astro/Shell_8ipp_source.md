@@ -50,7 +50,7 @@ Shell<Spacecraft_T>::Shell(
         );
     }
     if (T == 0) { throw std::runtime_error("Constellation must have at least one satellite, and one plane."); }
-    if (mp_units::is_lt_zero(F)) { throw std::runtime_error("Constellation phasing parameter must be non-negative."); }
+    if (F < 0.0) { throw std::runtime_error("Constellation phasing parameter must be non-negative."); }
 
     using mp_units::si::unit_symbols::deg;
 

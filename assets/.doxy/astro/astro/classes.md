@@ -34,6 +34,8 @@
 
 ## b
 
+* [**BadConversionRequest**](structastrea_1_1astro_1_1BadConversionRequest.md)
+([**astrea::astro**](namespaceastrea_1_1astro.md))
 * [**Barycenter**](structastrea_1_1astro_1_1Barycenter.md)
 ([**astrea::astro**](namespaceastrea_1_1astro.md))
 * [**Barycenter&lt; \_name\_ &gt;**](structastrea_1_1astro_1_1Barycenter_3_01__name___01_4.md)
@@ -124,8 +126,6 @@
 ([**astrea::astro::frames::earth**](namespaceastrea_1_1astro_1_1frames_1_1earth.md))
 * [**EarthMoonBarycenter**](structastrea_1_1astro_1_1barycenters_1_1EarthMoonBarycenter.md)
 ([**astrea::astro::barycenters**](namespaceastrea_1_1astro_1_1barycenters.md))
-* [**EarthParameters**](structastrea_1_1astro_1_1planets_1_1EarthParameters.md)
-([**astrea::astro::planets**](namespaceastrea_1_1astro_1_1planets.md))
 * [**EarthSunBarycenter**](structastrea_1_1astro_1_1barycenters_1_1EarthSunBarycenter.md)
 ([**astrea::astro::barycenters**](namespaceastrea_1_1astro_1_1barycenters.md))
 * [**EastNorthUp**](structastrea_1_1astro_1_1frames_1_1EastNorthUp.md)
@@ -215,8 +215,8 @@
 
 ## h
 
-* [**HarrisPriesterAtmosphere**](classastrea_1_1astro_1_1planets_1_1HarrisPriesterAtmosphere.md)
-([**astrea::astro::planets**](namespaceastrea_1_1astro_1_1planets.md))
+* [**HarrisPriesterAtmosphere**](classastrea_1_1astro_1_1HarrisPriesterAtmosphere.md)
+([**astrea::astro**](namespaceastrea_1_1astro.md))
 * [**hash&lt; std::tuple&lt; TT... &gt; &gt;**](structstd_1_1hash_3_01std_1_1tuple_3_01TT_8_8_8_01_4_01_4.md)
 ([**std**](namespacestd.md))
 
@@ -379,8 +379,8 @@
 ([**astrea::astro::frames::venus\_barycenter**](namespaceastrea_1_1astro_1_1frames_1_1venus__barycenter.md))
 * [**J2MeanVop**](classastrea_1_1astro_1_1J2MeanVop.md)
 ([**astrea::astro**](namespaceastrea_1_1astro.md))
-* [**JacciaRobertsAtmosphere**](classastrea_1_1astro_1_1planets_1_1JacciaRobertsAtmosphere.md)
-([**astrea::astro::planets**](namespaceastrea_1_1astro_1_1planets.md))
+* [**JacchiaRobertsAtmosphere**](classastrea_1_1astro_1_1JacchiaRobertsAtmosphere.md)
+([**astrea::astro**](namespaceastrea_1_1astro.md))
 * [**JplEphemerisTable**](structastrea_1_1astro_1_1JplEphemerisTable.md)
 ([**astrea::astro**](namespaceastrea_1_1astro.md))
 * [**jss**](structastrea_1_1astro_1_1frames_1_1jupiter__sun__barycenter_1_1jss.md)
@@ -461,9 +461,9 @@
 ([**astrea::astro::frames::neptune**](namespaceastrea_1_1astro_1_1frames_1_1neptune.md))
 * [**NeptuneSunBarycenter**](structastrea_1_1astro_1_1barycenters_1_1NeptuneSunBarycenter.md)
 ([**astrea::astro::barycenters**](namespaceastrea_1_1astro_1_1barycenters.md))
-* [**NRLMSISE00**](classastrea_1_1astro_1_1planets_1_1NRLMSISE00.md)
-([**astrea::astro::planets**](namespaceastrea_1_1astro_1_1planets.md))
-* [**NRLMSISE00Atmosphere**](classastrea_1_1astro_1_1planets_1_1NRLMSISE00Atmosphere.md)
+* [**Nrlmsise00Atmosphere**](classastrea_1_1astro_1_1Nrlmsise00Atmosphere.md)
+([**astrea::astro**](namespaceastrea_1_1astro.md))
+* [**Nrlmsise00Atmosphere**](classastrea_1_1astro_1_1planets_1_1Nrlmsise00Atmosphere.md)
 ([**astrea::astro::planets**](namespaceastrea_1_1astro_1_1planets.md))
 * [**nss**](structastrea_1_1astro_1_1frames_1_1neptune__sun__barycenter_1_1nss.md)
 ([**astrea::astro::frames::neptune\_sun\_barycenter**](namespaceastrea_1_1astro_1_1frames_1_1neptune__sun__barycenter.md))
@@ -495,7 +495,8 @@
 ([**astrea::astro**](namespaceastrea_1_1astro.md))
 * [**OriginBase**](structastrea_1_1astro_1_1detail_1_1OriginBase.md)
 ([**astrea::astro::detail**](namespaceastrea_1_1astro_1_1detail.md))
-* [**Output**](classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Output.md)
+* [**Output**](classastrea_1_1astro_1_1planets_1_1Output.md)
+([**astrea::astro::planets**](namespaceastrea_1_1astro_1_1planets.md))
 
 
 ## p
@@ -562,6 +563,8 @@
 ([**astrea::astro**](namespaceastrea_1_1astro.md))
 * [**Shell**](classastrea_1_1astro_1_1Shell.md)
 ([**astrea::astro**](namespaceastrea_1_1astro.md))
+* [**SolarFluxData**](structastrea_1_1astro_1_1SolarFluxData.md)
+([**astrea::astro**](namespaceastrea_1_1astro.md))
 * [**SolarRadiationPressure**](classastrea_1_1astro_1_1SolarRadiationPressure.md)
 ([**astrea::astro**](namespaceastrea_1_1astro.md))
 * [**SolarSystemBarycenter**](structastrea_1_1astro_1_1barycenters_1_1SolarSystemBarycenter.md)
@@ -569,6 +572,12 @@
 * [**Solution**](structastrea_1_1astro_1_1LambertSolver_1_1Solution.md)
 ([**astrea::astro::LambertSolver**](classastrea_1_1astro_1_1LambertSolver.md))
 * [**Spacecraft**](classastrea_1_1astro_1_1Spacecraft.md)
+([**astrea::astro**](namespaceastrea_1_1astro.md))
+* [**SpaceWeatherData**](classastrea_1_1astro_1_1SpaceWeatherData.md)
+([**astrea::astro**](namespaceastrea_1_1astro.md))
+* [**SpaceWeatherParameters**](structastrea_1_1astro_1_1SpaceWeatherParameters.md)
+([**astrea::astro**](namespaceastrea_1_1astro.md))
+* [**SpaceWeatherProvider**](classastrea_1_1astro_1_1SpaceWeatherProvider.md)
 ([**astrea::astro**](namespaceastrea_1_1astro.md))
 * [**SpeciesModelParams**](structastrea_1_1astro_1_1planets_1_1SpeciesModelParams.md)
 ([**astrea::astro::planets**](namespaceastrea_1_1astro_1_1planets.md))
@@ -588,7 +597,8 @@
 ([**astrea::astro**](namespaceastrea_1_1astro.md))
 * [**Sun**](structastrea_1_1astro_1_1star_1_1Sun.md)
 ([**astrea::astro::star**](namespaceastrea_1_1astro_1_1star.md))
-* [**Switch**](structastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Switch.md)
+* [**Switch**](structastrea_1_1astro_1_1planets_1_1Switch.md)
+([**astrea::astro::planets**](namespaceastrea_1_1astro_1_1planets.md))
 * [**SynodicAxis**](structastrea_1_1astro_1_1SynodicAxis.md)
 ([**astrea::astro**](namespaceastrea_1_1astro.md))
 * [**SynodicFrame**](structastrea_1_1astro_1_1SynodicFrame.md)

@@ -4,6 +4,20 @@
     <compoundname>astrea::astro::ForceModel</compoundname>
     <includes refid="ForceModel_8hpp" local="no">ForceModel.hpp</includes>
     <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classastrea_1_1astro_1_1ForceModel_1aca286a3ee8ed9f5142e8414f2602e5b0" prot="private" static="no" mutable="no">
+        <type>std::shared_ptr&lt; const <ref refid="classastrea_1_1astro_1_1SpaceWeatherProvider" kindref="compound">SpaceWeatherProvider</ref> &gt;</type>
+        <definition>std::shared_ptr&lt;const SpaceWeatherProvider&gt; astrea::astro::ForceModel::_spaceWeatherProvider</definition>
+        <argsstring></argsstring>
+        <name>_spaceWeatherProvider</name>
+        <qualifiedname>astrea::astro::ForceModel::_spaceWeatherProvider</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/ForceModel.hpp" line="228" column="21" bodyfile="astrea/astro/astro/propagation/force_models/ForceModel.hpp" bodystart="228" bodyend="-1"/>
+      </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1ForceModel_1ab559ecc2f1a8289bc8576a684a1b92a0" prot="private" static="no" mutable="no">
         <type>std::unordered_map&lt; std::string, std::unique_ptr&lt; <ref refid="classastrea_1_1astro_1_1PerturbingForce" kindref="compound">PerturbingForce</ref> &gt; &gt;</type>
         <definition>std::unordered_map&lt;std::string, std::unique_ptr&lt;PerturbingForce&gt; &gt; astrea::astro::ForceModel::forces</definition>
@@ -17,14 +31,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/propagation/force_models/ForceModel.hpp" line="157" column="24" bodyfile="astrea/astro/astro/propagation/force_models/ForceModel.hpp" bodystart="157" bodyend="-1"/>
+        <location file="astrea/astro/astro/propagation/force_models/ForceModel.hpp" line="229" column="24" bodyfile="astrea/astro/astro/propagation/force_models/ForceModel.hpp" bodystart="229" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="public-func">
-      <memberdef kind="function" id="classastrea_1_1astro_1_1ForceModel_1ac83f35837e2a7b561b58854c8015d0cb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="classastrea_1_1astro_1_1ForceModel_1ad2e908a5f697554669a771055a139015" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
         <definition>astrea::astro::ForceModel::ForceModel</definition>
-        <argsstring>()=default</argsstring>
+        <argsstring>()</argsstring>
         <name>ForceModel</name>
         <qualifiedname>astrea::astro::ForceModel::ForceModel</qualifiedname>
         <briefdescription>
@@ -34,7 +48,124 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/propagation/force_models/ForceModel.hpp" line="45" column="5"/>
+        <location file="astrea/astro/astro/propagation/force_models/ForceModel.hpp" line="47" column="5" bodyfile="astrea/astro/astro/propagation/force_models/ForceModel.cpp" bodystart="22" bodyend="25"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1ForceModel_1ae696c1bbc8b85f2e4ab7cb479a9e72f8" prot="public" static="no" const="no" explicit="yes" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>astrea::astro::ForceModel::ForceModel</definition>
+        <argsstring>(std::shared_ptr&lt; const SpaceWeatherData &gt; data)</argsstring>
+        <name>ForceModel</name>
+        <qualifiedname>astrea::astro::ForceModel::ForceModel</qualifiedname>
+        <param>
+          <type>std::shared_ptr&lt; const <ref refid="classastrea_1_1astro_1_1SpaceWeatherData" kindref="compound">SpaceWeatherData</ref> &gt;</type>
+          <declname>data</declname>
+        </param>
+        <briefdescription>
+<para>Construct a force model with an explicit immutable space weather snapshot. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>data</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Shared immutable space weather data. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/ForceModel.hpp" line="54" column="14" bodyfile="astrea/astro/astro/propagation/force_models/ForceModel.cpp" bodystart="27" bodyend="30"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1ForceModel_1a7aac50ee73cdab9e73f3ed9f41e0f3e2" prot="public" static="no" const="no" explicit="yes" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>astrea::astro::ForceModel::ForceModel</definition>
+        <argsstring>(SpaceWeatherProvider provider)</argsstring>
+        <name>ForceModel</name>
+        <qualifiedname>astrea::astro::ForceModel::ForceModel</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1SpaceWeatherProvider" kindref="compound">SpaceWeatherProvider</ref></type>
+          <declname>provider</declname>
+        </param>
+        <briefdescription>
+<para>Construct a force model with a pre-built space weather provider. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>provider</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Space weather provider to share with forces. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/ForceModel.hpp" line="61" column="14" bodyfile="astrea/astro/astro/propagation/force_models/ForceModel.cpp" bodystart="32" bodyend="35"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1ForceModel_1a79f3698195bdd66fd7e6a41be9d51760" prot="public" static="no" const="no" explicit="yes" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>astrea::astro::ForceModel::ForceModel</definition>
+        <argsstring>(SpaceWeatherData data)</argsstring>
+        <name>ForceModel</name>
+        <qualifiedname>astrea::astro::ForceModel::ForceModel</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1SpaceWeatherData" kindref="compound">SpaceWeatherData</ref></type>
+          <declname>data</declname>
+        </param>
+        <briefdescription>
+<para>Construct a force model by moving a pre-built space weather snapshot. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>data</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Space weather data snapshot. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/ForceModel.hpp" line="68" column="14" bodyfile="astrea/astro/astro/propagation/force_models/ForceModel.cpp" bodystart="37" bodyend="40"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1ForceModel_1adfddb5c1c0f72dcf29e49889a593dd1c" prot="public" static="no" const="no" explicit="yes" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename...</type>
+            <declname>Args</declname>
+            <defname>Args</defname>
+          </param>
+        </templateparamlist>
+        <type></type>
+        <definition>astrea::astro::ForceModel::ForceModel</definition>
+        <argsstring>(std::in_place_t, Args &amp;&amp;... args)</argsstring>
+        <name>ForceModel</name>
+        <qualifiedname>astrea::astro::ForceModel::ForceModel</qualifiedname>
+        <param>
+          <type>std::in_place_t</type>
+        </param>
+        <param>
+          <type>Args &amp;&amp;...</type>
+          <declname>args</declname>
+        </param>
+        <briefdescription>
+<para>Construct a force model by forwarding args to <ref refid="classastrea_1_1astro_1_1SpaceWeatherData" kindref="compound">SpaceWeatherData</ref> ctor. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Example: ForceModel(std::in_place, path_to_space_weather_file) </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/ForceModel.hpp" line="76" column="14" bodyfile="astrea/astro/astro/propagation/force_models/ForceModel.hpp" bodystart="76" bodyend="79"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1ForceModel_1a1a2922d834945312251c0d0e70b67514" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -49,7 +180,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/propagation/force_models/ForceModel.hpp" line="50" column="5"/>
+        <location file="astrea/astro/astro/propagation/force_models/ForceModel.hpp" line="84" column="5"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1ForceModel_1a21ba06235f677710aeac1d4f03adda5a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -78,7 +209,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/propagation/force_models/ForceModel.hpp" line="57" column="5" bodyfile="astrea/astro/astro/propagation/force_models/ForceModel.cpp" bodystart="22" bodyend="27"/>
+        <location file="astrea/astro/astro/propagation/force_models/ForceModel.hpp" line="91" column="5" bodyfile="astrea/astro/astro/propagation/force_models/ForceModel.cpp" bodystart="42" bodyend="50"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1ForceModel_1ace2803d6da010a8680e88fb1728bf0c3" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
         <type></type>
@@ -106,7 +237,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/propagation/force_models/ForceModel.hpp" line="64" column="5"/>
+        <location file="astrea/astro/astro/propagation/force_models/ForceModel.hpp" line="98" column="5"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1ForceModel_1adb6c790fd51860b6eec12b5661d80afb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classastrea_1_1astro_1_1ForceModel" kindref="compound">ForceModel</ref> &amp;</type>
@@ -137,7 +268,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/propagation/force_models/ForceModel.hpp" line="72" column="16" bodyfile="astrea/astro/astro/propagation/force_models/ForceModel.cpp" bodystart="29" bodyend="38"/>
+        <location file="astrea/astro/astro/propagation/force_models/ForceModel.hpp" line="106" column="16" bodyfile="astrea/astro/astro/propagation/force_models/ForceModel.cpp" bodystart="52" bodyend="64"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1ForceModel_1aadcd47cbeb1901384848c6b4ef684b30" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
         <type><ref refid="classastrea_1_1astro_1_1ForceModel" kindref="compound">ForceModel</ref> &amp;</type>
@@ -167,7 +298,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/propagation/force_models/ForceModel.hpp" line="80" column="16"/>
+        <location file="astrea/astro/astro/propagation/force_models/ForceModel.hpp" line="114" column="16"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1ForceModel_1abb3f4a2ff96c762a8435624dea0c88e1" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>std::size_t</type>
@@ -185,7 +316,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/propagation/force_models/ForceModel.hpp" line="87" column="17" bodyfile="astrea/astro/astro/propagation/force_models/ForceModel.hpp" bodystart="87" bodyend="87"/>
+        <location file="astrea/astro/astro/propagation/force_models/ForceModel.hpp" line="121" column="17" bodyfile="astrea/astro/astro/propagation/force_models/ForceModel.hpp" bodystart="121" bodyend="121"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1ForceModel_1a02506f8e0a1e6c387cfe892063b17590" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
@@ -243,7 +374,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/propagation/force_models/ForceModel.hpp" line="98" column="27" bodyfile="astrea/astro/astro/propagation/force_models/ForceModel.hpp" bodystart="98" bodyend="103"/>
+        <location file="astrea/astro/astro/propagation/force_models/ForceModel.hpp" line="132" column="27" bodyfile="astrea/astro/astro/propagation/force_models/ForceModel.hpp" bodystart="132" bodyend="141"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1ForceModel_1a6c712fead2e877cc5ad426a94b180f29" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
@@ -317,7 +448,22 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/propagation/force_models/ForceModel.hpp" line="118" column="27" bodyfile="astrea/astro/astro/propagation/force_models/ForceModel.hpp" bodystart="118" bodyend="124"/>
+        <location file="astrea/astro/astro/propagation/force_models/ForceModel.hpp" line="156" column="27" bodyfile="astrea/astro/astro/propagation/force_models/ForceModel.hpp" bodystart="156" bodyend="166"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1ForceModel_1abda6a06c94b289ae58305b3f443ea8aa" prot="public" static="no" const="yes" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type>const std::shared_ptr&lt; const <ref refid="classastrea_1_1astro_1_1SpaceWeatherProvider" kindref="compound">SpaceWeatherProvider</ref> &gt; &amp;</type>
+        <definition>const std::shared_ptr&lt; const SpaceWeatherProvider &gt; &amp; astrea::astro::ForceModel::space_weather_provider</definition>
+        <argsstring>() const noexcept</argsstring>
+        <name>space_weather_provider</name>
+        <qualifiedname>astrea::astro::ForceModel::space_weather_provider</qualifiedname>
+        <briefdescription>
+<para>Access the space weather provider shared by this force model. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/ForceModel.hpp" line="171" column="28" bodyfile="astrea/astro/astro/propagation/force_models/ForceModel.hpp" bodystart="171" bodyend="174"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1ForceModel_1a4eca86c9c45d0866a94de83ed8e1eacd" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="structastrea_1_1astro_1_1Perturbation" kindref="compound">Perturbation</ref></type>
@@ -360,7 +506,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/propagation/force_models/ForceModel.hpp" line="133" column="18" bodyfile="astrea/astro/astro/propagation/force_models/ForceModel.cpp" bodystart="40" bodyend="51"/>
+        <location file="astrea/astro/astro/propagation/force_models/ForceModel.hpp" line="183" column="18" bodyfile="astrea/astro/astro/propagation/force_models/ForceModel.cpp" bodystart="66" bodyend="77"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1ForceModel_1a4d7ccb5c721158916db35620efd4bd15" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>const std::unique_ptr&lt; <ref refid="classastrea_1_1astro_1_1PerturbingForce" kindref="compound">PerturbingForce</ref> &gt; &amp;</type>
@@ -391,7 +537,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/propagation/force_models/ForceModel.hpp" line="141" column="27" bodyfile="astrea/astro/astro/propagation/force_models/ForceModel.cpp" bodystart="53" bodyend="53"/>
+        <location file="astrea/astro/astro/propagation/force_models/ForceModel.hpp" line="191" column="27" bodyfile="astrea/astro/astro/propagation/force_models/ForceModel.cpp" bodystart="79" bodyend="79"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1ForceModel_1a75e7182bc35f5567596f468f85eff70a" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
@@ -423,7 +569,94 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/propagation/force_models/ForceModel.hpp" line="150" column="27" bodyfile="astrea/astro/astro/propagation/force_models/ForceModel.hpp" bodystart="150" bodyend="154"/>
+        <location file="astrea/astro/astro/propagation/force_models/ForceModel.hpp" line="200" column="27" bodyfile="astrea/astro/astro/propagation/force_models/ForceModel.hpp" bodystart="200" bodyend="204"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1ForceModel_1a02879a894155bf6e057d0a52a303a14c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void astrea::astro::ForceModel::set_space_weather_provider</definition>
+        <argsstring>(std::shared_ptr&lt; const SpaceWeatherProvider &gt; provider)</argsstring>
+        <name>set_space_weather_provider</name>
+        <qualifiedname>astrea::astro::ForceModel::set_space_weather_provider</qualifiedname>
+        <param>
+          <type>std::shared_ptr&lt; const <ref refid="classastrea_1_1astro_1_1SpaceWeatherProvider" kindref="compound">SpaceWeatherProvider</ref> &gt;</type>
+          <declname>provider</declname>
+        </param>
+        <briefdescription>
+<para>Sets the space weather provider for this force model and binds it to all added forces. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>provider</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Shared pointer to the space weather provider. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/ForceModel.hpp" line="211" column="10" bodyfile="astrea/astro/astro/propagation/force_models/ForceModel.cpp" bodystart="82" bodyend="88"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1ForceModel_1af743263a82a465866dfc8c6c6d504c30" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void astrea::astro::ForceModel::set_space_weather_provider</definition>
+        <argsstring>(SpaceWeatherProvider provider)</argsstring>
+        <name>set_space_weather_provider</name>
+        <qualifiedname>astrea::astro::ForceModel::set_space_weather_provider</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1SpaceWeatherProvider" kindref="compound">SpaceWeatherProvider</ref></type>
+          <declname>provider</declname>
+        </param>
+        <briefdescription>
+<para>Sets the space weather provider for this force model and binds it to all added forces. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>provider</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Space weather provider to share with forces. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/ForceModel.hpp" line="218" column="10" bodyfile="astrea/astro/astro/propagation/force_models/ForceModel.cpp" bodystart="90" bodyend="93"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1ForceModel_1a10b5f12b5fea31858abba1d42b7f2e11" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void astrea::astro::ForceModel::set_space_weather_provider</definition>
+        <argsstring>(SpaceWeatherData data)</argsstring>
+        <name>set_space_weather_provider</name>
+        <qualifiedname>astrea::astro::ForceModel::set_space_weather_provider</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1SpaceWeatherData" kindref="compound">SpaceWeatherData</ref></type>
+          <declname>data</declname>
+        </param>
+        <briefdescription>
+<para>Sets the space weather provider for this force model and binds it to all added forces. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>data</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Space weather data snapshot to share with forces. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/ForceModel.hpp" line="225" column="10" bodyfile="astrea/astro/astro/propagation/force_models/ForceModel.cpp" bodystart="95" bodyend="98"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
@@ -432,20 +665,29 @@
     <detaileddescription>
 <para>This class allows adding different force models, computing the total force on a vehicle, and retrieving specific force models by name or type. </para>
     </detaileddescription>
-    <location file="astrea/astro/astro/propagation/force_models/ForceModel.hpp" line="40" column="1" bodyfile="astrea/astro/astro/propagation/force_models/ForceModel.hpp" bodystart="40" bodyend="158"/>
+    <location file="astrea/astro/astro/propagation/force_models/ForceModel.hpp" line="42" column="1" bodyfile="astrea/astro/astro/propagation/force_models/ForceModel.hpp" bodystart="42" bodyend="230"/>
     <listofallmembers>
+      <member refid="classastrea_1_1astro_1_1ForceModel_1aca286a3ee8ed9f5142e8414f2602e5b0" prot="private" virt="non-virtual"><scope>astrea::astro::ForceModel</scope><name>_spaceWeatherProvider</name></member>
       <member refid="classastrea_1_1astro_1_1ForceModel_1a02506f8e0a1e6c387cfe892063b17590" prot="public" virt="non-virtual"><scope>astrea::astro::ForceModel</scope><name>add</name></member>
       <member refid="classastrea_1_1astro_1_1ForceModel_1a6c712fead2e877cc5ad426a94b180f29" prot="public" virt="non-virtual"><scope>astrea::astro::ForceModel</scope><name>add</name></member>
       <member refid="classastrea_1_1astro_1_1ForceModel_1a4d7ccb5c721158916db35620efd4bd15" prot="public" virt="non-virtual"><scope>astrea::astro::ForceModel</scope><name>at</name></member>
       <member refid="classastrea_1_1astro_1_1ForceModel_1a4eca86c9c45d0866a94de83ed8e1eacd" prot="public" virt="non-virtual"><scope>astrea::astro::ForceModel</scope><name>compute_perturbations</name></member>
-      <member refid="classastrea_1_1astro_1_1ForceModel_1ac83f35837e2a7b561b58854c8015d0cb" prot="public" virt="non-virtual"><scope>astrea::astro::ForceModel</scope><name>ForceModel</name></member>
+      <member refid="classastrea_1_1astro_1_1ForceModel_1ad2e908a5f697554669a771055a139015" prot="public" virt="non-virtual"><scope>astrea::astro::ForceModel</scope><name>ForceModel</name></member>
+      <member refid="classastrea_1_1astro_1_1ForceModel_1ae696c1bbc8b85f2e4ab7cb479a9e72f8" prot="public" virt="non-virtual"><scope>astrea::astro::ForceModel</scope><name>ForceModel</name></member>
+      <member refid="classastrea_1_1astro_1_1ForceModel_1a7aac50ee73cdab9e73f3ed9f41e0f3e2" prot="public" virt="non-virtual"><scope>astrea::astro::ForceModel</scope><name>ForceModel</name></member>
+      <member refid="classastrea_1_1astro_1_1ForceModel_1a79f3698195bdd66fd7e6a41be9d51760" prot="public" virt="non-virtual"><scope>astrea::astro::ForceModel</scope><name>ForceModel</name></member>
+      <member refid="classastrea_1_1astro_1_1ForceModel_1adfddb5c1c0f72dcf29e49889a593dd1c" prot="public" virt="non-virtual"><scope>astrea::astro::ForceModel</scope><name>ForceModel</name></member>
       <member refid="classastrea_1_1astro_1_1ForceModel_1a21ba06235f677710aeac1d4f03adda5a" prot="public" virt="non-virtual"><scope>astrea::astro::ForceModel</scope><name>ForceModel</name></member>
       <member refid="classastrea_1_1astro_1_1ForceModel_1ace2803d6da010a8680e88fb1728bf0c3" prot="public" virt="non-virtual"><scope>astrea::astro::ForceModel</scope><name>ForceModel</name></member>
       <member refid="classastrea_1_1astro_1_1ForceModel_1ab559ecc2f1a8289bc8576a684a1b92a0" prot="private" virt="non-virtual"><scope>astrea::astro::ForceModel</scope><name>forces</name></member>
       <member refid="classastrea_1_1astro_1_1ForceModel_1a75e7182bc35f5567596f468f85eff70a" prot="public" virt="non-virtual"><scope>astrea::astro::ForceModel</scope><name>get</name></member>
       <member refid="classastrea_1_1astro_1_1ForceModel_1adb6c790fd51860b6eec12b5661d80afb" prot="public" virt="non-virtual"><scope>astrea::astro::ForceModel</scope><name>operator=</name></member>
       <member refid="classastrea_1_1astro_1_1ForceModel_1aadcd47cbeb1901384848c6b4ef684b30" prot="public" virt="non-virtual"><scope>astrea::astro::ForceModel</scope><name>operator=</name></member>
+      <member refid="classastrea_1_1astro_1_1ForceModel_1a02879a894155bf6e057d0a52a303a14c" prot="public" virt="non-virtual"><scope>astrea::astro::ForceModel</scope><name>set_space_weather_provider</name></member>
+      <member refid="classastrea_1_1astro_1_1ForceModel_1af743263a82a465866dfc8c6c6d504c30" prot="public" virt="non-virtual"><scope>astrea::astro::ForceModel</scope><name>set_space_weather_provider</name></member>
+      <member refid="classastrea_1_1astro_1_1ForceModel_1a10b5f12b5fea31858abba1d42b7f2e11" prot="public" virt="non-virtual"><scope>astrea::astro::ForceModel</scope><name>set_space_weather_provider</name></member>
       <member refid="classastrea_1_1astro_1_1ForceModel_1abb3f4a2ff96c762a8435624dea0c88e1" prot="public" virt="non-virtual"><scope>astrea::astro::ForceModel</scope><name>size</name></member>
+      <member refid="classastrea_1_1astro_1_1ForceModel_1abda6a06c94b289ae58305b3f443ea8aa" prot="public" virt="non-virtual"><scope>astrea::astro::ForceModel</scope><name>space_weather_provider</name></member>
       <member refid="classastrea_1_1astro_1_1ForceModel_1a1a2922d834945312251c0d0e70b67514" prot="public" virt="non-virtual"><scope>astrea::astro::ForceModel</scope><name>~ForceModel</name></member>
     </listofallmembers>
   </compounddef>

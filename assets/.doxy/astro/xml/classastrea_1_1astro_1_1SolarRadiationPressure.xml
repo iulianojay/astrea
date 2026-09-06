@@ -130,8 +130,11 @@
     </collaborationgraph>
     <location file="astrea/astro/astro/propagation/force_models/SolarRadiationPressure.hpp" line="33" column="1" bodyfile="astrea/astro/astro/propagation/force_models/SolarRadiationPressure.hpp" bodystart="33" bodyend="60"/>
     <listofallmembers>
+      <member refid="classastrea_1_1astro_1_1PerturbingForce_1ade1609d0fd279c2c240d3f6441775466" prot="public" virt="non-virtual"><scope>astrea::astro::SolarRadiationPressure</scope><name>bind_space_weather_provider</name></member>
       <member refid="classastrea_1_1astro_1_1SolarRadiationPressure_1a0b2e2a9a774365b792ad67d931cfcaaa" prot="public" virt="virtual"><scope>astrea::astro::SolarRadiationPressure</scope><name>clone</name></member>
       <member refid="classastrea_1_1astro_1_1SolarRadiationPressure_1adea465cb291d0319bb85ae49a8854060" prot="public" virt="virtual"><scope>astrea::astro::SolarRadiationPressure</scope><name>compute_perturbation</name></member>
+      <member refid="classastrea_1_1astro_1_1PerturbingForce_1a49e3859d67794b695ac783d8096213c0" prot="public" virt="non-virtual"><scope>astrea::astro::SolarRadiationPressure</scope><name>get_space_weather_data</name></member>
+      <member refid="classastrea_1_1astro_1_1PerturbingForce_1aea0bbee60bfa80950710c27746c63d0f" prot="public" virt="non-virtual"><scope>astrea::astro::SolarRadiationPressure</scope><name>get_space_weather_provider</name></member>
       <member refid="classastrea_1_1astro_1_1PerturbingForce_1a31d3645e85270aa1c1936252bb9a34a3" prot="public" virt="non-virtual"><scope>astrea::astro::SolarRadiationPressure</scope><name>PerturbingForce</name></member>
       <member refid="classastrea_1_1astro_1_1SolarRadiationPressure_1a047dacf5e91e6a54d08fefc9b45d5663" prot="public" virt="non-virtual"><scope>astrea::astro::SolarRadiationPressure</scope><name>SolarRadiationPressure</name></member>
       <member refid="classastrea_1_1astro_1_1PerturbingForce_1a5b564712f5a9df20b0c3180c517b1546" prot="public" virt="virtual"><scope>astrea::astro::SolarRadiationPressure</scope><name>~PerturbingForce</name></member>

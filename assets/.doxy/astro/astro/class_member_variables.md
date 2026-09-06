@@ -10,22 +10,23 @@
 * **APOAPSIS** ([**astrea::astro::GeneralPerturbations**](structastrea_1_1astro_1_1GeneralPerturbations.md))
 * **ARG\_OF\_PERICENTER** ([**astrea::astro::GeneralPerturbations**](structastrea_1_1astro_1_1GeneralPerturbations.md))
 * **absTol** ([**astrea::astro::IntegratorSettings**](structastrea_1_1astro_1_1IntegratorSettings.md))
+* **ap** ([**astrea::astro::SpaceWeatherParameters**](structastrea_1_1astro_1_1SpaceWeatherParameters.md), [**astrea::astro::planets::Output**](classastrea_1_1astro_1_1planets_1_1Output.md))
+* **avgAp** ([**astrea::astro::SpaceWeatherParameters**](structastrea_1_1astro_1_1SpaceWeatherParameters.md))
 * **alt** ([**astrea::astro::TopocentricFrame**](structastrea_1_1astro_1_1TopocentricFrame.md))
-* **atmosphereModel** ([**astrea::astro::planets::EarthParameters**](structastrea_1_1astro_1_1planets_1_1EarthParameters.md))
-* **AR\_MASS** ([**astrea::astro::planets::NRLMSISE00**](classastrea_1_1astro_1_1planets_1_1NRLMSISE00.md))
-* **ap** ([**astrea::astro::planets::NRLMSISE00::Output**](classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Output.md))
-* **apdf** ([**astrea::astro::planets::NRLMSISE00::Output**](classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Output.md))
-* **apt** ([**astrea::astro::planets::NRLMSISE00::Output**](classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Output.md))
+* **apdf** ([**astrea::astro::planets::Output**](classastrea_1_1astro_1_1planets_1_1Output.md))
+* **apt** ([**astrea::astro::planets::Output**](classastrea_1_1astro_1_1planets_1_1Output.md))
 
 
 ## b
 
 * **body** ([**astrea::astro::Cylindrical**](classastrea_1_1astro_1_1Cylindrical.md), [**astrea::astro::Geocentric**](classastrea_1_1astro_1_1Geocentric.md), [**astrea::astro::Geodetic**](classastrea_1_1astro_1_1Geodetic.md), [**astrea::astro::Spherical**](classastrea_1_1astro_1_1Spherical.md), [**astrea::astro::TopocentricFrame**](structastrea_1_1astro_1_1TopocentricFrame.md))
 * **BSTAR** ([**astrea::astro::GeneralPerturbations**](structastrea_1_1astro_1_1GeneralPerturbations.md))
+* **bsrn** ([**astrea::astro::SpaceWeatherParameters**](structastrea_1_1astro_1_1SpaceWeatherParameters.md))
 
 
 ## c
 
+* **center** ([**astrea::astro::AtmosphericForce**](classastrea_1_1astro_1_1AtmosphericForce.md))
 * **crashRadius** ([**astrea::astro::CelestialBodyParameters**](structastrea_1_1astro_1_1CelestialBodyParameters.md))
 * **checkTol** ([**astrea::astro::EquinoctialVop**](classastrea_1_1astro_1_1EquinoctialVop.md), [**astrea::astro::KeplerianVop**](classastrea_1_1astro_1_1KeplerianVop.md))
 * **CCSDS\_OMM\_VERS** ([**astrea::astro::GeneralPerturbations**](structastrea_1_1astro_1_1GeneralPerturbations.md))
@@ -34,12 +35,14 @@
 * **COMMENT** ([**astrea::astro::GeneralPerturbations**](structastrea_1_1astro_1_1GeneralPerturbations.md))
 * **COUNTRY\_CODE** ([**astrea::astro::GeneralPerturbations**](structastrea_1_1astro_1_1GeneralPerturbations.md))
 * **CREATION\_DATE** ([**astrea::astro::GeneralPerturbations**](structastrea_1_1astro_1_1GeneralPerturbations.md))
+* **centered81DayAverage** ([**astrea::astro::SolarFluxData**](structastrea_1_1astro_1_1SolarFluxData.md))
+* **c9** ([**astrea::astro::SpaceWeatherParameters**](structastrea_1_1astro_1_1SpaceWeatherParameters.md), [**astrea::astro::planets::SpeciesModelParams**](structastrea_1_1astro_1_1planets_1_1SpeciesModelParams.md))
+* **cp** ([**astrea::astro::SpaceWeatherParameters**](structastrea_1_1astro_1_1SpaceWeatherParameters.md))
+* **c2tloc** ([**astrea::astro::planets::Output**](classastrea_1_1astro_1_1planets_1_1Output.md))
+* **c3tloc** ([**astrea::astro::planets::Output**](classastrea_1_1astro_1_1planets_1_1Output.md))
+* **ctloc** ([**astrea::astro::planets::Output**](classastrea_1_1astro_1_1planets_1_1Output.md))
 * **c3** ([**astrea::astro::planets::SpeciesModelParams**](structastrea_1_1astro_1_1planets_1_1SpeciesModelParams.md))
-* **c9** ([**astrea::astro::planets::SpeciesModelParams**](structastrea_1_1astro_1_1planets_1_1SpeciesModelParams.md))
-* **c2tloc** ([**astrea::astro::planets::NRLMSISE00::Output**](classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Output.md))
-* **c3tloc** ([**astrea::astro::planets::NRLMSISE00::Output**](classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Output.md))
-* **ctloc** ([**astrea::astro::planets::NRLMSISE00::Output**](classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Output.md))
-* **crossEffect** ([**astrea::astro::planets::NRLMSISE00::Switch**](structastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Switch.md))
+* **crossEffect** ([**astrea::astro::planets::Switch**](structastrea_1_1astro_1_1planets_1_1Switch.md))
 
 
 ## d
@@ -48,6 +51,7 @@
 * **DB\_ID** ([**astrea::astro::GeneralPerturbations**](structastrea_1_1astro_1_1GeneralPerturbations.md))
 * **DECAY\_DATE** ([**astrea::astro::GeneralPerturbations**](structastrea_1_1astro_1_1GeneralPerturbations.md))
 * **doWarn** ([**astrea::astro::KeplerianVop**](classastrea_1_1astro_1_1KeplerianVop.md))
+* **date** ([**astrea::astro::SpaceWeatherParameters**](structastrea_1_1astro_1_1SpaceWeatherParameters.md))
 * **DEFAULT\_COEFFICIENT\_OF\_DRAG** ([**astrea::astro::Spacecraft**](classastrea_1_1astro_1_1Spacecraft.md))
 * **DEFAULT\_COEFFICIENT\_OF\_LIFT** ([**astrea::astro::Spacecraft**](classastrea_1_1astro_1_1Spacecraft.md))
 * **DEFAULT\_COEFFICIENT\_OF\_REFLECTIVITY** ([**astrea::astro::Spacecraft**](classastrea_1_1astro_1_1Spacecraft.md))
@@ -56,10 +60,9 @@
 * **DEFAULT\_MASS** ([**astrea::astro::Spacecraft**](classastrea_1_1astro_1_1Spacecraft.md))
 * **DEFAULT\_RAM\_AREA** ([**astrea::astro::Spacecraft**](classastrea_1_1astro_1_1Spacecraft.md))
 * **DEFAULT\_SOLAR\_AREA** ([**astrea::astro::Spacecraft**](classastrea_1_1astro_1_1Spacecraft.md))
+* **densities** ([**astrea::astro::planets::Output**](classastrea_1_1astro_1_1planets_1_1Output.md))
+* **doy** ([**astrea::astro::planets::Output**](classastrea_1_1astro_1_1planets_1_1Output.md))
 * **detectionTimes** ([**astrea::astro::EventDetector::EventTracker**](structastrea_1_1astro_1_1EventDetector_1_1EventTracker.md))
-* **densities** ([**astrea::astro::planets::NRLMSISE00::Output**](classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Output.md))
-* **dm28** ([**astrea::astro::planets::NRLMSISE00::Output**](classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Output.md))
-* **doy** ([**astrea::astro::planets::NRLMSISE00::Output**](classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Output.md))
 
 
 ## e
@@ -85,11 +88,12 @@
 * **FILE** ([**astrea::astro::GeneralPerturbations**](structastrea_1_1astro_1_1GeneralPerturbations.md))
 * **fixedTimeStep** ([**astrea::astro::IntegratorSettings**](structastrea_1_1astro_1_1IntegratorSettings.md))
 * **force** ([**astrea::astro::Perturbation**](structastrea_1_1astro_1_1Perturbation.md))
-* **FLUX\_REF** ([**astrea::astro::planets::NRLMSISE00**](classastrea_1_1astro_1_1planets_1_1NRLMSISE00.md))
+* **f107Adj** ([**astrea::astro::SpaceWeatherParameters**](structastrea_1_1astro_1_1SpaceWeatherParameters.md))
+* **f107Obs** ([**astrea::astro::SpaceWeatherParameters**](structastrea_1_1astro_1_1SpaceWeatherParameters.md))
+* **f107** ([**astrea::astro::planets::Output**](classastrea_1_1astro_1_1planets_1_1Output.md))
+* **f107a** ([**astrea::astro::planets::Output**](classastrea_1_1astro_1_1planets_1_1Output.md))
+* **fullAp** ([**astrea::astro::planets::Switch**](structastrea_1_1astro_1_1planets_1_1Switch.md))
 * **firstMeasurement** ([**astrea::astro::EventDetector::EventTracker**](structastrea_1_1astro_1_1EventDetector_1_1EventTracker.md))
-* **f107** ([**astrea::astro::planets::NRLMSISE00::Output**](classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Output.md))
-* **f107a** ([**astrea::astro::planets::NRLMSISE00::Output**](classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Output.md))
-* **fullAp** ([**astrea::astro::planets::NRLMSISE00::Switch**](structastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Switch.md))
 
 
 ## g
@@ -97,17 +101,14 @@
 * **geocentric\_axes** ([**astrea::astro::CelestialBody**](structastrea_1_1astro_1_1CelestialBody.md))
 * **gravityCoefficientFile** ([**astrea::astro::CelestialBodyParameters**](structastrea_1_1astro_1_1CelestialBodyParameters.md))
 * **GP\_ID** ([**astrea::astro::GeneralPerturbations**](structastrea_1_1astro_1_1GeneralPerturbations.md))
-* **G\_REF** ([**astrea::astro::planets::NRLMSISE00**](classastrea_1_1astro_1_1planets_1_1NRLMSISE00.md))
-* **glat** ([**astrea::astro::planets::NRLMSISE00::Output**](classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Output.md))
+* **glat** ([**astrea::astro::planets::Output**](classastrea_1_1astro_1_1planets_1_1Output.md))
 
 
 ## h
 
-* **HE\_MASS** ([**astrea::astro::planets::NRLMSISE00**](classastrea_1_1astro_1_1planets_1_1NRLMSISE00.md))
-* **H\_MASS** ([**astrea::astro::planets::NRLMSISE00**](classastrea_1_1astro_1_1planets_1_1NRLMSISE00.md))
+* **hl** ([**astrea::astro::planets::Output**](classastrea_1_1astro_1_1planets_1_1Output.md))
 * **ha** ([**astrea::astro::planets::SpeciesModelParams**](structastrea_1_1astro_1_1planets_1_1SpeciesModelParams.md))
 * **hb** ([**astrea::astro::planets::SpeciesModelParams**](structastrea_1_1astro_1_1planets_1_1SpeciesModelParams.md))
-* **hl** ([**astrea::astro::planets::NRLMSISE00::Output**](classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Output.md))
 
 
 ## i
@@ -125,6 +126,7 @@
 * **incTol** ([**astrea::astro::J2MeanVop**](classastrea_1_1astro_1_1J2MeanVop.md))
 * **ITER\_MAX** ([**astrea::astro::LambertSolver**](classastrea_1_1astro_1_1LambertSolver.md))
 * **iterPlane** ([**astrea::astro::Shell::sat\_iterator**](classastrea_1_1astro_1_1Shell_1_1sat__iterator.md))
+* **isn** ([**astrea::astro::SpaceWeatherParameters**](structastrea_1_1astro_1_1SpaceWeatherParameters.md))
 
 
 ## j
@@ -134,6 +136,11 @@
 * **j3** ([**astrea::astro::CelestialBodyParameters**](structastrea_1_1astro_1_1CelestialBodyParameters.md))
 
 
+## k
+
+* **kp** ([**astrea::astro::SpaceWeatherParameters**](structastrea_1_1astro_1_1SpaceWeatherParameters.md))
+
+
 ## l
 
 * **Lb** ([**astrea::astro::BarycentricCoordinateTimeClock**](structastrea_1_1astro_1_1BarycentricCoordinateTimeClock.md))
@@ -141,9 +148,10 @@
 * **longitudeOfPerigeeRate** ([**astrea::astro::CelestialBodyParameters**](structastrea_1_1astro_1_1CelestialBodyParameters.md))
 * **LAUNCH\_DATE** ([**astrea::astro::GeneralPerturbations**](structastrea_1_1astro_1_1GeneralPerturbations.md))
 * **Lg** ([**astrea::astro::GeocentricCoordinateTimeClock**](structastrea_1_1astro_1_1GeocentricCoordinateTimeClock.md))
-* **lat** ([**astrea::astro::TopocentricFrame**](structastrea_1_1astro_1_1TopocentricFrame.md), [**astrea::astro::planets::NRLMSISE00::Output**](classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Output.md))
-* **lon** ([**astrea::astro::TopocentricFrame**](structastrea_1_1astro_1_1TopocentricFrame.md), [**astrea::astro::planets::NRLMSISE00::Output**](classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Output.md))
-* **LAT\_REF** ([**astrea::astro::planets::NRLMSISE00**](classastrea_1_1astro_1_1planets_1_1NRLMSISE00.md))
+* **last81DayAverage** ([**astrea::astro::SolarFluxData**](structastrea_1_1astro_1_1SolarFluxData.md))
+* **lat** ([**astrea::astro::TopocentricFrame**](structastrea_1_1astro_1_1TopocentricFrame.md), [**astrea::astro::planets::Output**](classastrea_1_1astro_1_1planets_1_1Output.md))
+* **lon** ([**astrea::astro::TopocentricFrame**](structastrea_1_1astro_1_1TopocentricFrame.md), [**astrea::astro::planets::Output**](classastrea_1_1astro_1_1planets_1_1Output.md))
+* **legendrePolynomials** ([**astrea::astro::planets::Output**](classastrea_1_1astro_1_1planets_1_1Output.md))
 
 
 ## m
@@ -158,24 +166,25 @@
 * **MEAN\_MOTION** ([**astrea::astro::GeneralPerturbations**](structastrea_1_1astro_1_1GeneralPerturbations.md))
 * **MEAN\_MOTION\_DDOT** ([**astrea::astro::GeneralPerturbations**](structastrea_1_1astro_1_1GeneralPerturbations.md))
 * **MEAN\_MOTION\_DOT** ([**astrea::astro::GeneralPerturbations**](structastrea_1_1astro_1_1GeneralPerturbations.md))
-* **MIN\_TEMP** ([**astrea::astro::planets::NRLMSISE00**](classastrea_1_1astro_1_1planets_1_1NRLMSISE00.md))
-* **mix\_ratio** ([**astrea::astro::planets::SpeciesModelParams**](structastrea_1_1astro_1_1planets_1_1SpeciesModelParams.md))
-* **meso\_tgn1** ([**astrea::astro::planets::NRLMSISE00::Output**](classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Output.md))
-* **meso\_tgn2** ([**astrea::astro::planets::NRLMSISE00::Output**](classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Output.md))
-* **meso\_tgn3** ([**astrea::astro::planets::NRLMSISE00::Output**](classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Output.md))
-* **meso\_tn1** ([**astrea::astro::planets::NRLMSISE00::Output**](classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Output.md))
-* **meso\_tn2** ([**astrea::astro::planets::NRLMSISE00::Output**](classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Output.md))
-* **meso\_tn3** ([**astrea::astro::planets::NRLMSISE00::Output**](classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Output.md))
-* **mainEffect** ([**astrea::astro::planets::NRLMSISE00::Switch**](structastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Switch.md))
+* **measurement** ([**astrea::astro::SpaceWeatherParameters**](structastrea_1_1astro_1_1SpaceWeatherParameters.md))
+* **mesoTgn1** ([**astrea::astro::planets::Output**](classastrea_1_1astro_1_1planets_1_1Output.md))
+* **mesoTgn2** ([**astrea::astro::planets::Output**](classastrea_1_1astro_1_1planets_1_1Output.md))
+* **mesoTgn3** ([**astrea::astro::planets::Output**](classastrea_1_1astro_1_1planets_1_1Output.md))
+* **mesoTn1** ([**astrea::astro::planets::Output**](classastrea_1_1astro_1_1planets_1_1Output.md))
+* **mesoTn2** ([**astrea::astro::planets::Output**](classastrea_1_1astro_1_1planets_1_1Output.md))
+* **mesoTn3** ([**astrea::astro::planets::Output**](classastrea_1_1astro_1_1planets_1_1Output.md))
+* **mixRatio** ([**astrea::astro::planets::SpeciesModelParams**](structastrea_1_1astro_1_1planets_1_1SpeciesModelParams.md))
+* **mainEffect** ([**astrea::astro::planets::Switch**](structastrea_1_1astro_1_1planets_1_1Switch.md))
 
 
 ## n
 
 * **name** ([**astrea::astro::Axis&lt; \_name\_ &gt;**](structastrea_1_1astro_1_1Axis_3_01__name___01_4.md), [**astrea::astro::Axis&lt; \_name\_, \_parent\_ &gt;**](structastrea_1_1astro_1_1Axis_3_01__name___00_01__parent___01_4.md), [**astrea::astro::Constellation**](classastrea_1_1astro_1_1Constellation.md), [**astrea::astro::Frame&lt; \_name\_, \_origin\_, \_axis\_ &gt;**](structastrea_1_1astro_1_1Frame_3_01__name___00_01__origin___00_01__axis___01_4.md), [**astrea::astro::Frame&lt; \_name\_, \_origin\_, \_axis\_, \_parent\_ &gt;**](structastrea_1_1astro_1_1Frame_3_01__name___00_01__origin___00_01__axis___00_01__parent___01_4.md), [**astrea::astro::Origin&lt; \_name\_ &gt;**](structastrea_1_1astro_1_1Origin_3_01__name___01_4.md), [**astrea::astro::Origin&lt; \_name\_, \_parent\_ &gt;**](structastrea_1_1astro_1_1Origin_3_01__name___00_01__parent___01_4.md), [**astrea::astro::Shell**](classastrea_1_1astro_1_1Shell.md))
 * **NORAD\_CAT\_ID** ([**astrea::astro::GeneralPerturbations**](structastrea_1_1astro_1_1GeneralPerturbations.md))
-* **N2\_MASS** ([**astrea::astro::planets::NRLMSISE00**](classastrea_1_1astro_1_1planets_1_1NRLMSISE00.md))
-* **N\_MASS** ([**astrea::astro::planets::NRLMSISE00**](classastrea_1_1astro_1_1planets_1_1NRLMSISE00.md))
-* **n\_ref** ([**astrea::astro::planets::SpeciesModelParams**](structastrea_1_1astro_1_1planets_1_1SpeciesModelParams.md))
+* **nominal** ([**astrea::astro::SolarFluxData**](structastrea_1_1astro_1_1SolarFluxData.md))
+* **nd** ([**astrea::astro::SpaceWeatherParameters**](structastrea_1_1astro_1_1SpaceWeatherParameters.md))
+* **n2MixedNumberDensity** ([**astrea::astro::planets::Output**](classastrea_1_1astro_1_1planets_1_1Output.md))
+* **nRef** ([**astrea::astro::planets::SpeciesModelParams**](structastrea_1_1astro_1_1planets_1_1SpeciesModelParams.md))
 
 
 ## o
@@ -188,9 +197,6 @@
 * **OBJECT\_TYPE** ([**astrea::astro::GeneralPerturbations**](structastrea_1_1astro_1_1GeneralPerturbations.md))
 * **ORIGINATOR** ([**astrea::astro::GeneralPerturbations**](structastrea_1_1astro_1_1GeneralPerturbations.md))
 * **one** ([**astrea::astro::InertiaTensor**](classastrea_1_1astro_1_1InertiaTensor.md))
-* **O2\_MASS** ([**astrea::astro::planets::NRLMSISE00**](classastrea_1_1astro_1_1planets_1_1NRLMSISE00.md))
-* **O\_MASS** ([**astrea::astro::planets::NRLMSISE00**](classastrea_1_1astro_1_1planets_1_1NRLMSISE00.md))
-* **options** ([**astrea::astro::planets::NRLMSISE00**](classastrea_1_1astro_1_1planets_1_1NRLMSISE00.md))
 
 
 ## p
@@ -207,10 +213,8 @@
 * **planes** ([**astrea::astro::Shell**](classastrea_1_1astro_1_1Shell.md))
 * **primary** ([**astrea::astro::SynodicAxis**](structastrea_1_1astro_1_1SynodicAxis.md))
 * **Payload&lt; Thruster, ThrusterParameters &gt;** ([**astrea::astro::Thruster**](classastrea_1_1astro_1_1Thruster.md))
-* **PAVGM** ([**astrea::astro::planets::NRLMSISE00**](classastrea_1_1astro_1_1planets_1_1NRLMSISE00.md))
 * **previousTime** ([**astrea::astro::EventDetector::EventTracker**](structastrea_1_1astro_1_1EventDetector_1_1EventTracker.md))
 * **previousValue** ([**astrea::astro::EventDetector::EventTracker**](structastrea_1_1astro_1_1EventDetector_1_1EventTracker.md))
-* **plg** ([**astrea::astro::planets::NRLMSISE00::Output**](classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Output.md))
 * **point\_origin** ([**mp\_units::quantity\_point\_like\_traits&lt; astrea::astro::Date &gt;**](structmp__units_1_1quantity__point__like__traits_3_01astrea_1_1astro_1_1Date_01_4.md))
 
 
@@ -227,8 +231,7 @@
 * **REF\_FRAME** ([**astrea::astro::GeneralPerturbations**](structastrea_1_1astro_1_1GeneralPerturbations.md))
 * **REV\_AT\_EPOCH** ([**astrea::astro::GeneralPerturbations**](structastrea_1_1astro_1_1GeneralPerturbations.md))
 * **relTol** ([**astrea::astro::IntegratorSettings**](structastrea_1_1astro_1_1IntegratorSettings.md))
-* **R\_GAS** ([**astrea::astro::planets::NRLMSISE00**](classastrea_1_1astro_1_1planets_1_1NRLMSISE00.md))
-* **rlat** ([**astrea::astro::planets::NRLMSISE00::Output**](classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Output.md))
+* **rlat** ([**astrea::astro::planets::Output**](classastrea_1_1astro_1_1planets_1_1Output.md))
 * **reference** ([**mp\_units::quantity\_point\_like\_traits&lt; astrea::astro::Date &gt;**](structmp__units_1_1quantity__point__like__traits_3_01astrea_1_1astro_1_1Date_01_4.md))
 
 
@@ -248,12 +251,13 @@
 * **STOP\_DATE** ([**astrea::astro::JplEphemerisTable**](structastrea_1_1astro_1_1JplEphemerisTable.md))
 * **satellites** ([**astrea::astro::Plane**](classastrea_1_1astro_1_1Plane.md))
 * **strict** ([**astrea::astro::Plane**](classastrea_1_1astro_1_1Plane.md))
+* **sumKp** ([**astrea::astro::SpaceWeatherParameters**](structastrea_1_1astro_1_1SpaceWeatherParameters.md))
 * **secondary** ([**astrea::astro::SynodicAxis**](structastrea_1_1astro_1_1SynodicAxis.md))
 * **S0** ([**astrea::astro::planets::BatesProfileParams**](structastrea_1_1astro_1_1planets_1_1BatesProfileParams.md))
-* **s2tloc** ([**astrea::astro::planets::NRLMSISE00::Output**](classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Output.md))
-* **s3tloc** ([**astrea::astro::planets::NRLMSISE00::Output**](classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Output.md))
-* **sec** ([**astrea::astro::planets::NRLMSISE00::Output**](classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Output.md))
-* **stloc** ([**astrea::astro::planets::NRLMSISE00::Output**](classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Output.md))
+* **s2tloc** ([**astrea::astro::planets::Output**](classastrea_1_1astro_1_1planets_1_1Output.md))
+* **s3tloc** ([**astrea::astro::planets::Output**](classastrea_1_1astro_1_1planets_1_1Output.md))
+* **sec** ([**astrea::astro::planets::Output**](classastrea_1_1astro_1_1planets_1_1Output.md))
+* **stloc** ([**astrea::astro::planets::Output**](classastrea_1_1astro_1_1planets_1_1Output.md))
 
 
 ## t
@@ -277,7 +281,7 @@
 * **Tgrad** ([**astrea::astro::planets::BatesProfileParams**](structastrea_1_1astro_1_1planets_1_1BatesProfileParams.md))
 * **Tinf** ([**astrea::astro::planets::BatesProfileParams**](structastrea_1_1astro_1_1planets_1_1BatesProfileParams.md))
 * **Tlb0** ([**astrea::astro::planets::BatesProfileParams**](structastrea_1_1astro_1_1planets_1_1BatesProfileParams.md))
-* **temperatures** ([**astrea::astro::planets::NRLMSISE00::Output**](classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Output.md))
+* **temperatures** ([**astrea::astro::planets::Output**](classastrea_1_1astro_1_1planets_1_1Output.md))
 
 
 ## u
@@ -306,10 +310,6 @@
 * **z** ([**astrea::astro::FixedOffsetOrigin::Offset**](structastrea_1_1astro_1_1FixedOffsetOrigin_1_1Offset.md))
 * **zero** ([**astrea::astro::InertiaTensor**](classastrea_1_1astro_1_1InertiaTensor.md))
 * **Zlb** ([**astrea::astro::planets::BatesProfileParams**](structastrea_1_1astro_1_1planets_1_1BatesProfileParams.md))
-* **ZMIX** ([**astrea::astro::planets::NRLMSISE00**](classastrea_1_1astro_1_1planets_1_1NRLMSISE00.md))
-* **ZN1** ([**astrea::astro::planets::NRLMSISE00**](classastrea_1_1astro_1_1planets_1_1NRLMSISE00.md))
-* **ZN2** ([**astrea::astro::planets::NRLMSISE00**](classastrea_1_1astro_1_1planets_1_1NRLMSISE00.md))
-* **ZN3** ([**astrea::astro::planets::NRLMSISE00**](classastrea_1_1astro_1_1planets_1_1NRLMSISE00.md))
 * **za** ([**astrea::astro::planets::SpeciesModelParams**](structastrea_1_1astro_1_1planets_1_1SpeciesModelParams.md))
 * **zb** ([**astrea::astro::planets::SpeciesModelParams**](structastrea_1_1astro_1_1planets_1_1SpeciesModelParams.md))
 * **zh** ([**astrea::astro::planets::SpeciesModelParams**](structastrea_1_1astro_1_1planets_1_1SpeciesModelParams.md))
@@ -333,7 +333,7 @@
 * **\_icrf\_frame\_** ([**astrea::astro::Cylindrical**](classastrea_1_1astro_1_1Cylindrical.md), [**astrea::astro::Geocentric**](classastrea_1_1astro_1_1Geocentric.md), [**astrea::astro::Geodetic**](classastrea_1_1astro_1_1Geodetic.md), [**astrea::astro::Spherical**](classastrea_1_1astro_1_1Spherical.md))
 * **\_range** ([**astrea::astro::Cylindrical**](classastrea_1_1astro_1_1Cylindrical.md), [**astrea::astro::Spherical**](classastrea_1_1astro_1_1Spherical.md))
 * **\_julianDate** ([**astrea::astro::Date**](classastrea_1_1astro_1_1Date.md))
-* **\_data** ([**astrea::astro::DcmInterface**](structastrea_1_1astro_1_1DcmInterface.md))
+* **\_data** ([**astrea::astro::DcmInterface**](structastrea_1_1astro_1_1DcmInterface.md), [**astrea::astro::SpaceWeatherData**](classastrea_1_1astro_1_1SpaceWeatherData.md), [**astrea::astro::SpaceWeatherProvider**](classastrea_1_1astro_1_1SpaceWeatherProvider.md))
 * **\_triggerAltitude** ([**astrea::astro::Deorbit**](classastrea_1_1astro_1_1Deorbit.md), [**astrea::astro::ImpulsiveBurn**](classastrea_1_1astro_1_1ImpulsiveBurn.md))
 * **\_position** ([**astrea::astro::DynamicFrame**](structastrea_1_1astro_1_1DynamicFrame.md))
 * **\_velocity** ([**astrea::astro::DynamicFrame**](structastrea_1_1astro_1_1DynamicFrame.md))
@@ -352,6 +352,7 @@
 * **\_angles** ([**astrea::astro::EulerAngles**](classastrea_1_1astro_1_1EulerAngles.md))
 * **\_ptr** ([**astrea::astro::Event**](classastrea_1_1astro_1_1Event.md), [**astrea::astro::Vehicle**](classastrea_1_1astro_1_1Vehicle.md))
 * **\_eventTrackers** ([**astrea::astro::EventDetector**](classastrea_1_1astro_1_1EventDetector.md))
+* **\_spaceWeatherProvider** ([**astrea::astro::ForceModel**](classastrea_1_1astro_1_1ForceModel.md))
 * **\_altitude** ([**astrea::astro::Geocentric**](classastrea_1_1astro_1_1Geocentric.md), [**astrea::astro::Geodetic**](classastrea_1_1astro_1_1Geodetic.md))
 * **\_latitude** ([**astrea::astro::Geocentric**](classastrea_1_1astro_1_1Geocentric.md), [**astrea::astro::Geodetic**](classastrea_1_1astro_1_1Geodetic.md))
 * **\_longitude** ([**astrea::astro::Geocentric**](classastrea_1_1astro_1_1Geocentric.md), [**astrea::astro::Geodetic**](classastrea_1_1astro_1_1Geodetic.md))
@@ -408,7 +409,7 @@
 * **\_C** ([**astrea::astro::LegendreCache**](classastrea_1_1astro_1_1LegendreCache.md))
 * **\_S** ([**astrea::astro::LegendreCache**](classastrea_1_1astro_1_1LegendreCache.md))
 * **\_span** ([**astrea::astro::LegendreCache**](classastrea_1_1astro_1_1LegendreCache.md))
-* **\_mass** ([**astrea::astro::NullVehicle**](classastrea_1_1astro_1_1NullVehicle.md), [**astrea::astro::Spacecraft**](classastrea_1_1astro_1_1Spacecraft.md), [**astrea::astro::Vehicle**](classastrea_1_1astro_1_1Vehicle.md))
+* **\_mass** ([**astrea::astro::NullVehicle**](classastrea_1_1astro_1_1NullVehicle.md), [**astrea::astro::Spacecraft**](classastrea_1_1astro_1_1Spacecraft.md))
 * **\_legendreCache** ([**astrea::astro::OblatenessForce**](classastrea_1_1astro_1_1OblatenessForce.md))
 * **\_elements** ([**astrea::astro::OrbitalElementPartials**](classastrea_1_1astro_1_1OrbitalElementPartials.md), [**astrea::astro::OrbitalElements**](classastrea_1_1astro_1_1OrbitalElements.md), [**astrea::astro::State**](classastrea_1_1astro_1_1State.md), [**astrea::astro::TwoLineElements**](classastrea_1_1astro_1_1TwoLineElements.md))
 * **\_id** ([**astrea::astro::Payload**](classastrea_1_1astro_1_1Payload.md), [**astrea::astro::Spacecraft**](classastrea_1_1astro_1_1Spacecraft.md))
@@ -417,18 +418,22 @@
 * **\_attachmentPoint** ([**astrea::astro::PayloadParameters**](classastrea_1_1astro_1_1PayloadParameters.md))
 * **\_boresight** ([**astrea::astro::PayloadParameters**](classastrea_1_1astro_1_1PayloadParameters.md))
 * **\_payloads** ([**astrea::astro::PayloadPlatform**](classastrea_1_1astro_1_1PayloadPlatform.md))
+* **\_provider** ([**astrea::astro::PerturbingForce**](classastrea_1_1astro_1_1PerturbingForce.md))
 * **\_s** ([**astrea::astro::Quaternion**](classastrea_1_1astro_1_1Quaternion.md))
 * **\_u** ([**astrea::astro::Quaternion**](classastrea_1_1astro_1_1Quaternion.md))
 * **\_sDot** ([**astrea::astro::QuaternionPartial**](classastrea_1_1astro_1_1QuaternionPartial.md))
 * **\_uDot** ([**astrea::astro::QuaternionPartial**](classastrea_1_1astro_1_1QuaternionPartial.md))
 * **\_events** ([**astrea::astro::Schedule**](classastrea_1_1astro_1_1Schedule.md))
-* **\_coefficientOfDrag** ([**astrea::astro::Spacecraft**](classastrea_1_1astro_1_1Spacecraft.md), [**astrea::astro::Vehicle**](classastrea_1_1astro_1_1Vehicle.md))
-* **\_coefficientOfLift** ([**astrea::astro::Spacecraft**](classastrea_1_1astro_1_1Spacecraft.md), [**astrea::astro::Vehicle**](classastrea_1_1astro_1_1Vehicle.md))
-* **\_coefficientOfReflectivity** ([**astrea::astro::Spacecraft**](classastrea_1_1astro_1_1Spacecraft.md), [**astrea::astro::Vehicle**](classastrea_1_1astro_1_1Vehicle.md))
-* **\_inertiaTensor** ([**astrea::astro::Spacecraft**](classastrea_1_1astro_1_1Spacecraft.md), [**astrea::astro::Vehicle**](classastrea_1_1astro_1_1Vehicle.md))
-* **\_liftArea** ([**astrea::astro::Spacecraft**](classastrea_1_1astro_1_1Spacecraft.md), [**astrea::astro::Vehicle**](classastrea_1_1astro_1_1Vehicle.md))
+* **\_endDate** ([**astrea::astro::SpaceWeatherData**](classastrea_1_1astro_1_1SpaceWeatherData.md))
+* **\_infile** ([**astrea::astro::SpaceWeatherData**](classastrea_1_1astro_1_1SpaceWeatherData.md))
+* **\_startDate** ([**astrea::astro::SpaceWeatherData**](classastrea_1_1astro_1_1SpaceWeatherData.md))
+* **\_coefficientOfDrag** ([**astrea::astro::Spacecraft**](classastrea_1_1astro_1_1Spacecraft.md))
+* **\_coefficientOfLift** ([**astrea::astro::Spacecraft**](classastrea_1_1astro_1_1Spacecraft.md))
+* **\_coefficientOfReflectivity** ([**astrea::astro::Spacecraft**](classastrea_1_1astro_1_1Spacecraft.md))
+* **\_inertiaTensor** ([**astrea::astro::Spacecraft**](classastrea_1_1astro_1_1Spacecraft.md))
+* **\_liftArea** ([**astrea::astro::Spacecraft**](classastrea_1_1astro_1_1Spacecraft.md))
 * **\_name** ([**astrea::astro::Spacecraft**](classastrea_1_1astro_1_1Spacecraft.md), [**astrea::astro::TwoLineElements**](classastrea_1_1astro_1_1TwoLineElements.md))
-* **\_ramArea** ([**astrea::astro::Spacecraft**](classastrea_1_1astro_1_1Spacecraft.md), [**astrea::astro::Vehicle**](classastrea_1_1astro_1_1Vehicle.md))
+* **\_ramArea** ([**astrea::astro::Spacecraft**](classastrea_1_1astro_1_1Spacecraft.md))
 * **\_stateHistory** ([**astrea::astro::Spacecraft**](classastrea_1_1astro_1_1Spacecraft.md))
 * **\_sunArea** ([**astrea::astro::Spacecraft**](classastrea_1_1astro_1_1Spacecraft.md))
 * **\_attitude** ([**astrea::astro::State**](classastrea_1_1astro_1_1State.md))
@@ -457,7 +462,6 @@
 * **\_meanMotion2nd** ([**astrea::astro::TwoLineElements**](classastrea_1_1astro_1_1TwoLineElements.md))
 * **\_rawTLE** ([**astrea::astro::TwoLineElements**](classastrea_1_1astro_1_1TwoLineElements.md))
 * **\_revNumber** ([**astrea::astro::TwoLineElements**](classastrea_1_1astro_1_1TwoLineElements.md))
-* **\_solarArea** ([**astrea::astro::Vehicle**](classastrea_1_1astro_1_1Vehicle.md))
 * **\_value** ([**astrea::astro::detail::EventInner**](structastrea_1_1astro_1_1detail_1_1EventInner.md), [**astrea::astro::detail::VehicleInner**](structastrea_1_1astro_1_1detail_1_1VehicleInner.md))
 
 

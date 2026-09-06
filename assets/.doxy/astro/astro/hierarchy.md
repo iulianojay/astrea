@@ -36,14 +36,17 @@ This inheritance list is sorted roughly, but not completely, alphabetically:
 * **class** [**astrea::astro::ForceModel**](classastrea_1_1astro_1_1ForceModel.md) _Class to manage multiple force models and compute the total force on a vehicle._ 
 * **class** [**astrea::astro::Geocentric**](classastrea_1_1astro_1_1Geocentric.md) _Class representing a_ [_**Geocentric**_](classastrea_1_1astro_1_1Geocentric.md) _state vector in astrodynamics._
 * **class** [**astrea::astro::Geodetic**](classastrea_1_1astro_1_1Geodetic.md) _Class representing a_ [_**Geodetic**_](classastrea_1_1astro_1_1Geodetic.md) _state vector in astrodynamics._
+* **class** [**astrea::astro::HarrisPriesterAtmosphere**](classastrea_1_1astro_1_1HarrisPriesterAtmosphere.md) _The Harris-Priester atmospheric model for Earth._ 
 * **class** [**astrea::astro::ImpulsiveBurn**](classastrea_1_1astro_1_1ImpulsiveBurn.md) _A class representing an impulsive burn_ [_**Event**_](classastrea_1_1astro_1_1Event.md) _. It triggers when the true anomaly wraps around (i.e. at perigee), and applies the total impulsive delta-v from all thrusters to the vehicle in the velocity direction._
 * **class** [**astrea::astro::InertiaTensor**](classastrea_1_1astro_1_1InertiaTensor.md) _A class representing an inertia matrix in the astrea astro platform._ 
 * **class** [**astrea::astro::Integrator**](classastrea_1_1astro_1_1Integrator.md) [_**Integrator**_](classastrea_1_1astro_1_1Integrator.md) _class for numerical propagation of orbital mechanics problems._
 * **class** [**astrea::astro::Interval**](classastrea_1_1astro_1_1Interval.md) _Represents a time interval with a start and end time._ 
+* **class** [**astrea::astro::JacchiaRobertsAtmosphere**](classastrea_1_1astro_1_1JacchiaRobertsAtmosphere.md) _The Jaccia-Roberts atmospheric model for Earth._ 
 * **class** [**astrea::astro::Keplerian**](classastrea_1_1astro_1_1Keplerian.md) _The_ [_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _class represents the_[_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _orbital elements._
 * **class** [**astrea::astro::KeplerianPartial**](classastrea_1_1astro_1_1KeplerianPartial.md) _Class representing a partial derivative of a_ [_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _state vector._
 * **class** [**astrea::astro::LambertSolver**](classastrea_1_1astro_1_1LambertSolver.md) _Class for solving Lambert's problem._ 
 * **class** [**astrea::astro::LegendreCache**](classastrea_1_1astro_1_1LegendreCache.md) _Class to cache Legendre polynomial coefficients for a given celestial_ _body_ _, degree, and order._
+* **class** [**astrea::astro::Nrlmsise00Atmosphere**](classastrea_1_1astro_1_1Nrlmsise00Atmosphere.md) 
 * **class** [**astrea::astro::NullEvent**](classastrea_1_1astro_1_1NullEvent.md) _A class representing a null_ [_**Event**_](classastrea_1_1astro_1_1Event.md) _in the astrea astro platform. This class is used as a placeholder for Events that do not have a defined state or mass._
 * **class** [**astrea::astro::NullVehicle**](classastrea_1_1astro_1_1NullVehicle.md) _A class representing a null vehicle in the astrea astro platform. This class is used as a placeholder for vehicles that do not have a defined state or mass._ 
 * **class** [**astrea::astro::OrbitalElementPartials**](classastrea_1_1astro_1_1OrbitalElementPartials.md) _Class representing partial derivatives of orbital elements._ 
@@ -58,6 +61,8 @@ This inheritance list is sorted roughly, but not completely, alphabetically:
 * **class** [**astrea::astro::Schedule**](classastrea_1_1astro_1_1Schedule.md) _A class representing a_ [_**Schedule**_](classastrea_1_1astro_1_1Schedule.md) _in the astrea astro library. The_[_**Schedule**_](classastrea_1_1astro_1_1Schedule.md) _is responsible for scheduling and managing Events that are set to trigger at specific Dates during propagation._
 * **class** [**astrea::astro::Shell**](classastrea_1_1astro_1_1Shell.md) _A_ [_**Shell**_](classastrea_1_1astro_1_1Shell.md) _is a collection of planes, each containing a set of_[_**Spacecraft**_](classastrea_1_1astro_1_1Spacecraft.md) _. It is used to represent sub-constellations of satellites in orbit._
 * **class** [**astrea::astro::Shell::sat\_iterator**](classastrea_1_1astro_1_1Shell_1_1sat__iterator.md) _Iterator for iterating over all_ [_**Spacecraft**_](classastrea_1_1astro_1_1Spacecraft.md) _in the_[_**Shell**_](classastrea_1_1astro_1_1Shell.md) _._
+* **class** [**astrea::astro::SpaceWeatherData**](classastrea_1_1astro_1_1SpaceWeatherData.md) _Class to hold space weather data read from a file._ 
+* **class** [**astrea::astro::SpaceWeatherProvider**](classastrea_1_1astro_1_1SpaceWeatherProvider.md) _Lightweight provider that shares an immutable space weather data snapshot. Using this layer of abstraction for now to enable data hot-swapping in the future if needed._ 
 * **class** [**astrea::astro::Spherical**](classastrea_1_1astro_1_1Spherical.md) _Class representing a_ [_**Spherical**_](classastrea_1_1astro_1_1Spherical.md) _state vector in astrodynamics._
 * **class** [**astrea::astro::State**](classastrea_1_1astro_1_1State.md) _Class representing the state of an astronomical object. This class encapsulates the orbital elements, epoch, and the astrodynamics system that the state belongs to. It also optionally includes the attitude of the object as a quaternion._ 
 * **class** [**astrea::astro::StateHistory**](classastrea_1_1astro_1_1StateHistory.md) _Class to manage the history of states for an object over date._ 
@@ -119,14 +124,13 @@ This inheritance list is sorted roughly, but not completely, alphabetically:
     * **struct** [**astrea::astro::CelestialBody**](structastrea_1_1astro_1_1CelestialBody.md) [_**CelestialBody**_](structastrea_1_1astro_1_1CelestialBody.md) _class represents a celestial body in an astrodynamics system._
     * **struct** [**astrea::astro::CelestialBody**](structastrea_1_1astro_1_1CelestialBody.md) [_**CelestialBody**_](structastrea_1_1astro_1_1CelestialBody.md) _class represents a celestial body in an astrodynamics system._
     * **struct** [**astrea::astro::CelestialBody**](structastrea_1_1astro_1_1CelestialBody.md) [_**CelestialBody**_](structastrea_1_1astro_1_1CelestialBody.md) _class represents a celestial body in an astrodynamics system._
-* **class** [**astrea::astro::planets::HarrisPriesterAtmosphere**](classastrea_1_1astro_1_1planets_1_1HarrisPriesterAtmosphere.md) _The Harris-Priester atmospheric model for_ [_**Earth**_](structastrea_1_1astro_1_1planets_1_1Earth.md) _._
-* **class** [**astrea::astro::planets::JacciaRobertsAtmosphere**](classastrea_1_1astro_1_1planets_1_1JacciaRobertsAtmosphere.md) _The Jaccia-Roberts atmospheric model for_ [_**Earth**_](structastrea_1_1astro_1_1planets_1_1Earth.md) _._
-* **class** [**astrea::astro::planets::NRLMSISE00Atmosphere**](classastrea_1_1astro_1_1planets_1_1NRLMSISE00Atmosphere.md) _The NRLMSISE-00 atmospheric model for_ [_**Earth**_](structastrea_1_1astro_1_1planets_1_1Earth.md) _._
-* **class** [**astrea::astro::planets::NRLMSISE00::Output**](classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Output.md) 
+* **class** [**astrea::astro::planets::Nrlmsise00Atmosphere**](classastrea_1_1astro_1_1planets_1_1Nrlmsise00Atmosphere.md) _The NRLMSISE-00 atmospheric model for_ [_**Earth**_](structastrea_1_1astro_1_1planets_1_1Earth.md) _._
+* **class** [**astrea::astro::planets::Output**](classastrea_1_1astro_1_1planets_1_1Output.md) 
 * **struct** [**astrea::astro::Axis**](structastrea_1_1astro_1_1Axis.md) 
 * **struct** [**astrea::astro::detail::AxisBase**](structastrea_1_1astro_1_1detail_1_1AxisBase.md)     
     * **struct** [**astrea::astro::Axis&lt; \_name\_ &gt;**](structastrea_1_1astro_1_1Axis_3_01__name___01_4.md) 
     * **struct** [**astrea::astro::Axis&lt; \_name\_, \_parent\_ &gt;**](structastrea_1_1astro_1_1Axis_3_01__name___00_01__parent___01_4.md) 
+* **struct** [**astrea::astro::BadConversionRequest**](structastrea_1_1astro_1_1BadConversionRequest.md) 
 * **struct** [**astrea::astro::Barycenter**](structastrea_1_1astro_1_1Barycenter.md) 
 * **struct** [**astrea::astro::detail::BarycenterBase**](structastrea_1_1astro_1_1detail_1_1BarycenterBase.md)     
     * **struct** [**astrea::astro::Barycenter&lt; \_name\_ &gt;**](structastrea_1_1astro_1_1Barycenter_3_01__name___01_4.md) _No parent, no members._ 
@@ -198,6 +202,8 @@ This inheritance list is sorted roughly, but not completely, alphabetically:
 * **struct** [**astrea::astro::JulianDateClock**](structastrea_1_1astro_1_1JulianDateClock.md) _A clock implementation for Julian Dates._ 
 * **struct** [**astrea::astro::LambertSolver::Solution**](structastrea_1_1astro_1_1LambertSolver_1_1Solution.md) _Result structure for optimal Lambert solutions._ 
 * **struct** [**astrea::astro::Perturbation**](structastrea_1_1astro_1_1Perturbation.md) _Struct to hold the results of a perturbation force computation, including both acceleration and torque._ 
+* **struct** [**astrea::astro::SolarFluxData**](structastrea_1_1astro_1_1SolarFluxData.md) _Struct to hold solar flux data._ 
+* **struct** [**astrea::astro::SpaceWeatherParameters**](structastrea_1_1astro_1_1SpaceWeatherParameters.md) _Struct to hold space weather parameters for a specific date._ 
 * **struct** [**astrea::astro::StepWatcher**](structastrea_1_1astro_1_1StepWatcher.md) _Function wrapper class for watching the state of the integrator at each step. This can be used for plotting or logging the state during propagation._ 
 * **struct** [**astrea::astro::detail::SynodicFrameBase**](structastrea_1_1astro_1_1detail_1_1SynodicFrameBase.md)     
     * **struct** [**astrea::astro::SynodicFrame**](structastrea_1_1astro_1_1SynodicFrame.md) _Synodic frame defined by the line connecting two celestial bodies and the plane of motion of the secondary around the primary._ 
@@ -228,14 +234,11 @@ This inheritance list is sorted roughly, but not completely, alphabetically:
 * **struct** [**astrea::astro::detail::tuple\_to\_variant**](structastrea_1_1astro_1_1detail_1_1tuple__to__variant.md) 
 * **struct** [**astrea::astro::detail::tuple\_to\_variant&lt; std::tuple&lt; Ts... &gt;, Extra... &gt;**](structastrea_1_1astro_1_1detail_1_1tuple__to__variant_3_01std_1_1tuple_3_01Ts_8_8_8_01_4_00_01Extra_8_8_8_01_4.md) 
 * **struct** [**astrea::astro::planets::BatesProfileParams**](structastrea_1_1astro_1_1planets_1_1BatesProfileParams.md) 
-* **struct** [**astrea::astro::planets::EarthParameters**](structastrea_1_1astro_1_1planets_1_1EarthParameters.md) 
 * **struct** [**astrea::astro::planets::SpeciesModelParams**](structastrea_1_1astro_1_1planets_1_1SpeciesModelParams.md) _Per-species empirical parameters for NRLMSISE-00 diffusive and mixed-region density calculations._ 
+* **struct** [**astrea::astro::planets::Switch**](structastrea_1_1astro_1_1planets_1_1Switch.md) 
 * **struct** [**astrea::astro::EventDetector::EventTracker**](structastrea_1_1astro_1_1EventDetector_1_1EventTracker.md) _A struct for tracking events._ 
-* **struct** [**astrea::astro::planets::NRLMSISE00::Switch**](structastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Switch.md) 
 * **struct** [**mp\_units::quantity\_point\_like\_traits&lt; astrea::astro::Date &gt;**](structmp__units_1_1quantity__point__like__traits_3_01astrea_1_1astro_1_1Date_01_4.md) _Specialization of mp\_units::quantity\_point\_like\_traits for the Date class._ 
 * **struct** [**std::hash&lt; std::tuple&lt; TT... &gt; &gt;**](structstd_1_1hash_3_01std_1_1tuple_3_01TT_8_8_8_01_4_01_4.md) 
-* **class** **AbstractSunInfluencedAtmosphere**    
-    * **class** [**astrea::astro::planets::NRLMSISE00**](classastrea_1_1astro_1_1planets_1_1NRLMSISE00.md) 
 * **class** **std::false_type**    
     * **struct** [**astrea::astro::is\_cartesian\_vector**](structastrea_1_1astro_1_1is__cartesian__vector.md) 
 * **class** **std::true_type**    

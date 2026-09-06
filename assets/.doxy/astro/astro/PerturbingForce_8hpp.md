@@ -10,8 +10,10 @@
 
 _Header file for the PerturbingForce class, which defines the interface for force models in astrodynamics._ [More...](#detailed-description)
 
+* `#include <memory>`
 * `#include <astro/astro.fwd.hpp>`
 * `#include <astro/propagation/force_models/Perturbation.hpp>`
+* `#include <astro/propagation/force_models/space_weather/SpaceWeatherProvider.hpp>`
 
 
 

@@ -13,7 +13,6 @@
 
 #include <algorithm>
 #include <cmath>
-#include <algorithm>
 
 #include <mp-units/math.h>
 #include <mp-units/systems/si.h>
@@ -82,6 +81,23 @@ template <auto R, typename Rep>
     using std::clamp;
     return mp_units::quantity{ clamp(q.numerical_value_in(q.unit), low.numerical_value_in(q.unit), high.numerical_value_in(q.unit)),
                                q.unit };
+}
+
+template <auto R, typename Rep>
+    requires requires(Rep v) { abs(v); } || requires(Rep v) { std::abs(v); }
+[[nodiscard]] inline mp_units::quantity<R, Rep> clamp_within_floating_point_error(
+    const mp_units::quantity<R, Rep>& q,
+    const mp_units::quantity<R, Rep>& low,
+    const mp_units::quantity<R, Rep>& high
+) noexcept
+{
+    static const mp_units::quantity<R, Rep> tolerance = 2.0e-8 * q.unit; // Tolerance for floating-point comparison
+
+    if (q > high && q < high + tolerance) { return high; }
+    else if (q < low && q > low - tolerance) {
+        return low;
+    }
+    return q;
 }
 
 

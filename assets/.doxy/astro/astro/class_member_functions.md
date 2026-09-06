@@ -16,7 +16,7 @@
 * **add\_event** ([**astrea::astro::EventDetector**](classastrea_1_1astro_1_1EventDetector.md), [**astrea::astro::Integrator**](classastrea_1_1astro_1_1Integrator.md))
 * **add\_events** ([**astrea::astro::EventDetector**](classastrea_1_1astro_1_1EventDetector.md), [**astrea::astro::Integrator**](classastrea_1_1astro_1_1Integrator.md))
 * **add** ([**astrea::astro::ForceModel**](classastrea_1_1astro_1_1ForceModel.md))
-* **at** ([**astrea::astro::ForceModel**](classastrea_1_1astro_1_1ForceModel.md))
+* **at** ([**astrea::astro::ForceModel**](classastrea_1_1astro_1_1ForceModel.md), [**astrea::astro::SpaceWeatherData**](classastrea_1_1astro_1_1SpaceWeatherData.md))
 * **add\_step\_watcher** ([**astrea::astro::Integrator**](classastrea_1_1astro_1_1Integrator.md))
 * **attach\_payload** ([**astrea::astro::PayloadPlatform**](classastrea_1_1astro_1_1PayloadPlatform.md))
 * **attach\_payloads** ([**astrea::astro::PayloadPlatform**](classastrea_1_1astro_1_1PayloadPlatform.md))
@@ -26,6 +26,7 @@
 
 * **begin** ([**astrea::astro::Constellation**](classastrea_1_1astro_1_1Constellation.md), [**astrea::astro::Plane**](classastrea_1_1astro_1_1Plane.md), [**astrea::astro::Shell**](classastrea_1_1astro_1_1Shell.md), [**astrea::astro::StateHistory**](classastrea_1_1astro_1_1StateHistory.md))
 * **body\_sidereal\_time** ([**astrea::astro::Date**](classastrea_1_1astro_1_1Date.md))
+* **bind\_space\_weather\_provider** ([**astrea::astro::PerturbingForce**](classastrea_1_1astro_1_1PerturbingForce.md))
 
 
 ## c
@@ -56,9 +57,13 @@
 * **convert\_to\_set\_impl** ([**astrea::astro::OrbitalElements**](classastrea_1_1astro_1_1OrbitalElements.md))
 * **conjugate** ([**astrea::astro::Quaternion**](classastrea_1_1astro_1_1Quaternion.md))
 * **ctor\_impl** ([**astrea::astro::TwoLineElements**](classastrea_1_1astro_1_1TwoLineElements.md))
-* **calculate\_local\_solar\_time** ([**astrea::astro::planets::NRLMSISE00**](classastrea_1_1astro_1_1planets_1_1NRLMSISE00.md))
-* **ccor** ([**astrea::astro::planets::NRLMSISE00::Output**](classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Output.md))
-* **ccor2** ([**astrea::astro::planets::NRLMSISE00::Output**](classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Output.md))
+* **calculate\_density\_temperature\_profile** ([**astrea::astro::planets::Output**](classastrea_1_1astro_1_1planets_1_1Output.md))
+* **calculate\_density\_temperature\_profile\_new** ([**astrea::astro::planets::Output**](classastrea_1_1astro_1_1planets_1_1Output.md))
+* **calculate\_dissociation\_correction** ([**astrea::astro::planets::Output**](classastrea_1_1astro_1_1planets_1_1Output.md))
+* **calculate\_gravity\_at\_altitude** ([**astrea::astro::planets::Output**](classastrea_1_1astro_1_1planets_1_1Output.md))
+* **calculate\_oxygen\_dissociation\_correction** ([**astrea::astro::planets::Output**](classastrea_1_1astro_1_1planets_1_1Output.md))
+* **calculate\_scale\_height** ([**astrea::astro::planets::Output**](classastrea_1_1astro_1_1planets_1_1Output.md))
+* **calculate\_turbopause\_correction** ([**astrea::astro::planets::Output**](classastrea_1_1astro_1_1planets_1_1Output.md))
 
 
 ## d
@@ -68,7 +73,7 @@
 * **Date** ([**astrea::astro::Date**](classastrea_1_1astro_1_1Date.md))
 * **day\_of\_year** ([**astrea::astro::Date**](classastrea_1_1astro_1_1Date.md))
 * **DcmInterface** ([**astrea::astro::DcmInterface**](structastrea_1_1astro_1_1DcmInterface.md))
-* **data** ([**astrea::astro::DcmInterface**](structastrea_1_1astro_1_1DcmInterface.md))
+* **data** ([**astrea::astro::DcmInterface**](structastrea_1_1astro_1_1DcmInterface.md), [**astrea::astro::SpaceWeatherData**](classastrea_1_1astro_1_1SpaceWeatherData.md), [**astrea::astro::SpaceWeatherProvider**](classastrea_1_1astro_1_1SpaceWeatherProvider.md))
 * **determinant** ([**astrea::astro::DcmInterface**](structastrea_1_1astro_1_1DcmInterface.md), [**astrea::astro::InertiaTensor**](classastrea_1_1astro_1_1InertiaTensor.md))
 * **Deorbit** ([**astrea::astro::Deorbit**](classastrea_1_1astro_1_1Deorbit.md))
 * **DirectionCosineMatrix** ([**astrea::astro::DirectionCosineMatrix**](classastrea_1_1astro_1_1DirectionCosineMatrix.md))
@@ -77,9 +82,6 @@
 * **DynamicFrame** ([**astrea::astro::DynamicFrame**](structastrea_1_1astro_1_1DynamicFrame.md))
 * **detect\_event** ([**astrea::astro::EventDetector**](classastrea_1_1astro_1_1EventDetector.md))
 * **detect\_events** ([**astrea::astro::EventDetector**](classastrea_1_1astro_1_1EventDetector.md))
-* **densm** ([**astrea::astro::planets::NRLMSISE00::Output**](classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Output.md))
-* **densu** ([**astrea::astro::planets::NRLMSISE00::Output**](classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Output.md))
-* **dnet** ([**astrea::astro::planets::NRLMSISE00::Output**](classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Output.md))
 
 
 ## e
@@ -96,7 +98,8 @@
 * **extract\_mutable\_reference** ([**astrea::astro::Event**](classastrea_1_1astro_1_1Event.md), [**astrea::astro::Vehicle**](classastrea_1_1astro_1_1Vehicle.md))
 * **EventDetector** ([**astrea::astro::EventDetector**](classastrea_1_1astro_1_1EventDetector.md))
 * **evaluate\_stumpff** ([**astrea::astro::LambertSolver**](classastrea_1_1astro_1_1LambertSolver.md))
-* **empty** ([**astrea::astro::StateHistory**](classastrea_1_1astro_1_1StateHistory.md))
+* **empty** ([**astrea::astro::SpaceWeatherData**](classastrea_1_1astro_1_1SpaceWeatherData.md), [**astrea::astro::SpaceWeatherProvider**](classastrea_1_1astro_1_1SpaceWeatherProvider.md), [**astrea::astro::StateHistory**](classastrea_1_1astro_1_1StateHistory.md))
+* **endDate** ([**astrea::astro::SpaceWeatherData**](classastrea_1_1astro_1_1SpaceWeatherData.md))
 * **EventInner** ([**astrea::astro::detail::EventInner**](structastrea_1_1astro_1_1detail_1_1EventInner.md))
 * **EastNorthUp** ([**astrea::astro::frames::EastNorthUp**](structastrea_1_1astro_1_1frames_1_1EastNorthUp.md))
 
@@ -110,12 +113,12 @@
 * **from\_euler\_angles** ([**astrea::astro::DirectionCosineMatrix**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), [**astrea::astro::DirectionCosineMatrixAccel**](structastrea_1_1astro_1_1DirectionCosineMatrixAccel.md), [**astrea::astro::DirectionCosineMatrixRate**](structastrea_1_1astro_1_1DirectionCosineMatrixRate.md))
 * **from\_vectors** ([**astrea::astro::DirectionCosineMatrix**](classastrea_1_1astro_1_1DirectionCosineMatrix.md))
 * **ForceModel** ([**astrea::astro::ForceModel**](classastrea_1_1astro_1_1ForceModel.md))
+* **find\_atmospheric\_density** ([**astrea::astro::HarrisPriesterAtmosphere**](classastrea_1_1astro_1_1HarrisPriesterAtmosphere.md), [**astrea::astro::JacchiaRobertsAtmosphere**](classastrea_1_1astro_1_1JacchiaRobertsAtmosphere.md), [**astrea::astro::Nrlmsise00Atmosphere**](classastrea_1_1astro_1_1Nrlmsise00Atmosphere.md), [**astrea::astro::planets::Nrlmsise00Atmosphere**](classastrea_1_1astro_1_1planets_1_1Nrlmsise00Atmosphere.md))
 * **find\_max\_error** ([**astrea::astro::Integrator**](classastrea_1_1astro_1_1Integrator.md))
 * **find\_state\_derivative** ([**astrea::astro::Integrator**](classastrea_1_1astro_1_1Integrator.md))
 * **fast\_append** ([**astrea::astro::StateHistory**](classastrea_1_1astro_1_1StateHistory.md))
 * **fast\_prepend** ([**astrea::astro::StateHistory**](classastrea_1_1astro_1_1StateHistory.md))
 * **first** ([**astrea::astro::StateHistory**](classastrea_1_1astro_1_1StateHistory.md))
-* **find\_atmospheric\_density** ([**astrea::astro::planets::HarrisPriesterAtmosphere**](classastrea_1_1astro_1_1planets_1_1HarrisPriesterAtmosphere.md), [**astrea::astro::planets::JacciaRobertsAtmosphere**](classastrea_1_1astro_1_1planets_1_1JacciaRobertsAtmosphere.md), [**astrea::astro::planets::NRLMSISE00**](classastrea_1_1astro_1_1planets_1_1NRLMSISE00.md), [**astrea::astro::planets::NRLMSISE00Atmosphere**](classastrea_1_1astro_1_1planets_1_1NRLMSISE00Atmosphere.md))
 * **from\_numerical\_value** ([**mp\_units::quantity\_point\_like\_traits&lt; astrea::astro::Date &gt;**](structmp__units_1_1quantity__point__like__traits_3_01astrea_1_1astro_1_1Date_01_4.md))
 
 
@@ -185,6 +188,7 @@
 * **get\_true\_anomaly** ([**astrea::astro::Keplerian**](classastrea_1_1astro_1_1Keplerian.md), [**astrea::astro::TwoLineElements**](classastrea_1_1astro_1_1TwoLineElements.md))
 * **get\_cosine\_coefficient** ([**astrea::astro::LegendreCache**](classastrea_1_1astro_1_1LegendreCache.md))
 * **get\_sine\_coefficient** ([**astrea::astro::LegendreCache**](classastrea_1_1astro_1_1LegendreCache.md))
+* **get\_default\_flags** ([**astrea::astro::Nrlmsise00Atmosphere**](classastrea_1_1astro_1_1Nrlmsise00Atmosphere.md))
 * **get\_mass** ([**astrea::astro::NullVehicle**](classastrea_1_1astro_1_1NullVehicle.md), [**astrea::astro::PayloadPlatform**](classastrea_1_1astro_1_1PayloadPlatform.md), [**astrea::astro::Spacecraft**](classastrea_1_1astro_1_1Spacecraft.md), [**astrea::astro::Vehicle**](classastrea_1_1astro_1_1Vehicle.md), [**astrea::astro::detail::VehicleInner**](structastrea_1_1astro_1_1detail_1_1VehicleInner.md), [**astrea::astro::detail::VehicleInnerBase**](structastrea_1_1astro_1_1detail_1_1VehicleInnerBase.md))
 * **get\_set\_id** ([**astrea::astro::OrbitalElements**](classastrea_1_1astro_1_1OrbitalElements.md))
 * **get\_id** ([**astrea::astro::Payload**](classastrea_1_1astro_1_1Payload.md), [**astrea::astro::PayloadPlatform**](classastrea_1_1astro_1_1PayloadPlatform.md), [**astrea::astro::Plane**](classastrea_1_1astro_1_1Plane.md), [**astrea::astro::Shell**](classastrea_1_1astro_1_1Shell.md), [**astrea::astro::Spacecraft**](classastrea_1_1astro_1_1Spacecraft.md), [**astrea::astro::Thruster**](classastrea_1_1astro_1_1Thruster.md))
@@ -193,6 +197,8 @@
 * **get\_attachment\_point** ([**astrea::astro::PayloadParameters**](classastrea_1_1astro_1_1PayloadParameters.md))
 * **get\_boresight** ([**astrea::astro::PayloadParameters**](classastrea_1_1astro_1_1PayloadParameters.md))
 * **get\_payloads** ([**astrea::astro::PayloadPlatform**](classastrea_1_1astro_1_1PayloadPlatform.md))
+* **get\_space\_weather\_data** ([**astrea::astro::PerturbingForce**](classastrea_1_1astro_1_1PerturbingForce.md))
+* **get\_space\_weather\_provider** ([**astrea::astro::PerturbingForce**](classastrea_1_1astro_1_1PerturbingForce.md))
 * **get\_elements** ([**astrea::astro::Plane**](classastrea_1_1astro_1_1Plane.md), [**astrea::astro::State**](classastrea_1_1astro_1_1State.md))
 * **get\_scalar\_part** ([**astrea::astro::Quaternion**](classastrea_1_1astro_1_1Quaternion.md), [**astrea::astro::QuaternionPartial**](classastrea_1_1astro_1_1QuaternionPartial.md))
 * **get\_vector\_part** ([**astrea::astro::Quaternion**](classastrea_1_1astro_1_1Quaternion.md), [**astrea::astro::QuaternionPartial**](classastrea_1_1astro_1_1QuaternionPartial.md))
@@ -244,20 +250,19 @@
 * **get\_ram\_area\_impl** ([**astrea::astro::detail::VehicleInner**](structastrea_1_1astro_1_1detail_1_1VehicleInner.md))
 * **get\_solar\_area\_impl** ([**astrea::astro::detail::VehicleInner**](structastrea_1_1astro_1_1detail_1_1VehicleInner.md))
 * **get\_dcm** ([**astrea::astro::frames::EastNorthUp**](structastrea_1_1astro_1_1frames_1_1EastNorthUp.md), [**astrea::astro::frames::LocalHorizontalLocalVertical**](structastrea_1_1astro_1_1frames_1_1LocalHorizontalLocalVertical.md), [**astrea::astro::frames::Perifocal**](structastrea_1_1astro_1_1frames_1_1Perifocal.md), [**astrea::astro::frames::RadialInTrackCrossTrack**](structastrea_1_1astro_1_1frames_1_1RadialInTrackCrossTrack.md), [**astrea::astro::frames::VelocityNormalBinormal**](structastrea_1_1astro_1_1frames_1_1VelocityNormalBinormal.md))
-* **g0** ([**astrea::astro::planets::NRLMSISE00::Output**](classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Output.md))
-* **galt** ([**astrea::astro::planets::NRLMSISE00::Output**](classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Output.md))
-* **get\_density** ([**astrea::astro::planets::NRLMSISE00::Output**](classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Output.md))
-* **glob7s** ([**astrea::astro::planets::NRLMSISE00::Output**](classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Output.md))
-* **globe7** ([**astrea::astro::planets::NRLMSISE00::Output**](classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Output.md))
-* **gtd7** ([**astrea::astro::planets::NRLMSISE00::Output**](classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Output.md))
-* **gtd7d** ([**astrea::astro::planets::NRLMSISE00::Output**](classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Output.md))
-* **gts7** ([**astrea::astro::planets::NRLMSISE00::Output**](classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Output.md))
+* **g0** ([**astrea::astro::planets::Output**](classastrea_1_1astro_1_1planets_1_1Output.md))
+* **get\_density** ([**astrea::astro::planets::Output**](classastrea_1_1astro_1_1planets_1_1Output.md))
+* **glob7s** ([**astrea::astro::planets::Output**](classastrea_1_1astro_1_1planets_1_1Output.md))
+* **globe7** ([**astrea::astro::planets::Output**](classastrea_1_1astro_1_1planets_1_1Output.md))
+* **gtd7** ([**astrea::astro::planets::Output**](classastrea_1_1astro_1_1planets_1_1Output.md))
+* **gtd7d** ([**astrea::astro::planets::Output**](classastrea_1_1astro_1_1planets_1_1Output.md))
+* **gts7** ([**astrea::astro::planets::Output**](classastrea_1_1astro_1_1planets_1_1Output.md))
 
 
 ## h
 
 * **HMEO** ([**astrea::astro::Cartesian**](classastrea_1_1astro_1_1Cartesian.md), [**astrea::astro::Equinoctial**](classastrea_1_1astro_1_1Equinoctial.md), [**astrea::astro::Keplerian**](classastrea_1_1astro_1_1Keplerian.md))
-* **HarrisPriesterAtmosphere** ([**astrea::astro::planets::HarrisPriesterAtmosphere**](classastrea_1_1astro_1_1planets_1_1HarrisPriesterAtmosphere.md))
+* **HarrisPriesterAtmosphere** ([**astrea::astro::HarrisPriesterAtmosphere**](classastrea_1_1astro_1_1HarrisPriesterAtmosphere.md))
 
 
 ## i
@@ -276,6 +281,7 @@
 * **index** ([**astrea::astro::OrbitalElementPartials**](classastrea_1_1astro_1_1OrbitalElementPartials.md), [**astrea::astro::OrbitalElements**](classastrea_1_1astro_1_1OrbitalElements.md))
 * **in\_element\_set** ([**astrea::astro::OrbitalElements**](classastrea_1_1astro_1_1OrbitalElements.md), [**astrea::astro::State**](classastrea_1_1astro_1_1State.md))
 * **inverse** ([**astrea::astro::Quaternion**](classastrea_1_1astro_1_1Quaternion.md))
+* **infile** ([**astrea::astro::SpaceWeatherData**](classastrea_1_1astro_1_1SpaceWeatherData.md))
 * **insert** ([**astrea::astro::StateHistory**](classastrea_1_1astro_1_1StateHistory.md))
 * **is\_on** ([**astrea::astro::Thruster**](classastrea_1_1astro_1_1Thruster.md), [**astrea::astro::ThrusterParameters**](classastrea_1_1astro_1_1ThrusterParameters.md))
 * **instantaneous** ([**astrea::astro::frames::EastNorthUpTag**](structastrea_1_1astro_1_1frames_1_1EastNorthUpTag.md), [**astrea::astro::frames::LvlhTag**](structastrea_1_1astro_1_1frames_1_1LvlhTag.md), [**astrea::astro::frames::PerifocalTag**](structastrea_1_1astro_1_1frames_1_1PerifocalTag.md), [**astrea::astro::frames::RicTag**](structastrea_1_1astro_1_1frames_1_1RicTag.md), [**astrea::astro::frames::VnbTag**](structastrea_1_1astro_1_1frames_1_1VnbTag.md))
@@ -286,8 +292,8 @@
 * **jd** ([**astrea::astro::Date**](classastrea_1_1astro_1_1Date.md))
 * **jdn** ([**astrea::astro::Date**](classastrea_1_1astro_1_1Date.md))
 * **J2MeanVop** ([**astrea::astro::J2MeanVop**](classastrea_1_1astro_1_1J2MeanVop.md))
+* **JacchiaRobertsAtmosphere** ([**astrea::astro::JacchiaRobertsAtmosphere**](classastrea_1_1astro_1_1JacchiaRobertsAtmosphere.md))
 * **JplEphemerisTable** ([**astrea::astro::JplEphemerisTable**](structastrea_1_1astro_1_1JplEphemerisTable.md))
-* **JacciaRobertsAtmosphere** ([**astrea::astro::planets::JacciaRobertsAtmosphere**](classastrea_1_1astro_1_1planets_1_1JacciaRobertsAtmosphere.md))
 
 
 ## k
@@ -325,9 +331,9 @@
 * **normalize** ([**astrea::astro::DcmInterface**](structastrea_1_1astro_1_1DcmInterface.md), [**astrea::astro::Quaternion**](classastrea_1_1astro_1_1Quaternion.md))
 * **n\_func\_evals** ([**astrea::astro::Integrator**](classastrea_1_1astro_1_1Integrator.md))
 * **NBodyForce** ([**astrea::astro::NBodyForce**](classastrea_1_1astro_1_1NBodyForce.md))
+* **Nrlmsise00Atmosphere** ([**astrea::astro::Nrlmsise00Atmosphere**](classastrea_1_1astro_1_1Nrlmsise00Atmosphere.md), [**astrea::astro::planets::Nrlmsise00Atmosphere**](classastrea_1_1astro_1_1planets_1_1Nrlmsise00Atmosphere.md))
 * **NullVehicle** ([**astrea::astro::NullVehicle**](classastrea_1_1astro_1_1NullVehicle.md))
 * **norm\_squared** ([**astrea::astro::Quaternion**](classastrea_1_1astro_1_1Quaternion.md))
-* **NRLMSISE00Atmosphere** ([**astrea::astro::planets::NRLMSISE00Atmosphere**](classastrea_1_1astro_1_1planets_1_1NRLMSISE00Atmosphere.md))
 
 
 ## o
@@ -338,7 +344,7 @@
 * **operator-** ([**astrea::astro::AngularAccelerations**](classastrea_1_1astro_1_1AngularAccelerations.md), [**astrea::astro::AngularVelocities**](classastrea_1_1astro_1_1AngularVelocities.md), [**astrea::astro::Attitude**](classastrea_1_1astro_1_1Attitude.md), [**astrea::astro::Cartesian**](classastrea_1_1astro_1_1Cartesian.md), [**astrea::astro::CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md), [**astrea::astro::Cylindrical**](classastrea_1_1astro_1_1Cylindrical.md), [**astrea::astro::Date**](classastrea_1_1astro_1_1Date.md), [**astrea::astro::DcmInterface**](structastrea_1_1astro_1_1DcmInterface.md), [**astrea::astro::Equinoctial**](classastrea_1_1astro_1_1Equinoctial.md), [**astrea::astro::EulerAngles**](classastrea_1_1astro_1_1EulerAngles.md), [**astrea::astro::Geocentric**](classastrea_1_1astro_1_1Geocentric.md), [**astrea::astro::Geodetic**](classastrea_1_1astro_1_1Geodetic.md), [**astrea::astro::Keplerian**](classastrea_1_1astro_1_1Keplerian.md), [**astrea::astro::OrbitalElements**](classastrea_1_1astro_1_1OrbitalElements.md), [**astrea::astro::Quaternion**](classastrea_1_1astro_1_1Quaternion.md), [**astrea::astro::Spherical**](classastrea_1_1astro_1_1Spherical.md), [**astrea::astro::State**](classastrea_1_1astro_1_1State.md))
 * **operator-=** ([**astrea::astro::AngularAccelerations**](classastrea_1_1astro_1_1AngularAccelerations.md), [**astrea::astro::AngularVelocities**](classastrea_1_1astro_1_1AngularVelocities.md), [**astrea::astro::Attitude**](classastrea_1_1astro_1_1Attitude.md), [**astrea::astro::Cartesian**](classastrea_1_1astro_1_1Cartesian.md), [**astrea::astro::CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md), [**astrea::astro::Cylindrical**](classastrea_1_1astro_1_1Cylindrical.md), [**astrea::astro::Date**](classastrea_1_1astro_1_1Date.md), [**astrea::astro::Equinoctial**](classastrea_1_1astro_1_1Equinoctial.md), [**astrea::astro::EulerAngles**](classastrea_1_1astro_1_1EulerAngles.md), [**astrea::astro::Geocentric**](classastrea_1_1astro_1_1Geocentric.md), [**astrea::astro::Geodetic**](classastrea_1_1astro_1_1Geodetic.md), [**astrea::astro::Keplerian**](classastrea_1_1astro_1_1Keplerian.md), [**astrea::astro::OrbitalElements**](classastrea_1_1astro_1_1OrbitalElements.md), [**astrea::astro::Quaternion**](classastrea_1_1astro_1_1Quaternion.md), [**astrea::astro::Spherical**](classastrea_1_1astro_1_1Spherical.md), [**astrea::astro::State**](classastrea_1_1astro_1_1State.md))
 * **operator/** ([**astrea::astro::AngularAccelerations**](classastrea_1_1astro_1_1AngularAccelerations.md), [**astrea::astro::AngularVelocities**](classastrea_1_1astro_1_1AngularVelocities.md), [**astrea::astro::Attitude**](classastrea_1_1astro_1_1Attitude.md), [**astrea::astro::Cartesian**](classastrea_1_1astro_1_1Cartesian.md), [**astrea::astro::CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md), [**astrea::astro::Cylindrical**](classastrea_1_1astro_1_1Cylindrical.md), [**astrea::astro::Equinoctial**](classastrea_1_1astro_1_1Equinoctial.md), [**astrea::astro::EulerAngles**](classastrea_1_1astro_1_1EulerAngles.md), [**astrea::astro::Geocentric**](classastrea_1_1astro_1_1Geocentric.md), [**astrea::astro::Geodetic**](classastrea_1_1astro_1_1Geodetic.md), [**astrea::astro::Keplerian**](classastrea_1_1astro_1_1Keplerian.md), [**astrea::astro::OrbitalElements**](classastrea_1_1astro_1_1OrbitalElements.md), [**astrea::astro::Quaternion**](classastrea_1_1astro_1_1Quaternion.md), [**astrea::astro::Spherical**](classastrea_1_1astro_1_1Spherical.md), [**astrea::astro::State**](classastrea_1_1astro_1_1State.md))
-* **operator[]** ([**astrea::astro::AngularAccelerations**](classastrea_1_1astro_1_1AngularAccelerations.md), [**astrea::astro::AngularVelocities**](classastrea_1_1astro_1_1AngularVelocities.md), [**astrea::astro::CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md), [**astrea::astro::Constellation**](classastrea_1_1astro_1_1Constellation.md), [**astrea::astro::DcmInterface**](structastrea_1_1astro_1_1DcmInterface.md), [**astrea::astro::EulerAngles**](classastrea_1_1astro_1_1EulerAngles.md), [**astrea::astro::InertiaTensor**](classastrea_1_1astro_1_1InertiaTensor.md))
+* **operator[]** ([**astrea::astro::AngularAccelerations**](classastrea_1_1astro_1_1AngularAccelerations.md), [**astrea::astro::AngularVelocities**](classastrea_1_1astro_1_1AngularVelocities.md), [**astrea::astro::CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md), [**astrea::astro::Constellation**](classastrea_1_1astro_1_1Constellation.md), [**astrea::astro::DcmInterface**](structastrea_1_1astro_1_1DcmInterface.md), [**astrea::astro::EulerAngles**](classastrea_1_1astro_1_1EulerAngles.md), [**astrea::astro::InertiaTensor**](classastrea_1_1astro_1_1InertiaTensor.md), [**astrea::astro::SpaceWeatherData**](classastrea_1_1astro_1_1SpaceWeatherData.md))
 * **operator\*=** ([**astrea::astro::AngularVelocities**](classastrea_1_1astro_1_1AngularVelocities.md), [**astrea::astro::Attitude**](classastrea_1_1astro_1_1Attitude.md), [**astrea::astro::Cartesian**](classastrea_1_1astro_1_1Cartesian.md), [**astrea::astro::CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md), [**astrea::astro::Cylindrical**](classastrea_1_1astro_1_1Cylindrical.md), [**astrea::astro::Equinoctial**](classastrea_1_1astro_1_1Equinoctial.md), [**astrea::astro::EulerAngles**](classastrea_1_1astro_1_1EulerAngles.md), [**astrea::astro::Geocentric**](classastrea_1_1astro_1_1Geocentric.md), [**astrea::astro::Geodetic**](classastrea_1_1astro_1_1Geodetic.md), [**astrea::astro::Keplerian**](classastrea_1_1astro_1_1Keplerian.md), [**astrea::astro::OrbitalElements**](classastrea_1_1astro_1_1OrbitalElements.md), [**astrea::astro::Quaternion**](classastrea_1_1astro_1_1Quaternion.md), [**astrea::astro::Spherical**](classastrea_1_1astro_1_1Spherical.md), [**astrea::astro::State**](classastrea_1_1astro_1_1State.md))
 * **operator/=** ([**astrea::astro::AngularVelocities**](classastrea_1_1astro_1_1AngularVelocities.md), [**astrea::astro::Attitude**](classastrea_1_1astro_1_1Attitude.md), [**astrea::astro::Cartesian**](classastrea_1_1astro_1_1Cartesian.md), [**astrea::astro::CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md), [**astrea::astro::Cylindrical**](classastrea_1_1astro_1_1Cylindrical.md), [**astrea::astro::Equinoctial**](classastrea_1_1astro_1_1Equinoctial.md), [**astrea::astro::EulerAngles**](classastrea_1_1astro_1_1EulerAngles.md), [**astrea::astro::Geocentric**](classastrea_1_1astro_1_1Geocentric.md), [**astrea::astro::Geodetic**](classastrea_1_1astro_1_1Geodetic.md), [**astrea::astro::Keplerian**](classastrea_1_1astro_1_1Keplerian.md), [**astrea::astro::OrbitalElements**](classastrea_1_1astro_1_1OrbitalElements.md), [**astrea::astro::Quaternion**](classastrea_1_1astro_1_1Quaternion.md), [**astrea::astro::Spherical**](classastrea_1_1astro_1_1Spherical.md), [**astrea::astro::State**](classastrea_1_1astro_1_1State.md))
 * **operator=** ([**astrea::astro::AngularVelocities**](classastrea_1_1astro_1_1AngularVelocities.md), [**astrea::astro::Cartesian**](classastrea_1_1astro_1_1Cartesian.md), [**astrea::astro::CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md), [**astrea::astro::Cylindrical**](classastrea_1_1astro_1_1Cylindrical.md), [**astrea::astro::Equinoctial**](classastrea_1_1astro_1_1Equinoctial.md), [**astrea::astro::EulerAngles**](classastrea_1_1astro_1_1EulerAngles.md), [**astrea::astro::Event**](classastrea_1_1astro_1_1Event.md), [**astrea::astro::ForceModel**](classastrea_1_1astro_1_1ForceModel.md), [**astrea::astro::Geocentric**](classastrea_1_1astro_1_1Geocentric.md), [**astrea::astro::Geodetic**](classastrea_1_1astro_1_1Geodetic.md), [**astrea::astro::Keplerian**](classastrea_1_1astro_1_1Keplerian.md), [**astrea::astro::PayloadPlatform**](classastrea_1_1astro_1_1PayloadPlatform.md), [**astrea::astro::Quaternion**](classastrea_1_1astro_1_1Quaternion.md), [**astrea::astro::Spherical**](classastrea_1_1astro_1_1Spherical.md), [**astrea::astro::TwoLineElements**](classastrea_1_1astro_1_1TwoLineElements.md), [**astrea::astro::Vehicle**](classastrea_1_1astro_1_1Vehicle.md), [**astrea::astro::detail::EventInner**](structastrea_1_1astro_1_1detail_1_1EventInner.md), [**astrea::astro::detail::VehicleInner**](structastrea_1_1astro_1_1detail_1_1VehicleInner.md))
@@ -357,7 +363,7 @@
 * **OblatenessForce** ([**astrea::astro::OblatenessForce**](classastrea_1_1astro_1_1OblatenessForce.md))
 * **OrbitalElementPartials** ([**astrea::astro::OrbitalElementPartials**](classastrea_1_1astro_1_1OrbitalElementPartials.md))
 * **OrbitalElements** ([**astrea::astro::OrbitalElements**](classastrea_1_1astro_1_1OrbitalElements.md))
-* **Output** ([**astrea::astro::planets::NRLMSISE00::Output**](classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Output.md))
+* **Output** ([**astrea::astro::planets::Output**](classastrea_1_1astro_1_1planets_1_1Output.md))
 
 
 ## p
@@ -397,9 +403,11 @@
 ## s
 
 * **sat\_iterator** ([**astrea::astro::Constellation::sat\_iterator**](classastrea_1_1astro_1_1Constellation_1_1sat__iterator.md), [**astrea::astro::Shell::sat\_iterator**](classastrea_1_1astro_1_1Shell_1_1sat__iterator.md))
-* **size** ([**astrea::astro::Constellation**](classastrea_1_1astro_1_1Constellation.md), [**astrea::astro::ForceModel**](classastrea_1_1astro_1_1ForceModel.md), [**astrea::astro::Plane**](classastrea_1_1astro_1_1Plane.md), [**astrea::astro::Shell**](classastrea_1_1astro_1_1Shell.md), [**astrea::astro::StateHistory**](classastrea_1_1astro_1_1StateHistory.md))
+* **size** ([**astrea::astro::Constellation**](classastrea_1_1astro_1_1Constellation.md), [**astrea::astro::ForceModel**](classastrea_1_1astro_1_1ForceModel.md), [**astrea::astro::Plane**](classastrea_1_1astro_1_1Plane.md), [**astrea::astro::Shell**](classastrea_1_1astro_1_1Shell.md), [**astrea::astro::SpaceWeatherData**](classastrea_1_1astro_1_1SpaceWeatherData.md), [**astrea::astro::SpaceWeatherProvider**](classastrea_1_1astro_1_1SpaceWeatherProvider.md), [**astrea::astro::StateHistory**](classastrea_1_1astro_1_1StateHistory.md))
 * **seconds\_in\_local\_day** ([**astrea::astro::Date**](classastrea_1_1astro_1_1Date.md))
 * **sys** ([**astrea::astro::Date**](classastrea_1_1astro_1_1Date.md))
+* **set\_space\_weather\_provider** ([**astrea::astro::ForceModel**](classastrea_1_1astro_1_1ForceModel.md))
+* **space\_weather\_provider** ([**astrea::astro::ForceModel**](classastrea_1_1astro_1_1ForceModel.md))
 * **set\_abs\_tol** ([**astrea::astro::Integrator**](classastrea_1_1astro_1_1Integrator.md))
 * **set\_equations\_of\_motion** ([**astrea::astro::Integrator**](classastrea_1_1astro_1_1Integrator.md))
 * **set\_initial\_timestep** ([**astrea::astro::Integrator**](classastrea_1_1astro_1_1Integrator.md))
@@ -427,6 +435,9 @@
 * **schedule\_event** ([**astrea::astro::Schedule**](classastrea_1_1astro_1_1Schedule.md))
 * **Shell** ([**astrea::astro::Shell**](classastrea_1_1astro_1_1Shell.md))
 * **SolarRadiationPressure** ([**astrea::astro::SolarRadiationPressure**](classastrea_1_1astro_1_1SolarRadiationPressure.md))
+* **SpaceWeatherData** ([**astrea::astro::SpaceWeatherData**](classastrea_1_1astro_1_1SpaceWeatherData.md))
+* **startDate** ([**astrea::astro::SpaceWeatherData**](classastrea_1_1astro_1_1SpaceWeatherData.md))
+* **SpaceWeatherProvider** ([**astrea::astro::SpaceWeatherProvider**](classastrea_1_1astro_1_1SpaceWeatherProvider.md))
 * **Spacecraft** ([**astrea::astro::Spacecraft**](classastrea_1_1astro_1_1Spacecraft.md))
 * **set\_coefficient\_of\_drag** ([**astrea::astro::Spacecraft**](classastrea_1_1astro_1_1Spacecraft.md))
 * **set\_coefficient\_of\_lift** ([**astrea::astro::Spacecraft**](classastrea_1_1astro_1_1Spacecraft.md))
@@ -454,13 +465,9 @@
 * **StepWatcher** ([**astrea::astro::StepWatcher**](structastrea_1_1astro_1_1StepWatcher.md))
 * **switch\_off** ([**astrea::astro::Thruster**](classastrea_1_1astro_1_1Thruster.md), [**astrea::astro::ThrusterParameters**](classastrea_1_1astro_1_1ThrusterParameters.md))
 * **switch\_on** ([**astrea::astro::Thruster**](classastrea_1_1astro_1_1Thruster.md), [**astrea::astro::ThrusterParameters**](classastrea_1_1astro_1_1ThrusterParameters.md))
-* **scalh** ([**astrea::astro::planets::NRLMSISE00::Output**](classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Output.md))
-* **set\_density** ([**astrea::astro::planets::NRLMSISE00::Output**](classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Output.md))
-* **set\_temperature** ([**astrea::astro::planets::NRLMSISE00::Output**](classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Output.md))
-* **sg0** ([**astrea::astro::planets::NRLMSISE00::Output**](classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Output.md))
-* **spline** ([**astrea::astro::planets::NRLMSISE00::Output**](classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Output.md))
-* **splini** ([**astrea::astro::planets::NRLMSISE00::Output**](classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Output.md))
-* **splint** ([**astrea::astro::planets::NRLMSISE00::Output**](classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Output.md))
+* **set\_density** ([**astrea::astro::planets::Output**](classastrea_1_1astro_1_1planets_1_1Output.md))
+* **set\_temperature** ([**astrea::astro::planets::Output**](classastrea_1_1astro_1_1planets_1_1Output.md))
+* **sg0** ([**astrea::astro::planets::Output**](classastrea_1_1astro_1_1planets_1_1Output.md))
 
 
 ## t
@@ -545,7 +552,7 @@
 * **ZXZ** ([**astrea::astro::DirectionCosineMatrix**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), [**astrea::astro::DirectionCosineMatrixAccel**](structastrea_1_1astro_1_1DirectionCosineMatrixAccel.md), [**astrea::astro::DirectionCosineMatrixRate**](structastrea_1_1astro_1_1DirectionCosineMatrixRate.md))
 * **ZYX** ([**astrea::astro::DirectionCosineMatrix**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), [**astrea::astro::DirectionCosineMatrixAccel**](structastrea_1_1astro_1_1DirectionCosineMatrixAccel.md), [**astrea::astro::DirectionCosineMatrixRate**](structastrea_1_1astro_1_1DirectionCosineMatrixRate.md))
 * **ZYZ** ([**astrea::astro::DirectionCosineMatrix**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), [**astrea::astro::DirectionCosineMatrixAccel**](structastrea_1_1astro_1_1DirectionCosineMatrixAccel.md), [**astrea::astro::DirectionCosineMatrixRate**](structastrea_1_1astro_1_1DirectionCosineMatrixRate.md))
-* **zeta** ([**astrea::astro::planets::NRLMSISE00::Output**](classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Output.md))
+* **zeta** ([**astrea::astro::planets::Output**](classastrea_1_1astro_1_1planets_1_1Output.md))
 
 
 ## ~
@@ -584,6 +591,7 @@
 * **~Plane** ([**astrea::astro::Plane**](classastrea_1_1astro_1_1Plane.md))
 * **~Shell** ([**astrea::astro::Shell**](classastrea_1_1astro_1_1Shell.md))
 * **~SolarRadiationPressure** ([**astrea::astro::SolarRadiationPressure**](classastrea_1_1astro_1_1SolarRadiationPressure.md))
+* **~SpaceWeatherData** ([**astrea::astro::SpaceWeatherData**](classastrea_1_1astro_1_1SpaceWeatherData.md))
 * **~Spacecraft** ([**astrea::astro::Spacecraft**](classastrea_1_1astro_1_1Spacecraft.md))
 * **~Spherical** ([**astrea::astro::Spherical**](classastrea_1_1astro_1_1Spherical.md))
 * **~StateHistory** ([**astrea::astro::StateHistory**](classastrea_1_1astro_1_1StateHistory.md))

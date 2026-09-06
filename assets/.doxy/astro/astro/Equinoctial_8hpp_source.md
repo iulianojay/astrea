@@ -30,6 +30,8 @@ class Equinoctial {
 
   public:
     static constexpr auto frame = _frame_; 
+    template <IsFrame auto F>
+    using BaseType = Equinoctial<F>;
 
     Equinoctial(Unitless scale = 0.0 * astrea::detail::unitless) :
         _semilatus(scale * astrea::detail::distance_unit),

@@ -1,0 +1,121 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classastrea_1_1astro_1_1planets_1_1Nrlmsise00Atmosphere" kind="class" language="C++" prot="public">
+    <compoundname>astrea::astro::planets::Nrlmsise00Atmosphere</compoundname>
+    <includes refid="NRLMSISE00_8hpp" local="no">NRLMSISE00.hpp</includes>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classastrea_1_1astro_1_1planets_1_1Nrlmsise00Atmosphere_1ad4fe55e47b0292465249b65f5b36244c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>astrea::astro::planets::Nrlmsise00Atmosphere::Nrlmsise00Atmosphere</definition>
+        <argsstring>()=delete</argsstring>
+        <name>Nrlmsise00Atmosphere</name>
+        <qualifiedname>astrea::astro::planets::Nrlmsise00Atmosphere::Nrlmsise00Atmosphere</qualifiedname>
+        <briefdescription>
+<para>Deleted constructor — use static factory or find_atmospheric_density directly. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.hpp" line="63" column="5"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classastrea_1_1astro_1_1planets_1_1Nrlmsise00Atmosphere_1a523779a5989fe8844c74bcb92e26b1f1" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Density</type>
+        <definition>static Density astrea::astro::planets::Nrlmsise00Atmosphere::find_atmospheric_density</definition>
+        <argsstring>(const State &amp;state, double f107a, double f107, const std::array&lt; double, 7 &gt; &amp;ap)</argsstring>
+        <name>find_atmospheric_density</name>
+        <qualifiedname>astrea::astro::planets::Nrlmsise00Atmosphere::find_atmospheric_density</qualifiedname>
+        <param>
+          <type>const <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
+          <declname>state</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>f107a</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>f107</declname>
+        </param>
+        <param>
+          <type>const std::array&lt; double, 7 &gt; &amp;</type>
+          <declname>ap</declname>
+        </param>
+        <briefdescription>
+<para>Find the atmospheric density at a given state using the NRLMSISE-00 model. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Uses all 23 switches set to 1 (standard configuration).</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>state</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The current spacecraft state. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>f107a</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>81-day average F10.7 solar flux. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>f107</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Daily F10.7 solar flux for previous day. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ap</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Array of 7 geomagnetic Ap values (see class documentation). </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Density Total mass density (kg/m³) including anomalous oxygen. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.hpp" line="76" column="20"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>The NRLMSISE-00 atmospheric model for <ref refid="structastrea_1_1astro_1_1planets_1_1Earth" kindref="compound">Earth</ref>. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Implements the 2001 Naval Research Laboratory Mass Spectrometer and Incoherent Scatter Radar Exosphere (NRLMSISE-00) model. Provides density from the surface to lower exosphere (0 to 1000 km).</para>
+<para>Space weather inputs required:<itemizedlist>
+<listitem><para>f107a: 81-day average of F10.7 solar flux (centered on day)</para>
+</listitem><listitem><para>f107: daily F10.7 solar flux for previous day</para>
+</listitem><listitem><para>ap[7]: geomagnetic Ap array: [0] daily Ap [1] 3-hr ap for current time [2] 3-hr ap for 3 hrs before current time [3] 3-hr ap for 6 hrs before current time [4] 3-hr ap for 9 hrs before current time [5] average of eight 3-hr ap indices from 12 to 33 hrs prior [6] average of eight 3-hr ap indices from 36 to 57 hrs prior</para>
+</listitem></itemizedlist>
+</para>
+<para>Switches (indices 1–23, all default to 1): 0 = off, 1 = on, 2 = main effects off but cross terms on. <ref refid="structastrea_1_1astro_1_1planets_1_1Switch" kindref="compound">Switch</ref> 9: set to 1 for daily Ap only, -1 to use full ap array.</para>
+<para><simplesect kind="authors"><para>Mike Picone &amp; al (Naval Research Laboratory), 2001: original FORTRAN </para>
+</simplesect>
+<simplesect kind="authors"><para>Dominik Brodowski, 2004: C translation </para>
+</simplesect>
+<simplesect kind="authors"><para>Pascal Parraud, 2016: Java translation (Orekit) </para>
+</simplesect>
+<simplesect kind="authors"><para>Jay Iuliano, 2026: C++ translation (Astrea) </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <location file="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.hpp" line="58" column="1" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.hpp" bodystart="58" bodyend="77"/>
+    <listofallmembers>
+      <member refid="classastrea_1_1astro_1_1planets_1_1Nrlmsise00Atmosphere_1a523779a5989fe8844c74bcb92e26b1f1" prot="public" virt="non-virtual"><scope>astrea::astro::planets::Nrlmsise00Atmosphere</scope><name>find_atmospheric_density</name></member>
+      <member refid="classastrea_1_1astro_1_1planets_1_1Nrlmsise00Atmosphere_1ad4fe55e47b0292465249b65f5b36244c" prot="public" virt="non-virtual"><scope>astrea::astro::planets::Nrlmsise00Atmosphere</scope><name>Nrlmsise00Atmosphere</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

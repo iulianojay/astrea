@@ -800,7 +800,7 @@ Numerical Recipes in Fortran 77: The Art of Scientific Computing, Page 189, Rout
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/math/math/operations.hpp" line="45" column="17" bodyfile="astrea/math/math/operations.hpp" bodystart="45" bodyend="69"/>
+        <location file="astrea/math/math/operations.hpp" line="44" column="17" bodyfile="astrea/math/math/operations.hpp" bodystart="44" bodyend="68"/>
       </memberdef>
       <memberdef kind="function" id="operations_8hpp_1a13c8a192d58b0225407e422267cdefde" prot="public" static="no" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
         <templateparamlist>
@@ -871,7 +871,7 @@ Numerical Recipes in Fortran 77: The Art of Scientific Computing, Page 189, Rout
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/math/math/operations.hpp" line="82" column="28" bodyfile="astrea/math/math/operations.hpp" bodystart="82" bodyend="86"/>
+        <location file="astrea/math/math/operations.hpp" line="81" column="28" bodyfile="astrea/math/math/operations.hpp" bodystart="81" bodyend="85"/>
       </memberdef>
       <memberdef kind="function" id="operations_8hpp_1a8c39995fb8abca15cc5143d5425f7d26" prot="public" static="no" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
         <templateparamlist>
@@ -942,7 +942,7 @@ Numerical Recipes in Fortran 77: The Art of Scientific Computing, Page 189, Rout
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/math/math/operations.hpp" line="99" column="28" bodyfile="astrea/math/math/operations.hpp" bodystart="99" bodyend="103"/>
+        <location file="astrea/math/math/operations.hpp" line="98" column="28" bodyfile="astrea/math/math/operations.hpp" bodystart="98" bodyend="102"/>
       </memberdef>
       <memberdef kind="function" id="operations_8hpp_1a366d78f9b21636bb268a3ed9049fa18b" prot="public" static="no" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
         <templateparamlist>
@@ -1021,7 +1021,7 @@ Numerical Recipes in Fortran 77: The Art of Scientific Computing, Page 189, Rout
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/math/math/operations.hpp" line="117" column="5" bodyfile="astrea/math/math/operations.hpp" bodystart="117" bodyend="121"/>
+        <location file="astrea/math/math/operations.hpp" line="116" column="5" bodyfile="astrea/math/math/operations.hpp" bodystart="116" bodyend="120"/>
       </memberdef>
       <memberdef kind="function" id="operations_8hpp_1adb10fbaa0dc54cf1caf8c15503499898" prot="public" static="no" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
         <templateparamlist>
@@ -1053,17 +1053,147 @@ Numerical Recipes in Fortran 77: The Art of Scientific Computing, Page 189, Rout
         </param>
     <requiresclause>requires(Rep v) { clamp(v, v, v); } || requires(Rep v) { std::clamp(v, v, v); }    </requiresclause>
         <briefdescription>
+<para>Clamps a quantity within a specified range. </para>
         </briefdescription>
         <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>R</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The unit type (e.g., distance, time). </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>Rep</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The representation type (e.g., double). </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>q</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The quantity to be clamped. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>low</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The lower bound for the quantity. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>high</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The upper bound for the quantity. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The clamped quantity, ensuring it lies within the specified range. </para>
+</simplesect>
+</para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/math/math/operations.hpp" line="126" column="5" bodyfile="astrea/math/math/operations.hpp" bodystart="126" bodyend="131"/>
+        <location file="astrea/math/math/operations.hpp" line="135" column="5" bodyfile="astrea/math/math/operations.hpp" bodystart="135" bodyend="140"/>
+      </memberdef>
+      <memberdef kind="function" id="operations_8hpp_1a295868fa6e0a87dcc8ebc486df161289" prot="public" static="no" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>auto</type>
+            <declname>R</declname>
+            <defname>R</defname>
+          </param>
+          <param>
+            <type>typename Rep</type>
+          </param>
+        </templateparamlist>
+        <type>mp_units::quantity&lt; R, Rep &gt;</type>
+        <definition>mp_units::quantity&lt; R, Rep &gt; astrea::math::clamp_within_floating_point_error</definition>
+        <argsstring>(const mp_units::quantity&lt; R, Rep &gt; &amp;q, const mp_units::quantity&lt; R, Rep &gt; &amp;low, const mp_units::quantity&lt; R, Rep &gt; &amp;high) noexcept</argsstring>
+        <name>clamp_within_floating_point_error</name>
+        <qualifiedname>astrea::math::clamp_within_floating_point_error</qualifiedname>
+        <param>
+          <type>const mp_units::quantity&lt; R, Rep &gt; &amp;</type>
+          <declname>q</declname>
+        </param>
+        <param>
+          <type>const mp_units::quantity&lt; R, Rep &gt; &amp;</type>
+          <declname>low</declname>
+        </param>
+        <param>
+          <type>const mp_units::quantity&lt; R, Rep &gt; &amp;</type>
+          <declname>high</declname>
+        </param>
+    <requiresclause>requires(Rep v) { abs(v); } || requires(Rep v) { std::abs(v); }    </requiresclause>
+        <briefdescription>
+<para>Bounds a quantity within a specified range, accounting for floating-point errors. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function checks if the given quantity <computeroutput>q</computeroutput> is within the specified <computeroutput>high</computeroutput> and <computeroutput>low</computeroutput> bounds. If <computeroutput>q</computeroutput> is outside the bounds but within a small tolerance (2.0e-8) of the bounds, it will be clamped to the nearest bound. If it is beyond the tolerance, it will be returned as is.</para>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>R</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The unit type (e.g., distance, time). </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>Rep</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The representation type (e.g., double). </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>q</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The quantity to be bounded. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>high</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The upper bound for the quantity. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>low</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The lower bound for the quantity. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The bounded quantity, adjusted for floating-point errors if necessary. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/math/math/operations.hpp" line="158" column="28" bodyfile="astrea/math/math/operations.hpp" bodystart="158" bodyend="171"/>
       </memberdef>
       <memberdef kind="function" id="trig_8hpp_1a71cffbdebf4defd2e8ba29c19824c8bc" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
         <templateparamlist>
           <param>
-            <type>mp_units::ReferenceOf&lt; mp_units::MP_UNITS_IS_VALUE_WORKAROUND(isq::angular_measure)&gt; auto</type>
+            <type>mp_units::ReferenceOf&lt; mp_units::isq::angular_measure &gt; auto</type>
             <declname>R</declname>
             <defname>R</defname>
           </param>
@@ -1117,12 +1247,12 @@ Numerical Recipes in Fortran 77: The Art of Scientific Computing, Page 189, Rout
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/math/math/trig.hpp" line="41" column="45" bodyfile="astrea/math/math/trig.hpp" bodystart="41" bodyend="53"/>
+        <location file="astrea/math/math/trig.hpp" line="42" column="45" bodyfile="astrea/math/math/trig.hpp" bodystart="42" bodyend="54"/>
       </memberdef>
       <memberdef kind="function" id="trig_8hpp_1a788c70d8bc0485c24e93aacb2244f059" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
         <templateparamlist>
           <param>
-            <type>mp_units::ReferenceOf&lt; mp_units::MP_UNITS_IS_VALUE_WORKAROUND(isq::angular_measure)&gt; auto</type>
+            <type>mp_units::ReferenceOf&lt; mp_units::isq::angular_measure &gt; auto</type>
             <declname>R</declname>
             <defname>R</defname>
           </param>
@@ -1176,12 +1306,12 @@ Numerical Recipes in Fortran 77: The Art of Scientific Computing, Page 189, Rout
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/math/math/trig.hpp" line="65" column="45" bodyfile="astrea/math/math/trig.hpp" bodystart="65" bodyend="77"/>
+        <location file="astrea/math/math/trig.hpp" line="66" column="45" bodyfile="astrea/math/math/trig.hpp" bodystart="66" bodyend="78"/>
       </memberdef>
       <memberdef kind="function" id="trig_8hpp_1ad6ecc2569de45bef5a7d8bea28c02809" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
         <templateparamlist>
           <param>
-            <type>mp_units::ReferenceOf&lt; mp_units::MP_UNITS_IS_VALUE_WORKAROUND(isq::angular_measure)&gt; auto</type>
+            <type>mp_units::ReferenceOf&lt; mp_units::isq::angular_measure &gt; auto</type>
             <declname>R</declname>
             <defname>R</defname>
           </param>
@@ -1235,9 +1365,9 @@ Numerical Recipes in Fortran 77: The Art of Scientific Computing, Page 189, Rout
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/math/math/trig.hpp" line="89" column="45" bodyfile="astrea/math/math/trig.hpp" bodystart="89" bodyend="101"/>
+        <location file="astrea/math/math/trig.hpp" line="90" column="45" bodyfile="astrea/math/math/trig.hpp" bodystart="90" bodyend="102"/>
       </memberdef>
-      <memberdef kind="function" id="trig_8hpp_1ad32fbc3425de2b592bb367e2e1ffd1a9" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+      <memberdef kind="function" id="trig_8hpp_1a88b62de1698bb30ffa49232129839e61" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
         <templateparamlist>
           <param>
             <type>mp_units::ReferenceOf&lt; mp_units::dimensionless &gt; auto</type>
@@ -1248,8 +1378,8 @@ Numerical Recipes in Fortran 77: The Art of Scientific Computing, Page 189, Rout
             <type>typename Rep</type>
           </param>
         </templateparamlist>
-        <type>constexpr mp_units::QuantityOf&lt; mp_units::MP_UNITS_IS_VALUE_WORKAROUND(isq::angular_measure)&gt; auto</type>
-        <definition>constexpr mp_units::QuantityOf&lt; mp_units::MP_UNITS_IS_VALUE_WORKAROUND(isq::angular_measure)&gt; auto astrea::math::asin</definition>
+        <type>constexpr mp_units::QuantityOf&lt; mp_units::isq::angular_measure &gt; auto</type>
+        <definition>constexpr mp_units::QuantityOf&lt; mp_units::isq::angular_measure &gt; auto astrea::math::asin</definition>
         <argsstring>(const mp_units::quantity&lt; R, Rep &gt; &amp;q) noexcept</argsstring>
         <name>asin</name>
         <qualifiedname>astrea::math::asin</qualifiedname>
@@ -1294,9 +1424,9 @@ Numerical Recipes in Fortran 77: The Art of Scientific Computing, Page 189, Rout
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/math/math/trig.hpp" line="114" column="5" bodyfile="astrea/math/math/trig.hpp" bodystart="114" bodyend="126"/>
+        <location file="astrea/math/math/trig.hpp" line="115" column="5" bodyfile="astrea/math/math/trig.hpp" bodystart="115" bodyend="127"/>
       </memberdef>
-      <memberdef kind="function" id="trig_8hpp_1a667afccfc8c5b307ca22470a0b322b7f" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+      <memberdef kind="function" id="trig_8hpp_1a620ba0161ee679c2af7f2d7ebd6fb43a" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
         <templateparamlist>
           <param>
             <type>mp_units::ReferenceOf&lt; mp_units::dimensionless &gt; auto</type>
@@ -1307,8 +1437,8 @@ Numerical Recipes in Fortran 77: The Art of Scientific Computing, Page 189, Rout
             <type>typename Rep</type>
           </param>
         </templateparamlist>
-        <type>constexpr mp_units::QuantityOf&lt; mp_units::MP_UNITS_IS_VALUE_WORKAROUND(isq::angular_measure)&gt; auto</type>
-        <definition>constexpr mp_units::QuantityOf&lt; mp_units::MP_UNITS_IS_VALUE_WORKAROUND(isq::angular_measure)&gt; auto astrea::math::acos</definition>
+        <type>constexpr mp_units::QuantityOf&lt; mp_units::isq::angular_measure &gt; auto</type>
+        <definition>constexpr mp_units::QuantityOf&lt; mp_units::isq::angular_measure &gt; auto astrea::math::acos</definition>
         <argsstring>(const mp_units::quantity&lt; R, Rep &gt; &amp;q) noexcept</argsstring>
         <name>acos</name>
         <qualifiedname>astrea::math::acos</qualifiedname>
@@ -1353,9 +1483,9 @@ Numerical Recipes in Fortran 77: The Art of Scientific Computing, Page 189, Rout
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/math/math/trig.hpp" line="139" column="5" bodyfile="astrea/math/math/trig.hpp" bodystart="139" bodyend="151"/>
+        <location file="astrea/math/math/trig.hpp" line="140" column="5" bodyfile="astrea/math/math/trig.hpp" bodystart="140" bodyend="152"/>
       </memberdef>
-      <memberdef kind="function" id="trig_8hpp_1adf9a3822d4c7184fb22055c309264261" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+      <memberdef kind="function" id="trig_8hpp_1a1d55a3c25bed5577a5532e8f01dedc93" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
         <templateparamlist>
           <param>
             <type>mp_units::ReferenceOf&lt; mp_units::dimensionless &gt; auto</type>
@@ -1366,8 +1496,8 @@ Numerical Recipes in Fortran 77: The Art of Scientific Computing, Page 189, Rout
             <type>typename Rep</type>
           </param>
         </templateparamlist>
-        <type>constexpr mp_units::QuantityOf&lt; mp_units::MP_UNITS_IS_VALUE_WORKAROUND(isq::angular_measure)&gt; auto</type>
-        <definition>constexpr mp_units::QuantityOf&lt; mp_units::MP_UNITS_IS_VALUE_WORKAROUND(isq::angular_measure)&gt; auto astrea::math::atan</definition>
+        <type>constexpr mp_units::QuantityOf&lt; mp_units::isq::angular_measure &gt; auto</type>
+        <definition>constexpr mp_units::QuantityOf&lt; mp_units::isq::angular_measure &gt; auto astrea::math::atan</definition>
         <argsstring>(const mp_units::quantity&lt; R, Rep &gt; &amp;q) noexcept</argsstring>
         <name>atan</name>
         <qualifiedname>astrea::math::atan</qualifiedname>
@@ -1412,9 +1542,9 @@ Numerical Recipes in Fortran 77: The Art of Scientific Computing, Page 189, Rout
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/math/math/trig.hpp" line="164" column="5" bodyfile="astrea/math/math/trig.hpp" bodystart="164" bodyend="176"/>
+        <location file="astrea/math/math/trig.hpp" line="165" column="5" bodyfile="astrea/math/math/trig.hpp" bodystart="165" bodyend="177"/>
       </memberdef>
-      <memberdef kind="function" id="trig_8hpp_1adfa40e8c5dc6ccf304857077d397117e" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+      <memberdef kind="function" id="trig_8hpp_1a2f22648bdea431e733604b22bc94bef8" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
         <templateparamlist>
           <param>
             <type>mp_units::Quantity auto</type>
@@ -1425,8 +1555,8 @@ Numerical Recipes in Fortran 77: The Art of Scientific Computing, Page 189, Rout
             <type>typename Rep</type>
           </param>
         </templateparamlist>
-        <type>constexpr mp_units::QuantityOf&lt; mp_units::MP_UNITS_IS_VALUE_WORKAROUND(isq::angular_measure)&gt; auto</type>
-        <definition>constexpr mp_units::QuantityOf&lt; mp_units::MP_UNITS_IS_VALUE_WORKAROUND(isq::angular_measure)&gt; auto astrea::math::atan2</definition>
+        <type>constexpr mp_units::QuantityOf&lt; mp_units::isq::angular_measure &gt; auto</type>
+        <definition>constexpr mp_units::QuantityOf&lt; mp_units::isq::angular_measure &gt; auto astrea::math::atan2</definition>
         <argsstring>(const mp_units::quantity&lt; R, Rep &gt; &amp;y, const mp_units::quantity&lt; R, Rep &gt; &amp;x) noexcept</argsstring>
         <name>atan2</name>
         <qualifiedname>astrea::math::atan2</qualifiedname>
@@ -1483,12 +1613,12 @@ Numerical Recipes in Fortran 77: The Art of Scientific Computing, Page 189, Rout
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/math/math/trig.hpp" line="190" column="5" bodyfile="astrea/math/math/trig.hpp" bodystart="190" bodyend="203"/>
+        <location file="astrea/math/math/trig.hpp" line="191" column="5" bodyfile="astrea/math/math/trig.hpp" bodystart="191" bodyend="204"/>
       </memberdef>
       <memberdef kind="function" id="trig_8hpp_1ac49c16de5e97422212e4fb61cba3e84c" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
         <templateparamlist>
           <param>
-            <type>mp_units::ReferenceOf&lt; mp_units::MP_UNITS_IS_VALUE_WORKAROUND(isq::angular_measure)&gt; auto</type>
+            <type>mp_units::ReferenceOf&lt; mp_units::isq::angular_measure &gt; auto</type>
             <declname>R</declname>
             <defname>R</defname>
           </param>
@@ -1543,12 +1673,12 @@ Numerical Recipes in Fortran 77: The Art of Scientific Computing, Page 189, Rout
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/math/math/trig.hpp" line="218" column="45" bodyfile="astrea/math/math/trig.hpp" bodystart="218" bodyend="233"/>
+        <location file="astrea/math/math/trig.hpp" line="219" column="45" bodyfile="astrea/math/math/trig.hpp" bodystart="219" bodyend="234"/>
       </memberdef>
       <memberdef kind="function" id="trig_8hpp_1af32a45aaa67effbdee014b95d2f46723" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
         <templateparamlist>
           <param>
-            <type>mp_units::ReferenceOf&lt; mp_units::MP_UNITS_IS_VALUE_WORKAROUND(isq::angular_measure)&gt; auto</type>
+            <type>mp_units::ReferenceOf&lt; mp_units::isq::angular_measure &gt; auto</type>
             <declname>R</declname>
             <defname>R</defname>
           </param>
@@ -1602,12 +1732,12 @@ Numerical Recipes in Fortran 77: The Art of Scientific Computing, Page 189, Rout
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/math/math/trig.hpp" line="245" column="45" bodyfile="astrea/math/math/trig.hpp" bodystart="245" bodyend="257"/>
+        <location file="astrea/math/math/trig.hpp" line="246" column="45" bodyfile="astrea/math/math/trig.hpp" bodystart="246" bodyend="258"/>
       </memberdef>
       <memberdef kind="function" id="trig_8hpp_1a08a26e9216c2d39ffda1711d1a85d33f" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
         <templateparamlist>
           <param>
-            <type>mp_units::ReferenceOf&lt; mp_units::MP_UNITS_IS_VALUE_WORKAROUND(isq::angular_measure)&gt; auto</type>
+            <type>mp_units::ReferenceOf&lt; mp_units::isq::angular_measure &gt; auto</type>
             <declname>R</declname>
             <defname>R</defname>
           </param>
@@ -1661,7 +1791,7 @@ Numerical Recipes in Fortran 77: The Art of Scientific Computing, Page 189, Rout
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/math/math/trig.hpp" line="269" column="45" bodyfile="astrea/math/math/trig.hpp" bodystart="269" bodyend="281"/>
+        <location file="astrea/math/math/trig.hpp" line="270" column="45" bodyfile="astrea/math/math/trig.hpp" bodystart="270" bodyend="282"/>
       </memberdef>
       <memberdef kind="function" id="trig_8hpp_1a7441ac3de7e390dd6ca1960e63c01eee" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
         <templateparamlist>
@@ -1725,7 +1855,7 @@ Numerical Recipes in Fortran 77: The Art of Scientific Computing, Page 189, Rout
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/math/math/trig.hpp" line="296" column="31" bodyfile="astrea/math/math/trig.hpp" bodystart="296" bodyend="300"/>
+        <location file="astrea/math/math/trig.hpp" line="297" column="31" bodyfile="astrea/math/math/trig.hpp" bodystart="297" bodyend="301"/>
       </memberdef>
       <memberdef kind="function" id="trig_8hpp_1a15e82cd47191247ee10408c938e42a60" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
         <templateparamlist>
@@ -1809,12 +1939,12 @@ Numerical Recipes in Fortran 77: The Art of Scientific Computing, Page 189, Rout
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/math/math/trig.hpp" line="318" column="5" bodyfile="astrea/math/math/trig.hpp" bodystart="318" bodyend="322"/>
+        <location file="astrea/math/math/trig.hpp" line="319" column="5" bodyfile="astrea/math/math/trig.hpp" bodystart="319" bodyend="323"/>
       </memberdef>
       <memberdef kind="function" id="trig_8hpp_1afb356f1db0e851411dd16fb241f6ca68" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
         <templateparamlist>
           <param>
-            <type>mp_units::ReferenceOf&lt; mp_units::MP_UNITS_IS_VALUE_WORKAROUND(isq::angular_measure)&gt; auto</type>
+            <type>mp_units::ReferenceOf&lt; mp_units::isq::angular_measure &gt; auto</type>
             <declname>R</declname>
             <defname>R</defname>
           </param>
@@ -1852,7 +1982,7 @@ Numerical Recipes in Fortran 77: The Art of Scientific Computing, Page 189, Rout
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/math/math/trig.hpp" line="334" column="24" bodyfile="astrea/math/math/trig.hpp" bodystart="334" bodyend="337"/>
+        <location file="astrea/math/math/trig.hpp" line="335" column="24" bodyfile="astrea/math/math/trig.hpp" bodystart="335" bodyend="338"/>
       </memberdef>
       <memberdef kind="function" id="trig_8hpp_1afb4d7a968d43b5c732112833f4133b80" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
@@ -1879,7 +2009,7 @@ Numerical Recipes in Fortran 77: The Art of Scientific Computing, Page 189, Rout
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/math/math/trig.hpp" line="341" column="3" bodyfile="astrea/math/math/trig.hpp" bodystart="341" bodyend="361"/>
+        <location file="astrea/math/math/trig.hpp" line="342" column="3" bodyfile="astrea/math/math/trig.hpp" bodystart="342" bodyend="362"/>
       </memberdef>
     </sectiondef>
     <briefdescription>

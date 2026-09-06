@@ -2,11 +2,27 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
   <compounddef id="classastrea_1_1astro_1_1PerturbingForce" kind="class" language="C++" prot="public" abstract="yes">
     <compoundname>astrea::astro::PerturbingForce</compoundname>
-    <derivedcompoundref refid="classastrea_1_1astro_1_1AtmosphericForce" prot="public" virt="non-virtual">astrea::astro::AtmosphericForce</derivedcompoundref>
+    <derivedcompoundref refid="classastrea_1_1astro_1_1AtmosphericForce" prot="public" virt="non-virtual">astrea::astro::AtmosphericForce&lt; _body_, _model_ &gt;</derivedcompoundref>
     <derivedcompoundref refid="classastrea_1_1astro_1_1NBodyForce" prot="public" virt="non-virtual">astrea::astro::NBodyForce&lt; bodies &gt;</derivedcompoundref>
     <derivedcompoundref refid="classastrea_1_1astro_1_1OblatenessForce" prot="public" virt="non-virtual">astrea::astro::OblatenessForce&lt; _body_, _degree_, _order_ &gt;</derivedcompoundref>
     <derivedcompoundref refid="classastrea_1_1astro_1_1SolarRadiationPressure" prot="public" virt="non-virtual">astrea::astro::SolarRadiationPressure</derivedcompoundref>
     <includes refid="PerturbingForce_8hpp" local="no">PerturbingForce.hpp</includes>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classastrea_1_1astro_1_1PerturbingForce_1aaaefcf5f0a0f5b522f5d7404ee0132ce" prot="private" static="no" mutable="no">
+        <type>std::shared_ptr&lt; const <ref refid="classastrea_1_1astro_1_1SpaceWeatherProvider" kindref="compound">SpaceWeatherProvider</ref> &gt;</type>
+        <definition>std::shared_ptr&lt;const SpaceWeatherProvider&gt; astrea::astro::PerturbingForce::_provider</definition>
+        <argsstring></argsstring>
+        <name>_provider</name>
+        <qualifiedname>astrea::astro::PerturbingForce::_provider</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/PerturbingForce.hpp" line="82" column="21" bodyfile="astrea/astro/astro/propagation/force_models/PerturbingForce.hpp" bodystart="82" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
     <sectiondef kind="public-func">
       <memberdef kind="function" id="classastrea_1_1astro_1_1PerturbingForce_1a31d3645e85270aa1c1936252bb9a34a3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -21,7 +37,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/propagation/force_models/PerturbingForce.hpp" line="37" column="5"/>
+        <location file="astrea/astro/astro/propagation/force_models/PerturbingForce.hpp" line="40" column="5"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1PerturbingForce_1a5b564712f5a9df20b0c3180c517b1546" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
         <type></type>
@@ -36,7 +52,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/propagation/force_models/PerturbingForce.hpp" line="42" column="13"/>
+        <location file="astrea/astro/astro/propagation/force_models/PerturbingForce.hpp" line="45" column="13"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1PerturbingForce_1ac9606ee76f4d3cc3e140770d1a43f567" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
         <type><ref refid="structastrea_1_1astro_1_1Perturbation" kindref="compound">Perturbation</ref></type>
@@ -45,7 +61,7 @@
         <name>compute_perturbation</name>
         <qualifiedname>astrea::astro::PerturbingForce::compute_perturbation</qualifiedname>
         <reimplementedby refid="classastrea_1_1astro_1_1OblatenessForce_1ada76327aaf44ae302337a0eba8cbdf02">compute_perturbation</reimplementedby>
-        <reimplementedby refid="classastrea_1_1astro_1_1AtmosphericForce_1ae1707750ac7e675816bd7c4e8336e5e4">compute_perturbation</reimplementedby>
+        <reimplementedby refid="classastrea_1_1astro_1_1AtmosphericForce_1a495368c6415f59e536d7206262b24cb8">compute_perturbation</reimplementedby>
         <reimplementedby refid="classastrea_1_1astro_1_1NBodyForce_1a79ab51b4ea14792017f7c2c447e4e1d7">compute_perturbation</reimplementedby>
         <reimplementedby refid="classastrea_1_1astro_1_1SolarRadiationPressure_1adea465cb291d0319bb85ae49a8854060">compute_perturbation</reimplementedby>
         <param>
@@ -83,7 +99,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/propagation/force_models/PerturbingForce.hpp" line="51" column="26"/>
+        <location file="astrea/astro/astro/propagation/force_models/PerturbingForce.hpp" line="54" column="26"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1PerturbingForce_1ab0f9c0b0cb7af63cfb7af2693822027f" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
         <type>std::unique_ptr&lt; <ref refid="classastrea_1_1astro_1_1PerturbingForce" kindref="compound">PerturbingForce</ref> &gt;</type>
@@ -91,7 +107,7 @@
         <argsstring>() const =0</argsstring>
         <name>clone</name>
         <qualifiedname>astrea::astro::PerturbingForce::clone</qualifiedname>
-        <reimplementedby refid="classastrea_1_1astro_1_1AtmosphericForce_1a650a44e95e242c4139d7bbba8c2dba03">clone</reimplementedby>
+        <reimplementedby refid="classastrea_1_1astro_1_1AtmosphericForce_1a6fed52223f6e5f5ed18a4dc37227861c">clone</reimplementedby>
         <reimplementedby refid="classastrea_1_1astro_1_1NBodyForce_1a6e6493d806e09e3188eaaac71b9e6dbb">clone</reimplementedby>
         <reimplementedby refid="classastrea_1_1astro_1_1OblatenessForce_1adef72f921fe183b10e5148c5b7462801">clone</reimplementedby>
         <reimplementedby refid="classastrea_1_1astro_1_1SolarRadiationPressure_1a0b2e2a9a774365b792ad67d931cfcaaa">clone</reimplementedby>
@@ -105,7 +121,54 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/propagation/force_models/PerturbingForce.hpp" line="58" column="29"/>
+        <location file="astrea/astro/astro/propagation/force_models/PerturbingForce.hpp" line="61" column="29"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1PerturbingForce_1ade1609d0fd279c2c240d3f6441775466" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void astrea::astro::PerturbingForce::bind_space_weather_provider</definition>
+        <argsstring>(std::shared_ptr&lt; const SpaceWeatherProvider &gt; provider)</argsstring>
+        <name>bind_space_weather_provider</name>
+        <qualifiedname>astrea::astro::PerturbingForce::bind_space_weather_provider</qualifiedname>
+        <param>
+          <type>std::shared_ptr&lt; const <ref refid="classastrea_1_1astro_1_1SpaceWeatherProvider" kindref="compound">SpaceWeatherProvider</ref> &gt;</type>
+          <declname>provider</declname>
+        </param>
+        <briefdescription>
+<para>Binds shared immutable space weather data to this force. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/PerturbingForce.hpp" line="66" column="10" bodyfile="astrea/astro/astro/propagation/force_models/PerturbingForce.hpp" bodystart="66" bodyend="69"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1PerturbingForce_1aea0bbee60bfa80950710c27746c63d0f" prot="public" static="no" const="yes" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type>const std::shared_ptr&lt; const <ref refid="classastrea_1_1astro_1_1SpaceWeatherProvider" kindref="compound">SpaceWeatherProvider</ref> &gt; &amp;</type>
+        <definition>const std::shared_ptr&lt; const SpaceWeatherProvider &gt; &amp; astrea::astro::PerturbingForce::get_space_weather_provider</definition>
+        <argsstring>() const noexcept</argsstring>
+        <name>get_space_weather_provider</name>
+        <qualifiedname>astrea::astro::PerturbingForce::get_space_weather_provider</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/PerturbingForce.hpp" line="71" column="28" bodyfile="astrea/astro/astro/propagation/force_models/PerturbingForce.hpp" bodystart="71" bodyend="74"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1PerturbingForce_1a49e3859d67794b695ac783d8096213c0" prot="public" static="no" const="yes" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type>std::shared_ptr&lt; const <ref refid="classastrea_1_1astro_1_1SpaceWeatherData" kindref="compound">SpaceWeatherData</ref> &gt;</type>
+        <definition>std::shared_ptr&lt; const SpaceWeatherData &gt; astrea::astro::PerturbingForce::get_space_weather_data</definition>
+        <argsstring>() const noexcept</argsstring>
+        <name>get_space_weather_data</name>
+        <qualifiedname>astrea::astro::PerturbingForce::get_space_weather_data</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/PerturbingForce.hpp" line="76" column="22" bodyfile="astrea/astro/astro/propagation/force_models/PerturbingForce.hpp" bodystart="76" bodyend="79"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
@@ -116,7 +179,7 @@
     </detaileddescription>
     <inheritancegraph>
       <node id="2">
-        <label>astrea::astro::AtmosphericForce</label>
+        <label>astrea::astro::AtmosphericForce&lt; _body_, _model_ &gt;</label>
         <link refid="classastrea_1_1astro_1_1AtmosphericForce"/>
         <childnode refid="1" relation="public-inheritance">
         </childnode>
@@ -144,10 +207,14 @@
         </childnode>
       </node>
     </inheritancegraph>
-    <location file="astrea/astro/astro/propagation/force_models/PerturbingForce.hpp" line="32" column="1" bodyfile="astrea/astro/astro/propagation/force_models/PerturbingForce.hpp" bodystart="32" bodyend="59"/>
+    <location file="astrea/astro/astro/propagation/force_models/PerturbingForce.hpp" line="35" column="1" bodyfile="astrea/astro/astro/propagation/force_models/PerturbingForce.hpp" bodystart="35" bodyend="83"/>
     <listofallmembers>
+      <member refid="classastrea_1_1astro_1_1PerturbingForce_1aaaefcf5f0a0f5b522f5d7404ee0132ce" prot="private" virt="non-virtual"><scope>astrea::astro::PerturbingForce</scope><name>_provider</name></member>
+      <member refid="classastrea_1_1astro_1_1PerturbingForce_1ade1609d0fd279c2c240d3f6441775466" prot="public" virt="non-virtual"><scope>astrea::astro::PerturbingForce</scope><name>bind_space_weather_provider</name></member>
       <member refid="classastrea_1_1astro_1_1PerturbingForce_1ab0f9c0b0cb7af63cfb7af2693822027f" prot="public" virt="pure-virtual"><scope>astrea::astro::PerturbingForce</scope><name>clone</name></member>
       <member refid="classastrea_1_1astro_1_1PerturbingForce_1ac9606ee76f4d3cc3e140770d1a43f567" prot="public" virt="pure-virtual"><scope>astrea::astro::PerturbingForce</scope><name>compute_perturbation</name></member>
+      <member refid="classastrea_1_1astro_1_1PerturbingForce_1a49e3859d67794b695ac783d8096213c0" prot="public" virt="non-virtual"><scope>astrea::astro::PerturbingForce</scope><name>get_space_weather_data</name></member>
+      <member refid="classastrea_1_1astro_1_1PerturbingForce_1aea0bbee60bfa80950710c27746c63d0f" prot="public" virt="non-virtual"><scope>astrea::astro::PerturbingForce</scope><name>get_space_weather_provider</name></member>
       <member refid="classastrea_1_1astro_1_1PerturbingForce_1a31d3645e85270aa1c1936252bb9a34a3" prot="public" virt="non-virtual"><scope>astrea::astro::PerturbingForce</scope><name>PerturbingForce</name></member>
       <member refid="classastrea_1_1astro_1_1PerturbingForce_1a5b564712f5a9df20b0c3180c517b1546" prot="public" virt="virtual"><scope>astrea::astro::PerturbingForce</scope><name>~PerturbingForce</name></member>
     </listofallmembers>

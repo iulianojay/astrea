@@ -21,7 +21,7 @@
       
       
       <link rel="icon" href="../../assets/images/astrea-transparent-crop.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
@@ -29,7 +29,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
@@ -6257,18 +6257,6 @@ You're not viewing the latest version.
 <td style="text-align: left;"><a href="../structastrea_1_1astro_1_1planets_1_1Earth/"><strong>Earth</strong></a> <br><em>Represents the</em> <a href="../structastrea_1_1astro_1_1planets_1_1Earth/"><em><strong>Earth</strong></em></a> <em>celestial body.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">struct</td>
-<td style="text-align: left;"><a href="../structastrea_1_1astro_1_1planets_1_1EarthParameters/"><strong>EarthParameters</strong></a> <br></td>
-</tr>
-<tr>
-<td style="text-align: right;">class</td>
-<td style="text-align: left;"><a href="../classastrea_1_1astro_1_1planets_1_1HarrisPriesterAtmosphere/"><strong>HarrisPriesterAtmosphere</strong></a> <br><em>The Harris-Priester atmospheric model for</em> <a href="../structastrea_1_1astro_1_1planets_1_1Earth/"><em><strong>Earth</strong></em></a> <em>.</em></td>
-</tr>
-<tr>
-<td style="text-align: right;">class</td>
-<td style="text-align: left;"><a href="../classastrea_1_1astro_1_1planets_1_1JacciaRobertsAtmosphere/"><strong>JacciaRobertsAtmosphere</strong></a> <br><em>The Jaccia-Roberts atmospheric model for</em> <a href="../structastrea_1_1astro_1_1planets_1_1Earth/"><em><strong>Earth</strong></em></a> <em>.</em></td>
-</tr>
-<tr>
 <td style="text-align: right;">class</td>
 <td style="text-align: left;"><a href="../structastrea_1_1astro_1_1planets_1_1Jupiter/"><strong>Jupiter</strong></a> <br><em>Represents the</em> <a href="../structastrea_1_1astro_1_1planets_1_1Jupiter/"><em><strong>Jupiter</strong></em></a> <em>celestial body.</em></td>
 </tr>
@@ -6282,15 +6270,15 @@ You're not viewing the latest version.
 </tr>
 <tr>
 <td style="text-align: right;">class</td>
-<td style="text-align: left;"><a href="../classastrea_1_1astro_1_1planets_1_1NRLMSISE00/"><strong>NRLMSISE00</strong></a> <br></td>
-</tr>
-<tr>
-<td style="text-align: right;">class</td>
-<td style="text-align: left;"><a href="../classastrea_1_1astro_1_1planets_1_1NRLMSISE00Atmosphere/"><strong>NRLMSISE00Atmosphere</strong></a> <br><em>The NRLMSISE-00 atmospheric model for</em> <a href="../structastrea_1_1astro_1_1planets_1_1Earth/"><em><strong>Earth</strong></em></a> <em>.</em></td>
-</tr>
-<tr>
-<td style="text-align: right;">class</td>
 <td style="text-align: left;"><a href="../structastrea_1_1astro_1_1planets_1_1Neptune/"><strong>Neptune</strong></a> <br><em>Represents the</em> <a href="../structastrea_1_1astro_1_1planets_1_1Neptune/"><em><strong>Neptune</strong></em></a> <em>celestial body.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">class</td>
+<td style="text-align: left;"><a href="../classastrea_1_1astro_1_1planets_1_1Nrlmsise00Atmosphere/"><strong>Nrlmsise00Atmosphere</strong></a> <br><em>The NRLMSISE-00 atmospheric model for</em> <a href="../structastrea_1_1astro_1_1planets_1_1Earth/"><em><strong>Earth</strong></em></a> <em>.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">class</td>
+<td style="text-align: left;"><a href="../classastrea_1_1astro_1_1planets_1_1Output/"><strong>Output</strong></a> <br></td>
 </tr>
 <tr>
 <td style="text-align: right;">class</td>
@@ -6299,6 +6287,10 @@ You're not viewing the latest version.
 <tr>
 <td style="text-align: right;">struct</td>
 <td style="text-align: left;"><a href="../structastrea_1_1astro_1_1planets_1_1SpeciesModelParams/"><strong>SpeciesModelParams</strong></a> <br><em>Per-species empirical parameters for NRLMSISE-00 diffusive and mixed-region density calculations.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">struct</td>
+<td style="text-align: left;"><a href="../structastrea_1_1astro_1_1planets_1_1Switch/"><strong>Switch</strong></a> <br></td>
 </tr>
 <tr>
 <td style="text-align: right;">class</td>
@@ -6321,7 +6313,15 @@ You're not viewing the latest version.
 <tbody>
 <tr>
 <td style="text-align: right;">enum</td>
-<td style="text-align: left;"><a href="#enum-earthatmospheremodel"><strong>EarthAtmosphereModel</strong></a>  <br></td>
+<td style="text-align: left;"><a href="#enum-option"><strong>Option</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">enum</td>
+<td style="text-align: left;"><a href="#enum-species"><strong>Species</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">enum</td>
+<td style="text-align: left;"><a href="#enum-temperaturetype"><strong>TemperatureType</strong></a>  <br></td>
 </tr>
 </tbody>
 </table>
@@ -6366,6 +6366,10 @@ You're not viewing the latest version.
 <td style="text-align: right;"><a href="../structastrea_1_1astro_1_1planets_1_1Venus/"><strong>astrea::astro::planets::Venus</strong></a></td>
 <td style="text-align: left;"><a href="#variable-venus"><strong>Venus</strong></a>  <br></td>
 </tr>
+<tr>
+<td style="text-align: right;">std::unordered_map&lt; Option, <a href="../structastrea_1_1astro_1_1planets_1_1Switch/"><strong>Switch</strong></a> &gt;</td>
+<td style="text-align: left;"><a href="#variable-options"><strong>options</strong></a>   = <code>/* multi line expression */</code><br></td>
+</tr>
 </tbody>
 </table>
 <h2 id="public-static-attributes">Public Static Attributes<a class="headerlink" href="#public-static-attributes" title="Permanent link">&para;</a></h2>
@@ -6378,43 +6382,75 @@ You're not viewing the latest version.
 </thead>
 <tbody>
 <tr>
-<td style="text-align: right;">const std::map&lt; Altitude, std::tuple&lt; Density, Density &gt; &gt;</td>
-<td style="text-align: left;"><a href="#variable-harris_priester_atmosphere"><strong>HARRIS_PRIESTER_ATMOSPHERE</strong></a>  <br></td>
+<td style="text-align: right;">const AtomicMass</td>
+<td style="text-align: left;"><a href="#variable-ar_mass"><strong>AR_MASS</strong></a>   = <code>40.0 \* u</code><br></td>
 </tr>
 <tr>
-<td style="text-align: right;">const std::map&lt; Altitude, std::tuple&lt; Altitude, Density, Altitude &gt; &gt;</td>
-<td style="text-align: left;"><a href="#variable-jachia_roberts_atmosphere"><strong>JACHIA_ROBERTS_ATMOSPHERE</strong></a>   = <code>/* multi line expression */</code><br></td>
+<td style="text-align: right;">const SolarFlux</td>
+<td style="text-align: left;"><a href="#variable-flux_ref"><strong>FLUX_REF</strong></a>   = <code>150.0</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">const Acceleration</td>
+<td style="text-align: left;"><a href="#variable-g_ref"><strong>G_REF</strong></a>   = <code>980.616 \* cm / (s \* s)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">const AtomicMass</td>
+<td style="text-align: left;"><a href="#variable-he_mass"><strong>HE_MASS</strong></a>   = <code>4.0 \* u</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">const AtomicMass</td>
+<td style="text-align: left;"><a href="#variable-h_mass"><strong>H_MASS</strong></a>   = <code>1.0 \* u</code><br></td>
 </tr>
 <tr>
 <td style="text-align: right;">const Angle</td>
-<td style="text-align: left;"><a href="#variable-lag"><strong>LAG</strong></a>   = <code>30.0 \* deg</code><br></td>
+<td style="text-align: left;"><a href="#variable-lat_ref"><strong>LAT_REF</strong></a>   = <code>45.0 \* deg</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">const Temperature</td>
+<td style="text-align: left;"><a href="#variable-min_temp"><strong>MIN_TEMP</strong></a>   = <code>50.0 \* K</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">const AtomicMass</td>
+<td style="text-align: left;"><a href="#variable-n2_mass"><strong>N2_MASS</strong></a>   = <code>2.0 \* N\_MASS</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">const AtomicMass</td>
+<td style="text-align: left;"><a href="#variable-n_mass"><strong>N_MASS</strong></a>   = <code>14.0 \* u</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">const AtomicMass</td>
+<td style="text-align: left;"><a href="#variable-o2_mass"><strong>O2_MASS</strong></a>   = <code>2.0 \* O\_MASS</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">const AtomicMass</td>
+<td style="text-align: left;"><a href="#variable-o_mass"><strong>O_MASS</strong></a>   = <code>16.0 \* u</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">const std::array&lt; quantity, 10 &gt;</td>
+<td style="text-align: left;"><a href="#variable-pavgm"><strong>PAVGM</strong></a>   = <code>/* multi line expression */</code><br></td>
 </tr>
 <tr>
 <td style="text-align: right;">const std::array&lt; std::array&lt; NumberDensity, 150 &gt;, 9 &gt;</td>
 <td style="text-align: left;"><a href="#variable-pd"><strong>PD</strong></a>  <br></td>
 </tr>
 <tr>
-<td style="text-align: right;">const double[][]</td>
+<td style="text-align: right;">const quantity[][]</td>
 <td style="text-align: left;"><a href="#variable-pdl"><strong>PDL</strong></a>   = <code>/* multi line expression */</code><br></td>
 </tr>
 <tr>
-<td style="text-align: right;">const std::array&lt; <a href="../structastrea_1_1astro_1_1planets_1_1SpeciesModelParams/"><strong>SpeciesModelParams</strong></a>, 8 &gt;</td>
-<td style="text-align: left;"><a href="#variable-pdm"><strong>PDM</strong></a>   = <code>/* multi line expression */</code><br></td>
-</tr>
-<tr>
-<td style="text-align: right;">const double[][]</td>
+<td style="text-align: right;">const quantity[][]</td>
 <td style="text-align: left;"><a href="#variable-pma"><strong>PMA</strong></a>  <br></td>
 </tr>
 <tr>
-<td style="text-align: right;">const double[]</td>
+<td style="text-align: right;">const quantity[]</td>
 <td style="text-align: left;"><a href="#variable-ps"><strong>PS</strong></a>   = <code>/* multi line expression */</code><br></td>
 </tr>
 <tr>
-<td style="text-align: right;">const double</td>
-<td style="text-align: left;"><a href="#variable-pt"><strong>PT</strong></a>   = <code>/* multi line expression */</code><br></td>
+<td style="text-align: right;">const std::array&lt; Temperature, 150 &gt;</td>
+<td style="text-align: left;"><a href="#variable-pt"><strong>PT</strong></a>  <br></td>
 </tr>
 <tr>
-<td style="text-align: right;">const double[][]</td>
+<td style="text-align: right;">const quantity[][]</td>
 <td style="text-align: left;"><a href="#variable-ptl"><strong>PTL</strong></a>  <br></td>
 </tr>
 <tr>
@@ -6422,144 +6458,324 @@ You're not viewing the latest version.
 <td style="text-align: left;"><a href="#variable-ptm"><strong>PTM</strong></a>   = <code>/* multi line expression */</code><br></td>
 </tr>
 <tr>
-<td style="text-align: right;">const AtomicMass</td>
-<td style="text-align: left;"><a href="#variable-xmm"><strong>XMM</strong></a>   = <code>28.9500 \* u</code><br><em>Mean molecular mass of the well-mixed lower atmosphere (amu), corresponding to PDM[N2][4] in the Fortran source.</em></td>
+<td style="text-align: right;">const auto</td>
+<td style="text-align: left;"><a href="#variable-r_gas"><strong>R_GAS</strong></a>   = <code>831.4 \* J / (mol \* K)</code><br></td>
 </tr>
 <tr>
-<td style="text-align: right;">const int</td>
-<td style="text-align: left;"><a href="#variable-cosineexponent"><strong>cosineExponent</strong></a>   = <code>4</code><br></td>
+<td style="text-align: right;">const std::unordered_map&lt; Species, <a href="../structastrea_1_1astro_1_1planets_1_1SpeciesModelParams/"><strong>SpeciesModelParams</strong></a> &gt;</td>
+<td style="text-align: left;"><a href="#variable-speciesmodeldata"><strong>SpeciesModelData</strong></a>   = <code>/* multi line expression */</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">const AtomicMass</td>
+<td style="text-align: left;"><a href="#variable-xmm"><strong>XMM</strong></a>   = <code>28.9500 \* u</code><br><em>Mean molecular mass of the well-mixed lower atmosphere (amu), corresponding to SpeciesModelData[N2][4] in the Fortran source.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">const Distance</td>
+<td style="text-align: left;"><a href="#variable-zmix"><strong>ZMIX</strong></a>   = <code>62.5 \* km</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">const std::array&lt; Distance, 5 &gt;</td>
+<td style="text-align: left;"><a href="#variable-zn1"><strong>ZN1</strong></a>   = <code>{ 123.435 \* km, 110.0 \* km, 100.0 \* km, 90.0 \* km, 72.5 \* km }</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">const std::array&lt; Distance, 4 &gt;</td>
+<td style="text-align: left;"><a href="#variable-zn2"><strong>ZN2</strong></a>   = <code>{ 72.5 \* km, 55.0 \* km, 45.0 \* km, 32.5 \* km }</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">const std::array&lt; Distance, 5 &gt;</td>
+<td style="text-align: left;"><a href="#variable-zn3"><strong>ZN3</strong></a>   = <code>{ 32.5 \* km, 20.0 \* km, 15.0 \* km, 10.0 \* km, 0.0 \* km }</code><br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-functions">Public Functions<a class="headerlink" href="#public-functions" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">Time</td>
+<td style="text-align: left;"><a href="#function-calculate_local_solar_time"><strong>calculate_local_solar_time</strong></a> (const <a href="../classastrea_1_1astro_1_1State/"><strong>State</strong></a> &amp; state) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">Density</td>
+<td style="text-align: left;"><a href="#function-find_atmospheric_density"><strong>find_atmospheric_density</strong></a> (const <a href="../classastrea_1_1astro_1_1State/"><strong>State</strong></a> &amp; state) <br></td>
 </tr>
 </tbody>
 </table>
 <h2 id="public-types-documentation">Public Types Documentation<a class="headerlink" href="#public-types-documentation" title="Permanent link">&para;</a></h2>
-<h3 id="enum-earthatmospheremodel">enum EarthAtmosphereModel<a class="headerlink" href="#enum-earthatmospheremodel" title="Permanent link">&para;</a></h3>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">enum</span><span class="w"> </span><span class="nc">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">planets</span><span class="o">::</span><span class="n">EarthAtmosphereModel</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="n">JACHIA_ROBERTS</span><span class="p">,</span>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="n">NRLMSISE00</span><span class="p">,</span>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="n">DTM2000</span><span class="p">,</span>
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">    </span><span class="n">HARRIS_PRIESTER</span>
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="p">};</span>
+<h3 id="enum-option">enum Option<a class="headerlink" href="#enum-option" title="Permanent link">&para;</a></h3>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">enum</span><span class="w"> </span><span class="nc">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">planets</span><span class="o">::</span><span class="n">Option</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="n">F107_EFFECT_ON_MEAN</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="n">INDEPENDENT_OF_TIME</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="n">SYMMETRICAL_ANNUAL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">    </span><span class="n">SYMMETRICAL_SEMIANNUAL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">    </span><span class="n">ASYMMETRICAL_ANNUAL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">    </span><span class="n">ASYMMETRICAL_SEMIANNUAL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">    </span><span class="n">DIURNAL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">    </span><span class="n">SEMIDIURNAL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">    </span><span class="n">DAILY_AP</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">    </span><span class="n">ALL_UT_LONGITUDINAL_EFFECTS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">9</span><span class="p">,</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">    </span><span class="n">LONGITUDINAL_EFFECTS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">    </span><span class="n">UT_AND_MIXED_UT_LONGITUDINAL_EFFECTS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">11</span><span class="p">,</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">    </span><span class="n">MIXED_AP_UT_LONGITUDINAL_EFFECTS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="w">    </span><span class="n">TERDIURNAL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">13</span><span class="p">,</span>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="w">    </span><span class="n">DEPARTURES_FROM_DIFFUSIVE_EQUILIBRIUM</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">14</span><span class="p">,</span>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="w">    </span><span class="n">ALL_EXOSPHERIC_TEMPERATURE_VARIATIONS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">15</span><span class="p">,</span>
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="w">    </span><span class="n">ALL_VARIATIONS_FROM_120KM_TEMPERATURE_TLB</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">16</span><span class="p">,</span>
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="w">    </span><span class="n">ALL_LOWER_THERMOSPHERE_TEMPERATURE_TN1_VARIATIONS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">17</span><span class="p">,</span>
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="w">    </span><span class="n">ALL_120KM_GRADIENT_S_VARIATIONS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">18</span><span class="p">,</span>
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="w">    </span><span class="n">ALL_UPPER_STRATOSPHERE_TEMPERATURE_TN2_VARIATIONS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">19</span><span class="p">,</span>
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="w">    </span><span class="n">ALL_VARIATIONS_FROM_120KM_VALUES_ZLB</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span>
+</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="w">    </span><span class="n">ALL_LOWER_MESOSPHERE_TEMPERATURE_TN3_VARIATIONS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">21</span><span class="p">,</span>
+</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="w">    </span><span class="n">TURBOPAUSE_SCALE_HEIGHT_VARIATIONS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">22</span>
+</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a><span class="p">};</span>
+</span></code></pre></div>
+<p>Switches for main effects. </p>
+<hr>
+
+<h3 id="enum-species">enum Species<a class="headerlink" href="#enum-species" title="Permanent link">&para;</a></h3>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">enum</span><span class="w"> </span><span class="nc">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">planets</span><span class="o">::</span><span class="n">Species</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">    </span><span class="n">HELIUM</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="n">ATOMIC_OXYGEN</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">    </span><span class="n">MOLECULAR_NITROGEN</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">    </span><span class="n">MOLECULAR_OXYGEN</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">    </span><span class="n">ARGON</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">    </span><span class="n">TOTAL_MASS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">    </span><span class="n">HYDROGEN</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">    </span><span class="n">ATOMIC_NITROGEN</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="w">    </span><span class="n">ANOMALOUS_OXYGEN</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">8</span>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="p">};</span>
+</span></code></pre></div>
+<hr>
+
+<h3 id="enum-temperaturetype">enum TemperatureType<a class="headerlink" href="#enum-temperaturetype" title="Permanent link">&para;</a></h3>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">enum</span><span class="w"> </span><span class="nc">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">planets</span><span class="o">::</span><span class="n">TemperatureType</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">    </span><span class="n">EXOSPHERIC</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="n">ALTITUDE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="p">};</span>
 </span></code></pre></div>
 <hr>
 <h2 id="public-attributes-documentation">Public Attributes Documentation<a class="headerlink" href="#public-attributes-documentation" title="Permanent link">&para;</a></h2>
 <h3 id="variable-earth">variable Earth<a class="headerlink" href="#variable-earth" title="Permanent link">&para;</a></h3>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">planets</span><span class="o">::</span><span class="n">Earth</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">planets</span><span class="o">::</span><span class="n">Earth</span><span class="p">;</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">planets</span><span class="o">::</span><span class="n">Earth</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">planets</span><span class="o">::</span><span class="n">Earth</span><span class="p">;</span>
 </span></code></pre></div>
 <hr>
 
 <h3 id="variable-jupiter">variable Jupiter<a class="headerlink" href="#variable-jupiter" title="Permanent link">&para;</a></h3>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">planets</span><span class="o">::</span><span class="n">Jupiter</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">planets</span><span class="o">::</span><span class="n">Jupiter</span><span class="p">;</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">planets</span><span class="o">::</span><span class="n">Jupiter</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">planets</span><span class="o">::</span><span class="n">Jupiter</span><span class="p">;</span>
 </span></code></pre></div>
 <hr>
 
 <h3 id="variable-mars">variable Mars<a class="headerlink" href="#variable-mars" title="Permanent link">&para;</a></h3>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">planets</span><span class="o">::</span><span class="n">Mars</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">planets</span><span class="o">::</span><span class="n">Mars</span><span class="p">;</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">planets</span><span class="o">::</span><span class="n">Mars</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">planets</span><span class="o">::</span><span class="n">Mars</span><span class="p">;</span>
 </span></code></pre></div>
 <hr>
 
 <h3 id="variable-mercury">variable Mercury<a class="headerlink" href="#variable-mercury" title="Permanent link">&para;</a></h3>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">planets</span><span class="o">::</span><span class="n">Mercury</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">planets</span><span class="o">::</span><span class="n">Mercury</span><span class="p">;</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">planets</span><span class="o">::</span><span class="n">Mercury</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">planets</span><span class="o">::</span><span class="n">Mercury</span><span class="p">;</span>
 </span></code></pre></div>
 <hr>
 
 <h3 id="variable-neptune">variable Neptune<a class="headerlink" href="#variable-neptune" title="Permanent link">&para;</a></h3>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">planets</span><span class="o">::</span><span class="n">Neptune</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">planets</span><span class="o">::</span><span class="n">Neptune</span><span class="p">;</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">planets</span><span class="o">::</span><span class="n">Neptune</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">planets</span><span class="o">::</span><span class="n">Neptune</span><span class="p">;</span>
 </span></code></pre></div>
 <hr>
 
 <h3 id="variable-saturn">variable Saturn<a class="headerlink" href="#variable-saturn" title="Permanent link">&para;</a></h3>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">planets</span><span class="o">::</span><span class="n">Saturn</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">planets</span><span class="o">::</span><span class="n">Saturn</span><span class="p">;</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">planets</span><span class="o">::</span><span class="n">Saturn</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">planets</span><span class="o">::</span><span class="n">Saturn</span><span class="p">;</span>
 </span></code></pre></div>
 <hr>
 
 <h3 id="variable-uranus">variable Uranus<a class="headerlink" href="#variable-uranus" title="Permanent link">&para;</a></h3>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">planets</span><span class="o">::</span><span class="n">Uranus</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">planets</span><span class="o">::</span><span class="n">Uranus</span><span class="p">;</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">planets</span><span class="o">::</span><span class="n">Uranus</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">planets</span><span class="o">::</span><span class="n">Uranus</span><span class="p">;</span>
 </span></code></pre></div>
 <hr>
 
 <h3 id="variable-venus">variable Venus<a class="headerlink" href="#variable-venus" title="Permanent link">&para;</a></h3>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">planets</span><span class="o">::</span><span class="n">Venus</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">planets</span><span class="o">::</span><span class="n">Venus</span><span class="p">;</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">planets</span><span class="o">::</span><span class="n">Venus</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">planets</span><span class="o">::</span><span class="n">Venus</span><span class="p">;</span>
+</span></code></pre></div>
+<hr>
+
+<h3 id="variable-options">variable options<a class="headerlink" href="#variable-options" title="Permanent link">&para;</a></h3>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="n">std</span><span class="o">::</span><span class="n">unordered_map</span><span class="o">&lt;</span><span class="n">Option</span><span class="p">,</span><span class="w"> </span><span class="n">Switch</span><span class="o">&gt;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">planets</span><span class="o">::</span><span class="n">options</span><span class="p">;</span>
 </span></code></pre></div>
 <hr>
 <h2 id="public-static-attributes-documentation">Public Static Attributes Documentation<a class="headerlink" href="#public-static-attributes-documentation" title="Permanent link">&para;</a></h2>
-<h3 id="variable-harris_priester_atmosphere">variable HARRIS_PRIESTER_ATMOSPHERE<a class="headerlink" href="#variable-harris_priester_atmosphere" title="Permanent link">&para;</a></h3>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">map</span><span class="o">&lt;</span><span class="n">Altitude</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">tuple</span><span class="o">&lt;</span><span class="n">Density</span><span class="p">,</span><span class="w"> </span><span class="n">Density</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">planets</span><span class="o">::</span><span class="n">HARRIS_PRIESTER_ATMOSPHERE</span><span class="p">;</span>
+<h3 id="variable-ar_mass">variable AR_MASS<a class="headerlink" href="#variable-ar_mass" title="Permanent link">&para;</a></h3>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="k">const</span><span class="w"> </span><span class="n">AtomicMass</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">planets</span><span class="o">::</span><span class="n">AR_MASS</span><span class="p">;</span>
 </span></code></pre></div>
-<p>Harris-Priester min-max density (kg/m3) vs. altitude (km) table. These data are valid for a mean solar activity. </p>
+<p>Argon atomic mass. </p>
 <hr>
 
-<h3 id="variable-jachia_roberts_atmosphere">variable JACHIA_ROBERTS_ATMOSPHERE<a class="headerlink" href="#variable-jachia_roberts_atmosphere" title="Permanent link">&para;</a></h3>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">map</span><span class="o">&lt;</span><span class="n">Altitude</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">tuple</span><span class="o">&lt;</span><span class="n">Altitude</span><span class="p">,</span><span class="w"> </span><span class="n">Density</span><span class="p">,</span><span class="w"> </span><span class="n">Altitude</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">planets</span><span class="o">::</span><span class="n">JACHIA_ROBERTS_ATMOSPHERE</span><span class="p">;</span>
+<h3 id="variable-flux_ref">variable FLUX_REF<a class="headerlink" href="#variable-flux_ref" title="Permanent link">&para;</a></h3>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="k">const</span><span class="w"> </span><span class="n">SolarFlux</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">planets</span><span class="o">::</span><span class="n">FLUX_REF</span><span class="p">;</span>
 </span></code></pre></div>
+<p>Reference average flux. </p>
 <hr>
 
-<h3 id="variable-lag">variable LAG<a class="headerlink" href="#variable-lag" title="Permanent link">&para;</a></h3>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="k">const</span><span class="w"> </span><span class="n">Angle</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">planets</span><span class="o">::</span><span class="n">LAG</span><span class="p">;</span>
+<h3 id="variable-g_ref">variable G_REF<a class="headerlink" href="#variable-g_ref" title="Permanent link">&para;</a></h3>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="k">const</span><span class="w"> </span><span class="n">Acceleration</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">planets</span><span class="o">::</span><span class="n">G_REF</span><span class="p">;</span>
 </span></code></pre></div>
-<p>Lag angle for diurnal bulge. </p>
+<p>Reference gravity on <a href="../structastrea_1_1astro_1_1planets_1_1Earth/"><strong>Earth</strong></a> surface at reference latitude (cm/s2). </p>
+<hr>
+
+<h3 id="variable-he_mass">variable HE_MASS<a class="headerlink" href="#variable-he_mass" title="Permanent link">&para;</a></h3>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="k">const</span><span class="w"> </span><span class="n">AtomicMass</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">planets</span><span class="o">::</span><span class="n">HE_MASS</span><span class="p">;</span>
+</span></code></pre></div>
+<p>Helium atomic mass. </p>
+<hr>
+
+<h3 id="variable-h_mass">variable H_MASS<a class="headerlink" href="#variable-h_mass" title="Permanent link">&para;</a></h3>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="k">const</span><span class="w"> </span><span class="n">AtomicMass</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">planets</span><span class="o">::</span><span class="n">H_MASS</span><span class="p">;</span>
+</span></code></pre></div>
+<p>Hydrogen atomic mass. </p>
+<hr>
+
+<h3 id="variable-lat_ref">variable LAT_REF<a class="headerlink" href="#variable-lat_ref" title="Permanent link">&para;</a></h3>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="k">const</span><span class="w"> </span><span class="n">Angle</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">planets</span><span class="o">::</span><span class="n">LAT_REF</span><span class="p">;</span>
+</span></code></pre></div>
+<p>Reference latitude (°). </p>
+<hr>
+
+<h3 id="variable-min_temp">variable MIN_TEMP<a class="headerlink" href="#variable-min_temp" title="Permanent link">&para;</a></h3>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="k">const</span><span class="w"> </span><span class="n">Temperature</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">planets</span><span class="o">::</span><span class="n">MIN_TEMP</span><span class="p">;</span>
+</span></code></pre></div>
+<p>NRLMSISE-00 minimum temperature, used in many cases in density computation. </p>
+<hr>
+
+<h3 id="variable-n2_mass">variable N2_MASS<a class="headerlink" href="#variable-n2_mass" title="Permanent link">&para;</a></h3>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="k">const</span><span class="w"> </span><span class="n">AtomicMass</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">planets</span><span class="o">::</span><span class="n">N2_MASS</span><span class="p">;</span>
+</span></code></pre></div>
+<p>N2 molecular mass. </p>
+<hr>
+
+<h3 id="variable-n_mass">variable N_MASS<a class="headerlink" href="#variable-n_mass" title="Permanent link">&para;</a></h3>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="k">const</span><span class="w"> </span><span class="n">AtomicMass</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">planets</span><span class="o">::</span><span class="n">N_MASS</span><span class="p">;</span>
+</span></code></pre></div>
+<p>Nitrogen atomic mass. </p>
+<hr>
+
+<h3 id="variable-o2_mass">variable O2_MASS<a class="headerlink" href="#variable-o2_mass" title="Permanent link">&para;</a></h3>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="k">const</span><span class="w"> </span><span class="n">AtomicMass</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">planets</span><span class="o">::</span><span class="n">O2_MASS</span><span class="p">;</span>
+</span></code></pre></div>
+<p>O2 molecular mass. </p>
+<hr>
+
+<h3 id="variable-o_mass">variable O_MASS<a class="headerlink" href="#variable-o_mass" title="Permanent link">&para;</a></h3>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="k">const</span><span class="w"> </span><span class="n">AtomicMass</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">planets</span><span class="o">::</span><span class="n">O_MASS</span><span class="p">;</span>
+</span></code></pre></div>
+<p>Oxygen atomic mass. </p>
+<hr>
+
+<h3 id="variable-pavgm">variable PAVGM<a class="headerlink" href="#variable-pavgm" title="Permanent link">&para;</a></h3>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">array</span><span class="o">&lt;</span><span class="n">quantity</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="o">&gt;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">planets</span><span class="o">::</span><span class="n">PAVGM</span><span class="p">;</span>
+</span></code></pre></div>
+<p>NRLMSISE-00 data: MIDDLE ATMOSPHERE AVERAGES pavgm[10]. </p>
 <hr>
 
 <h3 id="variable-pd">variable PD<a class="headerlink" href="#variable-pd" title="Permanent link">&para;</a></h3>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">array</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">array</span><span class="o">&lt;</span><span class="n">NumberDensity</span><span class="p">,</span><span class="w"> </span><span class="mi">150</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="mi">9</span><span class="o">&gt;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">planets</span><span class="o">::</span><span class="n">PD</span><span class="p">;</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">array</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">array</span><span class="o">&lt;</span><span class="n">NumberDensity</span><span class="p">,</span><span class="w"> </span><span class="mi">150</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="mi">9</span><span class="o">&gt;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">planets</span><span class="o">::</span><span class="n">PD</span><span class="p">;</span>
 </span></code></pre></div>
 <p>NRLMSISE-00 data: density pd[9][150]. </p>
 <hr>
 
 <h3 id="variable-pdl">variable PDL<a class="headerlink" href="#variable-pdl" title="Permanent link">&para;</a></h3>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="p">[][]</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">planets</span><span class="o">::</span><span class="n">PDL</span><span class="p">;</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="k">const</span><span class="w"> </span><span class="n">quantity</span><span class="w"> </span><span class="p">[][]</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">planets</span><span class="o">::</span><span class="n">PDL</span><span class="p">;</span>
 </span></code></pre></div>
 <p>NRLMSISE-00 data: TURBO pdl[2][25]. </p>
 <hr>
 
-<h3 id="variable-pdm">variable PDM<a class="headerlink" href="#variable-pdm" title="Permanent link">&para;</a></h3>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">array</span><span class="o">&lt;</span><span class="n">SpeciesModelParams</span><span class="p">,</span><span class="w"> </span><span class="mi">8</span><span class="o">&gt;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">planets</span><span class="o">::</span><span class="n">PDM</span><span class="p">;</span>
-</span></code></pre></div>
-<p>NRLMSISE-00 data: pdm[8][10]. </p>
-<hr>
-
 <h3 id="variable-pma">variable PMA<a class="headerlink" href="#variable-pma" title="Permanent link">&para;</a></h3>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="p">[][]</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">planets</span><span class="o">::</span><span class="n">PMA</span><span class="p">;</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="k">const</span><span class="w"> </span><span class="n">quantity</span><span class="w"> </span><span class="p">[][]</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">planets</span><span class="o">::</span><span class="n">PMA</span><span class="p">;</span>
 </span></code></pre></div>
 <p>NRLMSISE-00 data: pma[10][100]. </p>
 <hr>
 
 <h3 id="variable-ps">variable PS<a class="headerlink" href="#variable-ps" title="Permanent link">&para;</a></h3>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="p">[]</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">planets</span><span class="o">::</span><span class="n">PS</span><span class="p">;</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-27-1"><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="k">const</span><span class="w"> </span><span class="n">quantity</span><span class="w"> </span><span class="p">[]</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">planets</span><span class="o">::</span><span class="n">PS</span><span class="p">;</span>
 </span></code></pre></div>
 <p>NRLMSISE-00 data: ps[150]. </p>
 <hr>
 
 <h3 id="variable-pt">variable PT<a class="headerlink" href="#variable-pt" title="Permanent link">&para;</a></h3>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">planets</span><span class="o">::</span><span class="n">PT</span><span class="p">[];</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-28-1"><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">array</span><span class="o">&lt;</span><span class="n">Temperature</span><span class="p">,</span><span class="w"> </span><span class="mi">150</span><span class="o">&gt;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">planets</span><span class="o">::</span><span class="n">PT</span><span class="p">;</span>
 </span></code></pre></div>
 <p>NRLMSISE-00 data: temperature pt[150]. </p>
 <hr>
 
 <h3 id="variable-ptl">variable PTL<a class="headerlink" href="#variable-ptl" title="Permanent link">&para;</a></h3>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="p">[][]</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">planets</span><span class="o">::</span><span class="n">PTL</span><span class="p">;</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-29-1"><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="k">const</span><span class="w"> </span><span class="n">quantity</span><span class="w"> </span><span class="p">[][]</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">planets</span><span class="o">::</span><span class="n">PTL</span><span class="p">;</span>
 </span></code></pre></div>
 <p>NRLMSISE-00 data: ptl[4][100]. </p>
 <hr>
 
 <h3 id="variable-ptm">variable PTM<a class="headerlink" href="#variable-ptm" title="Permanent link">&para;</a></h3>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="k">const</span><span class="w"> </span><span class="n">BatesProfileParams</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">planets</span><span class="o">::</span><span class="n">PTM</span><span class="p">;</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-30-1"><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a><span class="k">const</span><span class="w"> </span><span class="n">BatesProfileParams</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">planets</span><span class="o">::</span><span class="n">PTM</span><span class="p">;</span>
 </span></code></pre></div>
+<hr>
+
+<h3 id="variable-r_gas">variable R_GAS<a class="headerlink" href="#variable-r_gas" title="Permanent link">&para;</a></h3>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-31-1"><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">planets</span><span class="o">::</span><span class="n">R_GAS</span><span class="p">;</span>
+</span></code></pre></div>
+<p>Gas constant (inverse of). </p>
+<hr>
+
+<h3 id="variable-speciesmodeldata">variable SpeciesModelData<a class="headerlink" href="#variable-speciesmodeldata" title="Permanent link">&para;</a></h3>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-32-1"><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">unordered_map</span><span class="o">&lt;</span><span class="n">Species</span><span class="p">,</span><span class="w"> </span><span class="n">SpeciesModelParams</span><span class="o">&gt;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">planets</span><span class="o">::</span><span class="n">SpeciesModelData</span><span class="p">;</span>
+</span></code></pre></div>
+<p>NRLMSISE-00 data: pdm[8][10]. </p>
 <hr>
 
 <h3 id="variable-xmm">variable XMM<a class="headerlink" href="#variable-xmm" title="Permanent link">&para;</a></h3>
-<p><em>Mean molecular mass of the well-mixed lower atmosphere (amu), corresponding to PDM[N2][4] in the Fortran source.</em> 
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="k">const</span><span class="w"> </span><span class="n">AtomicMass</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">planets</span><span class="o">::</span><span class="n">XMM</span><span class="p">;</span>
+<p><em>Mean molecular mass of the well-mixed lower atmosphere (amu), corresponding to SpeciesModelData[N2][4] in the Fortran source.</em> 
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-33-1"><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a><span class="k">const</span><span class="w"> </span><span class="n">AtomicMass</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">planets</span><span class="o">::</span><span class="n">XMM</span><span class="p">;</span>
 </span></code></pre></div></p>
 <hr>
 
-<h3 id="variable-cosineexponent">variable cosineExponent<a class="headerlink" href="#variable-cosineexponent" title="Permanent link">&para;</a></h3>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">planets</span><span class="o">::</span><span class="n">cosineExponent</span><span class="p">;</span>
+<h3 id="variable-zmix">variable ZMIX<a class="headerlink" href="#variable-zmix" title="Permanent link">&para;</a></h3>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-34-1"><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a><span class="k">const</span><span class="w"> </span><span class="n">Distance</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">planets</span><span class="o">::</span><span class="n">ZMIX</span><span class="p">;</span>
 </span></code></pre></div>
-<p>Default cosine exponent value. </p>
+<p>Mix altitude (km). </p>
+<hr>
+
+<h3 id="variable-zn1">variable ZN1<a class="headerlink" href="#variable-zn1" title="Permanent link">&para;</a></h3>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-35-1"><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">array</span><span class="o">&lt;</span><span class="n">Distance</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="o">&gt;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">planets</span><span class="o">::</span><span class="n">ZN1</span><span class="p">;</span>
+</span></code></pre></div>
+<p>Array of altitudes #1. </p>
+<hr>
+
+<h3 id="variable-zn2">variable ZN2<a class="headerlink" href="#variable-zn2" title="Permanent link">&para;</a></h3>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-36-1"><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">array</span><span class="o">&lt;</span><span class="n">Distance</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="o">&gt;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">planets</span><span class="o">::</span><span class="n">ZN2</span><span class="p">;</span>
+</span></code></pre></div>
+<p>Array of altitudes #2. </p>
+<hr>
+
+<h3 id="variable-zn3">variable ZN3<a class="headerlink" href="#variable-zn3" title="Permanent link">&para;</a></h3>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-37-1"><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">array</span><span class="o">&lt;</span><span class="n">Distance</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="o">&gt;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">planets</span><span class="o">::</span><span class="n">ZN3</span><span class="p">;</span>
+</span></code></pre></div>
+<p>Array of altitudes #3. </p>
+<hr>
+<h2 id="public-functions-documentation">Public Functions Documentation<a class="headerlink" href="#public-functions-documentation" title="Permanent link">&para;</a></h2>
+<h3 id="function-calculate_local_solar_time">function calculate_local_solar_time<a class="headerlink" href="#function-calculate_local_solar_time" title="Permanent link">&para;</a></h3>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-38-1"><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a><span class="n">Time</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">planets</span><span class="o">::</span><span class="n">calculate_local_solar_time</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-38-2"><a id="__codelineno-38-2" name="__codelineno-38-2" href="#__codelineno-38-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">State</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">state</span>
+</span><span id="__span-38-3"><a id="__codelineno-38-3" name="__codelineno-38-3" href="#__codelineno-38-3"></a><span class="p">)</span><span class="w"> </span>
+</span></code></pre></div>
+<hr>
+
+<h3 id="function-find_atmospheric_density">function find_atmospheric_density<a class="headerlink" href="#function-find_atmospheric_density" title="Permanent link">&para;</a></h3>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-39-1"><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a><span class="n">Density</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">planets</span><span class="o">::</span><span class="n">find_atmospheric_density</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-39-2"><a id="__codelineno-39-2" name="__codelineno-39-2" href="#__codelineno-39-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">State</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">state</span>
+</span><span id="__span-39-3"><a id="__codelineno-39-3" name="__codelineno-39-3" href="#__codelineno-39-3"></a><span class="p">)</span><span class="w"> </span>
+</span></code></pre></div>
 <hr>
 
 <hr />
-<p>The documentation for this class was generated from the following file <code>astrea/astro/astro/systems/barycenters.hpp</code></p>
+<p>The documentation for this class was generated from the following file <code>astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp</code></p>
 
 
 
@@ -6624,7 +6840,7 @@ You're not viewing the latest version.
       <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.action.edit", "content.action.view", "content.code.annotate", "content.code.copy", "navigation.indexes", "navigation.tabs", "navigation.footer", "navigation.top", "search.highlight", "search.share", "search.suggest", "toc.follow", "toc.integrate"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
       
         <script src="../../javascripts/ce_embed.js"></script>
       

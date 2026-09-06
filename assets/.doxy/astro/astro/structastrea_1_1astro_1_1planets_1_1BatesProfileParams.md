@@ -36,14 +36,14 @@
 | Type | Name |
 | ---: | :--- |
 |  quantity&lt; K/km &gt; | [**S0**](#variable-s0)  <br> |
-|  quantity&lt; K &gt; | [**TN11**](#variable-tn11)  <br> |
-|  quantity&lt; K &gt; | [**TN12**](#variable-tn12)  <br> |
-|  quantity&lt; K &gt; | [**TN13**](#variable-tn13)  <br> |
-|  quantity&lt; K &gt; | [**TN14**](#variable-tn14)  <br> |
+|  Temperature | [**TN11**](#variable-tn11)  <br> |
+|  Temperature | [**TN12**](#variable-tn12)  <br> |
+|  Temperature | [**TN13**](#variable-tn13)  <br> |
+|  Temperature | [**TN14**](#variable-tn14)  <br> |
 |  quantity&lt; K/km &gt; | [**Tgrad**](#variable-tgrad)  <br> |
-|  quantity&lt; K &gt; | [**Tinf**](#variable-tinf)  <br> |
-|  quantity&lt; K &gt; | [**Tlb0**](#variable-tlb0)  <br> |
-|  quantity&lt; km &gt; | [**Zlb**](#variable-zlb)  <br> |
+|  Temperature | [**Tinf**](#variable-tinf)  <br> |
+|  Temperature | [**Tlb0**](#variable-tlb0)  <br> |
+|  Distance | [**Zlb**](#variable-zlb)  <br> |
 
 
 
@@ -116,7 +116,7 @@ quantity<K / km> astrea::astro::planets::BatesProfileParams::S0;
 ### variable TN11 
 
 ```C++
-quantity<K> astrea::astro::planets::BatesProfileParams::TN11;
+Temperature astrea::astro::planets::BatesProfileParams::TN11;
 ```
 
 
@@ -129,7 +129,7 @@ quantity<K> astrea::astro::planets::BatesProfileParams::TN11;
 ### variable TN12 
 
 ```C++
-quantity<K> astrea::astro::planets::BatesProfileParams::TN12;
+Temperature astrea::astro::planets::BatesProfileParams::TN12;
 ```
 
 
@@ -142,7 +142,7 @@ quantity<K> astrea::astro::planets::BatesProfileParams::TN12;
 ### variable TN13 
 
 ```C++
-quantity<K> astrea::astro::planets::BatesProfileParams::TN13;
+Temperature astrea::astro::planets::BatesProfileParams::TN13;
 ```
 
 
@@ -155,7 +155,7 @@ quantity<K> astrea::astro::planets::BatesProfileParams::TN13;
 ### variable TN14 
 
 ```C++
-quantity<K> astrea::astro::planets::BatesProfileParams::TN14;
+Temperature astrea::astro::planets::BatesProfileParams::TN14;
 ```
 
 
@@ -181,7 +181,7 @@ quantity<K / km> astrea::astro::planets::BatesProfileParams::Tgrad;
 ### variable Tinf 
 
 ```C++
-quantity<K> astrea::astro::planets::BatesProfileParams::Tinf;
+Temperature astrea::astro::planets::BatesProfileParams::Tinf;
 ```
 
 
@@ -194,7 +194,7 @@ quantity<K> astrea::astro::planets::BatesProfileParams::Tinf;
 ### variable Tlb0 
 
 ```C++
-quantity<K> astrea::astro::planets::BatesProfileParams::Tlb0;
+Temperature astrea::astro::planets::BatesProfileParams::Tlb0;
 ```
 
 
@@ -207,7 +207,7 @@ quantity<K> astrea::astro::planets::BatesProfileParams::Tlb0;
 ### variable Zlb 
 
 ```C++
-quantity<km> astrea::astro::planets::BatesProfileParams::Zlb;
+Distance astrea::astro::planets::BatesProfileParams::Zlb;
 ```
 
 
@@ -216,5 +216,5 @@ quantity<km> astrea::astro::planets::BatesProfileParams::Zlb;
 <hr>
 
 ------------------------------
-The documentation for this class was generated from the following file `astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp`
+The documentation for this class was generated from the following file `astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp`
 

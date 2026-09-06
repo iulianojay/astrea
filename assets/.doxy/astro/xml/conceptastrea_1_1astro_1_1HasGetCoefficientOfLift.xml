@@ -9,8 +9,8 @@
       </param>
     </templateparamlist>
     <initializer>template&lt;typename T&gt;
-concept <ref refid="conceptastrea_1_1astro_1_1HasGetCoefficientOfLift" kindref="compound">astrea::astro::HasGetCoefficientOfLift</ref> =  requires(const T vehicle) {
-    { vehicle.get_coefficient_of_lift() } -&gt; std::same_as&lt;Unitless&gt;;
+concept <ref refid="conceptastrea_1_1astro_1_1HasGetCoefficientOfLift" kindref="compound">astrea::astro::HasGetCoefficientOfLift</ref> =  requires(const T vehicle, const State&amp; state) {
+    { vehicle.get_coefficient_of_lift(state) } -&gt; std::same_as&lt;Unitless&gt;;
 }    </initializer>
     <briefdescription>
 <para>Concept to check if a type has a method to get the coefficient of lift. </para>
@@ -27,6 +27,6 @@ concept <ref refid="conceptastrea_1_1astro_1_1HasGetCoefficientOfLift" kindref="
 </parameterlist>
 </para>
     </detaileddescription>
-    <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="96" column="1"/>
+    <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="97" column="1"/>
   </compounddef>
 </doxygen>

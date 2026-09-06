@@ -3,9 +3,9 @@
   <compounddef id="structastrea_1_1astro_1_1planets_1_1BatesProfileParams" kind="struct" language="C++" prot="public">
     <compoundname>astrea::astro::planets::BatesProfileParams</compoundname>
     <sectiondef kind="public-attrib">
-      <memberdef kind="variable" id="structastrea_1_1astro_1_1planets_1_1BatesProfileParams_1ab9b8e4f2c1e7af317566d5ef566b112f" prot="public" static="no" mutable="no">
-        <type>quantity&lt; K &gt;</type>
-        <definition>quantity&lt;K&gt; astrea::astro::planets::BatesProfileParams::Tinf</definition>
+      <memberdef kind="variable" id="structastrea_1_1astro_1_1planets_1_1BatesProfileParams_1a1c7988e80e8479adca1db95c241a0277" prot="public" static="no" mutable="no">
+        <type>Temperature</type>
+        <definition>Temperature astrea::astro::planets::BatesProfileParams::Tinf</definition>
         <argsstring></argsstring>
         <name>Tinf</name>
         <qualifiedname>astrea::astro::planets::BatesProfileParams::Tinf</qualifiedname>
@@ -15,11 +15,11 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" line="272" column="14" bodyfile="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" bodystart="272" bodyend="-1"/>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" line="597" column="17" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" bodystart="597" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="structastrea_1_1astro_1_1planets_1_1BatesProfileParams_1ac3e0a5be0a76a1b3f809ebe4a5021f92" prot="public" static="no" mutable="no">
-        <type>quantity&lt; K &gt;</type>
-        <definition>quantity&lt;K&gt; astrea::astro::planets::BatesProfileParams::Tlb0</definition>
+      <memberdef kind="variable" id="structastrea_1_1astro_1_1planets_1_1BatesProfileParams_1a06ab0f25ba93d916c8b378813a008973" prot="public" static="no" mutable="no">
+        <type>Temperature</type>
+        <definition>Temperature astrea::astro::planets::BatesProfileParams::Tlb0</definition>
         <argsstring></argsstring>
         <name>Tlb0</name>
         <qualifiedname>astrea::astro::planets::BatesProfileParams::Tlb0</qualifiedname>
@@ -29,11 +29,11 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" line="273" column="14" bodyfile="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" bodystart="273" bodyend="-1"/>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" line="598" column="17" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" bodystart="598" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="structastrea_1_1astro_1_1planets_1_1BatesProfileParams_1a8be00ffeb861be7f27ac3a9361e285ab" prot="public" static="no" mutable="no">
-        <type>quantity&lt; K &gt;</type>
-        <definition>quantity&lt;K&gt; astrea::astro::planets::BatesProfileParams::TN12</definition>
+      <memberdef kind="variable" id="structastrea_1_1astro_1_1planets_1_1BatesProfileParams_1a14466a440dddba1d0b3c60e0cfadc062" prot="public" static="no" mutable="no">
+        <type>Temperature</type>
+        <definition>Temperature astrea::astro::planets::BatesProfileParams::TN12</definition>
         <argsstring></argsstring>
         <name>TN12</name>
         <qualifiedname>astrea::astro::planets::BatesProfileParams::TN12</qualifiedname>
@@ -43,7 +43,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" line="274" column="14" bodyfile="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" bodystart="274" bodyend="-1"/>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" line="599" column="17" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" bodystart="599" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structastrea_1_1astro_1_1planets_1_1BatesProfileParams_1a045b4f78a6c1be1a032288f782b06b4c" prot="public" static="no" mutable="no">
         <type>quantity&lt; K/km &gt;</type>
@@ -57,11 +57,11 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" line="275" column="14" bodyfile="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" bodystart="275" bodyend="-1"/>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" line="600" column="14" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" bodystart="600" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="structastrea_1_1astro_1_1planets_1_1BatesProfileParams_1a059654dbf11bdf1a633bb8fb9bb52ec7" prot="public" static="no" mutable="no">
-        <type>quantity&lt; K &gt;</type>
-        <definition>quantity&lt;K&gt; astrea::astro::planets::BatesProfileParams::TN14</definition>
+      <memberdef kind="variable" id="structastrea_1_1astro_1_1planets_1_1BatesProfileParams_1a7c40a1b2764861ae1708744bd940126f" prot="public" static="no" mutable="no">
+        <type>Temperature</type>
+        <definition>Temperature astrea::astro::planets::BatesProfileParams::TN14</definition>
         <argsstring></argsstring>
         <name>TN14</name>
         <qualifiedname>astrea::astro::planets::BatesProfileParams::TN14</qualifiedname>
@@ -71,11 +71,11 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" line="276" column="14" bodyfile="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" bodystart="276" bodyend="-1"/>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" line="601" column="17" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" bodystart="601" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="structastrea_1_1astro_1_1planets_1_1BatesProfileParams_1a3a3795aeda484bae84b2cc6dc4864106" prot="public" static="no" mutable="no">
-        <type>quantity&lt; km &gt;</type>
-        <definition>quantity&lt;km&gt; astrea::astro::planets::BatesProfileParams::Zlb</definition>
+      <memberdef kind="variable" id="structastrea_1_1astro_1_1planets_1_1BatesProfileParams_1a2c4d53483a6ab735d2194e02ba7b9d3b" prot="public" static="no" mutable="no">
+        <type>Distance</type>
+        <definition>Distance astrea::astro::planets::BatesProfileParams::Zlb</definition>
         <argsstring></argsstring>
         <name>Zlb</name>
         <qualifiedname>astrea::astro::planets::BatesProfileParams::Zlb</qualifiedname>
@@ -85,11 +85,11 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" line="277" column="14" bodyfile="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" bodystart="277" bodyend="-1"/>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" line="602" column="14" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" bodystart="602" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="structastrea_1_1astro_1_1planets_1_1BatesProfileParams_1ac49cfe778851d3be443837c1e8f16532" prot="public" static="no" mutable="no">
-        <type>quantity&lt; K &gt;</type>
-        <definition>quantity&lt;K&gt; astrea::astro::planets::BatesProfileParams::TN11</definition>
+      <memberdef kind="variable" id="structastrea_1_1astro_1_1planets_1_1BatesProfileParams_1a15f776d80883e49bf5aa9da6ad0d29b7" prot="public" static="no" mutable="no">
+        <type>Temperature</type>
+        <definition>Temperature astrea::astro::planets::BatesProfileParams::TN11</definition>
         <argsstring></argsstring>
         <name>TN11</name>
         <qualifiedname>astrea::astro::planets::BatesProfileParams::TN11</qualifiedname>
@@ -99,11 +99,11 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" line="278" column="14" bodyfile="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" bodystart="278" bodyend="-1"/>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" line="603" column="17" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" bodystart="603" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="structastrea_1_1astro_1_1planets_1_1BatesProfileParams_1ac6e0c3abdcbd4f6c8edf781777bb1d59" prot="public" static="no" mutable="no">
-        <type>quantity&lt; K &gt;</type>
-        <definition>quantity&lt;K&gt; astrea::astro::planets::BatesProfileParams::TN13</definition>
+      <memberdef kind="variable" id="structastrea_1_1astro_1_1planets_1_1BatesProfileParams_1af2662218fae0a2cc9cce0118a3ae1c7b" prot="public" static="no" mutable="no">
+        <type>Temperature</type>
+        <definition>Temperature astrea::astro::planets::BatesProfileParams::TN13</definition>
         <argsstring></argsstring>
         <name>TN13</name>
         <qualifiedname>astrea::astro::planets::BatesProfileParams::TN13</qualifiedname>
@@ -113,7 +113,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" line="279" column="14" bodyfile="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" bodystart="279" bodyend="-1"/>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" line="604" column="17" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" bodystart="604" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structastrea_1_1astro_1_1planets_1_1BatesProfileParams_1a59113dbb75fad7da5ffefbdaaf144e0b" prot="public" static="no" mutable="no">
         <type>quantity&lt; K/km &gt;</type>
@@ -127,7 +127,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" line="280" column="14" bodyfile="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" bodystart="280" bodyend="-1"/>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" line="605" column="14" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" bodystart="605" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
@@ -135,17 +135,17 @@
     <detaileddescription>
 <para>NRLMSISE-00 data: LOWER BOUNDARY ptm[10]. </para>
     </detaileddescription>
-    <location file="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" line="271" column="1" bodyfile="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" bodystart="271" bodyend="281"/>
+    <location file="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" line="596" column="1" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" bodystart="596" bodyend="606"/>
     <listofallmembers>
       <member refid="structastrea_1_1astro_1_1planets_1_1BatesProfileParams_1a045b4f78a6c1be1a032288f782b06b4c" prot="public" virt="non-virtual"><scope>astrea::astro::planets::BatesProfileParams</scope><name>S0</name></member>
       <member refid="structastrea_1_1astro_1_1planets_1_1BatesProfileParams_1a59113dbb75fad7da5ffefbdaaf144e0b" prot="public" virt="non-virtual"><scope>astrea::astro::planets::BatesProfileParams</scope><name>Tgrad</name></member>
-      <member refid="structastrea_1_1astro_1_1planets_1_1BatesProfileParams_1ab9b8e4f2c1e7af317566d5ef566b112f" prot="public" virt="non-virtual"><scope>astrea::astro::planets::BatesProfileParams</scope><name>Tinf</name></member>
-      <member refid="structastrea_1_1astro_1_1planets_1_1BatesProfileParams_1ac3e0a5be0a76a1b3f809ebe4a5021f92" prot="public" virt="non-virtual"><scope>astrea::astro::planets::BatesProfileParams</scope><name>Tlb0</name></member>
-      <member refid="structastrea_1_1astro_1_1planets_1_1BatesProfileParams_1ac49cfe778851d3be443837c1e8f16532" prot="public" virt="non-virtual"><scope>astrea::astro::planets::BatesProfileParams</scope><name>TN11</name></member>
-      <member refid="structastrea_1_1astro_1_1planets_1_1BatesProfileParams_1a8be00ffeb861be7f27ac3a9361e285ab" prot="public" virt="non-virtual"><scope>astrea::astro::planets::BatesProfileParams</scope><name>TN12</name></member>
-      <member refid="structastrea_1_1astro_1_1planets_1_1BatesProfileParams_1ac6e0c3abdcbd4f6c8edf781777bb1d59" prot="public" virt="non-virtual"><scope>astrea::astro::planets::BatesProfileParams</scope><name>TN13</name></member>
-      <member refid="structastrea_1_1astro_1_1planets_1_1BatesProfileParams_1a059654dbf11bdf1a633bb8fb9bb52ec7" prot="public" virt="non-virtual"><scope>astrea::astro::planets::BatesProfileParams</scope><name>TN14</name></member>
-      <member refid="structastrea_1_1astro_1_1planets_1_1BatesProfileParams_1a3a3795aeda484bae84b2cc6dc4864106" prot="public" virt="non-virtual"><scope>astrea::astro::planets::BatesProfileParams</scope><name>Zlb</name></member>
+      <member refid="structastrea_1_1astro_1_1planets_1_1BatesProfileParams_1a1c7988e80e8479adca1db95c241a0277" prot="public" virt="non-virtual"><scope>astrea::astro::planets::BatesProfileParams</scope><name>Tinf</name></member>
+      <member refid="structastrea_1_1astro_1_1planets_1_1BatesProfileParams_1a06ab0f25ba93d916c8b378813a008973" prot="public" virt="non-virtual"><scope>astrea::astro::planets::BatesProfileParams</scope><name>Tlb0</name></member>
+      <member refid="structastrea_1_1astro_1_1planets_1_1BatesProfileParams_1a15f776d80883e49bf5aa9da6ad0d29b7" prot="public" virt="non-virtual"><scope>astrea::astro::planets::BatesProfileParams</scope><name>TN11</name></member>
+      <member refid="structastrea_1_1astro_1_1planets_1_1BatesProfileParams_1a14466a440dddba1d0b3c60e0cfadc062" prot="public" virt="non-virtual"><scope>astrea::astro::planets::BatesProfileParams</scope><name>TN12</name></member>
+      <member refid="structastrea_1_1astro_1_1planets_1_1BatesProfileParams_1af2662218fae0a2cc9cce0118a3ae1c7b" prot="public" virt="non-virtual"><scope>astrea::astro::planets::BatesProfileParams</scope><name>TN13</name></member>
+      <member refid="structastrea_1_1astro_1_1planets_1_1BatesProfileParams_1a7c40a1b2764861ae1708744bd940126f" prot="public" virt="non-virtual"><scope>astrea::astro::planets::BatesProfileParams</scope><name>TN14</name></member>
+      <member refid="structastrea_1_1astro_1_1planets_1_1BatesProfileParams_1a2c4d53483a6ab735d2194e02ba7b9d3b" prot="public" virt="non-virtual"><scope>astrea::astro::planets::BatesProfileParams</scope><name>Zlb</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

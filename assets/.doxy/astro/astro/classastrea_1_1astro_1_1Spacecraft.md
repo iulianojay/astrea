@@ -45,14 +45,14 @@ Inherits the following classes: [astrea::astro::PayloadPlatform](classastrea_1_1
 
 | Type | Name |
 | ---: | :--- |
-|  constexpr Unitless | [**DEFAULT\_COEFFICIENT\_OF\_DRAG**](#variable-default_coefficient_of_drag)   = `2.2 \* astrea::detail::unitless`<br> |
-|  constexpr Unitless | [**DEFAULT\_COEFFICIENT\_OF\_LIFT**](#variable-default_coefficient_of_lift)   = `0.9 \* astrea::detail::unitless`<br> |
-|  constexpr Unitless | [**DEFAULT\_COEFFICIENT\_OF\_REFLECTIVITY**](#variable-default_coefficient_of_reflectivity)   = `/* multi line expression */`<br> |
+|  constexpr Unitless | [**DEFAULT\_COEFFICIENT\_OF\_DRAG**](#variable-default_coefficient_of_drag)   = `2.2 \* mp\_units::one`<br> |
+|  constexpr Unitless | [**DEFAULT\_COEFFICIENT\_OF\_LIFT**](#variable-default_coefficient_of_lift)   = `0.9 \* mp\_units::one`<br> |
+|  constexpr Unitless | [**DEFAULT\_COEFFICIENT\_OF\_REFLECTIVITY**](#variable-default_coefficient_of_reflectivity)   = `1.1 \* mp\_units::one`<br> |
 |  constexpr [**InertiaTensor**](classastrea_1_1astro_1_1InertiaTensor.md)&lt; [**frames::dynamic::body**](structastrea_1_1astro_1_1frames_1_1dynamic_1_1body.md) &gt; | [**DEFAULT\_INERTIA\_TENSOR**](#variable-default_inertia_tensor)   = `/* multi line expression */`<br> |
-|  constexpr SurfaceArea | [**DEFAULT\_LIFT\_AREA**](#variable-default_lift_area)   = `1.0 \* mp\_units::pow&lt;2&gt;(astrea::detail::distance\_unit)`<br> |
-|  constexpr Mass | [**DEFAULT\_MASS**](#variable-default_mass)   = `1000.0 \* astrea::detail::mass\_unit`<br> |
-|  constexpr SurfaceArea | [**DEFAULT\_RAM\_AREA**](#variable-default_ram_area)   = `1.0 \* mp\_units::pow&lt;2&gt;(astrea::detail::distance\_unit)`<br> |
-|  constexpr SurfaceArea | [**DEFAULT\_SOLAR\_AREA**](#variable-default_solar_area)   = `1.0 \* mp\_units::pow&lt;2&gt;(astrea::detail::distance\_unit)`<br> |
+|  constexpr SurfaceArea | [**DEFAULT\_LIFT\_AREA**](#variable-default_lift_area)   = `1.0 \* mp\_units::si::unit\_symbols::m \* mp\_units::si::unit\_symbols::m`<br> |
+|  constexpr Mass | [**DEFAULT\_MASS**](#variable-default_mass)   = `1000.0 \* mp\_units::si::unit\_symbols::kg`<br> |
+|  constexpr SurfaceArea | [**DEFAULT\_RAM\_AREA**](#variable-default_ram_area)   = `1.0 \* mp\_units::si::unit\_symbols::m \* mp\_units::si::unit\_symbols::m`<br> |
+|  constexpr SurfaceArea | [**DEFAULT\_SOLAR\_AREA**](#variable-default_solar_area)   = `1.0 \* mp\_units::si::unit\_symbols::m \* mp\_units::si::unit\_symbols::m`<br> |
 
 
 
@@ -87,20 +87,20 @@ Inherits the following classes: [astrea::astro::PayloadPlatform](classastrea_1_1
 | ---: | :--- |
 |   | [**Spacecraft**](#function-spacecraft-12) () <br>_Default constructor for_ [_**Spacecraft**_](classastrea_1_1astro_1_1Spacecraft.md) _._ |
 |   | [**Spacecraft**](#function-spacecraft-22) (const [**GeneralPerturbations**](structastrea_1_1astro_1_1GeneralPerturbations.md) & gp) <br>_Constructs a_ [_**Spacecraft**_](classastrea_1_1astro_1_1Spacecraft.md) _with a_[_**GeneralPerturbations**_](structastrea_1_1astro_1_1GeneralPerturbations.md) _object._ |
-|  Unitless | [**get\_coefficient\_of\_drag**](#function-get_coefficient_of_drag) () const<br>_Gets the coefficients of drag, lift, and reflectivity._  |
-|  Unitless | [**get\_coefficient\_of\_lift**](#function-get_coefficient_of_lift) () const<br>_Gets the coefficient of lift._  |
-|  Unitless | [**get\_coefficient\_of\_reflectivity**](#function-get_coefficient_of_reflectivity) () const<br>_Gets the coefficient of reflectivity._  |
+|  Unitless | [**get\_coefficient\_of\_drag**](#function-get_coefficient_of_drag) (const [**State**](classastrea_1_1astro_1_1State.md) & state) const<br>_Gets the coefficients of drag, lift, and reflectivity._  |
+|  Unitless | [**get\_coefficient\_of\_lift**](#function-get_coefficient_of_lift) (const [**State**](classastrea_1_1astro_1_1State.md) & state) const<br>_Gets the coefficient of lift._  |
+|  Unitless | [**get\_coefficient\_of\_reflectivity**](#function-get_coefficient_of_reflectivity) (const [**State**](classastrea_1_1astro_1_1State.md) & state) const<br>_Gets the coefficient of reflectivity._  |
 |  [**Perturbation**](structastrea_1_1astro_1_1Perturbation.md) | [**get\_control\_authority**](#function-get_control_authority) (const [**State**](classastrea_1_1astro_1_1State.md) & state) const<br>_Gets the thrust of the spacecraft._  |
 | virtual std::size\_t | [**get\_id**](#function-get_id) () const<br>_Gets the unique identifier of the spacecraft._  |
-|  [**InertiaTensor**](classastrea_1_1astro_1_1InertiaTensor.md)&lt; [**frames::dynamic::body**](structastrea_1_1astro_1_1frames_1_1dynamic_1_1body.md) &gt; | [**get\_inertia\_tensor**](#function-get_inertia_tensor) () const<br>_Gets the inertia tensor of the spacecraft._  |
+|  [**InertiaTensor**](classastrea_1_1astro_1_1InertiaTensor.md)&lt; [**frames::dynamic::body**](structastrea_1_1astro_1_1frames_1_1dynamic_1_1body.md) &gt; | [**get\_inertia\_tensor**](#function-get_inertia_tensor) (const [**State**](classastrea_1_1astro_1_1State.md) & state) const<br>_Gets the inertia tensor of the spacecraft._  |
 |  [**State**](classastrea_1_1astro_1_1State.md) & | [**get\_initial\_state**](#function-get_initial_state-12) () <br>_Gets the initial state of the spacecraft._  |
 |  const [**State**](classastrea_1_1astro_1_1State.md) & | [**get\_initial\_state**](#function-get_initial_state-22) () const<br>_Gets the initial state of the spacecraft._  |
-|  SurfaceArea | [**get\_lift\_area**](#function-get_lift_area) () const<br>_Gets the lift area of the spacecraft._  |
-| virtual Mass | [**get\_mass**](#function-get_mass) () const<br>_Gets the mass of the spacecraft._  |
+|  SurfaceArea | [**get\_lift\_area**](#function-get_lift_area) (const [**State**](classastrea_1_1astro_1_1State.md) & state) const<br>_Gets the lift area of the spacecraft._  |
+| virtual Mass | [**get\_mass**](#function-get_mass) (const [**State**](classastrea_1_1astro_1_1State.md) & state) const<br>_Gets the mass of the spacecraft._  |
 |  std::string | [**get\_name**](#function-get_name) () const<br>_Gets the name of the spacecraft._  |
 | virtual [**RadiusVector**](namespaceastrea_1_1astro.md#typedef-radiusvector)&lt; frames::primary &gt; | [**get\_position**](#function-get_position) (const [**Date**](classastrea_1_1astro_1_1Date.md) & date) const<br>_Gets the inertial position of the spacecraft at a specific date._  |
-|  SurfaceArea | [**get\_ram\_area**](#function-get_ram_area) () const<br>_Gets the surface areas for ram, solar, and lift._  |
-|  SurfaceArea | [**get\_solar\_area**](#function-get_solar_area) () const<br>_Gets the solar area of the spacecraft._  |
+|  SurfaceArea | [**get\_ram\_area**](#function-get_ram_area) (const [**State**](classastrea_1_1astro_1_1State.md) & state) const<br>_Gets the surface areas for ram, solar, and lift._  |
+|  SurfaceArea | [**get\_solar\_area**](#function-get_solar_area) (const [**State**](classastrea_1_1astro_1_1State.md) & state) const<br>_Gets the solar area of the spacecraft._  |
 |  [**StateHistory**](classastrea_1_1astro_1_1StateHistory.md) & | [**get\_state\_history**](#function-get_state_history-12) () <br>_Gets the state history of the spacecraft._  |
 |  const [**StateHistory**](classastrea_1_1astro_1_1StateHistory.md) & | [**get\_state\_history**](#function-get_state_history-22) () const<br>_Gets the state history of the spacecraft._  |
 | virtual [**VelocityVector**](namespaceastrea_1_1astro.md#typedef-velocityvector)&lt; frames::primary &gt; | [**get\_velocity**](#function-get_velocity) (const [**Date**](classastrea_1_1astro_1_1Date.md) & date) const<br>_Gets the inertial velocity of the spacecraft at a specific date._  |
@@ -128,7 +128,7 @@ See [astrea::astro::PayloadPlatform](classastrea_1_1astro_1_1PayloadPlatform.md)
 |  void | [**attach\_payload**](classastrea_1_1astro_1_1PayloadPlatform.md#function-attach_payload) (const PayloadParameters\_T & parameters) <br>_Attaches a single payload to the platform._  |
 |  void | [**attach\_payloads**](classastrea_1_1astro_1_1PayloadPlatform.md#function-attach_payloads) (const std::vector&lt; PayloadParameters\_T &gt; & parameterPack) <br>_Attaches multiple payloads to the platform._  |
 | virtual std::size\_t | [**get\_id**](classastrea_1_1astro_1_1PayloadPlatform.md#function-get_id) () const = 0<br>_Get the ID of the payload._  |
-| virtual Mass | [**get\_mass**](classastrea_1_1astro_1_1PayloadPlatform.md#function-get_mass) () const<br>_Get the mass of the platform._  |
+| virtual Mass | [**get\_mass**](classastrea_1_1astro_1_1PayloadPlatform.md#function-get_mass) (const [**State**](classastrea_1_1astro_1_1State.md) & state) const<br>_Get the mass of the platform._  |
 |  std::vector&lt; Payload\_T &gt; & | [**get\_payloads**](classastrea_1_1astro_1_1PayloadPlatform.md#function-get_payloads-12) () <br>_Retrieves the list of payloads attached to the platform._  |
 |  const std::vector&lt; Payload\_T &gt; & | [**get\_payloads**](classastrea_1_1astro_1_1PayloadPlatform.md#function-get_payloads-22) () const<br>_Retrieves the list of payloads attached to the platform (const version)._  |
 | virtual [**RadiusVector**](namespaceastrea_1_1astro.md#typedef-radiusvector)&lt; frames::primary &gt; | [**get\_position**](classastrea_1_1astro_1_1PayloadPlatform.md#function-get_position) (const [**Date**](classastrea_1_1astro_1_1Date.md) & date) const = 0<br>_Get the position of the platform._  |
@@ -378,7 +378,9 @@ astrea::astro::Spacecraft::Spacecraft (
 
 _Gets the coefficients of drag, lift, and reflectivity._ 
 ```C++
-Unitless astrea::astro::Spacecraft::get_coefficient_of_drag () const
+Unitless astrea::astro::Spacecraft::get_coefficient_of_drag (
+    const State & state
+) const
 ```
 
 
@@ -403,7 +405,9 @@ Unitless The coefficient of drag.
 
 _Gets the coefficient of lift._ 
 ```C++
-Unitless astrea::astro::Spacecraft::get_coefficient_of_lift () const
+Unitless astrea::astro::Spacecraft::get_coefficient_of_lift (
+    const State & state
+) const
 ```
 
 
@@ -428,7 +432,9 @@ Unitless The coefficient of lift.
 
 _Gets the coefficient of reflectivity._ 
 ```C++
-Unitless astrea::astro::Spacecraft::get_coefficient_of_reflectivity () const
+Unitless astrea::astro::Spacecraft::get_coefficient_of_reflectivity (
+    const State & state
+) const
 ```
 
 
@@ -514,7 +520,9 @@ Implements [*astrea::astro::PayloadPlatform::get\_id*](classastrea_1_1astro_1_1P
 
 _Gets the inertia tensor of the spacecraft._ 
 ```C++
-InertiaTensor < frames::dynamic::body > astrea::astro::Spacecraft::get_inertia_tensor () const
+InertiaTensor < frames::dynamic::body > astrea::astro::Spacecraft::get_inertia_tensor (
+    const State & state
+) const
 ```
 
 
@@ -589,7 +597,9 @@ const [**State**](classastrea_1_1astro_1_1State.md)& A reference to the initial 
 
 _Gets the lift area of the spacecraft._ 
 ```C++
-SurfaceArea astrea::astro::Spacecraft::get_lift_area () const
+SurfaceArea astrea::astro::Spacecraft::get_lift_area (
+    const State & state
+) const
 ```
 
 
@@ -614,7 +624,9 @@ SurfaceArea The lift area of the spacecraft.
 
 _Gets the mass of the spacecraft._ 
 ```C++
-virtual Mass astrea::astro::Spacecraft::get_mass () const
+virtual Mass astrea::astro::Spacecraft::get_mass (
+    const State & state
+) const
 ```
 
 
@@ -702,7 +714,9 @@ Implements [*astrea::astro::PayloadPlatform::get\_position*](classastrea_1_1astr
 
 _Gets the surface areas for ram, solar, and lift._ 
 ```C++
-SurfaceArea astrea::astro::Spacecraft::get_ram_area () const
+SurfaceArea astrea::astro::Spacecraft::get_ram_area (
+    const State & state
+) const
 ```
 
 
@@ -727,7 +741,9 @@ SurfaceArea The ram area of the spacecraft.
 
 _Gets the solar area of the spacecraft._ 
 ```C++
-SurfaceArea astrea::astro::Spacecraft::get_solar_area () const
+SurfaceArea astrea::astro::Spacecraft::get_solar_area (
+    const State & state
+) const
 ```
 
 

@@ -54,7 +54,7 @@ _A class representing a null vehicle in the astrea astro platform. This class is
 | ---: | :--- |
 |   | [**NullVehicle**](#function-nullvehicle) (const Mass & mass=1.0 \*mp\_units::si::unit\_symbols::kg) <br>_Constructs a_ [_**NullVehicle**_](classastrea_1_1astro_1_1NullVehicle.md) _with an initial state and mass._ |
 |  [**NullVehicle**](classastrea_1_1astro_1_1NullVehicle.md) \* | [**clone**](#function-clone) () const<br>_Clone the_ [_**NullVehicle**_](classastrea_1_1astro_1_1NullVehicle.md) _object._ |
-|  Mass | [**get\_mass**](#function-get_mass) () const<br>_Gets the mass of the vehicle._  |
+|  Mass | [**get\_mass**](#function-get_mass) (const [**State**](classastrea_1_1astro_1_1State.md) & state) const<br>_Gets the mass of the vehicle._  |
 |  std::string | [**get\_name**](#function-get_name) () const<br>_Gets the name of the vehicle._  |
 
 
@@ -145,7 +145,9 @@ NullVehicle\* A pointer to a new [**NullVehicle**](classastrea_1_1astro_1_1NullV
 
 _Gets the mass of the vehicle._ 
 ```C++
-Mass astrea::astro::NullVehicle::get_mass () const
+Mass astrea::astro::NullVehicle::get_mass (
+    const State & state
+) const
 ```
 
 

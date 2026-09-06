@@ -25,7 +25,7 @@
       
       
       <link rel="icon" href="../../assets/images/astrea-transparent-crop.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
@@ -33,7 +33,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
@@ -6663,7 +6663,7 @@ Since the <code>State</code> is built on-top of the <code>OrbitalElements</code>
 </span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>
 </span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="c1">// Utility functions</span>
 </span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="n">JulianDate</span><span class="w"> </span><span class="n">epoch_to_julian_date</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span><span class="w"> </span><span class="n">epoch</span><span class="p">,</span>
-</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="w">                                </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">format</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;%Y-%m-%d %H:%M:%S&quot;</span><span class="p">);</span>
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="w">                                </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">format</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"%Y-%m-%d %H:%M:%S"</span><span class="p">);</span>
 </span></code></pre></div>
 <p>This means that the <code>Date</code> class can be constructed from any clock system whatsoever as long as the clock is a properly defined chrono clock. The also has the added benefit of inheriting the ability to keep precise time without much work; if <code>chrono</code> supports it, Astrea can understand it. So far, Astrea supports the built in system clocks, including gps, tai, and any arbitrary system clock, as well as a custom <code>JulianDateClock</code> and <code>TerrestialTimeClock</code>. Future versions will support the more complex UT1 and leap-second time systems that are common in astrodynamics applications.</p>
 <h2 id="coordinate-vectors">Coordinate Vectors<a class="headerlink" href="#coordinate-vectors" title="Permanent link">&para;</a></h2>
@@ -6704,7 +6704,7 @@ Since the <code>State</code> is built on-top of the <code>OrbitalElements</code>
 </span><span id="__span-10-11"><a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a><span class="k">auto</span><span class="w"> </span><span class="n">h</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">r</span><span class="p">.</span><span class="n">cross</span><span class="p">(</span><span class="n">v</span><span class="p">);</span><span class="w"> </span><span class="c1">// Resultant units are deduced as decltype(r.unit{} * v.unit{})</span>
 </span></code></pre></div>
 <p>While this basis is strong and covers most cases, some conversions should be allowed. For example, relative position vectors can switch between different frames with the same axis without any conversion.
-<div class="language-cpp highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="c1">// i.e. This should be allowed, but currently isn&#39;t</span>
+<div class="language-cpp highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="c1">// i.e. This should be allowed, but currently isn't</span>
 </span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="n">RadiusVector</span><span class="o">&lt;</span><span class="n">frames</span><span class="o">::</span><span class="n">earth</span><span class="o">::</span><span class="n">icrf</span><span class="o">&gt;</span><span class="w"> </span><span class="n">rEci</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{...};</span>
 </span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="n">RadiusVector</span><span class="o">&lt;</span><span class="n">frames</span><span class="o">::</span><span class="n">mars</span><span class="o">::</span><span class="n">icrf</span><span class="o">&gt;</span><span class="w"> </span><span class="n">rMci</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rEci</span><span class="p">;</span><span class="w"> </span><span class="c1">// Conversion under the hood</span>
 </span></code></pre></div></p>
@@ -6832,7 +6832,7 @@ as long as they are confident the result is correct.</p>
       <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.action.edit", "content.action.view", "content.code.annotate", "content.code.copy", "navigation.indexes", "navigation.tabs", "navigation.footer", "navigation.top", "search.highlight", "search.share", "search.suggest", "toc.follow", "toc.integrate"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
       
         <script src="../../javascripts/ce_embed.js"></script>
       

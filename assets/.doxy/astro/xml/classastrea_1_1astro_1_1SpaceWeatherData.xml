@@ -1,0 +1,512 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classastrea_1_1astro_1_1SpaceWeatherData" kind="class" language="C++" prot="public">
+    <compoundname>astrea::astro::SpaceWeatherData</compoundname>
+    <includes refid="SpaceWeatherData_8hpp" local="no">SpaceWeatherData.hpp</includes>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classastrea_1_1astro_1_1SpaceWeatherData_1a6d8793741f07395154477db0aeaecf29" prot="private" static="no" mutable="no">
+        <type>std::filesystem::path</type>
+        <definition>std::filesystem::path astrea::astro::SpaceWeatherData::_infile</definition>
+        <argsstring></argsstring>
+        <name>_infile</name>
+        <qualifiedname>astrea::astro::SpaceWeatherData::_infile</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/SpaceWeatherData.hpp" line="201" column="27" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/SpaceWeatherData.hpp" bodystart="201" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classastrea_1_1astro_1_1SpaceWeatherData_1a176d7d1d45512f1f308e2291abfc883b" prot="private" static="no" mutable="no">
+        <type>std::optional&lt; <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &gt;</type>
+        <definition>std::optional&lt;Date&gt; astrea::astro::SpaceWeatherData::_startDate</definition>
+        <argsstring></argsstring>
+        <name>_startDate</name>
+        <qualifiedname>astrea::astro::SpaceWeatherData::_startDate</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/SpaceWeatherData.hpp" line="202" column="19" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/SpaceWeatherData.hpp" bodystart="202" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classastrea_1_1astro_1_1SpaceWeatherData_1ad8cef3396aa73bf6291cb3c53bf55a2e" prot="private" static="no" mutable="no">
+        <type>std::optional&lt; <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &gt;</type>
+        <definition>std::optional&lt;Date&gt; astrea::astro::SpaceWeatherData::_endDate</definition>
+        <argsstring></argsstring>
+        <name>_endDate</name>
+        <qualifiedname>astrea::astro::SpaceWeatherData::_endDate</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/SpaceWeatherData.hpp" line="203" column="19" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/SpaceWeatherData.hpp" bodystart="203" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classastrea_1_1astro_1_1SpaceWeatherData_1aaa87ffec6c05d9aafc64b857deedf6eb" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; <ref refid="structastrea_1_1astro_1_1SpaceWeatherParameters" kindref="compound">SpaceWeatherParameters</ref> &gt;</type>
+        <definition>std::vector&lt;SpaceWeatherParameters&gt; astrea::astro::SpaceWeatherData::_data</definition>
+        <argsstring></argsstring>
+        <name>_data</name>
+        <qualifiedname>astrea::astro::SpaceWeatherData::_data</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/SpaceWeatherData.hpp" line="204" column="17" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/SpaceWeatherData.hpp" bodystart="204" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classastrea_1_1astro_1_1SpaceWeatherData_1a94f8a9d76e7a5e397fc533ed8342e3ce" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>astrea::astro::SpaceWeatherData::SpaceWeatherData</definition>
+        <argsstring>()=default</argsstring>
+        <name>SpaceWeatherData</name>
+        <qualifiedname>astrea::astro::SpaceWeatherData::SpaceWeatherData</qualifiedname>
+        <briefdescription>
+<para>Default constructor for <ref refid="classastrea_1_1astro_1_1SpaceWeatherData" kindref="compound">SpaceWeatherData</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/SpaceWeatherData.hpp" line="89" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1SpaceWeatherData_1a0f71accf6f0801b6c11d4780727f434f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>astrea::astro::SpaceWeatherData::SpaceWeatherData</definition>
+        <argsstring>(const std::filesystem::path &amp;infile, std::optional&lt; Date &gt; startDate=std::nullopt, std::optional&lt; Date &gt; endDate=std::nullopt)</argsstring>
+        <name>SpaceWeatherData</name>
+        <qualifiedname>astrea::astro::SpaceWeatherData::SpaceWeatherData</qualifiedname>
+        <param>
+          <type>const std::filesystem::path &amp;</type>
+          <declname>infile</declname>
+        </param>
+        <param>
+          <type>std::optional&lt; <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &gt;</type>
+          <declname>startDate</declname>
+          <defval>std::nullopt</defval>
+        </param>
+        <param>
+          <type>std::optional&lt; <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &gt;</type>
+          <declname>endDate</declname>
+          <defval>std::nullopt</defval>
+        </param>
+        <briefdescription>
+<para>Construct a <ref refid="classastrea_1_1astro_1_1SpaceWeatherData" kindref="compound">SpaceWeatherData</ref> object by reading space weather data from a file. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>infile</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Path to the space weather data file. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>startDate</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Optional start date for filtering the data. If provided, only data on or after this date will be included. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>endDate</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Optional end date for filtering the data. If provided, only data on or before this date will be included. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/SpaceWeatherData.hpp" line="98" column="5" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/SpaceWeatherData.cpp" bodystart="20" bodyend="26"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1SpaceWeatherData_1a144228819889ae64db4fc37c7dbed65b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>astrea::astro::SpaceWeatherData::~SpaceWeatherData</definition>
+        <argsstring>()=default</argsstring>
+        <name>~SpaceWeatherData</name>
+        <qualifiedname>astrea::astro::SpaceWeatherData::~SpaceWeatherData</qualifiedname>
+        <briefdescription>
+<para>Default destructor for <ref refid="classastrea_1_1astro_1_1SpaceWeatherData" kindref="compound">SpaceWeatherData</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/SpaceWeatherData.hpp" line="103" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1SpaceWeatherData_1a8b4f2c571ae8c1cd764940a86f0a47c1" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::size_t</type>
+        <definition>std::size_t astrea::astro::SpaceWeatherData::size</definition>
+        <argsstring>() const</argsstring>
+        <name>size</name>
+        <qualifiedname>astrea::astro::SpaceWeatherData::size</qualifiedname>
+        <briefdescription>
+<para>Returns the number of space weather data entries. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>std::size_t The number of entries in the space weather data. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/SpaceWeatherData.hpp" line="110" column="18" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/SpaceWeatherData.cpp" bodystart="28" bodyend="28"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1SpaceWeatherData_1aede3511b05c14432de21d322a4754183" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const std::vector&lt; <ref refid="structastrea_1_1astro_1_1SpaceWeatherParameters" kindref="compound">SpaceWeatherParameters</ref> &gt; &amp;</type>
+        <definition>const std::vector&lt; SpaceWeatherParameters &gt; &amp; astrea::astro::SpaceWeatherData::data</definition>
+        <argsstring>() const</argsstring>
+        <name>data</name>
+        <qualifiedname>astrea::astro::SpaceWeatherData::data</qualifiedname>
+        <briefdescription>
+<para>Returns a const reference to the vector of space weather parameters. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>const std::vector&lt;SpaceWeatherParameters&gt;&amp; The vector of space weather parameters. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/SpaceWeatherData.hpp" line="117" column="24" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/SpaceWeatherData.cpp" bodystart="30" bodyend="30"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1SpaceWeatherData_1a4038494c2aa43d8076adb6203d67ff87" prot="public" static="no" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>const std::filesystem::path &amp;</type>
+        <definition>const std::filesystem::path &amp; astrea::astro::SpaceWeatherData::infile</definition>
+        <argsstring>() const noexcept</argsstring>
+        <name>infile</name>
+        <qualifiedname>astrea::astro::SpaceWeatherData::infile</qualifiedname>
+        <briefdescription>
+<para>Returns the path to the space weather data file. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>const std::filesystem::path&amp; The path to the space weather data file. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/SpaceWeatherData.hpp" line="124" column="34" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/SpaceWeatherData.cpp" bodystart="32" bodyend="32"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1SpaceWeatherData_1af8831e0ff9c321028cff0655dfbac186" prot="public" static="no" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool astrea::astro::SpaceWeatherData::empty</definition>
+        <argsstring>() const noexcept</argsstring>
+        <name>empty</name>
+        <qualifiedname>astrea::astro::SpaceWeatherData::empty</qualifiedname>
+        <briefdescription>
+<para>Checks if the space weather data is empty. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>true If there are no space weather data entries. </para>
+</simplesect>
+<simplesect kind="return"><para>false If there are space weather data entries. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/SpaceWeatherData.hpp" line="132" column="11" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/SpaceWeatherData.cpp" bodystart="34" bodyend="34"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1SpaceWeatherData_1a3bacdcd11cef90adc44ba285ccb1a403" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const <ref refid="structastrea_1_1astro_1_1SpaceWeatherParameters" kindref="compound">SpaceWeatherParameters</ref> &amp;</type>
+        <definition>const SpaceWeatherParameters &amp; astrea::astro::SpaceWeatherData::operator[]</definition>
+        <argsstring>(std::size_t index) const</argsstring>
+        <name>operator[]</name>
+        <qualifiedname>astrea::astro::SpaceWeatherData::operator[]</qualifiedname>
+        <param>
+          <type>std::size_t</type>
+          <declname>index</declname>
+        </param>
+        <briefdescription>
+<para>Access the space weather parameters at the specified index. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>index</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Index of the space weather parameters to access. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>const <ref refid="structastrea_1_1astro_1_1SpaceWeatherParameters" kindref="compound">SpaceWeatherParameters</ref>&amp; Reference to the space weather parameters at the specified index. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/SpaceWeatherData.hpp" line="140" column="35" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/SpaceWeatherData.cpp" bodystart="36" bodyend="39"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1SpaceWeatherData_1a0a16c5139a0bc0cacdeaaebef3c9747f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structastrea_1_1astro_1_1SpaceWeatherParameters" kindref="compound">SpaceWeatherParameters</ref> &amp;</type>
+        <definition>SpaceWeatherParameters &amp; astrea::astro::SpaceWeatherData::operator[]</definition>
+        <argsstring>(std::size_t index)</argsstring>
+        <name>operator[]</name>
+        <qualifiedname>astrea::astro::SpaceWeatherData::operator[]</qualifiedname>
+        <param>
+          <type>std::size_t</type>
+          <declname>index</declname>
+        </param>
+        <briefdescription>
+<para>Access the space weather parameters at the specified index. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>index</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Index of the space weather parameters to access. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="structastrea_1_1astro_1_1SpaceWeatherParameters" kindref="compound">SpaceWeatherParameters</ref>&amp; Reference to the space weather parameters at the specified index. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/SpaceWeatherData.hpp" line="148" column="29" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/SpaceWeatherData.cpp" bodystart="41" bodyend="41"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1SpaceWeatherData_1ae5068c7e37d1c474e8ed244639472486" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const <ref refid="structastrea_1_1astro_1_1SpaceWeatherParameters" kindref="compound">SpaceWeatherParameters</ref> &amp;</type>
+        <definition>const SpaceWeatherParameters &amp; astrea::astro::SpaceWeatherData::at</definition>
+        <argsstring>(std::size_t index) const</argsstring>
+        <name>at</name>
+        <qualifiedname>astrea::astro::SpaceWeatherData::at</qualifiedname>
+        <param>
+          <type>std::size_t</type>
+          <declname>index</declname>
+        </param>
+        <briefdescription>
+<para>Access the space weather parameters at the specified index with bounds checking. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>index</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Index of the space weather parameters to access. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>const <ref refid="structastrea_1_1astro_1_1SpaceWeatherParameters" kindref="compound">SpaceWeatherParameters</ref>&amp; Reference to the space weather parameters at the specified index. </para>
+</simplesect>
+<parameterlist kind="exception"><parameteritem>
+<parameternamelist>
+<parametername>std::out_of_range</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>If the index is out of range. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/SpaceWeatherData.hpp" line="157" column="35" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/SpaceWeatherData.cpp" bodystart="43" bodyend="43"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1SpaceWeatherData_1a4d1489fc97a1beb1664e96e601345869" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structastrea_1_1astro_1_1SpaceWeatherParameters" kindref="compound">SpaceWeatherParameters</ref> &amp;</type>
+        <definition>SpaceWeatherParameters &amp; astrea::astro::SpaceWeatherData::at</definition>
+        <argsstring>(std::size_t index)</argsstring>
+        <name>at</name>
+        <qualifiedname>astrea::astro::SpaceWeatherData::at</qualifiedname>
+        <param>
+          <type>std::size_t</type>
+          <declname>index</declname>
+        </param>
+        <briefdescription>
+<para>Access the space weather parameters at the specified index with bounds checking. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>index</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Index of the space weather parameters to access. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="structastrea_1_1astro_1_1SpaceWeatherParameters" kindref="compound">SpaceWeatherParameters</ref>&amp; Reference to the space weather parameters at the specified index. </para>
+</simplesect>
+<parameterlist kind="exception"><parameteritem>
+<parameternamelist>
+<parametername>std::out_of_range</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>If the index is out of range. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/SpaceWeatherData.hpp" line="166" column="29" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/SpaceWeatherData.cpp" bodystart="45" bodyend="45"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1SpaceWeatherData_1af9e4cec7bac09ce72951c0cf01756957" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const <ref refid="structastrea_1_1astro_1_1SpaceWeatherParameters" kindref="compound">SpaceWeatherParameters</ref> &amp;</type>
+        <definition>const SpaceWeatherParameters &amp; astrea::astro::SpaceWeatherData::at</definition>
+        <argsstring>(const Date &amp;date) const</argsstring>
+        <name>at</name>
+        <qualifiedname>astrea::astro::SpaceWeatherData::at</qualifiedname>
+        <param>
+          <type>const <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
+          <declname>date</declname>
+        </param>
+        <briefdescription>
+<para>Access the space weather parameters for the specified date. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>date</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> of the space weather parameters to access. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>const <ref refid="structastrea_1_1astro_1_1SpaceWeatherParameters" kindref="compound">SpaceWeatherParameters</ref>&amp; Reference to the space weather parameters for the specified date. </para>
+</simplesect>
+<parameterlist kind="exception"><parameteritem>
+<parameternamelist>
+<parametername>std::out_of_range</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>If no data exists for the specified date. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/SpaceWeatherData.hpp" line="175" column="35" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/SpaceWeatherData.cpp" bodystart="47" bodyend="56"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1SpaceWeatherData_1a28f4d191dbabbb36ce1590974cfda687" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structastrea_1_1astro_1_1SpaceWeatherParameters" kindref="compound">SpaceWeatherParameters</ref> &amp;</type>
+        <definition>SpaceWeatherParameters &amp; astrea::astro::SpaceWeatherData::at</definition>
+        <argsstring>(const Date &amp;date)</argsstring>
+        <name>at</name>
+        <qualifiedname>astrea::astro::SpaceWeatherData::at</qualifiedname>
+        <param>
+          <type>const <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
+          <declname>date</declname>
+        </param>
+        <briefdescription>
+<para>Access the space weather parameters for the specified date. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>date</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> of the space weather parameters to access. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="structastrea_1_1astro_1_1SpaceWeatherParameters" kindref="compound">SpaceWeatherParameters</ref>&amp; Reference to the space weather parameters for the specified date. </para>
+</simplesect>
+<parameterlist kind="exception"><parameteritem>
+<parameternamelist>
+<parametername>std::out_of_range</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>If no data exists for the specified date. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/SpaceWeatherData.hpp" line="184" column="29" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/SpaceWeatherData.cpp" bodystart="58" bodyend="66"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1SpaceWeatherData_1a4aa41ef9ef3f300495559405b6112e95" prot="public" static="no" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>const std::optional&lt; <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &gt; &amp;</type>
+        <definition>const std::optional&lt; Date &gt; &amp; astrea::astro::SpaceWeatherData::startDate</definition>
+        <argsstring>() const noexcept</argsstring>
+        <name>startDate</name>
+        <qualifiedname>astrea::astro::SpaceWeatherData::startDate</qualifiedname>
+        <briefdescription>
+<para>Access the optional start date for filtering the data. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>const std::optional&lt;Date&gt;&amp; Optional start date. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/SpaceWeatherData.hpp" line="191" column="26" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/SpaceWeatherData.cpp" bodystart="68" bodyend="68"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1SpaceWeatherData_1af99b2da5d54d4f380d80682c50548fca" prot="public" static="no" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>const std::optional&lt; <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &gt; &amp;</type>
+        <definition>const std::optional&lt; Date &gt; &amp; astrea::astro::SpaceWeatherData::endDate</definition>
+        <argsstring>() const noexcept</argsstring>
+        <name>endDate</name>
+        <qualifiedname>astrea::astro::SpaceWeatherData::endDate</qualifiedname>
+        <briefdescription>
+<para>Access the optional end date for filtering the data. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>const std::optional&lt;Date&gt;&amp; Optional end date. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/SpaceWeatherData.hpp" line="198" column="26" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/SpaceWeatherData.cpp" bodystart="70" bodyend="70"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Class to hold space weather data read from a file. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>This class contains a vector of <ref refid="structastrea_1_1astro_1_1SpaceWeatherParameters" kindref="compound">SpaceWeatherParameters</ref> and provides methods to access the data. </para>
+    </detaileddescription>
+    <location file="astrea/astro/astro/propagation/force_models/space_weather/SpaceWeatherData.hpp" line="84" column="1" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/SpaceWeatherData.hpp" bodystart="84" bodyend="205"/>
+    <listofallmembers>
+      <member refid="classastrea_1_1astro_1_1SpaceWeatherData_1aaa87ffec6c05d9aafc64b857deedf6eb" prot="private" virt="non-virtual"><scope>astrea::astro::SpaceWeatherData</scope><name>_data</name></member>
+      <member refid="classastrea_1_1astro_1_1SpaceWeatherData_1ad8cef3396aa73bf6291cb3c53bf55a2e" prot="private" virt="non-virtual"><scope>astrea::astro::SpaceWeatherData</scope><name>_endDate</name></member>
+      <member refid="classastrea_1_1astro_1_1SpaceWeatherData_1a6d8793741f07395154477db0aeaecf29" prot="private" virt="non-virtual"><scope>astrea::astro::SpaceWeatherData</scope><name>_infile</name></member>
+      <member refid="classastrea_1_1astro_1_1SpaceWeatherData_1a176d7d1d45512f1f308e2291abfc883b" prot="private" virt="non-virtual"><scope>astrea::astro::SpaceWeatherData</scope><name>_startDate</name></member>
+      <member refid="classastrea_1_1astro_1_1SpaceWeatherData_1ae5068c7e37d1c474e8ed244639472486" prot="public" virt="non-virtual"><scope>astrea::astro::SpaceWeatherData</scope><name>at</name></member>
+      <member refid="classastrea_1_1astro_1_1SpaceWeatherData_1a4d1489fc97a1beb1664e96e601345869" prot="public" virt="non-virtual"><scope>astrea::astro::SpaceWeatherData</scope><name>at</name></member>
+      <member refid="classastrea_1_1astro_1_1SpaceWeatherData_1af9e4cec7bac09ce72951c0cf01756957" prot="public" virt="non-virtual"><scope>astrea::astro::SpaceWeatherData</scope><name>at</name></member>
+      <member refid="classastrea_1_1astro_1_1SpaceWeatherData_1a28f4d191dbabbb36ce1590974cfda687" prot="public" virt="non-virtual"><scope>astrea::astro::SpaceWeatherData</scope><name>at</name></member>
+      <member refid="classastrea_1_1astro_1_1SpaceWeatherData_1aede3511b05c14432de21d322a4754183" prot="public" virt="non-virtual"><scope>astrea::astro::SpaceWeatherData</scope><name>data</name></member>
+      <member refid="classastrea_1_1astro_1_1SpaceWeatherData_1af8831e0ff9c321028cff0655dfbac186" prot="public" virt="non-virtual"><scope>astrea::astro::SpaceWeatherData</scope><name>empty</name></member>
+      <member refid="classastrea_1_1astro_1_1SpaceWeatherData_1af99b2da5d54d4f380d80682c50548fca" prot="public" virt="non-virtual"><scope>astrea::astro::SpaceWeatherData</scope><name>endDate</name></member>
+      <member refid="classastrea_1_1astro_1_1SpaceWeatherData_1a4038494c2aa43d8076adb6203d67ff87" prot="public" virt="non-virtual"><scope>astrea::astro::SpaceWeatherData</scope><name>infile</name></member>
+      <member refid="classastrea_1_1astro_1_1SpaceWeatherData_1a3bacdcd11cef90adc44ba285ccb1a403" prot="public" virt="non-virtual"><scope>astrea::astro::SpaceWeatherData</scope><name>operator[]</name></member>
+      <member refid="classastrea_1_1astro_1_1SpaceWeatherData_1a0a16c5139a0bc0cacdeaaebef3c9747f" prot="public" virt="non-virtual"><scope>astrea::astro::SpaceWeatherData</scope><name>operator[]</name></member>
+      <member refid="classastrea_1_1astro_1_1SpaceWeatherData_1a8b4f2c571ae8c1cd764940a86f0a47c1" prot="public" virt="non-virtual"><scope>astrea::astro::SpaceWeatherData</scope><name>size</name></member>
+      <member refid="classastrea_1_1astro_1_1SpaceWeatherData_1a94f8a9d76e7a5e397fc533ed8342e3ce" prot="public" virt="non-virtual"><scope>astrea::astro::SpaceWeatherData</scope><name>SpaceWeatherData</name></member>
+      <member refid="classastrea_1_1astro_1_1SpaceWeatherData_1a0f71accf6f0801b6c11d4780727f434f" prot="public" virt="non-virtual"><scope>astrea::astro::SpaceWeatherData</scope><name>SpaceWeatherData</name></member>
+      <member refid="classastrea_1_1astro_1_1SpaceWeatherData_1a4aa41ef9ef3f300495559405b6112e95" prot="public" virt="non-virtual"><scope>astrea::astro::SpaceWeatherData</scope><name>startDate</name></member>
+      <member refid="classastrea_1_1astro_1_1SpaceWeatherData_1a144228819889ae64db4fc37c7dbed65b" prot="public" virt="non-virtual"><scope>astrea::astro::SpaceWeatherData</scope><name>~SpaceWeatherData</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

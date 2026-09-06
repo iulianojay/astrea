@@ -21,7 +21,7 @@
       
       
       <link rel="icon" href="../../assets/images/astrea-transparent-crop.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
@@ -29,7 +29,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
@@ -6238,7 +6238,7 @@ You're not viewing the latest version.
 
 
 <h1 id="file-nrlmsise00hpp">File NRLMSISE00.hpp<a class="headerlink" href="#file-nrlmsise00hpp" title="Permanent link">&para;</a></h1>
-<p><a href="../files/"><strong>File List</strong></a> <strong>&gt;</strong> <a href="../dir_b5324400686b7cece921533bb760c87a/"><strong>astrea</strong></a> <strong>&gt;</strong> <a href="../dir_1d4dcf10fc541574a93624f5c09a3d6f/"><strong>astro</strong></a> <strong>&gt;</strong> <a href="../dir_84db6e3c60e44147f5214c05dc45afc2/"><strong>astro</strong></a> <strong>&gt;</strong> <a href="../dir_a5d35e082abd602943cf6d70fa2a6872/"><strong>systems</strong></a> <strong>&gt;</strong> <a href="../dir_b988f8927672605e377af1c3b431ef9b/"><strong>celestial_bodies</strong></a> <strong>&gt;</strong> <a href="../dir_0d926747df7aa4605536658442a7f1d2/"><strong>Earth</strong></a> <strong>&gt;</strong> <a href="../dir_52ad4357f9588f54fe1e3d5cf2b75c1b/"><strong>atmosphere</strong></a> <strong>&gt;</strong> <a href="../NRLMSISE00_8hpp/"><strong>NRLMSISE00.hpp</strong></a></p>
+<p><a href="../files/"><strong>File List</strong></a> <strong>&gt;</strong> <a href="../dir_b5324400686b7cece921533bb760c87a/"><strong>astrea</strong></a> <strong>&gt;</strong> <a href="../dir_1d4dcf10fc541574a93624f5c09a3d6f/"><strong>astro</strong></a> <strong>&gt;</strong> <a href="../dir_84db6e3c60e44147f5214c05dc45afc2/"><strong>astro</strong></a> <strong>&gt;</strong> <a href="../dir_55ae0edd352c6621ebfa1115f28a0fff/"><strong>propagation</strong></a> <strong>&gt;</strong> <a href="../dir_0ce51a85166db93c377c5b7f000b236c/"><strong>force_models</strong></a> <strong>&gt;</strong> <a href="../dir_ba92a5bb4647772267966b3cef944594/"><strong>space_weather</strong></a> <strong>&gt;</strong> <a href="../dir_3bfcc16c8bbdb2d74b81ce33c082ff6e/"><strong>atmosphere</strong></a> <strong>&gt;</strong> <a href="../dir_c9cd73a564506b77e0cd8e52337735df/"><strong>experimental</strong></a> <strong>&gt;</strong> <a href="../NRLMSISE00_8hpp/"><strong>NRLMSISE00.hpp</strong></a></p>
 <p><a href="../NRLMSISE00_8hpp/">Go to the documentation of this file</a></p>
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="cp">#pragma once</span>
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
@@ -6251,9 +6251,9 @@ You're not viewing the latest version.
 </span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="k">namespace</span><span class="w"> </span><span class="nn">astro</span><span class="w"> </span><span class="p">{</span>
 </span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="k">namespace</span><span class="w"> </span><span class="nn">planets</span><span class="w"> </span><span class="p">{</span>
 </span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>
-</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="k">class</span><span class="w"> </span><span class="nc">NRLMSISE00Atmosphere</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="k">class</span><span class="w"> </span><span class="nc">Nrlmsise00Atmosphere</span><span class="w"> </span><span class="p">{</span>
 </span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">  </span><span class="k">public</span><span class="o">:</span>
-</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">    </span><span class="n">NRLMSISE00Atmosphere</span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">delete</span><span class="p">;</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">    </span><span class="n">Nrlmsise00Atmosphere</span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">delete</span><span class="p">;</span>
 </span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>
 </span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="n">Density</span><span class="w"> </span><span class="nf">find_atmospheric_density</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">State</span><span class="o">&amp;</span><span class="w"> </span><span class="n">state</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">f107a</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">f107</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">array</span><span class="o">&lt;</span><span class="kt">double</span><span class="p">,</span><span class="w"> </span><span class="mi">7</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">ap</span><span class="p">);</span>
 </span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="p">};</span>
@@ -6326,7 +6326,7 @@ You're not viewing the latest version.
       <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.action.edit", "content.action.view", "content.code.annotate", "content.code.copy", "navigation.indexes", "navigation.tabs", "navigation.footer", "navigation.top", "search.highlight", "search.share", "search.suggest", "toc.follow", "toc.integrate"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
       
         <script src="../../javascripts/ce_embed.js"></script>
       

@@ -23,7 +23,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="669" column="7" bodyfile="astrea/astro/astro/platforms/Vehicle.hpp" bodystart="669" bodyend="-1"/>
+        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="712" column="7" bodyfile="astrea/astro/astro/platforms/Vehicle.hpp" bodystart="712" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="public-func">
@@ -40,7 +40,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="271" column="5"/>
+        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="280" column="5"/>
       </memberdef>
       <memberdef kind="function" id="structastrea_1_1astro_1_1detail_1_1VehicleInner_1a38c0dd572be51ff91f935676ba7e31f5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -58,7 +58,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="276" column="5"/>
+        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="285" column="5"/>
       </memberdef>
       <memberdef kind="function" id="structastrea_1_1astro_1_1detail_1_1VehicleInner_1a83c08acb6d92e0e44541b62c44e09e69" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -76,7 +76,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="281" column="5"/>
+        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="290" column="5"/>
       </memberdef>
       <memberdef kind="function" id="structastrea_1_1astro_1_1detail_1_1VehicleInner_1abbf75fb5646959d20d498243f77d4cc2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="structastrea_1_1astro_1_1detail_1_1VehicleInner" kindref="compound">VehicleInner</ref> &amp;</type>
@@ -94,7 +94,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="286" column="18"/>
+        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="295" column="18"/>
       </memberdef>
       <memberdef kind="function" id="structastrea_1_1astro_1_1detail_1_1VehicleInner_1ac904e8aef94ea696f103cfd7aafaf2b4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="structastrea_1_1astro_1_1detail_1_1VehicleInner" kindref="compound">VehicleInner</ref> &amp;</type>
@@ -112,7 +112,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="291" column="18"/>
+        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="300" column="18"/>
       </memberdef>
       <memberdef kind="function" id="structastrea_1_1astro_1_1detail_1_1VehicleInner_1ab92064b0fe1afc106797d1200871cfc0" prot="public" static="no" const="no" explicit="yes" inline="yes" virt="non-virtual">
         <type></type>
@@ -141,7 +141,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="298" column="14" bodyfile="astrea/astro/astro/platforms/Vehicle.hpp" bodystart="298" bodyend="301"/>
+        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="307" column="14" bodyfile="astrea/astro/astro/platforms/Vehicle.hpp" bodystart="307" bodyend="310"/>
       </memberdef>
       <memberdef kind="function" id="structastrea_1_1astro_1_1detail_1_1VehicleInner_1ac405d1b95f97e49ac2eb7f8c4653daca" prot="public" static="no" const="no" explicit="yes" inline="yes" virt="non-virtual">
         <type></type>
@@ -170,159 +170,263 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="308" column="14" bodyfile="astrea/astro/astro/platforms/Vehicle.hpp" bodystart="308" bodyend="311"/>
+        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="317" column="14" bodyfile="astrea/astro/astro/platforms/Vehicle.hpp" bodystart="317" bodyend="320"/>
       </memberdef>
-      <memberdef kind="function" id="structastrea_1_1astro_1_1detail_1_1VehicleInner_1a7c857b46a366bf7f262bf433962bb87a" prot="public" static="no" const="yes" explicit="no" inline="yes" final="yes" virt="virtual">
+      <memberdef kind="function" id="structastrea_1_1astro_1_1detail_1_1VehicleInner_1a656d080130293baa7e507e8d6001f527" prot="public" static="no" const="yes" explicit="no" inline="yes" final="yes" virt="virtual">
         <type>Mass</type>
         <definition>Mass astrea::astro::detail::VehicleInner&lt; T &gt;::get_mass</definition>
-        <argsstring>() const final</argsstring>
+        <argsstring>(const State &amp;state) const final</argsstring>
         <name>get_mass</name>
         <qualifiedname>astrea::astro::detail::VehicleInner::get_mass</qualifiedname>
-        <reimplements refid="structastrea_1_1astro_1_1detail_1_1VehicleInnerBase_1a913423d7c4c0b10eef33eecc0da96421">get_mass</reimplements>
+        <reimplements refid="structastrea_1_1astro_1_1detail_1_1VehicleInnerBase_1a6db6a9399f466422000b02bb4fbb93e4">get_mass</reimplements>
+        <param>
+          <type>const <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
+          <declname>state</declname>
+        </param>
         <briefdescription>
 <para>Gets the mass of the vehicle. </para>
         </briefdescription>
         <detaileddescription>
-<para><simplesect kind="return"><para>Mass The mass of the vehicle. </para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>state</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The current state of the vehicle. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Mass The mass of the vehicle. </para>
 </simplesect>
 </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="318" column="10" bodyfile="astrea/astro/astro/platforms/Vehicle.hpp" bodystart="318" bodyend="318"/>
+        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="328" column="10" bodyfile="astrea/astro/astro/platforms/Vehicle.hpp" bodystart="328" bodyend="328"/>
       </memberdef>
-      <memberdef kind="function" id="structastrea_1_1astro_1_1detail_1_1VehicleInner_1a875495736b4d2eb3773adb329aacf782" prot="public" static="no" const="yes" explicit="no" inline="yes" final="yes" virt="virtual">
+      <memberdef kind="function" id="structastrea_1_1astro_1_1detail_1_1VehicleInner_1ad1076e9dcd1a1e6dbebb6ee15bef1599" prot="public" static="no" const="yes" explicit="no" inline="yes" final="yes" virt="virtual">
         <type><ref refid="classastrea_1_1astro_1_1InertiaTensor" kindref="compound">InertiaTensor</ref>&lt; <ref refid="structastrea_1_1astro_1_1frames_1_1dynamic_1_1body" kindref="compound">frames::dynamic::body</ref> &gt;</type>
         <definition>InertiaTensor&lt; frames::dynamic::body &gt; astrea::astro::detail::VehicleInner&lt; T &gt;::get_inertia_tensor</definition>
-        <argsstring>() const final</argsstring>
+        <argsstring>(const State &amp;state) const final</argsstring>
         <name>get_inertia_tensor</name>
         <qualifiedname>astrea::astro::detail::VehicleInner::get_inertia_tensor</qualifiedname>
-        <reimplements refid="structastrea_1_1astro_1_1detail_1_1VehicleInnerBase_1aa2d87365df8010058b4b2605d6d5852c">get_inertia_tensor</reimplements>
+        <reimplements refid="structastrea_1_1astro_1_1detail_1_1VehicleInnerBase_1aa96cdc94b7c452504ee307df8a28a221">get_inertia_tensor</reimplements>
+        <param>
+          <type>const <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
+          <declname>state</declname>
+        </param>
         <briefdescription>
 <para>Gets the inertia tensor of the vehicle. </para>
         </briefdescription>
         <detaileddescription>
-<para><simplesect kind="return"><para>InertiaTensor&lt;frames::dynamic::body&gt; The inertia tensor of the vehicle. </para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>state</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The current state of the vehicle. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>InertiaTensor&lt;frames::dynamic::body&gt; The inertia tensor of the vehicle. </para>
 </simplesect>
 </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="325" column="19" bodyfile="astrea/astro/astro/platforms/Vehicle.hpp" bodystart="325" bodyend="325"/>
+        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="336" column="19" bodyfile="astrea/astro/astro/platforms/Vehicle.hpp" bodystart="336" bodyend="339"/>
       </memberdef>
-      <memberdef kind="function" id="structastrea_1_1astro_1_1detail_1_1VehicleInner_1ade1fb03cf1677bde25c62770d0d1eb32" prot="public" static="no" const="yes" explicit="no" inline="yes" final="yes" virt="virtual">
+      <memberdef kind="function" id="structastrea_1_1astro_1_1detail_1_1VehicleInner_1a95ef6d388342d0c5b37b009f7e82f9e5" prot="public" static="no" const="yes" explicit="no" inline="yes" final="yes" virt="virtual">
         <type>SurfaceArea</type>
         <definition>SurfaceArea astrea::astro::detail::VehicleInner&lt; T &gt;::get_ram_area</definition>
-        <argsstring>() const final</argsstring>
+        <argsstring>(const State &amp;state) const final</argsstring>
         <name>get_ram_area</name>
         <qualifiedname>astrea::astro::detail::VehicleInner::get_ram_area</qualifiedname>
-        <reimplements refid="structastrea_1_1astro_1_1detail_1_1VehicleInnerBase_1aba72fd3af844ba489624177f655a0223">get_ram_area</reimplements>
+        <reimplements refid="structastrea_1_1astro_1_1detail_1_1VehicleInnerBase_1a54918a6ffc77f94f58f0c879ec880aa8">get_ram_area</reimplements>
+        <param>
+          <type>const <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
+          <declname>state</declname>
+        </param>
         <briefdescription>
 <para>Gets the ram area of the vehicle or a default value. </para>
         </briefdescription>
         <detaileddescription>
-<para><simplesect kind="return"><para>SurfaceArea The ram area of the vehicle. </para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>state</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The current state of the vehicle. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>SurfaceArea The ram area of the vehicle. </para>
 </simplesect>
 </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="360" column="17" bodyfile="astrea/astro/astro/platforms/Vehicle.hpp" bodystart="360" bodyend="360"/>
+        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="377" column="17" bodyfile="astrea/astro/astro/platforms/Vehicle.hpp" bodystart="377" bodyend="377"/>
       </memberdef>
-      <memberdef kind="function" id="structastrea_1_1astro_1_1detail_1_1VehicleInner_1a54b537b1885b65abfc97d0ec37d3f1d9" prot="public" static="no" const="yes" explicit="no" inline="yes" final="yes" virt="virtual">
+      <memberdef kind="function" id="structastrea_1_1astro_1_1detail_1_1VehicleInner_1a3985c4cd22cff2c91402ea917d40dd40" prot="public" static="no" const="yes" explicit="no" inline="yes" final="yes" virt="virtual">
         <type>SurfaceArea</type>
         <definition>SurfaceArea astrea::astro::detail::VehicleInner&lt; T &gt;::get_lift_area</definition>
-        <argsstring>() const final</argsstring>
+        <argsstring>(const State &amp;state) const final</argsstring>
         <name>get_lift_area</name>
         <qualifiedname>astrea::astro::detail::VehicleInner::get_lift_area</qualifiedname>
-        <reimplements refid="structastrea_1_1astro_1_1detail_1_1VehicleInnerBase_1a8e6967249ac863c33081de68cd1ff5a5">get_lift_area</reimplements>
+        <reimplements refid="structastrea_1_1astro_1_1detail_1_1VehicleInnerBase_1a1c837ff17e79e858eeb0f78ff562103a">get_lift_area</reimplements>
+        <param>
+          <type>const <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
+          <declname>state</declname>
+        </param>
         <briefdescription>
 <para>Gets the lift area of the vehicle or a default value. </para>
         </briefdescription>
         <detaileddescription>
-<para><simplesect kind="return"><para>SurfaceArea The lift area of the vehicle. </para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>state</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The current state of the vehicle. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>SurfaceArea The lift area of the vehicle. </para>
 </simplesect>
 </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="395" column="17" bodyfile="astrea/astro/astro/platforms/Vehicle.hpp" bodystart="395" bodyend="395"/>
+        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="415" column="17" bodyfile="astrea/astro/astro/platforms/Vehicle.hpp" bodystart="415" bodyend="415"/>
       </memberdef>
-      <memberdef kind="function" id="structastrea_1_1astro_1_1detail_1_1VehicleInner_1af770120939312a23252dece1de245590" prot="public" static="no" const="yes" explicit="no" inline="yes" final="yes" virt="virtual">
+      <memberdef kind="function" id="structastrea_1_1astro_1_1detail_1_1VehicleInner_1a5fc728f4dd437fbea12e3f5ac00baeb5" prot="public" static="no" const="yes" explicit="no" inline="yes" final="yes" virt="virtual">
         <type>SurfaceArea</type>
         <definition>SurfaceArea astrea::astro::detail::VehicleInner&lt; T &gt;::get_solar_area</definition>
-        <argsstring>() const final</argsstring>
+        <argsstring>(const State &amp;state) const final</argsstring>
         <name>get_solar_area</name>
         <qualifiedname>astrea::astro::detail::VehicleInner::get_solar_area</qualifiedname>
-        <reimplements refid="structastrea_1_1astro_1_1detail_1_1VehicleInnerBase_1a1e7033d9427ce3557b31712d7b703a07">get_solar_area</reimplements>
+        <reimplements refid="structastrea_1_1astro_1_1detail_1_1VehicleInnerBase_1a3e150005c630595f1f3af79495c2de32">get_solar_area</reimplements>
+        <param>
+          <type>const <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
+          <declname>state</declname>
+        </param>
         <briefdescription>
 <para>Gets the solar area of the vehicle or a default value. </para>
         </briefdescription>
         <detaileddescription>
-<para><simplesect kind="return"><para>SurfaceArea The solar area of the vehicle. </para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>state</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The current state of the vehicle. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>SurfaceArea The solar area of the vehicle. </para>
 </simplesect>
 </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="430" column="17" bodyfile="astrea/astro/astro/platforms/Vehicle.hpp" bodystart="430" bodyend="430"/>
+        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="453" column="17" bodyfile="astrea/astro/astro/platforms/Vehicle.hpp" bodystart="453" bodyend="453"/>
       </memberdef>
-      <memberdef kind="function" id="structastrea_1_1astro_1_1detail_1_1VehicleInner_1ab5273b512dabd29c83845b88ab7a006f" prot="public" static="no" const="yes" explicit="no" inline="yes" final="yes" virt="virtual">
+      <memberdef kind="function" id="structastrea_1_1astro_1_1detail_1_1VehicleInner_1a67cab92af8648f1f67081266b9d6f6bd" prot="public" static="no" const="yes" explicit="no" inline="yes" final="yes" virt="virtual">
         <type>Unitless</type>
         <definition>Unitless astrea::astro::detail::VehicleInner&lt; T &gt;::get_coefficient_of_drag</definition>
-        <argsstring>() const final</argsstring>
+        <argsstring>(const State &amp;state) const final</argsstring>
         <name>get_coefficient_of_drag</name>
         <qualifiedname>astrea::astro::detail::VehicleInner::get_coefficient_of_drag</qualifiedname>
-        <reimplements refid="structastrea_1_1astro_1_1detail_1_1VehicleInnerBase_1a3e590df12eb9c11995e3cf6c044914af">get_coefficient_of_drag</reimplements>
+        <reimplements refid="structastrea_1_1astro_1_1detail_1_1VehicleInnerBase_1a4d87b9d67fafc7aa3006aca2f6b06951">get_coefficient_of_drag</reimplements>
+        <param>
+          <type>const <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
+          <declname>state</declname>
+        </param>
         <briefdescription>
 <para>Gets the coefficient of drag of the vehicle or a default value. </para>
         </briefdescription>
         <detaileddescription>
-<para><simplesect kind="return"><para>Unitless The coefficient of drag of the vehicle. </para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>state</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The current state of the vehicle. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Unitless The coefficient of drag of the vehicle. </para>
 </simplesect>
 </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="465" column="14" bodyfile="astrea/astro/astro/platforms/Vehicle.hpp" bodystart="465" bodyend="465"/>
+        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="491" column="14" bodyfile="astrea/astro/astro/platforms/Vehicle.hpp" bodystart="491" bodyend="494"/>
       </memberdef>
-      <memberdef kind="function" id="structastrea_1_1astro_1_1detail_1_1VehicleInner_1aa314461ba9e2410497867ebe1d41a647" prot="public" static="no" const="yes" explicit="no" inline="yes" final="yes" virt="virtual">
+      <memberdef kind="function" id="structastrea_1_1astro_1_1detail_1_1VehicleInner_1a803e67158549a1cd8f9453f44d639411" prot="public" static="no" const="yes" explicit="no" inline="yes" final="yes" virt="virtual">
         <type>Unitless</type>
         <definition>Unitless astrea::astro::detail::VehicleInner&lt; T &gt;::get_coefficient_of_lift</definition>
-        <argsstring>() const final</argsstring>
+        <argsstring>(const State &amp;state) const final</argsstring>
         <name>get_coefficient_of_lift</name>
         <qualifiedname>astrea::astro::detail::VehicleInner::get_coefficient_of_lift</qualifiedname>
-        <reimplements refid="structastrea_1_1astro_1_1detail_1_1VehicleInnerBase_1a3cca83802a1f29482438f7d6b512d034">get_coefficient_of_lift</reimplements>
+        <reimplements refid="structastrea_1_1astro_1_1detail_1_1VehicleInnerBase_1a925771bae30e4c52ed1555c64f81dedc">get_coefficient_of_lift</reimplements>
+        <param>
+          <type>const <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
+          <declname>state</declname>
+        </param>
         <briefdescription>
 <para>Gets the coefficient of lift of the vehicle or a default value. </para>
         </briefdescription>
         <detaileddescription>
-<para><simplesect kind="return"><para>Unitless The coefficient of lift of the vehicle. </para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>state</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The current state of the vehicle. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Unitless The coefficient of lift of the vehicle. </para>
 </simplesect>
 </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="500" column="14" bodyfile="astrea/astro/astro/platforms/Vehicle.hpp" bodystart="500" bodyend="500"/>
+        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="532" column="14" bodyfile="astrea/astro/astro/platforms/Vehicle.hpp" bodystart="532" bodyend="535"/>
       </memberdef>
-      <memberdef kind="function" id="structastrea_1_1astro_1_1detail_1_1VehicleInner_1a9fe081f53197d0046e7c3d13a2fbfdb9" prot="public" static="no" const="yes" explicit="no" inline="yes" final="yes" virt="virtual">
+      <memberdef kind="function" id="structastrea_1_1astro_1_1detail_1_1VehicleInner_1a1d30357cbc5862ef92bcaac853ed9d56" prot="public" static="no" const="yes" explicit="no" inline="yes" final="yes" virt="virtual">
         <type>Unitless</type>
         <definition>Unitless astrea::astro::detail::VehicleInner&lt; T &gt;::get_coefficient_of_reflectivity</definition>
-        <argsstring>() const final</argsstring>
+        <argsstring>(const State &amp;state) const final</argsstring>
         <name>get_coefficient_of_reflectivity</name>
         <qualifiedname>astrea::astro::detail::VehicleInner::get_coefficient_of_reflectivity</qualifiedname>
-        <reimplements refid="structastrea_1_1astro_1_1detail_1_1VehicleInnerBase_1aa2996dc07882f2cb359eb6c1c71d7bcf">get_coefficient_of_reflectivity</reimplements>
+        <reimplements refid="structastrea_1_1astro_1_1detail_1_1VehicleInnerBase_1ae7cc44641e8ec9e372fc3ad93e1eaf1b">get_coefficient_of_reflectivity</reimplements>
+        <param>
+          <type>const <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
+          <declname>state</declname>
+        </param>
         <briefdescription>
 <para>Gets the coefficient of reflectivity of the vehicle or a default value. </para>
         </briefdescription>
         <detaileddescription>
-<para><simplesect kind="return"><para>Unitless The coefficient of reflectivity of the vehicle. </para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>state</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The current state of the vehicle. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Unitless The coefficient of reflectivity of the vehicle. </para>
 </simplesect>
 </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="535" column="14" bodyfile="astrea/astro/astro/platforms/Vehicle.hpp" bodystart="535" bodyend="535"/>
+        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="573" column="14" bodyfile="astrea/astro/astro/platforms/Vehicle.hpp" bodystart="573" bodyend="576"/>
       </memberdef>
       <memberdef kind="function" id="structastrea_1_1astro_1_1detail_1_1VehicleInner_1acc2dafd26faba5d8e9cbe8274d88d82e" prot="public" static="no" const="yes" explicit="no" inline="yes" final="yes" virt="virtual">
         <type>std::string</type>
@@ -341,7 +445,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="570" column="17" bodyfile="astrea/astro/astro/platforms/Vehicle.hpp" bodystart="570" bodyend="570"/>
+        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="613" column="17" bodyfile="astrea/astro/astro/platforms/Vehicle.hpp" bodystart="613" bodyend="613"/>
       </memberdef>
       <memberdef kind="function" id="structastrea_1_1astro_1_1detail_1_1VehicleInner_1a9843799c740dc1efb4e0c6a336afb3b3" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
@@ -368,7 +472,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="579" column="17" bodyfile="astrea/astro/astro/platforms/Vehicle.hpp" bodystart="579" bodyend="582"/>
+        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="622" column="17" bodyfile="astrea/astro/astro/platforms/Vehicle.hpp" bodystart="622" bodyend="625"/>
       </memberdef>
       <memberdef kind="function" id="structastrea_1_1astro_1_1detail_1_1VehicleInner_1a7080e7a7e5e2464801bff45fcfcac2f2" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
@@ -414,7 +518,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="593" column="17" bodyfile="astrea/astro/astro/platforms/Vehicle.hpp" bodystart="593" bodyend="596"/>
+        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="636" column="17" bodyfile="astrea/astro/astro/platforms/Vehicle.hpp" bodystart="636" bodyend="639"/>
       </memberdef>
       <memberdef kind="function" id="structastrea_1_1astro_1_1detail_1_1VehicleInner_1a13cc0cb44f36091b2ac6af6d5be28904" prot="public" static="no" const="yes" explicit="no" inline="yes" final="yes" virt="virtual">
         <type><ref refid="structastrea_1_1astro_1_1Perturbation" kindref="compound">Perturbation</ref></type>
@@ -446,7 +550,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="604" column="18" bodyfile="astrea/astro/astro/platforms/Vehicle.hpp" bodystart="604" bodyend="607"/>
+        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="647" column="18" bodyfile="astrea/astro/astro/platforms/Vehicle.hpp" bodystart="647" bodyend="650"/>
       </memberdef>
       <memberdef kind="function" id="structastrea_1_1astro_1_1detail_1_1VehicleInner_1a04673c9b2faaba1c5aa0150d2bf4853e" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
@@ -502,7 +606,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="619" column="18" bodyfile="astrea/astro/astro/platforms/Vehicle.hpp" bodystart="619" bodyend="624"/>
+        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="662" column="18" bodyfile="astrea/astro/astro/platforms/Vehicle.hpp" bodystart="662" bodyend="667"/>
       </memberdef>
       <memberdef kind="function" id="structastrea_1_1astro_1_1detail_1_1VehicleInner_1ab4674c7a20ca5c6077980c30519d178c" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
@@ -560,7 +664,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="636" column="18" bodyfile="astrea/astro/astro/platforms/Vehicle.hpp" bodystart="636" bodyend="639"/>
+        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="679" column="18" bodyfile="astrea/astro/astro/platforms/Vehicle.hpp" bodystart="679" bodyend="682"/>
       </memberdef>
       <memberdef kind="function" id="structastrea_1_1astro_1_1detail_1_1VehicleInner_1a5866b37c7f40f48ef3f30d15c38e0d79" prot="public" static="no" const="yes" explicit="no" inline="yes" final="yes" virt="virtual">
         <type>std::unique_ptr&lt; <ref refid="structastrea_1_1astro_1_1detail_1_1VehicleInnerBase" kindref="compound">VehicleInnerBase</ref> &gt;</type>
@@ -579,7 +683,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="646" column="21" bodyfile="astrea/astro/astro/platforms/Vehicle.hpp" bodystart="646" bodyend="646"/>
+        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="689" column="21" bodyfile="astrea/astro/astro/platforms/Vehicle.hpp" bodystart="689" bodyend="689"/>
       </memberdef>
       <memberdef kind="function" id="structastrea_1_1astro_1_1detail_1_1VehicleInner_1af3fd8955c35abd1cfa5195b3f25d6fc1" prot="public" static="no" const="yes" explicit="no" inline="yes" final="yes" virt="virtual">
         <type>const void *</type>
@@ -598,7 +702,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="653" column="16" bodyfile="astrea/astro/astro/platforms/Vehicle.hpp" bodystart="653" bodyend="653"/>
+        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="696" column="16" bodyfile="astrea/astro/astro/platforms/Vehicle.hpp" bodystart="696" bodyend="696"/>
       </memberdef>
       <memberdef kind="function" id="structastrea_1_1astro_1_1detail_1_1VehicleInner_1a1044bb2f64013555e65f4873d215e4c2" prot="public" static="no" const="no" explicit="no" inline="yes" final="yes" virt="virtual">
         <type>void *</type>
@@ -617,7 +721,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="660" column="10" bodyfile="astrea/astro/astro/platforms/Vehicle.hpp" bodystart="660" bodyend="660"/>
+        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="703" column="10" bodyfile="astrea/astro/astro/platforms/Vehicle.hpp" bodystart="703" bodyend="703"/>
       </memberdef>
       <memberdef kind="function" id="structastrea_1_1astro_1_1detail_1_1VehicleInner_1a8c4502276adf035d0b6f810e1d9d1405" prot="public" static="no" const="yes" explicit="no" inline="yes" final="yes" virt="virtual">
         <type>const std::type_info &amp;</type>
@@ -636,11 +740,11 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="667" column="26" bodyfile="astrea/astro/astro/platforms/Vehicle.hpp" bodystart="667" bodyend="667"/>
+        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="710" column="26" bodyfile="astrea/astro/astro/platforms/Vehicle.hpp" bodystart="710" bodyend="710"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="public-static-func">
-      <memberdef kind="function" id="structastrea_1_1astro_1_1detail_1_1VehicleInner_1adadacce00d0bb0f51df6ae36ffcacdd8" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="structastrea_1_1astro_1_1detail_1_1VehicleInner_1abd467516b7a5dc93d54c3899808efb30" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
             <type>typename U</type>
@@ -648,11 +752,14 @@
         </templateparamlist>
         <type><ref refid="classastrea_1_1astro_1_1InertiaTensor" kindref="compound">InertiaTensor</ref>&lt; <ref refid="structastrea_1_1astro_1_1frames_1_1dynamic_1_1body" kindref="compound">frames::dynamic::body</ref> &gt;</type>
         <definition>static InertiaTensor&lt; frames::dynamic::body &gt; astrea::astro::detail::VehicleInner&lt; T &gt;::get_inertia_tensor_impl</definition>
-        <argsstring>(const U &amp;)</argsstring>
+        <argsstring>(const U &amp;, const State &amp;)</argsstring>
         <name>get_inertia_tensor_impl</name>
         <qualifiedname>astrea::astro::detail::VehicleInner::get_inertia_tensor_impl</qualifiedname>
         <param>
           <type>const U &amp;</type>
+        </param>
+        <param>
+          <type>const <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
         </param>
     <requiresclause>(!HasGetInertiaTensor&lt;U&gt;)    </requiresclause>
         <briefdescription>
@@ -676,6 +783,14 @@
 <para>The vehicle instance to get the inertia tensor from. </para>
 </parameterdescription>
 </parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>state</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The current state of the vehicle. </para>
+</parameterdescription>
+</parameteritem>
 </parameterlist>
 <simplesect kind="return"><para>InertiaTensor&lt;frames::dynamic::body&gt; The inertia tensor of the vehicle. </para>
 </simplesect>
@@ -683,9 +798,9 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="336" column="26" bodyfile="astrea/astro/astro/platforms/Vehicle.hpp" bodystart="336" bodyend="339"/>
+        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="351" column="26" bodyfile="astrea/astro/astro/platforms/Vehicle.hpp" bodystart="351" bodyend="354"/>
       </memberdef>
-      <memberdef kind="function" id="structastrea_1_1astro_1_1detail_1_1VehicleInner_1a181b2b70dda3fdd52593e139c00973e4" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="structastrea_1_1astro_1_1detail_1_1VehicleInner_1aba10fa9f1a586cd9c358157dbdb32bf9" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
             <type>typename U</type>
@@ -693,12 +808,16 @@
         </templateparamlist>
         <type><ref refid="classastrea_1_1astro_1_1InertiaTensor" kindref="compound">InertiaTensor</ref>&lt; <ref refid="structastrea_1_1astro_1_1frames_1_1dynamic_1_1body" kindref="compound">frames::dynamic::body</ref> &gt;</type>
         <definition>static InertiaTensor&lt; frames::dynamic::body &gt; astrea::astro::detail::VehicleInner&lt; T &gt;::get_inertia_tensor_impl</definition>
-        <argsstring>(const U &amp;value)</argsstring>
+        <argsstring>(const U &amp;value, const State &amp;state)</argsstring>
         <name>get_inertia_tensor_impl</name>
         <qualifiedname>astrea::astro::detail::VehicleInner::get_inertia_tensor_impl</qualifiedname>
         <param>
           <type>const U &amp;</type>
           <declname>value</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
+          <declname>state</declname>
         </param>
     <requiresclause>(HasGetInertiaTensor&lt;U&gt;)    </requiresclause>
         <briefdescription>
@@ -722,6 +841,14 @@
 <para>The vehicle instance to get the inertia tensor from. </para>
 </parameterdescription>
 </parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>state</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The current state of the vehicle. </para>
+</parameterdescription>
+</parameteritem>
 </parameterlist>
 <simplesect kind="return"><para>InertiaTensor&lt;frames::dynamic::body&gt; The inertia tensor of the vehicle. </para>
 </simplesect>
@@ -729,9 +856,9 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="350" column="26" bodyfile="astrea/astro/astro/platforms/Vehicle.hpp" bodystart="350" bodyend="353"/>
+        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="366" column="26" bodyfile="astrea/astro/astro/platforms/Vehicle.hpp" bodystart="366" bodyend="369"/>
       </memberdef>
-      <memberdef kind="function" id="structastrea_1_1astro_1_1detail_1_1VehicleInner_1a59620dcc0d1123ec67c88f8696e6b44a" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="structastrea_1_1astro_1_1detail_1_1VehicleInner_1a44050f1adecec288f8e484e55c3cc198" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
             <type>typename U</type>
@@ -739,11 +866,14 @@
         </templateparamlist>
         <type>SurfaceArea</type>
         <definition>static SurfaceArea astrea::astro::detail::VehicleInner&lt; T &gt;::get_ram_area_impl</definition>
-        <argsstring>(const U &amp;)</argsstring>
+        <argsstring>(const U &amp;, const State &amp;)</argsstring>
         <name>get_ram_area_impl</name>
         <qualifiedname>astrea::astro::detail::VehicleInner::get_ram_area_impl</qualifiedname>
         <param>
           <type>const U &amp;</type>
+        </param>
+        <param>
+          <type>const <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
         </param>
     <requiresclause>(!HasGetRamArea&lt;U&gt;)    </requiresclause>
         <briefdescription>
@@ -767,6 +897,14 @@
 <para>The vehicle instance to get the ram area from. </para>
 </parameterdescription>
 </parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>state</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The current state of the vehicle. </para>
+</parameterdescription>
+</parameteritem>
 </parameterlist>
 <simplesect kind="return"><para>SurfaceArea The ram area of the vehicle. </para>
 </simplesect>
@@ -774,9 +912,9 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="371" column="24" bodyfile="astrea/astro/astro/platforms/Vehicle.hpp" bodystart="371" bodyend="374"/>
+        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="389" column="24" bodyfile="astrea/astro/astro/platforms/Vehicle.hpp" bodystart="389" bodyend="392"/>
       </memberdef>
-      <memberdef kind="function" id="structastrea_1_1astro_1_1detail_1_1VehicleInner_1afe8406c010f18c5886d62e4f0358c56d" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="structastrea_1_1astro_1_1detail_1_1VehicleInner_1ab1805d48b9bdef747212a40802936e90" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
             <type>typename U</type>
@@ -784,12 +922,16 @@
         </templateparamlist>
         <type>SurfaceArea</type>
         <definition>static SurfaceArea astrea::astro::detail::VehicleInner&lt; T &gt;::get_ram_area_impl</definition>
-        <argsstring>(const U &amp;value)</argsstring>
+        <argsstring>(const U &amp;value, const State &amp;state)</argsstring>
         <name>get_ram_area_impl</name>
         <qualifiedname>astrea::astro::detail::VehicleInner::get_ram_area_impl</qualifiedname>
         <param>
           <type>const U &amp;</type>
           <declname>value</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
+          <declname>state</declname>
         </param>
     <requiresclause>(HasGetRamArea&lt;U&gt;)    </requiresclause>
         <briefdescription>
@@ -813,6 +955,14 @@
 <para>The vehicle instance to get the ram area from. </para>
 </parameterdescription>
 </parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>state</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The current state of the vehicle. </para>
+</parameterdescription>
+</parameteritem>
 </parameterlist>
 <simplesect kind="return"><para>SurfaceArea The ram area of the vehicle. </para>
 </simplesect>
@@ -820,9 +970,9 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="385" column="24" bodyfile="astrea/astro/astro/platforms/Vehicle.hpp" bodystart="385" bodyend="388"/>
+        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="404" column="24" bodyfile="astrea/astro/astro/platforms/Vehicle.hpp" bodystart="404" bodyend="407"/>
       </memberdef>
-      <memberdef kind="function" id="structastrea_1_1astro_1_1detail_1_1VehicleInner_1a38b7e2024a0c95cba51c1fe7a9a08132" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="structastrea_1_1astro_1_1detail_1_1VehicleInner_1aba2af1b1f19c3c0a6942792cd20695dc" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
             <type>typename U</type>
@@ -830,11 +980,14 @@
         </templateparamlist>
         <type>SurfaceArea</type>
         <definition>static SurfaceArea astrea::astro::detail::VehicleInner&lt; T &gt;::get_lift_area_impl</definition>
-        <argsstring>(const U &amp;)</argsstring>
+        <argsstring>(const U &amp;, const State &amp;)</argsstring>
         <name>get_lift_area_impl</name>
         <qualifiedname>astrea::astro::detail::VehicleInner::get_lift_area_impl</qualifiedname>
         <param>
           <type>const U &amp;</type>
+        </param>
+        <param>
+          <type>const <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
         </param>
     <requiresclause>(!HasGetLiftArea&lt;U&gt;)    </requiresclause>
         <briefdescription>
@@ -858,6 +1011,14 @@
 <para>The vehicle instance to get the lift area from. </para>
 </parameterdescription>
 </parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>state</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The current state of the vehicle. </para>
+</parameterdescription>
+</parameteritem>
 </parameterlist>
 <simplesect kind="return"><para>SurfaceArea The lift area of the vehicle. </para>
 </simplesect>
@@ -865,9 +1026,9 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="406" column="24" bodyfile="astrea/astro/astro/platforms/Vehicle.hpp" bodystart="406" bodyend="409"/>
+        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="427" column="24" bodyfile="astrea/astro/astro/platforms/Vehicle.hpp" bodystart="427" bodyend="430"/>
       </memberdef>
-      <memberdef kind="function" id="structastrea_1_1astro_1_1detail_1_1VehicleInner_1a719aff1560f66bc0ca51c1a23ab6371b" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="structastrea_1_1astro_1_1detail_1_1VehicleInner_1a1089ab6cfd40eb9c2adb5d41b473e410" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
             <type>typename U</type>
@@ -875,12 +1036,16 @@
         </templateparamlist>
         <type>SurfaceArea</type>
         <definition>static SurfaceArea astrea::astro::detail::VehicleInner&lt; T &gt;::get_lift_area_impl</definition>
-        <argsstring>(const U &amp;value)</argsstring>
+        <argsstring>(const U &amp;value, const State &amp;state)</argsstring>
         <name>get_lift_area_impl</name>
         <qualifiedname>astrea::astro::detail::VehicleInner::get_lift_area_impl</qualifiedname>
         <param>
           <type>const U &amp;</type>
           <declname>value</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
+          <declname>state</declname>
         </param>
     <requiresclause>(HasGetLiftArea&lt;U&gt;)    </requiresclause>
         <briefdescription>
@@ -904,6 +1069,14 @@
 <para>The vehicle instance to get the lift area from. </para>
 </parameterdescription>
 </parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>state</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The current state of the vehicle. </para>
+</parameterdescription>
+</parameteritem>
 </parameterlist>
 <simplesect kind="return"><para>SurfaceArea The lift area of the vehicle. </para>
 </simplesect>
@@ -911,9 +1084,9 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="420" column="24" bodyfile="astrea/astro/astro/platforms/Vehicle.hpp" bodystart="420" bodyend="423"/>
+        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="442" column="24" bodyfile="astrea/astro/astro/platforms/Vehicle.hpp" bodystart="442" bodyend="445"/>
       </memberdef>
-      <memberdef kind="function" id="structastrea_1_1astro_1_1detail_1_1VehicleInner_1a1c65491b21f62d462598c5bad4327271" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="structastrea_1_1astro_1_1detail_1_1VehicleInner_1abb76a41e923e41dd3c8413f6c73b1b42" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
             <type>typename U</type>
@@ -921,11 +1094,14 @@
         </templateparamlist>
         <type>SurfaceArea</type>
         <definition>static SurfaceArea astrea::astro::detail::VehicleInner&lt; T &gt;::get_solar_area_impl</definition>
-        <argsstring>(const U &amp;)</argsstring>
+        <argsstring>(const U &amp;, const State &amp;)</argsstring>
         <name>get_solar_area_impl</name>
         <qualifiedname>astrea::astro::detail::VehicleInner::get_solar_area_impl</qualifiedname>
         <param>
           <type>const U &amp;</type>
+        </param>
+        <param>
+          <type>const <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
         </param>
     <requiresclause>(!HasGetSolarArea&lt;U&gt;)    </requiresclause>
         <briefdescription>
@@ -949,6 +1125,14 @@
 <para>The vehicle instance to get the solar area from. </para>
 </parameterdescription>
 </parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>state</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The current state of the vehicle. </para>
+</parameterdescription>
+</parameteritem>
 </parameterlist>
 <simplesect kind="return"><para>SurfaceArea The solar area of the vehicle. </para>
 </simplesect>
@@ -956,9 +1140,9 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="441" column="24" bodyfile="astrea/astro/astro/platforms/Vehicle.hpp" bodystart="441" bodyend="444"/>
+        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="465" column="24" bodyfile="astrea/astro/astro/platforms/Vehicle.hpp" bodystart="465" bodyend="468"/>
       </memberdef>
-      <memberdef kind="function" id="structastrea_1_1astro_1_1detail_1_1VehicleInner_1ab51383b56263989e434dd771b9633703" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="structastrea_1_1astro_1_1detail_1_1VehicleInner_1a2f94b9a925fdd1f12350024d1b26c00f" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
             <type>typename U</type>
@@ -966,12 +1150,16 @@
         </templateparamlist>
         <type>SurfaceArea</type>
         <definition>static SurfaceArea astrea::astro::detail::VehicleInner&lt; T &gt;::get_solar_area_impl</definition>
-        <argsstring>(const U &amp;value)</argsstring>
+        <argsstring>(const U &amp;value, const State &amp;state)</argsstring>
         <name>get_solar_area_impl</name>
         <qualifiedname>astrea::astro::detail::VehicleInner::get_solar_area_impl</qualifiedname>
         <param>
           <type>const U &amp;</type>
           <declname>value</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
+          <declname>state</declname>
         </param>
     <requiresclause>(HasGetSolarArea&lt;U&gt;)    </requiresclause>
         <briefdescription>
@@ -995,6 +1183,14 @@
 <para>The vehicle instance to get the solar area from. </para>
 </parameterdescription>
 </parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>state</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The current state of the vehicle. </para>
+</parameterdescription>
+</parameteritem>
 </parameterlist>
 <simplesect kind="return"><para>SurfaceArea The solar area of the vehicle. </para>
 </simplesect>
@@ -1002,9 +1198,9 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="455" column="24" bodyfile="astrea/astro/astro/platforms/Vehicle.hpp" bodystart="455" bodyend="458"/>
+        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="480" column="24" bodyfile="astrea/astro/astro/platforms/Vehicle.hpp" bodystart="480" bodyend="483"/>
       </memberdef>
-      <memberdef kind="function" id="structastrea_1_1astro_1_1detail_1_1VehicleInner_1aa3b1b74c64edb463959054a541e58095" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="structastrea_1_1astro_1_1detail_1_1VehicleInner_1a736bc1fa5752989fccfde15d0697735e" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
             <type>typename U</type>
@@ -1012,11 +1208,14 @@
         </templateparamlist>
         <type>Unitless</type>
         <definition>static Unitless astrea::astro::detail::VehicleInner&lt; T &gt;::get_coefficient_of_drag_impl</definition>
-        <argsstring>(const U &amp;)</argsstring>
+        <argsstring>(const U &amp;, const State &amp;)</argsstring>
         <name>get_coefficient_of_drag_impl</name>
         <qualifiedname>astrea::astro::detail::VehicleInner::get_coefficient_of_drag_impl</qualifiedname>
         <param>
           <type>const U &amp;</type>
+        </param>
+        <param>
+          <type>const <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
         </param>
     <requiresclause>(!HasGetCoefficientOfDrag&lt;U&gt;)    </requiresclause>
         <briefdescription>
@@ -1040,6 +1239,14 @@
 <para>The vehicle instance to get the coefficient of drag from. </para>
 </parameterdescription>
 </parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>state</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The current state of the vehicle. </para>
+</parameterdescription>
+</parameteritem>
 </parameterlist>
 <simplesect kind="return"><para>Unitless The coefficient of drag of the vehicle. </para>
 </simplesect>
@@ -1047,9 +1254,9 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="476" column="21" bodyfile="astrea/astro/astro/platforms/Vehicle.hpp" bodystart="476" bodyend="479"/>
+        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="506" column="21" bodyfile="astrea/astro/astro/platforms/Vehicle.hpp" bodystart="506" bodyend="509"/>
       </memberdef>
-      <memberdef kind="function" id="structastrea_1_1astro_1_1detail_1_1VehicleInner_1a6be493f607d964ab58bf967586bcf98f" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="structastrea_1_1astro_1_1detail_1_1VehicleInner_1a4697949af82e3ad483249cf846e7adf9" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
             <type>typename U</type>
@@ -1057,12 +1264,16 @@
         </templateparamlist>
         <type>Unitless</type>
         <definition>static Unitless astrea::astro::detail::VehicleInner&lt; T &gt;::get_coefficient_of_drag_impl</definition>
-        <argsstring>(const U &amp;value)</argsstring>
+        <argsstring>(const U &amp;value, const State &amp;state)</argsstring>
         <name>get_coefficient_of_drag_impl</name>
         <qualifiedname>astrea::astro::detail::VehicleInner::get_coefficient_of_drag_impl</qualifiedname>
         <param>
           <type>const U &amp;</type>
           <declname>value</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
+          <declname>state</declname>
         </param>
     <requiresclause>(HasGetCoefficientOfDrag&lt;U&gt;)    </requiresclause>
         <briefdescription>
@@ -1086,6 +1297,14 @@
 <para>The vehicle instance to get the coefficient of drag from. </para>
 </parameterdescription>
 </parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>state</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The current state of the vehicle. </para>
+</parameterdescription>
+</parameteritem>
 </parameterlist>
 <simplesect kind="return"><para>Unitless The coefficient of drag of the vehicle. </para>
 </simplesect>
@@ -1093,9 +1312,9 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="490" column="21" bodyfile="astrea/astro/astro/platforms/Vehicle.hpp" bodystart="490" bodyend="493"/>
+        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="521" column="21" bodyfile="astrea/astro/astro/platforms/Vehicle.hpp" bodystart="521" bodyend="524"/>
       </memberdef>
-      <memberdef kind="function" id="structastrea_1_1astro_1_1detail_1_1VehicleInner_1afbc9cf2ab07d5f18ff22af08e1ffafa5" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="structastrea_1_1astro_1_1detail_1_1VehicleInner_1aacda310677bdb23329467efdc7e938c0" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
             <type>typename U</type>
@@ -1103,11 +1322,14 @@
         </templateparamlist>
         <type>Unitless</type>
         <definition>static Unitless astrea::astro::detail::VehicleInner&lt; T &gt;::get_coefficient_of_lift_impl</definition>
-        <argsstring>(const U &amp;)</argsstring>
+        <argsstring>(const U &amp;, const State &amp;)</argsstring>
         <name>get_coefficient_of_lift_impl</name>
         <qualifiedname>astrea::astro::detail::VehicleInner::get_coefficient_of_lift_impl</qualifiedname>
         <param>
           <type>const U &amp;</type>
+        </param>
+        <param>
+          <type>const <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
         </param>
     <requiresclause>(!HasGetCoefficientOfLift&lt;U&gt;)    </requiresclause>
         <briefdescription>
@@ -1131,6 +1353,14 @@
 <para>The vehicle instance to get the coefficient of lift from. </para>
 </parameterdescription>
 </parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>state</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The current state of the vehicle. </para>
+</parameterdescription>
+</parameteritem>
 </parameterlist>
 <simplesect kind="return"><para>Unitless The coefficient of lift of the vehicle. </para>
 </simplesect>
@@ -1138,9 +1368,9 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="511" column="21" bodyfile="astrea/astro/astro/platforms/Vehicle.hpp" bodystart="511" bodyend="514"/>
+        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="547" column="21" bodyfile="astrea/astro/astro/platforms/Vehicle.hpp" bodystart="547" bodyend="550"/>
       </memberdef>
-      <memberdef kind="function" id="structastrea_1_1astro_1_1detail_1_1VehicleInner_1aaa977c88413e35b71218075084e2d398" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="structastrea_1_1astro_1_1detail_1_1VehicleInner_1a7d4dcbbf7678bf6dccdcb80b1137c294" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
             <type>typename U</type>
@@ -1148,12 +1378,16 @@
         </templateparamlist>
         <type>Unitless</type>
         <definition>static Unitless astrea::astro::detail::VehicleInner&lt; T &gt;::get_coefficient_of_lift_impl</definition>
-        <argsstring>(const U &amp;value)</argsstring>
+        <argsstring>(const U &amp;value, const State &amp;state)</argsstring>
         <name>get_coefficient_of_lift_impl</name>
         <qualifiedname>astrea::astro::detail::VehicleInner::get_coefficient_of_lift_impl</qualifiedname>
         <param>
           <type>const U &amp;</type>
           <declname>value</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
+          <declname>state</declname>
         </param>
     <requiresclause>(HasGetCoefficientOfLift&lt;U&gt;)    </requiresclause>
         <briefdescription>
@@ -1177,6 +1411,14 @@
 <para>The vehicle instance to get the coefficient of lift from. </para>
 </parameterdescription>
 </parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>state</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The current state of the vehicle. </para>
+</parameterdescription>
+</parameteritem>
 </parameterlist>
 <simplesect kind="return"><para>Unitless The coefficient of lift of the vehicle. </para>
 </simplesect>
@@ -1184,9 +1426,9 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="525" column="21" bodyfile="astrea/astro/astro/platforms/Vehicle.hpp" bodystart="525" bodyend="528"/>
+        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="562" column="21" bodyfile="astrea/astro/astro/platforms/Vehicle.hpp" bodystart="562" bodyend="565"/>
       </memberdef>
-      <memberdef kind="function" id="structastrea_1_1astro_1_1detail_1_1VehicleInner_1a4243951f09704d52c0cec78e04d7abdd" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="structastrea_1_1astro_1_1detail_1_1VehicleInner_1a4c1124666815e590a704d9bedd274223" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
             <type>typename U</type>
@@ -1194,11 +1436,14 @@
         </templateparamlist>
         <type>Unitless</type>
         <definition>static Unitless astrea::astro::detail::VehicleInner&lt; T &gt;::get_coefficient_of_reflectivity_impl</definition>
-        <argsstring>(const U &amp;)</argsstring>
+        <argsstring>(const U &amp;, const State &amp;)</argsstring>
         <name>get_coefficient_of_reflectivity_impl</name>
         <qualifiedname>astrea::astro::detail::VehicleInner::get_coefficient_of_reflectivity_impl</qualifiedname>
         <param>
           <type>const U &amp;</type>
+        </param>
+        <param>
+          <type>const <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
         </param>
     <requiresclause>(!HasGetCoefficientOfReflectivity&lt;U&gt;)    </requiresclause>
         <briefdescription>
@@ -1222,6 +1467,14 @@
 <para>The vehicle instance to get the coefficient of reflectivity from. </para>
 </parameterdescription>
 </parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>state</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The current state of the vehicle. </para>
+</parameterdescription>
+</parameteritem>
 </parameterlist>
 <simplesect kind="return"><para>Unitless The coefficient of reflectivity of the vehicle. </para>
 </simplesect>
@@ -1229,9 +1482,9 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="546" column="21" bodyfile="astrea/astro/astro/platforms/Vehicle.hpp" bodystart="546" bodyend="549"/>
+        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="588" column="21" bodyfile="astrea/astro/astro/platforms/Vehicle.hpp" bodystart="588" bodyend="591"/>
       </memberdef>
-      <memberdef kind="function" id="structastrea_1_1astro_1_1detail_1_1VehicleInner_1ab2e72c7f88f5e30415c1c62d6be3e692" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="structastrea_1_1astro_1_1detail_1_1VehicleInner_1afd75ae4a3b1cfc06574dcfcacb1dd00a" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
             <type>typename U</type>
@@ -1239,12 +1492,16 @@
         </templateparamlist>
         <type>Unitless</type>
         <definition>static Unitless astrea::astro::detail::VehicleInner&lt; T &gt;::get_coefficient_of_reflectivity_impl</definition>
-        <argsstring>(const U &amp;value)</argsstring>
+        <argsstring>(const U &amp;value, const State &amp;state)</argsstring>
         <name>get_coefficient_of_reflectivity_impl</name>
         <qualifiedname>astrea::astro::detail::VehicleInner::get_coefficient_of_reflectivity_impl</qualifiedname>
         <param>
           <type>const U &amp;</type>
           <declname>value</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
+          <declname>state</declname>
         </param>
     <requiresclause>(HasGetCoefficientOfReflectivity&lt;U&gt;)    </requiresclause>
         <briefdescription>
@@ -1268,6 +1525,14 @@
 <para>The vehicle instance to get the coefficient of reflectivity from. </para>
 </parameterdescription>
 </parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>state</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The current state of the vehicle. </para>
+</parameterdescription>
+</parameteritem>
 </parameterlist>
 <simplesect kind="return"><para>Unitless The coefficient of reflectivity of the vehicle. </para>
 </simplesect>
@@ -1275,7 +1540,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="560" column="21" bodyfile="astrea/astro/astro/platforms/Vehicle.hpp" bodystart="560" bodyend="563"/>
+        <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="603" column="21" bodyfile="astrea/astro/astro/platforms/Vehicle.hpp" bodystart="603" bodyend="606"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
@@ -1317,40 +1582,40 @@
         <link refid="structastrea_1_1astro_1_1detail_1_1VehicleInnerBase"/>
       </node>
     </collaborationgraph>
-    <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="266" column="1" bodyfile="astrea/astro/astro/platforms/Vehicle.hpp" bodystart="266" bodyend="670"/>
+    <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="275" column="1" bodyfile="astrea/astro/astro/platforms/Vehicle.hpp" bodystart="275" bodyend="713"/>
     <listofallmembers>
       <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1aa976454970ea0247b49a6a3e5e4c3583" prot="public" virt="non-virtual"><scope>astrea::astro::detail::VehicleInner</scope><name>_value</name></member>
       <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1a5866b37c7f40f48ef3f30d15c38e0d79" prot="public" virt="virtual"><scope>astrea::astro::detail::VehicleInner</scope><name>clone</name></member>
-      <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1ab5273b512dabd29c83845b88ab7a006f" prot="public" virt="virtual"><scope>astrea::astro::detail::VehicleInner</scope><name>get_coefficient_of_drag</name></member>
-      <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1aa3b1b74c64edb463959054a541e58095" prot="public" virt="non-virtual"><scope>astrea::astro::detail::VehicleInner</scope><name>get_coefficient_of_drag_impl</name></member>
-      <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1a6be493f607d964ab58bf967586bcf98f" prot="public" virt="non-virtual"><scope>astrea::astro::detail::VehicleInner</scope><name>get_coefficient_of_drag_impl</name></member>
-      <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1aa314461ba9e2410497867ebe1d41a647" prot="public" virt="virtual"><scope>astrea::astro::detail::VehicleInner</scope><name>get_coefficient_of_lift</name></member>
-      <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1afbc9cf2ab07d5f18ff22af08e1ffafa5" prot="public" virt="non-virtual"><scope>astrea::astro::detail::VehicleInner</scope><name>get_coefficient_of_lift_impl</name></member>
-      <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1aaa977c88413e35b71218075084e2d398" prot="public" virt="non-virtual"><scope>astrea::astro::detail::VehicleInner</scope><name>get_coefficient_of_lift_impl</name></member>
-      <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1a9fe081f53197d0046e7c3d13a2fbfdb9" prot="public" virt="virtual"><scope>astrea::astro::detail::VehicleInner</scope><name>get_coefficient_of_reflectivity</name></member>
-      <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1a4243951f09704d52c0cec78e04d7abdd" prot="public" virt="non-virtual"><scope>astrea::astro::detail::VehicleInner</scope><name>get_coefficient_of_reflectivity_impl</name></member>
-      <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1ab2e72c7f88f5e30415c1c62d6be3e692" prot="public" virt="non-virtual"><scope>astrea::astro::detail::VehicleInner</scope><name>get_coefficient_of_reflectivity_impl</name></member>
+      <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1a67cab92af8648f1f67081266b9d6f6bd" prot="public" virt="virtual"><scope>astrea::astro::detail::VehicleInner</scope><name>get_coefficient_of_drag</name></member>
+      <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1a736bc1fa5752989fccfde15d0697735e" prot="public" virt="non-virtual"><scope>astrea::astro::detail::VehicleInner</scope><name>get_coefficient_of_drag_impl</name></member>
+      <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1a4697949af82e3ad483249cf846e7adf9" prot="public" virt="non-virtual"><scope>astrea::astro::detail::VehicleInner</scope><name>get_coefficient_of_drag_impl</name></member>
+      <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1a803e67158549a1cd8f9453f44d639411" prot="public" virt="virtual"><scope>astrea::astro::detail::VehicleInner</scope><name>get_coefficient_of_lift</name></member>
+      <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1aacda310677bdb23329467efdc7e938c0" prot="public" virt="non-virtual"><scope>astrea::astro::detail::VehicleInner</scope><name>get_coefficient_of_lift_impl</name></member>
+      <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1a7d4dcbbf7678bf6dccdcb80b1137c294" prot="public" virt="non-virtual"><scope>astrea::astro::detail::VehicleInner</scope><name>get_coefficient_of_lift_impl</name></member>
+      <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1a1d30357cbc5862ef92bcaac853ed9d56" prot="public" virt="virtual"><scope>astrea::astro::detail::VehicleInner</scope><name>get_coefficient_of_reflectivity</name></member>
+      <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1a4c1124666815e590a704d9bedd274223" prot="public" virt="non-virtual"><scope>astrea::astro::detail::VehicleInner</scope><name>get_coefficient_of_reflectivity_impl</name></member>
+      <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1afd75ae4a3b1cfc06574dcfcacb1dd00a" prot="public" virt="non-virtual"><scope>astrea::astro::detail::VehicleInner</scope><name>get_coefficient_of_reflectivity_impl</name></member>
       <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1a13cc0cb44f36091b2ac6af6d5be28904" prot="public" virt="virtual"><scope>astrea::astro::detail::VehicleInner</scope><name>get_control_authority</name></member>
       <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1a04673c9b2faaba1c5aa0150d2bf4853e" prot="public" virt="non-virtual"><scope>astrea::astro::detail::VehicleInner</scope><name>get_control_authority_impl</name></member>
       <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1ab4674c7a20ca5c6077980c30519d178c" prot="public" virt="non-virtual"><scope>astrea::astro::detail::VehicleInner</scope><name>get_control_authority_impl</name></member>
-      <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1a875495736b4d2eb3773adb329aacf782" prot="public" virt="virtual"><scope>astrea::astro::detail::VehicleInner</scope><name>get_inertia_tensor</name></member>
-      <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1adadacce00d0bb0f51df6ae36ffcacdd8" prot="public" virt="non-virtual"><scope>astrea::astro::detail::VehicleInner</scope><name>get_inertia_tensor_impl</name></member>
-      <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1a181b2b70dda3fdd52593e139c00973e4" prot="public" virt="non-virtual"><scope>astrea::astro::detail::VehicleInner</scope><name>get_inertia_tensor_impl</name></member>
-      <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1a54b537b1885b65abfc97d0ec37d3f1d9" prot="public" virt="virtual"><scope>astrea::astro::detail::VehicleInner</scope><name>get_lift_area</name></member>
-      <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1a38b7e2024a0c95cba51c1fe7a9a08132" prot="public" virt="non-virtual"><scope>astrea::astro::detail::VehicleInner</scope><name>get_lift_area_impl</name></member>
-      <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1a719aff1560f66bc0ca51c1a23ab6371b" prot="public" virt="non-virtual"><scope>astrea::astro::detail::VehicleInner</scope><name>get_lift_area_impl</name></member>
-      <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1a7c857b46a366bf7f262bf433962bb87a" prot="public" virt="virtual"><scope>astrea::astro::detail::VehicleInner</scope><name>get_mass</name></member>
+      <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1ad1076e9dcd1a1e6dbebb6ee15bef1599" prot="public" virt="virtual"><scope>astrea::astro::detail::VehicleInner</scope><name>get_inertia_tensor</name></member>
+      <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1abd467516b7a5dc93d54c3899808efb30" prot="public" virt="non-virtual"><scope>astrea::astro::detail::VehicleInner</scope><name>get_inertia_tensor_impl</name></member>
+      <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1aba10fa9f1a586cd9c358157dbdb32bf9" prot="public" virt="non-virtual"><scope>astrea::astro::detail::VehicleInner</scope><name>get_inertia_tensor_impl</name></member>
+      <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1a3985c4cd22cff2c91402ea917d40dd40" prot="public" virt="virtual"><scope>astrea::astro::detail::VehicleInner</scope><name>get_lift_area</name></member>
+      <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1aba2af1b1f19c3c0a6942792cd20695dc" prot="public" virt="non-virtual"><scope>astrea::astro::detail::VehicleInner</scope><name>get_lift_area_impl</name></member>
+      <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1a1089ab6cfd40eb9c2adb5d41b473e410" prot="public" virt="non-virtual"><scope>astrea::astro::detail::VehicleInner</scope><name>get_lift_area_impl</name></member>
+      <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1a656d080130293baa7e507e8d6001f527" prot="public" virt="virtual"><scope>astrea::astro::detail::VehicleInner</scope><name>get_mass</name></member>
       <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1acc2dafd26faba5d8e9cbe8274d88d82e" prot="public" virt="virtual"><scope>astrea::astro::detail::VehicleInner</scope><name>get_name</name></member>
       <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1a9843799c740dc1efb4e0c6a336afb3b3" prot="public" virt="non-virtual"><scope>astrea::astro::detail::VehicleInner</scope><name>get_name_impl</name></member>
       <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1a7080e7a7e5e2464801bff45fcfcac2f2" prot="public" virt="non-virtual"><scope>astrea::astro::detail::VehicleInner</scope><name>get_name_impl</name></member>
       <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1af3fd8955c35abd1cfa5195b3f25d6fc1" prot="public" virt="virtual"><scope>astrea::astro::detail::VehicleInner</scope><name>get_ptr</name></member>
       <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1a1044bb2f64013555e65f4873d215e4c2" prot="public" virt="virtual"><scope>astrea::astro::detail::VehicleInner</scope><name>get_ptr</name></member>
-      <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1ade1fb03cf1677bde25c62770d0d1eb32" prot="public" virt="virtual"><scope>astrea::astro::detail::VehicleInner</scope><name>get_ram_area</name></member>
-      <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1a59620dcc0d1123ec67c88f8696e6b44a" prot="public" virt="non-virtual"><scope>astrea::astro::detail::VehicleInner</scope><name>get_ram_area_impl</name></member>
-      <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1afe8406c010f18c5886d62e4f0358c56d" prot="public" virt="non-virtual"><scope>astrea::astro::detail::VehicleInner</scope><name>get_ram_area_impl</name></member>
-      <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1af770120939312a23252dece1de245590" prot="public" virt="virtual"><scope>astrea::astro::detail::VehicleInner</scope><name>get_solar_area</name></member>
-      <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1a1c65491b21f62d462598c5bad4327271" prot="public" virt="non-virtual"><scope>astrea::astro::detail::VehicleInner</scope><name>get_solar_area_impl</name></member>
-      <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1ab51383b56263989e434dd771b9633703" prot="public" virt="non-virtual"><scope>astrea::astro::detail::VehicleInner</scope><name>get_solar_area_impl</name></member>
+      <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1a95ef6d388342d0c5b37b009f7e82f9e5" prot="public" virt="virtual"><scope>astrea::astro::detail::VehicleInner</scope><name>get_ram_area</name></member>
+      <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1a44050f1adecec288f8e484e55c3cc198" prot="public" virt="non-virtual"><scope>astrea::astro::detail::VehicleInner</scope><name>get_ram_area_impl</name></member>
+      <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1ab1805d48b9bdef747212a40802936e90" prot="public" virt="non-virtual"><scope>astrea::astro::detail::VehicleInner</scope><name>get_ram_area_impl</name></member>
+      <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1a5fc728f4dd437fbea12e3f5ac00baeb5" prot="public" virt="virtual"><scope>astrea::astro::detail::VehicleInner</scope><name>get_solar_area</name></member>
+      <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1abb76a41e923e41dd3c8413f6c73b1b42" prot="public" virt="non-virtual"><scope>astrea::astro::detail::VehicleInner</scope><name>get_solar_area_impl</name></member>
+      <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1a2f94b9a925fdd1f12350024d1b26c00f" prot="public" virt="non-virtual"><scope>astrea::astro::detail::VehicleInner</scope><name>get_solar_area_impl</name></member>
       <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1abbf75fb5646959d20d498243f77d4cc2" prot="public" virt="non-virtual"><scope>astrea::astro::detail::VehicleInner</scope><name>operator=</name></member>
       <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1ac904e8aef94ea696f103cfd7aafaf2b4" prot="public" virt="non-virtual"><scope>astrea::astro::detail::VehicleInner</scope><name>operator=</name></member>
       <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1a8c4502276adf035d0b6f810e1d9d1405" prot="public" virt="virtual"><scope>astrea::astro::detail::VehicleInner</scope><name>type</name></member>

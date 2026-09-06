@@ -43,7 +43,7 @@ class Viewer : public astro::Spacecraft, public AccessObject, public SensorPlatf
 
     std::string get_name() const { return Spacecraft::get_name(); }
 
-    Mass get_mass() const override { return Spacecraft::get_mass(); }
+    Mass get_mass(const astro::State& state) const override { return Spacecraft::get_mass(state); }
 
     astro::RadiusVector<astro::frames::earth::icrf> get_position(const astro::Date& date) const
     {

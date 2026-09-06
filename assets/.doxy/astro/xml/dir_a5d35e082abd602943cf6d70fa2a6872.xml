@@ -3,7 +3,6 @@
   <compounddef id="dir_a5d35e082abd602943cf6d70fa2a6872" kind="dir">
     <compoundname>astrea/astro/astro/systems</compoundname>
     <innerdir refid="dir_b988f8927672605e377af1c3b431ef9b">astrea/astro/astro/systems/celestial_bodies</innerdir>
-    <innerfile refid="atmosphere_8hpp">atmosphere.hpp</innerfile>
     <innerfile refid="Barycenter_8hpp">Barycenter.hpp</innerfile>
     <innerfile refid="barycenters_8hpp">barycenters.hpp</innerfile>
     <innerfile refid="celestial__bodies_8hpp">celestial_bodies.hpp</innerfile>

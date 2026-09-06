@@ -41,6 +41,7 @@ using EciRadiusVec = astro::RadiusVector<astro::frames::earth::icrf>;
 
 PolygonalFieldOfView::PolygonalFieldOfView(const Angle& halfConeAngle, const int& nPoints)
 {
+    static const Angle TWO_PI = 2.0 * std::numbers::pi * rad;
     for (Angle theta = 0.0 * astrea::detail::angle_unit; theta < TWO_PI; theta += (TWO_PI / nPoints)) {
         _points[theta] = halfConeAngle;
     }

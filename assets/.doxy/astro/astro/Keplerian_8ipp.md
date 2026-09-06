@@ -12,12 +12,13 @@
 
 * `#include <iomanip>`
 * `#include <iostream>`
+* `#include <math/interpolation.hpp>`
+* `#include <math/operations.hpp>`
 * `#include <astro/frames/definitions/transformations.hpp>`
 * `#include <astro/state/orbital_elements/Cartesian.hpp>`
 * `#include <astro/state/orbital_elements/Equinoctial.hpp>`
 * `#include <astro/types/typedefs.hpp>`
 * `#include <astro/utilities/conversions.hpp>`
-* `#include <math/interpolation.hpp>`
 
 
 

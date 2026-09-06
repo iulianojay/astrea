@@ -67,7 +67,7 @@ OrbitalElementPartials CowellsMethod::compute_dynamics(
     const auto muOverRadiusCubed = mu / (R * R * R);
 
     // Derivative
-    return CartesianPartial<frames::primary>(v, -muOverRadiusCubed * r + (perts + control) / vehicle.get_mass());
+    return CartesianPartial<frames::primary>(v, -muOverRadiusCubed * r + (perts + control) / vehicle.get_mass(state));
 }
 
 

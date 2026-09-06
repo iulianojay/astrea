@@ -4,13 +4,13 @@
 
 
 
-[**FileList**](files.md) **>** [**astrea**](dir_b5324400686b7cece921533bb760c87a.md) **>** [**astro**](dir_1d4dcf10fc541574a93624f5c09a3d6f.md) **>** [**astro**](dir_84db6e3c60e44147f5214c05dc45afc2.md) **>** [**systems**](dir_a5d35e082abd602943cf6d70fa2a6872.md) **>** [**celestial\_bodies**](dir_b988f8927672605e377af1c3b431ef9b.md) **>** [**Earth**](dir_0d926747df7aa4605536658442a7f1d2.md) **>** [**atmosphere**](dir_52ad4357f9588f54fe1e3d5cf2b75c1b.md) **>** [**HarrisPriester.cpp**](HarrisPriester_8cpp.md)
+[**FileList**](files.md) **>** [**astrea**](dir_b5324400686b7cece921533bb760c87a.md) **>** [**astro**](dir_1d4dcf10fc541574a93624f5c09a3d6f.md) **>** [**astro**](dir_84db6e3c60e44147f5214c05dc45afc2.md) **>** [**propagation**](dir_55ae0edd352c6621ebfa1115f28a0fff.md) **>** [**force\_models**](dir_0ce51a85166db93c377c5b7f000b236c.md) **>** [**space\_weather**](dir_ba92a5bb4647772267966b3cef944594.md) **>** [**atmosphere**](dir_3bfcc16c8bbdb2d74b81ce33c082ff6e.md) **>** [**HarrisPriester.cpp**](HarrisPriester_8cpp.md)
 
 [Go to the source code of this file](HarrisPriester_8cpp_source.md)
 
 
 
-* `#include <astro/systems/celestial_bodies/Earth/atmosphere/HarrisPriester.hpp>`
+* `#include <astro/propagation/force_models/space_weather/atmosphere/HarrisPriester.hpp>`
 * `#include <map>`
 * `#include <math/operations.hpp>`
 * `#include <astro/frames/definitions.hpp>`
@@ -35,7 +35,6 @@
 | ---: | :--- |
 | namespace | [**astrea**](namespaceastrea.md) <br> |
 | namespace | [**astro**](namespaceastrea_1_1astro.md) <br> |
-| namespace | [**planets**](namespaceastrea_1_1astro_1_1planets.md) <br> |
 
 
 
@@ -90,5 +89,5 @@
 
 
 ------------------------------
-The documentation for this class was generated from the following file `astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/HarrisPriester.cpp`
+The documentation for this class was generated from the following file `astrea/astro/astro/propagation/force_models/space_weather/atmosphere/HarrisPriester.cpp`
 

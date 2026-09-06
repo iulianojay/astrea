@@ -11,7 +11,6 @@
     <includes refid="property__getters_8hpp" local="no">astro/systems/property_getters.hpp</includes>
     <includes refid="system__concepts_8hpp" local="no">astro/systems/system_concepts.hpp</includes>
     <includes refid="system__utilities_8hpp" local="no">astro/systems/system_utilities.hpp</includes>
-    <includes refid="atmosphere_8hpp" local="no">astro/systems/atmosphere.hpp</includes>
     <includedby refid="astro_8hpp" local="no">astrea/astro/astro/astro.hpp</includedby>
     <incdepgraph>
       <node id="14">
@@ -27,40 +26,6 @@
       <node id="44">
         <label>astro/astro.macros.hpp</label>
         <link refid="astro_8macros_8hpp"/>
-      </node>
-      <node id="105">
-        <label>astro/frames/definitions.hpp</label>
-        <link refid="definitions_8hpp_source"/>
-        <childnode refid="106" relation="include">
-        </childnode>
-        <childnode refid="107" relation="include">
-        </childnode>
-        <childnode refid="81" relation="include">
-        </childnode>
-        <childnode refid="108" relation="include">
-        </childnode>
-        <childnode refid="110" relation="include">
-        </childnode>
-        <childnode refid="115" relation="include">
-        </childnode>
-        <childnode refid="79" relation="include">
-        </childnode>
-      </node>
-      <node id="106">
-        <label>astro/frames/definitions/body_centered_inertial_frames.hpp</label>
-        <link refid="body__centered__inertial__frames_8hpp"/>
-        <childnode refid="9" relation="include">
-        </childnode>
-        <childnode refid="42" relation="include">
-        </childnode>
-      </node>
-      <node id="107">
-        <label>astro/frames/definitions/body_fixed_frames.hpp</label>
-        <link refid="body__fixed__frames_8hpp"/>
-        <childnode refid="17" relation="include">
-        </childnode>
-        <childnode refid="42" relation="include">
-        </childnode>
       </node>
       <node id="81">
         <label>astro/frames/definitions/defined_rotations.hpp</label>
@@ -80,196 +45,6 @@
         <childnode refid="42" relation="include">
         </childnode>
         <childnode refid="23" relation="include">
-        </childnode>
-      </node>
-      <node id="108">
-        <label>astro/frames/definitions/defined_rotations_earth.hpp</label>
-        <link refid="defined__rotations__earth_8hpp"/>
-        <childnode refid="74" relation="include">
-        </childnode>
-        <childnode refid="76" relation="include">
-        </childnode>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="109" relation="include">
-        </childnode>
-        <childnode refid="106" relation="include">
-        </childnode>
-        <childnode refid="107" relation="include">
-        </childnode>
-        <childnode refid="81" relation="include">
-        </childnode>
-        <childnode refid="42" relation="include">
-        </childnode>
-        <childnode refid="89" relation="include">
-        </childnode>
-        <childnode refid="23" relation="include">
-        </childnode>
-      </node>
-      <node id="110">
-        <label>astro/frames/definitions/dynamic_frames.hpp</label>
-        <link refid="dynamic__frames_8hpp"/>
-        <childnode refid="102" relation="include">
-        </childnode>
-        <childnode refid="111" relation="include">
-        </childnode>
-        <childnode refid="112" relation="include">
-        </childnode>
-        <childnode refid="113" relation="include">
-        </childnode>
-        <childnode refid="114" relation="include">
-        </childnode>
-        <childnode refid="101" relation="include">
-        </childnode>
-      </node>
-      <node id="102">
-        <label>astro/frames/definitions/dynamic_frames/EastNorthUp.hpp</label>
-        <link refid="EastNorthUp_8hpp"/>
-        <childnode refid="74" relation="include">
-        </childnode>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="14" relation="include">
-        </childnode>
-        <childnode refid="79" relation="include">
-        </childnode>
-        <childnode refid="18" relation="include">
-        </childnode>
-        <childnode refid="82" relation="include">
-        </childnode>
-        <childnode refid="103" relation="include">
-        </childnode>
-        <childnode refid="9" relation="include">
-        </childnode>
-        <childnode refid="104" relation="include">
-        </childnode>
-        <childnode refid="42" relation="include">
-        </childnode>
-        <childnode refid="23" relation="include">
-        </childnode>
-      </node>
-      <node id="111">
-        <label>astro/frames/definitions/dynamic_frames/LocalHorizontalLocalVertical.hpp</label>
-        <link refid="LocalHorizontalLocalVertical_8hpp"/>
-        <childnode refid="14" relation="include">
-        </childnode>
-        <childnode refid="106" relation="include">
-        </childnode>
-        <childnode refid="18" relation="include">
-        </childnode>
-        <childnode refid="82" relation="include">
-        </childnode>
-        <childnode refid="103" relation="include">
-        </childnode>
-        <childnode refid="23" relation="include">
-        </childnode>
-      </node>
-      <node id="112">
-        <label>astro/frames/definitions/dynamic_frames/Perifocal.hpp</label>
-        <link refid="Perifocal_8hpp"/>
-        <childnode refid="14" relation="include">
-        </childnode>
-        <childnode refid="106" relation="include">
-        </childnode>
-        <childnode refid="18" relation="include">
-        </childnode>
-        <childnode refid="82" relation="include">
-        </childnode>
-        <childnode refid="103" relation="include">
-        </childnode>
-        <childnode refid="23" relation="include">
-        </childnode>
-        <childnode refid="48" relation="include">
-        </childnode>
-      </node>
-      <node id="113">
-        <label>astro/frames/definitions/dynamic_frames/RadialInTrackCrossTrack.hpp</label>
-        <link refid="RadialInTrackCrossTrack_8hpp"/>
-        <childnode refid="14" relation="include">
-        </childnode>
-        <childnode refid="106" relation="include">
-        </childnode>
-        <childnode refid="18" relation="include">
-        </childnode>
-        <childnode refid="82" relation="include">
-        </childnode>
-        <childnode refid="103" relation="include">
-        </childnode>
-        <childnode refid="23" relation="include">
-        </childnode>
-      </node>
-      <node id="114">
-        <label>astro/frames/definitions/dynamic_frames/VelocityNormalBinormal.hpp</label>
-        <link refid="VelocityNormalBinormal_8hpp"/>
-        <childnode refid="14" relation="include">
-        </childnode>
-        <childnode refid="106" relation="include">
-        </childnode>
-        <childnode refid="18" relation="include">
-        </childnode>
-        <childnode refid="82" relation="include">
-        </childnode>
-        <childnode refid="103" relation="include">
-        </childnode>
-        <childnode refid="23" relation="include">
-        </childnode>
-      </node>
-      <node id="101">
-        <label>astro/frames/definitions/dynamic_frames/tags.hpp</label>
-        <link refid="tags_8hpp"/>
-        <childnode refid="102" relation="include">
-        </childnode>
-        <childnode refid="111" relation="include">
-        </childnode>
-        <childnode refid="112" relation="include">
-        </childnode>
-        <childnode refid="113" relation="include">
-        </childnode>
-        <childnode refid="114" relation="include">
-        </childnode>
-        <childnode refid="119" relation="include">
-        </childnode>
-        <childnode refid="103" relation="include">
-        </childnode>
-        <childnode refid="9" relation="include">
-        </childnode>
-      </node>
-      <node id="121">
-        <label>astro/frames/definitions/frame_registry.fwd.hpp</label>
-        <link refid="frame__registry_8fwd_8hpp_source"/>
-        <childnode refid="120" relation="include">
-        </childnode>
-      </node>
-      <node id="119">
-        <label>astro/frames/definitions/frame_registry.hpp</label>
-        <link refid="frame__registry_8hpp"/>
-        <childnode refid="120" relation="include">
-        </childnode>
-        <childnode refid="118" relation="include">
-        </childnode>
-        <childnode refid="121" relation="include">
-        </childnode>
-        <childnode refid="122" relation="include">
-        </childnode>
-        <childnode refid="79" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
-      </node>
-      <node id="122">
-        <label>astro/frames/definitions/primary_frame.hpp</label>
-        <link refid="primary__frame_8hpp"/>
-        <childnode refid="106" relation="include">
-        </childnode>
-        <childnode refid="107" relation="include">
-        </childnode>
-      </node>
-      <node id="115">
-        <label>astro/frames/definitions/synodic_frames.hpp</label>
-        <link refid="synodic__frames_8hpp"/>
-        <childnode refid="116" relation="include">
-        </childnode>
-        <childnode refid="42" relation="include">
         </childnode>
       </node>
       <node id="79">
@@ -452,22 +227,6 @@
         <childnode refid="15" relation="include">
         </childnode>
       </node>
-      <node id="103">
-        <label>astro/frames/framework/DynamicFrame.hpp</label>
-        <link refid="DynamicFrame_8hpp"/>
-        <childnode refid="26" relation="include">
-        </childnode>
-        <childnode refid="18" relation="include">
-        </childnode>
-        <childnode refid="82" relation="include">
-        </childnode>
-        <childnode refid="9" relation="include">
-        </childnode>
-        <childnode refid="23" relation="include">
-        </childnode>
-        <childnode refid="48" relation="include">
-        </childnode>
-      </node>
       <node id="87">
         <label>astro/frames/framework/FixedOffsetFrame.hpp</label>
         <link refid="FixedOffsetFrame_8hpp"/>
@@ -518,22 +277,6 @@
         <childnode refid="7" relation="include">
         </childnode>
       </node>
-      <node id="116">
-        <label>astro/frames/framework/SynodicFrame.hpp</label>
-        <link refid="SynodicFrame_8hpp_source"/>
-        <childnode refid="6" relation="include">
-        </childnode>
-        <childnode refid="3" relation="include">
-        </childnode>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="9" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
-        <childnode refid="11" relation="include">
-        </childnode>
-      </node>
       <node id="7">
         <label>astro/frames/framework/frame_concepts.hpp</label>
         <link refid="frame__concepts_8hpp"/>
@@ -548,206 +291,6 @@
         <childnode refid="7" relation="include">
         </childnode>
         <childnode refid="11" relation="include">
-        </childnode>
-      </node>
-      <node id="128">
-        <label>astro/platforms/InertiaTensor.hpp</label>
-        <link refid="InertiaTensor_8hpp"/>
-        <childnode refid="21" relation="include">
-        </childnode>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="14" relation="include">
-        </childnode>
-        <childnode refid="101" relation="include">
-        </childnode>
-        <childnode refid="18" relation="include">
-        </childnode>
-      </node>
-      <node id="99">
-        <label>astro/state/State.hpp</label>
-        <link refid="State_8hpp"/>
-        <childnode refid="25" relation="include">
-        </childnode>
-        <childnode refid="100" relation="include">
-        </childnode>
-        <childnode refid="101" relation="include">
-        </childnode>
-        <childnode refid="126" relation="include">
-        </childnode>
-        <childnode refid="130" relation="include">
-        </childnode>
-        <childnode refid="117" relation="include">
-        </childnode>
-        <childnode refid="36" relation="include">
-        </childnode>
-        <childnode refid="89" relation="include">
-        </childnode>
-        <childnode refid="23" relation="include">
-        </childnode>
-        <childnode refid="48" relation="include">
-        </childnode>
-      </node>
-      <node id="104">
-        <label>astro/state/angular_elements/Geodetic.hpp</label>
-        <link refid="Geodetic_8hpp"/>
-        <childnode refid="25" relation="include">
-        </childnode>
-        <childnode refid="76" relation="include">
-        </childnode>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="14" relation="include">
-        </childnode>
-        <childnode refid="105" relation="include">
-        </childnode>
-        <childnode refid="18" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
-        <childnode refid="117" relation="include">
-        </childnode>
-        <childnode refid="11" relation="include">
-        </childnode>
-        <childnode refid="89" relation="include">
-        </childnode>
-        <childnode refid="48" relation="include">
-        </childnode>
-        <childnode refid="125" relation="include">
-        </childnode>
-      </node>
-      <node id="125">
-        <label>astro/state/angular_elements/Geodetic.ipp</label>
-        <link refid="Geodetic_8ipp_source"/>
-        <childnode refid="72" relation="include">
-        </childnode>
-        <childnode refid="73" relation="include">
-        </childnode>
-        <childnode refid="38" relation="include">
-        </childnode>
-        <childnode refid="13" relation="include">
-        </childnode>
-        <childnode refid="74" relation="include">
-        </childnode>
-        <childnode refid="75" relation="include">
-        </childnode>
-        <childnode refid="105" relation="include">
-        </childnode>
-        <childnode refid="79" relation="include">
-        </childnode>
-        <childnode refid="77" relation="include">
-        </childnode>
-        <childnode refid="96" relation="include">
-        </childnode>
-        <childnode refid="89" relation="include">
-        </childnode>
-        <childnode refid="48" relation="include">
-        </childnode>
-      </node>
-      <node id="127">
-        <label>astro/state/attitude/AngularVelocities.hpp</label>
-        <link refid="AngularVelocities_8hpp"/>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="14" relation="include">
-        </childnode>
-        <childnode refid="101" relation="include">
-        </childnode>
-        <childnode refid="18" relation="include">
-        </childnode>
-        <childnode refid="82" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
-        <childnode refid="128" relation="include">
-        </childnode>
-        <childnode refid="129" relation="include">
-        </childnode>
-        <childnode refid="15" relation="include">
-        </childnode>
-        <childnode refid="37" relation="include">
-        </childnode>
-      </node>
-      <node id="126">
-        <label>astro/state/attitude/Attitude.hpp</label>
-        <link refid="Attitude_8hpp"/>
-        <childnode refid="25" relation="include">
-        </childnode>
-        <childnode refid="118" relation="include">
-        </childnode>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="14" relation="include">
-        </childnode>
-        <childnode refid="105" relation="include">
-        </childnode>
-        <childnode refid="101" relation="include">
-        </childnode>
-        <childnode refid="127" relation="include">
-        </childnode>
-        <childnode refid="129" relation="include">
-        </childnode>
-        <childnode refid="130" relation="include">
-        </childnode>
-        <childnode refid="95" relation="include">
-        </childnode>
-        <childnode refid="48" relation="include">
-        </childnode>
-        <childnode refid="124" relation="include">
-        </childnode>
-      </node>
-      <node id="129">
-        <label>astro/state/attitude/EulerAngles.hpp</label>
-        <link refid="EulerAngles_8hpp"/>
-        <childnode refid="75" relation="include">
-        </childnode>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="14" relation="include">
-        </childnode>
-        <childnode refid="18" relation="include">
-        </childnode>
-        <childnode refid="82" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
-        <childnode refid="15" relation="include">
-        </childnode>
-        <childnode refid="37" relation="include">
-        </childnode>
-      </node>
-      <node id="132">
-        <label>astro/state/attitude/EulerAngles.ipp</label>
-        <link refid="EulerAngles_8ipp"/>
-        <childnode refid="130" relation="include">
-        </childnode>
-      </node>
-      <node id="130">
-        <label>astro/state/attitude/Quaternion.hpp</label>
-        <link refid="Quaternion_8hpp"/>
-        <childnode refid="131" relation="include">
-        </childnode>
-        <childnode refid="88" relation="include">
-        </childnode>
-        <childnode refid="38" relation="include">
-        </childnode>
-        <childnode refid="74" relation="include">
-        </childnode>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="14" relation="include">
-        </childnode>
-        <childnode refid="18" relation="include">
-        </childnode>
-        <childnode refid="82" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
-        <childnode refid="129" relation="include">
-        </childnode>
-        <childnode refid="15" relation="include">
-        </childnode>
-        <childnode refid="132" relation="include">
         </childnode>
       </node>
       <node id="70">
@@ -857,6 +400,10 @@
         </childnode>
         <childnode refid="73" relation="include">
         </childnode>
+        <childnode refid="75" relation="include">
+        </childnode>
+        <childnode refid="98" relation="include">
+        </childnode>
         <childnode refid="79" relation="include">
         </childnode>
         <childnode refid="70" relation="include">
@@ -866,34 +413,6 @@
         <childnode refid="48" relation="include">
         </childnode>
         <childnode refid="37" relation="include">
-        </childnode>
-        <childnode refid="75" relation="include">
-        </childnode>
-      </node>
-      <node id="117">
-        <label>astro/state/orbital_elements/OrbitalElements.hpp</label>
-        <link refid="OrbitalElements_8hpp"/>
-        <childnode refid="25" relation="include">
-        </childnode>
-        <childnode refid="118" relation="include">
-        </childnode>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="14" relation="include">
-        </childnode>
-        <childnode refid="119" relation="include">
-        </childnode>
-        <childnode refid="122" relation="include">
-        </childnode>
-        <childnode refid="70" relation="include">
-        </childnode>
-        <childnode refid="77" relation="include">
-        </childnode>
-        <childnode refid="96" relation="include">
-        </childnode>
-        <childnode refid="123" relation="include">
-        </childnode>
-        <childnode refid="124" relation="include">
         </childnode>
       </node>
       <node id="1">
@@ -916,8 +435,6 @@
         <childnode refid="11" relation="include">
         </childnode>
         <childnode refid="89" relation="include">
-        </childnode>
-        <childnode refid="98" relation="include">
         </childnode>
       </node>
       <node id="2">
@@ -972,30 +489,6 @@
         <childnode refid="4" relation="include">
         </childnode>
         <childnode refid="23" relation="include">
-        </childnode>
-      </node>
-      <node id="98">
-        <label>astro/systems/atmosphere.hpp</label>
-        <link refid="atmosphere_8hpp_source"/>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="99" relation="include">
-        </childnode>
-        <childnode refid="104" relation="include">
-        </childnode>
-        <childnode refid="43" relation="include">
-        </childnode>
-        <childnode refid="133" relation="include">
-        </childnode>
-        <childnode refid="134" relation="include">
-        </childnode>
-        <childnode refid="53" relation="include">
-        </childnode>
-        <childnode refid="63" relation="include">
-        </childnode>
-        <childnode refid="68" relation="include">
-        </childnode>
-        <childnode refid="36" relation="include">
         </childnode>
       </node>
       <node id="40">
@@ -1082,22 +575,6 @@
         <childnode refid="12" relation="include">
         </childnode>
         <childnode refid="43" relation="include">
-        </childnode>
-      </node>
-      <node id="133">
-        <label>astro/systems/celestial_bodies/Earth/atmosphere/HarrisPriester.hpp</label>
-        <link refid="HarrisPriester_8hpp"/>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="14" relation="include">
-        </childnode>
-      </node>
-      <node id="134">
-        <label>astro/systems/celestial_bodies/Earth/atmosphere/JacciaRoberts.hpp</label>
-        <link refid="JacciaRoberts_8hpp"/>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="14" relation="include">
         </childnode>
       </node>
       <node id="46">
@@ -1520,18 +997,6 @@
         <childnode refid="31" relation="include">
         </childnode>
       </node>
-      <node id="123">
-        <label>astro/types/concepts.hpp</label>
-        <link refid="concepts_8hpp"/>
-        <childnode refid="8" relation="include">
-        </childnode>
-        <childnode refid="15" relation="include">
-        </childnode>
-        <childnode refid="95" relation="include">
-        </childnode>
-        <childnode refid="48" relation="include">
-        </childnode>
-      </node>
       <node id="15">
         <label>astro/types/enums.hpp</label>
         <link refid="enums_8hpp"/>
@@ -1552,12 +1017,6 @@
         <childnode refid="14" relation="include">
         </childnode>
       </node>
-      <node id="124">
-        <label>astro/types/variant_util.hpp</label>
-        <link refid="variant__util_8hpp"/>
-        <childnode refid="118" relation="include">
-        </childnode>
-      </node>
       <node id="37">
         <label>astro/utilities/conversions.hpp</label>
         <link refid="conversions_8hpp"/>
@@ -1572,9 +1031,6 @@
       </node>
       <node id="19">
         <label>array</label>
-      </node>
-      <node id="109">
-        <label>astro/eop/EarthOrientationParameters.hpp</label>
       </node>
       <node id="24">
         <label>chrono</label>
@@ -1605,6 +1061,9 @@
       </node>
       <node id="75">
         <label>math/interpolation.hpp</label>
+      </node>
+      <node id="98">
+        <label>math/operations.hpp</label>
       </node>
       <node id="76">
         <label>math/trig.hpp</label>
@@ -1639,26 +1098,17 @@
       <node id="30">
         <label>numbers</label>
       </node>
-      <node id="100">
-        <label>optional</label>
-      </node>
       <node id="91">
         <label>ranges</label>
       </node>
       <node id="31">
         <label>ratio</label>
       </node>
-      <node id="131">
-        <label>stdexcept</label>
-      </node>
       <node id="16">
         <label>stdint.h</label>
       </node>
       <node id="26">
         <label>string</label>
-      </node>
-      <node id="120">
-        <label>tuple</label>
       </node>
       <node id="6">
         <label>type_traits</label>
@@ -1674,9 +1124,6 @@
       </node>
       <node id="80">
         <label>utilities/string_util.hpp</label>
-      </node>
-      <node id="118">
-        <label>variant</label>
       </node>
       <node id="93">
         <label>vector</label>
@@ -1719,9 +1166,7 @@ The GNU Lesser General Public License (LGPL)</para>
 <codeline lineno="26"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="default__property__getters_8hpp" kindref="compound">astro/systems/default_property_getters.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="27"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;astro/systems/property_getters.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="28"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="system__concepts_8hpp" kindref="compound">astro/systems/system_concepts.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="29"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;astro/systems/system_utilities.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="30"><highlight class="normal"></highlight></codeline>
-<codeline lineno="31"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;astro/systems/atmosphere.hpp&gt;</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;astro/systems/system_utilities.hpp&gt;</highlight></codeline>
     </programlisting>
     <location file="astrea/astro/astro/systems.hpp"/>
   </compounddef>

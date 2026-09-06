@@ -10,6 +10,7 @@
     <innerclass refid="structastrea_1_1astro_1_1Axis" prot="public">astrea::astro::Axis</innerclass>
     <innerclass refid="structastrea_1_1astro_1_1Axis_3_01__name___01_4" prot="public">astrea::astro::Axis&lt; _name_ &gt;</innerclass>
     <innerclass refid="structastrea_1_1astro_1_1Axis_3_01__name___00_01__parent___01_4" prot="public">astrea::astro::Axis&lt; _name_, _parent_ &gt;</innerclass>
+    <innerclass refid="structastrea_1_1astro_1_1BadConversionRequest" prot="public">astrea::astro::BadConversionRequest</innerclass>
     <innerclass refid="structastrea_1_1astro_1_1Barycenter" prot="public">astrea::astro::Barycenter</innerclass>
     <innerclass refid="structastrea_1_1astro_1_1Barycenter_3_01__name___01_4" prot="public">astrea::astro::Barycenter&lt; _name_ &gt;</innerclass>
     <innerclass refid="structastrea_1_1astro_1_1Barycenter_3_01__name___00_01__parent___01_4" prot="public">astrea::astro::Barycenter&lt; _name_, _parent_ &gt;</innerclass>
@@ -61,6 +62,7 @@
     <innerclass refid="structastrea_1_1astro_1_1GeocentricAxes" prot="public">astrea::astro::GeocentricAxes</innerclass>
     <innerclass refid="structastrea_1_1astro_1_1GeocentricCoordinateTimeClock" prot="public">astrea::astro::GeocentricCoordinateTimeClock</innerclass>
     <innerclass refid="classastrea_1_1astro_1_1Geodetic" prot="public">astrea::astro::Geodetic</innerclass>
+    <innerclass refid="classastrea_1_1astro_1_1HarrisPriesterAtmosphere" prot="public">astrea::astro::HarrisPriesterAtmosphere</innerclass>
     <innerclass refid="classastrea_1_1astro_1_1ImpulsiveBurn" prot="public">astrea::astro::ImpulsiveBurn</innerclass>
     <innerclass refid="classastrea_1_1astro_1_1InertiaTensor" prot="public">astrea::astro::InertiaTensor</innerclass>
     <innerclass refid="classastrea_1_1astro_1_1Integrator" prot="public">astrea::astro::Integrator</innerclass>
@@ -69,6 +71,7 @@
     <innerclass refid="structastrea_1_1astro_1_1is__cartesian__vector" prot="public">astrea::astro::is_cartesian_vector</innerclass>
     <innerclass refid="structastrea_1_1astro_1_1is__cartesian__vector_3_01CartesianVector_3_01Value__T_00_01frame_01_4_01_4" prot="public">astrea::astro::is_cartesian_vector&lt; CartesianVector&lt; Value_T, frame &gt; &gt;</innerclass>
     <innerclass refid="classastrea_1_1astro_1_1J2MeanVop" prot="public">astrea::astro::J2MeanVop</innerclass>
+    <innerclass refid="classastrea_1_1astro_1_1JacchiaRobertsAtmosphere" prot="public">astrea::astro::JacchiaRobertsAtmosphere</innerclass>
     <innerclass refid="structastrea_1_1astro_1_1JplEphemerisTable" prot="public">astrea::astro::JplEphemerisTable</innerclass>
     <innerclass refid="structastrea_1_1astro_1_1JulianDateClock" prot="public">astrea::astro::JulianDateClock</innerclass>
     <innerclass refid="classastrea_1_1astro_1_1Keplerian" prot="public">astrea::astro::Keplerian</innerclass>
@@ -77,6 +80,7 @@
     <innerclass refid="classastrea_1_1astro_1_1LambertSolver" prot="public">astrea::astro::LambertSolver</innerclass>
     <innerclass refid="classastrea_1_1astro_1_1LegendreCache" prot="public">astrea::astro::LegendreCache</innerclass>
     <innerclass refid="classastrea_1_1astro_1_1NBodyForce" prot="public">astrea::astro::NBodyForce</innerclass>
+    <innerclass refid="classastrea_1_1astro_1_1Nrlmsise00Atmosphere" prot="public">astrea::astro::Nrlmsise00Atmosphere</innerclass>
     <innerclass refid="classastrea_1_1astro_1_1NullEvent" prot="public">astrea::astro::NullEvent</innerclass>
     <innerclass refid="classastrea_1_1astro_1_1NullVehicle" prot="public">astrea::astro::NullVehicle</innerclass>
     <innerclass refid="classastrea_1_1astro_1_1OblatenessForce" prot="public">astrea::astro::OblatenessForce</innerclass>
@@ -96,8 +100,12 @@
     <innerclass refid="structastrea_1_1astro_1_1ReferenceAxes" prot="public">astrea::astro::ReferenceAxes</innerclass>
     <innerclass refid="classastrea_1_1astro_1_1Schedule" prot="public">astrea::astro::Schedule</innerclass>
     <innerclass refid="classastrea_1_1astro_1_1Shell" prot="public">astrea::astro::Shell</innerclass>
+    <innerclass refid="structastrea_1_1astro_1_1SolarFluxData" prot="public">astrea::astro::SolarFluxData</innerclass>
     <innerclass refid="classastrea_1_1astro_1_1SolarRadiationPressure" prot="public">astrea::astro::SolarRadiationPressure</innerclass>
     <innerclass refid="classastrea_1_1astro_1_1Spacecraft" prot="public">astrea::astro::Spacecraft</innerclass>
+    <innerclass refid="classastrea_1_1astro_1_1SpaceWeatherData" prot="public">astrea::astro::SpaceWeatherData</innerclass>
+    <innerclass refid="structastrea_1_1astro_1_1SpaceWeatherParameters" prot="public">astrea::astro::SpaceWeatherParameters</innerclass>
+    <innerclass refid="classastrea_1_1astro_1_1SpaceWeatherProvider" prot="public">astrea::astro::SpaceWeatherProvider</innerclass>
     <innerclass refid="classastrea_1_1astro_1_1Spherical" prot="public">astrea::astro::Spherical</innerclass>
     <innerclass refid="classastrea_1_1astro_1_1State" prot="public">astrea::astro::State</innerclass>
     <innerclass refid="classastrea_1_1astro_1_1StateHistory" prot="public">astrea::astro::StateHistory</innerclass>
@@ -127,6 +135,7 @@
     <innernamespace refid="namespaceastrea_1_1astro_1_1RK45">astrea::astro::RK45</innernamespace>
     <innernamespace refid="namespaceastrea_1_1astro_1_1RKF45">astrea::astro::RKF45</innernamespace>
     <innernamespace refid="namespaceastrea_1_1astro_1_1RKF78">astrea::astro::RKF78</innernamespace>
+    <innernamespace refid="namespaceastrea_1_1astro_1_1space__weather">astrea::astro::space_weather</innernamespace>
     <innernamespace refid="namespaceastrea_1_1astro_1_1star">astrea::astro::star</innernamespace>
     <sectiondef kind="enum">
       <memberdef kind="enum" id="Axis_8hpp_1a51fe70d33aac3b911c87eefc88ff3916" prot="public" static="no" strong="yes">
@@ -161,6 +170,85 @@
         <inbodydescription>
         </inbodydescription>
         <location file="astrea/astro/astro/frames/framework/Axis.hpp" line="49" column="1" bodyfile="astrea/astro/astro/frames/framework/Axis.hpp" bodystart="49" bodyend="49"/>
+      </memberdef>
+      <memberdef kind="enum" id="atmosphere_8hpp_1a7572d2f40af6711f9453c8db08db0800" prot="public" static="no" strong="yes">
+        <type></type>
+        <name>EarthAtmosphereModel</name>
+        <qualifiedname>astrea::astro::EarthAtmosphereModel</qualifiedname>
+        <enumvalue id="atmosphere_8hpp_1a7572d2f40af6711f9453c8db08db0800a4e0ae1dc61fd3cd7d0d5707c5b66f4d8" prot="public">
+          <name>JACCHIA_ROBERTS</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="atmosphere_8hpp_1a7572d2f40af6711f9453c8db08db0800aa69b0ac8ebd3625dbc1cc489e7e11ecc" prot="public">
+          <name>NRLMSISE00</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="atmosphere_8hpp_1a7572d2f40af6711f9453c8db08db0800a17f976d245f4144401399b9cd5094b72" prot="public">
+          <name>HARRIS_PRIESTER</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+<para>Enumeration of supported Earth atmosphere models. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/atmosphere.hpp" line="46" column="1" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/atmosphere.hpp" bodystart="46" bodyend="46"/>
+      </memberdef>
+      <memberdef kind="enum" id="SpaceWeatherData_8hpp_1a889e166de4bd3a52f1e65cd97244bc29" prot="public" static="no" strong="yes">
+        <type>std::uint8_t</type>
+        <name>MeasurementType</name>
+        <qualifiedname>astrea::astro::MeasurementType</qualifiedname>
+        <enumvalue id="SpaceWeatherData_8hpp_1a889e166de4bd3a52f1e65cd97244bc29aa87279f7222c5264100350e6074973a2" prot="public">
+          <name>OBSERVED</name>
+          <initializer>= 0</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="SpaceWeatherData_8hpp_1a889e166de4bd3a52f1e65cd97244bc29abc1ea39d1fdef53a3b732896f1018453" prot="public">
+          <name>DAILY_PREDICTED</name>
+          <initializer>= 1</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="SpaceWeatherData_8hpp_1a889e166de4bd3a52f1e65cd97244bc29a3bf6d7b58000611d9f599e97ba879198" prot="public">
+          <name>MONTHLY_PREDICTED</name>
+          <initializer>= 2</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="SpaceWeatherData_8hpp_1a889e166de4bd3a52f1e65cd97244bc29a392fcaafe59e4ff903a9db62c82da3a9" prot="public">
+          <name>MONTHLY_FIT</name>
+          <initializer>= 3</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+<para>Enumeration for the type of space weather measurement. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/SpaceWeatherData.hpp" line="36" column="1" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/SpaceWeatherData.hpp" bodystart="36" bodyend="41"/>
       </memberdef>
       <memberdef kind="enum" id="Integrator_8hpp_1a8230ed42481c868b37ce7009af0322a8" prot="public" static="no" strong="yes">
         <type><ref refid="enums_8hpp_1a0293ecef8f8bc51bb729b396dc98f61d" kindref="member">EnumType</ref></type>
@@ -765,7 +853,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/orbital_elements/OrbitalElements.hpp" line="391" column="1" bodyfile="astrea/astro/astro/state/orbital_elements/OrbitalElements.hpp" bodystart="393" bodyend="-1"/>
+        <location file="astrea/astro/astro/state/orbital_elements/OrbitalElements.hpp" line="400" column="1" bodyfile="astrea/astro/astro/state/orbital_elements/OrbitalElements.hpp" bodystart="402" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="property__getters_8hpp_1a5953ce5f38ca7cc5b49fb4c7b522c3b1" prot="public" static="no">
         <type>std::tuple&lt; mp_units::quantity&lt; mp_units::si::unit_symbols::rad/(astrea::units::unit_symbols::jc *astrea::units::unit_symbols::jc)&gt;, mp_units::quantity&lt; mp_units::si::unit_symbols::rad &gt;, mp_units::quantity&lt; mp_units::si::unit_symbols::rad &gt;, mp_units::quantity&lt; mp_units::si::unit_symbols::rad/astrea::units::unit_symbols::jc &gt; &gt;</type>
@@ -1290,6 +1378,97 @@
         <inbodydescription>
         </inbodydescription>
         <location file="astrea/astro/astro/platforms/space/Constellation.ipp" line="4" column="21" bodyfile="astrea/astro/astro/platforms/space/Constellation.ipp" bodystart="4" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="HarrisPriester_8cpp_1aca808149c9219c8bc75fba7528bd7f2b" prot="public" static="yes" mutable="no">
+        <type>const int</type>
+        <definition>const int astrea::astro::COSINE_EXPONENT</definition>
+        <argsstring></argsstring>
+        <name>COSINE_EXPONENT</name>
+        <qualifiedname>astrea::astro::COSINE_EXPONENT</qualifiedname>
+        <initializer>= 4</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Default cosine exponent value. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/HarrisPriester.cpp" line="38" column="18" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/HarrisPriester.cpp" bodystart="38" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="HarrisPriester_8cpp_1a7d245b5a1526801527bbe9003ca863e0" prot="public" static="yes" mutable="no">
+        <type>const Angle</type>
+        <definition>const Angle astrea::astro::DIURNAL_LAG</definition>
+        <argsstring></argsstring>
+        <name>DIURNAL_LAG</name>
+        <qualifiedname>astrea::astro::DIURNAL_LAG</qualifiedname>
+        <initializer>= 30.0 * deg</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Lag angle for diurnal bulge. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/HarrisPriester.cpp" line="41" column="20" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/HarrisPriester.cpp" bodystart="41" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="HarrisPriester_8cpp_1a5bd3c6936fd62ca6473eca13dca42ade" prot="public" static="yes" mutable="no">
+        <type>const std::map&lt; Altitude, std::tuple&lt; Density, Density &gt; &gt;</type>
+        <definition>const std::map&lt;Altitude, std::tuple&lt;Density, Density&gt; &gt; astrea::astro::HARRIS_PRIESTER_ATMOSPHERE</definition>
+        <argsstring></argsstring>
+        <name>HARRIS_PRIESTER_ATMOSPHERE</name>
+        <qualifiedname>astrea::astro::HARRIS_PRIESTER_ATMOSPHERE</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Harris-Priester min-max density (kg/m3) vs. altitude (km) table. These data are valid for a mean solar activity. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/HarrisPriester.cpp" line="45" column="23" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/HarrisPriester.cpp" bodystart="45" bodyend="96"/>
+      </memberdef>
+      <memberdef kind="variable" id="JacchiaRoberts_8cpp_1a3418bc05ca6430806950b5ac78e4e62c" prot="public" static="yes" mutable="no">
+        <type>const std::map&lt; Altitude, std::tuple&lt; Altitude, Density, Altitude &gt; &gt;</type>
+        <definition>const std::map&lt;Altitude, std::tuple&lt;Altitude, Density, Altitude&gt; &gt; astrea::astro::JACCHIA_ROBERTS_ATMOSPHERE</definition>
+        <argsstring></argsstring>
+        <name>JACCHIA_ROBERTS_ATMOSPHERE</name>
+        <qualifiedname>astrea::astro::JACCHIA_ROBERTS_ATMOSPHERE</qualifiedname>
+        <initializer>= {
+    { 25.0 * km, { 0.0 * km, 1.225 * kg / (pow&lt;3&gt;(m)), 7.249 * km } },
+    { 30.0 * km, { 25.0 * km, 3.899e-2 * kg / (pow&lt;3&gt;(m)), 6.349 * km } },
+    { 40.0 * km, { 30.0 * km, 1.774e-2 * kg / (pow&lt;3&gt;(m)), 6.682 * km } },
+    { 50.0 * km, { 40.0 * km, 3.972e-3 * kg / (pow&lt;3&gt;(m)), 7.554 * km } },
+    { 60.0 * km, { 50.0 * km, 1.057e-3 * kg / (pow&lt;3&gt;(m)), 8.382 * km } },
+    { 70.0 * km, { 60.0 * km, 3.206e-4 * kg / (pow&lt;3&gt;(m)), 7.714 * km } },
+    { 80.0 * km, { 70.0 * km, 8.770e-5 * kg / (pow&lt;3&gt;(m)), 6.549 * km } },
+    { 90.0 * km, { 80.0 * km, 1.905e-5 * kg / (pow&lt;3&gt;(m)), 5.799 * km } },
+    { 100.0 * km, { 90.0 * km, 3.396e-6 * kg / (pow&lt;3&gt;(m)), 5.382 * km } },
+    { 110.0 * km, { 100.0 * km, 5.297e-7 * kg / (pow&lt;3&gt;(m)), 5.877 * km } },
+    { 120.0 * km, { 110.0 * km, 9.661e-8 * kg / (pow&lt;3&gt;(m)), 7.263 * km } },
+    { 130.0 * km, { 120.0 * km, 2.438e-8 * kg / (pow&lt;3&gt;(m)), 9.473 * km } },
+    { 140.0 * km, { 130.0 * km, 8.484e-9 * kg / (pow&lt;3&gt;(m)), 12.636 * km } },
+    { 150.0 * km, { 140.0 * km, 3.845e-9 * kg / (pow&lt;3&gt;(m)), 16.149 * km } },
+    { 180.0 * km, { 150.0 * km, 2.070e-9 * kg / (pow&lt;3&gt;(m)), 22.523 * km } },
+    { 200.0 * km, { 180.0 * km, 5.464e-10 * kg / (pow&lt;3&gt;(m)), 29.740 * km } },
+    { 250.0 * km, { 200.0 * km, 2.789e-10 * kg / (pow&lt;3&gt;(m)), 37.105 * km } },
+    { 300.0 * km, { 250.0 * km, 7.248e-11 * kg / (pow&lt;3&gt;(m)), 45.546 * km } },
+    { 350.0 * km, { 300.0 * km, 2.418e-11 * kg / (pow&lt;3&gt;(m)), 53.628 * km } },
+    { 400.0 * km, { 350.0 * km, 9.158e-12 * kg / (pow&lt;3&gt;(m)), 53.298 * km } },
+    { 450.0 * km, { 400.0 * km, 3.725e-12 * kg / (pow&lt;3&gt;(m)), 58.515 * km } },
+    { 500.0 * km, { 450.0 * km, 1.585e-12 * kg / (pow&lt;3&gt;(m)), 60.828 * km } },
+    { 600.0 * km, { 500.0 * km, 6.967e-13 * kg / (pow&lt;3&gt;(m)), 63.822 * km } },
+    { 700.0 * km, { 600.0 * km, 1.454e-13 * kg / (pow&lt;3&gt;(m)), 71.835 * km } },
+    { 800.0 * km, { 700.0 * km, 3.614e-14 * kg / (pow&lt;3&gt;(m)), 88.667 * km } },
+    { 900.0 * km, { 800.0 * km, 1.170e-14 * kg / (pow&lt;3&gt;(m)), 124.64 * km } },
+    { 1000.0 * km, { 900.0 * km, 5.245e-15 * kg / (pow&lt;3&gt;(m)), 181.05 * km } },
+    { 1100.0 * km, { 1000.0 * km, 2.019e-15 * kg / (pow&lt;3&gt;(m)), 268.00 * km } }
+}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/JacchiaRoberts.cpp" line="33" column="23" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/JacchiaRoberts.cpp" bodystart="33" bodyend="62"/>
       </memberdef>
       <memberdef kind="variable" id="JulianDateClock_8hpp_1a7c9a0c3832d6418dea196fe9dea63276" prot="public" static="yes" constexpr="yes" mutable="no">
         <type>constexpr mp_units::quantity_point</type>
@@ -2674,7 +2853,7 @@ Get the Direction Cosine Matrix (DCM) for the J2000 to ICRF at a given date.</pa
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/frames/framework/FixedOffsetFrame.hpp" line="165" column="17" bodyfile="astrea/astro/astro/frames/framework/FixedOffsetFrame.hpp" bodystart="165" bodyend="169"/>
+        <location file="astrea/astro/astro/frames/framework/FixedOffsetFrame.hpp" line="165" column="17" bodyfile="astrea/astro/astro/frames/framework/FixedOffsetFrame.hpp" bodystart="165" bodyend="168"/>
       </memberdef>
       <memberdef kind="function" id="FixedOffsetFrame_8hpp_1a3b4bb95183a1c3d7f7e507bf095e0241" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
@@ -2700,7 +2879,7 @@ Get the Direction Cosine Matrix (DCM) for the J2000 to ICRF at a given date.</pa
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/frames/framework/FixedOffsetFrame.hpp" line="173" column="17" bodyfile="astrea/astro/astro/frames/framework/FixedOffsetFrame.hpp" bodystart="173" bodyend="177"/>
+        <location file="astrea/astro/astro/frames/framework/FixedOffsetFrame.hpp" line="172" column="17" bodyfile="astrea/astro/astro/frames/framework/FixedOffsetFrame.hpp" bodystart="172" bodyend="175"/>
       </memberdef>
       <memberdef kind="function" id="FixedOffsetFrame_8hpp_1ad14bbb1c037403166cd4e4a48afb30e5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
@@ -2735,7 +2914,7 @@ Get the Direction Cosine Matrix (DCM) for the J2000 to ICRF at a given date.</pa
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/frames/framework/FixedOffsetFrame.hpp" line="182" column="17" bodyfile="astrea/astro/astro/frames/framework/FixedOffsetFrame.hpp" bodystart="182" bodyend="194"/>
+        <location file="astrea/astro/astro/frames/framework/FixedOffsetFrame.hpp" line="180" column="17" bodyfile="astrea/astro/astro/frames/framework/FixedOffsetFrame.hpp" bodystart="180" bodyend="192"/>
       </memberdef>
       <memberdef kind="function" id="FixedOffsetFrame_8hpp_1ad643bd98cc2b4447cc193a8e7f67fc8c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
@@ -2770,7 +2949,7 @@ Get the Direction Cosine Matrix (DCM) for the J2000 to ICRF at a given date.</pa
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/frames/framework/FixedOffsetFrame.hpp" line="198" column="17" bodyfile="astrea/astro/astro/frames/framework/FixedOffsetFrame.hpp" bodystart="198" bodyend="210"/>
+        <location file="astrea/astro/astro/frames/framework/FixedOffsetFrame.hpp" line="196" column="17" bodyfile="astrea/astro/astro/frames/framework/FixedOffsetFrame.hpp" bodystart="196" bodyend="208"/>
       </memberdef>
       <memberdef kind="function" id="FixedOffsetFrame_8hpp_1add4cf40c47324337cad2cd1a72cf7b97" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
@@ -2817,7 +2996,7 @@ Get the Direction Cosine Matrix (DCM) for the J2000 to ICRF at a given date.</pa
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/frames/framework/FixedOffsetFrame.hpp" line="326" column="16" bodyfile="astrea/astro/astro/frames/framework/FixedOffsetFrame.hpp" bodystart="326" bodyend="336"/>
+        <location file="astrea/astro/astro/frames/framework/FixedOffsetFrame.hpp" line="324" column="16" bodyfile="astrea/astro/astro/frames/framework/FixedOffsetFrame.hpp" bodystart="324" bodyend="334"/>
       </memberdef>
       <memberdef kind="function" id="FixedOffsetFrame_8hpp_1a2cfd5e4db267e58ea64acdba8133f503" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
@@ -2889,7 +3068,7 @@ Get the Direction Cosine Matrix (DCM) for the J2000 to ICRF at a given date.</pa
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/frames/framework/FixedOffsetFrame.hpp" line="348" column="17" bodyfile="astrea/astro/astro/frames/framework/FixedOffsetFrame.hpp" bodystart="348" bodyend="359"/>
+        <location file="astrea/astro/astro/frames/framework/FixedOffsetFrame.hpp" line="346" column="17" bodyfile="astrea/astro/astro/frames/framework/FixedOffsetFrame.hpp" bodystart="346" bodyend="357"/>
       </memberdef>
       <memberdef kind="function" id="FixedOffsetFrame_8hpp_1a638c28ff20260abc3e017c03982ad6e1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
@@ -2961,7 +3140,7 @@ Get the Direction Cosine Matrix (DCM) for the J2000 to ICRF at a given date.</pa
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/frames/framework/FixedOffsetFrame.hpp" line="371" column="17" bodyfile="astrea/astro/astro/frames/framework/FixedOffsetFrame.hpp" bodystart="371" bodyend="382"/>
+        <location file="astrea/astro/astro/frames/framework/FixedOffsetFrame.hpp" line="369" column="17" bodyfile="astrea/astro/astro/frames/framework/FixedOffsetFrame.hpp" bodystart="369" bodyend="380"/>
       </memberdef>
       <memberdef kind="function" id="FixedOffsetFrame_8hpp_1af41ddc8297195f298694de321389d990" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
@@ -3034,7 +3213,7 @@ Get the Direction Cosine Matrix (DCM) for the J2000 to ICRF at a given date.</pa
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/frames/framework/FixedOffsetFrame.hpp" line="395" column="17" bodyfile="astrea/astro/astro/frames/framework/FixedOffsetFrame.hpp" bodystart="395" bodyend="406"/>
+        <location file="astrea/astro/astro/frames/framework/FixedOffsetFrame.hpp" line="393" column="17" bodyfile="astrea/astro/astro/frames/framework/FixedOffsetFrame.hpp" bodystart="393" bodyend="404"/>
       </memberdef>
       <memberdef kind="function" id="FixedOffsetFrame_8hpp_1a23e37a81011f94cb9e216600078a4db0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
@@ -3068,7 +3247,7 @@ Get the Direction Cosine Matrix (DCM) for the J2000 to ICRF at a given date.</pa
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/frames/framework/FixedOffsetFrame.hpp" line="415" column="16" bodyfile="astrea/astro/astro/frames/framework/FixedOffsetFrame.hpp" bodystart="415" bodyend="421"/>
+        <location file="astrea/astro/astro/frames/framework/FixedOffsetFrame.hpp" line="413" column="16" bodyfile="astrea/astro/astro/frames/framework/FixedOffsetFrame.hpp" bodystart="413" bodyend="419"/>
       </memberdef>
       <memberdef kind="function" id="FixedOffsetFrame_8hpp_1a02bd40629cb8ea922045a2bc3622bb39" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
@@ -3090,7 +3269,7 @@ Get the Direction Cosine Matrix (DCM) for the J2000 to ICRF at a given date.</pa
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/frames/framework/FixedOffsetFrame.hpp" line="427" column="23" bodyfile="astrea/astro/astro/frames/framework/FixedOffsetFrame.hpp" bodystart="427" bodyend="436"/>
+        <location file="astrea/astro/astro/frames/framework/FixedOffsetFrame.hpp" line="425" column="23" bodyfile="astrea/astro/astro/frames/framework/FixedOffsetFrame.hpp" bodystart="425" bodyend="434"/>
       </memberdef>
       <memberdef kind="function" id="FixedOffsetFrame_8hpp_1a02366710ad1621b770d36fd765527873" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
@@ -3112,7 +3291,7 @@ Get the Direction Cosine Matrix (DCM) for the J2000 to ICRF at a given date.</pa
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/frames/framework/FixedOffsetFrame.hpp" line="442" column="23" bodyfile="astrea/astro/astro/frames/framework/FixedOffsetFrame.hpp" bodystart="442" bodyend="459"/>
+        <location file="astrea/astro/astro/frames/framework/FixedOffsetFrame.hpp" line="440" column="23" bodyfile="astrea/astro/astro/frames/framework/FixedOffsetFrame.hpp" bodystart="440" bodyend="457"/>
       </memberdef>
       <memberdef kind="function" id="FixedOffsetFrame_8hpp_1a4f56f195934062cfe6a131b7df1451da" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
@@ -3134,7 +3313,7 @@ Get the Direction Cosine Matrix (DCM) for the J2000 to ICRF at a given date.</pa
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/frames/framework/FixedOffsetFrame.hpp" line="465" column="23" bodyfile="astrea/astro/astro/frames/framework/FixedOffsetFrame.hpp" bodystart="465" bodyend="485"/>
+        <location file="astrea/astro/astro/frames/framework/FixedOffsetFrame.hpp" line="463" column="23" bodyfile="astrea/astro/astro/frames/framework/FixedOffsetFrame.hpp" bodystart="463" bodyend="483"/>
       </memberdef>
       <memberdef kind="function" id="Frame_8hpp_1a536446fb6d6ba63b0b12e8f56a532a6e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
@@ -3942,6 +4121,342 @@ Get the Direction Cosine Matrix (DCM) for the J2000 to ICRF at a given date.</pa
         <inbodydescription>
         </inbodydescription>
         <location file="astrea/astro/astro/platforms/space/Plane.ipp" line="10" column="13" bodyfile="astrea/astro/astro/platforms/space/Plane.ipp" bodystart="10" bodyend="34"/>
+      </memberdef>
+      <memberdef kind="function" id="atmosphere_8hpp_1a1e3a7d82f444c26082b09798a9bb423a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>auto</type>
+            <declname>_body_</declname>
+            <defname>_body_</defname>
+          </param>
+          <param>
+            <type>auto...</type>
+          </param>
+          <param>
+            <type>typename...</type>
+            <declname>Args</declname>
+            <defname>Args</defname>
+          </param>
+        </templateparamlist>
+        <type>Density</type>
+        <definition>Density astrea::astro::find_atmospheric_density</definition>
+        <argsstring>(const State &amp;, const Args &amp;...)</argsstring>
+        <name>find_atmospheric_density</name>
+        <qualifiedname>astrea::astro::find_atmospheric_density</qualifiedname>
+        <param>
+          <type>const <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
+        </param>
+        <param>
+          <type>const Args &amp;</type>
+          <declname>...</declname>
+        </param>
+        <briefdescription>
+<para>Primary template for atmospheric density — returns zero by default. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/atmosphere.hpp" line="50" column="16" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/atmosphere.hpp" bodystart="50" bodyend="53"/>
+      </memberdef>
+      <memberdef kind="function" id="atmosphere_8hpp_1a8753ce77b39a5347ad5c07b0c1715f1f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+        </templateparamlist>
+        <type>Density</type>
+        <definition>Density astrea::astro::find_atmospheric_density&lt; planets::Earth, EarthAtmosphereModel::JACCHIA_ROBERTS &gt;</definition>
+        <argsstring>(const State &amp;state)</argsstring>
+        <name>find_atmospheric_density&lt; planets::Earth, EarthAtmosphereModel::JACCHIA_ROBERTS &gt;</name>
+        <qualifiedname>astrea::astro::find_atmospheric_density&lt; planets::Earth, EarthAtmosphereModel::JACCHIA_ROBERTS &gt;</qualifiedname>
+        <param>
+          <type>const <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
+          <declname>state</declname>
+        </param>
+        <briefdescription>
+<para>Find the atmospheric density for Earth using the Jacchia-Roberts model. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>state</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The current <ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref> state vector (position and velocity). </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Density The atmospheric density at the position encoded in <computeroutput>state</computeroutput>. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/atmosphere.hpp" line="62" column="8" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/atmosphere.hpp" bodystart="62" bodyend="67"/>
+      </memberdef>
+      <memberdef kind="function" id="atmosphere_8hpp_1a2af5e234fa497ccc1d5bf4faaf677891" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+        </templateparamlist>
+        <type>Density</type>
+        <definition>Density astrea::astro::find_atmospheric_density&lt; planets::Earth, EarthAtmosphereModel::HARRIS_PRIESTER &gt;</definition>
+        <argsstring>(const State &amp;state)</argsstring>
+        <name>find_atmospheric_density&lt; planets::Earth, EarthAtmosphereModel::HARRIS_PRIESTER &gt;</name>
+        <qualifiedname>astrea::astro::find_atmospheric_density&lt; planets::Earth, EarthAtmosphereModel::HARRIS_PRIESTER &gt;</qualifiedname>
+        <param>
+          <type>const <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
+          <declname>state</declname>
+        </param>
+        <briefdescription>
+<para>Find the atmospheric density for Earth using the Harris-Priester model. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>state</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The current <ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref> state vector (position and velocity). </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Density The atmospheric density at the position encoded in <computeroutput>state</computeroutput>. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/atmosphere.hpp" line="76" column="8" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/atmosphere.hpp" bodystart="76" bodyend="79"/>
+      </memberdef>
+      <memberdef kind="function" id="atmosphere_8hpp_1ac5de707d3dbc3d81226610bb61e0a2d6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+        </templateparamlist>
+        <type>Density</type>
+        <definition>Density astrea::astro::find_atmospheric_density&lt; planets::Earth, EarthAtmosphereModel::NRLMSISE00 &gt;</definition>
+        <argsstring>(const State &amp;state, const SpaceWeatherParameters &amp;spaceWeatherParameters)</argsstring>
+        <name>find_atmospheric_density&lt; planets::Earth, EarthAtmosphereModel::NRLMSISE00 &gt;</name>
+        <qualifiedname>astrea::astro::find_atmospheric_density&lt; planets::Earth, EarthAtmosphereModel::NRLMSISE00 &gt;</qualifiedname>
+        <param>
+          <type>const <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
+          <declname>state</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structastrea_1_1astro_1_1SpaceWeatherParameters" kindref="compound">SpaceWeatherParameters</ref> &amp;</type>
+          <declname>spaceWeatherParameters</declname>
+        </param>
+        <briefdescription>
+<para>Find the atmospheric density for Earth using the NRLMSISE-00 model. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>state</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The current <ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref> state vector (position and velocity). </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>spaceWeatherParameters</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The space weather parameters (F10.7, F10.7a, Ap) required by the NRLMSISE-00 model. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Density The atmospheric density at the position encoded in <computeroutput>state</computeroutput>. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/atmosphere.hpp" line="89" column="8" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/atmosphere.hpp" bodystart="90" bodyend="97"/>
+      </memberdef>
+      <memberdef kind="function" id="atmosphere_8hpp_1ad13f0c3a0398fc524d676785f9bcdaa7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+        </templateparamlist>
+        <type>Density</type>
+        <definition>Density astrea::astro::find_atmospheric_density&lt; planets::Venus &gt;</definition>
+        <argsstring>(const State &amp;state)</argsstring>
+        <name>find_atmospheric_density&lt; planets::Venus &gt;</name>
+        <qualifiedname>astrea::astro::find_atmospheric_density&lt; planets::Venus &gt;</qualifiedname>
+        <param>
+          <type>const <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
+          <declname>state</declname>
+        </param>
+        <briefdescription>
+<para>Find the atmospheric density for Venus using a tabulated model. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>state</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The current <ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref> state vector (position and velocity). </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Density The atmospheric density at the position encoded in <computeroutput>state</computeroutput>. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/atmosphere.hpp" line="106" column="8" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/atmosphere.hpp" bodystart="106" bodyend="145"/>
+      </memberdef>
+      <memberdef kind="function" id="atmosphere_8hpp_1afbb4c6e20faf7ca9415821603c707eda" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+        </templateparamlist>
+        <type>Density</type>
+        <definition>Density astrea::astro::find_atmospheric_density&lt; planets::Mars &gt;</definition>
+        <argsstring>(const State &amp;state)</argsstring>
+        <name>find_atmospheric_density&lt; planets::Mars &gt;</name>
+        <qualifiedname>astrea::astro::find_atmospheric_density&lt; planets::Mars &gt;</qualifiedname>
+        <param>
+          <type>const <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
+          <declname>state</declname>
+        </param>
+        <briefdescription>
+<para>Find the atmospheric density for Mars using a tabulated model. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>state</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The current <ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref> state vector (position and velocity). </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Density The atmospheric density at the position encoded in <computeroutput>state</computeroutput>. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/atmosphere.hpp" line="154" column="8" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/atmosphere.hpp" bodystart="154" bodyend="201"/>
+      </memberdef>
+      <memberdef kind="function" id="atmosphere_8hpp_1a26f5ea97c7c021f5b4f4b8148c7bfe1d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+        </templateparamlist>
+        <type>Density</type>
+        <definition>Density astrea::astro::find_atmospheric_density&lt; moons::Titan &gt;</definition>
+        <argsstring>(const State &amp;state)</argsstring>
+        <name>find_atmospheric_density&lt; moons::Titan &gt;</name>
+        <qualifiedname>astrea::astro::find_atmospheric_density&lt; moons::Titan &gt;</qualifiedname>
+        <param>
+          <type>const <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
+          <declname>state</declname>
+        </param>
+        <briefdescription>
+<para>Find the atmospheric density for Titan using a tabulated model. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>state</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The current <ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref> state vector (position and velocity). </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Density The atmospheric density at the position encoded in <computeroutput>state</computeroutput>. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+<para>Type alias for Density on Titan.</para>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/atmosphere.hpp" line="210" column="8" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/atmosphere.hpp" bodystart="210" bodyend="259"/>
+      </memberdef>
+      <memberdef kind="function" id="Nrlmsise00_8cpp_1af30ca8e1c368d06429bb293aa800ec51" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Time</type>
+        <definition>Time astrea::astro::calculate_local_solar_time</definition>
+        <argsstring>(const State &amp;state)</argsstring>
+        <name>calculate_local_solar_time</name>
+        <qualifiedname>astrea::astro::calculate_local_solar_time</qualifiedname>
+        <param>
+          <type>const <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
+          <declname>state</declname>
+        </param>
+        <briefdescription>
+<para>Calculate the local solar time for a given state. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>state</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The current state of the satellite. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The local solar time. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/Nrlmsise00.cpp" line="36" column="6" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/Nrlmsise00.cpp" bodystart="36" bodyend="51" declfile="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/Nrlmsise00.hpp" declline="36" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="file__reader_8cpp_1a720d3241770fe73f12decfcceb5c3029" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; <ref refid="structastrea_1_1astro_1_1SpaceWeatherParameters" kindref="compound">SpaceWeatherParameters</ref> &gt;</type>
+        <definition>std::vector&lt; SpaceWeatherParameters &gt; astrea::astro::read_space_weather_file</definition>
+        <argsstring>(const std::filesystem::path &amp;filePath, std::optional&lt; Date &gt; startDate=std::nullopt, std::optional&lt; Date &gt; endDate=std::nullopt)</argsstring>
+        <name>read_space_weather_file</name>
+        <qualifiedname>astrea::astro::read_space_weather_file</qualifiedname>
+        <param>
+          <type>const std::filesystem::path &amp;</type>
+          <declname>filePath</declname>
+        </param>
+        <param>
+          <type>std::optional&lt; <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &gt;</type>
+          <declname>startDate</declname>
+          <defval>std::nullopt</defval>
+        </param>
+        <param>
+          <type>std::optional&lt; <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &gt;</type>
+          <declname>endDate</declname>
+          <defval>std::nullopt</defval>
+        </param>
+        <briefdescription>
+<para>Reads space weather data from a file and returns it as a <ref refid="classastrea_1_1astro_1_1SpaceWeatherData" kindref="compound">SpaceWeatherData</ref> object. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>filePath</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The path to the space weather data file. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>startDate</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Optional start date for filtering the data. If provided, only data on or after this date will be included. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>endDate</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Optional end date for filtering the data. If provided, only data on or before this date will be included. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A vector of <ref refid="structastrea_1_1astro_1_1SpaceWeatherParameters" kindref="compound">SpaceWeatherParameters</ref> containing the parsed space weather data. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/file_reader.cpp" line="33" column="5" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/file_reader.cpp" bodystart="33" bodyend="148" declfile="astrea/astro/astro/propagation/force_models/space_weather/file_reader.hpp" declline="40" declcolumn="5"/>
       </memberdef>
       <memberdef kind="function" id="Cylindrical_8hpp_1ad2783c8981c919a1f1f2f1403df770ca" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
@@ -5783,7 +6298,7 @@ Get the Direction Cosine Matrix (DCM) for the J2000 to ICRF at a given date.</pa
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/orbital_elements/Keplerian.ipp" line="525" column="1" bodyfile="astrea/astro/astro/state/orbital_elements/Keplerian.ipp" bodystart="525" bodyend="536"/>
+        <location file="astrea/astro/astro/state/orbital_elements/Keplerian.ipp" line="512" column="1" bodyfile="astrea/astro/astro/state/orbital_elements/Keplerian.ipp" bodystart="512" bodyend="523"/>
       </memberdef>
       <memberdef kind="function" id="Keplerian_8ipp_1aeb92a97e5cb9effb428b0640b71f72a5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
@@ -5812,7 +6327,7 @@ Get the Direction Cosine Matrix (DCM) for the J2000 to ICRF at a given date.</pa
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/orbital_elements/Keplerian.ipp" line="539" column="1" bodyfile="astrea/astro/astro/state/orbital_elements/Keplerian.ipp" bodystart="539" bodyend="550"/>
+        <location file="astrea/astro/astro/state/orbital_elements/Keplerian.ipp" line="526" column="1" bodyfile="astrea/astro/astro/state/orbital_elements/Keplerian.ipp" bodystart="526" bodyend="537"/>
       </memberdef>
       <memberdef kind="function" id="OrbitalElements_8cpp_1a9193d2edd2ee163b7d939e9bfec9dfae" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>std::ostream &amp;</type>
@@ -5881,7 +6396,7 @@ Get the Direction Cosine Matrix (DCM) for the J2000 to ICRF at a given date.</pa
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/orbital_elements/OrbitalElements.cpp" line="207" column="6" bodyfile="astrea/astro/astro/state/orbital_elements/OrbitalElements.cpp" bodystart="207" bodyend="213" declfile="astrea/astro/astro/state/orbital_elements/OrbitalElements.hpp" declline="511" declcolumn="6"/>
+        <location file="astrea/astro/astro/state/orbital_elements/OrbitalElements.cpp" line="207" column="6" bodyfile="astrea/astro/astro/state/orbital_elements/OrbitalElements.cpp" bodystart="207" bodyend="213" declfile="astrea/astro/astro/state/orbital_elements/OrbitalElements.hpp" declline="520" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="State_8cpp_1a6264365e7fca8e49a15cc62e3ae378e4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>std::ostream &amp;</type>
@@ -5905,100 +6420,6 @@ Get the Direction Cosine Matrix (DCM) for the J2000 to ICRF at a given date.</pa
         </inbodydescription>
         <location file="astrea/astro/astro/state/State.cpp" line="23" column="1" bodyfile="astrea/astro/astro/state/State.cpp" bodystart="23" bodyend="28"/>
       </memberdef>
-      <memberdef kind="function" id="atmosphere_8hpp_1a52e61520417c952449eab8e34768857c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <templateparamlist>
-        </templateparamlist>
-        <type>Density</type>
-        <definition>Density astrea::astro::find_atmospheric_density&lt; planets::Earth &gt;</definition>
-        <argsstring>(const State &amp;state)</argsstring>
-        <name>find_atmospheric_density&lt; planets::Earth &gt;</name>
-        <qualifiedname>astrea::astro::find_atmospheric_density&lt; planets::Earth &gt;</qualifiedname>
-        <param>
-          <type>const <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
-          <declname>state</declname>
-        </param>
-        <briefdescription>
-<para>Find the atmospheric density for Earth using the configured atmosphere model. </para>
-        </briefdescription>
-        <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>state</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The current <ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref> state vector (position and velocity). </para>
-</parameterdescription>
-</parameteritem>
-</parameterlist>
-<simplesect kind="return"><para>Density The atmospheric density at the position encoded in <computeroutput>state</computeroutput>. </para>
-</simplesect>
-</para>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="astrea/astro/astro/systems/atmosphere.hpp" line="54" column="8" bodyfile="astrea/astro/astro/systems/atmosphere.hpp" bodystart="54" bodyend="57"/>
-      </memberdef>
-      <memberdef kind="function" id="atmosphere_8hpp_1ad13f0c3a0398fc524d676785f9bcdaa7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <templateparamlist>
-        </templateparamlist>
-        <type>Density</type>
-        <definition>Density astrea::astro::find_atmospheric_density&lt; planets::Venus &gt;</definition>
-        <argsstring>(const State &amp;state)</argsstring>
-        <name>find_atmospheric_density&lt; planets::Venus &gt;</name>
-        <qualifiedname>astrea::astro::find_atmospheric_density&lt; planets::Venus &gt;</qualifiedname>
-        <param>
-          <type>const <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
-          <declname>state</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="astrea/astro/astro/systems/atmosphere.hpp" line="64" column="8" bodyfile="astrea/astro/astro/systems/atmosphere.hpp" bodystart="64" bodyend="103"/>
-      </memberdef>
-      <memberdef kind="function" id="atmosphere_8hpp_1afbb4c6e20faf7ca9415821603c707eda" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <templateparamlist>
-        </templateparamlist>
-        <type>Density</type>
-        <definition>Density astrea::astro::find_atmospheric_density&lt; planets::Mars &gt;</definition>
-        <argsstring>(const State &amp;state)</argsstring>
-        <name>find_atmospheric_density&lt; planets::Mars &gt;</name>
-        <qualifiedname>astrea::astro::find_atmospheric_density&lt; planets::Mars &gt;</qualifiedname>
-        <param>
-          <type>const <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
-          <declname>state</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="astrea/astro/astro/systems/atmosphere.hpp" line="110" column="8" bodyfile="astrea/astro/astro/systems/atmosphere.hpp" bodystart="110" bodyend="159"/>
-      </memberdef>
-      <memberdef kind="function" id="atmosphere_8hpp_1a26f5ea97c7c021f5b4f4b8148c7bfe1d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <templateparamlist>
-        </templateparamlist>
-        <type>Density</type>
-        <definition>Density astrea::astro::find_atmospheric_density&lt; moons::Titan &gt;</definition>
-        <argsstring>(const State &amp;state)</argsstring>
-        <name>find_atmospheric_density&lt; moons::Titan &gt;</name>
-        <qualifiedname>astrea::astro::find_atmospheric_density&lt; moons::Titan &gt;</qualifiedname>
-        <param>
-          <type>const <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
-          <declname>state</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-<para>Type alias for Density on Titan.</para>
-        </inbodydescription>
-        <location file="astrea/astro/astro/systems/atmosphere.hpp" line="166" column="8" bodyfile="astrea/astro/astro/systems/atmosphere.hpp" bodystart="166" bodyend="215"/>
-      </memberdef>
       <memberdef kind="function" id="Earth_8hpp_1ad6b511132a5dff6691bc8a6ac40a9727" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
         </templateparamlist>
@@ -6013,7 +6434,7 @@ Get the Direction Cosine Matrix (DCM) for the J2000 to ICRF at a given date.</pa
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/systems/celestial_bodies/Earth/Earth.hpp" line="62" column="18" bodyfile="astrea/astro/astro/systems/celestial_bodies/Earth/Earth.hpp" bodystart="62" bodyend="103"/>
+        <location file="astrea/astro/astro/systems/celestial_bodies/Earth/Earth.hpp" line="56" column="18" bodyfile="astrea/astro/astro/systems/celestial_bodies/Earth/Earth.hpp" bodystart="56" bodyend="97"/>
       </memberdef>
       <memberdef kind="function" id="Moon_8hpp_1ad53643aee1cec004a896b806d0a5ccc5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
@@ -6457,32 +6878,6 @@ Get the Direction Cosine Matrix (DCM) for the J2000 to ICRF at a given date.</pa
         </inbodydescription>
         <location file="astrea/astro/astro/systems/CelestialBody.hpp" line="73" column="42" declfile="astrea/astro/astro/systems/CelestialBody.hpp" declline="73" declcolumn="42"/>
       </memberdef>
-      <memberdef kind="function" id="CelestialBody_8hpp_1a995233fd250656758e03f1b0fe2c6a14" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <templateparamlist>
-          <param>
-            <type>auto</type>
-            <declname>_body_</declname>
-            <defname>_body_</defname>
-          </param>
-        </templateparamlist>
-        <type>Density</type>
-        <definition>Density astrea::astro::find_atmospheric_density</definition>
-        <argsstring>(const State &amp;state)</argsstring>
-        <name>find_atmospheric_density</name>
-        <qualifiedname>astrea::astro::find_atmospheric_density</qualifiedname>
-        <param>
-          <type>const <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
-          <declname>state</declname>
-        </param>
-        <briefdescription>
-<para>Primary template for atmospheric density — returns zero by default. </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="astrea/astro/astro/systems/CelestialBody.hpp" line="77" column="16" bodyfile="astrea/astro/astro/systems/CelestialBody.hpp" bodystart="77" bodyend="80"/>
-      </memberdef>
       <memberdef kind="function" id="CelestialBody_8hpp_1a800a594f82b1fa5c320f02d1d3640dc1" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
@@ -6510,7 +6905,7 @@ Get the Direction Cosine Matrix (DCM) for the J2000 to ICRF at a given date.</pa
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/systems/default_property_getters.hpp" line="93" column="34" bodyfile="astrea/astro/astro/systems/default_property_getters.hpp" bodystart="93" bodyend="100" declfile="astrea/astro/astro/systems/CelestialBody.hpp" declline="87" declcolumn="34"/>
+        <location file="astrea/astro/astro/systems/default_property_getters.hpp" line="93" column="34" bodyfile="astrea/astro/astro/systems/default_property_getters.hpp" bodystart="93" bodyend="100" declfile="astrea/astro/astro/systems/CelestialBody.hpp" declline="80" declcolumn="34"/>
       </memberdef>
       <memberdef kind="function" id="CelestialBody_8hpp_1ac07b0410c97f1585abf947947ecc1f8f" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
@@ -6537,7 +6932,7 @@ Get the Direction Cosine Matrix (DCM) for the J2000 to ICRF at a given date.</pa
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/systems/default_property_getters.hpp" line="108" column="34" bodyfile="astrea/astro/astro/systems/default_property_getters.hpp" bodystart="108" bodyend="115" declfile="astrea/astro/astro/systems/CelestialBody.hpp" declline="90" declcolumn="34"/>
+        <location file="astrea/astro/astro/systems/default_property_getters.hpp" line="108" column="34" bodyfile="astrea/astro/astro/systems/default_property_getters.hpp" bodystart="108" bodyend="115" declfile="astrea/astro/astro/systems/CelestialBody.hpp" declline="83" declcolumn="34"/>
       </memberdef>
       <memberdef kind="function" id="CelestialBody_8hpp_1ab3f53f5048c54c6921eaf79b0d56bffb" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
@@ -6564,7 +6959,7 @@ Get the Direction Cosine Matrix (DCM) for the J2000 to ICRF at a given date.</pa
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/systems/default_property_getters.hpp" line="123" column="34" bodyfile="astrea/astro/astro/systems/default_property_getters.hpp" bodystart="123" bodyend="131" declfile="astrea/astro/astro/systems/CelestialBody.hpp" declline="93" declcolumn="34"/>
+        <location file="astrea/astro/astro/systems/default_property_getters.hpp" line="123" column="34" bodyfile="astrea/astro/astro/systems/default_property_getters.hpp" bodystart="123" bodyend="131" declfile="astrea/astro/astro/systems/CelestialBody.hpp" declline="86" declcolumn="34"/>
       </memberdef>
       <memberdef kind="function" id="default__property__getters_8hpp_1af8addc00f13411652e6f0b60ec1c3c1c" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>

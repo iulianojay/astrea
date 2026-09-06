@@ -60,12 +60,6 @@ template <auto _body_>
 inline consteval CelestialBodyParameters get_celestial_body_parameters() = delete;
 
 template <auto _body_>
-inline Density find_atmospheric_density(const State& state)
-{
-    return Density::zero();
-}
-
-template <auto _body_>
 inline constexpr CartesianVector<Distance, get_parent_frame(_body_, axes::icrf)> get_position_at(const Date& date);
 
 template <auto _body_>

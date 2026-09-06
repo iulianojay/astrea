@@ -99,7 +99,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/platforms/thrusters/Thruster.hpp" line="120" column="17" bodyfile="astrea/astro/astro/platforms/thrusters/Thruster.cpp" bodystart="24" bodyend="24"/>
+        <location file="astrea/astro/astro/platforms/thrusters/Thruster.hpp" line="120" column="17" bodyfile="astrea/astro/astro/platforms/thrusters/Thruster.cpp" bodystart="25" bodyend="25"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Thruster_1a91310d9dc97049cae2d10ee55400ef81" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>Velocity</type>
@@ -117,7 +117,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/platforms/thrusters/Thruster.hpp" line="127" column="14" bodyfile="astrea/astro/astro/platforms/thrusters/Thruster.cpp" bodystart="26" bodyend="29"/>
+        <location file="astrea/astro/astro/platforms/thrusters/Thruster.hpp" line="127" column="14" bodyfile="astrea/astro/astro/platforms/thrusters/Thruster.cpp" bodystart="27" bodyend="30"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Thruster_1a07dfabba126970b22d0bc42010c0990d" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>Force</type>
@@ -144,7 +144,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/platforms/thrusters/Thruster.hpp" line="135" column="11" bodyfile="astrea/astro/astro/platforms/thrusters/Thruster.cpp" bodystart="31" bodyend="31"/>
+        <location file="astrea/astro/astro/platforms/thrusters/Thruster.hpp" line="135" column="11" bodyfile="astrea/astro/astro/platforms/thrusters/Thruster.cpp" bodystart="32" bodyend="32"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Thruster_1a91dc8acdeebfa4dfa75d0df4699f7893" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -159,7 +159,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/platforms/thrusters/Thruster.hpp" line="140" column="10" bodyfile="astrea/astro/astro/platforms/thrusters/Thruster.cpp" bodystart="33" bodyend="33"/>
+        <location file="astrea/astro/astro/platforms/thrusters/Thruster.hpp" line="140" column="10" bodyfile="astrea/astro/astro/platforms/thrusters/Thruster.cpp" bodystart="34" bodyend="34"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Thruster_1ad7a624960fe8745b65d8b9bbaae34637" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -174,7 +174,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/platforms/thrusters/Thruster.hpp" line="145" column="10" bodyfile="astrea/astro/astro/platforms/thrusters/Thruster.cpp" bodystart="35" bodyend="35"/>
+        <location file="astrea/astro/astro/platforms/thrusters/Thruster.hpp" line="145" column="10" bodyfile="astrea/astro/astro/platforms/thrusters/Thruster.cpp" bodystart="36" bodyend="36"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Thruster_1a43cbc8805749a196fbd00e4cf4ef199b" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -192,7 +192,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/platforms/thrusters/Thruster.hpp" line="152" column="10" bodyfile="astrea/astro/astro/platforms/thrusters/Thruster.cpp" bodystart="37" bodyend="37"/>
+        <location file="astrea/astro/astro/platforms/thrusters/Thruster.hpp" line="152" column="10" bodyfile="astrea/astro/astro/platforms/thrusters/Thruster.cpp" bodystart="38" bodyend="38"/>
       </memberdef>
     </sectiondef>
     <briefdescription>

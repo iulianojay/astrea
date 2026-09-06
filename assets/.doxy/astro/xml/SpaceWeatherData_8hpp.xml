@@ -1,0 +1,477 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="SpaceWeatherData_8hpp" kind="file" language="C++">
+    <compoundname>SpaceWeatherData.hpp</compoundname>
+    <includes local="no">cstdint</includes>
+    <includes local="no">filesystem</includes>
+    <includes local="no">optional</includes>
+    <includes local="no">vector</includes>
+    <includes local="no">units/units.hpp</includes>
+    <includes refid="Date_8hpp" local="no">astro/time/Date.hpp</includes>
+    <includedby refid="space__weather_8hpp" local="no">astrea/astro/astro/propagation/force_models/space_weather.hpp</includedby>
+    <includedby refid="SpaceWeatherData_8cpp" local="no">astrea/astro/astro/propagation/force_models/space_weather/SpaceWeatherData.cpp</includedby>
+    <includedby refid="SpaceWeatherProvider_8hpp" local="no">astrea/astro/astro/propagation/force_models/space_weather/SpaceWeatherProvider.hpp</includedby>
+    <includedby refid="atmosphere_8hpp" local="no">astrea/astro/astro/propagation/force_models/space_weather/atmosphere.hpp</includedby>
+    <includedby refid="file__reader_8hpp" local="no">astrea/astro/astro/propagation/force_models/space_weather/file_reader.hpp</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>astrea/astro/astro/propagation/force_models/space_weather/SpaceWeatherData.hpp</label>
+        <link refid="SpaceWeatherData_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>astro/systems/system_concepts.hpp</label>
+        <link refid="system__concepts_8hpp"/>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>astro/time/Date.hpp</label>
+        <link refid="Date_8hpp"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>astro/time/clocks.hpp</label>
+        <link refid="clocks_8hpp"/>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>astro/time/clocks/BarycentricCoordinateTimeClock.hpp</label>
+        <link refid="BarycentricCoordinateTimeClock_8hpp"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+      </node>
+      <node id="18">
+        <label>astro/time/clocks/BarycentricDynamicalTimeClock.hpp</label>
+        <link refid="BarycentricDynamicalTimeClock_8hpp"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+      </node>
+      <node id="21">
+        <label>astro/time/clocks/GeocentricCoordinateTimeClock.hpp</label>
+        <link refid="GeocentricCoordinateTimeClock_8hpp"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+      </node>
+      <node id="19">
+        <label>astro/time/clocks/JulianDateClock.hpp</label>
+        <link refid="JulianDateClock_8hpp"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="20">
+        <label>astro/time/clocks/TerrestrialTimeClock.hpp</label>
+        <link refid="TerrestrialTimeClock_8hpp"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>chrono</label>
+      </node>
+      <node id="13">
+        <label>concepts</label>
+      </node>
+      <node id="2">
+        <label>cstdint</label>
+      </node>
+      <node id="3">
+        <label>filesystem</label>
+      </node>
+      <node id="9">
+        <label>iosfwd</label>
+      </node>
+      <node id="11">
+        <label>mp-units/systems/si/chrono.h</label>
+      </node>
+      <node id="16">
+        <label>numbers</label>
+      </node>
+      <node id="4">
+        <label>optional</label>
+      </node>
+      <node id="17">
+        <label>ratio</label>
+      </node>
+      <node id="10">
+        <label>string</label>
+      </node>
+      <node id="6">
+        <label>units/units.hpp</label>
+      </node>
+      <node id="5">
+        <label>vector</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="4">
+        <label>astrea/astro/astro/astro.hpp</label>
+        <link refid="astro_8hpp"/>
+      </node>
+      <node id="16">
+        <label>astrea/astro/astro/platforms.hpp</label>
+        <link refid="platforms_8hpp"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>astrea/astro/astro/platforms/space/Constellation.hpp</label>
+        <link refid="Constellation_8hpp"/>
+        <childnode refid="16" relation="include">
+        </childnode>
+      </node>
+      <node id="17">
+        <label>astrea/astro/astro/platforms/space/Plane.hpp</label>
+        <link refid="Plane_8hpp"/>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+      </node>
+      <node id="18">
+        <label>astrea/astro/astro/platforms/space/Shell.hpp</label>
+        <link refid="Shell_8hpp"/>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>astrea/astro/astro/propagation.hpp</label>
+        <link refid="propagation_8hpp"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>astrea/astro/astro/propagation/equations_of_motion/CircularRestrictedThreeBodyProblem.hpp</label>
+        <link refid="CircularRestrictedThreeBodyProblem_8hpp"/>
+      </node>
+      <node id="8">
+        <label>astrea/astro/astro/propagation/equations_of_motion/CowellsMethod.hpp</label>
+        <link refid="CowellsMethod_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>astrea/astro/astro/propagation/equations_of_motion/EquationsOfMotion.hpp</label>
+        <link refid="EquationsOfMotion_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>astrea/astro/astro/propagation/equations_of_motion/EquinoctialVop.hpp</label>
+        <link refid="EquinoctialVop_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>astrea/astro/astro/propagation/equations_of_motion/J2MeanVop.hpp</label>
+        <link refid="J2MeanVop_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>astrea/astro/astro/propagation/equations_of_motion/KeplerianVop.hpp</label>
+        <link refid="KeplerianVop_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>astrea/astro/astro/propagation/equations_of_motion/TwoBody.hpp</label>
+        <link refid="TwoBody_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="20">
+        <label>astrea/astro/astro/propagation/force_models/AtmosphericForce.hpp</label>
+        <link refid="AtmosphericForce_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>astrea/astro/astro/propagation/force_models/ForceModel.hpp</label>
+        <link refid="ForceModel_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="21">
+        <label>astrea/astro/astro/propagation/force_models/NBodyForce.hpp</label>
+        <link refid="NBodyForce_8hpp_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="22">
+        <label>astrea/astro/astro/propagation/force_models/OblatenessForce.hpp</label>
+        <link refid="OblatenessForce_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="19">
+        <label>astrea/astro/astro/propagation/force_models/PerturbingForce.hpp</label>
+        <link refid="PerturbingForce_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+      </node>
+      <node id="23">
+        <label>astrea/astro/astro/propagation/force_models/SolarRadiationPressure.hpp</label>
+        <link refid="SolarRadiationPressure_8hpp_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>astrea/astro/astro/propagation/force_models/space_weather.hpp</label>
+        <link refid="space__weather_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>astrea/astro/astro/propagation/force_models/space_weather/SpaceWeatherData.hpp</label>
+        <link refid="SpaceWeatherData_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>astrea/astro/astro/propagation/force_models/space_weather/SpaceWeatherProvider.hpp</label>
+        <link refid="SpaceWeatherProvider_8hpp"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+      </node>
+      <node id="24">
+        <label>astrea/astro/astro/propagation/force_models/space_weather/atmosphere.hpp</label>
+        <link refid="atmosphere_8hpp_source"/>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="25">
+        <label>astrea/astro/astro/propagation/force_models/space_weather/file_reader.hpp</label>
+        <link refid="file__reader_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>astrea/astro/astro/propagation/numerical/Integrator.hpp</label>
+        <link refid="Integrator_8hpp"/>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="structastrea_1_1astro_1_1SolarFluxData" prot="public">astrea::astro::SolarFluxData</innerclass>
+    <innerclass refid="structastrea_1_1astro_1_1SpaceWeatherParameters" prot="public">astrea::astro::SpaceWeatherParameters</innerclass>
+    <innerclass refid="classastrea_1_1astro_1_1SpaceWeatherData" prot="public">astrea::astro::SpaceWeatherData</innerclass>
+    <innernamespace refid="namespaceastrea">astrea</innernamespace>
+    <innernamespace refid="namespaceastrea_1_1astro">astrea::astro</innernamespace>
+    <briefdescription>
+<para>Header file for the SpaceWeatherData struct, which stores space weather data. </para>
+    </briefdescription>
+    <detaileddescription>
+<para><simplesect kind="author"><para>Jay Iuliano (<ulink url="mailto:iuliano.jay@gmail.com">iuliano.jay@gmail.com</ulink>) </para>
+</simplesect>
+<simplesect kind="date"><para>2025-08-02</para>
+</simplesect>
+<simplesect kind="copyright"><para>Copyright (c) 2025-2026 Jay Iuliano</para>
+</simplesect>
+The GNU Lesser General Public License (LGPL)</para>
+<para>This file is part of Astrea. Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. Astrea is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details. You should have received a copy of the GNU General Public License along with Astrea. If not, see <ulink url="https://www.gnu.org/licenses/">https://www.gnu.org/licenses/</ulink>. </para>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;cstdint&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;filesystem&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;optional&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;vector&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;units/units.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="Date_8hpp" kindref="compound">astro/time/Date.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">astrea<sp/>{</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">astro<sp/>{</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight></codeline>
+<codeline lineno="36" refid="SpaceWeatherData_8hpp_1a889e166de4bd3a52f1e65cd97244bc29" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">enum<sp/>class</highlight><highlight class="normal"><sp/><ref refid="SpaceWeatherData_8hpp_1a889e166de4bd3a52f1e65cd97244bc29" kindref="member">MeasurementType</ref><sp/>:<sp/>std::uint8_t<sp/>{</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/>OBSERVED<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>0,</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/>DAILY_PREDICTED<sp/><sp/><sp/>=<sp/>1,</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/>MONTHLY_PREDICTED<sp/>=<sp/>2,</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/>MONTHLY_FIT<sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>3,</highlight></codeline>
+<codeline lineno="41"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight></codeline>
+<codeline lineno="48" refid="structastrea_1_1astro_1_1SolarFluxData" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structastrea_1_1astro_1_1SolarFluxData" kindref="compound">SolarFluxData</ref><sp/>{</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/>SolarFlux<sp/>nominal;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//&lt;!<sp/>Nominal<sp/>10.7<sp/>cm<sp/>Solar<sp/>Radio<sp/>Flux</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="50" refid="structastrea_1_1astro_1_1SolarFluxData_1a14bfab089f9f7038335e63f45d76af60" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>SolarFlux<sp/><ref refid="structastrea_1_1astro_1_1SolarFluxData_1a14bfab089f9f7038335e63f45d76af60" kindref="member">centered81DayAverage</ref>;<sp/></highlight></codeline>
+<codeline lineno="51" refid="structastrea_1_1astro_1_1SolarFluxData_1acdd96e38d3f46fa56cf1424dfb48bd9a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>SolarFlux<sp/><ref refid="structastrea_1_1astro_1_1SolarFluxData_1acdd96e38d3f46fa56cf1424dfb48bd9a" kindref="member">last81DayAverage</ref>;<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="52"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight></codeline>
+<codeline lineno="62" refid="structastrea_1_1astro_1_1SpaceWeatherParameters" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structastrea_1_1astro_1_1SpaceWeatherParameters" kindref="compound">SpaceWeatherParameters</ref><sp/>{</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="SpaceWeatherData_8hpp_1a889e166de4bd3a52f1e65cd97244bc29" kindref="member">MeasurementType</ref><sp/>measurement;</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref><sp/>date;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Date<sp/>of<sp/>the<sp/>measurement(s)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="65" refid="structastrea_1_1astro_1_1SpaceWeatherParameters_1a21e55c8101993b5efabb43424678268f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::uint8_t<sp/><ref refid="structastrea_1_1astro_1_1SpaceWeatherParameters_1a21e55c8101993b5efabb43424678268f" kindref="member">bsrn</ref>;<sp/></highlight></codeline>
+<codeline lineno="66" refid="structastrea_1_1astro_1_1SpaceWeatherParameters_1abf72fb97851ba243336b8760b71e22cb" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::uint8_t<sp/><ref refid="structastrea_1_1astro_1_1SpaceWeatherParameters_1abf72fb97851ba243336b8760b71e22cb" kindref="member">nd</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="67" refid="structastrea_1_1astro_1_1SpaceWeatherParameters_1ad404723c86cad9ead0e389df62cd4d81" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::array&lt;Unitless,<sp/>8&gt;<sp/><ref refid="structastrea_1_1astro_1_1SpaceWeatherParameters_1ad404723c86cad9ead0e389df62cd4d81" kindref="member">kp</ref>;<sp/></highlight></codeline>
+<codeline lineno="68" refid="structastrea_1_1astro_1_1SpaceWeatherParameters_1af1428b0a44f89716255fb6e59942c815" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>Unitless<sp/><ref refid="structastrea_1_1astro_1_1SpaceWeatherParameters_1af1428b0a44f89716255fb6e59942c815" kindref="member">sumKp</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="69" refid="structastrea_1_1astro_1_1SpaceWeatherParameters_1a498301fa3eeaa983193222bdacdb2c37" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::array&lt;Unitless,<sp/>8&gt;<sp/><ref refid="structastrea_1_1astro_1_1SpaceWeatherParameters_1a498301fa3eeaa983193222bdacdb2c37" kindref="member">ap</ref>;<sp/></highlight></codeline>
+<codeline lineno="70" refid="structastrea_1_1astro_1_1SpaceWeatherParameters_1a6d692572ad371e97087f6b65c8a55e3f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>Unitless<sp/><ref refid="structastrea_1_1astro_1_1SpaceWeatherParameters_1a6d692572ad371e97087f6b65c8a55e3f" kindref="member">avgAp</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="71" refid="structastrea_1_1astro_1_1SpaceWeatherParameters_1a83af0d5c66ae5c0e85f81a5b73e120ec" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>Unitless<sp/><ref refid="structastrea_1_1astro_1_1SpaceWeatherParameters_1a83af0d5c66ae5c0e85f81a5b73e120ec" kindref="member">cp</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="73" refid="structastrea_1_1astro_1_1SpaceWeatherParameters_1a97b1c9a7a1097b369eb1adecfc8d0eb9" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::uint8_t<sp/><ref refid="structastrea_1_1astro_1_1SpaceWeatherParameters_1a97b1c9a7a1097b369eb1adecfc8d0eb9" kindref="member">c9</ref>;<sp/></highlight></codeline>
+<codeline lineno="74" refid="structastrea_1_1astro_1_1SpaceWeatherParameters_1a119d335c1c0392d83fcc81c8d491caf8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/><ref refid="structastrea_1_1astro_1_1SpaceWeatherParameters_1a119d335c1c0392d83fcc81c8d491caf8" kindref="member">isn</ref>;<sp/></highlight></codeline>
+<codeline lineno="75" refid="structastrea_1_1astro_1_1SpaceWeatherParameters_1abb7423df40d1cc4664a438444b008c5b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structastrea_1_1astro_1_1SolarFluxData" kindref="compound">SolarFluxData</ref><sp/><ref refid="structastrea_1_1astro_1_1SpaceWeatherParameters_1abb7423df40d1cc4664a438444b008c5b" kindref="member">f107Obs</ref>;<sp/></highlight></codeline>
+<codeline lineno="76" refid="structastrea_1_1astro_1_1SpaceWeatherParameters_1aababd1f4d1c95505bb4e9bad97709e76" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structastrea_1_1astro_1_1SolarFluxData" kindref="compound">SolarFluxData</ref><sp/><ref refid="structastrea_1_1astro_1_1SpaceWeatherParameters_1aababd1f4d1c95505bb4e9bad97709e76" kindref="member">f107Adj</ref>;<sp/></highlight></codeline>
+<codeline lineno="77"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"></highlight></codeline>
+<codeline lineno="84" refid="classastrea_1_1astro_1_1SpaceWeatherData" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classastrea_1_1astro_1_1SpaceWeatherData" kindref="compound">SpaceWeatherData</ref><sp/>{</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="89" refid="classastrea_1_1astro_1_1SpaceWeatherData_1a94f8a9d76e7a5e397fc533ed8342e3ce" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1SpaceWeatherData_1a94f8a9d76e7a5e397fc533ed8342e3ce" kindref="member">SpaceWeatherData</ref>()<sp/>=<sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"></highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1SpaceWeatherData_1a94f8a9d76e7a5e397fc533ed8342e3ce" kindref="member">SpaceWeatherData</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::filesystem::path&amp;<sp/><ref refid="classastrea_1_1astro_1_1SpaceWeatherData_1a4038494c2aa43d8076adb6203d67ff87" kindref="member">infile</ref>,<sp/>std::optional&lt;Date&gt;<sp/><ref refid="classastrea_1_1astro_1_1SpaceWeatherData_1a4aa41ef9ef3f300495559405b6112e95" kindref="member">startDate</ref><sp/>=<sp/>std::nullopt,<sp/>std::optional&lt;Date&gt;<sp/><ref refid="classastrea_1_1astro_1_1SpaceWeatherData_1af99b2da5d54d4f380d80682c50548fca" kindref="member">endDate</ref><sp/>=<sp/>std::nullopt);</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"></highlight></codeline>
+<codeline lineno="103" refid="classastrea_1_1astro_1_1SpaceWeatherData_1a144228819889ae64db4fc37c7dbed65b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1SpaceWeatherData_1a144228819889ae64db4fc37c7dbed65b" kindref="member">~SpaceWeatherData</ref>()<sp/>=<sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"></highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/>[[nodiscard]]<sp/>std::size_t<sp/><ref refid="classastrea_1_1astro_1_1SpaceWeatherData_1a8b4f2c571ae8c1cd764940a86f0a47c1" kindref="member">size</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"></highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/>[[nodiscard]]<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;SpaceWeatherParameters&gt;&amp;<sp/><ref refid="classastrea_1_1astro_1_1SpaceWeatherData_1aede3511b05c14432de21d322a4754183" kindref="member">data</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"></highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/>[[nodiscard]]<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::filesystem::path&amp;<sp/><ref refid="classastrea_1_1astro_1_1SpaceWeatherData_1a4038494c2aa43d8076adb6203d67ff87" kindref="member">infile</ref>()<sp/>const<sp/>noexcept;</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"></highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/>[[nodiscard]]<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1SpaceWeatherData_1af8831e0ff9c321028cff0655dfbac186" kindref="member">empty</ref>()<sp/>const<sp/>noexcept;</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"></highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/><sp/><sp/>[[nodiscard]]<sp/>const<sp/><ref refid="structastrea_1_1astro_1_1SpaceWeatherParameters" kindref="compound">SpaceWeatherParameters</ref>&amp;<sp/>operator[](std::</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>index)<sp/>const;</highlight></codeline>
+<codeline lineno="141"><highlight class="normal"></highlight></codeline>
+<codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/>[[nodiscard]]<sp/><ref refid="structastrea_1_1astro_1_1SpaceWeatherParameters" kindref="compound">SpaceWeatherParameters</ref>&amp;<sp/>operator[](std::</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>index);</highlight></codeline>
+<codeline lineno="149"><highlight class="normal"></highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/>[[nodiscard]]<sp/>const<sp/><ref refid="structastrea_1_1astro_1_1SpaceWeatherParameters" kindref="compound">SpaceWeatherParameters</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1SpaceWeatherData_1ae5068c7e37d1c474e8ed244639472486" kindref="member">at</ref>(std::</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>index)<sp/>const;</highlight></codeline>
+<codeline lineno="158"><highlight class="normal"></highlight></codeline>
+<codeline lineno="166"><highlight class="normal"><sp/><sp/><sp/><sp/>[[nodiscard]]<sp/><ref refid="structastrea_1_1astro_1_1SpaceWeatherParameters" kindref="compound">SpaceWeatherParameters</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1SpaceWeatherData_1ae5068c7e37d1c474e8ed244639472486" kindref="member">at</ref>(std::</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>index);</highlight></codeline>
+<codeline lineno="167"><highlight class="normal"></highlight></codeline>
+<codeline lineno="175"><highlight class="normal"><sp/><sp/><sp/><sp/>[[nodiscard]]<sp/>const<sp/><ref refid="structastrea_1_1astro_1_1SpaceWeatherParameters" kindref="compound">SpaceWeatherParameters</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1SpaceWeatherData_1ae5068c7e37d1c474e8ed244639472486" kindref="member">at</ref>(const<sp/><ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref>&amp;<sp/>date)<sp/>const;</highlight></codeline>
+<codeline lineno="176"><highlight class="normal"></highlight></codeline>
+<codeline lineno="184"><highlight class="normal"><sp/><sp/><sp/><sp/>[[nodiscard]]<sp/><ref refid="structastrea_1_1astro_1_1SpaceWeatherParameters" kindref="compound">SpaceWeatherParameters</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1SpaceWeatherData_1ae5068c7e37d1c474e8ed244639472486" kindref="member">at</ref>(const<sp/><ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref>&amp;<sp/>date);</highlight></codeline>
+<codeline lineno="185"><highlight class="normal"></highlight></codeline>
+<codeline lineno="191"><highlight class="normal"><sp/><sp/><sp/><sp/>[[nodiscard]]<sp/>const<sp/>std::optional&lt;<ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref>&gt;&amp;<sp/><ref refid="classastrea_1_1astro_1_1SpaceWeatherData_1a4aa41ef9ef3f300495559405b6112e95" kindref="member">startDate</ref>()<sp/>const<sp/>noexcept;</highlight></codeline>
+<codeline lineno="192"><highlight class="normal"></highlight></codeline>
+<codeline lineno="198"><highlight class="normal"><sp/><sp/><sp/><sp/>[[nodiscard]]<sp/>const<sp/>std::optional&lt;<ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref>&gt;&amp;<sp/><ref refid="classastrea_1_1astro_1_1SpaceWeatherData_1af99b2da5d54d4f380d80682c50548fca" kindref="member">endDate</ref>()<sp/>const<sp/>noexcept;</highlight></codeline>
+<codeline lineno="199"><highlight class="normal"></highlight></codeline>
+<codeline lineno="200"><highlight class="normal"><sp/><sp/>private:</highlight></codeline>
+<codeline lineno="201"><highlight class="normal"><sp/><sp/><sp/><sp/>std::filesystem::path<sp/>_infile;</highlight></codeline>
+<codeline lineno="202"><highlight class="normal"><sp/><sp/><sp/><sp/>std::optional&lt;<ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref>&gt;<sp/>_startDate;</highlight></codeline>
+<codeline lineno="203"><highlight class="normal"><sp/><sp/><sp/><sp/>std::optional&lt;<ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref>&gt;<sp/>_endDate;</highlight></codeline>
+<codeline lineno="204"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;<ref refid="structastrea_1_1astro_1_1SpaceWeatherParameters" kindref="compound">SpaceWeatherParameters</ref>&gt;<sp/>_data;</highlight></codeline>
+<codeline lineno="205"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="206"><highlight class="normal"></highlight></codeline>
+<codeline lineno="207"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>astro</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="208"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>astrea</highlight></codeline>
+    </programlisting>
+    <location file="astrea/astro/astro/propagation/force_models/space_weather/SpaceWeatherData.hpp"/>
+  </compounddef>
+</doxygen>

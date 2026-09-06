@@ -31,7 +31,7 @@
 </parameterlist>
 </para>
     </detaileddescription>
-    <location file="astrea/astro/astro/frames/framework/FixedOffsetFrame.hpp" line="222" column="1" bodyfile="astrea/astro/astro/frames/framework/FixedOffsetFrame.hpp" bodystart="222" bodyend="-1"/>
+    <location file="astrea/astro/astro/frames/framework/FixedOffsetFrame.hpp" line="220" column="1" bodyfile="astrea/astro/astro/frames/framework/FixedOffsetFrame.hpp" bodystart="220" bodyend="-1"/>
     <listofallmembers>
     </listofallmembers>
   </compounddef>

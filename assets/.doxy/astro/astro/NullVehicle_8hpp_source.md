@@ -25,7 +25,7 @@ class NullVehicle {
 
     NullVehicle* clone() const;
 
-    Mass get_mass() const;
+    Mass get_mass(const State& state) const;
 
     std::string get_name() const;
 

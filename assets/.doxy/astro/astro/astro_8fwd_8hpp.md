@@ -33,6 +33,7 @@ _Forward declarations for the astro module._ [More...](#detailed-description)
 | namespace | [**astrea**](namespaceastrea.md) <br> |
 | namespace | [**astro**](namespaceastrea_1_1astro.md) <br> |
 | namespace | [**frames**](namespaceastrea_1_1astro_1_1frames.md) <br> |
+| namespace | [**space\_weather**](namespaceastrea_1_1astro_1_1space__weather.md) <br> |
 
 
 

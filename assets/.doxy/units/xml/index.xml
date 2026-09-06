@@ -33,38 +33,34 @@
     <member refid="typedefs_8hpp_1a7055a454ffa41c09bc15784526596d85" kind="typedef"><name>SpecificAngularMomentum</name></member>
     <member refid="typedefs_8hpp_1a16e4b8824994a598ed5229489bc2431b" kind="typedef"><name>UnitlessPerTime</name></member>
     <member refid="typedefs_8hpp_1ae89815f4df4de419243bf37978b70023" kind="typedef"><name>AngularVelocity</name></member>
-    <member refid="typedefs_8hpp_1a6520cdf22c5e7fbc6b6cf2b0e0cf45cb" kind="typedef"><name>AngularAcceleration</name></member>
+    <member refid="typedefs_8hpp_1a9cf291136c699a7098cb2b274f0efbc5" kind="typedef"><name>AngularAcceleration</name></member>
     <member refid="typedefs_8hpp_1ac731536c87104f12d3929445ade035e1" kind="typedef"><name>InterplanetaryDistance</name></member>
     <member refid="typedefs_8hpp_1a21eafe045ab0055d538a90c43561fc0e" kind="typedef"><name>InterplanetaryVelocity</name></member>
     <member refid="typedefs_8hpp_1a9985e7e30ad46074a668c42c9a2cc9f2" kind="typedef"><name>BodyUnitlessPerTime</name></member>
     <member refid="typedefs_8hpp_1a095bd57504ee817d196cd11a8dac5e43" kind="typedef"><name>BodyAngularVelocity</name></member>
-    <member refid="typedefs_8hpp_1a680f5de6f0f3036b3f3cad75f9473780" kind="typedef"><name>Acceleration</name></member>
-    <member refid="typedefs_8hpp_1af2e95777c76ad6f8c33401e622844f91" kind="typedef"><name>SurfaceArea</name></member>
-    <member refid="typedefs_8hpp_1af17856f96523805d535dab951a9379dc" kind="typedef"><name>GravParam</name></member>
+    <member refid="typedefs_8hpp_1a40fd242d6644918ba0f3faf68fffa444" kind="typedef"><name>Acceleration</name></member>
+    <member refid="typedefs_8hpp_1ae9d06e3617726532e6d8ce8aedb0bfe7" kind="typedef"><name>SurfaceArea</name></member>
+    <member refid="typedefs_8hpp_1ace778074af5121fd4ac9940dfc7dfa50" kind="typedef"><name>GravParam</name></member>
     <member refid="typedefs_8hpp_1a3ab148f4a87cd84162f5744422ba0447" kind="typedef"><name>MeanMotion</name></member>
-    <member refid="typedefs_8hpp_1a8dacdb1a2e3f4f2b1d49292d9e0ab622" kind="typedef"><name>MeanMotion1stDer</name></member>
-    <member refid="typedefs_8hpp_1a64144981f1a71cc494a9cf4036e1947c" kind="typedef"><name>MeanMotion2ndDer</name></member>
+    <member refid="typedefs_8hpp_1ac34d87b9bd291bda863893469b0a8c91" kind="typedef"><name>MeanMotion1stDer</name></member>
+    <member refid="typedefs_8hpp_1a86c6d1a6d337cc35a6ebdf3b87db7a73" kind="typedef"><name>MeanMotion2ndDer</name></member>
     <member refid="typedefs_8hpp_1a9d2e958f1ea9f070069446c9b17e54e1" kind="typedef"><name>BallisticCoefficient</name></member>
-    <member refid="typedefs_8hpp_1a0af4216f66acce6726601c081ee2a5e5" kind="typedef"><name>Density</name></member>
+    <member refid="typedefs_8hpp_1ace99d35da7c0508e31af1dfe944f9978" kind="typedef"><name>Density</name></member>
     <member refid="typedefs_8hpp_1a34659ce3f5ce5a3a7cffa511900891e9" kind="typedef"><name>Altitude</name></member>
     <member refid="typedefs_8hpp_1ad05638f2c98324c8eeefdc20b08733e9" kind="typedef"><name>Gain</name></member>
     <member refid="typedefs_8hpp_1ae82601c99b7f520c56ead1ec36bfd9cf" kind="typedef"><name>SNR</name></member>
     <member refid="typedefs_8hpp_1a14fa1dff38c53d71a8636cc7b52d1ccb" kind="typedef"><name>CNR</name></member>
     <member refid="typedefs_8hpp_1a40ef0484449f79e0484ffb7964f6a699" kind="typedef"><name>Frequency</name></member>
     <member refid="typedefs_8hpp_1aa59ee11525abb160f196de85354a21ba" kind="typedef"><name>Power</name></member>
-    <member refid="typedefs_8hpp_1ae3bff2c11585438769bf502821b77b87" kind="typedef"><name>PowerFluxDensity</name></member>
+    <member refid="typedefs_8hpp_1a237c20933cfc5b616b568a4cc8ea90fe" kind="typedef"><name>PowerFluxDensity</name></member>
     <member refid="typedefs_8hpp_1a2ad23da189a19f524b0b40678bee874f" kind="typedef"><name>Temperature</name></member>
     <member refid="typedefs_8hpp_1a0c1e2ad627aa8aad05ab166fd0ec1bf1" kind="typedef"><name>Pressure</name></member>
     <member refid="typedefs_8hpp_1a1a82907e178e6486e013bb8b7d32c1f6" kind="typedef"><name>Moment</name></member>
-    <member refid="typedefs_8hpp_1ae8325067d3c122b46709768b059ca1f9" kind="typedef"><name>MomentOfInertia</name></member>
+    <member refid="typedefs_8hpp_1ae45e400c928348f292b572fcc16beadc" kind="typedef"><name>MomentOfInertia</name></member>
     <member refid="typedefs_8hpp_1a7f5e2fc5047071b3d6edb3c1761da650" kind="typedef"><name>SolarFlux</name></member>
-    <member refid="typedefs_8hpp_1a51817992e45de73cf8ee362450d0dc9b" kind="typedef"><name>Chirp</name></member>
+    <member refid="typedefs_8hpp_1a3f8d3b365a3206b0ced656d8e2f76420" kind="typedef"><name>Chirp</name></member>
     <member refid="constants_8hpp_1ae2529f1aa430f2dbfd071a8511a78310" kind="variable"><name>speed_of_light_in_vacuum</name></member>
     <member refid="constants_8hpp_1a8abc18858e1a30c20ea4e3f484dbbc22" kind="variable"><name>boltzmann_constant</name></member>
-    <member refid="constants_8hpp_1a8452e0ddd0716b555506820a3d7dc24e" kind="variable"><name>PI</name></member>
-    <member refid="constants_8hpp_1ada344bc6f289fe2f949dca23593ae1e5" kind="variable"><name>TWO_PI</name></member>
-    <member refid="constants_8hpp_1a87133aee2993f568ef1657bc1ddfe0e4" kind="function"><name>n_pi</name></member>
-    <member refid="constants_8hpp_1a4a8f94136ac2b3408e6303af8171a232" kind="function"><name>n_pi_mag</name></member>
   </compound>
   <compound refid="namespaceastrea_1_1detail" kind="namespace"><name>astrea::detail</name>
     <member refid="detail_8hpp_1a2ce65f5df709391fd0f27f5dac5a2a0c" kind="variable"><name>time_unit</name></member>

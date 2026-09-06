@@ -30,6 +30,11 @@ _Class representing a_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _
 
 
 
+## Public Types
+
+| Type | Name |
+| ---: | :--- |
+| typedef [**Cartesian**](classastrea_1_1astro_1_1Cartesian.md)&lt; F &gt; | [**BaseType**](#typedef-basetype)  <br> |
 
 
 
@@ -146,6 +151,21 @@ This class encapsulates the position and velocity of a vehicle in [**Cartesian**
 
 
     
+## Public Types Documentation
+
+
+
+
+### typedef BaseType 
+
+```C++
+using astrea::astro::Cartesian< _frame_ >::BaseType =  Cartesian<F>;
+```
+
+
+
+
+<hr>
 ## Public Static Attributes Documentation
 
 

@@ -14,6 +14,7 @@ Here are the classes, structs, unions and interfaces with brief descriptions:
         * **struct** [**Axis**](structastrea_1_1astro_1_1Axis.md) 
         * **struct** [**Axis&lt; \_name\_ &gt;**](structastrea_1_1astro_1_1Axis_3_01__name___01_4.md)     
         * **struct** [**Axis&lt; \_name\_, \_parent\_ &gt;**](structastrea_1_1astro_1_1Axis_3_01__name___00_01__parent___01_4.md)     
+        * **struct** [**BadConversionRequest**](structastrea_1_1astro_1_1BadConversionRequest.md) 
         * **struct** [**Barycenter**](structastrea_1_1astro_1_1Barycenter.md) 
         * **struct** [**Barycenter&lt; \_name\_ &gt;**](structastrea_1_1astro_1_1Barycenter_3_01__name___01_4.md) _No parent, no members._ 
         * **struct** [**Barycenter&lt; \_name\_, \_parent\_ &gt;**](structastrea_1_1astro_1_1Barycenter_3_01__name___00_01__parent___01_4.md) _With parent, no members._ 
@@ -70,12 +71,14 @@ Here are the classes, structs, unions and interfaces with brief descriptions:
         * **struct** [**GeocentricAxes**](structastrea_1_1astro_1_1GeocentricAxes.md) 
         * **struct** [**GeocentricCoordinateTimeClock**](structastrea_1_1astro_1_1GeocentricCoordinateTimeClock.md) _A clock implementation for_ [_**Geocentric**_](classastrea_1_1astro_1_1Geocentric.md) _Coordinate Time (TCG)._    
         * **class** [**Geodetic**](classastrea_1_1astro_1_1Geodetic.md) _Class representing a_ [_**Geodetic**_](classastrea_1_1astro_1_1Geodetic.md) _state vector in astrodynamics._    
+        * **class** [**HarrisPriesterAtmosphere**](classastrea_1_1astro_1_1HarrisPriesterAtmosphere.md) _The Harris-Priester atmospheric model for Earth._     
         * **class** [**ImpulsiveBurn**](classastrea_1_1astro_1_1ImpulsiveBurn.md) _A class representing an impulsive burn_ [_**Event**_](classastrea_1_1astro_1_1Event.md) _. It triggers when the true anomaly wraps around (i.e. at perigee), and applies the total impulsive delta-v from all thrusters to the vehicle in the velocity direction._    
         * **class** [**InertiaTensor**](classastrea_1_1astro_1_1InertiaTensor.md) _A class representing an inertia matrix in the astrea astro platform._     
         * **class** [**Integrator**](classastrea_1_1astro_1_1Integrator.md) [_**Integrator**_](classastrea_1_1astro_1_1Integrator.md) _class for numerical propagation of orbital mechanics problems._    
         * **struct** [**IntegratorSettings**](structastrea_1_1astro_1_1IntegratorSettings.md)     
         * **class** [**Interval**](classastrea_1_1astro_1_1Interval.md) _Represents a time interval with a start and end time._     
         * **class** [**J2MeanVop**](classastrea_1_1astro_1_1J2MeanVop.md) _Class implementing the J2 Mean VOP equations of motion._     
+        * **class** [**JacchiaRobertsAtmosphere**](classastrea_1_1astro_1_1JacchiaRobertsAtmosphere.md) _The Jaccia-Roberts atmospheric model for Earth._     
         * **struct** [**JplEphemerisTable**](structastrea_1_1astro_1_1JplEphemerisTable.md) _Base class for any JPL_ [_**CelestialBody**_](structastrea_1_1astro_1_1CelestialBody.md) _table._    
         * **struct** [**JulianDateClock**](structastrea_1_1astro_1_1JulianDateClock.md) _A clock implementation for Julian Dates._     
         * **class** [**Keplerian**](classastrea_1_1astro_1_1Keplerian.md) _The_ [_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _class represents the_[_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _orbital elements._    
@@ -85,6 +88,7 @@ Here are the classes, structs, unions and interfaces with brief descriptions:
             * **struct** [**Solution**](structastrea_1_1astro_1_1LambertSolver_1_1Solution.md) _Result structure for optimal Lambert solutions._     
         * **class** [**LegendreCache**](classastrea_1_1astro_1_1LegendreCache.md) _Class to cache Legendre polynomial coefficients for a given celestial_ _body_ _, degree, and order._    
         * **class** [**NBodyForce**](classastrea_1_1astro_1_1NBodyForce.md) _Class to compute the gravitational force due to multiple celestial bodies._     
+        * **class** [**Nrlmsise00Atmosphere**](classastrea_1_1astro_1_1Nrlmsise00Atmosphere.md)     
         * **class** [**NullEvent**](classastrea_1_1astro_1_1NullEvent.md) _A class representing a null_ [_**Event**_](classastrea_1_1astro_1_1Event.md) _in the astrea astro platform. This class is used as a placeholder for Events that do not have a defined state or mass._    
         * **class** [**NullVehicle**](classastrea_1_1astro_1_1NullVehicle.md) _A class representing a null vehicle in the astrea astro platform. This class is used as a placeholder for vehicles that do not have a defined state or mass._     
         * **class** [**OblatenessForce**](classastrea_1_1astro_1_1OblatenessForce.md) _Class to compute the gravitational force due to the oblateness of a celestial_ _body_ _._    
@@ -108,7 +112,11 @@ Here are the classes, structs, unions and interfaces with brief descriptions:
         * **class** [**Schedule**](classastrea_1_1astro_1_1Schedule.md) _A class representing a_ [_**Schedule**_](classastrea_1_1astro_1_1Schedule.md) _in the astrea astro library. The_[_**Schedule**_](classastrea_1_1astro_1_1Schedule.md) _is responsible for scheduling and managing Events that are set to trigger at specific Dates during propagation._    
         * **class** [**Shell**](classastrea_1_1astro_1_1Shell.md) _A_ [_**Shell**_](classastrea_1_1astro_1_1Shell.md) _is a collection of planes, each containing a set of_[_**Spacecraft**_](classastrea_1_1astro_1_1Spacecraft.md) _. It is used to represent sub-constellations of satellites in orbit._    
             * **class** [**sat\_iterator**](classastrea_1_1astro_1_1Shell_1_1sat__iterator.md) _Iterator for iterating over all_ [_**Spacecraft**_](classastrea_1_1astro_1_1Spacecraft.md) _in the_[_**Shell**_](classastrea_1_1astro_1_1Shell.md) _._    
+        * **struct** [**SolarFluxData**](structastrea_1_1astro_1_1SolarFluxData.md) _Struct to hold solar flux data._     
         * **class** [**SolarRadiationPressure**](classastrea_1_1astro_1_1SolarRadiationPressure.md) _Class to compute the solar radiation pressure force on a spacecraft._     
+        * **class** [**SpaceWeatherData**](classastrea_1_1astro_1_1SpaceWeatherData.md) _Class to hold space weather data read from a file._     
+        * **struct** [**SpaceWeatherParameters**](structastrea_1_1astro_1_1SpaceWeatherParameters.md) _Struct to hold space weather parameters for a specific date._     
+        * **class** [**SpaceWeatherProvider**](classastrea_1_1astro_1_1SpaceWeatherProvider.md) _Lightweight provider that shares an immutable space weather data snapshot. Using this layer of abstraction for now to enable data hot-swapping in the future if needed._     
         * **class** [**Spacecraft**](classastrea_1_1astro_1_1Spacecraft.md) _A class representing a spacecraft in the astrea astro platform. This class encapsulates the properties of a spacecraft, including its mass, dynamic coefficients, and surface areas._     
         * **class** [**Spherical**](classastrea_1_1astro_1_1Spherical.md) _Class representing a_ [_**Spherical**_](classastrea_1_1astro_1_1Spherical.md) _state vector in astrodynamics._    
         * **class** [**State**](classastrea_1_1astro_1_1State.md) _Class representing the state of an astronomical object. This class encapsulates the orbital elements, epoch, and the astrodynamics system that the state belongs to. It also optionally includes the attitude of the object as a quaternion._     
@@ -331,29 +339,26 @@ Here are the classes, structs, unions and interfaces with brief descriptions:
         * **namespace** [**planets**](namespaceastrea_1_1astro_1_1planets.md)     
             * **struct** [**BatesProfileParams**](structastrea_1_1astro_1_1planets_1_1BatesProfileParams.md)     
             * **class** [**Earth**](structastrea_1_1astro_1_1planets_1_1Earth.md) _Represents the_ [_**Earth**_](structastrea_1_1astro_1_1planets_1_1Earth.md) _celestial body._
-            * **struct** [**EarthParameters**](structastrea_1_1astro_1_1planets_1_1EarthParameters.md)     
-            * **class** [**HarrisPriesterAtmosphere**](classastrea_1_1astro_1_1planets_1_1HarrisPriesterAtmosphere.md) _The Harris-Priester atmospheric model for_ [_**Earth**_](structastrea_1_1astro_1_1planets_1_1Earth.md) _._    
-            * **class** [**JacciaRobertsAtmosphere**](classastrea_1_1astro_1_1planets_1_1JacciaRobertsAtmosphere.md) _The Jaccia-Roberts atmospheric model for_ [_**Earth**_](structastrea_1_1astro_1_1planets_1_1Earth.md) _._    
             * **class** [**Jupiter**](structastrea_1_1astro_1_1planets_1_1Jupiter.md) _Represents the_ [_**Jupiter**_](structastrea_1_1astro_1_1planets_1_1Jupiter.md) _celestial body._
             * **class** [**Mars**](structastrea_1_1astro_1_1planets_1_1Mars.md) _Represents the_ [_**Mars**_](structastrea_1_1astro_1_1planets_1_1Mars.md) _celestial body._
             * **class** [**Mercury**](structastrea_1_1astro_1_1planets_1_1Mercury.md) _Represents the_ [_**Mercury**_](structastrea_1_1astro_1_1planets_1_1Mercury.md) _celestial body._
-            * **class** [**NRLMSISE00**](classastrea_1_1astro_1_1planets_1_1NRLMSISE00.md)     
-            * **class** [**NRLMSISE00Atmosphere**](classastrea_1_1astro_1_1planets_1_1NRLMSISE00Atmosphere.md) _The NRLMSISE-00 atmospheric model for_ [_**Earth**_](structastrea_1_1astro_1_1planets_1_1Earth.md) _._    
             * **class** [**Neptune**](structastrea_1_1astro_1_1planets_1_1Neptune.md) _Represents the_ [_**Neptune**_](structastrea_1_1astro_1_1planets_1_1Neptune.md) _celestial body._
+            * **class** [**Nrlmsise00Atmosphere**](classastrea_1_1astro_1_1planets_1_1Nrlmsise00Atmosphere.md) _The NRLMSISE-00 atmospheric model for_ [_**Earth**_](structastrea_1_1astro_1_1planets_1_1Earth.md) _._    
+            * **class** [**Output**](classastrea_1_1astro_1_1planets_1_1Output.md)     
             * **class** [**Saturn**](structastrea_1_1astro_1_1planets_1_1Saturn.md) _Represents the_ [_**Saturn**_](structastrea_1_1astro_1_1planets_1_1Saturn.md) _celestial body._
             * **struct** [**SpeciesModelParams**](structastrea_1_1astro_1_1planets_1_1SpeciesModelParams.md) _Per-species empirical parameters for NRLMSISE-00 diffusive and mixed-region density calculations._     
+            * **struct** [**Switch**](structastrea_1_1astro_1_1planets_1_1Switch.md)     
             * **class** [**Uranus**](structastrea_1_1astro_1_1planets_1_1Uranus.md) _Represents the_ [_**Uranus**_](structastrea_1_1astro_1_1planets_1_1Uranus.md) _celestial body._
             * **class** [**Venus**](structastrea_1_1astro_1_1planets_1_1Venus.md) _Represents the_ [_**Venus**_](structastrea_1_1astro_1_1planets_1_1Venus.md) _celestial body._
         * **namespace** [**plotting**](namespaceastrea_1_1astro_1_1plotting.md)     
+        * **namespace** [**space\_weather**](namespaceastrea_1_1astro_1_1space__weather.md) 
         * **namespace** [**star**](namespaceastrea_1_1astro_1_1star.md)     
             * **class** [**Sun**](structastrea_1_1astro_1_1star_1_1Sun.md) _Represents the_ [_**Sun**_](structastrea_1_1astro_1_1star_1_1Sun.md) _celestial body._
-* **namespace** [**astro**](namespaceastrea_1_1astro_1_1_0d130.md) 
+* **namespace** [**astro**](namespaceastrea_1_1astro_1_1_0d144.md) 
 * **namespace** [**astro**](namespaceastrea_1_1astro_1_1_0d8.md) 
 * **struct** [**EventTracker**](structastrea_1_1astro_1_1EventDetector_1_1EventTracker.md) _A struct for tracking events._     
 * **namespace** [**frames**](namespaceastrea_1_1astro_1_1frames_1_1_0d20.md) 
-* **class** [**Output**](classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Output.md)     
-* **struct** [**Switch**](structastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Switch.md)     
-* **namespace** [**plotting**](namespaceastrea_1_1astro_1_1plotting_1_1_0d201.md) 
+* **namespace** [**plotting**](namespaceastrea_1_1astro_1_1plotting_1_1_0d208.md) 
 * **namespace** [**matplot**](namespacematplot.md) 
 * **namespace** [**mp\_units**](namespacemp__units.md)     
     * **struct** [**quantity\_point\_like\_traits&lt; astrea::astro::Date &gt;**](structmp__units_1_1quantity__point__like__traits_3_01astrea_1_1astro_1_1Date_01_4.md) _Specialization of mp\_units::quantity\_point\_like\_traits for the Date class._     
@@ -362,5 +367,5 @@ Here are the classes, structs, unions and interfaces with brief descriptions:
 * **namespace** [**unit\_symbols**](namespacemp__units_1_1si_1_1unit__symbols.md) 
 * **namespace** [**std**](namespacestd.md)     
     * **struct** [**hash&lt; std::tuple&lt; TT... &gt; &gt;**](structstd_1_1hash_3_01std_1_1tuple_3_01TT_8_8_8_01_4_01_4.md)     
-* **namespace** [**std**](namespacestd_1_1_0d195.md) 
+* **namespace** [**std**](namespacestd_1_1_0d202.md) 
 

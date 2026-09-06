@@ -57,7 +57,7 @@ _The_ [_**PayloadPlatform**_](classastrea_1_1astro_1_1PayloadPlatform.md) _class
 |  void | [**attach\_payload**](#function-attach_payload) (const PayloadParameters\_T & parameters) <br>_Attaches a single payload to the platform._  |
 |  void | [**attach\_payloads**](#function-attach_payloads) (const std::vector&lt; PayloadParameters\_T &gt; & parameterPack) <br>_Attaches multiple payloads to the platform._  |
 | virtual std::size\_t | [**get\_id**](#function-get_id) () const = 0<br>_Get the ID of the payload._  |
-| virtual Mass | [**get\_mass**](#function-get_mass) () const<br>_Get the mass of the platform._  |
+| virtual Mass | [**get\_mass**](#function-get_mass) (const [**State**](classastrea_1_1astro_1_1State.md) & state) const<br>_Get the mass of the platform._  |
 |  std::vector&lt; Payload\_T &gt; & | [**get\_payloads**](#function-get_payloads-12) () <br>_Retrieves the list of payloads attached to the platform._  |
 |  const std::vector&lt; Payload\_T &gt; & | [**get\_payloads**](#function-get_payloads-22) () const<br>_Retrieves the list of payloads attached to the platform (const version)._  |
 | virtual [**RadiusVector**](namespaceastrea_1_1astro.md#typedef-radiusvector)&lt; frames::primary &gt; | [**get\_position**](#function-get_position) (const [**Date**](classastrea_1_1astro_1_1Date.md) & date) const = 0<br>_Get the position of the platform._  |
@@ -194,7 +194,9 @@ std::size\_t ID of the payload.
 
 _Get the mass of the platform._ 
 ```C++
-inline virtual Mass astrea::astro::PayloadPlatform::get_mass () const
+inline virtual Mass astrea::astro::PayloadPlatform::get_mass (
+    const State & state
+) const
 ```
 
 

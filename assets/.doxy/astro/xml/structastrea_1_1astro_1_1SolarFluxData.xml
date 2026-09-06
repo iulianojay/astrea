@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="structastrea_1_1astro_1_1SolarFluxData" kind="struct" language="C++" prot="public">
+    <compoundname>astrea::astro::SolarFluxData</compoundname>
+    <includes refid="SpaceWeatherData_8hpp" local="no">SpaceWeatherData.hpp</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structastrea_1_1astro_1_1SolarFluxData_1a63390d05601b46c461b4b05c4856024f" prot="public" static="no" mutable="no">
+        <type>SolarFlux</type>
+        <definition>SolarFlux astrea::astro::SolarFluxData::nominal</definition>
+        <argsstring></argsstring>
+        <name>nominal</name>
+        <qualifiedname>astrea::astro::SolarFluxData::nominal</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/SpaceWeatherData.hpp" line="49" column="15" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/SpaceWeatherData.hpp" bodystart="49" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structastrea_1_1astro_1_1SolarFluxData_1a14bfab089f9f7038335e63f45d76af60" prot="public" static="no" mutable="no">
+        <type>SolarFlux</type>
+        <definition>SolarFlux astrea::astro::SolarFluxData::centered81DayAverage</definition>
+        <argsstring></argsstring>
+        <name>centered81DayAverage</name>
+        <qualifiedname>astrea::astro::SolarFluxData::centered81DayAverage</qualifiedname>
+        <briefdescription>
+<para>Centered 81-day Average of the 10.7 cm Solar Radio Flux. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/SpaceWeatherData.hpp" line="50" column="15" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/SpaceWeatherData.hpp" bodystart="50" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structastrea_1_1astro_1_1SolarFluxData_1acdd96e38d3f46fa56cf1424dfb48bd9a" prot="public" static="no" mutable="no">
+        <type>SolarFlux</type>
+        <definition>SolarFlux astrea::astro::SolarFluxData::last81DayAverage</definition>
+        <argsstring></argsstring>
+        <name>last81DayAverage</name>
+        <qualifiedname>astrea::astro::SolarFluxData::last81DayAverage</qualifiedname>
+        <briefdescription>
+<para>Last 81-day Average of the 10.7 cm Solar Radio Flux. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/SpaceWeatherData.hpp" line="51" column="15" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/SpaceWeatherData.hpp" bodystart="51" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Struct to hold solar flux data. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>This struct contains the nominal, centered 81-day average, and last 81-day average of the 10.7 cm Solar Radio Flux. </para>
+    </detaileddescription>
+    <location file="astrea/astro/astro/propagation/force_models/space_weather/SpaceWeatherData.hpp" line="48" column="1" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/SpaceWeatherData.hpp" bodystart="48" bodyend="52"/>
+    <listofallmembers>
+      <member refid="structastrea_1_1astro_1_1SolarFluxData_1a14bfab089f9f7038335e63f45d76af60" prot="public" virt="non-virtual"><scope>astrea::astro::SolarFluxData</scope><name>centered81DayAverage</name></member>
+      <member refid="structastrea_1_1astro_1_1SolarFluxData_1acdd96e38d3f46fa56cf1424dfb48bd9a" prot="public" virt="non-virtual"><scope>astrea::astro::SolarFluxData</scope><name>last81DayAverage</name></member>
+      <member refid="structastrea_1_1astro_1_1SolarFluxData_1a63390d05601b46c461b4b05c4856024f" prot="public" virt="non-virtual"><scope>astrea::astro::SolarFluxData</scope><name>nominal</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

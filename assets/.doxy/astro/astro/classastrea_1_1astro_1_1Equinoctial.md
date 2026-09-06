@@ -30,6 +30,11 @@ _The_ [_**Equinoctial**_](classastrea_1_1astro_1_1Equinoctial.md) _class represe
 
 
 
+## Public Types
+
+| Type | Name |
+| ---: | :--- |
+| typedef [**Equinoctial**](classastrea_1_1astro_1_1Equinoctial.md)&lt; F &gt; | [**BaseType**](#typedef-basetype)  <br> |
 
 
 
@@ -133,6 +138,21 @@ The equinoctial elements are a set of orbital elements that are particularly use
 
 
     
+## Public Types Documentation
+
+
+
+
+### typedef BaseType 
+
+```C++
+using astrea::astro::Equinoctial< _frame_ >::BaseType =  Equinoctial<F>;
+```
+
+
+
+
+<hr>
 ## Public Static Attributes Documentation
 
 

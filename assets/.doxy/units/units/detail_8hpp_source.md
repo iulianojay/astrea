@@ -13,8 +13,6 @@
 
 #include <array>
 
-// mp-units
-#include <mp-units/systems/iau.h>
 #include <mp-units/systems/si.h>
 
 namespace astrea {

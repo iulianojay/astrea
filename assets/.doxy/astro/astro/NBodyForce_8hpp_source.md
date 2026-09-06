@@ -70,7 +70,7 @@ class NBodyForce : public PerturbingForce {
             ...
         );
 
-        return { .force = accelNBody * vehicle.get_mass() };
+        return { .force = accelNBody * vehicle.get_mass(state) };
     }
 
     std::unique_ptr<PerturbingForce> clone() const override { return std::make_unique<NBodyForce<bodies...>>(*this); }

@@ -42,7 +42,6 @@ _Header file for the Earth class._ [More...](#detailed-description)
 | Type | Name |
 | ---: | :--- |
 | class | [**Earth**](structastrea_1_1astro_1_1planets_1_1Earth.md) <br>_Represents the_ [_**Earth**_](structastrea_1_1astro_1_1planets_1_1Earth.md) _celestial body._ |
-| struct | [**EarthParameters**](structastrea_1_1astro_1_1planets_1_1EarthParameters.md) <br> |
 
 
 

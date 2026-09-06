@@ -42,7 +42,6 @@
 
 ## p
 
-* **PI** ([**astrea**](namespaceastrea.md))
 * **power\_unit** ([**astrea::detail**](namespaceastrea_1_1detail.md))
 * **pressure\_unit** ([**astrea::detail**](namespaceastrea_1_1detail.md))
 
@@ -63,7 +62,6 @@
 
 ## t
 
-* **TWO\_PI** ([**astrea**](namespaceastrea.md))
 * **temperature\_unit** ([**astrea::detail**](namespaceastrea_1_1detail.md))
 * **time\_unit** ([**astrea::detail**](namespaceastrea_1_1detail.md))
 

@@ -76,7 +76,7 @@ Inherits the following classes: astro::Spacecraft,  [astrea::trace::AccessObject
 |   | [**Viewer**](#function-viewer-12) () = default<br>_Default constructor for_ [_**Viewer**_](classastrea_1_1trace_1_1Viewer.md) _._ |
 |   | [**Viewer**](#function-viewer-22) (const astro::GeneralPerturbations & gp) <br>_Constructor for_ [_**Viewer**_](classastrea_1_1trace_1_1Viewer.md) _with GeneralPerturbations._ |
 | virtual std::size\_t | [**get\_id**](#function-get_id) () const<br>_Get the viewer ID._  |
-|  Mass | [**get\_mass**](#function-get_mass) () override const<br>_Get the mass of the viewer._  |
+|  Mass | [**get\_mass**](#function-get_mass) (const astro::State & state) override const<br>_Get the mass of the viewer._  |
 |  std::string | [**get\_name**](#function-get_name) () const<br>_Get the name of the viewer._  |
 |  astro::RadiusVector&lt; astro::frames::earth::icrf &gt; | [**get\_position**](#function-get_position) (const astro::Date & date) const<br>_Get the inertial position of the viewer._  |
 |  astro::VelocityVector&lt; astro::frames::earth::icrf &gt; | [**get\_velocity**](#function-get_velocity) (const astro::Date & date) const<br>_Get the inertial velocity of the viewer._  |
@@ -233,7 +233,9 @@ Implements [*astrea::trace::AccessObject::get\_id*](classastrea_1_1trace_1_1Acce
 
 _Get the mass of the viewer._ 
 ```C++
-inline Mass astrea::trace::Viewer::get_mass () override const
+inline Mass astrea::trace::Viewer::get_mass (
+    const astro::State & state
+) override const
 ```
 
 

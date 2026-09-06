@@ -591,6 +591,8 @@
         </childnode>
         <childnode refid="127" relation="include">
         </childnode>
+        <childnode refid="128" relation="include">
+        </childnode>
         <childnode refid="34" relation="include">
         </childnode>
         <childnode refid="114" relation="include">
@@ -1129,6 +1131,10 @@
         </childnode>
         <childnode refid="2" relation="include">
         </childnode>
+        <childnode refid="79" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
         <childnode refid="82" relation="include">
         </childnode>
         <childnode refid="76" relation="include">
@@ -1138,8 +1144,6 @@
         <childnode refid="55" relation="include">
         </childnode>
         <childnode refid="47" relation="include">
-        </childnode>
-        <childnode refid="79" relation="include">
         </childnode>
       </node>
       <node id="108">
@@ -2205,7 +2209,7 @@
 <codeline lineno="276"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Transform<sp/>back<sp/>to<sp/>inertial<sp/>frame<sp/>without<sp/>abberations<sp/>-<sp/>original<sp/>values<sp/>are<sp/>in<sp/>ecef,<sp/>not<sp/>w.r.t<sp/>ecef</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="277"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">AccelerationVector&lt;frames::primary&gt;</ref><sp/>accelOblatenessIcrf<sp/>=</highlight></codeline>
 <codeline lineno="278"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>frames::rotate_vector_into_frame&lt;frames::primary&gt;(accelOblatenessEcef,<sp/>date);</highlight></codeline>
-<codeline lineno="279"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>{<sp/>.force<sp/>=<sp/>(accelOblatenessIcrf<sp/>*<sp/>vehicle.<ref refid="classastrea_1_1astro_1_1Vehicle_1a16c66589957a50f003a9c8a19643e8e7" kindref="member">get_mass</ref>())<sp/>};</highlight></codeline>
+<codeline lineno="279"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>{<sp/>.force<sp/>=<sp/>(accelOblatenessIcrf<sp/>*<sp/>vehicle.<ref refid="classastrea_1_1astro_1_1Vehicle_1a61c95739d7b08b4f5385c27fe8c7c227" kindref="member">get_mass</ref>(state))<sp/>};</highlight></codeline>
 <codeline lineno="280"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="281"><highlight class="normal"></highlight></codeline>
 <codeline lineno="282"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>astro</highlight><highlight class="normal"></highlight></codeline>

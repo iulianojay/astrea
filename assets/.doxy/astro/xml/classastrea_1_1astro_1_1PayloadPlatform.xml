@@ -291,13 +291,17 @@
         </inbodydescription>
         <location file="astrea/astro/astro/platforms/PayloadPlatform.hpp" line="126" column="28"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1astro_1_1PayloadPlatform_1a1f39a69fc17a82b49a7aa6b15b61f65c" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+      <memberdef kind="function" id="classastrea_1_1astro_1_1PayloadPlatform_1a2b5e88c7ec1c62eeb074a884f8e0421e" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
         <type>Mass</type>
         <definition>virtual Mass astrea::astro::PayloadPlatform&lt; Payload_T &gt;::get_mass</definition>
-        <argsstring>() const</argsstring>
+        <argsstring>(const State &amp;state) const</argsstring>
         <name>get_mass</name>
         <qualifiedname>astrea::astro::PayloadPlatform::get_mass</qualifiedname>
-        <reimplementedby refid="classastrea_1_1astro_1_1Spacecraft_1a8006e003e3545dcd32cabc3789dc4a3e">get_mass</reimplementedby>
+        <reimplementedby refid="classastrea_1_1astro_1_1Spacecraft_1a8a9a388f8f125a180163d7a36af813ab">get_mass</reimplementedby>
+        <param>
+          <type>const <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
+          <declname>state</declname>
+        </param>
         <briefdescription>
 <para>Get the mass of the platform. </para>
         </briefdescription>
@@ -416,7 +420,7 @@
       <member refid="classastrea_1_1astro_1_1PayloadPlatform_1a3fd1ddd8c83de855378361500772110d" prot="public" virt="non-virtual"><scope>astrea::astro::PayloadPlatform</scope><name>attach_payload</name></member>
       <member refid="classastrea_1_1astro_1_1PayloadPlatform_1a543013093f0f72b8d8992d49a1d5e666" prot="public" virt="non-virtual"><scope>astrea::astro::PayloadPlatform</scope><name>attach_payloads</name></member>
       <member refid="classastrea_1_1astro_1_1PayloadPlatform_1a9dbb3a6fcb1b3c5482728ca7cbb37627" prot="public" virt="pure-virtual"><scope>astrea::astro::PayloadPlatform</scope><name>get_id</name></member>
-      <member refid="classastrea_1_1astro_1_1PayloadPlatform_1a1f39a69fc17a82b49a7aa6b15b61f65c" prot="public" virt="virtual"><scope>astrea::astro::PayloadPlatform</scope><name>get_mass</name></member>
+      <member refid="classastrea_1_1astro_1_1PayloadPlatform_1a2b5e88c7ec1c62eeb074a884f8e0421e" prot="public" virt="virtual"><scope>astrea::astro::PayloadPlatform</scope><name>get_mass</name></member>
       <member refid="classastrea_1_1astro_1_1PayloadPlatform_1a54d9bf8b1049816166b25c0d4e24d045" prot="public" virt="non-virtual"><scope>astrea::astro::PayloadPlatform</scope><name>get_payloads</name></member>
       <member refid="classastrea_1_1astro_1_1PayloadPlatform_1a4f32c230e8835289ef1c9aaa129c8da1" prot="public" virt="non-virtual"><scope>astrea::astro::PayloadPlatform</scope><name>get_payloads</name></member>
       <member refid="classastrea_1_1astro_1_1PayloadPlatform_1a13ee5b1977ccfc3b56774bf3a3c2feda" prot="public" virt="pure-virtual"><scope>astrea::astro::PayloadPlatform</scope><name>get_position</name></member>

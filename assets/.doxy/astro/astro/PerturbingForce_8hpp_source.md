@@ -11,8 +11,11 @@
 
 #pragma once
 
+#include <memory>
+
 #include <astro/astro.fwd.hpp>
 #include <astro/propagation/force_models/Perturbation.hpp>
+#include <astro/propagation/force_models/space_weather/SpaceWeatherProvider.hpp>
 
 namespace astrea {
 namespace astro {
@@ -26,6 +29,24 @@ class PerturbingForce {
     virtual Perturbation compute_perturbation(const State& state, const Vehicle& vehicle) const = 0;
 
     virtual std::unique_ptr<PerturbingForce> clone() const = 0;
+
+    void bind_space_weather_provider(std::shared_ptr<const SpaceWeatherProvider> provider)
+    {
+        _provider = std::move(provider);
+    }
+
+    [[nodiscard]] const std::shared_ptr<const SpaceWeatherProvider>& get_space_weather_provider() const noexcept
+    {
+        return _provider;
+    }
+
+    [[nodiscard]] std::shared_ptr<const SpaceWeatherData> get_space_weather_data() const noexcept
+    {
+        return _provider ? _provider->data() : nullptr;
+    }
+
+  private:
+    std::shared_ptr<const SpaceWeatherProvider> _provider;
 };
 
 } // namespace astro

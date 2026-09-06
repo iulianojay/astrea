@@ -9,8 +9,8 @@
       </param>
     </templateparamlist>
     <initializer>template&lt;typename T&gt;
-concept <ref refid="conceptastrea_1_1astro_1_1HasGetInertiaTensor" kindref="compound">astrea::astro::HasGetInertiaTensor</ref> =  requires(const T vehicle) {
-    { vehicle.get_inertia_tensor() } -&gt; std::same_as&lt;InertiaTensor&lt;frames::dynamic::body&gt;&gt;;
+concept <ref refid="conceptastrea_1_1astro_1_1HasGetInertiaTensor" kindref="compound">astrea::astro::HasGetInertiaTensor</ref> =  requires(const T vehicle, const State&amp; state) {
+    { vehicle.get_inertia_tensor(state) } -&gt; std::same_as&lt;InertiaTensor&lt;frames::dynamic::body&gt;&gt;;
 }    </initializer>
     <briefdescription>
 <para>Concept to check if a type has a method to get the inertia tensor. </para>
@@ -27,6 +27,6 @@ concept <ref refid="conceptastrea_1_1astro_1_1HasGetInertiaTensor" kindref="comp
 </parameterlist>
 </para>
     </detaileddescription>
-    <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="56" column="1"/>
+    <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="57" column="1"/>
   </compounddef>
 </doxygen>

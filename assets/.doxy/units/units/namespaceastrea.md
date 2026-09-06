@@ -37,38 +37,38 @@
 
 | Type | Name |
 | ---: | :--- |
-| typedef mp\_units::quantity&lt; detail::distance\_unit/mp\_units::pow&lt; 2 &gt;(detail::time\_unit)&gt; | [**Acceleration**](#typedef-acceleration)  <br>_Definition for an acceleration quantity._  |
+| typedef mp\_units::quantity&lt; detail::distance\_unit/(detail::time\_unit \*detail::time\_unit)&gt; | [**Acceleration**](#typedef-acceleration)  <br>_Definition for an acceleration quantity._  |
 | typedef mp\_units::quantity&lt; detail::distance\_unit &gt; | [**Altitude**](#typedef-altitude)  <br>_Definition for an altitude quantity._  |
 | typedef mp\_units::quantity&lt; detail::angle\_unit &gt; | [**Angle**](#typedef-angle)  <br>_Definition for an angle quantity._  |
-| typedef mp\_units::quantity&lt; detail::angle\_unit/mp\_units::pow&lt; 2 &gt;(detail::time\_unit)&gt; | [**AngularAcceleration**](#typedef-angularacceleration)  <br>_Definition for an angular acceleration quantity._  |
+| typedef mp\_units::quantity&lt; detail::angle\_unit/(detail::time\_unit \*detail::time\_unit)&gt; | [**AngularAcceleration**](#typedef-angularacceleration)  <br>_Definition for an angular acceleration quantity._  |
 | typedef mp\_units::quantity&lt; detail::angle\_unit/detail::time\_unit &gt; | [**AngularVelocity**](#typedef-angularvelocity)  <br>_Definition for an angular rate quantity._  |
 | typedef mp\_units::quantity&lt; mp\_units::one/astrea::units::unit\_symbols::re &gt; | [**BallisticCoefficient**](#typedef-ballisticcoefficient)  <br>_Definition for a ballistic coefficient quantity._  |
 | typedef mp\_units::quantity&lt; detail::angle\_unit/astrea::units::unit\_symbols::jc &gt; | [**BodyAngularVelocity**](#typedef-bodyangularvelocity)  <br>_Definition for a body-related angular rate._  |
 | typedef mp\_units::quantity&lt; detail::unitless/astrea::units::unit\_symbols::jc &gt; | [**BodyUnitlessPerTime**](#typedef-bodyunitlesspertime)  <br>_Definition for a body-related unitless per time._  |
 | typedef mp\_units::quantity&lt; detail::unitless &gt; | [**CNR**](#typedef-cnr)  <br>_Definition for a carrier-to-noise ratio quantity._  |
-| typedef mp\_units::quantity&lt; mp\_units::one/mp\_units::pow&lt; 2 &gt;(detail::time\_unit)&gt; | [**Chirp**](#typedef-chirp)  <br>_Definition for a chirp quantity, representing the rate of change of frequency._  |
-| typedef mp\_units::quantity&lt; detail::mass\_unit/(mp\_units::pow&lt; 3 &gt;(detail::distance\_unit))&gt; | [**Density**](#typedef-density)  <br>_Definition for a density quantity._  |
+| typedef mp\_units::quantity&lt; mp\_units::one/(detail::time\_unit \*detail::time\_unit)&gt; | [**Chirp**](#typedef-chirp)  <br>_Definition for a chirp quantity, representing the rate of change of frequency._  |
+| typedef mp\_units::quantity&lt; detail::mass\_unit/(detail::distance\_unit \*detail::distance\_unit \*detail::distance\_unit)&gt; | [**Density**](#typedef-density)  <br>_Definition for a density quantity._  |
 | typedef mp\_units::quantity&lt; detail::distance\_unit &gt; | [**Distance**](#typedef-distance)  <br>_Definition for a distance quantity._  |
 | typedef mp\_units::quantity&lt; detail::force\_unit &gt; | [**Force**](#typedef-force)  <br>_Definition for a force quantity._  |
 | typedef mp\_units::quantity&lt; mp\_units::one/detail::time\_unit &gt; | [**Frequency**](#typedef-frequency)  <br>_Definition for a frequency quantity._  |
 | typedef mp\_units::quantity&lt; detail::unitless &gt; | [**Gain**](#typedef-gain)  <br>_Definition for a gain quantity._  |
-| typedef mp\_units::quantity&lt; mp\_units::pow&lt; 3 &gt;(detail::distance\_unit)/mp\_units::pow&lt; 2 &gt;(detail::time\_unit)&gt; | [**GravParam**](#typedef-gravparam)  <br>_Definition for a gravitational parameter quantity._  |
+| typedef mp\_units::quantity&lt;(detail::distance\_unit \*detail::distance\_unit \*detail::distance\_unit)/(detail::time\_unit \*detail::time\_unit)&gt; | [**GravParam**](#typedef-gravparam)  <br>_Definition for a gravitational parameter quantity._  |
 | typedef mp\_units::quantity&lt; mp\_units::iau::unit\_symbols::au &gt; | [**InterplanetaryDistance**](#typedef-interplanetarydistance)  <br>_Definition for a interplanetary distance quantity._  |
 | typedef mp\_units::quantity&lt; mp\_units::iau::unit\_symbols::au/astrea::units::unit\_symbols::jc &gt; | [**InterplanetaryVelocity**](#typedef-interplanetaryvelocity)  <br>_Definition for a body-related velocity._  |
 | typedef mp\_units::quantity&lt; detail::distance\_unit &gt; | [**Length**](#typedef-length)  <br>_Definition for a length quantity._  |
 | typedef mp\_units::quantity&lt; detail::mass\_unit &gt; | [**Mass**](#typedef-mass)  <br>_Definition for a mass quantity._  |
 | typedef mp\_units::quantity&lt; mp\_units::one/mp\_units::non\_si::day &gt; | [**MeanMotion**](#typedef-meanmotion)  <br>_Definition for a mean motion quantity._  |
-| typedef mp\_units::quantity&lt; mp\_units::one/mp\_units::pow&lt; 2 &gt;(mp\_units::non\_si::day)&gt; | [**MeanMotion1stDer**](#typedef-meanmotion1stder)  <br>_Definition for a mean motion 1st derivative quantity._  |
-| typedef mp\_units::quantity&lt; mp\_units::one/mp\_units::pow&lt; 3 &gt;(mp\_units::non\_si::day)&gt; | [**MeanMotion2ndDer**](#typedef-meanmotion2ndder)  <br>_Definition for a mean motion 2nd derivative quantity._  |
+| typedef mp\_units::quantity&lt; mp\_units::one/(mp\_units::non\_si::day \*mp\_units::non\_si::day)&gt; | [**MeanMotion1stDer**](#typedef-meanmotion1stder)  <br>_Definition for a mean motion 1st derivative quantity._  |
+| typedef mp\_units::quantity&lt; mp\_units::one/(mp\_units::non\_si::day \*mp\_units::non\_si::day \*mp\_units::non\_si::day)&gt; | [**MeanMotion2ndDer**](#typedef-meanmotion2ndder)  <br>_Definition for a mean motion 2nd derivative quantity._  |
 | typedef mp\_units::quantity&lt; detail::force\_unit \*detail::distance\_unit &gt; | [**Moment**](#typedef-moment)  <br>_Definition for a moment quantity._  |
-| typedef mp\_units::quantity&lt; detail::mass\_unit \*mp\_units::pow&lt; 2 &gt;(detail::distance\_unit)&gt; | [**MomentOfInertia**](#typedef-momentofinertia)  <br>_Definition for a moment of inertia quantity._  |
+| typedef mp\_units::quantity&lt; detail::mass\_unit \*detail::distance\_unit \*detail::distance\_unit &gt; | [**MomentOfInertia**](#typedef-momentofinertia)  <br>_Definition for a moment of inertia quantity._  |
 | typedef mp\_units::quantity&lt; detail::power\_unit &gt; | [**Power**](#typedef-power)  <br>_Definition for a power quantity._  |
-| typedef mp\_units::quantity&lt; detail::power\_unit/mp\_units::pow&lt; 2 &gt;(detail::distance\_unit)&gt; | [**PowerFluxDensity**](#typedef-powerfluxdensity)  <br>_Definition for a power flux density quantity._  |
+| typedef mp\_units::quantity&lt; detail::power\_unit/(detail::distance\_unit \*detail::distance\_unit)&gt; | [**PowerFluxDensity**](#typedef-powerfluxdensity)  <br>_Definition for a power flux density quantity._  |
 | typedef mp\_units::quantity&lt; detail::pressure\_unit &gt; | [**Pressure**](#typedef-pressure)  <br>_Definition for a pressure quantity._  |
 | typedef mp\_units::quantity&lt; detail::unitless &gt; | [**SNR**](#typedef-snr)  <br>_Definition for a signal-to-noise ratio quantity._  |
 | typedef mp\_units::quantity&lt; astrea::units::unit\_symbols::sfu &gt; | [**SolarFlux**](#typedef-solarflux)  <br>_Definition for a solar flux quantity._  |
 | typedef mp\_units::quantity&lt; detail::distance\_unit \*detail::distance\_unit/detail::time\_unit &gt; | [**SpecificAngularMomentum**](#typedef-specificangularmomentum)  <br>_Definition for a specific angular momentum quantity._  |
-| typedef mp\_units::quantity&lt; mp\_units::pow&lt; 2 &gt;(detail::distance\_unit)&gt; | [**SurfaceArea**](#typedef-surfacearea)  <br>_Definition for a surface area quantity._  |
+| typedef mp\_units::quantity&lt; detail::distance\_unit \*detail::distance\_unit &gt; | [**SurfaceArea**](#typedef-surfacearea)  <br>_Definition for a surface area quantity._  |
 | typedef mp\_units::quantity\_point&lt; detail::temperature\_unit &gt; | [**Temperature**](#typedef-temperature)  <br>_Definition for a temperature quantity._  |
 | typedef mp\_units::quantity&lt; detail::time\_unit &gt; | [**Time**](#typedef-time)  <br>_Definition for a time quantity._  |
 | typedef mp\_units::quantity&lt; detail::unitless &gt; | [**Unitless**](#typedef-unitless)  <br>_Definition for a unitless quantity._  |
@@ -92,8 +92,6 @@
 
 | Type | Name |
 | ---: | :--- |
-|  constexpr [**Angle**](namespaceastrea.md#typedef-angle) | [**PI**](#variable-pi)   = `1.0 \* (mp\_units::mag&lt;mp\_units::pi&gt; \* detail::angle\_unit)`<br> |
-|  constexpr [**Angle**](namespaceastrea.md#typedef-angle) | [**TWO\_PI**](#variable-two_pi)   = `2.0 \* (mp\_units::mag&lt;mp\_units::pi&gt; \* detail::angle\_unit)`<br> |
 |  constexpr auto | [**boltzmann\_constant**](#variable-boltzmann_constant)   = `1.0 \* mp\_units::si::si2019::boltzmann\_constant`<br> |
 |  constexpr [**Velocity**](namespaceastrea.md#typedef-velocity) | [**speed\_of\_light\_in\_vacuum**](#variable-speed_of_light_in_vacuum)   = `1.0 \* mp\_units::si::si2019::speed\_of\_light\_in\_vacuum`<br> |
 
@@ -112,12 +110,6 @@
 
 
 
-## Public Functions
-
-| Type | Name |
-| ---: | :--- |
-|  constexpr mp\_units::quantity&lt; mp\_units::mag&lt; mp\_units::pi &gt; \*detail::angle\_unit &gt; | [**n\_pi**](#function-n_pi) (const double & mag) <br> |
-|  constexpr mp\_units::quantity&lt; detail::unitless &gt; | [**n\_pi\_mag**](#function-n_pi_mag) (const double & mag) <br> |
 
 
 
@@ -155,7 +147,7 @@
 
 _Definition for an acceleration quantity._ 
 ```C++
-using astrea::Acceleration = typedef mp_units::quantity<detail::distance_unit / mp_units::pow<2>(detail::time_unit)>;
+using astrea::Acceleration = typedef mp_units::quantity<detail::distance_unit / (detail::time_unit * detail::time_unit)>;
 ```
 
 
@@ -197,7 +189,7 @@ using astrea::Angle = typedef mp_units::quantity<detail::angle_unit>;
 
 _Definition for an angular acceleration quantity._ 
 ```C++
-using astrea::AngularAcceleration = typedef mp_units::quantity<detail::angle_unit / mp_units::pow<2>(detail::time_unit)>;
+using astrea::AngularAcceleration = typedef mp_units::quantity<detail::angle_unit / (detail::time_unit * detail::time_unit)>;
 ```
 
 
@@ -281,7 +273,7 @@ using astrea::CNR = typedef mp_units::quantity<detail::unitless>;
 
 _Definition for a chirp quantity, representing the rate of change of frequency._ 
 ```C++
-using astrea::Chirp = typedef mp_units::quantity<mp_units::one / mp_units::pow<2>(detail::time_unit)>;
+using astrea::Chirp = typedef mp_units::quantity<mp_units::one / (detail::time_unit * detail::time_unit)>;
 ```
 
 
@@ -295,7 +287,7 @@ using astrea::Chirp = typedef mp_units::quantity<mp_units::one / mp_units::pow<2
 
 _Definition for a density quantity._ 
 ```C++
-using astrea::Density = typedef mp_units::quantity<detail::mass_unit / (mp_units::pow<3>(detail::distance_unit))>;
+using astrea::Density = typedef mp_units::quantity<detail::mass_unit / (detail::distance_unit * detail::distance_unit * detail::distance_unit)>;
 ```
 
 
@@ -365,7 +357,7 @@ using astrea::Gain = typedef mp_units::quantity<detail::unitless>;
 
 _Definition for a gravitational parameter quantity._ 
 ```C++
-using astrea::GravParam = typedef mp_units::quantity<mp_units::pow<3>(detail::distance_unit) / mp_units::pow<2>(detail::time_unit)>;
+using astrea::GravParam = typedef mp_units::quantity<(detail::distance_unit * detail::distance_unit * detail::distance_unit) / (detail::time_unit * detail::time_unit)>;
 ```
 
 
@@ -449,7 +441,7 @@ using astrea::MeanMotion = typedef mp_units::quantity<mp_units::one / mp_units::
 
 _Definition for a mean motion 1st derivative quantity._ 
 ```C++
-using astrea::MeanMotion1stDer = typedef mp_units::quantity<mp_units::one / mp_units::pow<2>(mp_units::non_si::day)>;
+using astrea::MeanMotion1stDer = typedef mp_units::quantity<mp_units::one / (mp_units::non_si::day * mp_units::non_si::day)>;
 ```
 
 
@@ -463,7 +455,7 @@ using astrea::MeanMotion1stDer = typedef mp_units::quantity<mp_units::one / mp_u
 
 _Definition for a mean motion 2nd derivative quantity._ 
 ```C++
-using astrea::MeanMotion2ndDer = typedef mp_units::quantity<mp_units::one / mp_units::pow<3>(mp_units::non_si::day)>;
+using astrea::MeanMotion2ndDer = typedef mp_units::quantity<mp_units::one / (mp_units::non_si::day * mp_units::non_si::day * mp_units::non_si::day)>;
 ```
 
 
@@ -491,7 +483,7 @@ using astrea::Moment = typedef mp_units::quantity<detail::force_unit * detail::d
 
 _Definition for a moment of inertia quantity._ 
 ```C++
-using astrea::MomentOfInertia = typedef mp_units::quantity<detail::mass_unit * mp_units::pow<2>(detail::distance_unit)>;
+using astrea::MomentOfInertia = typedef mp_units::quantity<detail::mass_unit * detail::distance_unit * detail::distance_unit>;
 ```
 
 
@@ -519,7 +511,7 @@ using astrea::Power = typedef mp_units::quantity<detail::power_unit>;
 
 _Definition for a power flux density quantity._ 
 ```C++
-using astrea::PowerFluxDensity = typedef mp_units::quantity<detail::power_unit / mp_units::pow<2>(detail::distance_unit)>;
+using astrea::PowerFluxDensity = typedef mp_units::quantity<detail::power_unit / (detail::distance_unit * detail::distance_unit)>;
 ```
 
 
@@ -589,7 +581,7 @@ using astrea::SpecificAngularMomentum = typedef mp_units::quantity<detail::dista
 
 _Definition for a surface area quantity._ 
 ```C++
-using astrea::SurfaceArea = typedef mp_units::quantity<mp_units::pow<2>(detail::distance_unit)>;
+using astrea::SurfaceArea = typedef mp_units::quantity<detail::distance_unit * detail::distance_unit>;
 ```
 
 
@@ -801,32 +793,6 @@ using astrea::years = typedef std::chrono::duration<double, std::ratio<31556952>
 
 
 
-### variable PI 
-
-```C++
-constexpr Angle astrea::PI;
-```
-
-
-
-
-<hr>
-
-
-
-### variable TWO\_PI 
-
-```C++
-constexpr Angle astrea::TWO_PI;
-```
-
-
-
-
-<hr>
-
-
-
 ### variable boltzmann\_constant 
 
 ```C++
@@ -844,38 +810,6 @@ constexpr auto astrea::boltzmann_constant;
 
 ```C++
 constexpr Velocity astrea::speed_of_light_in_vacuum;
-```
-
-
-
-
-<hr>
-## Public Functions Documentation
-
-
-
-
-### function n\_pi 
-
-```C++
-constexpr mp_units::quantity< mp_units::mag< mp_units::pi > *detail::angle_unit > astrea::n_pi (
-    const double & mag
-) 
-```
-
-
-
-
-<hr>
-
-
-
-### function n\_pi\_mag 
-
-```C++
-constexpr mp_units::quantity< detail::unitless > astrea::n_pi_mag (
-    const double & mag
-) 
 ```
 
 

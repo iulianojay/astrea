@@ -36,7 +36,7 @@
         <childnode refid="14" relation="include">
         </childnode>
       </node>
-      <node id="100">
+      <node id="101">
         <label>astro/frames/definitions/body_fixed_frames.hpp</label>
         <link refid="body__fixed__frames_8hpp"/>
         <childnode refid="22" relation="include">
@@ -77,7 +77,7 @@
         </childnode>
         <childnode refid="6" relation="include">
         </childnode>
-        <childnode refid="100" relation="include">
+        <childnode refid="101" relation="include">
         </childnode>
         <childnode refid="83" relation="include">
         </childnode>
@@ -441,6 +441,10 @@
         </childnode>
         <childnode refid="77" relation="include">
         </childnode>
+        <childnode refid="78" relation="include">
+        </childnode>
+        <childnode refid="100" relation="include">
+        </childnode>
         <childnode refid="81" relation="include">
         </childnode>
         <childnode refid="74" relation="include">
@@ -450,8 +454,6 @@
         <childnode refid="52" relation="include">
         </childnode>
         <childnode refid="43" relation="include">
-        </childnode>
-        <childnode refid="78" relation="include">
         </childnode>
       </node>
       <node id="46">
@@ -1082,6 +1084,9 @@
       <node id="78">
         <label>math/interpolation.hpp</label>
       </node>
+      <node id="100">
+        <label>math/operations.hpp</label>
+      </node>
       <node id="3">
         <label>math/trig.hpp</label>
       </node>
@@ -1491,6 +1496,20 @@
         <childnode refid="14" relation="include">
         </childnode>
       </node>
+      <node id="51">
+        <label>astrea/astro/astro/propagation/force_models/space_weather.hpp</label>
+        <link refid="space__weather_8hpp"/>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="50">
+        <label>astrea/astro/astro/propagation/force_models/space_weather/atmosphere.hpp</label>
+        <link refid="atmosphere_8hpp_source"/>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="51" relation="include">
+        </childnode>
+      </node>
       <node id="16">
         <label>astrea/astro/astro/propagation/numerical/Integrator.hpp</label>
         <link refid="Integrator_8hpp"/>
@@ -1512,22 +1531,24 @@
       <node id="49">
         <label>astrea/astro/astro/state/State.hpp</label>
         <link refid="State_8hpp"/>
+        <childnode refid="12" relation="include">
+        </childnode>
         <childnode refid="13" relation="include">
         </childnode>
         <childnode refid="18" relation="include">
         </childnode>
         <childnode refid="19" relation="include">
         </childnode>
+        <childnode refid="50" relation="include">
+        </childnode>
         <childnode refid="16" relation="include">
         </childnode>
         <childnode refid="37" relation="include">
         </childnode>
-        <childnode refid="50" relation="include">
-        </childnode>
-        <childnode refid="51" relation="include">
+        <childnode refid="52" relation="include">
         </childnode>
       </node>
-      <node id="50">
+      <node id="52">
         <label>astrea/astro/astro/state/StateHistory.hpp</label>
         <link refid="StateHistory_8hpp"/>
         <childnode refid="8" relation="include">
@@ -1574,9 +1595,9 @@
         </childnode>
         <childnode refid="53" relation="include">
         </childnode>
-        <childnode refid="36" relation="include">
+        <childnode refid="50" relation="include">
         </childnode>
-        <childnode refid="51" relation="include">
+        <childnode refid="36" relation="include">
         </childnode>
       </node>
       <node id="54">
@@ -1629,18 +1650,6 @@
         <label>astrea/astro/astro/state/orbital_data_formats/TwoLineElements.hpp</label>
         <link refid="TwoLineElements_8hpp"/>
         <childnode refid="58" relation="include">
-        </childnode>
-      </node>
-      <node id="52">
-        <label>astrea/astro/astro/systems.hpp</label>
-        <link refid="systems_8hpp"/>
-        <childnode refid="4" relation="include">
-        </childnode>
-      </node>
-      <node id="51">
-        <label>astrea/astro/astro/systems/atmosphere.hpp</label>
-        <link refid="atmosphere_8hpp_source"/>
-        <childnode refid="52" relation="include">
         </childnode>
       </node>
     </invincdepgraph>
@@ -2034,7 +2043,7 @@ The GNU Lesser General Public License (LGPL)</para>
 <codeline lineno="355"><highlight class="normal"></highlight></codeline>
 <codeline lineno="356"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Diurnal<sp/>rotation</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="357"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Angle<sp/>gst<sp/>=<sp/>julian_date_to_sidereal_time(date.jd());</highlight></codeline>
-<codeline lineno="358"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>Rs<sp/><sp/><sp/>=<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix_1aca43b28b252686c7ce956d234c23217f" kindref="member">DCM&lt;frames::earth::cep, frames::earth::itrf&gt;::Z</ref>(gst);</highlight></codeline>
+<codeline lineno="358"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>Rs<sp/><sp/><sp/>=<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix_1aca43b28b252686c7ce956d234c23217f" kindref="member">DCM&lt;frames::earth::cep, frames::earth::itrf&gt;::Z</ref>(-gst);</highlight></codeline>
 <codeline lineno="359"><highlight class="normal"></highlight></codeline>
 <codeline lineno="360"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Polar<sp/>motion</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="361"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>[xp,<sp/>yp]<sp/>=<sp/>get_polar_motion(date);</highlight></codeline>

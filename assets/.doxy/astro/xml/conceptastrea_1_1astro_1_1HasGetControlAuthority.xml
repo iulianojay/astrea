@@ -27,6 +27,6 @@ concept <ref refid="conceptastrea_1_1astro_1_1HasGetControlAuthority" kindref="c
 </parameterlist>
 </para>
     </detaileddescription>
-    <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="126" column="1"/>
+    <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="127" column="1"/>
   </compounddef>
 </doxygen>

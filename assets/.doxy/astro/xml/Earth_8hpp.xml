@@ -7,7 +7,6 @@
     <includes refid="astro_8macros_8hpp" local="no">astro/astro.macros.hpp</includes>
     <includes refid="CelestialBody_8hpp" local="no">astro/systems/CelestialBody.hpp</includes>
     <includes refid="barycenters_8hpp" local="no">astro/systems/barycenters.hpp</includes>
-    <includedby refid="atmosphere_8hpp" local="no">astrea/astro/astro/systems/atmosphere.hpp</includedby>
     <includedby refid="celestial__bodies_8hpp" local="no">astrea/astro/astro/systems/celestial_bodies.hpp</includedby>
     <includedby refid="Moon_8hpp" local="no">astrea/astro/astro/systems/celestial_bodies/Earth/Moon.hpp</includedby>
     <includedby refid="Date_8cpp" local="no">astrea/astro/astro/time/Date.cpp</includedby>
@@ -387,46 +386,46 @@
       </node>
     </incdepgraph>
     <invincdepgraph>
-      <node id="4">
+      <node id="6">
         <label>astrea/astro/astro/astro.hpp</label>
         <link refid="astro_8hpp"/>
       </node>
-      <node id="8">
+      <node id="5">
         <label>astrea/astro/astro/frames.hpp</label>
         <link refid="frames_8hpp_source"/>
-        <childnode refid="4" relation="include">
+        <childnode refid="6" relation="include">
         </childnode>
       </node>
-      <node id="7">
+      <node id="4">
         <label>astrea/astro/astro/frames/definitions.hpp</label>
         <link refid="definitions_8hpp_source"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
         <childnode refid="8" relation="include">
-        </childnode>
-        <childnode refid="9" relation="include">
-        </childnode>
-        <childnode refid="16" relation="include">
-        </childnode>
-        <childnode refid="10" relation="include">
-        </childnode>
-        <childnode refid="25" relation="include">
-        </childnode>
-        <childnode refid="26" relation="include">
-        </childnode>
-        <childnode refid="33" relation="include">
         </childnode>
         <childnode refid="23" relation="include">
         </childnode>
-        <childnode refid="34" relation="include">
+        <childnode refid="24" relation="include">
         </childnode>
-        <childnode refid="39" relation="include">
+        <childnode refid="31" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="37" relation="include">
+        </childnode>
+        <childnode refid="40" relation="include">
+        </childnode>
+        <childnode refid="41" relation="include">
         </childnode>
         <childnode refid="42" relation="include">
         </childnode>
         <childnode refid="43" relation="include">
-        </childnode>
-        <childnode refid="44" relation="include">
-        </childnode>
-        <childnode refid="45" relation="include">
         </childnode>
         <childnode refid="56" relation="include">
         </childnode>
@@ -434,15 +433,15 @@
         </childnode>
         <childnode refid="58" relation="include">
         </childnode>
-        <childnode refid="52" relation="include">
+        <childnode refid="50" relation="include">
         </childnode>
         <childnode refid="59" relation="include">
         </childnode>
       </node>
-      <node id="6">
+      <node id="3">
         <label>astrea/astro/astro/frames/definitions/body_centered_inertial_frames.hpp</label>
         <link refid="body__centered__inertial__frames_8hpp"/>
-        <childnode refid="7" relation="include">
+        <childnode refid="4" relation="include">
         </childnode>
         <childnode refid="61" relation="include">
         </childnode>
@@ -460,7 +459,7 @@
       <node id="72">
         <label>astrea/astro/astro/frames/definitions/body_fixed_frames.hpp</label>
         <link refid="body__fixed__frames_8hpp"/>
-        <childnode refid="7" relation="include">
+        <childnode refid="4" relation="include">
         </childnode>
         <childnode refid="61" relation="include">
         </childnode>
@@ -470,7 +469,7 @@
       <node id="73">
         <label>astrea/astro/astro/frames/definitions/defined_rotations.hpp</label>
         <link refid="defined__rotations_8hpp"/>
-        <childnode refid="7" relation="include">
+        <childnode refid="4" relation="include">
         </childnode>
         <childnode refid="61" relation="include">
         </childnode>
@@ -480,81 +479,81 @@
       <node id="61">
         <label>astrea/astro/astro/frames/definitions/defined_rotations_earth.hpp</label>
         <link refid="defined__rotations__earth_8hpp"/>
-        <childnode refid="7" relation="include">
+        <childnode refid="4" relation="include">
         </childnode>
       </node>
-      <node id="47">
+      <node id="45">
         <label>astrea/astro/astro/frames/definitions/dynamic_frames.hpp</label>
         <link refid="dynamic__frames_8hpp"/>
-        <childnode refid="7" relation="include">
+        <childnode refid="4" relation="include">
         </childnode>
       </node>
-      <node id="46">
+      <node id="44">
         <label>astrea/astro/astro/frames/definitions/dynamic_frames/EastNorthUp.hpp</label>
         <link refid="EastNorthUp_8hpp"/>
-        <childnode refid="47" relation="include">
+        <childnode refid="45" relation="include">
         </childnode>
-        <childnode refid="48" relation="include">
+        <childnode refid="46" relation="include">
         </childnode>
       </node>
       <node id="62">
         <label>astrea/astro/astro/frames/definitions/dynamic_frames/LocalHorizontalLocalVertical.hpp</label>
         <link refid="LocalHorizontalLocalVertical_8hpp"/>
-        <childnode refid="47" relation="include">
+        <childnode refid="45" relation="include">
         </childnode>
-        <childnode refid="48" relation="include">
+        <childnode refid="46" relation="include">
         </childnode>
       </node>
       <node id="63">
         <label>astrea/astro/astro/frames/definitions/dynamic_frames/Perifocal.hpp</label>
         <link refid="Perifocal_8hpp"/>
-        <childnode refid="47" relation="include">
+        <childnode refid="45" relation="include">
         </childnode>
-        <childnode refid="48" relation="include">
+        <childnode refid="46" relation="include">
         </childnode>
       </node>
       <node id="64">
         <label>astrea/astro/astro/frames/definitions/dynamic_frames/RadialInTrackCrossTrack.hpp</label>
         <link refid="RadialInTrackCrossTrack_8hpp"/>
-        <childnode refid="47" relation="include">
+        <childnode refid="45" relation="include">
         </childnode>
-        <childnode refid="48" relation="include">
+        <childnode refid="46" relation="include">
         </childnode>
       </node>
       <node id="65">
         <label>astrea/astro/astro/frames/definitions/dynamic_frames/VelocityNormalBinormal.hpp</label>
         <link refid="VelocityNormalBinormal_8hpp"/>
-        <childnode refid="47" relation="include">
+        <childnode refid="45" relation="include">
         </childnode>
-        <childnode refid="48" relation="include">
+        <childnode refid="46" relation="include">
         </childnode>
       </node>
-      <node id="48">
+      <node id="46">
         <label>astrea/astro/astro/frames/definitions/dynamic_frames/tags.hpp</label>
         <link refid="tags_8hpp"/>
+        <childnode refid="45" relation="include">
+        </childnode>
         <childnode refid="47" relation="include">
         </childnode>
-        <childnode refid="49" relation="include">
+        <childnode refid="7" relation="include">
         </childnode>
-        <childnode refid="9" relation="include">
+        <childnode refid="8" relation="include">
         </childnode>
         <childnode refid="10" relation="include">
         </childnode>
-        <childnode refid="12" relation="include">
+        <childnode refid="31" relation="include">
         </childnode>
-        <childnode refid="33" relation="include">
+        <childnode refid="51" relation="include">
         </childnode>
-        <childnode refid="53" relation="include">
+        <childnode refid="48" relation="include">
         </childnode>
         <childnode refid="50" relation="include">
-        </childnode>
-        <childnode refid="52" relation="include">
         </childnode>
       </node>
       <node id="67">
         <label>astrea/astro/astro/frames/definitions/frame_registry.hpp</label>
         <link refid="frame__registry_8hpp"/>
-        <childnode refid="48" relation="include">
+        <childnode refid="46" relation="include">
         </childnode>
         <childnode refid="68" relation="include">
         </childnode>
@@ -568,39 +567,39 @@
         </childnode>
         <childnode refid="68" relation="include">
         </childnode>
-        <childnode refid="9" relation="include">
+        <childnode refid="7" relation="include">
         </childnode>
         <childnode refid="71" relation="include">
         </childnode>
-        <childnode refid="12" relation="include">
+        <childnode refid="10" relation="include">
         </childnode>
-        <childnode refid="26" relation="include">
+        <childnode refid="24" relation="include">
         </childnode>
-        <childnode refid="34" relation="include">
+        <childnode refid="32" relation="include">
         </childnode>
         <childnode refid="69" relation="include">
         </childnode>
       </node>
-      <node id="82">
+      <node id="83">
         <label>astrea/astro/astro/frames/definitions/synodic_frames.hpp</label>
         <link refid="synodic__frames_8hpp"/>
-        <childnode refid="7" relation="include">
+        <childnode refid="4" relation="include">
         </childnode>
       </node>
       <node id="74">
         <label>astrea/astro/astro/frames/definitions/transformations.hpp</label>
         <link refid="transformations_8hpp"/>
-        <childnode refid="7" relation="include">
+        <childnode refid="4" relation="include">
         </childnode>
-        <childnode refid="46" relation="include">
+        <childnode refid="44" relation="include">
         </childnode>
         <childnode refid="67" relation="include">
         </childnode>
-        <childnode refid="23" relation="include">
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="40" relation="include">
         </childnode>
         <childnode refid="42" relation="include">
-        </childnode>
-        <childnode refid="44" relation="include">
         </childnode>
         <childnode refid="56" relation="include">
         </childnode>
@@ -614,375 +613,391 @@
       <node id="68">
         <label>astrea/astro/astro/frames/framework.hpp</label>
         <link refid="framework_8hpp_source"/>
-        <childnode refid="8" relation="include">
+        <childnode refid="5" relation="include">
         </childnode>
       </node>
       <node id="55">
         <label>astrea/astro/astro/frames/framework/TopocentricFrame.hpp</label>
         <link refid="TopocentricFrame_8hpp"/>
       </node>
-      <node id="11">
+      <node id="9">
         <label>astrea/astro/astro/platforms.hpp</label>
         <link refid="platforms_8hpp"/>
-        <childnode refid="4" relation="include">
+        <childnode refid="6" relation="include">
         </childnode>
       </node>
-      <node id="49">
+      <node id="47">
         <label>astrea/astro/astro/platforms/InertiaTensor.hpp</label>
         <link refid="InertiaTensor_8hpp"/>
-        <childnode refid="16" relation="include">
+        <childnode refid="14" relation="include">
         </childnode>
-        <childnode refid="12" relation="include">
+        <childnode refid="10" relation="include">
         </childnode>
-        <childnode refid="50" relation="include">
+        <childnode refid="48" relation="include">
         </childnode>
       </node>
-      <node id="9">
+      <node id="7">
         <label>astrea/astro/astro/platforms/Payload.hpp</label>
         <link refid="Payload_8hpp"/>
-        <childnode refid="10" relation="include">
+        <childnode refid="8" relation="include">
         </childnode>
       </node>
       <node id="71">
         <label>astrea/astro/astro/platforms/PayloadPlatform.hpp</label>
         <link refid="PayloadPlatform_8hpp"/>
-        <childnode refid="9" relation="include">
-        </childnode>
-      </node>
-      <node id="16">
-        <label>astrea/astro/astro/platforms/Vehicle.hpp</label>
-        <link refid="Vehicle_8hpp"/>
-        <childnode refid="11" relation="include">
-        </childnode>
-        <childnode refid="12" relation="include">
-        </childnode>
-        <childnode refid="17" relation="include">
-        </childnode>
-        <childnode refid="22" relation="include">
-        </childnode>
-        <childnode refid="23" relation="include">
-        </childnode>
-      </node>
-      <node id="15">
-        <label>astrea/astro/astro/platforms/space/Constellation.hpp</label>
-        <link refid="Constellation_8hpp"/>
-        <childnode refid="11" relation="include">
-        </childnode>
-      </node>
-      <node id="13">
-        <label>astrea/astro/astro/platforms/space/Plane.hpp</label>
-        <link refid="Plane_8hpp"/>
-        <childnode refid="11" relation="include">
-        </childnode>
-        <childnode refid="14" relation="include">
+        <childnode refid="7" relation="include">
         </childnode>
       </node>
       <node id="14">
-        <label>astrea/astro/astro/platforms/space/Shell.hpp</label>
-        <link refid="Shell_8hpp"/>
-        <childnode refid="11" relation="include">
+        <label>astrea/astro/astro/platforms/Vehicle.hpp</label>
+        <link refid="Vehicle_8hpp"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
         </childnode>
         <childnode refid="15" relation="include">
         </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
       </node>
-      <node id="10">
-        <label>astrea/astro/astro/platforms/thrusters/Thruster.hpp</label>
-        <link refid="Thruster_8hpp"/>
-        <childnode refid="11" relation="include">
+      <node id="13">
+        <label>astrea/astro/astro/platforms/space/Constellation.hpp</label>
+        <link refid="Constellation_8hpp"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>astrea/astro/astro/platforms/space/Plane.hpp</label>
+        <link refid="Plane_8hpp"/>
+        <childnode refid="9" relation="include">
         </childnode>
         <childnode refid="12" relation="include">
         </childnode>
       </node>
       <node id="12">
-        <label>astrea/astro/astro/platforms/vehicles/Spacecraft.hpp</label>
-        <link refid="Spacecraft_8hpp"/>
-        <childnode refid="11" relation="include">
+        <label>astrea/astro/astro/platforms/space/Shell.hpp</label>
+        <link refid="Shell_8hpp"/>
+        <childnode refid="9" relation="include">
         </childnode>
         <childnode refid="13" relation="include">
         </childnode>
       </node>
-      <node id="18">
+      <node id="8">
+        <label>astrea/astro/astro/platforms/thrusters/Thruster.hpp</label>
+        <link refid="Thruster_8hpp"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>astrea/astro/astro/platforms/vehicles/Spacecraft.hpp</label>
+        <link refid="Spacecraft_8hpp"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="16">
         <label>astrea/astro/astro/propagation.hpp</label>
         <link refid="propagation_8hpp"/>
-        <childnode refid="4" relation="include">
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="23">
+        <label>astrea/astro/astro/propagation/analytic/LambertSolver.hpp</label>
+        <link refid="LambertSolver_8hpp"/>
+        <childnode refid="16" relation="include">
         </childnode>
       </node>
       <node id="25">
-        <label>astrea/astro/astro/propagation/analytic/LambertSolver.hpp</label>
-        <link refid="LambertSolver_8hpp"/>
+        <label>astrea/astro/astro/propagation/equations_of_motion/CircularRestrictedThreeBodyProblem.hpp</label>
+        <link refid="CircularRestrictedThreeBodyProblem_8hpp"/>
+      </node>
+      <node id="26">
+        <label>astrea/astro/astro/propagation/equations_of_motion/CowellsMethod.hpp</label>
+        <link refid="CowellsMethod_8hpp"/>
+        <childnode refid="16" relation="include">
+        </childnode>
+      </node>
+      <node id="24">
+        <label>astrea/astro/astro/propagation/equations_of_motion/EquationsOfMotion.hpp</label>
+        <link refid="EquationsOfMotion_8hpp"/>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
         <childnode refid="18" relation="include">
         </childnode>
       </node>
       <node id="27">
-        <label>astrea/astro/astro/propagation/equations_of_motion/CircularRestrictedThreeBodyProblem.hpp</label>
-        <link refid="CircularRestrictedThreeBodyProblem_8hpp"/>
+        <label>astrea/astro/astro/propagation/equations_of_motion/EquinoctialVop.hpp</label>
+        <link refid="EquinoctialVop_8hpp"/>
+        <childnode refid="16" relation="include">
+        </childnode>
       </node>
       <node id="28">
-        <label>astrea/astro/astro/propagation/equations_of_motion/CowellsMethod.hpp</label>
-        <link refid="CowellsMethod_8hpp"/>
-        <childnode refid="18" relation="include">
-        </childnode>
-      </node>
-      <node id="26">
-        <label>astrea/astro/astro/propagation/equations_of_motion/EquationsOfMotion.hpp</label>
-        <link refid="EquationsOfMotion_8hpp"/>
-        <childnode refid="18" relation="include">
-        </childnode>
-        <childnode refid="27" relation="include">
-        </childnode>
-        <childnode refid="28" relation="include">
-        </childnode>
-        <childnode refid="29" relation="include">
-        </childnode>
-        <childnode refid="30" relation="include">
-        </childnode>
-        <childnode refid="31" relation="include">
-        </childnode>
-        <childnode refid="32" relation="include">
-        </childnode>
-        <childnode refid="20" relation="include">
+        <label>astrea/astro/astro/propagation/equations_of_motion/J2MeanVop.hpp</label>
+        <link refid="J2MeanVop_8hpp"/>
+        <childnode refid="16" relation="include">
         </childnode>
       </node>
       <node id="29">
-        <label>astrea/astro/astro/propagation/equations_of_motion/EquinoctialVop.hpp</label>
-        <link refid="EquinoctialVop_8hpp"/>
-        <childnode refid="18" relation="include">
+        <label>astrea/astro/astro/propagation/equations_of_motion/KeplerianVop.hpp</label>
+        <link refid="KeplerianVop_8hpp"/>
+        <childnode refid="16" relation="include">
         </childnode>
       </node>
       <node id="30">
-        <label>astrea/astro/astro/propagation/equations_of_motion/J2MeanVop.hpp</label>
-        <link refid="J2MeanVop_8hpp"/>
-        <childnode refid="18" relation="include">
-        </childnode>
-      </node>
-      <node id="31">
-        <label>astrea/astro/astro/propagation/equations_of_motion/KeplerianVop.hpp</label>
-        <link refid="KeplerianVop_8hpp"/>
-        <childnode refid="18" relation="include">
-        </childnode>
-      </node>
-      <node id="32">
         <label>astrea/astro/astro/propagation/equations_of_motion/TwoBody.hpp</label>
         <link refid="TwoBody_8hpp"/>
-        <childnode refid="18" relation="include">
+        <childnode refid="16" relation="include">
         </childnode>
       </node>
-      <node id="17">
+      <node id="15">
         <label>astrea/astro/astro/propagation/event_detection/Event.hpp</label>
         <link refid="Event_8hpp"/>
-        <childnode refid="18" relation="include">
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
         </childnode>
         <childnode refid="19" relation="include">
         </childnode>
-        <childnode refid="21" relation="include">
-        </childnode>
       </node>
-      <node id="19">
+      <node id="17">
         <label>astrea/astro/astro/propagation/event_detection/EventDetector.hpp</label>
         <link refid="EventDetector_8hpp"/>
-        <childnode refid="18" relation="include">
-        </childnode>
-        <childnode refid="20" relation="include">
-        </childnode>
-      </node>
-      <node id="21">
-        <label>astrea/astro/astro/propagation/event_detection/Schedule.hpp</label>
-        <link refid="Schedule_8hpp"/>
-        <childnode refid="20" relation="include">
-        </childnode>
-      </node>
-      <node id="33">
-        <label>astrea/astro/astro/propagation/event_detection/events/ImpulsiveBurn.hpp</label>
-        <link refid="ImpulsiveBurn_8hpp"/>
-        <childnode refid="18" relation="include">
-        </childnode>
-      </node>
-      <node id="36">
-        <label>astrea/astro/astro/propagation/force_models/AtmosphericForce.hpp</label>
-        <link refid="AtmosphericForce_8hpp"/>
-        <childnode refid="18" relation="include">
-        </childnode>
-      </node>
-      <node id="37">
-        <label>astrea/astro/astro/propagation/force_models/ForceModel.hpp</label>
-        <link refid="ForceModel_8hpp"/>
-        <childnode refid="18" relation="include">
-        </childnode>
-        <childnode refid="27" relation="include">
-        </childnode>
-        <childnode refid="28" relation="include">
-        </childnode>
-        <childnode refid="26" relation="include">
-        </childnode>
-        <childnode refid="29" relation="include">
-        </childnode>
-        <childnode refid="30" relation="include">
-        </childnode>
-        <childnode refid="31" relation="include">
-        </childnode>
-        <childnode refid="32" relation="include">
-        </childnode>
-      </node>
-      <node id="84">
-        <label>astrea/astro/astro/propagation/force_models/LegendreCache.hpp</label>
-        <link refid="LegendreCache_8hpp"/>
-        <childnode refid="24" relation="include">
-        </childnode>
-      </node>
-      <node id="83">
-        <label>astrea/astro/astro/propagation/force_models/LegendreCache.ipp</label>
-        <link refid="LegendreCache_8ipp_source"/>
-        <childnode refid="84" relation="include">
-        </childnode>
-      </node>
-      <node id="22">
-        <label>astrea/astro/astro/propagation/force_models/NBodyForce.hpp</label>
-        <link refid="NBodyForce_8hpp_source"/>
-        <childnode refid="18" relation="include">
-        </childnode>
-      </node>
-      <node id="24">
-        <label>astrea/astro/astro/propagation/force_models/OblatenessForce.hpp</label>
-        <link refid="OblatenessForce_8hpp"/>
-        <childnode refid="18" relation="include">
-        </childnode>
-      </node>
-      <node id="23">
-        <label>astrea/astro/astro/propagation/force_models/OblatenessForce.ipp</label>
-        <link refid="OblatenessForce_8ipp_source"/>
-        <childnode refid="24" relation="include">
-        </childnode>
-      </node>
-      <node id="34">
-        <label>astrea/astro/astro/propagation/force_models/Perturbation.hpp</label>
-        <link refid="Perturbation_8hpp_source"/>
         <childnode refid="16" relation="include">
         </childnode>
         <childnode refid="18" relation="include">
         </childnode>
-        <childnode refid="35" relation="include">
+      </node>
+      <node id="19">
+        <label>astrea/astro/astro/propagation/event_detection/Schedule.hpp</label>
+        <link refid="Schedule_8hpp"/>
+        <childnode refid="18" relation="include">
+        </childnode>
+      </node>
+      <node id="31">
+        <label>astrea/astro/astro/propagation/event_detection/events/ImpulsiveBurn.hpp</label>
+        <link refid="ImpulsiveBurn_8hpp"/>
+        <childnode refid="16" relation="include">
+        </childnode>
+      </node>
+      <node id="34">
+        <label>astrea/astro/astro/propagation/force_models/AtmosphericForce.hpp</label>
+        <link refid="AtmosphericForce_8hpp"/>
+        <childnode refid="16" relation="include">
         </childnode>
       </node>
       <node id="35">
-        <label>astrea/astro/astro/propagation/force_models/PerturbingForce.hpp</label>
-        <link refid="PerturbingForce_8hpp"/>
-        <childnode refid="18" relation="include">
+        <label>astrea/astro/astro/propagation/force_models/ForceModel.hpp</label>
+        <link refid="ForceModel_8hpp"/>
+        <childnode refid="16" relation="include">
         </childnode>
-        <childnode refid="36" relation="include">
+        <childnode refid="25" relation="include">
         </childnode>
-        <childnode refid="37" relation="include">
-        </childnode>
-        <childnode refid="22" relation="include">
+        <childnode refid="26" relation="include">
         </childnode>
         <childnode refid="24" relation="include">
         </childnode>
-        <childnode refid="38" relation="include">
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
         </childnode>
       </node>
-      <node id="38">
-        <label>astrea/astro/astro/propagation/force_models/SolarRadiationPressure.hpp</label>
-        <link refid="SolarRadiationPressure_8hpp_source"/>
-        <childnode refid="18" relation="include">
+      <node id="85">
+        <label>astrea/astro/astro/propagation/force_models/LegendreCache.hpp</label>
+        <link refid="LegendreCache_8hpp"/>
+        <childnode refid="22" relation="include">
+        </childnode>
+      </node>
+      <node id="84">
+        <label>astrea/astro/astro/propagation/force_models/LegendreCache.ipp</label>
+        <link refid="LegendreCache_8ipp_source"/>
+        <childnode refid="85" relation="include">
         </childnode>
       </node>
       <node id="20">
-        <label>astrea/astro/astro/propagation/numerical/Integrator.hpp</label>
-        <link refid="Integrator_8hpp"/>
-        <childnode refid="15" relation="include">
-        </childnode>
-        <childnode refid="13" relation="include">
-        </childnode>
-        <childnode refid="14" relation="include">
-        </childnode>
-        <childnode refid="18" relation="include">
+        <label>astrea/astro/astro/propagation/force_models/NBodyForce.hpp</label>
+        <link refid="NBodyForce_8hpp_source"/>
+        <childnode refid="16" relation="include">
         </childnode>
       </node>
-      <node id="41">
-        <label>astrea/astro/astro/state.hpp</label>
-        <link refid="state_8hpp"/>
-        <childnode refid="4" relation="include">
+      <node id="22">
+        <label>astrea/astro/astro/propagation/force_models/OblatenessForce.hpp</label>
+        <link refid="OblatenessForce_8hpp"/>
+        <childnode refid="16" relation="include">
         </childnode>
       </node>
-      <node id="53">
-        <label>astrea/astro/astro/state/State.hpp</label>
-        <link refid="State_8hpp"/>
-        <childnode refid="17" relation="include">
-        </childnode>
+      <node id="21">
+        <label>astrea/astro/astro/propagation/force_models/OblatenessForce.ipp</label>
+        <link refid="OblatenessForce_8ipp_source"/>
         <childnode refid="22" relation="include">
         </childnode>
-        <childnode refid="23" relation="include">
+      </node>
+      <node id="32">
+        <label>astrea/astro/astro/propagation/force_models/Perturbation.hpp</label>
+        <link refid="Perturbation_8hpp_source"/>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="33" relation="include">
+        </childnode>
+      </node>
+      <node id="33">
+        <label>astrea/astro/astro/propagation/force_models/PerturbingForce.hpp</label>
+        <link refid="PerturbingForce_8hpp"/>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="34" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
         </childnode>
         <childnode refid="20" relation="include">
         </childnode>
-        <childnode refid="41" relation="include">
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="36" relation="include">
+        </childnode>
+      </node>
+      <node id="36">
+        <label>astrea/astro/astro/propagation/force_models/SolarRadiationPressure.hpp</label>
+        <link refid="SolarRadiationPressure_8hpp_source"/>
+        <childnode refid="16" relation="include">
+        </childnode>
+      </node>
+      <node id="53">
+        <label>astrea/astro/astro/propagation/force_models/space_weather.hpp</label>
+        <link refid="space__weather_8hpp"/>
+        <childnode refid="16" relation="include">
+        </childnode>
+      </node>
+      <node id="52">
+        <label>astrea/astro/astro/propagation/force_models/space_weather/atmosphere.hpp</label>
+        <link refid="atmosphere_8hpp_source"/>
+        <childnode refid="34" relation="include">
+        </childnode>
+        <childnode refid="53" relation="include">
+        </childnode>
+      </node>
+      <node id="18">
+        <label>astrea/astro/astro/propagation/numerical/Integrator.hpp</label>
+        <link refid="Integrator_8hpp"/>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+      </node>
+      <node id="39">
+        <label>astrea/astro/astro/state.hpp</label>
+        <link refid="state_8hpp"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="51">
+        <label>astrea/astro/astro/state/State.hpp</label>
+        <link refid="State_8hpp"/>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="52" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="39" relation="include">
         </childnode>
         <childnode refid="54" relation="include">
-        </childnode>
-        <childnode refid="2" relation="include">
         </childnode>
       </node>
       <node id="54">
         <label>astrea/astro/astro/state/StateHistory.hpp</label>
         <link refid="StateHistory_8hpp"/>
-        <childnode refid="12" relation="include">
+        <childnode refid="10" relation="include">
         </childnode>
-        <childnode refid="41" relation="include">
-        </childnode>
-      </node>
-      <node id="40">
-        <label>astrea/astro/astro/state/angular_elements.hpp</label>
-        <link refid="angular__elements_8hpp"/>
-        <childnode refid="23" relation="include">
-        </childnode>
-        <childnode refid="41" relation="include">
-        </childnode>
-      </node>
-      <node id="39">
-        <label>astrea/astro/astro/state/angular_elements/Cylindrical.hpp</label>
-        <link refid="Cylindrical_8hpp"/>
-        <childnode refid="40" relation="include">
-        </childnode>
-      </node>
-      <node id="42">
-        <label>astrea/astro/astro/state/angular_elements/Cylindrical.ipp</label>
-        <link refid="Cylindrical_8ipp_source"/>
         <childnode refid="39" relation="include">
         </childnode>
       </node>
-      <node id="43">
+      <node id="38">
+        <label>astrea/astro/astro/state/angular_elements.hpp</label>
+        <link refid="angular__elements_8hpp"/>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="39" relation="include">
+        </childnode>
+      </node>
+      <node id="37">
+        <label>astrea/astro/astro/state/angular_elements/Cylindrical.hpp</label>
+        <link refid="Cylindrical_8hpp"/>
+        <childnode refid="38" relation="include">
+        </childnode>
+      </node>
+      <node id="40">
+        <label>astrea/astro/astro/state/angular_elements/Cylindrical.ipp</label>
+        <link refid="Cylindrical_8ipp_source"/>
+        <childnode refid="37" relation="include">
+        </childnode>
+      </node>
+      <node id="41">
         <label>astrea/astro/astro/state/angular_elements/Geocentric.hpp</label>
         <link refid="Geocentric_8hpp"/>
-        <childnode refid="40" relation="include">
+        <childnode refid="38" relation="include">
         </childnode>
       </node>
-      <node id="44">
+      <node id="42">
         <label>astrea/astro/astro/state/angular_elements/Geocentric.ipp</label>
         <link refid="Geocentric_8ipp_source"/>
-        <childnode refid="43" relation="include">
+        <childnode refid="41" relation="include">
         </childnode>
       </node>
-      <node id="45">
+      <node id="43">
         <label>astrea/astro/astro/state/angular_elements/Geodetic.hpp</label>
         <link refid="Geodetic_8hpp"/>
-        <childnode refid="46" relation="include">
+        <childnode refid="44" relation="include">
         </childnode>
         <childnode refid="55" relation="include">
         </childnode>
-        <childnode refid="40" relation="include">
+        <childnode refid="52" relation="include">
         </childnode>
-        <childnode refid="2" relation="include">
+        <childnode refid="38" relation="include">
         </childnode>
       </node>
       <node id="56">
         <label>astrea/astro/astro/state/angular_elements/Geodetic.ipp</label>
         <link refid="Geodetic_8ipp_source"/>
-        <childnode refid="45" relation="include">
+        <childnode refid="43" relation="include">
         </childnode>
       </node>
       <node id="57">
         <label>astrea/astro/astro/state/angular_elements/Spherical.hpp</label>
         <link refid="Spherical_8hpp"/>
-        <childnode refid="40" relation="include">
+        <childnode refid="38" relation="include">
         </childnode>
       </node>
       <node id="58">
@@ -991,32 +1006,32 @@
         <childnode refid="57" relation="include">
         </childnode>
       </node>
-      <node id="51">
+      <node id="49">
         <label>astrea/astro/astro/state/attitude.hpp</label>
         <link refid="attitude_8hpp"/>
-        <childnode refid="41" relation="include">
+        <childnode refid="39" relation="include">
+        </childnode>
+      </node>
+      <node id="48">
+        <label>astrea/astro/astro/state/attitude/AngularVelocities.hpp</label>
+        <link refid="AngularVelocities_8hpp"/>
+        <childnode refid="49" relation="include">
+        </childnode>
+        <childnode refid="50" relation="include">
         </childnode>
       </node>
       <node id="50">
-        <label>astrea/astro/astro/state/attitude/AngularVelocities.hpp</label>
-        <link refid="AngularVelocities_8hpp"/>
-        <childnode refid="51" relation="include">
-        </childnode>
-        <childnode refid="52" relation="include">
-        </childnode>
-      </node>
-      <node id="52">
         <label>astrea/astro/astro/state/attitude/Attitude.hpp</label>
         <link refid="Attitude_8hpp"/>
-        <childnode refid="53" relation="include">
-        </childnode>
         <childnode refid="51" relation="include">
+        </childnode>
+        <childnode refid="49" relation="include">
         </childnode>
       </node>
       <node id="60">
         <label>astrea/astro/astro/state/orbital_data_formats.hpp</label>
         <link refid="orbital__data__formats_8hpp"/>
-        <childnode refid="41" relation="include">
+        <childnode refid="39" relation="include">
         </childnode>
       </node>
       <node id="59">
@@ -1028,13 +1043,13 @@
       <node id="70">
         <label>astrea/astro/astro/state/orbital_elements.hpp</label>
         <link refid="orbital__elements_8hpp"/>
-        <childnode refid="41" relation="include">
+        <childnode refid="39" relation="include">
         </childnode>
       </node>
       <node id="78">
         <label>astrea/astro/astro/state/orbital_elements/Cartesian.hpp</label>
         <link refid="Cartesian_8hpp"/>
-        <childnode refid="23" relation="include">
+        <childnode refid="21" relation="include">
         </childnode>
         <childnode refid="70" relation="include">
         </childnode>
@@ -1054,9 +1069,9 @@
       <node id="76">
         <label>astrea/astro/astro/state/orbital_elements/Equinoctial.hpp</label>
         <link refid="Equinoctial_8hpp"/>
-        <childnode refid="42" relation="include">
+        <childnode refid="40" relation="include">
         </childnode>
-        <childnode refid="44" relation="include">
+        <childnode refid="42" relation="include">
         </childnode>
         <childnode refid="56" relation="include">
         </childnode>
@@ -1080,11 +1095,11 @@
       <node id="80">
         <label>astrea/astro/astro/state/orbital_elements/Keplerian.hpp</label>
         <link refid="Keplerian_8hpp"/>
-        <childnode refid="14" relation="include">
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="40" relation="include">
         </childnode>
         <childnode refid="42" relation="include">
-        </childnode>
-        <childnode refid="44" relation="include">
         </childnode>
         <childnode refid="56" relation="include">
         </childnode>
@@ -1112,6 +1127,10 @@
       <node id="69">
         <label>astrea/astro/astro/state/orbital_elements/OrbitalElements.hpp</label>
         <link refid="OrbitalElements_8hpp"/>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
         <childnode refid="27" relation="include">
         </childnode>
         <childnode refid="28" relation="include">
@@ -1120,43 +1139,33 @@
         </childnode>
         <childnode refid="30" relation="include">
         </childnode>
-        <childnode refid="31" relation="include">
+        <childnode refid="20" relation="include">
         </childnode>
-        <childnode refid="32" relation="include">
+        <childnode refid="21" relation="include">
         </childnode>
-        <childnode refid="22" relation="include">
+        <childnode refid="51" relation="include">
         </childnode>
-        <childnode refid="23" relation="include">
+        <childnode refid="37" relation="include">
         </childnode>
-        <childnode refid="53" relation="include">
-        </childnode>
-        <childnode refid="39" relation="include">
+        <childnode refid="41" relation="include">
         </childnode>
         <childnode refid="43" relation="include">
-        </childnode>
-        <childnode refid="45" relation="include">
         </childnode>
         <childnode refid="57" relation="include">
         </childnode>
         <childnode refid="70" relation="include">
         </childnode>
       </node>
-      <node id="3">
+      <node id="82">
         <label>astrea/astro/astro/systems.hpp</label>
         <link refid="systems_8hpp"/>
-        <childnode refid="4" relation="include">
+        <childnode refid="6" relation="include">
         </childnode>
       </node>
       <node id="2">
-        <label>astrea/astro/astro/systems/atmosphere.hpp</label>
-        <link refid="atmosphere_8hpp_source"/>
-        <childnode refid="3" relation="include">
-        </childnode>
-      </node>
-      <node id="5">
         <label>astrea/astro/astro/systems/celestial_bodies.hpp</label>
         <link refid="celestial__bodies_8hpp"/>
-        <childnode refid="6" relation="include">
+        <childnode refid="3" relation="include">
         </childnode>
         <childnode refid="72" relation="include">
         </childnode>
@@ -1164,15 +1173,17 @@
         </childnode>
         <childnode refid="61" relation="include">
         </childnode>
-        <childnode refid="46" relation="include">
-        </childnode>
-        <childnode refid="82" relation="include">
+        <childnode refid="44" relation="include">
         </childnode>
         <childnode refid="83" relation="include">
         </childnode>
-        <childnode refid="3" relation="include">
+        <childnode refid="84" relation="include">
         </childnode>
-        <childnode refid="85" relation="include">
+        <childnode refid="52" relation="include">
+        </childnode>
+        <childnode refid="82" relation="include">
+        </childnode>
+        <childnode refid="86" relation="include">
         </childnode>
       </node>
       <node id="1">
@@ -1180,47 +1191,45 @@
         <link refid="Earth_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="5" relation="include">
-        </childnode>
-        <childnode refid="86" relation="include">
+        <childnode refid="87" relation="include">
         </childnode>
       </node>
-      <node id="86">
+      <node id="87">
         <label>astrea/astro/astro/systems/celestial_bodies/Earth/Moon.hpp</label>
         <link refid="Moon_8hpp"/>
-        <childnode refid="5" relation="include">
+        <childnode refid="2" relation="include">
         </childnode>
       </node>
       <node id="81">
         <label>astrea/astro/astro/systems/default_property_getters.hpp</label>
         <link refid="default__property__getters_8hpp"/>
-        <childnode refid="3" relation="include">
+        <childnode refid="82" relation="include">
         </childnode>
-        <childnode refid="5" relation="include">
+        <childnode refid="2" relation="include">
         </childnode>
       </node>
-      <node id="85">
+      <node id="86">
         <label>astrea/astro/astro/systems/system_utilities.hpp</label>
         <link refid="system__utilities_8hpp_source"/>
         <childnode refid="61" relation="include">
         </childnode>
         <childnode refid="74" relation="include">
         </childnode>
-        <childnode refid="22" relation="include">
+        <childnode refid="20" relation="include">
         </childnode>
-        <childnode refid="23" relation="include">
+        <childnode refid="21" relation="include">
         </childnode>
-        <childnode refid="53" relation="include">
+        <childnode refid="51" relation="include">
         </childnode>
-        <childnode refid="39" relation="include">
+        <childnode refid="37" relation="include">
+        </childnode>
+        <childnode refid="40" relation="include">
+        </childnode>
+        <childnode refid="41" relation="include">
         </childnode>
         <childnode refid="42" relation="include">
         </childnode>
         <childnode refid="43" relation="include">
-        </childnode>
-        <childnode refid="44" relation="include">
-        </childnode>
-        <childnode refid="45" relation="include">
         </childnode>
         <childnode refid="56" relation="include">
         </childnode>
@@ -1232,11 +1241,10 @@
         </childnode>
         <childnode refid="75" relation="include">
         </childnode>
-        <childnode refid="3" relation="include">
+        <childnode refid="82" relation="include">
         </childnode>
       </node>
     </invincdepgraph>
-    <innerclass refid="structastrea_1_1astro_1_1planets_1_1EarthParameters" prot="public">astrea::astro::planets::EarthParameters</innerclass>
     <innerclass refid="structastrea_1_1astro_1_1planets_1_1Earth" prot="public">astrea::astro::planets::Earth</innerclass>
     <innernamespace refid="namespaceastrea">astrea</innernamespace>
     <innernamespace refid="namespaceastrea_1_1astro">astrea::astro</innernamespace>
@@ -1275,97 +1283,91 @@ The GNU Lesser General Public License (LGPL)</para>
 <codeline lineno="35"><highlight class="normal"></highlight></codeline>
 <codeline lineno="36"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">planets<sp/>{</highlight></codeline>
 <codeline lineno="37"><highlight class="normal"></highlight></codeline>
-<codeline lineno="38"><highlight class="normal"></highlight><highlight class="keyword">enum<sp/>class</highlight><highlight class="normal"><sp/>EarthAtmosphereModel<sp/>{<sp/>JACHIA_ROBERTS,<sp/>NRLMSISE00,<sp/>DTM2000,<sp/>HARRIS_PRIESTER<sp/>};</highlight></codeline>
-<codeline lineno="39"><highlight class="normal"></highlight></codeline>
-<codeline lineno="40" refid="structastrea_1_1astro_1_1planets_1_1EarthParameters" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structastrea_1_1astro_1_1planets_1_1EarthParameters" kindref="compound">EarthParameters</ref><sp/>{</highlight></codeline>
-<codeline lineno="41" refid="structastrea_1_1astro_1_1planets_1_1EarthParameters_1a2ad322fcf6e680740b23f6a5de0d9abb" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>EarthAtmosphereModel<sp/><ref refid="structastrea_1_1astro_1_1planets_1_1EarthParameters_1a2ad322fcf6e680740b23f6a5de0d9abb" kindref="member">atmosphereModel</ref><sp/>=<sp/>EarthAtmosphereModel::JACHIA_ROBERTS;<sp/></highlight></codeline>
-<codeline lineno="42"><highlight class="normal">};</highlight></codeline>
-<codeline lineno="43"><highlight class="normal"></highlight></codeline>
-<codeline lineno="50"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>ASTREA_BUILD_EARTH_EPHEMERIS</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="51"><highlight class="normal"></highlight><highlight class="comment">//<sp/>SPICE<sp/>ephemeris<sp/>data<sp/>for<sp/>Earth<sp/>is<sp/>relative<sp/>to<sp/>the<sp/>Earth-Moon<sp/>barycenter,<sp/>so<sp/>we<sp/>set<sp/>the<sp/>parent<sp/>frame<sp/>accordingly.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="52"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structastrea_1_1astro_1_1planets_1_1Earth" kindref="compound">Earth</ref><sp/>final<sp/>:<sp/><ref refid="structastrea_1_1astro_1_1CelestialBody" kindref="compound">CelestialBody</ref>&lt;&quot;Earth&quot;,<sp/>barycenters::EarthMoonBarycenter&gt;<sp/>{</highlight></codeline>
-<codeline lineno="53"><highlight class="normal">}<sp/>Earth;</highlight></codeline>
-<codeline lineno="54"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="55" refid="structastrea_1_1astro_1_1planets_1_1Earth" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structastrea_1_1astro_1_1planets_1_1Earth" kindref="compound">Earth</ref><sp/>final<sp/>:<sp/><ref refid="structastrea_1_1astro_1_1CelestialBody" kindref="compound">CelestialBody</ref>&lt;&quot;Earth&quot;,<sp/>barycenters::SolarSystemBarycenter&gt;<sp/>{</highlight></codeline>
-<codeline lineno="56"><highlight class="normal">}<sp/><ref refid="structastrea_1_1astro_1_1planets_1_1Earth" kindref="compound">Earth</ref>;</highlight></codeline>
-<codeline lineno="57"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">//<sp/>ASTREA_BUILD_EARTH_EPHEMERIS</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="58"><highlight class="normal"></highlight></codeline>
-<codeline lineno="59"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>planets</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="60"><highlight class="normal"></highlight></codeline>
-<codeline lineno="61"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;&gt;</highlight></codeline>
-<codeline lineno="62"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">consteval</highlight><highlight class="normal"><sp/><ref refid="structastrea_1_1astro_1_1CelestialBodyParameters" kindref="compound">CelestialBodyParameters</ref><sp/>get_celestial_body_parameters&lt;planets::Earth&gt;()</highlight></codeline>
-<codeline lineno="63"><highlight class="normal">{</highlight></codeline>
-<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/>namespace<sp/></highlight><highlight class="normal">mp_units;</highlight></codeline>
-<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">astrea::units::unit_symbols::jc;</highlight></codeline>
-<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">mp_units::iau::unit_symbols::au;</highlight></codeline>
-<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">mp_units::non_si::day;</highlight></codeline>
-<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">mp_units::si::unit_symbols::deg;</highlight></codeline>
-<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">mp_units::si::unit_symbols::kg;</highlight></codeline>
-<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">mp_units::si::unit_symbols::km;</highlight></codeline>
-<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">mp_units::si::unit_symbols::s;</highlight></codeline>
-<codeline lineno="72"><highlight class="normal"></highlight></codeline>
-<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>{</highlight></codeline>
-<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.<ref refid="structastrea_1_1astro_1_1CelestialBodyParameters_1ac7901993a9a9501fc6ea9e8b5754509c" kindref="member">type</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>CelestialBodyType::PLANET,</highlight></codeline>
-<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.referenceDate<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/><ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref>(J2000),</highlight></codeline>
-<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.mu<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>GravParam(398600.44189<sp/>*<sp/>pow&lt;3&gt;(km)<sp/>/<sp/>pow&lt;2&gt;(s)),</highlight></codeline>
-<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.mass<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>Mass(5.97<sp/>*<sp/>(mag_power&lt;10,<sp/>24&gt;<sp/>*<sp/>kg)),</highlight></codeline>
-<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.equitorialRadius<sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>Distance(6378.137<sp/>*<sp/>km),</highlight></codeline>
-<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.polarRadius<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>Distance(6356.75538082<sp/>*<sp/>km),</highlight></codeline>
-<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.crashRadius<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>Distance(6478.1<sp/>*<sp/>km),</highlight></codeline>
-<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.sphereOfInfluence<sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>Distance(0.092449582665046<sp/>*<sp/>au),</highlight></codeline>
-<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.j2<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>Unitless(0.00108262982<sp/>*<sp/>one),</highlight></codeline>
-<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.j3<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>Unitless(-0.0000025323<sp/>*<sp/>one),</highlight></codeline>
-<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.axialTilt<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>Angle(23.439292<sp/>*<sp/>deg),</highlight></codeline>
-<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.rotationRate<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>AngularVelocity(360.98564736629<sp/>*<sp/>deg<sp/>/<sp/>day),</highlight></codeline>
-<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.siderealPeriod<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>Time(365.256<sp/>*<sp/>day),</highlight></codeline>
-<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.semimajorAxis<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>Distance(1.00000261<sp/>*<sp/>au),</highlight></codeline>
-<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.eccentricity<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>Unitless(0.01671123<sp/>*<sp/>one),</highlight></codeline>
-<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.inclination<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>Angle(-0.00001531<sp/>*<sp/>deg),</highlight></codeline>
-<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.rightAscension<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>Angle(0.0<sp/>*<sp/>deg),</highlight></codeline>
-<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.longitudeOfPerigee<sp/><sp/><sp/><sp/><sp/>=<sp/>Angle(102.93768193<sp/>*<sp/>deg),</highlight></codeline>
-<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.meanLongitude<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>Angle(100.46457166<sp/>*<sp/>deg),</highlight></codeline>
-<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.semimajorAxisRate<sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>InterplanetaryVelocity(0.00000562<sp/>*<sp/>au<sp/>/<sp/>jc),</highlight></codeline>
-<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.eccentricityRate<sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>BodyUnitlessPerTime(-0.00004392<sp/>*<sp/>one<sp/>/<sp/>jc),</highlight></codeline>
-<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.inclinationRate<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>BodyAngularVelocity(-0.01294668<sp/>*<sp/>deg<sp/>/<sp/>jc),</highlight></codeline>
-<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.rightAscensionRate<sp/><sp/><sp/><sp/><sp/>=<sp/>BodyAngularVelocity(0.0<sp/>*<sp/>deg<sp/>/<sp/>jc),</highlight></codeline>
-<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.longitudeOfPerigeeRate<sp/>=<sp/>BodyAngularVelocity(0.32327364<sp/>*<sp/>deg<sp/>/<sp/>jc),</highlight></codeline>
-<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.meanLongitudeRate<sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>BodyAngularVelocity(35999.37244981<sp/>*<sp/>deg<sp/>/<sp/>jc),</highlight></codeline>
-<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.gravityCoefficientFile<sp/>=<sp/>_ASTRO_GRAV_DATA_ROOT_<sp/></highlight><highlight class="stringliteral">&quot;/Earth/EGM2008_to2190_ZeroTide_mod.txt&quot;</highlight><highlight class="normal"><sp/></highlight><highlight class="comment">//<sp/>normalized</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>.gravityCoefficientFile<sp/>=<sp/>_ASTRO_GRAV_DATA_ROOT_<sp/>&quot;/Earth/WGS84&quot;<sp/>//<sp/>normalized</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>.gravityCoefficientFile<sp/>=<sp/>_ASTRO_GRAV_DATA_ROOT_<sp/>&quot;/Earth/NASA_6DoF&quot;<sp/>//<sp/>normalized<sp/>-<sp/>only<sp/>goes<sp/>to<sp/>8x8</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
-<codeline lineno="103"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="104"><highlight class="normal"></highlight></codeline>
-<codeline lineno="115"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>ASTREA_BUILD_EARTH_EPHEMERIS</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="116"><highlight class="normal"></highlight></codeline>
-<codeline lineno="123"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;&gt;</highlight></codeline>
-<codeline lineno="124"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/>CartesianVector&lt;Distance,<sp/>get_parent_frame(planets::Earth,<sp/>axes::icrf)&gt;</highlight></codeline>
-<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/>get_position_at&lt;planets::Earth&gt;(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Date&amp;<sp/>date)</highlight></codeline>
-<codeline lineno="126"><highlight class="normal">{</highlight></codeline>
-<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>frame<sp/>=<sp/>get_parent_frame(planets::Earth,<sp/>axes::icrf);</highlight></codeline>
-<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>get_position_at_impl&lt;ephemerides::EarthFromEmbEphemerisTable,<sp/>frame&gt;(date);</highlight></codeline>
-<codeline lineno="129"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="130"><highlight class="normal"></highlight></codeline>
-<codeline lineno="137"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;&gt;</highlight></codeline>
-<codeline lineno="138"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/>CartesianVector&lt;Velocity,<sp/>get_parent_frame(planets::Earth,<sp/>axes::icrf)&gt;</highlight></codeline>
-<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/>get_velocity_at&lt;planets::Earth&gt;(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Date&amp;<sp/>date)</highlight></codeline>
-<codeline lineno="140"><highlight class="normal">{</highlight></codeline>
-<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>frame<sp/>=<sp/>get_parent_frame(planets::Earth,<sp/>axes::icrf);</highlight></codeline>
-<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>get_velocity_at_impl&lt;ephemerides::EarthFromEmbEphemerisTable,<sp/>frame&gt;(date);</highlight></codeline>
-<codeline lineno="143"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="144"><highlight class="normal"></highlight></codeline>
-<codeline lineno="151"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;&gt;</highlight></codeline>
-<codeline lineno="152"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/>CartesianVector&lt;Acceleration,<sp/>get_parent_frame(planets::Earth,<sp/>axes::icrf)&gt;</highlight></codeline>
-<codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/>get_acceleration_at&lt;planets::Earth&gt;(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Date&amp;<sp/>date)</highlight></codeline>
-<codeline lineno="154"><highlight class="normal">{</highlight></codeline>
-<codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>frame<sp/>=<sp/>get_parent_frame(planets::Earth,<sp/>axes::icrf);</highlight></codeline>
-<codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>get_acceleration_at_impl&lt;ephemerides::EarthFromEmbEphemerisTable,<sp/>frame&gt;(date);</highlight></codeline>
-<codeline lineno="157"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="158"><highlight class="normal"></highlight></codeline>
-<codeline lineno="159"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">//<sp/>ASTREA_BUILD_EARTH_EPHEMERIS</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="160"><highlight class="normal"></highlight></codeline>
-<codeline lineno="161"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>astro</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="162"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>astrea</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>ASTREA_BUILD_EARTH_EPHEMERIS</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight><highlight class="comment">//<sp/>SPICE<sp/>ephemeris<sp/>data<sp/>for<sp/>Earth<sp/>is<sp/>relative<sp/>to<sp/>the<sp/>Earth-Moon<sp/>barycenter,<sp/>so<sp/>we<sp/>set<sp/>the<sp/>parent<sp/>frame<sp/>accordingly.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">Earth<sp/>final<sp/>:<sp/>CelestialBody&lt;&quot;Earth&quot;,<sp/>barycenters::EarthMoonBarycenter&gt;<sp/>{</highlight></codeline>
+<codeline lineno="47"><highlight class="normal">}<sp/>Earth;</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="49" refid="structastrea_1_1astro_1_1planets_1_1Earth" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structastrea_1_1astro_1_1planets_1_1Earth" kindref="compound">Earth</ref><sp/>final<sp/>:<sp/><ref refid="structastrea_1_1astro_1_1CelestialBody" kindref="compound">CelestialBody</ref>&lt;&quot;Earth&quot;,<sp/>barycenters::SolarSystemBarycenter&gt;<sp/>{</highlight></codeline>
+<codeline lineno="50"><highlight class="normal">}<sp/><ref refid="structastrea_1_1astro_1_1planets_1_1Earth" kindref="compound">Earth</ref>;</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">//<sp/>ASTREA_BUILD_EARTH_EPHEMERIS</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>planets</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;&gt;</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">consteval</highlight><highlight class="normal"><sp/><ref refid="structastrea_1_1astro_1_1CelestialBodyParameters" kindref="compound">CelestialBodyParameters</ref><sp/>get_celestial_body_parameters&lt;planets::Earth&gt;()</highlight></codeline>
+<codeline lineno="57"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/>namespace<sp/></highlight><highlight class="normal">mp_units;</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">astrea::units::unit_symbols::jc;</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">mp_units::iau::unit_symbols::au;</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">mp_units::non_si::day;</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">mp_units::si::unit_symbols::deg;</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">mp_units::si::unit_symbols::kg;</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">mp_units::si::unit_symbols::km;</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">mp_units::si::unit_symbols::s;</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"></highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.<ref refid="structastrea_1_1astro_1_1CelestialBodyParameters_1ac7901993a9a9501fc6ea9e8b5754509c" kindref="member">type</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>CelestialBodyType::PLANET,</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.referenceDate<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/><ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref>(J2000),</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.mu<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>GravParam(398600.44189<sp/>*<sp/>pow&lt;3&gt;(km)<sp/>/<sp/>pow&lt;2&gt;(s)),</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.mass<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>Mass(5.97<sp/>*<sp/>(mag_power&lt;10,<sp/>24&gt;<sp/>*<sp/>kg)),</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.equitorialRadius<sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>Distance(6378.137<sp/>*<sp/>km),</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.polarRadius<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>Distance(6356.75538082<sp/>*<sp/>km),</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.crashRadius<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>Distance(6478.1<sp/>*<sp/>km),</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.sphereOfInfluence<sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>Distance(0.092449582665046<sp/>*<sp/>au),</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.j2<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>Unitless(0.00108262982<sp/>*<sp/>one),</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.j3<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>Unitless(-0.0000025323<sp/>*<sp/>one),</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.axialTilt<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>Angle(23.439292<sp/>*<sp/>deg),</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.rotationRate<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>AngularVelocity(360.98564736629<sp/>*<sp/>deg<sp/>/<sp/>day),</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.siderealPeriod<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>Time(365.256<sp/>*<sp/>day),</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.semimajorAxis<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>Distance(1.00000261<sp/>*<sp/>au),</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.eccentricity<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>Unitless(0.01671123<sp/>*<sp/>one),</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.inclination<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>Angle(-0.00001531<sp/>*<sp/>deg),</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.rightAscension<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>Angle(0.0<sp/>*<sp/>deg),</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.longitudeOfPerigee<sp/><sp/><sp/><sp/><sp/>=<sp/>Angle(102.93768193<sp/>*<sp/>deg),</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.meanLongitude<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>Angle(100.46457166<sp/>*<sp/>deg),</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.semimajorAxisRate<sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>InterplanetaryVelocity(0.00000562<sp/>*<sp/>au<sp/>/<sp/>jc),</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.eccentricityRate<sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>BodyUnitlessPerTime(-0.00004392<sp/>*<sp/>one<sp/>/<sp/>jc),</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.inclinationRate<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>BodyAngularVelocity(-0.01294668<sp/>*<sp/>deg<sp/>/<sp/>jc),</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.rightAscensionRate<sp/><sp/><sp/><sp/><sp/>=<sp/>BodyAngularVelocity(0.0<sp/>*<sp/>deg<sp/>/<sp/>jc),</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.longitudeOfPerigeeRate<sp/>=<sp/>BodyAngularVelocity(0.32327364<sp/>*<sp/>deg<sp/>/<sp/>jc),</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.meanLongitudeRate<sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>BodyAngularVelocity(35999.37244981<sp/>*<sp/>deg<sp/>/<sp/>jc),</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.gravityCoefficientFile<sp/>=<sp/>_ASTRO_GRAV_DATA_ROOT_<sp/></highlight><highlight class="stringliteral">&quot;/Earth/EGM2008_to2190_ZeroTide_mod.txt&quot;</highlight><highlight class="normal"><sp/></highlight><highlight class="comment">//<sp/>normalized</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>.gravityCoefficientFile<sp/>=<sp/>_ASTRO_GRAV_DATA_ROOT_<sp/>&quot;/Earth/WGS84&quot;<sp/>//<sp/>normalized</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>.gravityCoefficientFile<sp/>=<sp/>_ASTRO_GRAV_DATA_ROOT_<sp/>&quot;/Earth/NASA_6DoF&quot;<sp/>//<sp/>normalized<sp/>-<sp/>only<sp/>goes<sp/>to<sp/>8x8</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="97"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"></highlight></codeline>
+<codeline lineno="109"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>ASTREA_BUILD_EARTH_EPHEMERIS</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="110"><highlight class="normal"></highlight></codeline>
+<codeline lineno="117"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;&gt;</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/>CartesianVector&lt;Distance,<sp/>get_parent_frame(planets::Earth,<sp/>axes::icrf)&gt;</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/>get_position_at&lt;planets::Earth&gt;(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Date&amp;<sp/>date)</highlight></codeline>
+<codeline lineno="120"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>frame<sp/>=<sp/>get_parent_frame(planets::Earth,<sp/>axes::icrf);</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>get_position_at_impl&lt;ephemerides::EarthFromEmbEphemerisTable,<sp/>frame&gt;(date);</highlight></codeline>
+<codeline lineno="123"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"></highlight></codeline>
+<codeline lineno="131"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;&gt;</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/>CartesianVector&lt;Velocity,<sp/>get_parent_frame(planets::Earth,<sp/>axes::icrf)&gt;</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/>get_velocity_at&lt;planets::Earth&gt;(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Date&amp;<sp/>date)</highlight></codeline>
+<codeline lineno="134"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>frame<sp/>=<sp/>get_parent_frame(planets::Earth,<sp/>axes::icrf);</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>get_velocity_at_impl&lt;ephemerides::EarthFromEmbEphemerisTable,<sp/>frame&gt;(date);</highlight></codeline>
+<codeline lineno="137"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"></highlight></codeline>
+<codeline lineno="145"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;&gt;</highlight></codeline>
+<codeline lineno="146"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/>CartesianVector&lt;Acceleration,<sp/>get_parent_frame(planets::Earth,<sp/>axes::icrf)&gt;</highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/>get_acceleration_at&lt;planets::Earth&gt;(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Date&amp;<sp/>date)</highlight></codeline>
+<codeline lineno="148"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>frame<sp/>=<sp/>get_parent_frame(planets::Earth,<sp/>axes::icrf);</highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>get_acceleration_at_impl&lt;ephemerides::EarthFromEmbEphemerisTable,<sp/>frame&gt;(date);</highlight></codeline>
+<codeline lineno="151"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="152"><highlight class="normal"></highlight></codeline>
+<codeline lineno="153"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">//<sp/>ASTREA_BUILD_EARTH_EPHEMERIS</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="154"><highlight class="normal"></highlight></codeline>
+<codeline lineno="155"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>astro</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="156"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>astrea</highlight></codeline>
     </programlisting>
     <location file="astrea/astro/astro/systems/celestial_bodies/Earth/Earth.hpp"/>
   </compounddef>

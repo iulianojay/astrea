@@ -39,6 +39,7 @@
 | namespace | [**moons**](namespaceastrea_1_1astro_1_1moons.md) <br> |
 | namespace | [**planets**](namespaceastrea_1_1astro_1_1planets.md) <br> |
 | namespace | [**plotting**](namespaceastrea_1_1astro_1_1plotting.md) <br> |
+| namespace | [**space\_weather**](namespaceastrea_1_1astro_1_1space__weather.md) <br> |
 | namespace | [**star**](namespaceastrea_1_1astro_1_1star.md) <br> |
 
 
@@ -48,12 +49,13 @@
 | ---: | :--- |
 | class | [**AngularAccelerations**](classastrea_1_1astro_1_1AngularAccelerations.md) &lt;\_in\_frame\_, \_ref\_frame\_&gt;<br>_Class representing the angular sequence acceleration, which is the time derivative of the angular sequence velocity._  |
 | class | [**AngularVelocities**](classastrea_1_1astro_1_1AngularVelocities.md) &lt;\_in\_frame\_, \_ref\_frame\_&gt;<br>_Class representing a sequence of angular velocities (either Euler or Tait-Bryan) for attitude transformations between frames._  |
-| class | [**AtmosphericForce**](classastrea_1_1astro_1_1AtmosphericForce.md) <br>_Class to compute the atmospheric force on a vehicle._  |
+| class | [**AtmosphericForce**](classastrea_1_1astro_1_1AtmosphericForce.md) &lt;\_body\_, \_model\_&gt;<br>_Class to compute the atmospheric force on a vehicle._  |
 | class | [**Attitude**](classastrea_1_1astro_1_1Attitude.md) <br>_Class representing a set of orientation._  |
 | class | [**AttitudePartials**](classastrea_1_1astro_1_1AttitudePartials.md) <br>_Class representing partial derivatives of orientation._  |
 | struct | [**Axis**](structastrea_1_1astro_1_1Axis.md) &lt;mp\_units::symbol\_text, auto...&gt;<br> |
 | struct | [**Axis&lt; \_name\_ &gt;**](structastrea_1_1astro_1_1Axis_3_01__name___01_4.md) &lt;\_name\_&gt;<br> |
 | struct | [**Axis&lt; \_name\_, \_parent\_ &gt;**](structastrea_1_1astro_1_1Axis_3_01__name___00_01__parent___01_4.md) &lt;\_name\_, \_parent\_&gt;<br> |
+| struct | [**BadConversionRequest**](structastrea_1_1astro_1_1BadConversionRequest.md) &lt;auto...&gt;<br> |
 | struct | [**Barycenter**](structastrea_1_1astro_1_1Barycenter.md) &lt;mp\_units::symbol\_text, auto...&gt;<br> |
 | struct | [**Barycenter&lt; \_name\_ &gt;**](structastrea_1_1astro_1_1Barycenter_3_01__name___01_4.md) &lt;\_name\_&gt;<br>_No parent, no members._  |
 | struct | [**Barycenter&lt; \_name\_, \_parent\_ &gt;**](structastrea_1_1astro_1_1Barycenter_3_01__name___00_01__parent___01_4.md) &lt;\_name\_, \_parent\_&gt;<br>_With parent, no members._  |
@@ -105,12 +107,14 @@
 | struct | [**GeocentricAxes**](structastrea_1_1astro_1_1GeocentricAxes.md) &lt;\_name\_&gt;<br> |
 | struct | [**GeocentricCoordinateTimeClock**](structastrea_1_1astro_1_1GeocentricCoordinateTimeClock.md) <br>_A clock implementation for_ [_**Geocentric**_](classastrea_1_1astro_1_1Geocentric.md) _Coordinate Time (TCG)._ |
 | class | [**Geodetic**](classastrea_1_1astro_1_1Geodetic.md) &lt;\_body\_&gt;<br>_Class representing a_ [_**Geodetic**_](classastrea_1_1astro_1_1Geodetic.md) _state vector in astrodynamics._ |
+| class | [**HarrisPriesterAtmosphere**](classastrea_1_1astro_1_1HarrisPriesterAtmosphere.md) <br>_The Harris-Priester atmospheric model for Earth._  |
 | class | [**ImpulsiveBurn**](classastrea_1_1astro_1_1ImpulsiveBurn.md) <br>_A class representing an impulsive burn_ [_**Event**_](classastrea_1_1astro_1_1Event.md) _. It triggers when the true anomaly wraps around (i.e. at perigee), and applies the total impulsive delta-v from all thrusters to the vehicle in the velocity direction._ |
 | class | [**InertiaTensor**](classastrea_1_1astro_1_1InertiaTensor.md) &lt;\_frame\_&gt;<br>_A class representing an inertia matrix in the astrea astro platform._  |
 | class | [**Integrator**](classastrea_1_1astro_1_1Integrator.md) <br>[_**Integrator**_](classastrea_1_1astro_1_1Integrator.md) _class for numerical propagation of orbital mechanics problems._ |
 | struct | [**IntegratorSettings**](structastrea_1_1astro_1_1IntegratorSettings.md) <br> |
 | class | [**Interval**](classastrea_1_1astro_1_1Interval.md) <br>_Represents a time interval with a start and end time._  |
 | class | [**J2MeanVop**](classastrea_1_1astro_1_1J2MeanVop.md) <br>_Class implementing the J2 Mean VOP equations of motion._  |
+| class | [**JacchiaRobertsAtmosphere**](classastrea_1_1astro_1_1JacchiaRobertsAtmosphere.md) <br>_The Jaccia-Roberts atmospheric model for Earth._  |
 | struct | [**JplEphemerisTable**](structastrea_1_1astro_1_1JplEphemerisTable.md) <br>_Base class for any JPL_ [_**CelestialBody**_](structastrea_1_1astro_1_1CelestialBody.md) _table._ |
 | struct | [**JulianDateClock**](structastrea_1_1astro_1_1JulianDateClock.md) <br>_A clock implementation for Julian Dates._  |
 | class | [**Keplerian**](classastrea_1_1astro_1_1Keplerian.md) &lt;\_frame\_&gt;<br>_The_ [_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _class represents the_[_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _orbital elements._ |
@@ -119,6 +123,7 @@
 | class | [**LambertSolver**](classastrea_1_1astro_1_1LambertSolver.md) <br>_Class for solving Lambert's problem._  |
 | class | [**LegendreCache**](classastrea_1_1astro_1_1LegendreCache.md) &lt;\_body\_, \_degree\_, \_order\_&gt;<br>_Class to cache Legendre polynomial coefficients for a given celestial_ _body_ _, degree, and order._ |
 | class | [**NBodyForce**](classastrea_1_1astro_1_1NBodyForce.md) &lt;bodies&gt;<br>_Class to compute the gravitational force due to multiple celestial bodies._  |
+| class | [**Nrlmsise00Atmosphere**](classastrea_1_1astro_1_1Nrlmsise00Atmosphere.md) <br> |
 | class | [**NullEvent**](classastrea_1_1astro_1_1NullEvent.md) <br>_A class representing a null_ [_**Event**_](classastrea_1_1astro_1_1Event.md) _in the astrea astro platform. This class is used as a placeholder for Events that do not have a defined state or mass._ |
 | class | [**NullVehicle**](classastrea_1_1astro_1_1NullVehicle.md) <br>_A class representing a null vehicle in the astrea astro platform. This class is used as a placeholder for vehicles that do not have a defined state or mass._  |
 | class | [**OblatenessForce**](classastrea_1_1astro_1_1OblatenessForce.md) &lt;\_body\_, \_degree\_, \_order\_&gt;<br>_Class to compute the gravitational force due to the oblateness of a celestial_ _body_ _._ |
@@ -138,7 +143,11 @@
 | struct | [**ReferenceAxes**](structastrea_1_1astro_1_1ReferenceAxes.md) &lt;\_name\_&gt;<br> |
 | class | [**Schedule**](classastrea_1_1astro_1_1Schedule.md) <br>_A class representing a_ [_**Schedule**_](classastrea_1_1astro_1_1Schedule.md) _in the astrea astro library. The_[_**Schedule**_](classastrea_1_1astro_1_1Schedule.md) _is responsible for scheduling and managing Events that are set to trigger at specific Dates during propagation._ |
 | class | [**Shell**](classastrea_1_1astro_1_1Shell.md) &lt;class Spacecraft\_T&gt;<br>_A_ [_**Shell**_](classastrea_1_1astro_1_1Shell.md) _is a collection of planes, each containing a set of_[_**Spacecraft**_](classastrea_1_1astro_1_1Spacecraft.md) _. It is used to represent sub-constellations of satellites in orbit._ |
+| struct | [**SolarFluxData**](structastrea_1_1astro_1_1SolarFluxData.md) <br>_Struct to hold solar flux data._  |
 | class | [**SolarRadiationPressure**](classastrea_1_1astro_1_1SolarRadiationPressure.md) <br>_Class to compute the solar radiation pressure force on a spacecraft._  |
+| class | [**SpaceWeatherData**](classastrea_1_1astro_1_1SpaceWeatherData.md) <br>_Class to hold space weather data read from a file._  |
+| struct | [**SpaceWeatherParameters**](structastrea_1_1astro_1_1SpaceWeatherParameters.md) <br>_Struct to hold space weather parameters for a specific date._  |
+| class | [**SpaceWeatherProvider**](classastrea_1_1astro_1_1SpaceWeatherProvider.md) <br>_Lightweight provider that shares an immutable space weather data snapshot. Using this layer of abstraction for now to enable data hot-swapping in the future if needed._  |
 | class | [**Spacecraft**](classastrea_1_1astro_1_1Spacecraft.md) <br>_A class representing a spacecraft in the astrea astro platform. This class encapsulates the properties of a spacecraft, including its mass, dynamic coefficients, and surface areas._  |
 | class | [**Spherical**](classastrea_1_1astro_1_1Spherical.md) &lt;\_body\_&gt;<br>_Class representing a_ [_**Spherical**_](classastrea_1_1astro_1_1Spherical.md) _state vector in astrodynamics._ |
 | class | [**State**](classastrea_1_1astro_1_1State.md) <br>_Class representing the state of an astronomical object. This class encapsulates the orbital elements, epoch, and the astrodynamics system that the state belongs to. It also optionally includes the attitude of the object as a quaternion._  |
@@ -184,6 +193,7 @@
 | typedef [**DirectionCosineMatrixAccel**](structastrea_1_1astro_1_1DirectionCosineMatrixAccel.md)&lt; \_in\_frame\_, \_out\_frame\_ &gt; | [**DcmAccel**](#typedef-dcmaccel)  <br>_Alias for_ [_**DirectionCosineMatrixAccel**_](structastrea_1_1astro_1_1DirectionCosineMatrixAccel.md) _with a specific output frame type._ |
 | typedef [**DirectionCosineMatrixRate**](structastrea_1_1astro_1_1DirectionCosineMatrixRate.md)&lt; \_in\_frame\_, \_out\_frame\_ &gt; | [**DcmRate**](#typedef-dcmrate)  <br>_Alias for_ [_**DirectionCosineMatrixRate**_](structastrea_1_1astro_1_1DirectionCosineMatrixRate.md) _with a specific output frame type._ |
 | typedef [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; Unitless, frame &gt; | [**Direction**](#typedef-direction)  <br>_Type alias for a vector representing unit vectors in 3D space._  |
+| enum  | [**EarthAtmosphereModel**](#enum-earthatmospheremodel)  <br>_Enumeration of supported Earth atmosphere models._  |
 | typedef uint32\_t | [**EnumType**](#typedef-enumtype)  <br>_Type definition for enumeration types._  |
 | typedef [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; Force, frame &gt; | [**ForceVector**](#typedef-forcevector)  <br>_Type alias for a vector representing force vectors in 3D space._  |
 | enum [**EnumType**](namespaceastrea_1_1astro.md#typedef-enumtype) | [**FrameAxis**](#enum-frameaxis)  <br>_Reference frames axes._  |
@@ -191,6 +201,7 @@
 | typedef [**GeocentricCoordinateTimeClock::time\_point**](structastrea_1_1astro_1_1GeocentricCoordinateTimeClock.md#typedef-time_point) | [**GeocentricCoordinateTime**](#typedef-geocentriccoordinatetime)  <br>_A type alias for_ [_**Geocentric**_](classastrea_1_1astro_1_1Geocentric.md) _Coordinate Time time points._ |
 | typedef [**JulianDateClock::time\_point**](structastrea_1_1astro_1_1JulianDateClock.md#typedef-time_point) | [**JulianDate**](#typedef-juliandate)  <br>_A type alias for Julian_ [_**Date**_](classastrea_1_1astro_1_1Date.md) _time points._ |
 | typedef std::chrono::time\_point&lt; [**JulianDateClock**](structastrea_1_1astro_1_1JulianDateClock.md), Duration &gt; | [**JulianDateTime**](#typedef-juliandatetime)  <br>_A time point type for Julian Dates, using the_ [_**JulianDateClock**_](structastrea_1_1astro_1_1JulianDateClock.md) _._ |
+| enum std::uint8\_t | [**MeasurementType**](#enum-measurementtype)  <br>_Enumeration for the type of space weather measurement._  |
 | typedef typename [**detail::tuple\_to\_variant**](structastrea_1_1astro_1_1detail_1_1tuple__to__variant.md)&lt; typename [**detail::multi\_tuple\_cat**](structastrea_1_1astro_1_1detail_1_1multi__tuple__cat.md)&lt; typename [**detail::apply\_nttp\_template**](structastrea_1_1astro_1_1detail_1_1apply__nttp__template.md)&lt; [**CartesianPartial**](classastrea_1_1astro_1_1CartesianPartial.md), [**detail::AllRegisteredFrames**](namespaceastrea_1_1astro_1_1detail.md#typedef-allregisteredframes) &gt;::type, typename [**detail::apply\_nttp\_template**](structastrea_1_1astro_1_1detail_1_1apply__nttp__template.md)&lt; FrameIndexedTypes, [**detail::AllRegisteredFrames**](namespaceastrea_1_1astro_1_1detail.md#typedef-allregisteredframes) &gt;::type... &gt;::type &gt;::type | [**OrbitalElementPartialVariant**](#typedef-orbitalelementpartialvariant)  <br> |
 | typedef typename [**detail::tuple\_to\_variant**](structastrea_1_1astro_1_1detail_1_1tuple__to__variant.md)&lt; typename [**detail::multi\_tuple\_cat**](structastrea_1_1astro_1_1detail_1_1multi__tuple__cat.md)&lt; typename [**detail::apply\_nttp\_template**](structastrea_1_1astro_1_1detail_1_1apply__nttp__template.md)&lt; [**Cartesian**](classastrea_1_1astro_1_1Cartesian.md), [**detail::AllRegisteredFrames**](namespaceastrea_1_1astro_1_1detail.md#typedef-allregisteredframes) &gt;::type, typename [**detail::apply\_nttp\_template**](structastrea_1_1astro_1_1detail_1_1apply__nttp__template.md)&lt; FrameIndexedTypes, [**detail::AllRegisteredFrames**](namespaceastrea_1_1astro_1_1detail.md#typedef-allregisteredframes) &gt;::type... &gt;::type &gt;::type | [**OrbitalElementVariant**](#typedef-orbitalelementvariant)  <br>_Variant of all frame-indexed element types expanded over every registered frame._  |
 | typedef [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; Distance, frame &gt; | [**RadiusVector**](#typedef-radiusvector)  <br>_Type alias for a vector representing a radius in 3D space._  |
@@ -221,8 +232,12 @@
 | Type | Name |
 | ---: | :--- |
 |  const [**astro::RadiusVector**](namespaceastrea_1_1astro.md#typedef-radiusvector)&lt; astro::frames::dynamic::ric &gt; | [**CENTER**](#variable-center)   = `/* multi line expression */`<br> |
+|  const int | [**COSINE\_EXPONENT**](#variable-cosine_exponent)   = `4`<br> |
 |  const size\_t | [**DEFAULT\_SHELL\_ID**](#variable-default_shell_id)   = `SIZE\_MAX`<br> |
+|  const Angle | [**DIURNAL\_LAG**](#variable-diurnal_lag)   = `30.0 \* deg`<br> |
+|  const std::map&lt; Altitude, std::tuple&lt; Density, Density &gt; &gt; | [**HARRIS\_PRIESTER\_ATMOSPHERE**](#variable-harris_priester_atmosphere)  <br> |
 |  constexpr mp\_units::quantity\_point | [**J2K**](#variable-j2k)   = `J2000`<br>_A constant representing the J2000 epoch in Julian_ [_**Date**_](classastrea_1_1astro_1_1Date.md) _format, used as a reference point._ |
+|  const std::map&lt; Altitude, std::tuple&lt; Altitude, Density, Altitude &gt; &gt; | [**JACCHIA\_ROBERTS\_ATMOSPHERE**](#variable-jacchia_roberts_atmosphere)   = `/* multi line expression */`<br> |
 |  constexpr mp\_units::quantity\_point | [**MJDStart**](#variable-mjdstart)   = `MJD0`<br>_A constant representing the start of the Modified Julian_ [_**Date**_](classastrea_1_1astro_1_1Date.md) _epoch._ |
 |  const [**astro::RadiusVector**](namespaceastrea_1_1astro.md#typedef-radiusvector)&lt; astro::frames::dynamic::ric &gt; | [**NADIR\_RIC**](#variable-nadir_ric)   = `/* multi line expression */`<br> |
 |  const [**astro::RadiusVector**](namespaceastrea_1_1astro.md#typedef-radiusvector)&lt; astro::frames::dynamic::ric &gt; | [**RADIAL\_RIC**](#variable-radial_ric)   = `/* multi line expression */`<br> |
@@ -247,6 +262,7 @@
 |  constexpr bool | [**all\_have\_valid\_transformation**](#function-all_have_valid_transformation) () <br> |
 |  constexpr bool | [**all\_have\_valid\_transformation\_impl**](#function-all_have_valid_transformation_impl) (std::index\_sequence&lt; I... &gt;) <br> |
 |  constexpr Distance | [**calculate\_geocentric\_radius**](#function-calculate_geocentric_radius) (const Angle & lat) <br>_Calculate the geocentric radius given latitude and Earth's radii._  |
+|  Time | [**calculate\_local\_solar\_time**](#function-calculate_local_solar_time) (const [**State**](classastrea_1_1astro_1_1State.md) & state) <br>_Calculate the local solar time for a given state._  |
 |  consteval bool | [**check\_all\_bodies\_share\_a\_parent**](#function-check_all_bodies_share_a_parent) () <br>_Checks if all bodies in the pack share the same parent._  |
 |  consteval auto | [**compose\_name**](#function-compose_name) () <br>_Helper function to compose the name of a_ [_**FixedOffsetFrame**_](structastrea_1_1astro_1_1FixedOffsetFrame.md) _based on its parent frame's name and its offset values. This generates a descriptive name that includes the parent frame and the specific offsets applied._ |
 |  consteval auto | [**compose\_name**](#function-compose_name) () <br>_Helper function to compose the name of a_ [_**FixedOffsetFrame**_](structastrea_1_1astro_1_1FixedOffsetFrame.md) _with both spatial and angular offsets based on its parent frame's name and its offset values. This generates a descriptive name that includes the parent frame and the specific spatial and angular offsets applied._ |
@@ -268,11 +284,13 @@
 |  consteval bool | [**equivalent**](#function-equivalent) (Lhs lhs, Rhs rhs) <br>_Checks if two frames are equivalent, considering their parent frames and any fixed offsets (spatial or angular)._  |
 |  consteval bool | [**equivalent**](#function-equivalent) (Lhs t, Rhs u) <br> |
 |  consteval auto | [**f\_to\_fixed\_string**](#function-f_to_fixed_string) () <br>_Helper function to convert a double value to a fixed string at compile time. This is used for generating frame names that include the offset values._  |
-|  Density | [**find\_atmospheric\_density**](#function-find_atmospheric_density) (const [**State**](classastrea_1_1astro_1_1State.md) & state) <br>_Primary template for atmospheric density — returns zero by default._  |
-|  Density | [**find\_atmospheric\_density&lt; moons::Titan &gt;**](#function-find_atmospheric_density-moons::titan) (const [**State**](classastrea_1_1astro_1_1State.md) & state) <br> |
-|  Density | [**find\_atmospheric\_density&lt; planets::Earth &gt;**](#function-find_atmospheric_density-planets::earth) (const [**State**](classastrea_1_1astro_1_1State.md) & state) <br>_Find the atmospheric density for Earth using the configured atmosphere model._  |
-|  Density | [**find\_atmospheric\_density&lt; planets::Mars &gt;**](#function-find_atmospheric_density-planets::mars) (const [**State**](classastrea_1_1astro_1_1State.md) & state) <br> |
-|  Density | [**find\_atmospheric\_density&lt; planets::Venus &gt;**](#function-find_atmospheric_density-planets::venus) (const [**State**](classastrea_1_1astro_1_1State.md) & state) <br> |
+|  Density | [**find\_atmospheric\_density**](#function-find_atmospheric_density) (const [**State**](classastrea_1_1astro_1_1State.md) &, const Args & ...) <br>_Primary template for atmospheric density — returns zero by default._  |
+|  Density | [**find\_atmospheric\_density&lt; moons::Titan &gt;**](#function-find_atmospheric_density-moons::titan) (const [**State**](classastrea_1_1astro_1_1State.md) & state) <br>_Find the atmospheric density for Titan using a tabulated model._  |
+|  Density | [**find\_atmospheric\_density&lt; planets::Earth, EarthAtmosphereModel::HARRIS\_PRIESTER &gt;**](#function-find_atmospheric_density-planets::earth-earthatmospheremodel::harris_priester) (const [**State**](classastrea_1_1astro_1_1State.md) & state) <br>_Find the atmospheric density for Earth using the Harris-Priester model._  |
+|  Density | [**find\_atmospheric\_density&lt; planets::Earth, EarthAtmosphereModel::JACCHIA\_ROBERTS &gt;**](#function-find_atmospheric_density-planets::earth-earthatmospheremodel::jacchia_roberts) (const [**State**](classastrea_1_1astro_1_1State.md) & state) <br>_Find the atmospheric density for Earth using the Jacchia-Roberts model._  |
+|  Density | [**find\_atmospheric\_density&lt; planets::Earth, EarthAtmosphereModel::NRLMSISE00 &gt;**](#function-find_atmospheric_density-planets::earth-earthatmospheremodel::nrlmsise00) (const [**State**](classastrea_1_1astro_1_1State.md) & state, const [**SpaceWeatherParameters**](structastrea_1_1astro_1_1SpaceWeatherParameters.md) & spaceWeatherParameters) <br>_Find the atmospheric density for Earth using the NRLMSISE-00 model._  |
+|  Density | [**find\_atmospheric\_density&lt; planets::Mars &gt;**](#function-find_atmospheric_density-planets::mars) (const [**State**](classastrea_1_1astro_1_1State.md) & state) <br>_Find the atmospheric density for Mars using a tabulated model._  |
+|  Density | [**find\_atmospheric\_density&lt; planets::Venus &gt;**](#function-find_atmospheric_density-planets::venus) (const [**State**](classastrea_1_1astro_1_1State.md) & state) <br>_Find the atmospheric density for Venus using a tabulated model._  |
 |  consteval auto | [**find\_axis\_in\_ancestors**](#function-find_axis_in_ancestors) (Axis\_T axis, Axis\_U target) <br> |
 |  consteval auto | [**find\_common\_ancestor**](#function-find_common_ancestor) (Axis\_T axis, Axis\_U axis\_u) <br> |
 |  consteval auto | [**find\_common\_ancestor**](#function-find_common_ancestor) () <br>_Finds the closest common ancestor of the given celestial bodies._  |
@@ -428,6 +446,7 @@
 |  bool | [**planes\_are\_nearly\_equal**](#function-planes_are_nearly_equal) (const [**OrbitalElements**](classastrea_1_1astro_1_1OrbitalElements.md) & elem1, const [**OrbitalElements**](classastrea_1_1astro_1_1OrbitalElements.md) & elem2, const Unitless & relTol) <br> |
 |  consteval auto | [**quantity\_list\_to\_fixed\_string**](#function-quantity_list_to_fixed_string) () <br>_Helper function to convert a list of quantities to a comma-separated fixed string at compile time. This is used for generating frame names that include multiple offset values._  |
 |  consteval auto | [**quantity\_to\_fixed\_string**](#function-quantity_to_fixed_string) () <br>_Helper function to convert a quantity to a fixed string at compile time, including its numerical value and unit symbol. This is used for generating frame names that include the offset values._  |
+|  std::vector&lt; [**SpaceWeatherParameters**](structastrea_1_1astro_1_1SpaceWeatherParameters.md) &gt; | [**read\_space\_weather\_file**](#function-read_space_weather_file) (const std::filesystem::path & filePath, std::optional&lt; [**Date**](classastrea_1_1astro_1_1Date.md) &gt; startDate=std::nullopt, std::optional&lt; [**Date**](classastrea_1_1astro_1_1Date.md) &gt; endDate=std::nullopt) <br>_Reads space weather data from a file and returns it as a_ [_**SpaceWeatherData**_](classastrea_1_1astro_1_1SpaceWeatherData.md) _object._ |
 |  void | [**throw\_mismatched\_types**](#function-throw_mismatched_types) () <br>_Throws an exception for mismatched types in orbital elements._  |
 |  constexpr bool | [**variant\_contains**](#function-variant_contains) () <br>_Checks whether type T is one of the alternatives in VariantType._  |
 |  constexpr Angle | [**wrap\_angle**](#function-wrap_angle) (const Angle & angle) noexcept<br>_Sanitize an angle to ensure it is within the range [0, 2π)._  |
@@ -828,6 +847,24 @@ This is used for direction vectors that do not have units of distance, velocity,
 
 
 
+### enum EarthAtmosphereModel 
+
+_Enumeration of supported Earth atmosphere models._ 
+```C++
+enum astrea::astro::EarthAtmosphereModel {
+    JACCHIA_ROBERTS,
+    NRLMSISE00,
+    HARRIS_PRIESTER
+};
+```
+
+
+
+
+<hr>
+
+
+
 ### typedef EnumType 
 
 _Type definition for enumeration types._ 
@@ -964,6 +1001,25 @@ using astrea::astro::JulianDateTime = typedef std::chrono::time_point<JulianDate
 
 
         
+
+<hr>
+
+
+
+### enum MeasurementType 
+
+_Enumeration for the type of space weather measurement._ 
+```C++
+enum astrea::astro::MeasurementType {
+    OBSERVED = 0,
+    DAILY_PREDICTED = 1,
+    MONTHLY_PREDICTED = 2,
+    MONTHLY_FIT = 3
+};
+```
+
+
+
 
 <hr>
 
@@ -1254,6 +1310,23 @@ const astro::RadiusVector<astro::frames::dynamic::ric> astrea::astro::CENTER;
 
 
 
+### variable COSINE\_EXPONENT 
+
+```C++
+const int astrea::astro::COSINE_EXPONENT;
+```
+
+
+
+Default cosine exponent value. 
+
+
+        
+
+<hr>
+
+
+
 ### variable DEFAULT\_SHELL\_ID 
 
 ```C++
@@ -1262,6 +1335,40 @@ const size_t astrea::astro::DEFAULT_SHELL_ID;
 
 
 
+
+<hr>
+
+
+
+### variable DIURNAL\_LAG 
+
+```C++
+const Angle astrea::astro::DIURNAL_LAG;
+```
+
+
+
+Lag angle for diurnal bulge. 
+
+
+        
+
+<hr>
+
+
+
+### variable HARRIS\_PRIESTER\_ATMOSPHERE 
+
+```C++
+const std::map<Altitude, std::tuple<Density, Density> > astrea::astro::HARRIS_PRIESTER_ATMOSPHERE;
+```
+
+
+
+Harris-Priester min-max density (kg/m3) vs. altitude (km) table. These data are valid for a mean solar activity. 
+
+
+        
 
 <hr>
 
@@ -1280,6 +1387,19 @@ This is the same as J2000 but is defined for clarity in contexts where a referen
 
 
         
+
+<hr>
+
+
+
+### variable JACCHIA\_ROBERTS\_ATMOSPHERE 
+
+```C++
+const std::map<Altitude, std::tuple<Altitude, Density, Altitude> > astrea::astro::JACCHIA_ROBERTS_ATMOSPHERE;
+```
+
+
+
 
 <hr>
 
@@ -1387,6 +1507,40 @@ inline constexpr Distance astrea::astro::calculate_geocentric_radius (
 **Returns:**
 
 The geocentric radius. 
+
+
+
+
+
+        
+
+<hr>
+
+
+
+### function calculate\_local\_solar\_time 
+
+_Calculate the local solar time for a given state._ 
+```C++
+Time astrea::astro::calculate_local_solar_time (
+    const State & state
+) 
+```
+
+
+
+
+
+**Parameters:**
+
+
+* `state` The current state of the satellite. 
+
+
+
+**Returns:**
+
+The local solar time. 
 
 
 
@@ -2168,9 +2322,10 @@ A basic\_fixed\_string representing the double value as a string, suitable for u
 
 _Primary template for atmospheric density — returns zero by default._ 
 ```C++
-template<auto _body_>
+template<auto _body_, auto..., typename... Args>
 inline Density astrea::astro::find_atmospheric_density (
-    const State & state
+    const State &,
+    const Args & ...
 ) 
 ```
 
@@ -2183,26 +2338,10 @@ inline Density astrea::astro::find_atmospheric_density (
 
 ### function find\_atmospheric\_density&lt; moons::Titan &gt; 
 
+_Find the atmospheric density for Titan using a tabulated model._ 
 ```C++
 template<>
 inline Density astrea::astro::find_atmospheric_density< moons::Titan > (
-    const State & state
-) 
-```
-
-
-
-
-<hr>
-
-
-
-### function find\_atmospheric\_density&lt; planets::Earth &gt; 
-
-_Find the atmospheric density for Earth using the configured atmosphere model._ 
-```C++
-template<>
-inline Density astrea::astro::find_atmospheric_density< planets::Earth > (
     const State & state
 ) 
 ```
@@ -2232,8 +2371,116 @@ Density The atmospheric density at the position encoded in `state`.
 
 
 
+### function find\_atmospheric\_density&lt; planets::Earth, EarthAtmosphereModel::HARRIS\_PRIESTER &gt; 
+
+_Find the atmospheric density for Earth using the Harris-Priester model._ 
+```C++
+template<>
+inline Density astrea::astro::find_atmospheric_density< planets::Earth, EarthAtmosphereModel::HARRIS_PRIESTER > (
+    const State & state
+) 
+```
+
+
+
+
+
+**Parameters:**
+
+
+* `state` The current [**Cartesian**](classastrea_1_1astro_1_1Cartesian.md) state vector (position and velocity). 
+
+
+
+**Returns:**
+
+Density The atmospheric density at the position encoded in `state`. 
+
+
+
+
+
+        
+
+<hr>
+
+
+
+### function find\_atmospheric\_density&lt; planets::Earth, EarthAtmosphereModel::JACCHIA\_ROBERTS &gt; 
+
+_Find the atmospheric density for Earth using the Jacchia-Roberts model._ 
+```C++
+template<>
+inline Density astrea::astro::find_atmospheric_density< planets::Earth, EarthAtmosphereModel::JACCHIA_ROBERTS > (
+    const State & state
+) 
+```
+
+
+
+
+
+**Parameters:**
+
+
+* `state` The current [**Cartesian**](classastrea_1_1astro_1_1Cartesian.md) state vector (position and velocity). 
+
+
+
+**Returns:**
+
+Density The atmospheric density at the position encoded in `state`. 
+
+
+
+
+
+        
+
+<hr>
+
+
+
+### function find\_atmospheric\_density&lt; planets::Earth, EarthAtmosphereModel::NRLMSISE00 &gt; 
+
+_Find the atmospheric density for Earth using the NRLMSISE-00 model._ 
+```C++
+template<>
+inline Density astrea::astro::find_atmospheric_density< planets::Earth, EarthAtmosphereModel::NRLMSISE00 > (
+    const State & state,
+    const SpaceWeatherParameters & spaceWeatherParameters
+) 
+```
+
+
+
+
+
+**Parameters:**
+
+
+* `state` The current [**Cartesian**](classastrea_1_1astro_1_1Cartesian.md) state vector (position and velocity). 
+* `spaceWeatherParameters` The space weather parameters (F10.7, F10.7a, Ap) required by the NRLMSISE-00 model. 
+
+
+
+**Returns:**
+
+Density The atmospheric density at the position encoded in `state`. 
+
+
+
+
+
+        
+
+<hr>
+
+
+
 ### function find\_atmospheric\_density&lt; planets::Mars &gt; 
 
+_Find the atmospheric density for Mars using a tabulated model._ 
 ```C++
 template<>
 inline Density astrea::astro::find_atmospheric_density< planets::Mars > (
@@ -2244,12 +2491,31 @@ inline Density astrea::astro::find_atmospheric_density< planets::Mars > (
 
 
 
+
+**Parameters:**
+
+
+* `state` The current [**Cartesian**](classastrea_1_1astro_1_1Cartesian.md) state vector (position and velocity). 
+
+
+
+**Returns:**
+
+Density The atmospheric density at the position encoded in `state`. 
+
+
+
+
+
+        
+
 <hr>
 
 
 
 ### function find\_atmospheric\_density&lt; planets::Venus &gt; 
 
+_Find the atmospheric density for Venus using a tabulated model._ 
 ```C++
 template<>
 inline Density astrea::astro::find_atmospheric_density< planets::Venus > (
@@ -2259,6 +2525,24 @@ inline Density astrea::astro::find_atmospheric_density< planets::Venus > (
 
 
 
+
+
+**Parameters:**
+
+
+* `state` The current [**Cartesian**](classastrea_1_1astro_1_1Cartesian.md) state vector (position and velocity). 
+
+
+
+**Returns:**
+
+Density The atmospheric density at the position encoded in `state`. 
+
+
+
+
+
+        
 
 <hr>
 
@@ -6565,6 +6849,44 @@ inline consteval auto astrea::astro::quantity_to_fixed_string ()
 **Returns:**
 
 A basic\_fixed\_string representing the quantity as a string, including its numerical value and unit symbol, suitable for use in frame names. The string will be null-terminated. 
+
+
+
+
+
+        
+
+<hr>
+
+
+
+### function read\_space\_weather\_file 
+
+_Reads space weather data from a file and returns it as a_ [_**SpaceWeatherData**_](classastrea_1_1astro_1_1SpaceWeatherData.md) _object._
+```C++
+std::vector< SpaceWeatherParameters > astrea::astro::read_space_weather_file (
+    const std::filesystem::path & filePath,
+    std::optional< Date > startDate=std::nullopt,
+    std::optional< Date > endDate=std::nullopt
+) 
+```
+
+
+
+
+
+**Parameters:**
+
+
+* `filePath` The path to the space weather data file. 
+* `startDate` Optional start date for filtering the data. If provided, only data on or after this date will be included. 
+* `endDate` Optional end date for filtering the data. If provided, only data on or before this date will be included. 
+
+
+
+**Returns:**
+
+A vector of [**SpaceWeatherParameters**](structastrea_1_1astro_1_1SpaceWeatherParameters.md) containing the parsed space weather data. 
 
 
 

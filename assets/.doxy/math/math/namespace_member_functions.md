@@ -16,6 +16,7 @@
 ## c
 
 * **clamp** ([**astrea::math**](namespaceastrea_1_1math.md))
+* **clamp\_within\_floating\_point\_error** ([**astrea::math**](namespaceastrea_1_1math.md))
 * **cos** ([**astrea::math**](namespaceastrea_1_1math.md))
 * **cosh** ([**astrea::math**](namespaceastrea_1_1math.md))
 * **cyl\_bessel\_j** ([**astrea::math**](namespaceastrea_1_1math.md))

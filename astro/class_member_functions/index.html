@@ -25,7 +25,7 @@
       
       
       <link rel="icon" href="../../assets/images/astrea-transparent-crop.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
@@ -33,7 +33,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
@@ -6623,7 +6623,7 @@ You're not viewing the latest version.
 <li><strong>add_event</strong> (<a href="../classastrea_1_1astro_1_1EventDetector/"><strong>astrea::astro::EventDetector</strong></a>, <a href="../classastrea_1_1astro_1_1Integrator/"><strong>astrea::astro::Integrator</strong></a>)</li>
 <li><strong>add_events</strong> (<a href="../classastrea_1_1astro_1_1EventDetector/"><strong>astrea::astro::EventDetector</strong></a>, <a href="../classastrea_1_1astro_1_1Integrator/"><strong>astrea::astro::Integrator</strong></a>)</li>
 <li><strong>add</strong> (<a href="../classastrea_1_1astro_1_1ForceModel/"><strong>astrea::astro::ForceModel</strong></a>)</li>
-<li><strong>at</strong> (<a href="../classastrea_1_1astro_1_1ForceModel/"><strong>astrea::astro::ForceModel</strong></a>)</li>
+<li><strong>at</strong> (<a href="../classastrea_1_1astro_1_1ForceModel/"><strong>astrea::astro::ForceModel</strong></a>, <a href="../classastrea_1_1astro_1_1SpaceWeatherData/"><strong>astrea::astro::SpaceWeatherData</strong></a>)</li>
 <li><strong>add_step_watcher</strong> (<a href="../classastrea_1_1astro_1_1Integrator/"><strong>astrea::astro::Integrator</strong></a>)</li>
 <li><strong>attach_payload</strong> (<a href="../classastrea_1_1astro_1_1PayloadPlatform/"><strong>astrea::astro::PayloadPlatform</strong></a>)</li>
 <li><strong>attach_payloads</strong> (<a href="../classastrea_1_1astro_1_1PayloadPlatform/"><strong>astrea::astro::PayloadPlatform</strong></a>)</li>
@@ -6632,6 +6632,7 @@ You're not viewing the latest version.
 <ul>
 <li><strong>begin</strong> (<a href="../classastrea_1_1astro_1_1Constellation/"><strong>astrea::astro::Constellation</strong></a>, <a href="../classastrea_1_1astro_1_1Plane/"><strong>astrea::astro::Plane</strong></a>, <a href="../classastrea_1_1astro_1_1Shell/"><strong>astrea::astro::Shell</strong></a>, <a href="../classastrea_1_1astro_1_1StateHistory/"><strong>astrea::astro::StateHistory</strong></a>)</li>
 <li><strong>body_sidereal_time</strong> (<a href="../classastrea_1_1astro_1_1Date/"><strong>astrea::astro::Date</strong></a>)</li>
+<li><strong>bind_space_weather_provider</strong> (<a href="../classastrea_1_1astro_1_1PerturbingForce/"><strong>astrea::astro::PerturbingForce</strong></a>)</li>
 </ul>
 <h2 id="c">c<a class="headerlink" href="#c" title="Permanent link">&para;</a></h2>
 <ul>
@@ -6661,9 +6662,13 @@ You're not viewing the latest version.
 <li><strong>convert_to_set_impl</strong> (<a href="../classastrea_1_1astro_1_1OrbitalElements/"><strong>astrea::astro::OrbitalElements</strong></a>)</li>
 <li><strong>conjugate</strong> (<a href="../classastrea_1_1astro_1_1Quaternion/"><strong>astrea::astro::Quaternion</strong></a>)</li>
 <li><strong>ctor_impl</strong> (<a href="../classastrea_1_1astro_1_1TwoLineElements/"><strong>astrea::astro::TwoLineElements</strong></a>)</li>
-<li><strong>calculate_local_solar_time</strong> (<a href="../classastrea_1_1astro_1_1planets_1_1NRLMSISE00/"><strong>astrea::astro::planets::NRLMSISE00</strong></a>)</li>
-<li><strong>ccor</strong> (<a href="../classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Output/"><strong>astrea::astro::planets::NRLMSISE00::Output</strong></a>)</li>
-<li><strong>ccor2</strong> (<a href="../classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Output/"><strong>astrea::astro::planets::NRLMSISE00::Output</strong></a>)</li>
+<li><strong>calculate_density_temperature_profile</strong> (<a href="../classastrea_1_1astro_1_1planets_1_1Output/"><strong>astrea::astro::planets::Output</strong></a>)</li>
+<li><strong>calculate_density_temperature_profile_new</strong> (<a href="../classastrea_1_1astro_1_1planets_1_1Output/"><strong>astrea::astro::planets::Output</strong></a>)</li>
+<li><strong>calculate_dissociation_correction</strong> (<a href="../classastrea_1_1astro_1_1planets_1_1Output/"><strong>astrea::astro::planets::Output</strong></a>)</li>
+<li><strong>calculate_gravity_at_altitude</strong> (<a href="../classastrea_1_1astro_1_1planets_1_1Output/"><strong>astrea::astro::planets::Output</strong></a>)</li>
+<li><strong>calculate_oxygen_dissociation_correction</strong> (<a href="../classastrea_1_1astro_1_1planets_1_1Output/"><strong>astrea::astro::planets::Output</strong></a>)</li>
+<li><strong>calculate_scale_height</strong> (<a href="../classastrea_1_1astro_1_1planets_1_1Output/"><strong>astrea::astro::planets::Output</strong></a>)</li>
+<li><strong>calculate_turbopause_correction</strong> (<a href="../classastrea_1_1astro_1_1planets_1_1Output/"><strong>astrea::astro::planets::Output</strong></a>)</li>
 </ul>
 <h2 id="d">d<a class="headerlink" href="#d" title="Permanent link">&para;</a></h2>
 <ul>
@@ -6672,7 +6677,7 @@ You're not viewing the latest version.
 <li><strong>Date</strong> (<a href="../classastrea_1_1astro_1_1Date/"><strong>astrea::astro::Date</strong></a>)</li>
 <li><strong>day_of_year</strong> (<a href="../classastrea_1_1astro_1_1Date/"><strong>astrea::astro::Date</strong></a>)</li>
 <li><strong>DcmInterface</strong> (<a href="../structastrea_1_1astro_1_1DcmInterface/"><strong>astrea::astro::DcmInterface</strong></a>)</li>
-<li><strong>data</strong> (<a href="../structastrea_1_1astro_1_1DcmInterface/"><strong>astrea::astro::DcmInterface</strong></a>)</li>
+<li><strong>data</strong> (<a href="../structastrea_1_1astro_1_1DcmInterface/"><strong>astrea::astro::DcmInterface</strong></a>, <a href="../classastrea_1_1astro_1_1SpaceWeatherData/"><strong>astrea::astro::SpaceWeatherData</strong></a>, <a href="../classastrea_1_1astro_1_1SpaceWeatherProvider/"><strong>astrea::astro::SpaceWeatherProvider</strong></a>)</li>
 <li><strong>determinant</strong> (<a href="../structastrea_1_1astro_1_1DcmInterface/"><strong>astrea::astro::DcmInterface</strong></a>, <a href="../classastrea_1_1astro_1_1InertiaTensor/"><strong>astrea::astro::InertiaTensor</strong></a>)</li>
 <li><strong>Deorbit</strong> (<a href="../classastrea_1_1astro_1_1Deorbit/"><strong>astrea::astro::Deorbit</strong></a>)</li>
 <li><strong>DirectionCosineMatrix</strong> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>astrea::astro::DirectionCosineMatrix</strong></a>)</li>
@@ -6681,9 +6686,6 @@ You're not viewing the latest version.
 <li><strong>DynamicFrame</strong> (<a href="../structastrea_1_1astro_1_1DynamicFrame/"><strong>astrea::astro::DynamicFrame</strong></a>)</li>
 <li><strong>detect_event</strong> (<a href="../classastrea_1_1astro_1_1EventDetector/"><strong>astrea::astro::EventDetector</strong></a>)</li>
 <li><strong>detect_events</strong> (<a href="../classastrea_1_1astro_1_1EventDetector/"><strong>astrea::astro::EventDetector</strong></a>)</li>
-<li><strong>densm</strong> (<a href="../classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Output/"><strong>astrea::astro::planets::NRLMSISE00::Output</strong></a>)</li>
-<li><strong>densu</strong> (<a href="../classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Output/"><strong>astrea::astro::planets::NRLMSISE00::Output</strong></a>)</li>
-<li><strong>dnet</strong> (<a href="../classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Output/"><strong>astrea::astro::planets::NRLMSISE00::Output</strong></a>)</li>
 </ul>
 <h2 id="e">e<a class="headerlink" href="#e" title="Permanent link">&para;</a></h2>
 <ul>
@@ -6699,7 +6701,8 @@ You're not viewing the latest version.
 <li><strong>extract_mutable_reference</strong> (<a href="../classastrea_1_1astro_1_1Event/"><strong>astrea::astro::Event</strong></a>, <a href="../classastrea_1_1astro_1_1Vehicle/"><strong>astrea::astro::Vehicle</strong></a>)</li>
 <li><strong>EventDetector</strong> (<a href="../classastrea_1_1astro_1_1EventDetector/"><strong>astrea::astro::EventDetector</strong></a>)</li>
 <li><strong>evaluate_stumpff</strong> (<a href="../classastrea_1_1astro_1_1LambertSolver/"><strong>astrea::astro::LambertSolver</strong></a>)</li>
-<li><strong>empty</strong> (<a href="../classastrea_1_1astro_1_1StateHistory/"><strong>astrea::astro::StateHistory</strong></a>)</li>
+<li><strong>empty</strong> (<a href="../classastrea_1_1astro_1_1SpaceWeatherData/"><strong>astrea::astro::SpaceWeatherData</strong></a>, <a href="../classastrea_1_1astro_1_1SpaceWeatherProvider/"><strong>astrea::astro::SpaceWeatherProvider</strong></a>, <a href="../classastrea_1_1astro_1_1StateHistory/"><strong>astrea::astro::StateHistory</strong></a>)</li>
+<li><strong>endDate</strong> (<a href="../classastrea_1_1astro_1_1SpaceWeatherData/"><strong>astrea::astro::SpaceWeatherData</strong></a>)</li>
 <li><strong>EventInner</strong> (<a href="../structastrea_1_1astro_1_1detail_1_1EventInner/"><strong>astrea::astro::detail::EventInner</strong></a>)</li>
 <li><strong>EastNorthUp</strong> (<a href="../structastrea_1_1astro_1_1frames_1_1EastNorthUp/"><strong>astrea::astro::frames::EastNorthUp</strong></a>)</li>
 </ul>
@@ -6712,12 +6715,12 @@ You're not viewing the latest version.
 <li><strong>from_euler_angles</strong> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>astrea::astro::DirectionCosineMatrix</strong></a>, <a href="../structastrea_1_1astro_1_1DirectionCosineMatrixAccel/"><strong>astrea::astro::DirectionCosineMatrixAccel</strong></a>, <a href="../structastrea_1_1astro_1_1DirectionCosineMatrixRate/"><strong>astrea::astro::DirectionCosineMatrixRate</strong></a>)</li>
 <li><strong>from_vectors</strong> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>astrea::astro::DirectionCosineMatrix</strong></a>)</li>
 <li><strong>ForceModel</strong> (<a href="../classastrea_1_1astro_1_1ForceModel/"><strong>astrea::astro::ForceModel</strong></a>)</li>
+<li><strong>find_atmospheric_density</strong> (<a href="../classastrea_1_1astro_1_1HarrisPriesterAtmosphere/"><strong>astrea::astro::HarrisPriesterAtmosphere</strong></a>, <a href="../classastrea_1_1astro_1_1JacchiaRobertsAtmosphere/"><strong>astrea::astro::JacchiaRobertsAtmosphere</strong></a>, <a href="../classastrea_1_1astro_1_1Nrlmsise00Atmosphere/"><strong>astrea::astro::Nrlmsise00Atmosphere</strong></a>, <a href="../classastrea_1_1astro_1_1planets_1_1Nrlmsise00Atmosphere/"><strong>astrea::astro::planets::Nrlmsise00Atmosphere</strong></a>)</li>
 <li><strong>find_max_error</strong> (<a href="../classastrea_1_1astro_1_1Integrator/"><strong>astrea::astro::Integrator</strong></a>)</li>
 <li><strong>find_state_derivative</strong> (<a href="../classastrea_1_1astro_1_1Integrator/"><strong>astrea::astro::Integrator</strong></a>)</li>
 <li><strong>fast_append</strong> (<a href="../classastrea_1_1astro_1_1StateHistory/"><strong>astrea::astro::StateHistory</strong></a>)</li>
 <li><strong>fast_prepend</strong> (<a href="../classastrea_1_1astro_1_1StateHistory/"><strong>astrea::astro::StateHistory</strong></a>)</li>
 <li><strong>first</strong> (<a href="../classastrea_1_1astro_1_1StateHistory/"><strong>astrea::astro::StateHistory</strong></a>)</li>
-<li><strong>find_atmospheric_density</strong> (<a href="../classastrea_1_1astro_1_1planets_1_1HarrisPriesterAtmosphere/"><strong>astrea::astro::planets::HarrisPriesterAtmosphere</strong></a>, <a href="../classastrea_1_1astro_1_1planets_1_1JacciaRobertsAtmosphere/"><strong>astrea::astro::planets::JacciaRobertsAtmosphere</strong></a>, <a href="../classastrea_1_1astro_1_1planets_1_1NRLMSISE00/"><strong>astrea::astro::planets::NRLMSISE00</strong></a>, <a href="../classastrea_1_1astro_1_1planets_1_1NRLMSISE00Atmosphere/"><strong>astrea::astro::planets::NRLMSISE00Atmosphere</strong></a>)</li>
 <li><strong>from_numerical_value</strong> (<a href="../structmp__units_1_1quantity__point__like__traits_3_01astrea_1_1astro_1_1Date_01_4/"><strong>mp_units::quantity_point_like_traits&lt; astrea::astro::Date &gt;</strong></a>)</li>
 </ul>
 <h2 id="g">g<a class="headerlink" href="#g" title="Permanent link">&para;</a></h2>
@@ -6786,6 +6789,7 @@ You're not viewing the latest version.
 <li><strong>get_true_anomaly</strong> (<a href="../classastrea_1_1astro_1_1Keplerian/"><strong>astrea::astro::Keplerian</strong></a>, <a href="../classastrea_1_1astro_1_1TwoLineElements/"><strong>astrea::astro::TwoLineElements</strong></a>)</li>
 <li><strong>get_cosine_coefficient</strong> (<a href="../classastrea_1_1astro_1_1LegendreCache/"><strong>astrea::astro::LegendreCache</strong></a>)</li>
 <li><strong>get_sine_coefficient</strong> (<a href="../classastrea_1_1astro_1_1LegendreCache/"><strong>astrea::astro::LegendreCache</strong></a>)</li>
+<li><strong>get_default_flags</strong> (<a href="../classastrea_1_1astro_1_1Nrlmsise00Atmosphere/"><strong>astrea::astro::Nrlmsise00Atmosphere</strong></a>)</li>
 <li><strong>get_mass</strong> (<a href="../classastrea_1_1astro_1_1NullVehicle/"><strong>astrea::astro::NullVehicle</strong></a>, <a href="../classastrea_1_1astro_1_1PayloadPlatform/"><strong>astrea::astro::PayloadPlatform</strong></a>, <a href="../classastrea_1_1astro_1_1Spacecraft/"><strong>astrea::astro::Spacecraft</strong></a>, <a href="../classastrea_1_1astro_1_1Vehicle/"><strong>astrea::astro::Vehicle</strong></a>, <a href="../structastrea_1_1astro_1_1detail_1_1VehicleInner/"><strong>astrea::astro::detail::VehicleInner</strong></a>, <a href="../structastrea_1_1astro_1_1detail_1_1VehicleInnerBase/"><strong>astrea::astro::detail::VehicleInnerBase</strong></a>)</li>
 <li><strong>get_set_id</strong> (<a href="../classastrea_1_1astro_1_1OrbitalElements/"><strong>astrea::astro::OrbitalElements</strong></a>)</li>
 <li><strong>get_id</strong> (<a href="../classastrea_1_1astro_1_1Payload/"><strong>astrea::astro::Payload</strong></a>, <a href="../classastrea_1_1astro_1_1PayloadPlatform/"><strong>astrea::astro::PayloadPlatform</strong></a>, <a href="../classastrea_1_1astro_1_1Plane/"><strong>astrea::astro::Plane</strong></a>, <a href="../classastrea_1_1astro_1_1Shell/"><strong>astrea::astro::Shell</strong></a>, <a href="../classastrea_1_1astro_1_1Spacecraft/"><strong>astrea::astro::Spacecraft</strong></a>, <a href="../classastrea_1_1astro_1_1Thruster/"><strong>astrea::astro::Thruster</strong></a>)</li>
@@ -6794,6 +6798,8 @@ You're not viewing the latest version.
 <li><strong>get_attachment_point</strong> (<a href="../classastrea_1_1astro_1_1PayloadParameters/"><strong>astrea::astro::PayloadParameters</strong></a>)</li>
 <li><strong>get_boresight</strong> (<a href="../classastrea_1_1astro_1_1PayloadParameters/"><strong>astrea::astro::PayloadParameters</strong></a>)</li>
 <li><strong>get_payloads</strong> (<a href="../classastrea_1_1astro_1_1PayloadPlatform/"><strong>astrea::astro::PayloadPlatform</strong></a>)</li>
+<li><strong>get_space_weather_data</strong> (<a href="../classastrea_1_1astro_1_1PerturbingForce/"><strong>astrea::astro::PerturbingForce</strong></a>)</li>
+<li><strong>get_space_weather_provider</strong> (<a href="../classastrea_1_1astro_1_1PerturbingForce/"><strong>astrea::astro::PerturbingForce</strong></a>)</li>
 <li><strong>get_elements</strong> (<a href="../classastrea_1_1astro_1_1Plane/"><strong>astrea::astro::Plane</strong></a>, <a href="../classastrea_1_1astro_1_1State/"><strong>astrea::astro::State</strong></a>)</li>
 <li><strong>get_scalar_part</strong> (<a href="../classastrea_1_1astro_1_1Quaternion/"><strong>astrea::astro::Quaternion</strong></a>, <a href="../classastrea_1_1astro_1_1QuaternionPartial/"><strong>astrea::astro::QuaternionPartial</strong></a>)</li>
 <li><strong>get_vector_part</strong> (<a href="../classastrea_1_1astro_1_1Quaternion/"><strong>astrea::astro::Quaternion</strong></a>, <a href="../classastrea_1_1astro_1_1QuaternionPartial/"><strong>astrea::astro::QuaternionPartial</strong></a>)</li>
@@ -6845,19 +6851,18 @@ You're not viewing the latest version.
 <li><strong>get_ram_area_impl</strong> (<a href="../structastrea_1_1astro_1_1detail_1_1VehicleInner/"><strong>astrea::astro::detail::VehicleInner</strong></a>)</li>
 <li><strong>get_solar_area_impl</strong> (<a href="../structastrea_1_1astro_1_1detail_1_1VehicleInner/"><strong>astrea::astro::detail::VehicleInner</strong></a>)</li>
 <li><strong>get_dcm</strong> (<a href="../structastrea_1_1astro_1_1frames_1_1EastNorthUp/"><strong>astrea::astro::frames::EastNorthUp</strong></a>, <a href="../structastrea_1_1astro_1_1frames_1_1LocalHorizontalLocalVertical/"><strong>astrea::astro::frames::LocalHorizontalLocalVertical</strong></a>, <a href="../structastrea_1_1astro_1_1frames_1_1Perifocal/"><strong>astrea::astro::frames::Perifocal</strong></a>, <a href="../structastrea_1_1astro_1_1frames_1_1RadialInTrackCrossTrack/"><strong>astrea::astro::frames::RadialInTrackCrossTrack</strong></a>, <a href="../structastrea_1_1astro_1_1frames_1_1VelocityNormalBinormal/"><strong>astrea::astro::frames::VelocityNormalBinormal</strong></a>)</li>
-<li><strong>g0</strong> (<a href="../classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Output/"><strong>astrea::astro::planets::NRLMSISE00::Output</strong></a>)</li>
-<li><strong>galt</strong> (<a href="../classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Output/"><strong>astrea::astro::planets::NRLMSISE00::Output</strong></a>)</li>
-<li><strong>get_density</strong> (<a href="../classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Output/"><strong>astrea::astro::planets::NRLMSISE00::Output</strong></a>)</li>
-<li><strong>glob7s</strong> (<a href="../classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Output/"><strong>astrea::astro::planets::NRLMSISE00::Output</strong></a>)</li>
-<li><strong>globe7</strong> (<a href="../classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Output/"><strong>astrea::astro::planets::NRLMSISE00::Output</strong></a>)</li>
-<li><strong>gtd7</strong> (<a href="../classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Output/"><strong>astrea::astro::planets::NRLMSISE00::Output</strong></a>)</li>
-<li><strong>gtd7d</strong> (<a href="../classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Output/"><strong>astrea::astro::planets::NRLMSISE00::Output</strong></a>)</li>
-<li><strong>gts7</strong> (<a href="../classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Output/"><strong>astrea::astro::planets::NRLMSISE00::Output</strong></a>)</li>
+<li><strong>g0</strong> (<a href="../classastrea_1_1astro_1_1planets_1_1Output/"><strong>astrea::astro::planets::Output</strong></a>)</li>
+<li><strong>get_density</strong> (<a href="../classastrea_1_1astro_1_1planets_1_1Output/"><strong>astrea::astro::planets::Output</strong></a>)</li>
+<li><strong>glob7s</strong> (<a href="../classastrea_1_1astro_1_1planets_1_1Output/"><strong>astrea::astro::planets::Output</strong></a>)</li>
+<li><strong>globe7</strong> (<a href="../classastrea_1_1astro_1_1planets_1_1Output/"><strong>astrea::astro::planets::Output</strong></a>)</li>
+<li><strong>gtd7</strong> (<a href="../classastrea_1_1astro_1_1planets_1_1Output/"><strong>astrea::astro::planets::Output</strong></a>)</li>
+<li><strong>gtd7d</strong> (<a href="../classastrea_1_1astro_1_1planets_1_1Output/"><strong>astrea::astro::planets::Output</strong></a>)</li>
+<li><strong>gts7</strong> (<a href="../classastrea_1_1astro_1_1planets_1_1Output/"><strong>astrea::astro::planets::Output</strong></a>)</li>
 </ul>
 <h2 id="h">h<a class="headerlink" href="#h" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>HMEO</strong> (<a href="../classastrea_1_1astro_1_1Cartesian/"><strong>astrea::astro::Cartesian</strong></a>, <a href="../classastrea_1_1astro_1_1Equinoctial/"><strong>astrea::astro::Equinoctial</strong></a>, <a href="../classastrea_1_1astro_1_1Keplerian/"><strong>astrea::astro::Keplerian</strong></a>)</li>
-<li><strong>HarrisPriesterAtmosphere</strong> (<a href="../classastrea_1_1astro_1_1planets_1_1HarrisPriesterAtmosphere/"><strong>astrea::astro::planets::HarrisPriesterAtmosphere</strong></a>)</li>
+<li><strong>HarrisPriesterAtmosphere</strong> (<a href="../classastrea_1_1astro_1_1HarrisPriesterAtmosphere/"><strong>astrea::astro::HarrisPriesterAtmosphere</strong></a>)</li>
 </ul>
 <h2 id="i">i<a class="headerlink" href="#i" title="Permanent link">&para;</a></h2>
 <ul>
@@ -6875,6 +6880,7 @@ You're not viewing the latest version.
 <li><strong>index</strong> (<a href="../classastrea_1_1astro_1_1OrbitalElementPartials/"><strong>astrea::astro::OrbitalElementPartials</strong></a>, <a href="../classastrea_1_1astro_1_1OrbitalElements/"><strong>astrea::astro::OrbitalElements</strong></a>)</li>
 <li><strong>in_element_set</strong> (<a href="../classastrea_1_1astro_1_1OrbitalElements/"><strong>astrea::astro::OrbitalElements</strong></a>, <a href="../classastrea_1_1astro_1_1State/"><strong>astrea::astro::State</strong></a>)</li>
 <li><strong>inverse</strong> (<a href="../classastrea_1_1astro_1_1Quaternion/"><strong>astrea::astro::Quaternion</strong></a>)</li>
+<li><strong>infile</strong> (<a href="../classastrea_1_1astro_1_1SpaceWeatherData/"><strong>astrea::astro::SpaceWeatherData</strong></a>)</li>
 <li><strong>insert</strong> (<a href="../classastrea_1_1astro_1_1StateHistory/"><strong>astrea::astro::StateHistory</strong></a>)</li>
 <li><strong>is_on</strong> (<a href="../classastrea_1_1astro_1_1Thruster/"><strong>astrea::astro::Thruster</strong></a>, <a href="../classastrea_1_1astro_1_1ThrusterParameters/"><strong>astrea::astro::ThrusterParameters</strong></a>)</li>
 <li><strong>instantaneous</strong> (<a href="../structastrea_1_1astro_1_1frames_1_1EastNorthUpTag/"><strong>astrea::astro::frames::EastNorthUpTag</strong></a>, <a href="../structastrea_1_1astro_1_1frames_1_1LvlhTag/"><strong>astrea::astro::frames::LvlhTag</strong></a>, <a href="../structastrea_1_1astro_1_1frames_1_1PerifocalTag/"><strong>astrea::astro::frames::PerifocalTag</strong></a>, <a href="../structastrea_1_1astro_1_1frames_1_1RicTag/"><strong>astrea::astro::frames::RicTag</strong></a>, <a href="../structastrea_1_1astro_1_1frames_1_1VnbTag/"><strong>astrea::astro::frames::VnbTag</strong></a>)</li>
@@ -6884,8 +6890,8 @@ You're not viewing the latest version.
 <li><strong>jd</strong> (<a href="../classastrea_1_1astro_1_1Date/"><strong>astrea::astro::Date</strong></a>)</li>
 <li><strong>jdn</strong> (<a href="../classastrea_1_1astro_1_1Date/"><strong>astrea::astro::Date</strong></a>)</li>
 <li><strong>J2MeanVop</strong> (<a href="../classastrea_1_1astro_1_1J2MeanVop/"><strong>astrea::astro::J2MeanVop</strong></a>)</li>
+<li><strong>JacchiaRobertsAtmosphere</strong> (<a href="../classastrea_1_1astro_1_1JacchiaRobertsAtmosphere/"><strong>astrea::astro::JacchiaRobertsAtmosphere</strong></a>)</li>
 <li><strong>JplEphemerisTable</strong> (<a href="../structastrea_1_1astro_1_1JplEphemerisTable/"><strong>astrea::astro::JplEphemerisTable</strong></a>)</li>
-<li><strong>JacciaRobertsAtmosphere</strong> (<a href="../classastrea_1_1astro_1_1planets_1_1JacciaRobertsAtmosphere/"><strong>astrea::astro::planets::JacciaRobertsAtmosphere</strong></a>)</li>
 </ul>
 <h2 id="k">k<a class="headerlink" href="#k" title="Permanent link">&para;</a></h2>
 <ul>
@@ -6919,9 +6925,9 @@ You're not viewing the latest version.
 <li><strong>normalize</strong> (<a href="../structastrea_1_1astro_1_1DcmInterface/"><strong>astrea::astro::DcmInterface</strong></a>, <a href="../classastrea_1_1astro_1_1Quaternion/"><strong>astrea::astro::Quaternion</strong></a>)</li>
 <li><strong>n_func_evals</strong> (<a href="../classastrea_1_1astro_1_1Integrator/"><strong>astrea::astro::Integrator</strong></a>)</li>
 <li><strong>NBodyForce</strong> (<a href="../classastrea_1_1astro_1_1NBodyForce/"><strong>astrea::astro::NBodyForce</strong></a>)</li>
+<li><strong>Nrlmsise00Atmosphere</strong> (<a href="../classastrea_1_1astro_1_1Nrlmsise00Atmosphere/"><strong>astrea::astro::Nrlmsise00Atmosphere</strong></a>, <a href="../classastrea_1_1astro_1_1planets_1_1Nrlmsise00Atmosphere/"><strong>astrea::astro::planets::Nrlmsise00Atmosphere</strong></a>)</li>
 <li><strong>NullVehicle</strong> (<a href="../classastrea_1_1astro_1_1NullVehicle/"><strong>astrea::astro::NullVehicle</strong></a>)</li>
 <li><strong>norm_squared</strong> (<a href="../classastrea_1_1astro_1_1Quaternion/"><strong>astrea::astro::Quaternion</strong></a>)</li>
-<li><strong>NRLMSISE00Atmosphere</strong> (<a href="../classastrea_1_1astro_1_1planets_1_1NRLMSISE00Atmosphere/"><strong>astrea::astro::planets::NRLMSISE00Atmosphere</strong></a>)</li>
 </ul>
 <h2 id="o">o<a class="headerlink" href="#o" title="Permanent link">&para;</a></h2>
 <ul>
@@ -6931,7 +6937,7 @@ You're not viewing the latest version.
 <li><strong>operator-</strong> (<a href="../classastrea_1_1astro_1_1AngularAccelerations/"><strong>astrea::astro::AngularAccelerations</strong></a>, <a href="../classastrea_1_1astro_1_1AngularVelocities/"><strong>astrea::astro::AngularVelocities</strong></a>, <a href="../classastrea_1_1astro_1_1Attitude/"><strong>astrea::astro::Attitude</strong></a>, <a href="../classastrea_1_1astro_1_1Cartesian/"><strong>astrea::astro::Cartesian</strong></a>, <a href="../structastrea_1_1astro_1_1CartesianVector/"><strong>astrea::astro::CartesianVector</strong></a>, <a href="../classastrea_1_1astro_1_1Cylindrical/"><strong>astrea::astro::Cylindrical</strong></a>, <a href="../classastrea_1_1astro_1_1Date/"><strong>astrea::astro::Date</strong></a>, <a href="../structastrea_1_1astro_1_1DcmInterface/"><strong>astrea::astro::DcmInterface</strong></a>, <a href="../classastrea_1_1astro_1_1Equinoctial/"><strong>astrea::astro::Equinoctial</strong></a>, <a href="../classastrea_1_1astro_1_1EulerAngles/"><strong>astrea::astro::EulerAngles</strong></a>, <a href="../classastrea_1_1astro_1_1Geocentric/"><strong>astrea::astro::Geocentric</strong></a>, <a href="../classastrea_1_1astro_1_1Geodetic/"><strong>astrea::astro::Geodetic</strong></a>, <a href="../classastrea_1_1astro_1_1Keplerian/"><strong>astrea::astro::Keplerian</strong></a>, <a href="../classastrea_1_1astro_1_1OrbitalElements/"><strong>astrea::astro::OrbitalElements</strong></a>, <a href="../classastrea_1_1astro_1_1Quaternion/"><strong>astrea::astro::Quaternion</strong></a>, <a href="../classastrea_1_1astro_1_1Spherical/"><strong>astrea::astro::Spherical</strong></a>, <a href="../classastrea_1_1astro_1_1State/"><strong>astrea::astro::State</strong></a>)</li>
 <li><strong>operator-=</strong> (<a href="../classastrea_1_1astro_1_1AngularAccelerations/"><strong>astrea::astro::AngularAccelerations</strong></a>, <a href="../classastrea_1_1astro_1_1AngularVelocities/"><strong>astrea::astro::AngularVelocities</strong></a>, <a href="../classastrea_1_1astro_1_1Attitude/"><strong>astrea::astro::Attitude</strong></a>, <a href="../classastrea_1_1astro_1_1Cartesian/"><strong>astrea::astro::Cartesian</strong></a>, <a href="../structastrea_1_1astro_1_1CartesianVector/"><strong>astrea::astro::CartesianVector</strong></a>, <a href="../classastrea_1_1astro_1_1Cylindrical/"><strong>astrea::astro::Cylindrical</strong></a>, <a href="../classastrea_1_1astro_1_1Date/"><strong>astrea::astro::Date</strong></a>, <a href="../classastrea_1_1astro_1_1Equinoctial/"><strong>astrea::astro::Equinoctial</strong></a>, <a href="../classastrea_1_1astro_1_1EulerAngles/"><strong>astrea::astro::EulerAngles</strong></a>, <a href="../classastrea_1_1astro_1_1Geocentric/"><strong>astrea::astro::Geocentric</strong></a>, <a href="../classastrea_1_1astro_1_1Geodetic/"><strong>astrea::astro::Geodetic</strong></a>, <a href="../classastrea_1_1astro_1_1Keplerian/"><strong>astrea::astro::Keplerian</strong></a>, <a href="../classastrea_1_1astro_1_1OrbitalElements/"><strong>astrea::astro::OrbitalElements</strong></a>, <a href="../classastrea_1_1astro_1_1Quaternion/"><strong>astrea::astro::Quaternion</strong></a>, <a href="../classastrea_1_1astro_1_1Spherical/"><strong>astrea::astro::Spherical</strong></a>, <a href="../classastrea_1_1astro_1_1State/"><strong>astrea::astro::State</strong></a>)</li>
 <li><strong>operator/</strong> (<a href="../classastrea_1_1astro_1_1AngularAccelerations/"><strong>astrea::astro::AngularAccelerations</strong></a>, <a href="../classastrea_1_1astro_1_1AngularVelocities/"><strong>astrea::astro::AngularVelocities</strong></a>, <a href="../classastrea_1_1astro_1_1Attitude/"><strong>astrea::astro::Attitude</strong></a>, <a href="../classastrea_1_1astro_1_1Cartesian/"><strong>astrea::astro::Cartesian</strong></a>, <a href="../structastrea_1_1astro_1_1CartesianVector/"><strong>astrea::astro::CartesianVector</strong></a>, <a href="../classastrea_1_1astro_1_1Cylindrical/"><strong>astrea::astro::Cylindrical</strong></a>, <a href="../classastrea_1_1astro_1_1Equinoctial/"><strong>astrea::astro::Equinoctial</strong></a>, <a href="../classastrea_1_1astro_1_1EulerAngles/"><strong>astrea::astro::EulerAngles</strong></a>, <a href="../classastrea_1_1astro_1_1Geocentric/"><strong>astrea::astro::Geocentric</strong></a>, <a href="../classastrea_1_1astro_1_1Geodetic/"><strong>astrea::astro::Geodetic</strong></a>, <a href="../classastrea_1_1astro_1_1Keplerian/"><strong>astrea::astro::Keplerian</strong></a>, <a href="../classastrea_1_1astro_1_1OrbitalElements/"><strong>astrea::astro::OrbitalElements</strong></a>, <a href="../classastrea_1_1astro_1_1Quaternion/"><strong>astrea::astro::Quaternion</strong></a>, <a href="../classastrea_1_1astro_1_1Spherical/"><strong>astrea::astro::Spherical</strong></a>, <a href="../classastrea_1_1astro_1_1State/"><strong>astrea::astro::State</strong></a>)</li>
-<li><strong>operator[]</strong> (<a href="../classastrea_1_1astro_1_1AngularAccelerations/"><strong>astrea::astro::AngularAccelerations</strong></a>, <a href="../classastrea_1_1astro_1_1AngularVelocities/"><strong>astrea::astro::AngularVelocities</strong></a>, <a href="../structastrea_1_1astro_1_1CartesianVector/"><strong>astrea::astro::CartesianVector</strong></a>, <a href="../classastrea_1_1astro_1_1Constellation/"><strong>astrea::astro::Constellation</strong></a>, <a href="../structastrea_1_1astro_1_1DcmInterface/"><strong>astrea::astro::DcmInterface</strong></a>, <a href="../classastrea_1_1astro_1_1EulerAngles/"><strong>astrea::astro::EulerAngles</strong></a>, <a href="../classastrea_1_1astro_1_1InertiaTensor/"><strong>astrea::astro::InertiaTensor</strong></a>)</li>
+<li><strong>operator[]</strong> (<a href="../classastrea_1_1astro_1_1AngularAccelerations/"><strong>astrea::astro::AngularAccelerations</strong></a>, <a href="../classastrea_1_1astro_1_1AngularVelocities/"><strong>astrea::astro::AngularVelocities</strong></a>, <a href="../structastrea_1_1astro_1_1CartesianVector/"><strong>astrea::astro::CartesianVector</strong></a>, <a href="../classastrea_1_1astro_1_1Constellation/"><strong>astrea::astro::Constellation</strong></a>, <a href="../structastrea_1_1astro_1_1DcmInterface/"><strong>astrea::astro::DcmInterface</strong></a>, <a href="../classastrea_1_1astro_1_1EulerAngles/"><strong>astrea::astro::EulerAngles</strong></a>, <a href="../classastrea_1_1astro_1_1InertiaTensor/"><strong>astrea::astro::InertiaTensor</strong></a>, <a href="../classastrea_1_1astro_1_1SpaceWeatherData/"><strong>astrea::astro::SpaceWeatherData</strong></a>)</li>
 <li><strong>operator*=</strong> (<a href="../classastrea_1_1astro_1_1AngularVelocities/"><strong>astrea::astro::AngularVelocities</strong></a>, <a href="../classastrea_1_1astro_1_1Attitude/"><strong>astrea::astro::Attitude</strong></a>, <a href="../classastrea_1_1astro_1_1Cartesian/"><strong>astrea::astro::Cartesian</strong></a>, <a href="../structastrea_1_1astro_1_1CartesianVector/"><strong>astrea::astro::CartesianVector</strong></a>, <a href="../classastrea_1_1astro_1_1Cylindrical/"><strong>astrea::astro::Cylindrical</strong></a>, <a href="../classastrea_1_1astro_1_1Equinoctial/"><strong>astrea::astro::Equinoctial</strong></a>, <a href="../classastrea_1_1astro_1_1EulerAngles/"><strong>astrea::astro::EulerAngles</strong></a>, <a href="../classastrea_1_1astro_1_1Geocentric/"><strong>astrea::astro::Geocentric</strong></a>, <a href="../classastrea_1_1astro_1_1Geodetic/"><strong>astrea::astro::Geodetic</strong></a>, <a href="../classastrea_1_1astro_1_1Keplerian/"><strong>astrea::astro::Keplerian</strong></a>, <a href="../classastrea_1_1astro_1_1OrbitalElements/"><strong>astrea::astro::OrbitalElements</strong></a>, <a href="../classastrea_1_1astro_1_1Quaternion/"><strong>astrea::astro::Quaternion</strong></a>, <a href="../classastrea_1_1astro_1_1Spherical/"><strong>astrea::astro::Spherical</strong></a>, <a href="../classastrea_1_1astro_1_1State/"><strong>astrea::astro::State</strong></a>)</li>
 <li><strong>operator/=</strong> (<a href="../classastrea_1_1astro_1_1AngularVelocities/"><strong>astrea::astro::AngularVelocities</strong></a>, <a href="../classastrea_1_1astro_1_1Attitude/"><strong>astrea::astro::Attitude</strong></a>, <a href="../classastrea_1_1astro_1_1Cartesian/"><strong>astrea::astro::Cartesian</strong></a>, <a href="../structastrea_1_1astro_1_1CartesianVector/"><strong>astrea::astro::CartesianVector</strong></a>, <a href="../classastrea_1_1astro_1_1Cylindrical/"><strong>astrea::astro::Cylindrical</strong></a>, <a href="../classastrea_1_1astro_1_1Equinoctial/"><strong>astrea::astro::Equinoctial</strong></a>, <a href="../classastrea_1_1astro_1_1EulerAngles/"><strong>astrea::astro::EulerAngles</strong></a>, <a href="../classastrea_1_1astro_1_1Geocentric/"><strong>astrea::astro::Geocentric</strong></a>, <a href="../classastrea_1_1astro_1_1Geodetic/"><strong>astrea::astro::Geodetic</strong></a>, <a href="../classastrea_1_1astro_1_1Keplerian/"><strong>astrea::astro::Keplerian</strong></a>, <a href="../classastrea_1_1astro_1_1OrbitalElements/"><strong>astrea::astro::OrbitalElements</strong></a>, <a href="../classastrea_1_1astro_1_1Quaternion/"><strong>astrea::astro::Quaternion</strong></a>, <a href="../classastrea_1_1astro_1_1Spherical/"><strong>astrea::astro::Spherical</strong></a>, <a href="../classastrea_1_1astro_1_1State/"><strong>astrea::astro::State</strong></a>)</li>
 <li><strong>operator=</strong> (<a href="../classastrea_1_1astro_1_1AngularVelocities/"><strong>astrea::astro::AngularVelocities</strong></a>, <a href="../classastrea_1_1astro_1_1Cartesian/"><strong>astrea::astro::Cartesian</strong></a>, <a href="../structastrea_1_1astro_1_1CartesianVector/"><strong>astrea::astro::CartesianVector</strong></a>, <a href="../classastrea_1_1astro_1_1Cylindrical/"><strong>astrea::astro::Cylindrical</strong></a>, <a href="../classastrea_1_1astro_1_1Equinoctial/"><strong>astrea::astro::Equinoctial</strong></a>, <a href="../classastrea_1_1astro_1_1EulerAngles/"><strong>astrea::astro::EulerAngles</strong></a>, <a href="../classastrea_1_1astro_1_1Event/"><strong>astrea::astro::Event</strong></a>, <a href="../classastrea_1_1astro_1_1ForceModel/"><strong>astrea::astro::ForceModel</strong></a>, <a href="../classastrea_1_1astro_1_1Geocentric/"><strong>astrea::astro::Geocentric</strong></a>, <a href="../classastrea_1_1astro_1_1Geodetic/"><strong>astrea::astro::Geodetic</strong></a>, <a href="../classastrea_1_1astro_1_1Keplerian/"><strong>astrea::astro::Keplerian</strong></a>, <a href="../classastrea_1_1astro_1_1PayloadPlatform/"><strong>astrea::astro::PayloadPlatform</strong></a>, <a href="../classastrea_1_1astro_1_1Quaternion/"><strong>astrea::astro::Quaternion</strong></a>, <a href="../classastrea_1_1astro_1_1Spherical/"><strong>astrea::astro::Spherical</strong></a>, <a href="../classastrea_1_1astro_1_1TwoLineElements/"><strong>astrea::astro::TwoLineElements</strong></a>, <a href="../classastrea_1_1astro_1_1Vehicle/"><strong>astrea::astro::Vehicle</strong></a>, <a href="../structastrea_1_1astro_1_1detail_1_1EventInner/"><strong>astrea::astro::detail::EventInner</strong></a>, <a href="../structastrea_1_1astro_1_1detail_1_1VehicleInner/"><strong>astrea::astro::detail::VehicleInner</strong></a>)</li>
@@ -6950,7 +6956,7 @@ You're not viewing the latest version.
 <li><strong>OblatenessForce</strong> (<a href="../classastrea_1_1astro_1_1OblatenessForce/"><strong>astrea::astro::OblatenessForce</strong></a>)</li>
 <li><strong>OrbitalElementPartials</strong> (<a href="../classastrea_1_1astro_1_1OrbitalElementPartials/"><strong>astrea::astro::OrbitalElementPartials</strong></a>)</li>
 <li><strong>OrbitalElements</strong> (<a href="../classastrea_1_1astro_1_1OrbitalElements/"><strong>astrea::astro::OrbitalElements</strong></a>)</li>
-<li><strong>Output</strong> (<a href="../classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Output/"><strong>astrea::astro::planets::NRLMSISE00::Output</strong></a>)</li>
+<li><strong>Output</strong> (<a href="../classastrea_1_1astro_1_1planets_1_1Output/"><strong>astrea::astro::planets::Output</strong></a>)</li>
 </ul>
 <h2 id="p">p<a class="headerlink" href="#p" title="Permanent link">&para;</a></h2>
 <ul>
@@ -6986,9 +6992,11 @@ You're not viewing the latest version.
 <h2 id="s">s<a class="headerlink" href="#s" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>sat_iterator</strong> (<a href="../classastrea_1_1astro_1_1Constellation_1_1sat__iterator/"><strong>astrea::astro::Constellation::sat_iterator</strong></a>, <a href="../classastrea_1_1astro_1_1Shell_1_1sat__iterator/"><strong>astrea::astro::Shell::sat_iterator</strong></a>)</li>
-<li><strong>size</strong> (<a href="../classastrea_1_1astro_1_1Constellation/"><strong>astrea::astro::Constellation</strong></a>, <a href="../classastrea_1_1astro_1_1ForceModel/"><strong>astrea::astro::ForceModel</strong></a>, <a href="../classastrea_1_1astro_1_1Plane/"><strong>astrea::astro::Plane</strong></a>, <a href="../classastrea_1_1astro_1_1Shell/"><strong>astrea::astro::Shell</strong></a>, <a href="../classastrea_1_1astro_1_1StateHistory/"><strong>astrea::astro::StateHistory</strong></a>)</li>
+<li><strong>size</strong> (<a href="../classastrea_1_1astro_1_1Constellation/"><strong>astrea::astro::Constellation</strong></a>, <a href="../classastrea_1_1astro_1_1ForceModel/"><strong>astrea::astro::ForceModel</strong></a>, <a href="../classastrea_1_1astro_1_1Plane/"><strong>astrea::astro::Plane</strong></a>, <a href="../classastrea_1_1astro_1_1Shell/"><strong>astrea::astro::Shell</strong></a>, <a href="../classastrea_1_1astro_1_1SpaceWeatherData/"><strong>astrea::astro::SpaceWeatherData</strong></a>, <a href="../classastrea_1_1astro_1_1SpaceWeatherProvider/"><strong>astrea::astro::SpaceWeatherProvider</strong></a>, <a href="../classastrea_1_1astro_1_1StateHistory/"><strong>astrea::astro::StateHistory</strong></a>)</li>
 <li><strong>seconds_in_local_day</strong> (<a href="../classastrea_1_1astro_1_1Date/"><strong>astrea::astro::Date</strong></a>)</li>
 <li><strong>sys</strong> (<a href="../classastrea_1_1astro_1_1Date/"><strong>astrea::astro::Date</strong></a>)</li>
+<li><strong>set_space_weather_provider</strong> (<a href="../classastrea_1_1astro_1_1ForceModel/"><strong>astrea::astro::ForceModel</strong></a>)</li>
+<li><strong>space_weather_provider</strong> (<a href="../classastrea_1_1astro_1_1ForceModel/"><strong>astrea::astro::ForceModel</strong></a>)</li>
 <li><strong>set_abs_tol</strong> (<a href="../classastrea_1_1astro_1_1Integrator/"><strong>astrea::astro::Integrator</strong></a>)</li>
 <li><strong>set_equations_of_motion</strong> (<a href="../classastrea_1_1astro_1_1Integrator/"><strong>astrea::astro::Integrator</strong></a>)</li>
 <li><strong>set_initial_timestep</strong> (<a href="../classastrea_1_1astro_1_1Integrator/"><strong>astrea::astro::Integrator</strong></a>)</li>
@@ -7016,6 +7024,9 @@ You're not viewing the latest version.
 <li><strong>schedule_event</strong> (<a href="../classastrea_1_1astro_1_1Schedule/"><strong>astrea::astro::Schedule</strong></a>)</li>
 <li><strong>Shell</strong> (<a href="../classastrea_1_1astro_1_1Shell/"><strong>astrea::astro::Shell</strong></a>)</li>
 <li><strong>SolarRadiationPressure</strong> (<a href="../classastrea_1_1astro_1_1SolarRadiationPressure/"><strong>astrea::astro::SolarRadiationPressure</strong></a>)</li>
+<li><strong>SpaceWeatherData</strong> (<a href="../classastrea_1_1astro_1_1SpaceWeatherData/"><strong>astrea::astro::SpaceWeatherData</strong></a>)</li>
+<li><strong>startDate</strong> (<a href="../classastrea_1_1astro_1_1SpaceWeatherData/"><strong>astrea::astro::SpaceWeatherData</strong></a>)</li>
+<li><strong>SpaceWeatherProvider</strong> (<a href="../classastrea_1_1astro_1_1SpaceWeatherProvider/"><strong>astrea::astro::SpaceWeatherProvider</strong></a>)</li>
 <li><strong>Spacecraft</strong> (<a href="../classastrea_1_1astro_1_1Spacecraft/"><strong>astrea::astro::Spacecraft</strong></a>)</li>
 <li><strong>set_coefficient_of_drag</strong> (<a href="../classastrea_1_1astro_1_1Spacecraft/"><strong>astrea::astro::Spacecraft</strong></a>)</li>
 <li><strong>set_coefficient_of_lift</strong> (<a href="../classastrea_1_1astro_1_1Spacecraft/"><strong>astrea::astro::Spacecraft</strong></a>)</li>
@@ -7043,13 +7054,9 @@ You're not viewing the latest version.
 <li><strong>StepWatcher</strong> (<a href="../structastrea_1_1astro_1_1StepWatcher/"><strong>astrea::astro::StepWatcher</strong></a>)</li>
 <li><strong>switch_off</strong> (<a href="../classastrea_1_1astro_1_1Thruster/"><strong>astrea::astro::Thruster</strong></a>, <a href="../classastrea_1_1astro_1_1ThrusterParameters/"><strong>astrea::astro::ThrusterParameters</strong></a>)</li>
 <li><strong>switch_on</strong> (<a href="../classastrea_1_1astro_1_1Thruster/"><strong>astrea::astro::Thruster</strong></a>, <a href="../classastrea_1_1astro_1_1ThrusterParameters/"><strong>astrea::astro::ThrusterParameters</strong></a>)</li>
-<li><strong>scalh</strong> (<a href="../classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Output/"><strong>astrea::astro::planets::NRLMSISE00::Output</strong></a>)</li>
-<li><strong>set_density</strong> (<a href="../classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Output/"><strong>astrea::astro::planets::NRLMSISE00::Output</strong></a>)</li>
-<li><strong>set_temperature</strong> (<a href="../classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Output/"><strong>astrea::astro::planets::NRLMSISE00::Output</strong></a>)</li>
-<li><strong>sg0</strong> (<a href="../classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Output/"><strong>astrea::astro::planets::NRLMSISE00::Output</strong></a>)</li>
-<li><strong>spline</strong> (<a href="../classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Output/"><strong>astrea::astro::planets::NRLMSISE00::Output</strong></a>)</li>
-<li><strong>splini</strong> (<a href="../classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Output/"><strong>astrea::astro::planets::NRLMSISE00::Output</strong></a>)</li>
-<li><strong>splint</strong> (<a href="../classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Output/"><strong>astrea::astro::planets::NRLMSISE00::Output</strong></a>)</li>
+<li><strong>set_density</strong> (<a href="../classastrea_1_1astro_1_1planets_1_1Output/"><strong>astrea::astro::planets::Output</strong></a>)</li>
+<li><strong>set_temperature</strong> (<a href="../classastrea_1_1astro_1_1planets_1_1Output/"><strong>astrea::astro::planets::Output</strong></a>)</li>
+<li><strong>sg0</strong> (<a href="../classastrea_1_1astro_1_1planets_1_1Output/"><strong>astrea::astro::planets::Output</strong></a>)</li>
 </ul>
 <h2 id="t">t<a class="headerlink" href="#t" title="Permanent link">&para;</a></h2>
 <ul>
@@ -7127,7 +7134,7 @@ You're not viewing the latest version.
 <li><strong>ZXZ</strong> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>astrea::astro::DirectionCosineMatrix</strong></a>, <a href="../structastrea_1_1astro_1_1DirectionCosineMatrixAccel/"><strong>astrea::astro::DirectionCosineMatrixAccel</strong></a>, <a href="../structastrea_1_1astro_1_1DirectionCosineMatrixRate/"><strong>astrea::astro::DirectionCosineMatrixRate</strong></a>)</li>
 <li><strong>ZYX</strong> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>astrea::astro::DirectionCosineMatrix</strong></a>, <a href="../structastrea_1_1astro_1_1DirectionCosineMatrixAccel/"><strong>astrea::astro::DirectionCosineMatrixAccel</strong></a>, <a href="../structastrea_1_1astro_1_1DirectionCosineMatrixRate/"><strong>astrea::astro::DirectionCosineMatrixRate</strong></a>)</li>
 <li><strong>ZYZ</strong> (<a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>astrea::astro::DirectionCosineMatrix</strong></a>, <a href="../structastrea_1_1astro_1_1DirectionCosineMatrixAccel/"><strong>astrea::astro::DirectionCosineMatrixAccel</strong></a>, <a href="../structastrea_1_1astro_1_1DirectionCosineMatrixRate/"><strong>astrea::astro::DirectionCosineMatrixRate</strong></a>)</li>
-<li><strong>zeta</strong> (<a href="../classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Output/"><strong>astrea::astro::planets::NRLMSISE00::Output</strong></a>)</li>
+<li><strong>zeta</strong> (<a href="../classastrea_1_1astro_1_1planets_1_1Output/"><strong>astrea::astro::planets::Output</strong></a>)</li>
 </ul>
 <h2 id="_1">~<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <ul>
@@ -7165,6 +7172,7 @@ You're not viewing the latest version.
 <li><strong>~Plane</strong> (<a href="../classastrea_1_1astro_1_1Plane/"><strong>astrea::astro::Plane</strong></a>)</li>
 <li><strong>~Shell</strong> (<a href="../classastrea_1_1astro_1_1Shell/"><strong>astrea::astro::Shell</strong></a>)</li>
 <li><strong>~SolarRadiationPressure</strong> (<a href="../classastrea_1_1astro_1_1SolarRadiationPressure/"><strong>astrea::astro::SolarRadiationPressure</strong></a>)</li>
+<li><strong>~SpaceWeatherData</strong> (<a href="../classastrea_1_1astro_1_1SpaceWeatherData/"><strong>astrea::astro::SpaceWeatherData</strong></a>)</li>
 <li><strong>~Spacecraft</strong> (<a href="../classastrea_1_1astro_1_1Spacecraft/"><strong>astrea::astro::Spacecraft</strong></a>)</li>
 <li><strong>~Spherical</strong> (<a href="../classastrea_1_1astro_1_1Spherical/"><strong>astrea::astro::Spherical</strong></a>)</li>
 <li><strong>~StateHistory</strong> (<a href="../classastrea_1_1astro_1_1StateHistory/"><strong>astrea::astro::StateHistory</strong></a>)</li>
@@ -7283,7 +7291,7 @@ You're not viewing the latest version.
       <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.action.edit", "content.action.view", "content.code.annotate", "content.code.copy", "navigation.indexes", "navigation.tabs", "navigation.footer", "navigation.top", "search.highlight", "search.share", "search.suggest", "toc.follow", "toc.integrate"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
       
         <script src="../../javascripts/ce_embed.js"></script>
       

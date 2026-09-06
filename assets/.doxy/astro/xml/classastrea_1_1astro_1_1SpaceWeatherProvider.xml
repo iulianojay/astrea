@@ -1,0 +1,226 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classastrea_1_1astro_1_1SpaceWeatherProvider" kind="class" language="C++" prot="public">
+    <compoundname>astrea::astro::SpaceWeatherProvider</compoundname>
+    <includes refid="SpaceWeatherProvider_8hpp" local="no">SpaceWeatherProvider.hpp</includes>
+    <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="classastrea_1_1astro_1_1SpaceWeatherProvider_1a46604049c019e998a620591f6de4a505" prot="public" static="no">
+        <type>std::shared_ptr&lt; const <ref refid="classastrea_1_1astro_1_1SpaceWeatherData" kindref="compound">SpaceWeatherData</ref> &gt;</type>
+        <definition>using astrea::astro::SpaceWeatherProvider::DataPtr =  std::shared_ptr&lt;const SpaceWeatherData&gt;</definition>
+        <argsstring></argsstring>
+        <name>DataPtr</name>
+        <qualifiedname>astrea::astro::SpaceWeatherProvider::DataPtr</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/SpaceWeatherProvider.hpp" line="35" column="5" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/SpaceWeatherProvider.hpp" bodystart="35" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classastrea_1_1astro_1_1SpaceWeatherProvider_1a2bf6d9337563fcb273f17e40ebadd6a6" prot="private" static="no" mutable="no">
+        <type>DataPtr</type>
+        <definition>DataPtr astrea::astro::SpaceWeatherProvider::_data</definition>
+        <argsstring></argsstring>
+        <name>_data</name>
+        <qualifiedname>astrea::astro::SpaceWeatherProvider::_data</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/SpaceWeatherProvider.hpp" line="96" column="13" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/SpaceWeatherProvider.hpp" bodystart="96" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classastrea_1_1astro_1_1SpaceWeatherProvider_1a77945f31db4c36301785ca6245c98b27" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>astrea::astro::SpaceWeatherProvider::SpaceWeatherProvider</definition>
+        <argsstring>()=default</argsstring>
+        <name>SpaceWeatherProvider</name>
+        <qualifiedname>astrea::astro::SpaceWeatherProvider::SpaceWeatherProvider</qualifiedname>
+        <briefdescription>
+<para>Default constructor for <ref refid="classastrea_1_1astro_1_1SpaceWeatherProvider" kindref="compound">SpaceWeatherProvider</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/SpaceWeatherProvider.hpp" line="40" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1SpaceWeatherProvider_1aba23714c837f3fce23d8a10897009cf6" prot="public" static="no" const="no" explicit="yes" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>astrea::astro::SpaceWeatherProvider::SpaceWeatherProvider</definition>
+        <argsstring>(DataPtr data)</argsstring>
+        <name>SpaceWeatherProvider</name>
+        <qualifiedname>astrea::astro::SpaceWeatherProvider::SpaceWeatherProvider</qualifiedname>
+        <param>
+          <type>DataPtr</type>
+          <declname>data</declname>
+        </param>
+        <briefdescription>
+<para>Construct a <ref refid="classastrea_1_1astro_1_1SpaceWeatherProvider" kindref="compound">SpaceWeatherProvider</ref> with an explicit immutable space weather snapshot. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>data</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Shared immutable space weather data. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/SpaceWeatherProvider.hpp" line="47" column="14" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/SpaceWeatherProvider.hpp" bodystart="47" bodyend="50"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1SpaceWeatherProvider_1a070ff3307a5cffd316b6779c6b30735c" prot="public" static="no" const="no" explicit="yes" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>astrea::astro::SpaceWeatherProvider::SpaceWeatherProvider</definition>
+        <argsstring>(SpaceWeatherData data)</argsstring>
+        <name>SpaceWeatherProvider</name>
+        <qualifiedname>astrea::astro::SpaceWeatherProvider::SpaceWeatherProvider</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1SpaceWeatherData" kindref="compound">SpaceWeatherData</ref></type>
+          <declname>data</declname>
+        </param>
+        <briefdescription>
+<para>Construct a <ref refid="classastrea_1_1astro_1_1SpaceWeatherProvider" kindref="compound">SpaceWeatherProvider</ref> with a pre-built space weather data object. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>data</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Space weather data to share. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/SpaceWeatherProvider.hpp" line="57" column="14" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/SpaceWeatherProvider.hpp" bodystart="57" bodyend="60"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1SpaceWeatherProvider_1ab8d4fde0963d8936bf9583705deede5d" prot="public" static="no" const="no" explicit="yes" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename...</type>
+            <declname>Args</declname>
+            <defname>Args</defname>
+          </param>
+        </templateparamlist>
+        <type></type>
+        <definition>astrea::astro::SpaceWeatherProvider::SpaceWeatherProvider</definition>
+        <argsstring>(std::in_place_t, Args &amp;&amp;... args)</argsstring>
+        <name>SpaceWeatherProvider</name>
+        <qualifiedname>astrea::astro::SpaceWeatherProvider::SpaceWeatherProvider</qualifiedname>
+        <param>
+          <type>std::in_place_t</type>
+        </param>
+        <param>
+          <type>Args &amp;&amp;...</type>
+          <declname>args</declname>
+        </param>
+        <briefdescription>
+<para>Construct a <ref refid="classastrea_1_1astro_1_1SpaceWeatherProvider" kindref="compound">SpaceWeatherProvider</ref> with a pre-built space weather data object in place. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>args</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Arguments to construct the <ref refid="classastrea_1_1astro_1_1SpaceWeatherData" kindref="compound">SpaceWeatherData</ref> object. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/SpaceWeatherProvider.hpp" line="68" column="14" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/SpaceWeatherProvider.hpp" bodystart="68" bodyend="71"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1SpaceWeatherProvider_1aa9226c14ac7a450f9e55b77d98aa741e" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::size_t</type>
+        <definition>std::size_t astrea::astro::SpaceWeatherProvider::size</definition>
+        <argsstring>() const</argsstring>
+        <name>size</name>
+        <qualifiedname>astrea::astro::SpaceWeatherProvider::size</qualifiedname>
+        <briefdescription>
+<para>Returns the number of space weather data entries. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>std::size_t The number of space weather data entries. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/SpaceWeatherProvider.hpp" line="78" column="18" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/SpaceWeatherProvider.hpp" bodystart="78" bodyend="78"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1SpaceWeatherProvider_1a2cefbf67aee622009b4e5b3069aa5b24" prot="public" static="no" const="yes" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool astrea::astro::SpaceWeatherProvider::empty</definition>
+        <argsstring>() const noexcept</argsstring>
+        <name>empty</name>
+        <qualifiedname>astrea::astro::SpaceWeatherProvider::empty</qualifiedname>
+        <briefdescription>
+<para>Checks if the space weather data is empty. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>true If there are no space weather data entries. </para>
+</simplesect>
+<simplesect kind="return"><para>false If there are space weather data entries. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/SpaceWeatherProvider.hpp" line="86" column="11" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/SpaceWeatherProvider.hpp" bodystart="86" bodyend="86"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1SpaceWeatherProvider_1ac62e1a80bc72c9ecce5a5dc278d36e2c" prot="public" static="no" const="yes" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type>const DataPtr &amp;</type>
+        <definition>const DataPtr &amp; astrea::astro::SpaceWeatherProvider::data</definition>
+        <argsstring>() const noexcept</argsstring>
+        <name>data</name>
+        <qualifiedname>astrea::astro::SpaceWeatherProvider::data</qualifiedname>
+        <briefdescription>
+<para>Access the space weather data snapshot. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>const DataPtr&amp; Shared pointer to the immutable space weather data. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/SpaceWeatherProvider.hpp" line="93" column="20" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/SpaceWeatherProvider.hpp" bodystart="93" bodyend="93"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Lightweight provider that shares an immutable space weather data snapshot. Using this layer of abstraction for now to enable data hot-swapping in the future if needed. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="astrea/astro/astro/propagation/force_models/space_weather/SpaceWeatherProvider.hpp" line="33" column="1" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/SpaceWeatherProvider.hpp" bodystart="33" bodyend="97"/>
+    <listofallmembers>
+      <member refid="classastrea_1_1astro_1_1SpaceWeatherProvider_1a2bf6d9337563fcb273f17e40ebadd6a6" prot="private" virt="non-virtual"><scope>astrea::astro::SpaceWeatherProvider</scope><name>_data</name></member>
+      <member refid="classastrea_1_1astro_1_1SpaceWeatherProvider_1ac62e1a80bc72c9ecce5a5dc278d36e2c" prot="public" virt="non-virtual"><scope>astrea::astro::SpaceWeatherProvider</scope><name>data</name></member>
+      <member refid="classastrea_1_1astro_1_1SpaceWeatherProvider_1a46604049c019e998a620591f6de4a505" prot="public" virt="non-virtual"><scope>astrea::astro::SpaceWeatherProvider</scope><name>DataPtr</name></member>
+      <member refid="classastrea_1_1astro_1_1SpaceWeatherProvider_1a2cefbf67aee622009b4e5b3069aa5b24" prot="public" virt="non-virtual"><scope>astrea::astro::SpaceWeatherProvider</scope><name>empty</name></member>
+      <member refid="classastrea_1_1astro_1_1SpaceWeatherProvider_1aa9226c14ac7a450f9e55b77d98aa741e" prot="public" virt="non-virtual"><scope>astrea::astro::SpaceWeatherProvider</scope><name>size</name></member>
+      <member refid="classastrea_1_1astro_1_1SpaceWeatherProvider_1a77945f31db4c36301785ca6245c98b27" prot="public" virt="non-virtual"><scope>astrea::astro::SpaceWeatherProvider</scope><name>SpaceWeatherProvider</name></member>
+      <member refid="classastrea_1_1astro_1_1SpaceWeatherProvider_1aba23714c837f3fce23d8a10897009cf6" prot="public" virt="non-virtual"><scope>astrea::astro::SpaceWeatherProvider</scope><name>SpaceWeatherProvider</name></member>
+      <member refid="classastrea_1_1astro_1_1SpaceWeatherProvider_1a070ff3307a5cffd316b6779c6b30735c" prot="public" virt="non-virtual"><scope>astrea::astro::SpaceWeatherProvider</scope><name>SpaceWeatherProvider</name></member>
+      <member refid="classastrea_1_1astro_1_1SpaceWeatherProvider_1ab8d4fde0963d8936bf9583705deede5d" prot="public" virt="non-virtual"><scope>astrea::astro::SpaceWeatherProvider</scope><name>SpaceWeatherProvider</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

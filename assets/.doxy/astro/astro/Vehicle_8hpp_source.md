@@ -22,6 +22,7 @@
 #include <astro/frames/framework/CartesianVector.hpp>
 #include <astro/platforms/InertiaTensor.hpp>
 #include <astro/propagation/force_models/Perturbation.hpp>
+#include <astro/state/State.hpp>
 #include <astro/time/Date.hpp>
 #include <astro/types/concepts.hpp>
 #include <astro/types/type_traits.hpp>
@@ -31,43 +32,43 @@ namespace astrea {
 namespace astro {
 
 template <typename T>
-concept HasGetMass = requires(const T vehicle) {
-    { vehicle.get_mass() } -> std::same_as<Mass>;
+concept HasGetMass = requires(const T vehicle, const State& state) {
+    { vehicle.get_mass(state) } -> std::same_as<Mass>;
 };
 
 template <typename T>
-concept HasGetInertiaTensor = requires(const T vehicle) {
-    { vehicle.get_inertia_tensor() } -> std::same_as<InertiaTensor<frames::dynamic::body>>;
+concept HasGetInertiaTensor = requires(const T vehicle, const State& state) {
+    { vehicle.get_inertia_tensor(state) } -> std::same_as<InertiaTensor<frames::dynamic::body>>;
 };
 
 template <typename T>
-concept HasGetRamArea = requires(const T vehicle) {
-    { vehicle.get_ram_area() } -> std::same_as<SurfaceArea>;
+concept HasGetRamArea = requires(const T vehicle, const State& state) {
+    { vehicle.get_ram_area(state) } -> std::same_as<SurfaceArea>;
 };
 
 template <typename T>
-concept HasGetCoefficientOfDrag = requires(const T vehicle) {
-    { vehicle.get_coefficient_of_drag() } -> std::same_as<Unitless>;
+concept HasGetCoefficientOfDrag = requires(const T vehicle, const State& state) {
+    { vehicle.get_coefficient_of_drag(state) } -> std::same_as<Unitless>;
 };
 
 template <typename T>
-concept HasGetLiftArea = requires(const T vehicle) {
-    { vehicle.get_lift_area() } -> std::same_as<SurfaceArea>;
+concept HasGetLiftArea = requires(const T vehicle, const State& state) {
+    { vehicle.get_lift_area(state) } -> std::same_as<SurfaceArea>;
 };
 
 template <typename T>
-concept HasGetCoefficientOfLift = requires(const T vehicle) {
-    { vehicle.get_coefficient_of_lift() } -> std::same_as<Unitless>;
+concept HasGetCoefficientOfLift = requires(const T vehicle, const State& state) {
+    { vehicle.get_coefficient_of_lift(state) } -> std::same_as<Unitless>;
 };
 
 template <typename T>
-concept HasGetSolarArea = requires(const T vehicle) {
-    { vehicle.get_solar_area() } -> std::same_as<SurfaceArea>;
+concept HasGetSolarArea = requires(const T vehicle, const State& state) {
+    { vehicle.get_solar_area(state) } -> std::same_as<SurfaceArea>;
 };
 
 template <typename T>
-concept HasGetCoefficientOfReflectivity = requires(const T vehicle) {
-    { vehicle.get_coefficient_of_reflectivity() } -> std::same_as<Unitless>;
+concept HasGetCoefficientOfReflectivity = requires(const T vehicle, const State& state) {
+    { vehicle.get_coefficient_of_reflectivity(state) } -> std::same_as<Unitless>;
 };
 
 template <typename T>
@@ -91,24 +92,24 @@ struct VehicleInnerBase {
 
     virtual ~VehicleInnerBase() {}
 
-    virtual Mass get_mass() const = 0;
+    virtual Mass get_mass(const State& state) const = 0;
 
-    virtual InertiaTensor<frames::dynamic::body> get_inertia_tensor() const
+    virtual InertiaTensor<frames::dynamic::body> get_inertia_tensor(const State& state) const
     {
         return InertiaTensor<frames::dynamic::body>();
     }
 
-    virtual SurfaceArea get_ram_area() const = 0;
+    virtual SurfaceArea get_ram_area(const State& state) const = 0;
 
-    virtual SurfaceArea get_lift_area() const = 0;
+    virtual SurfaceArea get_lift_area(const State& state) const = 0;
 
-    virtual SurfaceArea get_solar_area() const = 0;
+    virtual SurfaceArea get_solar_area(const State& state) const = 0;
 
-    virtual Unitless get_coefficient_of_drag() const = 0;
+    virtual Unitless get_coefficient_of_drag(const State& state) const = 0;
 
-    virtual Unitless get_coefficient_of_lift() const = 0;
+    virtual Unitless get_coefficient_of_lift(const State& state) const = 0;
 
-    virtual Unitless get_coefficient_of_reflectivity() const = 0;
+    virtual Unitless get_coefficient_of_reflectivity(const State& state) const = 0;
 
     virtual Perturbation get_control_authority(const State& state) const = 0;
 
@@ -146,118 +147,130 @@ struct VehicleInner final : public VehicleInnerBase {
     {
     }
 
-    Mass get_mass() const final { return _value.get_mass(); }
+    Mass get_mass(const State& state) const final { return _value.get_mass(state); }
 
-    InertiaTensor<frames::dynamic::body> get_inertia_tensor() const final { return get_inertia_tensor_impl(_value); }
+    InertiaTensor<frames::dynamic::body> get_inertia_tensor(const State& state) const final
+    {
+        return get_inertia_tensor_impl(_value, state);
+    }
 
     template <typename U>
         requires(!HasGetInertiaTensor<U>)
-    static InertiaTensor<frames::dynamic::body> get_inertia_tensor_impl(const U&)
+    static InertiaTensor<frames::dynamic::body> get_inertia_tensor_impl(const U&, const State&)
     {
         return InertiaTensor<frames::dynamic::body>();
     }
 
     template <typename U>
         requires(HasGetInertiaTensor<U>)
-    static InertiaTensor<frames::dynamic::body> get_inertia_tensor_impl(const U& value)
+    static InertiaTensor<frames::dynamic::body> get_inertia_tensor_impl(const U& value, const State& state)
     {
-        return value.get_inertia_tensor();
+        return value.get_inertia_tensor(state);
     }
 
-    SurfaceArea get_ram_area() const final { return get_ram_area_impl(_value); }
+    SurfaceArea get_ram_area(const State& state) const final { return get_ram_area_impl(_value, state); }
 
     template <typename U>
         requires(!HasGetRamArea<U>)
-    static SurfaceArea get_ram_area_impl(const U&)
+    static SurfaceArea get_ram_area_impl(const U&, const State&)
     {
-        return 0.0 * mp_units::pow<2>(astrea::detail::distance_unit);
+        return SurfaceArea::zero();
     }
 
     template <typename U>
         requires(HasGetRamArea<U>)
-    static SurfaceArea get_ram_area_impl(const U& value)
+    static SurfaceArea get_ram_area_impl(const U& value, const State& state)
     {
-        return value.get_ram_area();
+        return value.get_ram_area(state);
     }
 
-    SurfaceArea get_lift_area() const final { return get_lift_area_impl(_value); }
+    SurfaceArea get_lift_area(const State& state) const final { return get_lift_area_impl(_value, state); }
 
     template <typename U>
         requires(!HasGetLiftArea<U>)
-    static SurfaceArea get_lift_area_impl(const U&)
+    static SurfaceArea get_lift_area_impl(const U&, const State&)
     {
-        return 0.0 * mp_units::pow<2>(astrea::detail::distance_unit);
+        return SurfaceArea::zero();
     }
 
     template <typename U>
         requires(HasGetLiftArea<U>)
-    static SurfaceArea get_lift_area_impl(const U& value)
+    static SurfaceArea get_lift_area_impl(const U& value, const State& state)
     {
-        return value.get_lift_area();
+        return value.get_lift_area(state);
     }
 
-    SurfaceArea get_solar_area() const final { return get_solar_area_impl(_value); }
+    SurfaceArea get_solar_area(const State& state) const final { return get_solar_area_impl(_value, state); }
 
     template <typename U>
         requires(!HasGetSolarArea<U>)
-    static SurfaceArea get_solar_area_impl(const U&)
+    static SurfaceArea get_solar_area_impl(const U&, const State&)
     {
-        return 0.0 * mp_units::pow<2>(astrea::detail::distance_unit);
+        return SurfaceArea::zero();
     }
 
     template <typename U>
         requires(HasGetSolarArea<U>)
-    static SurfaceArea get_solar_area_impl(const U& value)
+    static SurfaceArea get_solar_area_impl(const U& value, const State& state)
     {
-        return value.get_solar_area();
+        return value.get_solar_area(state);
     }
 
-    Unitless get_coefficient_of_drag() const final { return get_coefficient_of_drag_impl(_value); }
+    Unitless get_coefficient_of_drag(const State& state) const final
+    {
+        return get_coefficient_of_drag_impl(_value, state);
+    }
 
     template <typename U>
         requires(!HasGetCoefficientOfDrag<U>)
-    static Unitless get_coefficient_of_drag_impl(const U&)
+    static Unitless get_coefficient_of_drag_impl(const U&, const State&)
     {
-        return 0.0 * mp_units::one;
+        return Unitless::zero();
     }
 
     template <typename U>
         requires(HasGetCoefficientOfDrag<U>)
-    static Unitless get_coefficient_of_drag_impl(const U& value)
+    static Unitless get_coefficient_of_drag_impl(const U& value, const State& state)
     {
-        return value.get_coefficient_of_drag();
+        return value.get_coefficient_of_drag(state);
     }
 
-    Unitless get_coefficient_of_lift() const final { return get_coefficient_of_lift_impl(_value); }
+    Unitless get_coefficient_of_lift(const State& state) const final
+    {
+        return get_coefficient_of_lift_impl(_value, state);
+    }
 
     template <typename U>
         requires(!HasGetCoefficientOfLift<U>)
-    static Unitless get_coefficient_of_lift_impl(const U&)
+    static Unitless get_coefficient_of_lift_impl(const U&, const State&)
     {
-        return 0.0 * mp_units::one;
+        return Unitless::zero();
     }
 
     template <typename U>
         requires(HasGetCoefficientOfLift<U>)
-    static Unitless get_coefficient_of_lift_impl(const U& value)
+    static Unitless get_coefficient_of_lift_impl(const U& value, const State& state)
     {
-        return value.get_coefficient_of_lift();
+        return value.get_coefficient_of_lift(state);
     }
 
-    Unitless get_coefficient_of_reflectivity() const final { return get_coefficient_of_reflectivity_impl(_value); }
+    Unitless get_coefficient_of_reflectivity(const State& state) const final
+    {
+        return get_coefficient_of_reflectivity_impl(_value, state);
+    }
 
     template <typename U>
         requires(!HasGetCoefficientOfReflectivity<U>)
-    static Unitless get_coefficient_of_reflectivity_impl(const U&)
+    static Unitless get_coefficient_of_reflectivity_impl(const U&, const State&)
     {
-        return 0.0 * mp_units::one;
+        return Unitless::zero();
     }
 
     template <typename U>
         requires(HasGetCoefficientOfReflectivity<U>)
-    static Unitless get_coefficient_of_reflectivity_impl(const U& value)
+    static Unitless get_coefficient_of_reflectivity_impl(const U& value, const State& state)
     {
-        return value.get_coefficient_of_reflectivity();
+        return value.get_coefficient_of_reflectivity(state);
     }
 
     std::string get_name() const override final { return get_name_impl(_value); }
@@ -363,21 +376,27 @@ class Vehicle {
         return ptr()->type() == typeid(T) ? &(p->_value) : nullptr;
     }
 
-    Mass get_mass() const { return ptr()->get_mass(); }
+    Mass get_mass(const State& state) const { return ptr()->get_mass(state); }
 
-    InertiaTensor<frames::dynamic::body> get_inertia_tensor() const { return ptr()->get_inertia_tensor(); }
+    InertiaTensor<frames::dynamic::body> get_inertia_tensor(const State& state) const
+    {
+        return ptr()->get_inertia_tensor(state);
+    }
 
-    SurfaceArea get_ram_area() const { return ptr()->get_ram_area(); }
+    SurfaceArea get_ram_area(const State& state) const { return ptr()->get_ram_area(state); }
 
-    SurfaceArea get_lift_area() const { return ptr()->get_lift_area(); }
+    SurfaceArea get_lift_area(const State& state) const { return ptr()->get_lift_area(state); }
 
-    SurfaceArea get_solar_area() const { return ptr()->get_solar_area(); }
+    SurfaceArea get_solar_area(const State& state) const { return ptr()->get_solar_area(state); }
 
-    Unitless get_coefficient_of_drag() const { return ptr()->get_coefficient_of_drag(); }
+    Unitless get_coefficient_of_drag(const State& state) const { return ptr()->get_coefficient_of_drag(state); }
 
-    Unitless get_coefficient_of_lift() const { return ptr()->get_coefficient_of_lift(); }
+    Unitless get_coefficient_of_lift(const State& state) const { return ptr()->get_coefficient_of_lift(state); }
 
-    Unitless get_coefficient_of_reflectivity() const { return ptr()->get_coefficient_of_reflectivity(); }
+    Unitless get_coefficient_of_reflectivity(const State& state) const
+    {
+        return ptr()->get_coefficient_of_reflectivity(state);
+    }
 
     Perturbation get_control_authority(const State& state) const { return ptr()->get_control_authority(state); }
 
@@ -390,15 +409,6 @@ class Vehicle {
 
   private:
     std::unique_ptr<detail::VehicleInnerBase> _ptr; 
-
-    Mass _mass;                                          
-    InertiaTensor<frames::dynamic::body> _inertiaTensor; 
-    SurfaceArea _ramArea;                                
-    SurfaceArea _liftArea;                               
-    SurfaceArea _solarArea;                              
-    Unitless _coefficientOfDrag;                         
-    Unitless _coefficientOfLift;                         
-    Unitless _coefficientOfReflectivity;                 
 
     detail::VehicleInnerBase const* ptr() const
     {

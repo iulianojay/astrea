@@ -39,8 +39,8 @@ _Per-species empirical parameters for NRLMSISE-00 diffusive and mixed-region den
 |  Unitless | [**c9**](#variable-c9)  <br>_anomalous O only: secondary thermal reference parameter_  |
 |  Distance | [**ha**](#variable-ha)  <br>_primary ccor correction scale height_  |
 |  Distance | [**hb**](#variable-hb)  <br>_secondary ccor correction scale height_  |
-|  Unitless | [**mix\_ratio**](#variable-mix_ratio)  <br>_dimensionless: mixing ratio / density correction factor_  |
-|  NumberDensity | [**n\_ref**](#variable-n_ref)  <br>_cm⁻³: reference number density at lower boundary_  |
+|  Unitless | [**mixRatio**](#variable-mixratio)  <br>_dimensionless: mixing ratio / density correction factor_  |
+|  NumberDensity | [**nRef**](#variable-nref)  <br>_cm⁻³: reference number density at lower boundary_  |
 |  Distance | [**za**](#variable-za)  <br>_primary ccor correction centre altitude (N2: unused, set to 0)_  |
 |  Distance | [**zb**](#variable-zb)  <br>_secondary ccor correction centre altitude_  |
 |  Distance | [**zh**](#variable-zh)  <br>_turbopause altitude_  |
@@ -149,11 +149,11 @@ Distance astrea::astro::planets::SpeciesModelParams::hb;
 
 
 
-### variable mix\_ratio 
+### variable mixRatio 
 
 _dimensionless: mixing ratio / density correction factor_ 
 ```C++
-Unitless astrea::astro::planets::SpeciesModelParams::mix_ratio;
+Unitless astrea::astro::planets::SpeciesModelParams::mixRatio;
 ```
 
 
@@ -163,11 +163,11 @@ Unitless astrea::astro::planets::SpeciesModelParams::mix_ratio;
 
 
 
-### variable n\_ref 
+### variable nRef 
 
 _cm⁻³: reference number density at lower boundary_ 
 ```C++
-NumberDensity astrea::astro::planets::SpeciesModelParams::n_ref;
+NumberDensity astrea::astro::planets::SpeciesModelParams::nRef;
 ```
 
 
@@ -218,5 +218,5 @@ Distance astrea::astro::planets::SpeciesModelParams::zh;
 <hr>
 
 ------------------------------
-The documentation for this class was generated from the following file `astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp`
+The documentation for this class was generated from the following file `astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp`
 

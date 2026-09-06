@@ -561,7 +561,7 @@
     <member refid="classastrea_1_1trace_1_1Viewer_1a3f794b31a184b07044fc1a46e436f92b" kind="function"><name>~Viewer</name></member>
     <member refid="classastrea_1_1trace_1_1Viewer_1a8808274d1fa9589e17d57475a8e20eae" kind="function"><name>get_id</name></member>
     <member refid="classastrea_1_1trace_1_1Viewer_1a513a18cb9ce42ff994d98a34adea411b" kind="function"><name>get_name</name></member>
-    <member refid="classastrea_1_1trace_1_1Viewer_1a0f8bd21a4ea7f902309dcb782b059378" kind="function"><name>get_mass</name></member>
+    <member refid="classastrea_1_1trace_1_1Viewer_1a4039f09099ebc6ad94b6e5abd82411be" kind="function"><name>get_mass</name></member>
     <member refid="classastrea_1_1trace_1_1Viewer_1a4917ec9cf49138d4958db447dc018a9e" kind="function"><name>get_position</name></member>
     <member refid="classastrea_1_1trace_1_1Viewer_1aecc380685935a6b2839558c4f820c655" kind="function"><name>get_velocity</name></member>
   </compound>

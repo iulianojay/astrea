@@ -9,8 +9,8 @@
       </param>
     </templateparamlist>
     <initializer>template&lt;typename T&gt;
-concept <ref refid="conceptastrea_1_1astro_1_1HasGetMass" kindref="compound">astrea::astro::HasGetMass</ref> =  requires(const T vehicle) {
-    { vehicle.get_mass() } -&gt; std::same_as&lt;Mass&gt;;
+concept <ref refid="conceptastrea_1_1astro_1_1HasGetMass" kindref="compound">astrea::astro::HasGetMass</ref> =  requires(const T vehicle, const State&amp; state) {
+    { vehicle.get_mass(state) } -&gt; std::same_as&lt;Mass&gt;;
 }    </initializer>
     <briefdescription>
 <para>Concept to check if a type has a method to get the mass. </para>
@@ -27,6 +27,6 @@ concept <ref refid="conceptastrea_1_1astro_1_1HasGetMass" kindref="compound">ast
 </parameterlist>
 </para>
     </detaileddescription>
-    <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="46" column="1"/>
+    <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="47" column="1"/>
   </compounddef>
 </doxygen>

@@ -33,6 +33,8 @@ class Keplerian {
 
   public:
     static constexpr auto frame = _frame_; 
+    template <IsFrame auto F>
+    using BaseType = Keplerian<F>;
 
     Keplerian(Unitless scale = 0.0 * astrea::detail::unitless) :
         _semimajor(scale * astrea::detail::distance_unit),

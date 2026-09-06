@@ -29,19 +29,45 @@
 namespace astrea {
 namespace astro {
 
+ForceModel::ForceModel() :
+    _spaceWeatherProvider(std::make_shared<SpaceWeatherProvider>())
+{
+}
+
+ForceModel::ForceModel(std::shared_ptr<const SpaceWeatherData> data) :
+    _spaceWeatherProvider(std::make_shared<SpaceWeatherProvider>(std::move(data)))
+{
+}
+
+ForceModel::ForceModel(SpaceWeatherProvider provider) :
+    _spaceWeatherProvider(std::make_shared<SpaceWeatherProvider>(std::move(provider)))
+{
+}
+
+ForceModel::ForceModel(SpaceWeatherData data) :
+    _spaceWeatherProvider(std::make_shared<SpaceWeatherProvider>(std::move(data)))
+{
+}
+
 ForceModel::ForceModel(const ForceModel& other)
 {
+    _spaceWeatherProvider = other._spaceWeatherProvider;
     for (const auto& [name, force] : other.forces) {
-        forces.emplace(name, force->clone());
+        auto clonedForce = force->clone();
+        clonedForce->bind_space_weather_provider(_spaceWeatherProvider);
+        forces.emplace(name, std::move(clonedForce));
     }
 }
 
 ForceModel& ForceModel::operator=(const ForceModel& other)
 {
     if (this != &other) {
+        _spaceWeatherProvider = other._spaceWeatherProvider;
         forces.clear();
         for (const auto& [name, force] : other.forces) {
-            forces.emplace(name, force->clone());
+            auto clonedForce = force->clone();
+            clonedForce->bind_space_weather_provider(_spaceWeatherProvider);
+            forces.emplace(name, std::move(clonedForce));
         }
     }
     return *this;
@@ -62,6 +88,24 @@ Perturbation ForceModel::compute_perturbations(const State& state, const Vehicle
 
 const std::unique_ptr<PerturbingForce>& ForceModel::at(const std::string& name) const { return forces.at(name); }
 
+
+void ForceModel::set_space_weather_provider(std::shared_ptr<const SpaceWeatherProvider> provider)
+{
+    _spaceWeatherProvider = std::move(provider);
+    for (auto& [name, force] : forces) {
+        force->bind_space_weather_provider(_spaceWeatherProvider);
+    }
+}
+
+void ForceModel::set_space_weather_provider(SpaceWeatherProvider provider)
+{
+    set_space_weather_provider(std::make_shared<SpaceWeatherProvider>(std::move(provider)));
+}
+
+void ForceModel::set_space_weather_provider(SpaceWeatherData data)
+{
+    set_space_weather_provider(std::make_shared<SpaceWeatherProvider>(std::move(data)));
+}
 
 } // namespace astro
 } // namespace astrea

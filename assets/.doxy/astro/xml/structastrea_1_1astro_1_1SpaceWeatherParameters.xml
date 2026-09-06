@@ -1,0 +1,249 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="structastrea_1_1astro_1_1SpaceWeatherParameters" kind="struct" language="C++" prot="public">
+    <compoundname>astrea::astro::SpaceWeatherParameters</compoundname>
+    <includes refid="SpaceWeatherData_8hpp" local="no">SpaceWeatherData.hpp</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structastrea_1_1astro_1_1SpaceWeatherParameters_1a76032f7c15f72d316b1b2f024ce36341" prot="public" static="no" mutable="no">
+        <type><ref refid="SpaceWeatherData_8hpp_1a889e166de4bd3a52f1e65cd97244bc29" kindref="member">MeasurementType</ref></type>
+        <definition>MeasurementType astrea::astro::SpaceWeatherParameters::measurement</definition>
+        <argsstring></argsstring>
+        <name>measurement</name>
+        <qualifiedname>astrea::astro::SpaceWeatherParameters::measurement</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/SpaceWeatherData.hpp" line="63" column="21" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/SpaceWeatherData.hpp" bodystart="63" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structastrea_1_1astro_1_1SpaceWeatherParameters_1a4b459772dd77d94a91ba55655e6f2dd9" prot="public" static="no" mutable="no">
+        <type><ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref></type>
+        <definition>Date astrea::astro::SpaceWeatherParameters::date</definition>
+        <argsstring></argsstring>
+        <name>date</name>
+        <qualifiedname>astrea::astro::SpaceWeatherParameters::date</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/SpaceWeatherData.hpp" line="64" column="10" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/SpaceWeatherData.hpp" bodystart="64" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structastrea_1_1astro_1_1SpaceWeatherParameters_1a21e55c8101993b5efabb43424678268f" prot="public" static="no" mutable="no">
+        <type>std::uint8_t</type>
+        <definition>std::uint8_t astrea::astro::SpaceWeatherParameters::bsrn</definition>
+        <argsstring></argsstring>
+        <name>bsrn</name>
+        <qualifiedname>astrea::astro::SpaceWeatherParameters::bsrn</qualifiedname>
+        <briefdescription>
+<para>Bartels Solar Rotation Number. A sequence of 27-day intervals counted continuously from 1832 Feb 8. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/SpaceWeatherData.hpp" line="65" column="18" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/SpaceWeatherData.hpp" bodystart="65" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structastrea_1_1astro_1_1SpaceWeatherParameters_1abf72fb97851ba243336b8760b71e22cb" prot="public" static="no" mutable="no">
+        <type>std::uint8_t</type>
+        <definition>std::uint8_t astrea::astro::SpaceWeatherParameters::nd</definition>
+        <argsstring></argsstring>
+        <name>nd</name>
+        <qualifiedname>astrea::astro::SpaceWeatherParameters::nd</qualifiedname>
+        <briefdescription>
+<para>Number of Day within the Bartels 27-day cycle (01-27). </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/SpaceWeatherData.hpp" line="66" column="18" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/SpaceWeatherData.hpp" bodystart="66" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structastrea_1_1astro_1_1SpaceWeatherParameters_1ad404723c86cad9ead0e389df62cd4d81" prot="public" static="no" mutable="no">
+        <type>std::array&lt; Unitless, 8 &gt;</type>
+        <definition>std::array&lt;Unitless, 8&gt; astrea::astro::SpaceWeatherParameters::kp</definition>
+        <argsstring></argsstring>
+        <name>kp</name>
+        <qualifiedname>astrea::astro::SpaceWeatherParameters::kp</qualifiedname>
+        <briefdescription>
+<para>Planetary 3-hour Range Index with each index corresponding to the ith 3-hour interval of the day (00-03, 03-06, 06-09, 09-12, 12-15, 15-18, 18-21, 21-24). </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/SpaceWeatherData.hpp" line="67" column="16" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/SpaceWeatherData.hpp" bodystart="67" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structastrea_1_1astro_1_1SpaceWeatherParameters_1af1428b0a44f89716255fb6e59942c815" prot="public" static="no" mutable="no">
+        <type>Unitless</type>
+        <definition>Unitless astrea::astro::SpaceWeatherParameters::sumKp</definition>
+        <argsstring></argsstring>
+        <name>sumKp</name>
+        <qualifiedname>astrea::astro::SpaceWeatherParameters::sumKp</qualifiedname>
+        <briefdescription>
+<para>Daily Sum of the 8 Kp indices. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/SpaceWeatherData.hpp" line="68" column="14" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/SpaceWeatherData.hpp" bodystart="68" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structastrea_1_1astro_1_1SpaceWeatherParameters_1a498301fa3eeaa983193222bdacdb2c37" prot="public" static="no" mutable="no">
+        <type>std::array&lt; Unitless, 8 &gt;</type>
+        <definition>std::array&lt;Unitless, 8&gt; astrea::astro::SpaceWeatherParameters::ap</definition>
+        <argsstring></argsstring>
+        <name>ap</name>
+        <qualifiedname>astrea::astro::SpaceWeatherParameters::ap</qualifiedname>
+        <briefdescription>
+<para>Planetary Equivalent Amplitude with each index corresponding to the ith 3-hour interval of the day (00-03, 03-06, 06-09, 09-12, 12-15, 15-18, 18-21, 21-24). </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/SpaceWeatherData.hpp" line="69" column="16" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/SpaceWeatherData.hpp" bodystart="69" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structastrea_1_1astro_1_1SpaceWeatherParameters_1a6d692572ad371e97087f6b65c8a55e3f" prot="public" static="no" mutable="no">
+        <type>Unitless</type>
+        <definition>Unitless astrea::astro::SpaceWeatherParameters::avgAp</definition>
+        <argsstring></argsstring>
+        <name>avgAp</name>
+        <qualifiedname>astrea::astro::SpaceWeatherParameters::avgAp</qualifiedname>
+        <briefdescription>
+<para>Daily Average of the 8 Ap indices. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/SpaceWeatherData.hpp" line="70" column="14" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/SpaceWeatherData.hpp" bodystart="70" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structastrea_1_1astro_1_1SpaceWeatherParameters_1a83af0d5c66ae5c0e85f81a5b73e120ec" prot="public" static="no" mutable="no">
+        <type>Unitless</type>
+        <definition>Unitless astrea::astro::SpaceWeatherParameters::cp</definition>
+        <argsstring></argsstring>
+        <name>cp</name>
+        <qualifiedname>astrea::astro::SpaceWeatherParameters::cp</qualifiedname>
+        <briefdescription>
+<para>magnetic activity for the day determined from the sum of the 8 Ap indices. Cp ranges, in steps of one-tenth, from 0 (quiet) to 2.5 (highly disturbed). </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Cp or Planetary Daily Character Figure. A qualitative estimate of overall level of </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/SpaceWeatherData.hpp" line="71" column="14" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/SpaceWeatherData.hpp" bodystart="71" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structastrea_1_1astro_1_1SpaceWeatherParameters_1a97b1c9a7a1097b369eb1adecfc8d0eb9" prot="public" static="no" mutable="no">
+        <type>std::uint8_t</type>
+        <definition>std::uint8_t astrea::astro::SpaceWeatherParameters::c9</definition>
+        <argsstring></argsstring>
+        <name>c9</name>
+        <qualifiedname>astrea::astro::SpaceWeatherParameters::c9</qualifiedname>
+        <briefdescription>
+<para>C9. A conversion of the 0-to-2.5 range of the Cp index to one digit between 0 and 9. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/SpaceWeatherData.hpp" line="73" column="18" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/SpaceWeatherData.hpp" bodystart="73" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structastrea_1_1astro_1_1SpaceWeatherParameters_1a119d335c1c0392d83fcc81c8d491caf8" prot="public" static="no" mutable="no">
+        <type>unsigned</type>
+        <definition>unsigned astrea::astro::SpaceWeatherParameters::isn</definition>
+        <argsstring></argsstring>
+        <name>isn</name>
+        <qualifiedname>astrea::astro::SpaceWeatherParameters::isn</qualifiedname>
+        <briefdescription>
+<para>International Sunspot Number. Records contain the Zurich number through 1980 Dec 31 and the International Brussels number thereafter. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/SpaceWeatherData.hpp" line="74" column="14" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/SpaceWeatherData.hpp" bodystart="74" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structastrea_1_1astro_1_1SpaceWeatherParameters_1abb7423df40d1cc4664a438444b008c5b" prot="public" static="no" mutable="no">
+        <type><ref refid="structastrea_1_1astro_1_1SolarFluxData" kindref="compound">SolarFluxData</ref></type>
+        <definition>SolarFluxData astrea::astro::SpaceWeatherParameters::f107Obs</definition>
+        <argsstring></argsstring>
+        <name>f107Obs</name>
+        <qualifiedname>astrea::astro::SpaceWeatherParameters::f107Obs</qualifiedname>
+        <briefdescription>
+<para>Observed 10.7 cm Solar Radio Flux. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/SpaceWeatherData.hpp" line="75" column="19" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/SpaceWeatherData.hpp" bodystart="75" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structastrea_1_1astro_1_1SpaceWeatherParameters_1aababd1f4d1c95505bb4e9bad97709e76" prot="public" static="no" mutable="no">
+        <type><ref refid="structastrea_1_1astro_1_1SolarFluxData" kindref="compound">SolarFluxData</ref></type>
+        <definition>SolarFluxData astrea::astro::SpaceWeatherParameters::f107Adj</definition>
+        <argsstring></argsstring>
+        <name>f107Adj</name>
+        <qualifiedname>astrea::astro::SpaceWeatherParameters::f107Adj</qualifiedname>
+        <briefdescription>
+<para>Adjusted 10.7 cm Solar Radio Flux adjusted to 1 AU. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/SpaceWeatherData.hpp" line="76" column="19" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/SpaceWeatherData.hpp" bodystart="76" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Struct to hold space weather parameters for a specific date. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>This struct contains various space weather parameters, including the Bartels Solar Rotation Number, Kp indices, Ap indices, Cp index, International Sunspot Number, and 10.7 cm Solar Radio Flux data.</para>
+<para><simplesect kind="note"><para>Format from <ulink url="https://celestrak.org/SpaceData/SpaceWx-format.php">https://celestrak.org/SpaceData/SpaceWx-format.php</ulink> </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="2">
+        <label>astrea::astro::Date</label>
+        <link refid="classastrea_1_1astro_1_1Date"/>
+      </node>
+      <node id="3">
+        <label>astrea::astro::SolarFluxData</label>
+        <link refid="structastrea_1_1astro_1_1SolarFluxData"/>
+      </node>
+      <node id="1">
+        <label>astrea::astro::SpaceWeatherParameters</label>
+        <link refid="structastrea_1_1astro_1_1SpaceWeatherParameters"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>date</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>f107Adj</edgelabel>
+          <edgelabel>f107Obs</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="astrea/astro/astro/propagation/force_models/space_weather/SpaceWeatherData.hpp" line="62" column="1" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/SpaceWeatherData.hpp" bodystart="62" bodyend="77"/>
+    <listofallmembers>
+      <member refid="structastrea_1_1astro_1_1SpaceWeatherParameters_1a498301fa3eeaa983193222bdacdb2c37" prot="public" virt="non-virtual"><scope>astrea::astro::SpaceWeatherParameters</scope><name>ap</name></member>
+      <member refid="structastrea_1_1astro_1_1SpaceWeatherParameters_1a6d692572ad371e97087f6b65c8a55e3f" prot="public" virt="non-virtual"><scope>astrea::astro::SpaceWeatherParameters</scope><name>avgAp</name></member>
+      <member refid="structastrea_1_1astro_1_1SpaceWeatherParameters_1a21e55c8101993b5efabb43424678268f" prot="public" virt="non-virtual"><scope>astrea::astro::SpaceWeatherParameters</scope><name>bsrn</name></member>
+      <member refid="structastrea_1_1astro_1_1SpaceWeatherParameters_1a97b1c9a7a1097b369eb1adecfc8d0eb9" prot="public" virt="non-virtual"><scope>astrea::astro::SpaceWeatherParameters</scope><name>c9</name></member>
+      <member refid="structastrea_1_1astro_1_1SpaceWeatherParameters_1a83af0d5c66ae5c0e85f81a5b73e120ec" prot="public" virt="non-virtual"><scope>astrea::astro::SpaceWeatherParameters</scope><name>cp</name></member>
+      <member refid="structastrea_1_1astro_1_1SpaceWeatherParameters_1a4b459772dd77d94a91ba55655e6f2dd9" prot="public" virt="non-virtual"><scope>astrea::astro::SpaceWeatherParameters</scope><name>date</name></member>
+      <member refid="structastrea_1_1astro_1_1SpaceWeatherParameters_1aababd1f4d1c95505bb4e9bad97709e76" prot="public" virt="non-virtual"><scope>astrea::astro::SpaceWeatherParameters</scope><name>f107Adj</name></member>
+      <member refid="structastrea_1_1astro_1_1SpaceWeatherParameters_1abb7423df40d1cc4664a438444b008c5b" prot="public" virt="non-virtual"><scope>astrea::astro::SpaceWeatherParameters</scope><name>f107Obs</name></member>
+      <member refid="structastrea_1_1astro_1_1SpaceWeatherParameters_1a119d335c1c0392d83fcc81c8d491caf8" prot="public" virt="non-virtual"><scope>astrea::astro::SpaceWeatherParameters</scope><name>isn</name></member>
+      <member refid="structastrea_1_1astro_1_1SpaceWeatherParameters_1ad404723c86cad9ead0e389df62cd4d81" prot="public" virt="non-virtual"><scope>astrea::astro::SpaceWeatherParameters</scope><name>kp</name></member>
+      <member refid="structastrea_1_1astro_1_1SpaceWeatherParameters_1a76032f7c15f72d316b1b2f024ce36341" prot="public" virt="non-virtual"><scope>astrea::astro::SpaceWeatherParameters</scope><name>measurement</name></member>
+      <member refid="structastrea_1_1astro_1_1SpaceWeatherParameters_1abf72fb97851ba243336b8760b71e22cb" prot="public" virt="non-virtual"><scope>astrea::astro::SpaceWeatherParameters</scope><name>nd</name></member>
+      <member refid="structastrea_1_1astro_1_1SpaceWeatherParameters_1af1428b0a44f89716255fb6e59942c815" prot="public" virt="non-virtual"><scope>astrea::astro::SpaceWeatherParameters</scope><name>sumKp</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -104,7 +104,6 @@ Here is a list of all files with brief descriptions:
                         * **file** [**TurnThrustersOn.cpp**](TurnThrustersOn_8cpp.md)     
                         * **file** [**TurnThrustersOn.hpp**](TurnThrustersOn_8hpp.md) _A class representing a TurnThrustersOn Event in the astrea astro platform._     
                 * **dir** [**force\_models**](dir_0ce51a85166db93c377c5b7f000b236c.md)     
-                    * **file** [**AtmosphericForce.cpp**](AtmosphericForce_8cpp.md)     
                     * **file** [**AtmosphericForce.hpp**](AtmosphericForce_8hpp.md) _Header file for the AtmosphericForce class, which computes the atmospheric force on a vehicle._     
                     * **file** [**ForceModel.cpp**](ForceModel_8cpp.md)     
                     * **file** [**ForceModel.hpp**](ForceModel_8hpp.md) _Header file for the ForceModel class, which manages multiple force models and computes the total force on a vehicle._     
@@ -117,6 +116,24 @@ Here is a list of all files with brief descriptions:
                     * **file** [**PerturbingForce.hpp**](PerturbingForce_8hpp.md) _Header file for the PerturbingForce class, which defines the interface for force models in astrodynamics._     
                     * **file** [**SolarRadiationPressure.cpp**](SolarRadiationPressure_8cpp.md)     
                     * **file** [**SolarRadiationPressure.hpp**](SolarRadiationPressure_8hpp.md)     
+                    * **dir** [**space\_weather**](dir_ba92a5bb4647772267966b3cef944594.md)     
+                        * **file** [**SpaceWeatherData.cpp**](SpaceWeatherData_8cpp.md)     
+                        * **file** [**SpaceWeatherData.hpp**](SpaceWeatherData_8hpp.md) _Header file for the SpaceWeatherData struct, which stores space weather data._     
+                        * **file** [**SpaceWeatherProvider.hpp**](SpaceWeatherProvider_8hpp.md) _Lightweight immutable provider for shared space weather data._     
+                        * **dir** [**atmosphere**](dir_3bfcc16c8bbdb2d74b81ce33c082ff6e.md)     
+                            * **file** [**HarrisPriester.cpp**](HarrisPriester_8cpp.md)     
+                            * **file** [**HarrisPriester.hpp**](HarrisPriester_8hpp.md) _Header file for the HarrisPriester class._     
+                            * **file** [**JacchiaRoberts.cpp**](JacchiaRoberts_8cpp.md)     
+                            * **file** [**JacchiaRoberts.hpp**](JacchiaRoberts_8hpp.md) _Header file for the JacchiaRoberts class._     
+                            * **file** [**Nrlmsise00.cpp**](Nrlmsise00_8cpp.md)     
+                            * **file** [**Nrlmsise00.hpp**](Nrlmsise00_8hpp.md) _Header file for the Nrlmsise00 class._     
+                            * **dir** [**experimental**](dir_c9cd73a564506b77e0cd8e52337735df.md)     
+                                * **file** [**NRLMSISE00.cpp**](NRLMSISE00_8cpp.md)     
+                                * **file** [**NRLMSISE00.hpp**](NRLMSISE00_8hpp.md)     
+                        * **file** [**atmosphere.hpp**](atmosphere_8hpp.md)     
+                        * **file** [**file\_reader.cpp**](file__reader_8cpp.md)     
+                        * **file** [**file\_reader.hpp**](file__reader_8hpp.md) _Header file for the file\_reader function, which reads space weather data from files._     
+                    * **file** [**space\_weather.hpp**](space__weather_8hpp.md) _Space weather models and related utilities._ 
                 * **dir** [**numerical**](dir_89452d20321c19f5539a283cd906a79c.md)     
                     * **file** [**Integrator.cpp**](Integrator_8cpp.md)     
                     * **file** [**Integrator.hpp**](Integrator_8hpp.md) _Numerical integrator for orbital mechanics propagation._     
@@ -171,13 +188,6 @@ Here is a list of all files with brief descriptions:
                     * **dir** [**Earth**](dir_0d926747df7aa4605536658442a7f1d2.md)     
                         * **file** [**Earth.hpp**](Earth_8hpp.md) _Header file for the Earth class._     
                         * **file** [**Moon.hpp**](Moon_8hpp.md) _Header file for the Moon class._     
-                        * **dir** [**atmosphere**](dir_52ad4357f9588f54fe1e3d5cf2b75c1b.md)     
-                            * **file** [**HarrisPriester.cpp**](HarrisPriester_8cpp.md)     
-                            * **file** [**HarrisPriester.hpp**](HarrisPriester_8hpp.md) _Header file for the HarrisPriester class._     
-                            * **file** [**JacciaRoberts.cpp**](JacciaRoberts_8cpp.md)     
-                            * **file** [**JacciaRoberts.hpp**](JacciaRoberts_8hpp.md) _Header file for the JacciaRoberts class._     
-                            * **file** [**NRLMSISE00.cpp**](NRLMSISE00_8cpp.md)     
-                            * **file** [**NRLMSISE00.hpp**](NRLMSISE00_8hpp.md) _Header file for the NRLMSISE00 class._     
                     * **dir** [**Jupiter**](dir_925acfda302d4aa496e86fec42e06785.md)     
                         * **file** [**Callisto.hpp**](Callisto_8hpp.md) _Header file for the Callisto class._     
                         * **file** [**Europa.hpp**](Europa_8hpp.md) _Header file for the Europa class._     
@@ -206,7 +216,6 @@ Here is a list of all files with brief descriptions:
                         * **file** [**Uranus.hpp**](Uranus_8hpp.md) _Header file for the Uranus class._     
                     * **dir** [**Venus**](dir_8fa374767bd61918cc8bb3b53abef633.md)     
                         * **file** [**Venus.hpp**](Venus_8hpp.md) _Header file for the Venus class._     
-                * **file** [**atmosphere.hpp**](atmosphere_8hpp.md)     
                 * **file** [**barycenters.hpp**](barycenters_8hpp.md)     
                 * **file** [**celestial\_bodies.hpp**](celestial__bodies_8hpp.md) _Header file that includes all planetary bodies._ 
                 * **file** [**default\_property\_getters.hpp**](default__property__getters_8hpp.md) _Keplerian-approximation fallback implementations for get\_position\_at / get\_velocity\_at._     

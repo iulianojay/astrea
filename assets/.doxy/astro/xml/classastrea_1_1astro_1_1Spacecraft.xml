@@ -11,7 +11,7 @@
         <argsstring></argsstring>
         <name>DEFAULT_MASS</name>
         <qualifiedname>astrea::astro::Spacecraft::DEFAULT_MASS</qualifiedname>
-        <initializer>= 1000.0 * astrea::detail::mass_unit</initializer>
+        <initializer>= 1000.0 * mp_units::si::unit_symbols::kg</initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -42,7 +42,7 @@
         <argsstring></argsstring>
         <name>DEFAULT_COEFFICIENT_OF_DRAG</name>
         <qualifiedname>astrea::astro::Spacecraft::DEFAULT_COEFFICIENT_OF_DRAG</qualifiedname>
-        <initializer>= 2.2 * astrea::detail::unitless</initializer>
+        <initializer>= 2.2 * mp_units::one</initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -57,7 +57,7 @@
         <argsstring></argsstring>
         <name>DEFAULT_COEFFICIENT_OF_LIFT</name>
         <qualifiedname>astrea::astro::Spacecraft::DEFAULT_COEFFICIENT_OF_LIFT</qualifiedname>
-        <initializer>= 0.9 * astrea::detail::unitless</initializer>
+        <initializer>= 0.9 * mp_units::one</initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -72,8 +72,7 @@
         <argsstring></argsstring>
         <name>DEFAULT_COEFFICIENT_OF_REFLECTIVITY</name>
         <qualifiedname>astrea::astro::Spacecraft::DEFAULT_COEFFICIENT_OF_REFLECTIVITY</qualifiedname>
-        <initializer>=
-        1.1 * astrea::detail::unitless</initializer>
+        <initializer>= 1.1 * mp_units::one</initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -88,7 +87,22 @@
         <argsstring></argsstring>
         <name>DEFAULT_RAM_AREA</name>
         <qualifiedname>astrea::astro::Spacecraft::DEFAULT_RAM_AREA</qualifiedname>
-        <initializer>= 1.0 * mp_units::pow&lt;2&gt;(astrea::detail::distance_unit)</initializer>
+        <initializer>= 1.0 * mp_units::si::unit_symbols::m * mp_units::si::unit_symbols::m</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/platforms/vehicles/Spacecraft.hpp" line="279" column="34" bodyfile="astrea/astro/astro/platforms/vehicles/Spacecraft.hpp" bodystart="279" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classastrea_1_1astro_1_1Spacecraft_1a3e58fcbc1d2dceca25f5fab0aaa23dc4" prot="public" static="yes" constexpr="yes" mutable="no">
+        <type>constexpr SurfaceArea</type>
+        <definition>constexpr SurfaceArea astrea::astro::Spacecraft::DEFAULT_SOLAR_AREA</definition>
+        <argsstring></argsstring>
+        <name>DEFAULT_SOLAR_AREA</name>
+        <qualifiedname>astrea::astro::Spacecraft::DEFAULT_SOLAR_AREA</qualifiedname>
+        <initializer>= 1.0 * mp_units::si::unit_symbols::m * mp_units::si::unit_symbols::m</initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -97,13 +111,13 @@
         </inbodydescription>
         <location file="astrea/astro/astro/platforms/vehicles/Spacecraft.hpp" line="280" column="34" bodyfile="astrea/astro/astro/platforms/vehicles/Spacecraft.hpp" bodystart="280" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="classastrea_1_1astro_1_1Spacecraft_1a3e58fcbc1d2dceca25f5fab0aaa23dc4" prot="public" static="yes" constexpr="yes" mutable="no">
+      <memberdef kind="variable" id="classastrea_1_1astro_1_1Spacecraft_1a19cde436c8e0a0a91499b0fae4c9358d" prot="public" static="yes" constexpr="yes" mutable="no">
         <type>constexpr SurfaceArea</type>
-        <definition>constexpr SurfaceArea astrea::astro::Spacecraft::DEFAULT_SOLAR_AREA</definition>
+        <definition>constexpr SurfaceArea astrea::astro::Spacecraft::DEFAULT_LIFT_AREA</definition>
         <argsstring></argsstring>
-        <name>DEFAULT_SOLAR_AREA</name>
-        <qualifiedname>astrea::astro::Spacecraft::DEFAULT_SOLAR_AREA</qualifiedname>
-        <initializer>= 1.0 * mp_units::pow&lt;2&gt;(astrea::detail::distance_unit)</initializer>
+        <name>DEFAULT_LIFT_AREA</name>
+        <qualifiedname>astrea::astro::Spacecraft::DEFAULT_LIFT_AREA</qualifiedname>
+        <initializer>= 1.0 * mp_units::si::unit_symbols::m * mp_units::si::unit_symbols::m</initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -111,21 +125,6 @@
         <inbodydescription>
         </inbodydescription>
         <location file="astrea/astro/astro/platforms/vehicles/Spacecraft.hpp" line="281" column="34" bodyfile="astrea/astro/astro/platforms/vehicles/Spacecraft.hpp" bodystart="281" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classastrea_1_1astro_1_1Spacecraft_1a19cde436c8e0a0a91499b0fae4c9358d" prot="public" static="yes" constexpr="yes" mutable="no">
-        <type>constexpr SurfaceArea</type>
-        <definition>constexpr SurfaceArea astrea::astro::Spacecraft::DEFAULT_LIFT_AREA</definition>
-        <argsstring></argsstring>
-        <name>DEFAULT_LIFT_AREA</name>
-        <qualifiedname>astrea::astro::Spacecraft::DEFAULT_LIFT_AREA</qualifiedname>
-        <initializer>= 1.0 * mp_units::pow&lt;2&gt;(astrea::detail::distance_unit)</initializer>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="astrea/astro/astro/platforms/vehicles/Spacecraft.hpp" line="282" column="34" bodyfile="astrea/astro/astro/platforms/vehicles/Spacecraft.hpp" bodystart="282" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="protected-attrib">
@@ -141,7 +140,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/platforms/vehicles/Spacecraft.hpp" line="285" column="17" bodyfile="astrea/astro/astro/platforms/vehicles/Spacecraft.hpp" bodystart="285" bodyend="-1"/>
+        <location file="astrea/astro/astro/platforms/vehicles/Spacecraft.hpp" line="284" column="17" bodyfile="astrea/astro/astro/platforms/vehicles/Spacecraft.hpp" bodystart="284" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1Spacecraft_1a50485446e272eb18bc78adcd524b052d" prot="protected" static="no" mutable="no">
         <type>std::string</type>
@@ -155,7 +154,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/platforms/vehicles/Spacecraft.hpp" line="286" column="17" bodyfile="astrea/astro/astro/platforms/vehicles/Spacecraft.hpp" bodystart="286" bodyend="-1"/>
+        <location file="astrea/astro/astro/platforms/vehicles/Spacecraft.hpp" line="285" column="17" bodyfile="astrea/astro/astro/platforms/vehicles/Spacecraft.hpp" bodystart="285" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1Spacecraft_1a343770f34098a9ddb6142f903a830ccf" prot="protected" static="no" mutable="no">
         <type>Mass</type>
@@ -171,7 +170,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/platforms/vehicles/Spacecraft.hpp" line="289" column="10" bodyfile="astrea/astro/astro/platforms/vehicles/Spacecraft.hpp" bodystart="289" bodyend="-1"/>
+        <location file="astrea/astro/astro/platforms/vehicles/Spacecraft.hpp" line="288" column="10" bodyfile="astrea/astro/astro/platforms/vehicles/Spacecraft.hpp" bodystart="288" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1Spacecraft_1a220231a75549dad632c03b6c89491ee0" prot="protected" static="no" mutable="no">
         <type><ref refid="classastrea_1_1astro_1_1InertiaTensor" kindref="compound">InertiaTensor</ref>&lt; <ref refid="structastrea_1_1astro_1_1frames_1_1dynamic_1_1body" kindref="compound">frames::dynamic::body</ref> &gt;</type>
@@ -187,7 +186,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/platforms/vehicles/Spacecraft.hpp" line="290" column="19" bodyfile="astrea/astro/astro/platforms/vehicles/Spacecraft.hpp" bodystart="290" bodyend="-1"/>
+        <location file="astrea/astro/astro/platforms/vehicles/Spacecraft.hpp" line="289" column="19" bodyfile="astrea/astro/astro/platforms/vehicles/Spacecraft.hpp" bodystart="289" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1Spacecraft_1ace00b8a8f262dc70d8fb102b924876a8" prot="protected" static="no" mutable="no">
         <type>Unitless</type>
@@ -203,7 +202,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/platforms/vehicles/Spacecraft.hpp" line="291" column="14" bodyfile="astrea/astro/astro/platforms/vehicles/Spacecraft.hpp" bodystart="291" bodyend="-1"/>
+        <location file="astrea/astro/astro/platforms/vehicles/Spacecraft.hpp" line="290" column="14" bodyfile="astrea/astro/astro/platforms/vehicles/Spacecraft.hpp" bodystart="290" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1Spacecraft_1a4c36172de3d3d79f1cf1cc663b56aeab" prot="protected" static="no" mutable="no">
         <type>Unitless</type>
@@ -219,7 +218,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/platforms/vehicles/Spacecraft.hpp" line="292" column="14" bodyfile="astrea/astro/astro/platforms/vehicles/Spacecraft.hpp" bodystart="292" bodyend="-1"/>
+        <location file="astrea/astro/astro/platforms/vehicles/Spacecraft.hpp" line="291" column="14" bodyfile="astrea/astro/astro/platforms/vehicles/Spacecraft.hpp" bodystart="291" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1Spacecraft_1a2de66ef9d7ae37c04c33b80f0cc79041" prot="protected" static="no" mutable="no">
         <type>Unitless</type>
@@ -235,7 +234,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/platforms/vehicles/Spacecraft.hpp" line="293" column="14" bodyfile="astrea/astro/astro/platforms/vehicles/Spacecraft.hpp" bodystart="293" bodyend="-1"/>
+        <location file="astrea/astro/astro/platforms/vehicles/Spacecraft.hpp" line="292" column="14" bodyfile="astrea/astro/astro/platforms/vehicles/Spacecraft.hpp" bodystart="292" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1Spacecraft_1a24d595e073126aeca70daf34472352c9" prot="protected" static="no" mutable="no">
         <type>SurfaceArea</type>
@@ -251,7 +250,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/platforms/vehicles/Spacecraft.hpp" line="294" column="17" bodyfile="astrea/astro/astro/platforms/vehicles/Spacecraft.hpp" bodystart="294" bodyend="-1"/>
+        <location file="astrea/astro/astro/platforms/vehicles/Spacecraft.hpp" line="293" column="17" bodyfile="astrea/astro/astro/platforms/vehicles/Spacecraft.hpp" bodystart="293" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1Spacecraft_1a300b4323bd2ab7b221346bc517b63063" prot="protected" static="no" mutable="no">
         <type>SurfaceArea</type>
@@ -267,7 +266,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/platforms/vehicles/Spacecraft.hpp" line="295" column="17" bodyfile="astrea/astro/astro/platforms/vehicles/Spacecraft.hpp" bodystart="295" bodyend="-1"/>
+        <location file="astrea/astro/astro/platforms/vehicles/Spacecraft.hpp" line="294" column="17" bodyfile="astrea/astro/astro/platforms/vehicles/Spacecraft.hpp" bodystart="294" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1Spacecraft_1a667cd0a5dd7f15e5be4b6b7467bb906c" prot="protected" static="no" mutable="no">
         <type>SurfaceArea</type>
@@ -283,7 +282,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/platforms/vehicles/Spacecraft.hpp" line="296" column="17" bodyfile="astrea/astro/astro/platforms/vehicles/Spacecraft.hpp" bodystart="296" bodyend="-1"/>
+        <location file="astrea/astro/astro/platforms/vehicles/Spacecraft.hpp" line="295" column="17" bodyfile="astrea/astro/astro/platforms/vehicles/Spacecraft.hpp" bodystart="295" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1Spacecraft_1ada7bb4f6adc112234bb42aea6bdd83b7" prot="protected" static="no" mutable="no">
         <type><ref refid="classastrea_1_1astro_1_1StateHistory" kindref="compound">StateHistory</ref></type>
@@ -297,7 +296,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/platforms/vehicles/Spacecraft.hpp" line="299" column="18" bodyfile="astrea/astro/astro/platforms/vehicles/Spacecraft.hpp" bodystart="299" bodyend="-1"/>
+        <location file="astrea/astro/astro/platforms/vehicles/Spacecraft.hpp" line="298" column="18" bodyfile="astrea/astro/astro/platforms/vehicles/Spacecraft.hpp" bodystart="298" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="public-func">
@@ -585,13 +584,17 @@
         </inbodydescription>
         <location file="astrea/astro/astro/platforms/vehicles/Spacecraft.hpp" line="126" column="24" bodyfile="astrea/astro/astro/platforms/vehicles/Spacecraft.cpp" bodystart="87" bodyend="87"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1astro_1_1Spacecraft_1a8006e003e3545dcd32cabc3789dc4a3e" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Spacecraft_1a8a9a388f8f125a180163d7a36af813ab" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
         <type>Mass</type>
         <definition>Mass astrea::astro::Spacecraft::get_mass</definition>
-        <argsstring>() const</argsstring>
+        <argsstring>(const State &amp;state) const</argsstring>
         <name>get_mass</name>
         <qualifiedname>astrea::astro::Spacecraft::get_mass</qualifiedname>
-        <reimplements refid="classastrea_1_1astro_1_1PayloadPlatform_1a1f39a69fc17a82b49a7aa6b15b61f65c">get_mass</reimplements>
+        <reimplements refid="classastrea_1_1astro_1_1PayloadPlatform_1a2b5e88c7ec1c62eeb074a884f8e0421e">get_mass</reimplements>
+        <param>
+          <type>const <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
+          <declname>state</declname>
+        </param>
         <briefdescription>
 <para>Gets the mass of the spacecraft. </para>
         </briefdescription>
@@ -604,12 +607,16 @@
         </inbodydescription>
         <location file="astrea/astro/astro/platforms/vehicles/Spacecraft.hpp" line="133" column="10" bodyfile="astrea/astro/astro/platforms/vehicles/Spacecraft.cpp" bodystart="91" bodyend="91"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1astro_1_1Spacecraft_1a6eb183e3d56aa7a2059d4d346cb05f20" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Spacecraft_1a7e4600aa3687fb7714acc647a8402693" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classastrea_1_1astro_1_1InertiaTensor" kindref="compound">InertiaTensor</ref>&lt; <ref refid="structastrea_1_1astro_1_1frames_1_1dynamic_1_1body" kindref="compound">frames::dynamic::body</ref> &gt;</type>
         <definition>InertiaTensor&lt; frames::dynamic::body &gt; astrea::astro::Spacecraft::get_inertia_tensor</definition>
-        <argsstring>() const</argsstring>
+        <argsstring>(const State &amp;state) const</argsstring>
         <name>get_inertia_tensor</name>
         <qualifiedname>astrea::astro::Spacecraft::get_inertia_tensor</qualifiedname>
+        <param>
+          <type>const <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
+          <declname>state</declname>
+        </param>
         <briefdescription>
 <para>Gets the inertia tensor of the spacecraft. </para>
         </briefdescription>
@@ -622,12 +629,16 @@
         </inbodydescription>
         <location file="astrea/astro/astro/platforms/vehicles/Spacecraft.hpp" line="140" column="19" bodyfile="astrea/astro/astro/platforms/vehicles/Spacecraft.cpp" bodystart="92" bodyend="92"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1astro_1_1Spacecraft_1aacf13f32476bf6c3cca7e5e957b04ec6" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Spacecraft_1a4e8d5280cfeb27e0593985f82251696c" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>Unitless</type>
         <definition>Unitless astrea::astro::Spacecraft::get_coefficient_of_drag</definition>
-        <argsstring>() const</argsstring>
+        <argsstring>(const State &amp;state) const</argsstring>
         <name>get_coefficient_of_drag</name>
         <qualifiedname>astrea::astro::Spacecraft::get_coefficient_of_drag</qualifiedname>
+        <param>
+          <type>const <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
+          <declname>state</declname>
+        </param>
         <briefdescription>
 <para>Gets the coefficients of drag, lift, and reflectivity. </para>
         </briefdescription>
@@ -640,12 +651,16 @@
         </inbodydescription>
         <location file="astrea/astro/astro/platforms/vehicles/Spacecraft.hpp" line="147" column="14" bodyfile="astrea/astro/astro/platforms/vehicles/Spacecraft.cpp" bodystart="93" bodyend="93"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1astro_1_1Spacecraft_1aece501a8347ddcf7e4c2c918cbac5e7e" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Spacecraft_1a6c746f21a905958077a3d5a5e2c33225" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>Unitless</type>
         <definition>Unitless astrea::astro::Spacecraft::get_coefficient_of_lift</definition>
-        <argsstring>() const</argsstring>
+        <argsstring>(const State &amp;state) const</argsstring>
         <name>get_coefficient_of_lift</name>
         <qualifiedname>astrea::astro::Spacecraft::get_coefficient_of_lift</qualifiedname>
+        <param>
+          <type>const <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
+          <declname>state</declname>
+        </param>
         <briefdescription>
 <para>Gets the coefficient of lift. </para>
         </briefdescription>
@@ -658,12 +673,16 @@
         </inbodydescription>
         <location file="astrea/astro/astro/platforms/vehicles/Spacecraft.hpp" line="154" column="14" bodyfile="astrea/astro/astro/platforms/vehicles/Spacecraft.cpp" bodystart="94" bodyend="94"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1astro_1_1Spacecraft_1a2feab5753c277a2a475a6de608ecc42f" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Spacecraft_1a936baa24b2d3e517b8a43e308b322a89" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>Unitless</type>
         <definition>Unitless astrea::astro::Spacecraft::get_coefficient_of_reflectivity</definition>
-        <argsstring>() const</argsstring>
+        <argsstring>(const State &amp;state) const</argsstring>
         <name>get_coefficient_of_reflectivity</name>
         <qualifiedname>astrea::astro::Spacecraft::get_coefficient_of_reflectivity</qualifiedname>
+        <param>
+          <type>const <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
+          <declname>state</declname>
+        </param>
         <briefdescription>
 <para>Gets the coefficient of reflectivity. </para>
         </briefdescription>
@@ -676,12 +695,16 @@
         </inbodydescription>
         <location file="astrea/astro/astro/platforms/vehicles/Spacecraft.hpp" line="161" column="14" bodyfile="astrea/astro/astro/platforms/vehicles/Spacecraft.cpp" bodystart="95" bodyend="95"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1astro_1_1Spacecraft_1a8e3e2bda0adf51095878f7d9a5b3daf7" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Spacecraft_1a0fc571dc715734c4f7166f59acf8260e" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>SurfaceArea</type>
         <definition>SurfaceArea astrea::astro::Spacecraft::get_ram_area</definition>
-        <argsstring>() const</argsstring>
+        <argsstring>(const State &amp;state) const</argsstring>
         <name>get_ram_area</name>
         <qualifiedname>astrea::astro::Spacecraft::get_ram_area</qualifiedname>
+        <param>
+          <type>const <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
+          <declname>state</declname>
+        </param>
         <briefdescription>
 <para>Gets the surface areas for ram, solar, and lift. </para>
         </briefdescription>
@@ -694,12 +717,16 @@
         </inbodydescription>
         <location file="astrea/astro/astro/platforms/vehicles/Spacecraft.hpp" line="168" column="17" bodyfile="astrea/astro/astro/platforms/vehicles/Spacecraft.cpp" bodystart="96" bodyend="96"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1astro_1_1Spacecraft_1a2babbc6f43d32893245dae4054171eb1" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Spacecraft_1a9ae4d34a146b45077b6fa51d703f3442" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>SurfaceArea</type>
         <definition>SurfaceArea astrea::astro::Spacecraft::get_solar_area</definition>
-        <argsstring>() const</argsstring>
+        <argsstring>(const State &amp;state) const</argsstring>
         <name>get_solar_area</name>
         <qualifiedname>astrea::astro::Spacecraft::get_solar_area</qualifiedname>
+        <param>
+          <type>const <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
+          <declname>state</declname>
+        </param>
         <briefdescription>
 <para>Gets the solar area of the spacecraft. </para>
         </briefdescription>
@@ -712,12 +739,16 @@
         </inbodydescription>
         <location file="astrea/astro/astro/platforms/vehicles/Spacecraft.hpp" line="175" column="17" bodyfile="astrea/astro/astro/platforms/vehicles/Spacecraft.cpp" bodystart="97" bodyend="97"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1astro_1_1Spacecraft_1a3cab395284c0847355ae481cd40907c8" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Spacecraft_1a7f1ed74883b7eccefa4c1633f6612884" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>SurfaceArea</type>
         <definition>SurfaceArea astrea::astro::Spacecraft::get_lift_area</definition>
-        <argsstring>() const</argsstring>
+        <argsstring>(const State &amp;state) const</argsstring>
         <name>get_lift_area</name>
         <qualifiedname>astrea::astro::Spacecraft::get_lift_area</qualifiedname>
+        <param>
+          <type>const <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
+          <declname>state</declname>
+        </param>
         <briefdescription>
 <para>Gets the lift area of the spacecraft. </para>
         </briefdescription>
@@ -1104,7 +1135,7 @@
         <link refid="classastrea_1_1astro_1_1StateHistory"/>
       </node>
     </collaborationgraph>
-    <location file="astrea/astro/astro/platforms/vehicles/Spacecraft.hpp" line="42" column="1" bodyfile="astrea/astro/astro/platforms/vehicles/Spacecraft.hpp" bodystart="42" bodyend="300"/>
+    <location file="astrea/astro/astro/platforms/vehicles/Spacecraft.hpp" line="42" column="1" bodyfile="astrea/astro/astro/platforms/vehicles/Spacecraft.hpp" bodystart="42" bodyend="299"/>
     <listofallmembers>
       <member refid="classastrea_1_1astro_1_1Spacecraft_1ace00b8a8f262dc70d8fb102b924876a8" prot="protected" virt="non-virtual"><scope>astrea::astro::Spacecraft</scope><name>_coefficientOfDrag</name></member>
       <member refid="classastrea_1_1astro_1_1Spacecraft_1a4c36172de3d3d79f1cf1cc663b56aeab" prot="protected" virt="non-virtual"><scope>astrea::astro::Spacecraft</scope><name>_coefficientOfLift</name></member>
@@ -1128,22 +1159,22 @@
       <member refid="classastrea_1_1astro_1_1Spacecraft_1a9d2c03455fc32c5fe8f9eb3ccacd7342" prot="public" virt="non-virtual"><scope>astrea::astro::Spacecraft</scope><name>DEFAULT_MASS</name></member>
       <member refid="classastrea_1_1astro_1_1Spacecraft_1ab2c7e15a71892f9805b4c7f1cefd637e" prot="public" virt="non-virtual"><scope>astrea::astro::Spacecraft</scope><name>DEFAULT_RAM_AREA</name></member>
       <member refid="classastrea_1_1astro_1_1Spacecraft_1a3e58fcbc1d2dceca25f5fab0aaa23dc4" prot="public" virt="non-virtual"><scope>astrea::astro::Spacecraft</scope><name>DEFAULT_SOLAR_AREA</name></member>
-      <member refid="classastrea_1_1astro_1_1Spacecraft_1aacf13f32476bf6c3cca7e5e957b04ec6" prot="public" virt="non-virtual"><scope>astrea::astro::Spacecraft</scope><name>get_coefficient_of_drag</name></member>
-      <member refid="classastrea_1_1astro_1_1Spacecraft_1aece501a8347ddcf7e4c2c918cbac5e7e" prot="public" virt="non-virtual"><scope>astrea::astro::Spacecraft</scope><name>get_coefficient_of_lift</name></member>
-      <member refid="classastrea_1_1astro_1_1Spacecraft_1a2feab5753c277a2a475a6de608ecc42f" prot="public" virt="non-virtual"><scope>astrea::astro::Spacecraft</scope><name>get_coefficient_of_reflectivity</name></member>
+      <member refid="classastrea_1_1astro_1_1Spacecraft_1a4e8d5280cfeb27e0593985f82251696c" prot="public" virt="non-virtual"><scope>astrea::astro::Spacecraft</scope><name>get_coefficient_of_drag</name></member>
+      <member refid="classastrea_1_1astro_1_1Spacecraft_1a6c746f21a905958077a3d5a5e2c33225" prot="public" virt="non-virtual"><scope>astrea::astro::Spacecraft</scope><name>get_coefficient_of_lift</name></member>
+      <member refid="classastrea_1_1astro_1_1Spacecraft_1a936baa24b2d3e517b8a43e308b322a89" prot="public" virt="non-virtual"><scope>astrea::astro::Spacecraft</scope><name>get_coefficient_of_reflectivity</name></member>
       <member refid="classastrea_1_1astro_1_1Spacecraft_1aac97aea1ed3bfca53de9624fffaea25c" prot="public" virt="non-virtual"><scope>astrea::astro::Spacecraft</scope><name>get_control_authority</name></member>
       <member refid="classastrea_1_1astro_1_1Spacecraft_1ad5f2a44325e18c698cf25e33f71b2b3a" prot="public" virt="virtual"><scope>astrea::astro::Spacecraft</scope><name>get_id</name></member>
-      <member refid="classastrea_1_1astro_1_1Spacecraft_1a6eb183e3d56aa7a2059d4d346cb05f20" prot="public" virt="non-virtual"><scope>astrea::astro::Spacecraft</scope><name>get_inertia_tensor</name></member>
+      <member refid="classastrea_1_1astro_1_1Spacecraft_1a7e4600aa3687fb7714acc647a8402693" prot="public" virt="non-virtual"><scope>astrea::astro::Spacecraft</scope><name>get_inertia_tensor</name></member>
       <member refid="classastrea_1_1astro_1_1Spacecraft_1a8c34057c783bf6af8a0d1035acd32bab" prot="public" virt="non-virtual"><scope>astrea::astro::Spacecraft</scope><name>get_initial_state</name></member>
       <member refid="classastrea_1_1astro_1_1Spacecraft_1ae7e5d81c9636703192735725a352cc7e" prot="public" virt="non-virtual"><scope>astrea::astro::Spacecraft</scope><name>get_initial_state</name></member>
-      <member refid="classastrea_1_1astro_1_1Spacecraft_1a3cab395284c0847355ae481cd40907c8" prot="public" virt="non-virtual"><scope>astrea::astro::Spacecraft</scope><name>get_lift_area</name></member>
-      <member refid="classastrea_1_1astro_1_1Spacecraft_1a8006e003e3545dcd32cabc3789dc4a3e" prot="public" virt="virtual"><scope>astrea::astro::Spacecraft</scope><name>get_mass</name></member>
+      <member refid="classastrea_1_1astro_1_1Spacecraft_1a7f1ed74883b7eccefa4c1633f6612884" prot="public" virt="non-virtual"><scope>astrea::astro::Spacecraft</scope><name>get_lift_area</name></member>
+      <member refid="classastrea_1_1astro_1_1Spacecraft_1a8a9a388f8f125a180163d7a36af813ab" prot="public" virt="virtual"><scope>astrea::astro::Spacecraft</scope><name>get_mass</name></member>
       <member refid="classastrea_1_1astro_1_1Spacecraft_1a17f41e05718130f305954359ea42b196" prot="public" virt="non-virtual"><scope>astrea::astro::Spacecraft</scope><name>get_name</name></member>
       <member refid="classastrea_1_1astro_1_1PayloadPlatform_1a54d9bf8b1049816166b25c0d4e24d045" prot="public" virt="non-virtual"><scope>astrea::astro::Spacecraft</scope><name>get_payloads</name></member>
       <member refid="classastrea_1_1astro_1_1PayloadPlatform_1a4f32c230e8835289ef1c9aaa129c8da1" prot="public" virt="non-virtual"><scope>astrea::astro::Spacecraft</scope><name>get_payloads</name></member>
       <member refid="classastrea_1_1astro_1_1Spacecraft_1a984ff77af42d5cfa052244553c6dc86d" prot="public" virt="virtual"><scope>astrea::astro::Spacecraft</scope><name>get_position</name></member>
-      <member refid="classastrea_1_1astro_1_1Spacecraft_1a8e3e2bda0adf51095878f7d9a5b3daf7" prot="public" virt="non-virtual"><scope>astrea::astro::Spacecraft</scope><name>get_ram_area</name></member>
-      <member refid="classastrea_1_1astro_1_1Spacecraft_1a2babbc6f43d32893245dae4054171eb1" prot="public" virt="non-virtual"><scope>astrea::astro::Spacecraft</scope><name>get_solar_area</name></member>
+      <member refid="classastrea_1_1astro_1_1Spacecraft_1a0fc571dc715734c4f7166f59acf8260e" prot="public" virt="non-virtual"><scope>astrea::astro::Spacecraft</scope><name>get_ram_area</name></member>
+      <member refid="classastrea_1_1astro_1_1Spacecraft_1a9ae4d34a146b45077b6fa51d703f3442" prot="public" virt="non-virtual"><scope>astrea::astro::Spacecraft</scope><name>get_solar_area</name></member>
       <member refid="classastrea_1_1astro_1_1Spacecraft_1a9ef9ea61d51187344edcf62143c74624" prot="public" virt="non-virtual"><scope>astrea::astro::Spacecraft</scope><name>get_state_history</name></member>
       <member refid="classastrea_1_1astro_1_1Spacecraft_1a6bface99bb92bc236fa516ff0af42a17" prot="public" virt="non-virtual"><scope>astrea::astro::Spacecraft</scope><name>get_state_history</name></member>
       <member refid="classastrea_1_1astro_1_1Spacecraft_1a90fe4b7fe6b8d0f1315a234d8eae0c57" prot="public" virt="virtual"><scope>astrea::astro::Spacecraft</scope><name>get_velocity</name></member>

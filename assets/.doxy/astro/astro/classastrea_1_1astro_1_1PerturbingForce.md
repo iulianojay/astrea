@@ -54,8 +54,11 @@ Inherited by the following classes: [astrea::astro::AtmosphericForce](classastre
 | Type | Name |
 | ---: | :--- |
 |   | [**PerturbingForce**](#function-perturbingforce) () = default<br>_Default constructor for_ [_**PerturbingForce**_](classastrea_1_1astro_1_1PerturbingForce.md) _._ |
+|  void | [**bind\_space\_weather\_provider**](#function-bind_space_weather_provider) (std::shared\_ptr&lt; const [**SpaceWeatherProvider**](classastrea_1_1astro_1_1SpaceWeatherProvider.md) &gt; provider) <br>_Binds shared immutable space weather data to this force._  |
 | virtual std::unique\_ptr&lt; [**PerturbingForce**](classastrea_1_1astro_1_1PerturbingForce.md) &gt; | [**clone**](#function-clone) () const = 0<br>_Creates a clone of the current_ [_**PerturbingForce**_](classastrea_1_1astro_1_1PerturbingForce.md) _object._ |
 | virtual [**Perturbation**](structastrea_1_1astro_1_1Perturbation.md) | [**compute\_perturbation**](#function-compute_perturbation) (const [**State**](classastrea_1_1astro_1_1State.md) & state, const [**Vehicle**](classastrea_1_1astro_1_1Vehicle.md) & vehicle) const = 0<br>_Computes the force acting on a vehicle at a given date and state._  |
+|  std::shared\_ptr&lt; const [**SpaceWeatherData**](classastrea_1_1astro_1_1SpaceWeatherData.md) &gt; | [**get\_space\_weather\_data**](#function-get_space_weather_data) () noexcept const<br> |
+|  const std::shared\_ptr&lt; const [**SpaceWeatherProvider**](classastrea_1_1astro_1_1SpaceWeatherProvider.md) &gt; & | [**get\_space\_weather\_provider**](#function-get_space_weather_provider) () noexcept const<br> |
 | virtual  | [**~PerturbingForce**](#function-perturbingforce) () = default<br>_Default destructor for_ [_**PerturbingForce**_](classastrea_1_1astro_1_1PerturbingForce.md) _._ |
 
 
@@ -102,6 +105,22 @@ This class defines the interface for computing forces acting on a vehicle in spa
 _Default constructor for_ [_**PerturbingForce**_](classastrea_1_1astro_1_1PerturbingForce.md) _._
 ```C++
 astrea::astro::PerturbingForce::PerturbingForce () = default
+```
+
+
+
+
+<hr>
+
+
+
+### function bind\_space\_weather\_provider 
+
+_Binds shared immutable space weather data to this force._ 
+```C++
+inline void astrea::astro::PerturbingForce::bind_space_weather_provider (
+    std::shared_ptr< const SpaceWeatherProvider > provider
+) 
 ```
 
 
@@ -167,6 +186,32 @@ virtual Perturbation astrea::astro::PerturbingForce::compute_perturbation (
 
 
         
+
+<hr>
+
+
+
+### function get\_space\_weather\_data 
+
+```C++
+inline std::shared_ptr< const SpaceWeatherData > astrea::astro::PerturbingForce::get_space_weather_data () noexcept const
+```
+
+
+
+
+<hr>
+
+
+
+### function get\_space\_weather\_provider 
+
+```C++
+inline const std::shared_ptr< const SpaceWeatherProvider > & astrea::astro::PerturbingForce::get_space_weather_provider () noexcept const
+```
+
+
+
 
 <hr>
 

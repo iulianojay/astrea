@@ -30,6 +30,11 @@ _The_ [_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _class represents 
 
 
 
+## Public Types
+
+| Type | Name |
+| ---: | :--- |
+| typedef [**Keplerian**](classastrea_1_1astro_1_1Keplerian.md)&lt; F &gt; | [**BaseType**](#typedef-basetype)  <br> |
 
 
 
@@ -143,6 +148,21 @@ The [**Keplerian**](classastrea_1_1astro_1_1Keplerian.md) elements are a set of 
 
 
     
+## Public Types Documentation
+
+
+
+
+### typedef BaseType 
+
+```C++
+using astrea::astro::Keplerian< _frame_ >::BaseType =  Keplerian<F>;
+```
+
+
+
+
+<hr>
 ## Public Static Attributes Documentation
 
 

@@ -10,9 +10,8 @@
 
 _Type definitions for astrea units._ [More...](#detailed-description)
 
-* `#include <array>`
 * `#include <stdint.h>`
-* `#include <mp-units/ext/format.h>`
+* `#include <mp-units/core.h>`
 * `#include <units/custom.hpp>`
 * `#include <units/detail.hpp>`
 

@@ -815,7 +815,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/platforms/sensors/fov/PolygonalFieldOfView.cpp" line="107" column="6" bodyfile="astrea/trace/trace/platforms/sensors/fov/PolygonalFieldOfView.cpp" bodystart="107" bodyend="124" declfile="astrea/trace/trace/platforms/sensors/fov/PolygonalFieldOfView.hpp" declline="113" declcolumn="6"/>
+        <location file="astrea/trace/trace/platforms/sensors/fov/PolygonalFieldOfView.cpp" line="108" column="6" bodyfile="astrea/trace/trace/platforms/sensors/fov/PolygonalFieldOfView.cpp" bodystart="108" bodyend="125" declfile="astrea/trace/trace/platforms/sensors/fov/PolygonalFieldOfView.hpp" declline="113" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="AccessArray_8cpp_1a15c3b7d207a35f0197b778079a2d1872" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>std::ostream &amp;</type>

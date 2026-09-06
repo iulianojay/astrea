@@ -10,6 +10,29 @@
         <defname>_frame_</defname>
       </param>
     </templateparamlist>
+    <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="classastrea_1_1astro_1_1Equinoctial_1a74c49483c4ae5c887b1e37231f38e1a5" prot="public" static="no">
+        <templateparamlist>
+          <param>
+            <type>IsFrame auto</type>
+            <declname>F</declname>
+            <defname>F</defname>
+          </param>
+        </templateparamlist>
+        <type><ref refid="classastrea_1_1astro_1_1Equinoctial" kindref="compound">Equinoctial</ref>&lt; F &gt;</type>
+        <definition>using astrea::astro::Equinoctial&lt; _frame_ &gt;::BaseType =  Equinoctial&lt;F&gt;</definition>
+        <argsstring></argsstring>
+        <name>BaseType</name>
+        <qualifiedname>astrea::astro::Equinoctial::BaseType</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" line="48" column="5" bodyfile="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" bodystart="48" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
     <sectiondef kind="friend">
       <memberdef kind="friend" id="classastrea_1_1astro_1_1Equinoctial_1ac71ddc6f2d42864c6ea75240b1086ffc" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>class</type>
@@ -88,7 +111,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" line="362" column="14" bodyfile="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" bodystart="362" bodyend="-1"/>
+        <location file="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" line="364" column="14" bodyfile="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" bodystart="364" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1Equinoctial_1adb3a86afe5f010b1a311e5883edf93de" prot="private" static="no" mutable="no">
         <type>Unitless</type>
@@ -103,7 +126,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" line="363" column="14" bodyfile="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" bodystart="363" bodyend="-1"/>
+        <location file="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" line="365" column="14" bodyfile="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" bodystart="365" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1Equinoctial_1a1bce45384d035384357b5b46887c3b24" prot="private" static="no" mutable="no">
         <type>Unitless</type>
@@ -118,7 +141,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" line="364" column="14" bodyfile="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" bodystart="364" bodyend="-1"/>
+        <location file="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" line="366" column="14" bodyfile="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" bodystart="366" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1Equinoctial_1a877b1e4d09de88fc7d1cf60b0d108a1d" prot="private" static="no" mutable="no">
         <type>Unitless</type>
@@ -133,7 +156,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" line="365" column="14" bodyfile="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" bodystart="365" bodyend="-1"/>
+        <location file="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" line="367" column="14" bodyfile="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" bodystart="367" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1Equinoctial_1a2cff6e64a00be8d0db27daf4dd061c78" prot="private" static="no" mutable="no">
         <type>Unitless</type>
@@ -148,7 +171,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" line="366" column="14" bodyfile="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" bodystart="366" bodyend="-1"/>
+        <location file="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" line="368" column="14" bodyfile="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" bodystart="368" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1Equinoctial_1a23472f536f374e2dc6fa5e4c75f208f1" prot="private" static="no" mutable="no">
         <type>Angle</type>
@@ -163,7 +186,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" line="367" column="11" bodyfile="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" bodystart="367" bodyend="-1"/>
+        <location file="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" line="369" column="11" bodyfile="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" bodystart="369" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="public-func">
@@ -195,7 +218,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" line="53" column="5" bodyfile="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" bodystart="53" bodyend="61"/>
+        <location file="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" line="55" column="5" bodyfile="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" bodystart="55" bodyend="63"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Equinoctial_1ab6dd634b3e409cc9875e26154eb052d2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
@@ -284,7 +307,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" line="73" column="5" bodyfile="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" bodystart="73" bodyend="81"/>
+        <location file="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" line="75" column="5" bodyfile="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" bodystart="75" bodyend="83"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Equinoctial_1ad910849957b7f38b6785be3e4f88e1ca" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
@@ -325,7 +348,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" line="89" column="5" bodyfile="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" bodystart="89" bodyend="92"/>
+        <location file="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" line="91" column="5" bodyfile="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" bodystart="91" bodyend="94"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Equinoctial_1aef381290e5826071f16bbe595aec4889" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -366,7 +389,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" line="100" column="5" bodyfile="astrea/astro/astro/state/orbital_elements/Equinoctial.ipp" bodystart="59" bodyend="84"/>
+        <location file="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" line="102" column="5" bodyfile="astrea/astro/astro/state/orbital_elements/Equinoctial.ipp" bodystart="59" bodyend="84"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Equinoctial_1ab70b754f0a23f6c97951d8cd4bf5d2f7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
@@ -407,7 +430,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" line="108" column="5" bodyfile="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" bodystart="108" bodyend="111"/>
+        <location file="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" line="110" column="5" bodyfile="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" bodystart="110" bodyend="113"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Equinoctial_1af390d2029e61eadd217801b4a22bb3e9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -426,7 +449,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" line="167" column="5" bodyfile="astrea/astro/astro/state/orbital_elements/Equinoctial.ipp" bodystart="88" bodyend="96"/>
+        <location file="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" line="169" column="5" bodyfile="astrea/astro/astro/state/orbital_elements/Equinoctial.ipp" bodystart="88" bodyend="96"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Equinoctial_1aacf330dc7b409f67726651b8e85d4e07" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
         <type></type>
@@ -455,7 +478,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" line="174" column="5" bodyfile="astrea/astro/astro/state/orbital_elements/Equinoctial.ipp" bodystart="100" bodyend="108"/>
+        <location file="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" line="176" column="5" bodyfile="astrea/astro/astro/state/orbital_elements/Equinoctial.ipp" bodystart="100" bodyend="108"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Equinoctial_1a28097b5a6e6e447052554a5fd0c7f875" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
         <type><ref refid="classastrea_1_1astro_1_1Equinoctial" kindref="compound">Equinoctial</ref> &amp;</type>
@@ -486,7 +509,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" line="182" column="17" bodyfile="astrea/astro/astro/state/orbital_elements/Equinoctial.ipp" bodystart="112" bodyend="123"/>
+        <location file="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" line="184" column="17" bodyfile="astrea/astro/astro/state/orbital_elements/Equinoctial.ipp" bodystart="112" bodyend="123"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Equinoctial_1a9aa45155c756e3cf0af1686338095e8a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classastrea_1_1astro_1_1Equinoctial" kindref="compound">Equinoctial</ref> &amp;</type>
@@ -517,7 +540,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" line="190" column="17" bodyfile="astrea/astro/astro/state/orbital_elements/Equinoctial.ipp" bodystart="127" bodyend="130"/>
+        <location file="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" line="192" column="17" bodyfile="astrea/astro/astro/state/orbital_elements/Equinoctial.ipp" bodystart="127" bodyend="130"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Equinoctial_1a0a4b0ed573b7e2c081654f813a79cf05" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -532,7 +555,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" line="195" column="5"/>
+        <location file="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" line="197" column="5"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Equinoctial_1ae2ea6b3b8491bce2838aef4f9a9fdde9" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
@@ -592,7 +615,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" line="209" column="17" bodyfile="astrea/astro/astro/state/orbital_elements/Equinoctial.ipp" bodystart="325" bodyend="329"/>
+        <location file="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" line="211" column="17" bodyfile="astrea/astro/astro/state/orbital_elements/Equinoctial.ipp" bodystart="325" bodyend="329"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Equinoctial_1a60ab7f31289907e0460cd5762022d850" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -623,7 +646,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" line="217" column="10" bodyfile="astrea/astro/astro/state/orbital_elements/Equinoctial.ipp" bodystart="134" bodyend="140"/>
+        <location file="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" line="219" column="10" bodyfile="astrea/astro/astro/state/orbital_elements/Equinoctial.ipp" bodystart="134" bodyend="140"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Equinoctial_1add52713c4c3324175ab1be2ba39a9880" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -654,7 +677,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" line="225" column="10" bodyfile="astrea/astro/astro/state/orbital_elements/Equinoctial.ipp" bodystart="143" bodyend="146"/>
+        <location file="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" line="227" column="10" bodyfile="astrea/astro/astro/state/orbital_elements/Equinoctial.ipp" bodystart="143" bodyend="146"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Equinoctial_1ac500d538a43b085653e89af2f05798e2" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classastrea_1_1astro_1_1Equinoctial" kindref="compound">Equinoctial</ref></type>
@@ -685,7 +708,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" line="233" column="17" bodyfile="astrea/astro/astro/state/orbital_elements/Equinoctial.ipp" bodystart="151" bodyend="161"/>
+        <location file="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" line="235" column="17" bodyfile="astrea/astro/astro/state/orbital_elements/Equinoctial.ipp" bodystart="151" bodyend="161"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Equinoctial_1a593d8eaf156e2f4574c2e20c89daed2a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classastrea_1_1astro_1_1Equinoctial" kindref="compound">Equinoctial</ref> &amp;</type>
@@ -716,7 +739,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" line="241" column="17" bodyfile="astrea/astro/astro/state/orbital_elements/Equinoctial.ipp" bodystart="163" bodyend="172"/>
+        <location file="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" line="243" column="17" bodyfile="astrea/astro/astro/state/orbital_elements/Equinoctial.ipp" bodystart="163" bodyend="172"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Equinoctial_1aa4c8daeae46ca9a3043eb9275e2f399e" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classastrea_1_1astro_1_1Equinoctial" kindref="compound">Equinoctial</ref></type>
@@ -747,7 +770,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" line="249" column="17" bodyfile="astrea/astro/astro/state/orbital_elements/Equinoctial.ipp" bodystart="175" bodyend="185"/>
+        <location file="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" line="251" column="17" bodyfile="astrea/astro/astro/state/orbital_elements/Equinoctial.ipp" bodystart="175" bodyend="185"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Equinoctial_1afa3ad543111631c6a0970cfed24db59b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classastrea_1_1astro_1_1Equinoctial" kindref="compound">Equinoctial</ref> &amp;</type>
@@ -778,7 +801,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" line="257" column="17" bodyfile="astrea/astro/astro/state/orbital_elements/Equinoctial.ipp" bodystart="187" bodyend="196"/>
+        <location file="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" line="259" column="17" bodyfile="astrea/astro/astro/state/orbital_elements/Equinoctial.ipp" bodystart="187" bodyend="196"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Equinoctial_1ac4d663f04fc6030a06807e1b8bbc7b0c" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classastrea_1_1astro_1_1Equinoctial" kindref="compound">Equinoctial</ref></type>
@@ -809,7 +832,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" line="265" column="17" bodyfile="astrea/astro/astro/state/orbital_elements/Equinoctial.ipp" bodystart="199" bodyend="202"/>
+        <location file="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" line="267" column="17" bodyfile="astrea/astro/astro/state/orbital_elements/Equinoctial.ipp" bodystart="199" bodyend="202"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Equinoctial_1a27e051f78bb1919a7ebc0af8e564d320" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classastrea_1_1astro_1_1Equinoctial" kindref="compound">Equinoctial</ref> &amp;</type>
@@ -840,7 +863,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" line="273" column="17" bodyfile="astrea/astro/astro/state/orbital_elements/Equinoctial.ipp" bodystart="204" bodyend="213"/>
+        <location file="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" line="275" column="17" bodyfile="astrea/astro/astro/state/orbital_elements/Equinoctial.ipp" bodystart="204" bodyend="213"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Equinoctial_1aa70aef4efac7a5265da02dc201c00ef6" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classastrea_1_1astro_1_1EquinoctialPartial" kindref="compound">EquinoctialPartial</ref>&lt; _frame_ &gt;</type>
@@ -871,7 +894,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" line="281" column="24" bodyfile="astrea/astro/astro/state/orbital_elements/Equinoctial.ipp" bodystart="216" bodyend="219"/>
+        <location file="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" line="283" column="24" bodyfile="astrea/astro/astro/state/orbital_elements/Equinoctial.ipp" bodystart="216" bodyend="219"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Equinoctial_1a4b893ceba6c25ceb0770ccf86f78f1cd" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classastrea_1_1astro_1_1Equinoctial" kindref="compound">Equinoctial</ref></type>
@@ -902,7 +925,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" line="289" column="17" bodyfile="astrea/astro/astro/state/orbital_elements/Equinoctial.ipp" bodystart="222" bodyend="225"/>
+        <location file="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" line="291" column="17" bodyfile="astrea/astro/astro/state/orbital_elements/Equinoctial.ipp" bodystart="222" bodyend="225"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Equinoctial_1a5ef26ed4b24b627b9844e030c8bbdf81" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classastrea_1_1astro_1_1Equinoctial" kindref="compound">Equinoctial</ref> &amp;</type>
@@ -933,7 +956,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" line="297" column="17" bodyfile="astrea/astro/astro/state/orbital_elements/Equinoctial.ipp" bodystart="228" bodyend="237"/>
+        <location file="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" line="299" column="17" bodyfile="astrea/astro/astro/state/orbital_elements/Equinoctial.ipp" bodystart="228" bodyend="237"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Equinoctial_1a6c15c19826648a7106994a8cd18a7eee" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>const Distance &amp;</type>
@@ -951,7 +974,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" line="304" column="20" bodyfile="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" bodystart="304" bodyend="304"/>
+        <location file="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" line="306" column="20" bodyfile="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" bodystart="306" bodyend="306"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Equinoctial_1a1643ddd1131d1eafde089b52e2b83086" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>const Unitless &amp;</type>
@@ -969,7 +992,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" line="311" column="20" bodyfile="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" bodystart="311" bodyend="311"/>
+        <location file="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" line="313" column="20" bodyfile="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" bodystart="313" bodyend="313"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Equinoctial_1aae1e1dba56ca7577c13a1534af89b35b" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>const Unitless &amp;</type>
@@ -987,7 +1010,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" line="318" column="20" bodyfile="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" bodystart="318" bodyend="318"/>
+        <location file="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" line="320" column="20" bodyfile="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" bodystart="320" bodyend="320"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Equinoctial_1a709ae07d33621b013c7a6ec78dc7176e" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>const Unitless &amp;</type>
@@ -1005,7 +1028,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" line="325" column="20" bodyfile="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" bodystart="325" bodyend="325"/>
+        <location file="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" line="327" column="20" bodyfile="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" bodystart="327" bodyend="327"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Equinoctial_1add8ce41d82f1d99718c8f886253dd15b" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>const Unitless &amp;</type>
@@ -1023,7 +1046,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" line="332" column="20" bodyfile="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" bodystart="332" bodyend="332"/>
+        <location file="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" line="334" column="20" bodyfile="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" bodystart="334" bodyend="334"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Equinoctial_1a1362d84675e2f69c22313134c603b230" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>const Angle &amp;</type>
@@ -1041,7 +1064,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" line="339" column="17" bodyfile="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" bodystart="339" bodyend="339"/>
+        <location file="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" line="341" column="17" bodyfile="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" bodystart="341" bodyend="341"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Equinoctial_1aad44cf5750c25373f971fe47102f3c74" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>std::vector&lt; double &gt;</type>
@@ -1059,7 +1082,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" line="346" column="17" bodyfile="astrea/astro/astro/state/orbital_elements/Equinoctial.ipp" bodystart="257" bodyend="265"/>
+        <location file="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" line="348" column="17" bodyfile="astrea/astro/astro/state/orbital_elements/Equinoctial.ipp" bodystart="257" bodyend="265"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Equinoctial_1ad9ff3618f3f31425bda6c4996a528b30" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classastrea_1_1astro_1_1Equinoctial" kindref="compound">Equinoctial</ref></type>
@@ -1138,7 +1161,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" line="359" column="9" bodyfile="astrea/astro/astro/state/orbital_elements/Equinoctial.ipp" bodystart="242" bodyend="254"/>
+        <location file="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" line="361" column="9" bodyfile="astrea/astro/astro/state/orbital_elements/Equinoctial.ipp" bodystart="242" bodyend="254"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="public-static-func">
@@ -1172,7 +1195,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" line="121" column="24" bodyfile="astrea/astro/astro/state/orbital_elements/Equinoctial.ipp" bodystart="33" bodyend="36"/>
+        <location file="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" line="123" column="24" bodyfile="astrea/astro/astro/state/orbital_elements/Equinoctial.ipp" bodystart="33" bodyend="36"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Equinoctial_1afb3b47d8d45587d044474ae7dd7dffe9" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classastrea_1_1astro_1_1Equinoctial" kindref="compound">Equinoctial</ref></type>
@@ -1204,7 +1227,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" line="131" column="24" bodyfile="astrea/astro/astro/state/orbital_elements/Equinoctial.ipp" bodystart="38" bodyend="41"/>
+        <location file="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" line="133" column="24" bodyfile="astrea/astro/astro/state/orbital_elements/Equinoctial.ipp" bodystart="38" bodyend="41"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Equinoctial_1ae5b95427d45789d7223429225c77af70" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classastrea_1_1astro_1_1Equinoctial" kindref="compound">Equinoctial</ref></type>
@@ -1236,7 +1259,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" line="141" column="24" bodyfile="astrea/astro/astro/state/orbital_elements/Equinoctial.ipp" bodystart="43" bodyend="46"/>
+        <location file="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" line="143" column="24" bodyfile="astrea/astro/astro/state/orbital_elements/Equinoctial.ipp" bodystart="43" bodyend="46"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Equinoctial_1a2c2e463490642fb2cd1374a0f28ca136" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classastrea_1_1astro_1_1Equinoctial" kindref="compound">Equinoctial</ref></type>
@@ -1268,7 +1291,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" line="151" column="24" bodyfile="astrea/astro/astro/state/orbital_elements/Equinoctial.ipp" bodystart="48" bodyend="51"/>
+        <location file="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" line="153" column="24" bodyfile="astrea/astro/astro/state/orbital_elements/Equinoctial.ipp" bodystart="48" bodyend="51"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Equinoctial_1a0fb8fba7741da4eea3333137aabd4980" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classastrea_1_1astro_1_1Equinoctial" kindref="compound">Equinoctial</ref></type>
@@ -1300,7 +1323,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" line="161" column="24" bodyfile="astrea/astro/astro/state/orbital_elements/Equinoctial.ipp" bodystart="53" bodyend="56"/>
+        <location file="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" line="163" column="24" bodyfile="astrea/astro/astro/state/orbital_elements/Equinoctial.ipp" bodystart="53" bodyend="56"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="private-static-func">
@@ -1333,7 +1356,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" line="375" column="24" bodyfile="astrea/astro/astro/state/orbital_elements/Equinoctial.ipp" bodystart="268" bodyend="276"/>
+        <location file="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" line="377" column="24" bodyfile="astrea/astro/astro/state/orbital_elements/Equinoctial.ipp" bodystart="268" bodyend="276"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
@@ -1342,7 +1365,7 @@
     <detaileddescription>
 <para>The equinoctial elements are a set of orbital elements that are particularly useful for describing orbits in a way that avoids singularities, especially for near-circular orbits. They are defined in terms of the semilatus rectum and the components of the eccentricity vector. </para>
     </detaileddescription>
-    <location file="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" line="39" column="1" bodyfile="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" bodystart="39" bodyend="376"/>
+    <location file="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" line="39" column="1" bodyfile="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" bodystart="39" bodyend="378"/>
     <listofallmembers>
       <member refid="classastrea_1_1astro_1_1Equinoctial_1adb3a86afe5f010b1a311e5883edf93de" prot="private" virt="non-virtual"><scope>astrea::astro::Equinoctial</scope><name>_f</name></member>
       <member refid="classastrea_1_1astro_1_1Equinoctial_1a1bce45384d035384357b5b46887c3b24" prot="private" virt="non-virtual"><scope>astrea::astro::Equinoctial</scope><name>_g</name></member>
@@ -1350,6 +1373,7 @@
       <member refid="classastrea_1_1astro_1_1Equinoctial_1a2cff6e64a00be8d0db27daf4dd061c78" prot="private" virt="non-virtual"><scope>astrea::astro::Equinoctial</scope><name>_k</name></member>
       <member refid="classastrea_1_1astro_1_1Equinoctial_1ab136abf00f393d938db03034c9b13bda" prot="private" virt="non-virtual"><scope>astrea::astro::Equinoctial</scope><name>_semilatus</name></member>
       <member refid="classastrea_1_1astro_1_1Equinoctial_1a23472f536f374e2dc6fa5e4c75f208f1" prot="private" virt="non-virtual"><scope>astrea::astro::Equinoctial</scope><name>_trueLongitude</name></member>
+      <member refid="classastrea_1_1astro_1_1Equinoctial_1a74c49483c4ae5c887b1e37231f38e1a5" prot="public" virt="non-virtual"><scope>astrea::astro::Equinoctial</scope><name>BaseType</name></member>
       <member refid="classastrea_1_1astro_1_1Equinoctial_1a1165c83076e14c100d523280f0a92d72" prot="public" virt="non-virtual"><scope>astrea::astro::Equinoctial</scope><name>Equinoctial</name></member>
       <member refid="classastrea_1_1astro_1_1Equinoctial_1ab6dd634b3e409cc9875e26154eb052d2" prot="public" virt="non-virtual"><scope>astrea::astro::Equinoctial</scope><name>Equinoctial</name></member>
       <member refid="classastrea_1_1astro_1_1Equinoctial_1ad910849957b7f38b6785be3e4f88e1ca" prot="public" virt="non-virtual"><scope>astrea::astro::Equinoctial</scope><name>Equinoctial</name></member>

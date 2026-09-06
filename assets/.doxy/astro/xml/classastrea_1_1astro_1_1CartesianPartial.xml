@@ -25,7 +25,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/orbital_elements/Cartesian.hpp" line="442" column="27" bodyfile="astrea/astro/astro/state/orbital_elements/Cartesian.hpp" bodystart="442" bodyend="-1"/>
+        <location file="astrea/astro/astro/state/orbital_elements/Cartesian.hpp" line="444" column="27" bodyfile="astrea/astro/astro/state/orbital_elements/Cartesian.hpp" bodystart="444" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="private-attrib">
@@ -42,7 +42,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/orbital_elements/Cartesian.hpp" line="535" column="20" bodyfile="astrea/astro/astro/state/orbital_elements/Cartesian.hpp" bodystart="535" bodyend="-1"/>
+        <location file="astrea/astro/astro/state/orbital_elements/Cartesian.hpp" line="537" column="20" bodyfile="astrea/astro/astro/state/orbital_elements/Cartesian.hpp" bodystart="537" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1CartesianPartial_1acefb68d179ad372c1bcd0200bbf4c90c" prot="private" static="no" mutable="no">
         <type><ref refid="typedefs_8hpp_1a5ab64faba5980e0a16105bb4b4f70a02" kindref="member">AccelerationVector</ref>&lt; _frame_ &gt;</type>
@@ -57,7 +57,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/orbital_elements/Cartesian.hpp" line="536" column="24" bodyfile="astrea/astro/astro/state/orbital_elements/Cartesian.hpp" bodystart="536" bodyend="-1"/>
+        <location file="astrea/astro/astro/state/orbital_elements/Cartesian.hpp" line="538" column="24" bodyfile="astrea/astro/astro/state/orbital_elements/Cartesian.hpp" bodystart="538" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="friend">
@@ -86,7 +86,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/orbital_elements/Cartesian.hpp" line="439" column="12"/>
+        <location file="astrea/astro/astro/state/orbital_elements/Cartesian.hpp" line="441" column="12"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="public-func">
@@ -103,7 +103,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/orbital_elements/Cartesian.hpp" line="447" column="5"/>
+        <location file="astrea/astro/astro/state/orbital_elements/Cartesian.hpp" line="449" column="5"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1CartesianPartial_1a02de1c57b9e8b42f40fabcc13f37b90c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
@@ -192,7 +192,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/orbital_elements/Cartesian.hpp" line="459" column="5" bodyfile="astrea/astro/astro/state/orbital_elements/Cartesian.hpp" bodystart="459" bodyend="463"/>
+        <location file="astrea/astro/astro/state/orbital_elements/Cartesian.hpp" line="461" column="5" bodyfile="astrea/astro/astro/state/orbital_elements/Cartesian.hpp" bodystart="461" bodyend="465"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1CartesianPartial_1a10bc5c0bb56fb16332eb87c33990546e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
@@ -233,7 +233,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/orbital_elements/Cartesian.hpp" line="471" column="5" bodyfile="astrea/astro/astro/state/orbital_elements/Cartesian.hpp" bodystart="471" bodyend="475"/>
+        <location file="astrea/astro/astro/state/orbital_elements/Cartesian.hpp" line="473" column="5" bodyfile="astrea/astro/astro/state/orbital_elements/Cartesian.hpp" bodystart="473" bodyend="477"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1CartesianPartial_1a6b6b41d4ea003cf12993ea1681fc9c0f" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>Velocity</type>
@@ -251,7 +251,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/orbital_elements/Cartesian.hpp" line="482" column="14" bodyfile="astrea/astro/astro/state/orbital_elements/Cartesian.hpp" bodystart="482" bodyend="482"/>
+        <location file="astrea/astro/astro/state/orbital_elements/Cartesian.hpp" line="484" column="14" bodyfile="astrea/astro/astro/state/orbital_elements/Cartesian.hpp" bodystart="484" bodyend="484"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1CartesianPartial_1a0c51557e1e3f85ca2a19036161ced6b2" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>Velocity</type>
@@ -269,7 +269,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/orbital_elements/Cartesian.hpp" line="489" column="14" bodyfile="astrea/astro/astro/state/orbital_elements/Cartesian.hpp" bodystart="489" bodyend="489"/>
+        <location file="astrea/astro/astro/state/orbital_elements/Cartesian.hpp" line="491" column="14" bodyfile="astrea/astro/astro/state/orbital_elements/Cartesian.hpp" bodystart="491" bodyend="491"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1CartesianPartial_1ada7ea3901f70adcb8d261521516dca97" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>Velocity</type>
@@ -287,7 +287,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/orbital_elements/Cartesian.hpp" line="496" column="14" bodyfile="astrea/astro/astro/state/orbital_elements/Cartesian.hpp" bodystart="496" bodyend="496"/>
+        <location file="astrea/astro/astro/state/orbital_elements/Cartesian.hpp" line="498" column="14" bodyfile="astrea/astro/astro/state/orbital_elements/Cartesian.hpp" bodystart="498" bodyend="498"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1CartesianPartial_1a439f711e041330f90056bed2a080a02b" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>Acceleration</type>
@@ -305,7 +305,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/orbital_elements/Cartesian.hpp" line="503" column="18" bodyfile="astrea/astro/astro/state/orbital_elements/Cartesian.hpp" bodystart="503" bodyend="503"/>
+        <location file="astrea/astro/astro/state/orbital_elements/Cartesian.hpp" line="505" column="18" bodyfile="astrea/astro/astro/state/orbital_elements/Cartesian.hpp" bodystart="505" bodyend="505"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1CartesianPartial_1ae4a12c96d6333703e726e0489be080a5" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>Acceleration</type>
@@ -323,7 +323,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/orbital_elements/Cartesian.hpp" line="510" column="18" bodyfile="astrea/astro/astro/state/orbital_elements/Cartesian.hpp" bodystart="510" bodyend="510"/>
+        <location file="astrea/astro/astro/state/orbital_elements/Cartesian.hpp" line="512" column="18" bodyfile="astrea/astro/astro/state/orbital_elements/Cartesian.hpp" bodystart="512" bodyend="512"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1CartesianPartial_1a54c6cea0c2d491c157f720bfa3f80000" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>Acceleration</type>
@@ -341,7 +341,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/orbital_elements/Cartesian.hpp" line="517" column="18" bodyfile="astrea/astro/astro/state/orbital_elements/Cartesian.hpp" bodystart="517" bodyend="517"/>
+        <location file="astrea/astro/astro/state/orbital_elements/Cartesian.hpp" line="519" column="18" bodyfile="astrea/astro/astro/state/orbital_elements/Cartesian.hpp" bodystart="519" bodyend="519"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1CartesianPartial_1a0c648542e40f10b513060af4a813450c" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref>&lt; _frame_ &gt;</type>
@@ -372,7 +372,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/orbital_elements/Cartesian.hpp" line="525" column="15" bodyfile="astrea/astro/astro/state/orbital_elements/Cartesian.ipp" bodystart="369" bodyend="372"/>
+        <location file="astrea/astro/astro/state/orbital_elements/Cartesian.hpp" line="527" column="15" bodyfile="astrea/astro/astro/state/orbital_elements/Cartesian.ipp" bodystart="369" bodyend="372"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1CartesianPartial_1a12929739fccf6cb391b48d3d5f7925e1" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>std::vector&lt; double &gt;</type>
@@ -390,7 +390,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/orbital_elements/Cartesian.hpp" line="532" column="17" bodyfile="astrea/astro/astro/state/orbital_elements/Cartesian.ipp" bodystart="375" bodyend="380"/>
+        <location file="astrea/astro/astro/state/orbital_elements/Cartesian.hpp" line="534" column="17" bodyfile="astrea/astro/astro/state/orbital_elements/Cartesian.ipp" bodystart="375" bodyend="380"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
@@ -399,7 +399,7 @@
     <detaileddescription>
 <para>This class encapsulates the velocity and acceleration components of a vehicle in <ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref> coordinates. </para>
     </detaileddescription>
-    <location file="astrea/astro/astro/state/orbital_elements/Cartesian.hpp" line="436" column="1" bodyfile="astrea/astro/astro/state/orbital_elements/Cartesian.hpp" bodystart="436" bodyend="537"/>
+    <location file="astrea/astro/astro/state/orbital_elements/Cartesian.hpp" line="438" column="1" bodyfile="astrea/astro/astro/state/orbital_elements/Cartesian.hpp" bodystart="438" bodyend="539"/>
     <listofallmembers>
       <member refid="classastrea_1_1astro_1_1CartesianPartial_1acefb68d179ad372c1bcd0200bbf4c90c" prot="private" virt="non-virtual"><scope>astrea::astro::CartesianPartial</scope><name>_a</name></member>
       <member refid="classastrea_1_1astro_1_1CartesianPartial_1a2b8f73d50d5a938d62ef709b72dbe9de" prot="private" virt="non-virtual"><scope>astrea::astro::CartesianPartial</scope><name>_v</name></member>

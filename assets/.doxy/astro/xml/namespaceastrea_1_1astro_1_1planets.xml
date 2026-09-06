@@ -4,47 +4,89 @@
     <compoundname>astrea::astro::planets</compoundname>
     <innerclass refid="structastrea_1_1astro_1_1planets_1_1BatesProfileParams" prot="public">astrea::astro::planets::BatesProfileParams</innerclass>
     <innerclass refid="structastrea_1_1astro_1_1planets_1_1Earth" prot="public">astrea::astro::planets::Earth</innerclass>
-    <innerclass refid="structastrea_1_1astro_1_1planets_1_1EarthParameters" prot="public">astrea::astro::planets::EarthParameters</innerclass>
-    <innerclass refid="classastrea_1_1astro_1_1planets_1_1HarrisPriesterAtmosphere" prot="public">astrea::astro::planets::HarrisPriesterAtmosphere</innerclass>
-    <innerclass refid="classastrea_1_1astro_1_1planets_1_1JacciaRobertsAtmosphere" prot="public">astrea::astro::planets::JacciaRobertsAtmosphere</innerclass>
     <innerclass refid="structastrea_1_1astro_1_1planets_1_1Jupiter" prot="public">astrea::astro::planets::Jupiter</innerclass>
     <innerclass refid="structastrea_1_1astro_1_1planets_1_1Mars" prot="public">astrea::astro::planets::Mars</innerclass>
     <innerclass refid="structastrea_1_1astro_1_1planets_1_1Mercury" prot="public">astrea::astro::planets::Mercury</innerclass>
     <innerclass refid="structastrea_1_1astro_1_1planets_1_1Neptune" prot="public">astrea::astro::planets::Neptune</innerclass>
-    <innerclass refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00" prot="public">astrea::astro::planets::NRLMSISE00</innerclass>
-    <innerclass refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00Atmosphere" prot="public">astrea::astro::planets::NRLMSISE00Atmosphere</innerclass>
+    <innerclass refid="classastrea_1_1astro_1_1planets_1_1Nrlmsise00Atmosphere" prot="public">astrea::astro::planets::Nrlmsise00Atmosphere</innerclass>
+    <innerclass refid="classastrea_1_1astro_1_1planets_1_1Output" prot="public">astrea::astro::planets::Output</innerclass>
     <innerclass refid="structastrea_1_1astro_1_1planets_1_1Saturn" prot="public">astrea::astro::planets::Saturn</innerclass>
     <innerclass refid="structastrea_1_1astro_1_1planets_1_1SpeciesModelParams" prot="public">astrea::astro::planets::SpeciesModelParams</innerclass>
+    <innerclass refid="structastrea_1_1astro_1_1planets_1_1Switch" prot="public">astrea::astro::planets::Switch</innerclass>
     <innerclass refid="structastrea_1_1astro_1_1planets_1_1Uranus" prot="public">astrea::astro::planets::Uranus</innerclass>
     <innerclass refid="structastrea_1_1astro_1_1planets_1_1Venus" prot="public">astrea::astro::planets::Venus</innerclass>
     <sectiondef kind="enum">
-      <memberdef kind="enum" id="Earth_8hpp_1aae935f833e6422fee9615937d8161b1f" prot="public" static="no" strong="yes">
+      <memberdef kind="enum" id="NRLMSISE00_8cpp_1a56e052e31d6dccffbaecf34f040c6b06" prot="public" static="no" strong="no">
         <type></type>
-        <name>EarthAtmosphereModel</name>
-        <qualifiedname>astrea::astro::planets::EarthAtmosphereModel</qualifiedname>
-        <enumvalue id="Earth_8hpp_1aae935f833e6422fee9615937d8161b1fa468a4df9b74e4876379573f50136e735" prot="public">
-          <name>JACHIA_ROBERTS</name>
+        <name>Species</name>
+        <qualifiedname>astrea::astro::planets::Species</qualifiedname>
+        <enumvalue id="NRLMSISE00_8cpp_1a56e052e31d6dccffbaecf34f040c6b06aac07ae552b320b931b0dfce4d5c95a3a" prot="public">
+          <name>HELIUM</name>
+          <initializer>= 0</initializer>
           <briefdescription>
           </briefdescription>
           <detaileddescription>
           </detaileddescription>
         </enumvalue>
-        <enumvalue id="Earth_8hpp_1aae935f833e6422fee9615937d8161b1faa69b0ac8ebd3625dbc1cc489e7e11ecc" prot="public">
-          <name>NRLMSISE00</name>
+        <enumvalue id="NRLMSISE00_8cpp_1a56e052e31d6dccffbaecf34f040c6b06aaedfcbb8016071374aa0db3af0204282" prot="public">
+          <name>ATOMIC_OXYGEN</name>
+          <initializer>= 1</initializer>
           <briefdescription>
           </briefdescription>
           <detaileddescription>
           </detaileddescription>
         </enumvalue>
-        <enumvalue id="Earth_8hpp_1aae935f833e6422fee9615937d8161b1fa7ff3376359a918856aea7ed4f3532256" prot="public">
-          <name>DTM2000</name>
+        <enumvalue id="NRLMSISE00_8cpp_1a56e052e31d6dccffbaecf34f040c6b06ad6c05dcb7202f6e7745495adae2cc58d" prot="public">
+          <name>MOLECULAR_NITROGEN</name>
+          <initializer>= 2</initializer>
           <briefdescription>
           </briefdescription>
           <detaileddescription>
           </detaileddescription>
         </enumvalue>
-        <enumvalue id="Earth_8hpp_1aae935f833e6422fee9615937d8161b1fa17f976d245f4144401399b9cd5094b72" prot="public">
-          <name>HARRIS_PRIESTER</name>
+        <enumvalue id="NRLMSISE00_8cpp_1a56e052e31d6dccffbaecf34f040c6b06aec4743ca2dedbd5c53baeb5074927c78" prot="public">
+          <name>MOLECULAR_OXYGEN</name>
+          <initializer>= 3</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="NRLMSISE00_8cpp_1a56e052e31d6dccffbaecf34f040c6b06ac09b64c221f7b11e9efb4cf39cfcb4e9" prot="public">
+          <name>ARGON</name>
+          <initializer>= 4</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="NRLMSISE00_8cpp_1a56e052e31d6dccffbaecf34f040c6b06a614b53648d8bc0ce6f071912825a472e" prot="public">
+          <name>TOTAL_MASS</name>
+          <initializer>= 5</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="NRLMSISE00_8cpp_1a56e052e31d6dccffbaecf34f040c6b06a8bb608dae9ded0bddd01c6e6d2dc8860" prot="public">
+          <name>HYDROGEN</name>
+          <initializer>= 6</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="NRLMSISE00_8cpp_1a56e052e31d6dccffbaecf34f040c6b06a45419197b384f2961ab7129a31231142" prot="public">
+          <name>ATOMIC_NITROGEN</name>
+          <initializer>= 7</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="NRLMSISE00_8cpp_1a56e052e31d6dccffbaecf34f040c6b06abc8c89dcf030a1bd05027bc4f36c2d86" prot="public">
+          <name>ANOMALOUS_OXYGEN</name>
+          <initializer>= 8</initializer>
           <briefdescription>
           </briefdescription>
           <detaileddescription>
@@ -56,126 +98,241 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/systems/celestial_bodies/Earth/Earth.hpp" line="38" column="1" bodyfile="astrea/astro/astro/systems/celestial_bodies/Earth/Earth.hpp" bodystart="38" bodyend="38"/>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" line="629" column="1" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" bodystart="629" bodyend="639"/>
+      </memberdef>
+      <memberdef kind="enum" id="NRLMSISE00_8cpp_1ae7b836427cda584e680a465d1f92fc0e" prot="public" static="no" strong="no">
+        <type></type>
+        <name>TemperatureType</name>
+        <qualifiedname>astrea::astro::planets::TemperatureType</qualifiedname>
+        <enumvalue id="NRLMSISE00_8cpp_1ae7b836427cda584e680a465d1f92fc0ea7ca4b61298d49fd0c97cb5463c9bb3b6" prot="public">
+          <name>EXOSPHERIC</name>
+          <initializer>= 0</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="NRLMSISE00_8cpp_1ae7b836427cda584e680a465d1f92fc0ea2ac9cd79b34d0ffc0f9111d3e40da917" prot="public">
+          <name>ALTITUDE</name>
+          <initializer>= 1</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" line="850" column="1" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" bodystart="850" bodyend="850"/>
+      </memberdef>
+      <memberdef kind="enum" id="NRLMSISE00_8cpp_1a5e30d834ea82f5bff2e2441c8b4a91a8" prot="public" static="no" strong="no">
+        <type></type>
+        <name>Option</name>
+        <qualifiedname>astrea::astro::planets::Option</qualifiedname>
+        <enumvalue id="NRLMSISE00_8cpp_1a5e30d834ea82f5bff2e2441c8b4a91a8a59ed6478983a40adb27e2b133d9e38e4" prot="public">
+          <name>F107_EFFECT_ON_MEAN</name>
+          <initializer>= 0</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="NRLMSISE00_8cpp_1a5e30d834ea82f5bff2e2441c8b4a91a8abce6403702470f7c2d8182d27fc29e09" prot="public">
+          <name>INDEPENDENT_OF_TIME</name>
+          <initializer>= 1</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="NRLMSISE00_8cpp_1a5e30d834ea82f5bff2e2441c8b4a91a8a99271cd47111c4726bbf383c269b6a12" prot="public">
+          <name>SYMMETRICAL_ANNUAL</name>
+          <initializer>= 2</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="NRLMSISE00_8cpp_1a5e30d834ea82f5bff2e2441c8b4a91a8a3a275d8548e725c47ec7b68443a1fc3d" prot="public">
+          <name>SYMMETRICAL_SEMIANNUAL</name>
+          <initializer>= 3</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="NRLMSISE00_8cpp_1a5e30d834ea82f5bff2e2441c8b4a91a8a928a37637d113253a13b61e2411c050f" prot="public">
+          <name>ASYMMETRICAL_ANNUAL</name>
+          <initializer>= 4</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="NRLMSISE00_8cpp_1a5e30d834ea82f5bff2e2441c8b4a91a8a94e3d584e8f606ac6b222460934dff75" prot="public">
+          <name>ASYMMETRICAL_SEMIANNUAL</name>
+          <initializer>= 5</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="NRLMSISE00_8cpp_1a5e30d834ea82f5bff2e2441c8b4a91a8a34cf17829173477276e98037900b422c" prot="public">
+          <name>DIURNAL</name>
+          <initializer>= 6</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="NRLMSISE00_8cpp_1a5e30d834ea82f5bff2e2441c8b4a91a8a6447329597f1bd92858b0172e0ae7b67" prot="public">
+          <name>SEMIDIURNAL</name>
+          <initializer>= 7</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="NRLMSISE00_8cpp_1a5e30d834ea82f5bff2e2441c8b4a91a8a9946d00411e956eaa825d77b992928b1" prot="public">
+          <name>DAILY_AP</name>
+          <initializer>= 8</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="NRLMSISE00_8cpp_1a5e30d834ea82f5bff2e2441c8b4a91a8af59a80015897b2c695a0591328c5a121" prot="public">
+          <name>ALL_UT_LONGITUDINAL_EFFECTS</name>
+          <initializer>= 9</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="NRLMSISE00_8cpp_1a5e30d834ea82f5bff2e2441c8b4a91a8a83525410d84f61e94ca853cc4c035d26" prot="public">
+          <name>LONGITUDINAL_EFFECTS</name>
+          <initializer>= 10</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="NRLMSISE00_8cpp_1a5e30d834ea82f5bff2e2441c8b4a91a8afd37a453f00f2c8ecd280f67daf53bd4" prot="public">
+          <name>UT_AND_MIXED_UT_LONGITUDINAL_EFFECTS</name>
+          <initializer>= 11</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="NRLMSISE00_8cpp_1a5e30d834ea82f5bff2e2441c8b4a91a8ace4d7ddf43d21c3b2f5657cd2e316ae7" prot="public">
+          <name>MIXED_AP_UT_LONGITUDINAL_EFFECTS</name>
+          <initializer>= 12</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="NRLMSISE00_8cpp_1a5e30d834ea82f5bff2e2441c8b4a91a8afd9db4795bad68e939dac27541f57705" prot="public">
+          <name>TERDIURNAL</name>
+          <initializer>= 13</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="NRLMSISE00_8cpp_1a5e30d834ea82f5bff2e2441c8b4a91a8a5d9fd37d23e8e97402172924d3f99367" prot="public">
+          <name>DEPARTURES_FROM_DIFFUSIVE_EQUILIBRIUM</name>
+          <initializer>= 14</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="NRLMSISE00_8cpp_1a5e30d834ea82f5bff2e2441c8b4a91a8aed49d2d3d397563cbe04c6a125b74d1b" prot="public">
+          <name>ALL_EXOSPHERIC_TEMPERATURE_VARIATIONS</name>
+          <initializer>= 15</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="NRLMSISE00_8cpp_1a5e30d834ea82f5bff2e2441c8b4a91a8a64b58651adc565fe130890c9092c7021" prot="public">
+          <name>ALL_VARIATIONS_FROM_120KM_TEMPERATURE_TLB</name>
+          <initializer>= 16</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="NRLMSISE00_8cpp_1a5e30d834ea82f5bff2e2441c8b4a91a8ae19b0a16f88f8a68968dc592ae6794f1" prot="public">
+          <name>ALL_LOWER_THERMOSPHERE_TEMPERATURE_TN1_VARIATIONS</name>
+          <initializer>= 17</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="NRLMSISE00_8cpp_1a5e30d834ea82f5bff2e2441c8b4a91a8adb8cf27129e2b91987b37d8db8b04795" prot="public">
+          <name>ALL_120KM_GRADIENT_S_VARIATIONS</name>
+          <initializer>= 18</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="NRLMSISE00_8cpp_1a5e30d834ea82f5bff2e2441c8b4a91a8a406cd61e7f876f5592c8fca5957e60c5" prot="public">
+          <name>ALL_UPPER_STRATOSPHERE_TEMPERATURE_TN2_VARIATIONS</name>
+          <initializer>= 19</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="NRLMSISE00_8cpp_1a5e30d834ea82f5bff2e2441c8b4a91a8ac250249e29cabd0969dc7b72f7feb15a" prot="public">
+          <name>ALL_VARIATIONS_FROM_120KM_VALUES_ZLB</name>
+          <initializer>= 20</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="NRLMSISE00_8cpp_1a5e30d834ea82f5bff2e2441c8b4a91a8aeb64392097f65a9f77734d13e46c3946" prot="public">
+          <name>ALL_LOWER_MESOSPHERE_TEMPERATURE_TN3_VARIATIONS</name>
+          <initializer>= 21</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="NRLMSISE00_8cpp_1a5e30d834ea82f5bff2e2441c8b4a91a8a21bd250969f2c63c930d5293b36bcf2d" prot="public">
+          <name>TURBOPAUSE_SCALE_HEIGHT_VARIATIONS</name>
+          <initializer>= 22</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Switches for main effects. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" line="911" column="1" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" bodystart="911" bodyend="935"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="var">
-      <memberdef kind="variable" id="HarrisPriester_8cpp_1a6a169fdfcca6e934800dfdf090af58a1" prot="public" static="yes" mutable="no">
-        <type>const int</type>
-        <definition>const int astrea::astro::planets::cosineExponent</definition>
+      <memberdef kind="variable" id="NRLMSISE00_8cpp_1a13b4bd618d0debd77df1bcce31dd75ec" prot="public" static="yes" mutable="no">
+        <type>const std::array&lt; Temperature, 150 &gt;</type>
+        <definition>const std::array&lt;Temperature, 150&gt; astrea::astro::planets::PT</definition>
         <argsstring></argsstring>
-        <name>cosineExponent</name>
-        <qualifiedname>astrea::astro::planets::cosineExponent</qualifiedname>
-        <initializer>= 4</initializer>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-<para>Default cosine exponent value. </para>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/HarrisPriester.cpp" line="39" column="18" bodyfile="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/HarrisPriester.cpp" bodystart="39" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="HarrisPriester_8cpp_1a7310052b45ca15e903be85940b0f3b24" prot="public" static="yes" mutable="no">
-        <type>const Angle</type>
-        <definition>const Angle astrea::astro::planets::LAG</definition>
-        <argsstring></argsstring>
-        <name>LAG</name>
-        <qualifiedname>astrea::astro::planets::LAG</qualifiedname>
-        <initializer>= 30.0 * deg</initializer>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-<para>Lag angle for diurnal bulge. </para>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/HarrisPriester.cpp" line="42" column="20" bodyfile="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/HarrisPriester.cpp" bodystart="42" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="HarrisPriester_8cpp_1a3f578a2967fddcd727cac1b543c28b75" prot="public" static="yes" mutable="no">
-        <type>const std::map&lt; Altitude, std::tuple&lt; Density, Density &gt; &gt;</type>
-        <definition>const std::map&lt;Altitude, std::tuple&lt;Density, Density&gt; &gt; astrea::astro::planets::HARRIS_PRIESTER_ATMOSPHERE</definition>
-        <argsstring></argsstring>
-        <name>HARRIS_PRIESTER_ATMOSPHERE</name>
-        <qualifiedname>astrea::astro::planets::HARRIS_PRIESTER_ATMOSPHERE</qualifiedname>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-<para>Harris-Priester min-max density (kg/m3) vs. altitude (km) table. These data are valid for a mean solar activity. </para>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/HarrisPriester.cpp" line="46" column="23" bodyfile="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/HarrisPriester.cpp" bodystart="46" bodyend="97"/>
-      </memberdef>
-      <memberdef kind="variable" id="JacciaRoberts_8cpp_1adac9414234ac12f1fab3a8de305b3e13" prot="public" static="yes" mutable="no">
-        <type>const std::map&lt; Altitude, std::tuple&lt; Altitude, Density, Altitude &gt; &gt;</type>
-        <definition>const std::map&lt;Altitude, std::tuple&lt;Altitude, Density, Altitude&gt; &gt; astrea::astro::planets::JACHIA_ROBERTS_ATMOSPHERE</definition>
-        <argsstring></argsstring>
-        <name>JACHIA_ROBERTS_ATMOSPHERE</name>
-        <qualifiedname>astrea::astro::planets::JACHIA_ROBERTS_ATMOSPHERE</qualifiedname>
-        <initializer>= {
-    { 25.0 * km, { 0.0 * km, 1.225 * kg / (pow&lt;3&gt;(m)), 7.249 * km } },
-    { 30.0 * km, { 25.0 * km, 3.899e-2 * kg / (pow&lt;3&gt;(m)), 6.349 * km } },
-    { 40.0 * km, { 30.0 * km, 1.774e-2 * kg / (pow&lt;3&gt;(m)), 6.682 * km } },
-    { 50.0 * km, { 40.0 * km, 3.972e-3 * kg / (pow&lt;3&gt;(m)), 7.554 * km } },
-    { 60.0 * km, { 50.0 * km, 1.057e-3 * kg / (pow&lt;3&gt;(m)), 8.382 * km } },
-    { 70.0 * km, { 60.0 * km, 3.206e-4 * kg / (pow&lt;3&gt;(m)), 7.714 * km } },
-    { 80.0 * km, { 70.0 * km, 8.770e-5 * kg / (pow&lt;3&gt;(m)), 6.549 * km } },
-    { 90.0 * km, { 80.0 * km, 1.905e-5 * kg / (pow&lt;3&gt;(m)), 5.799 * km } },
-    { 100.0 * km, { 90.0 * km, 3.396e-6 * kg / (pow&lt;3&gt;(m)), 5.382 * km } },
-    { 110.0 * km, { 100.0 * km, 5.297e-7 * kg / (pow&lt;3&gt;(m)), 5.877 * km } },
-    { 120.0 * km, { 110.0 * km, 9.661e-8 * kg / (pow&lt;3&gt;(m)), 7.263 * km } },
-    { 130.0 * km, { 120.0 * km, 2.438e-8 * kg / (pow&lt;3&gt;(m)), 9.473 * km } },
-    { 140.0 * km, { 130.0 * km, 8.484e-9 * kg / (pow&lt;3&gt;(m)), 12.636 * km } },
-    { 150.0 * km, { 140.0 * km, 3.845e-9 * kg / (pow&lt;3&gt;(m)), 16.149 * km } },
-    { 180.0 * km, { 150.0 * km, 2.070e-9 * kg / (pow&lt;3&gt;(m)), 22.523 * km } },
-    { 200.0 * km, { 180.0 * km, 5.464e-10 * kg / (pow&lt;3&gt;(m)), 29.740 * km } },
-    { 250.0 * km, { 200.0 * km, 2.789e-10 * kg / (pow&lt;3&gt;(m)), 37.105 * km } },
-    { 300.0 * km, { 250.0 * km, 7.248e-11 * kg / (pow&lt;3&gt;(m)), 45.546 * km } },
-    { 350.0 * km, { 300.0 * km, 2.418e-11 * kg / (pow&lt;3&gt;(m)), 53.628 * km } },
-    { 400.0 * km, { 350.0 * km, 9.158e-12 * kg / (pow&lt;3&gt;(m)), 53.298 * km } },
-    { 450.0 * km, { 400.0 * km, 3.725e-12 * kg / (pow&lt;3&gt;(m)), 58.515 * km } },
-    { 500.0 * km, { 450.0 * km, 1.585e-12 * kg / (pow&lt;3&gt;(m)), 60.828 * km } },
-    { 600.0 * km, { 500.0 * km, 6.967e-13 * kg / (pow&lt;3&gt;(m)), 63.822 * km } },
-    { 700.0 * km, { 600.0 * km, 1.454e-13 * kg / (pow&lt;3&gt;(m)), 71.835 * km } },
-    { 800.0 * km, { 700.0 * km, 3.614e-14 * kg / (pow&lt;3&gt;(m)), 88.667 * km } },
-    { 900.0 * km, { 800.0 * km, 1.170e-14 * kg / (pow&lt;3&gt;(m)), 124.64 * km } },
-    { 1000.0 * km, { 900.0 * km, 5.245e-15 * kg / (pow&lt;3&gt;(m)), 181.05 * km } },
-    { 1100.0 * km, { 1000.0 * km, 2.019e-15 * kg / (pow&lt;3&gt;(m)), 268.00 * km } }
-}</initializer>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/JacciaRoberts.cpp" line="34" column="23" bodyfile="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/JacciaRoberts.cpp" bodystart="34" bodyend="63"/>
-      </memberdef>
-      <memberdef kind="variable" id="NRLMSISE00_8cpp_1a7180e2cf0953791414363fc594000010" prot="public" static="yes" mutable="no">
-        <type>const double</type>
-        <definition>const double astrea::astro::planets::PT[]</definition>
-        <argsstring>[]</argsstring>
         <name>PT</name>
         <qualifiedname>astrea::astro::planets::PT</qualifiedname>
-        <initializer>= {
-    9.86573e-1,  1.62228e-2,  1.55270e-2,  -1.04323e-1, -3.75801e-3, -1.18538e-3, -1.24043e-1, 4.56820e-3,  8.76018e-3,
-    -1.36235e-1, -3.52427e-2, 8.84181e-3,  -5.92127e-3, -8.61650,    0.0,         1.28492e-2,  0.0,         1.30096e2,
-    1.04567e-2,  1.65686e-3,  -5.53887e-6, 2.97810e-3,  0.0,         5.13122e-3,  8.66784e-2,  1.58727e-1,  0.0,
-    0.0,         0.0,         -7.27026e-6, 0.0,         6.74494,     4.93933e-3,  2.21656e-3,  2.50802e-3,  0.0,
-    0.0,         -2.08841e-2, -1.79873,    1.45103e-3,  2.81769e-4,  -1.44703e-3, -5.16394e-5, 8.47001e-2,  1.70147e-1,
-    5.72562e-3,  5.07493e-5,  4.36148e-3,  1.17863e-4,  4.74364e-3,  6.61278e-3,  4.34292e-5,  1.44373e-3,  2.41470e-5,
-    2.84426e-3,  8.56560e-4,  2.04028e-3,  0.0,         -3.15994e3,  -2.46423e-3, 1.13843e-3,  4.20512e-4,  0.0,
-    -9.77214e1,  6.77794e-3,  5.27499e-3,  1.14936e-3,  0.0,         -6.61311e-3, -1.84255e-2, -1.96259e-2, 2.98618e4,
-    0.0,         0.0,         0.0,         6.44574e2,   8.84668e-4,  5.05066e-4,  0.0,         4.02881e3,   -1.89503e-3,
-    0.0,         0.0,         8.21407e-4,  2.06780e-3,  0.0,         0.0,         0.0,         0.0,         0.0,
-    -1.20410e-2, -3.63963e-3, 9.92070e-5,  -1.15284e-4, -6.33059e-5, -6.05545e-1, 8.34218e-3,  -9.13036e1,  3.71042e-4,
-    0.0,         4.19000e-4,  2.70928e-3,  3.31507e-3,  -4.44508e-3, -4.96334e-3, -1.60449e-3, 3.95119e-3,  2.48924e-3,
-    5.09815e-4,  4.05302e-3,  2.24076e-3,  0.0,         6.84256e-3,  4.66354e-4,  0.0,         -3.68328e-4, 0.0,
-    0.0,         -1.4687e2,   0.0,         0.0,         1.09501e-3,  4.65156e-4,  5.62583e-4,  3.21596,     6.43168e-4,
-    3.14860e-3,  3.40738e-3,  1.78481e-3,  9.62532e-4,  5.58171e-4,  3.43731,     -2.33195e-1, 5.10289e-4,  0.0,
-    0.0,         -9.25347e4,  0.0,         -1.99639e-3, 0.0,         0.0,         0.0,         0.0,         0.0,
-    0.0,         0.0,         0.0,         0.0,         0.0,         0.0
-}</initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -183,7 +340,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" line="50" column="21" bodyfile="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" bodystart="50" bodyend="68"/>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" line="51" column="25" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" bodystart="51" bodyend="102"/>
       </memberdef>
       <memberdef kind="variable" id="NRLMSISE00_8cpp_1ae516ca08dcacaf01a39cd8f149d2272d" prot="public" static="yes" mutable="no">
         <type>const std::array&lt; std::array&lt; NumberDensity, 150 &gt;, 9 &gt;</type>
@@ -198,11 +355,11 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" line="71" column="25" bodyfile="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" bodystart="71" bodyend="240"/>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" line="105" column="25" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" bodystart="105" bodyend="565"/>
       </memberdef>
-      <memberdef kind="variable" id="NRLMSISE00_8cpp_1a29da290284114d6ea6a57ff7400cc55c" prot="public" static="yes" mutable="no">
-        <type>const double[]</type>
-        <definition>const double [] astrea::astro::planets::PS</definition>
+      <memberdef kind="variable" id="NRLMSISE00_8cpp_1a741ed4cd3287b1f970bc97b96161dd44" prot="public" static="yes" mutable="no">
+        <type>const quantity[]</type>
+        <definition>const quantity [] astrea::astro::planets::PS</definition>
         <argsstring></argsstring>
         <name>PS</name>
         <qualifiedname>astrea::astro::planets::PS</qualifiedname>
@@ -230,11 +387,11 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" line="243" column="21" bodyfile="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" bodystart="243" bodyend="259"/>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" line="568" column="23" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" bodystart="568" bodyend="584"/>
       </memberdef>
-      <memberdef kind="variable" id="NRLMSISE00_8cpp_1aa3d7a492aa24356f700e700a4fc9f0db" prot="public" static="yes" mutable="no">
-        <type>const double[][]</type>
-        <definition>const double [][] astrea::astro::planets::PDL</definition>
+      <memberdef kind="variable" id="NRLMSISE00_8cpp_1a1d1fbf70bea2f4b56badebd61300920d" prot="public" static="yes" mutable="no">
+        <type>const quantity[][]</type>
+        <definition>const quantity [][] astrea::astro::planets::PDL</definition>
         <argsstring></argsstring>
         <name>PDL</name>
         <qualifiedname>astrea::astro::planets::PDL</qualifiedname>
@@ -252,7 +409,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" line="262" column="21" bodyfile="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" bodystart="262" bodyend="268"/>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" line="587" column="23" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" bodystart="587" bodyend="593"/>
       </memberdef>
       <memberdef kind="variable" id="NRLMSISE00_8cpp_1aaa9a2ebab8c6ee78815f817f23204756" prot="public" static="yes" mutable="no">
         <type>const <ref refid="structastrea_1_1astro_1_1planets_1_1BatesProfileParams" kindref="compound">BatesProfileParams</ref></type>
@@ -260,15 +417,18 @@
         <argsstring></argsstring>
         <name>PTM</name>
         <qualifiedname>astrea::astro::planets::PTM</qualifiedname>
-        <initializer>= { 1.0413e3 * K, 3.86e2 * K, 1.95e2 * K, 1.66728e1 * K / km, 2.13e2 * K,
-                                        1.2e2 * km,   2.4e2 * K,  1.87e2 * K, -2.0 * K / km }</initializer>
+        <initializer>= { mp_units::point&lt;K&gt;(1.0413e3), mp_units::point&lt;K&gt;(3.86e2),
+                                        mp_units::point&lt;K&gt;(1.95e2),   mp_units::delta&lt;K / km&gt;(1.66728e1),
+                                        mp_units::point&lt;K&gt;(2.13e2),   1.2e2 * km,
+                                        mp_units::point&lt;K&gt;(2.4e2),    mp_units::point&lt;K&gt;(1.87e2),
+                                        mp_units::delta&lt;K / km&gt;(-2.0) }</initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" line="282" column="33" bodyfile="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" bodystart="282" bodyend="283"/>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" line="607" column="33" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" bodystart="607" bodyend="611"/>
       </memberdef>
       <memberdef kind="variable" id="NRLMSISE00_8cpp_1afafa85273eb41d5d930a62e6adcf1f67" prot="public" static="yes" mutable="no">
         <type>const AtomicMass</type>
@@ -278,37 +438,34 @@
         <qualifiedname>astrea::astro::planets::XMM</qualifiedname>
         <initializer>= 28.9500 * u</initializer>
         <briefdescription>
-<para>Mean molecular mass of the well-mixed lower atmosphere (amu), corresponding to PDM[N2][4] in the Fortran source. </para>
+<para>Mean molecular mass of the well-mixed lower atmosphere (amu), corresponding to SpeciesModelData[N2][4] in the Fortran source. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" line="286" column="25" bodyfile="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" bodystart="286" bodyend="-1"/>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" line="614" column="25" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" bodystart="614" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="NRLMSISE00_8cpp_1a6deba3a819a5c88a69778c330488c760" prot="public" static="yes" mutable="no">
-        <type>const std::array&lt; <ref refid="structastrea_1_1astro_1_1planets_1_1SpeciesModelParams" kindref="compound">SpeciesModelParams</ref>, 8 &gt;</type>
-        <definition>const std::array&lt;SpeciesModelParams, 8&gt; astrea::astro::planets::PDM</definition>
+      <memberdef kind="variable" id="NRLMSISE00_8cpp_1a8911ca935dbfd146af4bc66037197a01" prot="public" static="yes" mutable="no">
+        <type>const std::unordered_map&lt; Species, <ref refid="structastrea_1_1astro_1_1planets_1_1SpeciesModelParams" kindref="compound">SpeciesModelParams</ref> &gt;</type>
+        <definition>const std::unordered_map&lt;Species, SpeciesModelParams&gt; astrea::astro::planets::SpeciesModelData</definition>
         <argsstring></argsstring>
-        <name>PDM</name>
-        <qualifiedname>astrea::astro::planets::PDM</qualifiedname>
+        <name>SpeciesModelData</name>
+        <qualifiedname>astrea::astro::planets::SpeciesModelData</qualifiedname>
         <initializer>= { {
-    
-    { 2.456e7 * pow&lt;-3&gt;(cm), 6.71072e-6 * one, 1.0e2 * km, 0.0 * one, 1.1e2 * km, 1.0e1 * km, 0.0 * km, 0.0 * km, 0.0 * one },
-    
-    { 8.594e+10 * pow&lt;-3&gt;(cm), 1.0 * one, 1.05e2 * km, -8.0 * one, 1.1e2 * km, 1.0e1 * km, 9.0e1 * km, 2.0 * km, 0.0 * one },
-    
-    { 2.81e+11 * pow&lt;-3&gt;(cm), 0.0 * one, 1.05e2 * km, 2.8e1 * one, 0.0 * km, 0.0 * km, 0.0 * km, 0.0 * km, 0.0 * one },
-    
-    { 3.3e+10 * pow&lt;-3&gt;(cm), 2.68270e-1 * one, 1.05e2 * km, 1.0 * one, 1.1e2 * km, 1.0e1 * km, 1.1e2 * km, -1.0e1 * km, 0.0 * one },
-    
-    { 1.33e9 * pow&lt;-3&gt;(cm), 1.19615e-2 * one, 1.05e2 * km, 0.0 * one, 1.1e2 * km, 1.0e1 * km, 0.0 * km, 0.0 * km, 0.0 * one },
-    
-    { 1.761e5 * pow&lt;-3&gt;(cm), 1.0 * one, 9.5e1 * km, -8.0 * one, 1.1e2 * km, 1.0e1 * km, 9.0e1 * km, 2.0 * km, 0.0 * one },
-    
-    { 1.0e7 * pow&lt;-3&gt;(cm), 1.0 * one, 1.05e2 * km, -8.0 * one, 1.1e2 * km, 1.0e1 * km, 9.0e1 * km, 2.0 * km, 0.0 * one },
-    
-    { 1.0e6 * pow&lt;-3&gt;(cm), 1.0 * one, 1.05e2 * km, -8.0 * one, 5.5e2 * km, 7.6e1 * km, 9.0e1 * km, 2.0 * km, 4.0e3 * one },
+    { HELIUM, { 2.456e7 * pow&lt;-3&gt;(cm), 6.71072e-6 * one, 1.0e2 * km, 0.0 * one, 1.1e2 * km, 1.0e1 * km, 0.0 * km, 0.0 * km, 0.0 * one } },
+    { ATOMIC_OXYGEN,
+      { 8.594e+10 * pow&lt;-3&gt;(cm), 1.0 * one, 1.05e2 * km, -8.0 * one, 1.1e2 * km, 1.0e1 * km, 9.0e1 * km, 2.0 * km, 0.0 * one } },
+    { MOLECULAR_NITROGEN,
+      { 2.81e+11 * pow&lt;-3&gt;(cm), 0.0 * one, 1.05e2 * km, 2.8e1 * one, 0.0 * km, 0.0 * km, 0.0 * km, 0.0 * km, 0.0 * one } },
+    { MOLECULAR_OXYGEN,
+      { 3.3e+10 * pow&lt;-3&gt;(cm), 2.68270e-1 * one, 1.05e2 * km, 1.0 * one, 1.1e2 * km, 1.0e1 * km, 1.1e2 * km, -1.0e1 * km, 0.0 * one } },
+    { ARGON, { 1.33e9 * pow&lt;-3&gt;(cm), 1.19615e-2 * one, 1.05e2 * km, 0.0 * one, 1.1e2 * km, 1.0e1 * km, 0.0 * km, 0.0 * km, 0.0 * one } },
+    { HYDROGEN, { 1.761e5 * pow&lt;-3&gt;(cm), 1.0 * one, 9.5e1 * km, -8.0 * one, 1.1e2 * km, 1.0e1 * km, 9.0e1 * km, 2.0 * km, 0.0 * one } },
+    { ATOMIC_NITROGEN,
+      { 1.0e7 * pow&lt;-3&gt;(cm), 1.0 * one, 1.05e2 * km, -8.0 * one, 1.1e2 * km, 1.0e1 * km, 9.0e1 * km, 2.0 * km, 0.0 * one } },
+    { ANOMALOUS_OXYGEN,
+      { 1.0e6 * pow&lt;-3&gt;(cm), 1.0 * one, 1.05e2 * km, -8.0 * one, 5.5e2 * km, 7.6e1 * km, 9.0e1 * km, 2.0 * km, 4.0e3 * one } },
 } }</initializer>
         <briefdescription>
         </briefdescription>
@@ -317,11 +474,11 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" line="302" column="25" bodyfile="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" bodystart="302" bodyend="319"/>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" line="642" column="33" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" bodystart="642" bodyend="656"/>
       </memberdef>
-      <memberdef kind="variable" id="NRLMSISE00_8cpp_1af6d1bd3db9d8636ea6f08350eaac403f" prot="public" static="yes" mutable="no">
-        <type>const double[][]</type>
-        <definition>const double [][] astrea::astro::planets::PTL</definition>
+      <memberdef kind="variable" id="NRLMSISE00_8cpp_1ad876722b38f8d52b1e5385e5db017f1b" prot="public" static="yes" mutable="no">
+        <type>const quantity[][]</type>
+        <definition>const quantity [][] astrea::astro::planets::PTL</definition>
         <argsstring></argsstring>
         <name>PTL</name>
         <qualifiedname>astrea::astro::planets::PTL</qualifiedname>
@@ -332,11 +489,11 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" line="322" column="21" bodyfile="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" bodystart="322" bodyend="378"/>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" line="659" column="23" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" bodystart="659" bodyend="715"/>
       </memberdef>
-      <memberdef kind="variable" id="NRLMSISE00_8cpp_1ab1958526e9e40cb74436ec3f4040dda4" prot="public" static="yes" mutable="no">
-        <type>const double[][]</type>
-        <definition>const double [][] astrea::astro::planets::PMA</definition>
+      <memberdef kind="variable" id="NRLMSISE00_8cpp_1a7df4642473b57741d0d65e5ba07f5bdd" prot="public" static="yes" mutable="no">
+        <type>const quantity[][]</type>
+        <definition>const quantity [][] astrea::astro::planets::PMA</definition>
         <argsstring></argsstring>
         <name>PMA</name>
         <qualifiedname>astrea::astro::planets::PMA</qualifiedname>
@@ -347,7 +504,317 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" line="381" column="21" bodyfile="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" bodystart="381" bodyend="509"/>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" line="718" column="23" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" bodystart="718" bodyend="846"/>
+      </memberdef>
+      <memberdef kind="variable" id="NRLMSISE00_8cpp_1ac5dafe361d58da1debcb02af3fad1544" prot="public" static="yes" mutable="no">
+        <type>const Angle</type>
+        <definition>const Angle astrea::astro::planets::LAT_REF</definition>
+        <argsstring></argsstring>
+        <name>LAT_REF</name>
+        <qualifiedname>astrea::astro::planets::LAT_REF</qualifiedname>
+        <initializer>= 45.0 * deg</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Reference latitude (°). </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" line="855" column="20" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" bodystart="855" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="NRLMSISE00_8cpp_1aa89a99474f75bd5581123e30b092edc1" prot="public" static="yes" mutable="no">
+        <type>const Acceleration</type>
+        <definition>const Acceleration astrea::astro::planets::G_REF</definition>
+        <argsstring></argsstring>
+        <name>G_REF</name>
+        <qualifiedname>astrea::astro::planets::G_REF</qualifiedname>
+        <initializer>= 980.616 * cm / (s * s)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Reference gravity on <ref refid="structastrea_1_1astro_1_1planets_1_1Earth" kindref="compound">Earth</ref> surface at reference latitude (cm/s2). </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" line="858" column="27" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" bodystart="858" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="NRLMSISE00_8cpp_1aecf297cad0ccdcf87a0edcf516dd8fff" prot="public" static="yes" mutable="no">
+        <type>const auto</type>
+        <definition>const auto astrea::astro::planets::R_GAS</definition>
+        <argsstring></argsstring>
+        <name>R_GAS</name>
+        <qualifiedname>astrea::astro::planets::R_GAS</qualifiedname>
+        <initializer>= 831.4 * J / (mol * K)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Gas constant (inverse of). </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" line="863" column="19" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" bodystart="863" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="NRLMSISE00_8cpp_1ab68120f9aedcf24380b01aa1baad6a69" prot="public" static="yes" mutable="no">
+        <type>const AtomicMass</type>
+        <definition>const AtomicMass astrea::astro::planets::H_MASS</definition>
+        <argsstring></argsstring>
+        <name>H_MASS</name>
+        <qualifiedname>astrea::astro::planets::H_MASS</qualifiedname>
+        <initializer>= 1.0 * u</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Hydrogen atomic mass. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" line="866" column="25" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" bodystart="866" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="NRLMSISE00_8cpp_1af8a0d297668a3b2d6509b9d805ed8f9a" prot="public" static="yes" mutable="no">
+        <type>const AtomicMass</type>
+        <definition>const AtomicMass astrea::astro::planets::HE_MASS</definition>
+        <argsstring></argsstring>
+        <name>HE_MASS</name>
+        <qualifiedname>astrea::astro::planets::HE_MASS</qualifiedname>
+        <initializer>= 4.0 * u</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Helium atomic mass. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" line="869" column="25" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" bodystart="869" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="NRLMSISE00_8cpp_1a09398b2d34e503fece96ea3592fbad1a" prot="public" static="yes" mutable="no">
+        <type>const AtomicMass</type>
+        <definition>const AtomicMass astrea::astro::planets::N_MASS</definition>
+        <argsstring></argsstring>
+        <name>N_MASS</name>
+        <qualifiedname>astrea::astro::planets::N_MASS</qualifiedname>
+        <initializer>= 14.0 * u</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Nitrogen atomic mass. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" line="872" column="25" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" bodystart="872" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="NRLMSISE00_8cpp_1a59726e64e22fce5f70cd6c14cd5672be" prot="public" static="yes" mutable="no">
+        <type>const AtomicMass</type>
+        <definition>const AtomicMass astrea::astro::planets::N2_MASS</definition>
+        <argsstring></argsstring>
+        <name>N2_MASS</name>
+        <qualifiedname>astrea::astro::planets::N2_MASS</qualifiedname>
+        <initializer>= 2.0 * N_MASS</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>N2 molecular mass. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" line="875" column="25" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" bodystart="875" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="NRLMSISE00_8cpp_1af0dfe06c17270dcd9aa2c41093dc6b4f" prot="public" static="yes" mutable="no">
+        <type>const AtomicMass</type>
+        <definition>const AtomicMass astrea::astro::planets::O_MASS</definition>
+        <argsstring></argsstring>
+        <name>O_MASS</name>
+        <qualifiedname>astrea::astro::planets::O_MASS</qualifiedname>
+        <initializer>= 16.0 * u</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Oxygen atomic mass. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" line="878" column="25" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" bodystart="878" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="NRLMSISE00_8cpp_1aba448bcf039f479fba730c69bc8be744" prot="public" static="yes" mutable="no">
+        <type>const AtomicMass</type>
+        <definition>const AtomicMass astrea::astro::planets::O2_MASS</definition>
+        <argsstring></argsstring>
+        <name>O2_MASS</name>
+        <qualifiedname>astrea::astro::planets::O2_MASS</qualifiedname>
+        <initializer>= 2.0 * O_MASS</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>O2 molecular mass. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" line="881" column="25" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" bodystart="881" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="NRLMSISE00_8cpp_1abb95dc194509e72ccdfc78d3951df58c" prot="public" static="yes" mutable="no">
+        <type>const AtomicMass</type>
+        <definition>const AtomicMass astrea::astro::planets::AR_MASS</definition>
+        <argsstring></argsstring>
+        <name>AR_MASS</name>
+        <qualifiedname>astrea::astro::planets::AR_MASS</qualifiedname>
+        <initializer>= 40.0 * u</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Argon atomic mass. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" line="884" column="25" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" bodystart="884" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="NRLMSISE00_8cpp_1a2b7bb5d2e869852aa1615bf4fc3da955" prot="public" static="yes" mutable="no">
+        <type>const SolarFlux</type>
+        <definition>const SolarFlux astrea::astro::planets::FLUX_REF</definition>
+        <argsstring></argsstring>
+        <name>FLUX_REF</name>
+        <qualifiedname>astrea::astro::planets::FLUX_REF</qualifiedname>
+        <initializer>= 150.0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Reference average flux. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" line="889" column="24" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" bodystart="889" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="NRLMSISE00_8cpp_1acf7fb15ae78760516e873aab306c9530" prot="public" static="yes" mutable="no">
+        <type>const std::array&lt; Distance, 5 &gt;</type>
+        <definition>const std::array&lt;Distance, 5&gt; astrea::astro::planets::ZN1</definition>
+        <argsstring></argsstring>
+        <name>ZN1</name>
+        <qualifiedname>astrea::astro::planets::ZN1</qualifiedname>
+        <initializer>= { 123.435 * km, 110.0 * km, 100.0 * km, 90.0 * km, 72.5 * km }</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Array of altitudes #1. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" line="892" column="25" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" bodystart="892" bodyend="892"/>
+      </memberdef>
+      <memberdef kind="variable" id="NRLMSISE00_8cpp_1a7b6a9561c1a5b92a6757bdadd0aeab57" prot="public" static="yes" mutable="no">
+        <type>const std::array&lt; Distance, 4 &gt;</type>
+        <definition>const std::array&lt;Distance, 4&gt; astrea::astro::planets::ZN2</definition>
+        <argsstring></argsstring>
+        <name>ZN2</name>
+        <qualifiedname>astrea::astro::planets::ZN2</qualifiedname>
+        <initializer>= { 72.5 * km, 55.0 * km, 45.0 * km, 32.5 * km }</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Array of altitudes #2. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" line="895" column="25" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" bodystart="895" bodyend="895"/>
+      </memberdef>
+      <memberdef kind="variable" id="NRLMSISE00_8cpp_1a62e7897a8a15a79fc431f1938d8eedc5" prot="public" static="yes" mutable="no">
+        <type>const std::array&lt; Distance, 5 &gt;</type>
+        <definition>const std::array&lt;Distance, 5&gt; astrea::astro::planets::ZN3</definition>
+        <argsstring></argsstring>
+        <name>ZN3</name>
+        <qualifiedname>astrea::astro::planets::ZN3</qualifiedname>
+        <initializer>= { 32.5 * km, 20.0 * km, 15.0 * km, 10.0 * km, 0.0 * km }</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Array of altitudes #3. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" line="898" column="25" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" bodystart="898" bodyend="898"/>
+      </memberdef>
+      <memberdef kind="variable" id="NRLMSISE00_8cpp_1a35ad9829b1234e5904a1f6b801f7d92b" prot="public" static="yes" mutable="no">
+        <type>const Distance</type>
+        <definition>const Distance astrea::astro::planets::ZMIX</definition>
+        <argsstring></argsstring>
+        <name>ZMIX</name>
+        <qualifiedname>astrea::astro::planets::ZMIX</qualifiedname>
+        <initializer>= 62.5 * km</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Mix altitude (km). </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" line="901" column="23" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" bodystart="901" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="NRLMSISE00_8cpp_1adf8ad82962018ef17a32f13d89f9a280" prot="public" static="yes" mutable="no">
+        <type>const std::array&lt; quantity, 10 &gt;</type>
+        <definition>const std::array&lt;quantity, 10&gt; astrea::astro::planets::PAVGM</definition>
+        <argsstring></argsstring>
+        <name>PAVGM</name>
+        <qualifiedname>astrea::astro::planets::PAVGM</qualifiedname>
+        <initializer>= { 2.61e2, 2.64e2,   2.29e2,   2.17e2, 2.17e2,
+                                                2.23e2, 2.8676e2, -2.93940, 2.50,   0.0 }</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>NRLMSISE-00 data: MIDDLE ATMOSPHERE AVERAGES pavgm[10]. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" line="904" column="25" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" bodystart="904" bodyend="905"/>
+      </memberdef>
+      <memberdef kind="variable" id="NRLMSISE00_8cpp_1add1c0fc0d40372e4edf04ada2c9076c9" prot="public" static="yes" mutable="no">
+        <type>const Temperature</type>
+        <definition>const Temperature astrea::astro::planets::MIN_TEMP</definition>
+        <argsstring></argsstring>
+        <name>MIN_TEMP</name>
+        <qualifiedname>astrea::astro::planets::MIN_TEMP</qualifiedname>
+        <initializer>= 50.0 * K</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>NRLMSISE-00 minimum temperature, used in many cases in density computation. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" line="908" column="26" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" bodystart="908" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="NRLMSISE00_8cpp_1a0e2737b4c6b7866d12aa26c1308f2d0f" prot="public" static="no" mutable="no">
+        <type>std::unordered_map&lt; Option, <ref refid="structastrea_1_1astro_1_1planets_1_1Switch" kindref="compound">Switch</ref> &gt;</type>
+        <definition>std::unordered_map&lt;Option, Switch&gt; astrea::astro::planets::options</definition>
+        <argsstring></argsstring>
+        <name>options</name>
+        <qualifiedname>astrea::astro::planets::options</qualifiedname>
+        <initializer>{ { F107_EFFECT_ON_MEAN, <ref refid="structastrea_1_1astro_1_1planets_1_1Switch" kindref="compound">Switch</ref>() },
+                                            { INDEPENDENT_OF_TIME, <ref refid="structastrea_1_1astro_1_1planets_1_1Switch" kindref="compound">Switch</ref>() },
+                                            { SYMMETRICAL_ANNUAL, <ref refid="structastrea_1_1astro_1_1planets_1_1Switch" kindref="compound">Switch</ref>() },
+                                            { SYMMETRICAL_SEMIANNUAL, <ref refid="structastrea_1_1astro_1_1planets_1_1Switch" kindref="compound">Switch</ref>() },
+                                            { ASYMMETRICAL_ANNUAL, <ref refid="structastrea_1_1astro_1_1planets_1_1Switch" kindref="compound">Switch</ref>() },
+                                            { ASYMMETRICAL_SEMIANNUAL, <ref refid="structastrea_1_1astro_1_1planets_1_1Switch" kindref="compound">Switch</ref>() },
+                                            { DIURNAL, <ref refid="structastrea_1_1astro_1_1planets_1_1Switch" kindref="compound">Switch</ref>() },
+                                            { SEMIDIURNAL, <ref refid="structastrea_1_1astro_1_1planets_1_1Switch" kindref="compound">Switch</ref>() },
+                                            { DAILY_AP, <ref refid="structastrea_1_1astro_1_1planets_1_1Switch" kindref="compound">Switch</ref>() },
+                                            { ALL_UT_LONGITUDINAL_EFFECTS, <ref refid="structastrea_1_1astro_1_1planets_1_1Switch" kindref="compound">Switch</ref>() },
+                                            { LONGITUDINAL_EFFECTS, <ref refid="structastrea_1_1astro_1_1planets_1_1Switch" kindref="compound">Switch</ref>() },
+                                            { UT_AND_MIXED_UT_LONGITUDINAL_EFFECTS, <ref refid="structastrea_1_1astro_1_1planets_1_1Switch" kindref="compound">Switch</ref>() },
+                                            { MIXED_AP_UT_LONGITUDINAL_EFFECTS, <ref refid="structastrea_1_1astro_1_1planets_1_1Switch" kindref="compound">Switch</ref>() },
+                                            { TERDIURNAL, <ref refid="structastrea_1_1astro_1_1planets_1_1Switch" kindref="compound">Switch</ref>() },
+                                            { DEPARTURES_FROM_DIFFUSIVE_EQUILIBRIUM, <ref refid="structastrea_1_1astro_1_1planets_1_1Switch" kindref="compound">Switch</ref>() },
+                                            { ALL_EXOSPHERIC_TEMPERATURE_VARIATIONS, <ref refid="structastrea_1_1astro_1_1planets_1_1Switch" kindref="compound">Switch</ref>() },
+                                            { ALL_VARIATIONS_FROM_120KM_TEMPERATURE_TLB, <ref refid="structastrea_1_1astro_1_1planets_1_1Switch" kindref="compound">Switch</ref>() },
+                                            { ALL_LOWER_THERMOSPHERE_TEMPERATURE_TN1_VARIATIONS, <ref refid="structastrea_1_1astro_1_1planets_1_1Switch" kindref="compound">Switch</ref>() },
+                                            { ALL_120KM_GRADIENT_S_VARIATIONS, <ref refid="structastrea_1_1astro_1_1planets_1_1Switch" kindref="compound">Switch</ref>() },
+                                            { ALL_UPPER_STRATOSPHERE_TEMPERATURE_TN2_VARIATIONS, <ref refid="structastrea_1_1astro_1_1planets_1_1Switch" kindref="compound">Switch</ref>() },
+                                            { ALL_VARIATIONS_FROM_120KM_VALUES_ZLB, <ref refid="structastrea_1_1astro_1_1planets_1_1Switch" kindref="compound">Switch</ref>() },
+                                            { ALL_LOWER_MESOSPHERE_TEMPERATURE_TN3_VARIATIONS, <ref refid="structastrea_1_1astro_1_1planets_1_1Switch" kindref="compound">Switch</ref>() },
+                                            { TURBOPAUSE_SCALE_HEIGHT_VARIATIONS, <ref refid="structastrea_1_1astro_1_1planets_1_1Switch" kindref="compound">Switch</ref>() } }</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" line="943" column="20" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" bodystart="943" bodyend="965"/>
       </memberdef>
       <memberdef kind="variable" id="Earth_8hpp_1a030527f7c06527a0b003359fa1a3b5fd" prot="public" static="no" mutable="no">
         <type><ref refid="structastrea_1_1astro_1_1planets_1_1Earth" kindref="compound">astrea::astro::planets::Earth</ref></type>
@@ -361,7 +828,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/systems/celestial_bodies/Earth/Earth.hpp" line="56" column="7"/>
+        <location file="astrea/astro/astro/systems/celestial_bodies/Earth/Earth.hpp" line="50" column="7"/>
       </memberdef>
       <memberdef kind="variable" id="Jupiter_8hpp_1a72bd1bb284c5290fcfbceae8b17c7b40" prot="public" static="no" mutable="no">
         <type><ref refid="structastrea_1_1astro_1_1planets_1_1Jupiter" kindref="compound">astrea::astro::planets::Jupiter</ref></type>
@@ -462,10 +929,48 @@
         <location file="astrea/astro/astro/systems/celestial_bodies/Venus/Venus.hpp" line="46" column="7"/>
       </memberdef>
     </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="NRLMSISE00_8cpp_1a85a43f0d1764aa5c66a50eede5aec4d0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Density</type>
+        <definition>Density astrea::astro::planets::find_atmospheric_density</definition>
+        <argsstring>(const State &amp;state)</argsstring>
+        <name>find_atmospheric_density</name>
+        <qualifiedname>astrea::astro::planets::find_atmospheric_density</qualifiedname>
+        <param>
+          <type>const <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
+          <declname>state</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" line="968" column="9" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" bodystart="968" bodyend="995"/>
+      </memberdef>
+      <memberdef kind="function" id="NRLMSISE00_8cpp_1abe38e336d565f230fb32ef410a6f02e4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Time</type>
+        <definition>Time astrea::astro::planets::calculate_local_solar_time</definition>
+        <argsstring>(const State &amp;state)</argsstring>
+        <name>calculate_local_solar_time</name>
+        <qualifiedname>astrea::astro::planets::calculate_local_solar_time</qualifiedname>
+        <param>
+          <type>const <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
+          <declname>state</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" line="997" column="6" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" bodystart="997" bodyend="1011"/>
+      </memberdef>
+    </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="astrea/astro/astro/systems/barycenters.hpp" line="22" column="1"/>
+    <location file="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" line="48" column="1"/>
   </compounddef>
 </doxygen>

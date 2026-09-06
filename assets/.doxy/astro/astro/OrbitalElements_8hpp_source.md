@@ -54,6 +54,9 @@ concept IsOrbitalElements = requires(T) {
 
 class OrbitalElementPartials; // Forward declaration
 
+template <auto...>
+struct BadConversionRequest;
+
 class OrbitalElements {
 
     using ElementVariant = OrbitalElementVariant<Keplerian, Equinoctial>;
@@ -96,6 +99,9 @@ class OrbitalElements {
     template <IsOrbitalElements T>
     OrbitalElements& convert_to_set(const GravParam& mu)
     {
+        if constexpr (!equivalent(T::frame, frames::primary)) {
+            static_assert(always_false<BadConversionRequest<T::frame.name.portable(), frames::primary.name.portable()>>, "In-place set conversion requires the target set be in the primary frame.");
+        }
         _elements = in_element_set<T>(mu);
         return *this;
     }
@@ -103,6 +109,9 @@ class OrbitalElements {
     template <IsOrbitalElements T>
     OrbitalElements convert_to_set(const GravParam& mu) const
     {
+        if constexpr (!equivalent(T::frame, frames::primary)) {
+            static_assert(always_false<BadConversionRequest<T::frame.name.portable(), frames::primary.name.portable()>>, "In-place set conversion requires the target set be in the primary frame.");
+        }
         return in_element_set<T>(mu);
     }
 
@@ -110,6 +119,17 @@ class OrbitalElements {
     T in_element_set(const GravParam& mu) const
     {
         return std::visit([&](const auto& x) -> T { return T(x, mu); }, _elements);
+    }
+
+    template <IsFrame auto target_frame>
+    auto in_frame(const Date& epoch, const GravParam& mu) const
+    {
+        return std::visit(
+            [&](const auto& x) -> decltype(x.template in_frame<target_frame>(epoch, mu)) {
+                return x.template in_frame<target_frame>(epoch, mu);
+            },
+            _elements
+        );
     }
 
     bool operator==(const OrbitalElements& other) const;
@@ -147,17 +167,6 @@ class OrbitalElements {
     static constexpr std::size_t get_set_id()
     {
         return get_variant_index<ElementVariant, T, 0>();
-    }
-
-    template <IsFrame auto target_frame>
-    OrbitalElements in_frame(const Date& epoch, const GravParam& mu) const
-    {
-        return std::visit(
-            [&](const auto& x) -> OrbitalElements {
-                return OrbitalElements(x.template in_frame<target_frame>(epoch, mu));
-            },
-            _elements
-        );
     }
 
   private:

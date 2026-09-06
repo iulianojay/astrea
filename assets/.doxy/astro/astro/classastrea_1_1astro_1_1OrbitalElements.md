@@ -64,7 +64,7 @@ _Class representing a set of orbital elements._ [More...](#detailed-description)
 |  ElementVariant & | [**extract**](#function-extract-22) () <br>_Extracts the underlying orbital elements as a variant._  |
 |  std::vector&lt; double &gt; | [**force\_to\_double\_vector**](#function-force_to_double_vector) () const<br>_Converts the_ [_**OrbitalElements**_](classastrea_1_1astro_1_1OrbitalElements.md) _to a vector of Unitless values._ |
 |  T | [**in\_element\_set**](#function-in_element_set) (const GravParam & mu) const<br>_Converts the current orbital elements to a specified type._  |
-|  [**OrbitalElements**](classastrea_1_1astro_1_1OrbitalElements.md) | [**in\_frame**](#function-in_frame) (const [**Date**](classastrea_1_1astro_1_1Date.md) & epoch, const GravParam & mu) const<br>_Converts all held orbital elements to the specified frame._  |
+|  auto | [**in\_frame**](#function-in_frame) (const [**Date**](classastrea_1_1astro_1_1Date.md) & epoch, const GravParam & mu) const<br>_Converts all held orbital elements to the specified frame._  |
 |  constexpr std::size\_t | [**index**](#function-index) () const<br>_Returns the index of the current orbital elements in the variant._  |
 |  [**OrbitalElements**](classastrea_1_1astro_1_1OrbitalElements.md) | [**interpolate**](#function-interpolate) (const Time & thisTime, const Time & otherTime, const [**OrbitalElements**](classastrea_1_1astro_1_1OrbitalElements.md) & other, const GravParam & mu, const Time & targetTime) const<br>_Interpolates between two_ [_**OrbitalElements**_](classastrea_1_1astro_1_1OrbitalElements.md) _at a given time._ |
 |  [**OrbitalElements**](classastrea_1_1astro_1_1OrbitalElements.md) | [**operator\***](#function-operator) (const Unitless & multiplier) const<br>_Multiplies the_ [_**OrbitalElements**_](classastrea_1_1astro_1_1OrbitalElements.md) _by a scalar._ |
@@ -503,7 +503,7 @@ The converted orbital elements.
 _Converts all held orbital elements to the specified frame._ 
 ```C++
 template<IsFrame auto target_frame>
-inline OrbitalElements astrea::astro::OrbitalElements::in_frame (
+inline auto astrea::astro::OrbitalElements::in_frame (
     const Date & epoch,
     const GravParam & mu
 ) const
@@ -533,7 +533,7 @@ Visits the current element type and calls its in\_frame&lt;target\_frame&gt;(epo
 
 **Returns:**
 
-[**OrbitalElements**](classastrea_1_1astro_1_1OrbitalElements.md) Orbital elements expressed in target\_frame. 
+The orbital elements expressed in the target frame. 
 
 
 

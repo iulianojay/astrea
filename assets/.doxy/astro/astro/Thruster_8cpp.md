@@ -13,6 +13,7 @@
 * `#include <astro/platforms/thrusters/Thruster.hpp>`
 * `#include <astro/frames/definitions.hpp>`
 * `#include <astro/frames/framework/CartesianVector.hpp>`
+* `#include <astro/state/State.hpp>`
 
 
 

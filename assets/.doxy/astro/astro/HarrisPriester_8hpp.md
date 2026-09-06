@@ -4,7 +4,7 @@
 
 
 
-[**FileList**](files.md) **>** [**astrea**](dir_b5324400686b7cece921533bb760c87a.md) **>** [**astro**](dir_1d4dcf10fc541574a93624f5c09a3d6f.md) **>** [**astro**](dir_84db6e3c60e44147f5214c05dc45afc2.md) **>** [**systems**](dir_a5d35e082abd602943cf6d70fa2a6872.md) **>** [**celestial\_bodies**](dir_b988f8927672605e377af1c3b431ef9b.md) **>** [**Earth**](dir_0d926747df7aa4605536658442a7f1d2.md) **>** [**atmosphere**](dir_52ad4357f9588f54fe1e3d5cf2b75c1b.md) **>** [**HarrisPriester.hpp**](HarrisPriester_8hpp.md)
+[**FileList**](files.md) **>** [**astrea**](dir_b5324400686b7cece921533bb760c87a.md) **>** [**astro**](dir_1d4dcf10fc541574a93624f5c09a3d6f.md) **>** [**astro**](dir_84db6e3c60e44147f5214c05dc45afc2.md) **>** [**propagation**](dir_55ae0edd352c6621ebfa1115f28a0fff.md) **>** [**force\_models**](dir_0ce51a85166db93c377c5b7f000b236c.md) **>** [**space\_weather**](dir_ba92a5bb4647772267966b3cef944594.md) **>** [**atmosphere**](dir_3bfcc16c8bbdb2d74b81ce33c082ff6e.md) **>** [**HarrisPriester.hpp**](HarrisPriester_8hpp.md)
 
 [Go to the source code of this file](HarrisPriester_8hpp_source.md)
 
@@ -31,14 +31,13 @@ _Header file for the HarrisPriester class._ [More...](#detailed-description)
 | ---: | :--- |
 | namespace | [**astrea**](namespaceastrea.md) <br> |
 | namespace | [**astro**](namespaceastrea_1_1astro.md) <br> |
-| namespace | [**planets**](namespaceastrea_1_1astro_1_1planets.md) <br> |
 
 
 ## Classes
 
 | Type | Name |
 | ---: | :--- |
-| class | [**HarrisPriesterAtmosphere**](classastrea_1_1astro_1_1planets_1_1HarrisPriesterAtmosphere.md) <br>_The Harris-Priester atmospheric model for_ [_**Earth**_](structastrea_1_1astro_1_1planets_1_1Earth.md) _._ |
+| class | [**HarrisPriesterAtmosphere**](classastrea_1_1astro_1_1HarrisPriesterAtmosphere.md) <br>_The Harris-Priester atmospheric model for Earth._  |
 
 
 
@@ -122,5 +121,5 @@ This file is part of Astrea. Astrea is free software: you can redistribute it an
     
 
 ------------------------------
-The documentation for this class was generated from the following file `astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/HarrisPriester.hpp`
+The documentation for this class was generated from the following file `astrea/astro/astro/propagation/force_models/space_weather/atmosphere/HarrisPriester.hpp`
 

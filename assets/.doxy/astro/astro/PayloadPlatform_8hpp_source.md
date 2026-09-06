@@ -69,7 +69,7 @@ class PayloadPlatform {
 
     virtual VelocityVector<frames::primary> get_velocity(const Date& date) const = 0;
 
-    virtual Mass get_mass() const { return 0.0 * mp_units::si::unit_symbols::kg; }
+    virtual Mass get_mass(const State& state) const { return 0.0 * mp_units::si::unit_symbols::kg; }
 
     void attach_payload(const PayloadParameters_T& parameters) { _payloads.emplace_back(Payload_T(*this, parameters)); }
 

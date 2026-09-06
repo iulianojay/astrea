@@ -54,21 +54,21 @@ class Spacecraft : public ThrusterPlatform {
 
     const StateHistory& get_state_history() const;
 
-    Mass get_mass() const;
+    Mass get_mass(const State& state) const;
 
-    InertiaTensor<frames::dynamic::body> get_inertia_tensor() const;
+    InertiaTensor<frames::dynamic::body> get_inertia_tensor(const State& state) const;
 
-    Unitless get_coefficient_of_drag() const;
+    Unitless get_coefficient_of_drag(const State& state) const;
 
-    Unitless get_coefficient_of_lift() const;
+    Unitless get_coefficient_of_lift(const State& state) const;
 
-    Unitless get_coefficient_of_reflectivity() const;
+    Unitless get_coefficient_of_reflectivity(const State& state) const;
 
-    SurfaceArea get_ram_area() const;
+    SurfaceArea get_ram_area(const State& state) const;
 
-    SurfaceArea get_solar_area() const;
+    SurfaceArea get_solar_area(const State& state) const;
 
-    SurfaceArea get_lift_area() const;
+    SurfaceArea get_lift_area(const State& state) const;
 
     Perturbation get_control_authority(const State& state) const;
 
@@ -98,16 +98,15 @@ class Spacecraft : public ThrusterPlatform {
     using PayloadPlatform<Thruster>::attach_payload;
     using PayloadPlatform<Thruster>::get_payloads;
 
-    static constexpr Mass DEFAULT_MASS = 1000.0 * astrea::detail::mass_unit; // Default mass of the spacecraft
+    static constexpr Mass DEFAULT_MASS = 1000.0 * mp_units::si::unit_symbols::kg; // Default mass of the spacecraft
     static constexpr InertiaTensor<frames::dynamic::body> DEFAULT_INERTIA_TENSOR =
         InertiaTensor<frames::dynamic::body>{}; // Default inertia tensor of the spacecraft
-    static constexpr Unitless DEFAULT_COEFFICIENT_OF_DRAG = 2.2 * astrea::detail::unitless; // Default coefficient of drag
-    static constexpr Unitless DEFAULT_COEFFICIENT_OF_LIFT = 0.9 * astrea::detail::unitless; // Default coefficient of lift
-    static constexpr Unitless DEFAULT_COEFFICIENT_OF_REFLECTIVITY =
-        1.1 * astrea::detail::unitless; // Default coefficient of reflectivity
-    static constexpr SurfaceArea DEFAULT_RAM_AREA = 1.0 * mp_units::pow<2>(astrea::detail::distance_unit); // Default ram area
-    static constexpr SurfaceArea DEFAULT_SOLAR_AREA = 1.0 * mp_units::pow<2>(astrea::detail::distance_unit); // Default solar area
-    static constexpr SurfaceArea DEFAULT_LIFT_AREA = 1.0 * mp_units::pow<2>(astrea::detail::distance_unit); // Default lift area
+    static constexpr Unitless DEFAULT_COEFFICIENT_OF_DRAG = 2.2 * mp_units::one;         // Default coefficient of drag
+    static constexpr Unitless DEFAULT_COEFFICIENT_OF_LIFT = 0.9 * mp_units::one;         // Default coefficient of lift
+    static constexpr Unitless DEFAULT_COEFFICIENT_OF_REFLECTIVITY = 1.1 * mp_units::one; // Default coefficient of reflectivity
+    static constexpr SurfaceArea DEFAULT_RAM_AREA = 1.0 * mp_units::si::unit_symbols::m * mp_units::si::unit_symbols::m; // Default ram area
+    static constexpr SurfaceArea DEFAULT_SOLAR_AREA = 1.0 * mp_units::si::unit_symbols::m * mp_units::si::unit_symbols::m; // Default solar area
+    static constexpr SurfaceArea DEFAULT_LIFT_AREA = 1.0 * mp_units::si::unit_symbols::m * mp_units::si::unit_symbols::m; // Default lift area
 
   protected:
     std::size_t _id;   // Unique identifier for the spacecraft, generated from its properties

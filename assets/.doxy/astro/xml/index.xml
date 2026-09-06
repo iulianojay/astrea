@@ -78,10 +78,11 @@
     <member refid="structastrea_1_1astro_1_1detail_1_1apply__template_3_01T_00_01std_1_1tuple_3_01Frames_8_8_8_01_4_01_4_1a9a62c77306000d10a52993879f0a8b48" kind="typedef"><name>type</name></member>
   </compound>
   <compound refid="classastrea_1_1astro_1_1AtmosphericForce" kind="class"><name>astrea::astro::AtmosphericForce</name>
-    <member refid="classastrea_1_1astro_1_1AtmosphericForce_1a2615651c9d90877d4ac10f7f806ced05" kind="function"><name>AtmosphericForce</name></member>
-    <member refid="classastrea_1_1astro_1_1AtmosphericForce_1a0770799f7b4cebe06e0d16596f19ff1e" kind="function"><name>~AtmosphericForce</name></member>
-    <member refid="classastrea_1_1astro_1_1AtmosphericForce_1ae1707750ac7e675816bd7c4e8336e5e4" kind="function"><name>compute_perturbation</name></member>
-    <member refid="classastrea_1_1astro_1_1AtmosphericForce_1a650a44e95e242c4139d7bbba8c2dba03" kind="function"><name>clone</name></member>
+    <member refid="classastrea_1_1astro_1_1AtmosphericForce_1ab3bede754fa54045f537869d70542b36" kind="variable"><name>center</name></member>
+    <member refid="classastrea_1_1astro_1_1AtmosphericForce_1a0cb44bfe68983492e3a9a35b9c9924b3" kind="function"><name>AtmosphericForce</name></member>
+    <member refid="classastrea_1_1astro_1_1AtmosphericForce_1a0b129decec40cb0951980048de2875a0" kind="function"><name>~AtmosphericForce</name></member>
+    <member refid="classastrea_1_1astro_1_1AtmosphericForce_1a495368c6415f59e536d7206262b24cb8" kind="function"><name>compute_perturbation</name></member>
+    <member refid="classastrea_1_1astro_1_1AtmosphericForce_1a6fed52223f6e5f5ed18a4dc37227861c" kind="function"><name>clone</name></member>
   </compound>
   <compound refid="classastrea_1_1astro_1_1Attitude" kind="class"><name>astrea::astro::Attitude</name>
     <member refid="classastrea_1_1astro_1_1Attitude_1acb390a49b18fb67071d138253f801962" kind="friend"><name>StateTransitionMatrix</name></member>
@@ -131,6 +132,8 @@
     <member refid="structastrea_1_1astro_1_1detail_1_1AxisBase_1a23e813faee2357ee58bcaad4329c2d02" kind="friend"><name>operator==</name></member>
     <member refid="structastrea_1_1astro_1_1detail_1_1AxisBase_1ad4002bfd728d8259384644a5523d4a6e" kind="friend"><name>equivalent</name></member>
   </compound>
+  <compound refid="structastrea_1_1astro_1_1BadConversionRequest" kind="struct"><name>astrea::astro::BadConversionRequest</name>
+  </compound>
   <compound refid="structastrea_1_1astro_1_1Barycenter" kind="struct"><name>astrea::astro::Barycenter</name>
   </compound>
   <compound refid="structastrea_1_1astro_1_1Barycenter_3_01__name___01_4" kind="struct"><name>astrea::astro::Barycenter&lt; _name_ &gt;</name>
@@ -164,14 +167,14 @@
     <member refid="structastrea_1_1astro_1_1BarycentricDynamicalTimeClock_1a452bcbdb5400d51fd25ed198e54525a0" kind="function"><name>now</name></member>
   </compound>
   <compound refid="structastrea_1_1astro_1_1planets_1_1BatesProfileParams" kind="struct"><name>astrea::astro::planets::BatesProfileParams</name>
-    <member refid="structastrea_1_1astro_1_1planets_1_1BatesProfileParams_1ab9b8e4f2c1e7af317566d5ef566b112f" kind="variable"><name>Tinf</name></member>
-    <member refid="structastrea_1_1astro_1_1planets_1_1BatesProfileParams_1ac3e0a5be0a76a1b3f809ebe4a5021f92" kind="variable"><name>Tlb0</name></member>
-    <member refid="structastrea_1_1astro_1_1planets_1_1BatesProfileParams_1a8be00ffeb861be7f27ac3a9361e285ab" kind="variable"><name>TN12</name></member>
+    <member refid="structastrea_1_1astro_1_1planets_1_1BatesProfileParams_1a1c7988e80e8479adca1db95c241a0277" kind="variable"><name>Tinf</name></member>
+    <member refid="structastrea_1_1astro_1_1planets_1_1BatesProfileParams_1a06ab0f25ba93d916c8b378813a008973" kind="variable"><name>Tlb0</name></member>
+    <member refid="structastrea_1_1astro_1_1planets_1_1BatesProfileParams_1a14466a440dddba1d0b3c60e0cfadc062" kind="variable"><name>TN12</name></member>
     <member refid="structastrea_1_1astro_1_1planets_1_1BatesProfileParams_1a045b4f78a6c1be1a032288f782b06b4c" kind="variable"><name>S0</name></member>
-    <member refid="structastrea_1_1astro_1_1planets_1_1BatesProfileParams_1a059654dbf11bdf1a633bb8fb9bb52ec7" kind="variable"><name>TN14</name></member>
-    <member refid="structastrea_1_1astro_1_1planets_1_1BatesProfileParams_1a3a3795aeda484bae84b2cc6dc4864106" kind="variable"><name>Zlb</name></member>
-    <member refid="structastrea_1_1astro_1_1planets_1_1BatesProfileParams_1ac49cfe778851d3be443837c1e8f16532" kind="variable"><name>TN11</name></member>
-    <member refid="structastrea_1_1astro_1_1planets_1_1BatesProfileParams_1ac6e0c3abdcbd4f6c8edf781777bb1d59" kind="variable"><name>TN13</name></member>
+    <member refid="structastrea_1_1astro_1_1planets_1_1BatesProfileParams_1a7c40a1b2764861ae1708744bd940126f" kind="variable"><name>TN14</name></member>
+    <member refid="structastrea_1_1astro_1_1planets_1_1BatesProfileParams_1a2c4d53483a6ab735d2194e02ba7b9d3b" kind="variable"><name>Zlb</name></member>
+    <member refid="structastrea_1_1astro_1_1planets_1_1BatesProfileParams_1a15f776d80883e49bf5aa9da6ad0d29b7" kind="variable"><name>TN11</name></member>
+    <member refid="structastrea_1_1astro_1_1planets_1_1BatesProfileParams_1af2662218fae0a2cc9cce0118a3ae1c7b" kind="variable"><name>TN13</name></member>
     <member refid="structastrea_1_1astro_1_1planets_1_1BatesProfileParams_1a59113dbb75fad7da5ffefbdaaf144e0b" kind="variable"><name>Tgrad</name></member>
   </compound>
   <compound refid="structastrea_1_1astro_1_1frames_1_1dynamic_1_1body" kind="struct"><name>astrea::astro::frames::dynamic::body</name>
@@ -185,6 +188,7 @@
   <compound refid="structastrea_1_1astro_1_1frames_1_1callisto_1_1callisto__fixed" kind="struct"><name>astrea::astro::frames::callisto::callisto_fixed</name>
   </compound>
   <compound refid="classastrea_1_1astro_1_1Cartesian" kind="class"><name>astrea::astro::Cartesian</name>
+    <member refid="classastrea_1_1astro_1_1Cartesian_1abd4d7484598a7d847c9ce4baaf834661" kind="typedef"><name>BaseType</name></member>
     <member refid="classastrea_1_1astro_1_1Cartesian_1ac71ddc6f2d42864c6ea75240b1086ffc" kind="friend"><name>OrbitalElements</name></member>
     <member refid="classastrea_1_1astro_1_1Cartesian_1a91082c6635ba1d906040828365b15d96" kind="friend"><name>operator&lt;&lt;</name></member>
     <member refid="classastrea_1_1astro_1_1Cartesian_1a00cdee5ef841bc0a8a7c57cac3f9d5dc" kind="variable"><name>frame</name></member>
@@ -607,9 +611,6 @@
   </compound>
   <compound refid="structastrea_1_1astro_1_1barycenters_1_1EarthMoonBarycenter" kind="struct"><name>astrea::astro::barycenters::EarthMoonBarycenter</name>
   </compound>
-  <compound refid="structastrea_1_1astro_1_1planets_1_1EarthParameters" kind="struct"><name>astrea::astro::planets::EarthParameters</name>
-    <member refid="structastrea_1_1astro_1_1planets_1_1EarthParameters_1a2ad322fcf6e680740b23f6a5de0d9abb" kind="variable"><name>atmosphereModel</name></member>
-  </compound>
   <compound refid="structastrea_1_1astro_1_1barycenters_1_1EarthSunBarycenter" kind="struct"><name>astrea::astro::barycenters::EarthSunBarycenter</name>
   </compound>
   <compound refid="structastrea_1_1astro_1_1frames_1_1EastNorthUp" kind="struct"><name>astrea::astro::frames::EastNorthUp</name>
@@ -638,6 +639,7 @@
     <member refid="classastrea_1_1astro_1_1EquationsOfMotion_1ad5dc873c125475e764c2ef09c520db5b" kind="function"><name>clone</name></member>
   </compound>
   <compound refid="classastrea_1_1astro_1_1Equinoctial" kind="class"><name>astrea::astro::Equinoctial</name>
+    <member refid="classastrea_1_1astro_1_1Equinoctial_1a74c49483c4ae5c887b1e37231f38e1a5" kind="typedef"><name>BaseType</name></member>
     <member refid="classastrea_1_1astro_1_1Equinoctial_1ac71ddc6f2d42864c6ea75240b1086ffc" kind="friend"><name>OrbitalElements</name></member>
     <member refid="classastrea_1_1astro_1_1Equinoctial_1aec6a2805ba15d073359cb90a6bb97a2a" kind="friend"><name>operator&lt;&lt;</name></member>
     <member refid="classastrea_1_1astro_1_1Equinoctial_1aeae87e2451ad6aad63ba600558a1145c" kind="variable"><name>frame</name></member>
@@ -862,8 +864,13 @@
     <member refid="structastrea_1_1astro_1_1FixedOffsetOrigin_1a88ee27a9235b7a6c25c6596d3c806eb4" kind="variable"><name>offset</name></member>
   </compound>
   <compound refid="classastrea_1_1astro_1_1ForceModel" kind="class"><name>astrea::astro::ForceModel</name>
+    <member refid="classastrea_1_1astro_1_1ForceModel_1aca286a3ee8ed9f5142e8414f2602e5b0" kind="variable"><name>_spaceWeatherProvider</name></member>
     <member refid="classastrea_1_1astro_1_1ForceModel_1ab559ecc2f1a8289bc8576a684a1b92a0" kind="variable"><name>forces</name></member>
-    <member refid="classastrea_1_1astro_1_1ForceModel_1ac83f35837e2a7b561b58854c8015d0cb" kind="function"><name>ForceModel</name></member>
+    <member refid="classastrea_1_1astro_1_1ForceModel_1ad2e908a5f697554669a771055a139015" kind="function"><name>ForceModel</name></member>
+    <member refid="classastrea_1_1astro_1_1ForceModel_1ae696c1bbc8b85f2e4ab7cb479a9e72f8" kind="function"><name>ForceModel</name></member>
+    <member refid="classastrea_1_1astro_1_1ForceModel_1a7aac50ee73cdab9e73f3ed9f41e0f3e2" kind="function"><name>ForceModel</name></member>
+    <member refid="classastrea_1_1astro_1_1ForceModel_1a79f3698195bdd66fd7e6a41be9d51760" kind="function"><name>ForceModel</name></member>
+    <member refid="classastrea_1_1astro_1_1ForceModel_1adfddb5c1c0f72dcf29e49889a593dd1c" kind="function"><name>ForceModel</name></member>
     <member refid="classastrea_1_1astro_1_1ForceModel_1a1a2922d834945312251c0d0e70b67514" kind="function"><name>~ForceModel</name></member>
     <member refid="classastrea_1_1astro_1_1ForceModel_1a21ba06235f677710aeac1d4f03adda5a" kind="function"><name>ForceModel</name></member>
     <member refid="classastrea_1_1astro_1_1ForceModel_1ace2803d6da010a8680e88fb1728bf0c3" kind="function"><name>ForceModel</name></member>
@@ -872,9 +879,13 @@
     <member refid="classastrea_1_1astro_1_1ForceModel_1abb3f4a2ff96c762a8435624dea0c88e1" kind="function"><name>size</name></member>
     <member refid="classastrea_1_1astro_1_1ForceModel_1a02506f8e0a1e6c387cfe892063b17590" kind="function"><name>add</name></member>
     <member refid="classastrea_1_1astro_1_1ForceModel_1a6c712fead2e877cc5ad426a94b180f29" kind="function"><name>add</name></member>
+    <member refid="classastrea_1_1astro_1_1ForceModel_1abda6a06c94b289ae58305b3f443ea8aa" kind="function"><name>space_weather_provider</name></member>
     <member refid="classastrea_1_1astro_1_1ForceModel_1a4eca86c9c45d0866a94de83ed8e1eacd" kind="function"><name>compute_perturbations</name></member>
     <member refid="classastrea_1_1astro_1_1ForceModel_1a4d7ccb5c721158916db35620efd4bd15" kind="function"><name>at</name></member>
     <member refid="classastrea_1_1astro_1_1ForceModel_1a75e7182bc35f5567596f468f85eff70a" kind="function"><name>get</name></member>
+    <member refid="classastrea_1_1astro_1_1ForceModel_1a02879a894155bf6e057d0a52a303a14c" kind="function"><name>set_space_weather_provider</name></member>
+    <member refid="classastrea_1_1astro_1_1ForceModel_1af743263a82a465866dfc8c6c6d504c30" kind="function"><name>set_space_weather_provider</name></member>
+    <member refid="classastrea_1_1astro_1_1ForceModel_1a10b5f12b5fea31858abba1d42b7f2e11" kind="function"><name>set_space_weather_provider</name></member>
   </compound>
   <compound refid="structastrea_1_1astro_1_1Frame" kind="struct"><name>astrea::astro::Frame</name>
   </compound>
@@ -1028,9 +1039,9 @@
     <member refid="classastrea_1_1astro_1_1Geodetic_1af8e87b2609330b909645b5db7146ec91" kind="function"><name>get_altitude</name></member>
     <member refid="classastrea_1_1astro_1_1Geodetic_1a933dc36cfd2b570d096337521072277a" kind="function"><name>interpolate</name></member>
   </compound>
-  <compound refid="classastrea_1_1astro_1_1planets_1_1HarrisPriesterAtmosphere" kind="class"><name>astrea::astro::planets::HarrisPriesterAtmosphere</name>
-    <member refid="classastrea_1_1astro_1_1planets_1_1HarrisPriesterAtmosphere_1a89ee719cbfd36b71736082db917b1130" kind="function"><name>HarrisPriesterAtmosphere</name></member>
-    <member refid="classastrea_1_1astro_1_1planets_1_1HarrisPriesterAtmosphere_1a19a0506b3af0f558cb8e2b3d5166a3da" kind="function"><name>find_atmospheric_density</name></member>
+  <compound refid="classastrea_1_1astro_1_1HarrisPriesterAtmosphere" kind="class"><name>astrea::astro::HarrisPriesterAtmosphere</name>
+    <member refid="classastrea_1_1astro_1_1HarrisPriesterAtmosphere_1a78bd3a5d0da60d2cbdc020fab6887b0e" kind="function"><name>HarrisPriesterAtmosphere</name></member>
+    <member refid="classastrea_1_1astro_1_1HarrisPriesterAtmosphere_1a043162797f3cd5b3c2e2b166fbfafec6" kind="function"><name>find_atmospheric_density</name></member>
   </compound>
   <compound refid="structstd_1_1hash_3_01std_1_1tuple_3_01TT_8_8_8_01_4_01_4" kind="struct"><name>std::hash&lt; std::tuple&lt; TT... &gt; &gt;</name>
     <member refid="structstd_1_1hash_3_01std_1_1tuple_3_01TT_8_8_8_01_4_01_4_1afdf58525bd44e80be2af8355db0eba2e" kind="function"><name>operator()</name></member>
@@ -1314,9 +1325,9 @@
     <member refid="classastrea_1_1astro_1_1J2MeanVop_1af825a1594252210705167c2c0490817c" kind="function"><name>get_expected_set_id</name></member>
     <member refid="classastrea_1_1astro_1_1J2MeanVop_1aba9933bbfc53dc726f84812502c38b8d" kind="function"><name>clone</name></member>
   </compound>
-  <compound refid="classastrea_1_1astro_1_1planets_1_1JacciaRobertsAtmosphere" kind="class"><name>astrea::astro::planets::JacciaRobertsAtmosphere</name>
-    <member refid="classastrea_1_1astro_1_1planets_1_1JacciaRobertsAtmosphere_1a614911c2ec8e94ac0ce033bdbe4219ba" kind="function"><name>JacciaRobertsAtmosphere</name></member>
-    <member refid="classastrea_1_1astro_1_1planets_1_1JacciaRobertsAtmosphere_1a6107f30d31d56288e2753e999a03c35d" kind="function"><name>find_atmospheric_density</name></member>
+  <compound refid="classastrea_1_1astro_1_1JacchiaRobertsAtmosphere" kind="class"><name>astrea::astro::JacchiaRobertsAtmosphere</name>
+    <member refid="classastrea_1_1astro_1_1JacchiaRobertsAtmosphere_1a92860a57a9291a596d1a31ab101b69d2" kind="function"><name>JacchiaRobertsAtmosphere</name></member>
+    <member refid="classastrea_1_1astro_1_1JacchiaRobertsAtmosphere_1a22f42777d80c4ae65f610aa308dc5154" kind="function"><name>find_atmospheric_density</name></member>
   </compound>
   <compound refid="structastrea_1_1astro_1_1JplEphemerisTable" kind="struct"><name>astrea::astro::JplEphemerisTable</name>
     <member refid="structastrea_1_1astro_1_1JplEphemerisTable_1ac40512122cf9e8b07f7ed97407b12df3" kind="variable"><name>START_DATE</name></member>
@@ -1344,6 +1355,7 @@
   <compound refid="structastrea_1_1astro_1_1barycenters_1_1JupiterSunBarycenter" kind="struct"><name>astrea::astro::barycenters::JupiterSunBarycenter</name>
   </compound>
   <compound refid="classastrea_1_1astro_1_1Keplerian" kind="class"><name>astrea::astro::Keplerian</name>
+    <member refid="classastrea_1_1astro_1_1Keplerian_1a41b5ec6de7bc73453a3f35772f6db363" kind="typedef"><name>BaseType</name></member>
     <member refid="classastrea_1_1astro_1_1Keplerian_1ac71ddc6f2d42864c6ea75240b1086ffc" kind="friend"><name>OrbitalElements</name></member>
     <member refid="classastrea_1_1astro_1_1Keplerian_1a6ffc563e71a8b165880e168a9e075fdb" kind="friend"><name>operator&lt;&lt;</name></member>
     <member refid="classastrea_1_1astro_1_1Keplerian_1aabca3ae36ec7a6224aeaa676b6ffefd9" kind="variable"><name>frame</name></member>
@@ -1515,68 +1527,14 @@
   </compound>
   <compound refid="structastrea_1_1astro_1_1barycenters_1_1NeptuneSunBarycenter" kind="struct"><name>astrea::astro::barycenters::NeptuneSunBarycenter</name>
   </compound>
-  <compound refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00" kind="class"><name>astrea::astro::planets::NRLMSISE00</name>
-    <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1ac319459d7554433d1ca524bc8c663cd6" kind="enum"><name>AtomicDensity</name></member>
-    <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1ac319459d7554433d1ca524bc8c663cd6a1d89721b826f1678add55beeded84bbd" kind="enumvalue"><name>HELIUM</name></member>
-    <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1ac319459d7554433d1ca524bc8c663cd6ad8f8bb24a81f5a057fa61f186060db71" kind="enumvalue"><name>ATOMIC_OXYGEN</name></member>
-    <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1ac319459d7554433d1ca524bc8c663cd6a2038d6a8bd58cba06c73cf21b6ff3ea8" kind="enumvalue"><name>MOLECULAR_NITROGEN</name></member>
-    <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1ac319459d7554433d1ca524bc8c663cd6ab1a1e60218e88a7eb2fa61ad2c406a04" kind="enumvalue"><name>MOLECULAR_OXYGEN</name></member>
-    <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1ac319459d7554433d1ca524bc8c663cd6ab420296630bd81cf7fea13245af5b561" kind="enumvalue"><name>ARGON</name></member>
-    <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1ac319459d7554433d1ca524bc8c663cd6a16cc7b735a4cab18785b9c4720a91120" kind="enumvalue"><name>TOTAL_MASS</name></member>
-    <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1ac319459d7554433d1ca524bc8c663cd6aba37f4cf45e33bdc4d55241f6eb93baf" kind="enumvalue"><name>HYDROGEN</name></member>
-    <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1ac319459d7554433d1ca524bc8c663cd6a0440bc100d66186e4519d762fdffadb6" kind="enumvalue"><name>ATOMIC_NITROGEN</name></member>
-    <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1ac319459d7554433d1ca524bc8c663cd6a09bd6aba84a0e1d886504e55a3ab4a4a" kind="enumvalue"><name>ANOMALOUS_OXYGEN</name></member>
-    <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1a371584d42d531377b0460fb90debe7ff" kind="enum"><name>TemperatureType</name></member>
-    <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1a371584d42d531377b0460fb90debe7ffa2e786c4c201767675c4e0337de50077a" kind="enumvalue"><name>EXOSPHERIC</name></member>
-    <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1a371584d42d531377b0460fb90debe7ffaa6750a5feedb1a2bc09cba26c4e0baef" kind="enumvalue"><name>ALTITUDE</name></member>
-    <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1a89fad0156805b564475cd170ec37c0de" kind="enum"><name>Option</name></member>
-    <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1a89fad0156805b564475cd170ec37c0dea3c048670af782aa8b0be10bb1fb12b7a" kind="enumvalue"><name>F107_EFFECT_ON_MEAN</name></member>
-    <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1a89fad0156805b564475cd170ec37c0deabc54c2338878c1d1d0333b9bfd54dd67" kind="enumvalue"><name>INDEPENDENT_OF_TIME</name></member>
-    <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1a89fad0156805b564475cd170ec37c0dea8efa822fbbf68fdea36140b123af6cb0" kind="enumvalue"><name>SYMMETRICAL_ANNUAL</name></member>
-    <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1a89fad0156805b564475cd170ec37c0dea5c1f634a7f06d1bcfeb02cfcf87b8296" kind="enumvalue"><name>SYMMETRICAL_SEMIANNUAL</name></member>
-    <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1a89fad0156805b564475cd170ec37c0dea227c428e9accd06ccbabdf640b8c359e" kind="enumvalue"><name>ASYMMETRICAL_ANNUAL</name></member>
-    <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1a89fad0156805b564475cd170ec37c0dea6cfe0301bdb903226879e193ae323afd" kind="enumvalue"><name>ASYMMETRICAL_SEMIANNUAL</name></member>
-    <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1a89fad0156805b564475cd170ec37c0dea9000e0f39047b937943e8b3797482669" kind="enumvalue"><name>DIURNAL</name></member>
-    <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1a89fad0156805b564475cd170ec37c0dea10df2203636c796a83b5675688d522ba" kind="enumvalue"><name>SEMIDIURNAL</name></member>
-    <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1a89fad0156805b564475cd170ec37c0dea057b0867a5d5302294bd72a5bc1afc53" kind="enumvalue"><name>DAILY_AP</name></member>
-    <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1a89fad0156805b564475cd170ec37c0dea425ce544d52f3a49beecac95a7768f39" kind="enumvalue"><name>ALL_UT_LONGITUDINAL_EFFECTS</name></member>
-    <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1a89fad0156805b564475cd170ec37c0dea71ed05cc1e9dbfa8ba58cb09cd596d81" kind="enumvalue"><name>LONGITUDINAL_EFFECTS</name></member>
-    <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1a89fad0156805b564475cd170ec37c0dea26fc865ae016fb67fb31e00da1d15373" kind="enumvalue"><name>UT_AND_MIXED_UT_LONGITUDINAL_EFFECTS</name></member>
-    <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1a89fad0156805b564475cd170ec37c0dea3e64e7c65e2a1221b4b0995196a7eafe" kind="enumvalue"><name>MIXED_AP_UT_LONGITUDINAL_EFFECTS</name></member>
-    <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1a89fad0156805b564475cd170ec37c0deacbb1cd1fb3921e5596e4e576b7d8dbd1" kind="enumvalue"><name>TERDIURNAL</name></member>
-    <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1a89fad0156805b564475cd170ec37c0dea8438320bab53ddbbd42fe718c3951137" kind="enumvalue"><name>DEPARTURES_FROM_DIFFUSIVE_EQUILIBRIUM</name></member>
-    <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1a89fad0156805b564475cd170ec37c0deaafcb6faa68ba1eb59cb3bd04a565eb7e" kind="enumvalue"><name>ALL_EXOSPHERIC_TEMPERATURE_VARIATIONS</name></member>
-    <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1a89fad0156805b564475cd170ec37c0dea5605d7712e7dcc8424221c9680bc3f3a" kind="enumvalue"><name>ALL_VARIATIONS_FROM_120KM_TEMPERATURE_TLB</name></member>
-    <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1a89fad0156805b564475cd170ec37c0dea2f81396cdd9bafb780edbb34b7a615f3" kind="enumvalue"><name>ALL_LOWER_THERMOSPHERE_TEMPERATURE_TN1_VARIATIONS</name></member>
-    <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1a89fad0156805b564475cd170ec37c0dea4f6dd3f9347a5e6f67c077c69072fd4b" kind="enumvalue"><name>ALL_120KM_GRADIENT_S_VARIATIONS</name></member>
-    <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1a89fad0156805b564475cd170ec37c0dea1f8b34e861306f80f65889aaf200f5b2" kind="enumvalue"><name>ALL_UPPER_STRATOSPHERE_TEMPERATURE_TN2_VARIATIONS</name></member>
-    <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1a89fad0156805b564475cd170ec37c0dea6bf96d6c523200184e011113fc3d0b5b" kind="enumvalue"><name>ALL_VARIATIONS_FROM_120KM_VALUES_ZLB</name></member>
-    <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1a89fad0156805b564475cd170ec37c0deac2072a07ec9151741f06103c5c7af00d" kind="enumvalue"><name>ALL_LOWER_MESOSPHERE_TEMPERATURE_TN3_VARIATIONS</name></member>
-    <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1a89fad0156805b564475cd170ec37c0deaa3d8ab0846a24feefd1b47ea888ca537" kind="enumvalue"><name>TURBOPAUSE_SCALE_HEIGHT_VARIATIONS</name></member>
-    <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1a96d04686f345ec9b6c8834d6d2ca0a35" kind="variable"><name>LAT_REF</name></member>
-    <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1afa5bb4b6a1385664af7cf313815868fd" kind="variable"><name>G_REF</name></member>
-    <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1aeefc09580ef40240e8de6dc4a11dd001" kind="variable"><name>R_GAS</name></member>
-    <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1af7678adc2a2e755c82170c6846f9a11c" kind="variable"><name>H_MASS</name></member>
-    <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1ac43af814d5f6432b0aed2562c394562f" kind="variable"><name>HE_MASS</name></member>
-    <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1a11ede295b09df83e11028e4b977ec45e" kind="variable"><name>N_MASS</name></member>
-    <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1a44df099086ffacd4373ff653fe9fc5d1" kind="variable"><name>N2_MASS</name></member>
-    <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1a44a0f0b4c200583ef933bb7013c351d1" kind="variable"><name>O_MASS</name></member>
-    <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1ad304aafe9d3f6ceef29c987dc17eb0cb" kind="variable"><name>O2_MASS</name></member>
-    <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1ad655806238f4f6758e8ea50c78834ccb" kind="variable"><name>AR_MASS</name></member>
-    <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1a452c459d3ed2d4cf3c7e5063ed93ce4c" kind="variable"><name>FLUX_REF</name></member>
-    <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1a6ff02864b39bdd929b2ded0620e748bd" kind="variable"><name>ZN1</name></member>
-    <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1ac13404175a707315e5714a6b92aecd8f" kind="variable"><name>ZN2</name></member>
-    <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1a9c37542d418952bed1df5203a2f84322" kind="variable"><name>ZN3</name></member>
-    <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1afa2139b530c31c03f3e6a748fcfd1a84" kind="variable"><name>ZMIX</name></member>
-    <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1a3e3a8a3a73995487a63a1113904cca32" kind="variable"><name>PAVGM</name></member>
-    <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1a3900e944b068c140de9c9c0edd2d18c2" kind="variable"><name>MIN_TEMP</name></member>
-    <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1a92012476fca191bfe2e8259efa1032d3" kind="variable"><name>options</name></member>
-    <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1abdc07c2bac822a1a150697ba10b904be" kind="function"><name>find_atmospheric_density</name></member>
-    <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1a8a851176a02966eab493e10028c83986" kind="function"><name>calculate_local_solar_time</name></member>
+  <compound refid="classastrea_1_1astro_1_1Nrlmsise00Atmosphere" kind="class"><name>astrea::astro::Nrlmsise00Atmosphere</name>
+    <member refid="classastrea_1_1astro_1_1Nrlmsise00Atmosphere_1a157d508a02ae227af92042a10f763258" kind="function"><name>Nrlmsise00Atmosphere</name></member>
+    <member refid="classastrea_1_1astro_1_1Nrlmsise00Atmosphere_1a21fe9c485c906b78b95e6a6b99f94fcf" kind="function"><name>find_atmospheric_density</name></member>
+    <member refid="classastrea_1_1astro_1_1Nrlmsise00Atmosphere_1a4f25d9bb06a1d342f21ba2aeaa293625" kind="function"><name>get_default_flags</name></member>
   </compound>
-  <compound refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00Atmosphere" kind="class"><name>astrea::astro::planets::NRLMSISE00Atmosphere</name>
-    <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00Atmosphere_1acf42ac31ce1de95eb028f494f074c211" kind="function"><name>NRLMSISE00Atmosphere</name></member>
-    <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00Atmosphere_1a3449ba26dfa2023905e119df10c1d122" kind="function"><name>find_atmospheric_density</name></member>
+  <compound refid="classastrea_1_1astro_1_1planets_1_1Nrlmsise00Atmosphere" kind="class"><name>astrea::astro::planets::Nrlmsise00Atmosphere</name>
+    <member refid="classastrea_1_1astro_1_1planets_1_1Nrlmsise00Atmosphere_1ad4fe55e47b0292465249b65f5b36244c" kind="function"><name>Nrlmsise00Atmosphere</name></member>
+    <member refid="classastrea_1_1astro_1_1planets_1_1Nrlmsise00Atmosphere_1a523779a5989fe8844c74bcb92e26b1f1" kind="function"><name>find_atmospheric_density</name></member>
   </compound>
   <compound refid="structastrea_1_1astro_1_1frames_1_1neptune__sun__barycenter_1_1nss" kind="struct"><name>astrea::astro::frames::neptune_sun_barycenter::nss</name>
   </compound>
@@ -1589,7 +1547,7 @@
     <member refid="classastrea_1_1astro_1_1NullVehicle_1a9f5e4c05463a54666c9b7c63f0ec6201" kind="variable"><name>_mass</name></member>
     <member refid="classastrea_1_1astro_1_1NullVehicle_1a617536f6a068a8af6eee05d5b1f90107" kind="function"><name>NullVehicle</name></member>
     <member refid="classastrea_1_1astro_1_1NullVehicle_1a7f50be42920e8bd34d5db18bb3215557" kind="function"><name>clone</name></member>
-    <member refid="classastrea_1_1astro_1_1NullVehicle_1a31642268a6735ab90d5e5a96e7b9a21e" kind="function"><name>get_mass</name></member>
+    <member refid="classastrea_1_1astro_1_1NullVehicle_1a06ac304a66da79a8538dbf147e302df9" kind="function"><name>get_mass</name></member>
     <member refid="classastrea_1_1astro_1_1NullVehicle_1a8fe0d55d17a12c1b352256e54763eab0" kind="function"><name>get_name</name></member>
   </compound>
   <compound refid="structastrea_1_1astro_1_1moons_1_1Oberon" kind="class"><name>astrea::astro::moons::Oberon</name>
@@ -1638,6 +1596,7 @@
     <member refid="classastrea_1_1astro_1_1OrbitalElements_1a8a8626c0023955abdc7492e60a557a76" kind="function"><name>convert_to_set</name></member>
     <member refid="classastrea_1_1astro_1_1OrbitalElements_1a1f87ad86accc0ca641802a2d2de68b43" kind="function"><name>convert_to_set</name></member>
     <member refid="classastrea_1_1astro_1_1OrbitalElements_1afd5fabef62ad4862b2ff7c76c0166ae9" kind="function"><name>in_element_set</name></member>
+    <member refid="classastrea_1_1astro_1_1OrbitalElements_1abec8333e9b77e92ce1a7080b6e6ed1a0" kind="function"><name>in_frame</name></member>
     <member refid="classastrea_1_1astro_1_1OrbitalElements_1a59d9745c85da7f6520af68fddefb2167" kind="function"><name>operator==</name></member>
     <member refid="classastrea_1_1astro_1_1OrbitalElements_1ad873d24461aa51819eb33d7d336600bc" kind="function"><name>operator+</name></member>
     <member refid="classastrea_1_1astro_1_1OrbitalElements_1ab286dff7bd6d2a693e5827e907d7093e" kind="function"><name>operator+=</name></member>
@@ -1653,7 +1612,6 @@
     <member refid="classastrea_1_1astro_1_1OrbitalElements_1a1964362f60e826ab7e7621c71969d559" kind="function"><name>extract</name></member>
     <member refid="classastrea_1_1astro_1_1OrbitalElements_1a0e5e68d3905e2dccccd1149d330c26b0" kind="function"><name>extract</name></member>
     <member refid="classastrea_1_1astro_1_1OrbitalElements_1a32a48f9f832fa6d820b43924bb0d5272" kind="function"><name>index</name></member>
-    <member refid="classastrea_1_1astro_1_1OrbitalElements_1ad5be7e7d831984c9202a6d8ce981b896" kind="function"><name>in_frame</name></member>
     <member refid="classastrea_1_1astro_1_1OrbitalElements_1a2cdb1edc459bb6412476b774db3942bc" kind="function"><name>get_set_id</name></member>
     <member refid="classastrea_1_1astro_1_1OrbitalElements_1a9e65460d6fce698b62435aad706f495f" kind="function"><name>convert_to_set_impl</name></member>
     <member refid="classastrea_1_1astro_1_1OrbitalElements_1aab8e8bc03acad897c32e219304da6c1c" kind="function"><name>from_double_vector</name></member>
@@ -1671,57 +1629,54 @@
     <member refid="structastrea_1_1astro_1_1detail_1_1OriginBase_1a23e813faee2357ee58bcaad4329c2d02" kind="friend"><name>operator==</name></member>
     <member refid="structastrea_1_1astro_1_1detail_1_1OriginBase_1ad4002bfd728d8259384644a5523d4a6e" kind="friend"><name>equivalent</name></member>
   </compound>
-  <compound refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Output" kind="class"><name>astrea::astro::planets::NRLMSISE00::Output</name>
-    <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Output_1a3bf727347bca3995bfc493cd0af6353f" kind="variable"><name>doy</name></member>
-    <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Output_1ae7623618d42bff2b4324e04e8e0ee9c8" kind="variable"><name>sec</name></member>
-    <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Output_1af8d2ab1c6952133e8015c2ca28212938" kind="variable"><name>lat</name></member>
-    <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Output_1a607a96d2ba10059621e9033d7c14ef9f" kind="variable"><name>lon</name></member>
-    <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Output_1a126ae5ad23543848873ebfb57255152e" kind="variable"><name>hl</name></member>
-    <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Output_1aa16b5659f93ff79fb2f531335f797b39" kind="variable"><name>f107a</name></member>
-    <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Output_1ad3d90160888776ac671ab2b4ef7b0cd3" kind="variable"><name>f107</name></member>
-    <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Output_1a537c825f63c31c7850ab1d8d9301b580" kind="variable"><name>ap</name></member>
-    <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Output_1a9a496c769d10887270f14bf9187b25c7" kind="variable"><name>glat</name></member>
-    <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Output_1a9e42649526d49a3a87d73f12da42dda5" kind="variable"><name>rlat</name></member>
-    <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Output_1a4ee8e78c8cb47c2cb94164799ea9f91c" kind="variable"><name>dm28</name></member>
-    <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Output_1a47f05630ea1b7cc69842acd33e401007" kind="variable"><name>plg</name></member>
-    <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Output_1a2db4eb882250f63e479b6c18578b2bb5" kind="variable"><name>ctloc</name></member>
-    <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Output_1a2a18767ebc84ea488f347d68cd30539e" kind="variable"><name>stloc</name></member>
-    <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Output_1ae1e7b273665e29ba1d2d3ae5d7cca95f" kind="variable"><name>c2tloc</name></member>
-    <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Output_1a1133ad46efbd8af185e70a2ac97873d9" kind="variable"><name>s2tloc</name></member>
-    <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Output_1af55be0a2c5ad1807732d8ec57fb004b6" kind="variable"><name>c3tloc</name></member>
-    <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Output_1ae0ca9158430ae53df2e6638538b045ac" kind="variable"><name>s3tloc</name></member>
-    <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Output_1a8510c699e1913858d0377510af178723" kind="variable"><name>apdf</name></member>
-    <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Output_1a746e2a89679c28bc6a3227338a65e3c2" kind="variable"><name>apt</name></member>
-    <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Output_1a1aa00b6a4d014e43fbdd255700ee691c" kind="variable"><name>meso_tn1</name></member>
-    <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Output_1a981da84ae883c97284e302547b44e563" kind="variable"><name>meso_tn2</name></member>
-    <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Output_1adfd6a7ac81422a149ffa95cf29e7ebfa" kind="variable"><name>meso_tn3</name></member>
-    <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Output_1aab74453e7180f8bdc964e5f9639ed6d6" kind="variable"><name>meso_tgn1</name></member>
-    <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Output_1a6151fd2a6620f474c06c622bfacdd3c1" kind="variable"><name>meso_tgn2</name></member>
-    <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Output_1acb7646b83924788913dcbe4e72d5d916" kind="variable"><name>meso_tgn3</name></member>
-    <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Output_1a6395820ce3b6242be276dd15b77fae94" kind="variable"><name>densities</name></member>
-    <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Output_1aa305a4b688c35540edc411e44f397a63" kind="variable"><name>temperatures</name></member>
-    <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Output_1a9d8b84343f2ccf3888380f5b458146e6" kind="function"><name>Output</name></member>
-    <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Output_1a5fd1933ae44b8ba5ff285f44eafe18d4" kind="function"><name>gts7</name></member>
-    <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Output_1ac3829298e1b6d43cf35599c94d3d37ef" kind="function"><name>gtd7</name></member>
-    <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Output_1a7e680ab9d33eba02e51938f325ca5615" kind="function"><name>gtd7d</name></member>
-    <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Output_1ad7c27d1b83d59444c019be75566566c0" kind="function"><name>set_density</name></member>
-    <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Output_1a7ed7d4bd468408bbafc58f0e2104bcdd" kind="function"><name>set_temperature</name></member>
-    <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Output_1a29e423356ee4664147dfb297b196b5dc" kind="function"><name>get_density</name></member>
-    <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Output_1a315cb9877faf94db7fd44f06b721c36e" kind="function"><name>globe7</name></member>
-    <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Output_1ac222b529b0426a414e34dfaea10118ee" kind="function"><name>glob7s</name></member>
-    <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Output_1a4b5b0d9b21c697d926e02875f95cb88d" kind="function"><name>sg0</name></member>
-    <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Output_1acd181eca3205209ed65a472ad078008b" kind="function"><name>g0</name></member>
-    <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Output_1a7fbb3a765267f9185f15c9958d7632ef" kind="function"><name>ccor</name></member>
-    <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Output_1a6dc55235a793b261c1c3be385e0551ae" kind="function"><name>ccor2</name></member>
-    <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Output_1ac731354708c214bc6af5ffb515c05572" kind="function"><name>scalh</name></member>
-    <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Output_1a885879d576482e5cbd5f78887b6f61d5" kind="function"><name>dnet</name></member>
-    <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Output_1a61121d5a9cdbc3afea48eca9966cd64b" kind="function"><name>splini</name></member>
-    <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Output_1a2358d5a22fdde945f325739baed06dac" kind="function"><name>splint</name></member>
-    <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Output_1a5666bad6109ef9353066271da61cb2ab" kind="function"><name>spline</name></member>
-    <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Output_1af02b3d761dd24749cff65f768efddb50" kind="function"><name>densm</name></member>
-    <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Output_1aefc41f6a6ba0213340db9945dfc55d8f" kind="function"><name>densu</name></member>
-    <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Output_1aaa639de35b64a32701549c3f7d4970bf" kind="function"><name>galt</name></member>
-    <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Output_1a285d7c00531445246a3631536e3f48ee" kind="function"><name>zeta</name></member>
+  <compound refid="classastrea_1_1astro_1_1planets_1_1Output" kind="class"><name>astrea::astro::planets::Output</name>
+    <member refid="classastrea_1_1astro_1_1planets_1_1Output_1a7da4d30cea00558f0d5a08ef18bb5d5e" kind="variable"><name>doy</name></member>
+    <member refid="classastrea_1_1astro_1_1planets_1_1Output_1ad86467febfd0bf2994aeb6fa16ed9bac" kind="variable"><name>sec</name></member>
+    <member refid="classastrea_1_1astro_1_1planets_1_1Output_1aef358a6f3ce38d133082d140f0f30b77" kind="variable"><name>lat</name></member>
+    <member refid="classastrea_1_1astro_1_1planets_1_1Output_1ad7aa3c33085d8131a46a0366f516db0b" kind="variable"><name>lon</name></member>
+    <member refid="classastrea_1_1astro_1_1planets_1_1Output_1ad5cae2019d433421bf6c1dc21da3f2aa" kind="variable"><name>hl</name></member>
+    <member refid="classastrea_1_1astro_1_1planets_1_1Output_1a6b52b8c6d0f6196a7de8d1a9a1e1cee7" kind="variable"><name>f107a</name></member>
+    <member refid="classastrea_1_1astro_1_1planets_1_1Output_1ae3d43b3203f039c4c89dfaced6185610" kind="variable"><name>f107</name></member>
+    <member refid="classastrea_1_1astro_1_1planets_1_1Output_1ac3e5b1a3ccb25a68bcc794203d6d4d80" kind="variable"><name>ap</name></member>
+    <member refid="classastrea_1_1astro_1_1planets_1_1Output_1ae5d3a82a527c4f37af737586dcf4f566" kind="variable"><name>glat</name></member>
+    <member refid="classastrea_1_1astro_1_1planets_1_1Output_1a451a9c4bf6a43e93dbecfbe41e757755" kind="variable"><name>rlat</name></member>
+    <member refid="classastrea_1_1astro_1_1planets_1_1Output_1a5469aa013da0c206e809867aa3d322e9" kind="variable"><name>n2MixedNumberDensity</name></member>
+    <member refid="classastrea_1_1astro_1_1planets_1_1Output_1a85c3f9a5d6fba7ad35a287bc598175ad" kind="variable"><name>legendrePolynomials</name></member>
+    <member refid="classastrea_1_1astro_1_1planets_1_1Output_1a00b903f90c0ec9118d25eb416014c694" kind="variable"><name>ctloc</name></member>
+    <member refid="classastrea_1_1astro_1_1planets_1_1Output_1aa1d25074740b4b530202ad06f749f45d" kind="variable"><name>stloc</name></member>
+    <member refid="classastrea_1_1astro_1_1planets_1_1Output_1a7acdeb769322ef8225c28bf99616a445" kind="variable"><name>c2tloc</name></member>
+    <member refid="classastrea_1_1astro_1_1planets_1_1Output_1ad1ffb3183c55ecb57a58e6eeff2a4a70" kind="variable"><name>s2tloc</name></member>
+    <member refid="classastrea_1_1astro_1_1planets_1_1Output_1ada1c800473b5ceded1d035d7661027cc" kind="variable"><name>c3tloc</name></member>
+    <member refid="classastrea_1_1astro_1_1planets_1_1Output_1adf1267d17c987d627ea338a7721eebbd" kind="variable"><name>s3tloc</name></member>
+    <member refid="classastrea_1_1astro_1_1planets_1_1Output_1a42597009aae76937b95e729a0da93929" kind="variable"><name>apdf</name></member>
+    <member refid="classastrea_1_1astro_1_1planets_1_1Output_1ace539645269497ea7cd878f9848c621e" kind="variable"><name>apt</name></member>
+    <member refid="classastrea_1_1astro_1_1planets_1_1Output_1accb7adf364a65f53c3efd1db9ecd8771" kind="variable"><name>mesoTn1</name></member>
+    <member refid="classastrea_1_1astro_1_1planets_1_1Output_1a4f4b23d6b8e3ce541cbd0b97e6226a4e" kind="variable"><name>mesoTn2</name></member>
+    <member refid="classastrea_1_1astro_1_1planets_1_1Output_1acd6f147f8c0506809436b24a92d53f5a" kind="variable"><name>mesoTn3</name></member>
+    <member refid="classastrea_1_1astro_1_1planets_1_1Output_1a848a87ff71125baaa2963307908d2a3f" kind="variable"><name>mesoTgn1</name></member>
+    <member refid="classastrea_1_1astro_1_1planets_1_1Output_1a9c77a1f0582518f87180a82356c5019f" kind="variable"><name>mesoTgn2</name></member>
+    <member refid="classastrea_1_1astro_1_1planets_1_1Output_1a5d779e78fa9cc64c3747d99474980d59" kind="variable"><name>mesoTgn3</name></member>
+    <member refid="classastrea_1_1astro_1_1planets_1_1Output_1a46cec372571179e9a43f7d16811900f6" kind="variable"><name>densities</name></member>
+    <member refid="classastrea_1_1astro_1_1planets_1_1Output_1a69bdb58507d188644f74e87a2d9221a0" kind="variable"><name>temperatures</name></member>
+    <member refid="classastrea_1_1astro_1_1planets_1_1Output_1a48528710f4c880355e80658b329c3e8f" kind="function"><name>Output</name></member>
+    <member refid="classastrea_1_1astro_1_1planets_1_1Output_1a8fd21a411a3e8aba7e14842c965cbe97" kind="function"><name>gts7</name></member>
+    <member refid="classastrea_1_1astro_1_1planets_1_1Output_1a509c2956d337846d61bd19408cb842e7" kind="function"><name>gtd7</name></member>
+    <member refid="classastrea_1_1astro_1_1planets_1_1Output_1a108e5c052492cdef9b03a4bf3d114881" kind="function"><name>gtd7d</name></member>
+    <member refid="classastrea_1_1astro_1_1planets_1_1Output_1a49c3a353b67a4b74f3c7bc59f8a90eaa" kind="function"><name>set_density</name></member>
+    <member refid="classastrea_1_1astro_1_1planets_1_1Output_1aa86d0bd29d4517018b89c18b39478200" kind="function"><name>set_temperature</name></member>
+    <member refid="classastrea_1_1astro_1_1planets_1_1Output_1a2dd263d9ddf156ec743889d12d15461d" kind="function"><name>get_density</name></member>
+    <member refid="classastrea_1_1astro_1_1planets_1_1Output_1a78db631203bca1d52c82138b94f1fe24" kind="function"><name>globe7</name></member>
+    <member refid="classastrea_1_1astro_1_1planets_1_1Output_1a09fe25832d65bb7226ca1ab6f900b679" kind="function"><name>glob7s</name></member>
+    <member refid="classastrea_1_1astro_1_1planets_1_1Output_1af2e3656125af4851a0185cf7f8ce07e6" kind="function"><name>sg0</name></member>
+    <member refid="classastrea_1_1astro_1_1planets_1_1Output_1a449c4cfc977b202f208297a50e0d00d6" kind="function"><name>g0</name></member>
+    <member refid="classastrea_1_1astro_1_1planets_1_1Output_1a8bc7543e0b6a2274c61fadf0c7f7cc94" kind="function"><name>calculate_dissociation_correction</name></member>
+    <member refid="classastrea_1_1astro_1_1planets_1_1Output_1a8d0b2293557a00e219e79adf4c3d528d" kind="function"><name>calculate_oxygen_dissociation_correction</name></member>
+    <member refid="classastrea_1_1astro_1_1planets_1_1Output_1abb640c84fbc0cf586785efa1503a6764" kind="function"><name>calculate_scale_height</name></member>
+    <member refid="classastrea_1_1astro_1_1planets_1_1Output_1a39df34d8984d2ce3d989af7a0a7b8927" kind="function"><name>calculate_turbopause_correction</name></member>
+    <member refid="classastrea_1_1astro_1_1planets_1_1Output_1ad6b0fe81c9099cd4624b53bfbc0a468e" kind="function"><name>calculate_density_temperature_profile</name></member>
+    <member refid="classastrea_1_1astro_1_1planets_1_1Output_1a9f67645f7649fde6177c48630fba9da8" kind="function"><name>calculate_density_temperature_profile_new</name></member>
+    <member refid="classastrea_1_1astro_1_1planets_1_1Output_1aab0c77baf10e37441928b6028d525d84" kind="function"><name>calculate_gravity_at_altitude</name></member>
+    <member refid="classastrea_1_1astro_1_1planets_1_1Output_1ae1d1ac151b3748a376f5f555e3d92cc0" kind="function"><name>zeta</name></member>
   </compound>
   <compound refid="classastrea_1_1astro_1_1Payload" kind="class"><name>astrea::astro::Payload</name>
     <member refid="classastrea_1_1astro_1_1Payload_1a27fc7a87c5d98d6bed7c16c5b60a2eb4" kind="variable"><name>PayloadPlatform&lt; Payload_T &gt;</name></member>
@@ -1762,7 +1717,7 @@
     <member refid="classastrea_1_1astro_1_1PayloadPlatform_1a9dbb3a6fcb1b3c5482728ca7cbb37627" kind="function"><name>get_id</name></member>
     <member refid="classastrea_1_1astro_1_1PayloadPlatform_1a13ee5b1977ccfc3b56774bf3a3c2feda" kind="function"><name>get_position</name></member>
     <member refid="classastrea_1_1astro_1_1PayloadPlatform_1a85e2df0e52efc544caef7856abc6bbcc" kind="function"><name>get_velocity</name></member>
-    <member refid="classastrea_1_1astro_1_1PayloadPlatform_1a1f39a69fc17a82b49a7aa6b15b61f65c" kind="function"><name>get_mass</name></member>
+    <member refid="classastrea_1_1astro_1_1PayloadPlatform_1a2b5e88c7ec1c62eeb074a884f8e0421e" kind="function"><name>get_mass</name></member>
     <member refid="classastrea_1_1astro_1_1PayloadPlatform_1a3fd1ddd8c83de855378361500772110d" kind="function"><name>attach_payload</name></member>
     <member refid="classastrea_1_1astro_1_1PayloadPlatform_1a543013093f0f72b8d8992d49a1d5e666" kind="function"><name>attach_payloads</name></member>
     <member refid="classastrea_1_1astro_1_1PayloadPlatform_1a54d9bf8b1049816166b25c0d4e24d045" kind="function"><name>get_payloads</name></member>
@@ -1784,10 +1739,14 @@
     <member refid="structastrea_1_1astro_1_1Perturbation_1abdd6fe7c18e8719240445a8ffe6b3105" kind="variable"><name>torque</name></member>
   </compound>
   <compound refid="classastrea_1_1astro_1_1PerturbingForce" kind="class"><name>astrea::astro::PerturbingForce</name>
+    <member refid="classastrea_1_1astro_1_1PerturbingForce_1aaaefcf5f0a0f5b522f5d7404ee0132ce" kind="variable"><name>_provider</name></member>
     <member refid="classastrea_1_1astro_1_1PerturbingForce_1a31d3645e85270aa1c1936252bb9a34a3" kind="function"><name>PerturbingForce</name></member>
     <member refid="classastrea_1_1astro_1_1PerturbingForce_1a5b564712f5a9df20b0c3180c517b1546" kind="function"><name>~PerturbingForce</name></member>
     <member refid="classastrea_1_1astro_1_1PerturbingForce_1ac9606ee76f4d3cc3e140770d1a43f567" kind="function"><name>compute_perturbation</name></member>
     <member refid="classastrea_1_1astro_1_1PerturbingForce_1ab0f9c0b0cb7af63cfb7af2693822027f" kind="function"><name>clone</name></member>
+    <member refid="classastrea_1_1astro_1_1PerturbingForce_1ade1609d0fd279c2c240d3f6441775466" kind="function"><name>bind_space_weather_provider</name></member>
+    <member refid="classastrea_1_1astro_1_1PerturbingForce_1aea0bbee60bfa80950710c27746c63d0f" kind="function"><name>get_space_weather_provider</name></member>
+    <member refid="classastrea_1_1astro_1_1PerturbingForce_1a49e3859d67794b695ac783d8096213c0" kind="function"><name>get_space_weather_data</name></member>
   </compound>
   <compound refid="structastrea_1_1astro_1_1moons_1_1Phobos" kind="class"><name>astrea::astro::moons::Phobos</name>
   </compound>
@@ -1999,6 +1958,11 @@
     <member refid="classastrea_1_1astro_1_1Shell_1a33fc77dd52e7bddecd2fb8879ce2187a" kind="function"><name>cend</name></member>
     <member refid="classastrea_1_1astro_1_1Shell_1ad9e9c2f6afa53b8eb0ef7d4525df11de" kind="function"><name>get_id</name></member>
   </compound>
+  <compound refid="structastrea_1_1astro_1_1SolarFluxData" kind="struct"><name>astrea::astro::SolarFluxData</name>
+    <member refid="structastrea_1_1astro_1_1SolarFluxData_1a63390d05601b46c461b4b05c4856024f" kind="variable"><name>nominal</name></member>
+    <member refid="structastrea_1_1astro_1_1SolarFluxData_1a14bfab089f9f7038335e63f45d76af60" kind="variable"><name>centered81DayAverage</name></member>
+    <member refid="structastrea_1_1astro_1_1SolarFluxData_1acdd96e38d3f46fa56cf1424dfb48bd9a" kind="variable"><name>last81DayAverage</name></member>
+  </compound>
   <compound refid="classastrea_1_1astro_1_1SolarRadiationPressure" kind="class"><name>astrea::astro::SolarRadiationPressure</name>
     <member refid="classastrea_1_1astro_1_1SolarRadiationPressure_1a047dacf5e91e6a54d08fefc9b45d5663" kind="function"><name>SolarRadiationPressure</name></member>
     <member refid="classastrea_1_1astro_1_1SolarRadiationPressure_1a33f9c57e5859e6395f33975fd197eb4c" kind="function"><name>~SolarRadiationPressure</name></member>
@@ -2044,14 +2008,14 @@
     <member refid="classastrea_1_1astro_1_1Spacecraft_1ae7e5d81c9636703192735725a352cc7e" kind="function"><name>get_initial_state</name></member>
     <member refid="classastrea_1_1astro_1_1Spacecraft_1a9ef9ea61d51187344edcf62143c74624" kind="function"><name>get_state_history</name></member>
     <member refid="classastrea_1_1astro_1_1Spacecraft_1a6bface99bb92bc236fa516ff0af42a17" kind="function"><name>get_state_history</name></member>
-    <member refid="classastrea_1_1astro_1_1Spacecraft_1a8006e003e3545dcd32cabc3789dc4a3e" kind="function"><name>get_mass</name></member>
-    <member refid="classastrea_1_1astro_1_1Spacecraft_1a6eb183e3d56aa7a2059d4d346cb05f20" kind="function"><name>get_inertia_tensor</name></member>
-    <member refid="classastrea_1_1astro_1_1Spacecraft_1aacf13f32476bf6c3cca7e5e957b04ec6" kind="function"><name>get_coefficient_of_drag</name></member>
-    <member refid="classastrea_1_1astro_1_1Spacecraft_1aece501a8347ddcf7e4c2c918cbac5e7e" kind="function"><name>get_coefficient_of_lift</name></member>
-    <member refid="classastrea_1_1astro_1_1Spacecraft_1a2feab5753c277a2a475a6de608ecc42f" kind="function"><name>get_coefficient_of_reflectivity</name></member>
-    <member refid="classastrea_1_1astro_1_1Spacecraft_1a8e3e2bda0adf51095878f7d9a5b3daf7" kind="function"><name>get_ram_area</name></member>
-    <member refid="classastrea_1_1astro_1_1Spacecraft_1a2babbc6f43d32893245dae4054171eb1" kind="function"><name>get_solar_area</name></member>
-    <member refid="classastrea_1_1astro_1_1Spacecraft_1a3cab395284c0847355ae481cd40907c8" kind="function"><name>get_lift_area</name></member>
+    <member refid="classastrea_1_1astro_1_1Spacecraft_1a8a9a388f8f125a180163d7a36af813ab" kind="function"><name>get_mass</name></member>
+    <member refid="classastrea_1_1astro_1_1Spacecraft_1a7e4600aa3687fb7714acc647a8402693" kind="function"><name>get_inertia_tensor</name></member>
+    <member refid="classastrea_1_1astro_1_1Spacecraft_1a4e8d5280cfeb27e0593985f82251696c" kind="function"><name>get_coefficient_of_drag</name></member>
+    <member refid="classastrea_1_1astro_1_1Spacecraft_1a6c746f21a905958077a3d5a5e2c33225" kind="function"><name>get_coefficient_of_lift</name></member>
+    <member refid="classastrea_1_1astro_1_1Spacecraft_1a936baa24b2d3e517b8a43e308b322a89" kind="function"><name>get_coefficient_of_reflectivity</name></member>
+    <member refid="classastrea_1_1astro_1_1Spacecraft_1a0fc571dc715734c4f7166f59acf8260e" kind="function"><name>get_ram_area</name></member>
+    <member refid="classastrea_1_1astro_1_1Spacecraft_1a9ae4d34a146b45077b6fa51d703f3442" kind="function"><name>get_solar_area</name></member>
+    <member refid="classastrea_1_1astro_1_1Spacecraft_1a7f1ed74883b7eccefa4c1633f6612884" kind="function"><name>get_lift_area</name></member>
     <member refid="classastrea_1_1astro_1_1Spacecraft_1aac97aea1ed3bfca53de9624fffaea25c" kind="function"><name>get_control_authority</name></member>
     <member refid="classastrea_1_1astro_1_1Spacecraft_1ad5f2a44325e18c698cf25e33f71b2b3a" kind="function"><name>get_id</name></member>
     <member refid="classastrea_1_1astro_1_1Spacecraft_1a17f41e05718130f305954359ea42b196" kind="function"><name>get_name</name></member>
@@ -2065,9 +2029,56 @@
     <member refid="classastrea_1_1astro_1_1Spacecraft_1a77c0c157636b94f82d679e29e51140da" kind="function"><name>set_lift_area</name></member>
     <member refid="classastrea_1_1astro_1_1Spacecraft_1a18de684d17e7edf2d0c3bb7f713d1260" kind="function"><name>set_name</name></member>
   </compound>
+  <compound refid="classastrea_1_1astro_1_1SpaceWeatherData" kind="class"><name>astrea::astro::SpaceWeatherData</name>
+    <member refid="classastrea_1_1astro_1_1SpaceWeatherData_1a6d8793741f07395154477db0aeaecf29" kind="variable"><name>_infile</name></member>
+    <member refid="classastrea_1_1astro_1_1SpaceWeatherData_1a176d7d1d45512f1f308e2291abfc883b" kind="variable"><name>_startDate</name></member>
+    <member refid="classastrea_1_1astro_1_1SpaceWeatherData_1ad8cef3396aa73bf6291cb3c53bf55a2e" kind="variable"><name>_endDate</name></member>
+    <member refid="classastrea_1_1astro_1_1SpaceWeatherData_1aaa87ffec6c05d9aafc64b857deedf6eb" kind="variable"><name>_data</name></member>
+    <member refid="classastrea_1_1astro_1_1SpaceWeatherData_1a94f8a9d76e7a5e397fc533ed8342e3ce" kind="function"><name>SpaceWeatherData</name></member>
+    <member refid="classastrea_1_1astro_1_1SpaceWeatherData_1a0f71accf6f0801b6c11d4780727f434f" kind="function"><name>SpaceWeatherData</name></member>
+    <member refid="classastrea_1_1astro_1_1SpaceWeatherData_1a144228819889ae64db4fc37c7dbed65b" kind="function"><name>~SpaceWeatherData</name></member>
+    <member refid="classastrea_1_1astro_1_1SpaceWeatherData_1a8b4f2c571ae8c1cd764940a86f0a47c1" kind="function"><name>size</name></member>
+    <member refid="classastrea_1_1astro_1_1SpaceWeatherData_1aede3511b05c14432de21d322a4754183" kind="function"><name>data</name></member>
+    <member refid="classastrea_1_1astro_1_1SpaceWeatherData_1a4038494c2aa43d8076adb6203d67ff87" kind="function"><name>infile</name></member>
+    <member refid="classastrea_1_1astro_1_1SpaceWeatherData_1af8831e0ff9c321028cff0655dfbac186" kind="function"><name>empty</name></member>
+    <member refid="classastrea_1_1astro_1_1SpaceWeatherData_1a3bacdcd11cef90adc44ba285ccb1a403" kind="function"><name>operator[]</name></member>
+    <member refid="classastrea_1_1astro_1_1SpaceWeatherData_1a0a16c5139a0bc0cacdeaaebef3c9747f" kind="function"><name>operator[]</name></member>
+    <member refid="classastrea_1_1astro_1_1SpaceWeatherData_1ae5068c7e37d1c474e8ed244639472486" kind="function"><name>at</name></member>
+    <member refid="classastrea_1_1astro_1_1SpaceWeatherData_1a4d1489fc97a1beb1664e96e601345869" kind="function"><name>at</name></member>
+    <member refid="classastrea_1_1astro_1_1SpaceWeatherData_1af9e4cec7bac09ce72951c0cf01756957" kind="function"><name>at</name></member>
+    <member refid="classastrea_1_1astro_1_1SpaceWeatherData_1a28f4d191dbabbb36ce1590974cfda687" kind="function"><name>at</name></member>
+    <member refid="classastrea_1_1astro_1_1SpaceWeatherData_1a4aa41ef9ef3f300495559405b6112e95" kind="function"><name>startDate</name></member>
+    <member refid="classastrea_1_1astro_1_1SpaceWeatherData_1af99b2da5d54d4f380d80682c50548fca" kind="function"><name>endDate</name></member>
+  </compound>
+  <compound refid="structastrea_1_1astro_1_1SpaceWeatherParameters" kind="struct"><name>astrea::astro::SpaceWeatherParameters</name>
+    <member refid="structastrea_1_1astro_1_1SpaceWeatherParameters_1a76032f7c15f72d316b1b2f024ce36341" kind="variable"><name>measurement</name></member>
+    <member refid="structastrea_1_1astro_1_1SpaceWeatherParameters_1a4b459772dd77d94a91ba55655e6f2dd9" kind="variable"><name>date</name></member>
+    <member refid="structastrea_1_1astro_1_1SpaceWeatherParameters_1a21e55c8101993b5efabb43424678268f" kind="variable"><name>bsrn</name></member>
+    <member refid="structastrea_1_1astro_1_1SpaceWeatherParameters_1abf72fb97851ba243336b8760b71e22cb" kind="variable"><name>nd</name></member>
+    <member refid="structastrea_1_1astro_1_1SpaceWeatherParameters_1ad404723c86cad9ead0e389df62cd4d81" kind="variable"><name>kp</name></member>
+    <member refid="structastrea_1_1astro_1_1SpaceWeatherParameters_1af1428b0a44f89716255fb6e59942c815" kind="variable"><name>sumKp</name></member>
+    <member refid="structastrea_1_1astro_1_1SpaceWeatherParameters_1a498301fa3eeaa983193222bdacdb2c37" kind="variable"><name>ap</name></member>
+    <member refid="structastrea_1_1astro_1_1SpaceWeatherParameters_1a6d692572ad371e97087f6b65c8a55e3f" kind="variable"><name>avgAp</name></member>
+    <member refid="structastrea_1_1astro_1_1SpaceWeatherParameters_1a83af0d5c66ae5c0e85f81a5b73e120ec" kind="variable"><name>cp</name></member>
+    <member refid="structastrea_1_1astro_1_1SpaceWeatherParameters_1a97b1c9a7a1097b369eb1adecfc8d0eb9" kind="variable"><name>c9</name></member>
+    <member refid="structastrea_1_1astro_1_1SpaceWeatherParameters_1a119d335c1c0392d83fcc81c8d491caf8" kind="variable"><name>isn</name></member>
+    <member refid="structastrea_1_1astro_1_1SpaceWeatherParameters_1abb7423df40d1cc4664a438444b008c5b" kind="variable"><name>f107Obs</name></member>
+    <member refid="structastrea_1_1astro_1_1SpaceWeatherParameters_1aababd1f4d1c95505bb4e9bad97709e76" kind="variable"><name>f107Adj</name></member>
+  </compound>
+  <compound refid="classastrea_1_1astro_1_1SpaceWeatherProvider" kind="class"><name>astrea::astro::SpaceWeatherProvider</name>
+    <member refid="classastrea_1_1astro_1_1SpaceWeatherProvider_1a46604049c019e998a620591f6de4a505" kind="typedef"><name>DataPtr</name></member>
+    <member refid="classastrea_1_1astro_1_1SpaceWeatherProvider_1a2bf6d9337563fcb273f17e40ebadd6a6" kind="variable"><name>_data</name></member>
+    <member refid="classastrea_1_1astro_1_1SpaceWeatherProvider_1a77945f31db4c36301785ca6245c98b27" kind="function"><name>SpaceWeatherProvider</name></member>
+    <member refid="classastrea_1_1astro_1_1SpaceWeatherProvider_1aba23714c837f3fce23d8a10897009cf6" kind="function"><name>SpaceWeatherProvider</name></member>
+    <member refid="classastrea_1_1astro_1_1SpaceWeatherProvider_1a070ff3307a5cffd316b6779c6b30735c" kind="function"><name>SpaceWeatherProvider</name></member>
+    <member refid="classastrea_1_1astro_1_1SpaceWeatherProvider_1ab8d4fde0963d8936bf9583705deede5d" kind="function"><name>SpaceWeatherProvider</name></member>
+    <member refid="classastrea_1_1astro_1_1SpaceWeatherProvider_1aa9226c14ac7a450f9e55b77d98aa741e" kind="function"><name>size</name></member>
+    <member refid="classastrea_1_1astro_1_1SpaceWeatherProvider_1a2cefbf67aee622009b4e5b3069aa5b24" kind="function"><name>empty</name></member>
+    <member refid="classastrea_1_1astro_1_1SpaceWeatherProvider_1ac62e1a80bc72c9ecce5a5dc278d36e2c" kind="function"><name>data</name></member>
+  </compound>
   <compound refid="structastrea_1_1astro_1_1planets_1_1SpeciesModelParams" kind="struct"><name>astrea::astro::planets::SpeciesModelParams</name>
-    <member refid="structastrea_1_1astro_1_1planets_1_1SpeciesModelParams_1afa9e3657c3eb67868d51ab83835f1164" kind="variable"><name>n_ref</name></member>
-    <member refid="structastrea_1_1astro_1_1planets_1_1SpeciesModelParams_1af9f3195c7d6b7c14d98a9ca85cde8ce1" kind="variable"><name>mix_ratio</name></member>
+    <member refid="structastrea_1_1astro_1_1planets_1_1SpeciesModelParams_1a6e48db0c52fbc22c821677cb704d3665" kind="variable"><name>nRef</name></member>
+    <member refid="structastrea_1_1astro_1_1planets_1_1SpeciesModelParams_1ae722a6c5ee756f02b8fbb969e501c48d" kind="variable"><name>mixRatio</name></member>
     <member refid="structastrea_1_1astro_1_1planets_1_1SpeciesModelParams_1a4ecb7c9c4b354e52237037493c608f8a" kind="variable"><name>zh</name></member>
     <member refid="structastrea_1_1astro_1_1planets_1_1SpeciesModelParams_1a43405cebc16af82b5e56ac571d634abf" kind="variable"><name>c3</name></member>
     <member refid="structastrea_1_1astro_1_1planets_1_1SpeciesModelParams_1aaf22dfb17e550e27225c548eb01685e0" kind="variable"><name>za</name></member>
@@ -2219,10 +2230,10 @@
   </compound>
   <compound refid="structastrea_1_1astro_1_1star_1_1Sun" kind="class"><name>astrea::astro::star::Sun</name>
   </compound>
-  <compound refid="structastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Switch" kind="struct"><name>astrea::astro::planets::NRLMSISE00::Switch</name>
-    <member refid="structastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Switch_1a1edd6891b0c0da57f17fc1c3b9c8c520" kind="variable"><name>mainEffect</name></member>
-    <member refid="structastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Switch_1afdf0f07fba4bca62b4abac802839d31d" kind="variable"><name>crossEffect</name></member>
-    <member refid="structastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Switch_1a5541e9bbd7aa28ea755fc1ba859e776c" kind="variable"><name>fullAp</name></member>
+  <compound refid="structastrea_1_1astro_1_1planets_1_1Switch" kind="struct"><name>astrea::astro::planets::Switch</name>
+    <member refid="structastrea_1_1astro_1_1planets_1_1Switch_1a0405b42c9c0c1afd02ff722729b631cf" kind="variable"><name>mainEffect</name></member>
+    <member refid="structastrea_1_1astro_1_1planets_1_1Switch_1a4acdfe07b58456d8874144a91ed924c5" kind="variable"><name>crossEffect</name></member>
+    <member refid="structastrea_1_1astro_1_1planets_1_1Switch_1ad183fcad372219c6dcb4c4d3b14e6cd6" kind="variable"><name>fullAp</name></member>
   </compound>
   <compound refid="structastrea_1_1astro_1_1SynodicAxis" kind="struct"><name>astrea::astro::SynodicAxis</name>
     <member refid="structastrea_1_1astro_1_1SynodicAxis_1a0101d82022c8e4da62665142b8fa622c" kind="variable"><name>primary</name></member>
@@ -2382,14 +2393,6 @@
   </compound>
   <compound refid="classastrea_1_1astro_1_1Vehicle" kind="class"><name>astrea::astro::Vehicle</name>
     <member refid="classastrea_1_1astro_1_1Vehicle_1ad4926514c7cc07b5fedfc1d0c4118ea7" kind="variable"><name>_ptr</name></member>
-    <member refid="classastrea_1_1astro_1_1Vehicle_1a32ce50c72cd1b4a49d8087986d5e41e6" kind="variable"><name>_mass</name></member>
-    <member refid="classastrea_1_1astro_1_1Vehicle_1a8c71d430b6a45b5f4332d60ce875aaa5" kind="variable"><name>_inertiaTensor</name></member>
-    <member refid="classastrea_1_1astro_1_1Vehicle_1a169854a7cd03ee9a44f9b3416f0ccea3" kind="variable"><name>_ramArea</name></member>
-    <member refid="classastrea_1_1astro_1_1Vehicle_1a1fd1f9aff4c03107fd74e009216cd962" kind="variable"><name>_liftArea</name></member>
-    <member refid="classastrea_1_1astro_1_1Vehicle_1a64ced253073864bae478d350ca55a5eb" kind="variable"><name>_solarArea</name></member>
-    <member refid="classastrea_1_1astro_1_1Vehicle_1acbd8241f44289980ec821af964bea72e" kind="variable"><name>_coefficientOfDrag</name></member>
-    <member refid="classastrea_1_1astro_1_1Vehicle_1a4f0e26c7c624ccb668346b580bed7142" kind="variable"><name>_coefficientOfLift</name></member>
-    <member refid="classastrea_1_1astro_1_1Vehicle_1ad22c8497bddb7ff3c3c1eacd63a9b0fb" kind="variable"><name>_coefficientOfReflectivity</name></member>
     <member refid="classastrea_1_1astro_1_1Vehicle_1ad70f017bc5045b60fb5795099cf32e26" kind="function"><name>Vehicle</name></member>
     <member refid="classastrea_1_1astro_1_1Vehicle_1a9537c75383f303c913ee2fcb984eeafb" kind="function"><name>Vehicle</name></member>
     <member refid="classastrea_1_1astro_1_1Vehicle_1ae14d808d54b71581dc7791ea53064539" kind="function"><name>Vehicle</name></member>
@@ -2399,14 +2402,14 @@
     <member refid="classastrea_1_1astro_1_1Vehicle_1a8c66aec6b5e7dc84d83fe45c0dfc3489" kind="function"><name>operator=</name></member>
     <member refid="classastrea_1_1astro_1_1Vehicle_1ab94de25eb6d0cd4c1f40bafd994ca04b" kind="function"><name>extract</name></member>
     <member refid="classastrea_1_1astro_1_1Vehicle_1a49d42d353646b817ca0026560314c363" kind="function"><name>extract_mutable_reference</name></member>
-    <member refid="classastrea_1_1astro_1_1Vehicle_1a16c66589957a50f003a9c8a19643e8e7" kind="function"><name>get_mass</name></member>
-    <member refid="classastrea_1_1astro_1_1Vehicle_1a29055671ceaf5addd3b5574d04375f97" kind="function"><name>get_inertia_tensor</name></member>
-    <member refid="classastrea_1_1astro_1_1Vehicle_1a06c609fdabc553f73a32d16d4b86074b" kind="function"><name>get_ram_area</name></member>
-    <member refid="classastrea_1_1astro_1_1Vehicle_1aac239325de0d02d70d99a16b4cb45838" kind="function"><name>get_lift_area</name></member>
-    <member refid="classastrea_1_1astro_1_1Vehicle_1ad84b7bbd5e0e0e7bafbf6d608ba520fb" kind="function"><name>get_solar_area</name></member>
-    <member refid="classastrea_1_1astro_1_1Vehicle_1ab1befc5b53489849f43ffd59dfcbc421" kind="function"><name>get_coefficient_of_drag</name></member>
-    <member refid="classastrea_1_1astro_1_1Vehicle_1a0eb8f3f76df98212fa7d5f80378c5503" kind="function"><name>get_coefficient_of_lift</name></member>
-    <member refid="classastrea_1_1astro_1_1Vehicle_1af0f3012e96737f341aae3d56c2c58509" kind="function"><name>get_coefficient_of_reflectivity</name></member>
+    <member refid="classastrea_1_1astro_1_1Vehicle_1a61c95739d7b08b4f5385c27fe8c7c227" kind="function"><name>get_mass</name></member>
+    <member refid="classastrea_1_1astro_1_1Vehicle_1a7b9914fef3087e14bf93ff6450392c80" kind="function"><name>get_inertia_tensor</name></member>
+    <member refid="classastrea_1_1astro_1_1Vehicle_1ab4886411d622887122f92ac4f21efd1e" kind="function"><name>get_ram_area</name></member>
+    <member refid="classastrea_1_1astro_1_1Vehicle_1a0f974aafbb69e40bb148d2f03c4ef963" kind="function"><name>get_lift_area</name></member>
+    <member refid="classastrea_1_1astro_1_1Vehicle_1a7d84c37838fd9859090020f60a43f7c5" kind="function"><name>get_solar_area</name></member>
+    <member refid="classastrea_1_1astro_1_1Vehicle_1a47a80d30441a7bf163612f39b942ccdc" kind="function"><name>get_coefficient_of_drag</name></member>
+    <member refid="classastrea_1_1astro_1_1Vehicle_1a88e07be316996209f64393b65a1ce7b8" kind="function"><name>get_coefficient_of_lift</name></member>
+    <member refid="classastrea_1_1astro_1_1Vehicle_1ad8fdfae63b5334a2e94e8bb1e1162781" kind="function"><name>get_coefficient_of_reflectivity</name></member>
     <member refid="classastrea_1_1astro_1_1Vehicle_1a2db62eaefe30b089ac7be16599f42674" kind="function"><name>get_control_authority</name></member>
     <member refid="classastrea_1_1astro_1_1Vehicle_1ad0b61d82f6f964b4fd3ce6fdc3d0f4fa" kind="function"><name>get_name</name></member>
     <member refid="classastrea_1_1astro_1_1Vehicle_1aba08d0db9f46a7127aad1b7ddb644aef" kind="function"><name>get_ptr</name></member>
@@ -2424,14 +2427,14 @@
     <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1ac904e8aef94ea696f103cfd7aafaf2b4" kind="function"><name>operator=</name></member>
     <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1ab92064b0fe1afc106797d1200871cfc0" kind="function"><name>VehicleInner</name></member>
     <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1ac405d1b95f97e49ac2eb7f8c4653daca" kind="function"><name>VehicleInner</name></member>
-    <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1a7c857b46a366bf7f262bf433962bb87a" kind="function"><name>get_mass</name></member>
-    <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1a875495736b4d2eb3773adb329aacf782" kind="function"><name>get_inertia_tensor</name></member>
-    <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1ade1fb03cf1677bde25c62770d0d1eb32" kind="function"><name>get_ram_area</name></member>
-    <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1a54b537b1885b65abfc97d0ec37d3f1d9" kind="function"><name>get_lift_area</name></member>
-    <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1af770120939312a23252dece1de245590" kind="function"><name>get_solar_area</name></member>
-    <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1ab5273b512dabd29c83845b88ab7a006f" kind="function"><name>get_coefficient_of_drag</name></member>
-    <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1aa314461ba9e2410497867ebe1d41a647" kind="function"><name>get_coefficient_of_lift</name></member>
-    <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1a9fe081f53197d0046e7c3d13a2fbfdb9" kind="function"><name>get_coefficient_of_reflectivity</name></member>
+    <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1a656d080130293baa7e507e8d6001f527" kind="function"><name>get_mass</name></member>
+    <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1ad1076e9dcd1a1e6dbebb6ee15bef1599" kind="function"><name>get_inertia_tensor</name></member>
+    <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1a95ef6d388342d0c5b37b009f7e82f9e5" kind="function"><name>get_ram_area</name></member>
+    <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1a3985c4cd22cff2c91402ea917d40dd40" kind="function"><name>get_lift_area</name></member>
+    <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1a5fc728f4dd437fbea12e3f5ac00baeb5" kind="function"><name>get_solar_area</name></member>
+    <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1a67cab92af8648f1f67081266b9d6f6bd" kind="function"><name>get_coefficient_of_drag</name></member>
+    <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1a803e67158549a1cd8f9453f44d639411" kind="function"><name>get_coefficient_of_lift</name></member>
+    <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1a1d30357cbc5862ef92bcaac853ed9d56" kind="function"><name>get_coefficient_of_reflectivity</name></member>
     <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1acc2dafd26faba5d8e9cbe8274d88d82e" kind="function"><name>get_name</name></member>
     <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1a9843799c740dc1efb4e0c6a336afb3b3" kind="function"><name>get_name_impl</name></member>
     <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1a7080e7a7e5e2464801bff45fcfcac2f2" kind="function"><name>get_name_impl</name></member>
@@ -2442,31 +2445,31 @@
     <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1af3fd8955c35abd1cfa5195b3f25d6fc1" kind="function"><name>get_ptr</name></member>
     <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1a1044bb2f64013555e65f4873d215e4c2" kind="function"><name>get_ptr</name></member>
     <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1a8c4502276adf035d0b6f810e1d9d1405" kind="function"><name>type</name></member>
-    <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1adadacce00d0bb0f51df6ae36ffcacdd8" kind="function"><name>get_inertia_tensor_impl</name></member>
-    <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1a181b2b70dda3fdd52593e139c00973e4" kind="function"><name>get_inertia_tensor_impl</name></member>
-    <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1a59620dcc0d1123ec67c88f8696e6b44a" kind="function"><name>get_ram_area_impl</name></member>
-    <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1afe8406c010f18c5886d62e4f0358c56d" kind="function"><name>get_ram_area_impl</name></member>
-    <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1a38b7e2024a0c95cba51c1fe7a9a08132" kind="function"><name>get_lift_area_impl</name></member>
-    <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1a719aff1560f66bc0ca51c1a23ab6371b" kind="function"><name>get_lift_area_impl</name></member>
-    <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1a1c65491b21f62d462598c5bad4327271" kind="function"><name>get_solar_area_impl</name></member>
-    <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1ab51383b56263989e434dd771b9633703" kind="function"><name>get_solar_area_impl</name></member>
-    <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1aa3b1b74c64edb463959054a541e58095" kind="function"><name>get_coefficient_of_drag_impl</name></member>
-    <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1a6be493f607d964ab58bf967586bcf98f" kind="function"><name>get_coefficient_of_drag_impl</name></member>
-    <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1afbc9cf2ab07d5f18ff22af08e1ffafa5" kind="function"><name>get_coefficient_of_lift_impl</name></member>
-    <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1aaa977c88413e35b71218075084e2d398" kind="function"><name>get_coefficient_of_lift_impl</name></member>
-    <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1a4243951f09704d52c0cec78e04d7abdd" kind="function"><name>get_coefficient_of_reflectivity_impl</name></member>
-    <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1ab2e72c7f88f5e30415c1c62d6be3e692" kind="function"><name>get_coefficient_of_reflectivity_impl</name></member>
+    <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1abd467516b7a5dc93d54c3899808efb30" kind="function"><name>get_inertia_tensor_impl</name></member>
+    <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1aba10fa9f1a586cd9c358157dbdb32bf9" kind="function"><name>get_inertia_tensor_impl</name></member>
+    <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1a44050f1adecec288f8e484e55c3cc198" kind="function"><name>get_ram_area_impl</name></member>
+    <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1ab1805d48b9bdef747212a40802936e90" kind="function"><name>get_ram_area_impl</name></member>
+    <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1aba2af1b1f19c3c0a6942792cd20695dc" kind="function"><name>get_lift_area_impl</name></member>
+    <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1a1089ab6cfd40eb9c2adb5d41b473e410" kind="function"><name>get_lift_area_impl</name></member>
+    <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1abb76a41e923e41dd3c8413f6c73b1b42" kind="function"><name>get_solar_area_impl</name></member>
+    <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1a2f94b9a925fdd1f12350024d1b26c00f" kind="function"><name>get_solar_area_impl</name></member>
+    <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1a736bc1fa5752989fccfde15d0697735e" kind="function"><name>get_coefficient_of_drag_impl</name></member>
+    <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1a4697949af82e3ad483249cf846e7adf9" kind="function"><name>get_coefficient_of_drag_impl</name></member>
+    <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1aacda310677bdb23329467efdc7e938c0" kind="function"><name>get_coefficient_of_lift_impl</name></member>
+    <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1a7d4dcbbf7678bf6dccdcb80b1137c294" kind="function"><name>get_coefficient_of_lift_impl</name></member>
+    <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1a4c1124666815e590a704d9bedd274223" kind="function"><name>get_coefficient_of_reflectivity_impl</name></member>
+    <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1afd75ae4a3b1cfc06574dcfcacb1dd00a" kind="function"><name>get_coefficient_of_reflectivity_impl</name></member>
   </compound>
   <compound refid="structastrea_1_1astro_1_1detail_1_1VehicleInnerBase" kind="struct"><name>astrea::astro::detail::VehicleInnerBase</name>
     <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInnerBase_1a5e418615cc4ecb2047b59b655f2ff628" kind="function"><name>~VehicleInnerBase</name></member>
-    <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInnerBase_1a913423d7c4c0b10eef33eecc0da96421" kind="function"><name>get_mass</name></member>
-    <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInnerBase_1aa2d87365df8010058b4b2605d6d5852c" kind="function"><name>get_inertia_tensor</name></member>
-    <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInnerBase_1aba72fd3af844ba489624177f655a0223" kind="function"><name>get_ram_area</name></member>
-    <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInnerBase_1a8e6967249ac863c33081de68cd1ff5a5" kind="function"><name>get_lift_area</name></member>
-    <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInnerBase_1a1e7033d9427ce3557b31712d7b703a07" kind="function"><name>get_solar_area</name></member>
-    <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInnerBase_1a3e590df12eb9c11995e3cf6c044914af" kind="function"><name>get_coefficient_of_drag</name></member>
-    <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInnerBase_1a3cca83802a1f29482438f7d6b512d034" kind="function"><name>get_coefficient_of_lift</name></member>
-    <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInnerBase_1aa2996dc07882f2cb359eb6c1c71d7bcf" kind="function"><name>get_coefficient_of_reflectivity</name></member>
+    <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInnerBase_1a6db6a9399f466422000b02bb4fbb93e4" kind="function"><name>get_mass</name></member>
+    <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInnerBase_1aa96cdc94b7c452504ee307df8a28a221" kind="function"><name>get_inertia_tensor</name></member>
+    <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInnerBase_1a54918a6ffc77f94f58f0c879ec880aa8" kind="function"><name>get_ram_area</name></member>
+    <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInnerBase_1a1c837ff17e79e858eeb0f78ff562103a" kind="function"><name>get_lift_area</name></member>
+    <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInnerBase_1a3e150005c630595f1f3af79495c2de32" kind="function"><name>get_solar_area</name></member>
+    <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInnerBase_1a4d87b9d67fafc7aa3006aca2f6b06951" kind="function"><name>get_coefficient_of_drag</name></member>
+    <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInnerBase_1a925771bae30e4c52ed1555c64f81dedc" kind="function"><name>get_coefficient_of_lift</name></member>
+    <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInnerBase_1ae7cc44641e8ec9e372fc3ad93e1eaf1b" kind="function"><name>get_coefficient_of_reflectivity</name></member>
     <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInnerBase_1a4c40e5ba61aeef3270a30d00c373c7a8" kind="function"><name>get_control_authority</name></member>
     <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInnerBase_1a2f53c6686dcd6211155bf36c428faeab" kind="function"><name>clone</name></member>
     <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInnerBase_1a529c016c01fd7c6f16b9cf1e52082026" kind="function"><name>get_ptr</name></member>
@@ -2620,6 +2623,15 @@
     <member refid="Axis_8hpp_1a51fe70d33aac3b911c87eefc88ff3916a02129bb861061d1a052c592e2dc6b383" kind="enumvalue"><name>X</name></member>
     <member refid="Axis_8hpp_1a51fe70d33aac3b911c87eefc88ff3916a57cec4137b614c87cb4e24a3d003a3e0" kind="enumvalue"><name>Y</name></member>
     <member refid="Axis_8hpp_1a51fe70d33aac3b911c87eefc88ff3916a21c2e59531c8710156d34a3c30ac81d5" kind="enumvalue"><name>Z</name></member>
+    <member refid="atmosphere_8hpp_1a7572d2f40af6711f9453c8db08db0800" kind="enum"><name>EarthAtmosphereModel</name></member>
+    <member refid="atmosphere_8hpp_1a7572d2f40af6711f9453c8db08db0800a4e0ae1dc61fd3cd7d0d5707c5b66f4d8" kind="enumvalue"><name>JACCHIA_ROBERTS</name></member>
+    <member refid="atmosphere_8hpp_1a7572d2f40af6711f9453c8db08db0800aa69b0ac8ebd3625dbc1cc489e7e11ecc" kind="enumvalue"><name>NRLMSISE00</name></member>
+    <member refid="atmosphere_8hpp_1a7572d2f40af6711f9453c8db08db0800a17f976d245f4144401399b9cd5094b72" kind="enumvalue"><name>HARRIS_PRIESTER</name></member>
+    <member refid="SpaceWeatherData_8hpp_1a889e166de4bd3a52f1e65cd97244bc29" kind="enum"><name>MeasurementType</name></member>
+    <member refid="SpaceWeatherData_8hpp_1a889e166de4bd3a52f1e65cd97244bc29aa87279f7222c5264100350e6074973a2" kind="enumvalue"><name>OBSERVED</name></member>
+    <member refid="SpaceWeatherData_8hpp_1a889e166de4bd3a52f1e65cd97244bc29abc1ea39d1fdef53a3b732896f1018453" kind="enumvalue"><name>DAILY_PREDICTED</name></member>
+    <member refid="SpaceWeatherData_8hpp_1a889e166de4bd3a52f1e65cd97244bc29a3bf6d7b58000611d9f599e97ba879198" kind="enumvalue"><name>MONTHLY_PREDICTED</name></member>
+    <member refid="SpaceWeatherData_8hpp_1a889e166de4bd3a52f1e65cd97244bc29a392fcaafe59e4ff903a9db62c82da3a9" kind="enumvalue"><name>MONTHLY_FIT</name></member>
     <member refid="Integrator_8hpp_1a8230ed42481c868b37ce7009af0322a8" kind="enum"><name>StepMethod</name></member>
     <member refid="Integrator_8hpp_1a8230ed42481c868b37ce7009af0322a8a0e973aab8dc2d2139fcbf6544574bac8" kind="enumvalue"><name>RK45</name></member>
     <member refid="Integrator_8hpp_1a8230ed42481c868b37ce7009af0322a8a651742901a96ccc36ad193073cb71b4a" kind="enumvalue"><name>RKF45</name></member>
@@ -2697,6 +2709,10 @@
     <member refid="Payload_8hpp_1aaf89d96c281d5b0c828b4ed23b7f72f4" kind="variable"><name>RADIAL_RIC</name></member>
     <member refid="Payload_8hpp_1aa7f4f52f9bb2fa383a7507e4ca4097ab" kind="variable"><name>CENTER</name></member>
     <member refid="Constellation_8ipp_1a86f1b3fc1c73ea9da1225241fe7864e6" kind="variable"><name>DEFAULT_SHELL_ID</name></member>
+    <member refid="HarrisPriester_8cpp_1aca808149c9219c8bc75fba7528bd7f2b" kind="variable"><name>COSINE_EXPONENT</name></member>
+    <member refid="HarrisPriester_8cpp_1a7d245b5a1526801527bbe9003ca863e0" kind="variable"><name>DIURNAL_LAG</name></member>
+    <member refid="HarrisPriester_8cpp_1a5bd3c6936fd62ca6473eca13dca42ade" kind="variable"><name>HARRIS_PRIESTER_ATMOSPHERE</name></member>
+    <member refid="JacchiaRoberts_8cpp_1a3418bc05ca6430806950b5ac78e4e62c" kind="variable"><name>JACCHIA_ROBERTS_ATMOSPHERE</name></member>
     <member refid="JulianDateClock_8hpp_1a7c9a0c3832d6418dea196fe9dea63276" kind="variable"><name>J2K</name></member>
     <member refid="JulianDateClock_8hpp_1a8469f8bc6bd99d38771cb677ad9f90f5" kind="variable"><name>MJDStart</name></member>
     <member refid="defined__rotations_8hpp_1aa15efe6a24b91db4ec4ca040303a2655" kind="function"><name>get_dcm</name></member>
@@ -2751,6 +2767,15 @@
     <member refid="TopocentricFrame_8hpp_1ab04f42c45a318bba4daad93b585c481d" kind="function"><name>get_y_offset_from_lla</name></member>
     <member refid="TopocentricFrame_8hpp_1a6275c95e6ba9974db8712d3233ff2a87" kind="function"><name>get_z_offset_from_lla</name></member>
     <member refid="Plane_8ipp_1a3cbe0e4f2674999cf097480a23aa094a" kind="function"><name>planes_are_nearly_equal</name></member>
+    <member refid="atmosphere_8hpp_1a1e3a7d82f444c26082b09798a9bb423a" kind="function"><name>find_atmospheric_density</name></member>
+    <member refid="atmosphere_8hpp_1a8753ce77b39a5347ad5c07b0c1715f1f" kind="function"><name>find_atmospheric_density&lt; planets::Earth, EarthAtmosphereModel::JACCHIA_ROBERTS &gt;</name></member>
+    <member refid="atmosphere_8hpp_1a2af5e234fa497ccc1d5bf4faaf677891" kind="function"><name>find_atmospheric_density&lt; planets::Earth, EarthAtmosphereModel::HARRIS_PRIESTER &gt;</name></member>
+    <member refid="atmosphere_8hpp_1ac5de707d3dbc3d81226610bb61e0a2d6" kind="function"><name>find_atmospheric_density&lt; planets::Earth, EarthAtmosphereModel::NRLMSISE00 &gt;</name></member>
+    <member refid="atmosphere_8hpp_1ad13f0c3a0398fc524d676785f9bcdaa7" kind="function"><name>find_atmospheric_density&lt; planets::Venus &gt;</name></member>
+    <member refid="atmosphere_8hpp_1afbb4c6e20faf7ca9415821603c707eda" kind="function"><name>find_atmospheric_density&lt; planets::Mars &gt;</name></member>
+    <member refid="atmosphere_8hpp_1a26f5ea97c7c021f5b4f4b8148c7bfe1d" kind="function"><name>find_atmospheric_density&lt; moons::Titan &gt;</name></member>
+    <member refid="Nrlmsise00_8cpp_1af30ca8e1c368d06429bb293aa800ec51" kind="function"><name>calculate_local_solar_time</name></member>
+    <member refid="file__reader_8cpp_1a720d3241770fe73f12decfcceb5c3029" kind="function"><name>read_space_weather_file</name></member>
     <member refid="Cylindrical_8hpp_1ad2783c8981c919a1f1f2f1403df770ca" kind="function"><name>convert_body_fixed_to_cylindrical</name></member>
     <member refid="Cylindrical_8hpp_1a3fed2caa46317d6eaa6d895dac11b940" kind="function"><name>convert_cylindrical_to_body_fixed</name></member>
     <member refid="Cylindrical_8ipp_1a93ba2aa47a630cf74b488b076540a4ef" kind="function"><name>operator&lt;&lt;</name></member>
@@ -2792,10 +2817,6 @@
     <member refid="OrbitalElements_8cpp_1abafb887785006751955c44098d9bd487" kind="function"><name>operator&lt;&lt;</name></member>
     <member refid="OrbitalElements_8cpp_1acc7df027f9a87c1883ed238640219f74" kind="function"><name>throw_mismatched_types</name></member>
     <member refid="State_8cpp_1a6264365e7fca8e49a15cc62e3ae378e4" kind="function"><name>operator&lt;&lt;</name></member>
-    <member refid="atmosphere_8hpp_1a52e61520417c952449eab8e34768857c" kind="function"><name>find_atmospheric_density&lt; planets::Earth &gt;</name></member>
-    <member refid="atmosphere_8hpp_1ad13f0c3a0398fc524d676785f9bcdaa7" kind="function"><name>find_atmospheric_density&lt; planets::Venus &gt;</name></member>
-    <member refid="atmosphere_8hpp_1afbb4c6e20faf7ca9415821603c707eda" kind="function"><name>find_atmospheric_density&lt; planets::Mars &gt;</name></member>
-    <member refid="atmosphere_8hpp_1a26f5ea97c7c021f5b4f4b8148c7bfe1d" kind="function"><name>find_atmospheric_density&lt; moons::Titan &gt;</name></member>
     <member refid="Earth_8hpp_1ad6b511132a5dff6691bc8a6ac40a9727" kind="function"><name>get_celestial_body_parameters&lt; planets::Earth &gt;</name></member>
     <member refid="Moon_8hpp_1ad53643aee1cec004a896b806d0a5ccc5" kind="function"><name>get_celestial_body_parameters&lt; moons::Moon &gt;</name></member>
     <member refid="Callisto_8hpp_1a68fb90ec2dd0ef56ac6d0fa105df574f" kind="function"><name>get_celestial_body_parameters&lt; moons::Callisto &gt;</name></member>
@@ -2823,7 +2844,6 @@
     <member refid="Uranus_8hpp_1af7149876e4c5da675d928dad2a1d9467" kind="function"><name>get_linear_expansion_coefficients&lt; planets::Uranus &gt;</name></member>
     <member refid="Venus_8hpp_1ac121b77b325616ea5845d2f46838f896" kind="function"><name>get_celestial_body_parameters&lt; planets::Venus &gt;</name></member>
     <member refid="CelestialBody_8hpp_1a60a8dae50116ab54d90a9638eb7e4ba4" kind="function"><name>get_celestial_body_parameters</name></member>
-    <member refid="CelestialBody_8hpp_1a995233fd250656758e03f1b0fe2c6a14" kind="function"><name>find_atmospheric_density</name></member>
     <member refid="CelestialBody_8hpp_1a800a594f82b1fa5c320f02d1d3640dc1" kind="function"><name>get_position_at</name></member>
     <member refid="CelestialBody_8hpp_1ac07b0410c97f1585abf947947ecc1f8f" kind="function"><name>get_velocity_at</name></member>
     <member refid="CelestialBody_8hpp_1ab3f53f5048c54c6921eaf79b0d56bffb" kind="function"><name>get_acceleration_at</name></member>
@@ -2890,7 +2910,7 @@
     <member refid="conversions_8hpp_1ab9696ddf19a3562e89343a88946075a1" kind="function"><name>wrap_angle</name></member>
     <member refid="conversions_8hpp_1ae614bf0e7bfd109229c120382ec7cd80" kind="function"><name>wrap_angle_to_pi</name></member>
   </compound>
-  <compound refid="namespaceastrea_1_1astro_1_1_0d130" kind="namespace"><name>astrea::astro::@130</name>
+  <compound refid="namespaceastrea_1_1astro_1_1_0d144" kind="namespace"><name>astrea::astro::@144</name>
   </compound>
   <compound refid="namespaceastrea_1_1astro_1_1_0d8" kind="namespace"><name>astrea::astro::@8</name>
   </compound>
@@ -3145,24 +3165,70 @@
     <member refid="Titania_8hpp_1a2a7831211eb60af53360213b7c21deb6" kind="variable"><name>Titania</name></member>
   </compound>
   <compound refid="namespaceastrea_1_1astro_1_1planets" kind="namespace"><name>astrea::astro::planets</name>
-    <member refid="Earth_8hpp_1aae935f833e6422fee9615937d8161b1f" kind="enum"><name>EarthAtmosphereModel</name></member>
-    <member refid="Earth_8hpp_1aae935f833e6422fee9615937d8161b1fa468a4df9b74e4876379573f50136e735" kind="enumvalue"><name>JACHIA_ROBERTS</name></member>
-    <member refid="Earth_8hpp_1aae935f833e6422fee9615937d8161b1faa69b0ac8ebd3625dbc1cc489e7e11ecc" kind="enumvalue"><name>NRLMSISE00</name></member>
-    <member refid="Earth_8hpp_1aae935f833e6422fee9615937d8161b1fa7ff3376359a918856aea7ed4f3532256" kind="enumvalue"><name>DTM2000</name></member>
-    <member refid="Earth_8hpp_1aae935f833e6422fee9615937d8161b1fa17f976d245f4144401399b9cd5094b72" kind="enumvalue"><name>HARRIS_PRIESTER</name></member>
-    <member refid="HarrisPriester_8cpp_1a6a169fdfcca6e934800dfdf090af58a1" kind="variable"><name>cosineExponent</name></member>
-    <member refid="HarrisPriester_8cpp_1a7310052b45ca15e903be85940b0f3b24" kind="variable"><name>LAG</name></member>
-    <member refid="HarrisPriester_8cpp_1a3f578a2967fddcd727cac1b543c28b75" kind="variable"><name>HARRIS_PRIESTER_ATMOSPHERE</name></member>
-    <member refid="JacciaRoberts_8cpp_1adac9414234ac12f1fab3a8de305b3e13" kind="variable"><name>JACHIA_ROBERTS_ATMOSPHERE</name></member>
-    <member refid="NRLMSISE00_8cpp_1a7180e2cf0953791414363fc594000010" kind="variable"><name>PT</name></member>
+    <member refid="NRLMSISE00_8cpp_1a56e052e31d6dccffbaecf34f040c6b06" kind="enum"><name>Species</name></member>
+    <member refid="NRLMSISE00_8cpp_1a56e052e31d6dccffbaecf34f040c6b06aac07ae552b320b931b0dfce4d5c95a3a" kind="enumvalue"><name>HELIUM</name></member>
+    <member refid="NRLMSISE00_8cpp_1a56e052e31d6dccffbaecf34f040c6b06aaedfcbb8016071374aa0db3af0204282" kind="enumvalue"><name>ATOMIC_OXYGEN</name></member>
+    <member refid="NRLMSISE00_8cpp_1a56e052e31d6dccffbaecf34f040c6b06ad6c05dcb7202f6e7745495adae2cc58d" kind="enumvalue"><name>MOLECULAR_NITROGEN</name></member>
+    <member refid="NRLMSISE00_8cpp_1a56e052e31d6dccffbaecf34f040c6b06aec4743ca2dedbd5c53baeb5074927c78" kind="enumvalue"><name>MOLECULAR_OXYGEN</name></member>
+    <member refid="NRLMSISE00_8cpp_1a56e052e31d6dccffbaecf34f040c6b06ac09b64c221f7b11e9efb4cf39cfcb4e9" kind="enumvalue"><name>ARGON</name></member>
+    <member refid="NRLMSISE00_8cpp_1a56e052e31d6dccffbaecf34f040c6b06a614b53648d8bc0ce6f071912825a472e" kind="enumvalue"><name>TOTAL_MASS</name></member>
+    <member refid="NRLMSISE00_8cpp_1a56e052e31d6dccffbaecf34f040c6b06a8bb608dae9ded0bddd01c6e6d2dc8860" kind="enumvalue"><name>HYDROGEN</name></member>
+    <member refid="NRLMSISE00_8cpp_1a56e052e31d6dccffbaecf34f040c6b06a45419197b384f2961ab7129a31231142" kind="enumvalue"><name>ATOMIC_NITROGEN</name></member>
+    <member refid="NRLMSISE00_8cpp_1a56e052e31d6dccffbaecf34f040c6b06abc8c89dcf030a1bd05027bc4f36c2d86" kind="enumvalue"><name>ANOMALOUS_OXYGEN</name></member>
+    <member refid="NRLMSISE00_8cpp_1ae7b836427cda584e680a465d1f92fc0e" kind="enum"><name>TemperatureType</name></member>
+    <member refid="NRLMSISE00_8cpp_1ae7b836427cda584e680a465d1f92fc0ea7ca4b61298d49fd0c97cb5463c9bb3b6" kind="enumvalue"><name>EXOSPHERIC</name></member>
+    <member refid="NRLMSISE00_8cpp_1ae7b836427cda584e680a465d1f92fc0ea2ac9cd79b34d0ffc0f9111d3e40da917" kind="enumvalue"><name>ALTITUDE</name></member>
+    <member refid="NRLMSISE00_8cpp_1a5e30d834ea82f5bff2e2441c8b4a91a8" kind="enum"><name>Option</name></member>
+    <member refid="NRLMSISE00_8cpp_1a5e30d834ea82f5bff2e2441c8b4a91a8a59ed6478983a40adb27e2b133d9e38e4" kind="enumvalue"><name>F107_EFFECT_ON_MEAN</name></member>
+    <member refid="NRLMSISE00_8cpp_1a5e30d834ea82f5bff2e2441c8b4a91a8abce6403702470f7c2d8182d27fc29e09" kind="enumvalue"><name>INDEPENDENT_OF_TIME</name></member>
+    <member refid="NRLMSISE00_8cpp_1a5e30d834ea82f5bff2e2441c8b4a91a8a99271cd47111c4726bbf383c269b6a12" kind="enumvalue"><name>SYMMETRICAL_ANNUAL</name></member>
+    <member refid="NRLMSISE00_8cpp_1a5e30d834ea82f5bff2e2441c8b4a91a8a3a275d8548e725c47ec7b68443a1fc3d" kind="enumvalue"><name>SYMMETRICAL_SEMIANNUAL</name></member>
+    <member refid="NRLMSISE00_8cpp_1a5e30d834ea82f5bff2e2441c8b4a91a8a928a37637d113253a13b61e2411c050f" kind="enumvalue"><name>ASYMMETRICAL_ANNUAL</name></member>
+    <member refid="NRLMSISE00_8cpp_1a5e30d834ea82f5bff2e2441c8b4a91a8a94e3d584e8f606ac6b222460934dff75" kind="enumvalue"><name>ASYMMETRICAL_SEMIANNUAL</name></member>
+    <member refid="NRLMSISE00_8cpp_1a5e30d834ea82f5bff2e2441c8b4a91a8a34cf17829173477276e98037900b422c" kind="enumvalue"><name>DIURNAL</name></member>
+    <member refid="NRLMSISE00_8cpp_1a5e30d834ea82f5bff2e2441c8b4a91a8a6447329597f1bd92858b0172e0ae7b67" kind="enumvalue"><name>SEMIDIURNAL</name></member>
+    <member refid="NRLMSISE00_8cpp_1a5e30d834ea82f5bff2e2441c8b4a91a8a9946d00411e956eaa825d77b992928b1" kind="enumvalue"><name>DAILY_AP</name></member>
+    <member refid="NRLMSISE00_8cpp_1a5e30d834ea82f5bff2e2441c8b4a91a8af59a80015897b2c695a0591328c5a121" kind="enumvalue"><name>ALL_UT_LONGITUDINAL_EFFECTS</name></member>
+    <member refid="NRLMSISE00_8cpp_1a5e30d834ea82f5bff2e2441c8b4a91a8a83525410d84f61e94ca853cc4c035d26" kind="enumvalue"><name>LONGITUDINAL_EFFECTS</name></member>
+    <member refid="NRLMSISE00_8cpp_1a5e30d834ea82f5bff2e2441c8b4a91a8afd37a453f00f2c8ecd280f67daf53bd4" kind="enumvalue"><name>UT_AND_MIXED_UT_LONGITUDINAL_EFFECTS</name></member>
+    <member refid="NRLMSISE00_8cpp_1a5e30d834ea82f5bff2e2441c8b4a91a8ace4d7ddf43d21c3b2f5657cd2e316ae7" kind="enumvalue"><name>MIXED_AP_UT_LONGITUDINAL_EFFECTS</name></member>
+    <member refid="NRLMSISE00_8cpp_1a5e30d834ea82f5bff2e2441c8b4a91a8afd9db4795bad68e939dac27541f57705" kind="enumvalue"><name>TERDIURNAL</name></member>
+    <member refid="NRLMSISE00_8cpp_1a5e30d834ea82f5bff2e2441c8b4a91a8a5d9fd37d23e8e97402172924d3f99367" kind="enumvalue"><name>DEPARTURES_FROM_DIFFUSIVE_EQUILIBRIUM</name></member>
+    <member refid="NRLMSISE00_8cpp_1a5e30d834ea82f5bff2e2441c8b4a91a8aed49d2d3d397563cbe04c6a125b74d1b" kind="enumvalue"><name>ALL_EXOSPHERIC_TEMPERATURE_VARIATIONS</name></member>
+    <member refid="NRLMSISE00_8cpp_1a5e30d834ea82f5bff2e2441c8b4a91a8a64b58651adc565fe130890c9092c7021" kind="enumvalue"><name>ALL_VARIATIONS_FROM_120KM_TEMPERATURE_TLB</name></member>
+    <member refid="NRLMSISE00_8cpp_1a5e30d834ea82f5bff2e2441c8b4a91a8ae19b0a16f88f8a68968dc592ae6794f1" kind="enumvalue"><name>ALL_LOWER_THERMOSPHERE_TEMPERATURE_TN1_VARIATIONS</name></member>
+    <member refid="NRLMSISE00_8cpp_1a5e30d834ea82f5bff2e2441c8b4a91a8adb8cf27129e2b91987b37d8db8b04795" kind="enumvalue"><name>ALL_120KM_GRADIENT_S_VARIATIONS</name></member>
+    <member refid="NRLMSISE00_8cpp_1a5e30d834ea82f5bff2e2441c8b4a91a8a406cd61e7f876f5592c8fca5957e60c5" kind="enumvalue"><name>ALL_UPPER_STRATOSPHERE_TEMPERATURE_TN2_VARIATIONS</name></member>
+    <member refid="NRLMSISE00_8cpp_1a5e30d834ea82f5bff2e2441c8b4a91a8ac250249e29cabd0969dc7b72f7feb15a" kind="enumvalue"><name>ALL_VARIATIONS_FROM_120KM_VALUES_ZLB</name></member>
+    <member refid="NRLMSISE00_8cpp_1a5e30d834ea82f5bff2e2441c8b4a91a8aeb64392097f65a9f77734d13e46c3946" kind="enumvalue"><name>ALL_LOWER_MESOSPHERE_TEMPERATURE_TN3_VARIATIONS</name></member>
+    <member refid="NRLMSISE00_8cpp_1a5e30d834ea82f5bff2e2441c8b4a91a8a21bd250969f2c63c930d5293b36bcf2d" kind="enumvalue"><name>TURBOPAUSE_SCALE_HEIGHT_VARIATIONS</name></member>
+    <member refid="NRLMSISE00_8cpp_1a13b4bd618d0debd77df1bcce31dd75ec" kind="variable"><name>PT</name></member>
     <member refid="NRLMSISE00_8cpp_1ae516ca08dcacaf01a39cd8f149d2272d" kind="variable"><name>PD</name></member>
-    <member refid="NRLMSISE00_8cpp_1a29da290284114d6ea6a57ff7400cc55c" kind="variable"><name>PS</name></member>
-    <member refid="NRLMSISE00_8cpp_1aa3d7a492aa24356f700e700a4fc9f0db" kind="variable"><name>PDL</name></member>
+    <member refid="NRLMSISE00_8cpp_1a741ed4cd3287b1f970bc97b96161dd44" kind="variable"><name>PS</name></member>
+    <member refid="NRLMSISE00_8cpp_1a1d1fbf70bea2f4b56badebd61300920d" kind="variable"><name>PDL</name></member>
     <member refid="NRLMSISE00_8cpp_1aaa9a2ebab8c6ee78815f817f23204756" kind="variable"><name>PTM</name></member>
     <member refid="NRLMSISE00_8cpp_1afafa85273eb41d5d930a62e6adcf1f67" kind="variable"><name>XMM</name></member>
-    <member refid="NRLMSISE00_8cpp_1a6deba3a819a5c88a69778c330488c760" kind="variable"><name>PDM</name></member>
-    <member refid="NRLMSISE00_8cpp_1af6d1bd3db9d8636ea6f08350eaac403f" kind="variable"><name>PTL</name></member>
-    <member refid="NRLMSISE00_8cpp_1ab1958526e9e40cb74436ec3f4040dda4" kind="variable"><name>PMA</name></member>
+    <member refid="NRLMSISE00_8cpp_1a8911ca935dbfd146af4bc66037197a01" kind="variable"><name>SpeciesModelData</name></member>
+    <member refid="NRLMSISE00_8cpp_1ad876722b38f8d52b1e5385e5db017f1b" kind="variable"><name>PTL</name></member>
+    <member refid="NRLMSISE00_8cpp_1a7df4642473b57741d0d65e5ba07f5bdd" kind="variable"><name>PMA</name></member>
+    <member refid="NRLMSISE00_8cpp_1ac5dafe361d58da1debcb02af3fad1544" kind="variable"><name>LAT_REF</name></member>
+    <member refid="NRLMSISE00_8cpp_1aa89a99474f75bd5581123e30b092edc1" kind="variable"><name>G_REF</name></member>
+    <member refid="NRLMSISE00_8cpp_1aecf297cad0ccdcf87a0edcf516dd8fff" kind="variable"><name>R_GAS</name></member>
+    <member refid="NRLMSISE00_8cpp_1ab68120f9aedcf24380b01aa1baad6a69" kind="variable"><name>H_MASS</name></member>
+    <member refid="NRLMSISE00_8cpp_1af8a0d297668a3b2d6509b9d805ed8f9a" kind="variable"><name>HE_MASS</name></member>
+    <member refid="NRLMSISE00_8cpp_1a09398b2d34e503fece96ea3592fbad1a" kind="variable"><name>N_MASS</name></member>
+    <member refid="NRLMSISE00_8cpp_1a59726e64e22fce5f70cd6c14cd5672be" kind="variable"><name>N2_MASS</name></member>
+    <member refid="NRLMSISE00_8cpp_1af0dfe06c17270dcd9aa2c41093dc6b4f" kind="variable"><name>O_MASS</name></member>
+    <member refid="NRLMSISE00_8cpp_1aba448bcf039f479fba730c69bc8be744" kind="variable"><name>O2_MASS</name></member>
+    <member refid="NRLMSISE00_8cpp_1abb95dc194509e72ccdfc78d3951df58c" kind="variable"><name>AR_MASS</name></member>
+    <member refid="NRLMSISE00_8cpp_1a2b7bb5d2e869852aa1615bf4fc3da955" kind="variable"><name>FLUX_REF</name></member>
+    <member refid="NRLMSISE00_8cpp_1acf7fb15ae78760516e873aab306c9530" kind="variable"><name>ZN1</name></member>
+    <member refid="NRLMSISE00_8cpp_1a7b6a9561c1a5b92a6757bdadd0aeab57" kind="variable"><name>ZN2</name></member>
+    <member refid="NRLMSISE00_8cpp_1a62e7897a8a15a79fc431f1938d8eedc5" kind="variable"><name>ZN3</name></member>
+    <member refid="NRLMSISE00_8cpp_1a35ad9829b1234e5904a1f6b801f7d92b" kind="variable"><name>ZMIX</name></member>
+    <member refid="NRLMSISE00_8cpp_1adf8ad82962018ef17a32f13d89f9a280" kind="variable"><name>PAVGM</name></member>
+    <member refid="NRLMSISE00_8cpp_1add1c0fc0d40372e4edf04ada2c9076c9" kind="variable"><name>MIN_TEMP</name></member>
+    <member refid="NRLMSISE00_8cpp_1a0e2737b4c6b7866d12aa26c1308f2d0f" kind="variable"><name>options</name></member>
     <member refid="Earth_8hpp_1a030527f7c06527a0b003359fa1a3b5fd" kind="variable"><name>Earth</name></member>
     <member refid="Jupiter_8hpp_1a72bd1bb284c5290fcfbceae8b17c7b40" kind="variable"><name>Jupiter</name></member>
     <member refid="Mars_8hpp_1a2f14352cfddb70a5dc2e2da62b1a681d" kind="variable"><name>Mars</name></member>
@@ -3171,6 +3237,8 @@
     <member refid="Saturn_8hpp_1a369855f0ba00f548643894f197ba0c05" kind="variable"><name>Saturn</name></member>
     <member refid="Uranus_8hpp_1aa4b3bdf50cd767a6b2387cd5e93daf03" kind="variable"><name>Uranus</name></member>
     <member refid="Venus_8hpp_1a79411097e98838bb158f8e3b82c97a6a" kind="variable"><name>Venus</name></member>
+    <member refid="NRLMSISE00_8cpp_1a85a43f0d1764aa5c66a50eede5aec4d0" kind="function"><name>find_atmospheric_density</name></member>
+    <member refid="NRLMSISE00_8cpp_1abe38e336d565f230fb32ef410a6f02e4" kind="function"><name>calculate_local_solar_time</name></member>
   </compound>
   <compound refid="namespaceastrea_1_1astro_1_1plotting" kind="namespace"><name>astrea::astro::plotting</name>
     <member refid="plotting_8cpp_1ac196255a1eb290f378dc1221621efafe" kind="function"><name>plot_orbital_elements</name></member>
@@ -3183,7 +3251,7 @@
     <member refid="plotting_8cpp_1a2781fb08d876f7fce70c8b2013db3d06" kind="function"><name>compare_attitudes</name></member>
     <member refid="plotting_8cpp_1a070f15c4eb0c791a0dbb50f2168d315c" kind="function"><name>plot_difference_attitude</name></member>
   </compound>
-  <compound refid="namespaceastrea_1_1astro_1_1plotting_1_1_0d201" kind="namespace"><name>astrea::astro::plotting::@201</name>
+  <compound refid="namespaceastrea_1_1astro_1_1plotting_1_1_0d208" kind="namespace"><name>astrea::astro::plotting::@208</name>
   </compound>
   <compound refid="namespaceastrea_1_1astro_1_1RK45" kind="namespace"><name>astrea::astro::RK45</name>
     <member refid="butcher__tableau_8hpp_1ae425231c6b79afb2029918c68f85a8fc" kind="variable"><name>nStages</name></member>
@@ -3206,6 +3274,8 @@
     <member refid="butcher__tableau_8hpp_1a067f882997ac91da0a33de44b56c2097" kind="variable"><name>bhat</name></member>
     <member refid="butcher__tableau_8hpp_1adceba9deeb9ed2feafcfb81e95f2f460" kind="variable"><name>a</name></member>
   </compound>
+  <compound refid="namespaceastrea_1_1astro_1_1space__weather" kind="namespace"><name>astrea::astro::space_weather</name>
+  </compound>
   <compound refid="namespaceastrea_1_1astro_1_1star" kind="namespace"><name>astrea::astro::star</name>
     <member refid="Sun_8hpp_1a99fe1115badeff9f6d5b1f902c3f56e7" kind="variable"><name>Sun</name></member>
   </compound>
@@ -3221,7 +3291,7 @@
   </compound>
   <compound refid="namespacestd" kind="namespace"><name>std</name>
   </compound>
-  <compound refid="namespacestd_1_1_0d195" kind="namespace"><name>std::@195</name>
+  <compound refid="namespacestd_1_1_0d202" kind="namespace"><name>std::@202</name>
   </compound>
   <compound refid="astro_8fwd_8hpp" kind="file"><name>astro.fwd.hpp</name>
   </compound>
@@ -3409,8 +3479,6 @@
   </compound>
   <compound refid="Schedule_8hpp" kind="file"><name>Schedule.hpp</name>
   </compound>
-  <compound refid="AtmosphericForce_8cpp" kind="file"><name>AtmosphericForce.cpp</name>
-  </compound>
   <compound refid="AtmosphericForce_8hpp" kind="file"><name>AtmosphericForce.hpp</name>
   </compound>
   <compound refid="ForceModel_8cpp" kind="file"><name>ForceModel.cpp</name>
@@ -3434,6 +3502,38 @@
   <compound refid="SolarRadiationPressure_8cpp" kind="file"><name>SolarRadiationPressure.cpp</name>
   </compound>
   <compound refid="SolarRadiationPressure_8hpp" kind="file"><name>SolarRadiationPressure.hpp</name>
+  </compound>
+  <compound refid="space__weather_8hpp" kind="file"><name>space_weather.hpp</name>
+  </compound>
+  <compound refid="atmosphere_8hpp" kind="file"><name>atmosphere.hpp</name>
+  </compound>
+  <compound refid="NRLMSISE00_8cpp" kind="file"><name>NRLMSISE00.cpp</name>
+    <member refid="NRLMSISE00_8cpp_1ae6e24bc116fc7ba36c6682bf6d307219" kind="typedef"><name>NumberDensity</name></member>
+    <member refid="NRLMSISE00_8cpp_1a8b2660e3c9fa57db5f3879bc95a9c0b9" kind="typedef"><name>AtomicMass</name></member>
+  </compound>
+  <compound refid="NRLMSISE00_8hpp" kind="file"><name>NRLMSISE00.hpp</name>
+  </compound>
+  <compound refid="HarrisPriester_8cpp" kind="file"><name>HarrisPriester.cpp</name>
+  </compound>
+  <compound refid="HarrisPriester_8hpp" kind="file"><name>HarrisPriester.hpp</name>
+  </compound>
+  <compound refid="JacchiaRoberts_8cpp" kind="file"><name>JacchiaRoberts.cpp</name>
+  </compound>
+  <compound refid="JacchiaRoberts_8hpp" kind="file"><name>JacchiaRoberts.hpp</name>
+  </compound>
+  <compound refid="Nrlmsise00_8cpp" kind="file"><name>Nrlmsise00.cpp</name>
+  </compound>
+  <compound refid="Nrlmsise00_8hpp" kind="file"><name>Nrlmsise00.hpp</name>
+  </compound>
+  <compound refid="file__reader_8cpp" kind="file"><name>file_reader.cpp</name>
+  </compound>
+  <compound refid="file__reader_8hpp" kind="file"><name>file_reader.hpp</name>
+  </compound>
+  <compound refid="SpaceWeatherData_8cpp" kind="file"><name>SpaceWeatherData.cpp</name>
+  </compound>
+  <compound refid="SpaceWeatherData_8hpp" kind="file"><name>SpaceWeatherData.hpp</name>
+  </compound>
+  <compound refid="SpaceWeatherProvider_8hpp" kind="file"><name>SpaceWeatherProvider.hpp</name>
   </compound>
   <compound refid="butcher__tableau_8hpp" kind="file"><name>butcher_tableau.hpp</name>
   </compound>
@@ -3515,27 +3615,11 @@
   </compound>
   <compound refid="systems_8hpp" kind="file"><name>systems.hpp</name>
   </compound>
-  <compound refid="atmosphere_8hpp" kind="file"><name>atmosphere.hpp</name>
-  </compound>
   <compound refid="Barycenter_8hpp" kind="file"><name>Barycenter.hpp</name>
   </compound>
   <compound refid="barycenters_8hpp" kind="file"><name>barycenters.hpp</name>
   </compound>
   <compound refid="celestial__bodies_8hpp" kind="file"><name>celestial_bodies.hpp</name>
-  </compound>
-  <compound refid="HarrisPriester_8cpp" kind="file"><name>HarrisPriester.cpp</name>
-  </compound>
-  <compound refid="HarrisPriester_8hpp" kind="file"><name>HarrisPriester.hpp</name>
-  </compound>
-  <compound refid="JacciaRoberts_8cpp" kind="file"><name>JacciaRoberts.cpp</name>
-  </compound>
-  <compound refid="JacciaRoberts_8hpp" kind="file"><name>JacciaRoberts.hpp</name>
-  </compound>
-  <compound refid="NRLMSISE00_8cpp" kind="file"><name>NRLMSISE00.cpp</name>
-    <member refid="NRLMSISE00_8cpp_1ae6e24bc116fc7ba36c6682bf6d307219" kind="typedef"><name>NumberDensity</name></member>
-    <member refid="NRLMSISE00_8cpp_1a8b2660e3c9fa57db5f3879bc95a9c0b9" kind="typedef"><name>AtomicMass</name></member>
-  </compound>
-  <compound refid="NRLMSISE00_8hpp" kind="file"><name>NRLMSISE00.hpp</name>
   </compound>
   <compound refid="Earth_8hpp" kind="file"><name>Earth.hpp</name>
   </compound>
@@ -3649,7 +3733,7 @@
   </compound>
   <compound refid="dir_84db6e3c60e44147f5214c05dc45afc2" kind="dir"><name>astrea/astro/astro</name>
   </compound>
-  <compound refid="dir_52ad4357f9588f54fe1e3d5cf2b75c1b" kind="dir"><name>astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere</name>
+  <compound refid="dir_3bfcc16c8bbdb2d74b81ce33c082ff6e" kind="dir"><name>astrea/astro/astro/propagation/force_models/space_weather/atmosphere</name>
   </compound>
   <compound refid="dir_d187d1a6cf435d7a067093cc1f3d7926" kind="dir"><name>astrea/astro/astro/state/attitude</name>
   </compound>
@@ -3668,6 +3752,8 @@
   <compound refid="dir_283e5a6c8e70b5075f630fb83b6454d7" kind="dir"><name>astrea/astro/astro/propagation/event_detection</name>
   </compound>
   <compound refid="dir_ffe0d0558a41319d577ebe8d35f3c9da" kind="dir"><name>astrea/astro/astro/propagation/event_detection/events</name>
+  </compound>
+  <compound refid="dir_c9cd73a564506b77e0cd8e52337735df" kind="dir"><name>astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental</name>
   </compound>
   <compound refid="dir_0ce51a85166db93c377c5b7f000b236c" kind="dir"><name>astrea/astro/astro/propagation/force_models</name>
   </compound>
@@ -3696,6 +3782,8 @@
   <compound refid="dir_7fd613539f7980532282f5cbc20c34d1" kind="dir"><name>astrea/astro/astro/systems/celestial_bodies/Saturn</name>
   </compound>
   <compound refid="dir_4e8e97ad8c5ab106f4208fffe0057899" kind="dir"><name>astrea/astro/astro/platforms/space</name>
+  </compound>
+  <compound refid="dir_ba92a5bb4647772267966b3cef944594" kind="dir"><name>astrea/astro/astro/propagation/force_models/space_weather</name>
   </compound>
   <compound refid="dir_cf1a4d8122645f8636e977da512a043c" kind="dir"><name>astrea/astro/astro/state</name>
   </compound>

@@ -21,7 +21,7 @@
       
       
       <link rel="icon" href="../../assets/images/astrea-transparent-crop.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
@@ -29,7 +29,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
@@ -6268,7 +6268,7 @@ You're not viewing the latest version.
 </thead>
 <tbody>
 <tr>
-<td style="text-align: right;">typedef mp_units::quantity&lt; detail::distance_unit/mp_units::pow&lt; 2 &gt;(detail::time_unit)&gt;</td>
+<td style="text-align: right;">typedef mp_units::quantity&lt; detail::distance_unit/(detail::time_unit *detail::time_unit)&gt;</td>
 <td style="text-align: left;"><a href="#typedef-acceleration"><strong>Acceleration</strong></a>  <br><em>Definition for an acceleration quantity.</em></td>
 </tr>
 <tr>
@@ -6280,7 +6280,7 @@ You're not viewing the latest version.
 <td style="text-align: left;"><a href="#typedef-angle"><strong>Angle</strong></a>  <br><em>Definition for an angle quantity.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">typedef mp_units::quantity&lt; detail::angle_unit/mp_units::pow&lt; 2 &gt;(detail::time_unit)&gt;</td>
+<td style="text-align: right;">typedef mp_units::quantity&lt; detail::angle_unit/(detail::time_unit *detail::time_unit)&gt;</td>
 <td style="text-align: left;"><a href="#typedef-angularacceleration"><strong>AngularAcceleration</strong></a>  <br><em>Definition for an angular acceleration quantity.</em></td>
 </tr>
 <tr>
@@ -6304,11 +6304,11 @@ You're not viewing the latest version.
 <td style="text-align: left;"><a href="#typedef-cnr"><strong>CNR</strong></a>  <br><em>Definition for a carrier-to-noise ratio quantity.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">typedef mp_units::quantity&lt; mp_units::one/mp_units::pow&lt; 2 &gt;(detail::time_unit)&gt;</td>
+<td style="text-align: right;">typedef mp_units::quantity&lt; mp_units::one/(detail::time_unit *detail::time_unit)&gt;</td>
 <td style="text-align: left;"><a href="#typedef-chirp"><strong>Chirp</strong></a>  <br><em>Definition for a chirp quantity, representing the rate of change of frequency.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">typedef mp_units::quantity&lt; detail::mass_unit/(mp_units::pow&lt; 3 &gt;(detail::distance_unit))&gt;</td>
+<td style="text-align: right;">typedef mp_units::quantity&lt; detail::mass_unit/(detail::distance_unit *detail::distance_unit *detail::distance_unit)&gt;</td>
 <td style="text-align: left;"><a href="#typedef-density"><strong>Density</strong></a>  <br><em>Definition for a density quantity.</em></td>
 </tr>
 <tr>
@@ -6328,7 +6328,7 @@ You're not viewing the latest version.
 <td style="text-align: left;"><a href="#typedef-gain"><strong>Gain</strong></a>  <br><em>Definition for a gain quantity.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">typedef mp_units::quantity&lt; mp_units::pow&lt; 3 &gt;(detail::distance_unit)/mp_units::pow&lt; 2 &gt;(detail::time_unit)&gt;</td>
+<td style="text-align: right;">typedef mp_units::quantity&lt;(detail::distance_unit *detail::distance_unit *detail::distance_unit)/(detail::time_unit *detail::time_unit)&gt;</td>
 <td style="text-align: left;"><a href="#typedef-gravparam"><strong>GravParam</strong></a>  <br><em>Definition for a gravitational parameter quantity.</em></td>
 </tr>
 <tr>
@@ -6352,11 +6352,11 @@ You're not viewing the latest version.
 <td style="text-align: left;"><a href="#typedef-meanmotion"><strong>MeanMotion</strong></a>  <br><em>Definition for a mean motion quantity.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">typedef mp_units::quantity&lt; mp_units::one/mp_units::pow&lt; 2 &gt;(mp_units::non_si::day)&gt;</td>
+<td style="text-align: right;">typedef mp_units::quantity&lt; mp_units::one/(mp_units::non_si::day *mp_units::non_si::day)&gt;</td>
 <td style="text-align: left;"><a href="#typedef-meanmotion1stder"><strong>MeanMotion1stDer</strong></a>  <br><em>Definition for a mean motion 1st derivative quantity.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">typedef mp_units::quantity&lt; mp_units::one/mp_units::pow&lt; 3 &gt;(mp_units::non_si::day)&gt;</td>
+<td style="text-align: right;">typedef mp_units::quantity&lt; mp_units::one/(mp_units::non_si::day *mp_units::non_si::day *mp_units::non_si::day)&gt;</td>
 <td style="text-align: left;"><a href="#typedef-meanmotion2ndder"><strong>MeanMotion2ndDer</strong></a>  <br><em>Definition for a mean motion 2nd derivative quantity.</em></td>
 </tr>
 <tr>
@@ -6364,7 +6364,7 @@ You're not viewing the latest version.
 <td style="text-align: left;"><a href="#typedef-moment"><strong>Moment</strong></a>  <br><em>Definition for a moment quantity.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">typedef mp_units::quantity&lt; detail::mass_unit *mp_units::pow&lt; 2 &gt;(detail::distance_unit)&gt;</td>
+<td style="text-align: right;">typedef mp_units::quantity&lt; detail::mass_unit *detail::distance_unit *detail::distance_unit &gt;</td>
 <td style="text-align: left;"><a href="#typedef-momentofinertia"><strong>MomentOfInertia</strong></a>  <br><em>Definition for a moment of inertia quantity.</em></td>
 </tr>
 <tr>
@@ -6372,7 +6372,7 @@ You're not viewing the latest version.
 <td style="text-align: left;"><a href="#typedef-power"><strong>Power</strong></a>  <br><em>Definition for a power quantity.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">typedef mp_units::quantity&lt; detail::power_unit/mp_units::pow&lt; 2 &gt;(detail::distance_unit)&gt;</td>
+<td style="text-align: right;">typedef mp_units::quantity&lt; detail::power_unit/(detail::distance_unit *detail::distance_unit)&gt;</td>
 <td style="text-align: left;"><a href="#typedef-powerfluxdensity"><strong>PowerFluxDensity</strong></a>  <br><em>Definition for a power flux density quantity.</em></td>
 </tr>
 <tr>
@@ -6392,7 +6392,7 @@ You're not viewing the latest version.
 <td style="text-align: left;"><a href="#typedef-specificangularmomentum"><strong>SpecificAngularMomentum</strong></a>  <br><em>Definition for a specific angular momentum quantity.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">typedef mp_units::quantity&lt; mp_units::pow&lt; 2 &gt;(detail::distance_unit)&gt;</td>
+<td style="text-align: right;">typedef mp_units::quantity&lt; detail::distance_unit *detail::distance_unit &gt;</td>
 <td style="text-align: left;"><a href="#typedef-surfacearea"><strong>SurfaceArea</strong></a>  <br><em>Definition for a surface area quantity.</em></td>
 </tr>
 <tr>
@@ -6467,14 +6467,6 @@ You're not viewing the latest version.
 </thead>
 <tbody>
 <tr>
-<td style="text-align: right;">constexpr <a href="./#typedef-angle"><strong>Angle</strong></a></td>
-<td style="text-align: left;"><a href="#variable-pi"><strong>PI</strong></a>   = <code>1.0 \* (mp\_units::mag&amp;lt;mp\_units::pi&amp;gt; \* detail::angle\_unit)</code><br></td>
-</tr>
-<tr>
-<td style="text-align: right;">constexpr <a href="./#typedef-angle"><strong>Angle</strong></a></td>
-<td style="text-align: left;"><a href="#variable-two_pi"><strong>TWO_PI</strong></a>   = <code>2.0 \* (mp\_units::mag&amp;lt;mp\_units::pi&amp;gt; \* detail::angle\_unit)</code><br></td>
-</tr>
-<tr>
 <td style="text-align: right;">constexpr auto</td>
 <td style="text-align: left;"><a href="#variable-boltzmann_constant"><strong>boltzmann_constant</strong></a>   = <code>1.0 \* mp\_units::si::si2019::boltzmann\_constant</code><br></td>
 </tr>
@@ -6484,29 +6476,10 @@ You're not viewing the latest version.
 </tr>
 </tbody>
 </table>
-<h2 id="public-functions">Public Functions<a class="headerlink" href="#public-functions" title="Permanent link">&para;</a></h2>
-<table>
-<thead>
-<tr>
-<th style="text-align: right;">Type</th>
-<th style="text-align: left;">Name</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: right;">constexpr mp_units::quantity&lt; mp_units::mag&lt; mp_units::pi &gt; *detail::angle_unit &gt;</td>
-<td style="text-align: left;"><a href="#function-n_pi"><strong>n_pi</strong></a> (const double &amp; mag) <br></td>
-</tr>
-<tr>
-<td style="text-align: right;">constexpr mp_units::quantity&lt; detail::unitless &gt;</td>
-<td style="text-align: left;"><a href="#function-n_pi_mag"><strong>n_pi_mag</strong></a> (const double &amp; mag) <br></td>
-</tr>
-</tbody>
-</table>
 <h2 id="public-types-documentation">Public Types Documentation<a class="headerlink" href="#public-types-documentation" title="Permanent link">&para;</a></h2>
 <h3 id="typedef-acceleration">typedef Acceleration<a class="headerlink" href="#typedef-acceleration" title="Permanent link">&para;</a></h3>
 <p><em>Definition for an acceleration quantity.</em> 
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">using</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">Acceleration</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">typedef</span><span class="w"> </span><span class="n">mp_units</span><span class="o">::</span><span class="n">quantity</span><span class="o">&lt;</span><span class="n">detail</span><span class="o">::</span><span class="n">distance_unit</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">mp_units</span><span class="o">::</span><span class="n">pow</span><span class="o">&lt;</span><span class="mi">2</span><span class="o">&gt;</span><span class="p">(</span><span class="n">detail</span><span class="o">::</span><span class="n">time_unit</span><span class="p">)</span><span class="o">&gt;</span><span class="p">;</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">using</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">Acceleration</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">typedef</span><span class="w"> </span><span class="n">mp_units</span><span class="o">::</span><span class="n">quantity</span><span class="o">&lt;</span><span class="n">detail</span><span class="o">::</span><span class="n">distance_unit</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="n">detail</span><span class="o">::</span><span class="n">time_unit</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">detail</span><span class="o">::</span><span class="n">time_unit</span><span class="p">)</span><span class="o">&gt;</span><span class="p">;</span>
 </span></code></pre></div></p>
 <hr>
 
@@ -6524,7 +6497,7 @@ You're not viewing the latest version.
 
 <h3 id="typedef-angularacceleration">typedef AngularAcceleration<a class="headerlink" href="#typedef-angularacceleration" title="Permanent link">&para;</a></h3>
 <p><em>Definition for an angular acceleration quantity.</em> 
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">using</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">AngularAcceleration</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">typedef</span><span class="w"> </span><span class="n">mp_units</span><span class="o">::</span><span class="n">quantity</span><span class="o">&lt;</span><span class="n">detail</span><span class="o">::</span><span class="n">angle_unit</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">mp_units</span><span class="o">::</span><span class="n">pow</span><span class="o">&lt;</span><span class="mi">2</span><span class="o">&gt;</span><span class="p">(</span><span class="n">detail</span><span class="o">::</span><span class="n">time_unit</span><span class="p">)</span><span class="o">&gt;</span><span class="p">;</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">using</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">AngularAcceleration</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">typedef</span><span class="w"> </span><span class="n">mp_units</span><span class="o">::</span><span class="n">quantity</span><span class="o">&lt;</span><span class="n">detail</span><span class="o">::</span><span class="n">angle_unit</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="n">detail</span><span class="o">::</span><span class="n">time_unit</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">detail</span><span class="o">::</span><span class="n">time_unit</span><span class="p">)</span><span class="o">&gt;</span><span class="p">;</span>
 </span></code></pre></div></p>
 <hr>
 
@@ -6560,13 +6533,13 @@ You're not viewing the latest version.
 
 <h3 id="typedef-chirp">typedef Chirp<a class="headerlink" href="#typedef-chirp" title="Permanent link">&para;</a></h3>
 <p><em>Definition for a chirp quantity, representing the rate of change of frequency.</em> 
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="k">using</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">Chirp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">typedef</span><span class="w"> </span><span class="n">mp_units</span><span class="o">::</span><span class="n">quantity</span><span class="o">&lt;</span><span class="n">mp_units</span><span class="o">::</span><span class="n">one</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">mp_units</span><span class="o">::</span><span class="n">pow</span><span class="o">&lt;</span><span class="mi">2</span><span class="o">&gt;</span><span class="p">(</span><span class="n">detail</span><span class="o">::</span><span class="n">time_unit</span><span class="p">)</span><span class="o">&gt;</span><span class="p">;</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="k">using</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">Chirp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">typedef</span><span class="w"> </span><span class="n">mp_units</span><span class="o">::</span><span class="n">quantity</span><span class="o">&lt;</span><span class="n">mp_units</span><span class="o">::</span><span class="n">one</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="n">detail</span><span class="o">::</span><span class="n">time_unit</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">detail</span><span class="o">::</span><span class="n">time_unit</span><span class="p">)</span><span class="o">&gt;</span><span class="p">;</span>
 </span></code></pre></div></p>
 <hr>
 
 <h3 id="typedef-density">typedef Density<a class="headerlink" href="#typedef-density" title="Permanent link">&para;</a></h3>
 <p><em>Definition for a density quantity.</em> 
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="k">using</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">Density</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">typedef</span><span class="w"> </span><span class="n">mp_units</span><span class="o">::</span><span class="n">quantity</span><span class="o">&lt;</span><span class="n">detail</span><span class="o">::</span><span class="n">mass_unit</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="n">mp_units</span><span class="o">::</span><span class="n">pow</span><span class="o">&lt;</span><span class="mi">3</span><span class="o">&gt;</span><span class="p">(</span><span class="n">detail</span><span class="o">::</span><span class="n">distance_unit</span><span class="p">))</span><span class="o">&gt;</span><span class="p">;</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="k">using</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">Density</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">typedef</span><span class="w"> </span><span class="n">mp_units</span><span class="o">::</span><span class="n">quantity</span><span class="o">&lt;</span><span class="n">detail</span><span class="o">::</span><span class="n">mass_unit</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="n">detail</span><span class="o">::</span><span class="n">distance_unit</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">detail</span><span class="o">::</span><span class="n">distance_unit</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">detail</span><span class="o">::</span><span class="n">distance_unit</span><span class="p">)</span><span class="o">&gt;</span><span class="p">;</span>
 </span></code></pre></div></p>
 <hr>
 
@@ -6596,7 +6569,7 @@ You're not viewing the latest version.
 
 <h3 id="typedef-gravparam">typedef GravParam<a class="headerlink" href="#typedef-gravparam" title="Permanent link">&para;</a></h3>
 <p><em>Definition for a gravitational parameter quantity.</em> 
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="k">using</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">GravParam</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">typedef</span><span class="w"> </span><span class="n">mp_units</span><span class="o">::</span><span class="n">quantity</span><span class="o">&lt;</span><span class="n">mp_units</span><span class="o">::</span><span class="n">pow</span><span class="o">&lt;</span><span class="mi">3</span><span class="o">&gt;</span><span class="p">(</span><span class="n">detail</span><span class="o">::</span><span class="n">distance_unit</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">mp_units</span><span class="o">::</span><span class="n">pow</span><span class="o">&lt;</span><span class="mi">2</span><span class="o">&gt;</span><span class="p">(</span><span class="n">detail</span><span class="o">::</span><span class="n">time_unit</span><span class="p">)</span><span class="o">&gt;</span><span class="p">;</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="k">using</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">GravParam</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">typedef</span><span class="w"> </span><span class="n">mp_units</span><span class="o">::</span><span class="n">quantity</span><span class="o">&lt;</span><span class="p">(</span><span class="n">detail</span><span class="o">::</span><span class="n">distance_unit</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">detail</span><span class="o">::</span><span class="n">distance_unit</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">detail</span><span class="o">::</span><span class="n">distance_unit</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="n">detail</span><span class="o">::</span><span class="n">time_unit</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">detail</span><span class="o">::</span><span class="n">time_unit</span><span class="p">)</span><span class="o">&gt;</span><span class="p">;</span>
 </span></code></pre></div></p>
 <hr>
 
@@ -6632,13 +6605,13 @@ You're not viewing the latest version.
 
 <h3 id="typedef-meanmotion1stder">typedef MeanMotion1stDer<a class="headerlink" href="#typedef-meanmotion1stder" title="Permanent link">&para;</a></h3>
 <p><em>Definition for a mean motion 1st derivative quantity.</em> 
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="k">using</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">MeanMotion1stDer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">typedef</span><span class="w"> </span><span class="n">mp_units</span><span class="o">::</span><span class="n">quantity</span><span class="o">&lt;</span><span class="n">mp_units</span><span class="o">::</span><span class="n">one</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">mp_units</span><span class="o">::</span><span class="n">pow</span><span class="o">&lt;</span><span class="mi">2</span><span class="o">&gt;</span><span class="p">(</span><span class="n">mp_units</span><span class="o">::</span><span class="n">non_si</span><span class="o">::</span><span class="n">day</span><span class="p">)</span><span class="o">&gt;</span><span class="p">;</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="k">using</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">MeanMotion1stDer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">typedef</span><span class="w"> </span><span class="n">mp_units</span><span class="o">::</span><span class="n">quantity</span><span class="o">&lt;</span><span class="n">mp_units</span><span class="o">::</span><span class="n">one</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="n">mp_units</span><span class="o">::</span><span class="n">non_si</span><span class="o">::</span><span class="n">day</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">mp_units</span><span class="o">::</span><span class="n">non_si</span><span class="o">::</span><span class="n">day</span><span class="p">)</span><span class="o">&gt;</span><span class="p">;</span>
 </span></code></pre></div></p>
 <hr>
 
 <h3 id="typedef-meanmotion2ndder">typedef MeanMotion2ndDer<a class="headerlink" href="#typedef-meanmotion2ndder" title="Permanent link">&para;</a></h3>
 <p><em>Definition for a mean motion 2nd derivative quantity.</em> 
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="k">using</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">MeanMotion2ndDer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">typedef</span><span class="w"> </span><span class="n">mp_units</span><span class="o">::</span><span class="n">quantity</span><span class="o">&lt;</span><span class="n">mp_units</span><span class="o">::</span><span class="n">one</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">mp_units</span><span class="o">::</span><span class="n">pow</span><span class="o">&lt;</span><span class="mi">3</span><span class="o">&gt;</span><span class="p">(</span><span class="n">mp_units</span><span class="o">::</span><span class="n">non_si</span><span class="o">::</span><span class="n">day</span><span class="p">)</span><span class="o">&gt;</span><span class="p">;</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="k">using</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">MeanMotion2ndDer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">typedef</span><span class="w"> </span><span class="n">mp_units</span><span class="o">::</span><span class="n">quantity</span><span class="o">&lt;</span><span class="n">mp_units</span><span class="o">::</span><span class="n">one</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="n">mp_units</span><span class="o">::</span><span class="n">non_si</span><span class="o">::</span><span class="n">day</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">mp_units</span><span class="o">::</span><span class="n">non_si</span><span class="o">::</span><span class="n">day</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">mp_units</span><span class="o">::</span><span class="n">non_si</span><span class="o">::</span><span class="n">day</span><span class="p">)</span><span class="o">&gt;</span><span class="p">;</span>
 </span></code></pre></div></p>
 <hr>
 
@@ -6650,7 +6623,7 @@ You're not viewing the latest version.
 
 <h3 id="typedef-momentofinertia">typedef MomentOfInertia<a class="headerlink" href="#typedef-momentofinertia" title="Permanent link">&para;</a></h3>
 <p><em>Definition for a moment of inertia quantity.</em> 
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="k">using</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">MomentOfInertia</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">typedef</span><span class="w"> </span><span class="n">mp_units</span><span class="o">::</span><span class="n">quantity</span><span class="o">&lt;</span><span class="n">detail</span><span class="o">::</span><span class="n">mass_unit</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">mp_units</span><span class="o">::</span><span class="n">pow</span><span class="o">&lt;</span><span class="mi">2</span><span class="o">&gt;</span><span class="p">(</span><span class="n">detail</span><span class="o">::</span><span class="n">distance_unit</span><span class="p">)</span><span class="o">&gt;</span><span class="p">;</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="k">using</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">MomentOfInertia</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">typedef</span><span class="w"> </span><span class="n">mp_units</span><span class="o">::</span><span class="n">quantity</span><span class="o">&lt;</span><span class="n">detail</span><span class="o">::</span><span class="n">mass_unit</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">detail</span><span class="o">::</span><span class="n">distance_unit</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">detail</span><span class="o">::</span><span class="n">distance_unit</span><span class="o">&gt;</span><span class="p">;</span>
 </span></code></pre></div></p>
 <hr>
 
@@ -6662,7 +6635,7 @@ You're not viewing the latest version.
 
 <h3 id="typedef-powerfluxdensity">typedef PowerFluxDensity<a class="headerlink" href="#typedef-powerfluxdensity" title="Permanent link">&para;</a></h3>
 <p><em>Definition for a power flux density quantity.</em> 
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="k">using</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">PowerFluxDensity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">typedef</span><span class="w"> </span><span class="n">mp_units</span><span class="o">::</span><span class="n">quantity</span><span class="o">&lt;</span><span class="n">detail</span><span class="o">::</span><span class="n">power_unit</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">mp_units</span><span class="o">::</span><span class="n">pow</span><span class="o">&lt;</span><span class="mi">2</span><span class="o">&gt;</span><span class="p">(</span><span class="n">detail</span><span class="o">::</span><span class="n">distance_unit</span><span class="p">)</span><span class="o">&gt;</span><span class="p">;</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="k">using</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">PowerFluxDensity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">typedef</span><span class="w"> </span><span class="n">mp_units</span><span class="o">::</span><span class="n">quantity</span><span class="o">&lt;</span><span class="n">detail</span><span class="o">::</span><span class="n">power_unit</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="n">detail</span><span class="o">::</span><span class="n">distance_unit</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">detail</span><span class="o">::</span><span class="n">distance_unit</span><span class="p">)</span><span class="o">&gt;</span><span class="p">;</span>
 </span></code></pre></div></p>
 <hr>
 
@@ -6692,7 +6665,7 @@ You're not viewing the latest version.
 
 <h3 id="typedef-surfacearea">typedef SurfaceArea<a class="headerlink" href="#typedef-surfacearea" title="Permanent link">&para;</a></h3>
 <p><em>Definition for a surface area quantity.</em> 
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-31-1"><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a><span class="k">using</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">SurfaceArea</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">typedef</span><span class="w"> </span><span class="n">mp_units</span><span class="o">::</span><span class="n">quantity</span><span class="o">&lt;</span><span class="n">mp_units</span><span class="o">::</span><span class="n">pow</span><span class="o">&lt;</span><span class="mi">2</span><span class="o">&gt;</span><span class="p">(</span><span class="n">detail</span><span class="o">::</span><span class="n">distance_unit</span><span class="p">)</span><span class="o">&gt;</span><span class="p">;</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-31-1"><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a><span class="k">using</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">SurfaceArea</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">typedef</span><span class="w"> </span><span class="n">mp_units</span><span class="o">::</span><span class="n">quantity</span><span class="o">&lt;</span><span class="n">detail</span><span class="o">::</span><span class="n">distance_unit</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">detail</span><span class="o">::</span><span class="n">distance_unit</span><span class="o">&gt;</span><span class="p">;</span>
 </span></code></pre></div></p>
 <hr>
 
@@ -6776,37 +6749,13 @@ You're not viewing the latest version.
 </span></code></pre></div>
 <hr>
 <h2 id="public-attributes-documentation">Public Attributes Documentation<a class="headerlink" href="#public-attributes-documentation" title="Permanent link">&para;</a></h2>
-<h3 id="variable-pi">variable PI<a class="headerlink" href="#variable-pi" title="Permanent link">&para;</a></h3>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-47-1"><a id="__codelineno-47-1" name="__codelineno-47-1" href="#__codelineno-47-1"></a><span class="k">constexpr</span><span class="w"> </span><span class="n">Angle</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">PI</span><span class="p">;</span>
-</span></code></pre></div>
-<hr>
-
-<h3 id="variable-two_pi">variable TWO_PI<a class="headerlink" href="#variable-two_pi" title="Permanent link">&para;</a></h3>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-48-1"><a id="__codelineno-48-1" name="__codelineno-48-1" href="#__codelineno-48-1"></a><span class="k">constexpr</span><span class="w"> </span><span class="n">Angle</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">TWO_PI</span><span class="p">;</span>
-</span></code></pre></div>
-<hr>
-
 <h3 id="variable-boltzmann_constant">variable boltzmann_constant<a class="headerlink" href="#variable-boltzmann_constant" title="Permanent link">&para;</a></h3>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-49-1"><a id="__codelineno-49-1" name="__codelineno-49-1" href="#__codelineno-49-1"></a><span class="k">constexpr</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">boltzmann_constant</span><span class="p">;</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-47-1"><a id="__codelineno-47-1" name="__codelineno-47-1" href="#__codelineno-47-1"></a><span class="k">constexpr</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">boltzmann_constant</span><span class="p">;</span>
 </span></code></pre></div>
 <hr>
 
 <h3 id="variable-speed_of_light_in_vacuum">variable speed_of_light_in_vacuum<a class="headerlink" href="#variable-speed_of_light_in_vacuum" title="Permanent link">&para;</a></h3>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-50-1"><a id="__codelineno-50-1" name="__codelineno-50-1" href="#__codelineno-50-1"></a><span class="k">constexpr</span><span class="w"> </span><span class="n">Velocity</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">speed_of_light_in_vacuum</span><span class="p">;</span>
-</span></code></pre></div>
-<hr>
-<h2 id="public-functions-documentation">Public Functions Documentation<a class="headerlink" href="#public-functions-documentation" title="Permanent link">&para;</a></h2>
-<h3 id="function-n_pi">function n_pi<a class="headerlink" href="#function-n_pi" title="Permanent link">&para;</a></h3>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-51-1"><a id="__codelineno-51-1" name="__codelineno-51-1" href="#__codelineno-51-1"></a><span class="k">constexpr</span><span class="w"> </span><span class="n">mp_units</span><span class="o">::</span><span class="n">quantity</span><span class="o">&lt;</span><span class="w"> </span><span class="n">mp_units</span><span class="o">::</span><span class="n">mag</span><span class="o">&lt;</span><span class="w"> </span><span class="n">mp_units</span><span class="o">::</span><span class="n">pi</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">*</span><span class="n">detail</span><span class="o">::</span><span class="n">angle_unit</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">n_pi</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-51-2"><a id="__codelineno-51-2" name="__codelineno-51-2" href="#__codelineno-51-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">mag</span>
-</span><span id="__span-51-3"><a id="__codelineno-51-3" name="__codelineno-51-3" href="#__codelineno-51-3"></a><span class="p">)</span><span class="w"> </span>
-</span></code></pre></div>
-<hr>
-
-<h3 id="function-n_pi_mag">function n_pi_mag<a class="headerlink" href="#function-n_pi_mag" title="Permanent link">&para;</a></h3>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-52-1"><a id="__codelineno-52-1" name="__codelineno-52-1" href="#__codelineno-52-1"></a><span class="k">constexpr</span><span class="w"> </span><span class="n">mp_units</span><span class="o">::</span><span class="n">quantity</span><span class="o">&lt;</span><span class="w"> </span><span class="n">detail</span><span class="o">::</span><span class="n">unitless</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">n_pi_mag</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-52-2"><a id="__codelineno-52-2" name="__codelineno-52-2" href="#__codelineno-52-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">mag</span>
-</span><span id="__span-52-3"><a id="__codelineno-52-3" name="__codelineno-52-3" href="#__codelineno-52-3"></a><span class="p">)</span><span class="w"> </span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-48-1"><a id="__codelineno-48-1" name="__codelineno-48-1" href="#__codelineno-48-1"></a><span class="k">constexpr</span><span class="w"> </span><span class="n">Velocity</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">speed_of_light_in_vacuum</span><span class="p">;</span>
 </span></code></pre></div>
 <hr>
 
@@ -6876,7 +6825,7 @@ You're not viewing the latest version.
       <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.action.edit", "content.action.view", "content.code.annotate", "content.code.copy", "navigation.indexes", "navigation.tabs", "navigation.footer", "navigation.top", "search.highlight", "search.share", "search.suggest", "toc.follow", "toc.integrate"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
       
         <script src="../../javascripts/ce_embed.js"></script>
       

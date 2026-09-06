@@ -21,7 +21,7 @@
       
       
       <link rel="icon" href="../../assets/images/astrea-transparent-crop.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
@@ -29,7 +29,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
@@ -6286,12 +6286,24 @@ You're not viewing the latest version.
 <td style="text-align: left;"><a href="../classastrea_1_1astro_1_1PerturbingForce/#function-perturbingforce"><strong>PerturbingForce</strong></a> () = default<br><em>Default constructor for</em> <a href="../classastrea_1_1astro_1_1PerturbingForce/"><em><strong>PerturbingForce</strong></em></a> <em>.</em></td>
 </tr>
 <tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="../classastrea_1_1astro_1_1PerturbingForce/#function-bind_space_weather_provider"><strong>bind_space_weather_provider</strong></a> (std::shared_ptr&lt; const <a href="../classastrea_1_1astro_1_1SpaceWeatherProvider/"><strong>SpaceWeatherProvider</strong></a> &gt; provider) <br><em>Binds shared immutable space weather data to this force.</em></td>
+</tr>
+<tr>
 <td style="text-align: right;">virtual std::unique_ptr&lt; <a href="../classastrea_1_1astro_1_1PerturbingForce/"><strong>PerturbingForce</strong></a> &gt;</td>
 <td style="text-align: left;"><a href="../classastrea_1_1astro_1_1PerturbingForce/#function-clone"><strong>clone</strong></a> () const = 0<br><em>Creates a clone of the current</em> <a href="../classastrea_1_1astro_1_1PerturbingForce/"><em><strong>PerturbingForce</strong></em></a> <em>object.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">virtual <a href="../structastrea_1_1astro_1_1Perturbation/"><strong>Perturbation</strong></a></td>
 <td style="text-align: left;"><a href="../classastrea_1_1astro_1_1PerturbingForce/#function-compute_perturbation"><strong>compute_perturbation</strong></a> (const <a href="../classastrea_1_1astro_1_1State/"><strong>State</strong></a> &amp; state, const <a href="../classastrea_1_1astro_1_1Vehicle/"><strong>Vehicle</strong></a> &amp; vehicle) const = 0<br><em>Computes the force acting on a vehicle at a given date and state.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">std::shared_ptr&lt; const <a href="../classastrea_1_1astro_1_1SpaceWeatherData/"><strong>SpaceWeatherData</strong></a> &gt;</td>
+<td style="text-align: left;"><a href="../classastrea_1_1astro_1_1PerturbingForce/#function-get_space_weather_data"><strong>get_space_weather_data</strong></a> () noexcept const<br></td>
+</tr>
+<tr>
+<td style="text-align: right;">const std::shared_ptr&lt; const <a href="../classastrea_1_1astro_1_1SpaceWeatherProvider/"><strong>SpaceWeatherProvider</strong></a> &gt; &amp;</td>
+<td style="text-align: left;"><a href="../classastrea_1_1astro_1_1PerturbingForce/#function-get_space_weather_provider"><strong>get_space_weather_provider</strong></a> () noexcept const<br></td>
 </tr>
 <tr>
 <td style="text-align: right;">virtual</td>
@@ -6404,7 +6416,7 @@ You're not viewing the latest version.
       <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.action.edit", "content.action.view", "content.code.annotate", "content.code.copy", "navigation.indexes", "navigation.tabs", "navigation.footer", "navigation.top", "search.highlight", "search.share", "search.suggest", "toc.follow", "toc.integrate"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
       
         <script src="../../javascripts/ce_embed.js"></script>
       

@@ -9,8 +9,8 @@
       </param>
     </templateparamlist>
     <initializer>template&lt;typename T&gt;
-concept <ref refid="conceptastrea_1_1astro_1_1HasGetRamArea" kindref="compound">astrea::astro::HasGetRamArea</ref> =  requires(const T vehicle) {
-    { vehicle.get_ram_area() } -&gt; std::same_as&lt;SurfaceArea&gt;;
+concept <ref refid="conceptastrea_1_1astro_1_1HasGetRamArea" kindref="compound">astrea::astro::HasGetRamArea</ref> =  requires(const T vehicle, const State&amp; state) {
+    { vehicle.get_ram_area(state) } -&gt; std::same_as&lt;SurfaceArea&gt;;
 }    </initializer>
     <briefdescription>
 <para>Concept to check if a type has a method to get the ram area. </para>
@@ -27,6 +27,6 @@ concept <ref refid="conceptastrea_1_1astro_1_1HasGetRamArea" kindref="compound">
 </parameterlist>
 </para>
     </detaileddescription>
-    <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="66" column="1"/>
+    <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="67" column="1"/>
   </compounddef>
 </doxygen>

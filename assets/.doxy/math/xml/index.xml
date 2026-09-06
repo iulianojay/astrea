@@ -16,13 +16,14 @@
     <member refid="operations_8hpp_1a8c39995fb8abca15cc5143d5425f7d26" kind="function"><name>min</name></member>
     <member refid="operations_8hpp_1a366d78f9b21636bb268a3ed9049fa18b" kind="function"><name>pow</name></member>
     <member refid="operations_8hpp_1adb10fbaa0dc54cf1caf8c15503499898" kind="function"><name>clamp</name></member>
+    <member refid="operations_8hpp_1a295868fa6e0a87dcc8ebc486df161289" kind="function"><name>clamp_within_floating_point_error</name></member>
     <member refid="trig_8hpp_1a71cffbdebf4defd2e8ba29c19824c8bc" kind="function"><name>sin</name></member>
     <member refid="trig_8hpp_1a788c70d8bc0485c24e93aacb2244f059" kind="function"><name>cos</name></member>
     <member refid="trig_8hpp_1ad6ecc2569de45bef5a7d8bea28c02809" kind="function"><name>tan</name></member>
-    <member refid="trig_8hpp_1ad32fbc3425de2b592bb367e2e1ffd1a9" kind="function"><name>asin</name></member>
-    <member refid="trig_8hpp_1a667afccfc8c5b307ca22470a0b322b7f" kind="function"><name>acos</name></member>
-    <member refid="trig_8hpp_1adf9a3822d4c7184fb22055c309264261" kind="function"><name>atan</name></member>
-    <member refid="trig_8hpp_1adfa40e8c5dc6ccf304857077d397117e" kind="function"><name>atan2</name></member>
+    <member refid="trig_8hpp_1a88b62de1698bb30ffa49232129839e61" kind="function"><name>asin</name></member>
+    <member refid="trig_8hpp_1a620ba0161ee679c2af7f2d7ebd6fb43a" kind="function"><name>acos</name></member>
+    <member refid="trig_8hpp_1a1d55a3c25bed5577a5532e8f01dedc93" kind="function"><name>atan</name></member>
+    <member refid="trig_8hpp_1a2f22648bdea431e733604b22bc94bef8" kind="function"><name>atan2</name></member>
     <member refid="trig_8hpp_1ac49c16de5e97422212e4fb61cba3e84c" kind="function"><name>sinc</name></member>
     <member refid="trig_8hpp_1af32a45aaa67effbdee014b95d2f46723" kind="function"><name>cosh</name></member>
     <member refid="trig_8hpp_1a08a26e9216c2d39ffda1711d1a85d33f" kind="function"><name>sinh</name></member>

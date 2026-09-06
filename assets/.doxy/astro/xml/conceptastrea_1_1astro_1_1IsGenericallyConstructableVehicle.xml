@@ -28,6 +28,6 @@ concept <ref refid="conceptastrea_1_1astro_1_1IsGenericallyConstructableVehicle"
 </parameterlist>
 </para>
     </detaileddescription>
-    <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="682" column="1"/>
+    <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="725" column="1"/>
   </compounddef>
 </doxygen>

@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classastrea_1_1astro_1_1HarrisPriesterAtmosphere" kind="class" language="C++" prot="public">
+    <compoundname>astrea::astro::HarrisPriesterAtmosphere</compoundname>
+    <includes refid="HarrisPriester_8hpp" local="no">HarrisPriester.hpp</includes>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classastrea_1_1astro_1_1HarrisPriesterAtmosphere_1a78bd3a5d0da60d2cbdc020fab6887b0e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>astrea::astro::HarrisPriesterAtmosphere::HarrisPriesterAtmosphere</definition>
+        <argsstring>()=delete</argsstring>
+        <name>HarrisPriesterAtmosphere</name>
+        <qualifiedname>astrea::astro::HarrisPriesterAtmosphere::HarrisPriesterAtmosphere</qualifiedname>
+        <briefdescription>
+<para>Deleted constructor. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/HarrisPriester.hpp" line="36" column="5"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classastrea_1_1astro_1_1HarrisPriesterAtmosphere_1a043162797f3cd5b3c2e2b166fbfafec6" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Density</type>
+        <definition>Density astrea::astro::HarrisPriesterAtmosphere::find_atmospheric_density</definition>
+        <argsstring>(const State &amp;state)</argsstring>
+        <name>find_atmospheric_density</name>
+        <qualifiedname>astrea::astro::HarrisPriesterAtmosphere::find_atmospheric_density</qualifiedname>
+        <param>
+          <type>const <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
+          <declname>state</declname>
+        </param>
+        <briefdescription>
+<para>Find the atmospheric density at a given state using the Harris-Priester atmospheric model. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Density The atmospheric density at the given state. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/HarrisPriester.hpp" line="42" column="20" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/HarrisPriester.cpp" bodystart="99" bodyend="146"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>The Harris-Priester atmospheric model for Earth. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/HarrisPriester.hpp" line="31" column="1" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/HarrisPriester.hpp" bodystart="31" bodyend="43"/>
+    <listofallmembers>
+      <member refid="classastrea_1_1astro_1_1HarrisPriesterAtmosphere_1a043162797f3cd5b3c2e2b166fbfafec6" prot="public" virt="non-virtual"><scope>astrea::astro::HarrisPriesterAtmosphere</scope><name>find_atmospheric_density</name></member>
+      <member refid="classastrea_1_1astro_1_1HarrisPriesterAtmosphere_1a78bd3a5d0da60d2cbdc020fab6887b0e" prot="public" virt="non-virtual"><scope>astrea::astro::HarrisPriesterAtmosphere</scope><name>HarrisPriesterAtmosphere</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

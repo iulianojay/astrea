@@ -33,7 +33,7 @@
         <childnode refid="21" relation="include">
         </childnode>
       </node>
-      <node id="105">
+      <node id="106">
         <label>astro/frames/definitions/body_fixed_frames.hpp</label>
         <link refid="body__fixed__frames_8hpp"/>
         <childnode refid="26" relation="include">
@@ -88,7 +88,7 @@
         <link refid="primary__frame_8hpp"/>
         <childnode refid="15" relation="include">
         </childnode>
-        <childnode refid="105" relation="include">
+        <childnode refid="106" relation="include">
         </childnode>
       </node>
       <node id="86">
@@ -444,6 +444,10 @@
         </childnode>
         <childnode refid="80" relation="include">
         </childnode>
+        <childnode refid="82" relation="include">
+        </childnode>
+        <childnode refid="105" relation="include">
+        </childnode>
         <childnode refid="86" relation="include">
         </childnode>
         <childnode refid="77" relation="include">
@@ -454,15 +458,13 @@
         </childnode>
         <childnode refid="46" relation="include">
         </childnode>
-        <childnode refid="82" relation="include">
-        </childnode>
       </node>
       <node id="1">
         <label>astrea/astro/astro/state/orbital_elements/OrbitalElements.cpp</label>
         <link refid="OrbitalElements_8cpp"/>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="108" relation="include">
+        <childnode refid="109" relation="include">
         </childnode>
         <childnode refid="90" relation="include">
         </childnode>
@@ -470,11 +472,11 @@
         </childnode>
         <childnode refid="80" relation="include">
         </childnode>
-        <childnode refid="109" relation="include">
+        <childnode refid="110" relation="include">
         </childnode>
         <childnode refid="47" relation="include">
         </childnode>
-        <childnode refid="110" relation="include">
+        <childnode refid="105" relation="include">
         </childnode>
       </node>
       <node id="2">
@@ -498,9 +500,9 @@
         </childnode>
         <childnode refid="103" relation="include">
         </childnode>
-        <childnode refid="106" relation="include">
-        </childnode>
         <childnode refid="107" relation="include">
+        </childnode>
+        <childnode refid="108" relation="include">
         </childnode>
       </node>
       <node id="49">
@@ -1063,7 +1065,7 @@
         <childnode refid="40" relation="include">
         </childnode>
       </node>
-      <node id="106">
+      <node id="107">
         <label>astro/types/concepts.hpp</label>
         <link refid="concepts_8hpp"/>
         <childnode refid="7" relation="include">
@@ -1095,7 +1097,7 @@
         <childnode refid="6" relation="include">
         </childnode>
       </node>
-      <node id="107">
+      <node id="108">
         <label>astro/types/variant_util.hpp</label>
         <link refid="variant__util_8hpp"/>
         <childnode refid="4" relation="include">
@@ -1116,7 +1118,7 @@
       <node id="29">
         <label>array</label>
       </node>
-      <node id="108">
+      <node id="109">
         <label>cassert</label>
       </node>
       <node id="34">
@@ -1149,7 +1151,7 @@
       <node id="82">
         <label>math/interpolation.hpp</label>
       </node>
-      <node id="110">
+      <node id="105">
         <label>math/operations.hpp</label>
       </node>
       <node id="83">
@@ -1191,7 +1193,7 @@
       <node id="40">
         <label>ratio</label>
       </node>
-      <node id="109">
+      <node id="110">
         <label>stdexcept</label>
       </node>
       <node id="10">

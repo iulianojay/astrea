@@ -4,8 +4,8 @@
     <compoundname>HarrisPriester.hpp</compoundname>
     <includes local="no">units/units.hpp</includes>
     <includes refid="astro_8fwd_8hpp" local="no">astro/astro.fwd.hpp</includes>
-    <includedby refid="atmosphere_8hpp" local="no">astrea/astro/astro/systems/atmosphere.hpp</includedby>
-    <includedby refid="HarrisPriester_8cpp" local="no">astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/HarrisPriester.cpp</includedby>
+    <includedby refid="atmosphere_8hpp" local="no">astrea/astro/astro/propagation/force_models/space_weather/atmosphere.hpp</includedby>
+    <includedby refid="HarrisPriester_8cpp" local="no">astrea/astro/astro/propagation/force_models/space_weather/atmosphere/HarrisPriester.cpp</includedby>
     <incdepgraph>
       <node id="3">
         <label>astro/astro.fwd.hpp</label>
@@ -24,7 +24,7 @@
         </childnode>
       </node>
       <node id="1">
-        <label>astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/HarrisPriester.hpp</label>
+        <label>astrea/astro/astro/propagation/force_models/space_weather/atmosphere/HarrisPriester.hpp</label>
         <link refid="HarrisPriester_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
@@ -48,33 +48,46 @@
       </node>
     </incdepgraph>
     <invincdepgraph>
-      <node id="4">
+      <node id="5">
         <label>astrea/astro/astro/astro.hpp</label>
         <link refid="astro_8hpp"/>
       </node>
+      <node id="4">
+        <label>astrea/astro/astro/propagation.hpp</label>
+        <link refid="propagation_8hpp"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
       <node id="3">
-        <label>astrea/astro/astro/systems.hpp</label>
-        <link refid="systems_8hpp"/>
+        <label>astrea/astro/astro/propagation/force_models/AtmosphericForce.hpp</label>
+        <link refid="AtmosphericForce_8hpp"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>astrea/astro/astro/propagation/force_models/space_weather.hpp</label>
+        <link refid="space__weather_8hpp"/>
         <childnode refid="4" relation="include">
         </childnode>
       </node>
       <node id="2">
-        <label>astrea/astro/astro/systems/atmosphere.hpp</label>
+        <label>astrea/astro/astro/propagation/force_models/space_weather/atmosphere.hpp</label>
         <link refid="atmosphere_8hpp_source"/>
         <childnode refid="3" relation="include">
         </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
       </node>
       <node id="1">
-        <label>astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/HarrisPriester.hpp</label>
+        <label>astrea/astro/astro/propagation/force_models/space_weather/atmosphere/HarrisPriester.hpp</label>
         <link refid="HarrisPriester_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
       </node>
     </invincdepgraph>
-    <innerclass refid="classastrea_1_1astro_1_1planets_1_1HarrisPriesterAtmosphere" prot="public">astrea::astro::planets::HarrisPriesterAtmosphere</innerclass>
+    <innerclass refid="classastrea_1_1astro_1_1HarrisPriesterAtmosphere" prot="public">astrea::astro::HarrisPriesterAtmosphere</innerclass>
     <innernamespace refid="namespaceastrea">astrea</innernamespace>
     <innernamespace refid="namespaceastrea_1_1astro">astrea::astro</innernamespace>
-    <innernamespace refid="namespaceastrea_1_1astro_1_1planets">astrea::astro::planets</innernamespace>
     <briefdescription>
 <para>Header file for the HarrisPriester class. </para>
     </briefdescription>
@@ -98,19 +111,17 @@ The GNU Lesser General Public License (LGPL)</para>
 <codeline lineno="24"><highlight class="normal"></highlight></codeline>
 <codeline lineno="25"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">astrea<sp/>{</highlight></codeline>
 <codeline lineno="26"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">astro<sp/>{</highlight></codeline>
-<codeline lineno="27"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">planets<sp/>{</highlight></codeline>
-<codeline lineno="28"><highlight class="normal"></highlight></codeline>
-<codeline lineno="32" refid="classastrea_1_1astro_1_1planets_1_1HarrisPriesterAtmosphere" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classastrea_1_1astro_1_1planets_1_1HarrisPriesterAtmosphere" kindref="compound">HarrisPriesterAtmosphere</ref><sp/>{</highlight></codeline>
-<codeline lineno="33"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
-<codeline lineno="37" refid="classastrea_1_1astro_1_1planets_1_1HarrisPriesterAtmosphere_1a89ee719cbfd36b71736082db917b1130" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1planets_1_1HarrisPriesterAtmosphere_1a89ee719cbfd36b71736082db917b1130" kindref="member">HarrisPriesterAtmosphere</ref>()<sp/>=<sp/></highlight><highlight class="keyword">delete</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="38"><highlight class="normal"></highlight></codeline>
-<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>Density<sp/><ref refid="classastrea_1_1astro_1_1planets_1_1HarrisPriesterAtmosphere_1a19a0506b3af0f558cb8e2b3d5166a3da" kindref="member">find_atmospheric_density</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref>&amp;<sp/>state);</highlight></codeline>
-<codeline lineno="44"><highlight class="normal">};</highlight></codeline>
-<codeline lineno="45"><highlight class="normal"></highlight></codeline>
-<codeline lineno="46"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>planets</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="47"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>astro</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="48"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>astrea</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight></codeline>
+<codeline lineno="31" refid="classastrea_1_1astro_1_1HarrisPriesterAtmosphere" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classastrea_1_1astro_1_1HarrisPriesterAtmosphere" kindref="compound">HarrisPriesterAtmosphere</ref><sp/>{</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="36" refid="classastrea_1_1astro_1_1HarrisPriesterAtmosphere_1a78bd3a5d0da60d2cbdc020fab6887b0e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1HarrisPriesterAtmosphere_1a78bd3a5d0da60d2cbdc020fab6887b0e" kindref="member">HarrisPriesterAtmosphere</ref>()<sp/>=<sp/></highlight><highlight class="keyword">delete</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>Density<sp/><ref refid="classastrea_1_1astro_1_1HarrisPriesterAtmosphere_1a043162797f3cd5b3c2e2b166fbfafec6" kindref="member">find_atmospheric_density</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref>&amp;<sp/>state);</highlight></codeline>
+<codeline lineno="43"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>astro</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>astrea</highlight></codeline>
     </programlisting>
-    <location file="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/HarrisPriester.hpp"/>
+    <location file="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/HarrisPriester.hpp"/>
   </compounddef>
 </doxygen>

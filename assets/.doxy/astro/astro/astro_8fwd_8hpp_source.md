@@ -118,6 +118,11 @@ class Schedule;
 class Perturbation;
 class ForceModel;
 class PerturbingForce;
+class SpaceWeatherProvider;
+
+namespace space_weather {
+class SpaceWeatherData;
+}
 
 // Time
 class Date;

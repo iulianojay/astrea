@@ -14,6 +14,7 @@ _Trigonometric functions for Angular and SI units._ [More...](#detailed-descript
 * `#include <numbers>`
 * `#include <gcem.hpp>`
 * `#include <mp-units/math.h>`
+* `#include <mp-units/systems/isq.h>`
 * `#include <mp-units/systems/si/math.h>`
 
 

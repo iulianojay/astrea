@@ -19,7 +19,7 @@
         <name>zero</name>
         <qualifiedname>astrea::astro::InertiaTensor::zero</qualifiedname>
         <initializer>=
-        0.0 * mp_units::si::unit_symbols::kg * mp_units::pow&lt;2&gt;(mp_units::si::unit_symbols::m)</initializer>
+        0.0 * mp_units::si::unit_symbols::kg * mp_units::si::unit_symbols::m * mp_units::si::unit_symbols::m</initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -35,7 +35,7 @@
         <name>one</name>
         <qualifiedname>astrea::astro::InertiaTensor::one</qualifiedname>
         <initializer>=
-        1.0 * mp_units::si::unit_symbols::kg * mp_units::pow&lt;2&gt;(mp_units::si::unit_symbols::m)</initializer>
+        1.0 * mp_units::si::unit_symbols::kg * mp_units::si::unit_symbols::m * mp_units::si::unit_symbols::m</initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>

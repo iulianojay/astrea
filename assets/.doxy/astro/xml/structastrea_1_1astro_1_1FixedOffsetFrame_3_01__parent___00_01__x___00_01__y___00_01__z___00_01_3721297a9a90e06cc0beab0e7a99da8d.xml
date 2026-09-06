@@ -146,7 +146,7 @@
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="astrea/astro/astro/frames/framework/FixedOffsetFrame.hpp" line="266" column="1" bodyfile="astrea/astro/astro/frames/framework/FixedOffsetFrame.hpp" bodystart="271" bodyend="271"/>
+    <location file="astrea/astro/astro/frames/framework/FixedOffsetFrame.hpp" line="264" column="1" bodyfile="astrea/astro/astro/frames/framework/FixedOffsetFrame.hpp" bodystart="269" bodyend="269"/>
     <listofallmembers>
     </listofallmembers>
   </compounddef>

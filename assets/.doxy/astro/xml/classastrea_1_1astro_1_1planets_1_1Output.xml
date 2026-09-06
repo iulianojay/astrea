@@ -1,0 +1,1670 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classastrea_1_1astro_1_1planets_1_1Output" kind="class" language="C++" prot="public">
+    <compoundname>astrea::astro::planets::Output</compoundname>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classastrea_1_1astro_1_1planets_1_1Output_1a7da4d30cea00558f0d5a08ef18bb5d5e" prot="private" static="no" mutable="no">
+        <type>const int</type>
+        <definition>const int astrea::astro::planets::Output::doy</definition>
+        <argsstring></argsstring>
+        <name>doy</name>
+        <qualifiedname>astrea::astro::planets::Output::doy</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Day of year (from 1 to 365 or 366). </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" line="1051" column="15" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" bodystart="1051" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classastrea_1_1astro_1_1planets_1_1Output_1ad86467febfd0bf2994aeb6fa16ed9bac" prot="private" static="no" mutable="no">
+        <type>const Time</type>
+        <definition>const Time astrea::astro::planets::Output::sec</definition>
+        <argsstring></argsstring>
+        <name>sec</name>
+        <qualifiedname>astrea::astro::planets::Output::sec</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Seconds in day (UT scale). </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" line="1054" column="16" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" bodystart="1054" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classastrea_1_1astro_1_1planets_1_1Output_1aef358a6f3ce38d133082d140f0f30b77" prot="private" static="no" mutable="no">
+        <type>const Angle</type>
+        <definition>const Angle astrea::astro::planets::Output::lat</definition>
+        <argsstring></argsstring>
+        <name>lat</name>
+        <qualifiedname>astrea::astro::planets::Output::lat</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><ref refid="classastrea_1_1astro_1_1Geodetic" kindref="compound">Geodetic</ref> latitude (°). </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" line="1057" column="17" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" bodystart="1057" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classastrea_1_1astro_1_1planets_1_1Output_1ad7aa3c33085d8131a46a0366f516db0b" prot="private" static="no" mutable="no">
+        <type>const Angle</type>
+        <definition>const Angle astrea::astro::planets::Output::lon</definition>
+        <argsstring></argsstring>
+        <name>lon</name>
+        <qualifiedname>astrea::astro::planets::Output::lon</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><ref refid="classastrea_1_1astro_1_1Geodetic" kindref="compound">Geodetic</ref> longitude (°). </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" line="1060" column="17" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" bodystart="1060" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classastrea_1_1astro_1_1planets_1_1Output_1ad5cae2019d433421bf6c1dc21da3f2aa" prot="private" static="no" mutable="no">
+        <type>const Time</type>
+        <definition>const Time astrea::astro::planets::Output::hl</definition>
+        <argsstring></argsstring>
+        <name>hl</name>
+        <qualifiedname>astrea::astro::planets::Output::hl</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Local apparent solar time (hours). </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" line="1063" column="16" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" bodystart="1063" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classastrea_1_1astro_1_1planets_1_1Output_1a6b52b8c6d0f6196a7de8d1a9a1e1cee7" prot="private" static="no" mutable="no">
+        <type>const SolarFlux</type>
+        <definition>const SolarFlux astrea::astro::planets::Output::f107a</definition>
+        <argsstring></argsstring>
+        <name>f107a</name>
+        <qualifiedname>astrea::astro::planets::Output::f107a</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>81 day average of F10.7 flux (centered on day). </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" line="1066" column="21" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" bodystart="1066" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classastrea_1_1astro_1_1planets_1_1Output_1ae3d43b3203f039c4c89dfaced6185610" prot="private" static="no" mutable="no">
+        <type>const SolarFlux</type>
+        <definition>const SolarFlux astrea::astro::planets::Output::f107</definition>
+        <argsstring></argsstring>
+        <name>f107</name>
+        <qualifiedname>astrea::astro::planets::Output::f107</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Daily F10.7 flux for previous day. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" line="1069" column="21" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" bodystart="1069" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classastrea_1_1astro_1_1planets_1_1Output_1ac3e5b1a3ccb25a68bcc794203d6d4d80" prot="private" static="no" mutable="no">
+        <type>const std::array&lt; Unitless, 7 &gt;</type>
+        <definition>const std::array&lt;Unitless, 7&gt; astrea::astro::planets::Output::ap</definition>
+        <argsstring></argsstring>
+        <name>ap</name>
+        <qualifiedname>astrea::astro::planets::Output::ap</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Array containing: <itemizedlist>
+<listitem>
+<para>0: daily Ap </para>
+</listitem>
+<listitem>
+<para>1: 3 hr ap index for current time </para>
+</listitem>
+<listitem>
+<para>2: 3 hr ap index for 3 hrs before current time </para>
+</listitem>
+<listitem>
+<para>3: 3 hr ap index for 6 hrs before current time </para>
+</listitem>
+<listitem>
+<para>4: 3 hr ap index for FOR 9 hrs before current time </para>
+</listitem>
+<listitem>
+<para>5: average of eight 3 hr ap indices from 12 to 33 hrs prior to current time </para>
+</listitem>
+<listitem>
+<para>6: average of eight 3 hr ap indices from 36 to 57 hrs prior to current time </para>
+</listitem>
+</itemizedlist>
+. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" line="1081" column="22" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" bodystart="1081" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classastrea_1_1astro_1_1planets_1_1Output_1ae5d3a82a527c4f37af737586dcf4f566" prot="private" static="no" mutable="no">
+        <type>Acceleration</type>
+        <definition>Acceleration astrea::astro::planets::Output::glat</definition>
+        <argsstring></argsstring>
+        <name>glat</name>
+        <qualifiedname>astrea::astro::planets::Output::glat</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Gravity at latitude (cm/s2). </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" line="1084" column="18" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" bodystart="1084" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classastrea_1_1astro_1_1planets_1_1Output_1a451a9c4bf6a43e93dbecfbe41e757755" prot="private" static="no" mutable="no">
+        <type>Distance</type>
+        <definition>Distance astrea::astro::planets::Output::rlat</definition>
+        <argsstring></argsstring>
+        <name>rlat</name>
+        <qualifiedname>astrea::astro::planets::Output::rlat</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Effective <ref refid="structastrea_1_1astro_1_1planets_1_1Earth" kindref="compound">Earth</ref> radius at latitude (km). </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" line="1087" column="14" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" bodystart="1087" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classastrea_1_1astro_1_1planets_1_1Output_1a5469aa013da0c206e809867aa3d322e9" prot="private" static="no" mutable="no">
+        <type>NumberDensity</type>
+        <definition>NumberDensity astrea::astro::planets::Output::n2MixedNumberDensity</definition>
+        <argsstring></argsstring>
+        <name>n2MixedNumberDensity</name>
+        <qualifiedname>astrea::astro::planets::Output::n2MixedNumberDensity</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>N2 mixed density at alt. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" line="1090" column="19" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" bodystart="1090" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classastrea_1_1astro_1_1planets_1_1Output_1a85c3f9a5d6fba7ad35a287bc598175ad" prot="private" static="no" mutable="no">
+        <type>const std::array&lt; std::array&lt; Unitless, 8 &gt;, 4 &gt;</type>
+        <definition>const std::array&lt;std::array&lt;Unitless, 8&gt;, 4&gt; astrea::astro::planets::Output::legendrePolynomials</definition>
+        <argsstring></argsstring>
+        <name>legendrePolynomials</name>
+        <qualifiedname>astrea::astro::planets::Output::legendrePolynomials</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Legendre polynomials. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" line="1093" column="22" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" bodystart="1093" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classastrea_1_1astro_1_1planets_1_1Output_1a00b903f90c0ec9118d25eb416014c694" prot="private" static="no" mutable="no">
+        <type>const Unitless</type>
+        <definition>const Unitless astrea::astro::planets::Output::ctloc</definition>
+        <argsstring></argsstring>
+        <name>ctloc</name>
+        <qualifiedname>astrea::astro::planets::Output::ctloc</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Cosinus of local solar time. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" line="1096" column="20" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" bodystart="1096" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classastrea_1_1astro_1_1planets_1_1Output_1aa1d25074740b4b530202ad06f749f45d" prot="private" static="no" mutable="no">
+        <type>const Unitless</type>
+        <definition>const Unitless astrea::astro::planets::Output::stloc</definition>
+        <argsstring></argsstring>
+        <name>stloc</name>
+        <qualifiedname>astrea::astro::planets::Output::stloc</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Sinus of local solar time. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" line="1098" column="20" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" bodystart="1098" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classastrea_1_1astro_1_1planets_1_1Output_1a7acdeb769322ef8225c28bf99616a445" prot="private" static="no" mutable="no">
+        <type>const Unitless</type>
+        <definition>const Unitless astrea::astro::planets::Output::c2tloc</definition>
+        <argsstring></argsstring>
+        <name>c2tloc</name>
+        <qualifiedname>astrea::astro::planets::Output::c2tloc</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Square of ctloc. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" line="1100" column="20" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" bodystart="1100" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classastrea_1_1astro_1_1planets_1_1Output_1ad1ffb3183c55ecb57a58e6eeff2a4a70" prot="private" static="no" mutable="no">
+        <type>const Unitless</type>
+        <definition>const Unitless astrea::astro::planets::Output::s2tloc</definition>
+        <argsstring></argsstring>
+        <name>s2tloc</name>
+        <qualifiedname>astrea::astro::planets::Output::s2tloc</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Square of stloc. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" line="1102" column="20" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" bodystart="1102" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classastrea_1_1astro_1_1planets_1_1Output_1ada1c800473b5ceded1d035d7661027cc" prot="private" static="no" mutable="no">
+        <type>const Unitless</type>
+        <definition>const Unitless astrea::astro::planets::Output::c3tloc</definition>
+        <argsstring></argsstring>
+        <name>c3tloc</name>
+        <qualifiedname>astrea::astro::planets::Output::c3tloc</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Cube of ctloc. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" line="1104" column="20" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" bodystart="1104" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classastrea_1_1astro_1_1planets_1_1Output_1adf1267d17c987d627ea338a7721eebbd" prot="private" static="no" mutable="no">
+        <type>const Unitless</type>
+        <definition>const Unitless astrea::astro::planets::Output::s3tloc</definition>
+        <argsstring></argsstring>
+        <name>s3tloc</name>
+        <qualifiedname>astrea::astro::planets::Output::s3tloc</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Cube of stloc. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" line="1106" column="20" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" bodystart="1106" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classastrea_1_1astro_1_1planets_1_1Output_1a42597009aae76937b95e729a0da93929" prot="private" static="no" mutable="no">
+        <type>quantity</type>
+        <definition>quantity astrea::astro::planets::Output::apdf</definition>
+        <argsstring></argsstring>
+        <name>apdf</name>
+        <qualifiedname>astrea::astro::planets::Output::apdf</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Magnetic activity based on daily ap. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" line="1109" column="14" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" bodystart="1109" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classastrea_1_1astro_1_1planets_1_1Output_1ace539645269497ea7cd878f9848c621e" prot="private" static="no" mutable="no">
+        <type>quantity</type>
+        <definition>quantity astrea::astro::planets::Output::apt</definition>
+        <argsstring></argsstring>
+        <name>apt</name>
+        <qualifiedname>astrea::astro::planets::Output::apt</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Magnetic activity based on daily ap. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" line="1112" column="14" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" bodystart="1112" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classastrea_1_1astro_1_1planets_1_1Output_1accb7adf364a65f53c3efd1db9ecd8771" prot="private" static="no" mutable="no">
+        <type>const std::array&lt; Temperature, ZN1.size()&gt;</type>
+        <definition>const std::array&lt;Temperature, ZN1.size()&gt; astrea::astro::planets::Output::mesoTn1</definition>
+        <argsstring></argsstring>
+        <name>mesoTn1</name>
+        <qualifiedname>astrea::astro::planets::Output::mesoTn1</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Temperature at nodes for ZN1 scale. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" line="1115" column="22" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" bodystart="1115" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classastrea_1_1astro_1_1planets_1_1Output_1a4f4b23d6b8e3ce541cbd0b97e6226a4e" prot="private" static="no" mutable="no">
+        <type>const std::array&lt; Temperature, ZN2.size()&gt;</type>
+        <definition>const std::array&lt;Temperature, ZN2.size()&gt; astrea::astro::planets::Output::mesoTn2</definition>
+        <argsstring></argsstring>
+        <name>mesoTn2</name>
+        <qualifiedname>astrea::astro::planets::Output::mesoTn2</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Temperature at nodes for ZN2 scale. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" line="1118" column="22" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" bodystart="1118" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classastrea_1_1astro_1_1planets_1_1Output_1acd6f147f8c0506809436b24a92d53f5a" prot="private" static="no" mutable="no">
+        <type>const std::array&lt; Temperature, ZN3.size()&gt;</type>
+        <definition>const std::array&lt;Temperature, ZN3.size()&gt; astrea::astro::planets::Output::mesoTn3</definition>
+        <argsstring></argsstring>
+        <name>mesoTn3</name>
+        <qualifiedname>astrea::astro::planets::Output::mesoTn3</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Temperature at nodes for ZN3 scale. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" line="1121" column="22" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" bodystart="1121" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classastrea_1_1astro_1_1planets_1_1Output_1a848a87ff71125baaa2963307908d2a3f" prot="private" static="no" mutable="no">
+        <type>const std::array&lt; Temperature, 2 &gt;</type>
+        <definition>const std::array&lt;Temperature, 2&gt; astrea::astro::planets::Output::mesoTgn1</definition>
+        <argsstring></argsstring>
+        <name>mesoTgn1</name>
+        <qualifiedname>astrea::astro::planets::Output::mesoTgn1</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Temperature gradients at end nodes for ZN1 scale. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" line="1124" column="22" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" bodystart="1124" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classastrea_1_1astro_1_1planets_1_1Output_1a9c77a1f0582518f87180a82356c5019f" prot="private" static="no" mutable="no">
+        <type>const std::array&lt; Temperature, 2 &gt;</type>
+        <definition>const std::array&lt;Temperature, 2&gt; astrea::astro::planets::Output::mesoTgn2</definition>
+        <argsstring></argsstring>
+        <name>mesoTgn2</name>
+        <qualifiedname>astrea::astro::planets::Output::mesoTgn2</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Temperature gradients at end nodes for ZN2 scale. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" line="1127" column="22" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" bodystart="1127" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classastrea_1_1astro_1_1planets_1_1Output_1a5d779e78fa9cc64c3747d99474980d59" prot="private" static="no" mutable="no">
+        <type>const std::array&lt; Temperature, 2 &gt;</type>
+        <definition>const std::array&lt;Temperature, 2&gt; astrea::astro::planets::Output::mesoTgn3</definition>
+        <argsstring></argsstring>
+        <name>mesoTgn3</name>
+        <qualifiedname>astrea::astro::planets::Output::mesoTgn3</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Temperature gradients at end nodes for ZN3 scale. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" line="1130" column="22" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" bodystart="1130" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classastrea_1_1astro_1_1planets_1_1Output_1a46cec372571179e9a43f7d16811900f6" prot="private" static="no" mutable="no">
+        <type>const std::array&lt; NumberDensity, 9 &gt;</type>
+        <definition>const std::array&lt;NumberDensity, 9&gt; astrea::astro::planets::Output::densities</definition>
+        <argsstring></argsstring>
+        <name>densities</name>
+        <qualifiedname>astrea::astro::planets::Output::densities</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Densities. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" line="1133" column="22" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" bodystart="1133" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classastrea_1_1astro_1_1planets_1_1Output_1a69bdb58507d188644f74e87a2d9221a0" prot="private" static="no" mutable="no">
+        <type>const std::array&lt; Temperature, 2 &gt;</type>
+        <definition>const std::array&lt;Temperature, 2&gt; astrea::astro::planets::Output::temperatures</definition>
+        <argsstring></argsstring>
+        <name>temperatures</name>
+        <qualifiedname>astrea::astro::planets::Output::temperatures</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Temperatures. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" line="1136" column="22" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" bodystart="1136" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classastrea_1_1astro_1_1planets_1_1Output_1a48528710f4c880355e80658b329c3e8f" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>astrea::astro::planets::Output::Output</definition>
+        <argsstring>(const int doy, const Time sec, const Angle lat, const Angle lon, const Time hl, const SolarFlux f107a, const SolarFlux f107, const std::array&lt; Unitless, 7 &gt; &amp;ap)</argsstring>
+        <name>Output</name>
+        <qualifiedname>astrea::astro::planets::Output::Output</qualifiedname>
+        <param>
+          <type>const int</type>
+          <declname>doy</declname>
+        </param>
+        <param>
+          <type>const Time</type>
+          <declname>sec</declname>
+        </param>
+        <param>
+          <type>const Angle</type>
+          <declname>lat</declname>
+        </param>
+        <param>
+          <type>const Angle</type>
+          <declname>lon</declname>
+        </param>
+        <param>
+          <type>const Time</type>
+          <declname>hl</declname>
+        </param>
+        <param>
+          <type>const SolarFlux</type>
+          <declname>f107a</declname>
+        </param>
+        <param>
+          <type>const SolarFlux</type>
+          <declname>f107</declname>
+        </param>
+        <param>
+          <type>const std::array&lt; Unitless, 7 &gt; &amp;</type>
+          <declname>ap</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Simple constructor. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>doy</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>day of year (from 1 to 365 or 366) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sec</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>seconds in day (UT scale) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>lat</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>geodetic latitude (°) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>lon</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>geodetic longitude (°) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>hl</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>local apparent solar time (hours) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>f107a</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>81 day average of F10.7 flux (centered on day) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>f107</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>daily F10.7 flux for previous day </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ap</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>array containing: <itemizedlist>
+<listitem>
+<para>0: daily Ap </para>
+</listitem>
+<listitem>
+<para>1: 3 hr ap index for current time </para>
+</listitem>
+<listitem>
+<para>2: 3 hr ap index for 3 hrs before current time </para>
+</listitem>
+<listitem>
+<para>3: 3 hr ap index for 6 hrs before current time </para>
+</listitem>
+<listitem>
+<para>4: 3 hr ap index for FOR 9 hrs before current time </para>
+</listitem>
+<listitem>
+<para>5: average of eight 3 hr ap indices from 12 to 33 hrs prior to current time </para>
+</listitem>
+<listitem>
+<para>6: average of eight 3 hr ap indices from 36 to 57 hrs prior to current time </para>
+</listitem>
+</itemizedlist>
+</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" line="1157" column="5" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" bodystart="1157" bodyend="1230"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1planets_1_1Output_1a8fd21a411a3e8aba7e14842c965cbe97" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void astrea::astro::planets::Output::gts7</definition>
+        <argsstring>(const Distance alt)</argsstring>
+        <name>gts7</name>
+        <qualifiedname>astrea::astro::planets::Output::gts7</qualifiedname>
+        <param>
+          <type>const Distance</type>
+          <declname>alt</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Calculate temperatures and densities not including anomalous oxygen. </para>
+<para>This method is the thermospheric portion of NRLMSISE-00 for alt &gt; 72.5 km. </para>
+<para>NOTES ON INPUT VARIABLES:<linebreak/>
+ Seconds, Local Time, and Longitude are used independently in the model and are not of equal importance for every situation.<linebreak/>
+ For the most physically realistic calculation these three variables should be consistent (lst=sec/3600 + lon/15).<linebreak/>
+ The Equation of Time departures from the above formula for apparent local time can be included if available but are of minor importance.<linebreak/>
+<linebreak/>
+</para>
+<para>f107 and f107A values used to generate the model correspond to the 10.7 cm radio flux at the actual distance of the <ref refid="structastrea_1_1astro_1_1planets_1_1Earth" kindref="compound">Earth</ref> from the Sun rather than the radio flux at 1 AU. The following site provides both classes of values:<linebreak/>
+ <ulink url="ftp://ftp.ngdc.noaa.gov/STP/SOLAR_DATA/SOLAR_RADIO/FLUX/">ftp://ftp.ngdc.noaa.gov/STP/SOLAR_DATA/SOLAR_RADIO/FLUX/</ulink><linebreak/>
+<linebreak/>
+</para>
+<para>f107, f107A, and ap effects are neither large nor well established below 80 km and these parameters should be set to 150., 150., and 4. respectively. </para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>alt</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>altitude (km) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" line="1256" column="10" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" bodystart="1256" bodyend="1567"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1planets_1_1Output_1a509c2956d337846d61bd19408cb842e7" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void astrea::astro::planets::Output::gtd7</definition>
+        <argsstring>(const Distance alt)</argsstring>
+        <name>gtd7</name>
+        <qualifiedname>astrea::astro::planets::Output::gtd7</qualifiedname>
+        <param>
+          <type>const Distance</type>
+          <declname>alt</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Calculate temperatures and densities not including anomalous oxygen. </para>
+<para>NOTES ON INPUT VARIABLES:<linebreak/>
+ Seconds, Local Time, and Longitude are used independently in the model and are not of equal importance for every situation.<linebreak/>
+ For the most physically realistic calculation these three variables should be consistent (lst=sec/3600 + lon/15).<linebreak/>
+ The Equation of Time departures from the above formula for apparent local time can be included if available but are of minor importance.<linebreak/>
+<linebreak/>
+</para>
+<para>f107 and f107A values used to generate the model correspond to the 10.7 cm radio flux at the actual distance of the <ref refid="structastrea_1_1astro_1_1planets_1_1Earth" kindref="compound">Earth</ref> from the Sun rather than the radio flux at 1 AU. The following site provides both classes of values:<linebreak/>
+ <ulink url="ftp://ftp.ngdc.noaa.gov/STP/SOLAR_DATA/SOLAR_RADIO/FLUX/">ftp://ftp.ngdc.noaa.gov/STP/SOLAR_DATA/SOLAR_RADIO/FLUX/</ulink><linebreak/>
+<linebreak/>
+</para>
+<para>f107, f107A, and ap effects are neither large nor well established below 80 km and these parameters should be set to 150., 150., and 4. respectively. </para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>alt</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>altitude (km) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" line="1590" column="10" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" bodystart="1590" bodyend="1681"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1planets_1_1Output_1a108e5c052492cdef9b03a4bf3d114881" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void astrea::astro::planets::Output::gtd7d</definition>
+        <argsstring>(const Distance &amp;alt)</argsstring>
+        <name>gtd7d</name>
+        <qualifiedname>astrea::astro::planets::Output::gtd7d</qualifiedname>
+        <param>
+          <type>const Distance &amp;</type>
+          <declname>alt</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Calculate temperatures and densities including anomalous oxygen. </para>
+<para>NOTES ON INPUT VARIABLES:<linebreak/>
+ Seconds, Local Time, and Longitude are used independently in the model and are not of equal importance for every situation.<linebreak/>
+ For the most physically realistic calculation these three variables should be consistent (lst=sec/3600 + lon/15).<linebreak/>
+ The Equation of Time departures from the above formula for apparent local time can be included if available but are of minor importance.<linebreak/>
+ <linebreak/>
+ f107 and f107A values used to generate the model correspond to the 10.7 cm radio flux at the actual distance of the <ref refid="structastrea_1_1astro_1_1planets_1_1Earth" kindref="compound">Earth</ref> from the Sun rather than the radio flux at 1 AU. The following site provides both classes of values:<linebreak/>
+ <ulink url="ftp://ftp.ngdc.noaa.gov/STP/SOLAR_DATA/SOLAR_RADIO/FLUX/">ftp://ftp.ngdc.noaa.gov/STP/SOLAR_DATA/SOLAR_RADIO/FLUX/</ulink><linebreak/>
+ <linebreak/>
+ f107, f107A, and ap effects are neither large nor well established below 80 km and these parameters should be set to 150., 150., and 4. respectively. </para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>alt</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>altitude (km) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" line="1705" column="10" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" bodystart="1705" bodyend="1713"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1planets_1_1Output_1a49c3a353b67a4b74f3c7bc59f8a90eaa" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void astrea::astro::planets::Output::set_density</definition>
+        <argsstring>(const int index, const NumberDensity d)</argsstring>
+        <name>set_density</name>
+        <qualifiedname>astrea::astro::planets::Output::set_density</qualifiedname>
+        <param>
+          <type>const int</type>
+          <declname>index</declname>
+        </param>
+        <param>
+          <type>const NumberDensity</type>
+          <declname>d</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Set one density. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>index</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>one of the nine elements : <itemizedlist>
+<listitem>
+<para><computeroutput><ref refid="_1a56e052e31d6dccffbaecf34f040c6b06aac07ae552b320b931b0dfce4d5c95a3a" kindref="member">HELIUM</ref></computeroutput> </para>
+</listitem>
+<listitem>
+<para><computeroutput><ref refid="_1a56e052e31d6dccffbaecf34f040c6b06aaedfcbb8016071374aa0db3af0204282" kindref="member">ATOMIC_OXYGEN</ref></computeroutput> </para>
+</listitem>
+<listitem>
+<para><computeroutput><ref refid="_1a56e052e31d6dccffbaecf34f040c6b06ad6c05dcb7202f6e7745495adae2cc58d" kindref="member">MOLECULAR_NITROGEN</ref></computeroutput> </para>
+</listitem>
+<listitem>
+<para><computeroutput><ref refid="_1a56e052e31d6dccffbaecf34f040c6b06aec4743ca2dedbd5c53baeb5074927c78" kindref="member">MOLECULAR_OXYGEN</ref></computeroutput> </para>
+</listitem>
+<listitem>
+<para><computeroutput><ref refid="_1a56e052e31d6dccffbaecf34f040c6b06ac09b64c221f7b11e9efb4cf39cfcb4e9" kindref="member">ARGON</ref></computeroutput> </para>
+</listitem>
+<listitem>
+<para><computeroutput><ref refid="_1a56e052e31d6dccffbaecf34f040c6b06a614b53648d8bc0ce6f071912825a472e" kindref="member">TOTAL_MASS</ref></computeroutput> </para>
+</listitem>
+<listitem>
+<para><computeroutput><ref refid="_1a56e052e31d6dccffbaecf34f040c6b06a8bb608dae9ded0bddd01c6e6d2dc8860" kindref="member">HYDROGEN</ref></computeroutput> </para>
+</listitem>
+<listitem>
+<para><computeroutput><ref refid="_1a56e052e31d6dccffbaecf34f040c6b06a45419197b384f2961ab7129a31231142" kindref="member">ATOMIC_NITROGEN</ref></computeroutput> </para>
+</listitem>
+<listitem>
+<para><computeroutput><ref refid="_1a56e052e31d6dccffbaecf34f040c6b06a45419197b384f2961ab7129a31231142" kindref="member">ATOMIC_NITROGEN</ref></computeroutput> </para>
+</listitem>
+</itemizedlist>
+</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>d</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the value of density to set </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" line="1730" column="10" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" bodystart="1730" bodyend="1730"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1planets_1_1Output_1aa86d0bd29d4517018b89c18b39478200" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void astrea::astro::planets::Output::set_temperature</definition>
+        <argsstring>(const int index, const Temperature t)</argsstring>
+        <name>set_temperature</name>
+        <qualifiedname>astrea::astro::planets::Output::set_temperature</qualifiedname>
+        <param>
+          <type>const int</type>
+          <declname>index</declname>
+        </param>
+        <param>
+          <type>const Temperature</type>
+          <declname>t</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Set one temperature. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>index</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>one of the two elements : <itemizedlist>
+<listitem>
+<para><computeroutput><ref refid="_1ae7b836427cda584e680a465d1f92fc0ea7ca4b61298d49fd0c97cb5463c9bb3b6" kindref="member">EXOSPHERIC</ref></computeroutput> </para>
+</listitem>
+<listitem>
+<para><computeroutput><ref refid="_1ae7b836427cda584e680a465d1f92fc0ea2ac9cd79b34d0ffc0f9111d3e40da917" kindref="member">ALTITUDE</ref></computeroutput> </para>
+</listitem>
+</itemizedlist>
+</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>t</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the value of temperature to set </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" line="1740" column="10" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" bodystart="1740" bodyend="1740"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1planets_1_1Output_1a2dd263d9ddf156ec743889d12d15461d" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>NumberDensity</type>
+        <definition>NumberDensity astrea::astro::planets::Output::get_density</definition>
+        <argsstring>(const int index)</argsstring>
+        <name>get_density</name>
+        <qualifiedname>astrea::astro::planets::Output::get_density</qualifiedname>
+        <param>
+          <type>const int</type>
+          <declname>index</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Get one of the stored densities. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>index</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>one of the nine elements : <itemizedlist>
+<listitem>
+<para><computeroutput><ref refid="_1a56e052e31d6dccffbaecf34f040c6b06aac07ae552b320b931b0dfce4d5c95a3a" kindref="member">HELIUM</ref></computeroutput> </para>
+</listitem>
+<listitem>
+<para><computeroutput><ref refid="_1a56e052e31d6dccffbaecf34f040c6b06aaedfcbb8016071374aa0db3af0204282" kindref="member">ATOMIC_OXYGEN</ref></computeroutput> </para>
+</listitem>
+<listitem>
+<para><computeroutput><ref refid="_1a56e052e31d6dccffbaecf34f040c6b06ad6c05dcb7202f6e7745495adae2cc58d" kindref="member">MOLECULAR_NITROGEN</ref></computeroutput> </para>
+</listitem>
+<listitem>
+<para><computeroutput><ref refid="_1a56e052e31d6dccffbaecf34f040c6b06aec4743ca2dedbd5c53baeb5074927c78" kindref="member">MOLECULAR_OXYGEN</ref></computeroutput> </para>
+</listitem>
+<listitem>
+<para><computeroutput><ref refid="_1a56e052e31d6dccffbaecf34f040c6b06ac09b64c221f7b11e9efb4cf39cfcb4e9" kindref="member">ARGON</ref></computeroutput> </para>
+</listitem>
+<listitem>
+<para><computeroutput><ref refid="_1a56e052e31d6dccffbaecf34f040c6b06a614b53648d8bc0ce6f071912825a472e" kindref="member">TOTAL_MASS</ref></computeroutput> </para>
+</listitem>
+<listitem>
+<para><computeroutput><ref refid="_1a56e052e31d6dccffbaecf34f040c6b06a8bb608dae9ded0bddd01c6e6d2dc8860" kindref="member">HYDROGEN</ref></computeroutput> </para>
+</listitem>
+<listitem>
+<para><computeroutput><ref refid="_1a56e052e31d6dccffbaecf34f040c6b06a45419197b384f2961ab7129a31231142" kindref="member">ATOMIC_NITROGEN</ref></computeroutput> </para>
+</listitem>
+<listitem>
+<para><computeroutput><ref refid="_1a56e052e31d6dccffbaecf34f040c6b06a45419197b384f2961ab7129a31231142" kindref="member">ATOMIC_NITROGEN</ref></computeroutput> </para>
+</listitem>
+</itemizedlist>
+</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the requested density </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" line="1757" column="19" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" bodystart="1757" bodyend="1757"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1planets_1_1Output_1a78db631203bca1d52c82138b94f1fe24" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>quantity</type>
+        <definition>quantity astrea::astro::planets::Output::globe7</definition>
+        <argsstring>(const quantity[] p)</argsstring>
+        <name>globe7</name>
+        <qualifiedname>astrea::astro::planets::Output::globe7</qualifiedname>
+        <param>
+          <type>const quantity[]</type>
+          <declname>p</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Calculate G(L) function with upper thermosphere parameters. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>p</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>array of parameters </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>G(L) value </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" line="1763" column="14" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" bodystart="1763" bodyend="1942"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1planets_1_1Output_1a09fe25832d65bb7226ca1ab6f900b679" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>quantity</type>
+        <definition>quantity astrea::astro::planets::Output::glob7s</definition>
+        <argsstring>(const quantity[] p)</argsstring>
+        <name>glob7s</name>
+        <qualifiedname>astrea::astro::planets::Output::glob7s</qualifiedname>
+        <param>
+          <type>const quantity[]</type>
+          <declname>p</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Calculate G(L) function with lower atmosphere parameters. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>p</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>array of parameters </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>G(L) value </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" line="1948" column="14" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" bodystart="1948" bodyend="2032"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1planets_1_1Output_1af2e3656125af4851a0185cf7f8ce07e6" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Unitless</type>
+        <definition>Unitless astrea::astro::planets::Output::sg0</definition>
+        <argsstring>(const Unitless &amp;ex, const Unitless &amp;p24, const Unitless &amp;p25)</argsstring>
+        <name>sg0</name>
+        <qualifiedname>astrea::astro::planets::Output::sg0</qualifiedname>
+        <param>
+          <type>const Unitless &amp;</type>
+          <declname>ex</declname>
+        </param>
+        <param>
+          <type>const Unitless &amp;</type>
+          <declname>p24</declname>
+        </param>
+        <param>
+          <type>const Unitless &amp;</type>
+          <declname>p25</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Implements sg0 function (Eq. A24a). <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ex</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>ex </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>p24</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>abs(p[24]) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>p25</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>p[25] </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>sg0 </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" line="2040" column="14" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" bodystart="2040" bodyend="2059"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1planets_1_1Output_1a449c4cfc977b202f208297a50e0d00d6" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Unitless</type>
+        <definition>Unitless astrea::astro::planets::Output::g0</definition>
+        <argsstring>(const Unitless &amp;apI, const Unitless &amp;p24, const Unitless &amp;p25)</argsstring>
+        <name>g0</name>
+        <qualifiedname>astrea::astro::planets::Output::g0</qualifiedname>
+        <param>
+          <type>const Unitless &amp;</type>
+          <declname>apI</declname>
+        </param>
+        <param>
+          <type>const Unitless &amp;</type>
+          <declname>p24</declname>
+        </param>
+        <param>
+          <type>const Unitless &amp;</type>
+          <declname>p25</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Implements go function (Eq. A24d). <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>apI</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>3 hrs ap </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>p24</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>abs(p[24]) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>p25</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>p[25] </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>go </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" line="2067" column="14" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" bodystart="2067" bodyend="2071"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1planets_1_1Output_1a8bc7543e0b6a2274c61fadf0c7f7cc94" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Unitless</type>
+        <definition>Unitless astrea::astro::planets::Output::calculate_dissociation_correction</definition>
+        <argsstring>(const Distance alt, const Unitless r, const Distance h1, const Distance zh)</argsstring>
+        <name>calculate_dissociation_correction</name>
+        <qualifiedname>astrea::astro::planets::Output::calculate_dissociation_correction</qualifiedname>
+        <param>
+          <type>const Distance</type>
+          <declname>alt</declname>
+        </param>
+        <param>
+          <type>const Unitless</type>
+          <declname>r</declname>
+        </param>
+        <param>
+          <type>const Distance</type>
+          <declname>h1</declname>
+        </param>
+        <param>
+          <type>const Distance</type>
+          <declname>zh</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Calculates chemistry/dissociation correction for MSIS models. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>alt</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>altitude </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>r</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>target ratio </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>h1</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>transition scale length </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>zh</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>altitude of 1/2 R </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>correction </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" line="2080" column="14" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" bodystart="2080" bodyend="2090"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1planets_1_1Output_1a8d0b2293557a00e219e79adf4c3d528d" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Unitless</type>
+        <definition>Unitless astrea::astro::planets::Output::calculate_oxygen_dissociation_correction</definition>
+        <argsstring>(const Distance alt, const Unitless r, const Distance h1, const Distance zh, const Distance h2)</argsstring>
+        <name>calculate_oxygen_dissociation_correction</name>
+        <qualifiedname>astrea::astro::planets::Output::calculate_oxygen_dissociation_correction</qualifiedname>
+        <param>
+          <type>const Distance</type>
+          <declname>alt</declname>
+        </param>
+        <param>
+          <type>const Unitless</type>
+          <declname>r</declname>
+        </param>
+        <param>
+          <type>const Distance</type>
+          <declname>h1</declname>
+        </param>
+        <param>
+          <type>const Distance</type>
+          <declname>zh</declname>
+        </param>
+        <param>
+          <type>const Distance</type>
+          <declname>h2</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Calculates O &amp; O2 chemistry/dissociation correction for MSIS models. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>alt</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>altitude </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>r</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>target ratio </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>h1</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>transition scale length </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>zh</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>altitude of 1/2 R </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>h2</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>transition scale length </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>correction </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" line="2101" column="14" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" bodystart="2101" bodyend="2114"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1planets_1_1Output_1abb640c84fbc0cf586785efa1503a6764" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Distance</type>
+        <definition>Distance astrea::astro::planets::Output::calculate_scale_height</definition>
+        <argsstring>(const Distance &amp;alt, const NumberDensity &amp;speciesMolecularWeight, const Temperature &amp;temp)</argsstring>
+        <name>calculate_scale_height</name>
+        <qualifiedname>astrea::astro::planets::Output::calculate_scale_height</qualifiedname>
+        <param>
+          <type>const Distance &amp;</type>
+          <declname>alt</declname>
+        </param>
+        <param>
+          <type>const NumberDensity &amp;</type>
+          <declname>speciesMolecularWeight</declname>
+        </param>
+        <param>
+          <type>const Temperature &amp;</type>
+          <declname>temp</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Calculates scale height. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>alt</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>altitude </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>speciesMolecularWeight</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>species molecular weight </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>temp</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>temperature </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>scale height (km) </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" line="2122" column="14" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" bodystart="2122" bodyend="2127"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1planets_1_1Output_1a39df34d8984d2ce3d989af7a0a7b8927" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Unitless</type>
+        <definition>Unitless astrea::astro::planets::Output::calculate_turbopause_correction</definition>
+        <argsstring>(const Unitless &amp;diffusiveDensity, const Unitless &amp;mixedDensity, const Unitless &amp;transitionScaleLength, const Unitless &amp;fullMixedMolecularWeight, const Unitless &amp;speciesMolecularWeight)</argsstring>
+        <name>calculate_turbopause_correction</name>
+        <qualifiedname>astrea::astro::planets::Output::calculate_turbopause_correction</qualifiedname>
+        <param>
+          <type>const Unitless &amp;</type>
+          <declname>diffusiveDensity</declname>
+        </param>
+        <param>
+          <type>const Unitless &amp;</type>
+          <declname>mixedDensity</declname>
+        </param>
+        <param>
+          <type>const Unitless &amp;</type>
+          <declname>transitionScaleLength</declname>
+        </param>
+        <param>
+          <type>const Unitless &amp;</type>
+          <declname>fullMixedMolecularWeight</declname>
+        </param>
+        <param>
+          <type>const Unitless &amp;</type>
+          <declname>speciesMolecularWeight</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Calculates turbopause correction for MSIS models. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>dd</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>diffusive density </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>dm</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>full mixed density </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>zhm</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>transition scale length </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>XMM</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>full mixed molecular weight </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>speciesMolecularWeight</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>species molecular weight </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>combined density </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" line="2137" column="14" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" bodystart="2137" bodyend="2161"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1planets_1_1Output_1ad6b0fe81c9099cd4624b53bfbc0a468e" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>quantity</type>
+        <definition>quantity astrea::astro::planets::Output::calculate_density_temperature_profile</definition>
+        <argsstring>(const Distance &amp;alt, const Density &amp;density0, const Unitless &amp;mixedDensity)</argsstring>
+        <name>calculate_density_temperature_profile</name>
+        <qualifiedname>astrea::astro::planets::Output::calculate_density_temperature_profile</qualifiedname>
+        <param>
+          <type>const Distance &amp;</type>
+          <declname>alt</declname>
+        </param>
+        <param>
+          <type>const Density &amp;</type>
+          <declname>density0</declname>
+        </param>
+        <param>
+          <type>const Unitless &amp;</type>
+          <declname>mixedDensity</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Calculate Temperature and Density Profiles for lower atmosphere. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>alt</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>altitude </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>d0</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>density </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>xm</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>mixed density </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>temperature or density profile </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" line="2169" column="14" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" bodystart="2169" bodyend="2261"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1planets_1_1Output_1a9f67645f7649fde6177c48630fba9da8" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>quantity</type>
+        <definition>quantity astrea::astro::planets::Output::calculate_density_temperature_profile_new</definition>
+        <argsstring>(const Distance alt, const Density densityLowerBound, const Temperature tempInf, const Temperature tempLowerBound, const MolecularWeight speciesMolecularWeight, const Unitless thermalDiffusionCoefficient, const Distance altLowerBound, const Unitless slope)</argsstring>
+        <name>calculate_density_temperature_profile_new</name>
+        <qualifiedname>astrea::astro::planets::Output::calculate_density_temperature_profile_new</qualifiedname>
+        <param>
+          <type>const Distance</type>
+          <declname>alt</declname>
+        </param>
+        <param>
+          <type>const Density</type>
+          <declname>densityLowerBound</declname>
+        </param>
+        <param>
+          <type>const Temperature</type>
+          <declname>tempInf</declname>
+        </param>
+        <param>
+          <type>const Temperature</type>
+          <declname>tempLowerBound</declname>
+        </param>
+        <param>
+          <type>const MolecularWeight</type>
+          <declname>speciesMolecularWeight</declname>
+        </param>
+        <param>
+          <type>const Unitless</type>
+          <declname>thermalDiffusionCoefficient</declname>
+        </param>
+        <param>
+          <type>const Distance</type>
+          <declname>altLowerBound</declname>
+        </param>
+        <param>
+          <type>const Unitless</type>
+          <declname>slope</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Calculate temperature and density profiles according to new lower thermo polynomial. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>alt</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>altitude </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>densityLowerBound</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>density at lower boundary </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>tempInf</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>exospheric temperature </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>tempLowerBound</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>temperature at lower boundary </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>xm</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>species molecular weight </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>thermalDiffusionCoefficient</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>thermal diffusion coefficient </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>altLowerBound</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>altitude of the lower boundary </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>s2</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>slope </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>temperature or density profile </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" line="2274" column="14" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" bodystart="2274" bodyend="2368"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1planets_1_1Output_1aab0c77baf10e37441928b6028d525d84" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Acceleration</type>
+        <definition>Acceleration astrea::astro::planets::Output::calculate_gravity_at_altitude</definition>
+        <argsstring>(const Distance &amp;alt)</argsstring>
+        <name>calculate_gravity_at_altitude</name>
+        <qualifiedname>astrea::astro::planets::Output::calculate_gravity_at_altitude</qualifiedname>
+        <param>
+          <type>const Distance &amp;</type>
+          <declname>alt</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Calculate gravity at altitude. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>alt</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>altitude (km) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>gravity at altitude (cm/s2) </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" line="2374" column="18" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" bodystart="2374" bodyend="2374"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1planets_1_1Output_1ae1d1ac151b3748a376f5f555e3d92cc0" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Distance</type>
+        <definition>Distance astrea::astro::planets::Output::zeta</definition>
+        <argsstring>(const Distance &amp;zz, const Distance &amp;zl)</argsstring>
+        <name>zeta</name>
+        <qualifiedname>astrea::astro::planets::Output::zeta</qualifiedname>
+        <param>
+          <type>const Distance &amp;</type>
+          <declname>zz</declname>
+        </param>
+        <param>
+          <type>const Distance &amp;</type>
+          <declname>zl</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Calculate zeta function. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>zz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>zz value </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>zl</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>zl value </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>value of zeta function </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" line="2381" column="14" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" bodystart="2381" bodyend="2381"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>This class is a placeholder for the computed densities and temperatures. </para>
+<para>Densities are provided as an array d such as: <itemizedlist>
+<listitem>
+<para>d[0] = He number density (1/m³) </para>
+</listitem>
+<listitem>
+<para>d[1] = O number density (1/m³) </para>
+</listitem>
+<listitem>
+<para>d[2] = N2 number density (1/m³) </para>
+</listitem>
+<listitem>
+<para>d[3] = O2 number density (1/m³) </para>
+</listitem>
+<listitem>
+<para>d[4] = Ar number density (1/m³) </para>
+</listitem>
+<listitem>
+<para>d[5] = total mass density (kg/m³) (*) </para>
+</listitem>
+<listitem>
+<para>d[6] = H number density (1/m³) </para>
+</listitem>
+<listitem>
+<para>d[7] = N number density (1/m³) </para>
+</listitem>
+<listitem>
+<para>d[8] = anomalous oxygen number density (1/m³) </para>
+</listitem>
+</itemizedlist>
+Total mass density, d[5], is NOT the same for methods gtd7 and gtd7d: <itemizedlist>
+<listitem>
+<para>For gtd7: d[5] is the sum of the mass densities of the species He, O, N2, O2, Ar, H and N but does NOT include anomalous oxygen. </para>
+</listitem>
+<listitem>
+<para>For gtd7d: d[5] is the &quot;effective total mass density for drag&quot; and is the sum of the mass densities of all species in this model, INCLUDING anomalous oxygen. </para>
+</listitem>
+</itemizedlist>
+O, H, and N are set to zero below 72.5 km. </para>
+<para>Temperatures are provided as an array t such as: <itemizedlist>
+<listitem>
+<para>t[0] = exospheric temperature (K) </para>
+</listitem>
+<listitem>
+<para>t[1] = temperature at altitude (K) </para>
+</listitem>
+</itemizedlist>
+t[0] is set to global average for altitudes below 120 km.<linebreak/>
+ The 120 km gradient is left at global average value for altitudes below 72 km. </para>
+    </detaileddescription>
+    <location file="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" line="1048" column="1" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" bodystart="1048" bodyend="2382"/>
+    <listofallmembers>
+      <member refid="classastrea_1_1astro_1_1planets_1_1Output_1ac3e5b1a3ccb25a68bcc794203d6d4d80" prot="private" virt="non-virtual"><scope>astrea::astro::planets::Output</scope><name>ap</name></member>
+      <member refid="classastrea_1_1astro_1_1planets_1_1Output_1a42597009aae76937b95e729a0da93929" prot="private" virt="non-virtual"><scope>astrea::astro::planets::Output</scope><name>apdf</name></member>
+      <member refid="classastrea_1_1astro_1_1planets_1_1Output_1ace539645269497ea7cd878f9848c621e" prot="private" virt="non-virtual"><scope>astrea::astro::planets::Output</scope><name>apt</name></member>
+      <member refid="classastrea_1_1astro_1_1planets_1_1Output_1a7acdeb769322ef8225c28bf99616a445" prot="private" virt="non-virtual"><scope>astrea::astro::planets::Output</scope><name>c2tloc</name></member>
+      <member refid="classastrea_1_1astro_1_1planets_1_1Output_1ada1c800473b5ceded1d035d7661027cc" prot="private" virt="non-virtual"><scope>astrea::astro::planets::Output</scope><name>c3tloc</name></member>
+      <member refid="classastrea_1_1astro_1_1planets_1_1Output_1ad6b0fe81c9099cd4624b53bfbc0a468e" prot="private" virt="non-virtual"><scope>astrea::astro::planets::Output</scope><name>calculate_density_temperature_profile</name></member>
+      <member refid="classastrea_1_1astro_1_1planets_1_1Output_1a9f67645f7649fde6177c48630fba9da8" prot="private" virt="non-virtual"><scope>astrea::astro::planets::Output</scope><name>calculate_density_temperature_profile_new</name></member>
+      <member refid="classastrea_1_1astro_1_1planets_1_1Output_1a8bc7543e0b6a2274c61fadf0c7f7cc94" prot="private" virt="non-virtual"><scope>astrea::astro::planets::Output</scope><name>calculate_dissociation_correction</name></member>
+      <member refid="classastrea_1_1astro_1_1planets_1_1Output_1aab0c77baf10e37441928b6028d525d84" prot="private" virt="non-virtual"><scope>astrea::astro::planets::Output</scope><name>calculate_gravity_at_altitude</name></member>
+      <member refid="classastrea_1_1astro_1_1planets_1_1Output_1a8d0b2293557a00e219e79adf4c3d528d" prot="private" virt="non-virtual"><scope>astrea::astro::planets::Output</scope><name>calculate_oxygen_dissociation_correction</name></member>
+      <member refid="classastrea_1_1astro_1_1planets_1_1Output_1abb640c84fbc0cf586785efa1503a6764" prot="private" virt="non-virtual"><scope>astrea::astro::planets::Output</scope><name>calculate_scale_height</name></member>
+      <member refid="classastrea_1_1astro_1_1planets_1_1Output_1a39df34d8984d2ce3d989af7a0a7b8927" prot="private" virt="non-virtual"><scope>astrea::astro::planets::Output</scope><name>calculate_turbopause_correction</name></member>
+      <member refid="classastrea_1_1astro_1_1planets_1_1Output_1a00b903f90c0ec9118d25eb416014c694" prot="private" virt="non-virtual"><scope>astrea::astro::planets::Output</scope><name>ctloc</name></member>
+      <member refid="classastrea_1_1astro_1_1planets_1_1Output_1a46cec372571179e9a43f7d16811900f6" prot="private" virt="non-virtual"><scope>astrea::astro::planets::Output</scope><name>densities</name></member>
+      <member refid="classastrea_1_1astro_1_1planets_1_1Output_1a7da4d30cea00558f0d5a08ef18bb5d5e" prot="private" virt="non-virtual"><scope>astrea::astro::planets::Output</scope><name>doy</name></member>
+      <member refid="classastrea_1_1astro_1_1planets_1_1Output_1ae3d43b3203f039c4c89dfaced6185610" prot="private" virt="non-virtual"><scope>astrea::astro::planets::Output</scope><name>f107</name></member>
+      <member refid="classastrea_1_1astro_1_1planets_1_1Output_1a6b52b8c6d0f6196a7de8d1a9a1e1cee7" prot="private" virt="non-virtual"><scope>astrea::astro::planets::Output</scope><name>f107a</name></member>
+      <member refid="classastrea_1_1astro_1_1planets_1_1Output_1a449c4cfc977b202f208297a50e0d00d6" prot="private" virt="non-virtual"><scope>astrea::astro::planets::Output</scope><name>g0</name></member>
+      <member refid="classastrea_1_1astro_1_1planets_1_1Output_1a2dd263d9ddf156ec743889d12d15461d" prot="private" virt="non-virtual"><scope>astrea::astro::planets::Output</scope><name>get_density</name></member>
+      <member refid="classastrea_1_1astro_1_1planets_1_1Output_1ae5d3a82a527c4f37af737586dcf4f566" prot="private" virt="non-virtual"><scope>astrea::astro::planets::Output</scope><name>glat</name></member>
+      <member refid="classastrea_1_1astro_1_1planets_1_1Output_1a09fe25832d65bb7226ca1ab6f900b679" prot="private" virt="non-virtual"><scope>astrea::astro::planets::Output</scope><name>glob7s</name></member>
+      <member refid="classastrea_1_1astro_1_1planets_1_1Output_1a78db631203bca1d52c82138b94f1fe24" prot="private" virt="non-virtual"><scope>astrea::astro::planets::Output</scope><name>globe7</name></member>
+      <member refid="classastrea_1_1astro_1_1planets_1_1Output_1a509c2956d337846d61bd19408cb842e7" prot="private" virt="non-virtual"><scope>astrea::astro::planets::Output</scope><name>gtd7</name></member>
+      <member refid="classastrea_1_1astro_1_1planets_1_1Output_1a108e5c052492cdef9b03a4bf3d114881" prot="private" virt="non-virtual"><scope>astrea::astro::planets::Output</scope><name>gtd7d</name></member>
+      <member refid="classastrea_1_1astro_1_1planets_1_1Output_1a8fd21a411a3e8aba7e14842c965cbe97" prot="private" virt="non-virtual"><scope>astrea::astro::planets::Output</scope><name>gts7</name></member>
+      <member refid="classastrea_1_1astro_1_1planets_1_1Output_1ad5cae2019d433421bf6c1dc21da3f2aa" prot="private" virt="non-virtual"><scope>astrea::astro::planets::Output</scope><name>hl</name></member>
+      <member refid="classastrea_1_1astro_1_1planets_1_1Output_1aef358a6f3ce38d133082d140f0f30b77" prot="private" virt="non-virtual"><scope>astrea::astro::planets::Output</scope><name>lat</name></member>
+      <member refid="classastrea_1_1astro_1_1planets_1_1Output_1a85c3f9a5d6fba7ad35a287bc598175ad" prot="private" virt="non-virtual"><scope>astrea::astro::planets::Output</scope><name>legendrePolynomials</name></member>
+      <member refid="classastrea_1_1astro_1_1planets_1_1Output_1ad7aa3c33085d8131a46a0366f516db0b" prot="private" virt="non-virtual"><scope>astrea::astro::planets::Output</scope><name>lon</name></member>
+      <member refid="classastrea_1_1astro_1_1planets_1_1Output_1a848a87ff71125baaa2963307908d2a3f" prot="private" virt="non-virtual"><scope>astrea::astro::planets::Output</scope><name>mesoTgn1</name></member>
+      <member refid="classastrea_1_1astro_1_1planets_1_1Output_1a9c77a1f0582518f87180a82356c5019f" prot="private" virt="non-virtual"><scope>astrea::astro::planets::Output</scope><name>mesoTgn2</name></member>
+      <member refid="classastrea_1_1astro_1_1planets_1_1Output_1a5d779e78fa9cc64c3747d99474980d59" prot="private" virt="non-virtual"><scope>astrea::astro::planets::Output</scope><name>mesoTgn3</name></member>
+      <member refid="classastrea_1_1astro_1_1planets_1_1Output_1accb7adf364a65f53c3efd1db9ecd8771" prot="private" virt="non-virtual"><scope>astrea::astro::planets::Output</scope><name>mesoTn1</name></member>
+      <member refid="classastrea_1_1astro_1_1planets_1_1Output_1a4f4b23d6b8e3ce541cbd0b97e6226a4e" prot="private" virt="non-virtual"><scope>astrea::astro::planets::Output</scope><name>mesoTn2</name></member>
+      <member refid="classastrea_1_1astro_1_1planets_1_1Output_1acd6f147f8c0506809436b24a92d53f5a" prot="private" virt="non-virtual"><scope>astrea::astro::planets::Output</scope><name>mesoTn3</name></member>
+      <member refid="classastrea_1_1astro_1_1planets_1_1Output_1a5469aa013da0c206e809867aa3d322e9" prot="private" virt="non-virtual"><scope>astrea::astro::planets::Output</scope><name>n2MixedNumberDensity</name></member>
+      <member refid="classastrea_1_1astro_1_1planets_1_1Output_1a48528710f4c880355e80658b329c3e8f" prot="private" virt="non-virtual"><scope>astrea::astro::planets::Output</scope><name>Output</name></member>
+      <member refid="classastrea_1_1astro_1_1planets_1_1Output_1a451a9c4bf6a43e93dbecfbe41e757755" prot="private" virt="non-virtual"><scope>astrea::astro::planets::Output</scope><name>rlat</name></member>
+      <member refid="classastrea_1_1astro_1_1planets_1_1Output_1ad1ffb3183c55ecb57a58e6eeff2a4a70" prot="private" virt="non-virtual"><scope>astrea::astro::planets::Output</scope><name>s2tloc</name></member>
+      <member refid="classastrea_1_1astro_1_1planets_1_1Output_1adf1267d17c987d627ea338a7721eebbd" prot="private" virt="non-virtual"><scope>astrea::astro::planets::Output</scope><name>s3tloc</name></member>
+      <member refid="classastrea_1_1astro_1_1planets_1_1Output_1ad86467febfd0bf2994aeb6fa16ed9bac" prot="private" virt="non-virtual"><scope>astrea::astro::planets::Output</scope><name>sec</name></member>
+      <member refid="classastrea_1_1astro_1_1planets_1_1Output_1a49c3a353b67a4b74f3c7bc59f8a90eaa" prot="private" virt="non-virtual"><scope>astrea::astro::planets::Output</scope><name>set_density</name></member>
+      <member refid="classastrea_1_1astro_1_1planets_1_1Output_1aa86d0bd29d4517018b89c18b39478200" prot="private" virt="non-virtual"><scope>astrea::astro::planets::Output</scope><name>set_temperature</name></member>
+      <member refid="classastrea_1_1astro_1_1planets_1_1Output_1af2e3656125af4851a0185cf7f8ce07e6" prot="private" virt="non-virtual"><scope>astrea::astro::planets::Output</scope><name>sg0</name></member>
+      <member refid="classastrea_1_1astro_1_1planets_1_1Output_1aa1d25074740b4b530202ad06f749f45d" prot="private" virt="non-virtual"><scope>astrea::astro::planets::Output</scope><name>stloc</name></member>
+      <member refid="classastrea_1_1astro_1_1planets_1_1Output_1a69bdb58507d188644f74e87a2d9221a0" prot="private" virt="non-virtual"><scope>astrea::astro::planets::Output</scope><name>temperatures</name></member>
+      <member refid="classastrea_1_1astro_1_1planets_1_1Output_1ae1d1ac151b3748a376f5f555e3d92cc0" prot="private" virt="non-virtual"><scope>astrea::astro::planets::Output</scope><name>zeta</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

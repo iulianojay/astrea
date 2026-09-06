@@ -37,6 +37,8 @@ class Cartesian {
 
   public:
     static constexpr auto frame = _frame_; 
+    template <IsFrame auto F>
+    using BaseType = Cartesian<F>;
 
     Cartesian(Unitless scale = 0.0 * astrea::detail::unitless) :
         _r(scale * astrea::detail::distance_unit, scale * astrea::detail::distance_unit, scale * astrea::detail::distance_unit),

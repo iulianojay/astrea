@@ -2,23 +2,21 @@
 
 # File NRLMSISE00.cpp
 
-[**File List**](files.md) **>** [**astrea**](dir_b5324400686b7cece921533bb760c87a.md) **>** [**astro**](dir_1d4dcf10fc541574a93624f5c09a3d6f.md) **>** [**astro**](dir_84db6e3c60e44147f5214c05dc45afc2.md) **>** [**systems**](dir_a5d35e082abd602943cf6d70fa2a6872.md) **>** [**celestial\_bodies**](dir_b988f8927672605e377af1c3b431ef9b.md) **>** [**Earth**](dir_0d926747df7aa4605536658442a7f1d2.md) **>** [**atmosphere**](dir_52ad4357f9588f54fe1e3d5cf2b75c1b.md) **>** [**NRLMSISE00.cpp**](NRLMSISE00_8cpp.md)
+[**File List**](files.md) **>** [**astrea**](dir_b5324400686b7cece921533bb760c87a.md) **>** [**astro**](dir_1d4dcf10fc541574a93624f5c09a3d6f.md) **>** [**astro**](dir_84db6e3c60e44147f5214c05dc45afc2.md) **>** [**propagation**](dir_55ae0edd352c6621ebfa1115f28a0fff.md) **>** [**force\_models**](dir_0ce51a85166db93c377c5b7f000b236c.md) **>** [**space\_weather**](dir_ba92a5bb4647772267966b3cef944594.md) **>** [**atmosphere**](dir_3bfcc16c8bbdb2d74b81ce33c082ff6e.md) **>** [**experimental**](dir_c9cd73a564506b77e0cd8e52337735df.md) **>** [**NRLMSISE00.cpp**](NRLMSISE00_8cpp.md)
 
 [Go to the documentation of this file](NRLMSISE00_8cpp.md)
 
 
 ```C++
 
-#pragma once
+#include <astro/propagation/force_models/space_weather/atmosphere/Nrlmsise00.hpp>
 
-#include <astro/systems/celestial_bodies/Earth/atmosphere/JacciaRoberts.hpp>
-
-#include <mp-units/core.h>
+#include <mp-units/math.h>
 #include <mp-units/systems/hep.h>
 #include <mp-units/systems/si.h>
 
 using namespace mp_units;
-using mp_units::hep::unit_symbols::u; // atmoic mass unit
+using mp_units::hep::unit_symbols::u; // atomic mass unit
 using mp_units::si::unit_symbols::cm;
 using mp_units::si::unit_symbols::d;
 using mp_units::si::unit_symbols::deg;
@@ -35,202 +33,530 @@ using mp_units::si::unit_symbols::s;
 using NumberDensity = quantity<one / pow<3>(m)>;
 using AtomicMass    = quantity<u>;
 
+/*
+Note: Who the fuck wrote the original code for this model? Why do you hate code maintainers?
+*/
+
 namespace astrea {
 namespace astro {
 namespace planets {
 
-static const double PT[] = {
-    9.86573e-1,  1.62228e-2,  1.55270e-2,  -1.04323e-1, -3.75801e-3, -1.18538e-3, -1.24043e-1, 4.56820e-3,  8.76018e-3,
-    -1.36235e-1, -3.52427e-2, 8.84181e-3,  -5.92127e-3, -8.61650,    0.0,         1.28492e-2,  0.0,         1.30096e2,
-    1.04567e-2,  1.65686e-3,  -5.53887e-6, 2.97810e-3,  0.0,         5.13122e-3,  8.66784e-2,  1.58727e-1,  0.0,
-    0.0,         0.0,         -7.27026e-6, 0.0,         6.74494,     4.93933e-3,  2.21656e-3,  2.50802e-3,  0.0,
-    0.0,         -2.08841e-2, -1.79873,    1.45103e-3,  2.81769e-4,  -1.44703e-3, -5.16394e-5, 8.47001e-2,  1.70147e-1,
-    5.72562e-3,  5.07493e-5,  4.36148e-3,  1.17863e-4,  4.74364e-3,  6.61278e-3,  4.34292e-5,  1.44373e-3,  2.41470e-5,
-    2.84426e-3,  8.56560e-4,  2.04028e-3,  0.0,         -3.15994e3,  -2.46423e-3, 1.13843e-3,  4.20512e-4,  0.0,
-    -9.77214e1,  6.77794e-3,  5.27499e-3,  1.14936e-3,  0.0,         -6.61311e-3, -1.84255e-2, -1.96259e-2, 2.98618e4,
-    0.0,         0.0,         0.0,         6.44574e2,   8.84668e-4,  5.05066e-4,  0.0,         4.02881e3,   -1.89503e-3,
-    0.0,         0.0,         8.21407e-4,  2.06780e-3,  0.0,         0.0,         0.0,         0.0,         0.0,
-    -1.20410e-2, -3.63963e-3, 9.92070e-5,  -1.15284e-4, -6.33059e-5, -6.05545e-1, 8.34218e-3,  -9.13036e1,  3.71042e-4,
-    0.0,         4.19000e-4,  2.70928e-3,  3.31507e-3,  -4.44508e-3, -4.96334e-3, -1.60449e-3, 3.95119e-3,  2.48924e-3,
-    5.09815e-4,  4.05302e-3,  2.24076e-3,  0.0,         6.84256e-3,  4.66354e-4,  0.0,         -3.68328e-4, 0.0,
-    0.0,         -1.4687e2,   0.0,         0.0,         1.09501e-3,  4.65156e-4,  5.62583e-4,  3.21596,     6.43168e-4,
-    3.14860e-3,  3.40738e-3,  1.78481e-3,  9.62532e-4,  5.58171e-4,  3.43731,     -2.33195e-1, 5.10289e-4,  0.0,
-    0.0,         -9.25347e4,  0.0,         -1.99639e-3, 0.0,         0.0,         0.0,         0.0,         0.0,
-    0.0,         0.0,         0.0,         0.0,         0.0,         0.0
+static const std::array<Temperature, 150> PT = {
+    mp_units::point<K>(9.86573e-1),  mp_units::point<K>(1.62228e-2),  mp_units::point<K>(1.55270e-2),
+    mp_units::point<K>(-1.04323e-1), mp_units::point<K>(-3.75801e-3), mp_units::point<K>(-1.18538e-3),
+    mp_units::point<K>(-1.24043e-1), mp_units::point<K>(4.56820e-3),  mp_units::point<K>(8.76018e-3),
+    mp_units::point<K>(-1.36235e-1), mp_units::point<K>(-3.52427e-2), mp_units::point<K>(8.84181e-3),
+    mp_units::point<K>(-5.92127e-3), mp_units::point<K>(-8.61650),    mp_units::point<K>(0.0),
+    mp_units::point<K>(1.28492e-2),  mp_units::point<K>(0.0),         mp_units::point<K>(1.30096e2),
+    mp_units::point<K>(1.04567e-2),  mp_units::point<K>(1.65686e-3),  mp_units::point<K>(-5.53887e-6),
+    mp_units::point<K>(2.97810e-3),  mp_units::point<K>(0.0),         mp_units::point<K>(5.13122e-3),
+    mp_units::point<K>(8.66784e-2),  mp_units::point<K>(1.58727e-1),  mp_units::point<K>(0.0),
+    mp_units::point<K>(0.0),         mp_units::point<K>(0.0),         mp_units::point<K>(-7.27026e-6),
+    mp_units::point<K>(0.0),         mp_units::point<K>(6.74494),     mp_units::point<K>(4.93933e-3),
+    mp_units::point<K>(2.21656e-3),  mp_units::point<K>(2.50802e-3),  mp_units::point<K>(0.0),
+    mp_units::point<K>(0.0),         mp_units::point<K>(-2.08841e-2), mp_units::point<K>(-1.79873),
+    mp_units::point<K>(1.45103e-3),  mp_units::point<K>(2.81769e-4),  mp_units::point<K>(-1.44703e-3),
+    mp_units::point<K>(-5.16394e-5), mp_units::point<K>(8.47001e-2),  mp_units::point<K>(1.70147e-1),
+    mp_units::point<K>(5.72562e-3),  mp_units::point<K>(5.07493e-5),  mp_units::point<K>(4.36148e-3),
+    mp_units::point<K>(1.17863e-4),  mp_units::point<K>(4.74364e-3),  mp_units::point<K>(6.61278e-3),
+    mp_units::point<K>(4.34292e-5),  mp_units::point<K>(1.44373e-3),  mp_units::point<K>(2.41470e-5),
+    mp_units::point<K>(2.84426e-3),  mp_units::point<K>(8.56560e-4),  mp_units::point<K>(2.04028e-3),
+    mp_units::point<K>(0.0),         mp_units::point<K>(-3.15994e3),  mp_units::point<K>(-2.46423e-3),
+    mp_units::point<K>(1.13843e-3),  mp_units::point<K>(4.20512e-4),  mp_units::point<K>(0.0),
+    mp_units::point<K>(-9.77214e1),  mp_units::point<K>(6.77794e-3),  mp_units::point<K>(5.27499e-3),
+    mp_units::point<K>(1.14936e-3),  mp_units::point<K>(0.0),         mp_units::point<K>(-6.61311e-3),
+    mp_units::point<K>(-1.84255e-2), mp_units::point<K>(-1.96259e-2), mp_units::point<K>(2.98618e4),
+    mp_units::point<K>(0.0),         mp_units::point<K>(0.0),         mp_units::point<K>(0.0),
+    mp_units::point<K>(6.44574e2),   mp_units::point<K>(8.84668e-4),  mp_units::point<K>(5.05066e-4),
+    mp_units::point<K>(0.0),         mp_units::point<K>(4.02881e3),   mp_units::point<K>(-1.89503e-3),
+    mp_units::point<K>(0.0),         mp_units::point<K>(0.0),         mp_units::point<K>(8.21407e-4),
+    mp_units::point<K>(2.06780e-3),  mp_units::point<K>(0.0),         mp_units::point<K>(0.0),
+    mp_units::point<K>(0.0),         mp_units::point<K>(0.0),         mp_units::point<K>(0.0),
+    mp_units::point<K>(-1.20410e-2), mp_units::point<K>(-3.63963e-3), mp_units::point<K>(9.92070e-5),
+    mp_units::point<K>(-1.15284e-4), mp_units::point<K>(-6.33059e-5), mp_units::point<K>(-6.05545e-1),
+    mp_units::point<K>(8.34218e-3),  mp_units::point<K>(-9.13036e1),  mp_units::point<K>(3.71042e-4),
+    mp_units::point<K>(0.0),         mp_units::point<K>(4.19000e-4),  mp_units::point<K>(2.70928e-3),
+    mp_units::point<K>(3.31507e-3),  mp_units::point<K>(-4.44508e-3), mp_units::point<K>(-4.96334e-3),
+    mp_units::point<K>(-1.60449e-3), mp_units::point<K>(3.95119e-3),  mp_units::point<K>(2.48924e-3),
+    mp_units::point<K>(5.09815e-4),  mp_units::point<K>(4.05302e-3),  mp_units::point<K>(2.24076e-3),
+    mp_units::point<K>(0.0),         mp_units::point<K>(6.84256e-3),  mp_units::point<K>(4.66354e-4),
+    mp_units::point<K>(0.0),         mp_units::point<K>(-3.68328e-4), mp_units::point<K>(0.0),
+    mp_units::point<K>(0.0),         mp_units::point<K>(-1.4687e2),   mp_units::point<K>(0.0),
+    mp_units::point<K>(0.0),         mp_units::point<K>(1.09501e-3),  mp_units::point<K>(4.65156e-4),
+    mp_units::point<K>(5.62583e-4),  mp_units::point<K>(3.21596),     mp_units::point<K>(6.43168e-4),
+    mp_units::point<K>(3.14860e-3),  mp_units::point<K>(3.40738e-3),  mp_units::point<K>(1.78481e-3),
+    mp_units::point<K>(9.62532e-4),  mp_units::point<K>(5.58171e-4),  mp_units::point<K>(3.43731),
+    mp_units::point<K>(-2.33195e-1), mp_units::point<K>(5.10289e-4),  mp_units::point<K>(0.0),
+    mp_units::point<K>(0.0),         mp_units::point<K>(-9.25347e4),  mp_units::point<K>(0.0),
+    mp_units::point<K>(-1.99639e-3), mp_units::point<K>(0.0),         mp_units::point<K>(0.0),
+    mp_units::point<K>(0.0),         mp_units::point<K>(0.0),         mp_units::point<K>(0.0),
+    mp_units::point<K>(0.0),         mp_units::point<K>(0.0),         mp_units::point<K>(0.0),
+    mp_units::point<K>(0.0),         mp_units::point<K>(0.0),         mp_units::point<K>(0.0)
 };
 
 static const std::array<std::array<NumberDensity, 150>, 9> PD = {
     // HE DENSITY
-    { 1.09979,     -4.88060e-2, -1.97501e-1, -9.10280e-2, -6.96558e-3, 2.42136e-2,  3.91333e-1,  -7.20068e-3,
-      -3.22718e-2, 1.41508,     1.68194e-1,  1.85282e-2,  1.09384e-1,  -7.24282,    0.0,         2.96377e-1,
-      -4.97210e-2, 1.04114e2,   -8.61108e-2, -7.29177e-4, 1.48998e-6,  1.08629e-3,  0.0,         0.0,
-      8.31090e-2,  1.12818e-1,  -5.75005e-2, -1.29919e-2, -1.78849e-2, -2.86343e-6, 0.0,         -1.51187e2,
-      -6.65902e-3, 0.0,         -2.02069e-3, 0.0,         0.0,         4.32264e-2,  -2.80444e1,  -3.26789e-3,
-      2.47461e-3,  0.0,         0.0,         9.82100e-2,  1.22714e-1,  -3.96450e-2, 0.0,         -2.76489e-3,
-      0.0,         1.87723e-3,  -8.09813e-3, 4.34428e-5,  -7.70932e-3, 0.0,         -2.28894e-3, -5.69070e-3,
-      -5.22193e-3, 6.00692e-3,  -7.80434e3,  -3.48336e-3, -6.38362e-3, -1.82190e-3, 0.0,         -7.58976e1,
-      -2.17875e-2, -1.72524e-2, -9.06287e-3, 0.0,         2.44725e-2,  8.66040e-2,  1.05712e-1,  3.02543e4,
-      0.0,         0.0,         0.0,         -6.01364e3,  -5.64668e-3, -2.54157e-3, 0.0,         3.15611e2,
-      -5.69158e-3, 0.0,         0.0,         -4.47216e-3, -4.49523e-3, 4.64428e-3,  0.0,         0.0,
-      0.0,         0.0,         4.51236e-2,  2.46520e-2,  6.17794e-3,  0.0,         0.0,         -3.62944e-1,
-      -4.80022e-2, -7.5723e1,   -1.99656e-3, 0.0,         -5.18780e-3, -1.73990e-2, -9.03485e-3, 7.48465e-3,
-      1.53267e-2,  1.06296e-2,  1.18655e-2,  2.55569e-3,  1.69020e-3,  3.51936e-2,  -1.81242e-2, 0.0,
-      -1.00529e-1, -5.10574e-3, 0.0,         2.10228e-3,  0.0,         0.0,         -1.73255e2,  5.07833e-1,
-      -2.41408e-1, 8.75414e-3,  2.77527e-3,  -8.90353e-5, -5.25148,    -5.83899e-3, -2.09122e-2, -9.63530e-3,
-      9.77164e-3,  4.07051e-3,  2.53555e-4,  -5.52875,    -3.55993e-1, -2.49231e-3, 0.0,         0.0,
-      2.86026e1,   0.0,         3.42722e-4,  0.0,         0.0,         0.0,         0.0,         0.0,
-      0.0,         0.0,         0.0,         0.0,         0.0,         0.0 },
+    { 1.09979 * one / pow<3>(m),     -4.88060e-2 * one / pow<3>(m), -1.97501e-1 * one / pow<3>(m),
+      -9.10280e-2 * one / pow<3>(m), -6.96558e-3 * one / pow<3>(m), 2.42136e-2 * one / pow<3>(m),
+      3.91333e-1 * one / pow<3>(m),  -7.20068e-3 * one / pow<3>(m), -3.22718e-2 * one / pow<3>(m),
+      1.41508 * one / pow<3>(m),     1.68194e-1 * one / pow<3>(m),  1.85282e-2 * one / pow<3>(m),
+      1.09384e-1 * one / pow<3>(m),  -7.24282 * one / pow<3>(m),    0.0 * one / pow<3>(m),
+      2.96377e-1 * one / pow<3>(m),  -4.97210e-2 * one / pow<3>(m), 1.04114e2 * one / pow<3>(m),
+      -8.61108e-2 * one / pow<3>(m), -7.29177e-4 * one / pow<3>(m), 1.48998e-6 * one / pow<3>(m),
+      1.08629e-3 * one / pow<3>(m),  0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),
+      8.31090e-2 * one / pow<3>(m),  1.12818e-1 * one / pow<3>(m),  -5.75005e-2 * one / pow<3>(m),
+      -1.29919e-2 * one / pow<3>(m), -1.78849e-2 * one / pow<3>(m), -2.86343e-6 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         -1.51187e2 * one / pow<3>(m),  -6.65902e-3 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         -2.02069e-3 * one / pow<3>(m), 0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         4.32264e-2 * one / pow<3>(m),  -2.80444e1 * one / pow<3>(m),
+      -3.26789e-3 * one / pow<3>(m), 2.47461e-3 * one / pow<3>(m),  0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         9.82100e-2 * one / pow<3>(m),  1.22714e-1 * one / pow<3>(m),
+      -3.96450e-2 * one / pow<3>(m), 0.0 * one / pow<3>(m),         -2.76489e-3 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         1.87723e-3 * one / pow<3>(m),  -8.09813e-3 * one / pow<3>(m),
+      4.34428e-5 * one / pow<3>(m),  -7.70932e-3 * one / pow<3>(m), 0.0 * one / pow<3>(m),
+      -2.28894e-3 * one / pow<3>(m), -5.69070e-3 * one / pow<3>(m), -5.22193e-3 * one / pow<3>(m),
+      6.00692e-3 * one / pow<3>(m),  -7.80434e3 * one / pow<3>(m),  -3.48336e-3 * one / pow<3>(m),
+      -6.38362e-3 * one / pow<3>(m), -1.82190e-3 * one / pow<3>(m), 0.0 * one / pow<3>(m),
+      -7.58976e1 * one / pow<3>(m),  -2.17875e-2 * one / pow<3>(m), -1.72524e-2 * one / pow<3>(m),
+      -9.06287e-3 * one / pow<3>(m), 0.0 * one / pow<3>(m),         2.44725e-2 * one / pow<3>(m),
+      8.66040e-2 * one / pow<3>(m),  1.05712e-1 * one / pow<3>(m),  3.02543e4 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),
+      -6.01364e3 * one / pow<3>(m),  -5.64668e-3 * one / pow<3>(m), -2.54157e-3 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         3.15611e2 * one / pow<3>(m),   -5.69158e-3 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),         -4.47216e-3 * one / pow<3>(m),
+      -4.49523e-3 * one / pow<3>(m), 4.64428e-3 * one / pow<3>(m),  0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),
+      4.51236e-2 * one / pow<3>(m),  2.46520e-2 * one / pow<3>(m),  6.17794e-3 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),         -3.62944e-1 * one / pow<3>(m),
+      -4.80022e-2 * one / pow<3>(m), -7.5723e1 * one / pow<3>(m),   -1.99656e-3 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         -5.18780e-3 * one / pow<3>(m), -1.73990e-2 * one / pow<3>(m),
+      -9.03485e-3 * one / pow<3>(m), 7.48465e-3 * one / pow<3>(m),  1.53267e-2 * one / pow<3>(m),
+      1.06296e-2 * one / pow<3>(m),  1.18655e-2 * one / pow<3>(m),  2.55569e-3 * one / pow<3>(m),
+      1.69020e-3 * one / pow<3>(m),  3.51936e-2 * one / pow<3>(m),  -1.81242e-2 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         -1.00529e-1 * one / pow<3>(m), -5.10574e-3 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         2.10228e-3 * one / pow<3>(m),  0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         -1.73255e2 * one / pow<3>(m),  5.07833e-1 * one / pow<3>(m),
+      -2.41408e-1 * one / pow<3>(m), 8.75414e-3 * one / pow<3>(m),  2.77527e-3 * one / pow<3>(m),
+      -8.90353e-5 * one / pow<3>(m), -5.25148 * one / pow<3>(m),    -5.83899e-3 * one / pow<3>(m),
+      -2.09122e-2 * one / pow<3>(m), -9.63530e-3 * one / pow<3>(m), 9.77164e-3 * one / pow<3>(m),
+      4.07051e-3 * one / pow<3>(m),  2.53555e-4 * one / pow<3>(m),  -5.52875 * one / pow<3>(m),
+      -3.55993e-1 * one / pow<3>(m), -2.49231e-3 * one / pow<3>(m), 0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         2.86026e1 * one / pow<3>(m),   0.0 * one / pow<3>(m),
+      3.42722e-4 * one / pow<3>(m),  0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m) },
     // O DENSITY
-    { 1.02315,     -1.59710e-1, -1.06630e-1, -1.77074e-2, -4.42726e-3, 3.44803e-2,  4.45613e-2,  -3.33751e-2,
-      -5.73598e-2, 3.50360e-1,  6.33053e-2,  2.16221e-2,  5.42577e-2,  -5.74193,    0.0,         1.90891e-1,
-      -1.39194e-2, 1.01102e2,   8.16363e-2,  1.33717e-4,  6.54403e-6,  3.10295e-3,  0.0,         0.0,
-      5.38205e-2,  1.23910e-1,  -1.39831e-2, 0.0,         0.0,         -3.95915e-6, 0.0,         -7.14651e-1,
-      -5.01027e-3, 0.0,         -3.24756e-3, 0.0,         0.0,         4.42173e-2,  -1.31598e1,  -3.15626e-3,
-      1.24574e-3,  -1.47626e-3, -1.55461e-3, 6.40682e-2,  1.34898e-1,  -2.42415e-2, 0.0,         0.0,
-      0.0,         6.13666e-4,  -5.40373e-3, 2.61635e-5,  -3.33012e-3, 0.0,         -3.08101e-3, -2.42679e-3,
-      -3.36086e-3, 0.0,         -1.18979e3,  -5.04738e-2, -2.61547e-3, -1.03132e-3, 1.91583e-4,  -8.38132e1,
-      -1.40517e-2, -1.14167e-2, -4.08012e-3, 1.73522e-4,  -1.39644e-2, -6.64128e-2, -6.85152e-2, -1.34414e4,
-      0.0,         0.0,         0.0,         6.07916e2,   -4.12220e-3, -2.20996e-3, 0.0,         1.70277e3,
-      -4.63015e-3, 0.0,         0.0,         -2.25360e-3, -2.96204e-3, 0.0,         0.0,         0.0,
-      0.0,         0.0,         3.92786e-2,  1.31186e-2,  -1.78086e-3, 0.0,         0.0,         -3.90083e-1,
-      -2.84741e-2, -7.784e1,    -1.02601e-3, 0.0,         -7.26485e-4, -5.42181e-3, -5.59305e-3, 1.22825e-2,
-      1.23868e-2,  6.68835e-3,  -1.03303e-2, -9.51903e-3, 2.70021e-4,  -2.57084e-2, -1.32430e-2, 0.0,
-      -3.81000e-2, -3.16810e-3, 0.0,         0.0,         0.0,         0.0,         0.0,         0.0,
-      0.0,         -9.05762e-4, -2.14590e-3, -1.17824e-3, 3.66732,     -3.79729e-4, -6.13966e-3, -5.09082e-3,
-      -1.96332e-3, -3.08280e-3, -9.75222e-4, 4.03315,     -2.52710e-1, 0.0,         0.0,         0.0,
-      0.0,         0.0,         0.0,         0.0,         0.0,         0.0,         0.0,         0.0,
-      0.0,         0.0,         0.0,         0.0,         0.0,         0.0 },
+    { 1.02315 * one / pow<3>(m),     -1.59710e-1 * one / pow<3>(m), -1.06630e-1 * one / pow<3>(m),
+      -1.77074e-2 * one / pow<3>(m), -4.42726e-3 * one / pow<3>(m), 3.44803e-2 * one / pow<3>(m),
+      4.45613e-2 * one / pow<3>(m),  -3.33751e-2 * one / pow<3>(m), -5.73598e-2 * one / pow<3>(m),
+      3.50360e-1 * one / pow<3>(m),  6.33053e-2 * one / pow<3>(m),  2.16221e-2 * one / pow<3>(m),
+      5.42577e-2 * one / pow<3>(m),  -5.74193 * one / pow<3>(m),    0.0 * one / pow<3>(m),
+      1.90891e-1 * one / pow<3>(m),  -1.39194e-2 * one / pow<3>(m), 1.01102e2 * one / pow<3>(m),
+      8.16363e-2 * one / pow<3>(m),  1.33717e-4 * one / pow<3>(m),  6.54403e-6 * one / pow<3>(m),
+      3.10295e-3 * one / pow<3>(m),  0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),
+      5.38205e-2 * one / pow<3>(m),  1.23910e-1 * one / pow<3>(m),  -1.39831e-2 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),         -3.95915e-6 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         -7.14651e-1 * one / pow<3>(m), -5.01027e-3 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         -3.24756e-3 * one / pow<3>(m), 0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         4.42173e-2 * one / pow<3>(m),  -1.31598e1 * one / pow<3>(m),
+      -3.15626e-3 * one / pow<3>(m), 1.24574e-3 * one / pow<3>(m),  -1.47626e-3 * one / pow<3>(m),
+      -1.55461e-3 * one / pow<3>(m), 6.40682e-2 * one / pow<3>(m),  1.34898e-1 * one / pow<3>(m),
+      -2.42415e-2 * one / pow<3>(m), 0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         6.13666e-4 * one / pow<3>(m),  -5.40373e-3 * one / pow<3>(m),
+      2.61635e-5 * one / pow<3>(m),  -3.33012e-3 * one / pow<3>(m), 0.0 * one / pow<3>(m),
+      -3.08101e-3 * one / pow<3>(m), -2.42679e-3 * one / pow<3>(m), -3.36086e-3 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         -1.18979e3 * one / pow<3>(m),  -5.04738e-2 * one / pow<3>(m),
+      -2.61547e-3 * one / pow<3>(m), -1.03132e-3 * one / pow<3>(m), 1.91583e-4 * one / pow<3>(m),
+      -8.38132e1 * one / pow<3>(m),  -1.40517e-2 * one / pow<3>(m), -1.14167e-2 * one / pow<3>(m),
+      -4.08012e-3 * one / pow<3>(m), 1.73522e-4 * one / pow<3>(m),  -1.39644e-2 * one / pow<3>(m),
+      -6.64128e-2 * one / pow<3>(m), -6.85152e-2 * one / pow<3>(m), -1.34414e4 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),
+      6.07916e2 * one / pow<3>(m),   -4.12220e-3 * one / pow<3>(m), -2.20996e-3 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         1.70277e3 * one / pow<3>(m),   -4.63015e-3 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),         -2.25360e-3 * one / pow<3>(m),
+      -2.96204e-3 * one / pow<3>(m), 0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),
+      3.92786e-2 * one / pow<3>(m),  1.31186e-2 * one / pow<3>(m),  -1.78086e-3 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),         -3.90083e-1 * one / pow<3>(m),
+      -2.84741e-2 * one / pow<3>(m), -7.784e1 * one / pow<3>(m),    -1.02601e-3 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         -7.26485e-4 * one / pow<3>(m), -5.42181e-3 * one / pow<3>(m),
+      -5.59305e-3 * one / pow<3>(m), 1.22825e-2 * one / pow<3>(m),  1.23868e-2 * one / pow<3>(m),
+      6.68835e-3 * one / pow<3>(m),  -1.03303e-2 * one / pow<3>(m), -9.51903e-3 * one / pow<3>(m),
+      2.70021e-4 * one / pow<3>(m),  -2.57084e-2 * one / pow<3>(m), -1.32430e-2 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         -3.81000e-2 * one / pow<3>(m), -3.16810e-3 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         -9.05762e-4 * one / pow<3>(m), -2.14590e-3 * one / pow<3>(m),
+      -1.17824e-3 * one / pow<3>(m), 3.66732 * one / pow<3>(m),     -3.79729e-4 * one / pow<3>(m),
+      -6.13966e-3 * one / pow<3>(m), -5.09082e-3 * one / pow<3>(m), -1.96332e-3 * one / pow<3>(m),
+      -3.08280e-3 * one / pow<3>(m), -9.75222e-4 * one / pow<3>(m), 4.03315 * one / pow<3>(m),
+      -2.52710e-1 * one / pow<3>(m), 0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m) },
     // N2 DENSITY
-    { 1.16112,    0.0, 0.0, 3.33725e-2,  0.0,        3.48637e-2,  -5.44368e-3, 0.0,        -6.73940e-2,
-      1.74754e-1, 0.0, 0.0, 0.0,         1.74712e2,  0.0,         1.26733e-1,  0.0,        1.03154e2,
-      5.52075e-2, 0.0, 0.0, 8.13525e-4,  0.0,        0.0,         8.66784e-2,  1.58727e-1, 0.0,
-      0.0,        0.0, 0.0, 0.0,         -2.50482e1, 0.0,         0.0,         0.0,        0.0,
-      0.0,        0.0, 0.0, -2.48894e-3, 6.16053e-4, -5.79716e-4, 2.95482e-3,  8.47001e-2, 1.70147e-1,
-      0.0,        0.0, 0.0, 0.0,         0.0,        0.0,         2.47425e-5,  0.0,        0.0,
-      0.0,        0.0, 0.0, 0.0,         0.0,        0.0,         0.0,         0.0,        0.0,
-      0.0,        0.0, 0.0, 0.0,         0.0,        0.0,         0.0,         0.0,        0.0,
-      0.0,        0.0, 0.0, 0.0,         0.0,        0.0,         0.0,         0.0,        0.0,
-      0.0,        0.0, 0.0, 0.0,         0.0,        0.0,         0.0,         0.0,        0.0,
-      0.0,        0.0, 0.0, 0.0,         0.0,        0.0,         0.0,         0.0,        0.0,
-      0.0,        0.0, 0.0, 0.0,         0.0,        0.0,         0.0,         0.0,        0.0,
-      0.0,        0.0, 0.0, 0.0,         0.0,        0.0,         0.0,         0.0,        0.0,
-      0.0,        0.0, 0.0, 0.0,         0.0,        0.0,         0.0,         0.0,        0.0,
-      0.0,        0.0, 0.0, 0.0,         0.0,        0.0,         0.0,         0.0,        0.0,
-      0.0,        0.0, 0.0, 0.0,         0.0,        0.0,         0.0,         0.0,        0.0,
-      0.0,        0.0, 0.0, 0.0,         0.0,        0.0 },
+    { 1.16112 * one / pow<3>(m),     0.0 * one / pow<3>(m),        0.0 * one / pow<3>(m),
+      3.33725e-2 * one / pow<3>(m),  0.0 * one / pow<3>(m),        3.48637e-2 * one / pow<3>(m),
+      -5.44368e-3 * one / pow<3>(m), 0.0 * one / pow<3>(m),        -6.73940e-2 * one / pow<3>(m),
+      1.74754e-1 * one / pow<3>(m),  0.0 * one / pow<3>(m),        0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         1.74712e2 * one / pow<3>(m),  0.0 * one / pow<3>(m),
+      1.26733e-1 * one / pow<3>(m),  0.0 * one / pow<3>(m),        1.03154e2 * one / pow<3>(m),
+      5.52075e-2 * one / pow<3>(m),  0.0 * one / pow<3>(m),        0.0 * one / pow<3>(m),
+      8.13525e-4 * one / pow<3>(m),  0.0 * one / pow<3>(m),        0.0 * one / pow<3>(m),
+      8.66784e-2 * one / pow<3>(m),  1.58727e-1 * one / pow<3>(m), 0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),        0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         -2.50482e1 * one / pow<3>(m), 0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),        0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),        0.0 * one / pow<3>(m),
+      -2.48894e-3 * one / pow<3>(m), 6.16053e-4 * one / pow<3>(m), -5.79716e-4 * one / pow<3>(m),
+      2.95482e-3 * one / pow<3>(m),  8.47001e-2 * one / pow<3>(m), 1.70147e-1 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),        0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),        0.0 * one / pow<3>(m),
+      2.47425e-5 * one / pow<3>(m),  0.0 * one / pow<3>(m),        0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),        0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),        0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),        0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),        0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),        0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),        0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),        0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),        0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),        0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),        0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),        0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),        0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),        0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),        0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),        0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),        0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),        0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),        0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),        0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),        0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),        0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),        0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),        0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),        0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),        0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),        0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),        0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),        0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),        0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),        0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),        0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),        0.0 * one / pow<3>(m) },
     // TOTAL MASS
-    { 9.44846e-1,  0.0,        0.0, -3.08617e-2, 0.0,       -2.44019e-2, 6.48607e-3, 0.0,        3.08181e-2,
-      4.59392e-2,  0.0,        0.0, 0.0,         1.74712e2, 0.0,         2.13260e-2, 0.0,        -3.56958e2,
-      0.0,         1.82278e-4, 0.0, 3.07472e-4,  0.0,       0.0,         8.66784e-2, 1.58727e-1, 0.0,
-      0.0,         0.0,        0.0, 0.0,         0.0,       3.83054e-3,  0.0,        0.0,        -1.93065e-3,
-      -1.45090e-3, 0.0,        0.0, 0.0,         0.0,       -1.23493e-3, 1.36736e-3, 8.47001e-2, 1.70147e-1,
-      3.71469e-3,  0.0,        0.0, 0.0,         0.0,       5.10250e-3,  2.47425e-5, 0.0,        0.0,
-      0.0,         0.0,        0.0, 0.0,         0.0,       0.0,         0.0,        0.0,        0.0,
-      0.0,         0.0,        0.0, 0.0,         0.0,       0.0,         0.0,        0.0,        0.0,
-      0.0,         0.0,        0.0, 0.0,         0.0,       0.0,         0.0,        0.0,        0.0,
-      0.0,         0.0,        0.0, 0.0,         0.0,       0.0,         0.0,        0.0,        0.0,
-      0.0,         0.0,        0.0, 0.0,         0.0,       0.0,         3.68756e-3, 0.0,        0.0,
-      0.0,         0.0,        0.0, 0.0,         0.0,       0.0,         0.0,        0.0,        0.0,
-      0.0,         0.0,        0.0, 0.0,         0.0,       0.0,         0.0,        0.0,        0.0,
-      0.0,         0.0,        0.0, 0.0,         0.0,       0.0,         0.0,        0.0,        0.0,
-      0.0,         0.0,        0.0, 0.0,         0.0,       0.0,         0.0,        0.0,        0.0,
-      0.0,         0.0,        0.0, 0.0,         0.0,       0.0,         0.0,        0.0,        0.0,
-      0.0,         0.0,        0.0, 0.0,         0.0,       0.0 },
+    { 9.44846e-1 * one / pow<3>(m),  0.0 * one / pow<3>(m),        0.0 * one / pow<3>(m),
+      -3.08617e-2 * one / pow<3>(m), 0.0 * one / pow<3>(m),        -2.44019e-2 * one / pow<3>(m),
+      6.48607e-3 * one / pow<3>(m),  0.0 * one / pow<3>(m),        3.08181e-2 * one / pow<3>(m),
+      4.59392e-2 * one / pow<3>(m),  0.0 * one / pow<3>(m),        0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         1.74712e2 * one / pow<3>(m),  0.0 * one / pow<3>(m),
+      2.13260e-2 * one / pow<3>(m),  0.0 * one / pow<3>(m),        -3.56958e2 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         1.82278e-4 * one / pow<3>(m), 0.0 * one / pow<3>(m),
+      3.07472e-4 * one / pow<3>(m),  0.0 * one / pow<3>(m),        0.0 * one / pow<3>(m),
+      8.66784e-2 * one / pow<3>(m),  1.58727e-1 * one / pow<3>(m), 0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),        0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),        3.83054e-3 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),        -1.93065e-3 * one / pow<3>(m),
+      -1.45090e-3 * one / pow<3>(m), 0.0 * one / pow<3>(m),        0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),        -1.23493e-3 * one / pow<3>(m),
+      1.36736e-3 * one / pow<3>(m),  8.47001e-2 * one / pow<3>(m), 1.70147e-1 * one / pow<3>(m),
+      3.71469e-3 * one / pow<3>(m),  0.0 * one / pow<3>(m),        0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),        5.10250e-3 * one / pow<3>(m),
+      2.47425e-5 * one / pow<3>(m),  0.0 * one / pow<3>(m),        0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),        0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),        0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),        0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),        0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),        0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),        0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),        0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),        0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),        0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),        0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),        0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),        0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),        0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),        0.0 * one / pow<3>(m),
+      3.68756e-3 * one / pow<3>(m),  0.0 * one / pow<3>(m),        0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),        0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),        0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),        0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),        0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),        0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),        0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),        0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),        0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),        0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),        0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),        0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),        0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),        0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),        0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),        0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),        0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),        0.0 * one / pow<3>(m) },
     // O2 DENSITY
-    { 1.35580,     1.44816e-1,  0.0,         6.07767e-2, 0.0,        2.94777e-2, 7.46900e-2, 0.0,        -9.23822e-2,
-      8.57342e-2,  0.0,         0.0,         0.0,        2.38636e1,  0.0,        7.71653e-2, 0.0,        8.18751e1,
-      1.87736e-2,  0.0,         0.0,         1.49667e-2, 0.0,        0.0,        8.66784e-2, 1.58727e-1, 0.0,
-      0.0,         0.0,         0.0,         0.0,        -3.67874e2, 5.48158e-3, 0.0,        0.0,        0.0,
-      0.0,         0.0,         0.0,         0.0,        0.0,        0.0,        0.0,        8.47001e-2, 1.70147e-1,
-      1.22631e-2,  0.0,         0.0,         0.0,        0.0,        8.17187e-3, 3.71617e-5, 0.0,        0.0,
-      0.0,         0.0,         0.0,         0.0,        0.0,        0.0,        0.0,        0.0,        0.0,
-      0.0,         -2.10826e-3, -3.13640e-3, 0.0,        0.0,        0.0,        0.0,        0.0,        0.0,
-      0.0,         0.0,         0.0,         0.0,        0.0,        0.0,        0.0,        0.0,        0.0,
-      0.0,         0.0,         0.0,         0.0,        0.0,        0.0,        0.0,        0.0,        0.0,
-      -7.35742e-2, -5.00266e-2, 0.0,         0.0,        0.0,        0.0,        1.94965e-2, 0.0,        0.0,
-      0.0,         0.0,         0.0,         0.0,        0.0,        0.0,        0.0,        0.0,        0.0,
-      0.0,         0.0,         0.0,         0.0,        0.0,        0.0,        0.0,        0.0,        0.0,
-      0.0,         0.0,         0.0,         0.0,        0.0,        0.0,        0.0,        0.0,        0.0,
-      0.0,         0.0,         0.0,         0.0,        0.0,        0.0,        0.0,        0.0,        0.0,
-      0.0,         0.0,         0.0,         0.0,        0.0,        0.0,        0.0,        0.0,        0.0,
-      0.0,         0.0,         0.0,         0.0,        0.0,        0.0 },
+    { 1.35580 * one / pow<3>(m),     1.44816e-1 * one / pow<3>(m),  0.0 * one / pow<3>(m),
+      6.07767e-2 * one / pow<3>(m),  0.0 * one / pow<3>(m),         2.94777e-2 * one / pow<3>(m),
+      7.46900e-2 * one / pow<3>(m),  0.0 * one / pow<3>(m),         -9.23822e-2 * one / pow<3>(m),
+      8.57342e-2 * one / pow<3>(m),  0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         2.38636e1 * one / pow<3>(m),   0.0 * one / pow<3>(m),
+      7.71653e-2 * one / pow<3>(m),  0.0 * one / pow<3>(m),         8.18751e1 * one / pow<3>(m),
+      1.87736e-2 * one / pow<3>(m),  0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),
+      1.49667e-2 * one / pow<3>(m),  0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),
+      8.66784e-2 * one / pow<3>(m),  1.58727e-1 * one / pow<3>(m),  0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         -3.67874e2 * one / pow<3>(m),  5.48158e-3 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         8.47001e-2 * one / pow<3>(m),  1.70147e-1 * one / pow<3>(m),
+      1.22631e-2 * one / pow<3>(m),  0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),         8.17187e-3 * one / pow<3>(m),
+      3.71617e-5 * one / pow<3>(m),  0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         -2.10826e-3 * one / pow<3>(m), -3.13640e-3 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),
+      -7.35742e-2 * one / pow<3>(m), -5.00266e-2 * one / pow<3>(m), 0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),
+      1.94965e-2 * one / pow<3>(m),  0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m) },
     // AR DENSITY
-    { 1.04761,     2.00165e-1,  2.37697e-1,  3.68552e-2,  0.0,         3.57202e-2,  -2.14075e-1, 0.0,
-      -1.08018e-1, -3.73981e-1, 0.0,         3.10022e-2,  -1.16305e-3, -2.07596e1,  0.0,         8.64502e-2,
-      0.0,         9.74908e1,   5.16707e-2,  0.0,         0.0,         0.0,         0.0,         0.0,
-      8.66784e-2,  1.58727e-1,  0.0,         0.0,         0.0,         0.0,         0.0,         3.46193e2,
-      1.34297e-2,  0.0,         0.0,         0.0,         0.0,         0.0,         0.0,         -3.48509e-3,
-      -1.54689e-4, 0.0,         0.0,         8.47001e-2,  1.70147e-1,  1.47753e-2,  0.0,         0.0,
-      0.0,         0.0,         1.89320e-2,  3.68181e-5,  1.32570e-2,  0.0,         0.0,         3.59719e-3,
-      7.44328e-3,  -1.00023e-3, -6.50528e3,  0.0,         1.03485e-2,  -1.00983e-3, -4.06916e-3, -6.60864e1,
-      -1.71533e-2, 1.10605e-2,  1.20300e-2,  -5.20034e-3, 0.0,         0.0,         0.0,         0.0,
-      0.0,         0.0,         0.0,         -2.62769e3,  7.13755e-3,  4.17999e-3,  0.0,         1.2591e4,
-      0.0,         0.0,         0.0,         -2.23595e-3, 4.60217e-3,  5.71794e-3,  0.0,         0.0,
-      0.0,         0.0,         -3.18353e-2, -2.35526e-2, -1.36189e-2, 0.0,         0.0,         0.0,
-      2.03522e-2,  -6.67837e1,  -1.09724e-3, 0.0,         -1.38821e-2, 1.60468e-2,  0.0,         0.0,
-      0.0,         0.0,         0.0,         0.0,         0.0,         1.51574e-2,  -5.44470e-4, 0.0,
-      7.28224e-2,  6.59413e-2,  0.0,         -5.15692e-3, 0.0,         0.0,         -3.70367e3,  0.0,
-      0.0,         1.36131e-2,  5.38153e-3,  0.0,         4.76285,     -1.75677e-2, 2.26301e-2,  0.0,
-      1.76631e-2,  4.77162e-3,  0.0,         5.39354,     0.0,         -7.51710e-3, 0.0,         0.0,
-      -8.82736e1,  0.0,         0.0,         0.0,         0.0,         0.0,         0.0,         0.0,
-      0.0,         0.0,         0.0,         0.0,         0.0,         0.0 },
+    { 1.04761 * one / pow<3>(m),     2.00165e-1 * one / pow<3>(m),  2.37697e-1 * one / pow<3>(m),
+      3.68552e-2 * one / pow<3>(m),  0.0 * one / pow<3>(m),         3.57202e-2 * one / pow<3>(m),
+      -2.14075e-1 * one / pow<3>(m), 0.0 * one / pow<3>(m),         -1.08018e-1 * one / pow<3>(m),
+      -3.73981e-1 * one / pow<3>(m), 0.0 * one / pow<3>(m),         3.10022e-2 * one / pow<3>(m),
+      -1.16305e-3 * one / pow<3>(m), -2.07596e1 * one / pow<3>(m),  0.0 * one / pow<3>(m),
+      8.64502e-2 * one / pow<3>(m),  0.0 * one / pow<3>(m),         9.74908e1 * one / pow<3>(m),
+      5.16707e-2 * one / pow<3>(m),  0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),
+      8.66784e-2 * one / pow<3>(m),  1.58727e-1 * one / pow<3>(m),  0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         3.46193e2 * one / pow<3>(m),   1.34297e-2 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),
+      -3.48509e-3 * one / pow<3>(m), -1.54689e-4 * one / pow<3>(m), 0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         8.47001e-2 * one / pow<3>(m),  1.70147e-1 * one / pow<3>(m),
+      1.47753e-2 * one / pow<3>(m),  0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),         1.89320e-2 * one / pow<3>(m),
+      3.68181e-5 * one / pow<3>(m),  1.32570e-2 * one / pow<3>(m),  0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         3.59719e-3 * one / pow<3>(m),  7.44328e-3 * one / pow<3>(m),
+      -1.00023e-3 * one / pow<3>(m), -6.50528e3 * one / pow<3>(m),  0.0 * one / pow<3>(m),
+      1.03485e-2 * one / pow<3>(m),  -1.00983e-3 * one / pow<3>(m), -4.06916e-3 * one / pow<3>(m),
+      -6.60864e1 * one / pow<3>(m),  -1.71533e-2 * one / pow<3>(m), 1.10605e-2 * one / pow<3>(m),
+      1.20300e-2 * one / pow<3>(m),  -5.20034e-3 * one / pow<3>(m), 0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),
+      -2.62769e3 * one / pow<3>(m),  7.13755e-3 * one / pow<3>(m),  4.17999e-3 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         1.2591e4 * one / pow<3>(m),    0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),         -2.23595e-3 * one / pow<3>(m),
+      4.60217e-3 * one / pow<3>(m),  5.71794e-3 * one / pow<3>(m),  0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),
+      -3.18353e-2 * one / pow<3>(m), -2.35526e-2 * one / pow<3>(m), -1.36189e-2 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),
+      2.03522e-2 * one / pow<3>(m),  -6.67837e1 * one / pow<3>(m),  -1.09724e-3 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         -1.38821e-2 * one / pow<3>(m), 1.60468e-2 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         1.51574e-2 * one / pow<3>(m),  -5.44470e-4 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         7.28224e-2 * one / pow<3>(m),  6.59413e-2 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         -5.15692e-3 * one / pow<3>(m), 0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         -3.70367e3 * one / pow<3>(m),  0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         1.36131e-2 * one / pow<3>(m),  5.38153e-3 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         4.76285 * one / pow<3>(m),     -1.75677e-2 * one / pow<3>(m),
+      2.26301e-2 * one / pow<3>(m),  0.0 * one / pow<3>(m),         1.76631e-2 * one / pow<3>(m),
+      4.77162e-3 * one / pow<3>(m),  0.0 * one / pow<3>(m),         5.39354 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         -7.51710e-3 * one / pow<3>(m), 0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         -8.82736e1 * one / pow<3>(m),  0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m) },
     // H DENSITY
-    { 1.26376,     -2.14304e-1, -1.49984e-1, 2.30404e-1,  2.98237e-2,  2.68673e-2,  2.96228e-1,  2.21900e-2,
-      -2.07655e-2, 4.52506e-1,  1.20105e-1,  3.24420e-2,  4.24816e-2,  -9.14313,    0.0,         2.47178e-2,
-      -2.88229e-2, 8.12805e1,   5.10380e-2,  -5.80611e-3, 2.51236e-5,  -1.24083e-2, 0.0,         0.0,
-      8.66784e-2,  1.58727e-1,  -3.48190e-2, 0.0,         0.0,         2.89885e-5,  0.0,         1.53595e2,
-      -1.68604e-2, 0.0,         1.01015e-2,  0.0,         0.0,         0.0,         0.0,         2.84552e-4,
-      -1.22181e-3, 0.0,         0.0,         8.47001e-2,  1.70147e-1,  -1.04927e-2, 0.0,         0.0,
-      0.0,         -5.91313e-3, -2.30501e-2, 3.14758e-5,  0.0,         0.0,         1.26956e-2,  8.35489e-3,
-      3.10513e-4,  0.0,         3.42119e3,   -2.45017e-3, -4.27154e-4, 5.45152e-4,  1.89896e-3,  2.89121e1,
-      -6.49973e-3, -1.93855e-2, -1.48492e-2, 0.0,         -5.10576e-2, 7.87306e-2,  9.51981e-2,  -1.49422e4,
-      0.0,         0.0,         0.0,         2.65503e2,   0.0,         0.0,         0.0,         0.0,
-      0.0,         0.0,         0.0,         6.37110e-3,  3.24789e-4,  0.0,         0.0,         0.0,
-      0.0,         0.0,         6.14274e-2,  1.00376e-2,  -8.41083e-4, 0.0,         0.0,         0.0,
-      -1.27099e-2, 0.0,         0.0,         0.0,         -3.94077e-3, -1.28601e-2, -7.97616e-3, 0.0,
-      0.0,         0.0,         0.0,         0.0,         0.0,         0.0,         0.0,         0.0,
-      0.0,         0.0,         0.0,         0.0,         0.0,         0.0,         0.0,         0.0,
-      0.0,         -6.71465e-3, -1.69799e-3, 1.93772e-3,  3.81140,     -7.79290e-3, -1.82589e-2, -1.25860e-2,
-      -1.04311e-2, -3.02465e-3, 2.43063e-3,  3.63237,     0.0,         0.0,         0.0,         0.0,
-      0.0,         0.0,         0.0,         0.0,         0.0,         0.0,         0.0,         0.0,
-      0.0,         0.0,         0.0,         0.0,         0.0,         0.0 },
+    { 1.26376 * one / pow<3>(m),     -2.14304e-1 * one / pow<3>(m), -1.49984e-1 * one / pow<3>(m),
+      2.30404e-1 * one / pow<3>(m),  2.98237e-2 * one / pow<3>(m),  2.68673e-2 * one / pow<3>(m),
+      2.96228e-1 * one / pow<3>(m),  2.21900e-2 * one / pow<3>(m),  -2.07655e-2 * one / pow<3>(m),
+      4.52506e-1 * one / pow<3>(m),  1.20105e-1 * one / pow<3>(m),  3.24420e-2 * one / pow<3>(m),
+      4.24816e-2 * one / pow<3>(m),  -9.14313 * one / pow<3>(m),    0.0 * one / pow<3>(m),
+      2.47178e-2 * one / pow<3>(m),  -2.88229e-2 * one / pow<3>(m), 8.12805e1 * one / pow<3>(m),
+      5.10380e-2 * one / pow<3>(m),  -5.80611e-3 * one / pow<3>(m), 2.51236e-5 * one / pow<3>(m),
+      -1.24083e-2 * one / pow<3>(m), 0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),
+      8.66784e-2 * one / pow<3>(m),  1.58727e-1 * one / pow<3>(m),  -3.48190e-2 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),         2.89885e-5 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         1.53595e2 * one / pow<3>(m),   -1.68604e-2 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         1.01015e-2 * one / pow<3>(m),  0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),
+      2.84552e-4 * one / pow<3>(m),  -1.22181e-3 * one / pow<3>(m), 0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         8.47001e-2 * one / pow<3>(m),  1.70147e-1 * one / pow<3>(m),
+      -1.04927e-2 * one / pow<3>(m), 0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         -5.91313e-3 * one / pow<3>(m), -2.30501e-2 * one / pow<3>(m),
+      3.14758e-5 * one / pow<3>(m),  0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),
+      1.26956e-2 * one / pow<3>(m),  8.35489e-3 * one / pow<3>(m),  3.10513e-4 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         3.42119e3 * one / pow<3>(m),   -2.45017e-3 * one / pow<3>(m),
+      -4.27154e-4 * one / pow<3>(m), 5.45152e-4 * one / pow<3>(m),  1.89896e-3 * one / pow<3>(m),
+      2.89121e1 * one / pow<3>(m),   -6.49973e-3 * one / pow<3>(m), -1.93855e-2 * one / pow<3>(m),
+      -1.48492e-2 * one / pow<3>(m), 0.0 * one / pow<3>(m),         -5.10576e-2 * one / pow<3>(m),
+      7.87306e-2 * one / pow<3>(m),  9.51981e-2 * one / pow<3>(m),  -1.49422e4 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),
+      2.65503e2 * one / pow<3>(m),   0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),         6.37110e-3 * one / pow<3>(m),
+      3.24789e-4 * one / pow<3>(m),  0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),
+      6.14274e-2 * one / pow<3>(m),  1.00376e-2 * one / pow<3>(m),  -8.41083e-4 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),
+      -1.27099e-2 * one / pow<3>(m), 0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         -3.94077e-3 * one / pow<3>(m), -1.28601e-2 * one / pow<3>(m),
+      -7.97616e-3 * one / pow<3>(m), 0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         -6.71465e-3 * one / pow<3>(m), -1.69799e-3 * one / pow<3>(m),
+      1.93772e-3 * one / pow<3>(m),  3.81140 * one / pow<3>(m),     -7.79290e-3 * one / pow<3>(m),
+      -1.82589e-2 * one / pow<3>(m), -1.25860e-2 * one / pow<3>(m), -1.04311e-2 * one / pow<3>(m),
+      -3.02465e-3 * one / pow<3>(m), 2.43063e-3 * one / pow<3>(m),  3.63237 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m) },
     // N DENSITY
-    { 7.09557e1,   -3.26740e-1, 0.0,         -5.16829e-1, -1.71664e-3, 9.09310e-2,  -6.71500e-1, -1.47771e-1,
-      -9.27471e-2, -2.30862e-1, -1.56410e-1, 1.34455e-2,  -1.19717e-1, 2.52151,     0.0,         -2.41582e-1,
-      5.92939e-2,  4.39756,     9.15280e-2,  4.41292e-3,  0.0,         8.66807e-3,  0.0,         0.0,
-      8.66784e-2,  1.58727e-1,  9.74701e-2,  0.0,         0.0,         0.0,         0.0,         6.70217e1,
-      -1.31660e-3, 0.0,         -1.65317e-2, 0.0,         0.0,         8.50247e-2,  2.77428e1,   4.98658e-3,
-      6.15115e-3,  9.50156e-3,  -2.12723e-2, 8.47001e-2,  1.70147e-1,  -2.38645e-2, 0.0,         0.0,
-      0.0,         1.37380e-3,  -8.41918e-3, 2.80145e-5,  7.12383e-3,  0.0,         -1.66209e-2, 1.03533e-4,
-      -1.68898e-2, 0.0,         3.64526e3,   0.0,         6.54077e-3,  3.69130e-4,  9.94419e-4,  8.42803e1,
-      -1.16124e-2, -7.74414e-3, -1.68844e-3, 1.42809e-3,  -1.92955e-3, 1.17225e-1,  -2.41512e-2, 1.50521e4,
-      0.0,         0.0,         0.0,         1.60261e3,   0.0,         0.0,         0.0,         0.0,
-      0.0,         0.0,         0.0,         -3.54403e-4, -1.87270e-2, 0.0,         0.0,         0.0,
-      0.0,         0.0,         2.76439e-2,  6.43207e-3,  -3.54300e-2, 0.0,         0.0,         0.0,
-      -2.80221e-2, 8.11228e1,   -6.75255e-4, 0.0,         -1.05162e-2, -3.48292e-3, -6.97321e-3, 0.0,
-      0.0,         0.0,         0.0,         0.0,         0.0,         0.0,         0.0,         0.0,
-      0.0,         0.0,         0.0,         0.0,         0.0,         0.0,         0.0,         0.0,
-      0.0,         -1.45546e-3, -1.31970e-2, -3.57751e-3, -1.09021,    -1.50181e-2, -7.12841e-3, -6.64590e-3,
-      -3.52610e-3, -1.87773e-2, -2.22432e-3, -3.93895e-1, 0.0,         0.0,         0.0,         0.0,
-      0.0,         0.0,         0.0,         0.0,         0.0,         0.0,         0.0,         0.0,
-      0.0,         0.0,         0.0,         0.0,         0.0,         0.0 },
+    { 7.09557e1 * one / pow<3>(m),   -3.26740e-1 * one / pow<3>(m), 0.0 * one / pow<3>(m),
+      -5.16829e-1 * one / pow<3>(m), -1.71664e-3 * one / pow<3>(m), 9.09310e-2 * one / pow<3>(m),
+      -6.71500e-1 * one / pow<3>(m), -1.47771e-1 * one / pow<3>(m), -9.27471e-2 * one / pow<3>(m),
+      -2.30862e-1 * one / pow<3>(m), -1.56410e-1 * one / pow<3>(m), 1.34455e-2 * one / pow<3>(m),
+      -1.19717e-1 * one / pow<3>(m), 2.52151 * one / pow<3>(m),     0.0 * one / pow<3>(m),
+      -2.41582e-1 * one / pow<3>(m), 5.92939e-2 * one / pow<3>(m),  4.39756 * one / pow<3>(m),
+      9.15280e-2 * one / pow<3>(m),  4.41292e-3 * one / pow<3>(m),  0.0 * one / pow<3>(m),
+      8.66807e-3 * one / pow<3>(m),  0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),
+      8.66784e-2 * one / pow<3>(m),  1.58727e-1 * one / pow<3>(m),  9.74701e-2 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         6.70217e1 * one / pow<3>(m),   -1.31660e-3 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         -1.65317e-2 * one / pow<3>(m), 0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         8.50247e-2 * one / pow<3>(m),  2.77428e1 * one / pow<3>(m),
+      4.98658e-3 * one / pow<3>(m),  6.15115e-3 * one / pow<3>(m),  9.50156e-3 * one / pow<3>(m),
+      -2.12723e-2 * one / pow<3>(m), 8.47001e-2 * one / pow<3>(m),  1.70147e-1 * one / pow<3>(m),
+      -2.38645e-2 * one / pow<3>(m), 0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         1.37380e-3 * one / pow<3>(m),  -8.41918e-3 * one / pow<3>(m),
+      2.80145e-5 * one / pow<3>(m),  7.12383e-3 * one / pow<3>(m),  0.0 * one / pow<3>(m),
+      -1.66209e-2 * one / pow<3>(m), 1.03533e-4 * one / pow<3>(m),  -1.68898e-2 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         3.64526e3 * one / pow<3>(m),   0.0 * one / pow<3>(m),
+      6.54077e-3 * one / pow<3>(m),  3.69130e-4 * one / pow<3>(m),  9.94419e-4 * one / pow<3>(m),
+      8.42803e1 * one / pow<3>(m),   -1.16124e-2 * one / pow<3>(m), -7.74414e-3 * one / pow<3>(m),
+      -1.68844e-3 * one / pow<3>(m), 1.42809e-3 * one / pow<3>(m),  -1.92955e-3 * one / pow<3>(m),
+      1.17225e-1 * one / pow<3>(m),  -2.41512e-2 * one / pow<3>(m), 1.50521e4 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),
+      1.60261e3 * one / pow<3>(m),   0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),         -3.54403e-4 * one / pow<3>(m),
+      -1.87270e-2 * one / pow<3>(m), 0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),
+      2.76439e-2 * one / pow<3>(m),  6.43207e-3 * one / pow<3>(m),  -3.54300e-2 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),
+      -2.80221e-2 * one / pow<3>(m), 8.11228e1 * one / pow<3>(m),   -6.75255e-4 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         -1.05162e-2 * one / pow<3>(m), -3.48292e-3 * one / pow<3>(m),
+      -6.97321e-3 * one / pow<3>(m), 0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         -1.45546e-3 * one / pow<3>(m), -1.31970e-2 * one / pow<3>(m),
+      -3.57751e-3 * one / pow<3>(m), -1.09021 * one / pow<3>(m),    -1.50181e-2 * one / pow<3>(m),
+      -7.12841e-3 * one / pow<3>(m), -6.64590e-3 * one / pow<3>(m), -3.52610e-3 * one / pow<3>(m),
+      -1.87773e-2 * one / pow<3>(m), -2.22432e-3 * one / pow<3>(m), -3.93895e-1 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m) },
     // HOT O DENSITY
-    { 6.04050e-2, 1.57034,    2.99387e-2, 0.0, 0.0, 0.0, 0.0, 0.0,        0.0,        -1.51018,    0.0, 0.0,
-      0.0,        -8.61650,   1.26454e-2, 0.0, 0.0, 0.0, 0.0, 0.0,        0.0,        5.50878e-3,  0.0, 0.0,
-      8.66784e-2, 1.58727e-1, 0.0,        0.0, 0.0, 0.0, 0.0, 0.0,        6.23881e-2, 0.0,         0.0, 0.0,
-      0.0,        0.0,        0.0,        0.0, 0.0, 0.0, 0.0, 8.47001e-2, 1.70147e-1, -9.45934e-2, 0.0, 0.0,
-      0.0,        0.0,        0.0,        0.0, 0.0, 0.0, 0.0, 0.0,        0.0,        0.0,         0.0, 0.0,
-      0.0,        0.0,        0.0,        0.0, 0.0, 0.0, 0.0, 0.0,        0.0,        0.0,         0.0, 0.0,
-      0.0,        0.0,        0.0,        0.0, 0.0, 0.0, 0.0, 0.0,        0.0,        0.0,         0.0, 0.0,
-      0.0,        0.0,        0.0,        0.0, 0.0, 0.0, 0.0, 0.0,        0.0,        0.0,         0.0, 0.0,
-      0.0,        0.0,        0.0,        0.0, 0.0, 0.0, 0.0, 0.0,        0.0,        0.0,         0.0, 0.0,
-      0.0,        0.0,        0.0,        0.0, 0.0, 0.0, 0.0, 0.0,        0.0,        0.0,         0.0, 0.0,
-      0.0,        0.0,        0.0,        0.0, 0.0, 0.0, 0.0, 0.0,        0.0,        0.0,         0.0, 0.0,
-      0.0,        0.0,        0.0,        0.0, 0.0, 0.0, 0.0, 0.0,        0.0,        0.0,         0.0, 0.0,
-      0.0,        0.0,        0.0,        0.0, 0.0, 0.0 }
+    { 6.04050e-2 * one / pow<3>(m),  1.57034 * one / pow<3>(m),    2.99387e-2 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),        0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),        0.0 * one / pow<3>(m),
+      -1.51018 * one / pow<3>(m),    0.0 * one / pow<3>(m),        0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         -8.61650 * one / pow<3>(m),   1.26454e-2 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),        0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),        0.0 * one / pow<3>(m),
+      5.50878e-3 * one / pow<3>(m),  0.0 * one / pow<3>(m),        0.0 * one / pow<3>(m),
+      8.66784e-2 * one / pow<3>(m),  1.58727e-1 * one / pow<3>(m), 0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),        0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),        6.23881e-2 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),        0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),        0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),        0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         8.47001e-2 * one / pow<3>(m), 1.70147e-1 * one / pow<3>(m),
+      -9.45934e-2 * one / pow<3>(m), 0.0 * one / pow<3>(m),        0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),        0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),        0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),        0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),        0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),        0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),        0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),        0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),        0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),        0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),        0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),        0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),        0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),        0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),        0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),        0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),        0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),        0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),        0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),        0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),        0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),        0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),        0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),        0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),        0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),        0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),        0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),        0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),        0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),        0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),        0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),        0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),        0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),        0.0 * one / pow<3>(m),
+      0.0 * one / pow<3>(m),         0.0 * one / pow<3>(m),        0.0 * one / pow<3>(m) }
 };
 
-static const double[] PS = {
+static const quantity[] PS = {
     9.56827e-1, 6.20637e-2, 3.18433e-2,  0.0,         0.0,        3.94900e-2, 0.0, 0.0, -9.24882e-3, -7.94023e-3,
     0.0,        0.0,        0.0,         1.74712e2,   0.0,        0.0,        0.0, 0.0, 0.0,         0.0,
     0.0,        2.74677e-3, 0.0,         1.54951e-2,  8.66784e-2, 1.58727e-1, 0.0, 0.0, 0.0,         0.0,
@@ -248,7 +574,7 @@ static const double[] PS = {
     0.0,        0.0,        0.0,         0.0,         0.0,        0.0,        0.0, 0.0, 0.0,         0.0
 };
 
-static const double[][] PDL = {
+static const quantity[][] PDL = {
     { 1.09930, 3.90631, 3.07165, 9.86161e-1, 1.63536e1, 4.63830, 1.0, 0.0, 0.0, 0.0,     0.0,        0.0,       0.0,
       0.0,     0.0,     0.0,     0.0,        0.0,       0.0,     0.0, 0.0, 0.0, 1.28840, 3.10302e-2, 1.18339e-1 },
     { 1.0,        7.00000e-1, 1.15020,   3.44689,    1.28840, 1.0,         1.08738,   1.22947,     1.10016,
@@ -257,53 +583,65 @@ static const double[][] PDL = {
 };
 
 struct BatesProfileParams {
-    quantity<K> Tinf;
-    quantity<K> Tlb0;
-    quantity<K> TN12;
+    Temperature Tinf;
+    Temperature Tlb0;
+    Temperature TN12;
     quantity<K / km> S0;
-    quantity<K> TN14;
-    quantity<km> Zlb;
-    quantity<K> TN11;
-    quantity<K> TN13;
+    Temperature TN14;
+    Distance Zlb;
+    Temperature TN11;
+    Temperature TN13;
     quantity<K / km> Tgrad;
 };
-static const BatesProfileParams PTM = { 1.0413e3 * K, 3.86e2 * K, 1.95e2 * K, 1.66728e1 * K / km, 2.13e2 * K,
-                                        1.2e2 * km,   2.4e2 * K,  1.87e2 * K, -2.0 * K / km };
+static const BatesProfileParams PTM = { mp_units::point<K>(1.0413e3), mp_units::point<K>(3.86e2),
+                                        mp_units::point<K>(1.95e2),   mp_units::delta<K / km>(1.66728e1),
+                                        mp_units::point<K>(2.13e2),   1.2e2 * km,
+                                        mp_units::point<K>(2.4e2),    mp_units::point<K>(1.87e2),
+                                        mp_units::delta<K / km>(-2.0) };
 
 static const AtomicMass XMM = 28.9500 * u;
 
 struct SpeciesModelParams {
-    NumberDensity n_ref; 
-    Unitless mix_ratio;  
-    Distance zh;         
-    Unitless c3;         
-    Distance za;         
-    Distance ha;         
-    Distance zb;         
-    Distance hb;         
-    Unitless c9;         
+    NumberDensity nRef; 
+    Unitless mixRatio;  
+    Distance zh;        
+    Unitless c3;        
+    Distance za;        
+    Distance ha;        
+    Distance zb;        
+    Distance hb;        
+    Unitless c9;        
 };
 
-static const std::array<SpeciesModelParams, 8> PDM = { {
-    // He
-    { 2.456e7 * pow<-3>(cm), 6.71072e-6 * one, 1.0e2 * km, 0.0 * one, 1.1e2 * km, 1.0e1 * km, 0.0 * km, 0.0 * km, 0.0 * one },
-    // O
-    { 8.594e+10 * pow<-3>(cm), 1.0 * one, 1.05e2 * km, -8.0 * one, 1.1e2 * km, 1.0e1 * km, 9.0e1 * km, 2.0 * km, 0.0 * one },
-    // N2  (za unused; XMM = 28.9500 defined above)
-    { 2.81e+11 * pow<-3>(cm), 0.0 * one, 1.05e2 * km, 2.8e1 * one, 0.0 * km, 0.0 * km, 0.0 * km, 0.0 * km, 0.0 * one },
-    // O2
-    { 3.3e+10 * pow<-3>(cm), 2.68270e-1 * one, 1.05e2 * km, 1.0 * one, 1.1e2 * km, 1.0e1 * km, 1.1e2 * km, -1.0e1 * km, 0.0 * one },
-    // Ar
-    { 1.33e9 * pow<-3>(cm), 1.19615e-2 * one, 1.05e2 * km, 0.0 * one, 1.1e2 * km, 1.0e1 * km, 0.0 * km, 0.0 * km, 0.0 * one },
-    // H
-    { 1.761e5 * pow<-3>(cm), 1.0 * one, 9.5e1 * km, -8.0 * one, 1.1e2 * km, 1.0e1 * km, 9.0e1 * km, 2.0 * km, 0.0 * one },
-    // N
-    { 1.0e7 * pow<-3>(cm), 1.0 * one, 1.05e2 * km, -8.0 * one, 1.1e2 * km, 1.0e1 * km, 9.0e1 * km, 2.0 * km, 0.0 * one },
-    // Anomalous O
-    { 1.0e6 * pow<-3>(cm), 1.0 * one, 1.05e2 * km, -8.0 * one, 5.5e2 * km, 7.6e1 * km, 9.0e1 * km, 2.0 * km, 4.0e3 * one },
+enum Species {
+    HELIUM             = 0,
+    ATOMIC_OXYGEN      = 1,
+    MOLECULAR_NITROGEN = 2,
+    MOLECULAR_OXYGEN   = 3,
+    ARGON              = 4,
+    TOTAL_MASS         = 5,
+    HYDROGEN           = 6,
+    ATOMIC_NITROGEN    = 7,
+    ANOMALOUS_OXYGEN   = 8
+};
+
+static const std::unordered_map<Species, SpeciesModelParams> SpeciesModelData = { {
+    { HELIUM, { 2.456e7 * pow<-3>(cm), 6.71072e-6 * one, 1.0e2 * km, 0.0 * one, 1.1e2 * km, 1.0e1 * km, 0.0 * km, 0.0 * km, 0.0 * one } },
+    { ATOMIC_OXYGEN,
+      { 8.594e+10 * pow<-3>(cm), 1.0 * one, 1.05e2 * km, -8.0 * one, 1.1e2 * km, 1.0e1 * km, 9.0e1 * km, 2.0 * km, 0.0 * one } },
+    { MOLECULAR_NITROGEN,
+      { 2.81e+11 * pow<-3>(cm), 0.0 * one, 1.05e2 * km, 2.8e1 * one, 0.0 * km, 0.0 * km, 0.0 * km, 0.0 * km, 0.0 * one } },
+    { MOLECULAR_OXYGEN,
+      { 3.3e+10 * pow<-3>(cm), 2.68270e-1 * one, 1.05e2 * km, 1.0 * one, 1.1e2 * km, 1.0e1 * km, 1.1e2 * km, -1.0e1 * km, 0.0 * one } },
+    { ARGON, { 1.33e9 * pow<-3>(cm), 1.19615e-2 * one, 1.05e2 * km, 0.0 * one, 1.1e2 * km, 1.0e1 * km, 0.0 * km, 0.0 * km, 0.0 * one } },
+    { HYDROGEN, { 1.761e5 * pow<-3>(cm), 1.0 * one, 9.5e1 * km, -8.0 * one, 1.1e2 * km, 1.0e1 * km, 9.0e1 * km, 2.0 * km, 0.0 * one } },
+    { ATOMIC_NITROGEN,
+      { 1.0e7 * pow<-3>(cm), 1.0 * one, 1.05e2 * km, -8.0 * one, 1.1e2 * km, 1.0e1 * km, 9.0e1 * km, 2.0 * km, 0.0 * one } },
+    { ANOMALOUS_OXYGEN,
+      { 1.0e6 * pow<-3>(cm), 1.0 * one, 1.05e2 * km, -8.0 * one, 5.5e2 * km, 7.6e1 * km, 9.0e1 * km, 2.0 * km, 4.0e3 * one } },
 } };
 
-static const double[][] PTL = {
+static const quantity[][] PTL = {
     // TN1(2)
     { 1.00858,     4.56011e-2,  -2.22972e-2, -5.44388e-2, 5.23136e-4,  -1.88849e-2, 5.23707e-2, -9.43646e-3,
       6.31707e-3,  -7.80460e-2, -4.88430e-2, 0.0,         0.0,         -7.60250,    0.0,        -1.44635e-2,
@@ -361,7 +699,7 @@ static const double[][] PTL = {
       0.0,         0.0,         0.0,         2.0 }
 };
 
-static const double[][] PMA = {
+static const quantity[][] PMA = {
     // TN2(2)
     { 9.81637e-1,  -1.41317e-3, 3.87323e-2,  0.0,        0.0,        0.0,         0.0,         0.0,
       0.0,         -3.58707e-2, -8.63658e-3, 0.0,        0.0,        -2.02226,    0.0,         -8.69424e-3,
@@ -491,792 +829,835 @@ static const double[][] PMA = {
       2.0 }
 };
 
+// Constants
 
-class NRLMSISE00 : public AbstractSunInfluencedAtmosphere {
-    // Constants
+enum TemperatureType { EXOSPHERIC = 0, ALTITUDE = 1 };
 
-    enum AtomicDensity {
-        HELIUM             = 0,
-        ATOMIC_OXYGEN      = 1,
-        MOLECULAR_NITROGEN = 2,
-        MOLECULAR_OXYGEN   = 3,
-        ARGON              = 4,
-        TOTAL_MASS         = 5,
-        HYDROGEN           = 6,
-        ATOMIC_NITROGEN    = 7,
-        ANOMALOUS_OXYGEN   = 8
-    };
+// EARTH GEOPHYSICAL CONSTANTS
 
-    enum TemperatureType { EXOSPHERIC = 0, ALTITUDE = 1 };
+static const Angle LAT_REF = 45.0 * deg;
 
-    // EARTH GEOPHYSICAL CONSTANTS
+static const Acceleration G_REF = 980.616 * cm / (s * s);
 
-    static const Angle LAT_REF = 45.0 * deg;
+// CHEMICAL CONSTANTS
 
-    static const Acceleration G_REF = 980.616 * cm / (s * s);
+static const auto R_GAS = 831.4 * J / (mol * K);
 
-    // CHEMICAL CONSTANTS
+static const AtomicMass H_MASS = 1.0 * u;
 
-    static const auto R_GAS = 831.4 * J / (mol * K);
+static const AtomicMass HE_MASS = 4.0 * u;
 
-    static const AtomicMass H_MASS = 1.0 * u;
+static const AtomicMass N_MASS = 14.0 * u;
 
-    static const AtomicMass HE_MASS = 4.0 * u;
+static const AtomicMass N2_MASS = 2.0 * N_MASS;
 
-    static const AtomicMass N_MASS = 14.0 * u;
+static const AtomicMass O_MASS = 16.0 * u;
 
-    static const AtomicMass N2_MASS = 2.0 * N_MASS;
+static const AtomicMass O2_MASS = 2.0 * O_MASS;
 
-    static const AtomicMass O_MASS = 16.0 * u;
+static const AtomicMass AR_MASS = 40.0 * u;
 
-    static const AtomicMass O2_MASS = 2.0 * O_MASS;
+// NRL MSISE 2000 SPECIFIC CONSTANTS
 
-    static const AtomicMass AR_MASS = 40.0 * u;
+static const SolarFlux FLUX_REF = 150.0;
 
-    // NRL MSISE 2000 SPECIFIC CONSTANTS
+static const std::array<Distance, 5> ZN1 = { 123.435 * km, 110.0 * km, 100.0 * km, 90.0 * km, 72.5 * km };
 
-    static const SolarFlux FLUX_REF = 150.0;
+static const std::array<Distance, 4> ZN2 = { 72.5 * km, 55.0 * km, 45.0 * km, 32.5 * km };
 
-    static const std::array<Distance, 5> ZN1 = { 123.435 * km, 110.0 * km, 100.0 * km, 90.0 * km, 72.5 * km };
+static const std::array<Distance, 5> ZN3 = { 32.5 * km, 20.0 * km, 15.0 * km, 10.0 * km, 0.0 * km };
 
-    static const std::array<Distance, 4> ZN2 = { 72.5 * km, 55.0 * km, 45.0 * km, 32.5 * km };
+static const Distance ZMIX = 62.5 * km;
 
-    static const std::array<Distance, 5> ZN3 = { 32.5 * km, 20.0 * km, 15.0 * km, 10.0 * km, 0.0 * km };
+static const std::array<quantity, 10> PAVGM = { 2.61e2, 2.64e2,   2.29e2,   2.17e2, 2.17e2,
+                                                2.23e2, 2.8676e2, -2.93940, 2.50,   0.0 };
 
-    static const Distance ZMIX = 62.5 * km;
+static const Temperature MIN_TEMP = 50.0 * K;
 
-    static const std::array<double, 10> PAVGM = { 2.61e2, 2.64e2,   2.29e2,   2.17e2, 2.17e2,
-                                                  2.23e2, 2.8676e2, -2.93940, 2.50,   0.0 };
+enum Option {
+    F107_EFFECT_ON_MEAN                               = 0,
+    INDEPENDENT_OF_TIME                               = 1,
+    SYMMETRICAL_ANNUAL                                = 2,
+    SYMMETRICAL_SEMIANNUAL                            = 3,
+    ASYMMETRICAL_ANNUAL                               = 4,
+    ASYMMETRICAL_SEMIANNUAL                           = 5,
+    DIURNAL                                           = 6,
+    SEMIDIURNAL                                       = 7,
+    DAILY_AP                                          = 8,
+    ALL_UT_LONGITUDINAL_EFFECTS                       = 9,
+    LONGITUDINAL_EFFECTS                              = 10,
+    UT_AND_MIXED_UT_LONGITUDINAL_EFFECTS              = 11,
+    MIXED_AP_UT_LONGITUDINAL_EFFECTS                  = 12,
+    TERDIURNAL                                        = 13,
+    DEPARTURES_FROM_DIFFUSIVE_EQUILIBRIUM             = 14,
+    ALL_EXOSPHERIC_TEMPERATURE_VARIATIONS             = 15,
+    ALL_VARIATIONS_FROM_120KM_TEMPERATURE_TLB         = 16,
+    ALL_LOWER_THERMOSPHERE_TEMPERATURE_TN1_VARIATIONS = 17,
+    ALL_120KM_GRADIENT_S_VARIATIONS                   = 18,
+    ALL_UPPER_STRATOSPHERE_TEMPERATURE_TN2_VARIATIONS = 19,
+    ALL_VARIATIONS_FROM_120KM_VALUES_ZLB              = 20,
+    ALL_LOWER_MESOSPHERE_TEMPERATURE_TN3_VARIATIONS   = 21,
+    TURBOPAUSE_SCALE_HEIGHT_VARIATIONS                = 22
+};
 
-    static const Temperature MIN_TEMP = 50.0 * K;
+struct Switch {
+    bool mainEffect  = true;
+    bool crossEffect = true;
+    bool fullAp      = true;
+};
 
-    enum Option {
-        F107_EFFECT_ON_MEAN                               = 0,
-        INDEPENDENT_OF_TIME                               = 1,
-        SYMMETRICAL_ANNUAL                                = 2,
-        SYMMETRICAL_SEMIANNUAL                            = 3,
-        ASYMMETRICAL_ANNUAL                               = 4,
-        ASYMMETRICAL_SEMIANNUAL                           = 5,
-        DIURNAL                                           = 6,
-        SEMIDIURNAL                                       = 7,
-        DAILY_AP                                          = 8,
-        ALL_UT_LONGITUDINAL_EFFECTS                       = 9,
-        LONGITUDINAL_EFFECTS                              = 10,
-        UT_AND_MIXED_UT_LONGITUDINAL_EFFECTS              = 11,
-        MIXED_AP_UT_LONGITUDINAL_EFFECTS                  = 12,
-        TERDIURNAL                                        = 13,
-        DEPARTURES_FROM_DIFFUSIVE_EQUILIBRIUM             = 14,
-        ALL_EXOSPHERIC_TEMPERATURE_VARIATIONS             = 15,
-        ALL_VARIATIONS_FROM_120KM_TEMPERATURE_TLB         = 16,
-        ALL_LOWER_THERMOSPHERE_TEMPERATURE_TN1_VARIATIONS = 17,
-        ALL_120KM_GRADIENT_S_VARIATIONS                   = 18,
-        ALL_UPPER_STRATOSPHERE_TEMPERATURE_TN2_VARIATIONS = 19,
-        ALL_VARIATIONS_FROM_120KM_VALUES_ZLB              = 20,
-        ALL_LOWER_MESOSPHERE_TEMPERATURE_TN3_VARIATIONS   = 21,
-        TURBOPAUSE_SCALE_HEIGHT_VARIATIONS                = 22
-    };
-
-    struct Switch {
-        bool mainEffect  = true;
-        bool crossEffect = true;
-        bool fullAp      = true;
-    };
-
-    std::unordered_map<Option, Switch> options{ { F107_EFFECT_ON_MEAN, Switch() },
-                                                { INDEPENDENT_OF_TIME, Switch() },
-                                                { SYMMETRICAL_ANNUAL, Switch() },
-                                                { SYMMETRICAL_SEMIANNUAL, Switch() },
-                                                { ASYMMETRICAL_ANNUAL, Switch() },
-                                                { ASYMMETRICAL_SEMIANNUAL, Switch() },
-                                                { DIURNAL, Switch() },
-                                                { SEMIDIURNAL, Switch() },
-                                                { DAILY_AP, Switch() },
-                                                { ALL_UT_LONGITUDINAL_EFFECTS, Switch() },
-                                                { LONGITUDINAL_EFFECTS, Switch() },
-                                                { UT_AND_MIXED_UT_LONGITUDINAL_EFFECTS, Switch() },
-                                                { MIXED_AP_UT_LONGITUDINAL_EFFECTS, Switch() },
-                                                { TERDIURNAL, Switch() },
-                                                { DEPARTURES_FROM_DIFFUSIVE_EQUILIBRIUM, Switch() },
-                                                { ALL_EXOSPHERIC_TEMPERATURE_VARIATIONS, Switch() },
-                                                { ALL_VARIATIONS_FROM_120KM_TEMPERATURE_TLB, Switch() },
-                                                { ALL_LOWER_THERMOSPHERE_TEMPERATURE_TN1_VARIATIONS, Switch() },
-                                                { ALL_120KM_GRADIENT_S_VARIATIONS, Switch() },
-                                                { ALL_UPPER_STRATOSPHERE_TEMPERATURE_TN2_VARIATIONS, Switch() },
-                                                { ALL_VARIATIONS_FROM_120KM_VALUES_ZLB, Switch() },
-                                                { ALL_LOWER_MESOSPHERE_TEMPERATURE_TN3_VARIATIONS, Switch() },
-                                                { TURBOPAUSE_SCALE_HEIGHT_VARIATIONS, Switch() } };
+std::unordered_map<Option, Switch> options{ { F107_EFFECT_ON_MEAN, Switch() },
+                                            { INDEPENDENT_OF_TIME, Switch() },
+                                            { SYMMETRICAL_ANNUAL, Switch() },
+                                            { SYMMETRICAL_SEMIANNUAL, Switch() },
+                                            { ASYMMETRICAL_ANNUAL, Switch() },
+                                            { ASYMMETRICAL_SEMIANNUAL, Switch() },
+                                            { DIURNAL, Switch() },
+                                            { SEMIDIURNAL, Switch() },
+                                            { DAILY_AP, Switch() },
+                                            { ALL_UT_LONGITUDINAL_EFFECTS, Switch() },
+                                            { LONGITUDINAL_EFFECTS, Switch() },
+                                            { UT_AND_MIXED_UT_LONGITUDINAL_EFFECTS, Switch() },
+                                            { MIXED_AP_UT_LONGITUDINAL_EFFECTS, Switch() },
+                                            { TERDIURNAL, Switch() },
+                                            { DEPARTURES_FROM_DIFFUSIVE_EQUILIBRIUM, Switch() },
+                                            { ALL_EXOSPHERIC_TEMPERATURE_VARIATIONS, Switch() },
+                                            { ALL_VARIATIONS_FROM_120KM_TEMPERATURE_TLB, Switch() },
+                                            { ALL_LOWER_THERMOSPHERE_TEMPERATURE_TN1_VARIATIONS, Switch() },
+                                            { ALL_120KM_GRADIENT_S_VARIATIONS, Switch() },
+                                            { ALL_UPPER_STRATOSPHERE_TEMPERATURE_TN2_VARIATIONS, Switch() },
+                                            { ALL_VARIATIONS_FROM_120KM_VALUES_ZLB, Switch() },
+                                            { ALL_LOWER_MESOSPHERE_TEMPERATURE_TN3_VARIATIONS, Switch() },
+                                            { TURBOPAUSE_SCALE_HEIGHT_VARIATIONS, Switch() } };
 
 
-    Density find_atmospheric_density(const State& state)
+Density find_atmospheric_density(const State& state)
+{
+    // check if data are available :
+    const Date& date = state.get_epoch();
+    if (date < inputParams.getMinDate() || date > inputParams.getMaxDate()) {
+        throw std::out_of_range("Date is out of range for NRLMSISE-00 model: " + date.toString());
+    }
+
+    // compute day number in current year and the seconds within the day
+    const int doy  = date.day_of_year();
+    const Time sec = date.seconds_in_local_day();
+
+    // compute geodetic position
+    const auto& rEcef          = state.get_position_in_frame<frames::earth::earth_fixed>();
+    const auto [lat, lon, alt] = convert_body_fixed_to_geodetic(rEcef);
+
+    // compute local solar time
+    const Time lst = calculate_local_solar_time(state);
+
+    // get solar activity data and compute
+    const Output output(
+        doy, sec, lat, lon, lst, inputParams.get_average_flux(date), inputParams.get_daily_flux(date), inputParams.get_ap(date)
+    );
+    output.gtd7d(alt);
+
+    // return the local density
+    return output.get_density(TOTAL_MASS);
+}
+
+Time calculate_local_solar_time(const State& state)
+{
+    const Date& date     = state.get_epoch();
+    const auto& position = state.get_position();
+
+    const RadiusVector<frames::solar_system_barycenter::icrf> sun2Earth = get_position_at(date);
+    const Direction<frames::earth::icrf> sunDirection = -sun2Earth.direction().force_frame_conversion<frames::earth::icrf>();
+
+    const Angle lst =
+        std::numbers::pi * rad + atan2(
+                                     sunDirection.get_x() * position.get_y() - sunDirection.get_y() * position.get_x(),
+                                     sunDirection.get_x() * position.get_x() + sunDirection.get_y() * position.get_y()
+                                 );
+    return lst * 12.0 / std::numbers::pi * h / rad;
+}
+
+
+class Output {
+
+    const int doy;
+
+    const Time sec;
+
+    const Angle lat;
+
+    const Angle lon;
+
+    const Time hl;
+
+    const SolarFlux f107a;
+
+    const SolarFlux f107;
+
+    const std::array<Unitless, 7> ap;
+
+    Acceleration glat;
+
+    Distance rlat;
+
+    NumberDensity n2MixedNumberDensity;
+
+    const std::array<std::array<Unitless, 8>, 4> legendrePolynomials;
+
+    const Unitless ctloc;
+    const Unitless stloc;
+    const Unitless c2tloc;
+    const Unitless s2tloc;
+    const Unitless c3tloc;
+    const Unitless s3tloc;
+
+    quantity apdf;
+
+    quantity apt;
+
+    const std::array<Temperature, ZN1.size()> mesoTn1;
+
+    const std::array<Temperature, ZN2.size()> mesoTn2;
+
+    const std::array<Temperature, ZN3.size()> mesoTn3;
+
+    const std::array<Temperature, 2> mesoTgn1;
+
+    const std::array<Temperature, 2> mesoTgn2;
+
+    const std::array<Temperature, 2> mesoTgn3;
+
+    const std::array<NumberDensity, 9> densities;
+
+    const std::array<Temperature, 2> temperatures;
+
+    Output(
+        const int doy,
+        const Time sec,
+        const Angle lat,
+        const Angle lon,
+        const Time hl,
+        const SolarFlux f107a,
+        const SolarFlux f107,
+        const std::array<Unitless, 7>& ap
+    ) :
+        doy(doy),
+        sec(sec),
+        lat(lat),
+        lon(lon),
+        hl(hl),
+        f107a(f107a),
+        f107(f107),
+        ap(ap)
     {
-        // check if data are available :
-        const Date& date = state.get_epoch();
-        if (date < inputParams.getMinDate() || date > inputParams.getMaxDate()) {
-            throw std::out_of_range("Date is out of range for NRLMSISE-00 model: " + date.toString());
+        // Calculates latitude variable gravity and effective radius
+        const Angle xlat  = (!options[INDEPENDENT_OF_TIME].mainEffect) ? LAT_REF : lat;
+        const Unitless c2 = cos(2.0 * xlat * rad);
+        glat              = G_REF * (1.0 - 0.0026373 * c2);
+        rlat              = 2.0 * glat * cm / (s * s) / (3.085462e-6 + 2.27e-9 * c2 * 1.0e-5 * km);
+
+        // Calculate legendre polynomials (lat already in radians)
+        const Unitless sinLat = sin(lat); // Orekit has c = sin(lat) and s = cos(lat). Is this an error?
+        const Unitless cosLat = cos(lat); // I've kept the equations below consistent with Orekit but they might be inverted.
+
+        legendrePolynomials[0][1] = sinLat;
+        legendrePolynomials[0][2] = (3.0 * sinLat * legendrePolynomials[0][1] - 1.0) / 2.0;
+        legendrePolynomials[0][3] = (5.0 * sinLat * legendrePolynomials[0][2] - 2.0 * legendrePolynomials[0][1]) / 3.0;
+        legendrePolynomials[0][4] = (7.0 * sinLat * legendrePolynomials[0][3] - 3.0 * legendrePolynomials[0][2]) / 4.0;
+        legendrePolynomials[0][5] = (9.0 * sinLat * legendrePolynomials[0][4] - 4.0 * legendrePolynomials[0][3]) / 5.0;
+        legendrePolynomials[0][6] = (11.0 * sinLat * legendrePolynomials[0][5] - 5.0 * legendrePolynomials[0][4]) / 6.0;
+
+        legendrePolynomials[1][1] = cosLat;
+        legendrePolynomials[1][2] = 3.0 * sinLat * legendrePolynomials[1][1];
+        legendrePolynomials[1][3] = (5.0 * sinLat * legendrePolynomials[1][2] - 3.0 * legendrePolynomials[1][1]) / 2.0;
+        legendrePolynomials[1][4] = (7.0 * sinLat * legendrePolynomials[1][3] - 4.0 * legendrePolynomials[1][2]) / 3.0;
+        legendrePolynomials[1][5] = (9.0 * sinLat * legendrePolynomials[1][4] - 5.0 * legendrePolynomials[1][3]) / 4.0;
+        legendrePolynomials[1][6] = (11.0 * sinLat * legendrePolynomials[1][5] - 6.0 * legendrePolynomials[1][4]) / 5.0;
+
+        legendrePolynomials[2][2] = 3.0 * cosLat * legendrePolynomials[1][1];
+        legendrePolynomials[2][3] = 5.0 * sinLat * legendrePolynomials[2][2];
+        legendrePolynomials[2][4] = (7.0 * sinLat * legendrePolynomials[2][3] - 5.0 * legendrePolynomials[2][2]) / 2.0;
+        legendrePolynomials[2][5] = (9.0 * sinLat * legendrePolynomials[2][4] - 6.0 * legendrePolynomials[2][3]) / 3.0;
+        legendrePolynomials[2][6] = (11.0 * sinLat * legendrePolynomials[2][5] - 7.0 * legendrePolynomials[2][4]) / 4.0;
+        legendrePolynomials[2][7] = (13.0 * sinLat * legendrePolynomials[2][6] - 8.0 * legendrePolynomials[2][5]) / 5.0;
+
+        legendrePolynomials[3][3] = 5.0 * cosLat * legendrePolynomials[2][2];
+        legendrePolynomials[3][4] = 7.0 * sinLat * legendrePolynomials[3][3];
+        legendrePolynomials[3][5] = (9.0 * sinLat * legendrePolynomials[3][4] - 7.0 * legendrePolynomials[3][3]) / 2.0;
+        legendrePolynomials[3][6] = (11.0 * sinLat * legendrePolynomials[3][5] - 8.0 * legendrePolynomials[3][4]) / 3.0;
+
+        // Calculate additional data
+        if (options[DIURNAL].mainEffect || options[SEMIDIURNAL].mainEffect || options[TERDIURNAL].mainEffect) {
+            const Angle tloc = HOUR_TO_RAD * hl;
+            stloc            = sin(tloc);
+            ctloc            = cos(tloc);
+            s2tloc           = sin(2.0 * tloc);
+            c2tloc           = cos(2.0 * tloc);
+            s3tloc           = sin(3.0 * tloc);
+            c3tloc           = cos(3.0 * tloc);
+        }
+        else {
+            stloc  = 0.0 * one;
+            ctloc  = 0.0 * one;
+            s2tloc = 0.0 * one;
+            c2tloc = 0.0 * one;
+            s3tloc = 0.0 * one;
+            c3tloc = 0.0 * one;
+        }
+    }
+
+    void gts7(const Distance alt)
+    {
+
+        // Thermal diffusion coefficients for species
+        const std::array<Unitless, 9> thermalDiffusionCoefficients = { -0.38, 0.0, 0.0, 0.0, 0.17, 0.0, -0.38, 0.0, 0.0 };
+
+        // Altitude limits for net density computation for species
+        const std::array<Distance, 8> altl = { 200.0 * km, 300.0 * km, 160.0 * km, 250.0 * km,
+                                               240.0 * km, 450.0 * km, 320.0 * km, 450.0 * km };
+
+        /**** Exospheric temperature ****/
+        const Temperature tempInf = PTM.Tinf * PT[0];
+
+        // Tinf variations not important below ZA or ZN[0]
+        if (alt > ZN1[0]) { tempInf *= 1.0 + options[ALL_EXOSPHERIC_TEMPERATURE_VARIATIONS].mainEffect * globe7(PT); }
+        set_temperature(EXOSPHERIC, tempInf);
+
+        // Gradient variations not important below ZN[4]
+        quantity g0 = PTM.S0 * PS[0];
+        if (alt > ZN1[4]) { g0 *= 1.0 + options[ALL_120KM_GRADIENT_S_VARIATIONS].mainEffect * globe7(PS); }
+
+        // Temperature at lower boundary
+        const Temperature tempLowerBound =
+            PTM.Tlb0 * PD[3][0] * (1.0 + options[ALL_VARIATIONS_FROM_120KM_TEMPERATURE_TLB].mainEffect * globe7(PD[3]));
+
+        // Slope
+        const quantity s = g0 / (tempInf - tempLowerBound);
+
+        // Lower thermosphere temp variations not significant for density above 300 km
+        mesoTn1[1]  = PTM.TN11 * PTL[0][0];
+        mesoTn1[2]  = PTM.TN12 * PTL[1][0];
+        mesoTn1[3]  = PTM.TN13 * PTL[2][0];
+        mesoTn1[4]  = PTM.TN14 * PTL[3][0];
+        mesoTgn1[1] = PTM.Tgrad * PMA[8][0];
+        if (alt < 300.0) {
+            const quantity r = PTM.TN14 * PTL[3][0];
+            mesoTn1[1] /= 1.0 - options[ALL_LOWER_THERMOSPHERE_TEMPERATURE_TN1_VARIATIONS].mainEffect * glob7s(PTL[0]);
+            mesoTn1[2] /= 1.0 - options[ALL_LOWER_THERMOSPHERE_TEMPERATURE_TN1_VARIATIONS].mainEffect * glob7s(PTL[1]);
+            mesoTn1[3] /= 1.0 - options[ALL_LOWER_THERMOSPHERE_TEMPERATURE_TN1_VARIATIONS].mainEffect * glob7s(PTL[2]);
+            mesoTn1[4] /= 1.0 - options[ALL_LOWER_THERMOSPHERE_TEMPERATURE_TN1_VARIATIONS].mainEffect *
+                                    options[ALL_UPPER_STRATOSPHERE_TEMPERATURE_TN2_VARIATIONS].mainEffect * glob7s(PTL[3]);
+            mesoTgn1[1] *= 1.0 + options[ALL_LOWER_THERMOSPHERE_TEMPERATURE_TN1_VARIATIONS].mainEffect *
+                                     options[ALL_UPPER_STRATOSPHERE_TEMPERATURE_TN2_VARIATIONS].mainEffect * glob7s(PMA[8]);
+            mesoTgn1[1] *= mesoTn1[4] * mesoTn1[4] / (r * r);
         }
 
-        // compute day number in current year and the seconds within the day
-        const int doy  = date.day_of_year();
-        const Time sec = date.seconds_in_local_day();
+        /**** Temperature at altitude ****/
+        set_temperature(ALTITUDE, calculate_density_temperature_profile_new(alt, 1.0, tempInf, tempLowerBound, 0.0, 0.0, PTM.Zlb, s));
 
-        // compute geodetic position
-        const auto& rEcef          = state.get_position_in_frame<frames::earth::earth_fixed>();
-        const auto [lat, lon, alt] = convert_body_fixed_to_geodetic(rEcef);
-
-        // compute local solar time
-        const Time lst = calculate_local_solar_time(state);
-
-        // get solar activity data and compute
-        const Output out = new Output(
-            doy, sec, lat, lon, lst, inputParams.get_average_flux(date), inputParams.get_daily_flux(date), inputParams.get_ap(date)
+        /**** N2 density ****/
+        /*   Density variation factor at Zlb */
+        const quantity g28 = options[ALL_VARIATIONS_FROM_120KM_VALUES_ZLB].mainEffect * globe7(PD[2]);
+        /* Diffusive density at Zlb */
+        const quantity db28 = SpeciesModelData[MOLECULAR_NITROGEN].nRef * exp(g28) * PD[2][0];
+        /* Diffusive density at Alt */
+        quantity diffusiveDensity = calculate_density_temperature_profile_new(
+            alt, db28, tempInf, tempLowerBound, N2_MASS, thermalDiffusionCoefficients[2], PTM.Zlb, s
         );
-        out.gtd7d(alt);
-
-        // return the local density
-        return out.get_density(TOTAL_MASS);
-    }
-
-    Time calculate_local_solar_time(const State& state)
-    {
-        const Date& date     = state.get_epoch();
-        const auto& position = state.get_position();
-
-        const RadiusVector<frames::solar_system_barycenter::icrf> sun2Earth = get_position_at(date);
-        const Direction<frames::earth::icrf> sunDirection = -sun2Earth.direction().force_frame_conversion<frames::earth::icrf>();
-
-        const Angle lst =
-            std::numbers::pi * rad + atan2(
-                                         sunDirection.get_x() * position.get_y() - sunDirection.get_y() * position.get_x(),
-                                         sunDirection.get_x() * position.get_x() + sunDirection.get_y() * position.get_y()
-                                     );
-        return lst / rad * 12.0 / std::numbers::pi * h;
-    }
-
-
-    class Output {
-
-        const int doy;
-
-        const Time sec;
-
-        const Angle lat;
-
-        const Angle lon;
-
-        const Time hl;
-
-        const SolarFlux f107a;
-
-        const SolarFlux f107;
-
-        const std::array<Unitless, 7> ap;
-
-        Acceleration glat;
-
-        Distance rlat;
-
-        NumberDensity dm28;
-
-        const std::array<std::array<Unitless, 8>, 4> plg;
-
-        const Unitless ctloc;
-        const Unitless stloc;
-        const Unitless c2tloc;
-        const Unitless s2tloc;
-        const Unitless c3tloc;
-        const Unitless s3tloc;
-
-        double apdf;
-
-        double apt;
-
-        const std::array<Temperature, ZN1.size()> meso_tn1;
-
-        const std::array<Temperature, ZN2.size()> meso_tn2;
-
-        const std::array<Temperature, ZN3.size()> meso_tn3;
-
-        const std::array<Temperature, 2> meso_tgn1;
-
-        const std::array<Temperature, 2> meso_tgn2;
-
-        const std::array<Temperature, 2> meso_tgn3;
-
-        const std::array<NumberDensity, 9> densities;
-
-        const std::array<Temperature, 2> temperatures;
-
-        Output(
-            const int doy,
-            const Time sec,
-            const Angle lat,
-            const Angle lon,
-            const Time hl,
-            const SolarFlux f107a,
-            const SolarFlux f107,
-            const std::array<Unitless, 7>& ap
-        ) :
-            doy(doy),
-            sec(sec),
-            lat(lat),
-            lon(lon),
-            hl(hl),
-            f107a(f107a),
-            f107(f107),
-            ap(ap)
-        {
-            // Calculates latitude variable gravity and effective radius
-            const Angle xlat  = (!options[INDEPENDENT_OF_TIME].mainEffect) ? LAT_REF : lat;
-            const Unitless c2 = cos(2.0 * xlat * rad);
-            glat              = G_REF * (1. - .0026373 * c2);
-            rlat              = 2.0 * glat * cm / (s * s) / (3.085462e-6 + 2.27e-9 * c2 * 1.0e-5 * km);
-
-            // Calculate legendre polynomials (lat already in radians)
-            const Unitless c = sin(lat);
-            const Unitless s = cos(lat);
-
-            plg[0][1] = c;
-            plg[0][2] = (3.0 * c * plg[0][1] - 1.0) / 2.0;
-            plg[0][3] = (5.0 * c * plg[0][2] - 2.0 * plg[0][1]) / 3.0;
-            plg[0][4] = (7.0 * c * plg[0][3] - 3.0 * plg[0][2]) / 4.0;
-            plg[0][5] = (9.0 * c * plg[0][4] - 4.0 * plg[0][3]) / 5.0;
-            plg[0][6] = (11.0 * c * plg[0][5] - 5.0 * plg[0][4]) / 6.0;
-
-            plg[1][1] = s;
-            plg[1][2] = 3.0 * c * plg[1][1];
-            plg[1][3] = (5.0 * c * plg[1][2] - 3.0 * plg[1][1]) / 2.0;
-            plg[1][4] = (7.0 * c * plg[1][3] - 4.0 * plg[1][2]) / 3.0;
-            plg[1][5] = (9.0 * c * plg[1][4] - 5.0 * plg[1][3]) / 4.0;
-            plg[1][6] = (11.0 * c * plg[1][5] - 6.0 * plg[1][4]) / 5.0;
-
-            plg[2][2] = 3.0 * s * plg[1][1];
-            plg[2][3] = 5.0 * c * plg[2][2];
-            plg[2][4] = (7.0 * c * plg[2][3] - 5.0 * plg[2][2]) / 2.0;
-            plg[2][5] = (9.0 * c * plg[2][4] - 6.0 * plg[2][3]) / 3.0;
-            plg[2][6] = (11.0 * c * plg[2][5] - 7.0 * plg[2][4]) / 4.0;
-            plg[2][7] = (13.0 * c * plg[2][6] - 8.0 * plg[2][5]) / 5.0;
-
-            plg[3][3] = 5.0 * s * plg[2][2];
-            plg[3][4] = 7.0 * c * plg[3][3];
-            plg[3][5] = (9.0 * c * plg[3][4] - 7.0 * plg[3][3]) / 2.0;
-            plg[3][6] = (11.0 * c * plg[3][5] - 8.0 * plg[3][4]) / 3.0;
-
-            // Calculate additional data
-            if (options[DIURNAL].mainEffect || options[SEMIDIURNAL].mainEffect || options[TERDIURNAL].mainEffect) {
-                const Angle tloc = HOUR_TO_RAD * hl;
-                stloc            = sin(tloc);
-                ctloc            = cos(tloc);
-                s2tloc           = sin(2.0 * tloc);
-                c2tloc           = cos(2.0 * tloc);
-                s3tloc           = sin(3.0 * tloc);
-                c3tloc           = cos(3.0 * tloc);
-            }
-            else {
-                stloc  = 0.0 * one;
-                ctloc  = 0.0 * one;
-                s2tloc = 0.0 * one;
-                c2tloc = 0.0 * one;
-                s3tloc = 0.0 * one;
-                c3tloc = 0.0 * one;
-            }
+        set_density(MOLECULAR_NITROGEN, diffusiveDensity);
+        // Variation of turbopause height
+        const quantity zhf = PDL[1][24] * (1.0 + options[ASYMMETRICAL_ANNUAL] * PDL[0][24].mainEffect * sin(lat * rad) *
+                                                     cos(DAY_TO_RAD * rad / d) * (doy - PT[13]));
+        /* Turbopause */
+        const quantity zh28  = SpeciesModelData[MOLECULAR_NITROGEN].zh * zhf;
+        const quantity zhm28 = SpeciesModelData[MOLECULAR_NITROGEN].c3 * PDL[1][5];
+        /* Mixed density at Zlb */
+        const quantity b28 = calculate_density_temperature_profile_new(
+            zh28, db28, tempInf, tempLowerBound, N2_MASS - XMM, thermalDiffusionCoefficients[2] - 1.0, PTM.Zlb, s
+        );
+        if (options[DEPARTURES_FROM_DIFFUSIVE_EQUILIBRIUM].mainEffect && alt <= altl[2]) {
+            /*  Mixed density at Alt */
+            n2MixedNumberDensity = calculate_density_temperature_profile_new(
+                alt, b28, tempInf, tempLowerBound, XMM, thermalDiffusionCoefficients[2], PTM.Zlb, s
+            );
+            /*  Net density at Alt */
+            set_density(MOLECULAR_NITROGEN, calculate_turbopause_correction(diffusiveDensity, n2MixedNumberDensity, zhm28, XMM, N2_MASS));
         }
 
-        void gts7(const Distance alt)
-        {
+        /**** He density ****/
+        /*   Density variation factor at Zlb */
+        const quantity g4 = options[ALL_VARIATIONS_FROM_120KM_VALUES_ZLB].mainEffect * globe7(PD[0]);
+        /*  Diffusive density at Zlb */
+        const quantity db04 = SpeciesModelData[HELIUM].nRef * exp(g4) * PD[0][0];
+        /*  Diffusive density at Alt */
+        diffusiveDensity = calculate_density_temperature_profile_new(
+            alt, db04, tempInf, tempLowerBound, HE_MASS, thermalDiffusionCoefficients[0], PTM.Zlb, s
+        );
+        set_density(HELIUM, diffusiveDensity);
+        if (options[DEPARTURES_FROM_DIFFUSIVE_EQUILIBRIUM].mainEffect && alt < altl[0]) {
+            /*  Turbopause */
+            const quantity zh04 = SpeciesModelData[HELIUM].zh;
+            /*  Mixed density at Zlb */
+            const quantity b04 = calculate_density_temperature_profile_new(
+                zh04, db04, tempInf, tempLowerBound, HE_MASS - XMM, thermalDiffusionCoefficients[0] - 1., PTM.Zlb, s
+            );
+            /*  Mixed density at Alt */
+            const quantity dm04 =
+                calculate_density_temperature_profile_new(alt, b04, tempInf, tempLowerBound, XMM, 0., PTM.Zlb, s);
+            const quantity zhm04 = zhm28;
+            /*  Net density at Alt */
+            diffusiveDensity = calculate_turbopause_correction(diffusiveDensity, dm04, zhm04, XMM, HE_MASS);
+            /*  Correction to specified mixing ratio at ground */
+            const quantity rl   = log(b28 * SpeciesModelData[HELIUM].mixRatio / b04);
+            const quantity zc04 = SpeciesModelData[HELIUM].za * PDL[1][0];
+            const quantity hc04 = SpeciesModelData[HELIUM].ha * PDL[1][1];
+            /*  Net density corrected at Alt */
+            set_density(HELIUM, diffusiveDensity * calculate_dissociation_correction(alt, rl, hc04, zc04));
+        }
 
-            // Thermal diffusion coefficients for species
-            const std::array<Unitless, 9> alpha = { -0.38, 0.0, 0.0, 0.0, 0.17, 0.0, -0.38, 0.0, 0.0 };
-
-            // Altitude limits for net density computation for species
-            const std::array<double, 8> altl = { 200.0, 300.0, 160.0, 250.0, 240.0, 450.0, 320.0, 450.0 };
-
-            /**** Exospheric temperature ****/
-            Temperature tinf = PTM.Tinf * PT[0];
-
-            // Tinf variations not important below ZA or ZN[0]
-            if (alt > ZN1[0]) { tinf *= 1.0 + options[ALL_EXOSPHERIC_TEMPERATURE_VARIATIONS].mainEffect * globe7(PT); }
-            set_temperature(EXOSPHERIC, tinf);
-
-            // Gradient variations not important below ZN[4]
-            double g0 = PTM.S0.numerical_value_in(K / km) * PS[0];
-            if (alt > ZN1[4]) { g0 *= 1.0 + options[ALL_120KM_GRADIENT_S_VARIATIONS].mainEffect * globe7(PS); }
-
-            // Temperature at lower boundary
-            Temperature tlb = PTM.Tlb0 * PD[3][0];
-            tlb *= 1.0 + options[ALL_VARIATIONS_FROM_120KM_TEMPERATURE_TLB].mainEffect * globe7(PD[3]);
-
-            // Slope
-            const double s = g0 / (tinf - tlb);
-
-            // Lower thermosphere temp variations not significant for density above 300 km
-            meso_tn1[1]  = PTM.TN11 * PTL[0][0];
-            meso_tn1[2]  = PTM.TN12 * PTL[1][0];
-            meso_tn1[3]  = PTM.TN13 * PTL[2][0];
-            meso_tn1[4]  = PTM.TN14 * PTL[3][0];
-            meso_tgn1[1] = PTM.Tgrad * PMA[8][0];
-            if (alt < 300.0) {
-                const double r = PTM.TN14 * PTL[3][0];
-                meso_tn1[1] /= 1.0 - options[ALL_LOWER_THERMOSPHERE_TEMPERATURE_TN1_VARIATIONS].mainEffect * glob7s(PTL[0]);
-                meso_tn1[2] /= 1.0 - options[ALL_LOWER_THERMOSPHERE_TEMPERATURE_TN1_VARIATIONS].mainEffect * glob7s(PTL[1]);
-                meso_tn1[3] /= 1.0 - options[ALL_LOWER_THERMOSPHERE_TEMPERATURE_TN1_VARIATIONS].mainEffect * glob7s(PTL[2]);
-                meso_tn1[4] /= 1.0 - options[ALL_LOWER_THERMOSPHERE_TEMPERATURE_TN1_VARIATIONS].mainEffect *
-                                         options[ALL_UPPER_STRATOSPHERE_TEMPERATURE_TN2_VARIATIONS].mainEffect * glob7s(PTL[3]);
-                meso_tgn1[1] *= 1.0 + options[ALL_LOWER_THERMOSPHERE_TEMPERATURE_TN1_VARIATIONS].mainEffect *
-                                          options[ALL_UPPER_STRATOSPHERE_TEMPERATURE_TN2_VARIATIONS].mainEffect *
-                                          glob7s(PMA[8]);
-                meso_tgn1[1] *= meso_tn1[4] * meso_tn1[4] / (r * r);
-            }
-
-            /**** Temperature at altitude ****/
-            set_temperature(ALTITUDE, densu(alt, 1.0, tinf, tlb, 0.0, 0.0, PTM.Zlb, s));
-
-            /**** N2 density ****/
-            /*   Density variation factor at Zlb */
-            const double g28 = options[ALL_VARIATIONS_FROM_120KM_VALUES_ZLB].mainEffect * globe7(PD[2]);
-            /* Diffusive density at Zlb */
-            const double db28 = PDM[2].n_ref * exp(g28) * PD[2][0];
-            /* Diffusive density at Alt */
-            double diffusiveDensity = densu(alt, db28, tinf, tlb, N2_MASS, alpha[2], PTM.Zlb, s);
-            set_density(MOLECULAR_NITROGEN, diffusiveDensity);
-            // Variation of turbopause height
-            const double zhf = PDL[1][24] * (1.0 + options[ASYMMETRICAL_ANNUAL] * PDL[0][24].mainEffect *
-                                                       sin(lat * rad) * cos(DAY_TO_RAD * rad / d) * (doy - PT[13]));
+        /**** O density ****/
+        /* Density variation factor at Zlb */
+        const quantity g16 = options[ALL_VARIATIONS_FROM_120KM_VALUES_ZLB].mainEffect * globe7(PD[1]);
+        /* Diffusive density at Zlb */
+        const quantity db16 = SpeciesModelData[ATOMIC_OXYGEN].nRef * exp(g16) * PD[1][0];
+        /* Diffusive density at Alt */
+        diffusiveDensity = calculate_density_temperature_profile_new(
+            alt, db16, tempInf, tempLowerBound, O_MASS, thermalDiffusionCoefficients[1], PTM.Zlb, s
+        );
+        set_density(ATOMIC_OXYGEN, diffusiveDensity);
+        if (options[DEPARTURES_FROM_DIFFUSIVE_EQUILIBRIUM].mainEffect && alt < altl[1]) {
             /* Turbopause */
-            const double zh28  = PDM[2].zh * zhf;
-            const double zhm28 = PDM[2].c3 * PDL[1][5];
+            const quantity zh16 = SpeciesModelData[ATOMIC_OXYGEN].zh;
             /* Mixed density at Zlb */
-            const double b28 = densu(zh28, db28, tinf, tlb, N2_MASS - XMM, alpha[2] - 1.0, PTM.Zlb, s);
-            if (options[DEPARTURES_FROM_DIFFUSIVE_EQUILIBRIUM].mainEffect && alt <= altl[2]) {
-                /*  Mixed density at Alt */
-                dm28 = densu(alt, b28, tinf, tlb, XMM, alpha[2], PTM.Zlb, s);
-                /*  Net density at Alt */
-                set_density(MOLECULAR_NITROGEN, dnet(diffusiveDensity, dm28, zhm28, XMM, N2_MASS));
-            }
-
-            /**** He density ****/
-            /*   Density variation factor at Zlb */
-            const double g4 = options[ALL_VARIATIONS_FROM_120KM_VALUES_ZLB].mainEffect * globe7(PD[0]);
-            /*  Diffusive density at Zlb */
-            const double db04 = PDM[0].n_ref * exp(g4) * PD[0][0];
-            /*  Diffusive density at Alt */
-            diffusiveDensity = densu(alt, db04, tinf, tlb, HE_MASS, alpha[0], PTM.Zlb, s);
-            set_density(HELIUM, diffusiveDensity);
-            if (options[DEPARTURES_FROM_DIFFUSIVE_EQUILIBRIUM].mainEffect && alt < altl[0]) {
-                /*  Turbopause */
-                const double zh04 = PDM[0].zh;
-                /*  Mixed density at Zlb */
-                const double b04 = densu(zh04, db04, tinf, tlb, HE_MASS - XMM, alpha[0] - 1., PTM.Zlb, s);
-                /*  Mixed density at Alt */
-                const double dm04  = densu(alt, b04, tinf, tlb, XMM, 0., PTM.Zlb, s);
-                const double zhm04 = zhm28;
-                /*  Net density at Alt */
-                diffusiveDensity = dnet(diffusiveDensity, dm04, zhm04, XMM, HE_MASS);
-                /*  Correction to specified mixing ratio at ground */
-                const double rl   = log(b28 * PDM[0].mix_ratio / b04);
-                const double zc04 = PDM[0].za * PDL[1][0];
-                const double hc04 = PDM[0].ha * PDL[1][1];
-                /*  Net density corrected at Alt */
-                set_density(HELIUM, diffusiveDensity * ccor(alt, rl, hc04, zc04));
-            }
-
-            /**** O density ****/
-            /* Density variation factor at Zlb */
-            const double g16 = options[ALL_VARIATIONS_FROM_120KM_VALUES_ZLB].mainEffect * globe7(PD[1]);
-            /* Diffusive density at Zlb */
-            const double db16 = PDM[1].n_ref * exp(g16) * PD[1][0];
-            /* Diffusive density at Alt */
-            diffusiveDensity = densu(alt, db16, tinf, tlb, O_MASS, alpha[1], PTM.Zlb, s);
-            set_density(ATOMIC_OXYGEN, diffusiveDensity);
-            if (options[DEPARTURES_FROM_DIFFUSIVE_EQUILIBRIUM].mainEffect && alt < altl[1]) {
-                /* Turbopause */
-                const double zh16 = PDM[1].zh;
-                /* Mixed density at Zlb */
-                const double b16 = densu(zh16, db16, tinf, tlb, O_MASS - XMM, alpha[1] - 1.0, PTM.Zlb, s);
-                /* Mixed density at Alt */
-                const double dm16  = densu(alt, b16, tinf, tlb, XMM, 0., PTM.Zlb, s);
-                const double zhm16 = zhm28;
-                /* Net density at Alt */
-                diffusiveDensity = dnet(diffusiveDensity, dm16, zhm16, XMM, O_MASS);
-                const double rl  = PDM[1].mix_ratio * PDL[1][16] *
-                                  (1.0 + options[F107_EFFECT_ON_MEAN].mainEffect * PDL[0][23] * (f107a - FLUX_REF));
-                const double hc16  = PDM[1].ha * PDL[1][3];
-                const double zc16  = PDM[1].za * PDL[1][2];
-                const double hc216 = PDM[1].ha * PDL[1][4];
-                diffusiveDensity *= ccor2(alt, rl, hc16, zc16, hc216);
-                /* Chemistry correction */
-                const double hcc16 = PDM[1].hb * PDL[1][13];
-                const double zcc16 = PDM[1].zb * PDL[1][12];
-                const double rc16  = PDM[1].c3 * PDL[1][14];
-                /* Net density corrected at Alt */
-                set_density(ATOMIC_OXYGEN, diffusiveDensity * ccor(alt, rc16, hcc16, zcc16));
-            }
-
-            /**** O2 density ****/
-            /* Density variation factor at Zlb */
-            const double g32 = options[ALL_VARIATIONS_FROM_120KM_VALUES_ZLB].mainEffect * globe7(PD[4]);
-            /* Diffusive density at Zlb */
-            const double db32 = PDM[3].n_ref * exp(g32) * PD[4][0];
-            /* Diffusive density at Alt */
-            diffusiveDensity = densu(alt, db32, tinf, tlb, O2_MASS, alpha[3], PTM.Zlb, s);
-            set_density(MOLECULAR_OXYGEN, diffusiveDensity);
-            if (options[DEPARTURES_FROM_DIFFUSIVE_EQUILIBRIUM].mainEffect) {
-                if (alt <= altl[3]) {
-                    /* Turbopause */
-                    const double zh32 = PDM[3].zh;
-                    /* Mixed density at Zlb */
-                    const double b32 = densu(zh32, db32, tinf, tlb, O2_MASS - XMM, alpha[3] - 1., PTM.Zlb, s);
-                    /* Mixed density at Alt */
-                    const double dm32  = densu(alt, b32, tinf, tlb, XMM, 0., PTM.Zlb, s);
-                    const double zhm32 = zhm28;
-                    /* Net density at Alt */
-                    diffusiveDensity = dnet(diffusiveDensity, dm32, zhm32, XMM, O2_MASS);
-                    /* Correction to specified mixing ratio at ground */
-                    const double rl   = log(b28 * PDM[3].mix_ratio / b32);
-                    const double hc32 = PDM[3].ha * PDL[1][7];
-                    const double zc32 = PDM[3].za * PDL[1][6];
-                    diffusiveDensity *= ccor(alt, rl, hc32, zc32);
-                }
-                /* Correction for general departure from diffusive equilibrium above Zlb */
-                const double hcc32  = PDM[3].hb * PDL[1][22];
-                const double hcc232 = PDM[3].hb * PDL[0][22];
-                const double zcc32  = PDM[3].zb * PDL[1][21];
-                const double rc32   = PDM[3].c3 * PDL[1][23] *
-                                    (1. + options[F107_EFFECT_ON_MEAN].mainEffect * PDL[0][23] * (f107a - FLUX_REF));
-                /* Net density corrected at Alt */
-                set_density(MOLECULAR_OXYGEN, diffusiveDensity * ccor2(alt, rc32, hcc32, zcc32, hcc232));
-            }
-
-            /**** Ar density ****/
-            /* Density variation factor at Zlb */
-            const double g40 = options[ALL_VARIATIONS_FROM_120KM_VALUES_ZLB].mainEffect * globe7(PD[5]);
-            /* Diffusive density at Zlb */
-            const double db40 = PDM[4].n_ref * exp(g40) * PD[5][0];
-            /* Diffusive density at Alt */
-            diffusiveDensity = densu(alt, db40, tinf, tlb, AR_MASS, alpha[4], PTM.Zlb, s);
-            set_density(ARGON, diffusiveDensity);
-            if (options[DEPARTURES_FROM_DIFFUSIVE_EQUILIBRIUM].mainEffect && alt <= altl[4]) {
-                /* Turbopause */
-                const double zh40 = PDM[4].zh;
-                /* Mixed density at Zlb */
-                const double b40 = densu(zh40, db40, tinf, tlb, AR_MASS - XMM, alpha[4] - 1., PTM.Zlb, s);
-                /* Mixed density at Alt */
-                const double dm40  = densu(alt, b40, tinf, tlb, XMM, 0., PTM.Zlb, s);
-                const double zhm40 = zhm28;
-                /* Net density at Alt */
-                diffusiveDensity = dnet(diffusiveDensity, dm40, zhm40, XMM, AR_MASS);
-                /* Correction to specified mixing ratio at ground */
-                const double rl   = log(b28 * PDM[4].mix_ratio / b40);
-                const double hc40 = PDM[4].ha * PDL[1][9];
-                const double zc40 = PDM[4].za * PDL[1][8];
-                /* Net density corrected at Alt */
-                set_density(ARGON, diffusiveDensity * ccor(alt, rl, hc40, zc40));
-            }
-
-            /**** H density ****/
-            /* Density variation factor at Zlb */
-            const double g1 = options[ALL_VARIATIONS_FROM_120KM_VALUES_ZLB].mainEffect * globe7(PD[6]);
-            /* Diffusive density at Zlb */
-            const double db01 = PDM[5].n_ref * exp(g1) * PD[6][0];
-            /* Diffusive density at Alt */
-            diffusiveDensity = densu(alt, db01, tinf, tlb, H_MASS, alpha[6], PTM.Zlb, s);
-            set_density(HYDROGEN, diffusiveDensity);
-            if (options[DEPARTURES_FROM_DIFFUSIVE_EQUILIBRIUM].mainEffect && alt <= altl[6]) {
-                /* Turbopause */
-                const double zh01 = PDM[5].zh;
-                /* Mixed density at Zlb */
-                const double b01 = densu(zh01, db01, tinf, tlb, H_MASS - XMM, alpha[6] - 1., PTM.Zlb, s);
-                /* Mixed density at Alt */
-                const double dm01  = densu(alt, b01, tinf, tlb, XMM, 0., PTM.Zlb, s);
-                const double zhm01 = zhm28;
-                /* Net density at Alt */
-                diffusiveDensity = dnet(diffusiveDensity, dm01, zhm01, XMM, H_MASS);
-                /* Correction to specified mixing ratio at ground */
-                const double rl   = log(b28 * PDM[5].mix_ratio * sqrt(PDL[1][17] * PDL[1][17]) / b01);
-                const double hc01 = PDM[5].ha * PDL[1][11];
-                const double zc01 = PDM[5].za * PDL[1][10];
-                diffusiveDensity *= ccor(alt, rl, hc01, zc01);
-                /* Chemistry correction */
-                const double hcc01 = PDM[5].hb * PDL[1][19];
-                const double zcc01 = PDM[5].zb * PDL[1][18];
-                const double rc01  = PDM[5].c3 * PDL[1][20];
-                /* Net density corrected at Alt */
-                set_density(HYDROGEN, diffusiveDensity * ccor(alt, rc01, hcc01, zcc01));
-            }
-
-            /**** N density ****/
-            /* Density variation factor at Zlb */
-            const double g14 = options[ALL_VARIATIONS_FROM_120KM_VALUES_ZLB].mainEffect * globe7(PD[7]);
-            /* Diffusive density at Zlb */
-            const double db14 = PDM[6].n_ref * exp(g14) * PD[7][0];
-            /* Diffusive density at Alt */
-            diffusiveDensity = densu(alt, db14, tinf, tlb, N_MASS, alpha[7], PTM.Zlb, s);
-            set_density(ATOMIC_NITROGEN, diffusiveDensity);
-            if (options[DEPARTURES_FROM_DIFFUSIVE_EQUILIBRIUM].mainEffect && alt <= altl[7]) {
-                /* Turbopause */
-                const double zh14 = PDM[6].zh;
-                /* Mixed density at Zlb */
-                const double b14 = densu(zh14, db14, tinf, tlb, N_MASS - XMM, alpha[7] - 1., PTM.Zlb, s);
-                /* Mixed density at Alt */
-                const double dm14  = densu(alt, b14, tinf, tlb, XMM, 0., PTM.Zlb, s);
-                const double zhm14 = zhm28;
-                /* Net density at Alt */
-                diffusiveDensity = dnet(diffusiveDensity, dm14, zhm14, XMM, N_MASS);
-                /* Correction to specified mixing ratio at ground */
-                const double rl   = log(b28 * PDM[6].mix_ratio * PDL[0][2] / b14);
-                const double hc14 = PDM[6].ha * PDL[0][1];
-                const double zc14 = PDM[6].za * PDL[0][0];
-                diffusiveDensity *= ccor(alt, rl, hc14, zc14);
-                /* Chemistry correction */
-                const double hcc14 = PDM[6].hb * PDL[0][4];
-                const double zcc14 = PDM[6].zb * PDL[0][3];
-                const double rc14  = PDM[6].c3 * PDL[0][5];
-                /* Net density corrected at Alt */
-                set_density(ATOMIC_NITROGEN, diffusiveDensity * ccor(alt, rc14, hcc14, zcc14));
-            }
-
-            /**** Anomalous O density ****/
-            const double g16h  = options[ALL_VARIATIONS_FROM_120KM_VALUES_ZLB].mainEffect * globe7(PD[8]);
-            const double db16h = PDM[7].n_ref * exp(g16h) * PD[8][0];
-            const double tho   = PDM[7].c9 * PDL[0][6];
-            diffusiveDensity   = densu(alt, db16h, tho, tho, O_MASS, alpha[8], PTM.Zlb, s);
-            const double zsht  = PDM[7].ha;
-            const double zmho  = PDM[7].za;
-            const double zsho  = scalh(zmho, O_MASS, tho);
-            diffusiveDensity *= exp(-zsht / zsho * (exp((zmho - alt) / zsht) - 1.));
-            set_density(ANOMALOUS_OXYGEN, diffusiveDensity);
-
-            // Convert densities from cm-3 to m-3
-            for (int i = 0; i < 9; i++) {
-                set_density(i, get_density(i) * 1.0e6);
-            }
-
-            /**** Total mass density ****/
-            const double tmd = HE_MASS * get_density(HELIUM) + O_MASS * get_density(ATOMIC_OXYGEN) +
-                               N2_MASS * get_density(MOLECULAR_NITROGEN) + O2_MASS * get_density(MOLECULAR_OXYGEN) +
-                               AR_MASS * get_density(ARGON) + H_MASS * get_density(HYDROGEN) +
-                               N_MASS * get_density(ATOMIC_NITROGEN);
-            set_density(TOTAL_MASS, tmd);
+            const quantity b16 = calculate_density_temperature_profile_new(
+                zh16, db16, tempInf, tempLowerBound, O_MASS - XMM, thermalDiffusionCoefficients[1] - 1.0, PTM.Zlb, s
+            );
+            /* Mixed density at Alt */
+            const quantity dm16 =
+                calculate_density_temperature_profile_new(alt, b16, tempInf, tempLowerBound, XMM, 0., PTM.Zlb, s);
+            const quantity zhm16 = zhm28;
+            /* Net density at Alt */
+            diffusiveDensity  = calculate_turbopause_correction(diffusiveDensity, dm16, zhm16, XMM, O_MASS);
+            const quantity rl = SpeciesModelData[ATOMIC_OXYGEN].mixRatio * PDL[1][16] *
+                                (1.0 + options[F107_EFFECT_ON_MEAN].mainEffect * PDL[0][23] * (f107a - FLUX_REF));
+            const quantity hc16  = SpeciesModelData[ATOMIC_OXYGEN].ha * PDL[1][3];
+            const quantity zc16  = SpeciesModelData[ATOMIC_OXYGEN].za * PDL[1][2];
+            const quantity hc216 = SpeciesModelData[ATOMIC_OXYGEN].ha * PDL[1][4];
+            diffusiveDensity *= calculate_oxygen_dissociation_correction(alt, rl, hc16, zc16, hc216);
+            /* Chemistry correction */
+            const quantity hcc16 = SpeciesModelData[ATOMIC_OXYGEN].hb * PDL[1][13];
+            const quantity zcc16 = SpeciesModelData[ATOMIC_OXYGEN].zb * PDL[1][12];
+            const quantity rc16  = SpeciesModelData[ATOMIC_OXYGEN].c3 * PDL[1][14];
+            /* Net density corrected at Alt */
+            set_density(ATOMIC_OXYGEN, diffusiveDensity * calculate_dissociation_correction(alt, rc16, hcc16, zcc16));
         }
 
-        void gtd7(const Distance alt)
-        {
-            const double alt = alt * km;
-
-            // Calculates for thermosphere/mesosphere (above ZN2[0])
-            const Distance altt = (alt > ZN2[0]) ? alt : ZN2[0];
-            gts7(altt);
-            if (alt >= ZN2[0]) { return; }
-
-            // Calculates for lower mesosphere/upper stratosphere (between ZN2[0] and ZN3[0]):
-            // Temperature at nodes and gradients at end nodes
-            // Inverse temperature a linear function of spherical harmonics
-            const double r = PMA[2][0] * PAVGM[2];
-            meso_tgn2[0]   = meso_tgn1[1];
-            meso_tn2[0]    = meso_tn1[4];
-            meso_tn2[1]    = PMA[0][0] * PAVGM[0] /
-                          (1.0 - options[ALL_UPPER_STRATOSPHERE_TEMPERATURE_TN2_VARIATIONS].mainEffect * glob7s(PMA[0]));
-            meso_tn2[2] = PMA[1][0] * PAVGM[1] /
-                          (1.0 - options[ALL_UPPER_STRATOSPHERE_TEMPERATURE_TN2_VARIATIONS].mainEffect * glob7s(PMA[1]));
-            meso_tn2[3] = PMA[2][0] * PAVGM[2] /
-                          (1.0 - options[ALL_UPPER_STRATOSPHERE_TEMPERATURE_TN2_VARIATIONS].mainEffect *
-                                     options[ALL_LOWER_MESOSPHERE_TEMPERATURE_TN3_VARIATIONS].mainEffect * glob7s(PMA[2]));
-            meso_tgn2[1] = PMA[9][0] * PAVGM[8] *
-                           (1.0 + options[ALL_UPPER_STRATOSPHERE_TEMPERATURE_TN2_VARIATIONS].mainEffect *
-                                      options[ALL_LOWER_MESOSPHERE_TEMPERATURE_TN3_VARIATIONS].mainEffect * glob7s(PMA[9])) *
-                           meso_tn2[3] * meso_tn2[3] / (r * r);
-            meso_tn3[0] = meso_tn2[3];
-
-            // Calculates for lower stratosphere and troposphere (below ZN3[0])
-            // Temperature at nodes and gradients at end nodes
-            // Inverse temperature a linear function of spherical harmonics
-            if (alt <= ZN3[0]) {
-                const double q = PMA[6][0] * PAVGM[6];
-                meso_tgn3[0]   = meso_tgn2[1];
-                meso_tn3[1]    = PMA[3][0] * PAVGM[3] /
-                              (1.0 - options[ALL_LOWER_MESOSPHERE_TEMPERATURE_TN3_VARIATIONS].mainEffect * glob7s(PMA[3]));
-                meso_tn3[2] = PMA[4][0] * PAVGM[4] /
-                              (1.0 - options[ALL_LOWER_MESOSPHERE_TEMPERATURE_TN3_VARIATIONS].mainEffect * glob7s(PMA[4]));
-                meso_tn3[3] = PMA[5][0] * PAVGM[5] /
-                              (1.0 - options[ALL_LOWER_MESOSPHERE_TEMPERATURE_TN3_VARIATIONS].mainEffect * glob7s(PMA[5]));
-                meso_tn3[4] = PMA[6][0] * PAVGM[6] /
-                              (1.0 - options[ALL_LOWER_MESOSPHERE_TEMPERATURE_TN3_VARIATIONS].mainEffect * glob7s(PMA[6]));
-                meso_tgn3[1] = PMA[7][0] * PAVGM[7] *
-                               (1.0 + options[ALL_LOWER_MESOSPHERE_TEMPERATURE_TN3_VARIATIONS].mainEffect * glob7s(PMA[7])) *
-                               meso_tn3[4] * meso_tn3[4] / (q * q);
+        /**** O2 density ****/
+        /* Density variation factor at Zlb */
+        const quantity g32 = options[ALL_VARIATIONS_FROM_120KM_VALUES_ZLB].mainEffect * globe7(PD[4]);
+        /* Diffusive density at Zlb */
+        const quantity db32 = SpeciesModelData[MOLECULAR_OXYGEN].nRef * exp(g32) * PD[4][0];
+        /* Diffusive density at Alt */
+        diffusiveDensity = calculate_density_temperature_profile_new(
+            alt, db32, tempInf, tempLowerBound, O2_MASS, thermalDiffusionCoefficients[3], PTM.Zlb, s
+        );
+        set_density(MOLECULAR_OXYGEN, diffusiveDensity);
+        if (options[DEPARTURES_FROM_DIFFUSIVE_EQUILIBRIUM].mainEffect) {
+            if (alt <= altl[3]) {
+                /* Turbopause */
+                const quantity zh32 = SpeciesModelData[MOLECULAR_OXYGEN].zh;
+                /* Mixed density at Zlb */
+                const quantity b32 = calculate_density_temperature_profile_new(
+                    zh32, db32, tempInf, tempLowerBound, O2_MASS - XMM, thermalDiffusionCoefficients[3] - 1., PTM.Zlb, s
+                );
+                /* Mixed density at Alt */
+                const quantity dm32 =
+                    calculate_density_temperature_profile_new(alt, b32, tempInf, tempLowerBound, XMM, 0., PTM.Zlb, s);
+                const quantity zhm32 = zhm28;
+                /* Net density at Alt */
+                diffusiveDensity = calculate_turbopause_correction(diffusiveDensity, dm32, zhm32, XMM, O2_MASS);
+                /* Correction to specified mixing ratio at ground */
+                const quantity rl   = log(b28 * SpeciesModelData[MOLECULAR_OXYGEN].mixRatio / b32);
+                const quantity hc32 = SpeciesModelData[MOLECULAR_OXYGEN].ha * PDL[1][7];
+                const quantity zc32 = SpeciesModelData[MOLECULAR_OXYGEN].za * PDL[1][6];
+                diffusiveDensity *= calculate_dissociation_correction(alt, rl, hc32, zc32);
             }
-
-            // Linear transition to full mixing below ZN2[0]
-            const double dmc  = (alt > ZMIX) ? 1.0 - (ZN2[0] * km) - alt / (ZN2[0] * km) - ZMIX : 0.;
-            const double dz28 = get_density(MOLECULAR_NITROGEN);
-
-            // N2 density
-            const double dm28m = dm28 * 1.0e6;
-            double dmr         = dz28 / dm28m - 1.0;
-            double dst         = densm(alt, dm28m, XMM) * (1.0 + dmr * dmc);
-            set_density(MOLECULAR_NITROGEN, dst);
-
-            // HE density
-            dmr = get_density(HELIUM) / (dz28 * PDM[0].mix_ratio) - 1.0;
-            dst = get_density(MOLECULAR_NITROGEN) * PDM[0].mix_ratio * (1.0 + dmr * dmc);
-            set_density(HELIUM, dst);
-
-            // O density
-            set_density(ATOMIC_OXYGEN, 0.);
-            set_density(ANOMALOUS_OXYGEN, 0.);
-
-            // O2 density
-            dmr = get_density(MOLECULAR_OXYGEN) / (dz28 * PDM[3].mix_ratio) - 1.0;
-            dst = get_density(MOLECULAR_NITROGEN) * PDM[3].mix_ratio * (1.0 + dmr * dmc);
-            set_density(MOLECULAR_OXYGEN, dst);
-
-            // AR density
-            dmr = get_density(ARGON) / (dz28 * PDM[4].mix_ratio) - 1.0;
-            dst = get_density(MOLECULAR_NITROGEN) * PDM[4].mix_ratio * (1.0 + dmr * dmc);
-            set_density(ARGON, dst);
-
-            // H density
-            set_density(HYDROGEN, 0.);
-
-            // N density
-            set_density(ATOMIC_NITROGEN, 0.);
-
-            // Total mass density
-            const double tmd = AMU * (HE_MASS * get_density(HELIUM) + O_MASS * get_density(ATOMIC_OXYGEN) +
-                                      N2_MASS * get_density(MOLECULAR_NITROGEN) +
-                                      O2_MASS * get_density(MOLECULAR_OXYGEN) + AR_MASS * get_density(ARGON) +
-                                      H_MASS * get_density(HYDROGEN) + N_MASS * get_density(ATOMIC_NITROGEN));
-            set_density(TOTAL_MASS, tmd);
-
-            // Temperature at altitude
-            set_temperature(ALTITUDE, densm(alt, 1.0, 0));
+            /* Correction for general departure from diffusive equilibrium above Zlb */
+            const quantity hcc32  = SpeciesModelData[MOLECULAR_OXYGEN].hb * PDL[1][22];
+            const quantity hcc232 = SpeciesModelData[MOLECULAR_OXYGEN].hb * PDL[0][22];
+            const quantity zcc32  = SpeciesModelData[MOLECULAR_OXYGEN].zb * PDL[1][21];
+            const quantity rc32   = SpeciesModelData[MOLECULAR_OXYGEN].c3 * PDL[1][23] *
+                                  (1. + options[F107_EFFECT_ON_MEAN].mainEffect * PDL[0][23] * (f107a - FLUX_REF));
+            /* Net density corrected at Alt */
+            set_density(MOLECULAR_OXYGEN, diffusiveDensity * calculate_oxygen_dissociation_correction(alt, rc32, hcc32, zcc32, hcc232));
         }
 
-        void gtd7d(const Distance alt)
-        {
-            // Compute densities and temperatures
-            gtd7(alt);
-
-            // Update the total mass density with anomalous oxygen contribution
-            const double dTot = get_density(TOTAL_MASS) + AMU * O_MASS * get_density(ANOMALOUS_OXYGEN);
-            set_density(TOTAL_MASS, dTot);
+        /**** Ar density ****/
+        /* Density variation factor at Zlb */
+        const quantity g40 = options[ALL_VARIATIONS_FROM_120KM_VALUES_ZLB].mainEffect * globe7(PD[5]);
+        /* Diffusive density at Zlb */
+        const quantity db40 = SpeciesModelData[ARGON].nRef * exp(g40) * PD[5][0];
+        /* Diffusive density at Alt */
+        diffusiveDensity = calculate_density_temperature_profile_new(
+            alt, db40, tempInf, tempLowerBound, AR_MASS, thermalDiffusionCoefficients[4], PTM.Zlb, s
+        );
+        set_density(ARGON, diffusiveDensity);
+        if (options[DEPARTURES_FROM_DIFFUSIVE_EQUILIBRIUM].mainEffect && alt <= altl[4]) {
+            /* Turbopause */
+            const quantity zh40 = SpeciesModelData[ARGON].zh;
+            /* Mixed density at Zlb */
+            const quantity b40 = calculate_density_temperature_profile_new(
+                zh40, db40, tempInf, tempLowerBound, AR_MASS - XMM, thermalDiffusionCoefficients[4] - 1., PTM.Zlb, s
+            );
+            /* Mixed density at Alt */
+            const quantity dm40 =
+                calculate_density_temperature_profile_new(alt, b40, tempInf, tempLowerBound, XMM, 0., PTM.Zlb, s);
+            const quantity zhm40 = zhm28;
+            /* Net density at Alt */
+            diffusiveDensity = calculate_turbopause_correction(diffusiveDensity, dm40, zhm40, XMM, AR_MASS);
+            /* Correction to specified mixing ratio at ground */
+            const quantity rl   = log(b28 * SpeciesModelData[ARGON].mixRatio / b40);
+            const quantity hc40 = SpeciesModelData[ARGON].ha * PDL[1][9];
+            const quantity zc40 = SpeciesModelData[ARGON].za * PDL[1][8];
+            /* Net density corrected at Alt */
+            set_density(ARGON, diffusiveDensity * calculate_dissociation_correction(alt, rl, hc40, zc40));
         }
 
-        void set_density(const int index, const NumberDensity d) { densities[index] = d; }
+        /**** H density ****/
+        /* Density variation factor at Zlb */
+        const quantity g1 = options[ALL_VARIATIONS_FROM_120KM_VALUES_ZLB].mainEffect * globe7(PD[6]);
+        /* Diffusive density at Zlb */
+        const quantity db01 = SpeciesModelData[HYDROGEN].nRef * exp(g1) * PD[6][0];
+        /* Diffusive density at Alt */
+        diffusiveDensity = calculate_density_temperature_profile_new(
+            alt, db01, tempInf, tempLowerBound, H_MASS, thermalDiffusionCoefficients[6], PTM.Zlb, s
+        );
+        set_density(HYDROGEN, diffusiveDensity);
+        if (options[DEPARTURES_FROM_DIFFUSIVE_EQUILIBRIUM].mainEffect && alt <= altl[6]) {
+            /* Turbopause */
+            const quantity zh01 = SpeciesModelData[HYDROGEN].zh;
+            /* Mixed density at Zlb */
+            const quantity b01 = calculate_density_temperature_profile_new(
+                zh01, db01, tempInf, tempLowerBound, H_MASS - XMM, thermalDiffusionCoefficients[6] - 1., PTM.Zlb, s
+            );
+            /* Mixed density at Alt */
+            const quantity dm01 =
+                calculate_density_temperature_profile_new(alt, b01, tempInf, tempLowerBound, XMM, 0., PTM.Zlb, s);
+            const quantity zhm01 = zhm28;
+            /* Net density at Alt */
+            diffusiveDensity = calculate_turbopause_correction(diffusiveDensity, dm01, zhm01, XMM, H_MASS);
+            /* Correction to specified mixing ratio at ground */
+            const quantity rl   = log(b28 * SpeciesModelData[HYDROGEN].mixRatio * sqrt(PDL[1][17] * PDL[1][17]) / b01);
+            const quantity hc01 = SpeciesModelData[HYDROGEN].ha * PDL[1][11];
+            const quantity zc01 = SpeciesModelData[HYDROGEN].za * PDL[1][10];
+            diffusiveDensity *= calculate_dissociation_correction(alt, rl, hc01, zc01);
+            /* Chemistry correction */
+            const quantity hcc01 = SpeciesModelData[HYDROGEN].hb * PDL[1][19];
+            const quantity zcc01 = SpeciesModelData[HYDROGEN].zb * PDL[1][18];
+            const quantity rc01  = SpeciesModelData[HYDROGEN].c3 * PDL[1][20];
+            /* Net density corrected at Alt */
+            set_density(HYDROGEN, diffusiveDensity * calculate_dissociation_correction(alt, rc01, hcc01, zcc01));
+        }
 
-        void set_temperature(const int index, const Temperature t) { temperatures[index] = t; }
+        /**** N density ****/
+        /* Density variation factor at Zlb */
+        const quantity g14 = options[ALL_VARIATIONS_FROM_120KM_VALUES_ZLB].mainEffect * globe7(PD[7]);
+        /* Diffusive density at Zlb */
+        const quantity db14 = SpeciesModelData[ATOMIC_NITROGEN].nRef * exp(g14) * PD[7][0];
+        /* Diffusive density at Alt */
+        diffusiveDensity = calculate_density_temperature_profile_new(
+            alt, db14, tempInf, tempLowerBound, N_MASS, thermalDiffusionCoefficients[7], PTM.Zlb, s
+        );
+        set_density(ATOMIC_NITROGEN, diffusiveDensity);
+        if (options[DEPARTURES_FROM_DIFFUSIVE_EQUILIBRIUM].mainEffect && alt <= altl[7]) {
+            /* Turbopause */
+            const quantity zh14 = SpeciesModelData[ATOMIC_NITROGEN].zh;
+            /* Mixed density at Zlb */
+            const quantity b14 = calculate_density_temperature_profile_new(
+                zh14, db14, tempInf, tempLowerBound, N_MASS - XMM, thermalDiffusionCoefficients[7] - 1., PTM.Zlb, s
+            );
+            /* Mixed density at Alt */
+            const quantity dm14 =
+                calculate_density_temperature_profile_new(alt, b14, tempInf, tempLowerBound, XMM, 0., PTM.Zlb, s);
+            const quantity zhm14 = zhm28;
+            /* Net density at Alt */
+            diffusiveDensity = calculate_turbopause_correction(diffusiveDensity, dm14, zhm14, XMM, N_MASS);
+            /* Correction to specified mixing ratio at ground */
+            const quantity rl   = log(b28 * SpeciesModelData[ATOMIC_NITROGEN].mixRatio * PDL[0][2] / b14);
+            const quantity hc14 = SpeciesModelData[ATOMIC_NITROGEN].ha * PDL[0][1];
+            const quantity zc14 = SpeciesModelData[ATOMIC_NITROGEN].za * PDL[0][0];
+            diffusiveDensity *= calculate_dissociation_correction(alt, rl, hc14, zc14);
+            /* Chemistry correction */
+            const quantity hcc14 = SpeciesModelData[ATOMIC_NITROGEN].hb * PDL[0][4];
+            const quantity zcc14 = SpeciesModelData[ATOMIC_NITROGEN].zb * PDL[0][3];
+            const quantity rc14  = SpeciesModelData[ATOMIC_NITROGEN].c3 * PDL[0][5];
+            /* Net density corrected at Alt */
+            set_density(ATOMIC_NITROGEN, diffusiveDensity * calculate_dissociation_correction(alt, rc14, hcc14, zcc14));
+        }
 
-        double get_density(const int index) { return densities[index]; }
+        /**** Anomalous O density ****/
+        const quantity g16h  = options[ALL_VARIATIONS_FROM_120KM_VALUES_ZLB].mainEffect * globe7(PD[8]);
+        const quantity db16h = SpeciesModelData[ANOMALOUS_OXYGEN].nRef * exp(g16h) * PD[8][0];
+        const quantity tho   = SpeciesModelData[ANOMALOUS_OXYGEN].c9 * PDL[0][6];
+        diffusiveDensity =
+            calculate_density_temperature_profile_new(alt, db16h, tho, tho, O_MASS, thermalDiffusionCoefficients[8], PTM.Zlb, s);
+        const quantity zsht = SpeciesModelData[ANOMALOUS_OXYGEN].ha;
+        const quantity zmho = SpeciesModelData[ANOMALOUS_OXYGEN].za;
+        const quantity zsho = calculate_scale_height(zmho, O_MASS, tho);
+        diffusiveDensity *= exp(-zsht / zsho * (exp((zmho - alt) / zsht) - 1.));
+        set_density(ANOMALOUS_OXYGEN, diffusiveDensity);
 
-        double globe7(const double[] p)
-        {
-            // Extract raw values from typed quantities for use in polynomial expressions
-            const double[] t  = new double[14];
-            const double cd32 = cos(doy - p[31]));
-            const double cd18 = cos(2.0 * doy - p[17]));
-            const double cd14 = cos(doy - p[13]));
-            const double cd39 = cos(2.0 * doy - p[38]));
+        // Convert densities from cm-3 to m-3
+        for (int i = 0; i < 9; i++) {
+            set_density(i, get_density(i) * 1.0e6);
+        }
+
+        /**** Total mass density ****/
+        const quantity tmd = HE_MASS * get_density(HELIUM) + O_MASS * get_density(ATOMIC_OXYGEN) +
+                             N2_MASS * get_density(MOLECULAR_NITROGEN) + O2_MASS * get_density(MOLECULAR_OXYGEN) +
+                             AR_MASS * get_density(ARGON) + H_MASS * get_density(HYDROGEN) + N_MASS * get_density(ATOMIC_NITROGEN);
+        set_density(TOTAL_MASS, tmd);
+    }
+
+    void gtd7(const Distance alt)
+    {
+        const quantity alt = alt * km;
+
+        // Calculates for thermosphere/mesosphere (above ZN2[0])
+        const Distance altt = (alt > ZN2[0]) ? alt : ZN2[0];
+        gts7(altt);
+        if (alt >= ZN2[0]) { return; }
+
+        // Calculates for lower mesosphere/upper stratosphere (between ZN2[0] and ZN3[0]):
+        // Temperature at nodes and gradients at end nodes
+        // Inverse temperature a linear function of spherical harmonics
+        const quantity r = PMA[2][0] * PAVGM[2];
+        mesoTgn2[0]      = mesoTgn1[1];
+        mesoTn2[0]       = mesoTn1[4];
+        mesoTn2[1]       = PMA[0][0] * PAVGM[0] /
+                     (1.0 - options[ALL_UPPER_STRATOSPHERE_TEMPERATURE_TN2_VARIATIONS].mainEffect * glob7s(PMA[0]));
+        mesoTn2[2] = PMA[1][0] * PAVGM[1] /
+                     (1.0 - options[ALL_UPPER_STRATOSPHERE_TEMPERATURE_TN2_VARIATIONS].mainEffect * glob7s(PMA[1]));
+        mesoTn2[3] = PMA[2][0] * PAVGM[2] /
+                     (1.0 - options[ALL_UPPER_STRATOSPHERE_TEMPERATURE_TN2_VARIATIONS].mainEffect *
+                                options[ALL_LOWER_MESOSPHERE_TEMPERATURE_TN3_VARIATIONS].mainEffect * glob7s(PMA[2]));
+        mesoTgn2[1] = PMA[9][0] * PAVGM[8] *
+                      (1.0 + options[ALL_UPPER_STRATOSPHERE_TEMPERATURE_TN2_VARIATIONS].mainEffect *
+                                 options[ALL_LOWER_MESOSPHERE_TEMPERATURE_TN3_VARIATIONS].mainEffect * glob7s(PMA[9])) *
+                      mesoTn2[3] * mesoTn2[3] / (r * r);
+        mesoTn3[0] = mesoTn2[3];
+
+        // Calculates for lower stratosphere and troposphere (below ZN3[0])
+        // Temperature at nodes and gradients at end nodes
+        // Inverse temperature a linear function of spherical harmonics
+        if (alt <= ZN3[0]) {
+            const quantity q = PMA[6][0] * PAVGM[6];
+            mesoTgn3[0]      = mesoTgn2[1];
+            mesoTn3[1]       = PMA[3][0] * PAVGM[3] /
+                         (1.0 - options[ALL_LOWER_MESOSPHERE_TEMPERATURE_TN3_VARIATIONS].mainEffect * glob7s(PMA[3]));
+            mesoTn3[2] = PMA[4][0] * PAVGM[4] /
+                         (1.0 - options[ALL_LOWER_MESOSPHERE_TEMPERATURE_TN3_VARIATIONS].mainEffect * glob7s(PMA[4]));
+            mesoTn3[3] = PMA[5][0] * PAVGM[5] /
+                         (1.0 - options[ALL_LOWER_MESOSPHERE_TEMPERATURE_TN3_VARIATIONS].mainEffect * glob7s(PMA[5]));
+            mesoTn3[4] = PMA[6][0] * PAVGM[6] /
+                         (1.0 - options[ALL_LOWER_MESOSPHERE_TEMPERATURE_TN3_VARIATIONS].mainEffect * glob7s(PMA[6]));
+            mesoTgn3[1] = PMA[7][0] * PAVGM[7] *
+                          (1.0 + options[ALL_LOWER_MESOSPHERE_TEMPERATURE_TN3_VARIATIONS].mainEffect * glob7s(PMA[7])) *
+                          mesoTn3[4] * mesoTn3[4] / (q * q);
+        }
+
+        // Linear transition to full mixing below ZN2[0]
+        const quantity dmc  = (alt > ZMIX) ? 1.0 - (ZN2[0] * km) - alt / (ZN2[0] * km) - ZMIX : 0.;
+        const quantity dz28 = get_density(MOLECULAR_NITROGEN);
+
+        // N2 density
+        const quantity n2MixedNumberDensitym = n2MixedNumberDensity * 1.0e6;
+        quantity dmr                         = dz28 / n2MixedNumberDensitym - 1.0;
+        quantity dst = calculate_density_temperature_profile(alt, n2MixedNumberDensitym, XMM) * (1.0 + dmr * dmc);
+        set_density(MOLECULAR_NITROGEN, dst);
+
+        // HE density
+        dmr = get_density(HELIUM) / (dz28 * SpeciesModelData[HELIUM].mixRatio) - 1.0;
+        dst = get_density(MOLECULAR_NITROGEN) * SpeciesModelData[HELIUM].mixRatio * (1.0 + dmr * dmc);
+        set_density(HELIUM, dst);
+
+        // O density
+        set_density(ATOMIC_OXYGEN, 0.);
+        set_density(ANOMALOUS_OXYGEN, 0.);
+
+        // O2 density
+        dmr = get_density(MOLECULAR_OXYGEN) / (dz28 * SpeciesModelData[MOLECULAR_OXYGEN].mixRatio) - 1.0;
+        dst = get_density(MOLECULAR_NITROGEN) * SpeciesModelData[MOLECULAR_OXYGEN].mixRatio * (1.0 + dmr * dmc);
+        set_density(MOLECULAR_OXYGEN, dst);
+
+        // AR density
+        dmr = get_density(ARGON) / (dz28 * SpeciesModelData[ARGON].mixRatio) - 1.0;
+        dst = get_density(MOLECULAR_NITROGEN) * SpeciesModelData[ARGON].mixRatio * (1.0 + dmr * dmc);
+        set_density(ARGON, dst);
+
+        // H density
+        set_density(HYDROGEN, 0.);
+
+        // N density
+        set_density(ATOMIC_NITROGEN, 0.);
+
+        // Total mass density
+        const quantity tmd =
+            AMU * (HE_MASS * get_density(HELIUM) + O_MASS * get_density(ATOMIC_OXYGEN) +
+                   N2_MASS * get_density(MOLECULAR_NITROGEN) + O2_MASS * get_density(MOLECULAR_OXYGEN) +
+                   AR_MASS * get_density(ARGON) + H_MASS * get_density(HYDROGEN) + N_MASS * get_density(ATOMIC_NITROGEN));
+        set_density(TOTAL_MASS, tmd);
+
+        // Temperature at altitude
+        set_temperature(ALTITUDE, calculate_density_temperature_profile(alt, 1.0, 0));
+    }
+
+    void gtd7d(const Distance& alt)
+    {
+        // Compute densities and temperatures
+        gtd7(alt);
+
+        // Update the total mass density with anomalous oxygen contribution
+        const quantity dTot = get_density(TOTAL_MASS) + AMU * O_MASS * get_density(ANOMALOUS_OXYGEN);
+        set_density(TOTAL_MASS, dTot);
+    }
+
+    void set_density(const int index, const NumberDensity d) { densities[index] = d; }
+
+    void set_temperature(const int index, const Temperature t) { temperatures[index] = t; }
+
+    NumberDensity get_density(const int index) { return densities[index]; }
+
+    quantity globe7(const quantity[] p)
+    {
+        // Extract raw values from typed quantities for use in polynomial expressions
+        const quantity[] t      = new quantity[14];
+            const quantity cd32 = cos(doy - p[31]));
+            const quantity cd18 = cos(2.0 * doy - p[17]));
+            const quantity cd14 = cos(doy - p[13]));
+            const quantity cd39 = cos(2.0 * doy - p[38]));
 
             // F10.7 effect
-            const double df  = f107 - f107a;
-            const double dfa = f107a - FLUX_REF;
-            t[0]             = p[19] * df * (1.0 + p[59] * dfa) + p[20] * df * df + p[21] * dfa + p[29] * dfa * dfa;
+            const quantity df  = f107 - f107a;
+            const quantity dfa = f107a - FLUX_REF;
+            t[0]               = p[19] * df * (1.0 + p[59] * dfa) + p[20] * df * df + p[21] * dfa + p[29] * dfa * dfa;
 
-            const double f1 = 1.0 + (p[47] * dfa + p[19] * df + p[20] * df * df) * options[F107_EFFECT_ON_MEAN].crossEffect;
-            const double f2 = 1.0 + (p[49] * dfa + p[19] * df + p[20] * df * df) * options[F107_EFFECT_ON_MEAN].crossEffect;
+            const quantity f1 = 1.0 + (p[47] * dfa + p[19] * df + p[20] * df * df) * options[F107_EFFECT_ON_MEAN].crossEffect;
+            const quantity f2 = 1.0 + (p[49] * dfa + p[19] * df + p[20] * df * df) * options[F107_EFFECT_ON_MEAN].crossEffect;
 
             // Time independent
-            t[1] = (p[1] * plg[0][2] + p[2] * plg[0][4] + p[22] * plg[0][6]) +
-                   (p[14] * plg[0][2]) * dfa * options[F107_EFFECT_ON_MEAN].crossEffect + p[26] * plg[0][1];
+            t[1] = (p[1] * legendrePolynomials[0][2] + p[2] * legendrePolynomials[0][4] + p[22] * legendrePolynomials[0][6]) +
+                   (p[14] * legendrePolynomials[0][2]) * dfa * options[F107_EFFECT_ON_MEAN].crossEffect +
+                   p[26] * legendrePolynomials[0][1];
 
             // Symmetrical annual
             t[2] = p[18] * cd32;
 
             // Symmetrical semiannual
-            t[3] = (p[15] + p[16] * plg[0][2]) * cd18;
+            t[3] = (p[15] + p[16] * legendrePolynomials[0][2]) * cd18;
 
             // Asymmetrical annual
-            t[4] = f1 * (p[9] * plg[0][1] + p[10] * plg[0][3]) * cd14;
+            t[4] = f1 * (p[9] * legendrePolynomials[0][1] + p[10] * legendrePolynomials[0][3]) * cd14;
 
             // Asymmetrical semiannual
-            t[5] = p[37] * plg[0][1] * cd39;
+            t[5] = p[37] * legendrePolynomials[0][1] * cd39;
 
             // Diurnal
             if (options[DIURNAL].mainEffect) {
-                const double t71 = (p[11] * plg[1][2]) * cd14 * options[ASYMMETRICAL_ANNUAL].crossEffect;
-                const double t72 = (p[12] * plg[1][2]) * cd14 * options[ASYMMETRICAL_ANNUAL].crossEffect;
-                t[6]             = f2 * ((p[3] * plg[1][1] + p[4] * plg[1][3] + p[27] * plg[1][5] + t71) * ctloc +
-                             (p[6] * plg[1][1] + p[7] * plg[1][3] + p[28] * plg[1][5] + t72) * stloc);
+                const quantity t71 = (p[11] * legendrePolynomials[1][2]) * cd14 * options[ASYMMETRICAL_ANNUAL].crossEffect;
+                const quantity t72 = (p[12] * legendrePolynomials[1][2]) * cd14 * options[ASYMMETRICAL_ANNUAL].crossEffect;
+                t[6] =
+                    f2 *
+                    ((p[3] * legendrePolynomials[1][1] + p[4] * legendrePolynomials[1][3] + p[27] * legendrePolynomials[1][5] + t71) * ctloc +
+                     (p[6] * legendrePolynomials[1][1] + p[7] * legendrePolynomials[1][3] + p[28] * legendrePolynomials[1][5] + t72) * stloc);
             }
 
             // Semidiurnal
             if (options[SEMIDIURNAL].mainEffect) {
-                const double t81 = (p[23] * plg[2][3] + p[35] * plg[2][5]) * cd14 * options[ASYMMETRICAL_ANNUAL].crossEffect;
-                const double t82 = (p[33] * plg[2][3] + p[36] * plg[2][5]) * cd14 * options[ASYMMETRICAL_ANNUAL].crossEffect;
-                t[7] = f2 * ((p[5] * plg[2][2] + p[41] * plg[2][4] + t81) * c2tloc +
-                             (p[8] * plg[2][2] + p[42] * plg[2][4] + t82) * s2tloc);
+                const quantity t81 = (p[23] * legendrePolynomials[2][3] + p[35] * legendrePolynomials[2][5]) * cd14 *
+                                     options[ASYMMETRICAL_ANNUAL].crossEffect;
+                const quantity t82 = (p[33] * legendrePolynomials[2][3] + p[36] * legendrePolynomials[2][5]) * cd14 *
+                                     options[ASYMMETRICAL_ANNUAL].crossEffect;
+                t[7] = f2 * ((p[5] * legendrePolynomials[2][2] + p[41] * legendrePolynomials[2][4] + t81) * c2tloc +
+                             (p[8] * legendrePolynomials[2][2] + p[42] * legendrePolynomials[2][4] + t82) * s2tloc);
             }
 
             // Terdiurnal
             if (options[TERDIURNAL].mainEffect) {
-                t[13] =
-                    f2 *
-                    ((p[39] * plg[3][3] + (p[93] * plg[3][4] + p[46] * plg[3][6]) * cd14 * options[ASYMMETRICAL_ANNUAL].crossEffect) * s3tloc +
-                     (p[40] * plg[3][3] + (p[94] * plg[3][4] + p[48] * plg[3][6]) * cd14 * options[ASYMMETRICAL_ANNUAL].crossEffect) * c3tloc);
+                t[13] = f2 * ((p[39] * legendrePolynomials[3][3] +
+                               (p[93] * legendrePolynomials[3][4] + p[46] * legendrePolynomials[3][6]) * cd14 *
+                                   options[ASYMMETRICAL_ANNUAL].crossEffect) *
+                                  s3tloc +
+                              (p[40] * legendrePolynomials[3][3] +
+                               (p[94] * legendrePolynomials[3][4] + p[48] * legendrePolynomials[3][6]) * cd14 *
+                                   options[ASYMMETRICAL_ANNUAL].crossEffect) *
+                                  c3tloc);
             }
 
             // magnetic activity based on daily ap
             if (options[DAILY_AP].fullAp) {
                 if (p[51] != 0) {
-                    const double exp1 = exp(-10800.0 * abs(p[51]) / (1.0 + p[138] * (LAT_REF * rad) - abs(lat)));
-                    const double p24  = max(p[24], 1.0e-4);
-                    apt               = sg0(min(exp1, 0.99999), p24, p[25]);
-                    t[8]              = apt * (p[50] + p[96] * plg[0][2] + p[54] * plg[0][4] +
-                                  (p[125] * plg[0][1] + p[126] * plg[0][3] + p[127] * plg[0][5]) * cd14 *
-                                      options[ASYMMETRICAL_ANNUAL].crossEffect +
-                                  (p[128] * plg[1][1] + p[129] * plg[1][3] + p[130] * plg[1][5]) *
+                    const quantity exp1 = exp(-10800.0 * abs(p[51]) / (1.0 + p[138] * (LAT_REF * rad) - abs(lat)));
+                    const quantity p24  = max(p[24], 1.0e-4);
+                    apt                 = sg0(min(exp1, 0.99999), p24, p[25]);
+                    t[8] = apt * (p[50] + p[96] * legendrePolynomials[0][2] + p[54] * legendrePolynomials[0][4] +
+                                  (p[125] * legendrePolynomials[0][1] + p[126] * legendrePolynomials[0][3] +
+                                   p[127] * legendrePolynomials[0][5]) *
+                                      cd14 * options[ASYMMETRICAL_ANNUAL].crossEffect +
+                                  (p[128] * legendrePolynomials[1][1] + p[129] * legendrePolynomials[1][3] +
+                                   p[130] * legendrePolynomials[1][5]) *
                                       options[DIURNAL].crossEffect * cos(hour2rad * (hl - p[131])));
                 }
             }
             else {
-                const double apd = ap[0] - 4.0;
-                const double p44 = (p[43] < 0.) ? 1.0E-5 : p[43];
-                const double p45 = p[44];
-                apdf             = apd + (p45 - 1.0) * (apd + (exp(-p44 * apd) - 1.0) / p44);
+                const quantity apd = ap[0] - 4.0;
+                const quantity p44 = (p[43] < 0.) ? 1.0E-5 : p[43];
+                const quantity p45 = p[44];
+                apdf               = apd + (p45 - 1.0) * (apd + (exp(-p44 * apd) - 1.0) / p44);
                 if (options[DAILY_AP].mainEffect) {
-                    t[8] = apdf * (p[32] + p[45] * plg[0][2] + p[34] * plg[0][4] +
-                                   (p[100] * plg[0][1] + p[101] * plg[0][3] + p[102] * plg[0][5]) * cd14 *
-                                       options[ASYMMETRICAL_ANNUAL].crossEffect +
-                                   (p[121] * plg[1][1] + p[122] * plg[1][3] + p[123] * plg[1][5]) *
+                    t[8] = apdf * (p[32] + p[45] * legendrePolynomials[0][2] + p[34] * legendrePolynomials[0][4] +
+                                   (p[100] * legendrePolynomials[0][1] + p[101] * legendrePolynomials[0][3] +
+                                    p[102] * legendrePolynomials[0][5]) *
+                                       cd14 * options[ASYMMETRICAL_ANNUAL].crossEffect +
+                                   (p[121] * legendrePolynomials[1][1] + p[122] * legendrePolynomials[1][3] +
+                                    p[123] * legendrePolynomials[1][5]) *
                                        options[DIURNAL].crossEffect * cos(hour2rad * (hl - p[124])));
                 }
             }
 
             if (options[ALL_UT_LONGITUDINAL_EFFECTS].mainEffect) {
-                const double lonr   = lon;
+                const quantity lonr = lon;
                 const SinCos scLonr = sinCos(lonr);
                 // Longitudinal
                 if (options[LONGITUDINAL_EFFECTS].mainEffect) {
                     t[10] = (1.0 + p[80] * dfa * options[F107_EFFECT_ON_MEAN].crossEffect) *
-                            ((p[64] * plg[1][2] + p[65] * plg[1][4] + p[66] * plg[1][6] + p[103] * plg[1][1] +
-                              p[104] * plg[1][3] + p[105] * plg[1][5] +
-                              (p[109] * plg[1][1] + p[110] * plg[1][3] + p[111] * plg[1][5]) *
+                            ((p[64] * legendrePolynomials[1][2] + p[65] * legendrePolynomials[1][4] +
+                              p[66] * legendrePolynomials[1][6] + p[103] * legendrePolynomials[1][1] +
+                              p[104] * legendrePolynomials[1][3] + p[105] * legendrePolynomials[1][5] +
+                              (p[109] * legendrePolynomials[1][1] + p[110] * legendrePolynomials[1][3] +
+                               p[111] * legendrePolynomials[1][5]) *
                                   options[ASYMMETRICAL_ANNUAL].crossEffect * cd14) *
                                  scLonr.cos() +
-                             (p[90] * plg[1][2] + p[91] * plg[1][4] + p[92] * plg[1][6] + p[106] * plg[1][1] +
-                              p[107] * plg[1][3] + p[108] * plg[1][5] +
-                              (p[112] * plg[1][1] + p[113] * plg[1][3] + p[114] * plg[1][5]) *
+                             (p[90] * legendrePolynomials[1][2] + p[91] * legendrePolynomials[1][4] +
+                              p[92] * legendrePolynomials[1][6] + p[106] * legendrePolynomials[1][1] +
+                              p[107] * legendrePolynomials[1][3] + p[108] * legendrePolynomials[1][5] +
+                              (p[112] * legendrePolynomials[1][1] + p[113] * legendrePolynomials[1][3] +
+                               p[114] * legendrePolynomials[1][5]) *
                                   options[ASYMMETRICAL_ANNUAL].crossEffect * cd14) *
                                  scLonr.sin());
                 }
 
                 // ut and mixed ut, longitude
                 if (options[UT_AND_MIXED_UT_LONGITUDINAL_EFFECTS].mainEffect) {
-                    t[11] = (1.0 + p[95] * plg[0][1]) * (1.0 + p[81] * dfa * options[F107_EFFECT_ON_MEAN].crossEffect) *
-                            (1.0 + p[119] * plg[0][1] * options[ASYMMETRICAL_ANNUAL].crossEffect * cd14) *
-                            (p[68] * plg[0][1] + p[69] * plg[0][3] + p[70] * plg[0][5]) * cos(sec2rad * (sec - p[71]));
+                    t[11] = (1.0 + p[95] * legendrePolynomials[0][1]) *
+                            (1.0 + p[81] * dfa * options[F107_EFFECT_ON_MEAN].crossEffect) *
+                            (1.0 + p[119] * legendrePolynomials[0][1] * options[ASYMMETRICAL_ANNUAL].crossEffect * cd14) *
+                            (p[68] * legendrePolynomials[0][1] + p[69] * legendrePolynomials[0][3] +
+                             p[70] * legendrePolynomials[0][5]) *
+                            cos(sec2rad * (sec - p[71]));
                     t[11] += options[LONGITUDINAL_EFFECTS] *
                              (1.0 + p[137].crossEffect * dfa * options[F107_EFFECT_ON_MEAN].crossEffect) *
-                             (p[76] * plg[2][3] + p[77] * plg[2][5] + p[78] * plg[2][7]) *
+                             (p[76] * legendrePolynomials[2][3] + p[77] * legendrePolynomials[2][5] +
+                              p[78] * legendrePolynomials[2][7]) *
                              cos(sec2rad * (sec - p[79]) + 2.0 * lonr);
                 }
 
@@ -1284,461 +1665,416 @@ class NRLMSISE00 : public AbstractSunInfluencedAtmosphere {
                 if (options[MIXED_AP_UT_LONGITUDINAL_EFFECTS].mainEffect) {
                     if (options[DAILY_AP].fullAp) {
                         if (p[51] != 0.) {
-                            t[12] = apt * options[LONGITUDINAL_EFFECTS].crossEffect * (1. + p[132] * plg[0][1]) *
-                                        (p[52] * plg[1][2] + p[98] * plg[1][4] + p[67] * plg[1][6]) * cos(lon - p[97] * rad_val) +
-                                    apt * options[LONGITUDINAL_EFFECTS].crossEffect * options[ASYMMETRICAL_ANNUAL].crossEffect *
-                                        cd14 * (p[133] * plg[1][1] + p[134] * plg[1][3] + p[135] * plg[1][5]) *
+                            t[12] = apt * options[LONGITUDINAL_EFFECTS].crossEffect *
+                                        (1. + p[132] * legendrePolynomials[0][1]) *
+                                        (p[52] * legendrePolynomials[1][2] + p[98] * legendrePolynomials[1][4] +
+                                         p[67] * legendrePolynomials[1][6]) *
+                                        cos(lon - p[97] * rad_val) +
+                                    apt * options[LONGITUDINAL_EFFECTS].crossEffect *
+                                        options[ASYMMETRICAL_ANNUAL].crossEffect * cd14 *
+                                        (p[133] * legendrePolynomials[1][1] + p[134] * legendrePolynomials[1][3] +
+                                         p[135] * legendrePolynomials[1][5]) *
                                         cos(lon - p[136] * rad_val) +
                                     apt * options[UT_AND_MIXED_UT_LONGITUDINAL_EFFECTS].crossEffect *
-                                        (p[55] * plg[0][1] + p[56] * plg[0][3] + p[57] * plg[0][5]) *
+                                        (p[55] * legendrePolynomials[0][1] + p[56] * legendrePolynomials[0][3] +
+                                         p[57] * legendrePolynomials[0][5]) *
                                         cos(sec2rad * (sec - p[58]));
                         }
                     }
                     else {
-                        t[12] =
-                            apdf * options[LONGITUDINAL_EFFECTS].crossEffect * (1.0 + p[120] * plg[0][1]) *
-                                ((p[60] * plg[1][2] + p[61] * plg[1][4] + p[62] * plg[1][6]) * cos(lon - p[63] * rad_val)) +
-                            apdf * options[LONGITUDINAL_EFFECTS].crossEffect * options[ASYMMETRICAL_ANNUAL].crossEffect * cd14 *
-                                (p[115] * plg[1][1] + p[116] * plg[1][3] + p[117] * plg[1][5]) * cos(lon - p[118] * rad_val) +
-                            apdf * options[UT_AND_MIXED_UT_LONGITUDINAL_EFFECTS].crossEffect *
-                                (p[83] * plg[0][1] + p[84] * plg[0][3] + p[85] * plg[0][5]) * cos(sec2rad * (sec - p[75]));
+                        t[12] = apdf * options[LONGITUDINAL_EFFECTS].crossEffect * (1.0 + p[120] * legendrePolynomials[0][1]) *
+                                    ((p[60] * legendrePolynomials[1][2] + p[61] * legendrePolynomials[1][4] +
+                                      p[62] * legendrePolynomials[1][6]) *
+                                     cos(lon - p[63] * rad_val)) +
+                                apdf * options[LONGITUDINAL_EFFECTS].crossEffect * options[ASYMMETRICAL_ANNUAL].crossEffect * cd14 *
+                                    (p[115] * legendrePolynomials[1][1] + p[116] * legendrePolynomials[1][3] +
+                                     p[117] * legendrePolynomials[1][5]) *
+                                    cos(lon - p[118] * rad_val) +
+                                apdf * options[UT_AND_MIXED_UT_LONGITUDINAL_EFFECTS].crossEffect *
+                                    (p[83] * legendrePolynomials[0][1] + p[84] * legendrePolynomials[0][3] +
+                                     p[85] * legendrePolynomials[0][5]) *
+                                    cos(sec2rad * (sec - p[75]));
                     }
                 }
             }
 
             // Sum all effects (params not used: 82, 89, 99, 139-149)
-            double tinf = p[30];
+            quantity tempInf = p[30];
             for (int i = 0; i < 14; i++) {
-                tinf += abs(sw[i + 1]) * t[i];
+                tempInf += abs(sw[i + 1]) * t[i];
             }
 
             // Return G(L)
-            return tinf;
+            return tempInf;
+    }
+
+    quantity glob7s(const quantity[] p)
+    {
+        const quantity[] t  = new quantity[14];
+        const quantity cd32 = cos(doy - p[31]);
+        const quantity cd18 = cos(2.0 * doy - p[17]);
+        const quantity cd14 = cos(doy - p[13]);
+        const quantity cd39 = cos(2.0 * doy - p[38]);
+
+        // F10.7 effect
+        t[0] = p[21] * (f107a - FLUX_REF);
+
+        // Time independent
+        t[1] = p[1] * legendrePolynomials[0][2] + p[2] * legendrePolynomials[0][4] + p[22] * legendrePolynomials[0][6] +
+               p[26] * legendrePolynomials[0][1] + p[14] * legendrePolynomials[0][3] + p[59] * legendrePolynomials[0][5];
+
+        // Symmetrical annual
+        t[2] = (p[18] + p[47] * legendrePolynomials[0][2] + p[29] * legendrePolynomials[0][4]) * cd32;
+
+        // Symmetrical semiannual
+        t[3] = (p[15] + p[16] * legendrePolynomials[0][2] + p[30] * legendrePolynomials[0][4]) * cd18;
+
+        // Asymmetrical annual
+        t[4] = (p[9] * legendrePolynomials[0][1] + p[10] * legendrePolynomials[0][3] + p[20] * legendrePolynomials[0][5]) * cd14;
+
+        // Asymmetrical semiannual
+        t[5] = (p[37] * legendrePolynomials[0][1]) * cd39;
+
+        // Diurnal
+        if (options[DIURNAL].mainEffect) {
+            const quantity t71 = p[11] * legendrePolynomials[1][2] * cd14 * options[ASYMMETRICAL_ANNUAL].crossEffect;
+            const quantity t72 = p[12] * legendrePolynomials[1][2] * cd14 * options[ASYMMETRICAL_ANNUAL].crossEffect;
+            t[6]               = (p[3] * legendrePolynomials[1][1] + p[4] * legendrePolynomials[1][3] + t71) * ctloc +
+                   (p[6] * legendrePolynomials[1][1] + p[7] * legendrePolynomials[1][3] + t72) * stloc;
         }
 
-        double glob7s(const double[] p)
-        {
-            const double[] t  = new double[14];
-            const double cd32 = cos(doy - p[31]);
-            const double cd18 = cos(2.0 * doy - p[17]);
-            const double cd14 = cos(doy - p[13]);
-            const double cd39 = cos(2.0 * doy - p[38]);
-
-            // F10.7 effect
-            t[0] = p[21] * (f107a - FLUX_REF);
-
-            // Time independent
-            t[1] = p[1] * plg[0][2] + p[2] * plg[0][4] + p[22] * plg[0][6] + p[26] * plg[0][1] + p[14] * plg[0][3] +
-                   p[59] * plg[0][5];
-
-            // Symmetrical annual
-            t[2] = (p[18] + p[47] * plg[0][2] + p[29] * plg[0][4]) * cd32;
-
-            // Symmetrical semiannual
-            t[3] = (p[15] + p[16] * plg[0][2] + p[30] * plg[0][4]) * cd18;
-
-            // Asymmetrical annual
-            t[4] = (p[9] * plg[0][1] + p[10] * plg[0][3] + p[20] * plg[0][5]) * cd14;
-
-            // Asymmetrical semiannual
-            t[5] = (p[37] * plg[0][1]) * cd39;
-
-            // Diurnal
-            if (options[DIURNAL].mainEffect) {
-                const double t71 = p[11] * plg[1][2] * cd14 * options[ASYMMETRICAL_ANNUAL].crossEffect;
-                const double t72 = p[12] * plg[1][2] * cd14 * options[ASYMMETRICAL_ANNUAL].crossEffect;
-                t[6] = (p[3] * plg[1][1] + p[4] * plg[1][3] + t71) * ctloc + (p[6] * plg[1][1] + p[7] * plg[1][3] + t72) * stloc;
-            }
-
-            // Semidiurnal
-            if (options[SEMIDIURNAL].mainEffect) {
-                const double t81 = (p[23] * plg[2][3] + p[35] * plg[2][5]) * cd14 * options[ASYMMETRICAL_ANNUAL].crossEffect;
-                const double t82 = (p[33] * plg[2][3] + p[36] * plg[2][5]) * cd14 * options[ASYMMETRICAL_ANNUAL].crossEffect;
-                t[7] = (p[5] * plg[2][2] + p[41] * plg[2][4] + t81) * c2tloc + (p[8] * plg[2][2] + p[42] * plg[2][4] + t82) * s2tloc;
-            }
-
-            // Terdiurnal
-            if (options[TERDIURNAL].mainEffect) { t[13] = p[39] * plg[3][3] * s3tloc + p[40] * plg[3][3] * c3tloc; }
-
-            // Magnetic activity
-            if (options[DAILY_AP].mainEffect) {
-                t[8] = apdf * (p[32] + p[45] * plg[0][2] * options[INDEPENDENT_OF_TIME].crossEffect);
-            }
-            else if (options[DAILY_AP].fullAp) {
-                t[8] = apt * (p[50] + p[96] * plg[0][2] * options[INDEPENDENT_OF_TIME].crossEffect);
-            }
-
-            // Longitudinal
-            if (options[ALL_UT_LONGITUDINAL_EFFECTS].mainEffect == 0 && options[LONGITUDINAL_EFFECTS].mainEffect) {
-                const double lonr   = lon * rad;
-                const SinCos scLonr = sinCos(lonr);
-                t[10] = (1.0 + plg[0][1] * (p[80] * options[ASYMMETRICAL_ANNUAL].crossEffect * cos(doy - p[81])) +
-                         p[85] * options[ASYMMETRICAL_SEMIANNUAL].crossEffect * cos(2.0 * doy - p[86])) +
-                        p[83] * options[SYMMETRICAL_ANNUAL].crossEffect * cos(doy - p[84]) +
-                        p[87] * options[SYMMETRICAL_SEMIANNUAL].crossEffect * cos(2.0 * doy - p[88]) *
-                            ((p[64] * plg[1][2] + p[65] * plg[1][4] + p[66] * plg[1][6] + p[74] * plg[1][1] +
-                              p[75] * plg[1][3] + p[76] * plg[1][5]) *
-                                 scLonr.cos() +
-                             (p[90] * plg[1][2] + p[91] * plg[1][4] + p[92] * plg[1][6] + p[77] * plg[1][1] +
-                              p[78] * plg[1][3] + p[79] * plg[1][5]) *
-                                 scLonr.sin());
-            }
-
-            // Sum all effects
-            double gl = 0;
-            for (int i = 0; i < 14; i++) {
-                gl += abs(sw[i + 1]) * t[i];
-            }
-
-            // Return G(L)
-            return gl;
+        // Semidiurnal
+        if (options[SEMIDIURNAL].mainEffect) {
+            const quantity t81 = (p[23] * legendrePolynomials[2][3] + p[35] * legendrePolynomials[2][5]) * cd14 *
+                                 options[ASYMMETRICAL_ANNUAL].crossEffect;
+            const quantity t82 = (p[33] * legendrePolynomials[2][3] + p[36] * legendrePolynomials[2][5]) * cd14 *
+                                 options[ASYMMETRICAL_ANNUAL].crossEffect;
+            t[7] = (p[5] * legendrePolynomials[2][2] + p[41] * legendrePolynomials[2][4] + t81) * c2tloc +
+                   (p[8] * legendrePolynomials[2][2] + p[42] * legendrePolynomials[2][4] + t82) * s2tloc;
         }
 
-        Unitless sg0(const Unitless ex, const Unitless p24, const Unitless p25)
-        {
-            const Unitless g01   = g0(ap[1], p24, p25);
-            const Unitless g02   = g0(ap[2], p24, p25);
-            const Unitless g03   = g0(ap[3], p24, p25);
-            const Unitless g04   = g0(ap[4], p24, p25);
-            const Unitless g05   = g0(ap[5], p24, p25);
-            const Unitless g06   = g0(ap[6], p24, p25);
-            const Unitless ex2   = ex * ex;
-            const Unitless ex3   = ex * ex2;
-            const Unitless ex4   = ex2 * ex2;
-            const Unitless ex8   = ex4 * ex4;
-            const Unitless ex12  = ex4 * ex8;
-            const Unitless g234  = g02 * ex + g03 * ex2 + g04 * ex3;
-            const Unitless g56   = g05 * ex4 + g06 * ex12;
-            const Unitless ex19  = ex3 * ex4 * ex12;
-            const Unitless omex  = 1.0 - ex;
-            const Unitless sumex = 1.0 + (1.0 - ex19) / omex * sqrt(ex);
-            return (g01 + (g234 + g56 * (1.0 - ex8) / omex)) / sumex;
+        // Terdiurnal
+        if (options[TERDIURNAL].mainEffect) {
+            t[13] = p[39] * legendrePolynomials[3][3] * s3tloc + p[40] * legendrePolynomials[3][3] * c3tloc;
         }
 
-        Unitless g0(const Unitless apI, const Unitless p24, const Unitless p25)
-        {
-            const Unitless am4 = apI - 4.0;
-            return am4 + (p25 - 1.0) * (am4 + (exp(-p24 * am4) - 1.0) / p24);
+        // Magnetic activity
+        if (options[DAILY_AP].mainEffect) {
+            t[8] = apdf * (p[32] + p[45] * legendrePolynomials[0][2] * options[INDEPENDENT_OF_TIME].crossEffect);
+        }
+        else if (options[DAILY_AP].fullAp) {
+            t[8] = apt * (p[50] + p[96] * legendrePolynomials[0][2] * options[INDEPENDENT_OF_TIME].crossEffect);
         }
 
-        Unitless ccor(const Distance alt, const Unitless r, const Distance h1, const Distance zh)
-        {
-            const Unitless e = (alt - zh) / h1;
-            if (e > 70.0 * one) { return 1.0 * one; }
-            else if (e < -70.0 * one) {
-                return exp(r);
-            }
-            else {
-                return exp(r / (1.0 + exp(e)));
-            }
+        // Longitudinal
+        if (options[ALL_UT_LONGITUDINAL_EFFECTS].mainEffect == 0 && options[LONGITUDINAL_EFFECTS].mainEffect) {
+            const quantity lonr = lon * rad;
+            const SinCos scLonr = sinCos(lonr);
+            t[10] = (1.0 + legendrePolynomials[0][1] * (p[80] * options[ASYMMETRICAL_ANNUAL].crossEffect * cos(doy - p[81])) +
+                     p[85] * options[ASYMMETRICAL_SEMIANNUAL].crossEffect * cos(2.0 * doy - p[86])) +
+                    p[83] * options[SYMMETRICAL_ANNUAL].crossEffect * cos(doy - p[84]) +
+                    p[87] * options[SYMMETRICAL_SEMIANNUAL].crossEffect * cos(2.0 * doy - p[88]) *
+                        ((p[64] * legendrePolynomials[1][2] + p[65] * legendrePolynomials[1][4] +
+                          p[66] * legendrePolynomials[1][6] + p[74] * legendrePolynomials[1][1] +
+                          p[75] * legendrePolynomials[1][3] + p[76] * legendrePolynomials[1][5]) *
+                             scLonr.cos() +
+                         (p[90] * legendrePolynomials[1][2] + p[91] * legendrePolynomials[1][4] +
+                          p[92] * legendrePolynomials[1][6] + p[77] * legendrePolynomials[1][1] +
+                          p[78] * legendrePolynomials[1][3] + p[79] * legendrePolynomials[1][5]) *
+                             scLonr.sin());
         }
 
-
-        Unitless ccor2(const Distance alt, const Unitless r, const Distance h1, const Distance zh, const Distance h2)
-        {
-            const Unitless e1 = (alt - zh) / h1;
-            const Unitless e2 = (alt - zh) / h2;
-            if (e1 > 70.0 * one || e2 > 70.0 * one) { return 1.0 * one; }
-            else if (e1 < -70.0 * one && e2 < -70.0 * one) {
-                return exp(r);
-            }
-            else {
-                const Unitless ex1 = exp(e1);
-                const Unitless ex2 = exp(e2);
-                return exp(r / (1.0 * one + 0.5 * (ex1 + ex2)));
-            }
+        // Sum all effects
+        quantity gl = 0;
+        for (int i = 0; i < 14; i++) {
+            gl += abs(sw[i + 1]) * t[i];
         }
 
-        Distance scalh(const Distance alt, const NumberDensity xm, const Temperature temp)
-        {
-            // Gravity at altitude
-            const Unitless denom    = 1.0 * one + alt / rlat;
-            const Acceleration galt = glat / (denom * denom);
-            return R_GAS * temp / (galt * xm);
+        // Return G(L)
+        return gl;
+    }
+
+    Unitless sg0(const Unitless& ex, const Unitless& p24, const Unitless& p25)
+    {
+        const Unitless g01   = g0(ap[1], p24, p25);
+        const Unitless g02   = g0(ap[2], p24, p25);
+        const Unitless g03   = g0(ap[3], p24, p25);
+        const Unitless g04   = g0(ap[4], p24, p25);
+        const Unitless g05   = g0(ap[5], p24, p25);
+        const Unitless g06   = g0(ap[6], p24, p25);
+        const Unitless ex2   = ex * ex;
+        const Unitless ex3   = ex * ex2;
+        const Unitless ex4   = ex2 * ex2;
+        const Unitless ex8   = ex4 * ex4;
+        const Unitless ex12  = ex4 * ex8;
+        const Unitless g234  = g02 * ex + g03 * ex2 + g04 * ex3;
+        const Unitless g56   = g05 * ex4 + g06 * ex12;
+        const Unitless ex19  = ex3 * ex4 * ex12;
+        const Unitless omex  = 1.0 - ex;
+        const Unitless sumex = 1.0 + (1.0 - ex19) / omex * sqrt(ex);
+        return (g01 + (g234 + g56 * (1.0 - ex8) / omex)) / sumex;
+    }
+
+    Unitless g0(const Unitless& apI, const Unitless& p24, const Unitless& p25)
+    {
+        const Unitless am4 = apI - 4.0;
+        return am4 + (p25 - 1.0) * (am4 + (exp(-p24 * am4) - 1.0) / p24);
+    }
+
+    Unitless calculate_dissociation_correction(const Distance alt, const Unitless r, const Distance h1, const Distance zh)
+    {
+        const Unitless e = (alt - zh) / h1;
+        if (e > 70.0 * one) { return 1.0 * one; }
+        else if (e < -70.0 * one) {
+            return exp(r);
+        }
+        else {
+            return exp(r / (1.0 + exp(e)));
+        }
+    }
+
+
+    Unitless calculate_oxygen_dissociation_correction(const Distance alt, const Unitless r, const Distance h1, const Distance zh, const Distance h2)
+    {
+        const Unitless e1 = (alt - zh) / h1;
+        const Unitless e2 = (alt - zh) / h2;
+        if (e1 > 70.0 * one || e2 > 70.0 * one) { return 1.0 * one; }
+        else if (e1 < -70.0 * one && e2 < -70.0 * one) {
+            return exp(r);
+        }
+        else {
+            const Unitless ex1 = exp(e1);
+            const Unitless ex2 = exp(e2);
+            return exp(r / (1.0 * one + 0.5 * (ex1 + ex2)));
+        }
+    }
+
+    Distance calculate_scale_height(const Distance& alt, const NumberDensity& speciesMolecularWeight, const Temperature& temp)
+    {
+        // Gravity at altitude
+        const Acceleration calculate_gravity_at_altitude = glat / pow<2>(1.0 * one + alt / rlat);
+        return R_GAS * temp / (calculate_gravity_at_altitude * speciesMolecularWeight);
+    }
+
+    Unitless calculate_turbopause_correction(
+        const Unitless& diffusiveDensity,
+        const Unitless& mixedDensity,
+        const Unitless& transitionScaleLength,
+        const Unitless& fullMixedMolecularWeight,
+        const Unitless& speciesMolecularWeight
+    )
+    {
+        if (!(mixedDensity > 0 && diffusiveDensity > 0)) {
+            Unitless ddd = diffusiveDensity;
+            if (diffusiveDensity == 0 && mixedDensity == 0) { ddd = 1; }
+            if (mixedDensity == 0) { return ddd; }
+            if (diffusiveDensity == 0) { return mixedDensity; }
         }
 
-        Unitless dnet(const Unitless dd, const Unitless dm, const Unitless zhm, const Unitless XMM, const Unitless xm)
-        {
-            if (!(dm > 0 && dd > 0)) {
-                Unitless ddd = dd;
-                if (dd == 0 && dm == 0) { ddd = 1; }
-                if (dm == 0) { return ddd; }
-                if (dd == 0) { return dm; }
-            }
+        const Unitless a    = transitionScaleLength / (fullMixedMolecularWeight - speciesMolecularWeight);
+        const Unitless ylog = a * log(mixedDensity / diffusiveDensity);
+        if (ylog < -10.) { return diffusiveDensity; }
+        else if (ylog > 10.) {
+            return mixedDensity;
+        }
+        else {
+            return diffusiveDensity * pow(1.0 + exp(ylog), 1.0 / a);
+        }
+    }
 
-            const Unitless a    = zhm / (XMM - xm);
-            const Unitless ylog = a * log(dm / dd);
-            if (ylog < -10.) { return dd; }
-            else if (ylog > 10.) {
-                return dm;
-            }
-            else {
-                return dd * pow(1.0 + exp(ylog), 1.0 / a);
-            }
+    quantity calculate_density_temperature_profile(const Distance& alt, const Density& density0, const Unitless& mixedDensity)
+    {
+        quantity densm = density0;
+
+        // stratosphere/mesosphere temperature
+        int mn     = ZN2.size();
+        quantity z = (alt > ZN2[mn - 1] * km) ? alt : ZN2[mn - 1];
+
+        quantity z1    = ZN2[0] * km;
+        quantity z2    = ZN2[mn - 1] * km;
+        quantity t1    = mesoTn2[0];
+        quantity t2    = mesoTn2[mn - 1];
+        quantity zg    = zeta(z, z1);
+        quantity zgdif = zeta(z2, z1);
+
+        /* set up spline nodes */
+        quantity[] xs = new quantity[mn];
+        quantity[] ys = new quantity[mn];
+        for (int k = 0; k < mn; k++) {
+            xs[k] = zeta(ZN2[k] * km), z1 / zgdif;
+            ys[k] = 1.0 / mesoTn2[k];
+        }
+        const quantity qSM = (rlat + z2) / (rlat + z1);
+        quantity yd1       = -mesoTgn2[0] / (t1 * t1) * zgdif;
+        quantity yd2       = -mesoTgn2[1] / (t2 * t2) * zgdif * qSM * qSM;
+
+        /* calculate spline coefficients */
+        quantity[] y2out = spline(xs, ys, yd1, yd2);
+        quantity x       = zg / zgdif;
+        quantity y       = splint(xs, ys, y2out, x);
+
+        /* temperature at altitude */
+        quantity tz = 1.0 / y;
+
+        if (mixedDensity != 0.0) {
+            /* calculate stratosphere / mesospehere density */
+            const quantity glb  = calculate_gravity_at_altitude(z1);
+            const quantity gamm = mixedDensity * glb * zgdif / R_GAS;
+
+            /* Integrate temperature profile */
+            const quantity yi   = splini(xs, ys, y2out, x);
+            const quantity expl = min(MIN_TEMP, gamm * yi);
+
+            /* Density at altitude */
+            densm *= (t1 / tz) * exp(-expl);
         }
 
-        double splini(const Unitless[] xa, const double[] ya, const double[] y2a, const double x)
-        {
-            const int n = xa.length;
-            double yi   = 0;
-            int klo     = 0;
-            int khi     = 1;
-            while (x > xa[klo] && khi < n) {
-                double xx = x;
-                if (khi < n - 1) { xx = (x < xa[khi]) ? x : xa[khi]; }
-                const double h  = xa[khi] - xa[klo];
-                const double a  = (xa[khi] - xx) / h;
-                const double b  = (xx - xa[klo]) / h;
-                const double a2 = a * a;
-                const double b2 = b * b;
-                yi += ((1.0 - a2) * ya[klo] / 2.0 + b2 * ya[khi] / 2.0 +
-                       ((-(1.0 + a2 * a2) / 4.0 + a2 / 2.0) * y2a[klo] + (b2 * b2 / 4.0 - b2 / 2.0) * y2a[khi]) * h * h / 6.0) *
-                      h;
-                klo++;
-                khi++;
-            }
-            return yi;
+        if (alt > ZN3[0]) { return (mixedDensity == 0.0) ? tz : densm; }
+
+        // troposhere/stratosphere temperature
+        z     = alt;
+        mn    = ZN3.size();
+        z1    = ZN3[0] * km;
+        z2    = ZN3[mn - 1] * km;
+        t1    = mesoTn3[0];
+        t2    = mesoTn3[mn - 1];
+        zg    = zeta(z, z1);
+        zgdif = zeta(z2, z1);
+
+        /* set up spline nodes */
+        xs = new quantity[mn];
+        ys = new quantity[mn];
+        for (int k = 0; k < mn; k++) {
+            xs[k] = zeta(ZN3[k] * km), z1 / zgdif;
+            ys[k] = 1.0 / mesoTn3[k];
+        }
+        const quantity qTS = (rlat + z2) / (rlat + z1);
+        yd1                = -mesoTgn3[0] / (t1 * t1) * zgdif;
+        yd2                = -mesoTgn3[1] / (t2 * t2) * zgdif * qTS * qTS;
+
+        /* calculate spline coefficients */
+        y2out = spline(xs, ys, yd1, yd2);
+        x     = zg / zgdif;
+        y     = splint(xs, ys, y2out, x);
+
+        /* temperature at altitude */
+        tz = 1.0 / y;
+
+        if (mixedDensity != 0.0) {
+            /* calculate tropospheric / stratosphere density */
+            const quantity glb   = calculate_gravity_at_altitude(z1);
+            const quantity gamm2 = mixedDensity * glb * zgdif / R_GAS;
+
+            /* Integrate temperature profile */
+            const quantity yi   = splini(xs, ys, y2out, x);
+            const quantity expl = min(MIN_TEMP, gamm2 * yi);
+
+            /* Density at altitude */
+            densm *= (t1 / tz) * exp(-expl);
         }
 
-        double splint(const double[] xa, const double[] ya, const double[] y2a, const double x)
-        {
-            const int n = xa.length;
-            int klo     = 0;
-            int khi     = n - 1;
-            while (khi - klo > 1) {
-                const int k = (khi + klo) >>> 1;
-                if (xa[k] > x) { khi = k; }
-                else {
-                    klo = k;
-                }
-            }
-            const double h = xa[khi] - xa[klo];
-            const double a = (xa[khi] - x) / h;
-            const double b = (x - xa[klo]) / h;
-            return a * ya[klo] + b * ya[khi] + ((a * a * a - a) * y2a[klo] + (b * b * b - b) * y2a[khi]) * h * h / 6.0;
-        }
+        return (mixedDensity == 0.0) ? tz : densm;
+    }
 
-        double[] spline(const double[] x, const double[] y, const double yp1, const double ypn)
-        {
-            const int n       = x.length;
-            const double[] y2 = new double[n];
-            const double[] u  = new double[n];
+    quantity calculate_density_temperature_profile_new(
+        const Distance alt,
+        const Density densityLowerBound,
+        const Temperature tempInf,
+        const Temperature tempLowerBound,
+        const MolecularWeight speciesMolecularWeight,
+        const Unitless thermalDiffusionCoefficient,
+        const Distance altLowerBound,
+        const Unitless slope
+    )
+    {
+        /* joining altitudes of Bates and spline */
+        const Distance z = (alt > ZN1[0]) ? alt : ZN1[0];
 
-            if (yp1 < 1e+30) {
-                y2[0] = -0.5;
-                u[0]  = (3.0 / (x[1] - x[0])) * ((y[1] - y[0]) / (x[1] - x[0]) - yp1);
-            }
-            for (int i = 1; i < n - 1; i++) {
-                const double sig = (x[i] - x[i - 1]) / (x[i + 1] - x[i - 1]);
-                const double p   = sig * y2[i - 1] + 2.0;
-                y2[i]            = (sig - 1.0) / p;
-                u[i] = (6.0 * ((y[i + 1] - y[i]) / (x[i + 1] - x[i]) - (y[i] - y[i - 1]) / (x[i] - x[i - 1])) /
-                            (x[i + 1] - x[i - 1]) -
-                        sig * u[i - 1]) /
-                       p;
-            }
+        /* geopotential altitude difference from ZLB */
+        const Distance zg2 = zeta(z, altLowerBound);
 
-            double qn = 0;
-            double un = 0;
-            if (ypn < 1e+30) {
-                qn = 0.5;
-                un = (3.0 / (x[n - 1] - x[n - 2])) * (ypn - (y[n - 1] - y[n - 2]) / (x[n - 1] - x[n - 2]));
-            }
+        /* Bates temperature */
+        const Temperature tt = tempInf - (tempInf - tempLowerBound) * exp(-slope * zg2);
+        const Temperature ta = tt;
+        Temperature tz       = tt;
 
-            y2[n - 1] = (un - qn * u[n - 2]) / (qn * y2[n - 2] + 1.0);
-            for (int k = n - 2; k >= 0; k--) {
-                y2[k] = y2[k] * y2[k + 1] + u[k];
-            }
+        static const int mn = ZN1.size();
+        const std::array<Unitless, mn> xs;
+        const std::array<Unitless, mn> ys;
+        Unitless x = 0.0;
+        std::array<Unitless, mn> y2out;
 
-            return y2;
-        }
+        Distance zgdif = 0.0;
+        if (alt < ZN1[0]) {
+            /* calculate temperature below ZA
+             * temperature gradient at ZA from Bates profile */
+            const Unitless p      = (rlat + altLowerBound) / (rlat + ZN1[0]);
+            const Temperature dta = (tempInf - ta) * slope * p * p;
+            mesoTgn1[0]           = dta;
+            mesoTn1[0]            = ta;
+            z                     = (alt > ZN1[mn - 1]) ? alt : ZN1[mn - 1];
 
-        double densm(const double alt, const double d0, const double xm)
-        {
-            const double rlat_km = rlat * km;
-            const double r_gas   = R_GAS * J / (mol * K);
-            const double min_t   = MIN_TEMP * K;
+            const Temperature t1 = mesoTn1[0];
+            const Temperature t2 = mesoTn1[mn - 1];
 
-            double densm = d0;
-
-            // stratosphere/mesosphere temperature
-            int mn   = ZN2.length;
-            double z = (alt > ZN2[mn - 1] * km) ? alt : ZN2[mn - 1];
-
-            double z1    = ZN2[0] * km;
-            double z2    = ZN2[mn - 1] * km;
-            double t1    = meso_tn2[0];
-            double t2    = meso_tn2[mn - 1];
-            double zg    = zeta(z, z1);
-            double zgdif = zeta(z2, z1);
-
+            /* geopotental difference from z1 */
+            const Distance zg = zeta(z, ZN1[0]);
+            zgdif             = zeta(ZN1[mn - 1], ZN1[0]);
             /* set up spline nodes */
-            double[] xs = new double[mn];
-            double[] ys = new double[mn];
             for (int k = 0; k < mn; k++) {
-                xs[k] = zeta(ZN2[k] * km), z1 / zgdif;
-                ys[k] = 1.0 / meso_tn2[k];
+                xs[k] = zeta(ZN1[k], ZN1[0]) / zgdif;
+                ys[k] = 1.0 / mesoTn1[k];
             }
-            const double qSM = (rlat_km + z2) / (rlat_km + z1);
-            double yd1       = -meso_tgn2[0] / (t1 * t1) * zgdif;
-            double yd2       = -meso_tgn2[1] / (t2 * t2) * zgdif * qSM * qSM;
+            /* end node derivatives */
+            const Unitless q   = (rlat + ZN1[mn - 1]) / (rlat + ZN1[0]);
+            const Unitless yd1 = -mesoTgn1[0] / (t1 * t1) * zgdif;
+            const Unitless yd2 = -mesoTgn1[1] / (t2 * t2) * zgdif * q * q;
 
             /* calculate spline coefficients */
-            double[] y2out = spline(xs, ys, yd1, yd2);
-            double x       = zg / zgdif;
-            double y       = splint(xs, ys, y2out, x);
-
-            /* temperature at altitude */
-            double tz = 1.0 / y;
-
-            if (xm != 0.0) {
-                /* calculate stratosphere / mesospehere density */
-                const double glb  = galt(z1);
-                const double gamm = xm * glb * zgdif / r_gas;
-
-                /* Integrate temperature profile */
-                const double yi   = splini(xs, ys, y2out, x);
-                const double expl = min(min_t, gamm * yi);
-
-                /* Density at altitude */
-                densm *= (t1 / tz) * exp(-expl);
-            }
-
-            if (alt > ZN3[0]) { return (xm == 0.0) ? tz : densm; }
-
-            // troposhere/stratosphere temperature
-            z     = alt;
-            mn    = ZN3.length;
-            z1    = ZN3[0] * km;
-            z2    = ZN3[mn - 1] * km;
-            t1    = meso_tn3[0];
-            t2    = meso_tn3[mn - 1];
-            zg    = zeta(z, z1);
-            zgdif = zeta(z2, z1);
-
-            /* set up spline nodes */
-            xs = new double[mn];
-            ys = new double[mn];
-            for (int k = 0; k < mn; k++) {
-                xs[k] = zeta(ZN3[k] * km), z1 / zgdif;
-                ys[k] = 1.0 / meso_tn3[k];
-            }
-            const double qTS = (rlat_km + z2) / (rlat_km + z1);
-            yd1              = -meso_tgn3[0] / (t1 * t1) * zgdif;
-            yd2              = -meso_tgn3[1] / (t2 * t2) * zgdif * qTS * qTS;
-
-            /* calculate spline coefficients */
-            y2out = spline(xs, ys, yd1, yd2);
-            x     = zg / zgdif;
-            y     = splint(xs, ys, y2out, x);
+            y2out            = spline(xs, ys, yd1, yd2);
+            x                = zg / zgdif;
+            const Distance y = splint(xs, ys, y2out, x);
 
             /* temperature at altitude */
             tz = 1.0 / y;
-
-            if (xm != 0.0) {
-                /* calculate tropospheric / stratosphere density */
-                const double glb   = galt(z1);
-                const double gamm2 = xm * glb * zgdif / r_gas;
-
-                /* Integrate temperature profile */
-                const double yi   = splini(xs, ys, y2out, x);
-                const double expl = min(min_t, gamm2 * yi);
-
-                /* Density at altitude */
-                densm *= (t1 / tz) * exp(-expl);
-            }
-
-            return (xm == 0.0) ? tz : densm;
         }
 
-        double densu(const double alt, const double dlb, const double tinf, const double tlb, const double xm, const double alpha, const double zlb, const double s2)
-        {
-            /* joining altitudes of Bates and spline */
-            double z = (alt > ZN1[0]) ? alt : ZN1[0];
+        if (speciesMolecularWeight == 0) { return tz; }
 
-            /* geopotential altitude difference from ZLB */
-            const double zg2 = zeta(z, zlb);
+        /* calculate density above za */
+        quantity glb   = calculate_gravity_at_altitude(altLowerBound);
+        quantity gamma = speciesMolecularWeight * glb / (R_GAS * slope * tempInf);
+        quantity expl  = (tt <= 0) ? MIN_TEMP : min(MIN_TEMP, exp(-slope * gamma * zg2));
+        quantity densu = densityLowerBound * expl * pow(tempLowerBound / tt, 1.0 + thermalDiffusionCoefficient + gamma);
 
-            /* Bates temperature */
-            const double tt = tinf - (tinf - tlb) * exp(-s2 * zg2);
-            const double ta = tt;
-            double tz       = tt;
-
-            const int mn      = ZN1.length;
-            const double[] xs = new double[mn];
-            const double[] ys = new double[mn];
-            double x          = 0.;
-            double[] y2out    = new double[mn];
-            double zgdif      = 0.;
-            if (alt < ZN1[0]) {
-                /* calculate temperature below ZA
-                 * temperature gradient at ZA from Bates profile */
-                const double p   = (rlat + zlb) / (rlat + ZN1[0]);
-                const double dta = (tinf - ta) * s2 * p * p;
-                meso_tgn1[0]     = dta;
-                meso_tn1[0]      = ta;
-                z                = (alt > ZN1[mn - 1]) ? alt : ZN1[mn - 1];
-
-                const double t1 = meso_tn1[0];
-                const double t2 = meso_tn1[mn - 1];
-                /* geopotental difference from z1 */
-                const double zg = zeta(z, ZN1[0]);
-                zgdif           = zeta(ZN1[mn - 1], ZN1[0]);
-                /* set up spline nodes */
-                for (int k = 0; k < mn; k++) {
-                    xs[k] = zeta(ZN1[k], ZN1[0]) / zgdif;
-                    ys[k] = 1.0 / meso_tn1[k];
-                }
-                /* end node derivatives */
-                const double q   = (rlat + ZN1[mn - 1]) / (rlat + ZN1[0]);
-                const double yd1 = -meso_tgn1[0] / (t1 * t1) * zgdif;
-                const double yd2 = -meso_tgn1[1] / (t2 * t2) * zgdif * q * q;
-                /* calculate spline coefficients */
-                y2out          = spline(xs, ys, yd1, yd2);
-                x              = zg / zgdif;
-                const double y = splint(xs, ys, y2out, x);
-                /* temperature at altitude */
-                tz = 1.0 / y;
+        // Correction for issue 1365 - protection against "densu" being infinite
+        if (!std::isfinite(densu)) {
+            if (expl < MIN_TEMP) {
+                densu = densityLowerBound *
+                        exp(log(tempLowerBound / tt) * (1.0 + thermalDiffusionCoefficient + gamma) - slope * gamma * zg2);
             }
-
-            if (xm == 0) { return tz; }
-
-            /* calculate density above za */
-            double glb   = galt(zlb);
-            double gamma = xm * glb / (R_GAS * s2 * tinf);
-            double expl  = (tt <= 0) ? MIN_TEMP : min(MIN_TEMP, exp(-s2 * gamma * zg2));
-            double densu = dlb * expl * pow(tlb / tt, 1.0 + alpha + gamma);
-
-            // Correction for issue 1365 - protection against "densu" being infinite
-            if (!Double.isFinite(densu)) {
-                if (expl < MIN_TEMP) { densu = dlb * exp(log(tlb / tt) * (1.0 + alpha + gamma) - s2 * gamma * zg2); }
-                else {
-                    throw new OrekitException(OrekitMessages.INFINITE_NRLMSISE00_DENSITY);
-                }
+            else {
+                throw new OrekitException(OrekitMessages.INFINITE_Nrlmsise00_DENSITY);
             }
-
-            /* calculate density below za */
-            if (alt < ZN1[0]) {
-                glb   = galt(ZN1[0]);
-                gamma = xm * glb * zgdif / R_GAS;
-                /* integrate spline temperatures */
-                expl = (tz <= 0) ? MIN_TEMP : min(MIN_TEMP, gamma * splini(xs, ys, y2out, x));
-                /* correct density at altitude */
-                densu *= pow(meso_tn1[0] / tz, 1.0 + alpha) * exp(-expl);
-            }
-
-            /* Return density at altitude */
-            return densu;
         }
 
-        double galt(const double alt)
-        {
-            const double r = 1.0 + alt / rlat;
-            return glat / (r * r);
+        /* calculate density below za */
+        if (alt < ZN1[0]) {
+            glb   = calculate_gravity_at_altitude(ZN1[0]);
+            gamma = speciesMolecularWeight * glb * zgdif / R_GAS;
+            /* integrate spline temperatures */
+            expl = (tz <= 0) ? MIN_TEMP : min(MIN_TEMP, gamma * splini(xs, ys, y2out, x));
+            /* correct density at altitude */
+            densu *= pow(mesoTn1[0] / tz, 1.0 + thermalDiffusionCoefficient) * exp(-expl);
         }
 
-        double zeta(const double zz, const double zl) { return (zz - zl) * (rlat + zl) / (rlat + zz); }
+        /* Return density at altitude */
+        return densu;
     }
+
+    Acceleration calculate_gravity_at_altitude(const Distance& alt) { return glat / pow<2>(1.0 + alt / rlat); }
+
+    Distance zeta(const Distance& zz, const Distance& zl) { return (zz - zl) * (rlat + zl) / (rlat + zz); }
 }
 
 } // namespace planets

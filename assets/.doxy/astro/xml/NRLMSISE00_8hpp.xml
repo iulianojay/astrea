@@ -22,7 +22,7 @@
         </childnode>
       </node>
       <node id="1">
-        <label>astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.hpp</label>
+        <label>astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.hpp</label>
         <link refid="NRLMSISE00_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
@@ -45,22 +45,13 @@
         <label>units/units.hpp</label>
       </node>
     </incdepgraph>
-    <innerclass refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00Atmosphere" prot="public">astrea::astro::planets::NRLMSISE00Atmosphere</innerclass>
+    <innerclass refid="classastrea_1_1astro_1_1planets_1_1Nrlmsise00Atmosphere" prot="public">astrea::astro::planets::Nrlmsise00Atmosphere</innerclass>
     <innernamespace refid="namespaceastrea">astrea</innernamespace>
     <innernamespace refid="namespaceastrea_1_1astro">astrea::astro</innernamespace>
     <innernamespace refid="namespaceastrea_1_1astro_1_1planets">astrea::astro::planets</innernamespace>
     <briefdescription>
-<para>Header file for the NRLMSISE00 class. </para>
     </briefdescription>
     <detaileddescription>
-<para><simplesect kind="author"><para>Jay Iuliano (<ulink url="mailto:iuliano.jay@gmail.com">iuliano.jay@gmail.com</ulink>) </para>
-</simplesect>
-<simplesect kind="date"><para>2026-05-01</para>
-</simplesect>
-<simplesect kind="copyright"><para>Copyright (c) 2025-2026 Jay Iuliano</para>
-</simplesect>
-The GNU Lesser General Public License (LGPL)</para>
-<para>This file is part of Astrea. Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. Astrea is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details. You should have received a copy of the GNU General Public License along with Astrea. If not, see <ulink url="https://www.gnu.org/licenses/">https://www.gnu.org/licenses/</ulink>. </para>
     </detaileddescription>
     <programlisting>
 <codeline lineno="1"><highlight class="normal"></highlight></codeline>
@@ -75,17 +66,17 @@ The GNU Lesser General Public License (LGPL)</para>
 <codeline lineno="27"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">astro<sp/>{</highlight></codeline>
 <codeline lineno="28"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">planets<sp/>{</highlight></codeline>
 <codeline lineno="29"><highlight class="normal"></highlight></codeline>
-<codeline lineno="58" refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00Atmosphere" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00Atmosphere" kindref="compound">NRLMSISE00Atmosphere</ref><sp/>{</highlight></codeline>
+<codeline lineno="58" refid="classastrea_1_1astro_1_1planets_1_1Nrlmsise00Atmosphere" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classastrea_1_1astro_1_1planets_1_1Nrlmsise00Atmosphere" kindref="compound">Nrlmsise00Atmosphere</ref><sp/>{</highlight></codeline>
 <codeline lineno="59"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
-<codeline lineno="63" refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00Atmosphere_1acf42ac31ce1de95eb028f494f074c211" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00Atmosphere_1acf42ac31ce1de95eb028f494f074c211" kindref="member">NRLMSISE00Atmosphere</ref>()<sp/>=<sp/></highlight><highlight class="keyword">delete</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="63" refid="classastrea_1_1astro_1_1planets_1_1Nrlmsise00Atmosphere_1ad4fe55e47b0292465249b65f5b36244c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1planets_1_1Nrlmsise00Atmosphere_1ad4fe55e47b0292465249b65f5b36244c" kindref="member">Nrlmsise00Atmosphere</ref>()<sp/>=<sp/></highlight><highlight class="keyword">delete</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="64"><highlight class="normal"></highlight></codeline>
-<codeline lineno="76" refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00Atmosphere_1a3449ba26dfa2023905e119df10c1d122" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>Density<sp/><ref refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00Atmosphere_1a3449ba26dfa2023905e119df10c1d122" kindref="member">find_atmospheric_density</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref>&amp;<sp/>state,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>f107a,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>f107,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::array&lt;double,<sp/>7&gt;&amp;<sp/>ap);</highlight></codeline>
+<codeline lineno="76" refid="classastrea_1_1astro_1_1planets_1_1Nrlmsise00Atmosphere_1a523779a5989fe8844c74bcb92e26b1f1" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>Density<sp/><ref refid="classastrea_1_1astro_1_1planets_1_1Nrlmsise00Atmosphere_1a523779a5989fe8844c74bcb92e26b1f1" kindref="member">find_atmospheric_density</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref>&amp;<sp/>state,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>f107a,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>f107,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::array&lt;double,<sp/>7&gt;&amp;<sp/>ap);</highlight></codeline>
 <codeline lineno="77"><highlight class="normal">};</highlight></codeline>
 <codeline lineno="78"><highlight class="normal"></highlight></codeline>
 <codeline lineno="79"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>planets</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="80"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>astro</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="81"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>astrea</highlight><highlight class="normal"></highlight></codeline>
     </programlisting>
-    <location file="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.hpp"/>
+    <location file="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.hpp"/>
   </compounddef>
 </doxygen>

@@ -93,14 +93,11 @@
 
 ## n
 
-* **n\_pi** ([**astrea**](namespaceastrea.md))
-* **n\_pi\_mag** ([**astrea**](namespaceastrea.md))
 * **nanoseconds** ([**astrea**](namespaceastrea.md))
 
 
 ## p
 
-* **PI** ([**astrea**](namespaceastrea.md))
 * **Power** ([**astrea**](namespaceastrea.md))
 * **PowerFluxDensity** ([**astrea**](namespaceastrea.md))
 * **Pressure** ([**astrea**](namespaceastrea.md))
@@ -129,7 +126,6 @@
 
 ## t
 
-* **TWO\_PI** ([**astrea**](namespaceastrea.md))
 * **Temperature** ([**astrea**](namespaceastrea.md))
 * **Time** ([**astrea**](namespaceastrea.md))
 * **temperature\_unit** ([**astrea::detail**](namespaceastrea_1_1detail.md))

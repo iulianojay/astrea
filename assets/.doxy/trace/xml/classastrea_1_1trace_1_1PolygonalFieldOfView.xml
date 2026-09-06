@@ -95,7 +95,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/platforms/sensors/fov/PolygonalFieldOfView.hpp" line="48" column="5" bodyfile="astrea/trace/trace/platforms/sensors/fov/PolygonalFieldOfView.cpp" bodystart="32" bodyend="38"/>
+        <location file="astrea/trace/trace/platforms/sensors/fov/PolygonalFieldOfView.hpp" line="48" column="5" bodyfile="astrea/trace/trace/platforms/sensors/fov/PolygonalFieldOfView.cpp" bodystart="32" bodyend="39"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1trace_1_1PolygonalFieldOfView_1a398ce6e768a32ffd8c4e497ec2aa1345" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -149,7 +149,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/platforms/sensors/fov/PolygonalFieldOfView.hpp" line="57" column="5" bodyfile="astrea/trace/trace/platforms/sensors/fov/PolygonalFieldOfView.cpp" bodystart="40" bodyend="54"/>
+        <location file="astrea/trace/trace/platforms/sensors/fov/PolygonalFieldOfView.hpp" line="57" column="5" bodyfile="astrea/trace/trace/platforms/sensors/fov/PolygonalFieldOfView.cpp" bodystart="41" bodyend="55"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1trace_1_1PolygonalFieldOfView_1aed8b1a5d877e7fa808f2fc131fde4e7f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
@@ -239,7 +239,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/platforms/sensors/fov/PolygonalFieldOfView.hpp" line="83" column="10" bodyfile="astrea/trace/trace/platforms/sensors/fov/PolygonalFieldOfView.cpp" bodystart="68" bodyend="90"/>
+        <location file="astrea/trace/trace/platforms/sensors/fov/PolygonalFieldOfView.hpp" line="83" column="10" bodyfile="astrea/trace/trace/platforms/sensors/fov/PolygonalFieldOfView.cpp" bodystart="69" bodyend="91"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1trace_1_1PolygonalFieldOfView_1ac3b66a99fa67b73802346d2693cdcdc7" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
         <type>Angle</type>
@@ -276,7 +276,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/platforms/sensors/fov/PolygonalFieldOfView.hpp" line="103" column="10" bodyfile="astrea/trace/trace/platforms/sensors/fov/PolygonalFieldOfView.cpp" bodystart="56" bodyend="65"/>
+        <location file="astrea/trace/trace/platforms/sensors/fov/PolygonalFieldOfView.hpp" line="103" column="10" bodyfile="astrea/trace/trace/platforms/sensors/fov/PolygonalFieldOfView.cpp" bodystart="57" bodyend="66"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1trace_1_1PolygonalFieldOfView_1a31473aee8361b7f92306307fdab8a78b" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>std::vector&lt; std::pair&lt; Unitless, Unitless &gt; &gt;</type>
@@ -294,7 +294,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/platforms/sensors/fov/PolygonalFieldOfView.hpp" line="110" column="17" bodyfile="astrea/trace/trace/platforms/sensors/fov/PolygonalFieldOfView.cpp" bodystart="92" bodyend="104"/>
+        <location file="astrea/trace/trace/platforms/sensors/fov/PolygonalFieldOfView.hpp" line="110" column="17" bodyfile="astrea/trace/trace/platforms/sensors/fov/PolygonalFieldOfView.cpp" bodystart="93" bodyend="105"/>
       </memberdef>
     </sectiondef>
     <briefdescription>

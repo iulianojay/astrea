@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="structastrea_1_1astro_1_1planets_1_1Switch" kind="struct" language="C++" prot="public">
+    <compoundname>astrea::astro::planets::Switch</compoundname>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structastrea_1_1astro_1_1planets_1_1Switch_1a0405b42c9c0c1afd02ff722729b631cf" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool astrea::astro::planets::Switch::mainEffect</definition>
+        <argsstring></argsstring>
+        <name>mainEffect</name>
+        <qualifiedname>astrea::astro::planets::Switch::mainEffect</qualifiedname>
+        <initializer>= true</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" line="938" column="10" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" bodystart="938" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structastrea_1_1astro_1_1planets_1_1Switch_1a4acdfe07b58456d8874144a91ed924c5" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool astrea::astro::planets::Switch::crossEffect</definition>
+        <argsstring></argsstring>
+        <name>crossEffect</name>
+        <qualifiedname>astrea::astro::planets::Switch::crossEffect</qualifiedname>
+        <initializer>= true</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" line="939" column="10" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" bodystart="939" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structastrea_1_1astro_1_1planets_1_1Switch_1ad183fcad372219c6dcb4c4d3b14e6cd6" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool astrea::astro::planets::Switch::fullAp</definition>
+        <argsstring></argsstring>
+        <name>fullAp</name>
+        <qualifiedname>astrea::astro::planets::Switch::fullAp</qualifiedname>
+        <initializer>= true</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" line="940" column="10" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" bodystart="940" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" line="937" column="1" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/NRLMSISE00.cpp" bodystart="937" bodyend="941"/>
+    <listofallmembers>
+      <member refid="structastrea_1_1astro_1_1planets_1_1Switch_1a4acdfe07b58456d8874144a91ed924c5" prot="public" virt="non-virtual"><scope>astrea::astro::planets::Switch</scope><name>crossEffect</name></member>
+      <member refid="structastrea_1_1astro_1_1planets_1_1Switch_1ad183fcad372219c6dcb4c4d3b14e6cd6" prot="public" virt="non-virtual"><scope>astrea::astro::planets::Switch</scope><name>fullAp</name></member>
+      <member refid="structastrea_1_1astro_1_1planets_1_1Switch_1a0405b42c9c0c1afd02ff722729b631cf" prot="public" virt="non-virtual"><scope>astrea::astro::planets::Switch</scope><name>mainEffect</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

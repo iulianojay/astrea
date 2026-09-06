@@ -168,8 +168,11 @@
     <location file="astrea/astro/astro/propagation/force_models/OblatenessForce.hpp" line="39" column="1" bodyfile="astrea/astro/astro/propagation/force_models/OblatenessForce.hpp" bodystart="39" bodyend="80"/>
     <listofallmembers>
       <member refid="classastrea_1_1astro_1_1OblatenessForce_1a412020f517a94847be2b31d85af64587" prot="private" virt="non-virtual"><scope>astrea::astro::OblatenessForce</scope><name>_legendreCache</name></member>
+      <member refid="classastrea_1_1astro_1_1PerturbingForce_1ade1609d0fd279c2c240d3f6441775466" prot="public" virt="non-virtual"><scope>astrea::astro::OblatenessForce</scope><name>bind_space_weather_provider</name></member>
       <member refid="classastrea_1_1astro_1_1OblatenessForce_1adef72f921fe183b10e5148c5b7462801" prot="public" virt="virtual"><scope>astrea::astro::OblatenessForce</scope><name>clone</name></member>
       <member refid="classastrea_1_1astro_1_1OblatenessForce_1ada76327aaf44ae302337a0eba8cbdf02" prot="public" virt="virtual"><scope>astrea::astro::OblatenessForce</scope><name>compute_perturbation</name></member>
+      <member refid="classastrea_1_1astro_1_1PerturbingForce_1a49e3859d67794b695ac783d8096213c0" prot="public" virt="non-virtual"><scope>astrea::astro::OblatenessForce</scope><name>get_space_weather_data</name></member>
+      <member refid="classastrea_1_1astro_1_1PerturbingForce_1aea0bbee60bfa80950710c27746c63d0f" prot="public" virt="non-virtual"><scope>astrea::astro::OblatenessForce</scope><name>get_space_weather_provider</name></member>
       <member refid="classastrea_1_1astro_1_1OblatenessForce_1abb41c3faec2834695a3d6f27a0b68832" prot="public" virt="non-virtual"><scope>astrea::astro::OblatenessForce</scope><name>OblatenessForce</name></member>
       <member refid="classastrea_1_1astro_1_1PerturbingForce_1a31d3645e85270aa1c1936252bb9a34a3" prot="public" virt="non-virtual"><scope>astrea::astro::OblatenessForce</scope><name>PerturbingForce</name></member>
       <member refid="classastrea_1_1astro_1_1OblatenessForce_1a9ea646033a9a45751c4d2b1d4ff06704" prot="public" virt="non-virtual"><scope>astrea::astro::OblatenessForce</scope><name>~OblatenessForce</name></member>

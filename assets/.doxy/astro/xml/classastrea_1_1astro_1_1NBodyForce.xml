@@ -137,8 +137,11 @@
     </collaborationgraph>
     <location file="astrea/astro/astro/propagation/force_models/NBodyForce.hpp" line="40" column="1" bodyfile="astrea/astro/astro/propagation/force_models/NBodyForce.hpp" bodystart="40" bodyend="106"/>
     <listofallmembers>
+      <member refid="classastrea_1_1astro_1_1PerturbingForce_1ade1609d0fd279c2c240d3f6441775466" prot="public" virt="non-virtual"><scope>astrea::astro::NBodyForce</scope><name>bind_space_weather_provider</name></member>
       <member refid="classastrea_1_1astro_1_1NBodyForce_1a6e6493d806e09e3188eaaac71b9e6dbb" prot="public" virt="virtual"><scope>astrea::astro::NBodyForce</scope><name>clone</name></member>
       <member refid="classastrea_1_1astro_1_1NBodyForce_1a79ab51b4ea14792017f7c2c447e4e1d7" prot="public" virt="virtual"><scope>astrea::astro::NBodyForce</scope><name>compute_perturbation</name></member>
+      <member refid="classastrea_1_1astro_1_1PerturbingForce_1a49e3859d67794b695ac783d8096213c0" prot="public" virt="non-virtual"><scope>astrea::astro::NBodyForce</scope><name>get_space_weather_data</name></member>
+      <member refid="classastrea_1_1astro_1_1PerturbingForce_1aea0bbee60bfa80950710c27746c63d0f" prot="public" virt="non-virtual"><scope>astrea::astro::NBodyForce</scope><name>get_space_weather_provider</name></member>
       <member refid="classastrea_1_1astro_1_1NBodyForce_1aea12b506fd466bd50e139d7e5277c41d" prot="public" virt="non-virtual"><scope>astrea::astro::NBodyForce</scope><name>NBodyForce</name></member>
       <member refid="classastrea_1_1astro_1_1PerturbingForce_1a31d3645e85270aa1c1936252bb9a34a3" prot="public" virt="non-virtual"><scope>astrea::astro::NBodyForce</scope><name>PerturbingForce</name></member>
       <member refid="classastrea_1_1astro_1_1NBodyForce_1a16e00c0ba8dc2756810e9549bddf87ed" prot="public" virt="non-virtual"><scope>astrea::astro::NBodyForce</scope><name>~NBodyForce</name></member>

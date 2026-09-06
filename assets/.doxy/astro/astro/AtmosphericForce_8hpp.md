@@ -10,11 +10,13 @@
 
 _Header file for the AtmosphericForce class, which computes the atmospheric force on a vehicle._ [More...](#detailed-description)
 
-* `#include <map>`
-* `#include <tuple>`
+* `#include <memory>`
+* `#include <mp-units/systems/si.h>`
 * `#include <units/units.hpp>`
 * `#include <astro/astro.fwd.hpp>`
 * `#include <astro/propagation/force_models/PerturbingForce.hpp>`
+* `#include <astro/propagation/force_models/space_weather/atmosphere.hpp>`
+* `#include <astro/systems/system_concepts.hpp>`
 
 
 
@@ -40,7 +42,7 @@ _Header file for the AtmosphericForce class, which computes the atmospheric forc
 
 | Type | Name |
 | ---: | :--- |
-| class | [**AtmosphericForce**](classastrea_1_1astro_1_1AtmosphericForce.md) <br>_Class to compute the atmospheric force on a vehicle._  |
+| class | [**AtmosphericForce**](classastrea_1_1astro_1_1AtmosphericForce.md) &lt;\_body\_, \_model\_&gt;<br>_Class to compute the atmospheric force on a vehicle._  |
 
 
 

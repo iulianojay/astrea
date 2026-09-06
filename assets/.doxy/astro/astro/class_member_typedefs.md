@@ -3,6 +3,11 @@
 
 
 
+## b
+
+* **BaseType** ([**astrea::astro::Cartesian**](classastrea_1_1astro_1_1Cartesian.md), [**astrea::astro::Equinoctial**](classastrea_1_1astro_1_1Equinoctial.md), [**astrea::astro::Keplerian**](classastrea_1_1astro_1_1Keplerian.md))
+
+
 ## c
 
 * **const\_iterator** ([**astrea::astro::Constellation**](classastrea_1_1astro_1_1Constellation.md), [**astrea::astro::Plane**](classastrea_1_1astro_1_1Plane.md), [**astrea::astro::Shell**](classastrea_1_1astro_1_1Shell.md), [**astrea::astro::StateHistory**](classastrea_1_1astro_1_1StateHistory.md))
@@ -12,6 +17,7 @@
 
 * **duration** ([**astrea::astro::BarycentricCoordinateTimeClock**](structastrea_1_1astro_1_1BarycentricCoordinateTimeClock.md), [**astrea::astro::BarycentricDynamicalTimeClock**](structastrea_1_1astro_1_1BarycentricDynamicalTimeClock.md), [**astrea::astro::GeocentricCoordinateTimeClock**](structastrea_1_1astro_1_1GeocentricCoordinateTimeClock.md), [**astrea::astro::JulianDateClock**](structastrea_1_1astro_1_1JulianDateClock.md), [**astrea::astro::TerrestrialTimeClock**](structastrea_1_1astro_1_1TerrestrialTimeClock.md))
 * **difference\_type** ([**astrea::astro::Constellation::sat\_iterator**](classastrea_1_1astro_1_1Constellation_1_1sat__iterator.md), [**astrea::astro::Shell::sat\_iterator**](classastrea_1_1astro_1_1Shell_1_1sat__iterator.md))
+* **DataPtr** ([**astrea::astro::SpaceWeatherProvider**](classastrea_1_1astro_1_1SpaceWeatherProvider.md))
 
 
 ## e

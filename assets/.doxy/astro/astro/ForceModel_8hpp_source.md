@@ -15,18 +15,32 @@
 #include <memory>
 #include <string>
 #include <unordered_map>
+#include <utility>
 
 #include <units/units.hpp>
 
 #include <astro/astro.fwd.hpp>
 #include <astro/propagation/force_models/PerturbingForce.hpp>
+#include <astro/propagation/force_models/space_weather/SpaceWeatherProvider.hpp>
 
 namespace astrea {
 namespace astro {
 
 class ForceModel {
   public:
-    ForceModel() = default;
+    ForceModel();
+
+    explicit ForceModel(std::shared_ptr<const SpaceWeatherData> data);
+
+    explicit ForceModel(SpaceWeatherProvider provider);
+
+    explicit ForceModel(SpaceWeatherData data);
+
+    template <typename... Args>
+    explicit ForceModel(std::in_place_t, Args&&... args) :
+        _spaceWeatherProvider(std::make_shared<SpaceWeatherProvider>(std::in_place, std::forward<Args>(args)...))
+    {
+    }
 
     ~ForceModel() = default;
 
@@ -44,7 +58,11 @@ class ForceModel {
     const std::unique_ptr<PerturbingForce>& add(Args&&... args)
     {
         static const std::string name = typeid(T).name();
-        if (forces.count(name) == 0) { forces.emplace(name, std::make_unique<T>(std::forward<Args>(args)...)); }
+        if (forces.count(name) == 0) {
+            auto force = std::make_unique<T>(std::forward<Args>(args)...);
+            force->bind_space_weather_provider(_spaceWeatherProvider);
+            forces.emplace(name, std::move(force));
+        }
         return forces.at(name);
     }
 
@@ -53,8 +71,17 @@ class ForceModel {
     {
         using T                       = Pert<Params...>;
         static const std::string name = typeid(T).name();
-        if (forces.count(name) == 0) { forces.emplace(name, std::make_unique<T>(std::forward<Args>(args)...)); }
+        if (forces.count(name) == 0) {
+            auto force = std::make_unique<T>(std::forward<Args>(args)...);
+            force->bind_space_weather_provider(_spaceWeatherProvider);
+            forces.emplace(name, std::move(force));
+        }
         return forces.at(name);
+    }
+
+    [[nodiscard]] const std::shared_ptr<const SpaceWeatherProvider>& space_weather_provider() const noexcept
+    {
+        return _spaceWeatherProvider;
     }
 
     Perturbation compute_perturbations(const State& state, const Vehicle& vehicle) const;
@@ -68,7 +95,14 @@ class ForceModel {
         return forces.at(name);
     }
 
+    void set_space_weather_provider(std::shared_ptr<const SpaceWeatherProvider> provider);
+
+    void set_space_weather_provider(SpaceWeatherProvider provider);
+
+    void set_space_weather_provider(SpaceWeatherData data);
+
   private:
+    std::shared_ptr<const SpaceWeatherProvider> _spaceWeatherProvider;
     std::unordered_map<std::string, std::unique_ptr<PerturbingForce>> forces; 
 };
 

@@ -21,7 +21,7 @@
       
       
       <link rel="icon" href="../../assets/images/astrea-transparent-crop.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
@@ -29,7 +29,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
@@ -6255,15 +6255,15 @@ You're not viewing the latest version.
 <tbody>
 <tr>
 <td style="text-align: right;">constexpr Unitless</td>
-<td style="text-align: left;"><a href="#variable-default_coefficient_of_drag"><strong>DEFAULT_COEFFICIENT_OF_DRAG</strong></a>   = <code>2.2 \* astrea::detail::unitless</code><br></td>
+<td style="text-align: left;"><a href="#variable-default_coefficient_of_drag"><strong>DEFAULT_COEFFICIENT_OF_DRAG</strong></a>   = <code>2.2 \* mp\_units::one</code><br></td>
 </tr>
 <tr>
 <td style="text-align: right;">constexpr Unitless</td>
-<td style="text-align: left;"><a href="#variable-default_coefficient_of_lift"><strong>DEFAULT_COEFFICIENT_OF_LIFT</strong></a>   = <code>0.9 \* astrea::detail::unitless</code><br></td>
+<td style="text-align: left;"><a href="#variable-default_coefficient_of_lift"><strong>DEFAULT_COEFFICIENT_OF_LIFT</strong></a>   = <code>0.9 \* mp\_units::one</code><br></td>
 </tr>
 <tr>
 <td style="text-align: right;">constexpr Unitless</td>
-<td style="text-align: left;"><a href="#variable-default_coefficient_of_reflectivity"><strong>DEFAULT_COEFFICIENT_OF_REFLECTIVITY</strong></a>   = <code>/* multi line expression */</code><br></td>
+<td style="text-align: left;"><a href="#variable-default_coefficient_of_reflectivity"><strong>DEFAULT_COEFFICIENT_OF_REFLECTIVITY</strong></a>   = <code>1.1 \* mp\_units::one</code><br></td>
 </tr>
 <tr>
 <td style="text-align: right;">constexpr <a href="../classastrea_1_1astro_1_1InertiaTensor/"><strong>InertiaTensor</strong></a>&lt; <a href="../structastrea_1_1astro_1_1frames_1_1dynamic_1_1body/"><strong>frames::dynamic::body</strong></a> &gt;</td>
@@ -6271,19 +6271,19 @@ You're not viewing the latest version.
 </tr>
 <tr>
 <td style="text-align: right;">constexpr SurfaceArea</td>
-<td style="text-align: left;"><a href="#variable-default_lift_area"><strong>DEFAULT_LIFT_AREA</strong></a>   = <code>1.0 \* mp\_units::pow&amp;lt;2&amp;gt;(astrea::detail::distance\_unit)</code><br></td>
+<td style="text-align: left;"><a href="#variable-default_lift_area"><strong>DEFAULT_LIFT_AREA</strong></a>   = <code>1.0 \* mp\_units::si::unit\_symbols::m \* mp\_units::si::unit\_symbols::m</code><br></td>
 </tr>
 <tr>
 <td style="text-align: right;">constexpr Mass</td>
-<td style="text-align: left;"><a href="#variable-default_mass"><strong>DEFAULT_MASS</strong></a>   = <code>1000.0 \* astrea::detail::mass\_unit</code><br></td>
+<td style="text-align: left;"><a href="#variable-default_mass"><strong>DEFAULT_MASS</strong></a>   = <code>1000.0 \* mp\_units::si::unit\_symbols::kg</code><br></td>
 </tr>
 <tr>
 <td style="text-align: right;">constexpr SurfaceArea</td>
-<td style="text-align: left;"><a href="#variable-default_ram_area"><strong>DEFAULT_RAM_AREA</strong></a>   = <code>1.0 \* mp\_units::pow&amp;lt;2&amp;gt;(astrea::detail::distance\_unit)</code><br></td>
+<td style="text-align: left;"><a href="#variable-default_ram_area"><strong>DEFAULT_RAM_AREA</strong></a>   = <code>1.0 \* mp\_units::si::unit\_symbols::m \* mp\_units::si::unit\_symbols::m</code><br></td>
 </tr>
 <tr>
 <td style="text-align: right;">constexpr SurfaceArea</td>
-<td style="text-align: left;"><a href="#variable-default_solar_area"><strong>DEFAULT_SOLAR_AREA</strong></a>   = <code>1.0 \* mp\_units::pow&amp;lt;2&amp;gt;(astrea::detail::distance\_unit)</code><br></td>
+<td style="text-align: left;"><a href="#variable-default_solar_area"><strong>DEFAULT_SOLAR_AREA</strong></a>   = <code>1.0 \* mp\_units::si::unit\_symbols::m \* mp\_units::si::unit\_symbols::m</code><br></td>
 </tr>
 </tbody>
 </table>
@@ -6306,15 +6306,15 @@ You're not viewing the latest version.
 </tr>
 <tr>
 <td style="text-align: right;">Unitless</td>
-<td style="text-align: left;"><a href="#function-get_coefficient_of_drag"><strong>get_coefficient_of_drag</strong></a> () const<br><em>Gets the coefficients of drag, lift, and reflectivity.</em></td>
+<td style="text-align: left;"><a href="#function-get_coefficient_of_drag"><strong>get_coefficient_of_drag</strong></a> (const <a href="../classastrea_1_1astro_1_1State/"><strong>State</strong></a> &amp; state) const<br><em>Gets the coefficients of drag, lift, and reflectivity.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">Unitless</td>
-<td style="text-align: left;"><a href="#function-get_coefficient_of_lift"><strong>get_coefficient_of_lift</strong></a> () const<br><em>Gets the coefficient of lift.</em></td>
+<td style="text-align: left;"><a href="#function-get_coefficient_of_lift"><strong>get_coefficient_of_lift</strong></a> (const <a href="../classastrea_1_1astro_1_1State/"><strong>State</strong></a> &amp; state) const<br><em>Gets the coefficient of lift.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">Unitless</td>
-<td style="text-align: left;"><a href="#function-get_coefficient_of_reflectivity"><strong>get_coefficient_of_reflectivity</strong></a> () const<br><em>Gets the coefficient of reflectivity.</em></td>
+<td style="text-align: left;"><a href="#function-get_coefficient_of_reflectivity"><strong>get_coefficient_of_reflectivity</strong></a> (const <a href="../classastrea_1_1astro_1_1State/"><strong>State</strong></a> &amp; state) const<br><em>Gets the coefficient of reflectivity.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;"><a href="../structastrea_1_1astro_1_1Perturbation/"><strong>Perturbation</strong></a></td>
@@ -6326,7 +6326,7 @@ You're not viewing the latest version.
 </tr>
 <tr>
 <td style="text-align: right;"><a href="../classastrea_1_1astro_1_1InertiaTensor/"><strong>InertiaTensor</strong></a>&lt; <a href="../structastrea_1_1astro_1_1frames_1_1dynamic_1_1body/"><strong>frames::dynamic::body</strong></a> &gt;</td>
-<td style="text-align: left;"><a href="#function-get_inertia_tensor"><strong>get_inertia_tensor</strong></a> () const<br><em>Gets the inertia tensor of the spacecraft.</em></td>
+<td style="text-align: left;"><a href="#function-get_inertia_tensor"><strong>get_inertia_tensor</strong></a> (const <a href="../classastrea_1_1astro_1_1State/"><strong>State</strong></a> &amp; state) const<br><em>Gets the inertia tensor of the spacecraft.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;"><a href="../classastrea_1_1astro_1_1State/"><strong>State</strong></a> &amp;</td>
@@ -6338,11 +6338,11 @@ You're not viewing the latest version.
 </tr>
 <tr>
 <td style="text-align: right;">SurfaceArea</td>
-<td style="text-align: left;"><a href="#function-get_lift_area"><strong>get_lift_area</strong></a> () const<br><em>Gets the lift area of the spacecraft.</em></td>
+<td style="text-align: left;"><a href="#function-get_lift_area"><strong>get_lift_area</strong></a> (const <a href="../classastrea_1_1astro_1_1State/"><strong>State</strong></a> &amp; state) const<br><em>Gets the lift area of the spacecraft.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">virtual Mass</td>
-<td style="text-align: left;"><a href="#function-get_mass"><strong>get_mass</strong></a> () const<br><em>Gets the mass of the spacecraft.</em></td>
+<td style="text-align: left;"><a href="#function-get_mass"><strong>get_mass</strong></a> (const <a href="../classastrea_1_1astro_1_1State/"><strong>State</strong></a> &amp; state) const<br><em>Gets the mass of the spacecraft.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">std::string</td>
@@ -6354,11 +6354,11 @@ You're not viewing the latest version.
 </tr>
 <tr>
 <td style="text-align: right;">SurfaceArea</td>
-<td style="text-align: left;"><a href="#function-get_ram_area"><strong>get_ram_area</strong></a> () const<br><em>Gets the surface areas for ram, solar, and lift.</em></td>
+<td style="text-align: left;"><a href="#function-get_ram_area"><strong>get_ram_area</strong></a> (const <a href="../classastrea_1_1astro_1_1State/"><strong>State</strong></a> &amp; state) const<br><em>Gets the surface areas for ram, solar, and lift.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">SurfaceArea</td>
-<td style="text-align: left;"><a href="#function-get_solar_area"><strong>get_solar_area</strong></a> () const<br><em>Gets the solar area of the spacecraft.</em></td>
+<td style="text-align: left;"><a href="#function-get_solar_area"><strong>get_solar_area</strong></a> (const <a href="../classastrea_1_1astro_1_1State/"><strong>State</strong></a> &amp; state) const<br><em>Gets the solar area of the spacecraft.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;"><a href="../classastrea_1_1astro_1_1StateHistory/"><strong>StateHistory</strong></a> &amp;</td>
@@ -6450,7 +6450,7 @@ You're not viewing the latest version.
 </tr>
 <tr>
 <td style="text-align: right;">virtual Mass</td>
-<td style="text-align: left;"><a href="../classastrea_1_1astro_1_1PayloadPlatform/#function-get_mass"><strong>get_mass</strong></a> () const<br><em>Get the mass of the platform.</em></td>
+<td style="text-align: left;"><a href="../classastrea_1_1astro_1_1PayloadPlatform/#function-get_mass"><strong>get_mass</strong></a> (const <a href="../classastrea_1_1astro_1_1State/"><strong>State</strong></a> &amp; state) const<br><em>Get the mass of the platform.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">std::vector&lt; Payload_T &gt; &amp;</td>
@@ -6642,7 +6642,9 @@ You're not viewing the latest version.
 
 <h3 id="function-get_coefficient_of_drag">function get_coefficient_of_drag<a class="headerlink" href="#function-get_coefficient_of_drag" title="Permanent link">&para;</a></h3>
 <p><em>Gets the coefficients of drag, lift, and reflectivity.</em> 
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="n">Unitless</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Spacecraft</span><span class="o">::</span><span class="n">get_coefficient_of_drag</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="n">Unitless</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Spacecraft</span><span class="o">::</span><span class="n">get_coefficient_of_drag</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">State</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">state</span>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
 </span></code></pre></div></p>
 <p><strong>Returns:</strong></p>
 <p>Unitless The coefficient of drag. </p>
@@ -6650,7 +6652,9 @@ You're not viewing the latest version.
 
 <h3 id="function-get_coefficient_of_lift">function get_coefficient_of_lift<a class="headerlink" href="#function-get_coefficient_of_lift" title="Permanent link">&para;</a></h3>
 <p><em>Gets the coefficient of lift.</em> 
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="n">Unitless</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Spacecraft</span><span class="o">::</span><span class="n">get_coefficient_of_lift</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="n">Unitless</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Spacecraft</span><span class="o">::</span><span class="n">get_coefficient_of_lift</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">State</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">state</span>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
 </span></code></pre></div></p>
 <p><strong>Returns:</strong></p>
 <p>Unitless The coefficient of lift. </p>
@@ -6658,7 +6662,9 @@ You're not viewing the latest version.
 
 <h3 id="function-get_coefficient_of_reflectivity">function get_coefficient_of_reflectivity<a class="headerlink" href="#function-get_coefficient_of_reflectivity" title="Permanent link">&para;</a></h3>
 <p><em>Gets the coefficient of reflectivity.</em> 
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="n">Unitless</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Spacecraft</span><span class="o">::</span><span class="n">get_coefficient_of_reflectivity</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="n">Unitless</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Spacecraft</span><span class="o">::</span><span class="n">get_coefficient_of_reflectivity</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">State</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">state</span>
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
 </span></code></pre></div></p>
 <p><strong>Returns:</strong></p>
 <p>Unitless The coefficient of reflectivity. </p>
@@ -6689,7 +6695,9 @@ You're not viewing the latest version.
 
 <h3 id="function-get_inertia_tensor">function get_inertia_tensor<a class="headerlink" href="#function-get_inertia_tensor" title="Permanent link">&para;</a></h3>
 <p><em>Gets the inertia tensor of the spacecraft.</em> 
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="n">InertiaTensor</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">frames</span><span class="o">::</span><span class="n">dynamic</span><span class="o">::</span><span class="n">body</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Spacecraft</span><span class="o">::</span><span class="n">get_inertia_tensor</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="n">InertiaTensor</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">frames</span><span class="o">::</span><span class="n">dynamic</span><span class="o">::</span><span class="n">body</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Spacecraft</span><span class="o">::</span><span class="n">get_inertia_tensor</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">State</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">state</span>
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
 </span></code></pre></div></p>
 <p><strong>Returns:</strong></p>
 <p>InertiaTensor&lt;frames::dynamic::body&gt; The inertia tensor of the spacecraft. </p>
@@ -6713,7 +6721,9 @@ You're not viewing the latest version.
 
 <h3 id="function-get_lift_area">function get_lift_area<a class="headerlink" href="#function-get_lift_area" title="Permanent link">&para;</a></h3>
 <p><em>Gets the lift area of the spacecraft.</em> 
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="n">SurfaceArea</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Spacecraft</span><span class="o">::</span><span class="n">get_lift_area</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="n">SurfaceArea</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Spacecraft</span><span class="o">::</span><span class="n">get_lift_area</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">State</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">state</span>
+</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
 </span></code></pre></div></p>
 <p><strong>Returns:</strong></p>
 <p>SurfaceArea The lift area of the spacecraft. </p>
@@ -6721,7 +6731,9 @@ You're not viewing the latest version.
 
 <h3 id="function-get_mass">function get_mass<a class="headerlink" href="#function-get_mass" title="Permanent link">&para;</a></h3>
 <p><em>Gets the mass of the spacecraft.</em> 
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="k">virtual</span><span class="w"> </span><span class="n">Mass</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Spacecraft</span><span class="o">::</span><span class="n">get_mass</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="k">virtual</span><span class="w"> </span><span class="n">Mass</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Spacecraft</span><span class="o">::</span><span class="n">get_mass</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">State</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">state</span>
+</span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
 </span></code></pre></div></p>
 <p><strong>Returns:</strong></p>
 <p>Mass The mass of the spacecraft. </p>
@@ -6753,7 +6765,9 @@ You're not viewing the latest version.
 
 <h3 id="function-get_ram_area">function get_ram_area<a class="headerlink" href="#function-get_ram_area" title="Permanent link">&para;</a></h3>
 <p><em>Gets the surface areas for ram, solar, and lift.</em> 
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="n">SurfaceArea</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Spacecraft</span><span class="o">::</span><span class="n">get_ram_area</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="n">SurfaceArea</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Spacecraft</span><span class="o">::</span><span class="n">get_ram_area</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">State</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">state</span>
+</span><span id="__span-22-3"><a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
 </span></code></pre></div></p>
 <p><strong>Returns:</strong></p>
 <p>SurfaceArea The ram area of the spacecraft. </p>
@@ -6761,7 +6775,9 @@ You're not viewing the latest version.
 
 <h3 id="function-get_solar_area">function get_solar_area<a class="headerlink" href="#function-get_solar_area" title="Permanent link">&para;</a></h3>
 <p><em>Gets the solar area of the spacecraft.</em> 
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="n">SurfaceArea</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Spacecraft</span><span class="o">::</span><span class="n">get_solar_area</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="n">SurfaceArea</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Spacecraft</span><span class="o">::</span><span class="n">get_solar_area</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">State</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">state</span>
+</span><span id="__span-23-3"><a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
 </span></code></pre></div></p>
 <p><strong>Returns:</strong></p>
 <p>SurfaceArea The solar area of the spacecraft. </p>
@@ -7079,7 +7095,7 @@ You're not viewing the latest version.
       <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.action.edit", "content.action.view", "content.code.annotate", "content.code.copy", "navigation.indexes", "navigation.tabs", "navigation.footer", "navigation.top", "search.highlight", "search.share", "search.suggest", "toc.follow", "toc.integrate"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
       
         <script src="../../javascripts/ce_embed.js"></script>
       

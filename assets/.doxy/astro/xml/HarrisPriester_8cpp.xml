@@ -2,7 +2,7 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
   <compounddef id="HarrisPriester_8cpp" kind="file" language="C++">
     <compoundname>HarrisPriester.cpp</compoundname>
-    <includes refid="HarrisPriester_8hpp" local="no">astro/systems/celestial_bodies/Earth/atmosphere/HarrisPriester.hpp</includes>
+    <includes refid="HarrisPriester_8hpp" local="no">astro/propagation/force_models/space_weather/atmosphere/HarrisPriester.hpp</includes>
     <includes local="no">map</includes>
     <includes local="no">math/operations.hpp</includes>
     <includes refid="definitions_8hpp" local="no">astro/frames/definitions.hpp</includes>
@@ -559,6 +559,30 @@
         <childnode refid="25" relation="include">
         </childnode>
       </node>
+      <node id="1">
+        <label>astrea/astro/astro/propagation/force_models/space_weather/atmosphere/HarrisPriester.cpp</label>
+        <link refid="HarrisPriester_8cpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="125" relation="include">
+        </childnode>
+        <childnode refid="108" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>astro/propagation/force_models/space_weather/atmosphere/HarrisPriester.hpp</label>
+        <link refid="HarrisPriester_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
       <node id="125">
         <label>astro/state/State.hpp</label>
         <link refid="State_8hpp"/>
@@ -852,6 +876,10 @@
         </childnode>
         <childnode refid="77" relation="include">
         </childnode>
+        <childnode refid="79" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
         <childnode refid="83" relation="include">
         </childnode>
         <childnode refid="74" relation="include">
@@ -861,8 +889,6 @@
         <childnode refid="53" relation="include">
         </childnode>
         <childnode refid="44" relation="include">
-        </childnode>
-        <childnode refid="79" relation="include">
         </childnode>
       </node>
       <node id="109">
@@ -1029,30 +1055,6 @@
         <childnode refid="21" relation="include">
         </childnode>
         <childnode refid="19" relation="include">
-        </childnode>
-      </node>
-      <node id="1">
-        <label>astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/HarrisPriester.cpp</label>
-        <link refid="HarrisPriester_8cpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="9" relation="include">
-        </childnode>
-        <childnode refid="10" relation="include">
-        </childnode>
-        <childnode refid="11" relation="include">
-        </childnode>
-        <childnode refid="125" relation="include">
-        </childnode>
-        <childnode refid="108" relation="include">
-        </childnode>
-      </node>
-      <node id="2">
-        <label>astro/systems/celestial_bodies/Earth/atmosphere/HarrisPriester.hpp</label>
-        <link refid="HarrisPriester_8hpp"/>
-        <childnode refid="3" relation="include">
-        </childnode>
-        <childnode refid="4" relation="include">
         </childnode>
       </node>
       <node id="51">
@@ -1642,7 +1644,6 @@
     </incdepgraph>
     <innernamespace refid="namespaceastrea">astrea</innernamespace>
     <innernamespace refid="namespaceastrea_1_1astro">astrea::astro</innernamespace>
-    <innernamespace refid="namespaceastrea_1_1astro_1_1planets">astrea::astro::planets</innernamespace>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
@@ -1661,7 +1662,7 @@
 <codeline lineno="11"><highlight class="comment"><sp/>*<sp/>have<sp/>received<sp/>a<sp/>copy<sp/>of<sp/>the<sp/>GNU<sp/>General<sp/>Public<sp/>License<sp/>along<sp/>with<sp/>Astrea.<sp/>If<sp/>not,<sp/>see<sp/>&lt;https://www.gnu.org/licenses/&gt;.</highlight></codeline>
 <codeline lineno="12"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="13"><highlight class="normal"></highlight></codeline>
-<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="HarrisPriester_8hpp" kindref="compound">astro/systems/celestial_bodies/Earth/atmosphere/HarrisPriester.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="HarrisPriester_8hpp" kindref="compound">astro/propagation/force_models/space_weather/atmosphere/HarrisPriester.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="15"><highlight class="normal"></highlight></codeline>
 <codeline lineno="16"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;map&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="17"><highlight class="normal"></highlight></codeline>
@@ -1673,129 +1674,127 @@
 <codeline lineno="23"><highlight class="normal"></highlight></codeline>
 <codeline lineno="24"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">astrea<sp/>{</highlight></codeline>
 <codeline lineno="25"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">astro<sp/>{</highlight></codeline>
-<codeline lineno="26"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">planets<sp/>{</highlight></codeline>
-<codeline lineno="27"><highlight class="normal"></highlight></codeline>
-<codeline lineno="28"><highlight class="normal"></highlight><highlight class="keyword">using<sp/>namespace<sp/></highlight><highlight class="normal">mp_units;</highlight></codeline>
-<codeline lineno="29"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">mp_units::non_si::day;</highlight></codeline>
-<codeline lineno="30"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">mp_units::si::unit_symbols::deg;</highlight></codeline>
-<codeline lineno="31"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">mp_units::si::unit_symbols::kg;</highlight></codeline>
-<codeline lineno="32"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">mp_units::si::unit_symbols::km;</highlight></codeline>
-<codeline lineno="33"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">mp_units::si::unit_symbols::m;</highlight></codeline>
-<codeline lineno="34"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">mp_units::si::unit_symbols::rad;</highlight></codeline>
-<codeline lineno="35"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">mp_units::si::unit_symbols::s;</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="keyword">using<sp/>namespace<sp/></highlight><highlight class="normal">mp_units;</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">mp_units::non_si::day;</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">mp_units::si::unit_symbols::deg;</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">mp_units::si::unit_symbols::kg;</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">mp_units::si::unit_symbols::km;</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">mp_units::si::unit_symbols::m;</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">mp_units::si::unit_symbols::rad;</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">mp_units::si::unit_symbols::s;</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight></codeline>
 <codeline lineno="36"><highlight class="normal"></highlight></codeline>
-<codeline lineno="37"><highlight class="normal"></highlight></codeline>
-<codeline lineno="39"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>cosineExponent<sp/>=<sp/>4;</highlight></codeline>
-<codeline lineno="40"><highlight class="normal"></highlight></codeline>
-<codeline lineno="42"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Angle<sp/>LAG<sp/>=<sp/>30.0<sp/>*<sp/>deg;</highlight></codeline>
-<codeline lineno="43"><highlight class="normal"></highlight></codeline>
-<codeline lineno="46"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::map&lt;Altitude,<sp/>std::tuple&lt;Density,<sp/>Density&gt;&gt;<sp/>HARRIS_PRIESTER_ATMOSPHERE<sp/>=<sp/>{</highlight></codeline>
-<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>100.0<sp/>*<sp/>km,<sp/>{<sp/>4.974e-07<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m)),<sp/>4.974e-07<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m))<sp/>}<sp/>},</highlight></codeline>
-<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>120.0<sp/>*<sp/>km,<sp/>{<sp/>2.490e-08<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m)),<sp/>2.490e-08<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m))<sp/>}<sp/>},</highlight></codeline>
-<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>130.0<sp/>*<sp/>km,<sp/>{<sp/>8.377e-09<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m)),<sp/>8.710e-09<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m))<sp/>}<sp/>},</highlight></codeline>
-<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>140.0<sp/>*<sp/>km,<sp/>{<sp/>3.899e-09<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m)),<sp/>4.059e-09<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m))<sp/>}<sp/>},</highlight></codeline>
-<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>150.0<sp/>*<sp/>km,<sp/>{<sp/>2.122e-09<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m)),<sp/>2.215e-09<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m))<sp/>}<sp/>},</highlight></codeline>
-<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>160.0<sp/>*<sp/>km,<sp/>{<sp/>1.263e-09<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m)),<sp/>1.344e-09<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m))<sp/>}<sp/>},</highlight></codeline>
-<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>170.0<sp/>*<sp/>km,<sp/>{<sp/>8.008e-10<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m)),<sp/>8.758e-10<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m))<sp/>}<sp/>},</highlight></codeline>
-<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>180.0<sp/>*<sp/>km,<sp/>{<sp/>5.283e-10<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m)),<sp/>6.010e-10<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m))<sp/>}<sp/>},</highlight></codeline>
-<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>190.0<sp/>*<sp/>km,<sp/>{<sp/>3.617e-10<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m)),<sp/>4.297e-10<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m))<sp/>}<sp/>},</highlight></codeline>
-<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>200.0<sp/>*<sp/>km,<sp/>{<sp/>2.557e-10<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m)),<sp/>3.162e-10<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m))<sp/>}<sp/>},</highlight></codeline>
-<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>210.0<sp/>*<sp/>km,<sp/>{<sp/>1.839e-10<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m)),<sp/>2.396e-10<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m))<sp/>}<sp/>},</highlight></codeline>
-<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>220.0<sp/>*<sp/>km,<sp/>{<sp/>1.341e-10<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m)),<sp/>1.853e-10<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m))<sp/>}<sp/>},</highlight></codeline>
-<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>230.0<sp/>*<sp/>km,<sp/>{<sp/>9.949e-11<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m)),<sp/>1.455e-10<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m))<sp/>}<sp/>},</highlight></codeline>
-<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>240.0<sp/>*<sp/>km,<sp/>{<sp/>7.488e-11<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m)),<sp/>1.157e-10<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m))<sp/>}<sp/>},</highlight></codeline>
-<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>250.0<sp/>*<sp/>km,<sp/>{<sp/>5.709e-11<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m)),<sp/>9.308e-11<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m))<sp/>}<sp/>},</highlight></codeline>
-<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>260.0<sp/>*<sp/>km,<sp/>{<sp/>4.403e-11<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m)),<sp/>7.555e-11<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m))<sp/>}<sp/>},</highlight></codeline>
-<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>270.0<sp/>*<sp/>km,<sp/>{<sp/>3.430e-11<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m)),<sp/>6.182e-11<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m))<sp/>}<sp/>},</highlight></codeline>
-<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>280.0<sp/>*<sp/>km,<sp/>{<sp/>2.697e-11<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m)),<sp/>5.095e-11<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m))<sp/>}<sp/>},</highlight></codeline>
-<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>290.0<sp/>*<sp/>km,<sp/>{<sp/>2.139e-11<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m)),<sp/>4.226e-11<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m))<sp/>}<sp/>},</highlight></codeline>
-<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>300.0<sp/>*<sp/>km,<sp/>{<sp/>1.708e-11<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m)),<sp/>3.526e-11<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m))<sp/>}<sp/>},</highlight></codeline>
-<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>320.0<sp/>*<sp/>km,<sp/>{<sp/>1.099e-11<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m)),<sp/>2.511e-11<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m))<sp/>}<sp/>},</highlight></codeline>
-<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>340.0<sp/>*<sp/>km,<sp/>{<sp/>7.214e-12<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m)),<sp/>1.819e-11<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m))<sp/>}<sp/>},</highlight></codeline>
-<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>360.0<sp/>*<sp/>km,<sp/>{<sp/>4.824e-12<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m)),<sp/>1.337e-11<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m))<sp/>}<sp/>},</highlight></codeline>
-<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>380.0<sp/>*<sp/>km,<sp/>{<sp/>3.274e-12<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m)),<sp/>9.955e-12<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m))<sp/>}<sp/>},</highlight></codeline>
-<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>400.0<sp/>*<sp/>km,<sp/>{<sp/>2.249e-12<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m)),<sp/>7.492e-12<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m))<sp/>}<sp/>},</highlight></codeline>
-<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>420.0<sp/>*<sp/>km,<sp/>{<sp/>1.558e-12<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m)),<sp/>5.684e-12<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m))<sp/>}<sp/>},</highlight></codeline>
-<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>440.0<sp/>*<sp/>km,<sp/>{<sp/>1.091e-12<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m)),<sp/>4.355e-12<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m))<sp/>}<sp/>},</highlight></codeline>
-<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>460.0<sp/>*<sp/>km,<sp/>{<sp/>7.701e-13<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m)),<sp/>3.362e-12<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m))<sp/>}<sp/>},</highlight></codeline>
-<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>480.0<sp/>*<sp/>km,<sp/>{<sp/>5.474e-13<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m)),<sp/>2.612e-12<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m))<sp/>}<sp/>},</highlight></codeline>
-<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>500.0<sp/>*<sp/>km,<sp/>{<sp/>3.916e-13<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m)),<sp/>2.042e-12<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m))<sp/>}<sp/>},</highlight></codeline>
-<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>520.0<sp/>*<sp/>km,<sp/>{<sp/>2.819e-13<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m)),<sp/>1.605e-12<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m))<sp/>}<sp/>},</highlight></codeline>
-<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>540.0<sp/>*<sp/>km,<sp/>{<sp/>2.042e-13<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m)),<sp/>1.267e-12<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m))<sp/>}<sp/>},</highlight></codeline>
-<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>560.0<sp/>*<sp/>km,<sp/>{<sp/>1.488e-13<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m)),<sp/>1.005e-12<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m))<sp/>}<sp/>},</highlight></codeline>
-<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>580.0<sp/>*<sp/>km,<sp/>{<sp/>1.092e-13<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m)),<sp/>7.997e-13<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m))<sp/>}<sp/>},</highlight></codeline>
-<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>600.0<sp/>*<sp/>km,<sp/>{<sp/>8.070e-14<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m)),<sp/>6.390e-13<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m))<sp/>}<sp/>},</highlight></codeline>
-<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>620.0<sp/>*<sp/>km,<sp/>{<sp/>6.012e-14<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m)),<sp/>5.123e-13<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m))<sp/>}<sp/>},</highlight></codeline>
-<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>640.0<sp/>*<sp/>km,<sp/>{<sp/>4.519e-14<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m)),<sp/>4.121e-13<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m))<sp/>}<sp/>},</highlight></codeline>
-<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>660.0<sp/>*<sp/>km,<sp/>{<sp/>3.430e-14<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m)),<sp/>3.325e-13<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m))<sp/>}<sp/>},</highlight></codeline>
-<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>680.0<sp/>*<sp/>km,<sp/>{<sp/>2.632e-14<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m)),<sp/>2.691e-13<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m))<sp/>}<sp/>},</highlight></codeline>
-<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>700.0<sp/>*<sp/>km,<sp/>{<sp/>2.043e-14<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m)),<sp/>2.185e-13<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m))<sp/>}<sp/>},</highlight></codeline>
-<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>720.0<sp/>*<sp/>km,<sp/>{<sp/>1.607e-14<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m)),<sp/>1.779e-13<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m))<sp/>}<sp/>},</highlight></codeline>
-<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>740.0<sp/>*<sp/>km,<sp/>{<sp/>1.281e-14<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m)),<sp/>1.452e-13<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m))<sp/>}<sp/>},</highlight></codeline>
-<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>760.0<sp/>*<sp/>km,<sp/>{<sp/>1.036e-14<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m)),<sp/>1.190e-13<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m))<sp/>}<sp/>},</highlight></codeline>
-<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>780.0<sp/>*<sp/>km,<sp/>{<sp/>8.496e-15<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m)),<sp/>9.776e-14<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m))<sp/>}<sp/>},</highlight></codeline>
-<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>800.0<sp/>*<sp/>km,<sp/>{<sp/>7.069e-15<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m)),<sp/>8.059e-14<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m))<sp/>}<sp/>},</highlight></codeline>
-<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>840.0<sp/>*<sp/>km,<sp/>{<sp/>4.680e-15<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m)),<sp/>5.741e-14<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m))<sp/>}<sp/>},</highlight></codeline>
-<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>880.0<sp/>*<sp/>km,<sp/>{<sp/>3.200e-15<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m)),<sp/>4.210e-14<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m))<sp/>}<sp/>},</highlight></codeline>
-<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>920.0<sp/>*<sp/>km,<sp/>{<sp/>2.210e-15<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m)),<sp/>3.130e-14<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m))<sp/>}<sp/>},</highlight></codeline>
-<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>960.0<sp/>*<sp/>km,<sp/>{<sp/>1.560e-15<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m)),<sp/>2.360e-14<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m))<sp/>}<sp/>},</highlight></codeline>
-<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>1000.0<sp/>*<sp/>km,<sp/>{<sp/>1.150e-15<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m)),<sp/>1.810e-14<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m))<sp/>}<sp/>}</highlight></codeline>
-<codeline lineno="97"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>COSINE_EXPONENT<sp/>=<sp/>4;</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Angle<sp/>DIURNAL_LAG<sp/>=<sp/>30.0<sp/>*<sp/>deg;</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::map&lt;Altitude,<sp/>std::tuple&lt;Density,<sp/>Density&gt;&gt;<sp/>HARRIS_PRIESTER_ATMOSPHERE<sp/>=<sp/>{</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>100.0<sp/>*<sp/>km,<sp/>{<sp/>4.974e-07<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m)),<sp/>4.974e-07<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m))<sp/>}<sp/>},</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>120.0<sp/>*<sp/>km,<sp/>{<sp/>2.490e-08<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m)),<sp/>2.490e-08<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m))<sp/>}<sp/>},</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>130.0<sp/>*<sp/>km,<sp/>{<sp/>8.377e-09<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m)),<sp/>8.710e-09<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m))<sp/>}<sp/>},</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>140.0<sp/>*<sp/>km,<sp/>{<sp/>3.899e-09<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m)),<sp/>4.059e-09<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m))<sp/>}<sp/>},</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>150.0<sp/>*<sp/>km,<sp/>{<sp/>2.122e-09<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m)),<sp/>2.215e-09<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m))<sp/>}<sp/>},</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>160.0<sp/>*<sp/>km,<sp/>{<sp/>1.263e-09<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m)),<sp/>1.344e-09<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m))<sp/>}<sp/>},</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>170.0<sp/>*<sp/>km,<sp/>{<sp/>8.008e-10<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m)),<sp/>8.758e-10<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m))<sp/>}<sp/>},</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>180.0<sp/>*<sp/>km,<sp/>{<sp/>5.283e-10<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m)),<sp/>6.010e-10<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m))<sp/>}<sp/>},</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>190.0<sp/>*<sp/>km,<sp/>{<sp/>3.617e-10<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m)),<sp/>4.297e-10<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m))<sp/>}<sp/>},</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>200.0<sp/>*<sp/>km,<sp/>{<sp/>2.557e-10<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m)),<sp/>3.162e-10<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m))<sp/>}<sp/>},</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>210.0<sp/>*<sp/>km,<sp/>{<sp/>1.839e-10<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m)),<sp/>2.396e-10<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m))<sp/>}<sp/>},</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>220.0<sp/>*<sp/>km,<sp/>{<sp/>1.341e-10<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m)),<sp/>1.853e-10<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m))<sp/>}<sp/>},</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>230.0<sp/>*<sp/>km,<sp/>{<sp/>9.949e-11<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m)),<sp/>1.455e-10<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m))<sp/>}<sp/>},</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>240.0<sp/>*<sp/>km,<sp/>{<sp/>7.488e-11<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m)),<sp/>1.157e-10<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m))<sp/>}<sp/>},</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>250.0<sp/>*<sp/>km,<sp/>{<sp/>5.709e-11<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m)),<sp/>9.308e-11<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m))<sp/>}<sp/>},</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>260.0<sp/>*<sp/>km,<sp/>{<sp/>4.403e-11<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m)),<sp/>7.555e-11<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m))<sp/>}<sp/>},</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>270.0<sp/>*<sp/>km,<sp/>{<sp/>3.430e-11<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m)),<sp/>6.182e-11<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m))<sp/>}<sp/>},</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>280.0<sp/>*<sp/>km,<sp/>{<sp/>2.697e-11<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m)),<sp/>5.095e-11<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m))<sp/>}<sp/>},</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>290.0<sp/>*<sp/>km,<sp/>{<sp/>2.139e-11<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m)),<sp/>4.226e-11<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m))<sp/>}<sp/>},</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>300.0<sp/>*<sp/>km,<sp/>{<sp/>1.708e-11<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m)),<sp/>3.526e-11<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m))<sp/>}<sp/>},</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>320.0<sp/>*<sp/>km,<sp/>{<sp/>1.099e-11<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m)),<sp/>2.511e-11<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m))<sp/>}<sp/>},</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>340.0<sp/>*<sp/>km,<sp/>{<sp/>7.214e-12<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m)),<sp/>1.819e-11<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m))<sp/>}<sp/>},</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>360.0<sp/>*<sp/>km,<sp/>{<sp/>4.824e-12<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m)),<sp/>1.337e-11<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m))<sp/>}<sp/>},</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>380.0<sp/>*<sp/>km,<sp/>{<sp/>3.274e-12<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m)),<sp/>9.955e-12<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m))<sp/>}<sp/>},</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>400.0<sp/>*<sp/>km,<sp/>{<sp/>2.249e-12<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m)),<sp/>7.492e-12<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m))<sp/>}<sp/>},</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>420.0<sp/>*<sp/>km,<sp/>{<sp/>1.558e-12<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m)),<sp/>5.684e-12<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m))<sp/>}<sp/>},</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>440.0<sp/>*<sp/>km,<sp/>{<sp/>1.091e-12<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m)),<sp/>4.355e-12<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m))<sp/>}<sp/>},</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>460.0<sp/>*<sp/>km,<sp/>{<sp/>7.701e-13<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m)),<sp/>3.362e-12<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m))<sp/>}<sp/>},</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>480.0<sp/>*<sp/>km,<sp/>{<sp/>5.474e-13<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m)),<sp/>2.612e-12<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m))<sp/>}<sp/>},</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>500.0<sp/>*<sp/>km,<sp/>{<sp/>3.916e-13<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m)),<sp/>2.042e-12<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m))<sp/>}<sp/>},</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>520.0<sp/>*<sp/>km,<sp/>{<sp/>2.819e-13<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m)),<sp/>1.605e-12<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m))<sp/>}<sp/>},</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>540.0<sp/>*<sp/>km,<sp/>{<sp/>2.042e-13<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m)),<sp/>1.267e-12<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m))<sp/>}<sp/>},</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>560.0<sp/>*<sp/>km,<sp/>{<sp/>1.488e-13<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m)),<sp/>1.005e-12<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m))<sp/>}<sp/>},</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>580.0<sp/>*<sp/>km,<sp/>{<sp/>1.092e-13<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m)),<sp/>7.997e-13<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m))<sp/>}<sp/>},</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>600.0<sp/>*<sp/>km,<sp/>{<sp/>8.070e-14<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m)),<sp/>6.390e-13<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m))<sp/>}<sp/>},</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>620.0<sp/>*<sp/>km,<sp/>{<sp/>6.012e-14<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m)),<sp/>5.123e-13<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m))<sp/>}<sp/>},</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>640.0<sp/>*<sp/>km,<sp/>{<sp/>4.519e-14<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m)),<sp/>4.121e-13<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m))<sp/>}<sp/>},</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>660.0<sp/>*<sp/>km,<sp/>{<sp/>3.430e-14<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m)),<sp/>3.325e-13<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m))<sp/>}<sp/>},</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>680.0<sp/>*<sp/>km,<sp/>{<sp/>2.632e-14<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m)),<sp/>2.691e-13<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m))<sp/>}<sp/>},</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>700.0<sp/>*<sp/>km,<sp/>{<sp/>2.043e-14<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m)),<sp/>2.185e-13<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m))<sp/>}<sp/>},</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>720.0<sp/>*<sp/>km,<sp/>{<sp/>1.607e-14<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m)),<sp/>1.779e-13<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m))<sp/>}<sp/>},</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>740.0<sp/>*<sp/>km,<sp/>{<sp/>1.281e-14<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m)),<sp/>1.452e-13<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m))<sp/>}<sp/>},</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>760.0<sp/>*<sp/>km,<sp/>{<sp/>1.036e-14<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m)),<sp/>1.190e-13<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m))<sp/>}<sp/>},</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>780.0<sp/>*<sp/>km,<sp/>{<sp/>8.496e-15<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m)),<sp/>9.776e-14<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m))<sp/>}<sp/>},</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>800.0<sp/>*<sp/>km,<sp/>{<sp/>7.069e-15<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m)),<sp/>8.059e-14<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m))<sp/>}<sp/>},</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>840.0<sp/>*<sp/>km,<sp/>{<sp/>4.680e-15<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m)),<sp/>5.741e-14<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m))<sp/>}<sp/>},</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>880.0<sp/>*<sp/>km,<sp/>{<sp/>3.200e-15<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m)),<sp/>4.210e-14<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m))<sp/>}<sp/>},</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>920.0<sp/>*<sp/>km,<sp/>{<sp/>2.210e-15<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m)),<sp/>3.130e-14<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m))<sp/>}<sp/>},</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>960.0<sp/>*<sp/>km,<sp/>{<sp/>1.560e-15<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m)),<sp/>2.360e-14<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m))<sp/>}<sp/>},</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>1000.0<sp/>*<sp/>km,<sp/>{<sp/>1.150e-15<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m)),<sp/>1.810e-14<sp/>*<sp/>kg<sp/>/<sp/>(pow&lt;3&gt;(m))<sp/>}<sp/>}</highlight></codeline>
+<codeline lineno="96"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"></highlight></codeline>
 <codeline lineno="98"><highlight class="normal"></highlight></codeline>
-<codeline lineno="99"><highlight class="normal"></highlight></codeline>
-<codeline lineno="100"><highlight class="normal">Density<sp/><ref refid="classastrea_1_1astro_1_1planets_1_1HarrisPriesterAtmosphere_1a19a0506b3af0f558cb8e2b3d5166a3da" kindref="member">HarrisPriesterAtmosphere::find_atmospheric_density</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>State&amp;<sp/>state)</highlight></codeline>
-<codeline lineno="101"><highlight class="normal">{</highlight></codeline>
-<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>position<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>state.get_position();</highlight></codeline>
-<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>positionEcef<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>state.get_position_in_frame&lt;frames::earth::earth_fixed&gt;();</highlight></codeline>
-<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>[latitude,<sp/>longitude,<sp/>altitude]<sp/>=<sp/><ref refid="Geodetic_8hpp_1ad6e87a9f2b7cd4cc39465200165fdfff" kindref="member">convert_body_fixed_to_geodetic</ref>(positionEcef);</highlight></codeline>
-<codeline lineno="105"><highlight class="normal"></highlight></codeline>
-<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Diurnal<sp/>bulge<sp/>apex<sp/>direction</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>RadiusVector&lt;frames::solar_system_barycenter::icrf&gt;<sp/>sun2Earth<sp/>=</highlight></codeline>
-<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>get_relative_position&lt;planets::Earth,<sp/>Sun&gt;(state.get_epoch());</highlight></codeline>
-<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Direction&lt;frames::earth::icrf&gt;<sp/>sunDirection<sp/>=<sp/>-sun2Earth.direction().force_frame_conversion&lt;frames::earth::icrf&gt;();</highlight></codeline>
-<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Direction&lt;frames::earth::icrf&gt;<sp/>bulgeDirection<sp/>=<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix_1aca43b28b252686c7ce956d234c23217f" kindref="member">DCM&lt;frames::earth::icrf, frames::earth::icrf&gt;::Z</ref>(LAG)<sp/>*<sp/>sunDirection;</highlight></codeline>
-<codeline lineno="111"><highlight class="normal"></highlight></codeline>
-<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Cosine<sp/>of<sp/>angle<sp/>Psi<sp/>between<sp/>the<sp/>diurnal<sp/>bulge<sp/>apex<sp/>and<sp/>the<sp/>satellite</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Unitless<sp/>cosPsi<sp/>=<sp/>bulgeDirection.direction().dot(position.direction());</highlight></codeline>
-<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>(1<sp/>+<sp/>cos(Psi))/2<sp/>=<sp/>cos²(Psi/2)</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Unitless<sp/>c2Psi2<sp/>=<sp/>(1.0<sp/>*<sp/>one<sp/>+<sp/>cosPsi)<sp/>/<sp/>2.0;</highlight></codeline>
-<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Unitless<sp/>cPsi2<sp/><sp/>=<sp/>sqrt(c2Psi2);</highlight></codeline>
-<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Unitless<sp/>cosPow<sp/>=<sp/>(cPsi2<sp/>&gt;<sp/>1.0e-12<sp/>*<sp/>one)<sp/>?<sp/>c2Psi2<sp/>*<sp/>math::pow(cPsi2,<sp/>(cosineExponent<sp/>-<sp/>2)<sp/>*<sp/>one)<sp/>:<sp/>Unitless::zero();</highlight></codeline>
-<codeline lineno="118"><highlight class="normal"></highlight></codeline>
-<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Search<sp/>altitude<sp/>index<sp/>in<sp/>density<sp/>table</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>iter<sp/>=<sp/>HARRIS_PRIESTER_ATMOSPHERE.upper_bound(altitude);</highlight></codeline>
-<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(iter<sp/>!=<sp/>HARRIS_PRIESTER_ATMOSPHERE.end())<sp/>{</highlight></codeline>
-<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Ensure<sp/>we<sp/>can<sp/>call<sp/>next<sp/>safely</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(iter<sp/>==<sp/>std::prev(HARRIS_PRIESTER_ATMOSPHERE.end()))<sp/>{<sp/>iter<sp/>=<sp/>std::prev(iter);<sp/>}</highlight></codeline>
-<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Distance<sp/>referenceAltitude<sp/>=<sp/>iter-&gt;first;</highlight></codeline>
-<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>atmo<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>iter-&gt;second;</highlight></codeline>
-<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Density<sp/>minDensity<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>std::get&lt;0&gt;(atmo);</highlight></codeline>
-<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Density<sp/>maxDensity<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>std::get&lt;1&gt;(atmo);</highlight></codeline>
-<codeline lineno="128"><highlight class="normal"></highlight></codeline>
-<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Distance<sp/>nextReferenceAltitude<sp/>=<sp/>std::next(iter)-&gt;first;</highlight></codeline>
-<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Density<sp/>nextMinDensity<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>std::get&lt;0&gt;(std::next(iter)-&gt;second);</highlight></codeline>
-<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Density<sp/>nextMaxDensity<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>std::get&lt;1&gt;(std::next(iter)-&gt;second);</highlight></codeline>
-<codeline lineno="132"><highlight class="normal"></highlight></codeline>
-<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Fractional<sp/>satellite<sp/>height</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Unitless<sp/>dH<sp/>=<sp/>(referenceAltitude<sp/>-<sp/>altitude)<sp/>/<sp/>(referenceAltitude<sp/>-<sp/>nextReferenceAltitude);</highlight></codeline>
-<codeline lineno="135"><highlight class="normal"></highlight></codeline>
-<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Min<sp/>exponential<sp/>density<sp/>interpolation</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Density<sp/>rhoMin<sp/>=<sp/>minDensity<sp/>*<sp/>math::pow(nextMinDensity<sp/>/<sp/>minDensity,<sp/>dH);</highlight></codeline>
-<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(is_eq_zero(cosPow))<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>rhoMin;<sp/>}</highlight></codeline>
-<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
-<codeline lineno="140"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Max<sp/>exponential<sp/>density<sp/>interpolation</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Density<sp/>rhoMax<sp/>=<sp/>maxDensity<sp/>*<sp/>math::pow(nextMaxDensity<sp/>/<sp/>maxDensity,<sp/>dH);</highlight></codeline>
-<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>rhoMin<sp/>+<sp/>(rhoMax<sp/>-<sp/>rhoMin)<sp/>*<sp/>cosPow;</highlight></codeline>
-<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Beyond<sp/>the<sp/>last<sp/>altitude<sp/>in<sp/>the<sp/>table,<sp/>the<sp/>density<sp/>is<sp/>negligible</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>Density::zero();</highlight></codeline>
-<codeline lineno="147"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="148"><highlight class="normal"></highlight></codeline>
-<codeline lineno="149"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>planets</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="150"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>astro</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="151"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>astrea</highlight></codeline>
+<codeline lineno="99"><highlight class="normal">Density<sp/><ref refid="classastrea_1_1astro_1_1HarrisPriesterAtmosphere_1a043162797f3cd5b3c2e2b166fbfafec6" kindref="member">HarrisPriesterAtmosphere::find_atmospheric_density</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>State&amp;<sp/>state)</highlight></codeline>
+<codeline lineno="100"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>position<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>state.get_position();</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>positionEcef<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>state.get_position_in_frame&lt;frames::earth::earth_fixed&gt;();</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>[latitude,<sp/>longitude,<sp/>altitude]<sp/>=<sp/><ref refid="Geodetic_8hpp_1ad6e87a9f2b7cd4cc39465200165fdfff" kindref="member">convert_body_fixed_to_geodetic</ref>(positionEcef);</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"></highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Diurnal<sp/>bulge<sp/>apex<sp/>direction</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>RadiusVector&lt;frames::solar_system_barycenter::icrf&gt;<sp/>sun2Earth<sp/>=</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>get_relative_position&lt;planets::Earth,<sp/>star::Sun&gt;(state.get_epoch());</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Direction&lt;frames::earth::icrf&gt;<sp/>sunDirection<sp/>=<sp/>-sun2Earth.direction().force_frame_conversion&lt;frames::earth::icrf&gt;();</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Direction&lt;frames::earth::icrf&gt;<sp/>bulgeDirection<sp/>=<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix_1aca43b28b252686c7ce956d234c23217f" kindref="member">DCM&lt;frames::earth::icrf, frames::earth::icrf&gt;::Z</ref>(DIURNAL_LAG)<sp/>*<sp/>sunDirection;</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"></highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Cosine<sp/>of<sp/>angle<sp/>Psi<sp/>between<sp/>the<sp/>diurnal<sp/>bulge<sp/>apex<sp/>and<sp/>the<sp/>satellite</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Unitless<sp/>cosPsi<sp/>=<sp/>bulgeDirection.direction().dot(position.direction());</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>(1<sp/>+<sp/>cos(Psi))/2<sp/>=<sp/>cos²(Psi/2)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Unitless<sp/>c2Psi2<sp/>=<sp/>(1.0<sp/>*<sp/>one<sp/>+<sp/>cosPsi)<sp/>*<sp/>0.5;</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Unitless<sp/>cPsi2<sp/><sp/>=<sp/>sqrt(c2Psi2);</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Unitless<sp/>cosPow<sp/>=<sp/>(cPsi2<sp/>&gt;<sp/>1.0e-12<sp/>*<sp/>one)<sp/>?<sp/>c2Psi2<sp/>*<sp/>math::pow(cPsi2,<sp/>(COSINE_EXPONENT<sp/>-<sp/>2)<sp/>*<sp/>one)<sp/>:<sp/>Unitless::zero();</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"></highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Search<sp/>altitude<sp/>index<sp/>in<sp/>density<sp/>table</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>iter<sp/>=<sp/>HARRIS_PRIESTER_ATMOSPHERE.upper_bound(altitude);</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(iter<sp/>!=<sp/>HARRIS_PRIESTER_ATMOSPHERE.end())<sp/>{</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Ensure<sp/>we<sp/>can<sp/>call<sp/>next<sp/>safely</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(iter<sp/>==<sp/>std::prev(HARRIS_PRIESTER_ATMOSPHERE.end()))<sp/>{<sp/>iter<sp/>=<sp/>std::prev(iter);<sp/>}</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Distance<sp/>referenceAltitude<sp/>=<sp/>iter-&gt;first;</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>atmo<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>iter-&gt;second;</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Density<sp/>minDensity<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>std::get&lt;0&gt;(atmo);</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Density<sp/>maxDensity<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>std::get&lt;1&gt;(atmo);</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"></highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Distance<sp/>nextReferenceAltitude<sp/>=<sp/>std::next(iter)-&gt;first;</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Density<sp/>nextMinDensity<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>std::get&lt;0&gt;(std::next(iter)-&gt;second);</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Density<sp/>nextMaxDensity<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>std::get&lt;1&gt;(std::next(iter)-&gt;second);</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"></highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Fractional<sp/>satellite<sp/>height</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Unitless<sp/>dH<sp/>=<sp/>(referenceAltitude<sp/>-<sp/>altitude)<sp/>/<sp/>(referenceAltitude<sp/>-<sp/>nextReferenceAltitude);</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"></highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Min<sp/>exponential<sp/>density<sp/>interpolation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Density<sp/>rhoMin<sp/>=<sp/>minDensity<sp/>*<sp/>math::pow(nextMinDensity<sp/>/<sp/>minDensity,<sp/>dH);</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(cosPow<sp/>==<sp/>0.0)<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>rhoMin;<sp/>}</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Max<sp/>exponential<sp/>density<sp/>interpolation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Density<sp/>rhoMax<sp/>=<sp/>maxDensity<sp/>*<sp/>math::pow(nextMaxDensity<sp/>/<sp/>maxDensity,<sp/>dH);</highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>rhoMin<sp/>+<sp/>(rhoMax<sp/>-<sp/>rhoMin)<sp/>*<sp/>cosPow;</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Beyond<sp/>the<sp/>last<sp/>altitude<sp/>in<sp/>the<sp/>table,<sp/>the<sp/>density<sp/>is<sp/>negligible</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>Density::zero();</highlight></codeline>
+<codeline lineno="146"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="147"><highlight class="normal"></highlight></codeline>
+<codeline lineno="148"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>astro</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="149"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>astrea</highlight></codeline>
     </programlisting>
-    <location file="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/HarrisPriester.cpp"/>
+    <location file="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/HarrisPriester.cpp"/>
   </compounddef>
 </doxygen>

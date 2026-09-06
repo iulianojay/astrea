@@ -11,6 +11,7 @@
 
 ## c
 
+* **calculate\_local\_solar\_time** ([**astrea::astro::planets**](namespaceastrea_1_1astro_1_1planets.md), [**astrea::astro**](namespaceastrea_1_1astro.md))
 * **compare\_attitudes** ([**astrea::astro::plotting**](namespaceastrea_1_1astro_1_1plotting.md))
 * **compare\_orbital\_elements** ([**astrea::astro::plotting**](namespaceastrea_1_1astro_1_1plotting.md))
 * **compare\_trajectories** ([**astrea::astro::plotting**](namespaceastrea_1_1astro_1_1plotting.md))
@@ -39,10 +40,12 @@
 
 ## f
 
+* **find\_atmospheric\_density** ([**astrea::astro::planets**](namespaceastrea_1_1astro_1_1planets.md), [**astrea::astro**](namespaceastrea_1_1astro.md))
 * **f\_to\_fixed\_string** ([**astrea::astro**](namespaceastrea_1_1astro.md))
-* **find\_atmospheric\_density** ([**astrea::astro**](namespaceastrea_1_1astro.md))
 * **find\_atmospheric\_density&lt; moons::Titan &gt;** ([**astrea::astro**](namespaceastrea_1_1astro.md))
-* **find\_atmospheric\_density&lt; planets::Earth &gt;** ([**astrea::astro**](namespaceastrea_1_1astro.md))
+* **find\_atmospheric\_density&lt; planets::Earth, EarthAtmosphereModel::HARRIS\_PRIESTER &gt;** ([**astrea::astro**](namespaceastrea_1_1astro.md))
+* **find\_atmospheric\_density&lt; planets::Earth, EarthAtmosphereModel::JACCHIA\_ROBERTS &gt;** ([**astrea::astro**](namespaceastrea_1_1astro.md))
+* **find\_atmospheric\_density&lt; planets::Earth, EarthAtmosphereModel::NRLMSISE00 &gt;** ([**astrea::astro**](namespaceastrea_1_1astro.md))
 * **find\_atmospheric\_density&lt; planets::Mars &gt;** ([**astrea::astro**](namespaceastrea_1_1astro.md))
 * **find\_atmospheric\_density&lt; planets::Venus &gt;** ([**astrea::astro**](namespaceastrea_1_1astro.md))
 * **find\_axis\_in\_ancestors** ([**astrea::astro**](namespaceastrea_1_1astro.md))
@@ -205,6 +208,7 @@
 ## r
 
 * **rotate\_vector\_into\_frame** ([**astrea::astro::frames**](namespaceastrea_1_1astro_1_1frames.md))
+* **read\_space\_weather\_file** ([**astrea::astro**](namespaceastrea_1_1astro.md))
 
 
 ## t

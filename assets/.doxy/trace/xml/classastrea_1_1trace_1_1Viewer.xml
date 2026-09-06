@@ -103,12 +103,16 @@
         </inbodydescription>
         <location file="astrea/trace/trace/platforms/vehicles/Viewer.hpp" line="76" column="17" bodyfile="astrea/trace/trace/platforms/vehicles/Viewer.hpp" bodystart="76" bodyend="76"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1trace_1_1Viewer_1a0f8bd21a4ea7f902309dcb782b059378" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="classastrea_1_1trace_1_1Viewer_1a4039f09099ebc6ad94b6e5abd82411be" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>Mass</type>
         <definition>Mass astrea::trace::Viewer::get_mass</definition>
-        <argsstring>() const override</argsstring>
+        <argsstring>(const astro::State &amp;state) const override</argsstring>
         <name>get_mass</name>
         <qualifiedname>astrea::trace::Viewer::get_mass</qualifiedname>
+        <param>
+          <type>const astro::State &amp;</type>
+          <declname>state</declname>
+        </param>
         <briefdescription>
 <para>Get the mass of the viewer. </para>
         </briefdescription>
@@ -241,7 +245,7 @@
       <member refid="classastrea_1_1trace_1_1AccessObject_1a74001e50f522dfb7452c96433698e670" prot="public" virt="non-virtual"><scope>astrea::trace::Viewer</scope><name>get_accesses</name></member>
       <member refid="classastrea_1_1trace_1_1AccessObject_1a315695c2948714a7af494d92c4a9f598" prot="public" virt="non-virtual"><scope>astrea::trace::Viewer</scope><name>get_accesses</name></member>
       <member refid="classastrea_1_1trace_1_1Viewer_1a8808274d1fa9589e17d57475a8e20eae" prot="public" virt="virtual"><scope>astrea::trace::Viewer</scope><name>get_id</name></member>
-      <member refid="classastrea_1_1trace_1_1Viewer_1a0f8bd21a4ea7f902309dcb782b059378" prot="public" virt="non-virtual"><scope>astrea::trace::Viewer</scope><name>get_mass</name></member>
+      <member refid="classastrea_1_1trace_1_1Viewer_1a4039f09099ebc6ad94b6e5abd82411be" prot="public" virt="non-virtual"><scope>astrea::trace::Viewer</scope><name>get_mass</name></member>
       <member refid="classastrea_1_1trace_1_1Viewer_1a513a18cb9ce42ff994d98a34adea411b" prot="public" virt="non-virtual"><scope>astrea::trace::Viewer</scope><name>get_name</name></member>
       <member refid="classastrea_1_1trace_1_1Viewer_1a4917ec9cf49138d4958db447dc018a9e" prot="public" virt="non-virtual"><scope>astrea::trace::Viewer</scope><name>get_position</name></member>
       <member refid="classastrea_1_1trace_1_1Viewer_1aecc380685935a6b2839558c4f820c655" prot="public" virt="non-virtual"><scope>astrea::trace::Viewer</scope><name>get_velocity</name></member>

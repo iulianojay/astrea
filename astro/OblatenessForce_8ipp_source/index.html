@@ -21,7 +21,7 @@
       
       
       <link rel="icon" href="../../assets/images/astrea-transparent-crop.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
@@ -29,7 +29,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
@@ -6279,7 +6279,7 @@ You're not viewing the latest version.
 </span><span id="__span-0-37"><a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a><span class="k">namespace</span><span class="w"> </span><span class="nn">astro</span><span class="w"> </span><span class="p">{</span>
 </span><span id="__span-0-38"><a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a>
 </span><span id="__span-0-39"><a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a><span class="cm">/*</span>
-</span><span id="__span-0-40"><a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a><span class="cm">For the life of me, I could not get this to match the NASA checkcases. I can&#39;t find anything wrong with it. If you figure</span>
+</span><span id="__span-0-40"><a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a><span class="cm">For the life of me, I could not get this to match the NASA checkcases. I can't find anything wrong with it. If you figure</span>
 </span><span id="__span-0-41"><a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a><span class="cm">it out, let me know.</span>
 </span><span id="__span-0-42"><a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a>
 </span><span id="__span-0-43"><a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a><span class="cm">AccelerationVector&lt;frames::primary&gt;</span>
@@ -6390,11 +6390,11 @@ You're not viewing the latest version.
 </span><span id="__span-0-148"><a id="__codelineno-0-148" name="__codelineno-0-148" href="#__codelineno-0-148"></a>
 </span><span id="__span-0-149"><a id="__codelineno-0-149" name="__codelineno-0-149" href="#__codelineno-0-149"></a><span class="cm">        const AccelerationVector&lt;frames::primary&gt; diff = accelOblatenessIcrf - expected;</span>
 </span><span id="__span-0-150"><a id="__codelineno-0-150" name="__codelineno-0-150" href="#__codelineno-0-150"></a>
-</span><span id="__span-0-151"><a id="__codelineno-0-151" name="__codelineno-0-151" href="#__codelineno-0-151"></a><span class="cm">        std::cout &lt;&lt; &quot;Expected Accel: &quot; &lt;&lt; expected &lt;&lt; &quot; (&quot; &lt;&lt; expected.norm() &lt;&lt; &quot;)&quot; &lt;&lt; std::endl;</span>
-</span><span id="__span-0-152"><a id="__codelineno-0-152" name="__codelineno-0-152" href="#__codelineno-0-152"></a><span class="cm">        std::cout &lt;&lt; &quot;Computed Accel: &quot; &lt;&lt; accelOblatenessIcrf &lt;&lt; &quot; (&quot; &lt;&lt; accelOblatenessIcrf.norm() &lt;&lt; &quot;)&quot; &lt;&lt; std::endl;</span>
-</span><span id="__span-0-153"><a id="__codelineno-0-153" name="__codelineno-0-153" href="#__codelineno-0-153"></a><span class="cm">        std::cout &lt;&lt; &quot;Difference: &quot; &lt;&lt; diff &lt;&lt; &quot; (&quot; &lt;&lt; diff.norm() &lt;&lt; &quot;)&quot; &lt;&lt; std::endl;</span>
-</span><span id="__span-0-154"><a id="__codelineno-0-154" name="__codelineno-0-154" href="#__codelineno-0-154"></a><span class="cm">        std::cout &lt;&lt; &quot;% Diff: [&quot; &lt;&lt; diff[0] / expected[0] * 100.0 &lt;&lt; &quot; %, &quot; &lt;&lt; diff[1] / expected[1] * 100.0 &lt;&lt; &quot; %, &quot;</span>
-</span><span id="__span-0-155"><a id="__codelineno-0-155" name="__codelineno-0-155" href="#__codelineno-0-155"></a><span class="cm">                  &lt;&lt; diff[2] / expected[2] * 100.0 &lt;&lt; &quot; %] (&quot; &lt;&lt; diff.norm() / expected.norm() * 100.0 &lt;&lt; &quot; %)&quot; &lt;&lt; std::endl;</span>
+</span><span id="__span-0-151"><a id="__codelineno-0-151" name="__codelineno-0-151" href="#__codelineno-0-151"></a><span class="cm">        std::cout &lt;&lt; "Expected Accel: " &lt;&lt; expected &lt;&lt; " (" &lt;&lt; expected.norm() &lt;&lt; ")" &lt;&lt; std::endl;</span>
+</span><span id="__span-0-152"><a id="__codelineno-0-152" name="__codelineno-0-152" href="#__codelineno-0-152"></a><span class="cm">        std::cout &lt;&lt; "Computed Accel: " &lt;&lt; accelOblatenessIcrf &lt;&lt; " (" &lt;&lt; accelOblatenessIcrf.norm() &lt;&lt; ")" &lt;&lt; std::endl;</span>
+</span><span id="__span-0-153"><a id="__codelineno-0-153" name="__codelineno-0-153" href="#__codelineno-0-153"></a><span class="cm">        std::cout &lt;&lt; "Difference: " &lt;&lt; diff &lt;&lt; " (" &lt;&lt; diff.norm() &lt;&lt; ")" &lt;&lt; std::endl;</span>
+</span><span id="__span-0-154"><a id="__codelineno-0-154" name="__codelineno-0-154" href="#__codelineno-0-154"></a><span class="cm">        std::cout &lt;&lt; "% Diff: [" &lt;&lt; diff[0] / expected[0] * 100.0 &lt;&lt; " %, " &lt;&lt; diff[1] / expected[1] * 100.0 &lt;&lt; " %, "</span>
+</span><span id="__span-0-155"><a id="__codelineno-0-155" name="__codelineno-0-155" href="#__codelineno-0-155"></a><span class="cm">                  &lt;&lt; diff[2] / expected[2] * 100.0 &lt;&lt; " %] (" &lt;&lt; diff.norm() / expected.norm() * 100.0 &lt;&lt; " %)" &lt;&lt; std::endl;</span>
 </span><span id="__span-0-156"><a id="__codelineno-0-156" name="__codelineno-0-156" href="#__codelineno-0-156"></a>
 </span><span id="__span-0-157"><a id="__codelineno-0-157" name="__codelineno-0-157" href="#__codelineno-0-157"></a><span class="cm">        compare = false;</span>
 </span><span id="__span-0-158"><a id="__codelineno-0-158" name="__codelineno-0-158" href="#__codelineno-0-158"></a><span class="cm">    }</span>
@@ -6518,7 +6518,7 @@ You're not viewing the latest version.
 </span><span id="__span-0-276"><a id="__codelineno-0-276" name="__codelineno-0-276" href="#__codelineno-0-276"></a><span class="w">    </span><span class="c1">// Transform back to inertial frame without abberations - original values are in ecef, not w.r.t ecef</span>
 </span><span id="__span-0-277"><a id="__codelineno-0-277" name="__codelineno-0-277" href="#__codelineno-0-277"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">AccelerationVector</span><span class="o">&lt;</span><span class="n">frames</span><span class="o">::</span><span class="n">primary</span><span class="o">&gt;</span><span class="w"> </span><span class="n">accelOblatenessIcrf</span><span class="w"> </span><span class="o">=</span>
 </span><span id="__span-0-278"><a id="__codelineno-0-278" name="__codelineno-0-278" href="#__codelineno-0-278"></a><span class="w">        </span><span class="n">frames</span><span class="o">::</span><span class="n">rotate_vector_into_frame</span><span class="o">&lt;</span><span class="n">frames</span><span class="o">::</span><span class="n">primary</span><span class="o">&gt;</span><span class="p">(</span><span class="n">accelOblatenessEcef</span><span class="p">,</span><span class="w"> </span><span class="n">date</span><span class="p">);</span>
-</span><span id="__span-0-279"><a id="__codelineno-0-279" name="__codelineno-0-279" href="#__codelineno-0-279"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">.</span><span class="n">force</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">accelOblatenessIcrf</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">vehicle</span><span class="p">.</span><span class="n">get_mass</span><span class="p">())</span><span class="w"> </span><span class="p">};</span>
+</span><span id="__span-0-279"><a id="__codelineno-0-279" name="__codelineno-0-279" href="#__codelineno-0-279"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">.</span><span class="n">force</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">accelOblatenessIcrf</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">vehicle</span><span class="p">.</span><span class="n">get_mass</span><span class="p">(</span><span class="n">state</span><span class="p">))</span><span class="w"> </span><span class="p">};</span>
 </span><span id="__span-0-280"><a id="__codelineno-0-280" name="__codelineno-0-280" href="#__codelineno-0-280"></a><span class="p">}</span>
 </span><span id="__span-0-281"><a id="__codelineno-0-281" name="__codelineno-0-281" href="#__codelineno-0-281"></a>
 </span><span id="__span-0-282"><a id="__codelineno-0-282" name="__codelineno-0-282" href="#__codelineno-0-282"></a><span class="p">}</span><span class="w"> </span><span class="c1">// namespace astro</span>
@@ -6588,7 +6588,7 @@ You're not viewing the latest version.
       <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.action.edit", "content.action.view", "content.code.annotate", "content.code.copy", "navigation.indexes", "navigation.tabs", "navigation.footer", "navigation.top", "search.highlight", "search.share", "search.suggest", "toc.follow", "toc.integrate"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
       
         <script src="../../javascripts/ce_embed.js"></script>
       

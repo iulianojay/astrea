@@ -14,9 +14,11 @@ _Header file for the ForceModel class, which manages multiple force models and c
 * `#include <memory>`
 * `#include <string>`
 * `#include <unordered_map>`
+* `#include <utility>`
 * `#include <units/units.hpp>`
 * `#include <astro/astro.fwd.hpp>`
 * `#include <astro/propagation/force_models/PerturbingForce.hpp>`
+* `#include <astro/propagation/force_models/space_weather/SpaceWeatherProvider.hpp>`
 
 
 

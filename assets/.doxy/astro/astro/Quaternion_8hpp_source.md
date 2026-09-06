@@ -187,7 +187,7 @@ class Quaternion {
 
         Angle theta1, theta3;
         static constexpr Angle piOver2 = std::numbers::pi / 2.0 * rad;
-        if (is_eq_zero(theta2)) {
+        if (theta2 == 0.0) {
             theta1 = 0.0 * rad;
             theta3 = 2 * thetaPlus - theta1;
         }
@@ -295,7 +295,7 @@ class Quaternion {
         using namespace mp_units;
 
         const Unitless nSq = norm_squared();
-        if (is_eq_zero(nSq)) { throw std::runtime_error("Cannot normalize a quaternion with zero norm."); }
+        if (nSq == 0.0) { throw std::runtime_error("Cannot normalize a quaternion with zero norm."); }
         else if (isnan(nSq) || isinf(nSq)) {
             throw std::runtime_error("Cannot normalize a quaternion with non-finite norm.");
         }

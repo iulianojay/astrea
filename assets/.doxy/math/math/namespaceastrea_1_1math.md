@@ -51,13 +51,14 @@
 
 | Type | Name |
 | ---: | :--- |
-|  constexpr mp\_units::QuantityOf&lt; mp\_units::MP\_UNITS\_IS\_VALUE\_WORKAROUND(isq::angular\_measure)&gt; auto | [**acos**](#function-acos) (const mp\_units::quantity&lt; R, Rep &gt; & q) noexcept<br>_Trigonometric arccosine function for dimensionless quantities._  |
-|  constexpr mp\_units::QuantityOf&lt; mp\_units::MP\_UNITS\_IS\_VALUE\_WORKAROUND(isq::angular\_measure)&gt; auto | [**asin**](#function-asin) (const mp\_units::quantity&lt; R, Rep &gt; & q) noexcept<br>_Trigonometric arcsine function for dimensionless quantities._  |
+|  constexpr mp\_units::QuantityOf&lt; mp\_units::isq::angular\_measure &gt; auto | [**acos**](#function-acos) (const mp\_units::quantity&lt; R, Rep &gt; & q) noexcept<br>_Trigonometric arccosine function for dimensionless quantities._  |
+|  constexpr mp\_units::QuantityOf&lt; mp\_units::isq::angular\_measure &gt; auto | [**asin**](#function-asin) (const mp\_units::quantity&lt; R, Rep &gt; & q) noexcept<br>_Trigonometric arcsine function for dimensionless quantities._  |
 |  constexpr mp\_units::quantity&lt; mp\_units::one, Rep &gt; | [**assoc\_legendre**](#function-assoc_legendre) (const unsigned int & n, const unsigned int & m, const mp\_units::quantity&lt; R, Rep &gt; & q) noexcept<br>_Computes the associated Legendre function of the first kind._  |
-|  constexpr mp\_units::QuantityOf&lt; mp\_units::MP\_UNITS\_IS\_VALUE\_WORKAROUND(isq::angular\_measure)&gt; auto | [**atan**](#function-atan) (const mp\_units::quantity&lt; R, Rep &gt; & q) noexcept<br>_Trigonometric arctangent function for dimensionless quantities._  |
-|  constexpr mp\_units::QuantityOf&lt; mp\_units::MP\_UNITS\_IS\_VALUE\_WORKAROUND(isq::angular\_measure)&gt; auto | [**atan2**](#function-atan2) (const mp\_units::quantity&lt; R, Rep &gt; & y, const mp\_units::quantity&lt; R, Rep &gt; & x) noexcept<br>_2D trigonometric arctangent function._  |
+|  constexpr mp\_units::QuantityOf&lt; mp\_units::isq::angular\_measure &gt; auto | [**atan**](#function-atan) (const mp\_units::quantity&lt; R, Rep &gt; & q) noexcept<br>_Trigonometric arctangent function for dimensionless quantities._  |
+|  constexpr mp\_units::QuantityOf&lt; mp\_units::isq::angular\_measure &gt; auto | [**atan2**](#function-atan2) (const mp\_units::quantity&lt; R, Rep &gt; & y, const mp\_units::quantity&lt; R, Rep &gt; & x) noexcept<br>_2D trigonometric arctangent function._  |
 |  T | [**atan3**](#function-atan3) (T y, T x) <br> |
-|  mp\_units::quantity&lt; R, Rep &gt; | [**clamp**](#function-clamp) (const mp\_units::quantity&lt; R, Rep &gt; & q, const mp\_units::quantity&lt; R, Rep &gt; & low, const mp\_units::quantity&lt; R, Rep &gt; & high) noexcept<br> |
+|  mp\_units::quantity&lt; R, Rep &gt; | [**clamp**](#function-clamp) (const mp\_units::quantity&lt; R, Rep &gt; & q, const mp\_units::quantity&lt; R, Rep &gt; & low, const mp\_units::quantity&lt; R, Rep &gt; & high) noexcept<br>_Clamps a quantity within a specified range._  |
+|  mp\_units::quantity&lt; R, Rep &gt; | [**clamp\_within\_floating\_point\_error**](#function-clamp_within_floating_point_error) (const mp\_units::quantity&lt; R, Rep &gt; & q, const mp\_units::quantity&lt; R, Rep &gt; & low, const mp\_units::quantity&lt; R, Rep &gt; & high) noexcept<br>_Bounds a quantity within a specified range, accounting for floating-point errors._  |
 |  constexpr mp\_units::QuantityOf&lt; mp\_units::dimensionless &gt; auto | [**cos**](#function-cos) (const mp\_units::quantity&lt; R, Rep &gt; & q) noexcept<br>_Trigonometric cosine function for angular quantities._  |
 |  constexpr mp\_units::QuantityOf&lt; mp\_units::dimensionless &gt; auto | [**cosh**](#function-cosh) (const mp\_units::quantity&lt; R, Rep &gt; & q) noexcept<br>_Computes the hyperbolic cosine of a given angle in radians._  |
 |  constexpr mp\_units::quantity&lt; mp\_units::one, Rep &gt; | [**cyl\_bessel\_j**](#function-cyl_bessel_j) (const Rep & nu, const mp\_units::quantity&lt; R, Rep &gt; & q) noexcept<br>_Computes the Bessel function of the first kind of order zero._  |
@@ -116,7 +117,7 @@
 _Trigonometric arccosine function for dimensionless quantities._ 
 ```C++
 template<mp_units::ReferenceOf< mp_units::dimensionless > auto R, typename Rep>
-inline constexpr mp_units::QuantityOf< mp_units::MP_UNITS_IS_VALUE_WORKAROUND(isq::angular_measure)> auto astrea::math::acos (
+inline constexpr mp_units::QuantityOf< mp_units::isq::angular_measure > auto astrea::math::acos (
     const mp_units::quantity< R, Rep > & q
 ) noexcept
 ```
@@ -159,7 +160,7 @@ The arccosine of the quantity as an angular measure (radians).
 _Trigonometric arcsine function for dimensionless quantities._ 
 ```C++
 template<mp_units::ReferenceOf< mp_units::dimensionless > auto R, typename Rep>
-inline constexpr mp_units::QuantityOf< mp_units::MP_UNITS_IS_VALUE_WORKAROUND(isq::angular_measure)> auto astrea::math::asin (
+inline constexpr mp_units::QuantityOf< mp_units::isq::angular_measure > auto astrea::math::asin (
     const mp_units::quantity< R, Rep > & q
 ) noexcept
 ```
@@ -252,7 +253,7 @@ The value of the associated Legendre function at the given input.
 _Trigonometric arctangent function for dimensionless quantities._ 
 ```C++
 template<mp_units::ReferenceOf< mp_units::dimensionless > auto R, typename Rep>
-inline constexpr mp_units::QuantityOf< mp_units::MP_UNITS_IS_VALUE_WORKAROUND(isq::angular_measure)> auto astrea::math::atan (
+inline constexpr mp_units::QuantityOf< mp_units::isq::angular_measure > auto astrea::math::atan (
     const mp_units::quantity< R, Rep > & q
 ) noexcept
 ```
@@ -295,7 +296,7 @@ The arctangent of the quantity as an angular measure (radians).
 _2D trigonometric arctangent function._ 
 ```C++
 template<mp_units::Quantity auto R, typename Rep>
-inline constexpr mp_units::QuantityOf< mp_units::MP_UNITS_IS_VALUE_WORKAROUND(isq::angular_measure)> auto astrea::math::atan2 (
+inline constexpr mp_units::QuantityOf< mp_units::isq::angular_measure > auto astrea::math::atan2 (
     const mp_units::quantity< R, Rep > & y,
     const mp_units::quantity< R, Rep > & x
 ) noexcept
@@ -354,6 +355,7 @@ T astrea::math::atan3 (
 
 ### function clamp 
 
+_Clamps a quantity within a specified range._ 
 ```C++
 template<auto R, typename Rep>
 inline mp_units::quantity< R, Rep > astrea::math::clamp (
@@ -366,6 +368,84 @@ inline mp_units::quantity< R, Rep > astrea::math::clamp (
 
 
 
+
+**Template parameters:**
+
+
+* `R` The unit type (e.g., distance, time). 
+* `Rep` The representation type (e.g., double). 
+
+
+
+**Parameters:**
+
+
+* `q` The quantity to be clamped. 
+* `low` The lower bound for the quantity. 
+* `high` The upper bound for the quantity. 
+
+
+
+**Returns:**
+
+The clamped quantity, ensuring it lies within the specified range. 
+
+
+
+
+
+        
+
+<hr>
+
+
+
+### function clamp\_within\_floating\_point\_error 
+
+_Bounds a quantity within a specified range, accounting for floating-point errors._ 
+```C++
+template<auto R, typename Rep>
+inline mp_units::quantity< R, Rep > astrea::math::clamp_within_floating_point_error (
+    const mp_units::quantity< R, Rep > & q,
+    const mp_units::quantity< R, Rep > & low,
+    const mp_units::quantity< R, Rep > & high
+) noexcept
+```
+
+
+
+This function checks if the given quantity `q` is within the specified `high` and `low` bounds. If `q` is outside the bounds but within a small tolerance (2.0e-8) of the bounds, it will be clamped to the nearest bound. If it is beyond the tolerance, it will be returned as is.
+
+
+
+
+**Template parameters:**
+
+
+* `R` The unit type (e.g., distance, time). 
+* `Rep` The representation type (e.g., double). 
+
+
+
+**Parameters:**
+
+
+* `q` The quantity to be bounded. 
+* `high` The upper bound for the quantity. 
+* `low` The lower bound for the quantity. 
+
+
+
+**Returns:**
+
+The bounded quantity, adjusted for floating-point errors if necessary. 
+
+
+
+
+
+        
+
 <hr>
 
 
@@ -374,7 +454,7 @@ inline mp_units::quantity< R, Rep > astrea::math::clamp (
 
 _Trigonometric cosine function for angular quantities._ 
 ```C++
-template<mp_units::ReferenceOf< mp_units::MP_UNITS_IS_VALUE_WORKAROUND(isq::angular_measure)> auto R, typename Rep>
+template<mp_units::ReferenceOf< mp_units::isq::angular_measure > auto R, typename Rep>
 inline constexpr mp_units::QuantityOf< mp_units::dimensionless > auto astrea::math::cos (
     const mp_units::quantity< R, Rep > & q
 ) noexcept
@@ -417,7 +497,7 @@ The cosine of the angle as a dimensionless quantity.
 
 _Computes the hyperbolic cosine of a given angle in radians._ 
 ```C++
-template<mp_units::ReferenceOf< mp_units::MP_UNITS_IS_VALUE_WORKAROUND(isq::angular_measure)> auto R, typename Rep>
+template<mp_units::ReferenceOf< mp_units::isq::angular_measure > auto R, typename Rep>
 inline constexpr mp_units::QuantityOf< mp_units::dimensionless > auto astrea::math::cosh (
     const mp_units::quantity< R, Rep > & q
 ) noexcept
@@ -1056,7 +1136,7 @@ The result of raising q to the power of n, with the same unit as q (which is dim
 
 _Trigonometric sine function for angular quantities._ 
 ```C++
-template<mp_units::ReferenceOf< mp_units::MP_UNITS_IS_VALUE_WORKAROUND(isq::angular_measure)> auto R, typename Rep>
+template<mp_units::ReferenceOf< mp_units::isq::angular_measure > auto R, typename Rep>
 inline constexpr mp_units::QuantityOf< mp_units::dimensionless > auto astrea::math::sin (
     const mp_units::quantity< R, Rep > & q
 ) noexcept
@@ -1099,7 +1179,7 @@ The sine of the angle as a dimensionless quantity.
 
 _Computes the sine and cosine of a given angle in radians._ 
 ```C++
-template<mp_units::ReferenceOf< mp_units::MP_UNITS_IS_VALUE_WORKAROUND(isq::angular_measure)> auto R, typename Rep>
+template<mp_units::ReferenceOf< mp_units::isq::angular_measure > auto R, typename Rep>
 inline constexpr auto astrea::math::sin_cos_pack (
     const mp_units::quantity< R, Rep > & q
 ) noexcept
@@ -1137,7 +1217,7 @@ A pair containing the sine and cosine of the angle.
 
 _Computes the sinc function for a given angle in radians._ 
 ```C++
-template<mp_units::ReferenceOf< mp_units::MP_UNITS_IS_VALUE_WORKAROUND(isq::angular_measure)> auto R, typename Rep>
+template<mp_units::ReferenceOf< mp_units::isq::angular_measure > auto R, typename Rep>
 inline constexpr mp_units::QuantityOf< mp_units::dimensionless > auto astrea::math::sinc (
     const mp_units::quantity< R, Rep > & q
 ) noexcept
@@ -1183,7 +1263,7 @@ The value of the sinc function at the given angle.
 
 _Computes the hyperbolic sine of a given angle in radians._ 
 ```C++
-template<mp_units::ReferenceOf< mp_units::MP_UNITS_IS_VALUE_WORKAROUND(isq::angular_measure)> auto R, typename Rep>
+template<mp_units::ReferenceOf< mp_units::isq::angular_measure > auto R, typename Rep>
 inline constexpr mp_units::QuantityOf< mp_units::dimensionless > auto astrea::math::sinh (
     const mp_units::quantity< R, Rep > & q
 ) noexcept
@@ -1226,7 +1306,7 @@ The value of the hyperbolic sine at the given angle.
 
 _Trigonometric tangent function for angular quantities._ 
 ```C++
-template<mp_units::ReferenceOf< mp_units::MP_UNITS_IS_VALUE_WORKAROUND(isq::angular_measure)> auto R, typename Rep>
+template<mp_units::ReferenceOf< mp_units::isq::angular_measure > auto R, typename Rep>
 inline constexpr mp_units::QuantityOf< mp_units::dimensionless > auto astrea::math::tan (
     const mp_units::quantity< R, Rep > & q
 ) noexcept

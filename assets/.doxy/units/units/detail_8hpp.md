@@ -11,7 +11,6 @@
 _Contains detail namespace with unit definitions for astrea project._ [More...](#detailed-description)
 
 * `#include <array>`
-* `#include <mp-units/systems/iau.h>`
 * `#include <mp-units/systems/si.h>`
 
 

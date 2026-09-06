@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="dir_3bfcc16c8bbdb2d74b81ce33c082ff6e" kind="dir">
+    <compoundname>astrea/astro/astro/propagation/force_models/space_weather/atmosphere</compoundname>
+    <innerdir refid="dir_c9cd73a564506b77e0cd8e52337735df">astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental</innerdir>
+    <innerfile refid="HarrisPriester_8cpp">HarrisPriester.cpp</innerfile>
+    <innerfile refid="HarrisPriester_8hpp">HarrisPriester.hpp</innerfile>
+    <innerfile refid="JacchiaRoberts_8cpp">JacchiaRoberts.cpp</innerfile>
+    <innerfile refid="JacchiaRoberts_8hpp">JacchiaRoberts.hpp</innerfile>
+    <innerfile refid="Nrlmsise00_8cpp">Nrlmsise00.cpp</innerfile>
+    <innerfile refid="Nrlmsise00_8hpp">Nrlmsise00.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/"/>
+  </compounddef>
+</doxygen>

@@ -20,6 +20,7 @@
 #include <astro/propagation/force_models/Perturbation.hpp>
 #include <astro/propagation/force_models/PerturbingForce.hpp>
 #include <astro/propagation/force_models/SolarRadiationPressure.hpp>
+#include <astro/propagation/force_models/space_weather.hpp>
 
 #include <astro/propagation/equations_of_motion/CowellsMethod.hpp>
 #include <astro/propagation/equations_of_motion/EquationsOfMotion.hpp>

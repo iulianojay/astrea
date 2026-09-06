@@ -19,6 +19,7 @@ _A class representing a vehicle in the astrea astro platform._ [More...](#detail
 * `#include <astro/frames/framework/CartesianVector.hpp>`
 * `#include <astro/platforms/InertiaTensor.hpp>`
 * `#include <astro/propagation/force_models/Perturbation.hpp>`
+* `#include <astro/state/State.hpp>`
 * `#include <astro/time/Date.hpp>`
 * `#include <astro/types/concepts.hpp>`
 * `#include <astro/types/type_traits.hpp>`

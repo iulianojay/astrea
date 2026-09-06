@@ -2,7 +2,7 @@
 
 # File HarrisPriester.cpp
 
-[**File List**](files.md) **>** [**astrea**](dir_b5324400686b7cece921533bb760c87a.md) **>** [**astro**](dir_1d4dcf10fc541574a93624f5c09a3d6f.md) **>** [**astro**](dir_84db6e3c60e44147f5214c05dc45afc2.md) **>** [**systems**](dir_a5d35e082abd602943cf6d70fa2a6872.md) **>** [**celestial\_bodies**](dir_b988f8927672605e377af1c3b431ef9b.md) **>** [**Earth**](dir_0d926747df7aa4605536658442a7f1d2.md) **>** [**atmosphere**](dir_52ad4357f9588f54fe1e3d5cf2b75c1b.md) **>** [**HarrisPriester.cpp**](HarrisPriester_8cpp.md)
+[**File List**](files.md) **>** [**astrea**](dir_b5324400686b7cece921533bb760c87a.md) **>** [**astro**](dir_1d4dcf10fc541574a93624f5c09a3d6f.md) **>** [**astro**](dir_84db6e3c60e44147f5214c05dc45afc2.md) **>** [**propagation**](dir_55ae0edd352c6621ebfa1115f28a0fff.md) **>** [**force\_models**](dir_0ce51a85166db93c377c5b7f000b236c.md) **>** [**space\_weather**](dir_ba92a5bb4647772267966b3cef944594.md) **>** [**atmosphere**](dir_3bfcc16c8bbdb2d74b81ce33c082ff6e.md) **>** [**HarrisPriester.cpp**](HarrisPriester_8cpp.md)
 
 [Go to the documentation of this file](HarrisPriester_8cpp.md)
 
@@ -21,7 +21,7 @@
  * have received a copy of the GNU General Public License along with Astrea. If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include <astro/systems/celestial_bodies/Earth/atmosphere/HarrisPriester.hpp>
+#include <astro/propagation/force_models/space_weather/atmosphere/HarrisPriester.hpp>
 
 #include <map>
 
@@ -33,7 +33,6 @@
 
 namespace astrea {
 namespace astro {
-namespace planets {
 
 using namespace mp_units;
 using mp_units::non_si::day;
@@ -45,9 +44,9 @@ using mp_units::si::unit_symbols::rad;
 using mp_units::si::unit_symbols::s;
 
 
-static const int cosineExponent = 4;
+static const int COSINE_EXPONENT = 4;
 
-static const Angle LAG = 30.0 * deg;
+static const Angle DIURNAL_LAG = 30.0 * deg;
 
 static const std::map<Altitude, std::tuple<Density, Density>> HARRIS_PRIESTER_ATMOSPHERE = {
     { 100.0 * km, { 4.974e-07 * kg / (pow<3>(m)), 4.974e-07 * kg / (pow<3>(m)) } },
@@ -111,16 +110,16 @@ Density HarrisPriesterAtmosphere::find_atmospheric_density(const State& state)
 
     // Diurnal bulge apex direction
     const RadiusVector<frames::solar_system_barycenter::icrf> sun2Earth =
-        get_relative_position<planets::Earth, Sun>(state.get_epoch());
+        get_relative_position<planets::Earth, star::Sun>(state.get_epoch());
     const Direction<frames::earth::icrf> sunDirection = -sun2Earth.direction().force_frame_conversion<frames::earth::icrf>();
-    const Direction<frames::earth::icrf> bulgeDirection = DCM<frames::earth::icrf, frames::earth::icrf>::Z(LAG) * sunDirection;
+    const Direction<frames::earth::icrf> bulgeDirection = DCM<frames::earth::icrf, frames::earth::icrf>::Z(DIURNAL_LAG) * sunDirection;
 
     // Cosine of angle Psi between the diurnal bulge apex and the satellite
     const Unitless cosPsi = bulgeDirection.direction().dot(position.direction());
     // (1 + cos(Psi))/2 = cos²(Psi/2)
-    const Unitless c2Psi2 = (1.0 * one + cosPsi) / 2.0;
+    const Unitless c2Psi2 = (1.0 * one + cosPsi) * 0.5;
     const Unitless cPsi2  = sqrt(c2Psi2);
-    const Unitless cosPow = (cPsi2 > 1.0e-12 * one) ? c2Psi2 * math::pow(cPsi2, (cosineExponent - 2) * one) : Unitless::zero();
+    const Unitless cosPow = (cPsi2 > 1.0e-12 * one) ? c2Psi2 * math::pow(cPsi2, (COSINE_EXPONENT - 2) * one) : Unitless::zero();
 
     // Search altitude index in density table
     auto iter = HARRIS_PRIESTER_ATMOSPHERE.upper_bound(altitude);
@@ -141,7 +140,7 @@ Density HarrisPriesterAtmosphere::find_atmospheric_density(const State& state)
 
         // Min exponential density interpolation
         const Density rhoMin = minDensity * math::pow(nextMinDensity / minDensity, dH);
-        if (is_eq_zero(cosPow)) { return rhoMin; }
+        if (cosPow == 0.0) { return rhoMin; }
         else {
             // Max exponential density interpolation
             const Density rhoMax = maxDensity * math::pow(nextMaxDensity / maxDensity, dH);
@@ -152,7 +151,6 @@ Density HarrisPriesterAtmosphere::find_atmospheric_density(const State& state)
     return Density::zero();
 }
 
-} // namespace planets
 } // namespace astro
 } // namespace astrea
 ```

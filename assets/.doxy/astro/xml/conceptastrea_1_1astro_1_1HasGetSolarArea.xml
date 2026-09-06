@@ -9,8 +9,8 @@
       </param>
     </templateparamlist>
     <initializer>template&lt;typename T&gt;
-concept <ref refid="conceptastrea_1_1astro_1_1HasGetSolarArea" kindref="compound">astrea::astro::HasGetSolarArea</ref> =  requires(const T vehicle) {
-    { vehicle.get_solar_area() } -&gt; std::same_as&lt;SurfaceArea&gt;;
+concept <ref refid="conceptastrea_1_1astro_1_1HasGetSolarArea" kindref="compound">astrea::astro::HasGetSolarArea</ref> =  requires(const T vehicle, const State&amp; state) {
+    { vehicle.get_solar_area(state) } -&gt; std::same_as&lt;SurfaceArea&gt;;
 }    </initializer>
     <briefdescription>
 <para>Concept to check if a type has a method to get the solar area. </para>
@@ -27,6 +27,6 @@ concept <ref refid="conceptastrea_1_1astro_1_1HasGetSolarArea" kindref="compound
 </parameterlist>
 </para>
     </detaileddescription>
-    <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="106" column="1"/>
+    <location file="astrea/astro/astro/platforms/Vehicle.hpp" line="107" column="1"/>
   </compounddef>
 </doxygen>

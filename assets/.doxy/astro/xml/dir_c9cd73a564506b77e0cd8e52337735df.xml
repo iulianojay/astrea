@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="dir_c9cd73a564506b77e0cd8e52337735df" kind="dir">
+    <compoundname>astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental</compoundname>
+    <innerfile refid="NRLMSISE00_8cpp">NRLMSISE00.cpp</innerfile>
+    <innerfile refid="NRLMSISE00_8hpp">NRLMSISE00.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/experimental/"/>
+  </compounddef>
+</doxygen>

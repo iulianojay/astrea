@@ -28,12 +28,6 @@ namespace astro {
 
 namespace planets {
 
-enum class EarthAtmosphereModel { JACHIA_ROBERTS, NRLMSISE00, DTM2000, HARRIS_PRIESTER };
-
-struct EarthParameters {
-    EarthAtmosphereModel atmosphereModel = EarthAtmosphereModel::JACHIA_ROBERTS; 
-};
-
 #ifdef ASTREA_BUILD_EARTH_EPHEMERIS
 // SPICE ephemeris data for Earth is relative to the Earth-Moon barycenter, so we set the parent frame accordingly.
 inline constexpr struct Earth final : CelestialBody<"Earth", barycenters::EarthMoonBarycenter> {

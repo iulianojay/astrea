@@ -158,7 +158,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/units/units/typedefs.hpp" line="34" column="1" bodyfile="astrea/units/units/typedefs.hpp" bodystart="34" bodyend="-1"/>
+        <location file="astrea/units/units/typedefs.hpp" line="33" column="1" bodyfile="astrea/units/units/typedefs.hpp" bodystart="33" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="typedefs_8hpp_1a0dec00c0cf893869d7348b3072f8f740" prot="public" static="no">
         <type>mp_units::quantity&lt; detail::angle_unit &gt;</type>
@@ -173,7 +173,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/units/units/typedefs.hpp" line="39" column="1" bodyfile="astrea/units/units/typedefs.hpp" bodystart="39" bodyend="-1"/>
+        <location file="astrea/units/units/typedefs.hpp" line="38" column="1" bodyfile="astrea/units/units/typedefs.hpp" bodystart="38" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="typedefs_8hpp_1a80ad3651d734badc1e6eabbb50920ee6" prot="public" static="no">
         <type>mp_units::quantity&lt; detail::unitless &gt;</type>
@@ -188,7 +188,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/units/units/typedefs.hpp" line="44" column="1" bodyfile="astrea/units/units/typedefs.hpp" bodystart="44" bodyend="-1"/>
+        <location file="astrea/units/units/typedefs.hpp" line="43" column="1" bodyfile="astrea/units/units/typedefs.hpp" bodystart="43" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="typedefs_8hpp_1a226a4fe21c911c15a3ef55b516bd844b" prot="public" static="no">
         <type>mp_units::quantity&lt; detail::mass_unit &gt;</type>
@@ -203,7 +203,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/units/units/typedefs.hpp" line="49" column="1" bodyfile="astrea/units/units/typedefs.hpp" bodystart="49" bodyend="-1"/>
+        <location file="astrea/units/units/typedefs.hpp" line="48" column="1" bodyfile="astrea/units/units/typedefs.hpp" bodystart="48" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="typedefs_8hpp_1adf54634ce27335f274cb7964a9acc29a" prot="public" static="no">
         <type>mp_units::quantity&lt; detail::time_unit &gt;</type>
@@ -218,7 +218,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/units/units/typedefs.hpp" line="54" column="1" bodyfile="astrea/units/units/typedefs.hpp" bodystart="54" bodyend="-1"/>
+        <location file="astrea/units/units/typedefs.hpp" line="53" column="1" bodyfile="astrea/units/units/typedefs.hpp" bodystart="53" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="typedefs_8hpp_1aabcc047fd3c3d7453d946ad144a2e7f7" prot="public" static="no">
         <type>mp_units::quantity&lt; detail::distance_unit &gt;</type>
@@ -233,7 +233,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/units/units/typedefs.hpp" line="59" column="1" bodyfile="astrea/units/units/typedefs.hpp" bodystart="59" bodyend="-1"/>
+        <location file="astrea/units/units/typedefs.hpp" line="58" column="1" bodyfile="astrea/units/units/typedefs.hpp" bodystart="58" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="typedefs_8hpp_1a2ea1a91b86e77b6b1e422452f9d77e3f" prot="public" static="no">
         <type>mp_units::quantity&lt; detail::distance_unit/detail::time_unit &gt;</type>
@@ -248,7 +248,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/units/units/typedefs.hpp" line="64" column="1" bodyfile="astrea/units/units/typedefs.hpp" bodystart="64" bodyend="-1"/>
+        <location file="astrea/units/units/typedefs.hpp" line="63" column="1" bodyfile="astrea/units/units/typedefs.hpp" bodystart="63" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="typedefs_8hpp_1ae24380d670e134713a828cbc44cbcfde" prot="public" static="no">
         <type>mp_units::quantity&lt; detail::force_unit &gt;</type>
@@ -263,7 +263,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/units/units/typedefs.hpp" line="69" column="1" bodyfile="astrea/units/units/typedefs.hpp" bodystart="69" bodyend="-1"/>
+        <location file="astrea/units/units/typedefs.hpp" line="68" column="1" bodyfile="astrea/units/units/typedefs.hpp" bodystart="68" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="typedefs_8hpp_1a7055a454ffa41c09bc15784526596d85" prot="public" static="no">
         <type>mp_units::quantity&lt; detail::distance_unit *detail::distance_unit/detail::time_unit &gt;</type>
@@ -278,7 +278,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/units/units/typedefs.hpp" line="74" column="1" bodyfile="astrea/units/units/typedefs.hpp" bodystart="74" bodyend="-1"/>
+        <location file="astrea/units/units/typedefs.hpp" line="73" column="1" bodyfile="astrea/units/units/typedefs.hpp" bodystart="73" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="typedefs_8hpp_1a16e4b8824994a598ed5229489bc2431b" prot="public" static="no">
         <type>mp_units::quantity&lt; detail::unitless/detail::time_unit &gt;</type>
@@ -293,7 +293,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/units/units/typedefs.hpp" line="79" column="1" bodyfile="astrea/units/units/typedefs.hpp" bodystart="79" bodyend="-1"/>
+        <location file="astrea/units/units/typedefs.hpp" line="78" column="1" bodyfile="astrea/units/units/typedefs.hpp" bodystart="78" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="typedefs_8hpp_1ae89815f4df4de419243bf37978b70023" prot="public" static="no">
         <type>mp_units::quantity&lt; detail::angle_unit/detail::time_unit &gt;</type>
@@ -308,11 +308,11 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/units/units/typedefs.hpp" line="84" column="1" bodyfile="astrea/units/units/typedefs.hpp" bodystart="84" bodyend="-1"/>
+        <location file="astrea/units/units/typedefs.hpp" line="83" column="1" bodyfile="astrea/units/units/typedefs.hpp" bodystart="83" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="typedef" id="typedefs_8hpp_1a6520cdf22c5e7fbc6b6cf2b0e0cf45cb" prot="public" static="no">
-        <type>mp_units::quantity&lt; detail::angle_unit/mp_units::pow&lt; 2 &gt;(detail::time_unit)&gt;</type>
-        <definition>using astrea::AngularAcceleration = typedef mp_units::quantity&lt;detail::angle_unit / mp_units::pow&lt;2&gt;(detail::time_unit)&gt;</definition>
+      <memberdef kind="typedef" id="typedefs_8hpp_1a9cf291136c699a7098cb2b274f0efbc5" prot="public" static="no">
+        <type>mp_units::quantity&lt; detail::angle_unit/(detail::time_unit *detail::time_unit)&gt;</type>
+        <definition>using astrea::AngularAcceleration = typedef mp_units::quantity&lt;detail::angle_unit / (detail::time_unit * detail::time_unit)&gt;</definition>
         <argsstring></argsstring>
         <name>AngularAcceleration</name>
         <qualifiedname>astrea::AngularAcceleration</qualifiedname>
@@ -323,7 +323,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/units/units/typedefs.hpp" line="89" column="1" bodyfile="astrea/units/units/typedefs.hpp" bodystart="89" bodyend="-1"/>
+        <location file="astrea/units/units/typedefs.hpp" line="88" column="1" bodyfile="astrea/units/units/typedefs.hpp" bodystart="88" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="typedefs_8hpp_1ac731536c87104f12d3929445ade035e1" prot="public" static="no">
         <type>mp_units::quantity&lt; mp_units::iau::unit_symbols::au &gt;</type>
@@ -338,7 +338,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/units/units/typedefs.hpp" line="94" column="1" bodyfile="astrea/units/units/typedefs.hpp" bodystart="94" bodyend="-1"/>
+        <location file="astrea/units/units/typedefs.hpp" line="93" column="1" bodyfile="astrea/units/units/typedefs.hpp" bodystart="93" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="typedefs_8hpp_1a21eafe045ab0055d538a90c43561fc0e" prot="public" static="no">
         <type>mp_units::quantity&lt; mp_units::iau::unit_symbols::au/astrea::units::unit_symbols::jc &gt;</type>
@@ -353,7 +353,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/units/units/typedefs.hpp" line="99" column="1" bodyfile="astrea/units/units/typedefs.hpp" bodystart="99" bodyend="-1"/>
+        <location file="astrea/units/units/typedefs.hpp" line="98" column="1" bodyfile="astrea/units/units/typedefs.hpp" bodystart="98" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="typedefs_8hpp_1a9985e7e30ad46074a668c42c9a2cc9f2" prot="public" static="no">
         <type>mp_units::quantity&lt; detail::unitless/astrea::units::unit_symbols::jc &gt;</type>
@@ -368,7 +368,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/units/units/typedefs.hpp" line="104" column="1" bodyfile="astrea/units/units/typedefs.hpp" bodystart="104" bodyend="-1"/>
+        <location file="astrea/units/units/typedefs.hpp" line="103" column="1" bodyfile="astrea/units/units/typedefs.hpp" bodystart="103" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="typedefs_8hpp_1a095bd57504ee817d196cd11a8dac5e43" prot="public" static="no">
         <type>mp_units::quantity&lt; detail::angle_unit/astrea::units::unit_symbols::jc &gt;</type>
@@ -383,11 +383,11 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/units/units/typedefs.hpp" line="109" column="1" bodyfile="astrea/units/units/typedefs.hpp" bodystart="109" bodyend="-1"/>
+        <location file="astrea/units/units/typedefs.hpp" line="108" column="1" bodyfile="astrea/units/units/typedefs.hpp" bodystart="108" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="typedef" id="typedefs_8hpp_1a680f5de6f0f3036b3f3cad75f9473780" prot="public" static="no">
-        <type>mp_units::quantity&lt; detail::distance_unit/mp_units::pow&lt; 2 &gt;(detail::time_unit)&gt;</type>
-        <definition>using astrea::Acceleration = typedef mp_units::quantity&lt;detail::distance_unit / mp_units::pow&lt;2&gt;(detail::time_unit)&gt;</definition>
+      <memberdef kind="typedef" id="typedefs_8hpp_1a40fd242d6644918ba0f3faf68fffa444" prot="public" static="no">
+        <type>mp_units::quantity&lt; detail::distance_unit/(detail::time_unit *detail::time_unit)&gt;</type>
+        <definition>using astrea::Acceleration = typedef mp_units::quantity&lt;detail::distance_unit / (detail::time_unit * detail::time_unit)&gt;</definition>
         <argsstring></argsstring>
         <name>Acceleration</name>
         <qualifiedname>astrea::Acceleration</qualifiedname>
@@ -398,11 +398,11 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/units/units/typedefs.hpp" line="114" column="1" bodyfile="astrea/units/units/typedefs.hpp" bodystart="114" bodyend="-1"/>
+        <location file="astrea/units/units/typedefs.hpp" line="113" column="1" bodyfile="astrea/units/units/typedefs.hpp" bodystart="113" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="typedef" id="typedefs_8hpp_1af2e95777c76ad6f8c33401e622844f91" prot="public" static="no">
-        <type>mp_units::quantity&lt; mp_units::pow&lt; 2 &gt;(detail::distance_unit)&gt;</type>
-        <definition>using astrea::SurfaceArea = typedef mp_units::quantity&lt;mp_units::pow&lt;2&gt;(detail::distance_unit)&gt;</definition>
+      <memberdef kind="typedef" id="typedefs_8hpp_1ae9d06e3617726532e6d8ce8aedb0bfe7" prot="public" static="no">
+        <type>mp_units::quantity&lt; detail::distance_unit *detail::distance_unit &gt;</type>
+        <definition>using astrea::SurfaceArea = typedef mp_units::quantity&lt;detail::distance_unit * detail::distance_unit&gt;</definition>
         <argsstring></argsstring>
         <name>SurfaceArea</name>
         <qualifiedname>astrea::SurfaceArea</qualifiedname>
@@ -413,11 +413,11 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/units/units/typedefs.hpp" line="119" column="1" bodyfile="astrea/units/units/typedefs.hpp" bodystart="119" bodyend="-1"/>
+        <location file="astrea/units/units/typedefs.hpp" line="118" column="1" bodyfile="astrea/units/units/typedefs.hpp" bodystart="118" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="typedef" id="typedefs_8hpp_1af17856f96523805d535dab951a9379dc" prot="public" static="no">
-        <type>mp_units::quantity&lt; mp_units::pow&lt; 3 &gt;(detail::distance_unit)/mp_units::pow&lt; 2 &gt;(detail::time_unit)&gt;</type>
-        <definition>using astrea::GravParam = typedef mp_units::quantity&lt;mp_units::pow&lt;3&gt;(detail::distance_unit) / mp_units::pow&lt;2&gt;(detail::time_unit)&gt;</definition>
+      <memberdef kind="typedef" id="typedefs_8hpp_1ace778074af5121fd4ac9940dfc7dfa50" prot="public" static="no">
+        <type>mp_units::quantity&lt;(detail::distance_unit *detail::distance_unit *detail::distance_unit)/(detail::time_unit *detail::time_unit)&gt;</type>
+        <definition>using astrea::GravParam = typedef mp_units::quantity&lt;(detail::distance_unit * detail::distance_unit * detail::distance_unit) / (detail::time_unit * detail::time_unit)&gt;</definition>
         <argsstring></argsstring>
         <name>GravParam</name>
         <qualifiedname>astrea::GravParam</qualifiedname>
@@ -428,7 +428,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/units/units/typedefs.hpp" line="124" column="1" bodyfile="astrea/units/units/typedefs.hpp" bodystart="124" bodyend="-1"/>
+        <location file="astrea/units/units/typedefs.hpp" line="123" column="1" bodyfile="astrea/units/units/typedefs.hpp" bodystart="124" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="typedefs_8hpp_1a3ab148f4a87cd84162f5744422ba0447" prot="public" static="no">
         <type>mp_units::quantity&lt; mp_units::one/mp_units::non_si::day &gt;</type>
@@ -445,9 +445,9 @@
         </inbodydescription>
         <location file="astrea/units/units/typedefs.hpp" line="129" column="1" bodyfile="astrea/units/units/typedefs.hpp" bodystart="129" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="typedef" id="typedefs_8hpp_1a8dacdb1a2e3f4f2b1d49292d9e0ab622" prot="public" static="no">
-        <type>mp_units::quantity&lt; mp_units::one/mp_units::pow&lt; 2 &gt;(mp_units::non_si::day)&gt;</type>
-        <definition>using astrea::MeanMotion1stDer = typedef mp_units::quantity&lt;mp_units::one / mp_units::pow&lt;2&gt;(mp_units::non_si::day)&gt;</definition>
+      <memberdef kind="typedef" id="typedefs_8hpp_1ac34d87b9bd291bda863893469b0a8c91" prot="public" static="no">
+        <type>mp_units::quantity&lt; mp_units::one/(mp_units::non_si::day *mp_units::non_si::day)&gt;</type>
+        <definition>using astrea::MeanMotion1stDer = typedef mp_units::quantity&lt;mp_units::one / (mp_units::non_si::day * mp_units::non_si::day)&gt;</definition>
         <argsstring></argsstring>
         <name>MeanMotion1stDer</name>
         <qualifiedname>astrea::MeanMotion1stDer</qualifiedname>
@@ -460,9 +460,9 @@
         </inbodydescription>
         <location file="astrea/units/units/typedefs.hpp" line="134" column="1" bodyfile="astrea/units/units/typedefs.hpp" bodystart="134" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="typedef" id="typedefs_8hpp_1a64144981f1a71cc494a9cf4036e1947c" prot="public" static="no">
-        <type>mp_units::quantity&lt; mp_units::one/mp_units::pow&lt; 3 &gt;(mp_units::non_si::day)&gt;</type>
-        <definition>using astrea::MeanMotion2ndDer = typedef mp_units::quantity&lt;mp_units::one / mp_units::pow&lt;3&gt;(mp_units::non_si::day)&gt;</definition>
+      <memberdef kind="typedef" id="typedefs_8hpp_1a86c6d1a6d337cc35a6ebdf3b87db7a73" prot="public" static="no">
+        <type>mp_units::quantity&lt; mp_units::one/(mp_units::non_si::day *mp_units::non_si::day *mp_units::non_si::day)&gt;</type>
+        <definition>using astrea::MeanMotion2ndDer = typedef mp_units::quantity&lt;mp_units::one / (mp_units::non_si::day * mp_units::non_si::day * mp_units::non_si::day)&gt;</definition>
         <argsstring></argsstring>
         <name>MeanMotion2ndDer</name>
         <qualifiedname>astrea::MeanMotion2ndDer</qualifiedname>
@@ -473,7 +473,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/units/units/typedefs.hpp" line="139" column="1" bodyfile="astrea/units/units/typedefs.hpp" bodystart="139" bodyend="-1"/>
+        <location file="astrea/units/units/typedefs.hpp" line="139" column="1" bodyfile="astrea/units/units/typedefs.hpp" bodystart="140" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="typedefs_8hpp_1a9d2e958f1ea9f070069446c9b17e54e1" prot="public" static="no">
         <type>mp_units::quantity&lt; mp_units::one/astrea::units::unit_symbols::re &gt;</type>
@@ -488,11 +488,11 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/units/units/typedefs.hpp" line="144" column="1" bodyfile="astrea/units/units/typedefs.hpp" bodystart="144" bodyend="-1"/>
+        <location file="astrea/units/units/typedefs.hpp" line="145" column="1" bodyfile="astrea/units/units/typedefs.hpp" bodystart="145" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="typedef" id="typedefs_8hpp_1a0af4216f66acce6726601c081ee2a5e5" prot="public" static="no">
-        <type>mp_units::quantity&lt; detail::mass_unit/(mp_units::pow&lt; 3 &gt;(detail::distance_unit))&gt;</type>
-        <definition>using astrea::Density = typedef mp_units::quantity&lt;detail::mass_unit / (mp_units::pow&lt;3&gt;(detail::distance_unit))&gt;</definition>
+      <memberdef kind="typedef" id="typedefs_8hpp_1ace99d35da7c0508e31af1dfe944f9978" prot="public" static="no">
+        <type>mp_units::quantity&lt; detail::mass_unit/(detail::distance_unit *detail::distance_unit *detail::distance_unit)&gt;</type>
+        <definition>using astrea::Density = typedef mp_units::quantity&lt;detail::mass_unit / (detail::distance_unit * detail::distance_unit * detail::distance_unit)&gt;</definition>
         <argsstring></argsstring>
         <name>Density</name>
         <qualifiedname>astrea::Density</qualifiedname>
@@ -503,7 +503,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/units/units/typedefs.hpp" line="149" column="1" bodyfile="astrea/units/units/typedefs.hpp" bodystart="149" bodyend="-1"/>
+        <location file="astrea/units/units/typedefs.hpp" line="150" column="1" bodyfile="astrea/units/units/typedefs.hpp" bodystart="150" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="typedefs_8hpp_1a34659ce3f5ce5a3a7cffa511900891e9" prot="public" static="no">
         <type>mp_units::quantity&lt; detail::distance_unit &gt;</type>
@@ -518,7 +518,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/units/units/typedefs.hpp" line="154" column="1" bodyfile="astrea/units/units/typedefs.hpp" bodystart="154" bodyend="-1"/>
+        <location file="astrea/units/units/typedefs.hpp" line="155" column="1" bodyfile="astrea/units/units/typedefs.hpp" bodystart="155" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="typedefs_8hpp_1ad05638f2c98324c8eeefdc20b08733e9" prot="public" static="no">
         <type>mp_units::quantity&lt; detail::unitless &gt;</type>
@@ -533,7 +533,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/units/units/typedefs.hpp" line="159" column="1" bodyfile="astrea/units/units/typedefs.hpp" bodystart="159" bodyend="-1"/>
+        <location file="astrea/units/units/typedefs.hpp" line="160" column="1" bodyfile="astrea/units/units/typedefs.hpp" bodystart="160" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="typedefs_8hpp_1ae82601c99b7f520c56ead1ec36bfd9cf" prot="public" static="no">
         <type>mp_units::quantity&lt; detail::unitless &gt;</type>
@@ -548,7 +548,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/units/units/typedefs.hpp" line="164" column="1" bodyfile="astrea/units/units/typedefs.hpp" bodystart="164" bodyend="-1"/>
+        <location file="astrea/units/units/typedefs.hpp" line="165" column="1" bodyfile="astrea/units/units/typedefs.hpp" bodystart="165" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="typedefs_8hpp_1a14fa1dff38c53d71a8636cc7b52d1ccb" prot="public" static="no">
         <type>mp_units::quantity&lt; detail::unitless &gt;</type>
@@ -563,7 +563,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/units/units/typedefs.hpp" line="169" column="1" bodyfile="astrea/units/units/typedefs.hpp" bodystart="169" bodyend="-1"/>
+        <location file="astrea/units/units/typedefs.hpp" line="170" column="1" bodyfile="astrea/units/units/typedefs.hpp" bodystart="170" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="typedefs_8hpp_1a40ef0484449f79e0484ffb7964f6a699" prot="public" static="no">
         <type>mp_units::quantity&lt; mp_units::one/detail::time_unit &gt;</type>
@@ -578,7 +578,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/units/units/typedefs.hpp" line="174" column="1" bodyfile="astrea/units/units/typedefs.hpp" bodystart="174" bodyend="-1"/>
+        <location file="astrea/units/units/typedefs.hpp" line="175" column="1" bodyfile="astrea/units/units/typedefs.hpp" bodystart="175" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="typedefs_8hpp_1aa59ee11525abb160f196de85354a21ba" prot="public" static="no">
         <type>mp_units::quantity&lt; detail::power_unit &gt;</type>
@@ -593,11 +593,11 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/units/units/typedefs.hpp" line="179" column="1" bodyfile="astrea/units/units/typedefs.hpp" bodystart="179" bodyend="-1"/>
+        <location file="astrea/units/units/typedefs.hpp" line="180" column="1" bodyfile="astrea/units/units/typedefs.hpp" bodystart="180" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="typedef" id="typedefs_8hpp_1ae3bff2c11585438769bf502821b77b87" prot="public" static="no">
-        <type>mp_units::quantity&lt; detail::power_unit/mp_units::pow&lt; 2 &gt;(detail::distance_unit)&gt;</type>
-        <definition>using astrea::PowerFluxDensity = typedef mp_units::quantity&lt;detail::power_unit / mp_units::pow&lt;2&gt;(detail::distance_unit)&gt;</definition>
+      <memberdef kind="typedef" id="typedefs_8hpp_1a237c20933cfc5b616b568a4cc8ea90fe" prot="public" static="no">
+        <type>mp_units::quantity&lt; detail::power_unit/(detail::distance_unit *detail::distance_unit)&gt;</type>
+        <definition>using astrea::PowerFluxDensity = typedef mp_units::quantity&lt;detail::power_unit / (detail::distance_unit * detail::distance_unit)&gt;</definition>
         <argsstring></argsstring>
         <name>PowerFluxDensity</name>
         <qualifiedname>astrea::PowerFluxDensity</qualifiedname>
@@ -608,7 +608,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/units/units/typedefs.hpp" line="184" column="1" bodyfile="astrea/units/units/typedefs.hpp" bodystart="184" bodyend="-1"/>
+        <location file="astrea/units/units/typedefs.hpp" line="185" column="1" bodyfile="astrea/units/units/typedefs.hpp" bodystart="185" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="typedefs_8hpp_1a2ad23da189a19f524b0b40678bee874f" prot="public" static="no">
         <type>mp_units::quantity_point&lt; detail::temperature_unit &gt;</type>
@@ -623,7 +623,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/units/units/typedefs.hpp" line="189" column="1" bodyfile="astrea/units/units/typedefs.hpp" bodystart="189" bodyend="-1"/>
+        <location file="astrea/units/units/typedefs.hpp" line="190" column="1" bodyfile="astrea/units/units/typedefs.hpp" bodystart="190" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="typedefs_8hpp_1a0c1e2ad627aa8aad05ab166fd0ec1bf1" prot="public" static="no">
         <type>mp_units::quantity&lt; detail::pressure_unit &gt;</type>
@@ -638,7 +638,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/units/units/typedefs.hpp" line="194" column="1" bodyfile="astrea/units/units/typedefs.hpp" bodystart="194" bodyend="-1"/>
+        <location file="astrea/units/units/typedefs.hpp" line="195" column="1" bodyfile="astrea/units/units/typedefs.hpp" bodystart="195" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="typedefs_8hpp_1a1a82907e178e6486e013bb8b7d32c1f6" prot="public" static="no">
         <type>mp_units::quantity&lt; detail::force_unit *detail::distance_unit &gt;</type>
@@ -653,11 +653,11 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/units/units/typedefs.hpp" line="199" column="1" bodyfile="astrea/units/units/typedefs.hpp" bodystart="199" bodyend="-1"/>
+        <location file="astrea/units/units/typedefs.hpp" line="200" column="1" bodyfile="astrea/units/units/typedefs.hpp" bodystart="200" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="typedef" id="typedefs_8hpp_1ae8325067d3c122b46709768b059ca1f9" prot="public" static="no">
-        <type>mp_units::quantity&lt; detail::mass_unit *mp_units::pow&lt; 2 &gt;(detail::distance_unit)&gt;</type>
-        <definition>using astrea::MomentOfInertia = typedef mp_units::quantity&lt;detail::mass_unit * mp_units::pow&lt;2&gt;(detail::distance_unit)&gt;</definition>
+      <memberdef kind="typedef" id="typedefs_8hpp_1ae45e400c928348f292b572fcc16beadc" prot="public" static="no">
+        <type>mp_units::quantity&lt; detail::mass_unit *detail::distance_unit *detail::distance_unit &gt;</type>
+        <definition>using astrea::MomentOfInertia = typedef mp_units::quantity&lt;detail::mass_unit * detail::distance_unit * detail::distance_unit&gt;</definition>
         <argsstring></argsstring>
         <name>MomentOfInertia</name>
         <qualifiedname>astrea::MomentOfInertia</qualifiedname>
@@ -668,7 +668,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/units/units/typedefs.hpp" line="204" column="1" bodyfile="astrea/units/units/typedefs.hpp" bodystart="204" bodyend="-1"/>
+        <location file="astrea/units/units/typedefs.hpp" line="205" column="1" bodyfile="astrea/units/units/typedefs.hpp" bodystart="205" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="typedefs_8hpp_1a7f5e2fc5047071b3d6edb3c1761da650" prot="public" static="no">
         <type>mp_units::quantity&lt; astrea::units::unit_symbols::sfu &gt;</type>
@@ -683,11 +683,11 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/units/units/typedefs.hpp" line="209" column="1" bodyfile="astrea/units/units/typedefs.hpp" bodystart="209" bodyend="-1"/>
+        <location file="astrea/units/units/typedefs.hpp" line="210" column="1" bodyfile="astrea/units/units/typedefs.hpp" bodystart="210" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="typedef" id="typedefs_8hpp_1a51817992e45de73cf8ee362450d0dc9b" prot="public" static="no">
-        <type>mp_units::quantity&lt; mp_units::one/mp_units::pow&lt; 2 &gt;(detail::time_unit)&gt;</type>
-        <definition>using astrea::Chirp = typedef mp_units::quantity&lt;mp_units::one / mp_units::pow&lt;2&gt;(detail::time_unit)&gt;</definition>
+      <memberdef kind="typedef" id="typedefs_8hpp_1a3f8d3b365a3206b0ced656d8e2f76420" prot="public" static="no">
+        <type>mp_units::quantity&lt; mp_units::one/(detail::time_unit *detail::time_unit)&gt;</type>
+        <definition>using astrea::Chirp = typedef mp_units::quantity&lt;mp_units::one / (detail::time_unit * detail::time_unit)&gt;</definition>
         <argsstring></argsstring>
         <name>Chirp</name>
         <qualifiedname>astrea::Chirp</qualifiedname>
@@ -698,7 +698,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/units/units/typedefs.hpp" line="214" column="1" bodyfile="astrea/units/units/typedefs.hpp" bodystart="214" bodyend="-1"/>
+        <location file="astrea/units/units/typedefs.hpp" line="215" column="1" bodyfile="astrea/units/units/typedefs.hpp" bodystart="215" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="var">
@@ -731,74 +731,6 @@
         <inbodydescription>
         </inbodydescription>
         <location file="astrea/units/units/constants.hpp" line="29" column="16" bodyfile="astrea/units/units/constants.hpp" bodystart="29" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="constants_8hpp_1a8452e0ddd0716b555506820a3d7dc24e" prot="public" static="no" constexpr="yes" mutable="no">
-        <type>constexpr <ref refid="typedefs_8hpp_1a0dec00c0cf893869d7348b3072f8f740" kindref="member">Angle</ref></type>
-        <definition>constexpr Angle astrea::PI</definition>
-        <argsstring></argsstring>
-        <name>PI</name>
-        <qualifiedname>astrea::PI</qualifiedname>
-        <initializer>= 1.0 * (mp_units::mag&lt;mp_units::pi&gt; * detail::angle_unit)</initializer>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="astrea/units/units/constants.hpp" line="31" column="17" bodyfile="astrea/units/units/constants.hpp" bodystart="31" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="constants_8hpp_1ada344bc6f289fe2f949dca23593ae1e5" prot="public" static="no" constexpr="yes" mutable="no">
-        <type>constexpr <ref refid="typedefs_8hpp_1a0dec00c0cf893869d7348b3072f8f740" kindref="member">Angle</ref></type>
-        <definition>constexpr Angle astrea::TWO_PI</definition>
-        <argsstring></argsstring>
-        <name>TWO_PI</name>
-        <qualifiedname>astrea::TWO_PI</qualifiedname>
-        <initializer>= 2.0 * (mp_units::mag&lt;mp_units::pi&gt; * detail::angle_unit)</initializer>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="astrea/units/units/constants.hpp" line="32" column="17" bodyfile="astrea/units/units/constants.hpp" bodystart="32" bodyend="-1"/>
-      </memberdef>
-    </sectiondef>
-    <sectiondef kind="func">
-      <memberdef kind="function" id="constants_8hpp_1a87133aee2993f568ef1657bc1ddfe0e4" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>constexpr mp_units::quantity&lt; mp_units::mag&lt; mp_units::pi &gt; *detail::angle_unit &gt;</type>
-        <definition>constexpr mp_units::quantity&lt; mp_units::mag&lt; mp_units::pi &gt; *detail::angle_unit &gt; astrea::n_pi</definition>
-        <argsstring>(const double &amp;mag)</argsstring>
-        <name>n_pi</name>
-        <qualifiedname>astrea::n_pi</qualifiedname>
-        <param>
-          <type>const double &amp;</type>
-          <declname>mag</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="astrea/units/units/constants.hpp" line="34" column="30" bodyfile="astrea/units/units/constants.hpp" bodystart="34" bodyend="37"/>
-      </memberdef>
-      <memberdef kind="function" id="constants_8hpp_1a4a8f94136ac2b3408e6303af8171a232" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>constexpr mp_units::quantity&lt; detail::unitless &gt;</type>
-        <definition>constexpr mp_units::quantity&lt; detail::unitless &gt; astrea::n_pi_mag</definition>
-        <argsstring>(const double &amp;mag)</argsstring>
-        <name>n_pi_mag</name>
-        <qualifiedname>astrea::n_pi_mag</qualifiedname>
-        <param>
-          <type>const double &amp;</type>
-          <declname>mag</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="astrea/units/units/constants.hpp" line="39" column="30" bodyfile="astrea/units/units/constants.hpp" bodystart="39" bodyend="42"/>
       </memberdef>
     </sectiondef>
     <briefdescription>

@@ -82,7 +82,7 @@ OrbitalElementPartials KeplerianVop::compute_dynamics(
     // Calculate R, N, and T
     const auto ricFrame = frames::dynamic::ric.instantaneous(r, v);
     const AccelerationVector<frames::dynamic::ric> accelRic =
-        ricFrame.rotate_into_this_frame((perts + control) / vehicle.get_mass(), date);
+        ricFrame.rotate_into_this_frame((perts + control) / vehicle.get_mass(state), date);
 
     const Acceleration& radialPert     = accelRic.get_x();
     const Acceleration& tangentialPert = accelRic.get_y();

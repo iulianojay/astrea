@@ -2,7 +2,7 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
   <compounddef id="dir_0ce51a85166db93c377c5b7f000b236c" kind="dir">
     <compoundname>astrea/astro/astro/propagation/force_models</compoundname>
-    <innerfile refid="AtmosphericForce_8cpp">AtmosphericForce.cpp</innerfile>
+    <innerdir refid="dir_ba92a5bb4647772267966b3cef944594">astrea/astro/astro/propagation/force_models/space_weather</innerdir>
     <innerfile refid="AtmosphericForce_8hpp">AtmosphericForce.hpp</innerfile>
     <innerfile refid="ForceModel_8cpp">ForceModel.cpp</innerfile>
     <innerfile refid="ForceModel_8hpp">ForceModel.hpp</innerfile>
@@ -15,6 +15,7 @@
     <innerfile refid="PerturbingForce_8hpp">PerturbingForce.hpp</innerfile>
     <innerfile refid="SolarRadiationPressure_8cpp">SolarRadiationPressure.cpp</innerfile>
     <innerfile refid="SolarRadiationPressure_8hpp">SolarRadiationPressure.hpp</innerfile>
+    <innerfile refid="space__weather_8hpp">space_weather.hpp</innerfile>
     <briefdescription>
     </briefdescription>
     <detaileddescription>

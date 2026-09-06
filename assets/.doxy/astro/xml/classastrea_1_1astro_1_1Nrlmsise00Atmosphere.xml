@@ -1,0 +1,168 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classastrea_1_1astro_1_1Nrlmsise00Atmosphere" kind="class" language="C++" prot="public">
+    <compoundname>astrea::astro::Nrlmsise00Atmosphere</compoundname>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Nrlmsise00Atmosphere_1a157d508a02ae227af92042a10f763258" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>astrea::astro::Nrlmsise00Atmosphere::Nrlmsise00Atmosphere</definition>
+        <argsstring>()=delete</argsstring>
+        <name>Nrlmsise00Atmosphere</name>
+        <qualifiedname>astrea::astro::Nrlmsise00Atmosphere::Nrlmsise00Atmosphere</qualifiedname>
+        <briefdescription>
+<para>Deleted constructor — use static factory or find_atmospheric_density directly. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/Nrlmsise00.hpp" line="43" column="5"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Nrlmsise00Atmosphere_1a21fe9c485c906b78b95e6a6b99f94fcf" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Density</type>
+        <definition>Density astrea::astro::Nrlmsise00Atmosphere::find_atmospheric_density</definition>
+        <argsstring>(const State &amp;state, const SolarFlux &amp;f107a, const SolarFlux &amp;f107, const std::array&lt; Unitless, 8 &gt; &amp;ap, const std::array&lt; int, 24 &gt; &amp;flags=get_default_flags(), const bool ignoreLowAltitudes=true)</argsstring>
+        <name>find_atmospheric_density</name>
+        <qualifiedname>astrea::astro::Nrlmsise00Atmosphere::find_atmospheric_density</qualifiedname>
+        <param>
+          <type>const <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
+          <declname>state</declname>
+        </param>
+        <param>
+          <type>const SolarFlux &amp;</type>
+          <declname>f107a</declname>
+        </param>
+        <param>
+          <type>const SolarFlux &amp;</type>
+          <declname>f107</declname>
+        </param>
+        <param>
+          <type>const std::array&lt; Unitless, 8 &gt; &amp;</type>
+          <declname>ap</declname>
+        </param>
+        <param>
+          <type>const std::array&lt; int, 24 &gt; &amp;</type>
+          <declname>flags</declname>
+          <defval>get_default_flags()</defval>
+        </param>
+        <param>
+          <type>const bool</type>
+          <declname>ignoreLowAltitudes</declname>
+          <defval>true</defval>
+        </param>
+        <briefdescription>
+<para>Find the atmospheric density at a given state and solar/geomagnetic conditions. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>state</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The current state of the satellite. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>f107a</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The 81-day average of the F10.7 solar flux. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>f107</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The daily F10.7 solar flux. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ap</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The array of geomagnetic indices. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>flags</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The array of flags to set the model switches. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ignoreLowAltitudes</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>If true, the model will ignore low altitudes and return a density of 0.0 for altitudes below 80 km. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The atmospheric density.</para>
+</simplesect>
+<parblock><para><simplesect kind="note"><para>The magnetic index array contains: Array containing the following magnetic values:<itemizedlist>
+<listitem><para>0: daily AP</para>
+</listitem><listitem><para>1: 3 hr AP index for current time</para>
+</listitem><listitem><para>2: 3 hr AP index for 3 hrs before current time</para>
+</listitem><listitem><para>3: 3 hr AP index for 6 hrs before current time</para>
+</listitem><listitem><para>4: 3 hr AP index for 9 hrs before current time</para>
+</listitem><listitem><para>5: Average of eight 3 hr AP indicies from 12 to 33 hrs prior to current time</para>
+</listitem><listitem><para>6: Average of eight 3 hr AP indicies from 36 to 57 hrs prior to current time </para>
+</listitem></itemizedlist>
+</para>
+</simplesect>
+</para>
+</parblock></para>
+<para><parblock><para><simplesect kind="note"><para>f107 and f107A values used to generate the model correspond to the 10.7 cm radio flux at the actual distance of the Earth from the Sun rather than the radio flux at 1 AU. </para>
+</simplesect>
+</para>
+</parblock></para>
+<para><parblock><para><simplesect kind="note"><para>f107, f107A, and ap effects are neither large nor well established below 80 km and these parameters should be set to 150., 150., and 4. respectively. </para>
+</simplesect>
+</para>
+</parblock></para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/Nrlmsise00.hpp" line="76" column="20" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/Nrlmsise00.cpp" bodystart="84" bodyend="138"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-static-func">
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Nrlmsise00Atmosphere_1a4f25d9bb06a1d342f21ba2aeaa293625" prot="private" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::array&lt; int, 24 &gt;</type>
+        <definition>std::array&lt; int, 24 &gt; astrea::astro::Nrlmsise00Atmosphere::get_default_flags</definition>
+        <argsstring>()</argsstring>
+        <name>get_default_flags</name>
+        <qualifiedname>astrea::astro::Nrlmsise00Atmosphere::get_default_flags</qualifiedname>
+        <briefdescription>
+<para>Get the default flags for the Nrlmsise00 model. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The default flags for the Nrlmsise00 model. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/Nrlmsise00.hpp" line="90" column="23" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/Nrlmsise00.cpp" bodystart="53" bodyend="82"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/Nrlmsise00.hpp" line="38" column="1" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/Nrlmsise00.hpp" bodystart="38" bodyend="91"/>
+    <listofallmembers>
+      <member refid="classastrea_1_1astro_1_1Nrlmsise00Atmosphere_1a21fe9c485c906b78b95e6a6b99f94fcf" prot="public" virt="non-virtual"><scope>astrea::astro::Nrlmsise00Atmosphere</scope><name>find_atmospheric_density</name></member>
+      <member refid="classastrea_1_1astro_1_1Nrlmsise00Atmosphere_1a4f25d9bb06a1d342f21ba2aeaa293625" prot="private" virt="non-virtual"><scope>astrea::astro::Nrlmsise00Atmosphere</scope><name>get_default_flags</name></member>
+      <member refid="classastrea_1_1astro_1_1Nrlmsise00Atmosphere_1a157d508a02ae227af92042a10f763258" prot="public" virt="non-virtual"><scope>astrea::astro::Nrlmsise00Atmosphere</scope><name>Nrlmsise00Atmosphere</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>
