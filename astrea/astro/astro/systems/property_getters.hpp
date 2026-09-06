@@ -39,7 +39,7 @@
 #include <astro/types/enums.hpp>
 
 // NOTE: CoefficientPack and get_linear_expansion_coefficients must be declared BEFORE
-// including any header that pulls in celestial_bodies.hpp, because planet headers specialise
+// including any header that pulls in celestial_bodies.hpp, because planet headers specialize
 // get_linear_expansion_coefficients.  The primary template must be visible first.
 namespace astrea {
 namespace astro {
@@ -61,7 +61,7 @@ using CoefficientPack = std::tuple<
  * @brief Get the linear expansion coefficients for the celestial body's mean anomaly correction.
  *
  * Default implementation returns zero coefficients (no perturbation terms),
- * which reduces to Me = L - w.  Specialise for bodies that need it (e.g. outer planets).
+ * which reduces to Me = L - w.  Specialize for bodies that need it (e.g. outer planets).
  *
  * @return CoefficientPack A tuple containing (B, C, S, F) coefficients.
  */

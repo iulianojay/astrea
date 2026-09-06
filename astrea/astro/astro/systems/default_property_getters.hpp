@@ -49,7 +49,7 @@ namespace astro {
  * This uses the JPL approximate-positions algorithm:
  * https://ssd.jpl.nasa.gov/celestial_bodies/approx_pos.html
  *
- * Bodies that have get_linear_expansion_coefficients specialised use the full
+ * Bodies that have get_linear_expansion_coefficients specialized use the full
  * perturbation-corrected mean anomaly.  All other bodies fall back to the default
  * zero-coefficient implementation (Me = L - w).
  *

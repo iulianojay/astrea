@@ -63,7 +63,7 @@ struct MyPayload : public Payload<MyPayload, MyPayloadParameters> {
     std::size_t _id;
 };
 
-// Finally, we use the PayloadPlatform to attach our paylaod to a platform
+// Finally, we use the PayloadPlatform to attach our payload to a platform
 struct MySpacecraft : public PayloadPlatform<MyPayload> {
     std::size_t get_id() const { return 0; }
     std::string get_name() const { return "MySpacecraft"; }

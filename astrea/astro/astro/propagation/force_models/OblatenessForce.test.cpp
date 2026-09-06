@@ -91,7 +91,7 @@ TEST_F(OblatenessForceTest, ComputeForceValladoEx85)
     const Acceleration expectedNorm = expected.norm();
     const Acceleration accelNorm    = accel.norm();
 
-    // These are much much closer than before, to be expected. They show abou the same size error as when comparing
+    // These are much much closer than before, to be expected. They show about the same size error as when comparing
     // to the NASA 6DoF checkcases so it's possible that there remains a small calculation error somewhere.
     ASSERT_TRUE(math::nearly_equal(accelNorm, expectedNorm, REL_TOL));
     ASSERT_TRUE(nearly_equal(accel, expected, REL_TOL));

@@ -61,7 +61,7 @@ inline Density find_atmospheric_density(const State&, const Args&...)
 template <>
 inline Density find_atmospheric_density<planets::Earth, EarthAtmosphereModel::JACCHIA_ROBERTS>(const State& state)
 {
-    static const auto equatorialRadius = get_equitorial_radius<planets::Earth>();
+    static const auto equatorialRadius = get_equatorial_radius<planets::Earth>();
     static const auto polarRadius      = get_polar_radius<planets::Earth>();
     return JacchiaRobertsAtmosphere::find_atmospheric_density(state, equatorialRadius, polarRadius);
 }
@@ -111,7 +111,7 @@ inline Density find_atmospheric_density<planets::Venus>(const State& state)
     using mp_units::si::unit_symbols::m;
 
     // Altitude Conditions(TABLE 7-4, Vallado)
-    static const std::map<Altitude, Density> venetianAtmosphere = {
+    static const std::map<Altitude, Density> venusianAtmosphere = {
         // km, kg/m^3
         { 3.0 * km, 5.53e1 * kg / (pow<3>(m)) },    { 6.0 * km, 4.75e1 * kg / (pow<3>(m)) },
         { 9.0 * km, 4.02e1 * kg / (pow<3>(m)) },    { 12.0 * km, 3.44e1 * kg / (pow<3>(m)) },
@@ -140,8 +140,8 @@ inline Density find_atmospheric_density<planets::Venus>(const State& state)
     const auto& position                       = state.get_position_in_frame<frames::venus::venus_fixed>();
     const auto [latitude, longitude, altitude] = convert_body_fixed_to_geodetic(position);
 
-    const auto iter = venetianAtmosphere.upper_bound(altitude);
-    return (iter != venetianAtmosphere.end()) ? iter->second : Density::zero();
+    const auto iter = venusianAtmosphere.upper_bound(altitude);
+    return (iter != venusianAtmosphere.end()) ? iter->second : Density::zero();
 }
 
 /**

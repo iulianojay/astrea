@@ -68,7 +68,7 @@ The platform system supports various specialized vehicle implementations:
 - **Spacecraft**: Standard orbital vehicles with propulsion systems
 - **Launch vehicles**: Multi-stage vehicles with variable mass
 - **Interplanetary probes**: Long-duration mission platforms
-- **Small satellites**: CubeSat and microsatellite configurations
+- **Small satellites**: CubeSat and micro-satellite configurations
 
 ## Vehicle Properties
 
