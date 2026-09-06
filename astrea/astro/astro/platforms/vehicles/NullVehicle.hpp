@@ -51,7 +51,7 @@ class NullVehicle {
      *
      * @return Mass The mass of the vehicle.
      */
-    Mass get_mass() const;
+    Mass get_mass(const State& state) const;
 
     /**
      * @brief Gets the name of the vehicle.

@@ -81,7 +81,7 @@ TEST_F(SolarRadiationPressureTest, ComputeForceValladoEx85)
                                          -1.568251 * km / s, -3.702348 * km / s, -6.479485 * km / s };
     State state(cart, epoch);
     const auto [force, torque]                          = srpForce.compute_perturbation(state, Vehicle(sat));
-    const AccelerationVector<frames::earth::icrf> accel = force / sat.get_mass();
+    const AccelerationVector<frames::earth::icrf> accel = force / sat.get_mass(state);
 
     // // Vallado's expected results
     // const AccelerationVector<frames::earth::icrf> expected{ -1.8791e-10 * km / (s * s),

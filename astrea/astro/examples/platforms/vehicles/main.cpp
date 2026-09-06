@@ -40,19 +40,19 @@ int main()
     // inertia, areas, and dynamic coefficients. Users can also define functions for implementing control authority for
     // the vehicle.
     struct MyVehicle {
-        Mass get_mass() const { return 1000.0 * kg; }
+        Mass get_mass(const State& state) const { return 1000.0 * kg; }
     };
     MyVehicle myVehicle;
     Vehicle vehicle(myVehicle);
 
     struct MyComplicatedVehicle {
-        Mass get_mass() const { return 1000.0 * kg; }
-        InertiaTensor<frames::dynamic::body> get_inertia_tensor() const
+        Mass get_mass(const State& state) const { return 1000.0 * kg; }
+        InertiaTensor<frames::dynamic::body> get_inertia_tensor(const State& state) const
         {
             return InertiaTensor<frames::dynamic::body>{ 100.0 * kg * pow<2>(m), 20.0 * kg * pow<2>(m), 120.0 * kg * pow<2>(m) };
         }
-        SurfaceArea get_ram_area() const { return 10.0 * pow<2>(m); }
-        Unitless get_drag_coefficient() const { return 2.0; }
+        SurfaceArea get_ram_area(const State& state) const { return 10.0 * pow<2>(m); }
+        Unitless get_drag_coefficient(const State& state) const { return 2.0; }
     };
     MyComplicatedVehicle myComplicatedVehicle;
     Vehicle complicatedVehicle(myComplicatedVehicle);

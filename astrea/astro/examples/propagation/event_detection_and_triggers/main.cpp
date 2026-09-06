@@ -81,7 +81,7 @@ int main()
     std::cout << "Initial State: " << elements << std::endl;
     std::cout << "Initial Period: " << elements.get_orbital_period(mu) << std::endl;
     std::cout << "Total Thrust: " << mp_units::quantity<kN>(thrusterParams.get_thrust()) << std::endl;
-    std::cout << "Spacecraft Mass: " << sat.get_mass() << std::endl;
+    std::cout << "Spacecraft Mass: " << sat.get_mass(state0) << std::endl;
     std::cout << "Thruster Burn Time: " << mp_units::quantity<s>(1.0 * s) << std::endl;
     const Thruster thruster = sat.get_payloads()[0];
     std::cout << "Equivalent Impulsive Delta-V: " << thruster.get_impulsive_delta_v() << std::endl << std::endl;

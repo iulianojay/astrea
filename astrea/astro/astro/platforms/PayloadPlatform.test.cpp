@@ -18,6 +18,7 @@
 
 #include <astro/platforms/PayloadPlatform.hpp>
 #include <astro/platforms/thrusters/Thruster.hpp>
+#include <astro/state/State.hpp>
 #include <tests/utilities/comparisons.hpp>
 
 using namespace astrea;
@@ -75,6 +76,7 @@ class PayloadPlatformTest : public testing::Test {
     ThrusterParameters params2{ thrust2, boresight2 };
     ThrusterParameters params3{ thrust3 };
     MinimalTestPlatform platform;
+    State state;
 };
 
 int main(int argc, char** argv)
@@ -91,7 +93,7 @@ TEST_F(PayloadPlatformTest, GetId)
 
 TEST_F(PayloadPlatformTest, GetMass)
 {
-    Mass mass = platform.get_mass();
+    Mass mass = platform.get_mass(state);
     ASSERT_EQ(mass.numerical_value_in(kg), 0.0);
 }
 

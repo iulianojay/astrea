@@ -161,7 +161,7 @@ public:
 
         // Check if thrust is active
         if (currentTime >= _startTime && currentTime <= _startTime + _duration) {
-            Mass vehicleMass = vehicle.get_mass();
+            Mass vehicleMass = vehicle.get_mass(state);
             return _thrustVector / vehicleMass;  // F = ma -> a = F/m
         }
 

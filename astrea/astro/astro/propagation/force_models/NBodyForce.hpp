@@ -94,7 +94,7 @@ class NBodyForce : public PerturbingForce {
             ...
         );
 
-        return { .force = accelNBody * vehicle.get_mass() };
+        return { .force = accelNBody * vehicle.get_mass(state) };
     }
 
     /**

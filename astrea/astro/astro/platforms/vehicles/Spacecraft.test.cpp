@@ -46,6 +46,7 @@ class SpacecraftTest : public testing::Test {
 
     Spacecraft spacecraft;
     Spacecraft spacecraftWithHistory;
+    State state;
 };
 
 int main(int argc, char** argv)
@@ -90,27 +91,27 @@ TEST_F(SpacecraftTest, EqualityOperator)
     ASSERT_FALSE(spacecraft == other);
 }
 
-TEST_F(SpacecraftTest, GetMass) { ASSERT_EQ(spacecraft.get_mass(), Spacecraft::DEFAULT_MASS); }
+TEST_F(SpacecraftTest, GetMass) { ASSERT_EQ(spacecraft.get_mass(state), Spacecraft::DEFAULT_MASS); }
 
-TEST_F(SpacecraftTest, GetRamArea) { ASSERT_EQ(spacecraft.get_ram_area(), Spacecraft::DEFAULT_RAM_AREA); }
+TEST_F(SpacecraftTest, GetRamArea) { ASSERT_EQ(spacecraft.get_ram_area(state), Spacecraft::DEFAULT_RAM_AREA); }
 
-TEST_F(SpacecraftTest, GetLiftArea) { ASSERT_EQ(spacecraft.get_lift_area(), Spacecraft::DEFAULT_LIFT_AREA); }
+TEST_F(SpacecraftTest, GetLiftArea) { ASSERT_EQ(spacecraft.get_lift_area(state), Spacecraft::DEFAULT_LIFT_AREA); }
 
-TEST_F(SpacecraftTest, GetSolarArea) { ASSERT_EQ(spacecraft.get_solar_area(), Spacecraft::DEFAULT_SOLAR_AREA); }
+TEST_F(SpacecraftTest, GetSolarArea) { ASSERT_EQ(spacecraft.get_solar_area(state), Spacecraft::DEFAULT_SOLAR_AREA); }
 
 TEST_F(SpacecraftTest, GetCoefficientOfDrag)
 {
-    ASSERT_EQ(spacecraft.get_coefficient_of_drag(), Spacecraft::DEFAULT_COEFFICIENT_OF_DRAG);
+    ASSERT_EQ(spacecraft.get_coefficient_of_drag(state), Spacecraft::DEFAULT_COEFFICIENT_OF_DRAG);
 }
 
 TEST_F(SpacecraftTest, GetCoefficientOfLift)
 {
-    ASSERT_EQ(spacecraft.get_coefficient_of_lift(), Spacecraft::DEFAULT_COEFFICIENT_OF_LIFT);
+    ASSERT_EQ(spacecraft.get_coefficient_of_lift(state), Spacecraft::DEFAULT_COEFFICIENT_OF_LIFT);
 }
 
 TEST_F(SpacecraftTest, GetCoefficientOfReflectivity)
 {
-    ASSERT_EQ(spacecraft.get_coefficient_of_reflectivity(), Spacecraft::DEFAULT_COEFFICIENT_OF_REFLECTIVITY);
+    ASSERT_EQ(spacecraft.get_coefficient_of_reflectivity(state), Spacecraft::DEFAULT_COEFFICIENT_OF_REFLECTIVITY);
 }
 
 TEST_F(SpacecraftTest, GetName) { ASSERT_TRUE(spacecraft.get_name().empty()); }
@@ -121,49 +122,49 @@ TEST_F(SpacecraftTest, SetMass)
 {
     Mass newMass = 1234.5 * kg;
     spacecraft.set_mass(newMass);
-    ASSERT_EQ(spacecraft.get_mass(), newMass);
+    ASSERT_EQ(spacecraft.get_mass(state), newMass);
 }
 
 TEST_F(SpacecraftTest, SetCoefficientOfDrag)
 {
     Unitless newCd = 3.3 * one;
     spacecraft.set_coefficient_of_drag(newCd);
-    ASSERT_EQ(spacecraft.get_coefficient_of_drag(), newCd);
+    ASSERT_EQ(spacecraft.get_coefficient_of_drag(state), newCd);
 }
 
 TEST_F(SpacecraftTest, SetCoefficientOfLift)
 {
     Unitless newCl = 2.2 * one;
     spacecraft.set_coefficient_of_lift(newCl);
-    ASSERT_EQ(spacecraft.get_coefficient_of_lift(), newCl);
+    ASSERT_EQ(spacecraft.get_coefficient_of_lift(state), newCl);
 }
 
 TEST_F(SpacecraftTest, SetCoefficientOfReflectivity)
 {
     Unitless newCr = 4.4 * one;
     spacecraft.set_coefficient_of_reflectivity(newCr);
-    ASSERT_EQ(spacecraft.get_coefficient_of_reflectivity(), newCr);
+    ASSERT_EQ(spacecraft.get_coefficient_of_reflectivity(state), newCr);
 }
 
 TEST_F(SpacecraftTest, SetRamArea)
 {
     SurfaceArea newArea = 5.5 * pow<2>(m);
     spacecraft.set_ram_area(newArea);
-    ASSERT_EQ(spacecraft.get_ram_area(), newArea);
+    ASSERT_EQ(spacecraft.get_ram_area(state), newArea);
 }
 
 TEST_F(SpacecraftTest, SetSolarArea)
 {
     SurfaceArea newArea = 6.6 * pow<2>(m);
     spacecraft.set_solar_area(newArea);
-    ASSERT_EQ(spacecraft.get_solar_area(), newArea);
+    ASSERT_EQ(spacecraft.get_solar_area(state), newArea);
 }
 
 TEST_F(SpacecraftTest, SetLiftArea)
 {
     SurfaceArea newArea = 7.7 * pow<2>(m);
     spacecraft.set_lift_area(newArea);
-    ASSERT_EQ(spacecraft.get_lift_area(), newArea);
+    ASSERT_EQ(spacecraft.get_lift_area(state), newArea);
 }
 
 TEST_F(SpacecraftTest, SetName)
