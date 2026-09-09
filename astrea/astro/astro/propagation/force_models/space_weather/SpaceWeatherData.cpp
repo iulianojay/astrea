@@ -17,6 +17,11 @@
 namespace astrea {
 namespace astro {
 
+std::filesystem::path get_default_space_weather_data()
+{
+    return std::filesystem::path(_ASTRO_ROOT_) / "data" / "space_weather" / "SpaceWeather-All-v1.2.txt";
+}
+
 SpaceWeatherData::SpaceWeatherData(const std::filesystem::path& infile, std::optional<Date> startDate, std::optional<Date> endDate) :
     _infile(infile),
     _startDate(startDate),

@@ -77,6 +77,11 @@ struct SpaceWeatherParameters {
 };
 
 /**
+ * @brief Return the path to the default Astro space weather data file.
+ */
+[[nodiscard]] std::filesystem::path get_default_space_weather_data();
+
+/**
  * @brief Class to hold space weather data read from a file.
  *
  * This class contains a vector of SpaceWeatherParameters and provides methods to access the data.
