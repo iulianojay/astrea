@@ -22,13 +22,6 @@
 using namespace astrea;
 using namespace astro;
 
-namespace {
-std::filesystem::path space_weather_file()
-{
-    return std::string(_ASTRO_ROOT_) + "/data/space_weather/SpaceWeather-All-v1.2.txt";
-}
-} // namespace
-
 TEST(SpaceWeatherDataTest, DefaultConstructorCreatesEmptyData)
 {
     SpaceWeatherData data;
@@ -41,7 +34,7 @@ TEST(SpaceWeatherDataTest, DefaultConstructorCreatesEmptyData)
 
 TEST(SpaceWeatherDataTest, FileConstructorLoadsDataAndStoresMetadata)
 {
-    const std::filesystem::path infile = space_weather_file();
+    const std::filesystem::path infile = get_default_space_weather_data();
     SpaceWeatherData data(infile);
 
     EXPECT_FALSE(data.empty());
@@ -56,7 +49,7 @@ TEST(SpaceWeatherDataTest, FileConstructorWithDateRangeFiltersRows)
     const Date start("1957 10 10", "%Y %m %d");
     const Date end("1957 10 20", "%Y %m %d");
 
-    SpaceWeatherData data(space_weather_file(), start, end);
+    SpaceWeatherData data(get_default_space_weather_data(), start, end);
     ASSERT_FALSE(data.empty());
 
     EXPECT_TRUE(data.startDate().has_value());
@@ -72,7 +65,7 @@ TEST(SpaceWeatherDataTest, FileConstructorWithDateRangeFiltersRows)
 
 TEST(SpaceWeatherDataTest, AtThrowsWhenOutOfRange)
 {
-    SpaceWeatherData data(space_weather_file());
+    SpaceWeatherData data(get_default_space_weather_data());
     ASSERT_FALSE(data.empty());
 
     EXPECT_THROW((void)data.at(data.size()), std::out_of_range);
