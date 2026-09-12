@@ -11,6 +11,7 @@ Beyond the core principles of safety, performance was a necessary benchmark for 
   - Strongly-typed frames preventing common transformation errors
   - Extensible frame definitions supporting user-defined coordinate systems
   - Automatic, compile-time frame transformations with support for time-varying frames
+  - Automatic Frame Translations: Time-varying coordinate systems with automatic transformations
 
 * **Astrodynamics Core**
   - Multiple strongly-typed, frame-aware orbital element sets: Cartesian, Keplerian, and Modified Equinoctial
@@ -18,6 +19,8 @@ Beyond the core principles of safety, performance was a necessary benchmark for 
   - Advanced propagation algorithms supporting numerical and analytical methods
   - Custom force models with extensible equations of motion framework
   - Event detection for user-defined conditions during propagation
+  - Scheduling: User-defined events during propagation with callback support
+  - Custom Step Watchers: User-defined callbacks for monitoring and modifying propagation steps
 
 * **Coordinate Systems & Time**
   - Common frame transformations with automatic coordinate conversions
@@ -37,14 +40,12 @@ Beyond the core principles of safety, performance was a necessary benchmark for 
   - Mathematical utilities optimized for dimensional analysis
 
 * **Recent Additions**
-  - Event Detection and Scheduling: User-defined events during propagation with callback support
-  - Automatic Frame Translations: Time-varying coordinate systems with automatic transformations
-  - Custom Step Watchers: User-defined callbacks for monitoring and modifying propagation steps
   - Improved Installation: CMake packaging and cross-platform deployment
   - 6-DoF Simulation: Complete attitude dynamics with control system modeling
   - Performance Benchmarks: Google Benchmark integration with speed guarantees
   - Comprehensive Frame Transformations: Support for a wide range of celestial bodies and dynamic frames
   - Cislunar Dynamics: CR3BP propagator and synodic frame support
+  - NRLMSISE-00 Atmospheric Model: High-fidelity atmospheric density and drag modeling
 
 
 ### Examples: Type Safety & Units
