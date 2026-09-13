@@ -50,7 +50,7 @@ OrbitalElementPartials J2MeanVop::compute_dynamics(
     // Extract
     const GravParam mu     = get_mu<frames::primary.origin>();
     const auto J2          = get_j2<frames::primary.origin>();
-    const auto equitorialR = get_equitorial_radius<frames::primary.origin>();
+    const auto equatorialR = get_equatorial_radius<frames::primary.origin>();
 
     const Keplerian<frames::primary> elements = state.in_element_set<Keplerian<frames::primary>>();
     const Distance& a                         = elements.get_semimajor();
@@ -72,7 +72,7 @@ OrbitalElementPartials J2MeanVop::compute_dynamics(
     const Distance R  = r.norm();
 
     // Variables to reduce calculations
-    const auto termA = -1.5 * J2 * mu * pow<2>(equitorialR) / pow<5>(R);
+    const auto termA = -1.5 * J2 * mu * pow<2>(equatorialR) / pow<5>(R);
     const auto termB = pow<2>(z / R);
 
     // TODO: Do we want to add vehicle acceleration here? It basically invalidates these equations since you'd need the

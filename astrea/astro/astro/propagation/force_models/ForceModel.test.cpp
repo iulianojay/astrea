@@ -13,12 +13,16 @@
 
 #include <gtest/gtest.h>
 
+#include <filesystem>
+
 #include <math/operations.hpp>
 #include <units/units.hpp>
 
 #include <astro/platforms/Vehicle.hpp>
 #include <astro/propagation/force_models/ForceModel.hpp>
 #include <astro/propagation/force_models/PerturbingForce.hpp>
+#include <astro/propagation/force_models/space_weather/SpaceWeatherData.hpp>
+#include <astro/propagation/force_models/space_weather/SpaceWeatherProvider.hpp>
 #include <astro/state/State.hpp>
 #include <astro/state/orbital_elements/Cartesian.hpp>
 #include <astro/systems/system_utilities.hpp>
@@ -41,6 +45,16 @@ class DummyForce : public PerturbingForce {
     }
 
     std::unique_ptr<PerturbingForce> clone() const override { return std::make_unique<DummyForce>(*this); }
+};
+
+class ProviderAwareDummyForce : public PerturbingForce {
+  public:
+    Perturbation compute_perturbation(const State& state, const Vehicle& vehicle) const override
+    {
+        return Perturbation{ .force = { 0.0 * N }, .torque = { 0.0 * N * m } };
+    }
+
+    std::unique_ptr<PerturbingForce> clone() const override { return std::make_unique<ProviderAwareDummyForce>(*this); }
 };
 
 class ForceModelTest : public testing::Test {
@@ -103,4 +117,49 @@ TEST(ForceModelTest, GetByType)
     model.add<DummyForce>();
     auto& ptr = model.get<DummyForce>();
     EXPECT_NE(ptr.get(), nullptr);
+}
+
+TEST(ForceModelTest, ConstructWithExplicitSpaceWeatherDataPtr)
+{
+    auto data = std::make_shared<const SpaceWeatherData>();
+    ForceModel model(data);
+
+    ASSERT_NE(model.space_weather_provider(), nullptr);
+    EXPECT_EQ(model.space_weather_provider()->data(), data);
+}
+
+TEST(ForceModelTest, ConstructWithForwardedSpaceWeatherDataArgs)
+{
+    const std::filesystem::path infile = std::string(_ASTRO_ROOT_) + "/data/space_weather/SpaceWeather-All-v1.2.txt";
+    ForceModel model(std::in_place, infile);
+
+    ASSERT_NE(model.space_weather_provider(), nullptr);
+    ASSERT_NE(model.space_weather_provider()->data(), nullptr);
+    EXPECT_GT(model.space_weather_provider()->data()->size(), 0U);
+}
+
+TEST(ForceModelTest, AddForceBindsProvider)
+{
+    auto data = std::make_shared<const SpaceWeatherData>();
+    ForceModel model(data);
+
+    auto& base = model.add<ProviderAwareDummyForce>();
+    auto* ptr  = dynamic_cast<ProviderAwareDummyForce*>(base.get());
+
+    ASSERT_NE(ptr, nullptr);
+    EXPECT_EQ(ptr->get_space_weather_provider(), model.space_weather_provider());
+}
+
+TEST(ForceModelTest, CopyModelRebindsProviderOnClonedForces)
+{
+    auto data = std::make_shared<const SpaceWeatherData>();
+    ForceModel model(data);
+    model.add<ProviderAwareDummyForce>();
+
+    ForceModel copied(model);
+    auto& base = copied.get<ProviderAwareDummyForce>();
+    auto* ptr  = dynamic_cast<ProviderAwareDummyForce*>(base.get());
+
+    ASSERT_NE(ptr, nullptr);
+    EXPECT_EQ(ptr->get_space_weather_provider(), copied.space_weather_provider());
 }

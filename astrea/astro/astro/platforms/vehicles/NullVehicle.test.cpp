@@ -41,6 +41,7 @@ class NullVehicleTest : public testing::Test {
     NullVehicle nullVehicle;
     Mass customMass;
     NullVehicle customNullVehicle;
+    State state;
 };
 
 int main(int argc, char** argv)
@@ -51,20 +52,20 @@ int main(int argc, char** argv)
 
 TEST_F(NullVehicleTest, DefaultConstructor)
 {
-    ASSERT_EQ(nullVehicle.get_mass(), 1.0 * kg);
+    ASSERT_EQ(nullVehicle.get_mass(state), 1.0 * kg);
     ASSERT_EQ(nullVehicle.get_name(), "NullVehicle");
 }
 
 TEST_F(NullVehicleTest, CustomConstructor)
 {
-    ASSERT_EQ(customNullVehicle.get_mass(), customMass);
+    ASSERT_EQ(customNullVehicle.get_mass(state), customMass);
     ASSERT_EQ(customNullVehicle.get_name(), "NullVehicle");
 }
 
 TEST_F(NullVehicleTest, Clone)
 {
     NullVehicle* clonePtr = customNullVehicle.clone();
-    ASSERT_EQ(clonePtr->get_mass(), customNullVehicle.get_mass());
+    ASSERT_EQ(clonePtr->get_mass(state), customNullVehicle.get_mass(state));
     ASSERT_EQ(clonePtr->get_name(), customNullVehicle.get_name());
     delete clonePtr;
 }

@@ -36,7 +36,7 @@ struct CelestialBodyParameters {
     Date referenceDate;                         //!< Reference date for the celestial body data.
     GravParam mu;                               //!< Gravitational parameter (mu) of the celestial body.
     Mass mass;                                  //!< Mass of the celestial body.
-    Distance equitorialRadius;                  //!< Equatorial radius of the celestial body.
+    Distance equatorialRadius;                  //!< Equatorial radius of the celestial body.
     Distance polarRadius;                       //!< Polar radius of the celestial body.
     Distance crashRadius;                       //!< Crash radius of the celestial body.
     Distance sphereOfInfluence;                 //!< Sphere of influence of the celestial body.

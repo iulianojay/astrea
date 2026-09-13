@@ -17,7 +17,7 @@ All that's required to rotate between these frames is a date.
 ```cpp
 template<>
 inline auto get_dcm<icrf, j2000>(const Date& date) -> DCM<icrf, j2000> {
-    // math for to build this rotation // 
+    // math to build this rotation // 
     return dcm;
 }
 ```
@@ -32,9 +32,9 @@ DCM<icrf, j2000> dcmIcrfToJ2000 = get_dcm<icrf, j2000>(date);
 Astrea takes this further by strapping the frame system to its state vector and kinematics systems. This allows users to easily transform between frames without needing to worry about the underlying details of how the transformations are defined. For example, if a user has a state vector defined in the `icrf` frame and wants to transform it to the `j2000` frame, they can simply do:
 
 ```cpp
-CartessianVector<Distance, icrf> rIcrf = {...};
+RadiusVector<icrf> rIcrf = {...};
 // Manually rotating the vector using the DCM
-CartessianVector<Distance, j2000> rJ2000 = dcmIcrfToJ2000 * rIcrf;
+RadiusVector<j2000> rJ2000 = dcmIcrfToJ2000 * rIcrf;
 // Using the frame transformation system to automatically rotate the vector
 auto rJ2000 = rIcrf.in_frame<j2000>(date);
 ```
@@ -42,7 +42,7 @@ auto rJ2000 = rIcrf.in_frame<j2000>(date);
 The transformation capability also automatically translates between frames with different origins. For example, if a user has a state vector defined around the Earth and wants to transform it to a frame centered on the Sun, they utilize the same syntax as before:
 
 ```cpp
-CartessianVector<Distance, frames::earth::icrf> rEarth = {...};
+RadiusVector<frames::earth::icrf> rEarth = {...};
 auto rSun = rEarth.in_frame<frames::sun::icrf>(date);
 ```
 
@@ -172,7 +172,7 @@ inline constexpr DCM<my_earth_frame, gcrf> get_dcm(const Date& date)
 ```
 
 Custom origins can be defined similarly, but have more restrictions to work properly.
-A simple frame with nothing but a name is considered a complete definition, but it won't be able to connect to any of the other defined frames unless it defines a parent origin within the current system of origins.
+A simple frame with nothing but a name is considered a complete definition, but it won't be able to connect to any of the other defined frames unless it defines a parent origin within the current graph of origins.
 
 ```cpp
 inline constexpr struct my_origin final : Origin<"MyOrigin"> {
@@ -186,8 +186,9 @@ If we want this frame to use the same rotation as the previous one, we can just 
 namespace astrea {
 namespace astro {
 
+// Note: equivalence is recommended over direct equality, but both are supported
 template <IsFrame auto in_frame, IsFrame auto out_frame>
-    requires(equivalent(in_frame.axis, my_axes) && equivalent(out_frame.axis, axes::icrf)) equivalence is recommended over direct equality
+    requires(equivalent(in_frame.axis, my_axes) && equivalent(out_frame.axis, axes::icrf)) 
 inline constexpr DCM<in_frame, out_frame> get_dcm(const Date& date)
 {
     return DCM<in_frame, out_frame>::identity();
@@ -238,7 +239,7 @@ namespace astrea {
 namespace astro {
 
 template <>
-inline constexpr CartesianVector<Distance, get_parent_frame(my_origin_with_parent, axes::icrf)>
+inline constexpr RadiusVector<get_parent_frame(my_origin_with_parent, axes::icrf)>
     get_position_at<my_origin_with_parent>(const Date& date)
 {
     // Return the position of my_origin_with_parent with respect to the origin's parent at the given date.
@@ -248,23 +249,23 @@ inline constexpr CartesianVector<Distance, get_parent_frame(my_origin_with_paren
     // You can use the helper function to define the expected frame generically
     static constexpr auto parent_frame = get_parent_frame(my_origin_with_parent, axes::icrf);
 
-    // This is just an example, so we'll return a static dummy position.
-    return CartesianVector<Distance, parent_frame>{ 149597870.7 * km, 0.0 * km, 0.0 * km };
+    // This is just an example, so we'll return a constant dummy position.
+    return RadiusVector<parent_frame>{ 149597870.7 * km, 0.0 * km, 0.0 * km };
 }
 
 template <>
-inline constexpr CartesianVector<Velocity, get_parent_frame(my_origin_with_parent, axes::icrf)>
+inline constexpr VelocityVector<get_parent_frame(my_origin_with_parent, axes::icrf)>
     get_velocity_at<my_origin_with_parent>(const Date& date)
 {
     static constexpr auto parent_frame = get_parent_frame(my_origin_with_parent, axes::icrf);
-    return CartesianVector<Velocity, parent_frame>{ 0.0 * km / s, 29.78 * km / s, 0.0 * km / s };
+    return VelocityVector<parent_frame>{ 0.0 * km / s, 29.78 * km / s, 0.0 * km / s };
 }
 
 } // namespace astro
 } // namespace astrea
 ```
 
-*Note: You can defined both of these functions if you want to use your origin as a celestial body anywhere in the code. The explicit get_position_at and get_velocity_at specializations will take priority when computing the position and velocity but the first option is required to to, for example, use your origin for n-body calculations.*
+*Note: You can define both of these functions if you want to use your origin as a celestial body anywhere in the code. The explicit get_position_at and get_velocity_at specializations will take priority when computing the position and velocity but the first option is required to, for example, use your origin for n-body calculations.*
 
 Now with everything defined, your frame is fully connected to the system of frames and you can use it in any
 frame transformation or vector operation that you'd like!

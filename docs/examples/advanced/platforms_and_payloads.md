@@ -93,7 +93,7 @@ public:
         : _structuralMass(structuralMass) {}
     
     // Vehicle interface implementation
-    Mass get_mass() const override {
+    Mass get_mass(const State& state) const override {
         Mass payloadMass = calculate_total_payload_mass();
         return _structuralMass + payloadMass;
     }
@@ -136,7 +136,7 @@ satellite.attach_payload(std::move(camera));
 satellite.attach_payload(std::move(spectrometer));
 
 // System-level properties automatically updated
-Mass totalMass = satellite.get_mass(); // Includes all payloads
+Mass totalMass = satellite.get_mass(state); // Includes all payloads
 satellite.activate_all_payloads();
 ```
 

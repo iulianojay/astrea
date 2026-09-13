@@ -164,16 +164,14 @@ template <IsOrigin Origin_T>
     requires(HasSpatialOffset<Origin_T>)
 [[nodiscard]] consteval bool offset_is_zero(Origin_T origin)
 {
-    using mp_units::is_eq_zero;
-    return is_eq_zero(origin.offset.x) && is_eq_zero(origin.offset.y) && is_eq_zero(origin.offset.z);
+    return origin.offset.x == 0.0 && origin.offset.y == 0.0 && origin.offset.z == 0.0;
 }
 
 template <IsAxis Axis_T>
     requires(HasAngularOffset<Axis_T>)
 [[nodiscard]] consteval bool misalignment_is_zero(Axis_T axis)
 {
-    using mp_units::is_eq_zero;
-    return is_eq_zero(axis.misalignment.phi) && is_eq_zero(axis.misalignment.theta) && is_eq_zero(axis.misalignment.psi);
+    return axis.misalignment.phi == 0.0 && axis.misalignment.theta == 0.0 && axis.misalignment.psi == 0.0;
 }
 
 

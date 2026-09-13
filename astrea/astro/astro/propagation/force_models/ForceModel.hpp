@@ -22,11 +22,13 @@
 #include <memory>
 #include <string>
 #include <unordered_map>
+#include <utility>
 
 #include <units/units.hpp>
 
 #include <astro/astro.fwd.hpp>
 #include <astro/propagation/force_models/PerturbingForce.hpp>
+#include <astro/propagation/force_models/space_weather/SpaceWeatherProvider.hpp>
 
 namespace astrea {
 namespace astro {
@@ -42,7 +44,39 @@ class ForceModel {
     /**
      * @brief Default constructor for ForceModel.
      */
-    ForceModel() = default;
+    ForceModel();
+
+    /**
+     * @brief Construct a force model with an explicit immutable space weather snapshot.
+     *
+     * @param data Shared immutable space weather data.
+     */
+    explicit ForceModel(std::shared_ptr<const SpaceWeatherData> data);
+
+    /**
+     * @brief Construct a force model with a pre-built space weather provider.
+     *
+     * @param provider Space weather provider to share with forces.
+     */
+    explicit ForceModel(SpaceWeatherProvider provider);
+
+    /**
+     * @brief Construct a force model by moving a pre-built space weather snapshot.
+     *
+     * @param data Space weather data snapshot.
+     */
+    explicit ForceModel(SpaceWeatherData data);
+
+    /**
+     * @brief Construct a force model by forwarding args to SpaceWeatherData ctor.
+     *
+     * Example: ForceModel(std::in_place, path_to_space_weather_file)
+     */
+    template <typename... Args>
+    explicit ForceModel(std::in_place_t, Args&&... args) :
+        _spaceWeatherProvider(std::make_shared<SpaceWeatherProvider>(std::in_place, std::forward<Args>(args)...))
+    {
+    }
 
     /**
      * @brief Default destructor for ForceModel.
@@ -98,7 +132,11 @@ class ForceModel {
     const std::unique_ptr<PerturbingForce>& add(Args&&... args)
     {
         static const std::string name = typeid(T).name();
-        if (forces.count(name) == 0) { forces.emplace(name, std::make_unique<T>(std::forward<Args>(args)...)); }
+        if (forces.count(name) == 0) {
+            auto force = std::make_unique<T>(std::forward<Args>(args)...);
+            force->bind_space_weather_provider(_spaceWeatherProvider);
+            forces.emplace(name, std::move(force));
+        }
         return forces.at(name);
     }
 
@@ -119,8 +157,20 @@ class ForceModel {
     {
         using T                       = Pert<Params...>;
         static const std::string name = typeid(T).name();
-        if (forces.count(name) == 0) { forces.emplace(name, std::make_unique<T>(std::forward<Args>(args)...)); }
+        if (forces.count(name) == 0) {
+            auto force = std::make_unique<T>(std::forward<Args>(args)...);
+            force->bind_space_weather_provider(_spaceWeatherProvider);
+            forces.emplace(name, std::move(force));
+        }
         return forces.at(name);
+    }
+
+    /**
+     * @brief Access the space weather provider shared by this force model.
+     */
+    [[nodiscard]] const std::shared_ptr<const SpaceWeatherProvider>& space_weather_provider() const noexcept
+    {
+        return _spaceWeatherProvider;
     }
 
     /**
@@ -153,7 +203,29 @@ class ForceModel {
         return forces.at(name);
     }
 
+    /**
+     * @brief Sets the space weather provider for this force model and binds it to all added forces.
+     *
+     * @param provider Shared pointer to the space weather provider.
+     */
+    void set_space_weather_provider(std::shared_ptr<const SpaceWeatherProvider> provider);
+
+    /**
+     * @brief Sets the space weather provider for this force model and binds it to all added forces.
+     *
+     * @param provider Space weather provider to share with forces.
+     */
+    void set_space_weather_provider(SpaceWeatherProvider provider);
+
+    /**
+     * @brief Sets the space weather provider for this force model and binds it to all added forces.
+     *
+     * @param data Space weather data snapshot to share with forces.
+     */
+    void set_space_weather_provider(SpaceWeatherData data);
+
   private:
+    std::shared_ptr<const SpaceWeatherProvider> _spaceWeatherProvider;
     std::unordered_map<std::string, std::unique_ptr<PerturbingForce>> forces; //!< Map of force models by name
 };
 

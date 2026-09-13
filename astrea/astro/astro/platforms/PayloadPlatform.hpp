@@ -130,7 +130,7 @@ class PayloadPlatform {
      *
      * @return Mass The mass of the platform.
      */
-    virtual Mass get_mass() const { return 0.0 * mp_units::si::unit_symbols::kg; }
+    virtual Mass get_mass(const State& state) const { return 0.0 * mp_units::si::unit_symbols::kg; }
 
     /**
      * @brief Attaches a single payload to the platform.
