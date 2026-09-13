@@ -139,7 +139,7 @@ inline constexpr CelestialBodyParameters get_celestial_body_parameters<my_origin
         .referenceDate          = J2000,
         .mu                     = 3.986004418e14 * m * m * m / s / s,
         .mass                   = 5.97219e24 * kg,
-        .equitorialRadius       = 6378.137 * km,
+        .equatorialRadius       = 6378.137 * km,
         .polarRadius            = 6356.7523 * km,
         .crashRadius            = 6371.0 * km,
         .sphereOfInfluence      = 924000.0 * km,

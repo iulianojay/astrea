@@ -49,6 +49,8 @@ class Cartesian {
 
   public:
     static constexpr auto frame = _frame_; //!< The reference frame of the Cartesian state vector.
+    template <IsFrame auto F>
+    using BaseType = Cartesian<F>;
 
     /**
      * @brief Default constructor for Cartesian.

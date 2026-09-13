@@ -74,7 +74,7 @@ TEST_F(CelestialBodyTest, GetType) { ASSERT_EQ(get_body_type<planets::Earth>(), 
 
 TEST_F(CelestialBodyTest, GetMu)
 {
-    ASSERT_TRUE(math::nearly_equal(get_mu<planets::Earth>(), 398600.44189 * mp_units::pow<3>(km) / mp_units::pow<2>(s), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(get_mu<planets::Earth>(), 398600.44189 * pow<3>(km) / pow<2>(s), REL_TOL));
 }
 
 TEST_F(CelestialBodyTest, GetMass)
@@ -82,9 +82,9 @@ TEST_F(CelestialBodyTest, GetMass)
     ASSERT_TRUE(math::nearly_equal(get_mass<planets::Earth>(), Mass(5.97 * (mag_power<10, 24> * kg)), REL_TOL));
 }
 
-TEST_F(CelestialBodyTest, GetEquitorialRadius)
+TEST_F(CelestialBodyTest, GetequatorialRadius)
 {
-    ASSERT_TRUE(math::nearly_equal(get_equitorial_radius<planets::Earth>(), 6378.138 * km, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(get_equatorial_radius<planets::Earth>(), 6378.138 * km, REL_TOL));
 }
 
 TEST_F(CelestialBodyTest, GetPolarRadius)
@@ -277,8 +277,8 @@ TEST_F(CelestialBodyTest, GetKeplerianElementsAt)
 
     // Should return the orbital elements with linear approximation
     ASSERT_GT(kep.get_semimajor().numerical_value_in(km), 0.0);
-    ASSERT_GE(kep.get_eccentricity().numerical_value_in(mp_units::one), 0.0);
-    ASSERT_LT(kep.get_eccentricity().numerical_value_in(mp_units::one), 1.0);
+    ASSERT_GE(kep.get_eccentricity().numerical_value_in(one), 0.0);
+    ASSERT_LT(kep.get_eccentricity().numerical_value_in(one), 1.0);
 }
 
 inline constexpr struct DummyBody : CelestialBody<"Dummy", star::Sun> {
@@ -292,7 +292,7 @@ inline consteval CelestialBodyParameters get_celestial_body_parameters<DummyBody
              .referenceDate          = Date(J2000),
              .mu                     = GravParam(1.32712440018e11 * km * km * km / (s * s)),
              .mass                   = Mass(1.989e30 * kg),
-             .equitorialRadius       = Distance(696340.0 * km),
+             .equatorialRadius       = Distance(696340.0 * km),
              .polarRadius            = Distance(696340.0 * km),
              .crashRadius            = Distance(696340.0 * km),
              .sphereOfInfluence      = Distance(0.0 * km),
@@ -315,23 +315,6 @@ inline consteval CelestialBodyParameters get_celestial_body_parameters<DummyBody
              .meanLongitudeRate      = BodyAngularVelocity(0.0 * rad / s) };
 }
 } // namespace astrea::astro
-
-TEST_F(CelestialBodyTest, FindAtmosphericDensity)
-{
-    const Date date("2020-02-18 15:08:47.23847");
-
-    // Test Earth (has atmosphere in derived class)
-    const State state0(Keplerian<frames::earth::icrf>{ 6378.0 * km, 0.0 * one, 0.0 * rad, 0.0 * rad, 0.0 * rad, 0.0 * rad }, date);
-    const State state1(Keplerian<frames::earth::icrf>{ 6478.0 * km, 0.0 * one, 0.0 * rad, 0.0 * rad, 0.0 * rad, 0.0 * rad }, date);
-    const State state2(Keplerian<frames::earth::icrf>{ 6878.0 * km, 0.0 * one, 0.0 * rad, 0.0 * rad, 0.0 * rad, 0.0 * rad }, date);
-    ASSERT_NO_THROW(find_atmospheric_density<DummyBody>(state0));
-    ASSERT_NO_THROW(find_atmospheric_density<DummyBody>(state1));
-    ASSERT_NO_THROW(find_atmospheric_density<DummyBody>(state2));
-
-    // Base class returns zero density for most bodies
-    const auto densityAtAltitude = find_atmospheric_density<DummyBody>(state0);
-    ASSERT_EQ(densityAtAltitude.numerical_value_in(kg / (mp_units::si::unit_symbols::m * mp_units::si::unit_symbols::m * mp_units::si::unit_symbols::m)), 0.0);
-}
 
 TEST_F(CelestialBodyTest, GetPositionAt)
 {

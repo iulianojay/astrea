@@ -19,18 +19,18 @@ Astrea's type system provides dimensional safety for astrodynamics calculations 
 
 ### Physical Quantities
 
-Astrea defines aerospace-specific quantities as type aliases over mp-units:
+Astrea defines aerospace-specific quantities as type aliases over mp-units. This was done to simplify the typed interface, avoid endless template boilerplate (`quantity<[unit]>` everywhere), and to avoid accidental repeated unit transformations at runtime.
 
 ```cpp
 namespace astrea {
     // Basic quantities
-    using Distance = mp_units::quantity<detail::distance_unit>;        // kilometers
-    using Length = mp_units::quantity<detail::distance_unit>;    // meters
-    using Time = mp_units::quantity<detail::time_unit>;               // seconds
-    using Angle = mp_units::quantity<detail::angle_unit>;             // radians
+    using Distance = mp_units::quantity<detail::distance_unit>;        
+    using Length = mp_units::quantity<detail::distance_unit>;    
+    using Time = mp_units::quantity<detail::time_unit>;               
+    using Angle = mp_units::quantity<detail::angle_unit>;             
     using Velocity = mp_units::quantity<detail::distance_unit / detail::time_unit>;
-    using Mass = mp_units::quantity<detail::mass_unit>;               // kilograms
-    using Unitless = mp_units::quantity<detail::unitless>;            // dimensionless
+    using Mass = mp_units::quantity<detail::mass_unit>;              
+    using Unitless = mp_units::quantity<detail::unitless>;        
 
     // Derived astrodynamics quantities
     using GravParam = mp_units::quantity<mp_units::pow<3>(detail::distance_unit) /
@@ -49,17 +49,17 @@ namespace astrea {
 
 ### Unit System Details
 
-The underlying unit definitions use mp-units with SI base units optimized for astrodynamics:
+The underlying unit definitions use mp-units with SI base units. Capturing the units through types aliases was originally done to allow for future implementations to switch the base units at compile time. This feature hasn't been implemented yet due to the difficulty and exhaustive boilerplate required to make the rest of the codebase compatible with any unit system. 
 
 ```cpp
 namespace astrea::detail {
     // Base units optimized for aerospace calculations
-    inline constexpr auto time_unit           = mp_units::si::unit_symbols::s;     // seconds
-    inline constexpr auto distance_unit       = mp_units::si::unit_symbols::km;    // kilometers
-    inline constexpr auto distance_unit = mp_units::si::unit_symbols::m;     // meters
-    inline constexpr auto angle_unit          = mp_units::si::unit_symbols::rad; // radians
-    inline constexpr auto mass_unit           = mp_units::si::unit_symbols::kg;    // kilograms
-    inline constexpr auto unitless            = mp_units::one;                     // dimensionless
+    inline constexpr auto time_unit     = mp_units::si::unit_symbols::s;   // seconds
+    inline constexpr auto distance_unit = mp_units::si::unit_symbols::km;  // kilometers
+    inline constexpr auto distance_unit = mp_units::si::unit_symbols::m;   // meters
+    inline constexpr auto angle_unit    = mp_units::si::unit_symbols::rad; // radians
+    inline constexpr auto mass_unit     = mp_units::si::unit_symbols::kg;  // kilograms
+    inline constexpr auto unitless      = mp_units::one;                   // dimensionless
 }
 ```
 
@@ -79,8 +79,7 @@ auto invalid_calculation(Distance radius, Time time) {
 }
 
 // Automatic unit conversions where appropriate
-Distance altitude = 400.0 * astrea::detail::distance_unit;  // 400 km
-Length precise_alt = altitude;  // Automatic conversion to meters: 400,000 m
+Distance altitude = 400.0 * nmi;  // 400 nautical miles
 ```
 
 ## State Representation
@@ -92,11 +91,11 @@ In many ways, the OrbitalElements class was one of the original designs in Astre
 ```cpp
 // Base orbital elements interface
 class OrbitalElements {
-    std::variant<Keplerian, Cartesian, ...>
+    std::variant<Keplerian<frame>, Cartesian<frame>, ...>
 };
 
 // Concrete implementations
-class Keplerian {
+class Keplerian<frame> {
     Distance _semimajor;      // Semi-major axis
     Unitless _eccentricity;   // Eccentricity
     Angle _inclination;       // Inclination
@@ -112,16 +111,16 @@ public:
     Keplerian(const OrbitalElements& elements, const GravParam& mu);
 
     // Conversion from other element types
-    Keplerian(const Cartesian& elements, const GravParam& mu);
+    Keplerian(const Cartesian<frame>& elements, const GravParam& mu);
     // ... //
 };
 
-class Cartesian {
+class Cartesian<frame> {
     // Position and velocity vectors
     // ... //
 };
 
-class Equinoctial {
+class Equinoctial<frame> {
     // Modified equinoctial elements for near-circular orbits
     // ... //
 };
@@ -132,14 +131,19 @@ The difficulty in defining the OrbitalElements interface came from a few conflic
 // Instead of
 template<typename Element_T> // And everything underneath it is templated
 Element_T foo(Elemene_T) {}  // possibly decltype for outputs, etc.
-Keplerian elements = cartesian_to_keplerian(cartesian, mu)
+Keplerian<frame> elements = cartesian_to_keplerian(cartesian, mu)
 
 // We have
-OribtalElements foo(OrbitalElements) {} // And conversions between these sets is seamless
-Keplerian elements = ObrbitalElements.to_element_set<Cartesian>(mu)
+OrbitalElements foo(OrbitalElements) {} // And conversions between these sets is seamless
+Keplerian<frame> elements = OrbitalElements.to_element_set<Cartesian<frame>>(mu)
 ```
 
 The obvious drawback here is extensibility. Adding new orbital element types is no small task as it must play nice with the OrbitalElements class and be able to dispatch to all the required functions. This author believes that the drawback is work the benefits. Users typically won't need extra orbital element types and those that they might need can be added as needs arise.
+
+#### Orbital Element Set Frames
+Worth noting is that each orbital element set is defined in a specific frame. Depending on the definition on the element set, some frames do not allow for a clear unambiguous interpretation of the elements. For simplicity, and consistency, Astrea assumes all orbital element sets are equivalent to the corresponding Cartesian elements in that given frame. For example, `Keplerian<frames::earth::itrf>` does not represent some updated definition for the classical orbital elements with respect to the Earth-fixed frame, but instead represents the Keplerian elements that result from converting `Cartesian<frames::earth::itrf>` to Keplerian elements. The Cartesian elements are first-class citizens, and the other elements are reinterpretations of those positions and velocities.
+
+*Note: No specialized logic is implemented to ensure that all possible element set definitions are valid in every frame. The element set conversions are designed around standard definitions in inertial frames.*
 
 #### Orbits
 A common question is why no `Orbit` container exists or why the more verbose `OrbitalElements` was used instead. The latter was chosen speficically to avoid the ambiguities surrounding the term. Is an orbit defined around a specfic body? In a specific frame? Is an orbit a set of fixed elements or osculating ones? Is an orbit a vector of ephemerides? Are cislunar orbits "orbits" or should they be some special separate class? What about transfers?

@@ -1,6 +1,6 @@
 # Vehicles
 
-Astrea provides a comprehensive vehicle modeling system for spacecraft and other astronomical platforms. The vehicle architecture supports mass properties, aerodynamic characteristics, and coordinate frame management.
+Astrea propagates states by referencing physical information about the propagated object via the `Vehicle` class. This class is a type-erased container that provides a common interface for the integrator and related processes to access the vehicle properties. It can determine it's mass, areas, and other physical properties at any given time during the propagation based on the integration state, and it can even provide a dynamic control authority during the propagation.
 
 ## Vehicle Class
 
@@ -19,7 +19,7 @@ class Satellite {
 public:
     Satellite(Mass mass, Area ramArea) : _mass(mass), _ramArea(ramArea) {}
     
-    Mass get_mass() const { return _mass; }
+    Mass get_mass(const State& state) const { return _mass; }
     Area get_ram_area() const { return _ramArea; }
     
 private:
@@ -31,76 +31,41 @@ private:
 Mass satMass = 500.0 * kg;
 Area satArea = 2.5 * pow<2>(m);
 Satellite satellite(satMass, satArea);
+
+// Bind the satellite to a Vehicle interface
+Vehicle vehicle(satellite);
+
+// Integrate the vehicle's state over time
+const auto state = Keplerian::LEO(get_mu<planets::Earth>());
+const auto duration = 10.0 * day;
+const auto states = integrator.integrate(state, duration, vehicle);
 ```
 
-## Vehicle Concepts
+## User-Defined Vehicles (UDV)
 
-Astrea uses C++20 concepts to enforce vehicle interface requirements:
+Astrea uses C++20 concepts to enforce vehicle interface requirements. A user-defined vehicle (UDV) is any class that satisfies the `IsUserDefinedVehicle` concept. This means that the UDV must implement certain methods to, for example, provide the necessary physical properties for propagation without restricting the design of those vehicles too much.
 
-### HasGetMass Concept
+#### Required User-Defined Vehicle Methods
 
-Ensures vehicles provide mass information:
+Currently, the Vehicle only requires a `get_mass` method to be defined by the user. This method must return the mass of the vehicle at a given state.
 
 ```cpp
-template <typename T>
-concept HasGetMass = requires(T vehicle) {
-    { vehicle.get_mass() } -> std::same_as<Mass>;
-};
+Mass get_mass(const State& state) const;
 ```
 
-### HasGetRamArea Concept  
+#### Optional User-Defined Vehicle Methods
 
-Enables atmospheric drag calculations:
+The Vehicle interface, however, supports numerous optional methods that can be defined to provide additional physical properties. In general, if the UDV does not define these methods, they return default (zero) values. The following methods are optional:
 
 ```cpp
-template <typename T>
-concept HasGetRamArea = requires(T vehicle) {
-    { vehicle.get_ram_area() } -> std::same_as<Area>;
-};
+InertiaTensor<frames::dynamic::body> get_inertia_tensor(const State& state) const;
+SurfaceArea get_ram_area(const State& state) const;
+SurfaceArea get_lift_area(const State& state) const;
+SurfaceArea get_solar_area(const State& state) const;
+Unitless get_coefficient_of_drag(const State& state) const;
+Unitless get_coefficient_of_lift(const State& state) const;
+Unitless get_coefficient_of_reflectivity(const State& state) const;
+Perturbation get_control_authority(const State& state) const;
 ```
 
-## Specialized Vehicle Types
-
-The platform system supports various specialized vehicle implementations:
-
-- **Spacecraft**: Standard orbital vehicles with propulsion systems
-- **Launch vehicles**: Multi-stage vehicles with variable mass
-- **Interplanetary probes**: Long-duration mission platforms
-- **Small satellites**: CubeSat and microsatellite configurations
-
-## Vehicle Properties
-
-Vehicles can model comprehensive physical characteristics:
-
-```cpp
-class DetailedSatellite {
-public:
-    // Required mass property
-    Mass get_mass() const { return _dryMass + _propellantMass; }
-    
-    // Aerodynamic properties
-    Area get_ram_area() const { return _crossSectionalArea; }
-    
-    // Additional properties
-    Inertia get_inertia_tensor() const { return _inertiaTensor; }
-    Length get_characteristic_length() const { return _characteristicLength; }
-    
-private:
-    Mass _dryMass;
-    Mass _propellantMass;
-    Area _crossSectionalArea;
-    Inertia _inertiaTensor;
-    Length _characteristicLength;
-};
-```
-
-## Integration with Propagation
-
-Vehicle objects integrate seamlessly with orbit propagation:
-
-- Mass properties affect gravitational and thrust calculations
-- Aerodynamic properties enable atmospheric drag modeling  
-- Frame definitions ensure consistent coordinate transformations
-- Type safety prevents frame mixing errors at compile time
-
-The vehicle system provides the foundation for high-fidelity spacecraft modeling in complex space environments.
+How these methods are defined is up to the user, but it should be noted that _not_ defining these methods will functionally result in many dynamic perturbations being ignored.

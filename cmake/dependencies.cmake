@@ -49,10 +49,6 @@ if(sqlite3_amalgamation_ADDED)
     set(SQLite3_INCLUDE_DIR ${sqlite3_amalgamation_SOURCE_DIR} CACHE PATH "SQLite3 include directory" FORCE)
     set(SQLite3_LIBRARY SQLite3 CACHE STRING "SQLite3 library" FORCE)
     set(SQLite3_LIBRARIES SQLite::SQLite3 CACHE STRING "SQLite3 libraries" FORCE)
-    set(SQLite3_FOUND TRUE PARENT_SCOPE)
-    set(SQLite3_INCLUDE_DIR ${sqlite3_amalgamation_SOURCE_DIR} PARENT_SCOPE)
-    set(SQLite3_LIBRARY SQLite3 PARENT_SCOPE)
-    set(SQLite3_LIBRARIES SQLite::SQLite3 PARENT_SCOPE)
     mark_as_advanced(SQLite3_INCLUDE_DIR SQLite3_LIBRARY SQLite3_LIBRARIES)
 
     # Install and export the custom SQLite3 target for downstream usage
@@ -77,7 +73,7 @@ CPMFindPackage(
 # Units
 CPMFindPackage(
     NAME mp-units
-    VERSION 2.5.0
+    GIT_TAG master
     GITHUB_REPOSITORY mpusz/mp-units
     GIT_SHALLOW TRUE
     SOURCE_SUBDIR src
@@ -170,6 +166,18 @@ FetchContent_Declare(
     GIT_TAG 3.1.0
 )
 FetchContent_MakeAvailable(csv)
+
+# NRMLSISE00 model for atmospheric density
+CPMFindPackage(
+    NAME nrlmsise00
+    GITHUB_REPOSITORY iulianojay/nrlmsise-00
+    GIT_SHALLOW TRUE
+    GIT_TAG improvement/remove-pimpl-update-build-system
+    OPTIONS
+    "BUILD_TESTING OFF"
+    "BUILD_PYTHON OFF"
+    "DOXYGEN_FOUND OFF"
+)
 
 # Google test cause I Love massive endless macro heavy tools
 if (${BUILD_TESTS})

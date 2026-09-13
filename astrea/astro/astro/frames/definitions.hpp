@@ -4,7 +4,7 @@
  * @brief Umbrella header for all concrete frame definitions.
  *
  * Includes all body-centred inertial frames, body-fixed frames, DCM
- * specialisations, and dynamic (computed) frame tags.  Also pulls in
+ * specializations, and dynamic (computed) frame tags.  Also pulls in
  * transformations so callers get the full in_frame machinery.
  *
  * Depends on: frames/framework, astro/systems

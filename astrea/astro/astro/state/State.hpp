@@ -190,14 +190,9 @@ class State {
     template <IsOrbitalElements T>
     T in_element_set() const
     {
-        // TODO: How do we do this?
-        // if constexpr (std::is_specialization_v<_elements, Cartesian>) {
-        //     // cartesian<a> -> cartesian<b> -> set2<b>
-        //     return _elements.template in_frame<T::frame>(_epoch, get_mu()).in_element_set<T>(get_mu());
-        // }
-
-        // set1<a> -> set2<a> -> cartesian<a> -> cartesian<b> -> set2<b>
-        return _elements.in_element_set<T>(get_mu()).template in_frame<T::frame>(_epoch, get_mu());
+        using BaseInPrimary = typename T::template BaseType<frames::primary>;
+        const auto mu       = this->get_mu();
+        return _elements.in_element_set<BaseInPrimary>(mu).template in_frame<T::frame>(_epoch, mu);
     }
 
     /**

@@ -13,7 +13,7 @@
 
 /**
  * @file defined_rotations_earth.test.cpp
- * @brief Unit tests for the Earth-specific DCM specialisations (defined_rotations_earth.hpp) and
+ * @brief Unit tests for the Earth-specific DCM specializations (defined_rotations_earth.hpp) and
  *        their supporting precession/nutation/polar-motion helper functions.
  *
  * Ground-truth numbers used to validate the implementation are taken from the following published
@@ -33,6 +33,16 @@
  *       TT) as 280.46061837504 deg (= 18h 41m 50.54841s); the same value is given in USNO Circular
  *       179 (2005), Eq. 2.13. This is consistent with (and more precise than) the existing
  *       regression value in astro/time/Date.test.cpp's `GMST` test (4.89496 rad).
+ *   [4] D. Vallado, "Fundamentals of Astrodynamics and Applications," 4th ed., Example 3-3,
+ *       which uses the ECI position (-6045, -3490, 2500) km as a worked frame-conversion input.
+ *   [5] G. Petit and B. Luzum (eds.), IERS Conventions (2010), IERS Technical Note No. 36,
+ *       Chapter 5, "Transformation between the celestial and terrestrial reference systems."
+ *       Its precession-nutation, Earth-rotation, and polar-motion conventions define the ITRF
+ *       transformation used by these tests.
+ *
+ * The second Cartesian vector is a supplementary, fixed regression input selected to exercise a
+ * different quadrant and nonzero z component. It is local test data, not a published example;
+ * the IERS convention in [5] documents the frame-conversion basis for both cases.
  */
 
 #include <gtest/gtest.h>
@@ -46,6 +56,9 @@
 
 #include <astro/frames.hpp>
 #include <astro/frames/definitions/defined_rotations_earth.hpp>
+#include <astro/frames/framework/CartesianVector.hpp>
+#include <astro/state/angular_elements/Geodetic.hpp>
+#include <astro/systems/celestial_bodies.hpp>
 #include <astro/time/Date.hpp>
 
 #include <tests/utilities/comparisons.hpp>
@@ -55,6 +68,7 @@ using namespace astrea::astro;
 using namespace mp_units;
 using mp_units::si::unit_symbols::arcsec;
 using mp_units::si::unit_symbols::deg;
+using mp_units::si::unit_symbols::km;
 
 namespace {
 
@@ -194,7 +208,7 @@ TEST(GetDcmCepToItrf, SiderealRotationMatchesPublishedGmstAtJ2000)
 
     const auto [xp, yp] = get_polar_motion(Date(J2000));
     const DCM<frames::earth::cep, frames::earth::itrf> expected =
-        DCM<frames::earth::cep, frames::earth::itrf>::Z(gmstJ2000) *
+        DCM<frames::earth::cep, frames::earth::itrf>::Z(-gmstJ2000) *
         (DCM<frames::earth::itrf, frames::earth::itrf>::Y(-xp) * DCM<frames::earth::itrf, frames::earth::itrf>::X(-yp));
     const auto actual = get_dcm<frames::earth::cep, frames::earth::itrf>(Date(J2000));
     EXPECT_TRUE(nearly_equal(actual, expected, GMST_TOL, GMST_TOL));
@@ -240,6 +254,27 @@ TEST(GetDcmIcrfToEarthFixed, EqualsComposedIcrfCepAndCepItrfDcms)
         get_dcm<frames::earth::icrf, frames::earth::cep>(TEST_DATE) * get_dcm<frames::earth::cep, frames::earth::itrf>(TEST_DATE);
     const auto actual = get_dcm<frames::earth::icrf, frames::earth::earth_fixed>(TEST_DATE);
     EXPECT_TRUE(nearly_equal(actual, expected, TIGHT_TOL, TIGHT_TOL));
+}
+
+TEST(GetDcmIcrfToItrf, RotatesInertialStateToExpectedLatitudeAndLongitude)
+{
+    // Vallado's published ECI test vector: (-6045, -3490, 2500) km.
+    const RadiusVector<frames::earth::icrf> inertialPosition{ -6045.0 * km, -3490.0 * km, 2500.0 * km };
+    const auto itrfPosition = inertialPosition.in_frame<frames::earth::itrf>(TEST_DATE);
+    const auto actual       = Geodetic<planets::Earth>(itrfPosition);
+
+    EXPECT_TRUE(math::nearly_equal(actual.get_latitude(), 0.0 * deg, TIGHT_TOL)) << actual.get_latitude();
+    EXPECT_TRUE(math::nearly_equal(actual.get_longitude(), 0.0 * deg, TIGHT_TOL)) << actual.get_longitude();
+}
+
+TEST(GetDcmIcrfToItrf, RotatesAnotherInertialStateToExpectedLatitudeAndLongitude)
+{
+    const RadiusVector<frames::earth::icrf> inertialPosition{ 7000.0 * km, -1200.0 * km, 3200.0 * km };
+    const auto itrfPosition = inertialPosition.in_frame<frames::earth::itrf>(TEST_DATE);
+    const auto actual       = Geodetic<planets::Earth>(itrfPosition);
+
+    EXPECT_TRUE(math::nearly_equal(actual.get_latitude(), 0.0 * deg, TIGHT_TOL)) << actual.get_latitude();
+    EXPECT_TRUE(math::nearly_equal(actual.get_longitude(), 0.0 * deg, TIGHT_TOL)) << actual.get_longitude();
 }
 
 int main(int argc, char** argv)
