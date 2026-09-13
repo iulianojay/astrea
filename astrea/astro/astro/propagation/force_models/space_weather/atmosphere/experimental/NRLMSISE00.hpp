@@ -1,7 +1,7 @@
 /**
- * @file NRLMSISE00.hpp
+ * @file Nrlmsise00.hpp
  * @author Jay Iuliano (iuliano.jay@gmail.com)
- * @brief Header file for the NRLMSISE00 class.
+ * @brief Header file for the Nrlmsise00 class.
  * @date 2026-05-01
  *
  * @copyright Copyright (c) 2025-2026 Jay Iuliano
@@ -55,12 +55,12 @@ namespace planets {
  * @authors Pascal Parraud, 2016: Java translation (Orekit)
  * @authors Jay Iuliano, 2026: C++ translation (Astrea)
  */
-class NRLMSISE00Atmosphere {
+class Nrlmsise00Atmosphere {
   public:
     /**
      * @brief Deleted constructor — use static factory or find_atmospheric_density directly.
      */
-    NRLMSISE00Atmosphere() = delete;
+    Nrlmsise00Atmosphere() = delete;
 
     /**
      * @brief Find the atmospheric density at a given state using the NRLMSISE-00 model.

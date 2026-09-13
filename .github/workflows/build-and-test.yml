@@ -30,8 +30,8 @@ jobs:
     outputs:
       docker-changed: ${{ steps.changes.outputs.docker }}
     steps:
-    - uses: actions/checkout@v4
-    - uses: dorny/paths-filter@v2
+    - uses: actions/checkout@v7
+    - uses: dorny/paths-filter@v4
       id: changes
       with:
         filters: |
@@ -52,7 +52,7 @@ jobs:
       )
     steps:
     - name: Wait for Docker workflow
-      uses: fountainhead/action-wait-for-check@v1.1.0
+      uses: fountainhead/action-wait-for-check@v1.2.0
       id: wait-for-docker
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
@@ -86,7 +86,7 @@ jobs:
       run: |
         chmod -R u+rwX .
 
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v7
       with:
         ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.ref || github.ref }} # https://github.com/actions/checkout/discussions/1637
 
@@ -138,7 +138,7 @@ jobs:
       run: |
         chmod -R u+rwX .
 
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v7
       with:
         ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.ref || github.ref }} # https://github.com/actions/checkout/discussions/1637
 
@@ -170,7 +170,7 @@ jobs:
         echo "COVERAGE_PCT=$(cat coverage.txt)" >> "$GITHUB_ENV"
 
     - name: Create Coverage Badge
-      uses: schneegans/dynamic-badges-action@v1.8.0
+      uses: schneegans/dynamic-badges-action@v1.9.0
       with:
         auth: ${{ secrets.GIST_SECRET }}
         gistID: 238a4a61ca19471caa1e39376158d625

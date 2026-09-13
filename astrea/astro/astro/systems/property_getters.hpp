@@ -39,7 +39,7 @@
 #include <astro/types/enums.hpp>
 
 // NOTE: CoefficientPack and get_linear_expansion_coefficients must be declared BEFORE
-// including any header that pulls in celestial_bodies.hpp, because planet headers specialise
+// including any header that pulls in celestial_bodies.hpp, because planet headers specialize
 // get_linear_expansion_coefficients.  The primary template must be visible first.
 namespace astrea {
 namespace astro {
@@ -61,7 +61,7 @@ using CoefficientPack = std::tuple<
  * @brief Get the linear expansion coefficients for the celestial body's mean anomaly correction.
  *
  * Default implementation returns zero coefficients (no perturbation terms),
- * which reduces to Me = L - w.  Specialise for bodies that need it (e.g. outer planets).
+ * which reduces to Me = L - w.  Specialize for bodies that need it (e.g. outer planets).
  *
  * @return CoefficientPack A tuple containing (B, C, S, F) coefficients.
  */
@@ -120,9 +120,9 @@ inline constexpr Mass get_mass()
  * @return Distance Reference to the equatorial radius of the celestial body.
  */
 template <IsCelestialBody auto body>
-inline constexpr Distance get_equitorial_radius()
+inline constexpr Distance get_equatorial_radius()
 {
-    return get_celestial_body_parameters<body>().equitorialRadius;
+    return get_celestial_body_parameters<body>().equatorialRadius;
 };
 
 /**
@@ -543,9 +543,9 @@ inline constexpr Angle julian_date_to_body_sidereal_time(JulianDate date)
  * @brief Get the body-fixed rotating frame for a celestial body.
  *
  * Returns a Z-rotation body-fixed frame for @p body. For well-known bodies
- * (e.g. Earth) an explicit specialisation in the appropriate platform header
+ * (e.g. Earth) an explicit specialization in the appropriate platform header
  * returns the canonical named frame instance so that existing DCM
- * specialisations are reused.
+ * specializations are reused.
  *
  * @tparam body The celestial body NTTP.
  * @return A constexpr BodyFixedFrame value centred at body.

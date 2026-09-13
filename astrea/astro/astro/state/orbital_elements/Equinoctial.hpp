@@ -44,6 +44,8 @@ class Equinoctial {
 
   public:
     static constexpr auto frame = _frame_; //!< The reference frame of the Equinoctial state vector.
+    template <IsFrame auto F>
+    using BaseType = Equinoctial<F>;
 
     /**
      * @brief Constructs an Equinoctial object with default values.

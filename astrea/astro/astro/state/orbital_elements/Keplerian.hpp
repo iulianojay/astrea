@@ -47,6 +47,8 @@ class Keplerian {
 
   public:
     static constexpr auto frame = _frame_; //!< The reference frame of the Keplerian elements.
+    template <IsFrame auto F>
+    using BaseType = Keplerian<F>;
 
     /**
      * @brief Constructs a Keplerian object with default values.

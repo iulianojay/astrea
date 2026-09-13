@@ -447,7 +447,7 @@ BoresightTable AccessAnalyzer::compute_sensor_boresights(std::shared_ptr<SensorP
 std::vector<std::vector<std::size_t>>
     AccessAnalyzer::compute_candidate_ground_points(const ViewerRefVec& viewers, const SpatialIndex& spatialIndex) const
 {
-    static const Distance rEqEarth = astrea::astro::get_equitorial_radius<astro::planets::Earth>();
+    static const Distance rEqEarth = astrea::astro::get_equatorial_radius<astro::planets::Earth>();
     const std::size_t nViewers     = viewers.size();
 
     std::vector<std::vector<std::size_t>> candidates(nViewers);
@@ -594,7 +594,7 @@ bool AccessAnalyzer::is_central_body_occulting(const EcefRadiusVec& position1, c
     // Get edge angle of Earth
     const Distance atmosphereHeight =
         atmosphereBlocks ? astrea::astro::get_crash_radius<astro::planets::Earth>() : Distance::zero();
-    const Distance radiusEarthMag = astrea::astro::get_equitorial_radius<astro::planets::Earth>() + atmosphereHeight;
+    const Distance radiusEarthMag = astrea::astro::get_equatorial_radius<astro::planets::Earth>() + atmosphereHeight;
     const Angle earthLimbAngle = asin(radiusEarthMag / nadir1Mag); // Assume this is good for all angles (circular Earth) - TODO: Fix
 
     // Get angle from boresight and sat to nadir

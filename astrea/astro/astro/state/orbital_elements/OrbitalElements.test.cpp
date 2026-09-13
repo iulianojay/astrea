@@ -110,10 +110,8 @@ TEST_F(OrbitalElementsTest, ConvertToSetCartesian)
     newElements = _cartElements.convert_to_set(OrbitalElements::get_set_id<Equinoctial<frames::earth::icrf>>(), _mu);
     ASSERT_EQ(newElements.index(), OrbitalElements::get_set_id<Equinoctial<frames::earth::icrf>>());
 
-    ASSERT_NO_THROW(
-        OrbitalElements newElements =
-            static_cast<const OrbitalElements&>(_cartElements).convert_to_set<Keplerian<frames::earth::icrf>>(_mu);
-    );
+    ASSERT_NO_THROW(OrbitalElements newElements =
+                        static_cast<const OrbitalElements&>(_cartElements).convert_to_set<Keplerian<frames::earth::icrf>>(_mu););
     ASSERT_NO_THROW(
         newElements = static_cast<const OrbitalElements&>(_cartElements)
                           .convert_to_set(OrbitalElements::get_set_id<Keplerian<frames::earth::icrf>>(), _mu)
@@ -151,17 +149,15 @@ TEST_F(OrbitalElementsTest, ConvertToSetEquinoctial)
     newElements = _equiElements.convert_to_set(OrbitalElements::get_set_id<Cartesian<frames::earth::icrf>>(), _mu);
     ASSERT_EQ(newElements.index(), OrbitalElements::get_set_id<Cartesian<frames::earth::icrf>>());
 
-    ASSERT_NO_THROW(
-        OrbitalElements newElements =
-            static_cast<const OrbitalElements&>(_equiElements).convert_to_set<Cartesian<frames::earth::icrf>>(_mu);
-    );
+    ASSERT_NO_THROW(OrbitalElements newElements =
+                        static_cast<const OrbitalElements&>(_equiElements).convert_to_set<Cartesian<frames::earth::icrf>>(_mu););
     ASSERT_NO_THROW(
         newElements = static_cast<const OrbitalElements&>(_equiElements)
                           .convert_to_set(OrbitalElements::get_set_id<Cartesian<frames::earth::icrf>>(), _mu)
     );
 }
 
-TEST_F(OrbitalElementsTest, In)
+TEST_F(OrbitalElementsTest, InElementSet)
 {
     ASSERT_NO_THROW(Keplerian keplerian = _cartElements.in_element_set<Keplerian<frames::earth::icrf>>(_mu));
     ASSERT_NO_THROW(Equinoctial<frames::earth::icrf> equinoctial = _cartElements.in_element_set<Equinoctial<frames::earth::icrf>>(_mu));

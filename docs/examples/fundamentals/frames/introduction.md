@@ -10,15 +10,15 @@ fixed), and a series of pre-defined axes. Future releases may allow for complete
 
 ```cpp
 // Astrea provides definitions for many commonly used frames
-using ECI  = frames::earth::icrf;        // static
-using ECEF = frames::earth::earth_fixed; // static (in code, not in time)
-using RIC  = frames::dynamic::ric;       // dynamic
+inline constexpr auto eci  = frames::earth::icrf;        // static
+inline constexpr auto ecef = frames::earth::earth_fixed; // static (in code, not in time)
+inline constexpr auto ric  = frames::dynamic::ric;       // dynamic
 ```
 
 The CartesianVector class is a simple wrapper around a 3D vector, templated by the united-type and the frame the vector is defined in (or with respect to, depending). It also hosts several common vector operations, such as dot and cross products.
 ```cpp
 // Some length vector in ECI frame
-CartesianVector<Length, ECI> rEci{ 1.0 * m, 2.0 * m, 3.0 * m };
+CartesianVector<Length, eci> rEci{ 1.0 * m, 2.0 * m, 3.0 * m };
 
 auto rEciMag   = rEci.norm();
 auto rEciUnit  = rEci.unit();
@@ -42,8 +42,8 @@ std::cout << "rEciCross: " << rEciCross << std::endl;
 Conversions to/from a static (compile-time) frame, are handled by the `in_frame` method, templated to the frame we'd like to convert to. This frame looks for an acceptable specialization of the `get_dcm` method and uses the output direction cosine matrix to perform the vector transformation in either direction.
 ```cpp
 // Astrea provides many static frame conversions
-CartesianVector<Length, ECEF> rEcefJ2000 = rEci.in_frame<ECEF>(J2000);
-CartesianVector<Length, ECEF> rEcef = rEci.in_frame<ECEF>(J2000 + hours(12));
+CartesianVector<Length, ecef> rEcefJ2000 = rEci.in_frame<ecef>(J2000);
+CartesianVector<Length, ecef> rEcef = rEci.in_frame<ecef>(J2000 + hours(12));
 
 std::cout << std::endl << "Position in ECI: " << rEci << std::endl;
 std::cout << "Position in ECEF @ J2000: " << rEcefJ2000 << std::endl;
@@ -56,17 +56,15 @@ std::cout << "Position in ECEF @ J2000 + 12 hours: " << rEcef << std::endl;
 ```
 Implicit frame switches are not allowed, but can be forced in special circumstances
 ```cpp
-// CartesianVector<Length, ECEF> rEcefImplicit = rEci; // Compiler will fail!
-CartesianVector<Length, ECEF> rEcefForced = rEci.force_frame_conversion<ECEF>();
+// CartesianVector<Length, ecef> rEcefImplicit = rEci; // Compiler will fail!
+CartesianVector<Length, ecef> rEcefForced = rEci.force_frame_conversion<ecef>();
 ```
 Users are also able to define their own frames and associated transformations.
 ```cpp
-// Frames do not necessarily need to be fully defined to be used
-class MyFrame;
-CartesianVector<Length, MyFrame> rCustom{ 1.0 * m, 2.0 * m, 3.0 * m };
-
-// But the definition needs to be complete to use frame transformations
-// CartesianVector<Length, ECI> rEcef = rCustom.in_frame<ECI>(J2000); // Compiler will fail!
+// Frame are easy to define and can hook directly into the frame transformation system with no additional code
+constexpr inline struct my_frame : Frame<"my frame", moons::Titan, axes::j2000> {} my_frame;
+CartesianVector<Length, my_frame> rCustom{ 1.0 * m, 2.0 * m, 3.0 * m };
+auto rEci = rCustom.in_frame<eci>(J2000);
 ```
 
 For complex, time-dependent frames, such as those attached to a payload, or vehicle, the frames must be explicitly instantiated to call any vector transformations. They are not required to declare the vector type, however, transformation to/from dynamic frames are not allowed without an instance of the dynamic frame.
@@ -74,17 +72,17 @@ Dynamic frames can either be attached to an object (such as a spacecraft), or de
 
 ```cpp
 // RadiusVector<_frame_> = CartesianVector<Distance, _frame_>
-RadiusVector<RIC> rRic = { 1.0 * km, 2.0 * km, 3.0 * km };
+RadiusVector<ric> rRic = { 1.0 * km, 2.0 * km, 3.0 * km };
 
 Spacecraft frameParent;
-RIC dynamicRicFrame(&frameParent);                              // RIC frame attached to a spacecraft
-RIC instantaneousRicFrame = RIC::instantaneous(posVec, velVec); // RIC frame defined at a specific time
+ric dynamicRicFrame(&frameParent);                              // RIC frame attached to a spacecraft
+ric instRicFrame = ric::instantaneous(posVec, velVec); // RIC frame defined at a specific time
 
-// RadiusVector<ECI> rEciFromRic = rRic.in_frame<ECI>(J2000); // No RIC frame instance at compile time: compiler will fail!
-RadiusVector<ECI> rotatedrRic   = instRicFrame.rotate_out_of_this_frame(rRic, date);       // DCM * r
-RadiusVector<ECI> convertedrRic = instRicFrame.convert_from_this_frame(rRic, date);        // DCM * r + framePos
-RadiusVector<RIC> rRic2         = instRicFrame.rotate_into_this_frame(rotatedrRic, date);  // DCM^T * r
-RadiusVector<RIC> rRic3         = instRicFrame.convert_to_this_frame(convertedrRic, date); // DCM_T * (r - framePos)
+// RadiusVector<ECI> rEciFromRic = rRic.in_frame<ECI>(J2000); // No RIC frame at compile time: compiler will fail!
+RadiusVector<eci> rotatedrRic   = instRicFrame.rotate_out_of_this_frame(rRic, date); // DCM * r
+RadiusVector<eci> convertedrRic = instRicFrame.convert_from_this_frame(rRic, date);  // DCM * r + framePos
+RadiusVector<ric> rRic2         = instRicFrame.rotate_into_this_frame(rotatedrRic, date);  // DCM^T * r
+RadiusVector<ric> rRic3         = instRicFrame.convert_to_this_frame(convertedrRic, date); // DCM^T * (r - framePos)
 
 std::cout << "RIC frame parent position: " << posECI << std::endl;
 std::cout << "RIC frame parent velocity: " << velEci << std::endl;

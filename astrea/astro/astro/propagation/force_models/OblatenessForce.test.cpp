@@ -74,7 +74,7 @@ TEST_F(OblatenessForceTest, ComputeForceValladoEx85)
                                          -1.568251 * km / s, -3.702348 * km / s, -6.479485 * km / s };
     State state(cart, epoch);
     const auto [force, torque] = OblatenessForce<planets::Earth, 2, 2>().compute_perturbation(state, Vehicle(sat));
-    const AccelerationVector<frames::earth::icrf> accel = force / sat.get_mass();
+    const AccelerationVector<frames::earth::icrf> accel = force / sat.get_mass(state);
 
     // Vallado Ex. 8.5 expected results
     const AccelerationVector<frames::earth::earth_fixed> expectedEcef{ -1.151903e-6 * km / (s * s),
@@ -91,7 +91,7 @@ TEST_F(OblatenessForceTest, ComputeForceValladoEx85)
     const Acceleration expectedNorm = expected.norm();
     const Acceleration accelNorm    = accel.norm();
 
-    // These are much much closer than before, to be expected. They show abou the same size error as when comparing
+    // These are much much closer than before, to be expected. They show about the same size error as when comparing
     // to the NASA 6DoF checkcases so it's possible that there remains a small calculation error somewhere.
     ASSERT_TRUE(math::nearly_equal(accelNorm, expectedNorm, REL_TOL));
     ASSERT_TRUE(nearly_equal(accel, expected, REL_TOL));
