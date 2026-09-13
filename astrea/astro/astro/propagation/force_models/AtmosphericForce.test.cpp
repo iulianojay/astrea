@@ -41,7 +41,7 @@ class AtmosphericForceTest : public testing::Test {
   public:
     AtmosphericForceTest() :
         epoch("2020-02-18 15:08:47.23847"),
-        atmoForce()
+        atmosphericForce()
     {
     }
 
@@ -61,7 +61,7 @@ class AtmosphericForceTest : public testing::Test {
 
     Spacecraft sat;
     Date epoch;
-    AtmosphericForce<planets::Earth> atmoForce;
+    AtmosphericForce<planets::Earth> atmosphericForce;
 };
 
 
@@ -80,7 +80,7 @@ TEST_F(AtmosphericForceTest, ComputeForceValladoEx85)
     const Cartesian<frames::earth::icrf> cart{ -605.790796 * km,   -5870.230422 * km,  3493.051916 * km,
                                                -1.568251 * km / s, -3.702348 * km / s, -6.479485 * km / s };
     const State state(cart, epoch);
-    const auto [force, torque]                          = atmoForce.compute_perturbation(state, Vehicle(sat));
+    const auto [force, torque]                          = atmosphericForce.compute_perturbation(state, Vehicle(sat));
     const AccelerationVector<frames::earth::icrf> accel = force / sat.get_mass(state);
 
     const AccelerationVector<frames::earth::earth_fixed> expectedEcef{ 1.4553e-9 * km / (s * s),
@@ -103,11 +103,11 @@ TEST_F(AtmosphericForceTest, MartianAtmosphere)
     ASSERT_NO_THROW(martianAtmosphere.compute_perturbation(state, Vehicle(sat)));
 }
 
-TEST_F(AtmosphericForceTest, VenutianAtmosphere)
+TEST_F(AtmosphericForceTest, VenusianAtmosphere)
 {
-    AtmosphericForce<planets::Venus> venutianAtmosphere;
+    AtmosphericForce<planets::Venus> venusianAtmosphere;
     State state(Cartesian<frames::venus::icrf>::LEO(get_mu<planets::Venus>()), epoch);
-    ASSERT_NO_THROW(venutianAtmosphere.compute_perturbation(state, Vehicle(sat)));
+    ASSERT_NO_THROW(venusianAtmosphere.compute_perturbation(state, Vehicle(sat)));
 }
 
 TEST_F(AtmosphericForceTest, TitanAtmosphere)

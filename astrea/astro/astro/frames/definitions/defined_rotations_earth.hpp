@@ -1,7 +1,7 @@
 /**
  * @file defined_rotations_earth.hpp
  * @author Jay Iuliano (iuliano.jay@gmail.com)
- * @brief Earth-specific DCM explicit specialisations.
+ * @brief Earth-specific DCM explicit specializations.
  *
  * This file is intentionally separate from defined_rotations.hpp so that the
  * generic templates in defined_rotations.hpp can be included mid-way through
@@ -10,7 +10,7 @@
  * and body_fixed_frames.hpp have both finished.
  *
  * frames.hpp includes this file AFTER its two frame-instance headers, so by
- * the time these specialisations are compiled all earth frame types are complete.
+ * the time these specializations are compiled all earth frame types are complete.
  *
  * @copyright Copyright (c) 2025-2026 Jay Iuliano
  *
@@ -370,9 +370,9 @@ inline constexpr DirectionCosineMatrix<frames::earth::cep, frames::earth::itrf>
  * @brief DCM from any Earth-centred ICRF frame (including the canonical frames::earth::icrf)
  * to any Earth-centred body-fixed frame.
  *
- * The explicit template<> specialisation was replaced with this constrained template so that
+ * The explicit template<> specialization was replaced with this constrained template so that
  * HasDcm<earth::icrf, earth::earth_fixed> (and similar requires-expressions) can find this
- * overload.  GCC 15 does not locate explicit template<> specialisations when checking
+ * overload.  GCC 15 does not locate explicit template<> specializations when checking
  * concept requires-expressions with constrained-auto NTTP arguments.
  */
 template <IsFrame auto in_frame, IsFrame auto out_frame>

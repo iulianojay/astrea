@@ -43,7 +43,7 @@ int main()
     Spacecraft sat;
     Vehicle vehicle(sat);
 
-    // Equations of motion are the basis for dynamic progagation. This class is meant to provide a partial derivative
+    // Equations of motion are the basis for dynamic propagation. This class is meant to provide a partial derivative
     // for some given state and vehicle. Astrea provides several common EoMs, but users can create their own by
     // inheriting from the EquationsOfMotion base class.
     struct MyEquationsOfMotion : public EquationsOfMotion {

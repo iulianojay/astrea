@@ -31,7 +31,7 @@ int main()
     // existing at that State.
     //
     // The Vehicle class is designed as a type-erased container to keep this relationship as generic and flexible as
-    // possible without making it diificult for developers to understand it's behavior. Type-erasure also keeps
+    // possible without making it difficult for developers to understand it's behavior. Type-erasure also keeps
     // interfaces clean, and can hand out work to default functions and implementations. This lessens the burden on
     // users and allows arbitrarily complex systems of vehicles to be built without needing to worry about the
     // underlying implementation of the Vehicle class itself. The Vehicle class only requires users to develop a class

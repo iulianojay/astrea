@@ -13,7 +13,7 @@
 
 /**
  * @file defined_rotations_earth.test.cpp
- * @brief Unit tests for the Earth-specific DCM specialisations (defined_rotations_earth.hpp) and
+ * @brief Unit tests for the Earth-specific DCM specializations (defined_rotations_earth.hpp) and
  *        their supporting precession/nutation/polar-motion helper functions.
  *
  * Ground-truth numbers used to validate the implementation are taken from the following published

@@ -31,7 +31,7 @@ namespace helios {
 
 namespace {
 
-static const double EARTH_RADIUS_KM = get_celestial_body_parameters<planets::Earth>().equitorialRadius.numerical_value_in(km);
+static const double EARTH_RADIUS_KM = get_celestial_body_parameters<planets::Earth>().equatorialRadius.numerical_value_in(km);
 
 }
 

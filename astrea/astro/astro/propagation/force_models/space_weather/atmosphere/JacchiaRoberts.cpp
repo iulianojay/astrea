@@ -61,7 +61,7 @@ static const std::map<Altitude, std::tuple<Altitude, Density, Altitude>> JACCHIA
     { 1100.0 * km, { 1000.0 * km, 2.019e-15 * kg / (pow<3>(m)), 268.00 * km } }
 };
 
-Density JacchiaRobertsAtmosphere::find_atmospheric_density(const State& state, const Distance equitorialRadius, const Distance polarRadius)
+Density JacchiaRobertsAtmosphere::find_atmospheric_density(const State& state, const Distance equatorialRadius, const Distance polarRadius)
 {
     const auto& position                       = state.get_position_in_frame<frames::earth::earth_fixed>();
     const auto [latitude, longitude, altitude] = convert_body_fixed_to_geodetic(position);
@@ -72,10 +72,10 @@ Density JacchiaRobertsAtmosphere::find_atmospheric_density(const State& state, c
 
     const auto iter = JACCHIA_ROBERTS_ATMOSPHERE.upper_bound(altitude);
     if (iter != JACCHIA_ROBERTS_ATMOSPHERE.end()) {
-        const auto atmo   = iter->second;
-        referenceAltitude = std::get<0>(atmo);
-        referenceDensity  = std::get<1>(atmo);
-        scaleHeight       = std::get<2>(atmo);
+        const auto atmosphere = iter->second;
+        referenceAltitude     = std::get<0>(atmosphere);
+        referenceDensity      = std::get<1>(atmosphere);
+        scaleHeight           = std::get<2>(atmosphere);
     }
     else {
         referenceAltitude = 1100.0 * km;

@@ -68,7 +68,7 @@ class ConversionTest : public testing::Test {
         _ecefExp = Cartesian<frames::primary>(R, 0.0 * km, 0.0 * km, 0.0 * km / s, V, 0.0 * km / s);
 
         // Hard code vallado values to ensure tests pass
-        rEquitorial = 6378.1363 * km;
+        requatorial = 6378.1363 * km;
         rPolar      = 6356.751 * km;
     }
 
@@ -82,7 +82,7 @@ class ConversionTest : public testing::Test {
 
     // Setup
     GravParam mu = get_mu<frames::primary.origin>();
-    Distance rEquitorial;
+    Distance requatorial;
     Distance rPolar;
 
     std::random_device rd;

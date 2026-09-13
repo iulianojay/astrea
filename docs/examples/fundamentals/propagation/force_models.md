@@ -42,7 +42,7 @@ ForceModel forces;
 // Add forces using template syntax
 forces.add<AtmosphericForce>(densityModel);
 forces.add<OblatenessForce>(system, 10, 10);  // J2 through J10
-forces.add<SolarRadiationPressure>(reflectivityCoeff);
+forces.add<SolarRadiationPressure>(reflectivityCoefficient);
 
 // Compute total acceleration
 AccelerationVector<frames::earth::icrf>  totalAccel = forces.compute_acceleration(state, vehicle);
@@ -71,7 +71,7 @@ $$
 ```cpp
 AccelerationVector<frames::earth::icrf>  dragAccel = dragForce.compute_perturbation(state, satellite);
 ```
-Currently, the atmospheric force model only supports the Jaccia-Roberts 1971 density model, but future iterations will support additional models and user-defined density profiles.
+Currently, the atmospheric force model only supports the Jacchia-Roberts 1971 density model, but future iterations will support additional models and user-defined density profiles.
 
 ---
 ### Gravitational Harmonics
@@ -87,13 +87,13 @@ constexpr int maxOrder = 10;  // Include tesseral harmonics
 OblatenessForce oblatenessForce<planets::Earth, maxDegree, maxOrder>();
 ```
 
-The oblateness force computes the acceleration from the Earth's gravity field using spherical harmonic coefficients, accounting for both zonal and tesseral terms accoding to the standard formulation for gravitational potential:
+The oblateness force computes the acceleration from the Earth's gravity field using spherical harmonic coefficients, accounting for both zonal and tesseral terms according to the standard formulation for gravitational potential:
 $$
 V = \frac{\mu}{r} \sum_{n=0}^{N} \left( \frac{R_e}{r} \right)^n \sum_{m=0}^{\min(n,M)} P_{nm}(\sin(\phi)) \left( C_{nm} \cos(m\lambda) + S_{nm} \sin(m\lambda) \right)
 $$
 
 ```cpp
-AccelerationVector<frames::earth::icrf> oblatenessAccel = oblatenessForce compute_perturbation(state, vehicle);
+AccelerationVector<frames::earth::icrf> oblatenessAccel = oblatenessForce.compute_perturbation(state, vehicle);
 ```
 Currently, the oblateness force model only supports the EGM2008 gravity field, but future iterations will support additional fields and user-defined spherical harmonic coefficients. There are also stored coefficients for the Moon, Mars, Mercury, and Venus.
 
