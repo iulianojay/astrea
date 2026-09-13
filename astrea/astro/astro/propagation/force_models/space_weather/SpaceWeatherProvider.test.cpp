@@ -25,13 +25,6 @@ using namespace astro;
 
 static_assert(std::is_const_v<std::remove_reference_t<decltype(*std::declval<SpaceWeatherProvider::DataPtr>())>>, "SpaceWeatherProvider::DataPtr must point to const SpaceWeatherData");
 
-namespace {
-std::filesystem::path space_weather_file()
-{
-    return std::string(_ASTRO_ROOT_) + "/data/space_weather/SpaceWeather-All-v1.2.txt";
-}
-} // namespace
-
 TEST(SpaceWeatherProviderTest, DefaultConstructorIsEmpty)
 {
     SpaceWeatherProvider provider;
@@ -42,7 +35,7 @@ TEST(SpaceWeatherProviderTest, DefaultConstructorIsEmpty)
 
 TEST(SpaceWeatherProviderTest, ConstructFromSharedPointerPreservesIdentity)
 {
-    auto snapshot = std::make_shared<const SpaceWeatherData>(space_weather_file());
+    auto snapshot = std::make_shared<const SpaceWeatherData>(get_default_space_weather_data());
     SpaceWeatherProvider provider(snapshot);
 
     EXPECT_FALSE(provider.empty());
@@ -52,7 +45,7 @@ TEST(SpaceWeatherProviderTest, ConstructFromSharedPointerPreservesIdentity)
 
 TEST(SpaceWeatherProviderTest, ConstructFromValueCreatesSnapshot)
 {
-    SpaceWeatherData data(space_weather_file());
+    SpaceWeatherData data(get_default_space_weather_data());
     SpaceWeatherProvider provider(std::move(data));
 
     ASSERT_NE(provider.data(), nullptr);
@@ -62,7 +55,7 @@ TEST(SpaceWeatherProviderTest, ConstructFromValueCreatesSnapshot)
 
 TEST(SpaceWeatherProviderTest, InPlaceConstructorBuildsSnapshot)
 {
-    SpaceWeatherProvider provider(std::in_place, space_weather_file());
+    SpaceWeatherProvider provider(std::in_place, get_default_space_weather_data());
 
     ASSERT_NE(provider.data(), nullptr);
     EXPECT_FALSE(provider.empty());
