@@ -1,8 +1,8 @@
 /**
- * @file orbital_elements.hpp
+ * @file partials.hpp
  * @author Jay Iuliano (iuliano.jay@gmail.com)
- * @brief Utility header to include all orbital element headers
- * @date 2025-08-27
+ * @brief Header file for the partials module
+ * @date 2026-06-01
  *
  * @copyright Copyright (c) 2025-2026 Jay Iuliano
  *
@@ -18,8 +18,6 @@
  */
 #pragma once
 
-#include <astro/state/orbital_elements/Cartesian.hpp>
-#include <astro/state/orbital_elements/Equinoctial.hpp>
-#include <astro/state/orbital_elements/Keplerian.hpp>
-#include <astro/state/orbital_elements/OrbitalElements.hpp>
-#include <astro/state/orbital_elements/partials.hpp>
+#include <astro/state/orbital_elements/partials/CartesianPartial.hpp>
+#include <astro/state/orbital_elements/partials/EquinoctialPartial.hpp>
+#include <astro/state/orbital_elements/partials/KeplerianPartial.hpp>
