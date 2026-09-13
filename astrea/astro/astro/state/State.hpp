@@ -149,8 +149,8 @@ class State {
     template <IsOrbitalElements T>
     T in_element_set() const
     {
-        using BaseInPrimary = typename T::template Self<frames::primary>;
-        const auto mu       = get_mu();
+        using BaseInPrimary = typename T::template BaseType<OrbitalElements_T::frame>;
+        const auto mu       = this->get_mu();
         return _elements.in_element_set<BaseInPrimary>(mu).template in_frame<T::frame>(_epoch, mu);
     }
 

@@ -7,6 +7,7 @@ config_path := $(abspath .)
 source_path := astrea
 examples_path := examples
 arch := x86_64
+cc := gcc
 cxx := g++
 cc := gcc
 cxx_std := 26

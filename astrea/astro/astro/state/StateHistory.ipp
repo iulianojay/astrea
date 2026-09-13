@@ -30,6 +30,11 @@ namespace astro {
 template <typename State_T>
 void StateHistory<State_T>::insert(const State_T& state)
 {
+    if (_states.empty() || _states.back().get_epoch() < state.get_epoch()) {
+        _states.push_back(state);
+        return;
+    }
+
     auto iter = std::lower_bound(_states.begin(), _states.end(), state.get_epoch(), [](const State& existingState, const Date& date) {
         return existingState.get_epoch() < date;
     });

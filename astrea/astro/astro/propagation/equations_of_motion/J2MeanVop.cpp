@@ -72,7 +72,7 @@ OrbitalElementPartials J2MeanVop::compute_dynamics(
     const Distance R  = r.norm();
 
     // Variables to reduce calculations
-    const auto termA = -1.5 * J2 * mu * pow<2>(equitorialR) / pow<5>(R);
+    const auto termA = -1.5 * J2 * mu * pow<2>(equatorialR) / pow<5>(R);
     const auto termB = pow<2>(z / R);
 
     // TODO: Do we want to add vehicle acceleration here? It basically invalidates these equations since you'd need the

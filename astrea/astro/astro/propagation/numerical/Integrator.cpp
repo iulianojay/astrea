@@ -520,7 +520,7 @@ void Integrator::clear_watchers() { _stepWatchers.clear(); }
 
 void Integrator::set_abs_tol(const Unitless& absTol)
 {
-    if (is_lteq_zero(absTol)) {
+    if (absTol <= 0.0) {
         throw std::invalid_argument("Integration Error: Absolute tolerance must be positive and non-zero.");
     }
     _ABS_TOL = absTol;
@@ -528,7 +528,7 @@ void Integrator::set_abs_tol(const Unitless& absTol)
 
 void Integrator::set_rel_tol(const Unitless& relTol)
 {
-    if (is_lteq_zero(relTol)) {
+    if (relTol <= 0.0) {
         throw std::invalid_argument("Integration Error: Relative tolerance must be positive and non-zero.");
     }
     _REL_TOL = relTol;

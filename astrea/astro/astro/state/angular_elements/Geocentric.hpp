@@ -297,7 +297,7 @@ class Geocentric {
  * @brief Calculate the geocentric radius given latitude and Earth's radii.
  *
  * @param lat The latitude in radians.
- * @param rEquitorial The equatorial radius of the Earth.
+ * @param requatorial The equatorial radius of the Earth.
  * @param rPolar The polar radius of the Earth.
  * @return The geocentric radius.
  */
@@ -308,7 +308,7 @@ inline constexpr Distance calculate_geocentric_radius(const Angle& lat)
     using math::sin;
     using mp_units::pow;
 
-    static constexpr Distance a = get_equitorial_radius<body>();
+    static constexpr Distance a = get_equatorial_radius<body>();
     static constexpr Distance b = get_polar_radius<body>();
     const Unitless cosLatSq     = pow<2>(cos(lat));
     const Unitless sinLatSq     = pow<2>(sin(lat));
@@ -319,7 +319,7 @@ inline constexpr Distance calculate_geocentric_radius(const Angle& lat)
  * @brief Convert a vector from ECEF (Earth-Centered Earth-Fixed) to LLA (Latitude, Longitude, Altitude) coordinates.
  *
  * @param rEcef The radius vector in ECEF coordinates.
- * @param rEquitorial The equatorial radius of the Earth.
+ * @param requatorial The equatorial radius of the Earth.
  * @param rPolar The polar radius of the Earth.
  * @return The latitude, longitude, and altitude as a tuple.
  */
