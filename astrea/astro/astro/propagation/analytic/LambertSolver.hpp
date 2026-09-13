@@ -83,7 +83,6 @@ class LambertSolver {
      * @brief Result structure for optimal Lambert solutions.
      */
     template <IsFrame auto _frame_>
-
     struct Solution {
         Time tof;                   //!< Time of flight for the transfer
         VelocityVector<_frame_> v0; //!< Initial velocity vector at r0
@@ -345,13 +344,13 @@ class LambertSolver {
      * returns the requested branch. The caller must supply a time of flight that exceeds the
      * minimum possible multi-rev TOF (i.e. dt > T_min(N)), otherwise a std::runtime_error is thrown.
      *
-     * @param r0        The initial position of the spacecraft.
-     * @param rf        The final position of the spacecraft.
-     * @param dt        The desired time of flight.
-     * @param mu        The gravitational parameter of the central body.
+     * @param r0 The initial position of the spacecraft.
+     * @param rf The final position of the spacecraft.
+     * @param dt The desired time of flight.
+     * @param mu The gravitational parameter of the central body.
      * @param direction The direction of the orbit (prograde or retrograde).
-     * @param N         The number of complete revolutions (must be ≥ 1).
-     * @param branch    Which of the two solutions to return (LEFT or RIGHT).
+     * @param nRevolutions The number of complete revolutions (must be ≥ 1).
+     * @param branch Which of the two solutions to return (LEFT or RIGHT).
      * @return A pair of velocity vectors (initial and final) for the spacecraft.
      *
      * @note:
@@ -381,7 +380,7 @@ class LambertSolver {
         const Time& dt,
         const GravParam& mu,
         const OrbitDirection& direction,
-        unsigned N,
+        unsigned nRevolutions,
         const MultiRevBranch& branch
     )
     {
@@ -391,7 +390,7 @@ class LambertSolver {
         using mp_units::si::unit_symbols::km;
         using mp_units::si::unit_symbols::rad;
 
-        if (N == 0) { throw std::invalid_argument("LambertSolver: N must be >= 1 for multi-rev solve"); }
+        if (nRevolutions == 0) { throw std::invalid_argument("LambertSolver: N must be >= 1 for multi-rev solve"); }
 
         const Distance R0 = r0.norm();
         const Distance Rf = rf.norm();
@@ -416,20 +415,20 @@ class LambertSolver {
         const Unitless lambdaSq = lambda * lambda;
 
         // Normalised TOF and its first two derivatives w.r.t. x (Gooding 1990, Eqs 16–18)
-        const Unitless NN = static_cast<double>(N) * one;
+        const Unitless nRevs = static_cast<double>(nRevolutions) * one;
 
-        auto T = [&](Unitless x) -> Unitless {
+        auto tof = [&](Unitless x) -> Unitless {
             const Unitless sig = sqrt(1.0 * one - lambdaSq * x * x);
-            return (NN * std::numbers::pi + atan2(sig, x) / rad - lambda * x * sig) / (1.0 - x * x);
+            return (nRevs * std::numbers::pi + atan2(sig, x) / rad - lambda * x * sig) / (1.0 - x * x);
         };
 
-        auto dT = [&](Unitless x, Unitless Tx) -> Unitless {
+        auto tofPartial = [&](Unitless x, Unitless Tx) -> Unitless {
             const Unitless sig  = sqrt(1.0 * one - lambdaSq * x * x);
             const Unitless sig3 = sig * sig * sig;
             return (3.0 * x * Tx - lambda * (lambdaSq * x * x + 2.0 * sig * sig) / sig3) / (1.0 - x * x);
         };
 
-        auto d2T = [&](Unitless x, Unitless Tx, Unitless dTx) -> Unitless {
+        auto tofSecondPartial = [&](Unitless x, Unitless Tx, Unitless dTx) -> Unitless {
             const Unitless sig2 = 1.0 * one - lambdaSq * x * x;
             return (5.0 * x * dTx + (3.0 - 4.0 * lambdaSq * x * x / sig2) * Tx) / (1.0 - x * x);
         };
@@ -437,17 +436,17 @@ class LambertSolver {
         // Find x* = argmin T(x) via Newton iterations on dT/dx = 0
         Unitless xStar = 0.0;
         for (unsigned k = 0; k < 50; ++k) {
-            const Unitless Tv   = T(xStar);
-            const Unitless dTv  = dT(xStar, Tv);
-            const Unitless d2Tv = d2T(xStar, Tv, dTv);
+            const Unitless Tv   = tof(xStar);
+            const Unitless dTv  = tofPartial(xStar, Tv);
+            const Unitless d2Tv = tofSecondPartial(xStar, Tv, dTv);
             if (abs(d2Tv) < 1e-30 * one) { break; }
             const Unitless step = -dTv / d2Tv;
             xStar               = math::clamp(xStar + step, -1.0 * one + clampTol, 1.0 * one - clampTol);
             if (abs(step) < itTol) { break; }
         }
 
-        if (tau < T(xStar)) {
-            throw std::runtime_error("LambertSolver: time of flight is below the multi-rev minimum for N=" + std::to_string(N));
+        if (tau < tof(xStar)) {
+            throw std::runtime_error("LambertSolver: time of flight is below the multi-rev minimum for N=" + std::to_string(nRevolutions));
         }
 
         // Initial guess on chosen branch
@@ -460,10 +459,10 @@ class LambertSolver {
         unsigned it = 0;
         while (true) {
             // Halley: δ = −F / (dT − F·d²T / (2·dT))
-            const Unitless Tv   = T(x);
-            const Unitless dTv  = dT(x, Tv);
+            const Unitless Tv   = tof(x);
+            const Unitless dTv  = tofPartial(x, Tv);
             const Unitless F    = Tv - tau;
-            const Unitless step = -F / (dTv - 0.5 * F * d2T(x, Tv, dTv) / dTv);
+            const Unitless step = -F / (dTv - 0.5 * F * tofSecondPartial(x, Tv, dTv) / dTv);
 
             x = math::clamp(x + step, (-1.0 + clampTol) * one, (1.0 - clampTol) * one);
 
