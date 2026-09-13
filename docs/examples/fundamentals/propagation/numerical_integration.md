@@ -1,5 +1,3 @@
-[[PLACEHOLDER]]
-
 # Numerical Integration
 
 ## Overview
@@ -13,227 +11,129 @@ Astrea provides a specialized numerical integrator designed specifically for ast
 
 Although this approach may require more explicit configuration compared to other libraries, it ensures computational integrity and provides greater control over the integration process.
 
-## Basic Integration Example
+At core, propagation is about predicting the future state of a system based on its current state and the forces acting upon it. In astrodynamics, this involves integrating some equations of motion over time. Exactly which model to use depends on the problem and can vary greatly between use cases. A user may need only a simple J2 for long-term revisit analysis. Another may need the bleeding-edge accuracy to use in orbit determination. Some users may want to use a simple two-body model for the dynamics, but want full kinematic perturbations.
 
-### Initial Setup
+The goal of Astrea's numerical integrator is to provide a flexible and extensible framework that allows users to define their own equations of motion, force models, and state representations while maintaining a consistent interface for propagation.
 
-The following example demonstrates the fundamental workflow for numerical integration in Astrea:
+## Setup
 
-## State Definition
-
+#### State Definition
+The state is meant to encompass everything that is needed to completely define a dynamic object. As of now, this includes the epoch, the orbital elements, and an optional attitude. A design is currently being worked on to arbitrarily extend this definition for any arbitrary user-defined state representation. 
 ```cpp
-const Date epoch;        // Defaults to J2000
-const Keplerian elements(10000.0 * km, 0.0 * one, 45.0 * deg, 0.0 * deg, 0.0 * deg, 0.0 * deg);
+const Date epoch("2028-06-23 12:10:45.000");
+const Keplerian orbit0(
+    10000.0 * km, // semi-major axis
+    0.0 * one,    // eccentricity
+    45.0 * deg,   // inclination
+    0.0 * deg,    // right ascension of ascending node
+    0.0 * deg,    // argument of periapsis
+    0.0 * deg     // true anomaly
+);
+const OrbitalElements elements(orbit0); // Generic container
 const State state0(elements, epoch);
 ```
 
+#### Vehicles
 Astrea uses a type-erased Vehicle class to propagate states. This keeps the interface more static while allowing for more flexibility and extensibility for users.
 
-## Vehicles
 ```cpp
 Spacecraft sat; // This can be replaced with a user's custom type
 Vehicle vehicle(sat);
 ```
 
-## Force Models
+#### Force Models
+The `ForceModel` class is a factory for building a collection of forces that can be applied to the propagation. Users can add their own perturbations to the propagation by inheriting from the base `PerturbingForce` class and adding it to the `ForceModel`. The following is an example of how to build a force model with atmospheric drag and 10x10 Oblateness.
 ```cpp
 // Build a force model
 ForceModel forces;
-forces.add<AtmosphericForce>();
+forces.add<AtmosphericForce, planets::Earth, EarthAtmosphereModel::JACCHIA_ROBERTS>();
 forces.add<OblatenessForce, planets::Earth, 10, 10>();
 // forces.add<UserDefinedForce>(...); // Users can add their own perturbations to the propagation
 ```
 
-## Equations of Motion
-Build EoMs - these can be selected from pre-built options, or users can create their own by inheriting from the base EquationsOfMotion class. Note that a force or perturbation model is not required.
+The force model also holds and distributes space weather data to the forces via the `SpaceWeatherProvider` interface. Users can provide their own space weather data files or use the default one provided by Astrea. The data can be specified directly through the `SpaceWeatherData` class, or the machinery will forward the construction arguments as needed.
+```cpp
+// Build the data directly
+SpaceWeatherData spaceWeatherData("path/to/space_weather_data_file.txt");
+SpaceWeatherProvider spaceWeatherProvider(spaceWeatherData);
+forces.set_space_weather_provider(spaceWeatherProvider);
+
+// Or just let the provider do it
+SpaceWeatherProvider spaceWeatherProvider("path/to/space_weather_data_file.txt");
+forces.set_space_weather_provider(spaceWeatherProvider);
+```
+This indirection is meant to allow future updates to Astrea to support hot-swapping of space weather data during propagation, as well as the ability to use different space weather data for different forces.
+
+#### Equations of Motion
+Equations of motion are the mathematical representation of how a system evolves over time. Astrea provides several built-in equations of motion, and users can define their own by inheriting from the base `EquationsOfMotion` class. These follow the same strong-typing as the various orbital element representations and require a specific orbital-element partial derivative type as their output. For example, the `TwoBody` equations of motion take in a `Cartesian` state and output a `CartesianPartial`. The integrator manages the conversions to make sure the math behind the propagation stays consistent. 
 
 ```cpp
 TwoBody twoBodyEom;                       // No forces
 J2MeanVop j2MeanEom;                      // Forces assumed
 CowellsMethod cowellsEom(forces);         // Regular force model
 KeplerianVop keplerianEom(forces, false); // Input options for rounding errors
+EquinoctialVop equinoctialEom(forces);    // Fast, and stable
 ```
 
-## The Numerical Integrator
-Propagation is done using a RKF78 method with a variable step size by default. This can be changed using the integrator setters.
+#### The Numerical Integrator
+The `Integrator` class takes all of the inputs we've discussed here and propagates them through time. It is stateful and owns the equations of motion, but it has been tested to work in multi-threaded environments. 
+
+Options for the integrator can be set on construction, or modified later, but, since the integrator is stateful, it generally can't be made constant.
 ```cpp
-Integrator integrator;
-integrator.set_abs_tol(1.0e-10);
-integrator.set_rel_tol(1.0e-10);
+Integrator integrator({
+    .absTol=1.0e-10,
+    .relTol=1.0e-10,
+    // other options // 
+    .equationsOfMotion=eoms
+});
 ```
 
-## Propagation
-Propagation is done with the element representation that the equations of motion expect. This is to avoid unnecessary conversions
+Propagation can be set for a duration or to a specific epoch. 
 ```cpp
-during the integration process.
-bool store = true; // Users can choose to store the state history during propagation, or not
-
-std::cout << "Propagating...";
-const StateHistory twoBodyHistory = integrator.propagate(state0, minutes(1), twoBodyEom, vehicle, store);
-std::cout << " Two Body Propagation Complete." << std::endl;
-vehicle = Vehicle(sat); // reset the vehicle
-
-std::cout << "Propagating...";
-const StateHistory j2MeanHistory = integrator.propagate(state0, minutes(1), j2MeanEom, vehicle, store);
-std::cout << " J2 Mean Propagation Complete." << std::endl;
-vehicle = Vehicle(sat);
-
-std::cout << "Propagating...";
-const StateHistory cowellsHistory = integrator.propagate(state0, minutes(1), cowellsEom, vehicle, store);
-std::cout << " Cowell's Method Propagation Complete." << std::endl;
-vehicle = Vehicle(sat);
-
-std::cout << "Propagating...";
-const StateHistory keplerianHistory = integrator.propagate(state0, minutes(1), keplerianEom, vehicle, store);
-std::cout << " Keplerian VoP Propagation Complete." << std::endl << std::endl;
-
-std::cout << "Func Evals: " << integrator.n_func_evals() << std::endl;
-std::cout << "Two-Body Final State: " << twoBodyHistory.last() << std::endl;
-std::cout << "J2-Mean Final State: " << j2MeanHistory.last() << std::endl;
-std::cout << "Cowell's Method Final State: " << cowellsHistory.last() << std::endl;
-std::cout << "Keplerian VOP Final State: " << keplerianHistory.last() << std::endl;
-
-/* Outputs
-Propagating... Two Body Propagation Complete.
-Propagating... J2 Mean Propagation Complete.
-Propagating... Cowell's Method Propagation Complete.
-Propagating... Keplerian VoP Propagation Complete.
-
-Func Evals: 7
-Two-Body Final State: 2000-01-01 12:01:00.000, [9992.83 km, 267.794 km, 267.794 km, -0.239103 km/s, 4.4611 km/s, 4.4611 km/s] (Cartesian)
-J2-Mean Final State: 2000-01-01 12:01:00.000, [10000 km, 0, 0.785398 rad, -7.27284e-12 rad, 5.14268e-12 rad, 0.0378809 rad] (Keplerian)
-Cowell's Method Final State: 2000-01-01 12:01:00.000, [9992.83 km, 267.794 km, 267.794 km, -0.239103 km/s, 4.4611 km/s, 4.4611 km/s] (Cartesian)
-Keplerian VOP Final State: 2000-01-01 12:01:00.000, [10000 km, 0, 0.785398 rad, 0 rad, 0 rad, 0.0378809 rad] (Keplerian)
-*/
+auto history = integrator.propagate(state0, propTime, vehicle);
+auto history = integrator.propagate(state0, endEpoch, vehicle);
+```
+Propagation can be variable step, for speed, or fixed step if users want to control the output. 
+```cpp
+integrator.set_fixed_step(10.0 * sec);
 ```
 
-### Vehicle Configuration
+The integrator will return a `StateHistory` object that contains the propagated states at each time step. If faster propagation is desired, the integrator will only return the final `State` when calling the `propagate_no_storage` methods. These explicit methods were chosen over settings to avoid confusion about what is being returned. 
+```cpp
+auto finalState = integrator.propagate_no_storage(state0, propTime, vehicle);
+auto finalState = integrator.propagate_no_storage(state0, endEpoch, vehicle);
+```
+
+#### Event Handling
+Astrea's integrator supports event handling, allowing users to define specific conditions that trigger events during propagation. Events can be used for simple detection, or to stop a bad run early, but they can also be used to send instructions to the vehicle, or to update the integration `State` directly. This can be a nice way to modify the propagation without introducing a complex control law in the loop. Users can define their own events by inheriting from the base `Event` class and implementing the required methods. The integrator will check for events at each time step and handle them accordingly.
 
 ```cpp
-// Astrea uses a type-erased Vehicle class for flexible state propagation
-// This design maintains a stable interface while supporting extensibility
-Spacecraft sat;              // Default spacecraft (can be user-defined)
-Vehicle vehicle(sat);
+Event someEvent(SpecificEventClass); // The Event is type-erased, similar to the Vehicle class
+integrator.add_event(someEvent);
 ```
 
-### Force Model Definition
+Events are currently only checked between successful integration steps. There is currently no mechanisms in place to iterate over steps to converge on event times, nor is there any logic to hand events that occur multiple times in a single step. This is a known limitation and will be addressed in future releases.
+
+Because of this limitation, events can trigger slightly after the event has occurred. The best way to bypass this issue at the moment is to simple use a fixed-step integration, or to the `Schedule`. 
+
+#### Scheduling
+The `Schedule` class allows users to trigger events at exact times during the propagation. This is useful for scenarios where specific actions need to be taken at predetermined times, such as maneuver execution or data collection. Users can define a schedule by specifying the times and corresponding events.
 
 ```cpp
-// Construct the perturbation force model
-ForceModel forces;
-forces.add<AtmosphericForce>();                    // Atmospheric drag
-forces.add<OblatenessForce>(sys, 10, 10);         // J2-J10 oblateness terms
-// forces.add<UserDefinedForce>(...);              // Custom perturbations
+Schedule schedule;
+schedule.add_event(epoch + 1.0 * h, startCollectionEvent); 
+schedule.add_event(epoch + 2.0 * h, endCollectionEvent); 
+schedule.add_event(epoch + 2.0 * h, turnThrustersOnEvent);
+schedule.add_event(epoch + 4.0 * h, turnThrustersOffEvent); 
+integrator.set_schedule(schedule);
 ```
 
-### Equations of Motion
+The schedule will tell the integrator to propagate n times, once between each event, and then stop, trigger each event at that time, and then continue to the next event or the end of the propagation. This allows for precise control over the propagation process and ensures that events are handled at the correct times.
 
-Astrea supports multiple equation formulations, each optimized for different scenarios:
+#### Step Watchers
+Step watchers allow users to monitor the integration process at each step. This can be useful for logging, debugging, or implementing custom behaviors based on the current state of the integrator.
 
 ```cpp
-// Available equation types:
-TwoBody twoBodyEom;                                // Keplerian motion only
-J2MeanVop j2MeanEom;                              // Mean element variation
-CowellsMethod cowellsEom(forces);                 // Cartesian integration
-KeplerianVop keplerianEom(forces, false);         // Keplerian elements with VoP
+StepWatcher someWatcher(SpecificStepWatcherClass); // The StepWatcher is type-erased, similar to the Vehicle class
+integrator.add_step_watcher(someWatcher);
 ```
-
-### Integration Configuration
-
-```cpp
-// Configure the integrator (default: RKF78 with adaptive step size)
-Integrator integrator;
-integrator.set_abs_tol(1.0e-10);                 // Absolute tolerance
-integrator.set_rel_tol(1.0e-10);                 // Relative tolerance
-
-bool store = true;                                // Enable state history storage
-```
-
-## Propagation Execution
-
-### Multiple Integration Methods
-
-The following demonstrates propagation using different equation formulations:
-
-```cpp
-// Two-Body propagation
-std::cout << "Executing two-body propagation..." << std::endl;
-const StateHistory twoBodyHistory = integrator.propagate(
-    state0, minutes(1), twoBodyEom, vehicle, store);
-std::cout << "Two-body propagation complete." << std::endl;
-
-// Reset vehicle for next propagation
-vehicle = Vehicle(sat);
-
-// J2 Mean Element propagation
-std::cout << "Executing J2 mean element propagation..." << std::endl;
-const StateHistory j2MeanHistory = integrator.propagate(
-    state0, minutes(1), j2MeanEom, vehicle, store);
-std::cout << "J2 mean element propagation complete." << std::endl;
-vehicle = Vehicle(sat);
-
-// Cowell's method propagation
-std::cout << "Executing Cowell's method propagation..." << std::endl;
-const StateHistory cowellsHistory = integrator.propagate(
-    state0, minutes(1), cowellsEom, vehicle, store);
-std::cout << "Cowell's method propagation complete." << std::endl;
-vehicle = Vehicle(sat);
-
-// Keplerian Variation of Parameters
-std::cout << "Executing Keplerian VoP propagation..." << std::endl;
-const StateHistory keplerianHistory = integrator.propagate(
-    state0, minutes(1), keplerianEom, vehicle, store);
-std::cout << "Keplerian VoP propagation complete." << std::endl;
-```
-
-### Results Analysis
-
-```cpp
-// Display integration statistics and final states
-std::cout << "\n=== Integration Results ===" << std::endl;
-std::cout << "Function evaluations: " << integrator.n_func_evals() << std::endl;
-std::cout << "\nFinal States:" << std::endl;
-std::cout << "Two-Body:       " << twoBodyHistory.last() << std::endl;
-std::cout << "J2-Mean:        " << j2MeanHistory.last() << std::endl;
-std::cout << "Cowell's:       " << cowellsHistory.last() << std::endl;
-std::cout << "Keplerian VoP:  " << keplerianHistory.last() << std::endl;
-```
-
-## Expected Output
-
-When executed, the program produces the following results:
-
-```
-Executing two-body propagation...
-Two-body propagation complete.
-Executing J2 mean element propagation...
-J2 mean element propagation complete.
-Executing Cowell's method propagation...
-Cowell's method propagation complete.
-Executing Keplerian VoP propagation...
-Keplerian VoP propagation complete.
-
-=== Integration Results ===
-Function evaluations: 7
-
-Final States:
-Two-Body:       2000-01-01 12:01:00.000, [9992.83 km, 267.794 km, 267.794 km, -0.239103 km/s, 4.4611 km/s, 4.4611 km/s] (Cartesian)
-J2-Mean:        2000-01-01 12:01:00.000, [10000 km, 0, 0.785398 rad, -7.27284e-12 rad, 5.14268e-12 rad, 0.0378809 rad] (Keplerian)
-Cowell's:       2000-01-01 12:01:00.000, [9992.83 km, 267.794 km, 267.794 km, -0.239103 km/s, 4.4611 km/s, 4.4611 km/s] (Cartesian)
-Keplerian VoP:  2000-01-01 12:01:00.000, [10000 km, 0, 0.785398 rad, 0 rad, 0 rad, 0.0378809 rad] (Keplerian)
-```
-
-## Key Features
-
-### Type Safety
-All operations maintain dimensional consistency through Astrea's type system, preventing common integration errors related to unit mismatches.
-
-### Integration Methods
-The example demonstrates four different approaches to orbital propagation:
-- **Two-Body**: Pure Keplerian motion
-- **J2-Mean**: Mean element theory with secular J2 effects
-- **Cowell's Method**: Direct integration of perturbed Cartesian equations
-- **Keplerian VoP**: Variation of Parameters in Keplerian elements
-
-### Performance
-The low function evaluation count (7) demonstrates the efficiency of the adaptive step-size algorithm for this short-duration propagation.
