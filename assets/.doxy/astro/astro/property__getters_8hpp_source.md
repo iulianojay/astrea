@@ -30,7 +30,7 @@
 #include <astro/types/enums.hpp>
 
 // NOTE: CoefficientPack and get_linear_expansion_coefficients must be declared BEFORE
-// including any header that pulls in celestial_bodies.hpp, because planet headers specialise
+// including any header that pulls in celestial_bodies.hpp, because planet headers specialize
 // get_linear_expansion_coefficients.  The primary template must be visible first.
 namespace astrea {
 namespace astro {
@@ -73,9 +73,9 @@ inline constexpr Mass get_mass()
 };
 
 template <IsCelestialBody auto body>
-inline constexpr Distance get_equitorial_radius()
+inline constexpr Distance get_equatorial_radius()
 {
-    return get_celestial_body_parameters<body>().equitorialRadius;
+    return get_celestial_body_parameters<body>().equatorialRadius;
 };
 
 template <IsCelestialBody auto body>

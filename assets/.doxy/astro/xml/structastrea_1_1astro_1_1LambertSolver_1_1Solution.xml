@@ -24,7 +24,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/propagation/analytic/LambertSolver.hpp" line="88" column="14" bodyfile="astrea/astro/astro/propagation/analytic/LambertSolver.hpp" bodystart="88" bodyend="-1"/>
+        <location file="astrea/astro/astro/propagation/analytic/LambertSolver.hpp" line="87" column="14" bodyfile="astrea/astro/astro/propagation/analytic/LambertSolver.hpp" bodystart="87" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structastrea_1_1astro_1_1LambertSolver_1_1Solution_1af2ce8ade01d9217936534a49ae07c501" prot="public" static="no" mutable="no">
         <type><ref refid="typedefs_8hpp_1a7d8b9c68f2d8d343d45e1bf14b6bfb18" kindref="member">VelocityVector</ref>&lt; _frame_ &gt;</type>
@@ -39,7 +39,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/propagation/analytic/LambertSolver.hpp" line="89" column="24" bodyfile="astrea/astro/astro/propagation/analytic/LambertSolver.hpp" bodystart="89" bodyend="-1"/>
+        <location file="astrea/astro/astro/propagation/analytic/LambertSolver.hpp" line="88" column="24" bodyfile="astrea/astro/astro/propagation/analytic/LambertSolver.hpp" bodystart="88" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structastrea_1_1astro_1_1LambertSolver_1_1Solution_1a49dd93828fc3419e916b2071119014b7" prot="public" static="no" mutable="no">
         <type><ref refid="typedefs_8hpp_1a7d8b9c68f2d8d343d45e1bf14b6bfb18" kindref="member">VelocityVector</ref>&lt; _frame_ &gt;</type>
@@ -54,7 +54,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/propagation/analytic/LambertSolver.hpp" line="90" column="24" bodyfile="astrea/astro/astro/propagation/analytic/LambertSolver.hpp" bodystart="90" bodyend="-1"/>
+        <location file="astrea/astro/astro/propagation/analytic/LambertSolver.hpp" line="89" column="24" bodyfile="astrea/astro/astro/propagation/analytic/LambertSolver.hpp" bodystart="89" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
@@ -83,7 +83,7 @@
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="astrea/astro/astro/propagation/analytic/LambertSolver.hpp" line="87" column="5" bodyfile="astrea/astro/astro/propagation/analytic/LambertSolver.hpp" bodystart="87" bodyend="91"/>
+    <location file="astrea/astro/astro/propagation/analytic/LambertSolver.hpp" line="86" column="5" bodyfile="astrea/astro/astro/propagation/analytic/LambertSolver.hpp" bodystart="86" bodyend="90"/>
     <listofallmembers>
       <member refid="structastrea_1_1astro_1_1LambertSolver_1_1Solution_1a0b6dcf7cf8d64af320e33e063bd790c7" prot="public" virt="non-virtual"><scope>astrea::astro::LambertSolver::Solution</scope><name>tof</name></member>
       <member refid="structastrea_1_1astro_1_1LambertSolver_1_1Solution_1af2ce8ade01d9217936534a49ae07c501" prot="public" virt="non-virtual"><scope>astrea::astro::LambertSolver::Solution</scope><name>v0</name></member>

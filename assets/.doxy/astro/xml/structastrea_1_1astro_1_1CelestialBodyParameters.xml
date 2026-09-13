@@ -64,12 +64,12 @@
         </inbodydescription>
         <location file="astrea/astro/astro/systems/CelestialBodyParameters.hpp" line="38" column="10" bodyfile="astrea/astro/astro/systems/CelestialBodyParameters.hpp" bodystart="38" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="structastrea_1_1astro_1_1CelestialBodyParameters_1a0bef6cc5b473f81927a24783cbcab49f" prot="public" static="no" mutable="no">
+      <memberdef kind="variable" id="structastrea_1_1astro_1_1CelestialBodyParameters_1acfe3bcdf76a2fe5ad4a152d2712e7f9f" prot="public" static="no" mutable="no">
         <type>Distance</type>
-        <definition>Distance astrea::astro::CelestialBodyParameters::equitorialRadius</definition>
+        <definition>Distance astrea::astro::CelestialBodyParameters::equatorialRadius</definition>
         <argsstring></argsstring>
-        <name>equitorialRadius</name>
-        <qualifiedname>astrea::astro::CelestialBodyParameters::equitorialRadius</qualifiedname>
+        <name>equatorialRadius</name>
+        <qualifiedname>astrea::astro::CelestialBodyParameters::equatorialRadius</qualifiedname>
         <briefdescription>
 <para>Equatorial radius of the celestial body. </para>
         </briefdescription>
@@ -421,7 +421,7 @@
       <member refid="structastrea_1_1astro_1_1CelestialBodyParameters_1a927b76ac013d70d3a9592b06a6cf7507" prot="public" virt="non-virtual"><scope>astrea::astro::CelestialBodyParameters</scope><name>crashRadius</name></member>
       <member refid="structastrea_1_1astro_1_1CelestialBodyParameters_1a6be5539feab289030036c5ed84df4d5d" prot="public" virt="non-virtual"><scope>astrea::astro::CelestialBodyParameters</scope><name>eccentricity</name></member>
       <member refid="structastrea_1_1astro_1_1CelestialBodyParameters_1a2bad522171919fdaefd37d322ac7897f" prot="public" virt="non-virtual"><scope>astrea::astro::CelestialBodyParameters</scope><name>eccentricityRate</name></member>
-      <member refid="structastrea_1_1astro_1_1CelestialBodyParameters_1a0bef6cc5b473f81927a24783cbcab49f" prot="public" virt="non-virtual"><scope>astrea::astro::CelestialBodyParameters</scope><name>equitorialRadius</name></member>
+      <member refid="structastrea_1_1astro_1_1CelestialBodyParameters_1acfe3bcdf76a2fe5ad4a152d2712e7f9f" prot="public" virt="non-virtual"><scope>astrea::astro::CelestialBodyParameters</scope><name>equatorialRadius</name></member>
       <member refid="structastrea_1_1astro_1_1CelestialBodyParameters_1a2def31ddefbf96b1e3fb6e438b9a544c" prot="public" virt="non-virtual"><scope>astrea::astro::CelestialBodyParameters</scope><name>gravityCoefficientFile</name></member>
       <member refid="structastrea_1_1astro_1_1CelestialBodyParameters_1a0c841c8b4be03288e143415a5979b94b" prot="public" virt="non-virtual"><scope>astrea::astro::CelestialBodyParameters</scope><name>inclination</name></member>
       <member refid="structastrea_1_1astro_1_1CelestialBodyParameters_1a77a158909bd4d2507b7443443c087827" prot="public" virt="non-virtual"><scope>astrea::astro::CelestialBodyParameters</scope><name>inclinationRate</name></member>

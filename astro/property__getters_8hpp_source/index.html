@@ -1470,7 +1470,7 @@ You're not viewing the latest version.
   
   
     <li class="md-nav__item">
-      <a href="../../design/performance/" class="md-nav__link">
+      <a href="../../design/performance.md" class="md-nav__link">
         
   
   
@@ -6261,7 +6261,7 @@ You're not viewing the latest version.
 </span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;astro/types/enums.hpp&gt;</span>
 </span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>
 </span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="c1">// NOTE: CoefficientPack and get_linear_expansion_coefficients must be declared BEFORE</span>
-</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="c1">// including any header that pulls in celestial_bodies.hpp, because planet headers specialise</span>
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="c1">// including any header that pulls in celestial_bodies.hpp, because planet headers specialize</span>
 </span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="c1">// get_linear_expansion_coefficients.  The primary template must be visible first.</span>
 </span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="k">namespace</span><span class="w"> </span><span class="nn">astrea</span><span class="w"> </span><span class="p">{</span>
 </span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a><span class="k">namespace</span><span class="w"> </span><span class="nn">astro</span><span class="w"> </span><span class="p">{</span>
@@ -6304,9 +6304,9 @@ You're not viewing the latest version.
 </span><span id="__span-0-62"><a id="__codelineno-0-62" name="__codelineno-0-62" href="#__codelineno-0-62"></a><span class="p">};</span>
 </span><span id="__span-0-63"><a id="__codelineno-0-63" name="__codelineno-0-63" href="#__codelineno-0-63"></a>
 </span><span id="__span-0-64"><a id="__codelineno-0-64" name="__codelineno-0-64" href="#__codelineno-0-64"></a><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="n">IsCelestialBody</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">body</span><span class="o">&gt;</span>
-</span><span id="__span-0-65"><a id="__codelineno-0-65" name="__codelineno-0-65" href="#__codelineno-0-65"></a><span class="kr">inline</span><span class="w"> </span><span class="k">constexpr</span><span class="w"> </span><span class="n">Distance</span><span class="w"> </span><span class="n">get_equitorial_radius</span><span class="p">()</span>
+</span><span id="__span-0-65"><a id="__codelineno-0-65" name="__codelineno-0-65" href="#__codelineno-0-65"></a><span class="kr">inline</span><span class="w"> </span><span class="k">constexpr</span><span class="w"> </span><span class="n">Distance</span><span class="w"> </span><span class="n">get_equatorial_radius</span><span class="p">()</span>
 </span><span id="__span-0-66"><a id="__codelineno-0-66" name="__codelineno-0-66" href="#__codelineno-0-66"></a><span class="p">{</span>
-</span><span id="__span-0-67"><a id="__codelineno-0-67" name="__codelineno-0-67" href="#__codelineno-0-67"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">get_celestial_body_parameters</span><span class="o">&lt;</span><span class="n">body</span><span class="o">&gt;</span><span class="p">().</span><span class="n">equitorialRadius</span><span class="p">;</span>
+</span><span id="__span-0-67"><a id="__codelineno-0-67" name="__codelineno-0-67" href="#__codelineno-0-67"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">get_celestial_body_parameters</span><span class="o">&lt;</span><span class="n">body</span><span class="o">&gt;</span><span class="p">().</span><span class="n">equatorialRadius</span><span class="p">;</span>
 </span><span id="__span-0-68"><a id="__codelineno-0-68" name="__codelineno-0-68" href="#__codelineno-0-68"></a><span class="p">};</span>
 </span><span id="__span-0-69"><a id="__codelineno-0-69" name="__codelineno-0-69" href="#__codelineno-0-69"></a>
 </span><span id="__span-0-70"><a id="__codelineno-0-70" name="__codelineno-0-70" href="#__codelineno-0-70"></a><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="n">IsCelestialBody</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">body</span><span class="o">&gt;</span>

@@ -1741,7 +1741,7 @@
 <codeline lineno="179" refid="classastrea_1_1astro_1_1Geocentric_1aea9a590c99e0be1eda9978b01779aee6" refkind="member"><highlight class="normal"><ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">RadiusVector&lt;Geocentric&lt;_body_&gt;::_fixed_frame_</ref>&gt;<sp/><ref refid="classastrea_1_1astro_1_1Geocentric_1aea9a590c99e0be1eda9978b01779aee6" kindref="member">Geocentric&lt;_body_&gt;::get_position</ref>()</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
 <codeline lineno="180"><highlight class="keyword"></highlight><highlight class="normal">{</highlight></codeline>
 <codeline lineno="181"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>convert_geocentric_to_body_fixed&lt;_fixed_frame_&gt;(</highlight></codeline>
-<codeline lineno="182"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_latitude,<sp/>_longitude,<sp/>_altitude,<sp/>get_equitorial_radius&lt;_body_&gt;(),<sp/>get_polar_radius&lt;_body_&gt;()</highlight></codeline>
+<codeline lineno="182"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_latitude,<sp/>_longitude,<sp/>_altitude,<sp/>get_equatorial_radius&lt;_body_&gt;(),<sp/>get_polar_radius&lt;_body_&gt;()</highlight></codeline>
 <codeline lineno="183"><highlight class="normal"><sp/><sp/><sp/><sp/>);</highlight></codeline>
 <codeline lineno="184"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="185"><highlight class="normal"></highlight></codeline>

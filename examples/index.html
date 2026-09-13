@@ -1481,7 +1481,7 @@ You're not viewing the latest version.
   
   
     <li class="md-nav__item">
-      <a href="../design/performance/" class="md-nav__link">
+      <a href="../design/performance.md" class="md-nav__link">
         
   
   
@@ -6250,67 +6250,21 @@ You're not viewing the latest version.
 
 <h1 id="examples">Examples<a class="headerlink" href="#examples" title="Permanent link">&para;</a></h1>
 <p>Welcome to the <strong>Astrea</strong> examples collection! These practical, runnable examples demonstrate how to use the library for real-world astrodynamics and aerospace engineering scenarios, from basic orbital mechanics calculations to advanced mission analysis applications.</p>
-<h2 id="what-are-examples">What are Examples?<a class="headerlink" href="#what-are-examples" title="Permanent link">&para;</a></h2>
-<p>Examples bridge the gap between theoretical astrodynamics knowledge and practical implementation,
-showing complete, working aerospace applications that you can study and adapt for your own
-mission analysis and spacecraft engineering projects.</p>
-<p>These examples:</p>
-<ul>
-<li>✅ Show complete, runnable code for real aerospace engineering scenarios</li>
-<li>✅ Demonstrate astrodynamics concepts with actual implementation</li>
-<li>✅ Range from basic orbital mechanics to complex mission analysis</li>
-<li>✅ Are organized by complexity level and aerospace domain</li>
-<li>✅ Work with all <a href="../getting_started/installation_and_usage/#prerequisites">supported compilers</a></li>
-<li>✅ Include validation against known aerospace benchmark data</li>
-<li>✅ Use modern C++23 features with compile-time safety checks</li>
-</ul>
-<p><strong>Prerequisites</strong>: Basic familiarity with <strong>Astrea</strong> from the <a href="../getting_started/">Getting Started</a> guide.</p>
-<h2 id="how-to-use-this-section">How to Use This Section?<a class="headerlink" href="#how-to-use-this-section" title="Permanent link">&para;</a></h2>
-<h3 id="learning-path">Learning Path<a class="headerlink" href="#learning-path" title="Permanent link">&para;</a></h3>
-<p>Follow examples sequentially by complexity level:</p>
-<ul>
-<li>
-<p><strong>Beginner</strong> - Start here if you're new to computational astrodynamics. Detailed explanations
-  of fundamental concepts including orbital elements, coordinate frames, time systems, and
-  basic propagation techniques.</p>
-</li>
-<li>
-<p><strong>Intermediate</strong> - Demonstrate specific astrodynamics applications in depth. Focus on
-  mission analysis scenarios like access calculations, maneuver planning, and multi-body
-  dynamics.</p>
-</li>
-<li>
-<p><strong>Advanced</strong> - Complex, real-world aerospace applications showing how <strong>Astrea</strong> solves
-  challenging problems in spacecraft trajectory design, constellation analysis, and
-  interplanetary mission planning.</p>
-</li>
-</ul>
-<h3 id="finding-examples-by-category">Finding Examples by Category<a class="headerlink" href="#finding-examples-by-category" title="Permanent link">&para;</a></h3>
-<p>Browse examples by aerospace domain:</p>
-<ul>
-<li><strong>Orbital Mechanics</strong> - Classical and modern orbital element sets, propagation methods</li>
-<li><strong>Coordinate Systems</strong> - Frame transformations, topocentric conversions, time systems</li>
-<li><strong>Mission Analysis</strong> - Access analysis, coverage calculations, link budgets</li>
-<li><strong>Spacecraft Dynamics</strong> - Attitude control, maneuvers, perturbation modeling</li>
-<li><strong>Data Processing</strong> - SPICE integration, TLE handling, ephemeris generation</li>
-<li><strong>Validation</strong> - Comparison with NASA benchmark data and published test cases</li>
-</ul>
-<h2 id="when-to-use-examples">When to Use Examples?<a class="headerlink" href="#when-to-use-examples" title="Permanent link">&para;</a></h2>
-<p>Use Examples when you:</p>
-<ul>
-<li>Want to see complete astrodynamics applications in action</li>
-<li>Need inspiration for your aerospace engineering projects</li>
-<li>Want to understand how orbital mechanics concepts translate to code</li>
-<li>Are looking for mission analysis patterns to adapt to your use case</li>
-<li>Need domain-specific implementations for spacecraft or satellite applications</li>
-<li>Want to validate your own astrodynamics calculations against known results</li>
-</ul>
 <h2 id="other-resources">Other Resources<a class="headerlink" href="#other-resources" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong><a href="../getting_started/">Getting Started</a></strong> - Installation and first steps with Astrea</li>
 <li><strong><a href="../getting_started/project_structure/">Project Structure</a></strong> - Understanding Astrea's architecture</li>
 <li><strong><a href="../design/">Design</a></strong> - Architectural principles and design patterns</li>
 </ul>
+<h2 id="example-outputs-built-with-astrea">Example Outputs Built with Astrea<a class="headerlink" href="#example-outputs-built-with-astrea" title="Permanent link">&para;</a></h2>
+<p>In order to demonstrate and expand the core libraries in Astrea, a simple revisit analysis tool was added to the code. This tool, Trace, uses the foundational Astrea libraries, builds on-top of them, and provides a good set of examples on how one might safely expand and make use of the library in larger projects. Some of the features will be ingested into the core astrodynamics sub-library, but for now, their separation is used as both a practical testing ground and a demonstration of real-world practical applications.</p>
+<center>
+  <img src="../assets/images/avg-daily-visibility.png" alt="Average Daily Visibility" width="45%"/>
+  <img src="../assets/images/mean-time-to-access.png" alt="Mean Time to Access" width="45%"/>
+  <img src="../assets/images/avg-folds-of-coverage.png" alt="Average Folds of Coverage" width="45%"/>
+</center>
+
+<p>These images are some of the outputs from a simple example run of Trace. Further capabilities, expanded examples, and more detailed documentation on how to use Trace will be added in the future. </p>
 
 
 

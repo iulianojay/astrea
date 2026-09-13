@@ -21,10 +21,10 @@
       </memberdef>
     </sectiondef>
     <sectiondef kind="public-static-func">
-      <memberdef kind="function" id="classastrea_1_1astro_1_1JacchiaRobertsAtmosphere_1a22f42777d80c4ae65f610aa308dc5154" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="classastrea_1_1astro_1_1JacchiaRobertsAtmosphere_1a36d20546d7b7071aa51d8f89eca21422" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>Density</type>
         <definition>Density astrea::astro::JacchiaRobertsAtmosphere::find_atmospheric_density</definition>
-        <argsstring>(const State &amp;state, const Distance equitorialRadius, const Distance polarRadius)</argsstring>
+        <argsstring>(const State &amp;state, const Distance equatorialRadius, const Distance polarRadius)</argsstring>
         <name>find_atmospheric_density</name>
         <qualifiedname>astrea::astro::JacchiaRobertsAtmosphere::find_atmospheric_density</qualifiedname>
         <param>
@@ -33,7 +33,7 @@
         </param>
         <param>
           <type>const Distance</type>
-          <declname>equitorialRadius</declname>
+          <declname>equatorialRadius</declname>
         </param>
         <param>
           <type>const Distance</type>
@@ -59,7 +59,7 @@
     </detaileddescription>
     <location file="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/JacchiaRoberts.hpp" line="31" column="1" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/atmosphere/JacchiaRoberts.hpp" bodystart="31" bodyend="43"/>
     <listofallmembers>
-      <member refid="classastrea_1_1astro_1_1JacchiaRobertsAtmosphere_1a22f42777d80c4ae65f610aa308dc5154" prot="public" virt="non-virtual"><scope>astrea::astro::JacchiaRobertsAtmosphere</scope><name>find_atmospheric_density</name></member>
+      <member refid="classastrea_1_1astro_1_1JacchiaRobertsAtmosphere_1a36d20546d7b7071aa51d8f89eca21422" prot="public" virt="non-virtual"><scope>astrea::astro::JacchiaRobertsAtmosphere</scope><name>find_atmospheric_density</name></member>
       <member refid="classastrea_1_1astro_1_1JacchiaRobertsAtmosphere_1a92860a57a9291a596d1a31ab101b69d2" prot="public" virt="non-virtual"><scope>astrea::astro::JacchiaRobertsAtmosphere</scope><name>JacchiaRobertsAtmosphere</name></member>
     </listofallmembers>
   </compounddef>

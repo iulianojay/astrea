@@ -321,7 +321,7 @@
     <member refid="structastrea_1_1astro_1_1CelestialBodyParameters_1a4a866367e49f4025ed2592e6e316a4f1" kind="variable"><name>referenceDate</name></member>
     <member refid="structastrea_1_1astro_1_1CelestialBodyParameters_1ac003f9f5d4556ad4f8ca01d880643d60" kind="variable"><name>mu</name></member>
     <member refid="structastrea_1_1astro_1_1CelestialBodyParameters_1a39e53571e438fc8afd72c7ac7efa80b7" kind="variable"><name>mass</name></member>
-    <member refid="structastrea_1_1astro_1_1CelestialBodyParameters_1a0bef6cc5b473f81927a24783cbcab49f" kind="variable"><name>equitorialRadius</name></member>
+    <member refid="structastrea_1_1astro_1_1CelestialBodyParameters_1acfe3bcdf76a2fe5ad4a152d2712e7f9f" kind="variable"><name>equatorialRadius</name></member>
     <member refid="structastrea_1_1astro_1_1CelestialBodyParameters_1a007c8f0641cca9f7f57025cb9c194077" kind="variable"><name>polarRadius</name></member>
     <member refid="structastrea_1_1astro_1_1CelestialBodyParameters_1a927b76ac013d70d3a9592b06a6cf7507" kind="variable"><name>crashRadius</name></member>
     <member refid="structastrea_1_1astro_1_1CelestialBodyParameters_1ae9e9802385834a370e40c2a07e20a529" kind="variable"><name>sphereOfInfluence</name></member>
@@ -1327,7 +1327,7 @@
   </compound>
   <compound refid="classastrea_1_1astro_1_1JacchiaRobertsAtmosphere" kind="class"><name>astrea::astro::JacchiaRobertsAtmosphere</name>
     <member refid="classastrea_1_1astro_1_1JacchiaRobertsAtmosphere_1a92860a57a9291a596d1a31ab101b69d2" kind="function"><name>JacchiaRobertsAtmosphere</name></member>
-    <member refid="classastrea_1_1astro_1_1JacchiaRobertsAtmosphere_1a22f42777d80c4ae65f610aa308dc5154" kind="function"><name>find_atmospheric_density</name></member>
+    <member refid="classastrea_1_1astro_1_1JacchiaRobertsAtmosphere_1a36d20546d7b7071aa51d8f89eca21422" kind="function"><name>find_atmospheric_density</name></member>
   </compound>
   <compound refid="structastrea_1_1astro_1_1JplEphemerisTable" kind="struct"><name>astrea::astro::JplEphemerisTable</name>
     <member refid="structastrea_1_1astro_1_1JplEphemerisTable_1ac40512122cf9e8b07f7ed97407b12df3" kind="variable"><name>START_DATE</name></member>
@@ -1456,7 +1456,7 @@
     <member refid="classastrea_1_1astro_1_1LambertSolver_1a70ae2146abcbf4d543f08f6930886d21" kind="function"><name>solve</name></member>
     <member refid="classastrea_1_1astro_1_1LambertSolver_1a807ccf104d31e9bb94804141614c9807" kind="function"><name>solve</name></member>
     <member refid="classastrea_1_1astro_1_1LambertSolver_1a9c860b68b543699fb7310de008eeda78" kind="function"><name>solve</name></member>
-    <member refid="classastrea_1_1astro_1_1LambertSolver_1a382f5ebd72bd755ac95e2b65a055ec43" kind="function"><name>solve</name></member>
+    <member refid="classastrea_1_1astro_1_1LambertSolver_1a7bdf4d1b2bb907931aae6c12675c33fa" kind="function"><name>solve</name></member>
     <member refid="classastrea_1_1astro_1_1LambertSolver_1adb96de44ab62d2db76ca643990253cfe" kind="function"><name>evaluate_stumpff</name></member>
   </compound>
   <compound refid="classastrea_1_1astro_1_1LegendreCache" kind="class"><name>astrea::astro::LegendreCache</name>
@@ -2776,6 +2776,7 @@
     <member refid="atmosphere_8hpp_1a26f5ea97c7c021f5b4f4b8148c7bfe1d" kind="function"><name>find_atmospheric_density&lt; moons::Titan &gt;</name></member>
     <member refid="Nrlmsise00_8cpp_1af30ca8e1c368d06429bb293aa800ec51" kind="function"><name>calculate_local_solar_time</name></member>
     <member refid="file__reader_8cpp_1a720d3241770fe73f12decfcceb5c3029" kind="function"><name>read_space_weather_file</name></member>
+    <member refid="SpaceWeatherData_8cpp_1a3da36268a5dec0e1b657e528feec8101" kind="function"><name>get_default_space_weather_data</name></member>
     <member refid="Cylindrical_8hpp_1ad2783c8981c919a1f1f2f1403df770ca" kind="function"><name>convert_body_fixed_to_cylindrical</name></member>
     <member refid="Cylindrical_8hpp_1a3fed2caa46317d6eaa6d895dac11b940" kind="function"><name>convert_cylindrical_to_body_fixed</name></member>
     <member refid="Cylindrical_8ipp_1a93ba2aa47a630cf74b488b076540a4ef" kind="function"><name>operator&lt;&lt;</name></member>
@@ -2852,7 +2853,7 @@
     <member refid="property__getters_8hpp_1ab5121232b2cf31fec75ed625d54a194e" kind="function"><name>get_body_type</name></member>
     <member refid="property__getters_8hpp_1a066d95ca4fc105bebc7c71334971db5f" kind="function"><name>get_mu</name></member>
     <member refid="property__getters_8hpp_1aaee31a855d04b5a34a6b963a44009fcd" kind="function"><name>get_mass</name></member>
-    <member refid="property__getters_8hpp_1a922479dea896b0d1c4b0f7612168f9ac" kind="function"><name>get_equitorial_radius</name></member>
+    <member refid="property__getters_8hpp_1aaeb537fc00f22ba703949d4c36035c9b" kind="function"><name>get_equatorial_radius</name></member>
     <member refid="property__getters_8hpp_1ae349a886e83ecea14b368f3bcfa1d8a6" kind="function"><name>get_polar_radius</name></member>
     <member refid="property__getters_8hpp_1a962a3665e1f6f1239d9516830b5a6ab6" kind="function"><name>get_crash_radius</name></member>
     <member refid="property__getters_8hpp_1a039144669479da786b23e9f177a6bf33" kind="function"><name>get_sphere_of_influence</name></member>

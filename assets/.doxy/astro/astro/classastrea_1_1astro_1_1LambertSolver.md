@@ -75,7 +75,7 @@ _Class for solving Lambert's problem._ [More...](#detailed-description)
 |  [**Cartesian**](classastrea_1_1astro_1_1Cartesian.md)&lt; \_frame\_ &gt; | [**solve**](#function-solve-14) (const [**Cartesian**](classastrea_1_1astro_1_1Cartesian.md)&lt; \_frame\_ &gt; & state0, const Time & dt, const GravParam & mu) <br>_Solve Lambert's problem for a given initial and final state. Returns the minimum energy solution._  |
 |  std::pair&lt; [**VelocityVector**](namespaceastrea_1_1astro.md#typedef-velocityvector)&lt; \_frame\_ &gt;, [**VelocityVector**](namespaceastrea_1_1astro.md#typedef-velocityvector)&lt; \_frame\_ &gt; &gt; | [**solve**](#function-solve-24) (const [**RadiusVector**](namespaceastrea_1_1astro.md#typedef-radiusvector)&lt; \_frame\_ &gt; & r0, const [**RadiusVector**](namespaceastrea_1_1astro.md#typedef-radiusvector)&lt; \_frame\_ &gt; & rf, const Time & dt, const GravParam & mu, const [**OrbitDirection**](classastrea_1_1astro_1_1LambertSolver.md#enum-orbitdirection) & direction) <br>_Solve Lambert's problem for a given initial and final state. Returns the minimum energy solution._  |
 |  [**Solution**](structastrea_1_1astro_1_1LambertSolver_1_1Solution.md)&lt; \_frame\_ &gt; | [**solve**](#function-solve-34) (const [**RadiusVector**](namespaceastrea_1_1astro.md#typedef-radiusvector)&lt; \_frame\_ &gt; & r0, const [**RadiusVector**](namespaceastrea_1_1astro.md#typedef-radiusvector)&lt; \_frame\_ &gt; & rf, const GravParam & mu, const [**OrbitDirection**](classastrea_1_1astro_1_1LambertSolver.md#enum-orbitdirection) & direction, const [**SolutionType**](classastrea_1_1astro_1_1LambertSolver.md#enum-solutiontype) & solutionType) <br>_Solve Lambert's problem for an optimal trajectory without a fixed time of flight._  |
-|  std::pair&lt; [**VelocityVector**](namespaceastrea_1_1astro.md#typedef-velocityvector)&lt; \_frame\_ &gt;, [**VelocityVector**](namespaceastrea_1_1astro.md#typedef-velocityvector)&lt; \_frame\_ &gt; &gt; | [**solve**](#function-solve-44) (const [**RadiusVector**](namespaceastrea_1_1astro.md#typedef-radiusvector)&lt; \_frame\_ &gt; & r0, const [**RadiusVector**](namespaceastrea_1_1astro.md#typedef-radiusvector)&lt; \_frame\_ &gt; & rf, const Time & dt, const GravParam & mu, const [**OrbitDirection**](classastrea_1_1astro_1_1LambertSolver.md#enum-orbitdirection) & direction, unsigned N, const [**MultiRevBranch**](classastrea_1_1astro_1_1LambertSolver.md#enum-multirevbranch) & branch) <br>_Solve Lambert's problem for a multi-revolution transfer with a fixed time of flight._  |
+|  std::pair&lt; [**VelocityVector**](namespaceastrea_1_1astro.md#typedef-velocityvector)&lt; \_frame\_ &gt;, [**VelocityVector**](namespaceastrea_1_1astro.md#typedef-velocityvector)&lt; \_frame\_ &gt; &gt; | [**solve**](#function-solve-44) (const [**RadiusVector**](namespaceastrea_1_1astro.md#typedef-radiusvector)&lt; \_frame\_ &gt; & r0, const [**RadiusVector**](namespaceastrea_1_1astro.md#typedef-radiusvector)&lt; \_frame\_ &gt; & rf, const Time & dt, const GravParam & mu, const [**OrbitDirection**](classastrea_1_1astro_1_1LambertSolver.md#enum-orbitdirection) & direction, unsigned nRevolutions, const [**MultiRevBranch**](classastrea_1_1astro_1_1LambertSolver.md#enum-multirevbranch) & branch) <br>_Solve Lambert's problem for a multi-revolution transfer with a fixed time of flight._  |
 
 
 
@@ -345,7 +345,7 @@ static inline std::pair< VelocityVector < _frame_ >, VelocityVector < _frame_ > 
     const Time & dt,
     const GravParam & mu,
     const OrbitDirection & direction,
-    unsigned N,
+    unsigned nRevolutions,
     const MultiRevBranch & branch
 ) 
 ```
@@ -365,7 +365,7 @@ For N &gt; 0 complete revolutions two solutions exist (LEFT and RIGHT branches);
 * `dt` The desired time of flight. 
 * `mu` The gravitational parameter of the central body. 
 * `direction` The direction of the orbit (prograde or retrograde). 
-* `N` The number of complete revolutions (must be ≥ 1). 
+* `nRevolutions` The number of complete revolutions (must be ≥ 1). 
 * `branch` Which of the two solutions to return (LEFT or RIGHT). 
 
 

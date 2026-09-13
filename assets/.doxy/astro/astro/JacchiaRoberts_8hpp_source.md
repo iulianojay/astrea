@@ -22,7 +22,7 @@ class JacchiaRobertsAtmosphere {
   public:
     JacchiaRobertsAtmosphere() = delete;
 
-    static Density find_atmospheric_density(const State& state, const Distance equitorialRadius, const Distance polarRadius);
+    static Density find_atmospheric_density(const State& state, const Distance equatorialRadius, const Distance polarRadius);
 };
 
 } // namespace astro

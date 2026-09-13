@@ -139,7 +139,7 @@
 
 * **eccentricity** ([**astrea::astro::CelestialBodyParameters**](structastrea_1_1astro_1_1CelestialBodyParameters.md))
 * **eccentricityRate** ([**astrea::astro::CelestialBodyParameters**](structastrea_1_1astro_1_1CelestialBodyParameters.md))
-* **equitorialRadius** ([**astrea::astro::CelestialBodyParameters**](structastrea_1_1astro_1_1CelestialBodyParameters.md))
+* **equatorialRadius** ([**astrea::astro::CelestialBodyParameters**](structastrea_1_1astro_1_1CelestialBodyParameters.md))
 * **end** ([**astrea::astro::Constellation**](classastrea_1_1astro_1_1Constellation.md), [**astrea::astro::Plane**](classastrea_1_1astro_1_1Plane.md), [**astrea::astro::Shell**](classastrea_1_1astro_1_1Shell.md), [**astrea::astro::StateHistory**](classastrea_1_1astro_1_1StateHistory.md))
 * **epoch** ([**astrea::astro::Date**](classastrea_1_1astro_1_1Date.md), [**astrea::astro::StateHistory**](classastrea_1_1astro_1_1StateHistory.md))
 * **EquationsOfMotion** ([**astrea::astro::EquationsOfMotion**](classastrea_1_1astro_1_1EquationsOfMotion.md))

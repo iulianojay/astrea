@@ -1991,7 +1991,7 @@
 <codeline lineno="58"><highlight class="comment"></highlight></codeline>
 <codeline lineno="59"><highlight class="comment"><sp/><sp/><sp/><sp/>const<sp/>Distance<sp/>rho<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>sqrt(xEcef<sp/>*<sp/>xEcef<sp/>+<sp/>yEcef<sp/>*<sp/>yEcef);</highlight></codeline>
 <codeline lineno="60"><highlight class="comment"><sp/><sp/><sp/><sp/>const<sp/>auto<sp/>oneOverR<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>1.0<sp/>/<sp/>rEci.norm();</highlight></codeline>
-<codeline lineno="61"><highlight class="comment"><sp/><sp/><sp/><sp/>const<sp/>Unitless<sp/>equitorialROverR<sp/>=<sp/>equitorialR<sp/>*<sp/>oneOverR;</highlight></codeline>
+<codeline lineno="61"><highlight class="comment"><sp/><sp/><sp/><sp/>const<sp/>Unitless<sp/>equatorialROverR<sp/>=<sp/>equatorialR<sp/>*<sp/>oneOverR;</highlight></codeline>
 <codeline lineno="62"><highlight class="comment"></highlight></codeline>
 <codeline lineno="63"><highlight class="comment"><sp/><sp/><sp/><sp/>const<sp/>Unitless<sp/>sinLat<sp/>=<sp/>sin(latitude);</highlight></codeline>
 <codeline lineno="64"><highlight class="comment"><sp/><sp/><sp/><sp/>const<sp/>Unitless<sp/>cosLat<sp/>=<sp/>cos(latitude);</highlight></codeline>
@@ -2036,7 +2036,7 @@
 <codeline lineno="103"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="104"><highlight class="comment"></highlight></codeline>
 <codeline lineno="105"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/>Precalculate<sp/>common<sp/>terms</highlight></codeline>
-<codeline lineno="106"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>const<sp/>Unitless<sp/>rRatio<sp/>=<sp/>astrea::math::pow(equitorialROverR,<sp/>nn);</highlight></codeline>
+<codeline lineno="106"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>const<sp/>Unitless<sp/>rRatio<sp/>=<sp/>astrea::math::pow(equatorialROverR,<sp/>nn);</highlight></codeline>
 <codeline lineno="107"><highlight class="comment"></highlight></codeline>
 <codeline lineno="108"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//</highlight></codeline>
 <codeline lineno="109"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/><sp/>V<sp/><sp/><sp/><sp/><sp/><sp/>=<sp/><sp/>mu/r<sp/><sp/><sp/>*<sp/>sum(n=0-&gt;_degree_)<sp/>(Re/r)^n<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*<sp/>sum(m=0-&gt;min(n,M))<sp/><sp/><sp/><sp/><sp/><sp/><sp/>Pnm(sin(lat))<sp/>*<sp/>(Cnm*cos(m*lon)<sp/>+<sp/>Snm*sin(m*lon))</highlight></codeline>
@@ -2101,7 +2101,7 @@
 <codeline lineno="168"><highlight class="normal"></highlight></codeline>
 <codeline lineno="169"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Central<sp/>body<sp/>properties</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="170"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>GravParam&amp;<sp/>mu<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>get_mu&lt;_body_&gt;();</highlight></codeline>
-<codeline lineno="171"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Distance&amp;<sp/>equitorialR<sp/>=<sp/>get_equitorial_radius&lt;_body_&gt;();</highlight></codeline>
+<codeline lineno="171"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Distance&amp;<sp/>equatorialR<sp/>=<sp/>get_equatorial_radius&lt;_body_&gt;();</highlight></codeline>
 <codeline lineno="172"><highlight class="normal"></highlight></codeline>
 <codeline lineno="173"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Transform<sp/>position<sp/>to<sp/>body-fixed<sp/>frame</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="174"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref><sp/>date<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>state.<ref refid="classastrea_1_1astro_1_1State_1aebad759932d9e8c0ff8281e28735364d" kindref="member">get_epoch</ref>();</highlight></codeline>
@@ -2118,7 +2118,7 @@
 <codeline lineno="185"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Unitless<sp/>xOverR<sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>x<sp/>/<sp/>r;</highlight></codeline>
 <codeline lineno="186"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Unitless<sp/>yOverR<sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>y<sp/>/<sp/>r;</highlight></codeline>
 <codeline lineno="187"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Unitless<sp/>zOverR<sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>z<sp/>/<sp/>r;</highlight></codeline>
-<codeline lineno="188"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Unitless<sp/>rEqOverR<sp/><sp/><sp/><sp/>=<sp/>equitorialR<sp/>/<sp/>r;</highlight></codeline>
+<codeline lineno="188"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Unitless<sp/>rEqOverR<sp/><sp/><sp/><sp/>=<sp/>equatorialR<sp/>/<sp/>r;</highlight></codeline>
 <codeline lineno="189"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Unitless<sp/>zREqOverRSq<sp/>=<sp/>zOverR<sp/>*<sp/>rEqOverR;</highlight></codeline>
 <codeline lineno="190"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Unitless<sp/>rEqOverRSq<sp/><sp/>=<sp/>pow&lt;2&gt;(rEqOverR);</highlight></codeline>
 <codeline lineno="191"><highlight class="normal"></highlight></codeline>
@@ -2203,10 +2203,10 @@
 <codeline lineno="270"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="271"><highlight class="normal"></highlight></codeline>
 <codeline lineno="272"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Scale<sp/>by<sp/>mu/r^2</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="273"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Acceleration<sp/>muOverR2<sp/>=<sp/>mu<sp/>/<sp/>pow&lt;2&gt;(equitorialR);</highlight></codeline>
+<codeline lineno="273"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Acceleration<sp/>muOverR2<sp/>=<sp/>mu<sp/>/<sp/>pow&lt;2&gt;(equatorialR);</highlight></codeline>
 <codeline lineno="274"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">AccelerationVector&lt;frames::primary_fixed&gt;</ref><sp/>accelOblatenessEcef<sp/>=<sp/>{<sp/>ax<sp/>*<sp/>muOverR2,<sp/>ay<sp/>*<sp/>muOverR2,<sp/>az<sp/>*<sp/>muOverR2<sp/>};</highlight></codeline>
 <codeline lineno="275"><highlight class="normal"></highlight></codeline>
-<codeline lineno="276"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Transform<sp/>back<sp/>to<sp/>inertial<sp/>frame<sp/>without<sp/>abberations<sp/>-<sp/>original<sp/>values<sp/>are<sp/>in<sp/>ecef,<sp/>not<sp/>w.r.t<sp/>ecef</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="276"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Transform<sp/>back<sp/>to<sp/>inertial<sp/>frame<sp/>without<sp/>aberrations<sp/>-<sp/>original<sp/>values<sp/>are<sp/>in<sp/>ecef,<sp/>not<sp/>w.r.t<sp/>ecef</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="277"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">AccelerationVector&lt;frames::primary&gt;</ref><sp/>accelOblatenessIcrf<sp/>=</highlight></codeline>
 <codeline lineno="278"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>frames::rotate_vector_into_frame&lt;frames::primary&gt;(accelOblatenessEcef,<sp/>date);</highlight></codeline>
 <codeline lineno="279"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>{<sp/>.force<sp/>=<sp/>(accelOblatenessIcrf<sp/>*<sp/>vehicle.<ref refid="classastrea_1_1astro_1_1Vehicle_1a61c95739d7b08b4f5385c27fe8c7c227" kindref="member">get_mass</ref>(state))<sp/>};</highlight></codeline>

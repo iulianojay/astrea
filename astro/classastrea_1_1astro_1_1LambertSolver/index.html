@@ -1470,7 +1470,7 @@ You're not viewing the latest version.
   
   
     <li class="md-nav__item">
-      <a href="../../design/performance/" class="md-nav__link">
+      <a href="../../design/performance.md" class="md-nav__link">
         
   
   
@@ -6323,7 +6323,7 @@ You're not viewing the latest version.
 </tr>
 <tr>
 <td style="text-align: right;">std::pair&lt; <a href="../namespaceastrea_1_1astro/#typedef-velocityvector"><strong>VelocityVector</strong></a>&lt; _frame_ &gt;, <a href="../namespaceastrea_1_1astro/#typedef-velocityvector"><strong>VelocityVector</strong></a>&lt; _frame_ &gt; &gt;</td>
-<td style="text-align: left;"><a href="#function-solve-44"><strong>solve</strong></a> (const <a href="../namespaceastrea_1_1astro/#typedef-radiusvector"><strong>RadiusVector</strong></a>&lt; _frame_ &gt; &amp; r0, const <a href="../namespaceastrea_1_1astro/#typedef-radiusvector"><strong>RadiusVector</strong></a>&lt; _frame_ &gt; &amp; rf, const Time &amp; dt, const GravParam &amp; mu, const <a href="./#enum-orbitdirection"><strong>OrbitDirection</strong></a> &amp; direction, unsigned N, const <a href="./#enum-multirevbranch"><strong>MultiRevBranch</strong></a> &amp; branch) <br><em>Solve Lambert's problem for a multi-revolution transfer with a fixed time of flight.</em></td>
+<td style="text-align: left;"><a href="#function-solve-44"><strong>solve</strong></a> (const <a href="../namespaceastrea_1_1astro/#typedef-radiusvector"><strong>RadiusVector</strong></a>&lt; _frame_ &gt; &amp; r0, const <a href="../namespaceastrea_1_1astro/#typedef-radiusvector"><strong>RadiusVector</strong></a>&lt; _frame_ &gt; &amp; rf, const Time &amp; dt, const GravParam &amp; mu, const <a href="./#enum-orbitdirection"><strong>OrbitDirection</strong></a> &amp; direction, unsigned nRevolutions, const <a href="./#enum-multirevbranch"><strong>MultiRevBranch</strong></a> &amp; branch) <br><em>Solve Lambert's problem for a multi-revolution transfer with a fixed time of flight.</em></td>
 </tr>
 </tbody>
 </table>
@@ -6446,7 +6446,7 @@ You're not viewing the latest version.
 </span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Time</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">dt</span><span class="p">,</span>
 </span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">GravParam</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">mu</span><span class="p">,</span>
 </span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">OrbitDirection</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">direction</span><span class="p">,</span>
-</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="w">    </span><span class="kt">unsigned</span><span class="w"> </span><span class="n">N</span><span class="p">,</span>
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="w">    </span><span class="kt">unsigned</span><span class="w"> </span><span class="n">nRevolutions</span><span class="p">,</span>
 </span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">MultiRevBranch</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">branch</span>
 </span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a><span class="p">)</span><span class="w"> </span>
 </span></code></pre></div></p>
@@ -6458,7 +6458,7 @@ You're not viewing the latest version.
 <li><code>dt</code> The desired time of flight. </li>
 <li><code>mu</code> The gravitational parameter of the central body. </li>
 <li><code>direction</code> The direction of the orbit (prograde or retrograde). </li>
-<li><code>N</code> The number of complete revolutions (must be ≥ 1). </li>
+<li><code>nRevolutions</code> The number of complete revolutions (must be ≥ 1). </li>
 <li><code>branch</code> Which of the two solutions to return (LEFT or RIGHT). </li>
 </ul>
 <p><strong>Returns:</strong></p>

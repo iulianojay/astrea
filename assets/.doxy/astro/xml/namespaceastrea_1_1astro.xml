@@ -1871,7 +1871,7 @@
         </briefdescription>
         <detaileddescription>
 <para>Get the Direction Cosine Matrix (DCM) for the J2000 to ICRF at a given date.</para>
-<para>The explicit template&lt;&gt; specialisation was replaced with this constrained template so that HasDcm&lt;earth::icrf, earth::earth_fixed&gt; (and similar requires-expressions) can find this overload. GCC 15 does not locate explicit template&lt;&gt; specialisations when checking concept requires-expressions with constrained-auto NTTP arguments. </para>
+<para>The explicit template&lt;&gt; specialization was replaced with this constrained template so that HasDcm&lt;earth::icrf, earth::earth_fixed&gt; (and similar requires-expressions) can find this overload. GCC 15 does not locate explicit template&lt;&gt; specializations when checking concept requires-expressions with constrained-auto NTTP arguments. </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
@@ -2405,7 +2405,7 @@ Get the Direction Cosine Matrix (DCM) for the J2000 to ICRF at a given date.</pa
 <simplesect kind="return"><para>DirectionCosineMatrix&lt;parent, frame&gt; The direction cosine matrix from the parent frame to the given <ref refid="structastrea_1_1astro_1_1FixedOffsetFrame" kindref="compound">FixedOffsetFrame</ref>.</para>
 </simplesect>
 Get the Direction Cosine Matrix (DCM) for the J2000 to ICRF at a given date.</para>
-<para>The explicit template&lt;&gt; specialisation was replaced with this constrained template so that HasDcm&lt;earth::icrf, earth::earth_fixed&gt; (and similar requires-expressions) can find this overload. GCC 15 does not locate explicit template&lt;&gt; specialisations when checking concept requires-expressions with constrained-auto NTTP arguments. </para>
+<para>The explicit template&lt;&gt; specialization was replaced with this constrained template so that HasDcm&lt;earth::icrf, earth::earth_fixed&gt; (and similar requires-expressions) can find this overload. GCC 15 does not locate explicit template&lt;&gt; specializations when checking concept requires-expressions with constrained-auto NTTP arguments. </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
@@ -4458,6 +4458,21 @@ Get the Direction Cosine Matrix (DCM) for the J2000 to ICRF at a given date.</pa
         </inbodydescription>
         <location file="astrea/astro/astro/propagation/force_models/space_weather/file_reader.cpp" line="33" column="5" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/file_reader.cpp" bodystart="33" bodyend="148" declfile="astrea/astro/astro/propagation/force_models/space_weather/file_reader.hpp" declline="40" declcolumn="5"/>
       </memberdef>
+      <memberdef kind="function" id="SpaceWeatherData_8cpp_1a3da36268a5dec0e1b657e528feec8101" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::filesystem::path</type>
+        <definition>std::filesystem::path astrea::astro::get_default_space_weather_data</definition>
+        <argsstring>()</argsstring>
+        <name>get_default_space_weather_data</name>
+        <qualifiedname>astrea::astro::get_default_space_weather_data</qualifiedname>
+        <briefdescription>
+<para>Return the path to the default Astro space weather data file. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/space_weather/SpaceWeatherData.cpp" line="20" column="23" bodyfile="astrea/astro/astro/propagation/force_models/space_weather/SpaceWeatherData.cpp" bodystart="20" bodyend="23" declfile="astrea/astro/astro/propagation/force_models/space_weather/SpaceWeatherData.hpp" declline="82" declcolumn="24"/>
+      </memberdef>
       <memberdef kind="function" id="Cylindrical_8hpp_1ad2783c8981c919a1f1f2f1403df770ca" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
           <param>
@@ -4620,7 +4635,7 @@ Get the Direction Cosine Matrix (DCM) for the J2000 to ICRF at a given date.</pa
 </parameteritem>
 <parameteritem>
 <parameternamelist>
-<parametername>rEquitorial</parametername>
+<parametername>requatorial</parametername>
 </parameternamelist>
 <parameterdescription>
 <para>The equatorial radius of the Earth. </para>
@@ -4675,7 +4690,7 @@ Get the Direction Cosine Matrix (DCM) for the J2000 to ICRF at a given date.</pa
 </parameteritem>
 <parameteritem>
 <parameternamelist>
-<parametername>rEquitorial</parametername>
+<parametername>requatorial</parametername>
 </parameternamelist>
 <parameterdescription>
 <para>The equatorial radius of the Earth. </para>
@@ -4822,7 +4837,7 @@ Get the Direction Cosine Matrix (DCM) for the J2000 to ICRF at a given date.</pa
 </parameteritem>
 <parameteritem>
 <parameternamelist>
-<parametername>rEquitorial</parametername>
+<parametername>requatorial</parametername>
 </parameternamelist>
 <parameterdescription>
 <para>The equatorial radius of the Earth. </para>
@@ -4901,7 +4916,7 @@ Get the Direction Cosine Matrix (DCM) for the J2000 to ICRF at a given date.</pa
 </parameteritem>
 <parameteritem>
 <parameternamelist>
-<parametername>rEquitorial</parametername>
+<parametername>requatorial</parametername>
 </parameternamelist>
 <parameterdescription>
 <para>The equatorial radius of the Earth. </para>
@@ -6872,7 +6887,7 @@ Get the Direction Cosine Matrix (DCM) for the J2000 to ICRF at a given date.</pa
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-<para>Primary template — must be specialised for each body. Uses unconstrained auto <emphasis>body</emphasis> so GCC can match explicit specialisations of the form get_celestial_body_parameters&lt;planets::Earth&gt;(). </para>
+<para>Primary template — must be specialized for each body. Uses unconstrained auto <emphasis>body</emphasis> so GCC can match explicit specializations of the form get_celestial_body_parameters&lt;planets::Earth&gt;(). </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
@@ -6899,9 +6914,9 @@ Get the Direction Cosine Matrix (DCM) for the J2000 to ICRF at a given date.</pa
 <para><ref refid="classastrea_1_1astro_1_1Keplerian" kindref="compound">Keplerian</ref> fallback for get_position_at. </para>
         </briefdescription>
         <detaileddescription>
-<para>Primary template declarations for ephemeris position/velocity (NTTP-based). Explicit specialisations are provided in planet headers (Chebyshev ephemeris). The primary template definition (<ref refid="classastrea_1_1astro_1_1Keplerian" kindref="compound">Keplerian</ref> fallback) is provided by <ref refid="default__property__getters_8hpp" kindref="compound">default_property_getters.hpp</ref>, which <ref refid="celestial__bodies_8hpp" kindref="compound">celestial_bodies.hpp</ref> includes after all planet headers.</para>
-<para>Used for bodies that have orbital element parameters but no Chebyshev ephemeris specialisation (e.g. Phobos, Deimos, small moons). The result is expressed in the parent-body ICRF frame derived from the body&apos;s parent origin.</para>
-<para>Bodies WITH an explicit get_position_at specialisation (e.g. Earth, Jupiter when ephemeris is enabled) use that specialisation in preference to this primary template. </para>
+<para>Primary template declarations for ephemeris position/velocity (NTTP-based). Explicit specializations are provided in planet headers (Chebyshev ephemeris). The primary template definition (<ref refid="classastrea_1_1astro_1_1Keplerian" kindref="compound">Keplerian</ref> fallback) is provided by <ref refid="default__property__getters_8hpp" kindref="compound">default_property_getters.hpp</ref>, which <ref refid="celestial__bodies_8hpp" kindref="compound">celestial_bodies.hpp</ref> includes after all planet headers.</para>
+<para>Used for bodies that have orbital element parameters but no Chebyshev ephemeris specialization (e.g. Phobos, Deimos, small moons). The result is expressed in the parent-body ICRF frame derived from the body&apos;s parent origin.</para>
+<para>Bodies WITH an explicit get_position_at specialization (e.g. Earth, Jupiter when ephemeris is enabled) use that specialization in preference to this primary template. </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
@@ -6983,7 +6998,7 @@ Get the Direction Cosine Matrix (DCM) for the J2000 to ICRF at a given date.</pa
         </briefdescription>
         <detaileddescription>
 <para>This uses the JPL approximate-positions algorithm: <ulink url="https://ssd.jpl.nasa.gov/celestial_bodies/approx_pos.html">https://ssd.jpl.nasa.gov/celestial_bodies/approx_pos.html</ulink></para>
-<para>Bodies that have get_linear_expansion_coefficients specialised use the full perturbation-corrected mean anomaly. All other bodies fall back to the default zero-coefficient implementation (Me = L - w).</para>
+<para>Bodies that have get_linear_expansion_coefficients specialized use the full perturbation-corrected mean anomaly. All other bodies fall back to the default zero-coefficient implementation (Me = L - w).</para>
 <para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername>date</parametername>
@@ -7018,7 +7033,7 @@ Get the Direction Cosine Matrix (DCM) for the J2000 to ICRF at a given date.</pa
 <para>Get the linear expansion coefficients for the celestial body&apos;s mean anomaly correction. </para>
         </briefdescription>
         <detaileddescription>
-<para>Default implementation returns zero coefficients (no perturbation terms), which reduces to Me = L - w. Specialise for bodies that need it (e.g. outer planets).</para>
+<para>Default implementation returns zero coefficients (no perturbation terms), which reduces to Me = L - w. Specialize for bodies that need it (e.g. outer planets).</para>
 <para><simplesect kind="return"><para>CoefficientPack A tuple containing (B, C, S, F) coefficients. </para>
 </simplesect>
 </para>
@@ -7103,7 +7118,7 @@ Get the Direction Cosine Matrix (DCM) for the J2000 to ICRF at a given date.</pa
         </inbodydescription>
         <location file="astrea/astro/astro/systems/property_getters.hpp" line="112" column="23" bodyfile="astrea/astro/astro/systems/property_getters.hpp" bodystart="112" bodyend="115"/>
       </memberdef>
-      <memberdef kind="function" id="property__getters_8hpp_1a922479dea896b0d1c4b0f7612168f9ac" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="property__getters_8hpp_1aaeb537fc00f22ba703949d4c36035c9b" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
             <type>IsCelestialBody auto</type>
@@ -7112,10 +7127,10 @@ Get the Direction Cosine Matrix (DCM) for the J2000 to ICRF at a given date.</pa
           </param>
         </templateparamlist>
         <type>constexpr Distance</type>
-        <definition>constexpr Distance astrea::astro::get_equitorial_radius</definition>
+        <definition>constexpr Distance astrea::astro::get_equatorial_radius</definition>
         <argsstring>()</argsstring>
-        <name>get_equitorial_radius</name>
-        <qualifiedname>astrea::astro::get_equitorial_radius</qualifiedname>
+        <name>get_equatorial_radius</name>
+        <qualifiedname>astrea::astro::get_equatorial_radius</qualifiedname>
         <briefdescription>
 <para>Get the equatorial radius of the celestial body. </para>
         </briefdescription>
@@ -8007,7 +8022,7 @@ Get the Direction Cosine Matrix (DCM) for the J2000 to ICRF at a given date.</pa
 <para>Get the body-fixed rotating frame for a celestial body. </para>
         </briefdescription>
         <detaileddescription>
-<para>Returns a Z-rotation body-fixed frame for <computeroutput>body</computeroutput>. For well-known bodies (e.g. Earth) an explicit specialisation in the appropriate platform header returns the canonical named frame instance so that existing DCM specialisations are reused.</para>
+<para>Returns a Z-rotation body-fixed frame for <computeroutput>body</computeroutput>. For well-known bodies (e.g. Earth) an explicit specialization in the appropriate platform header returns the canonical named frame instance so that existing DCM specializations are reused.</para>
 <para><parameterlist kind="templateparam"><parameteritem>
 <parameternamelist>
 <parametername>body</parametername>

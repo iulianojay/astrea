@@ -2017,8 +2017,8 @@ The GNU Lesser General Public License (LGPL)</para>
 <codeline lineno="42"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="Venus_8hpp" kindref="compound">astro/systems/celestial_bodies/Venus/Venus.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="43"><highlight class="normal"></highlight></codeline>
 <codeline lineno="44"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Keplerian-approximation<sp/>fallback<sp/>for<sp/>get_position_at<sp/>/<sp/>get_velocity_at.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="45"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Included<sp/>AFTER<sp/>all<sp/>planet<sp/>specialisations<sp/>so<sp/>the<sp/>fallback<sp/>primary-template</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="46"><highlight class="normal"></highlight><highlight class="comment">//<sp/>definition<sp/>does<sp/>not<sp/>shadow<sp/>any<sp/>explicit<sp/>specialisation.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Included<sp/>AFTER<sp/>all<sp/>planet<sp/>specializations<sp/>so<sp/>the<sp/>fallback<sp/>primary-template</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight><highlight class="comment">//<sp/>definition<sp/>does<sp/>not<sp/>shadow<sp/>any<sp/>explicit<sp/>specialization.</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="47"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="default__property__getters_8hpp" kindref="compound">astro/systems/default_property_getters.hpp</ref>&gt;</highlight></codeline>
     </programlisting>
     <location file="astrea/astro/astro/systems/celestial_bodies.hpp"/>

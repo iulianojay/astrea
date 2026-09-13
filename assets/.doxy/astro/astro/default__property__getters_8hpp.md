@@ -97,16 +97,16 @@ Jay Iuliano ([iuliano.jay@gmail.com](mailto:iuliano.jay@gmail.com))
 
 This header provides:
 * get\_keplerian\_elements\_at&lt;_body_&gt; — JPL linear-approximation Keplerian elements.
-* get\_position\_at&lt;_body_&gt; (primary template definition) — Keplerian fallback used for bodies that have no Chebyshev ephemeris specialisation (e.g. Phobos, Deimos).
+* get\_position\_at&lt;_body_&gt; (primary template definition) — Keplerian fallback used for bodies that have no Chebyshev ephemeris specialization (e.g. Phobos, Deimos).
 * get\_velocity\_at&lt;_body_&gt; (primary template definition) — same fallback for velocity.
 
 
 
 
-Include order matters: [**CelestialBody.hpp**](CelestialBody_8hpp.md) already declares the primary templates (without a body) for get\_position\_at / get\_velocity\_at. The planet specialisations (e.g. Earth, Jupiter) are compiled when their individual planet headers are included. This file provides the fall-through primary-template body for any remaining bodies.
+Include order matters: [**CelestialBody.hpp**](CelestialBody_8hpp.md) already declares the primary templates (without a body) for get\_position\_at / get\_velocity\_at. The planet specializations (e.g. Earth, Jupiter) are compiled when their individual planet headers are included. This file provides the fall-through primary-template body for any remaining bodies.
 
 
-This file MUST be included AFTER all planet headers (and therefore after all get\_position\_at explicit specialisations) so that the linker can select the correct overload. [**celestial\_bodies.hpp**](celestial__bodies_8hpp.md) includes it automatically at the bottom.
+This file MUST be included AFTER all planet headers (and therefore after all get\_position\_at explicit specializations) so that the linker can select the correct overload. [**celestial\_bodies.hpp**](celestial__bodies_8hpp.md) includes it automatically at the bottom.
 
 
 

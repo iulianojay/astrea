@@ -958,24 +958,6 @@ You're not viewing the latest version.
         
       
       
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Lambert Solutions
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -992,186 +974,6 @@ You're not viewing the latest version.
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#lamberts-problem-overview" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Lambert's Problem Overview
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#lambertsolver-interface" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        LambertSolver Interface
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#basic-lambert-solution" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Basic Lambert Solution
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Basic Lambert Solution">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#single-revolution-transfer" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Single Revolution Transfer
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#multi-revolution-transfers" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Multi-Revolution Transfers
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#mission-applications" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Mission Applications
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Mission Applications">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#rendezvous-planning" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Rendezvous Planning
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#interplanetary-transfers" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Interplanetary Transfers
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#formation-flying" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Formation Flying
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#advanced-lambert-techniques" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Advanced Lambert Techniques
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Advanced Lambert Techniques">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#minimum-energy-solutions" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Minimum Energy Solutions
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#multi-impulse-transfers" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Multi-Impulse Transfers
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#solution-validation" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Solution Validation
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
       
     </li>
   
@@ -1693,7 +1495,7 @@ You're not viewing the latest version.
   
   
     <li class="md-nav__item">
-      <a href="../../../../design/performance/" class="md-nav__link">
+      <a href="../../../../design/performance.md" class="md-nav__link">
         
   
   
@@ -6460,297 +6262,56 @@ You're not viewing the latest version.
   
 
 
-<p>[[PLACEHOLDER]]</p>
 <h1 id="lambert-solutions">Lambert Solutions<a class="headerlink" href="#lambert-solutions" title="Permanent link">&para;</a></h1>
-<p>Astrea provides a robust implementation of Lambert's problem solver for determining orbital trajectories between two position vectors in a specified time of flight. This capability is essential for trajectory design, rendezvous planning, and interplanetary transfer analysis.</p>
-<h2 id="lamberts-problem-overview">Lambert's Problem Overview<a class="headerlink" href="#lamberts-problem-overview" title="Permanent link">&para;</a></h2>
-<p>Lambert's problem involves finding the orbital trajectory that connects two position vectors in space within a given time constraint. The solution provides the required velocity vectors at both positions, enabling mission designers to compute transfer orbits and maneuver requirements.</p>
-<p><strong>Given:</strong>
-- Initial position vector r₁
-- Final position vector r₂
-- Time of flight Δt
-- Central body gravitational parameter μ</p>
-<p><strong>Find:</strong>
-- Initial velocity vector v₁
-- Final velocity vector v₂
-- Orbital parameters of transfer trajectory</p>
-<h2 id="lambertsolver-interface">LambertSolver Interface<a class="headerlink" href="#lambertsolver-interface" title="Permanent link">&para;</a></h2>
-<p>The LambertSolver provides static methods for solving Lambert's problem:</p>
-<div class="language-cpp highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;astro/propagation/analytic/LambertSolver.hpp&gt;</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="k">class</span><span class="w"> </span><span class="nc">LambertSolver</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="k">public</span><span class="o">:</span>
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">    </span><span class="k">enum</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">OrbitDirection</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">EnumType</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">        </span><span class="n">PROGRADE</span><span class="p">,</span><span class="w">   </span><span class="c1">// Normal orbital direction</span>
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">        </span><span class="n">RETROGRADE</span><span class="w">  </span><span class="c1">// Reverse orbital direction</span>
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">    </span><span class="p">};</span>
-</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>
-</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">    </span><span class="c1">// Static solver methods</span>
-</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="n">LambertSolution</span><span class="w"> </span><span class="nf">solve</span><span class="p">(</span>
-</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">        </span><span class="k">const</span><span class="w"> </span><span class="n">CartesianVector</span><span class="o">&lt;</span><span class="n">Distance</span><span class="p">,</span><span class="w"> </span><span class="n">ECI</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">r1</span><span class="p">,</span>
-</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">        </span><span class="k">const</span><span class="w"> </span><span class="n">CartesianVector</span><span class="o">&lt;</span><span class="n">Distance</span><span class="p">,</span><span class="w"> </span><span class="n">ECI</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">r2</span><span class="p">,</span>
-</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">        </span><span class="k">const</span><span class="w"> </span><span class="n">Time</span><span class="o">&amp;</span><span class="w"> </span><span class="n">timeOfFlight</span><span class="p">,</span>
-</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="w">        </span><span class="k">const</span><span class="w"> </span><span class="n">GravParam</span><span class="o">&amp;</span><span class="w"> </span><span class="n">mu</span><span class="p">,</span>
-</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="w">        </span><span class="n">OrbitDirection</span><span class="w"> </span><span class="n">direction</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">OrbitDirection</span><span class="o">::</span><span class="n">PROGRADE</span><span class="p">,</span>
-</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">revolutions</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span>
-</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="w">    </span><span class="p">);</span>
-</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="p">};</span>
-</span></code></pre></div>
-<h2 id="basic-lambert-solution">Basic Lambert Solution<a class="headerlink" href="#basic-lambert-solution" title="Permanent link">&para;</a></h2>
-<h3 id="single-revolution-transfer">Single Revolution Transfer<a class="headerlink" href="#single-revolution-transfer" title="Permanent link">&para;</a></h3>
-<div class="language-cpp highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1">// Define trajectory endpoints</span>
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="n">CartesianVector</span><span class="o">&lt;</span><span class="n">Distance</span><span class="p">,</span><span class="w"> </span><span class="n">ECI</span><span class="o">&gt;</span><span class="w"> </span><span class="n">r1</span><span class="p">(</span><span class="mf">7000.0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">km</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">km</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">km</span><span class="p">);</span>
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="n">CartesianVector</span><span class="o">&lt;</span><span class="n">Distance</span><span class="p">,</span><span class="w"> </span><span class="n">ECI</span><span class="o">&gt;</span><span class="w"> </span><span class="n">r2</span><span class="p">(</span><span class="mf">0.0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">km</span><span class="p">,</span><span class="w"> </span><span class="mf">8000.0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">km</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">km</span><span class="p">);</span>
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>
-</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="c1">// Transfer time</span>
-</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="n">Time</span><span class="w"> </span><span class="n">transferTime</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">3.0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">hour</span><span class="p">;</span>
-</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>
-</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="c1">// Earth gravitational parameter</span>
-</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="n">GravParam</span><span class="w"> </span><span class="n">mu</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">398600.44189</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">pow</span><span class="o">&lt;</span><span class="mi">3</span><span class="o">&gt;</span><span class="p">(</span><span class="n">km</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">pow</span><span class="o">&lt;</span><span class="mi">2</span><span class="o">&gt;</span><span class="p">(</span><span class="n">s</span><span class="p">);</span>
-</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>
-</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="c1">// Solve Lambert's problem</span>
-</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="n">LambertSolution</span><span class="w"> </span><span class="n">solution</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">LambertSolver</span><span class="o">::</span><span class="n">solve</span><span class="p">(</span>
-</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="w">    </span><span class="n">r1</span><span class="p">,</span><span class="w"> </span><span class="n">r2</span><span class="p">,</span><span class="w"> </span><span class="n">transferTime</span><span class="p">,</span><span class="w"> </span><span class="n">mu</span><span class="p">,</span>
-</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="w">    </span><span class="n">LambertSolver</span><span class="o">::</span><span class="n">OrbitDirection</span><span class="o">::</span><span class="n">PROGRADE</span>
-</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="p">);</span>
-</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>
-</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="c1">// Extract velocity vectors</span>
-</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a><span class="n">CartesianVector</span><span class="o">&lt;</span><span class="n">Velocity</span><span class="p">,</span><span class="w"> </span><span class="n">ECI</span><span class="o">&gt;</span><span class="w"> </span><span class="n">v1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">solution</span><span class="p">.</span><span class="n">get_initial_velocity</span><span class="p">();</span>
-</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a><span class="n">CartesianVector</span><span class="o">&lt;</span><span class="n">Velocity</span><span class="p">,</span><span class="w"> </span><span class="n">ECI</span><span class="o">&gt;</span><span class="w"> </span><span class="n">v2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">solution</span><span class="p">.</span><span class="n">get_final_velocity</span><span class="p">();</span>
-</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>
-</span><span id="__span-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a><span class="c1">// Compute required delta-V</span>
-</span><span id="__span-1-22"><a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a><span class="n">CartesianVector</span><span class="o">&lt;</span><span class="n">Velocity</span><span class="p">,</span><span class="w"> </span><span class="n">ECI</span><span class="o">&gt;</span><span class="w"> </span><span class="n">currentVel1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="cm">/* current velocity at r1 */</span><span class="p">;</span>
-</span><span id="__span-1-23"><a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a><span class="n">CartesianVector</span><span class="o">&lt;</span><span class="n">Velocity</span><span class="p">,</span><span class="w"> </span><span class="n">ECI</span><span class="o">&gt;</span><span class="w"> </span><span class="n">deltaV1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">v1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">currentVel1</span><span class="p">;</span>
-</span><span id="__span-1-24"><a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a><span class="n">Speed</span><span class="w"> </span><span class="n">deltaVMagnitude</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">magnitude</span><span class="p">(</span><span class="n">deltaV1</span><span class="p">);</span>
-</span></code></pre></div>
-<h3 id="multi-revolution-transfers">Multi-Revolution Transfers<a class="headerlink" href="#multi-revolution-transfers" title="Permanent link">&para;</a></h3>
-<div class="language-cpp highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1">// Long-duration transfer with multiple revolutions</span>
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="n">Time</span><span class="w"> </span><span class="n">longTransferTime</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">2.5</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">day</span><span class="p">;</span>
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="kt">int</span><span class="w"> </span><span class="n">numberOfRevolutions</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span>
-</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>
-</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="n">LambertSolution</span><span class="w"> </span><span class="n">multiRevSolution</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">LambertSolver</span><span class="o">::</span><span class="n">solve</span><span class="p">(</span>
-</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">    </span><span class="n">r1</span><span class="p">,</span><span class="w"> </span><span class="n">r2</span><span class="p">,</span><span class="w"> </span><span class="n">longTransferTime</span><span class="p">,</span><span class="w"> </span><span class="n">mu</span><span class="p">,</span>
-</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">    </span><span class="n">LambertSolver</span><span class="o">::</span><span class="n">OrbitDirection</span><span class="o">::</span><span class="n">PROGRADE</span><span class="p">,</span>
-</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w">    </span><span class="n">numberOfRevolutions</span>
-</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="p">);</span>
-</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>
-</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="c1">// Multi-revolution transfers may have multiple solutions</span>
-</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">LambertSolution</span><span class="o">&gt;</span><span class="w"> </span><span class="n">allSolutions</span><span class="w"> </span><span class="o">=</span>
-</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="w">    </span><span class="n">LambertSolver</span><span class="o">::</span><span class="n">solve_all_branches</span><span class="p">(</span><span class="n">r1</span><span class="p">,</span><span class="w"> </span><span class="n">r2</span><span class="p">,</span><span class="w"> </span><span class="n">longTransferTime</span><span class="p">,</span><span class="w"> </span><span class="n">mu</span><span class="p">,</span><span class="w"> </span><span class="n">numberOfRevolutions</span><span class="p">);</span>
-</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>
-</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="c1">// Select optimal solution based on delta-V</span>
-</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a><span class="n">LambertSolution</span><span class="w"> </span><span class="n">optimalSolution</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">select_minimum_energy_solution</span><span class="p">(</span><span class="n">allSolutions</span><span class="p">);</span>
-</span></code></pre></div>
-<h2 id="mission-applications">Mission Applications<a class="headerlink" href="#mission-applications" title="Permanent link">&para;</a></h2>
-<h3 id="rendezvous-planning">Rendezvous Planning<a class="headerlink" href="#rendezvous-planning" title="Permanent link">&para;</a></h3>
-<div class="language-cpp highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1">// Spacecraft rendezvous scenario</span>
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="k">class</span><span class="w"> </span><span class="nc">RendezvousPlan</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="k">public</span><span class="o">:</span>
-</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">ManeuverPlan</span><span class="o">&gt;</span><span class="w"> </span><span class="n">plan_rendezvous</span><span class="p">(</span>
-</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">        </span><span class="k">const</span><span class="w"> </span><span class="n">State</span><span class="o">&amp;</span><span class="w"> </span><span class="n">chaserState</span><span class="p">,</span>
-</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">        </span><span class="k">const</span><span class="w"> </span><span class="n">State</span><span class="o">&amp;</span><span class="w"> </span><span class="n">targetState</span><span class="p">,</span>
-</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">        </span><span class="k">const</span><span class="w"> </span><span class="n">Time</span><span class="o">&amp;</span><span class="w"> </span><span class="n">rendezvousTime</span>
-</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>
-</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="w">        </span><span class="c1">// Current positions</span>
-</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="w">        </span><span class="n">CartesianVector</span><span class="o">&lt;</span><span class="n">Distance</span><span class="p">,</span><span class="w"> </span><span class="n">ECI</span><span class="o">&gt;</span><span class="w"> </span><span class="n">chaserPos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">chaserState</span><span class="p">.</span><span class="n">get_position</span><span class="p">();</span>
-</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="w">        </span><span class="n">CartesianVector</span><span class="o">&lt;</span><span class="n">Distance</span><span class="p">,</span><span class="w"> </span><span class="n">ECI</span><span class="o">&gt;</span><span class="w"> </span><span class="n">targetPos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">targetState</span><span class="p">.</span><span class="n">get_position</span><span class="p">();</span>
-</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>
-</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="w">        </span><span class="c1">// Predict target position at rendezvous time</span>
-</span><span id="__span-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="w">        </span><span class="n">CartesianVector</span><span class="o">&lt;</span><span class="n">Distance</span><span class="p">,</span><span class="w"> </span><span class="n">ECI</span><span class="o">&gt;</span><span class="w"> </span><span class="n">futureTargetPos</span><span class="w"> </span><span class="o">=</span>
-</span><span id="__span-3-16"><a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a><span class="w">            </span><span class="n">propagate_position</span><span class="p">(</span><span class="n">targetState</span><span class="p">,</span><span class="w"> </span><span class="n">rendezvousTime</span><span class="p">);</span>
-</span><span id="__span-3-17"><a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a>
-</span><span id="__span-3-18"><a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a><span class="w">        </span><span class="c1">// Solve Lambert's problem</span>
-</span><span id="__span-3-19"><a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a><span class="w">        </span><span class="n">Time</span><span class="w"> </span><span class="n">timeOfFlight</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rendezvousTime</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">chaserState</span><span class="p">.</span><span class="n">get_epoch</span><span class="p">();</span>
-</span><span id="__span-3-20"><a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a><span class="w">        </span><span class="n">LambertSolution</span><span class="w"> </span><span class="n">solution</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">LambertSolver</span><span class="o">::</span><span class="n">solve</span><span class="p">(</span>
-</span><span id="__span-3-21"><a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a><span class="w">            </span><span class="n">chaserPos</span><span class="p">,</span><span class="w"> </span><span class="n">futureTargetPos</span><span class="p">,</span><span class="w"> </span><span class="n">timeOfFlight</span><span class="p">,</span>
-</span><span id="__span-3-22"><a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a><span class="w">            </span><span class="n">chaserState</span><span class="p">.</span><span class="n">get_system</span><span class="p">().</span><span class="n">get_central_body</span><span class="p">().</span><span class="n">get_gravitational_parameter</span><span class="p">()</span>
-</span><span id="__span-3-23"><a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a><span class="w">        </span><span class="p">);</span>
-</span><span id="__span-3-24"><a id="__codelineno-3-24" name="__codelineno-3-24" href="#__codelineno-3-24"></a>
-</span><span id="__span-3-25"><a id="__codelineno-3-25" name="__codelineno-3-25" href="#__codelineno-3-25"></a><span class="w">        </span><span class="c1">// Compute maneuver requirements</span>
-</span><span id="__span-3-26"><a id="__codelineno-3-26" name="__codelineno-3-26" href="#__codelineno-3-26"></a><span class="w">        </span><span class="n">CartesianVector</span><span class="o">&lt;</span><span class="n">Velocity</span><span class="p">,</span><span class="w"> </span><span class="n">ECI</span><span class="o">&gt;</span><span class="w"> </span><span class="n">currentVel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">chaserState</span><span class="p">.</span><span class="n">get_velocity</span><span class="p">();</span>
-</span><span id="__span-3-27"><a id="__codelineno-3-27" name="__codelineno-3-27" href="#__codelineno-3-27"></a><span class="w">        </span><span class="n">CartesianVector</span><span class="o">&lt;</span><span class="n">Velocity</span><span class="p">,</span><span class="w"> </span><span class="n">ECI</span><span class="o">&gt;</span><span class="w"> </span><span class="n">requiredVel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">solution</span><span class="p">.</span><span class="n">get_initial_velocity</span><span class="p">();</span>
-</span><span id="__span-3-28"><a id="__codelineno-3-28" name="__codelineno-3-28" href="#__codelineno-3-28"></a><span class="w">        </span><span class="n">CartesianVector</span><span class="o">&lt;</span><span class="n">Velocity</span><span class="p">,</span><span class="w"> </span><span class="n">ECI</span><span class="o">&gt;</span><span class="w"> </span><span class="n">deltaV</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">requiredVel</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">currentVel</span><span class="p">;</span>
-</span><span id="__span-3-29"><a id="__codelineno-3-29" name="__codelineno-3-29" href="#__codelineno-3-29"></a>
-</span><span id="__span-3-30"><a id="__codelineno-3-30" name="__codelineno-3-30" href="#__codelineno-3-30"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">create_maneuver_sequence</span><span class="p">(</span><span class="n">deltaV</span><span class="p">,</span><span class="w"> </span><span class="n">chaserState</span><span class="p">.</span><span class="n">get_epoch</span><span class="p">());</span>
-</span><span id="__span-3-31"><a id="__codelineno-3-31" name="__codelineno-3-31" href="#__codelineno-3-31"></a><span class="w">    </span><span class="p">}</span>
-</span><span id="__span-3-32"><a id="__codelineno-3-32" name="__codelineno-3-32" href="#__codelineno-3-32"></a><span class="p">};</span>
-</span><span id="__span-3-33"><a id="__codelineno-3-33" name="__codelineno-3-33" href="#__codelineno-3-33"></a>
-</span><span id="__span-3-34"><a id="__codelineno-3-34" name="__codelineno-3-34" href="#__codelineno-3-34"></a><span class="c1">// Plan rendezvous maneuvers</span>
-</span><span id="__span-3-35"><a id="__codelineno-3-35" name="__codelineno-3-35" href="#__codelineno-3-35"></a><span class="n">Std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">ManeuverPlan</span><span class="o">&gt;</span><span class="w"> </span><span class="n">maneuvers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">RendezvousPlan</span><span class="o">::</span><span class="n">plan_rendezvous</span><span class="p">(</span>
-</span><span id="__span-3-36"><a id="__codelineno-3-36" name="__codelineno-3-36" href="#__codelineno-3-36"></a><span class="w">    </span><span class="n">chaserSatellite</span><span class="p">,</span><span class="w"> </span><span class="n">targetSatellite</span><span class="p">,</span><span class="w"> </span><span class="n">rendezvousTime</span>
-</span><span id="__span-3-37"><a id="__codelineno-3-37" name="__codelineno-3-37" href="#__codelineno-3-37"></a><span class="p">);</span>
-</span></code></pre></div>
-<h3 id="interplanetary-transfers">Interplanetary Transfers<a class="headerlink" href="#interplanetary-transfers" title="Permanent link">&para;</a></h3>
-<div class="language-cpp highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1">// Earth-Mars transfer using Lambert solver</span>
-</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="k">class</span><span class="w"> </span><span class="nc">InterplanetaryTransfer</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="k">public</span><span class="o">:</span>
-</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="n">TransferWindow</span><span class="w"> </span><span class="n">analyze_earth_mars_transfer</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Time</span><span class="o">&amp;</span><span class="w"> </span><span class="n">departureWindow</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>
-</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">TransferOpportunity</span><span class="o">&gt;</span><span class="w"> </span><span class="n">opportunities</span><span class="p">;</span>
-</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>
-</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="w">        </span><span class="c1">// Scan departure window</span>
-</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">Time</span><span class="w"> </span><span class="n">departure</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">departureWindow</span><span class="p">.</span><span class="n">start</span><span class="p">;</span>
-</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="w">             </span><span class="n">departure</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">departureWindow</span><span class="p">.</span><span class="n">end</span><span class="p">;</span>
-</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="w">             </span><span class="n">departure</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mf">1.0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">day</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>
-</span><span id="__span-4-13"><a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a><span class="w">            </span><span class="c1">// Get planetary positions at departure</span>
-</span><span id="__span-4-14"><a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a><span class="w">            </span><span class="n">CartesianVector</span><span class="o">&lt;</span><span class="n">Distance</span><span class="p">,</span><span class="w"> </span><span class="n">helio</span><span class="o">::</span><span class="n">icrf</span><span class="o">&gt;</span><span class="w"> </span><span class="n">earthPos</span><span class="w"> </span><span class="o">=</span>
-</span><span id="__span-4-15"><a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a><span class="w">                </span><span class="n">solarSystem</span><span class="p">.</span><span class="n">get_body_position</span><span class="p">(</span><span class="n">CelestialBodyId</span><span class="o">::</span><span class="n">EARTH</span><span class="p">,</span><span class="w"> </span><span class="n">departure</span><span class="p">);</span>
-</span><span id="__span-4-16"><a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a>
-</span><span id="__span-4-17"><a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a><span class="w">            </span><span class="c1">// Scan arrival times</span>
-</span><span id="__span-4-18"><a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a><span class="w">            </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">Time</span><span class="w"> </span><span class="n">flightTime</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">180.0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">day</span><span class="p">;</span><span class="w"> </span><span class="n">flightTime</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mf">300.0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">day</span><span class="p">;</span><span class="w"> </span><span class="n">flightTime</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mf">5.0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">day</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-4-19"><a id="__codelineno-4-19" name="__codelineno-4-19" href="#__codelineno-4-19"></a>
-</span><span id="__span-4-20"><a id="__codelineno-4-20" name="__codelineno-4-20" href="#__codelineno-4-20"></a><span class="w">                </span><span class="n">Time</span><span class="w"> </span><span class="n">arrival</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">departure</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">flightTime</span><span class="p">;</span>
-</span><span id="__span-4-21"><a id="__codelineno-4-21" name="__codelineno-4-21" href="#__codelineno-4-21"></a><span class="w">                </span><span class="n">CartesianVector</span><span class="o">&lt;</span><span class="n">Distance</span><span class="p">,</span><span class="w"> </span><span class="n">helio</span><span class="o">::</span><span class="n">icrf</span><span class="o">&gt;</span><span class="w"> </span><span class="n">marsPos</span><span class="w"> </span><span class="o">=</span>
-</span><span id="__span-4-22"><a id="__codelineno-4-22" name="__codelineno-4-22" href="#__codelineno-4-22"></a><span class="w">                    </span><span class="n">solarSystem</span><span class="p">.</span><span class="n">get_body_position</span><span class="p">(</span><span class="n">CelestialBodyId</span><span class="o">::</span><span class="n">MARS</span><span class="p">,</span><span class="w"> </span><span class="n">arrival</span><span class="p">);</span>
-</span><span id="__span-4-23"><a id="__codelineno-4-23" name="__codelineno-4-23" href="#__codelineno-4-23"></a>
-</span><span id="__span-4-24"><a id="__codelineno-4-24" name="__codelineno-4-24" href="#__codelineno-4-24"></a><span class="w">                </span><span class="c1">// Solve heliocentric Lambert problem</span>
-</span><span id="__span-4-25"><a id="__codelineno-4-25" name="__codelineno-4-25" href="#__codelineno-4-25"></a><span class="w">                </span><span class="n">GravParam</span><span class="w"> </span><span class="n">sunMu</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">solarSystem</span><span class="p">.</span><span class="n">get_central_body</span><span class="p">().</span><span class="n">get_gravitational_parameter</span><span class="p">();</span>
-</span><span id="__span-4-26"><a id="__codelineno-4-26" name="__codelineno-4-26" href="#__codelineno-4-26"></a><span class="w">                </span><span class="n">LambertSolution</span><span class="w"> </span><span class="n">solution</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">LambertSolver</span><span class="o">::</span><span class="n">solve</span><span class="p">(</span>
-</span><span id="__span-4-27"><a id="__codelineno-4-27" name="__codelineno-4-27" href="#__codelineno-4-27"></a><span class="w">                    </span><span class="n">earthPos</span><span class="p">,</span><span class="w"> </span><span class="n">marsPos</span><span class="p">,</span><span class="w"> </span><span class="n">flightTime</span><span class="p">,</span><span class="w"> </span><span class="n">sunMu</span>
-</span><span id="__span-4-28"><a id="__codelineno-4-28" name="__codelineno-4-28" href="#__codelineno-4-28"></a><span class="w">                </span><span class="p">);</span>
-</span><span id="__span-4-29"><a id="__codelineno-4-29" name="__codelineno-4-29" href="#__codelineno-4-29"></a>
-</span><span id="__span-4-30"><a id="__codelineno-4-30" name="__codelineno-4-30" href="#__codelineno-4-30"></a><span class="w">                </span><span class="c1">// Compute total delta-V requirement</span>
-</span><span id="__span-4-31"><a id="__codelineno-4-31" name="__codelineno-4-31" href="#__codelineno-4-31"></a><span class="w">                </span><span class="n">Speed</span><span class="w"> </span><span class="n">totalDeltaV</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">compute_interplanetary_deltav</span><span class="p">(</span><span class="n">solution</span><span class="p">,</span><span class="w"> </span><span class="n">departure</span><span class="p">,</span><span class="w"> </span><span class="n">arrival</span><span class="p">);</span>
-</span><span id="__span-4-32"><a id="__codelineno-4-32" name="__codelineno-4-32" href="#__codelineno-4-32"></a>
-</span><span id="__span-4-33"><a id="__codelineno-4-33" name="__codelineno-4-33" href="#__codelineno-4-33"></a><span class="w">                </span><span class="n">opportunities</span><span class="p">.</span><span class="n">emplace_back</span><span class="p">(</span><span class="n">departure</span><span class="p">,</span><span class="w"> </span><span class="n">arrival</span><span class="p">,</span><span class="w"> </span><span class="n">totalDeltaV</span><span class="p">,</span><span class="w"> </span><span class="n">solution</span><span class="p">);</span>
-</span><span id="__span-4-34"><a id="__codelineno-4-34" name="__codelineno-4-34" href="#__codelineno-4-34"></a><span class="w">            </span><span class="p">}</span>
-</span><span id="__span-4-35"><a id="__codelineno-4-35" name="__codelineno-4-35" href="#__codelineno-4-35"></a><span class="w">        </span><span class="p">}</span>
-</span><span id="__span-4-36"><a id="__codelineno-4-36" name="__codelineno-4-36" href="#__codelineno-4-36"></a>
-</span><span id="__span-4-37"><a id="__codelineno-4-37" name="__codelineno-4-37" href="#__codelineno-4-37"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">find_optimal_transfer_window</span><span class="p">(</span><span class="n">opportunities</span><span class="p">);</span>
-</span><span id="__span-4-38"><a id="__codelineno-4-38" name="__codelineno-4-38" href="#__codelineno-4-38"></a><span class="w">    </span><span class="p">}</span>
-</span><span id="__span-4-39"><a id="__codelineno-4-39" name="__codelineno-4-39" href="#__codelineno-4-39"></a><span class="p">};</span>
-</span></code></pre></div>
-<h3 id="formation-flying">Formation Flying<a class="headerlink" href="#formation-flying" title="Permanent link">&para;</a></h3>
-<div class="language-cpp highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1">// Formation flying Lambert solutions</span>
-</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="k">class</span><span class="w"> </span><span class="nc">FormationControl</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="k">public</span><span class="o">:</span>
-</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="n">ManeuverSequence</span><span class="w"> </span><span class="n">maintain_formation</span><span class="p">(</span>
-</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">        </span><span class="k">const</span><span class="w"> </span><span class="n">State</span><span class="o">&amp;</span><span class="w"> </span><span class="n">leaderState</span><span class="p">,</span>
-</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="w">        </span><span class="k">const</span><span class="w"> </span><span class="n">State</span><span class="o">&amp;</span><span class="w"> </span><span class="n">followerState</span><span class="p">,</span>
-</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="w">        </span><span class="k">const</span><span class="w"> </span><span class="n">CartesianVector</span><span class="o">&lt;</span><span class="n">Distance</span><span class="p">,</span><span class="w"> </span><span class="n">RIC</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">desiredOffset</span><span class="p">,</span>
-</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="w">        </span><span class="k">const</span><span class="w"> </span><span class="n">Time</span><span class="o">&amp;</span><span class="w"> </span><span class="n">controlPeriod</span>
-</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>
-</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="w">        </span><span class="c1">// Convert desired offset to inertial frame</span>
-</span><span id="__span-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a><span class="w">        </span><span class="n">CartesianVector</span><span class="o">&lt;</span><span class="n">Distance</span><span class="p">,</span><span class="w"> </span><span class="n">ECI</span><span class="o">&gt;</span><span class="w"> </span><span class="n">desiredPosECI</span><span class="w"> </span><span class="o">=</span>
-</span><span id="__span-5-13"><a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a><span class="w">            </span><span class="n">transform</span><span class="o">&lt;</span><span class="n">ECI</span><span class="p">,</span><span class="w"> </span><span class="n">RIC</span><span class="o">&gt;</span><span class="p">(</span><span class="n">desiredOffset</span><span class="p">,</span><span class="w"> </span><span class="n">leaderState</span><span class="p">.</span><span class="n">get_epoch</span><span class="p">(),</span><span class="w"> </span><span class="n">leaderState</span><span class="p">);</span>
-</span><span id="__span-5-14"><a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a>
-</span><span id="__span-5-15"><a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a><span class="w">        </span><span class="n">CartesianVector</span><span class="o">&lt;</span><span class="n">Distance</span><span class="p">,</span><span class="w"> </span><span class="n">ECI</span><span class="o">&gt;</span><span class="w"> </span><span class="n">targetPosition</span><span class="w"> </span><span class="o">=</span>
-</span><span id="__span-5-16"><a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a><span class="w">            </span><span class="n">leaderState</span><span class="p">.</span><span class="n">get_position</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">desiredPosECI</span><span class="p">;</span>
-</span><span id="__span-5-17"><a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a>
-</span><span id="__span-5-18"><a id="__codelineno-5-18" name="__codelineno-5-18" href="#__codelineno-5-18"></a><span class="w">        </span><span class="c1">// Solve for formation maintenance trajectory</span>
-</span><span id="__span-5-19"><a id="__codelineno-5-19" name="__codelineno-5-19" href="#__codelineno-5-19"></a><span class="w">        </span><span class="n">LambertSolution</span><span class="w"> </span><span class="n">maintainSolution</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">LambertSolver</span><span class="o">::</span><span class="n">solve</span><span class="p">(</span>
-</span><span id="__span-5-20"><a id="__codelineno-5-20" name="__codelineno-5-20" href="#__codelineno-5-20"></a><span class="w">            </span><span class="n">followerState</span><span class="p">.</span><span class="n">get_position</span><span class="p">(),</span>
-</span><span id="__span-5-21"><a id="__codelineno-5-21" name="__codelineno-5-21" href="#__codelineno-5-21"></a><span class="w">            </span><span class="n">targetPosition</span><span class="p">,</span>
-</span><span id="__span-5-22"><a id="__codelineno-5-22" name="__codelineno-5-22" href="#__codelineno-5-22"></a><span class="w">            </span><span class="n">controlPeriod</span><span class="p">,</span>
-</span><span id="__span-5-23"><a id="__codelineno-5-23" name="__codelineno-5-23" href="#__codelineno-5-23"></a><span class="w">            </span><span class="n">followerState</span><span class="p">.</span><span class="n">get_system</span><span class="p">().</span><span class="n">get_central_body</span><span class="p">().</span><span class="n">get_gravitational_parameter</span><span class="p">()</span>
-</span><span id="__span-5-24"><a id="__codelineno-5-24" name="__codelineno-5-24" href="#__codelineno-5-24"></a><span class="w">        </span><span class="p">);</span>
-</span><span id="__span-5-25"><a id="__codelineno-5-25" name="__codelineno-5-25" href="#__codelineno-5-25"></a>
-</span><span id="__span-5-26"><a id="__codelineno-5-26" name="__codelineno-5-26" href="#__codelineno-5-26"></a><span class="w">        </span><span class="c1">// Generate station-keeping maneuvers</span>
-</span><span id="__span-5-27"><a id="__codelineno-5-27" name="__codelineno-5-27" href="#__codelineno-5-27"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">generate_formation_maneuvers</span><span class="p">(</span><span class="n">maintainSolution</span><span class="p">,</span><span class="w"> </span><span class="n">followerState</span><span class="p">);</span>
-</span><span id="__span-5-28"><a id="__codelineno-5-28" name="__codelineno-5-28" href="#__codelineno-5-28"></a><span class="w">    </span><span class="p">}</span>
-</span><span id="__span-5-29"><a id="__codelineno-5-29" name="__codelineno-5-29" href="#__codelineno-5-29"></a><span class="p">};</span>
-</span></code></pre></div>
-<h2 id="advanced-lambert-techniques">Advanced Lambert Techniques<a class="headerlink" href="#advanced-lambert-techniques" title="Permanent link">&para;</a></h2>
-<h3 id="minimum-energy-solutions">Minimum Energy Solutions<a class="headerlink" href="#minimum-energy-solutions" title="Permanent link">&para;</a></h3>
-<div class="language-cpp highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1">// Find minimum energy transfer</span>
-</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="n">LambertSolution</span><span class="w"> </span><span class="nf">find_minimum_energy_transfer</span><span class="p">(</span>
-</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">CartesianVector</span><span class="o">&lt;</span><span class="n">Distance</span><span class="p">,</span><span class="w"> </span><span class="n">ECI</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">r1</span><span class="p">,</span>
-</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">CartesianVector</span><span class="o">&lt;</span><span class="n">Distance</span><span class="p">,</span><span class="w"> </span><span class="n">ECI</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">r2</span><span class="p">,</span>
-</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">GravParam</span><span class="o">&amp;</span><span class="w"> </span><span class="n">mu</span>
-</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>
-</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="w">    </span><span class="c1">// Compute minimum energy (Hohmann-like) transfer time</span>
-</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="w">    </span><span class="n">Distance</span><span class="w"> </span><span class="n">semiMajorAxis</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">magnitude</span><span class="p">(</span><span class="n">r1</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">magnitude</span><span class="p">(</span><span class="n">r2</span><span class="p">))</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">2.0</span><span class="p">;</span>
-</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="w">    </span><span class="n">Time</span><span class="w"> </span><span class="n">minimumEnergyTime</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pi</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">sqrt</span><span class="p">(</span><span class="n">pow</span><span class="o">&lt;</span><span class="mi">3</span><span class="o">&gt;</span><span class="p">(</span><span class="n">semiMajorAxis</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">mu</span><span class="p">);</span>
-</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>
-</span><span id="__span-6-12"><a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">LambertSolver</span><span class="o">::</span><span class="n">solve</span><span class="p">(</span><span class="n">r1</span><span class="p">,</span><span class="w"> </span><span class="n">r2</span><span class="p">,</span><span class="w"> </span><span class="n">minimumEnergyTime</span><span class="p">,</span><span class="w"> </span><span class="n">mu</span><span class="p">);</span>
-</span><span id="__span-6-13"><a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a><span class="p">}</span>
-</span></code></pre></div>
-<h3 id="multi-impulse-transfers">Multi-Impulse Transfers<a class="headerlink" href="#multi-impulse-transfers" title="Permanent link">&para;</a></h3>
-<div class="language-cpp highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="c1">// Bi-elliptic transfer using multiple Lambert solutions</span>
-</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="k">struct</span><span class="w"> </span><span class="nc">BiEllipticTransfer</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">    </span><span class="n">LambertSolution</span><span class="w"> </span><span class="n">firstLeg</span><span class="p">;</span>
-</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">    </span><span class="n">LambertSolution</span><span class="w"> </span><span class="n">secondLeg</span><span class="p">;</span>
-</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="w">    </span><span class="n">Distance</span><span class="w"> </span><span class="n">intermediateRadius</span><span class="p">;</span>
-</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="w">    </span><span class="n">Speed</span><span class="w"> </span><span class="n">totalDeltaV</span><span class="p">;</span>
-</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="p">};</span>
-</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>
-</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="n">BiEllipticTransfer</span><span class="w"> </span><span class="nf">design_bielliptic_transfer</span><span class="p">(</span>
-</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">CartesianVector</span><span class="o">&lt;</span><span class="n">Distance</span><span class="p">,</span><span class="w"> </span><span class="n">ECI</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">r1</span><span class="p">,</span>
-</span><span id="__span-7-11"><a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">CartesianVector</span><span class="o">&lt;</span><span class="n">Distance</span><span class="p">,</span><span class="w"> </span><span class="n">ECI</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">r2</span><span class="p">,</span>
-</span><span id="__span-7-12"><a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Distance</span><span class="o">&amp;</span><span class="w"> </span><span class="n">intermediateRadius</span><span class="p">,</span>
-</span><span id="__span-7-13"><a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">GravParam</span><span class="o">&amp;</span><span class="w"> </span><span class="n">mu</span>
-</span><span id="__span-7-14"><a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-7-15"><a id="__codelineno-7-15" name="__codelineno-7-15" href="#__codelineno-7-15"></a>
-</span><span id="__span-7-16"><a id="__codelineno-7-16" name="__codelineno-7-16" href="#__codelineno-7-16"></a><span class="w">    </span><span class="c1">// Define intermediate point on transfer orbit</span>
-</span><span id="__span-7-17"><a id="__codelineno-7-17" name="__codelineno-7-17" href="#__codelineno-7-17"></a><span class="w">    </span><span class="n">CartesianVector</span><span class="o">&lt;</span><span class="n">Distance</span><span class="p">,</span><span class="w"> </span><span class="n">ECI</span><span class="o">&gt;</span><span class="w"> </span><span class="n">rIntermediate</span><span class="p">(</span>
-</span><span id="__span-7-18"><a id="__codelineno-7-18" name="__codelineno-7-18" href="#__codelineno-7-18"></a><span class="w">        </span><span class="n">intermediateRadius</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">km</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">km</span>
-</span><span id="__span-7-19"><a id="__codelineno-7-19" name="__codelineno-7-19" href="#__codelineno-7-19"></a><span class="w">    </span><span class="p">);</span>
-</span><span id="__span-7-20"><a id="__codelineno-7-20" name="__codelineno-7-20" href="#__codelineno-7-20"></a>
-</span><span id="__span-7-21"><a id="__codelineno-7-21" name="__codelineno-7-21" href="#__codelineno-7-21"></a><span class="w">    </span><span class="c1">// First leg: r1 to intermediate point</span>
-</span><span id="__span-7-22"><a id="__codelineno-7-22" name="__codelineno-7-22" href="#__codelineno-7-22"></a><span class="w">    </span><span class="n">LambertSolution</span><span class="w"> </span><span class="n">firstLeg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">LambertSolver</span><span class="o">::</span><span class="n">solve</span><span class="p">(</span>
-</span><span id="__span-7-23"><a id="__codelineno-7-23" name="__codelineno-7-23" href="#__codelineno-7-23"></a><span class="w">        </span><span class="n">r1</span><span class="p">,</span><span class="w"> </span><span class="n">rIntermediate</span><span class="p">,</span>
-</span><span id="__span-7-24"><a id="__codelineno-7-24" name="__codelineno-7-24" href="#__codelineno-7-24"></a><span class="w">        </span><span class="n">compute_transfer_time</span><span class="p">(</span><span class="n">r1</span><span class="p">,</span><span class="w"> </span><span class="n">rIntermediate</span><span class="p">,</span><span class="w"> </span><span class="n">mu</span><span class="p">),</span><span class="w"> </span><span class="n">mu</span>
-</span><span id="__span-7-25"><a id="__codelineno-7-25" name="__codelineno-7-25" href="#__codelineno-7-25"></a><span class="w">    </span><span class="p">);</span>
-</span><span id="__span-7-26"><a id="__codelineno-7-26" name="__codelineno-7-26" href="#__codelineno-7-26"></a>
-</span><span id="__span-7-27"><a id="__codelineno-7-27" name="__codelineno-7-27" href="#__codelineno-7-27"></a><span class="w">    </span><span class="c1">// Second leg: intermediate point to r2</span>
-</span><span id="__span-7-28"><a id="__codelineno-7-28" name="__codelineno-7-28" href="#__codelineno-7-28"></a><span class="w">    </span><span class="n">LambertSolution</span><span class="w"> </span><span class="n">secondLeg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">LambertSolver</span><span class="o">::</span><span class="n">solve</span><span class="p">(</span>
-</span><span id="__span-7-29"><a id="__codelineno-7-29" name="__codelineno-7-29" href="#__codelineno-7-29"></a><span class="w">        </span><span class="n">rIntermediate</span><span class="p">,</span><span class="w"> </span><span class="n">r2</span><span class="p">,</span>
-</span><span id="__span-7-30"><a id="__codelineno-7-30" name="__codelineno-7-30" href="#__codelineno-7-30"></a><span class="w">        </span><span class="n">compute_transfer_time</span><span class="p">(</span><span class="n">rIntermediate</span><span class="p">,</span><span class="w"> </span><span class="n">r2</span><span class="p">,</span><span class="w"> </span><span class="n">mu</span><span class="p">),</span><span class="w"> </span><span class="n">mu</span>
-</span><span id="__span-7-31"><a id="__codelineno-7-31" name="__codelineno-7-31" href="#__codelineno-7-31"></a><span class="w">    </span><span class="p">);</span>
-</span><span id="__span-7-32"><a id="__codelineno-7-32" name="__codelineno-7-32" href="#__codelineno-7-32"></a>
-</span><span id="__span-7-33"><a id="__codelineno-7-33" name="__codelineno-7-33" href="#__codelineno-7-33"></a><span class="w">    </span><span class="c1">// Compute total delta-V</span>
-</span><span id="__span-7-34"><a id="__codelineno-7-34" name="__codelineno-7-34" href="#__codelineno-7-34"></a><span class="w">    </span><span class="n">Speed</span><span class="w"> </span><span class="n">deltaV1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">magnitude</span><span class="p">(</span><span class="n">firstLeg</span><span class="p">.</span><span class="n">get_initial_velocity</span><span class="p">()</span><span class="w"> </span><span class="o">-</span>
-</span><span id="__span-7-35"><a id="__codelineno-7-35" name="__codelineno-7-35" href="#__codelineno-7-35"></a><span class="w">                             </span><span class="n">compute_circular_velocity</span><span class="p">(</span><span class="n">r1</span><span class="p">,</span><span class="w"> </span><span class="n">mu</span><span class="p">));</span>
-</span><span id="__span-7-36"><a id="__codelineno-7-36" name="__codelineno-7-36" href="#__codelineno-7-36"></a><span class="w">    </span><span class="n">Speed</span><span class="w"> </span><span class="n">deltaV2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">magnitude</span><span class="p">(</span><span class="n">secondLeg</span><span class="p">.</span><span class="n">get_initial_velocity</span><span class="p">()</span><span class="w"> </span><span class="o">-</span>
-</span><span id="__span-7-37"><a id="__codelineno-7-37" name="__codelineno-7-37" href="#__codelineno-7-37"></a><span class="w">                             </span><span class="n">firstLeg</span><span class="p">.</span><span class="n">get_final_velocity</span><span class="p">());</span>
-</span><span id="__span-7-38"><a id="__codelineno-7-38" name="__codelineno-7-38" href="#__codelineno-7-38"></a><span class="w">    </span><span class="n">Speed</span><span class="w"> </span><span class="n">deltaV3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">magnitude</span><span class="p">(</span><span class="n">compute_circular_velocity</span><span class="p">(</span><span class="n">r2</span><span class="p">,</span><span class="w"> </span><span class="n">mu</span><span class="p">)</span><span class="w"> </span><span class="o">-</span>
-</span><span id="__span-7-39"><a id="__codelineno-7-39" name="__codelineno-7-39" href="#__codelineno-7-39"></a><span class="w">                             </span><span class="n">secondLeg</span><span class="p">.</span><span class="n">get_final_velocity</span><span class="p">());</span>
-</span><span id="__span-7-40"><a id="__codelineno-7-40" name="__codelineno-7-40" href="#__codelineno-7-40"></a>
-</span><span id="__span-7-41"><a id="__codelineno-7-41" name="__codelineno-7-41" href="#__codelineno-7-41"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">BiEllipticTransfer</span><span class="p">{</span>
-</span><span id="__span-7-42"><a id="__codelineno-7-42" name="__codelineno-7-42" href="#__codelineno-7-42"></a><span class="w">        </span><span class="n">firstLeg</span><span class="p">,</span><span class="w"> </span><span class="n">secondLeg</span><span class="p">,</span><span class="w"> </span><span class="n">intermediateRadius</span><span class="p">,</span><span class="w"> </span><span class="n">deltaV1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">deltaV2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">deltaV3</span>
-</span><span id="__span-7-43"><a id="__codelineno-7-43" name="__codelineno-7-43" href="#__codelineno-7-43"></a><span class="w">    </span><span class="p">};</span>
-</span><span id="__span-7-44"><a id="__codelineno-7-44" name="__codelineno-7-44" href="#__codelineno-7-44"></a><span class="p">}</span>
-</span></code></pre></div>
-<h2 id="solution-validation">Solution Validation<a class="headerlink" href="#solution-validation" title="Permanent link">&para;</a></h2>
-<div class="language-cpp highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="c1">// Validate Lambert solution accuracy</span>
-</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="kt">void</span><span class="w"> </span><span class="nf">validate_lambert_solution</span><span class="p">(</span>
-</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">LambertSolution</span><span class="o">&amp;</span><span class="w"> </span><span class="n">solution</span><span class="p">,</span>
-</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">CartesianVector</span><span class="o">&lt;</span><span class="n">Distance</span><span class="p">,</span><span class="w"> </span><span class="n">ECI</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">r1</span><span class="p">,</span>
-</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">CartesianVector</span><span class="o">&lt;</span><span class="n">Distance</span><span class="p">,</span><span class="w"> </span><span class="n">ECI</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">r2</span><span class="p">,</span>
-</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Time</span><span class="o">&amp;</span><span class="w"> </span><span class="n">timeOfFlight</span><span class="p">,</span>
-</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">GravParam</span><span class="o">&amp;</span><span class="w"> </span><span class="n">mu</span>
-</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>
-</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a><span class="w">    </span><span class="c1">// Propagate initial state using solution velocities</span>
-</span><span id="__span-8-11"><a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a><span class="w">    </span><span class="n">Cartesian</span><span class="w"> </span><span class="n">initialElements</span><span class="p">(</span>
-</span><span id="__span-8-12"><a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a><span class="w">        </span><span class="n">r1</span><span class="p">.</span><span class="n">x</span><span class="p">(),</span><span class="w"> </span><span class="n">r1</span><span class="p">.</span><span class="n">y</span><span class="p">(),</span><span class="w"> </span><span class="n">r1</span><span class="p">.</span><span class="n">z</span><span class="p">(),</span><span class="w">  </span><span class="c1">// Position</span>
-</span><span id="__span-8-13"><a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a><span class="w">        </span><span class="n">solution</span><span class="p">.</span><span class="n">get_initial_velocity</span><span class="p">().</span><span class="n">x</span><span class="p">(),</span>
-</span><span id="__span-8-14"><a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a><span class="w">        </span><span class="n">solution</span><span class="p">.</span><span class="n">get_initial_velocity</span><span class="p">().</span><span class="n">y</span><span class="p">(),</span>
-</span><span id="__span-8-15"><a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a><span class="w">        </span><span class="n">solution</span><span class="p">.</span><span class="n">get_initial_velocity</span><span class="p">().</span><span class="n">z</span><span class="p">()</span><span class="w">   </span><span class="c1">// Velocity</span>
-</span><span id="__span-8-16"><a id="__codelineno-8-16" name="__codelineno-8-16" href="#__codelineno-8-16"></a><span class="w">    </span><span class="p">);</span>
-</span><span id="__span-8-17"><a id="__codelineno-8-17" name="__codelineno-8-17" href="#__codelineno-8-17"></a>
-</span><span id="__span-8-18"><a id="__codelineno-8-18" name="__codelineno-8-18" href="#__codelineno-8-18"></a><span class="w">    </span><span class="n">State</span><span class="w"> </span><span class="n">initialState</span><span class="p">(</span><span class="n">initialElements</span><span class="p">,</span><span class="w"> </span><span class="n">Time</span><span class="p">(</span><span class="mf">0.0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">s</span><span class="p">),</span><span class="w"> </span><span class="n">earthSystem</span><span class="p">);</span>
-</span><span id="__span-8-19"><a id="__codelineno-8-19" name="__codelineno-8-19" href="#__codelineno-8-19"></a>
-</span><span id="__span-8-20"><a id="__codelineno-8-20" name="__codelineno-8-20" href="#__codelineno-8-20"></a><span class="w">    </span><span class="c1">// Propagate for the time of flight</span>
-</span><span id="__span-8-21"><a id="__codelineno-8-21" name="__codelineno-8-21" href="#__codelineno-8-21"></a><span class="w">    </span><span class="n">TwoBody</span><span class="w"> </span><span class="n">equations</span><span class="p">;</span><span class="w">  </span><span class="c1">// Keplerian propagation</span>
-</span><span id="__span-8-22"><a id="__codelineno-8-22" name="__codelineno-8-22" href="#__codelineno-8-22"></a><span class="w">    </span><span class="n">State</span><span class="w"> </span><span class="n">finalState</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">propagate</span><span class="p">(</span><span class="n">initialState</span><span class="p">,</span><span class="w"> </span><span class="n">equations</span><span class="p">,</span><span class="w"> </span><span class="n">timeOfFlight</span><span class="p">);</span>
-</span><span id="__span-8-23"><a id="__codelineno-8-23" name="__codelineno-8-23" href="#__codelineno-8-23"></a>
-</span><span id="__span-8-24"><a id="__codelineno-8-24" name="__codelineno-8-24" href="#__codelineno-8-24"></a><span class="w">    </span><span class="c1">// Check final position accuracy</span>
-</span><span id="__span-8-25"><a id="__codelineno-8-25" name="__codelineno-8-25" href="#__codelineno-8-25"></a><span class="w">    </span><span class="n">CartesianVector</span><span class="o">&lt;</span><span class="n">Distance</span><span class="p">,</span><span class="w"> </span><span class="n">ECI</span><span class="o">&gt;</span><span class="w"> </span><span class="n">propagatedR2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">finalState</span><span class="p">.</span><span class="n">get_position</span><span class="p">();</span>
-</span><span id="__span-8-26"><a id="__codelineno-8-26" name="__codelineno-8-26" href="#__codelineno-8-26"></a><span class="w">    </span><span class="n">Distance</span><span class="w"> </span><span class="n">positionError</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">magnitude</span><span class="p">(</span><span class="n">propagatedR2</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">r2</span><span class="p">);</span>
-</span><span id="__span-8-27"><a id="__codelineno-8-27" name="__codelineno-8-27" href="#__codelineno-8-27"></a>
-</span><span id="__span-8-28"><a id="__codelineno-8-28" name="__codelineno-8-28" href="#__codelineno-8-28"></a><span class="w">    </span><span class="c1">// Verify solution accuracy</span>
-</span><span id="__span-8-29"><a id="__codelineno-8-29" name="__codelineno-8-29" href="#__codelineno-8-29"></a><span class="w">    </span><span class="n">assert</span><span class="p">(</span><span class="n">positionError</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mf">1.0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">m</span><span class="p">);</span><span class="w">  </span><span class="c1">// Sub-meter accuracy expected</span>
-</span><span id="__span-8-30"><a id="__codelineno-8-30" name="__codelineno-8-30" href="#__codelineno-8-30"></a>
-</span><span id="__span-8-31"><a id="__codelineno-8-31" name="__codelineno-8-31" href="#__codelineno-8-31"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"Lambert solution validated. Position error: "</span>
-</span><span id="__span-8-32"><a id="__codelineno-8-32" name="__codelineno-8-32" href="#__codelineno-8-32"></a><span class="w">              </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">positionError</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-</span><span id="__span-8-33"><a id="__codelineno-8-33" name="__codelineno-8-33" href="#__codelineno-8-33"></a><span class="p">}</span>
-</span></code></pre></div>
-<p>This Lambert solver implementation provides the foundation for comprehensive trajectory design and mission planning capabilities, enabling precise transfer orbit calculations for a wide range of astrodynamics applications.</p>
+<p>Astrea provides a robust implementation of Lambert's problem and it's various iterations. This includes single revolution transfers, multi-revolution transfers, and minimum energy solutions, etc. The LambertSolver class provides a static interface for solving Lambert's problem, allowing users to compute the required velocity vectors for a transfer orbit between two position vectors in space.</p>
+<p>The <code>LambertSolver</code> provides static methods for solving Lambert's problem. The following forms are currently supported:</p>
+<ol>
+<li>
+<p>Solve for the final state given an initial state and a time of flight.
+<div class="language-cpp highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">Cartesian</span><span class="o">&lt;</span><span class="n">frame</span><span class="o">&gt;</span><span class="w"> </span><span class="n">solve</span><span class="p">(</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Cartesian</span><span class="o">&lt;</span><span class="n">frame</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">state0</span><span class="p">,</span><span class="w"> </span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Time</span><span class="o">&amp;</span><span class="w"> </span><span class="n">dt</span><span class="p">,</span><span class="w"> </span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">GravParam</span><span class="o">&amp;</span><span class="w"> </span><span class="n">mu</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="p">)</span>
+</span></code></pre></div></p>
+</li>
+<li>
+<p>Solve for initial and final velocity vectors given two position vectors, a time of flight, and a direction.
+<div class="language-cpp highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="n">VelocityVector</span><span class="o">&lt;</span><span class="n">frame</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="n">VelocityVector</span><span class="o">&lt;</span><span class="n">frame</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">solve</span><span class="p">(</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">RadiusVector</span><span class="o">&lt;</span><span class="n">frame</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">r0</span><span class="p">,</span><span class="w"> </span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">RadiusVector</span><span class="o">&lt;</span><span class="n">frame</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">rf</span><span class="p">,</span><span class="w"> </span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Time</span><span class="o">&amp;</span><span class="w"> </span><span class="n">dt</span><span class="p">,</span><span class="w"> </span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">GravParam</span><span class="o">&amp;</span><span class="w"> </span><span class="n">mu</span><span class="p">,</span><span class="w"> </span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">OrbitDirection</span><span class="o">&amp;</span><span class="w"> </span><span class="n">direction</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="p">)</span>
+</span></code></pre></div></p>
+</li>
+<li>
+<p>Solve for initial and final velocity vectors given two position vectors, a direction, and a specific solution type (e.g., minimum energy or minimum time).
+<div class="language-cpp highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">Solution</span><span class="o">&lt;</span><span class="n">frame</span><span class="o">&gt;</span><span class="w"> </span><span class="n">solve</span><span class="p">(</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">RadiusVector</span><span class="o">&lt;</span><span class="n">frame</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">r0</span><span class="p">,</span><span class="w"> </span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">RadiusVector</span><span class="o">&lt;</span><span class="n">frame</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">rf</span><span class="p">,</span><span class="w"> </span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">GravParam</span><span class="o">&amp;</span><span class="w"> </span><span class="n">mu</span><span class="p">,</span><span class="w"> </span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">OrbitDirection</span><span class="o">&amp;</span><span class="w"> </span><span class="n">direction</span><span class="p">,</span><span class="w"> </span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">SolutionType</span><span class="o">&amp;</span><span class="w"> </span><span class="n">solutionType</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="p">)</span>
+</span></code></pre></div></p>
+</li>
+<li>
+<p>Solve for initial and final velocity vectors given two position vectors, a time of flight, a direction, a specific number of revolutions, and the multi-rev "branch" of the target solution.
+<div class="language-cpp highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="n">VelocityVector</span><span class="o">&lt;</span><span class="n">frame</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="n">VelocityVector</span><span class="o">&lt;</span><span class="n">frame</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">solve</span><span class="p">(</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">RadiusVector</span><span class="o">&lt;</span><span class="n">frame</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">r0</span><span class="p">,</span><span class="w"> </span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">RadiusVector</span><span class="o">&lt;</span><span class="n">frame</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">rf</span><span class="p">,</span><span class="w"> </span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Time</span><span class="o">&amp;</span><span class="w"> </span><span class="n">dt</span><span class="p">,</span><span class="w"> </span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">GravParam</span><span class="o">&amp;</span><span class="w"> </span><span class="n">mu</span><span class="p">,</span><span class="w"> </span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">OrbitDirection</span><span class="o">&amp;</span><span class="w"> </span><span class="n">direction</span><span class="p">,</span><span class="w"> </span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">    </span><span class="kt">unsigned</span><span class="w"> </span><span class="n">N</span><span class="p">,</span><span class="w"> </span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">MultiRevBranch</span><span class="o">&amp;</span><span class="w"> </span><span class="n">branch</span>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="p">)</span>
+</span></code></pre></div></p>
+</li>
+</ol>
+<p>These are not exhaustive of all possible Lambert problems, but it covers the most common use cases.</p>
 
 
 

@@ -52,6 +52,8 @@ struct SpaceWeatherParameters {
     SolarFluxData f107Adj; 
 };
 
+[[nodiscard]] std::filesystem::path get_default_space_weather_data();
+
 class SpaceWeatherData {
   public:
     SpaceWeatherData() = default;

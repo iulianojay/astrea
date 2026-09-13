@@ -126,7 +126,7 @@ inline constexpr Distance calculate_geocentric_radius(const Angle& lat)
     using math::sin;
     using mp_units::pow;
 
-    static constexpr Distance a = get_equitorial_radius<body>();
+    static constexpr Distance a = get_equatorial_radius<body>();
     static constexpr Distance b = get_polar_radius<body>();
     const Unitless cosLatSq     = pow<2>(cos(lat));
     const Unitless sinLatSq     = pow<2>(sin(lat));

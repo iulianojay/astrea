@@ -1470,7 +1470,7 @@ You're not viewing the latest version.
   
   
     <li class="md-nav__item">
-      <a href="../../design/performance/" class="md-nav__link">
+      <a href="../../design/performance.md" class="md-nav__link">
         
   
   
@@ -6271,10 +6271,10 @@ You're not viewing the latest version.
 <p>Jay Iuliano (<a href="mailto:iuliano.jay@gmail.com">iuliano.jay@gmail.com</a>) </p>
 <p>This header provides:
 * get_keplerian_elements_at&lt;<em>body</em>&gt; — JPL linear-approximation Keplerian elements.
-* get_position_at&lt;<em>body</em>&gt; (primary template definition) — Keplerian fallback used for bodies that have no Chebyshev ephemeris specialisation (e.g. Phobos, Deimos).
+* get_position_at&lt;<em>body</em>&gt; (primary template definition) — Keplerian fallback used for bodies that have no Chebyshev ephemeris specialization (e.g. Phobos, Deimos).
 * get_velocity_at&lt;<em>body</em>&gt; (primary template definition) — same fallback for velocity.</p>
-<p>Include order matters: <a href="../CelestialBody_8hpp/"><strong>CelestialBody.hpp</strong></a> already declares the primary templates (without a body) for get_position_at / get_velocity_at. The planet specialisations (e.g. Earth, Jupiter) are compiled when their individual planet headers are included. This file provides the fall-through primary-template body for any remaining bodies.</p>
-<p>This file MUST be included AFTER all planet headers (and therefore after all get_position_at explicit specialisations) so that the linker can select the correct overload. <a href="../celestial__bodies_8hpp/"><strong>celestial_bodies.hpp</strong></a> includes it automatically at the bottom.</p>
+<p>Include order matters: <a href="../CelestialBody_8hpp/"><strong>CelestialBody.hpp</strong></a> already declares the primary templates (without a body) for get_position_at / get_velocity_at. The planet specializations (e.g. Earth, Jupiter) are compiled when their individual planet headers are included. This file provides the fall-through primary-template body for any remaining bodies.</p>
+<p>This file MUST be included AFTER all planet headers (and therefore after all get_position_at explicit specializations) so that the linker can select the correct overload. <a href="../celestial__bodies_8hpp/"><strong>celestial_bodies.hpp</strong></a> includes it automatically at the bottom.</p>
 <p><strong>Date:</strong></p>
 <p>2025-08-02</p>
 <p><strong>Copyright:</strong></p>

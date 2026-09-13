@@ -1132,22 +1132,22 @@ You're not viewing the latest version.
 </li>
       
         <li class="md-nav__item">
-  <a href="#vehicle-concepts" class="md-nav__link">
+  <a href="#user-defined-vehicles-udv" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Vehicle Concepts
+        User-Defined Vehicles (UDV)
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Vehicle Concepts">
+    <nav class="md-nav" aria-label="User-Defined Vehicles (UDV)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#hasgetmass-concept" class="md-nav__link">
+  <a href="#required-user-defined-vehicle-methods" class="md-nav__link">
     <span class="md-ellipsis">
       
-        HasGetMass Concept
+        Required User-Defined Vehicle Methods
       
     </span>
   </a>
@@ -1155,10 +1155,10 @@ You're not viewing the latest version.
 </li>
         
           <li class="md-nav__item">
-  <a href="#hasgetramarea-concept" class="md-nav__link">
+  <a href="#optional-user-defined-vehicle-methods" class="md-nav__link">
     <span class="md-ellipsis">
       
-        HasGetRamArea Concept
+        Optional User-Defined Vehicle Methods
       
     </span>
   </a>
@@ -1167,39 +1167,6 @@ You're not viewing the latest version.
         
       </ul>
     </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#specialized-vehicle-types" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Specialized Vehicle Types
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#vehicle-properties" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Vehicle Properties
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#integration-with-propagation" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Integration with Propagation
-      
-    </span>
-  </a>
   
 </li>
       
@@ -1615,7 +1582,7 @@ You're not viewing the latest version.
   
   
     <li class="md-nav__item">
-      <a href="../../../../design/performance/" class="md-nav__link">
+      <a href="../../../../design/performance.md" class="md-nav__link">
         
   
   
@@ -6383,7 +6350,7 @@ You're not viewing the latest version.
 
 
 <h1 id="vehicles">Vehicles<a class="headerlink" href="#vehicles" title="Permanent link">&para;</a></h1>
-<p>Astrea provides a comprehensive vehicle modeling system for spacecraft and other astronomical platforms. The vehicle architecture supports mass properties, aerodynamic characteristics, and coordinate frame management.</p>
+<p>Astrea propagates states by referencing physical information about the propagated object via the <code>Vehicle</code> class. This class is a type-erased container that provides a common interface for the integrator and related processes to access the vehicle properties. It can determine it's mass, areas, and other physical properties at any given time during the propagation based on the integration state, and it can even provide a dynamic control authority during the propagation.</p>
 <h2 id="vehicle-class">Vehicle Class<a class="headerlink" href="#vehicle-class" title="Permanent link">&para;</a></h2>
 <p>The <code>Vehicle</code> class serves as the primary interface for representing spacecraft and astronomical platforms:</p>
 <ul>
@@ -6411,62 +6378,33 @@ You're not viewing the latest version.
 </span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="n">Mass</span><span class="w"> </span><span class="n">satMass</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">500.0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">kg</span><span class="p">;</span>
 </span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="n">Area</span><span class="w"> </span><span class="n">satArea</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">2.5</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">pow</span><span class="o">&lt;</span><span class="mi">2</span><span class="o">&gt;</span><span class="p">(</span><span class="n">m</span><span class="p">);</span>
 </span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="n">Satellite</span><span class="w"> </span><span class="nf">satellite</span><span class="p">(</span><span class="n">satMass</span><span class="p">,</span><span class="w"> </span><span class="n">satArea</span><span class="p">);</span>
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="c1">// Bind the satellite to a Vehicle interface</span>
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="n">Vehicle</span><span class="w"> </span><span class="nf">vehicle</span><span class="p">(</span><span class="n">satellite</span><span class="p">);</span>
+</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>
+</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="c1">// Integrate the vehicle's state over time</span>
+</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Keplerian</span><span class="o">::</span><span class="n">LEO</span><span class="p">(</span><span class="n">get_mu</span><span class="o">&lt;</span><span class="n">planets</span><span class="o">::</span><span class="n">Earth</span><span class="o">&gt;</span><span class="p">());</span>
+</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">duration</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">10.0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">day</span><span class="p">;</span>
+</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">states</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">integrator</span><span class="p">.</span><span class="n">integrate</span><span class="p">(</span><span class="n">state</span><span class="p">,</span><span class="w"> </span><span class="n">duration</span><span class="p">,</span><span class="w"> </span><span class="n">vehicle</span><span class="p">);</span>
 </span></code></pre></div>
-<h2 id="vehicle-concepts">Vehicle Concepts<a class="headerlink" href="#vehicle-concepts" title="Permanent link">&para;</a></h2>
-<p>Astrea uses C++20 concepts to enforce vehicle interface requirements:</p>
-<h3 id="hasgetmass-concept">HasGetMass Concept<a class="headerlink" href="#hasgetmass-concept" title="Permanent link">&para;</a></h3>
-<p>Ensures vehicles provide mass information:</p>
-<div class="language-cpp highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span>
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="k">concept</span><span class="w"> </span><span class="nc">HasGetMass</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">requires</span><span class="p">(</span><span class="n">T</span><span class="w"> </span><span class="n">vehicle</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">State</span><span class="o">&amp;</span><span class="w"> </span><span class="n">state</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="n">vehicle</span><span class="p">.</span><span class="n">get_mass</span><span class="p">(</span><span class="n">state</span><span class="p">)</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">same_as</span><span class="o">&lt;</span><span class="n">Mass</span><span class="o">&gt;</span><span class="p">;</span>
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="p">};</span>
+<h2 id="user-defined-vehicles-udv">User-Defined Vehicles (UDV)<a class="headerlink" href="#user-defined-vehicles-udv" title="Permanent link">&para;</a></h2>
+<p>Astrea uses C++20 concepts to enforce vehicle interface requirements. A user-defined vehicle (UDV) is any class that satisfies the <code>IsUserDefinedVehicle</code> concept. This means that the UDV must implement certain methods to, for example, provide the necessary physical properties for propagation without restricting the design of those vehicles too much.</p>
+<h4 id="required-user-defined-vehicle-methods">Required User-Defined Vehicle Methods<a class="headerlink" href="#required-user-defined-vehicle-methods" title="Permanent link">&para;</a></h4>
+<p>Currently, the Vehicle only requires a <code>get_mass</code> method to be defined by the user. This method must return the mass of the vehicle at a given state.</p>
+<div class="language-cpp highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">Mass</span><span class="w"> </span><span class="nf">get_mass</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">State</span><span class="o">&amp;</span><span class="w"> </span><span class="n">state</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
 </span></code></pre></div>
-<h3 id="hasgetramarea-concept">HasGetRamArea Concept<a class="headerlink" href="#hasgetramarea-concept" title="Permanent link">&para;</a></h3>
-<p>Enables atmospheric drag calculations:</p>
-<div class="language-cpp highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span>
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="k">concept</span><span class="w"> </span><span class="nc">HasGetRamArea</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">requires</span><span class="p">(</span><span class="n">T</span><span class="w"> </span><span class="n">vehicle</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="n">vehicle</span><span class="p">.</span><span class="n">get_ram_area</span><span class="p">()</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">same_as</span><span class="o">&lt;</span><span class="n">Area</span><span class="o">&gt;</span><span class="p">;</span>
-</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="p">};</span>
+<h4 id="optional-user-defined-vehicle-methods">Optional User-Defined Vehicle Methods<a class="headerlink" href="#optional-user-defined-vehicle-methods" title="Permanent link">&para;</a></h4>
+<p>The Vehicle interface, however, supports numerous optional methods that can be defined to provide additional physical properties. In general, if the UDV does not define these methods, they return default (zero) values. The following methods are optional:</p>
+<div class="language-cpp highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">InertiaTensor</span><span class="o">&lt;</span><span class="n">frames</span><span class="o">::</span><span class="n">dynamic</span><span class="o">::</span><span class="n">body</span><span class="o">&gt;</span><span class="w"> </span><span class="n">get_inertia_tensor</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">State</span><span class="o">&amp;</span><span class="w"> </span><span class="n">state</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="n">SurfaceArea</span><span class="w"> </span><span class="nf">get_ram_area</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">State</span><span class="o">&amp;</span><span class="w"> </span><span class="n">state</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="n">SurfaceArea</span><span class="w"> </span><span class="nf">get_lift_area</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">State</span><span class="o">&amp;</span><span class="w"> </span><span class="n">state</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="n">SurfaceArea</span><span class="w"> </span><span class="nf">get_solar_area</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">State</span><span class="o">&amp;</span><span class="w"> </span><span class="n">state</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="n">Unitless</span><span class="w"> </span><span class="nf">get_coefficient_of_drag</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">State</span><span class="o">&amp;</span><span class="w"> </span><span class="n">state</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="n">Unitless</span><span class="w"> </span><span class="nf">get_coefficient_of_lift</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">State</span><span class="o">&amp;</span><span class="w"> </span><span class="n">state</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="n">Unitless</span><span class="w"> </span><span class="nf">get_coefficient_of_reflectivity</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">State</span><span class="o">&amp;</span><span class="w"> </span><span class="n">state</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="n">Perturbation</span><span class="w"> </span><span class="nf">get_control_authority</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">State</span><span class="o">&amp;</span><span class="w"> </span><span class="n">state</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
 </span></code></pre></div>
-<h2 id="specialized-vehicle-types">Specialized Vehicle Types<a class="headerlink" href="#specialized-vehicle-types" title="Permanent link">&para;</a></h2>
-<p>The platform system supports various specialized vehicle implementations:</p>
-<ul>
-<li><strong>Spacecraft</strong>: Standard orbital vehicles with propulsion systems</li>
-<li><strong>Launch vehicles</strong>: Multi-stage vehicles with variable mass</li>
-<li><strong>Interplanetary probes</strong>: Long-duration mission platforms</li>
-<li><strong>Small satellites</strong>: CubeSat and microsatellite configurations</li>
-</ul>
-<h2 id="vehicle-properties">Vehicle Properties<a class="headerlink" href="#vehicle-properties" title="Permanent link">&para;</a></h2>
-<p>Vehicles can model comprehensive physical characteristics:</p>
-<div class="language-cpp highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">DetailedSatellite</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="k">public</span><span class="o">:</span>
-</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="c1">// Required mass property</span>
-</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">    </span><span class="n">Mass</span><span class="w"> </span><span class="n">get_mass</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">State</span><span class="o">&amp;</span><span class="w"> </span><span class="n">state</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">_dryMass</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">_propellantMass</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
-</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>
-</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">    </span><span class="c1">// Aerodynamic properties</span>
-</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">    </span><span class="n">Area</span><span class="w"> </span><span class="n">get_ram_area</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">_crossSectionalArea</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
-</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>
-</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="w">    </span><span class="c1">// Additional properties</span>
-</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="w">    </span><span class="n">Inertia</span><span class="w"> </span><span class="n">get_inertia_tensor</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">_inertiaTensor</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
-</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="w">    </span><span class="n">Length</span><span class="w"> </span><span class="n">get_characteristic_length</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">_characteristicLength</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
-</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>
-</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="k">private</span><span class="o">:</span>
-</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="w">    </span><span class="n">Mass</span><span class="w"> </span><span class="n">_dryMass</span><span class="p">;</span>
-</span><span id="__span-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="w">    </span><span class="n">Mass</span><span class="w"> </span><span class="n">_propellantMass</span><span class="p">;</span>
-</span><span id="__span-3-16"><a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a><span class="w">    </span><span class="n">Area</span><span class="w"> </span><span class="n">_crossSectionalArea</span><span class="p">;</span>
-</span><span id="__span-3-17"><a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a><span class="w">    </span><span class="n">Inertia</span><span class="w"> </span><span class="n">_inertiaTensor</span><span class="p">;</span>
-</span><span id="__span-3-18"><a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a><span class="w">    </span><span class="n">Length</span><span class="w"> </span><span class="n">_characteristicLength</span><span class="p">;</span>
-</span><span id="__span-3-19"><a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a><span class="p">};</span>
-</span></code></pre></div>
-<h2 id="integration-with-propagation">Integration with Propagation<a class="headerlink" href="#integration-with-propagation" title="Permanent link">&para;</a></h2>
-<p>Vehicle objects integrate seamlessly with orbit propagation:</p>
-<ul>
-<li>Mass properties affect gravitational and thrust calculations</li>
-<li>Aerodynamic properties enable atmospheric drag modeling  </li>
-<li>Frame definitions ensure consistent coordinate transformations</li>
-<li>Type safety prevents frame mixing errors at compile time</li>
-</ul>
-<p>The vehicle system provides the foundation for high-fidelity spacecraft modeling in complex space environments.</p>
+<p>How these methods are defined is up to the user, but it should be noted that <em>not</em> defining these methods will functionally result in many dynamic perturbations being ignored.</p>
 
 
 

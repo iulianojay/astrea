@@ -186,7 +186,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/StateHistory.hpp" line="66" column="10" bodyfile="astrea/astro/astro/state/StateHistory.cpp" bodystart="26" bodyend="38"/>
+        <location file="astrea/astro/astro/state/StateHistory.hpp" line="66" column="10" bodyfile="astrea/astro/astro/state/StateHistory.cpp" bodystart="26" bodyend="43"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1StateHistory_1a8de97b0bc15f1da2c8f3e3cdce339077" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -215,7 +215,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/StateHistory.hpp" line="73" column="10" bodyfile="astrea/astro/astro/state/StateHistory.cpp" bodystart="40" bodyend="45"/>
+        <location file="astrea/astro/astro/state/StateHistory.hpp" line="73" column="10" bodyfile="astrea/astro/astro/state/StateHistory.cpp" bodystart="45" bodyend="50"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1StateHistory_1a0567ca29cdc734954f05a8fe06f63e16" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
@@ -293,7 +293,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/StateHistory.hpp" line="100" column="17" bodyfile="astrea/astro/astro/state/StateHistory.cpp" bodystart="47" bodyend="47"/>
+        <location file="astrea/astro/astro/state/StateHistory.hpp" line="100" column="17" bodyfile="astrea/astro/astro/state/StateHistory.cpp" bodystart="52" bodyend="52"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1StateHistory_1a9fa6ea754df81dec56de3863a8310c59" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -311,7 +311,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/StateHistory.hpp" line="107" column="10" bodyfile="astrea/astro/astro/state/StateHistory.cpp" bodystart="48" bodyend="48"/>
+        <location file="astrea/astro/astro/state/StateHistory.hpp" line="107" column="10" bodyfile="astrea/astro/astro/state/StateHistory.cpp" bodystart="53" bodyend="53"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1StateHistory_1a098268c45fa4c22afba375da65521635" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -326,7 +326,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/StateHistory.hpp" line="112" column="10" bodyfile="astrea/astro/astro/state/StateHistory.cpp" bodystart="49" bodyend="49"/>
+        <location file="astrea/astro/astro/state/StateHistory.hpp" line="112" column="10" bodyfile="astrea/astro/astro/state/StateHistory.cpp" bodystart="54" bodyend="54"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1StateHistory_1adb6f8d071b513d4b58b9fae5d310220d" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>const <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
@@ -495,7 +495,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/StateHistory.hpp" line="172" column="17" bodyfile="astrea/astro/astro/state/StateHistory.cpp" bodystart="51" bodyend="78"/>
+        <location file="astrea/astro/astro/state/StateHistory.hpp" line="172" column="17" bodyfile="astrea/astro/astro/state/StateHistory.cpp" bodystart="56" bodyend="83"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1StateHistory_1a772d02b7cdb8657577d632229cd1d270" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref></type>
@@ -542,7 +542,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/StateHistory.hpp" line="186" column="11" bodyfile="astrea/astro/astro/state/StateHistory.cpp" bodystart="80" bodyend="132"/>
+        <location file="astrea/astro/astro/state/StateHistory.hpp" line="186" column="11" bodyfile="astrea/astro/astro/state/StateHistory.cpp" bodystart="85" bodyend="137"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1StateHistory_1a002192e98398c08264df0aceb4374603" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
@@ -731,7 +731,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/StateHistory.hpp" line="267" column="10" bodyfile="astrea/astro/astro/state/StateHistory.cpp" bodystart="134" bodyend="139"/>
+        <location file="astrea/astro/astro/state/StateHistory.hpp" line="267" column="10" bodyfile="astrea/astro/astro/state/StateHistory.cpp" bodystart="139" bodyend="144"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1StateHistory_1a26ad7d3785be43762c378e978c67af7b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>

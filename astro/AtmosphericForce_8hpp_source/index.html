@@ -1470,7 +1470,7 @@ You're not viewing the latest version.
   
   
     <li class="md-nav__item">
-      <a href="../../design/performance/" class="md-nav__link">
+      <a href="../../design/performance.md" class="md-nav__link">
         
   
   
@@ -6296,7 +6296,7 @@ You're not viewing the latest version.
 </span><span id="__span-0-54"><a id="__codelineno-0-54" name="__codelineno-0-54" href="#__codelineno-0-54"></a><span class="w">        </span><span class="n">Density</span><span class="w"> </span><span class="n">atmosphericDensity</span><span class="p">;</span>
 </span><span id="__span-0-55"><a id="__codelineno-0-55" name="__codelineno-0-55" href="#__codelineno-0-55"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="k">constexpr</span><span class="w"> </span><span class="p">(</span><span class="n">center</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">planets</span><span class="o">::</span><span class="n">Earth</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 </span><span id="__span-0-56"><a id="__codelineno-0-56" name="__codelineno-0-56" href="#__codelineno-0-56"></a><span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="k">constexpr</span><span class="w"> </span><span class="p">(</span><span class="n">_model_</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">EarthAtmosphereModel</span><span class="o">::</span><span class="n">NRLMSISE00</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-0-57"><a id="__codelineno-0-57" name="__codelineno-0-57" href="#__codelineno-0-57"></a><span class="w">                </span><span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="o">&amp;</span><span class="w"> </span><span class="n">spaceWeatherData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">get_space_weather_data</span><span class="p">();</span>
+</span><span id="__span-0-57"><a id="__codelineno-0-57" name="__codelineno-0-57" href="#__codelineno-0-57"></a><span class="w">                </span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">spaceWeatherData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">get_space_weather_data</span><span class="p">();</span>
 </span><span id="__span-0-58"><a id="__codelineno-0-58" name="__codelineno-0-58" href="#__codelineno-0-58"></a><span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">spaceWeatherData</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 </span><span id="__span-0-59"><a id="__codelineno-0-59" name="__codelineno-0-59" href="#__codelineno-0-59"></a><span class="w">                    </span><span class="k">throw</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">runtime_error</span><span class="p">(</span><span class="s">"Space weather data is required for NRLMSISE-00 atmospheric model."</span><span class="p">);</span>
 </span><span id="__span-0-60"><a id="__codelineno-0-60" name="__codelineno-0-60" href="#__codelineno-0-60"></a><span class="w">                </span><span class="p">}</span>

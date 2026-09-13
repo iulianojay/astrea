@@ -1470,7 +1470,7 @@ You're not viewing the latest version.
   
   
     <li class="md-nav__item">
-      <a href="../../design/performance/" class="md-nav__link">
+      <a href="../../design/performance.md" class="md-nav__link">
         
   
   
@@ -6240,7 +6240,7 @@ You're not viewing the latest version.
 <h1 id="file-defined_rotations_earthhpp">File defined_rotations_earth.hpp<a class="headerlink" href="#file-defined_rotations_earthhpp" title="Permanent link">&para;</a></h1>
 <p><a href="../files/"><strong>FileList</strong></a> <strong>&gt;</strong> <a href="../dir_b5324400686b7cece921533bb760c87a/"><strong>astrea</strong></a> <strong>&gt;</strong> <a href="../dir_1d4dcf10fc541574a93624f5c09a3d6f/"><strong>astro</strong></a> <strong>&gt;</strong> <a href="../dir_84db6e3c60e44147f5214c05dc45afc2/"><strong>astro</strong></a> <strong>&gt;</strong> <a href="../dir_45ba6462728f0c3fdeb841915d341ea3/"><strong>frames</strong></a> <strong>&gt;</strong> <a href="../dir_0fbce91be2e6463cb25c5b2d70c0c29c/"><strong>definitions</strong></a> <strong>&gt;</strong> <a href="./"><strong>defined_rotations_earth.hpp</strong></a></p>
 <p><a href="../defined__rotations__earth_8hpp_source/">Go to the source code of this file</a></p>
-<p><em>Earth-specific DCM explicit specialisations.</em> <a href="#detailed-description">More...</a></p>
+<p><em>Earth-specific DCM explicit specializations.</em> <a href="#detailed-description">More...</a></p>
 <ul>
 <li><code>#include &lt;mp-units/systems/si/math.h&gt;</code></li>
 <li><code>#include &lt;math/trig.hpp&gt;</code></li>
@@ -6311,7 +6311,7 @@ You're not viewing the latest version.
 <p><strong>Author:</strong></p>
 <p>Jay Iuliano (<a href="mailto:iuliano.jay@gmail.com">iuliano.jay@gmail.com</a>) </p>
 <p>This file is intentionally separate from <a href="../defined__rotations_8hpp/"><strong>defined_rotations.hpp</strong></a> so that the generic templates in <a href="../defined__rotations_8hpp/"><strong>defined_rotations.hpp</strong></a> can be included mid-way through the include graph (e.g. via dynamic/tags.hpp) without pulling in frames::earth::*, which are only complete once <a href="../body__centered__inertial__frames_8hpp/"><strong>body_centered_inertial_frames.hpp</strong></a> and <a href="../body__fixed__frames_8hpp/"><strong>body_fixed_frames.hpp</strong></a> have both finished.</p>
-<p>frames.hpp includes this file AFTER its two frame-instance headers, so by the time these specialisations are compiled all earth frame types are complete.</p>
+<p>frames.hpp includes this file AFTER its two frame-instance headers, so by the time these specializations are compiled all earth frame types are complete.</p>
 <p><strong>Copyright:</strong></p>
 <p>Copyright (c) 2025-2026 Jay Iuliano</p>
 <p>The GNU Lesser General Public License (LGPL)</p>

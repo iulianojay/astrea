@@ -40,7 +40,7 @@ _Structure to hold the parameters of a celestial body._ [More...](#detailed-desc
 |  Distance | [**crashRadius**](#variable-crashradius)  <br>_Crash radius of the celestial body._  |
 |  Unitless | [**eccentricity**](#variable-eccentricity)  <br>_Eccentricity._  |
 |  BodyUnitlessPerTime | [**eccentricityRate**](#variable-eccentricityrate)  <br>_Rate of change of the eccentricity._  |
-|  Distance | [**equitorialRadius**](#variable-equitorialradius)  <br>_Equatorial radius of the celestial body._  |
+|  Distance | [**equatorialRadius**](#variable-equatorialradius)  <br>_Equatorial radius of the celestial body._  |
 |  const char \* | [**gravityCoefficientFile**](#variable-gravitycoefficientfile)   = `""`<br>_File containing the full set of gravitational coefficients._  |
 |  Angle | [**inclination**](#variable-inclination)  <br>_Inclination._  |
 |  BodyAngularVelocity | [**inclinationRate**](#variable-inclinationrate)  <br>_Rate of change of the inclination._  |
@@ -174,11 +174,11 @@ BodyUnitlessPerTime astrea::astro::CelestialBodyParameters::eccentricityRate;
 
 
 
-### variable equitorialRadius 
+### variable equatorialRadius 
 
 _Equatorial radius of the celestial body._ 
 ```C++
-Distance astrea::astro::CelestialBodyParameters::equitorialRadius;
+Distance astrea::astro::CelestialBodyParameters::equatorialRadius;
 ```
 
 

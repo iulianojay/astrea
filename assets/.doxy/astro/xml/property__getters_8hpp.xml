@@ -1462,7 +1462,7 @@
 <codeline lineno="39"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="enums_8hpp" kindref="compound">astro/types/enums.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="40"><highlight class="normal"></highlight></codeline>
 <codeline lineno="41"><highlight class="normal"></highlight><highlight class="comment">//<sp/>NOTE:<sp/>CoefficientPack<sp/>and<sp/>get_linear_expansion_coefficients<sp/>must<sp/>be<sp/>declared<sp/>BEFORE</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="42"><highlight class="normal"></highlight><highlight class="comment">//<sp/>including<sp/>any<sp/>header<sp/>that<sp/>pulls<sp/>in<sp/>celestial_bodies.hpp,<sp/>because<sp/>planet<sp/>headers<sp/>specialise</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight><highlight class="comment">//<sp/>including<sp/>any<sp/>header<sp/>that<sp/>pulls<sp/>in<sp/>celestial_bodies.hpp,<sp/>because<sp/>planet<sp/>headers<sp/>specialize</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="43"><highlight class="normal"></highlight><highlight class="comment">//<sp/>get_linear_expansion_coefficients.<sp/><sp/>The<sp/>primary<sp/>template<sp/>must<sp/>be<sp/>visible<sp/>first.</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="44"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">astrea<sp/>{</highlight></codeline>
 <codeline lineno="45"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">astro<sp/>{</highlight></codeline>
@@ -1505,9 +1505,9 @@
 <codeline lineno="115"><highlight class="normal">};</highlight></codeline>
 <codeline lineno="116"><highlight class="normal"></highlight></codeline>
 <codeline lineno="122"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;IsCelestialBody<sp/>auto<sp/>body&gt;</highlight></codeline>
-<codeline lineno="123"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/>Distance<sp/>get_equitorial_radius()</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/>Distance<sp/>get_equatorial_radius()</highlight></codeline>
 <codeline lineno="124"><highlight class="normal">{</highlight></codeline>
-<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>get_celestial_body_parameters&lt;body&gt;().equitorialRadius;</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>get_celestial_body_parameters&lt;body&gt;().equatorialRadius;</highlight></codeline>
 <codeline lineno="126"><highlight class="normal">};</highlight></codeline>
 <codeline lineno="127"><highlight class="normal"></highlight></codeline>
 <codeline lineno="133"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;IsCelestialBody<sp/>auto<sp/>body&gt;</highlight></codeline>

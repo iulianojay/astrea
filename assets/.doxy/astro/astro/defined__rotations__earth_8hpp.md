@@ -8,7 +8,7 @@
 
 [Go to the source code of this file](defined__rotations__earth_8hpp_source.md)
 
-_Earth-specific DCM explicit specialisations._ [More...](#detailed-description)
+_Earth-specific DCM explicit specializations._ [More...](#detailed-description)
 
 * `#include <mp-units/systems/si/math.h>`
 * `#include <math/trig.hpp>`
@@ -114,7 +114,7 @@ Jay Iuliano ([iuliano.jay@gmail.com](mailto:iuliano.jay@gmail.com))
 This file is intentionally separate from [**defined\_rotations.hpp**](defined__rotations_8hpp.md) so that the generic templates in [**defined\_rotations.hpp**](defined__rotations_8hpp.md) can be included mid-way through the include graph (e.g. via dynamic/tags.hpp) without pulling in frames::earth::\*, which are only complete once [**body\_centered\_inertial\_frames.hpp**](body__centered__inertial__frames_8hpp.md) and [**body\_fixed\_frames.hpp**](body__fixed__frames_8hpp.md) have both finished.
 
 
-frames.hpp includes this file AFTER its two frame-instance headers, so by the time these specialisations are compiled all earth frame types are complete.
+frames.hpp includes this file AFTER its two frame-instance headers, so by the time these specializations are compiled all earth frame types are complete.
 
 
 

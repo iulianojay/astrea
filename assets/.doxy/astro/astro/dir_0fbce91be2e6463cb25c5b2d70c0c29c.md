@@ -24,7 +24,7 @@
 | file | [**body\_centered\_inertial\_frames.hpp**](body__centered__inertial__frames_8hpp.md) <br>_Header file for all (most? common?) body-centered inertial frames._  |
 | file | [**body\_fixed\_frames.hpp**](body__fixed__frames_8hpp.md) <br>_Header file for body-fixed frames. Just ECEF right now._  |
 | file | [**defined\_rotations.hpp**](defined__rotations_8hpp.md) <br>_Header file for defined rotations between common frames._  |
-| file | [**defined\_rotations\_earth.hpp**](defined__rotations__earth_8hpp.md) <br>_Earth-specific DCM explicit specialisations._  |
+| file | [**defined\_rotations\_earth.hpp**](defined__rotations__earth_8hpp.md) <br>_Earth-specific DCM explicit specializations._  |
 | file | [**dynamic\_frames.hpp**](dynamic__frames_8hpp.md) <br>_Header file for dynamic body frames._  |
 | file | [**frame\_registry.fwd.hpp**](frame__registry_8fwd_8hpp.md) <br> |
 | file | [**frame\_registry.hpp**](frame__registry_8hpp.md) <br>_Registration point for Cartesian frames used across astrea._  |

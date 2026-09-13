@@ -337,9 +337,10 @@
 |  constexpr auto | [**get\_dcm\_from\_root\_frame**](#function-get_dcm_from_root_frame) () <br>_Retrieves the accumulated direction cosine matrix from the root frame to the given_ [_**FixedOffsetFrame**_](structastrea_1_1astro_1_1FixedOffsetFrame.md) _by recursively composing the DCMs along the parent chain._ |
 |  constexpr [**DirectionCosineMatrixRate**](structastrea_1_1astro_1_1DirectionCosineMatrixRate.md)&lt; in\_frame, out\_frame &gt; | [**get\_dcm\_rate**](#function-get_dcm_rate) (const [**Date**](classastrea_1_1astro_1_1Date.md) & date) <br>_Get the Direction Cosine Matrix (DCM) rate for the body-fixed frame at a given date._  |
 |  constexpr [**DcmRate**](namespaceastrea_1_1astro.md#typedef-dcmrate)&lt; frame, frame\_u &gt; | [**get\_dcm\_rate**](#function-get_dcm_rate) (const [**Date**](classastrea_1_1astro_1_1Date.md) & date) = delete<br>_Get the Direction Cosine Matrix (DCM) rate for the body-fixed frame at a given date._  |
+|  std::filesystem::path | [**get\_default\_space\_weather\_data**](#function-get_default_space_weather_data) () <br>_Return the path to the default Astro space weather data file._  |
 |  constexpr Unitless | [**get\_eccentricity**](#function-get_eccentricity) ([**Date**](classastrea_1_1astro_1_1Date.md) date) <br>_Get the eccentricity of the celestial body._  |
 |  constexpr BodyUnitlessPerTime | [**get\_eccentricity\_rate**](#function-get_eccentricity_rate) () <br>_Get the eccentricity rate of the celestial body._  |
-|  constexpr Distance | [**get\_equitorial\_radius**](#function-get_equitorial_radius) () <br>_Get the equatorial radius of the celestial body._  |
+|  constexpr Distance | [**get\_equatorial\_radius**](#function-get_equatorial_radius) () <br>_Get the equatorial radius of the celestial body._  |
 |  constexpr auto | [**get\_gravity\_coefficient\_file**](#function-get_gravity_coefficient_file) () <br>_Get the full set of gravitational coefficients of the celestial body._  |
 |  constexpr Angle | [**get\_inclination**](#function-get_inclination) ([**Date**](classastrea_1_1astro_1_1Date.md) date) <br>_Get the inclination of the celestial body._  |
 |  constexpr BodyAngularVelocity | [**get\_inclination\_rate**](#function-get_inclination_rate) () <br>_Get the inclination rate of the celestial body._  |
@@ -1499,7 +1500,7 @@ inline constexpr Distance astrea::astro::calculate_geocentric_radius (
 
 
 * `lat` The latitude in radians. 
-* `rEquitorial` The equatorial radius of the Earth. 
+* `requatorial` The equatorial radius of the Earth. 
 * `rPolar` The polar radius of the Earth. 
 
 
@@ -1733,7 +1734,7 @@ inline constexpr std::tuple< Angle, Angle, Distance > astrea::astro::convert_bod
 
 
 * `rEcef` The radius vector in ECEF coordinates. 
-* `rEquitorial` The equatorial radius of the Earth. 
+* `requatorial` The equatorial radius of the Earth. 
 * `rPolar` The polar radius of the Earth. 
 
 
@@ -1770,7 +1771,7 @@ inline std::tuple< Angle, Angle, Distance > astrea::astro::convert_body_fixed_to
 
 
 * `rEcef` The radius vector in ECEF coordinates. 
-* `rEquitorial` The equatorial radius of the Earth. 
+* `requatorial` The equatorial radius of the Earth. 
 * `rPolar` The polar radius of the Earth. 
 
 
@@ -1960,7 +1961,7 @@ inline constexpr RadiusVector < frame > astrea::astro::convert_geodetic_to_body_
 * `lat` The latitude in radians. 
 * `lon` The longitude in radians. 
 * `alt` The altitude in meters. 
-* `rEquitorial` The equatorial radius of the Earth. 
+* `requatorial` The equatorial radius of the Earth. 
 * `rPolar` The polar radius of the Earth. 
 
 
@@ -2733,7 +2734,7 @@ inline consteval auto astrea::astro::get_body_fixed_frame ()
 
 
 
-Returns a Z-rotation body-fixed frame for `body`. For well-known bodies (e.g. Earth) an explicit specialisation in the appropriate platform header returns the canonical named frame instance so that existing DCM specialisations are reused.
+Returns a Z-rotation body-fixed frame for `body`. For well-known bodies (e.g. Earth) an explicit specialization in the appropriate platform header returns the canonical named frame instance so that existing DCM specializations are reused.
 
 
 
@@ -2794,7 +2795,7 @@ inline consteval CelestialBodyParameters astrea::astro::get_celestial_body_param
 
 
 
-Primary template — must be specialised for each body. Uses unconstrained auto _body_ so GCC can match explicit specialisations of the form get\_celestial\_body\_parameters&lt;planets::Earth&gt;(). 
+Primary template — must be specialized for each body. Uses unconstrained auto _body_ so GCC can match explicit specializations of the form get\_celestial\_body\_parameters&lt;planets::Earth&gt;(). 
 
 
         
@@ -3360,7 +3361,7 @@ inline constexpr DirectionCosineMatrix < in_frame, out_frame > astrea::astro::ge
 Get the Direction Cosine Matrix (DCM) for the J2000 to ICRF at a given date.
 
 
-The explicit template&lt;&gt; specialisation was replaced with this constrained template so that HasDcm&lt;earth::icrf, earth::earth\_fixed&gt; (and similar requires-expressions) can find this overload. GCC 15 does not locate explicit template&lt;&gt; specialisations when checking concept requires-expressions with constrained-auto NTTP arguments. 
+The explicit template&lt;&gt; specialization was replaced with this constrained template so that HasDcm&lt;earth::icrf, earth::earth\_fixed&gt; (and similar requires-expressions) can find this overload. GCC 15 does not locate explicit template&lt;&gt; specializations when checking concept requires-expressions with constrained-auto NTTP arguments. 
 
 
         
@@ -3469,7 +3470,7 @@ DirectionCosineMatrix&lt;parent, frame&gt; The direction cosine matrix from the 
 Get the Direction Cosine Matrix (DCM) for the J2000 to ICRF at a given date.
 
 
-The explicit template&lt;&gt; specialisation was replaced with this constrained template so that HasDcm&lt;earth::icrf, earth::earth\_fixed&gt; (and similar requires-expressions) can find this overload. GCC 15 does not locate explicit template&lt;&gt; specialisations when checking concept requires-expressions with constrained-auto NTTP arguments. 
+The explicit template&lt;&gt; specialization was replaced with this constrained template so that HasDcm&lt;earth::icrf, earth::earth\_fixed&gt; (and similar requires-expressions) can find this overload. GCC 15 does not locate explicit template&lt;&gt; specializations when checking concept requires-expressions with constrained-auto NTTP arguments. 
 
 
         
@@ -3653,6 +3654,20 @@ DirectionCosineMatrixRate&lt;in\_frame, out\_frame&gt; The DCM rate from in\_fra
 
 
 
+### function get\_default\_space\_weather\_data 
+
+_Return the path to the default Astro space weather data file._ 
+```C++
+std::filesystem::path astrea::astro::get_default_space_weather_data () 
+```
+
+
+
+
+<hr>
+
+
+
 ### function get\_eccentricity 
 
 _Get the eccentricity of the celestial body._ 
@@ -3707,12 +3722,12 @@ BodyUnitlessPerTime Reference to the eccentricity rate of the celestial body.
 
 
 
-### function get\_equitorial\_radius 
+### function get\_equatorial\_radius 
 
 _Get the equatorial radius of the celestial body._ 
 ```C++
 template<IsCelestialBody auto body>
-inline constexpr Distance astrea::astro::get_equitorial_radius () 
+inline constexpr Distance astrea::astro::get_equatorial_radius () 
 ```
 
 
@@ -3880,7 +3895,7 @@ inline constexpr Keplerian < get_parent_frame(_body_, axes::icrf )> astrea::astr
 This uses the JPL approximate-positions algorithm: [https://ssd.jpl.nasa.gov/celestial\_bodies/approx\_pos.html](https://ssd.jpl.nasa.gov/celestial_bodies/approx_pos.html)
 
 
-Bodies that have get\_linear\_expansion\_coefficients specialised use the full perturbation-corrected mean anomaly. All other bodies fall back to the default zero-coefficient implementation (Me = L - w).
+Bodies that have get\_linear\_expansion\_coefficients specialized use the full perturbation-corrected mean anomaly. All other bodies fall back to the default zero-coefficient implementation (Me = L - w).
 
 
 
@@ -3916,7 +3931,7 @@ inline constexpr CoefficientPack astrea::astro::get_linear_expansion_coefficient
 
 
 
-Default implementation returns zero coefficients (no perturbation terms), which reduces to Me = L - w. Specialise for bodies that need it (e.g. outer planets).
+Default implementation returns zero coefficients (no perturbation terms), which reduces to Me = L - w. Specialize for bodies that need it (e.g. outer planets).
 
 
 
@@ -4440,13 +4455,13 @@ inline constexpr CartesianVector < Distance, get_parent_frame(_body_, axes::icrf
 
 
 
-Primary template declarations for ephemeris position/velocity (NTTP-based). Explicit specialisations are provided in planet headers (Chebyshev ephemeris). The primary template definition ([**Keplerian**](classastrea_1_1astro_1_1Keplerian.md) fallback) is provided by [**default\_property\_getters.hpp**](default__property__getters_8hpp.md), which [**celestial\_bodies.hpp**](celestial__bodies_8hpp.md) includes after all planet headers.
+Primary template declarations for ephemeris position/velocity (NTTP-based). Explicit specializations are provided in planet headers (Chebyshev ephemeris). The primary template definition ([**Keplerian**](classastrea_1_1astro_1_1Keplerian.md) fallback) is provided by [**default\_property\_getters.hpp**](default__property__getters_8hpp.md), which [**celestial\_bodies.hpp**](celestial__bodies_8hpp.md) includes after all planet headers.
 
 
-Used for bodies that have orbital element parameters but no Chebyshev ephemeris specialisation (e.g. Phobos, Deimos, small moons). The result is expressed in the parent-body ICRF frame derived from the body's parent origin.
+Used for bodies that have orbital element parameters but no Chebyshev ephemeris specialization (e.g. Phobos, Deimos, small moons). The result is expressed in the parent-body ICRF frame derived from the body's parent origin.
 
 
-Bodies WITH an explicit get\_position\_at specialisation (e.g. Earth, Jupiter when ephemeris is enabled) use that specialisation in preference to this primary template. 
+Bodies WITH an explicit get\_position\_at specialization (e.g. Earth, Jupiter when ephemeris is enabled) use that specialization in preference to this primary template. 
 
 
         

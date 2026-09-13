@@ -69,7 +69,7 @@
 
 * **eccentricity** ([**astrea::astro::CelestialBodyParameters**](structastrea_1_1astro_1_1CelestialBodyParameters.md))
 * **eccentricityRate** ([**astrea::astro::CelestialBodyParameters**](structastrea_1_1astro_1_1CelestialBodyParameters.md))
-* **equitorialRadius** ([**astrea::astro::CelestialBodyParameters**](structastrea_1_1astro_1_1CelestialBodyParameters.md))
+* **equatorialRadius** ([**astrea::astro::CelestialBodyParameters**](structastrea_1_1astro_1_1CelestialBodyParameters.md))
 * **ECCENTRICITY** ([**astrea::astro::GeneralPerturbations**](structastrea_1_1astro_1_1GeneralPerturbations.md))
 * **ELEMENT\_SET\_NO** ([**astrea::astro::GeneralPerturbations**](structastrea_1_1astro_1_1GeneralPerturbations.md))
 * **EPHEMERIS\_TYPE** ([**astrea::astro::GeneralPerturbations**](structastrea_1_1astro_1_1GeneralPerturbations.md))

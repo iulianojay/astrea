@@ -1736,13 +1736,13 @@
       </memberdef>
     </sectiondef>
     <briefdescription>
-<para>Earth-specific DCM explicit specialisations. </para>
+<para>Earth-specific DCM explicit specializations. </para>
     </briefdescription>
     <detaileddescription>
 <para><simplesect kind="author"><para>Jay Iuliano (<ulink url="mailto:iuliano.jay@gmail.com">iuliano.jay@gmail.com</ulink>) </para>
 </simplesect>
 This file is intentionally separate from <ref refid="defined__rotations_8hpp" kindref="compound">defined_rotations.hpp</ref> so that the generic templates in <ref refid="defined__rotations_8hpp" kindref="compound">defined_rotations.hpp</ref> can be included mid-way through the include graph (e.g. via dynamic/tags.hpp) without pulling in frames::earth::*, which are only complete once <ref refid="body__centered__inertial__frames_8hpp" kindref="compound">body_centered_inertial_frames.hpp</ref> and <ref refid="body__fixed__frames_8hpp" kindref="compound">body_fixed_frames.hpp</ref> have both finished.</para>
-<para><ref refid="frames_8hpp_source" kindref="compound">frames.hpp</ref> includes this file AFTER its two frame-instance headers, so by the time these specialisations are compiled all earth frame types are complete.</para>
+<para><ref refid="frames_8hpp_source" kindref="compound">frames.hpp</ref> includes this file AFTER its two frame-instance headers, so by the time these specializations are compiled all earth frame types are complete.</para>
 <para><simplesect kind="copyright"><para>Copyright (c) 2025-2026 Jay Iuliano</para>
 </simplesect>
 The GNU Lesser General Public License (LGPL)</para>

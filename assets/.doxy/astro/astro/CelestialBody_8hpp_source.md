@@ -52,7 +52,7 @@ struct CelestialBody : Origin<_name_, _parent_>, detail::CelestialBodyBase {
 // ---------------------------------------------------------------------------
 // Primary template declarations.
 // These live here (not in property_getters.hpp) so that planet headers
-// can specialise them without triggering the heavy State/Keplerian/frames include
+// can specialize them without triggering the heavy State/Keplerian/frames include
 // chain that property_getters.hpp used to pull in.
 // ---------------------------------------------------------------------------
 

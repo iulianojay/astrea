@@ -1481,7 +1481,7 @@ You're not viewing the latest version.
   
   
     <li class="md-nav__item">
-      <a href="performance/" class="md-nav__link">
+      <a href="performance.md" class="md-nav__link">
         
   
   
@@ -6250,29 +6250,19 @@ You're not viewing the latest version.
 
 <h1 id="design">Design<a class="headerlink" href="#design" title="Permanent link">&para;</a></h1>
 <p>This section provides comprehensive documentation of Astrea's design philosophy, architecture, and implementation details. These documents explain the reasoning behind key design decisions and provide insights for contributors, researchers, and advanced users who want to understand how Astrea works under the hood.</p>
-<h2 id="design-philosophy">Design Philosophy<a class="headerlink" href="#design-philosophy" title="Permanent link">&para;</a></h2>
-<h3 id="safety-first-approach">Safety-First Approach<a class="headerlink" href="#safety-first-approach" title="Permanent link">&para;</a></h3>
-<p>Astrea is built around the principle that <strong>correctness and safety are paramount</strong> in aerospace calculations. Small errors in orbital mechanics can have catastrophic consequences in real missions, so the library's design prioritizes preventing errors at compile-time rather than detecting them at runtime.</p>
-<p>Key safety mechanisms:
-- <strong>Compile-time dimensional analysis</strong> using mp-units to catch unit errors
-- <strong>Strong typing for coordinate frames</strong> to prevent reference frame confusion
-- <strong>Immutable data structures</strong> where possible to prevent accidental modification
-- <strong>Explicit conversions</strong> requiring user intent for potentially lossy operations</p>
-<h3 id="domain-driven-design">Domain-Driven Design<a class="headerlink" href="#domain-driven-design" title="Permanent link">&para;</a></h3>
-<p>Astrea's APIs and abstractions directly reflect the conceptual model that aerospace engineers use when thinking about orbital mechanics and mission analysis.</p>
-<p>Domain alignment:
-- <strong>Natural language mapping</strong> where C++ code reads like aerospace engineering notation
-- <strong>Familiar abstractions</strong> that mirror textbook presentations of astrodynamics
-- <strong>Intuitive workflows</strong> that follow the logical sequence of aerospace analysis tasks
-- <strong>Professional terminology</strong> using standard aerospace engineering vocabulary</p>
-<h2 id="architectural-overview">Architectural Overview<a class="headerlink" href="#architectural-overview" title="Permanent link">&para;</a></h2>
-<p>Astrea follows a layered architecture where each layer builds upon lower-level foundations while maintaining clear separation of concerns. See the <a href="../getting_started/project_structure/">Project Structure</a> and <a href="architecture/">Architecture</a> for details on the organization of source code and modules.</p>
+<h3 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h3>
+<p>The following sections provide in-depth coverage of specific design aspects:
+- <a href="architecture/">Architecture</a>
+- <a href="type_system/">Type System</a>
+- <a href="performance.md">Performance</a>
+- <a href="extensibility/">Extensibility</a>
+- <a href="testing/">Testing</a></p>
 <h2 id="design-principles">Design Principles<a class="headerlink" href="#design-principles" title="Permanent link">&para;</a></h2>
 <h3 id="1-explicit-over-implicit">1. Explicit Over Implicit<a class="headerlink" href="#1-explicit-over-implicit" title="Permanent link">&para;</a></h3>
 <p>Astrea favors explicit operations that make user intent clear over convenient but potentially ambiguous shortcuts.</p>
 <p><strong>Example</strong>: Coordinate frame transformations require explicit specification of source and target frames rather than assuming a "default" frame.
-<div class="language-cpp highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">auto</span><span class="w"> </span><span class="n">transformed_state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">transform</span><span class="p">(</span><span class="n">state</span><span class="p">,</span><span class="w"> </span><span class="n">from_frame</span><span class="p">,</span><span class="w"> </span><span class="n">to_frame</span><span class="p">);</span><span class="w">             </span><span class="c1">// implicit, unclear</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="k">auto</span><span class="w"> </span><span class="n">state2</span><span class="o">&lt;</span><span class="n">to_frame</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">transform</span><span class="o">&lt;</span><span class="n">from_frame</span><span class="p">,</span><span class="w"> </span><span class="n">to_frame</span><span class="o">&gt;</span><span class="p">(</span><span class="n">state1</span><span class="o">&lt;</span><span class="n">from_frame</span><span class="o">&gt;</span><span class="p">);</span><span class="w"> </span><span class="c1">// explicit, clear</span>
+<div class="language-cpp highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">auto</span><span class="w"> </span><span class="n">transformed_state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">transform</span><span class="p">(</span><span class="n">state</span><span class="p">,</span><span class="w"> </span><span class="n">frameA</span><span class="p">,</span><span class="w"> </span><span class="n">frameB</span><span class="p">);</span><span class="w">       </span><span class="c1">// implicit, unclear after this line</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="k">auto</span><span class="w"> </span><span class="n">state2</span><span class="o">&lt;</span><span class="n">frameB</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">transform</span><span class="o">&lt;</span><span class="n">frameA</span><span class="p">,</span><span class="w"> </span><span class="n">frameB</span><span class="o">&gt;</span><span class="p">(</span><span class="n">state1</span><span class="o">&lt;</span><span class="n">frameA</span><span class="o">&gt;</span><span class="p">);</span><span class="w"> </span><span class="c1">// explicit, clear</span>
 </span></code></pre></div></p>
 <h3 id="2-fail-fast-and-loud">2. Fail Fast and Loud<a class="headerlink" href="#2-fail-fast-and-loud" title="Permanent link">&para;</a></h3>
 <p>When errors occur, they should be detected as early as possible (preferably at compile-time) and provide clear, actionable diagnostic information.</p>
@@ -6286,18 +6276,6 @@ You're not viewing the latest version.
 <h3 id="4-immutability-by-default">4. Immutability by Default<a class="headerlink" href="#4-immutability-by-default" title="Permanent link">&para;</a></h3>
 <p>Data structures are immutable unless mutation is explicitly necessary, reducing the chance of accidental modification and enabling optimization.</p>
 <p><strong>Example</strong>: Functions are set to const by default, and all values are passed-by-reference unless explicitly required. </p>
-<h2 id="detailed-design-documents">Detailed Design Documents<a class="headerlink" href="#detailed-design-documents" title="Permanent link">&para;</a></h2>
-<p>The following sections provide in-depth coverage of specific design aspects:</p>
-<h3 id="architecture"><a href="architecture/">Architecture</a><a class="headerlink" href="#architecture" title="Permanent link">&para;</a></h3>
-<p>Detailed component architecture, data flow, and system boundaries. Covers the interaction between different layers and the rationale for the modular design.</p>
-<h3 id="type-system"><a href="type_system/">Type System</a><a class="headerlink" href="#type-system" title="Permanent link">&para;</a></h3>
-<p>Comprehensive coverage of Astrea's type system, including strong typing for coordinate frames, unit-aware calculations, and compile-time safety mechanisms.</p>
-<h3 id="performance"><a href="performance/">Performance</a><a class="headerlink" href="#performance" title="Permanent link">&para;</a></h3>
-<p>Detailed analysis of performance considerations, optimization strategies, and benchmarking methodologies used to ensure Astrea meets real-time requirements.</p>
-<h3 id="extensibility"><a href="extensibility/">Extensibility</a><a class="headerlink" href="#extensibility" title="Permanent link">&para;</a></h3>
-<p>Patterns and interfaces for extending Astrea with custom force models, coordinate frames, propagators, and analysis tools.</p>
-<h3 id="testing"><a href="testing/">Testing</a><a class="headerlink" href="#testing" title="Permanent link">&para;</a></h3>
-<p>Testing philosophy, validation strategies, and quality assurance processes including comparison with reference implementations and real-world data.</p>
 <h2 id="design-trade-offs">Design Trade-offs<a class="headerlink" href="#design-trade-offs" title="Permanent link">&para;</a></h2>
 <h3 id="compile-time-vs-runtime-flexibility">Compile-time vs. Runtime Flexibility<a class="headerlink" href="#compile-time-vs-runtime-flexibility" title="Permanent link">&para;</a></h3>
 <p><strong>Trade-off</strong>: Astrea prioritizes compile-time safety and performance over runtime polymorphism.</p>
@@ -6311,20 +6289,6 @@ You're not viewing the latest version.
 <p><strong>Trade-off</strong>: Astrea balances adherence to aerospace standards with incorporation of modern programming techniques.</p>
 <p><strong>Rationale</strong>: Standards ensure interoperability and familiarity, while modern techniques improve safety and performance.</p>
 <p><strong>Implications</strong>: Some non-standard but beneficial patterns are used where they provide clear advantages.</p>
-<h2 id="evolution-and-future-considerations">Evolution and Future Considerations<a class="headerlink" href="#evolution-and-future-considerations" title="Permanent link">&para;</a></h2>
-<h3 id="planned-architecture-changes">Planned Architecture Changes<a class="headerlink" href="#planned-architecture-changes" title="Permanent link">&para;</a></h3>
-<ul>
-<li><strong>Modular compilation</strong>: Allow compilation of subsets of functionality to reduce build times</li>
-<li><strong>Plugin architecture</strong>: Runtime loading of custom extensions for specialized applications</li>
-<li><strong>Distributed computing</strong>: Support for distributed orbital determination and Monte Carlo analysis</li>
-<li><strong>GPU acceleration</strong>: CUDA/OpenCL support for computationally intensive operations</li>
-</ul>
-<h3 id="compatibility-commitments">Compatibility Commitments<a class="headerlink" href="#compatibility-commitments" title="Permanent link">&para;</a></h3>
-<ul>
-<li><strong>ABI compatibility</strong>: Within minor versions for dynamic linking scenarios</li>
-<li><strong>Data format stability</strong>: Persistent storage formats remain readable across versions</li>
-<li><strong>Standard compliance</strong>: Continued adherence to CCSDS and other aerospace standards</li>
-</ul>
 
 
 

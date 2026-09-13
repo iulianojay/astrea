@@ -23,7 +23,7 @@ struct CelestialBodyParameters {
     Date referenceDate;                         
     GravParam mu;                               
     Mass mass;                                  
-    Distance equitorialRadius;                  
+    Distance equatorialRadius;                  
     Distance polarRadius;                       
     Distance crashRadius;                       
     Distance sphereOfInfluence;                 

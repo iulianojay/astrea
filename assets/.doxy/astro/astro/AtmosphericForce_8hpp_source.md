@@ -65,7 +65,7 @@ class AtmosphericForce : public PerturbingForce {
         Density atmosphericDensity;
         if constexpr (center == planets::Earth) {
             if constexpr (_model_ == EarthAtmosphereModel::NRLMSISE00) {
-                static const auto& spaceWeatherData = get_space_weather_data();
+                const auto spaceWeatherData = get_space_weather_data();
                 if (!spaceWeatherData) {
                     throw std::runtime_error("Space weather data is required for NRLMSISE-00 atmospheric model.");
                 }

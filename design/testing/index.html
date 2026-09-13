@@ -1481,7 +1481,7 @@ You're not viewing the latest version.
   
   
     <li class="md-nav__item">
-      <a href="../performance/" class="md-nav__link">
+      <a href="../performance.md" class="md-nav__link">
         
   
   
@@ -1597,124 +1597,24 @@ You're not viewing the latest version.
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#testing-philosophy" class="md-nav__link">
+  <a href="#nasa-6dof-check-cases" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Testing Philosophy
+        NASA 6DOF Check Cases
       
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Testing Philosophy">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1-correctness-first" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1. Correctness First
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2-multi-level-validation" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2. Multi-Level Validation
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3-real-world-validation" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3. Real-World Validation
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#4-continuous-validation" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        4. Continuous Validation
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#test-categories" class="md-nav__link">
+  <a href="#benchmarks" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Test Categories
+        Benchmarks
       
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Test Categories">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#unit-tests" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Unit Tests
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#integration-tests" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Integration Tests
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#nasa-6dof-checkcases" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        NASA 6DOF Checkcases
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#benchmakrs" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Benchmakrs
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -6417,70 +6317,25 @@ You're not viewing the latest version.
   
 
 
-<p>[[PLACEHOLDER]]</p>
 <h1 id="testing">Testing<a class="headerlink" href="#testing" title="Permanent link">&para;</a></h1>
-<p>Astrea's testing strategy ensures reliability, accuracy, and performance through comprehensive validation against established benchmarks, real-world data, and theoretical expectations. This document outlines the testing philosophy, methodologies, and infrastructure.</p>
-<h2 id="testing-philosophy">Testing Philosophy<a class="headerlink" href="#testing-philosophy" title="Permanent link">&para;</a></h2>
-<h3 id="1-correctness-first">1. Correctness First<a class="headerlink" href="#1-correctness-first" title="Permanent link">&para;</a></h3>
-<p>All algorithms must be validated against known analytical solutions, published benchmarks, and reference implementations before being integrated.</p>
-<h3 id="2-multi-level-validation">2. Multi-Level Validation<a class="headerlink" href="#2-multi-level-validation" title="Permanent link">&para;</a></h3>
-<p>Testing occurs at multiple levels: unit tests for individual components, integration tests for component interaction, and system tests for end-to-end workflows.</p>
-<h3 id="3-real-world-validation">3. Real-World Validation<a class="headerlink" href="#3-real-world-validation" title="Permanent link">&para;</a></h3>
-<p>Benchmark data includes actual mission data, NASA published test cases, and comparison with operational aerospace software.</p>
-<h3 id="4-continuous-validation">4. Continuous Validation<a class="headerlink" href="#4-continuous-validation" title="Permanent link">&para;</a></h3>
-<p>Automated testing prevents regression and ensures new features don't break existing functionality.</p>
-<h2 id="test-categories">Test Categories<a class="headerlink" href="#test-categories" title="Permanent link">&para;</a></h2>
-<h3 id="unit-tests">Unit Tests<a class="headerlink" href="#unit-tests" title="Permanent link">&para;</a></h3>
-<div class="language-cpp highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1">// Example: Testing coordinate frame transformations</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="k">class</span><span class="w"> </span><span class="nc">FrameTransformationTest</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="o">::</span><span class="n">testing</span><span class="o">::</span><span class="n">Test</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="k">protected</span><span class="o">:</span>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">SetUp</span><span class="p">()</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">        </span><span class="n">test_epoch_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">time</span><span class="o">::</span><span class="n">EpochTT</span><span class="p">{</span><span class="mf">1000.0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">units</span><span class="o">::</span><span class="n">julian_day</span><span class="p">};</span>
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">        </span><span class="n">icrf_position_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Position</span><span class="o">&lt;</span><span class="n">frames</span><span class="o">::</span><span class="n">ICRF</span><span class="o">&gt;</span><span class="p">{</span>
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">            </span><span class="n">Vector3</span><span class="p">{</span><span class="mf">6778136.3</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">}</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">units</span><span class="o">::</span><span class="n">metre</span>
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">        </span><span class="p">};</span>
-</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">    </span><span class="p">}</span>
-</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>
-</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">    </span><span class="n">time</span><span class="o">::</span><span class="n">EpochTT</span><span class="w"> </span><span class="n">test_epoch_</span><span class="p">;</span>
-</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">    </span><span class="n">Position</span><span class="o">&lt;</span><span class="n">frames</span><span class="o">::</span><span class="n">ICRF</span><span class="o">&gt;</span><span class="w"> </span><span class="n">icrf_position_</span><span class="p">;</span>
-</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="p">};</span>
-</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>
-</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="n">TEST_F</span><span class="p">(</span><span class="n">FrameTransformationTest</span><span class="p">,</span><span class="w"> </span><span class="n">ICRFtoITRFTransformation</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">itrf_position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">transform_position</span><span class="o">&lt;</span><span class="n">frames</span><span class="o">::</span><span class="n">ICRF</span><span class="p">,</span><span class="w"> </span><span class="n">frames</span><span class="o">::</span><span class="n">ITRF</span><span class="o">&gt;</span><span class="p">(</span>
-</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="w">        </span><span class="n">icrf_position_</span><span class="p">,</span><span class="w"> </span><span class="n">test_epoch_</span>
-</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="w">    </span><span class="p">);</span>
-</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>
-</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="w">    </span><span class="c1">// Verify transformation using known reference values</span>
-</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">expected_itrf</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Vector3</span><span class="p">{</span><span class="mf">6778136.3</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">}</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">units</span><span class="o">::</span><span class="n">metre</span><span class="p">;</span>
-</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">tolerance</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">units</span><span class="o">::</span><span class="n">metre</span><span class="p">;</span>
-</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>
-</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="w">    </span><span class="n">EXPECT_NEAR</span><span class="p">(</span><span class="n">itrf_position</span><span class="p">.</span><span class="n">vector</span><span class="p">().</span><span class="n">x</span><span class="p">().</span><span class="n">value</span><span class="p">(),</span><span class="w"> </span>
-</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a><span class="w">                </span><span class="n">expected_itrf</span><span class="p">.</span><span class="n">x</span><span class="p">().</span><span class="n">value</span><span class="p">(),</span><span class="w"> </span><span class="n">tolerance</span><span class="p">.</span><span class="n">value</span><span class="p">());</span>
-</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a><span class="p">}</span>
-</span></code></pre></div>
-<h3 id="integration-tests">Integration Tests<a class="headerlink" href="#integration-tests" title="Permanent link">&para;</a></h3>
-<div class="language-cpp highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1">// Testing propagation with multiple force models</span>
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="k">class</span><span class="w"> </span><span class="nc">PropagationIntegrationTest</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="o">::</span><span class="n">testing</span><span class="o">::</span><span class="n">Test</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="k">protected</span><span class="o">:</span>
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">SetUp</span><span class="p">()</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">        </span><span class="n">initial_state_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">state</span><span class="o">::</span><span class="n">CartesianState</span><span class="o">&lt;&gt;</span><span class="p">{</span>
-</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">            </span><span class="n">Position</span><span class="o">&lt;</span><span class="n">frames</span><span class="o">::</span><span class="n">ICRF</span><span class="o">&gt;</span><span class="p">{</span><span class="n">Vector3</span><span class="p">{</span><span class="mf">7000.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">}</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">units</span><span class="o">::</span><span class="n">km</span><span class="p">},</span>
-</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">            </span><span class="n">Velocity</span><span class="o">&lt;</span><span class="n">frames</span><span class="o">::</span><span class="n">ICRF</span><span class="o">&gt;</span><span class="p">{</span><span class="n">Vector3</span><span class="p">{</span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">7.546</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">}</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">units</span><span class="o">::</span><span class="n">km_per_s</span><span class="p">},</span>
-</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">            </span><span class="n">time</span><span class="o">::</span><span class="n">EpochTT</span><span class="p">{</span><span class="mf">0.0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">units</span><span class="o">::</span><span class="n">second</span><span class="p">}</span>
-</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">        </span><span class="p">};</span>
-</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>
-</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="w">        </span><span class="n">force_models_</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">make_unique</span><span class="o">&lt;</span><span class="n">forces</span><span class="o">::</span><span class="n">CentralGravity</span><span class="o">&gt;</span><span class="p">());</span>
-</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="w">        </span><span class="n">force_models_</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">make_unique</span><span class="o">&lt;</span><span class="n">forces</span><span class="o">::</span><span class="n">J2Perturbation</span><span class="o">&gt;</span><span class="p">());</span>
-</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="w">    </span><span class="p">}</span>
-</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>
-</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="w">    </span><span class="n">state</span><span class="o">::</span><span class="n">CartesianState</span><span class="o">&lt;&gt;</span><span class="w"> </span><span class="n">initial_state_</span><span class="p">;</span>
-</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">ForceModel</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">force_models_</span><span class="p">;</span>
-</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="p">};</span>
-</span></code></pre></div>
-<h3 id="nasa-6dof-checkcases">NASA 6DOF Checkcases<a class="headerlink" href="#nasa-6dof-checkcases" title="Permanent link">&para;</a></h3>
-<p>An automatically generated report can be found <a href="../nasa_6dof_report/nasa_6dof_report/">here</a></p>
-<h3 id="benchmakrs">Benchmakrs<a class="headerlink" href="#benchmakrs" title="Permanent link">&para;</a></h3>
-<p>An automatically generated report can be found <a href="../benchmarks/propagation/">here</a></p>
+<p>Astrea's testing strategy ensures reliability, accuracy, and performance through comprehensive validation against established benchmarks, real-world data, and theoretical expectations. </p>
+<p>Astrea uses Google Test as its testing framework and currently hosts ~1000 unit tests, and a host of integration tests. For V&amp;V, Astrea has been validated against the NASA 6DOF test cases, and a set of benchmarks for propagation and orbit determination. These tests are <em>not</em> run as part of the CI/CD pipeline since they take quite a long time to run, but they are run on a regular basis to ensure that the library is performing as expected.</p>
+<h3 id="nasa-6dof-check-cases">NASA 6DOF Check Cases<a class="headerlink" href="#nasa-6dof-check-cases" title="Permanent link">&para;</a></h3>
+<p>Currently, Astrea validates it's equations and propagation directly against the published NASA 6DOF test cases. The test cases and documentation are available in the repo (<a href="https://github.com/iulianojay/astrea/tree/main/astrea/astro/tests/nasa_6dof_checkcases">link</a>). The test cases include a set of 6DOF propagation scenarios with known solutions, which are used to validate the accuracy of Astrea's propagation algorithms. This repo also hosts the entirely of the unit tests as a SQL database, to make storage and comparison easier than the csv files provided by NASA.</p>
+<p>Currently, only 3DoF propagation is well validated, while 6DoF propagation is available but hasn't been validated. It's currently being worked on. The atmospheric models are also yet to be validated since Astrea only currently supports the simpler Jacchia-Roberts and Harris-Priester models. When more sophisticated atmospheric models are implemented, the tests will be updated to compare against those test cases as well.</p>
+<p>A great degree of effort was put into ensuring just the 3DoF propagation was accurate. Some of the main pitfalls hit included:
+- The integrator silently hitting invalid stopping conditions
+- The integrator taking one too many or too few steps in certain cases
+- The error model in the integrator using a lower-accuracy estimation than needed
+- Matching planetary ephemeris data, physical constants, and other parameters exactly to the NASA test cases.
+- Floating point issues in the otherwise correct oblateness calculations
+- Floating point issues in n-body perturbations due to large range discrepancies   </p>
+<p>At this point, the 3DoF propagation is considered accurate to any reasonable degree of precision. Any further improvement on the models would require a much more sophisticated analysis of the floating-point rounding errors in the simulation which is largely impossible without access to the source code used to produce the original data. </p>
+<p>An automatically generated report in the NASA 6DOF check cases can be found <a href="../nasa_6dof_report/nasa_6dof_report/">here</a></p>
+<h3 id="benchmarks">Benchmarks<a class="headerlink" href="#benchmarks" title="Permanent link">&para;</a></h3>
+<p>Benchmarks for the Astrea propagator are run using Google Benchmark. The benchmarks are a simple measure of performance meant to give a qualitative idea of the speed resulting from many of the techniques this library employs. The benchmarks can be found <a href="https://github.com/iulianojay/astrea/tree/main/astrea/astro/benchmarks/propagation">here</a>. Similar to the NASA 6DOF test cases, the benchmarks are not run as part of the CI/CD pipeline since they take quite a long time to run, but they are run on a regular basis to ensure that the library is performing as expected.</p>
+<p>While many of the standard easy optimizations were taken as a matter of habit while developing this library (passing const references, avoid unnecessary unit conversions, etc.), the largest improvements in performance came from the development of the frame system. Combined with modern C++ compile-time optimizations, the type-based frame system showed speedups of nearly 2 orders of magnitude in propagation. Runs that would take many minutes, could be reduced to a few seconds. It's difficult by the nature of the thing to pinpoint exactly where the speedup came from, but it is this authors belief that the majority of the speedup comes from pre-computing most of the calculations, lookup, and frame transformation logic at compile-time. </p>
+<p>An automatically generated report on the benchmarks can be found <a href="../benchmarks/propagation/">here</a></p>
 
 
 
