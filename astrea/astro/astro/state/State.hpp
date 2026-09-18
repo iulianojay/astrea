@@ -36,7 +36,7 @@ namespace astro {
  * This class encapsulates the orbital elements, epoch, and the astrodynamics system
  * that the state belongs to. It also optionally includes the attitude of the object as a quaternion.
  */
-template <typename OrbitalElements_T, typename Attitude_T>
+template <typename OrbitalElements, typename Attitude>
 class State {
 
     friend std::ostream& operator<<(std::ostream& os, const State& state);
@@ -56,7 +56,7 @@ class State {
      * @param epoch The epoch of the state.
      * @param attitude The attitude of the state, represented as a quaternion.
      */
-    State(const OrbitalElements_T& elements, const Date& epoch, const std::optional<Attitude_T>& attitude = std::nullopt) :
+    State(const OrbitalElements& elements, const Date& epoch, const std::optional<Attitude>& attitude = std::nullopt) :
         _elements(elements),
         _epoch(epoch),
         _attitude(attitude)
@@ -84,16 +84,16 @@ class State {
     /**
      * @brief Gets the orbital elements of the state.
      *
-     * @return const OrbitalElements_T& Reference to the orbital elements of the state.
+     * @return const OrbitalElements& Reference to the orbital elements of the state.
      */
-    const OrbitalElements_T& get_elements() const { return _elements; }
+    const OrbitalElements& get_elements() const { return _elements; }
 
     /**
      * @brief Get the attitude of the state.
      *
-     * @return std::optional<Attitude_T> The attitude of the state.
+     * @return std::optional<Attitude> The attitude of the state.
      */
-    const std::optional<Attitude_T>& get_attitude() const { return _attitude; }
+    const std::optional<Attitude>& get_attitude() const { return _attitude; }
 
     /**
      * @brief Gets the epoch of the state.
@@ -135,7 +135,7 @@ class State {
      * @return State A new State object with the converted orbital elements.
      */
     template <IsOrbitalElements T>
-    State<T, Attitude_T> convert_to_set() const
+    State<T, Attitude> convert_to_set() const
     {
         return { in_element_set<T>(), _epoch, _attitude };
     }
@@ -149,7 +149,7 @@ class State {
     template <IsOrbitalElements T>
     T in_element_set() const
     {
-        using BaseInPrimary = typename T::template BaseType<OrbitalElements_T::frame>;
+        using BaseInPrimary = typename T::template BaseType<OrbitalElements::frame>;
         const auto mu       = this->get_mu();
         return _elements.in_element_set<BaseInPrimary>(mu).template in_frame<T::frame>(_epoch, mu);
     }
@@ -229,7 +229,7 @@ class State {
      *
      * @param attitude The new attitude to set.
      */
-    void set_attitude(const Attitude_T& attitude) { _attitude = attitude; }
+    void set_attitude(const Attitude& attitude) { _attitude = attitude; }
 
     /**
      * @brief Sets the epoch of the state.
@@ -239,9 +239,9 @@ class State {
     void set_epoch(const Date& epoch) { _epoch = epoch; }
 
   private:
-    OrbitalElements_T _elements; //!< The orbital elements of the state, defining the shape and attitude of the orbit.
+    OrbitalElements _elements; //!< The orbital elements of the state, defining the shape and attitude of the orbit.
     Date _epoch; //!< The epoch of the state, representing the time at which the orbital elements are defined.
-    std::optional<Attitude_T> _attitude; //!< The attitude of the state, represented as a quaternion.
+    std::optional<Attitude> _attitude; //!< The attitude of the state, represented as a quaternion.
 
     /**
      * @brief Converts the State to a vector of Unitless values.
@@ -345,10 +345,10 @@ class State {
      * @param divisor The Time to divide by.
      * @return StatePartial The resulting StatePartial after division.
      */
-    StatePartial<OrbitalElements_T, Attitude_T> operator/(const Time& divisor) const;
+    StatePartial<OrbitalElements, Attitude> operator/(const Time& divisor) const;
 };
 
-template <typename OrbitalElements_T, typename Attitude_T>
+template <typename OrbitalElements, typename Attitude>
 class StatePartial {
 
   public:
@@ -378,7 +378,7 @@ class StatePartial {
      * @param time The time to multiply with.
      * @return State The resulting State after multiplication.
      */
-    State<OrbitalElements_T, Attitude_T> operator*(const Time& time) const;
+    State<OrbitalElements, Attitude> operator*(const Time& time) const;
 
     /**
      * @brief Gets the epoch of the state partial.

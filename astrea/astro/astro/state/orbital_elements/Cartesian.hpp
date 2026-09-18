@@ -43,14 +43,12 @@ namespace astro {
  */
 template <IsFrame auto _frame_>
 class Cartesian
-    : public OrbitalElementsInterface<Cartesian<_frame_>, _frame_, Distance, Distance, Distance, Velocity, Velocity, Velocity> {
+    : public OrbitalElementsInterface<Cartesian<_frame_>, Distance, Distance, Distance, Velocity, Velocity, Velocity> {
 
-    using BaseType =
-        OrbitalElementsInterface<Cartesian<_frame_>, _frame_, Distance, Distance, Distance, Velocity, Velocity, Velocity>;
+    using BaseType = OrbitalElementsInterface<Cartesian<_frame_>, Distance, Distance, Distance, Velocity, Velocity, Velocity>;
 
     template <IsFrame auto frame>
     friend std::ostream& operator<<(std::ostream&, Cartesian<frame> const&);
-    friend class OrbitalElements;
 
   public:
     static constexpr auto frame = _frame_; //!< The reference frame of the Cartesian state vector.

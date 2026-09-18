@@ -40,13 +40,12 @@ namespace astro {
  * argument of perigee, and true anomaly.
  */
 template <IsFrame auto _frame_>
-class Keplerian : public OrbitalElementsInterface<Keplerian<_frame_>, _frame_, Distance, Unitless, Angle, Angle, Angle, Angle> {
+class Keplerian : public OrbitalElementsInterface<Keplerian<_frame_>, Distance, Unitless, Angle, Angle, Angle, Angle> {
 
-    using BaseType = OrbitalElementsInterface<Keplerian<_frame_>, _frame_, Distance, Unitless, Angle, Angle, Angle, Angle>;
+    using BaseType = OrbitalElementsInterface<Keplerian<_frame_>, Distance, Unitless, Angle, Angle, Angle, Angle>;
 
     template <IsFrame auto frame>
     friend std::ostream& operator<<(std::ostream&, Keplerian<frame> const&);
-    friend class OrbitalElements;
 
   public:
     static constexpr auto frame = _frame_; //!< The reference frame of the Keplerian elements.

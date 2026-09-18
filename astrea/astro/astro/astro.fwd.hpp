@@ -26,10 +26,10 @@
 namespace astrea {
 namespace astro {
 
-template <typename OrbitalElements_T, typename Attitude_T>
+template <typename OrbitalElements, typename Attitude>
 class State;
 
-template <typename OrbitalElements_T, typename Attitude_T>
+template <typename OrbitalElements, typename Attitude>
 class StatePartial;
 
 template <typename State_T>
@@ -52,7 +52,6 @@ class EquinoctialPartial;
 class TwoLineElements;
 class TwoLineElementsPartial;
 class GeneralPerturbations;
-class OrbitalElements;
 class OrbitalElementPartials;
 
 class CartesianStm;

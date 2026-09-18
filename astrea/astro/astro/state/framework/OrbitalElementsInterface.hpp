@@ -27,7 +27,8 @@ namespace astro {
 template <typename T>
 concept IsOrbitalElements = requires {
     typename T::ArrayType;
-    typename T::orbital_elements_tag;
+    typename T::OrbitalElementsTag;
+    { T::frame } -> IsFrame;
 };
 
 template <typename Derived_T, typename Derived_U>
@@ -35,13 +36,11 @@ concept IsCompatibleOrbitalElements = IsOrbitalElements<Derived_T> && IsOrbitalE
                                       IsCompatibleElementMatrix<typename Derived_T::ArrayType, typename Derived_U::ArrayType> &&
                                       equivalent(Derived_T::frame, Derived_U::frame);
 
-template <typename Derived_T, IsFrame auto _frame_, typename... Elements_T>
+template <typename Derived_T, typename... Elements_T>
 class OrbitalElementsInterface {
   public:
-    using orbital_elements_tag = void; //!< Tag type used by IsOrbitalElements concept detection.
+    using OrbitalElementsTag = void; //!< Tag type used by IsOrbitalElements concept detection.
     using ArrayType = ElementMatrix<sizeof...(Elements_T), 1, Elements_T...>; //!< The underlying array type representing the orbital elements.
-
-    static constexpr auto frame = _frame_; //!< The reference frame of the OrbitalElements.
 
     /**
      * @brief Default constructor for OrbitalElements.

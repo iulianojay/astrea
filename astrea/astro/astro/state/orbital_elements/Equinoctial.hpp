@@ -38,14 +38,12 @@ namespace astro {
  */
 template <IsFrame auto _frame_>
 class Equinoctial
-    : public OrbitalElementsInterface<Equinoctial<_frame_>, _frame_, Distance, Unitless, Unitless, Unitless, Unitless, Angle> {
+    : public OrbitalElementsInterface<Equinoctial<_frame_>, Distance, Unitless, Unitless, Unitless, Unitless, Angle> {
 
-    using BaseType =
-        OrbitalElementsInterface<Equinoctial<_frame_>, _frame_, Distance, Unitless, Unitless, Unitless, Unitless, Angle>;
+    using BaseType = OrbitalElementsInterface<Equinoctial<_frame_>, Distance, Unitless, Unitless, Unitless, Unitless, Angle>;
 
     template <IsFrame auto frame>
     friend std::ostream& operator<<(std::ostream&, Equinoctial<frame> const&);
-    friend class OrbitalElements;
 
   public:
     static constexpr auto frame = _frame_; //!< The reference frame of the Equinoctial state vector.

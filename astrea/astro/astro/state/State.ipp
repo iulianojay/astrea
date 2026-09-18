@@ -25,16 +25,16 @@
 namespace astrea {
 namespace astro {
 
-template <typename OrbitalElements_T, typename Attitude_T>
-std::ostream& operator<<(std::ostream& os, const State<OrbitalElements_T, Attitude_T>& state)
+template <typename OrbitalElements, typename Attitude>
+std::ostream& operator<<(std::ostream& os, const State<OrbitalElements, Attitude>& state)
 {
     os << state.get_epoch() << ", " << state.get_elements();
     if (state.get_attitude().has_value()) { os << ", " << state.get_attitude().value(); }
     return os;
 }
 
-template <typename OrbitalElements_T, typename Attitude_T>
-State<OrbitalElements_T, Attitude_T>::State(const StateHistory& history)
+template <typename OrbitalElements, typename Attitude>
+State<OrbitalElements, Attitude>::State(const StateHistory& history)
 {
     if (history.size() != 1) {
         throw std::runtime_error("StateHistory must contain exactly one state to construct a State.");
@@ -43,15 +43,15 @@ State<OrbitalElements_T, Attitude_T>::State(const StateHistory& history)
     *this             = state;
 }
 
-template <typename OrbitalElements_T, typename Attitude_T>
-bool State<OrbitalElements_T, Attitude_T>::operator==(const State& other) const
+template <typename OrbitalElements, typename Attitude>
+bool State<OrbitalElements, Attitude>::operator==(const State& other) const
 {
     return _epoch == other._epoch && _elements == other._elements && _attitude.has_value() == other._attitude.has_value() &&
            (!_attitude.has_value() || _attitude.value() == other._attitude.value());
 }
 
-template <typename OrbitalElements_T, typename Attitude_T>
-State<OrbitalElements_T, Attitude_T> State<OrbitalElements_T, Attitude_T>::operator+(const State& other) const
+template <typename OrbitalElements, typename Attitude>
+State<OrbitalElements, Attitude> State<OrbitalElements, Attitude>::operator+(const State& other) const
 {
     return { _elements + other._elements,
              _epoch,
@@ -60,16 +60,16 @@ State<OrbitalElements_T, Attitude_T> State<OrbitalElements_T, Attitude_T>::opera
                  std::nullopt };
 }
 
-template <typename OrbitalElements_T, typename Attitude_T>
-State<OrbitalElements_T, Attitude_T>& State<OrbitalElements_T, Attitude_T>::operator+=(const State& other)
+template <typename OrbitalElements, typename Attitude>
+State<OrbitalElements, Attitude>& State<OrbitalElements, Attitude>::operator+=(const State& other)
 {
     _elements += other._elements;
     if (_attitude.has_value() && other._attitude.has_value()) { _attitude.value() += other._attitude.value(); }
     return *this;
 }
 
-template <typename OrbitalElements_T, typename Attitude_T>
-State<OrbitalElements_T, Attitude_T> State<OrbitalElements_T, Attitude_T>::operator-(const State& other) const
+template <typename OrbitalElements, typename Attitude>
+State<OrbitalElements, Attitude> State<OrbitalElements, Attitude>::operator-(const State& other) const
 {
     return { _elements - other._elements,
              _epoch,
@@ -78,58 +78,58 @@ State<OrbitalElements_T, Attitude_T> State<OrbitalElements_T, Attitude_T>::opera
                  std::nullopt };
 }
 
-template <typename OrbitalElements_T, typename Attitude_T>
-State<OrbitalElements_T, Attitude_T>& State<OrbitalElements_T, Attitude_T>::operator-=(const State& other)
+template <typename OrbitalElements, typename Attitude>
+State<OrbitalElements, Attitude>& State<OrbitalElements, Attitude>::operator-=(const State& other)
 {
     _elements -= other._elements;
     if (_attitude.has_value() && other._attitude.has_value()) { _attitude.value() -= other._attitude.value(); }
     return *this;
 }
 
-template <typename OrbitalElements_T, typename Attitude_T>
-State<OrbitalElements_T, Attitude_T> State<OrbitalElements_T, Attitude_T>::operator*(const Unitless& scalar) const
+template <typename OrbitalElements, typename Attitude>
+State<OrbitalElements, Attitude> State<OrbitalElements, Attitude>::operator*(const Unitless& scalar) const
 {
     return { _elements * scalar, _epoch, _attitude }; // attitude shouldn't scale
 }
 
-template <typename OrbitalElements_T, typename Attitude_T>
-State<OrbitalElements_T, Attitude_T>& State<OrbitalElements_T, Attitude_T>::operator*=(const Unitless& scalar)
+template <typename OrbitalElements, typename Attitude>
+State<OrbitalElements, Attitude>& State<OrbitalElements, Attitude>::operator*=(const Unitless& scalar)
 {
     _elements *= scalar;
     return *this;
 }
 
-template <typename OrbitalElements_T, typename Attitude_T>
-State<OrbitalElements_T, Attitude_T> State<OrbitalElements_T, Attitude_T>::operator/(const Unitless& scalar) const
+template <typename OrbitalElements, typename Attitude>
+State<OrbitalElements, Attitude> State<OrbitalElements, Attitude>::operator/(const Unitless& scalar) const
 {
     return { _elements / scalar, _epoch, _attitude }; // attitude shouldn't scale
 }
 
-template <typename OrbitalElements_T, typename Attitude_T>
-State<OrbitalElements_T, Attitude_T>& State<OrbitalElements_T, Attitude_T>::operator/=(const Unitless& scalar)
+template <typename OrbitalElements, typename Attitude>
+State<OrbitalElements, Attitude>& State<OrbitalElements, Attitude>::operator/=(const Unitless& scalar)
 {
     _elements /= scalar;
     return *this;
 }
 
-template <typename OrbitalElements_T, typename Attitude_T>
-StatePartial<OrbitalElements_T, Attitude_T> State<OrbitalElements_T, Attitude_T>::operator/(const Time& divisor) const
+template <typename OrbitalElements, typename Attitude>
+StatePartial<OrbitalElements, Attitude> State<OrbitalElements, Attitude>::operator/(const Time& divisor) const
 {
     return { _epoch,
              _elements / divisor,
              _attitude.has_value() ? std::optional<AttitudePartials>(_attitude.value() / divisor) : std::nullopt };
 }
 
-template <typename OrbitalElements_T, typename Attitude_T>
-State<OrbitalElements_T, Attitude_T> StatePartial<OrbitalElements_T, Attitude_T>::operator*(const Time& time) const
+template <typename OrbitalElements, typename Attitude>
+State<OrbitalElements, Attitude> StatePartial<OrbitalElements, Attitude>::operator*(const Time& time) const
 {
     return { _elementPartials * time,
              _epoch + time,
              _attitudePartial.has_value() ? std::optional<Attitude>(_attitudePartial.value() * time) : std::nullopt };
 }
 
-template <typename OrbitalElements_T, typename Attitude_T>
-const Date& StatePartial<OrbitalElements_T, Attitude_T>::get_epoch() const
+template <typename OrbitalElements, typename Attitude>
+const Date& StatePartial<OrbitalElements, Attitude>::get_epoch() const
 {
     return _epoch;
 }
