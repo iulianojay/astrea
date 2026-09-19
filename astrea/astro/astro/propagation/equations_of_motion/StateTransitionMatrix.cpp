@@ -46,8 +46,8 @@ StateTransitionMatrix::StateTransitionMatrix(const EquationsOfMotion& eom, const
             sMinusDs[ii] -= dsi;
 
             // Convert back to OrbitalElements
-            const State statePlus  = State::from_double_vector(sPlusDs, typeIdx);
-            const State stateMinus = State::from_double_vector(sMinusDs, typeIdx);
+            const State statePlus  = state.from_double_vector(sPlusDs, typeIdx);
+            const State stateMinus = state.from_double_vector(sMinusDs, typeIdx);
 
             // Compute f(s + dsi)
             const std::vector<double> fPerturbedPlus = eom.compute_dynamics(statePlus, vehicle, {}, {}).force_to_double_vector();

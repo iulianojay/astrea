@@ -324,6 +324,10 @@ class State {
             const auto& attitudeVector = _attitude->force_to_double_vector();
             retval.insert(retval.end(), attitudeVector.begin(), attitudeVector.end());
         }
+        if (_userDefinedState.has_value()) {
+            const auto& userDefinedVector = _userDefinedState->force_to_double_vector();
+            retval.insert(retval.end(), userDefinedVector.begin(), userDefinedVector.end());
+        }
         return retval;
     }
 
@@ -334,7 +338,7 @@ class State {
      * @param idx The index of the orbital element type to create.
      * @return State The created State object.
      */
-    static State from_double_vector(const std::vector<double>& vec, const std::size_t idx);
+    State from_double_vector(const std::vector<double>& vec, const std::size_t idx) const;
 
     /**
      * @brief Adds two State objects together.
@@ -424,11 +428,18 @@ class StatePartial {
      * @param sys The astrodynamics system associated with the state.
      * @param elementPartials The orbital element partials of the state.
      * @param attitudePartial The attitude partial of the state, represented as a quaternion derivative.
+     * @param userDefinedStatePartial The user-defined state partial of the state.
      */
-    StatePartial(const Date& epoch, const OrbitalElementPartials& elementPartials, const std::optional<AttitudePartials>& attitudePartial = std::nullopt) :
+    StatePartial(
+        const Date& epoch,
+        const OrbitalElementPartials& elementPartials,
+        const std::optional<AttitudePartials>& attitudePartial                = std::nullopt,
+        const std::optional<UserDefinedStatePartial>& userDefinedStatePartial = std::nullopt
+    ) :
         _epoch(epoch),
         _elementPartials(elementPartials),
-        _attitudePartial(attitudePartial)
+        _attitudePartial(attitudePartial),
+        _userDefinedStatePartial(userDefinedStatePartial)
     {
     }
 
@@ -459,6 +470,10 @@ class StatePartial {
             const auto& attitudeVector = _attitudePartial->force_to_double_vector();
             retval.insert(retval.end(), attitudeVector.begin(), attitudeVector.end());
         }
+        if (_userDefinedStatePartial.has_value()) {
+            const auto& userDefinedVector = _userDefinedStatePartial->force_to_double_vector();
+            retval.insert(retval.end(), userDefinedVector.begin(), userDefinedVector.end());
+        }
         return retval;
     }
 
@@ -466,6 +481,7 @@ class StatePartial {
     Date _epoch; //!< The epoch of the state partial, representing the time at which the orbital elements are defined.
     OrbitalElementPartials _elementPartials; //!< The orbital element partials of the state, defining the shape and attitude of the orbit.
     std::optional<AttitudePartials> _attitudePartial; //!< The attitude partial of the state, represented as a quaternion derivative.
+    std::optional<UserDefinedStatePartial> _userDefinedStatePartial; //!< The user-defined state partial of the state.
 };
 
 } // namespace astro
