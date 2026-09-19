@@ -29,6 +29,7 @@ namespace astro {
 class State;
 class StatePartial;
 class StateHistory;
+class UserDefinedState;
 
 // ELement sets
 template <IsFrame auto _frame_>

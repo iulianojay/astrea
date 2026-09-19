@@ -24,6 +24,7 @@ std::ostream& operator<<(std::ostream& os, const State& state)
 {
     os << state.get_epoch() << ", " << state.get_elements();
     if (state.get_attitude().has_value()) { os << ", " << state.get_attitude().value(); }
+    if (state.get_user_defined_state().has_value()) { os << ", " << state.get_user_defined_state().value(); }
     return os;
 }
 
@@ -49,7 +50,9 @@ State State::from_double_vector(const std::vector<double>& vec, const std::size_
 bool State::operator==(const State& other) const
 {
     return _epoch == other._epoch && _elements == other._elements && _attitude.has_value() == other._attitude.has_value() &&
-           (!_attitude.has_value() || _attitude.value() == other._attitude.value());
+           (!_attitude.has_value() || _attitude.value() == other._attitude.value()) &&
+           _userDefinedState.has_value() == other._userDefinedState.has_value() &&
+           (!_userDefinedState.has_value() || _userDefinedState.value() == other._userDefinedState.value());
 }
 
 State State::operator+(const State& other) const
@@ -58,6 +61,9 @@ State State::operator+(const State& other) const
              _epoch,
              _attitude.has_value() && other._attitude.has_value() ?
                  std::optional<Attitude>(_attitude.value() + other._attitude.value()) :
+                 std::nullopt,
+             _userDefinedState.has_value() && other._userDefinedState.has_value() ?
+                 std::optional<UserDefinedState>(_userDefinedState.value() + other._userDefinedState.value()) :
                  std::nullopt };
 }
 
@@ -65,6 +71,9 @@ State& State::operator+=(const State& other)
 {
     _elements += other._elements;
     if (_attitude.has_value() && other._attitude.has_value()) { _attitude.value() += other._attitude.value(); }
+    if (_userDefinedState.has_value() && other._userDefinedState.has_value()) {
+        _userDefinedState.value() += other._userDefinedState.value();
+    }
     return *this;
 }
 
@@ -74,6 +83,9 @@ State State::operator-(const State& other) const
              _epoch,
              _attitude.has_value() && other._attitude.has_value() ?
                  std::optional<Attitude>(_attitude.value() - other._attitude.value()) :
+                 std::nullopt,
+             _userDefinedState.has_value() && other._userDefinedState.has_value() ?
+                 std::optional<UserDefinedState>(_userDefinedState.value() - other._userDefinedState.value()) :
                  std::nullopt };
 }
 
@@ -81,28 +93,39 @@ State& State::operator-=(const State& other)
 {
     _elements -= other._elements;
     if (_attitude.has_value() && other._attitude.has_value()) { _attitude.value() -= other._attitude.value(); }
+    if (_userDefinedState.has_value() && other._userDefinedState.has_value()) {
+        _userDefinedState.value() -= other._userDefinedState.value();
+    }
     return *this;
 }
 
 State State::operator*(const Unitless& scalar) const
 {
-    return { _elements * scalar, _epoch, _attitude }; // attitude shouldn't scale
+    return { _elements * scalar,
+             _epoch,
+             _attitude,
+             _userDefinedState.has_value() ? std::optional<UserDefinedState>(_userDefinedState.value() * scalar) : std::nullopt };
 }
 
 State& State::operator*=(const Unitless& scalar)
 {
     _elements *= scalar;
+    if (_userDefinedState.has_value()) { _userDefinedState.value() *= scalar; }
     return *this;
 }
 
 State State::operator/(const Unitless& scalar) const
 {
-    return { _elements / scalar, _epoch, _attitude }; // attitude shouldn't scale
+    return { _elements / scalar,
+             _epoch,
+             _attitude,
+             _userDefinedState.has_value() ? std::optional<UserDefinedState>(_userDefinedState.value() / scalar) : std::nullopt };
 }
 
 State& State::operator/=(const Unitless& scalar)
 {
     _elements /= scalar;
+    if (_userDefinedState.has_value()) { _userDefinedState.value() /= scalar; }
     return *this;
 }
 

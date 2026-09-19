@@ -163,6 +163,7 @@ set(ASTRO_HEADERS
 
     ${ASTRO_BASE}/state/State.hpp
     ${ASTRO_BASE}/state/StateHistory.hpp
+    ${ASTRO_BASE}/state/UserDefinedState.hpp
 
     ${ASTRO_BASE}/state/attitude/Attitude.hpp
     ${ASTRO_BASE}/state/attitude/Quaternion.hpp

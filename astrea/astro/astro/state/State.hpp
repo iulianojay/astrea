@@ -22,6 +22,7 @@
 #include <optional>
 
 #include <astro/frames/definitions/dynamic_frames/tags.hpp>
+#include <astro/state/UserDefinedState.hpp>
 #include <astro/state/attitude/Attitude.hpp>
 #include <astro/state/attitude/Quaternion.hpp>
 #include <astro/state/orbital_elements/OrbitalElements.hpp>
@@ -57,10 +58,16 @@ class State {
      * @param epoch The epoch of the state.
      * @param attitude The attitude of the state, represented as a quaternion.
      */
-    State(const OrbitalElements& elements, const Date& epoch, const std::optional<Attitude>& attitude = std::nullopt) :
+    State(
+        const OrbitalElements& elements,
+        const Date& epoch,
+        const std::optional<Attitude>& attitude                 = std::nullopt,
+        const std::optional<UserDefinedState>& userDefinedState = std::nullopt
+    ) :
         _elements(elements),
         _epoch(epoch),
-        _attitude(attitude)
+        _attitude(attitude),
+        _userDefinedState(userDefinedState)
     {
     }
 
@@ -73,10 +80,16 @@ class State {
      * @param attitude The attitude of the state.
      */
     template <IsOrbitalElements T>
-    State(const T& elements, const Date& epoch, const std::optional<Attitude>& attitude = std::nullopt) :
+    State(
+        const T& elements,
+        const Date& epoch,
+        const std::optional<Attitude>& attitude                 = std::nullopt,
+        const std::optional<UserDefinedState>& userDefinedState = std::nullopt
+    ) :
         _elements(elements.template in_frame<frames::primary>(epoch, astrea::astro::get_mu<T::frame.origin>())),
         _epoch(epoch),
-        _attitude(attitude)
+        _attitude(attitude),
+        _userDefinedState(userDefinedState)
     {
     }
 
@@ -118,6 +131,13 @@ class State {
      * @return const Date& Reference to the epoch of the state.
      */
     const Date& get_epoch() const { return _epoch; }
+
+    /**
+     * @brief Gets the optional user-defined state payload.
+     *
+     * @return const std::optional<UserDefinedState>& The optional user-defined payload.
+     */
+    const std::optional<UserDefinedState>& get_user_defined_state() const { return _userDefinedState; }
 
     /**
      * @brief Gets the gravitational parameter (mu) derived from the origin of the current elements' frame.
@@ -279,10 +299,18 @@ class State {
      */
     void set_epoch(const Date& epoch) { _epoch = epoch; }
 
+    /**
+     * @brief Sets the user-defined state payload.
+     *
+     * @param userDefinedState The user-defined payload to set.
+     */
+    void set_user_defined_state(const UserDefinedState& userDefinedState) { _userDefinedState = userDefinedState; }
+
   private:
     OrbitalElements _elements; //!< The orbital elements of the state, defining the shape and attitude of the orbit.
     Date _epoch; //!< The epoch of the state, representing the time at which the orbital elements are defined.
-    std::optional<Attitude> _attitude; //!< The attitude of the state, represented as a quaternion.
+    std::optional<Attitude> _attitude;                 //!< The attitude of the state, represented as a quaternion.
+    std::optional<UserDefinedState> _userDefinedState; //!< Optional user-defined state payload.
 
     /**
      * @brief Converts the State to a vector of Unitless values.
