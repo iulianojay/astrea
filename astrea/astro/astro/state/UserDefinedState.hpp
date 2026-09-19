@@ -35,6 +35,8 @@
 namespace astrea {
 namespace astro {
 
+class UserDefinedStatePartial;
+
 /**
  * @brief Concept to check if a type has a static from_double_vector method.
  *
@@ -111,6 +113,7 @@ struct UserDefinedStateInnerBase {
     virtual const std::type_info& type() const                                                                = 0;
     virtual std::string get_name() const                                                                      = 0;
     virtual std::ostream& stream(std::ostream& os) const                                                      = 0;
+    virtual UserDefinedStatePartial divide_by_time(const Time& divisor) const                                 = 0;
 };
 
 /**
@@ -191,6 +194,15 @@ struct UserDefinedStateInner final : public UserDefinedStateInnerBase {
         os << _value;
         return os;
     }
+
+    UserDefinedStatePartial divide_by_time(const Time& divisor) const final;
+
+    template <typename U>
+    static UserDefinedStatePartial divide_by_time_impl(const U& value, const Time& divisor)
+        requires requires { value / divisor; };
+
+    template <typename U>
+    static UserDefinedStatePartial divide_by_time_impl(const U& value, const Time& divisor);
 
     template <typename U>
         requires(HasMutatingFromDoubleVector<U>)
@@ -478,6 +490,14 @@ class UserDefinedState {
     UserDefinedState operator/(const Unitless& scalar) const { return UserDefinedState(ptr()->divide(scalar)); }
 
     /**
+     * @brief Divides the UserDefinedState by Time to produce a UserDefinedStatePartial.
+     *
+     * @param divisor The time divisor.
+     * @return UserDefinedStatePartial The resulting user-defined state partial.
+     */
+    UserDefinedStatePartial operator/(const Time& divisor) const;
+
+    /**
      * @brief Divides the UserDefinedState by a scalar in place.
      *
      * @param scalar The scalar to divide by.
@@ -556,3 +576,5 @@ class UserDefinedState {
 
 } // namespace astro
 } // namespace astrea
+
+#include <astro/state/UserDefinedStatePartial.hpp>
