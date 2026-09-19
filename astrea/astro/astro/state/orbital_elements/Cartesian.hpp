@@ -276,24 +276,6 @@ class Cartesian
     }
 
     /**
-     * @brief Converts this Cartesian state to an equivalent Cartesian state in a different frame.
-     *
-     * Uses proper physical frame transformation (translation and rotation) via in_frame on each
-     * component vector. The gravitational parameter is accepted but not used; it exists so that
-     * Cartesian shares a uniform in_frame(epoch, mu) signature with Keplerian and Equinoctial.
-     *
-     * @tparam target_frame The target frame.
-     * @param epoch The epoch at which to evaluate the frame transformation.
-     * @param mu The gravitational parameter of the central body (not used).
-     * @return Cartesian<target_frame> This state expressed in the target frame.
-     */
-    template <IsFrame auto target_frame>
-    Cartesian<target_frame> in_frame(const Date& epoch, const GravParam& /*mu*/) const
-    {
-        return in_frame<target_frame>(epoch);
-    }
-
-    /**
      * @brief Converts the Cartesian state vector to a RadiusVector<_frame_>.
      *
      * @return RadiusVector<_frame_> The position vector in Cartesian coordinates.

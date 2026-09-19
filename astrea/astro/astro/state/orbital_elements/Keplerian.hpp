@@ -332,20 +332,6 @@ class Keplerian : public OrbitalElementsInterface<Keplerian<_frame_>, Distance, 
      */
     Keplerian interpolate(const Time& thisTime, const Time& otherTime, const Keplerian<_frame_>& other, const GravParam& mu, const Time& targetTime) const;
 
-    /**
-     * @brief Converts this Keplerian state to Keplerian elements expressed in a different frame.
-     *
-     * First converts to Cartesian in the native frame, applies the physical frame transformation,
-     * then converts the result back to Keplerian elements.
-     *
-     * @tparam target_frame The target frame.
-     * @param epoch The epoch at which to evaluate the frame transformation.
-     * @param mu The gravitational parameter of the central body.
-     * @return Keplerian<target_frame> This state expressed in the target frame.
-     */
-    template <IsFrame auto target_frame>
-    Keplerian<target_frame> in_frame(const Date& epoch, const GravParam& mu) const;
-
   private:
     /**
      * @brief Sanitize the angles of the Keplerian state vector.

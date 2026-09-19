@@ -171,20 +171,6 @@ class Equinoctial
     ~Equinoctial() = default;
 
     /**
-     * @brief Converts this Equinoctial state to Equinoctial elements expressed in a different frame.
-     *
-     * First converts to Cartesian in the native frame, applies the physical frame transformation,
-     * then converts the result back to Equinoctial elements.
-     *
-     * @tparam target_frame The target frame.
-     * @param epoch The epoch at which to evaluate the frame transformation.
-     * @param mu The gravitational parameter of the central body.
-     * @return Equinoctial<target_frame> This state expressed in the target frame.
-     */
-    template <IsFrame auto target_frame>
-    Equinoctial<target_frame> in_frame(const Date& epoch, const GravParam& mu) const;
-
-    /**
      * @brief Get the semilatus value of the Equinoctial state vector.
      *
      * @return const Distance& Reference to the semilatus component of the Equinoctial state vector.
