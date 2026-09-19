@@ -4,7 +4,7 @@
  * @brief This file defines the Cartesian class and its associated methods.
  * @date 2025-08-02
  *
- * @copyright Copyright (c) 2025 Jay Iuliano
+ * @copyright Copyright (c) 2025-2026 Jay Iuliano
  *
  * The GNU Lesser General Public License (LGPL)
  *
@@ -49,6 +49,8 @@ class Cartesian {
 
   public:
     static constexpr auto frame = _frame_; //!< The reference frame of the Cartesian state vector.
+    template <IsFrame auto F>
+    using BaseType = Cartesian<F>;
 
     /**
      * @brief Default constructor for Cartesian.
@@ -327,6 +329,7 @@ class Cartesian {
     template <IsFrame auto target_frame>
     Cartesian<target_frame> in_frame(const Date& epoch) const
     {
+        if constexpr (equivalent(frame, target_frame)) { return *this; }
         const CartesianVector<Distance, target_frame> rTarget = _r.template in_frame<target_frame>(epoch);
         const CartesianVector<Velocity, target_frame> vTarget = _v.template in_frame<target_frame>(epoch, _r);
         return Cartesian<target_frame>(rTarget, vTarget);

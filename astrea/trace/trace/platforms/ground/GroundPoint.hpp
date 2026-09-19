@@ -4,7 +4,7 @@
  * @brief Header file for the GroundPoint class.
  * @date 2025-08-03
  *
- * @copyright Copyright (c) 2025 Jay Iuliano
+ * @copyright Copyright (c) 2025-2026 Jay Iuliano
  *
  * The GNU Lesser General Public License (LGPL)
  *
@@ -21,8 +21,6 @@
 #include <sstream>
 #include <string>
 
-#include <mp-units/systems/angular.h>
-#include <mp-units/systems/isq_angle.h>
 #include <mp-units/systems/si.h>
 
 #include <astro/astro.fwd.hpp>
@@ -60,8 +58,8 @@ class GroundPoint : virtual public AccessObject {
      * @param altitude  The altitude of the ground point above the surface (default is 0 km).
      */
     GroundPoint(
-        const Angle& latitude    = 0.0 * mp_units::angular::unit_symbols::deg,
-        const Angle& longitude   = 0.0 * mp_units::angular::unit_symbols::deg,
+        const Angle& latitude    = 0.0 * mp_units::si::unit_symbols::deg,
+        const Angle& longitude   = 0.0 * mp_units::si::unit_symbols::deg,
         const Distance& altitude = 0.0 * mp_units::si::unit_symbols::km
     ) :
         AccessObject(),
@@ -125,7 +123,7 @@ class GroundPoint : virtual public AccessObject {
         const auto rEcefPlanar = astro::CartesianVector<Distance, fixed_frame>{ rEcef.get_x(), rEcef.get_y(), 0.0 * km };
 
         const Distance rEcefPlanarNorm = rEcefPlanar.norm();
-        const Velocity vEcefMag = rEcefPlanarNorm * astro::get_rotation_rate<_body_>() / mp_units::isq_angle::cotes_angle;
+        const Velocity vEcefMag        = rEcefPlanarNorm * astro::get_rotation_rate<_body_>() / rad;
 
         const astro::CartesianVector<Distance, fixed_frame> z{ 0.0 * km, 0.0 * km, 1.0 * km };
         const auto vEcef = z.cross(rEcefPlanar).direction() * vEcefMag;
@@ -138,7 +136,7 @@ class GroundPoint : virtual public AccessObject {
      */
     std::string get_name() const
     {
-        using mp_units::angular::unit_symbols::deg;
+        using mp_units::si::unit_symbols::deg;
         using mp_units::si::unit_symbols::km;
 
         std::ostringstream oss;

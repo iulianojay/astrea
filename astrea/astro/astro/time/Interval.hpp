@@ -4,7 +4,7 @@
  * @brief This file defines the Interval class, which represents a time interval with a start and end time.
  * @date 2025-08-02
  *
- * @copyright Copyright (c) 2025 Jay Iuliano
+ * @copyright Copyright (c) 2025-2026 Jay Iuliano
  *
  * The GNU Lesser General Public License (LGPL)
  *
@@ -39,7 +39,7 @@ class Interval {
      */
     Interval(const Time& start, const Time& end) :
         start(start),
-        propTime(end){};
+        propTime(end) {};
 
     /**
      * @brief Default destructor for Interval.

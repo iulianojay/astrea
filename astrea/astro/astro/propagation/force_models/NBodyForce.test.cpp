@@ -1,7 +1,7 @@
 /*
  * The GNU Lesser General Public License (LGPL)
  *
- * Copyright (c) 2025 Jay Iuliano
+ * Copyright (c) 2025-2026 Jay Iuliano
  *
  * This file is part of Astrea.
  * Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License
@@ -80,7 +80,7 @@ TEST_F(NBodyForceTest, ComputeForceValladoEx85)
                                          -1.568251 * km / s, -3.702348 * km / s, -6.479485 * km / s };
     State state(cart, epoch);
     const auto [force, torque]                          = nBodyForce.compute_perturbation(state, Vehicle(sat));
-    const AccelerationVector<frames::earth::icrf> accel = force / sat.get_mass();
+    const AccelerationVector<frames::earth::icrf> accel = force / sat.get_mass(state);
 
 #if defined(ASTREA_BUILD_EARTH_EPHEMERIS) && defined(ASTREA_BUILD_SUN_EPHEMERIS)
 

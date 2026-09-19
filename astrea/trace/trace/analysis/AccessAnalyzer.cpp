@@ -1,7 +1,7 @@
 /*
  * The GNU Lesser General Public License (LGPL)
  *
- * Copyright (c) 2025 Jay Iuliano
+ * Copyright (c) 2025-2026 Jay Iuliano
  *
  * This file is part of Astrea.
  * Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License
@@ -19,7 +19,7 @@
 #include <unordered_set>
 
 #include <mp-units/math.h>
-#include <mp-units/systems/angular/math.h>
+#include <mp-units/systems/si/math.h>
 
 #include <astro/platforms/space/Constellation.hpp>
 #include <astro/state/State.hpp>
@@ -52,11 +52,11 @@ using astro::VelocityVector;
 namespace trace {
 
 using namespace mp_units;
-using namespace mp_units::angular;
+using namespace mp_units::si;
 
-using mp_units::angular::unit_symbols::deg;
-using mp_units::angular::unit_symbols::rad;
+using mp_units::si::unit_symbols::deg;
 using mp_units::si::unit_symbols::km;
+using mp_units::si::unit_symbols::rad;
 using mp_units::si::unit_symbols::s;
 
 
@@ -447,7 +447,7 @@ BoresightTable AccessAnalyzer::compute_sensor_boresights(std::shared_ptr<SensorP
 std::vector<std::vector<std::size_t>>
     AccessAnalyzer::compute_candidate_ground_points(const ViewerRefVec& viewers, const SpatialIndex& spatialIndex) const
 {
-    static const Distance rEqEarth = astrea::astro::get_equitorial_radius<astro::planets::Earth>();
+    static const Distance rEqEarth = astrea::astro::get_equatorial_radius<astro::planets::Earth>();
     const std::size_t nViewers     = viewers.size();
 
     std::vector<std::vector<std::size_t>> candidates(nViewers);
@@ -594,7 +594,7 @@ bool AccessAnalyzer::is_central_body_occulting(const EcefRadiusVec& position1, c
     // Get edge angle of Earth
     const Distance atmosphereHeight =
         atmosphereBlocks ? astrea::astro::get_crash_radius<astro::planets::Earth>() : Distance::zero();
-    const Distance radiusEarthMag = astrea::astro::get_equitorial_radius<astro::planets::Earth>() + atmosphereHeight;
+    const Distance radiusEarthMag = astrea::astro::get_equatorial_radius<astro::planets::Earth>() + atmosphereHeight;
     const Angle earthLimbAngle = asin(radiusEarthMag / nadir1Mag); // Assume this is good for all angles (circular Earth) - TODO: Fix
 
     // Get angle from boresight and sat to nadir

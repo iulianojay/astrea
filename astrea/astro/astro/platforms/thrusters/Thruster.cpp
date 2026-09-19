@@ -1,7 +1,7 @@
 /*
  * The GNU Lesser General Public License (LGPL)
  *
- * Copyright (c) 2025 Jay Iuliano
+ * Copyright (c) 2025-2026 Jay Iuliano
  *
  * This file is part of Astrea.
  * Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License
@@ -15,6 +15,7 @@
 
 #include <astro/frames/definitions.hpp>
 #include <astro/frames/framework/CartesianVector.hpp>
+#include <astro/state/State.hpp>
 
 namespace astrea {
 namespace astro {
@@ -25,7 +26,7 @@ std::size_t Thruster::get_id() const { return _id; }
 
 Velocity Thruster::get_impulsive_delta_v() const
 {
-    return get_parameters().get_thrust() / get_parent()->get_mass() * s;
+    return get_parameters().get_thrust() / get_parent()->get_mass(State()) * s;
 }
 
 Force Thruster::get_thrust() const { return get_parameters().get_thrust(); }

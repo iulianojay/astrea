@@ -4,7 +4,7 @@
  * @brief Header file for trace configuration in the astrea trace library.
  * @date 2025-08-03
  *
- * @copyright Copyright (c) 2025 Jay Iuliano
+ * @copyright Copyright (c) 2025-2026 Jay Iuliano
  *
  * The GNU Lesser General Public License (LGPL)
  *
@@ -20,7 +20,6 @@
 
 #include <string>
 
-#include <mp-units/systems/angular.h>
 #include <mp-units/systems/si.h>
 #include <nlohmann/json.hpp>
 
@@ -64,7 +63,7 @@ struct ConstellationSettings {
     ConstellationSettings(const nlohmann::json& json)
     {
         using namespace mp_units;
-        using mp_units::angular::unit_symbols::deg;
+        using mp_units::si::unit_symbols::deg;
         using mp_units::si::unit_symbols::km;
 
         altitude          = json.at("altitude_km").get<double>() * km;
@@ -88,7 +87,7 @@ struct SensorSettings {
     SensorSettings(const nlohmann::json& json)
     {
         using namespace mp_units;
-        using mp_units::angular::unit_symbols::deg;
+        using mp_units::si::unit_symbols::deg;
 
         name          = json.at("name").get<std::string>();
         type          = json.at("fov").at("type").get<std::string>();
@@ -118,7 +117,7 @@ struct GridSettings {
     GridSettings(const nlohmann::json& json)
     {
         using namespace mp_units;
-        using mp_units::angular::unit_symbols::deg;
+        using mp_units::si::unit_symbols::deg;
 
         type    = json.at("type").get<std::string>();
         spacing = json.at("spacing_deg").get<double>() * deg;

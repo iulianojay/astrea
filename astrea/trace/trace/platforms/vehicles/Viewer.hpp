@@ -4,7 +4,7 @@
  * @brief Viewer class for managing access and sensors on a spacecraft.
  * @date 2025-08-03
  *
- * @copyright Copyright (c) 2025 Jay Iuliano
+ * @copyright Copyright (c) 2025-2026 Jay Iuliano
  *
  * The GNU Lesser General Public License (LGPL)
  *
@@ -80,7 +80,7 @@ class Viewer : public astro::Spacecraft, public AccessObject, public SensorPlatf
      *
      * @return Mass The mass of the viewer.
      */
-    Mass get_mass() const override { return Spacecraft::get_mass(); }
+    Mass get_mass(const astro::State& state) const override { return Spacecraft::get_mass(state); }
 
     /**
      * @brief Get the inertial position of the viewer.

@@ -4,7 +4,7 @@
  * @brief A class representing a null vehicle in the astrea astro platform.
  * @date 2025-08-02
  *
- * @copyright Copyright (c) 2025 Jay Iuliano
+ * @copyright Copyright (c) 2025-2026 Jay Iuliano
  *
  * The GNU Lesser General Public License (LGPL)
  *
@@ -51,7 +51,7 @@ class NullVehicle {
      *
      * @return Mass The mass of the vehicle.
      */
-    Mass get_mass() const;
+    Mass get_mass(const State& state) const;
 
     /**
      * @brief Gets the name of the vehicle.

@@ -4,7 +4,7 @@
  * @brief A class representing a TurnThrustersOn Event in the astrea astro platform.
  * @date 2026-03-14
  *
- * @copyright Copyright (c) 2026 Jay Iuliano
+ * @copyright Copyright (c) 2025-2026 Jay Iuliano
  *
  * The GNU Lesser General Public License (LGPL)
  *

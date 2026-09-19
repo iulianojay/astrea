@@ -4,7 +4,7 @@
  * @brief This file defines the Equinoctial class and its associated methods.
  * @date 2025-08-02
  *
- * @copyright Copyright (c) 2025 Jay Iuliano
+ * @copyright Copyright (c) 2025-2026 Jay Iuliano
  *
  * The GNU Lesser General Public License (LGPL)
  *
@@ -44,6 +44,8 @@ class Equinoctial {
 
   public:
     static constexpr auto frame = _frame_; //!< The reference frame of the Equinoctial state vector.
+    template <IsFrame auto F>
+    using BaseType = Equinoctial<F>;
 
     /**
      * @brief Constructs an Equinoctial object with default values.

@@ -1,4 +1,4 @@
-# Copyright (c) 2025 Jay Iuliano
+# Copyright (c) 2025-2026 Jay Iuliano
 #
 # This file is part of Astrea.
 # Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License
@@ -40,8 +40,13 @@ set(ASTRO_SOURCES
     ${ASTRO_BASE}/propagation/event_detection/events/TurnThrustersOff.cpp
 
     ${ASTRO_BASE}/propagation/force_models/ForceModel.cpp
-    ${ASTRO_BASE}/propagation/force_models/AtmosphericForce.cpp
     ${ASTRO_BASE}/propagation/force_models/SolarRadiationPressure.cpp
+    
+    ${ASTRO_BASE}/propagation/force_models/space_weather/atmosphere/HarrisPriester.cpp
+    ${ASTRO_BASE}/propagation/force_models/space_weather/atmosphere/JacchiaRoberts.cpp
+    ${ASTRO_BASE}/propagation/force_models/space_weather/atmosphere/Nrlmsise00.cpp
+    ${ASTRO_BASE}/propagation/force_models/space_weather/file_reader.cpp
+    ${ASTRO_BASE}/propagation/force_models/space_weather/SpaceWeatherData.cpp
 
     ${ASTRO_BASE}/propagation/equations_of_motion/KeplerianVop.cpp
     ${ASTRO_BASE}/propagation/equations_of_motion/CowellsMethod.cpp
@@ -79,10 +84,12 @@ set(ASTRO_HEADERS
     ${ASTRO_BASE}/frames/definitions/body_fixed_frames.hpp
     ${ASTRO_BASE}/frames/definitions/defined_rotations.hpp
     ${ASTRO_BASE}/frames/definitions/defined_rotations_earth.hpp
-    ${ASTRO_BASE}/frames/definitions/EastNorthUp.hpp
-    ${ASTRO_BASE}/frames/definitions/LocalHorizontalLocalVertical.hpp
-    ${ASTRO_BASE}/frames/definitions/RadialInTrackCrossTrack.hpp
-    ${ASTRO_BASE}/frames/definitions/VelocityNormalBinormal.hpp
+    ${ASTRO_BASE}/frames/definitions/dynamic_frames/EastNorthUp.hpp
+    ${ASTRO_BASE}/frames/definitions/dynamic_frames/LocalHorizontalLocalVertical.hpp
+    ${ASTRO_BASE}/frames/definitions/dynamic_frames/Perifocal.hpp
+    ${ASTRO_BASE}/frames/definitions/dynamic_frames/RadialInTrackCrossTrack.hpp
+    ${ASTRO_BASE}/frames/definitions/dynamic_frames/VelocityNormalBinormal.hpp
+    ${ASTRO_BASE}/frames/definitions/dynamic_frames/tags.hpp
     ${ASTRO_BASE}/frames/definitions/dynamic_frames.hpp
     ${ASTRO_BASE}/frames/definitions/transformations.hpp
 
@@ -131,10 +138,19 @@ set(ASTRO_HEADERS
     ${ASTRO_BASE}/propagation/force_models/AtmosphericForce.hpp
     ${ASTRO_BASE}/propagation/force_models/PerturbingForce.hpp
     ${ASTRO_BASE}/propagation/force_models/ForceModel.hpp
+    ${ASTRO_BASE}/propagation/force_models/LegendreCache.hpp
+    ${ASTRO_BASE}/propagation/force_models/LegendreCache.ipp
     ${ASTRO_BASE}/propagation/force_models/NBodyForce.hpp
     ${ASTRO_BASE}/propagation/force_models/OblatenessForce.hpp
     ${ASTRO_BASE}/propagation/force_models/OblatenessForce.ipp
     ${ASTRO_BASE}/propagation/force_models/SolarRadiationPressure.hpp
+
+    ${ASTRO_BASE}/propagation/force_models/space_weather/atmosphere/JacchiaRoberts.hpp
+    ${ASTRO_BASE}/propagation/force_models/space_weather/atmosphere/HarrisPriester.hpp
+    ${ASTRO_BASE}/propagation/force_models/space_weather/atmosphere/Nrlmsise00.hpp
+    ${ASTRO_BASE}/propagation/force_models/space_weather/SpaceWeatherData.hpp
+    ${ASTRO_BASE}/propagation/force_models/space_weather/SpaceWeatherProvider.hpp
+    ${ASTRO_BASE}/propagation/force_models/space_weather/file_reader.hpp
 
     ${ASTRO_BASE}/propagation/equations_of_motion/KeplerianVop.hpp
     ${ASTRO_BASE}/propagation/equations_of_motion/CowellsMethod.hpp
@@ -174,8 +190,6 @@ set(ASTRO_HEADERS
     ${ASTRO_BASE}/systems/celestial_bodies.hpp
     ${ASTRO_BASE}/systems/celestial_bodies/JplEphemerisTable.hpp
     ${ASTRO_BASE}/systems/celestial_bodies/Earth/Earth.hpp
-    ${ASTRO_BASE}/systems/celestial_bodies/Earth/atmosphere/JacciaRoberts.hpp
-    ${ASTRO_BASE}/systems/celestial_bodies/Earth/atmosphere/HarrisPriester.hpp
     ${ASTRO_BASE}/systems/celestial_bodies/Earth/Moon.hpp
     ${ASTRO_BASE}/systems/celestial_bodies/Mars/Deimos.hpp
     ${ASTRO_BASE}/systems/celestial_bodies/Mars/Mars.hpp
@@ -223,6 +237,10 @@ set(BUILD_EPHEMERIDES(BUILD_SUN OR BUILD_MERCURY OR BUILD_EARTH OR BUILD_MARS OR
 set(EPHEMERIS_COMPILE_DEFINES "")
 generate_ephemeris_files(${CMAKE_CURRENT_LIST_DIR})
 
+# Build EoP files
+option(BUILD_EOP "Build Earth Orientation Parameters" ON)
+generate_eop_files(${CMAKE_CURRENT_LIST_DIR})
+
 # Includes
 set(ASTRO_DIRS
     ${CMAKE_CURRENT_LIST_DIR}
@@ -238,8 +256,8 @@ set(ASTRO_LIBS
     mp-units::mp-units
     matplot
     nlohmann_json::nlohmann_json
-    sqlite_orm::sqlite_orm
     gtl
+    nrlmsise00::nrlmsise00
 )
 
 # Shared library
@@ -248,6 +266,9 @@ add_library(astrea::astro ALIAS ${PROJECT_NAME}_shared)
 
 if(${BUILD_EPHEMERIDES})
     add_dependencies(${PROJECT_NAME}_shared generated_ephemerides)
+endif()
+if(${BUILD_EOP})
+    add_dependencies(${PROJECT_NAME}_shared generated_eop_files)
 endif()
 
 set_target_properties      (${PROJECT_NAME}_shared PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ${PROJECT_NAME} CLEAN_DIRECT_OUTPUT 1 INSTALL_RPATH "$ORIGIN")
@@ -280,6 +301,9 @@ if(${BUILD_STATIC})
     if(${BUILD_EPHEMERIDES})
         add_dependencies(${PROJECT_NAME}_static generated_ephemerides)
     endif()
+    if(${BUILD_EOP})
+        add_dependencies(${PROJECT_NAME}_static generated_eop_files)
+    endif()
 
     set_target_properties      (${PROJECT_NAME}_static PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ${PROJECT_NAME} CLEAN_DIRECT_OUTPUT 1 SUFFIX .a.${PROJECT_VERSION})
     target_link_libraries      (${PROJECT_NAME}_static PUBLIC math_static utilities_static ${ASTRO_LIBS})
@@ -307,9 +331,16 @@ install(
 )
 
 # Install generated ephemeris headers (directory may not exist if no ephemerides are built)
-if(EXISTS "${CMAKE_CURRENT_BINARY_DIR}/include/ephemerides")
+if(${BUILD_EPHEMERIDES})
     install(
-        DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/include/ephemerides
+        DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/include/astro/ephemerides
+        DESTINATION include/astro
+        FILES_MATCHING PATTERN *.hpp
+    )
+endif()
+if(${BUILD_EOP})
+    install(
+        DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/include/astro/eop
         DESTINATION include/astro
         FILES_MATCHING PATTERN *.hpp
     )

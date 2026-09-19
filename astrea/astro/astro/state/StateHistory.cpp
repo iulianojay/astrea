@@ -1,7 +1,7 @@
 /*
  * The GNU Lesser General Public License (LGPL)
  *
- * Copyright (c) 2025 Jay Iuliano
+ * Copyright (c) 2025-2026 Jay Iuliano
  *
  * This file is part of Astrea.
  * Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License
@@ -25,6 +25,11 @@ namespace astro {
 
 void StateHistory::insert(const State& state)
 {
+    if (_states.empty() || _states.back().get_epoch() < state.get_epoch()) {
+        _states.push_back(state);
+        return;
+    }
+
     auto iter = std::lower_bound(_states.begin(), _states.end(), state.get_epoch(), [](const State& existingState, const Date& date) {
         return existingState.get_epoch() < date;
     });

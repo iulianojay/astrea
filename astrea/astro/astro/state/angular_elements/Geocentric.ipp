@@ -1,7 +1,7 @@
 /*
  * The GNU Lesser General Public License (LGPL)
  *
- * Copyright (c) 2025 Jay Iuliano
+ * Copyright (c) 2025-2026 Jay Iuliano
  *
  * This file is part of Astrea.
  * Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License
@@ -15,7 +15,6 @@
 #include <iostream>
 
 #include <mp-units/math.h>
-#include <mp-units/systems/angular/math.h>
 #include <mp-units/systems/si.h>
 #include <mp-units/systems/si/math.h>
 
@@ -180,7 +179,7 @@ template <IsCelestialBody auto _body_>
 RadiusVector<Geocentric<_body_>::_fixed_frame_> Geocentric<_body_>::get_position() const
 {
     return convert_geocentric_to_body_fixed<_fixed_frame_>(
-        _latitude, _longitude, _altitude, get_equitorial_radius<_body_>(), get_polar_radius<_body_>()
+        _latitude, _longitude, _altitude, get_equatorial_radius<_body_>(), get_polar_radius<_body_>()
     );
 }
 
@@ -193,7 +192,7 @@ RadiusVector<Geocentric<_body_>::_icrf_frame_> Geocentric<_body_>::get_position(
 template <IsCelestialBody auto _body_>
 std::ostream& operator<<(std::ostream& os, Geocentric<_body_> const& elements)
 {
-    using mp_units::angular::unit_symbols::deg;
+    using mp_units::si::unit_symbols::deg;
     using mp_units::si::unit_symbols::km;
     os << "[";
     os << elements.get_latitude().in(deg) << ", ";

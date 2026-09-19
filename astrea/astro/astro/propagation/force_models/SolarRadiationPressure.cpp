@@ -1,7 +1,7 @@
 /*
  * The GNU Lesser General Public License (LGPL)
  *
- * Copyright (c) 2025 Jay Iuliano
+ * Copyright (c) 2025-2026 Jay Iuliano
  *
  * This file is part of Astrea.
  * Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License
@@ -14,8 +14,8 @@
 #include <astro/propagation/force_models/SolarRadiationPressure.hpp>
 
 #include <mp-units/math.h>
-#include <mp-units/systems/angular/math.h>
 #include <mp-units/systems/iau.h>
+#include <mp-units/systems/si/math.h>
 
 #include <astro/platforms/Vehicle.hpp>
 #include <astro/state/State.hpp>
@@ -30,8 +30,8 @@ namespace astro {
 using namespace mp_units;
 
 using mp_units::pow;
-using mp_units::angular::acos;
-using mp_units::angular::asin;
+using mp_units::si::acos;
+using mp_units::si::asin;
 
 using mp_units::one;
 using mp_units::non_si::unit_symbols::au;
@@ -67,17 +67,17 @@ Perturbation SolarRadiationPressure::compute_perturbation(const State& state, co
     // Scale by umbria/penumbra
     Unitless fractionOfRecievedSunlight = 1.0 * one;
     if (!isSun) {
-        static constexpr Distance equitorialR = get_equitorial_radius<center>();
+        static constexpr Distance equatorialR = get_equatorial_radius<center>();
 
         //  This part calculates the angle between the occulating body and the Sun, the body and the satellite, and the Sun and the
         //  satellite. It then compares them to decide if the s/c is lit, in umbra, or in penumbra. See Vallado for details.
         const Angle refAngle  = acos(rCenterToSun.dot(rCenterToVehicle) / (rMagCenterToSun * rMagCenterToVehicle));
-        const Angle refAngle1 = acos(equitorialR / rMagCenterToVehicle);
-        const Angle refAngle2 = acos(equitorialR / rMagCenterToSun);
+        const Angle refAngle1 = acos(equatorialR / rMagCenterToVehicle);
+        const Angle refAngle2 = acos(equatorialR / rMagCenterToSun);
 
         if (refAngle1 + refAngle2 <= refAngle) { // In shadow
-            static constexpr Distance diamSun = get_equitorial_radius<star::Sun>() * 2;
-            const Distance Xu                 = equitorialR * rMagCenterToSun / (diamSun - equitorialR);
+            static constexpr Distance diamSun = get_equatorial_radius<star::Sun>() * 2;
+            const Distance Xu                 = equatorialR * rMagCenterToSun / (diamSun - equatorialR);
 
             const RadiusVector<frames::primary> rP = -Xu * rCenterToSun / rMagCenterToSun;
             const Distance normRP                  = rP.norm();
@@ -86,7 +86,7 @@ Perturbation SolarRadiationPressure::compute_perturbation(const State& state, co
             const Distance normRPs                  = rPs.norm();
             const Angle alphaps                     = abs(asin(-rPs.dot(rP) / (normRP * normRPs)));
 
-            if (alphaps < asin(equitorialR / Xu)) { // Umbra
+            if (alphaps < asin(equatorialR / Xu)) { // Umbra
                 fractionOfRecievedSunlight = 0.0 * one;
             }
             else { // Penumbra
@@ -96,8 +96,8 @@ Perturbation SolarRadiationPressure::compute_perturbation(const State& state, co
     }
 
     // accel due to srp
-    const Unitless coefficientOfReflectivity = vehicle.get_coefficient_of_reflectivity();
-    const SurfaceArea areaSun                = vehicle.get_solar_area();
+    const Unitless coefficientOfReflectivity = vehicle.get_coefficient_of_reflectivity(state);
+    const SurfaceArea areaSun                = vehicle.get_solar_area(state);
     const Force forceRelMag                  = -srp * fractionOfRecievedSunlight * coefficientOfReflectivity * areaSun;
 
     return { .force = forceRelMag * rVehicleToSun / rMagVehicleToSun };

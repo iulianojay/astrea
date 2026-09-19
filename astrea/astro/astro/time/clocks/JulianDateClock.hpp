@@ -4,7 +4,7 @@
  * @brief A clock implementation for Julian Dates. Adapted from https://stackoverflow.com/questions/33964461/handling-julian-days-in-c11-14.
  * @date 2025-08-02
  *
- * @copyright Copyright (c) 2025 Jay Iuliano
+ * @copyright Copyright (c) 2025-2026 Jay Iuliano
  *
  * The GNU Lesser General Public License (LGPL)
  *
@@ -65,12 +65,12 @@ struct JulianDateClock {
         auto constexpr epoch = sys_days{ November / 24 / -4713 } + 12h;
         using ddays          = std::chrono::duration<long double, std::chrono::days::period>;
         if constexpr (sys_time<ddays>{ sys_time<Duration>::min() } < sys_time<ddays>{ epoch }) {
-            return JulianDateTime{ timePoint - epoch };
+            return JulianDateTime<decltype(timePoint - epoch)>{ timePoint - epoch };
         }
         else {
             // Duration overflows at the epoch.  Sub in new Duration that won't overflow.
             using D = std::chrono::duration<int64_t, ratio<1, 10'000'000>>;
-            return JulianDateTime{ round<D>(timePoint) - epoch };
+            return JulianDateTime<D>{ round<D>(timePoint) - epoch };
         }
     }
 
@@ -85,7 +85,8 @@ struct JulianDateClock {
     static auto to_sys(JulianDateTime<Duration> const& timePoint) noexcept
     {
         using namespace std::chrono;
-        return sys_time{ timePoint - clock_cast<JulianDateClock>(sys_days{}) };
+        return sys_time<decltype(timePoint - clock_cast<JulianDateClock>(sys_days{}))>{ timePoint -
+                                                                                        clock_cast<JulianDateClock>(sys_days{}) };
     }
 
     /**

@@ -4,7 +4,7 @@
  * @brief This file defines the Keplerian class and its associated methods.
  * @date 2025-08-02
  *
- * @copyright Copyright (c) 2025 Jay Iuliano
+ * @copyright Copyright (c) 2025-2026 Jay Iuliano
  *
  * The GNU Lesser General Public License (LGPL)
  *
@@ -21,7 +21,6 @@
 #include <iosfwd>
 
 #include <mp-units/math.h>
-#include <mp-units/systems/angular.h>
 #include <mp-units/systems/si.h>
 
 #include <units/units.hpp>
@@ -48,6 +47,8 @@ class Keplerian {
 
   public:
     static constexpr auto frame = _frame_; //!< The reference frame of the Keplerian elements.
+    template <IsFrame auto F>
+    using BaseType = Keplerian<F>;
 
     /**
      * @brief Constructs a Keplerian object with default values.
@@ -380,6 +381,14 @@ class Keplerian {
      * @return Time Orbital period of the Keplerian state vector.
      */
     Time get_orbital_period(const GravParam& mu) const;
+
+    /**
+     * @brief Get the specific angular momentum of the Keplerian state vector.
+     *
+     * @param mu Gravitational parameter of the central body
+     * @return SpecificAngularMomentum Specific angular momentum of the Keplerian state vector.
+     */
+    SpecificAngularMomentum get_specific_angular_momentum(const GravParam& mu) const;
 
     /**
      * @brief Interpolates between two Keplerian state vectors.

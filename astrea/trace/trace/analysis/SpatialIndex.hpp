@@ -4,7 +4,7 @@
  * @brief Header file for spatial indexing functions in the astrea trace library.
  * @date 2025-08-03
  *
- * @copyright Copyright (c) 2025 Jay Iuliano
+ * @copyright Copyright (c) 2025-2026 Jay Iuliano
  *
  * The GNU Lesser General Public License (LGPL)
  *
@@ -55,8 +55,13 @@ class SpatialIndex {
      *
      * @param binSize Angular size of each bin (smaller = more bins, finer resolution)
      */
-    SpatialIndex(const Angle& binSize = 10.0 * mp_units::angular::unit_symbols::deg);
+    SpatialIndex(const Angle& binSize = 10.0 * mp_units::si::unit_symbols::deg);
 
+    /**
+     * @brief Construct spatial index and populate with ground points
+     *
+     * @param groundPoints Vector of ground points to add to the index
+     */
     SpatialIndex(const GroundPointRefVec& groundPoints);
 
     /**

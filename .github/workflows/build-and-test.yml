@@ -1,7 +1,7 @@
 #
 # The GNU Lesser General Public License (LGPL)
 #
-# Copyright (c) 2025 Jay Iuliano
+# Copyright (c) 2025-2026 Jay Iuliano
 #
 # This file is part of Astrea.
 # Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License
@@ -20,9 +20,9 @@ permissions:
 on:
   workflow_dispatch:
   push:
-    branches: [ "master" ]
+    branches: [ "main" ]
   pull_request:
-    branches: [ "dev", "master" ]
+    branches: [ "main" ]
 
 jobs:
   check-docker-changes:
@@ -30,8 +30,8 @@ jobs:
     outputs:
       docker-changed: ${{ steps.changes.outputs.docker }}
     steps:
-    - uses: actions/checkout@v4
-    - uses: dorny/paths-filter@v2
+    - uses: actions/checkout@v7
+    - uses: dorny/paths-filter@v4
       id: changes
       with:
         filters: |
@@ -42,10 +42,17 @@ jobs:
   wait-for-docker:
     runs-on: ubuntu-latest
     needs: check-docker-changes
-    if: needs.check-docker-changes.outputs.docker-changed == 'true' && github.event_name == 'pull_request'
+    if: >
+      github.event_name == 'push' &&
+      github.ref == 'refs/heads/main'
+      ||
+      (
+        github.event_name == 'pull_request' &&
+        needs.check-docker-changes.outputs.docker-changed == 'true'
+      )
     steps:
     - name: Wait for Docker workflow
-      uses: fountainhead/action-wait-for-check@v1.1.0
+      uses: fountainhead/action-wait-for-check@v1.2.0
       id: wait-for-docker
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
@@ -57,7 +64,16 @@ jobs:
   build-and-test:
     runs-on: ubuntu-latest
     needs: [check-docker-changes, wait-for-docker]
-    if: always() && (needs.wait-for-docker.result == 'success' || needs.check-docker-changes.outputs.docker-changed == 'false' || github.event_name != 'pull_request')
+    if: >
+      always() && (
+        github.event_name == 'pull_request' && github.event.pull_request.base.ref == 'main'
+        ||
+        needs.wait-for-docker.result == 'success'
+        ||
+        needs.check-docker-changes.outputs.docker-changed == 'false'
+        ||
+        github.event_name != 'pull_request'
+      )
     container:
       image: ghcr.io/iulianojay/astrea:dev
       options: --user root
@@ -70,7 +86,7 @@ jobs:
       run: |
         chmod -R u+rwX .
 
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v7
       with:
         ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.ref || github.ref }} # https://github.com/actions/checkout/discussions/1637
 
@@ -100,7 +116,16 @@ jobs:
   coverage:
     runs-on: ubuntu-latest
     needs: [check-docker-changes, wait-for-docker]
-    if: always() && (needs.wait-for-docker.result == 'success' || needs.check-docker-changes.outputs.docker-changed == 'false' || github.event_name != 'pull_request')
+    if: >
+      always() && (
+        github.event_name == 'pull_request' && github.event.pull_request.base.ref == 'main'
+        ||
+        needs.wait-for-docker.result == 'success'
+        ||
+        needs.check-docker-changes.outputs.docker-changed == 'false'
+        ||
+        github.event_name != 'pull_request'
+      )
     container:
       image: ghcr.io/iulianojay/astrea:dev
       options: --user root
@@ -113,7 +138,7 @@ jobs:
       run: |
         chmod -R u+rwX .
 
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v7
       with:
         ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.ref || github.ref }} # https://github.com/actions/checkout/discussions/1637
 
@@ -145,7 +170,7 @@ jobs:
         echo "COVERAGE_PCT=$(cat coverage.txt)" >> "$GITHUB_ENV"
 
     - name: Create Coverage Badge
-      uses: schneegans/dynamic-badges-action@v1.8.0
+      uses: schneegans/dynamic-badges-action@v1.9.0
       with:
         auth: ${{ secrets.GIST_SECRET }}
         gistID: 238a4a61ca19471caa1e39376158d625

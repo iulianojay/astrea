@@ -4,7 +4,7 @@
  * @brief A class representing an inertia matrix in the astrea astro platform.
  * @date 2025-08-02
  *
- * @copyright Copyright (c) 2025 Jay Iuliano
+ * @copyright Copyright (c) 2025-2026 Jay Iuliano
  *
  * The GNU Lesser General Public License (LGPL)
  *
@@ -23,8 +23,8 @@
 #include <units/units.hpp>
 
 #include <astro/astro.fwd.hpp>
+#include <astro/frames/definitions/dynamic_frames/tags.hpp>
 #include <astro/frames/framework/CartesianVector.hpp>
-#include <astro/frames/definitions/dynamic_frames.hpp>
 
 namespace astrea {
 namespace astro {
@@ -38,9 +38,9 @@ template <IsFrame auto _frame_ = frames::dynamic::body>
 class InertiaTensor {
 
     static constexpr MomentOfInertia zero =
-        0.0 * mp_units::si::unit_symbols::kg * mp_units::pow<2>(mp_units::si::unit_symbols::m);
+        0.0 * mp_units::si::unit_symbols::kg * mp_units::si::unit_symbols::m * mp_units::si::unit_symbols::m;
     static constexpr MomentOfInertia one =
-        1.0 * mp_units::si::unit_symbols::kg * mp_units::pow<2>(mp_units::si::unit_symbols::m);
+        1.0 * mp_units::si::unit_symbols::kg * mp_units::si::unit_symbols::m * mp_units::si::unit_symbols::m;
 
   public:
     /**
@@ -136,7 +136,7 @@ class InertiaTensor {
         // TODO: Generalize a 3x3 matrix class and use it with the DCM as well
         const auto det = determinant();
 
-        if (is_eq_zero(det)) { throw std::runtime_error("Inertia tensor is singular and cannot be inverted."); }
+        if (det == 0.0) { throw std::runtime_error("Inertia tensor is singular and cannot be inverted."); }
 
         // Compute the inverse using the formula for the inverse of a 3x3 matrix
         const auto invDet = 1.0 / det;

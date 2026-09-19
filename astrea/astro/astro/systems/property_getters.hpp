@@ -6,7 +6,7 @@
  *          CelestialBody.hpp -> CelestialBodyParameters.hpp -> Date.hpp -> CelestialBody.hpp
  * @date 2025-08-02
  *
- * @copyright Copyright (c) 2025 Jay Iuliano
+ * @copyright Copyright (c) 2025-2026 Jay Iuliano
  *
  * The GNU Lesser General Public License (LGPL)
  *
@@ -22,7 +22,6 @@
 
 #include <string>
 
-#include <mp-units/systems/angular.h>
 #include <mp-units/systems/si.h>
 
 #include <astro/utilities/conversions.hpp>
@@ -40,7 +39,7 @@
 #include <astro/types/enums.hpp>
 
 // NOTE: CoefficientPack and get_linear_expansion_coefficients must be declared BEFORE
-// including any header that pulls in celestial_bodies.hpp, because planet headers specialise
+// including any header that pulls in celestial_bodies.hpp, because planet headers specialize
 // get_linear_expansion_coefficients.  The primary template must be visible first.
 namespace astrea {
 namespace astro {
@@ -53,24 +52,25 @@ namespace astro {
  * where T is time since reference epoch in Julian centuries.
  */
 using CoefficientPack = std::tuple<
-    mp_units::quantity<mp_units::angular::unit_symbols::rad / (JulianCentury * JulianCentury)>,
-    mp_units::quantity<mp_units::angular::unit_symbols::rad>,
-    mp_units::quantity<mp_units::angular::unit_symbols::rad>,
-    mp_units::quantity<mp_units::angular::unit_symbols::rad / JulianCentury>>;
+    mp_units::quantity<mp_units::si::unit_symbols::rad / (astrea::units::unit_symbols::jc * astrea::units::unit_symbols::jc)>,
+    mp_units::quantity<mp_units::si::unit_symbols::rad>,
+    mp_units::quantity<mp_units::si::unit_symbols::rad>,
+    mp_units::quantity<mp_units::si::unit_symbols::rad / astrea::units::unit_symbols::jc>>;
 
 /**
  * @brief Get the linear expansion coefficients for the celestial body's mean anomaly correction.
  *
  * Default implementation returns zero coefficients (no perturbation terms),
- * which reduces to Me = L - w.  Specialise for bodies that need it (e.g. outer planets).
+ * which reduces to Me = L - w.  Specialize for bodies that need it (e.g. outer planets).
  *
  * @return CoefficientPack A tuple containing (B, C, S, F) coefficients.
  */
 template <IsCelestialReference auto body>
 inline constexpr CoefficientPack get_linear_expansion_coefficients()
 {
-    using namespace mp_units::angular::unit_symbols;
-    return std::make_tuple(0.0 * rad / (JulianCentury * JulianCentury), 0.0 * rad, 0.0 * rad, 0.0 * rad / JulianCentury);
+    using astrea::units::unit_symbols::jc;
+    using mp_units::si::unit_symbols::rad;
+    return std::make_tuple(0.0 * rad / (jc * jc), 0.0 * rad, 0.0 * rad, 0.0 * rad / jc);
 }
 
 /**
@@ -120,9 +120,9 @@ inline constexpr Mass get_mass()
  * @return Distance Reference to the equatorial radius of the celestial body.
  */
 template <IsCelestialBody auto body>
-inline constexpr Distance get_equitorial_radius()
+inline constexpr Distance get_equatorial_radius()
 {
-    return get_celestial_body_parameters<body>().equitorialRadius;
+    return get_celestial_body_parameters<body>().equatorialRadius;
 };
 
 /**
@@ -181,6 +181,17 @@ inline constexpr Unitless get_j3()
 };
 
 /**
+ * @brief Get the full set of gravitational coefficients of the celestial body.
+ *
+ * @return Unitless Reference to the full set of gravitational coefficients of the celestial body.
+ */
+template <IsCelestialBody auto body>
+inline constexpr auto get_gravity_coefficient_file()
+{
+    return get_celestial_body_parameters<body>().gravityCoefficientFile;
+};
+
+/**
  * @brief Get the axial tilt of the celestial body.
  *
  * @return Angle Reference to the axial tilt of the celestial body.
@@ -221,7 +232,8 @@ inline constexpr Time get_sidereal_period()
 template <IsCelestialBody auto body>
 inline constexpr Distance get_semimajor(Date date)
 {
-    const mp_units::quantity<JulianCentury> T = get_time_since_reference_epoch<body>(date);
+    using astrea::units::unit_symbols::jc;
+    const mp_units::quantity<jc> T = get_time_since_reference_epoch<body>(date);
     return get_celestial_body_parameters<body>().semimajorAxis + get_celestial_body_parameters<body>().semimajorAxisRate * T;
 };
 
@@ -233,7 +245,8 @@ inline constexpr Distance get_semimajor(Date date)
 template <IsCelestialBody auto body>
 inline constexpr Unitless get_eccentricity(Date date)
 {
-    const mp_units::quantity<JulianCentury> T = get_time_since_reference_epoch<body>(date);
+    using astrea::units::unit_symbols::jc;
+    const mp_units::quantity<jc> T = get_time_since_reference_epoch<body>(date);
     return get_celestial_body_parameters<body>().eccentricity + get_celestial_body_parameters<body>().eccentricityRate * T;
 };
 
@@ -245,7 +258,8 @@ inline constexpr Unitless get_eccentricity(Date date)
 template <IsCelestialBody auto body>
 inline constexpr Angle get_inclination(Date date)
 {
-    const mp_units::quantity<JulianCentury> T = get_time_since_reference_epoch<body>(date);
+    using astrea::units::unit_symbols::jc;
+    const mp_units::quantity<jc> T = get_time_since_reference_epoch<body>(date);
     return get_celestial_body_parameters<body>().inclination + get_celestial_body_parameters<body>().inclinationRate * T;
 };
 
@@ -257,7 +271,8 @@ inline constexpr Angle get_inclination(Date date)
 template <IsCelestialBody auto body>
 inline constexpr Angle get_right_ascension(Date date)
 {
-    const mp_units::quantity<JulianCentury> T = get_time_since_reference_epoch<body>(date);
+    using astrea::units::unit_symbols::jc;
+    const mp_units::quantity<jc> T = get_time_since_reference_epoch<body>(date);
     return get_celestial_body_parameters<body>().rightAscension + get_celestial_body_parameters<body>().rightAscensionRate * T;
 };
 
@@ -269,7 +284,8 @@ inline constexpr Angle get_right_ascension(Date date)
 template <IsCelestialBody auto body>
 inline constexpr Angle get_longitude_of_perigee(Date date)
 {
-    const mp_units::quantity<JulianCentury> T = get_time_since_reference_epoch<body>(date);
+    using astrea::units::unit_symbols::jc;
+    const mp_units::quantity<jc> T = get_time_since_reference_epoch<body>(date);
     return get_celestial_body_parameters<body>().longitudeOfPerigee +
            get_celestial_body_parameters<body>().longitudeOfPerigeeRate * T;
 };
@@ -282,7 +298,8 @@ inline constexpr Angle get_longitude_of_perigee(Date date)
 template <IsCelestialBody auto body>
 inline constexpr Angle get_mean_longitude(Date date)
 {
-    const mp_units::quantity<JulianCentury> T = get_time_since_reference_epoch<body>(date);
+    using astrea::units::unit_symbols::jc;
+    const mp_units::quantity<jc> T = get_time_since_reference_epoch<body>(date);
     return get_celestial_body_parameters<body>().meanLongitude + get_celestial_body_parameters<body>().meanLongitudeRate * T;
 };
 
@@ -526,9 +543,9 @@ inline constexpr Angle julian_date_to_body_sidereal_time(JulianDate date)
  * @brief Get the body-fixed rotating frame for a celestial body.
  *
  * Returns a Z-rotation body-fixed frame for @p body. For well-known bodies
- * (e.g. Earth) an explicit specialisation in the appropriate platform header
+ * (e.g. Earth) an explicit specialization in the appropriate platform header
  * returns the canonical named frame instance so that existing DCM
- * specialisations are reused.
+ * specializations are reused.
  *
  * @tparam body The celestial body NTTP.
  * @return A constexpr BodyFixedFrame value centred at body.

@@ -4,7 +4,7 @@
  * @brief Registration point for Cartesian frames used across astrea.
  * @date 2025-04-22
  *
- * @copyright Copyright (c) 2025 Jay Iuliano
+ * @copyright Copyright (c) 2025-2026 Jay Iuliano
  *
  * The GNU Lesser General Public License (LGPL)
  *
@@ -19,7 +19,6 @@
 #pragma once
 
 #include <tuple>
-#include <type_traits>
 #include <variant>
 
 #include <astro/frames/definitions/frame_registry.fwd.hpp>

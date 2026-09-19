@@ -4,7 +4,7 @@
  * @brief Header file for the Mercury class.
  * @date 2025-10-02
  *
- * @copyright Copyright (c) 2025 Jay Iuliano
+ * @copyright Copyright (c) 2025-2026 Jay Iuliano
  *
  * The GNU Lesser General Public License (LGPL)
  *
@@ -21,11 +21,12 @@
 #include <units/units.hpp>
 
 #include <astro/astro.fwd.hpp>
+#include <astro/astro.macros.hpp>
 #include <astro/systems/CelestialBody.hpp>
 #include <astro/systems/barycenters.hpp>
 
 #ifdef ASTREA_BUILD_MERCURY_EPHEMERIS
-#include <ephemerides/Mercury/MercuryEphemerisTable.hpp>
+#include <astro/ephemerides/Mercury/MercuryEphemerisTable.hpp>
 #endif // ASTREA_BUILD_MERCURY_EPHEMERIS
 
 namespace astrea {
@@ -48,9 +49,10 @@ template <>
 inline consteval CelestialBodyParameters get_celestial_body_parameters<planets::Mercury>()
 {
     using namespace mp_units;
-    using mp_units::angular::unit_symbols::deg;
+    using astrea::units::unit_symbols::jc;
     using mp_units::iau::unit_symbols::au;
     using mp_units::non_si::day;
+    using mp_units::si::unit_symbols::deg;
     using mp_units::si::unit_symbols::kg;
     using mp_units::si::unit_symbols::km;
     using mp_units::si::unit_symbols::s;
@@ -59,7 +61,7 @@ inline consteval CelestialBodyParameters get_celestial_body_parameters<planets::
              .referenceDate          = Date(J2000),
              .mu                     = GravParam(22032.0 * pow<3>(km) / pow<2>(s)),
              .mass                   = Mass(0.330 * (mag_power<10, 24> * kg)),
-             .equitorialRadius       = Distance(2439.7 * km),
+             .equatorialRadius       = Distance(2439.7 * km),
              .polarRadius            = Distance(2439.7 * km),
              .crashRadius            = Distance(2464.7 * km),
              .sphereOfInfluence      = Distance(0.011239389492058 * au),
@@ -74,12 +76,14 @@ inline consteval CelestialBodyParameters get_celestial_body_parameters<planets::
              .rightAscension         = Angle(48.33076593 * deg),
              .longitudeOfPerigee     = Angle(77.45779628 * deg),
              .meanLongitude          = Angle(252.25032350 * deg),
-             .semimajorAxisRate      = InterplanetaryVelocity(0.00000037 * au / JulianCentury),
-             .eccentricityRate       = BodyUnitlessPerTime(0.00001906 * one / JulianCentury),
-             .inclinationRate        = BodyAngularVelocity(-0.00594749 * deg / JulianCentury),
-             .rightAscensionRate     = BodyAngularVelocity(-0.12534081 * deg / JulianCentury),
-             .longitudeOfPerigeeRate = BodyAngularVelocity(0.16047689 * deg / JulianCentury),
-             .meanLongitudeRate      = BodyAngularVelocity(149472.67411175 * deg / JulianCentury) };
+             .semimajorAxisRate      = InterplanetaryVelocity(0.00000037 * au / jc),
+             .eccentricityRate       = BodyUnitlessPerTime(0.00001906 * one / jc),
+             .inclinationRate        = BodyAngularVelocity(-0.00594749 * deg / jc),
+             .rightAscensionRate     = BodyAngularVelocity(-0.12534081 * deg / jc),
+             .longitudeOfPerigeeRate = BodyAngularVelocity(0.16047689 * deg / jc),
+             .meanLongitudeRate      = BodyAngularVelocity(149472.67411175 * deg / jc),
+             // https://pds-geosciences.wustl.edu/messenger/mess-h-rss_mla-5-sdp-v1/messrs_1001/data/shadr/ - normalized
+             .gravityCoefficientFile = _ASTRO_GRAV_DATA_ROOT_ "/Mercury/jgmess_160a_sha.tab" };
 }
 
 #ifdef ASTREA_BUILD_MERCURY_EPHEMERIS

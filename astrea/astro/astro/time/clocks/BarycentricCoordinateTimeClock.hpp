@@ -4,7 +4,7 @@
  * @brief A clock implementation for Barycentric Coordinate Time (TCB).
  * @date 2026-06-02
  *
- * @copyright Copyright (c) 2026 Jay Iuliano
+ * @copyright Copyright (c) 2025-2026 Jay Iuliano
  *
  * The GNU Lesser General Public License (LGPL)
  *
@@ -74,7 +74,7 @@ struct BarycentricCoordinateTimeClock {
         const auto tdb = duration_cast<duration>(BarycentricDynamicalTimeClock::from_sys(timePoint).time_since_epoch());
         const auto jd  = JulianDateClock::from_sys(timePoint).time_since_epoch();
         const auto jdDiff = duration_cast<days>(jd - jdRef).count();
-        return BarycentricCoordinateTimePoint{ tdb + duration{ Lb * jdDiff + P0.count() } };
+        return BarycentricCoordinateTimePoint<duration>{ tdb + duration{ Lb * jdDiff + P0.count() } };
     }
 
     /**

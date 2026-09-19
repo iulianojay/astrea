@@ -4,7 +4,7 @@
  * @brief Header file for the HarrisPriester class.
  * @date 2026-05-01
  *
- * @copyright Copyright (c) 2026 Jay Iuliano
+ * @copyright Copyright (c) 2025-2026 Jay Iuliano
  *
  * The GNU Lesser General Public License (LGPL)
  *
@@ -24,7 +24,6 @@
 
 namespace astrea {
 namespace astro {
-namespace planets {
 
 /**
  * @brief The Harris-Priester atmospheric model for Earth.
@@ -43,6 +42,5 @@ class HarrisPriesterAtmosphere {
     static Density find_atmospheric_density(const State& state);
 };
 
-} // namespace planets
 } // namespace astro
 } // namespace astrea

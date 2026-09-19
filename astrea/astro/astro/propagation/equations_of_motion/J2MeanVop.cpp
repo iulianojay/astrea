@@ -1,7 +1,7 @@
 /*
  * The GNU Lesser General Public License (LGPL)
  *
- * Copyright (c) 2025 Jay Iuliano
+ * Copyright (c) 2025-2026 Jay Iuliano
  *
  * This file is part of Astrea.
  * Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License
@@ -18,7 +18,6 @@
 #include <exception>
 
 #include <mp-units/math.h>
-#include <mp-units/systems/angular/math.h>
 #include <mp-units/systems/si/math.h>
 
 #include <astro/propagation/equations_of_motion/EquationsOfMotion.hpp>
@@ -34,10 +33,10 @@ namespace astrea {
 namespace astro {
 
 using namespace mp_units;
-using namespace mp_units::angular;
-using mp_units::angular::unit_symbols::deg;
-using mp_units::angular::unit_symbols::rad;
+using namespace mp_units::si;
+using mp_units::si::unit_symbols::deg;
 using mp_units::si::unit_symbols::km;
+using mp_units::si::unit_symbols::rad;
 using mp_units::si::unit_symbols::s;
 
 
@@ -51,7 +50,7 @@ OrbitalElementPartials J2MeanVop::compute_dynamics(
     // Extract
     const GravParam mu     = get_mu<frames::primary.origin>();
     const auto J2          = get_j2<frames::primary.origin>();
-    const auto equitorialR = get_equitorial_radius<frames::primary.origin>();
+    const auto equatorialR = get_equatorial_radius<frames::primary.origin>();
 
     const Keplerian<frames::primary> elements = state.in_element_set<Keplerian<frames::primary>>();
     const Distance& a                         = elements.get_semimajor();
@@ -73,7 +72,7 @@ OrbitalElementPartials J2MeanVop::compute_dynamics(
     const Distance R  = r.norm();
 
     // Variables to reduce calculations
-    const auto termA = -1.5 * J2 * mu * pow<2>(equitorialR) / pow<5>(R);
+    const auto termA = -1.5 * J2 * mu * pow<2>(equatorialR) / pow<5>(R);
     const auto termB = pow<2>(z / R);
 
     // TODO: Do we want to add vehicle acceleration here? It basically invalidates these equations since you'd need the

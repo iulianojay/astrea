@@ -4,7 +4,7 @@
  * @brief This file defines the CartesianVector class, which represents a 3D vector in Cartesian coordinates.
  * @date 2025-08-03
  *
- * @copyright Copyright (c) 2025 Jay Iuliano
+ * @copyright Copyright (c) 2025-2026 Jay Iuliano
  *
  * The GNU Lesser General Public License (LGPL)
  *
@@ -22,7 +22,7 @@
 #include <typeinfo>
 
 #include <mp-units/framework.h>
-#include <mp-units/systems/angular.h>
+#include <mp-units/systems/si.h>
 
 #include <units/units.hpp>
 
@@ -405,7 +405,7 @@ struct CartesianVector {
         using namespace mp_units;
 
         const Value_T n = norm();
-        if (is_eq_zero(n)) {
+        if (n == 0.0) {
             // Return zero vector if norm is zero
             return CartesianVector<Unitless, frame>(0.0 * mp_units::one, 0.0 * mp_units::one, 0.0 * mp_units::one);
         }
@@ -424,12 +424,12 @@ struct CartesianVector {
     inline constexpr Angle offset_angle(const CartesianVector<Value_U, frame>& other) const
     {
         using namespace mp_units;
-        using namespace mp_units::angular;
+        using namespace mp_units::si;
 
         const Value_T v1Mag = norm();
         const Value_U v2Mag = other.norm();
 
-        if (is_eq_zero(v1Mag) || is_eq_zero(v2Mag)) {
+        if (v1Mag == 0.0 || v2Mag == 0.0) {
             throw std::runtime_error("Cannot calculate angle with zero-magnitude vector");
         }
 

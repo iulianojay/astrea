@@ -1,7 +1,7 @@
 /*
  * The GNU Lesser General Public License (LGPL)
  *
- * Copyright (c) 2025 Jay Iuliano
+ * Copyright (c) 2025-2026 Jay Iuliano
  *
  * This file is part of Astrea.
  * Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License
@@ -17,7 +17,6 @@
 #include <iostream>
 #include <sstream>
 
-#include <mp-units/systems/angular.h>
 #include <mp-units/systems/si.h>
 
 #include <astro/astro.hpp>
@@ -37,7 +36,7 @@
 using namespace astrea;
 using namespace astro;
 
-using mp_units::angular::unit_symbols::deg;
+using mp_units::si::unit_symbols::deg;
 using mp_units::si::unit_symbols::km;
 using mp_units::si::unit_symbols::s;
 using std::chrono::nanoseconds;
@@ -117,7 +116,7 @@ AnalysisResult run_trace_analysis(const TraceConfig& config)
 
     // Build 3-shell Walker constellation
     const Distance altitude   = constellationSettings.altitude;
-    const Distance semimajor  = altitude + get_equitorial_radius<planets::Earth>();
+    const Distance semimajor  = altitude + get_equatorial_radius<planets::Earth>();
     const Angle inclination   = constellationSettings.inclination;
     const std::size_t nSats   = constellationSettings.nSats;
     const std::size_t nPlanes = constellationSettings.nPlanes;

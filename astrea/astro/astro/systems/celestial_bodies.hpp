@@ -4,7 +4,7 @@
  * @brief Header file that includes all planetary bodies.
  * @date 2025-10-02
  *
- * @copyright Copyright (c) 2025 Jay Iuliano
+ * @copyright Copyright (c) 2025-2026 Jay Iuliano
  *
  * The GNU Lesser General Public License (LGPL)
  *
@@ -42,6 +42,6 @@
 #include <astro/systems/celestial_bodies/Venus/Venus.hpp>
 
 // Keplerian-approximation fallback for get_position_at / get_velocity_at.
-// Included AFTER all planet specialisations so the fallback primary-template
-// definition does not shadow any explicit specialisation.
+// Included AFTER all planet specializations so the fallback primary-template
+// definition does not shadow any explicit specialization.
 #include <astro/systems/default_property_getters.hpp>

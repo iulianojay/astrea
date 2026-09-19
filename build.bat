@@ -1,5 +1,5 @@
 @echo off
-REM Copyright (c) 2025 Jay Iuliano
+REM Copyright (c) 2025-2026 Jay Iuliano
 REM
 REM This file is part of Astrea.
 REM Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License

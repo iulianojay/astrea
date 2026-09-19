@@ -4,7 +4,7 @@
  * @brief Unit tests for the Quaternion class
  * @date 2026-03-20
  *
- * @copyright Copyright (c) 2026 Jay Iuliano
+ * @copyright Copyright (c) 2025-2026 Jay Iuliano
  *
  * The GNU Lesser General Public License (LGPL)
  *
@@ -35,7 +35,7 @@ using namespace astrea;
 using namespace astro;
 using namespace mp_units;
 
-using mp_units::angular::unit_symbols::deg;
+using mp_units::si::unit_symbols::deg;
 
 // Define some dummy frame types for testing template functionality
 constexpr inline struct TestFrame1 final : Frame<"TestFrame1", planets::Earth, axes::icrf> {
@@ -510,7 +510,7 @@ TEST_F(QuaternionTest, FrameTransformationChaining)
 TEST_F(QuaternionTest, DCMToQuaternionConversion)
 {
     using TestDCM = DirectionCosineMatrix<TestFrame1, TestFrame2>;
-    using mp_units::angular::unit_symbols::rad;
+    using mp_units::si::unit_symbols::rad;
 
     // Test identity DCM -> should give identity quaternion
     EXPECT_NO_THROW({

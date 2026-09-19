@@ -4,7 +4,7 @@
  * @brief Macros for the astro module
  * @date 2025-08-03
  *
- * @copyright Copyright (c) 2025 Jay Iuliano
+ * @copyright Copyright (c) 2025-2026 Jay Iuliano
  *
  * The GNU Lesser General Public License (LGPL)
  *
@@ -22,5 +22,11 @@
 
 #define _ASTRO_ROOT_
 static_assert(false, "_ASTRO_ROOT_ environment variable not set or passed to compiler.");
+
+#endif // _ASTRO_ROOT_
+
+#ifdef _ASTRO_ROOT_
+
+#define _ASTRO_GRAV_DATA_ROOT_ _ASTRO_ROOT_ "/data/gravity_models"
 
 #endif // _ASTRO_ROOT_

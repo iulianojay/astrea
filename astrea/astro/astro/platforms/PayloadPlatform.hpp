@@ -4,7 +4,7 @@
  * @brief This file defines the PayloadPlatform class, which represents a platform that can have payloads attached to it.
  * @date 2025-08-03
  *
- * @copyright Copyright (c) 2025 Jay Iuliano
+ * @copyright Copyright (c) 2025-2026 Jay Iuliano
  *
  * The GNU Lesser General Public License (LGPL)
  *
@@ -130,7 +130,7 @@ class PayloadPlatform {
      *
      * @return Mass The mass of the platform.
      */
-    virtual Mass get_mass() const { return 0.0 * mp_units::si::unit_symbols::kg; }
+    virtual Mass get_mass(const State& state) const { return 0.0 * mp_units::si::unit_symbols::kg; }
 
     /**
      * @brief Attaches a single payload to the platform.

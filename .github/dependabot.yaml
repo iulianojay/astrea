@@ -1,14 +1,16 @@
 version: 2
+
 updates:
   - package-ecosystem: "uv"
     directory: "/"
     schedule:
-      interval: "weekly"
+      interval: "daily"
       timezone: "Europe/Helsinki"
+    target-branch: "main"
     commit-message:
       prefix: "[dependabot]"
       prefix-development: "[dependabot]"
-    target-branch: "develop"
+    target-branch: "main"
     groups:
       all-deps:
         patterns:
@@ -17,12 +19,13 @@ updates:
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
-      interval: "weekly"
+      interval: "daily"
       timezone: "Europe/Helsinki"
+    target-branch: "main"
     commit-message:
       prefix: "[dependabot]"
       prefix-development: "[dependabot]"
-    target-branch: "develop"
+    target-branch: "main"
     groups:
       all-deps:
         patterns:
@@ -31,12 +34,13 @@ updates:
   - package-ecosystem: "docker"
     directory: "/"
     schedule:
-      interval: "weekly"
+      interval: "daily"
       timezone: "Europe/Helsinki"
+    target-branch: "main"
     commit-message:
       prefix: "[dependabot]"
       prefix-development: "[dependabot]"
-    target-branch: "develop"
+    target-branch: "main"
     groups:
       all-deps:
         patterns:

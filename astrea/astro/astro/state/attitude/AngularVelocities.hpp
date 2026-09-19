@@ -4,7 +4,7 @@
  * @brief Class representing angular sequence velocities for attitude transformations between state/frames.
  * @date 2026-03-22
  *
- * @copyright Copyright (c) 2026 Jay Iuliano
+ * @copyright Copyright (c) 2025-2026 Jay Iuliano
  *
  * The GNU Lesser General Public License (LGPL)
  *
@@ -21,7 +21,7 @@
 #include <units/units.hpp>
 
 #include <astro/astro.fwd.hpp>
-#include <astro/frames/definitions/dynamic_frames.hpp>
+#include <astro/frames/definitions/dynamic_frames/tags.hpp>
 #include <astro/frames/framework/CartesianVector.hpp>
 #include <astro/frames/framework/DirectionCosineMatrix.hpp>
 #include <astro/frames/framework/frame_concepts.hpp>
@@ -389,7 +389,7 @@ class AngularVelocities {
      */
     static AngularVelocities from_double_vector(const std::vector<double>& vec)
     {
-        using mp_units::angular::unit_symbols::rad;
+        using mp_units::si::unit_symbols::rad;
         using mp_units::si::unit_symbols::s;
 
         if (vec.size() != 3) {

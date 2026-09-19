@@ -1,7 +1,7 @@
 /*
  * The GNU Lesser General Public License (LGPL)
  *
- * Copyright (c) 2025 Jay Iuliano
+ * Copyright (c) 2025-2026 Jay Iuliano
  *
  * This file is part of Astrea.
  * Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License
@@ -33,7 +33,7 @@
 
 
 using namespace mp_units;
-using mp_units::angular::unit_symbols::deg;
+using mp_units::si::unit_symbols::deg;
 using mp_units::si::unit_symbols::kg;
 using mp_units::si::unit_symbols::km;
 using mp_units::si::unit_symbols::m;
@@ -88,14 +88,14 @@ const StateHistory& Spacecraft::get_state_history() const { return _stateHistory
 void Spacecraft::store_state(const State& state) { _stateHistory.insert(state); }
 
 // Spacecraft Property Getters
-Mass Spacecraft::get_mass() const { return _mass; }
-InertiaTensor<frames::dynamic::body> Spacecraft::get_inertia_tensor() const { return _inertiaTensor; }
-Unitless Spacecraft::get_coefficient_of_drag() const { return _coefficientOfDrag; }
-Unitless Spacecraft::get_coefficient_of_lift() const { return _coefficientOfLift; }
-Unitless Spacecraft::get_coefficient_of_reflectivity() const { return _coefficientOfReflectivity; }
-SurfaceArea Spacecraft::get_ram_area() const { return _ramArea; }
-SurfaceArea Spacecraft::get_solar_area() const { return _sunArea; }
-SurfaceArea Spacecraft::get_lift_area() const { return _liftArea; }
+Mass Spacecraft::get_mass(const State& state) const { return _mass; }
+InertiaTensor<frames::dynamic::body> Spacecraft::get_inertia_tensor(const State& state) const { return _inertiaTensor; }
+Unitless Spacecraft::get_coefficient_of_drag(const State& state) const { return _coefficientOfDrag; }
+Unitless Spacecraft::get_coefficient_of_lift(const State& state) const { return _coefficientOfLift; }
+Unitless Spacecraft::get_coefficient_of_reflectivity(const State& state) const { return _coefficientOfReflectivity; }
+SurfaceArea Spacecraft::get_ram_area(const State& state) const { return _ramArea; }
+SurfaceArea Spacecraft::get_solar_area(const State& state) const { return _sunArea; }
+SurfaceArea Spacecraft::get_lift_area(const State& state) const { return _liftArea; }
 
 // Thrust
 Perturbation Spacecraft::get_control_authority(const State& state) const

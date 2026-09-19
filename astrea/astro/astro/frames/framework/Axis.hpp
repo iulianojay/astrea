@@ -4,7 +4,7 @@
  * @brief Definition for a Axis in astrea.
  * @date 2025-10-02
  *
- * @copyright Copyright (c) 2025 Jay Iuliano
+ * @copyright Copyright (c) 2025-2026 Jay Iuliano
  *
  * The GNU Lesser General Public License (LGPL)
  *
@@ -95,6 +95,13 @@ inline constexpr struct j2000 final : Axis<"EME2000", icrf> {
     // x - mean equator and equinox of date at J2000
     // z - mean pole of date at J2000
 } j2000;
+
+// TODO: This is a bit out of line with the reference axis definitions attached to the celestial bodies
+// Both might need a refactor. For now, it's fine.
+inline constexpr struct cep : Axis<"Earth Celestial Pole", icrf> {
+    // x - mean equator and equinox of date at J2000
+    // z - mean pole of date at J2000
+} cep;
 
 } // namespace axes
 

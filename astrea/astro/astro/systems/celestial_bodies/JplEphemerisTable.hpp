@@ -6,7 +6,7 @@
  * @note Adapted from https://github.com/mschmit6/jpl_ephemeris.git
  * @author Matt Schmit
  *
- * @copyright Copyright (c) 2025 Jay Iuliano
+ * @copyright Copyright (c) 2025-2026 Jay Iuliano
  *
  * The GNU Lesser General Public License (LGPL)
  *

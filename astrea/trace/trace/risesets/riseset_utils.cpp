@@ -1,7 +1,7 @@
 /*
  * The GNU Lesser General Public License (LGPL)
  *
- * Copyright (c) 2025 Jay Iuliano
+ * Copyright (c) 2025-2026 Jay Iuliano
  *
  * This file is part of Astrea.
  * Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License
@@ -32,7 +32,7 @@ std::string to_formatted_string(Time t)
 {
     std::ostringstream out;
     out.precision(1);
-    out << std::fixed << t.force_numerical_value_in(mp_units::si::unit_symbols::s);
+    out << std::fixed << t.numerical_value_in(mp_units::si::unit_symbols::s);
     return std::move(out).str();
 }
 

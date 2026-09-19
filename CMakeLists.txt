@@ -1,4 +1,4 @@
-# Copyright (c) 2025 Jay Iuliano
+# Copyright (c) 2025-2026 Jay Iuliano
 #
 # This file is part of Astrea.
 # Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License
@@ -28,9 +28,8 @@ set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 set(CMAKE_INSTALL_MESSAGE LAZY)
-
-# add_library(astrea_warnings INTERFACE)
-# add_library(astrea_options INTERFACE)
+set(CMAKE_POLICY_VERSION_MINIMUM 3.5)
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 # target_compile_features(astrea_options INTERFACE cxx_std_${CMAKE_CXX_STANDARD})
 if(CMAKE_COMPILER_IS_GNUCXX AND CMAKE_CXX_COMPILER_VERSION VERSION_LESS 14.0.0)

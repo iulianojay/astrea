@@ -1,7 +1,7 @@
 /*
  * The GNU Lesser General Public License (LGPL)
  *
- * Copyright (c) 2025 Jay Iuliano
+ * Copyright (c) 2025-2026 Jay Iuliano
  *
  * This file is part of Astrea.
  * Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License
@@ -28,10 +28,13 @@
 using namespace astrea;
 using namespace astro;
 using namespace mp_units;
-using mp_units::angular::unit_symbols::deg;
-using mp_units::angular::unit_symbols::rad;
+using mp_units::si::unit_symbols::deg;
 using mp_units::si::unit_symbols::km;
+using mp_units::si::unit_symbols::rad;
 using mp_units::si::unit_symbols::s;
+
+static const Angle PI     = std::numbers::pi * rad;
+static const Angle TWO_PI = 2.0 * std::numbers::pi * rad;
 
 class ConversionTest : public testing::Test {
   public:
@@ -65,7 +68,7 @@ class ConversionTest : public testing::Test {
         _ecefExp = Cartesian<frames::primary>(R, 0.0 * km, 0.0 * km, 0.0 * km / s, V, 0.0 * km / s);
 
         // Hard code vallado values to ensure tests pass
-        rEquitorial = 6378.1363 * km;
+        requatorial = 6378.1363 * km;
         rPolar      = 6356.751 * km;
     }
 
@@ -79,17 +82,17 @@ class ConversionTest : public testing::Test {
 
     // Setup
     GravParam mu = get_mu<frames::primary.origin>();
-    Distance rEquitorial;
+    Distance requatorial;
     Distance rPolar;
 
     std::random_device rd;
     std::default_random_engine rng;
-    mp_units::uniform_real_distribution<Distance> semimajorDist;
-    mp_units::uniform_real_distribution<Unitless> eccDist;
-    mp_units::uniform_real_distribution<Angle> incDist;
-    mp_units::uniform_real_distribution<Angle> raanDist;
-    mp_units::uniform_real_distribution<Angle> wDist;
-    mp_units::uniform_real_distribution<Angle> thetaDist;
+    mp_units::utility::uniform_real_distribution<Distance> semimajorDist;
+    mp_units::utility::uniform_real_distribution<Unitless> eccDist;
+    mp_units::utility::uniform_real_distribution<Angle> incDist;
+    mp_units::utility::uniform_real_distribution<Angle> raanDist;
+    mp_units::utility::uniform_real_distribution<Angle> wDist;
+    mp_units::utility::uniform_real_distribution<Angle> thetaDist;
 
     template <typename T>
     OrbitalElements random_elements()

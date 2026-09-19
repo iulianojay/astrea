@@ -4,7 +4,7 @@
  * @brief Contains the RiseSetArray class, which represents an array of rise and set times.
  * @date 2025-08-03
  *
- * @copyright Copyright (c) 2025 Jay Iuliano
+ * @copyright Copyright (c) 2025-2026 Jay Iuliano
  *
  * The GNU Lesser General Public License (LGPL)
  *

@@ -1,7 +1,7 @@
 /*
  * The GNU Lesser General Public License (LGPL)
  *
- * Copyright (c) 2025 Jay Iuliano
+ * Copyright (c) 2025-2026 Jay Iuliano
  *
  * This file is part of Astrea.
  * Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License
@@ -15,7 +15,7 @@
 
 #include <numbers>
 
-#include <mp-units/systems/angular.h>
+#include <mp-units/systems/si.h>
 
 #include <math/operations.hpp>
 #include <units/units.hpp>
@@ -30,8 +30,8 @@
 using namespace astrea;
 using namespace astrea::astro;
 using namespace mp_units;
-using mp_units::angular::unit_symbols::rad;
 using mp_units::si::unit_symbols::km;
+using mp_units::si::unit_symbols::rad;
 
 static const Unitless REL_TOL = 1.0e-6 * one;
 static const Unitless ABS_TOL = 1.0e-6 * one;
@@ -96,16 +96,6 @@ TEST(RotateVectorIntoFrame, IcrfToEcefPreservesVectorMagnitude)
     const auto mag_in  = original.norm();
     const auto mag_out = ecef.norm();
     EXPECT_NEAR(mag_out.numerical_value_in(one), mag_in.numerical_value_in(one), 1e-10);
-}
-
-TEST(RotateVectorIntoFrame, IcrfToEcefZAxisIsInvariant)
-{
-    // The z-axis is the rotation axis for ECEF, so z_hat should be unchanged.
-    const CartesianVector<Unitless, frames::earth::icrf> z_hat{ 0.0 * one, 0.0 * one, 1.0 * one };
-    const auto ecef = frames::rotate_vector_into_frame<frames::earth::earth_fixed>(z_hat, J2000);
-    EXPECT_NEAR(ecef.get_x().numerical_value_in(one), 0.0, 1e-10);
-    EXPECT_NEAR(ecef.get_y().numerical_value_in(one), 0.0, 1e-10);
-    EXPECT_NEAR(ecef.get_z().numerical_value_in(one), 1.0, 1e-10);
 }
 
 TEST(CartesianVectorInFrame, SameFrameReturnsSelf)

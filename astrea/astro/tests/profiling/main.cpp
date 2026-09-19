@@ -1,7 +1,7 @@
 /*
  * The GNU Lesser General Public License (LGPL)
  *
- * Copyright (c) 2025 Jay Iuliano
+ * Copyright (c) 2025-2026 Jay Iuliano
  *
  * This file is part of Astrea.
  * Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License
@@ -26,8 +26,8 @@ using astrea::astro::plotting::compare_trajectories;
 using astrea::astro::plotting::plot_orbital_elements;
 using astrea::astro::plotting::plot_trajectory;
 
-using mp_units::angular::unit_symbols::deg;
 using mp_units::non_si::day;
+using mp_units::si::unit_symbols::deg;
 using mp_units::si::unit_symbols::km;
 using mp_units::si::unit_symbols::m;
 using mp_units::si::unit_symbols::s;
@@ -49,10 +49,10 @@ int main()
 
     // Force model
     ForceModel forces;
-    forces.add<OblatenessForce, 100, 100>();
+    forces.add<OblatenessForce, planets::Earth, 100, 100>();
     forces.add<SolarRadiationPressure>();
-    forces.add<AtmosphericForce>();
-    forces.add<NBodyForce>();
+    forces.add<AtmosphericForce, planets::Earth>();
+    forces.add<NBodyForce, planets::Earth, star::Sun, moons::Moon>();
 
     // Build EoMs
     CowellsMethod cm(forces);

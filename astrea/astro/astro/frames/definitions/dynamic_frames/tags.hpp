@@ -1,0 +1,52 @@
+/**
+ * @file tags.hpp
+ * @author Jay Iuliano (iuliano.jay@gmail.com)
+ * @brief Header file for dynamic body frame tags.
+ * @date 2025-08-05
+ *
+ * @copyright Copyright (c) 2025-2026 Jay Iuliano
+ *
+ * The GNU Lesser General Public License (LGPL)
+ *
+ * This file is part of Astrea.
+ * Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License
+ * as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+ * Astrea is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty
+ * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details. You should
+ * have received a copy of the GNU General Public License along with Astrea. If not, see <https://www.gnu.org/licenses/>.
+ *
+ */
+#pragma once
+
+#include <astro/frames/definitions/dynamic_frames/EastNorthUp.hpp>
+#include <astro/frames/definitions/dynamic_frames/LocalHorizontalLocalVertical.hpp>
+#include <astro/frames/definitions/dynamic_frames/Perifocal.hpp>
+#include <astro/frames/definitions/dynamic_frames/RadialInTrackCrossTrack.hpp>
+#include <astro/frames/definitions/dynamic_frames/VelocityNormalBinormal.hpp>
+#include <astro/frames/definitions/frame_registry.hpp>
+#include <astro/frames/framework/DynamicFrame.hpp>
+#include <astro/frames/framework/Frame.hpp>
+
+namespace astrea {
+namespace astro {
+namespace frames {
+namespace dynamic {
+
+inline constexpr struct body final : Frame<"body", DynamicOrigin{}, DynamicAxis{}> {
+} body;
+
+inline constexpr EastNorthUpTag<frames::primary> enu{};
+
+inline constexpr LvlhTag<frames::primary> lvlh{};
+
+inline constexpr RicTag<frames::primary> ric{};
+
+inline constexpr VnbTag<frames::primary> vnb{};
+
+inline constexpr PerifocalTag<frames::primary> perifocal{};
+inline constexpr auto pqw = perifocal;
+
+} // namespace dynamic
+} // namespace frames
+} // namespace astro
+} // namespace astrea

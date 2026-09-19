@@ -4,7 +4,7 @@
  * @brief Class representing a sequence of angles (either Euler or Tait-Bryan) for attitude transformations between state/frames.
  * @date 2026-03-22
  *
- * @copyright Copyright (c) 2026 Jay Iuliano
+ * @copyright Copyright (c) 2025-2026 Jay Iuliano
  *
  * The GNU Lesser General Public License (LGPL)
  *

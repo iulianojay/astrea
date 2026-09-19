@@ -4,7 +4,7 @@
  * @brief Type definitions for astrea units
  * @date 2025-08-02
  *
- * @copyright Copyright (c) 2025 Jay Iuliano
+ * @copyright Copyright (c) 2025-2026 Jay Iuliano
  *
  * The GNU Lesser General Public License (LGPL)
  *
@@ -18,10 +18,9 @@
  */
 #pragma once
 
-#include <array>
 #include <stdint.h>
 
-#include <mp-units/ext/format.h>
+#include <mp-units/core.h>
 
 #include <units/custom.hpp>
 #include <units/detail.hpp>
@@ -86,7 +85,7 @@ using AngularVelocity = mp_units::quantity<detail::angle_unit / detail::time_uni
 /**
  * @brief Definition for an angular acceleration quantity.
  */
-using AngularAcceleration = mp_units::quantity<detail::angle_unit / mp_units::pow<2>(detail::time_unit)>;
+using AngularAcceleration = mp_units::quantity<detail::angle_unit / (detail::time_unit * detail::time_unit)>;
 
 /**
  * @brief Definition for a interplanetary distance quantity.
@@ -96,32 +95,33 @@ using InterplanetaryDistance = mp_units::quantity<mp_units::iau::unit_symbols::a
 /**
  * @brief Definition for a body-related velocity.
  */
-using InterplanetaryVelocity = mp_units::quantity<mp_units::iau::unit_symbols::au / JulianCentury>;
+using InterplanetaryVelocity = mp_units::quantity<mp_units::iau::unit_symbols::au / astrea::units::unit_symbols::jc>;
 
 /**
  * @brief Definition for a body-related unitless per time.
  */
-using BodyUnitlessPerTime = mp_units::quantity<detail::unitless / JulianCentury>;
+using BodyUnitlessPerTime = mp_units::quantity<detail::unitless / astrea::units::unit_symbols::jc>;
 
 /**
  * @brief Definition for a body-related angular rate.
  */
-using BodyAngularVelocity = mp_units::quantity<detail::angle_unit / JulianCentury>;
+using BodyAngularVelocity = mp_units::quantity<detail::angle_unit / astrea::units::unit_symbols::jc>;
 
 /**
  * @brief Definition for an acceleration quantity.
  */
-using Acceleration = mp_units::quantity<detail::distance_unit / mp_units::pow<2>(detail::time_unit)>;
+using Acceleration = mp_units::quantity<detail::distance_unit / (detail::time_unit * detail::time_unit)>;
 
 /**
  * @brief Definition for a surface area quantity.
  */
-using SurfaceArea = mp_units::quantity<mp_units::pow<2>(detail::distance_unit)>;
+using SurfaceArea = mp_units::quantity<detail::distance_unit * detail::distance_unit>;
 
 /**
  * @brief Definition for a gravitational parameter quantity.
  */
-using GravParam = mp_units::quantity<mp_units::pow<3>(detail::distance_unit) / mp_units::pow<2>(detail::time_unit)>;
+using GravParam =
+    mp_units::quantity<(detail::distance_unit * detail::distance_unit * detail::distance_unit) / (detail::time_unit * detail::time_unit)>;
 
 /**
  * @brief Definition for a mean motion quantity.
@@ -131,22 +131,23 @@ using MeanMotion = mp_units::quantity<mp_units::one / mp_units::non_si::day>;
 /**
  * @brief Definition for a mean motion 1st derivative quantity.
  */
-using MeanMotion1stDer = mp_units::quantity<mp_units::one / mp_units::pow<2>(mp_units::non_si::day)>;
+using MeanMotion1stDer = mp_units::quantity<mp_units::one / (mp_units::non_si::day * mp_units::non_si::day)>;
 
 /**
  * @brief Definition for a mean motion 2nd derivative quantity.
  */
-using MeanMotion2ndDer = mp_units::quantity<mp_units::one / mp_units::pow<3>(mp_units::non_si::day)>;
+using MeanMotion2ndDer =
+    mp_units::quantity<mp_units::one / (mp_units::non_si::day * mp_units::non_si::day * mp_units::non_si::day)>;
 
 /**
  * @brief Definition for a ballistic coefficient quantity.
  */
-using BallisticCoefficient = mp_units::quantity<mp_units::one / EarthRadii>;
+using BallisticCoefficient = mp_units::quantity<mp_units::one / astrea::units::unit_symbols::re>;
 
 /**
  * @brief Definition for a density quantity.
  */
-using Density = mp_units::quantity<detail::mass_unit / (mp_units::pow<3>(detail::distance_unit))>;
+using Density = mp_units::quantity<detail::mass_unit / (detail::distance_unit * detail::distance_unit * detail::distance_unit)>;
 
 /**
  * @brief Definition for an altitude quantity.
@@ -181,7 +182,7 @@ using Power = mp_units::quantity<detail::power_unit>;
 /**
  * @brief Definition for a power flux density quantity.
  */
-using PowerFluxDensity = mp_units::quantity<detail::power_unit / mp_units::pow<2>(detail::distance_unit)>;
+using PowerFluxDensity = mp_units::quantity<detail::power_unit / (detail::distance_unit * detail::distance_unit)>;
 
 /**
  * @brief Definition for a temperature quantity.
@@ -201,16 +202,16 @@ using Moment = mp_units::quantity<detail::force_unit * detail::distance_unit>;
 /**
  * @brief Definition for a moment of inertia quantity.
  */
-using MomentOfInertia = mp_units::quantity<detail::mass_unit * mp_units::pow<2>(detail::distance_unit)>;
+using MomentOfInertia = mp_units::quantity<detail::mass_unit * detail::distance_unit * detail::distance_unit>;
 
 /**
  * @brief Definition for a solar flux quantity.
  */
-using SolarFlux = mp_units::quantity<SolarFluxUnits>;
+using SolarFlux = mp_units::quantity<astrea::units::unit_symbols::sfu>;
 
 /**
  * @brief Definition for a chirp quantity, representing the rate of change of frequency.
  */
-using Chirp = mp_units::quantity<mp_units::one / mp_units::pow<2>(detail::time_unit)>;
+using Chirp = mp_units::quantity<mp_units::one / (detail::time_unit * detail::time_unit)>;
 
 } // namespace astrea

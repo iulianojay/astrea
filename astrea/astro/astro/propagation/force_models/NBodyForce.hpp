@@ -4,7 +4,7 @@
  * @brief Header file for the NBodyForce class, which computes the gravitational force due to multiple celestial bodies.
  * @date 2025-08-02
  *
- * @copyright Copyright (c) 2025 Jay Iuliano
+ * @copyright Copyright (c) 2025-2026 Jay Iuliano
  *
  * The GNU Lesser General Public License (LGPL)
  *
@@ -94,7 +94,7 @@ class NBodyForce : public PerturbingForce {
             ...
         );
 
-        return { .force = accelNBody * vehicle.get_mass() };
+        return { .force = accelNBody * vehicle.get_mass(state) };
     }
 
     /**

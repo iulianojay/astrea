@@ -1,7 +1,7 @@
 /*
  * The GNU Lesser General Public License (LGPL)
  *
- * Copyright (c) 2025 Jay Iuliano
+ * Copyright (c) 2025-2026 Jay Iuliano
  *
  * This file is part of Astrea.
  * Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License
@@ -18,8 +18,8 @@
 #include <gtest/gtest.h>
 #include <matplot/matplot.h>
 #include <mp-units/math.h>
-#include <mp-units/systems/angular/math.h>
 #include <mp-units/systems/international.h>
+#include <mp-units/systems/si/math.h>
 
 #include <math/operations.hpp>
 #include <units/units.hpp>
@@ -60,14 +60,14 @@ using namespace sqlite_orm;
 using namespace matplot;
 using namespace mp_units;
 
-using mp_units::angular::unit_symbols::deg;
-using mp_units::angular::unit_symbols::rad;
 using mp_units::international::unit_symbols::ft;
 using mp_units::international::unit_symbols::lbf;
 using mp_units::si::unit_symbols::cm;
+using mp_units::si::unit_symbols::deg;
 using mp_units::si::unit_symbols::kg;
 using mp_units::si::unit_symbols::km;
 using mp_units::si::unit_symbols::m;
+using mp_units::si::unit_symbols::rad;
 using mp_units::si::unit_symbols::s;
 using mp_units::si::unit_symbols::µm;
 
@@ -761,7 +761,7 @@ TEST_F(Orbital6DofTest, Checkcase5C_SrpSolarMax)
 TEST_F(Orbital6DofTest, Checkcase6A_AtmosFixedSphere)
 {
     ForceModel forces;
-    forces.add<AtmosphericForce>();
+    forces.add<AtmosphericForce, planets::Earth>();
 
     const auto propagations = run_all_propagations(forces, ELLIPTIC, SPHERE);
 
@@ -772,7 +772,7 @@ TEST_F(Orbital6DofTest, Checkcase6A_AtmosFixedSphere)
 TEST_F(Orbital6DofTest, Checkcase6B_AtmosDynamicSphere)
 {
     ForceModel forces;
-    forces.add<AtmosphericForce>();
+    forces.add<AtmosphericForce, planets::Earth>();
 
     const auto propagations = run_all_propagations(forces, ELLIPTIC, SPHERE);
 
@@ -829,7 +829,7 @@ TEST_F(Orbital6DofTest, Checkcase7C_4x4Oblateness_NBody_Drag)
     ForceModel forces;
     forces.add<OblatenessForce, planets::Earth, 4, 4>();
     forces.add<NBodyForce, planets::Earth, star::Sun, moons::Moon>();
-    forces.add<AtmosphericForce>();
+    forces.add<AtmosphericForce, planets::Earth>();
 
     const auto propagations = run_all_propagations(forces, ELLIPTIC, SPHERE);
 
@@ -842,7 +842,7 @@ TEST_F(Orbital6DofTest, Checkcase7D_8x8Oblateness_NBody_Drag)
     ForceModel forces;
     forces.add<OblatenessForce, planets::Earth, 8, 8>();
     forces.add<NBodyForce, planets::Earth, star::Sun, moons::Moon>();
-    forces.add<AtmosphericForce>();
+    forces.add<AtmosphericForce, planets::Earth>();
 
     const auto propagations = run_all_propagations(forces, ELLIPTIC, SPHERE);
 

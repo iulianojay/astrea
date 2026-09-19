@@ -4,7 +4,7 @@
  * @brief This file contains functions for converting between different coordinate systems and formats in astrodynamics.
  * @date 2025-08-02
  *
- * @copyright Copyright (c) 2025 Jay Iuliano
+ * @copyright Copyright (c) 2025-2026 Jay Iuliano
  *
  * The GNU Lesser General Public License (LGPL)
  *
@@ -73,7 +73,7 @@ Angle convert_mean_anomaly_to_eccentric_anomaly(const Angle& ma, const Unitless 
  */
 inline constexpr Angle wrap_angle(const Angle& angle) noexcept
 {
-    using mp_units::angular::unit_symbols::rad;
+    using mp_units::si::unit_symbols::rad;
     static constexpr Angle twoPi = 2.0 * (std::numbers::pi * rad);
 
     Angle ang = angle;
@@ -91,7 +91,7 @@ inline constexpr Angle wrap_angle(const Angle& angle) noexcept
  */
 inline constexpr Angle wrap_angle_to_pi(const Angle& angle) noexcept
 {
-    using mp_units::angular::unit_symbols::rad;
+    using mp_units::si::unit_symbols::rad;
     static constexpr Angle onePi = std::numbers::pi * rad;
 
     Angle ang = angle;

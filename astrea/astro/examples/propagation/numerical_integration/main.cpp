@@ -1,7 +1,7 @@
 /*
  * The GNU Lesser General Public License (LGPL)
  *
- * Copyright (c) 2025 Jay Iuliano
+ * Copyright (c) 2025-2026 Jay Iuliano
  *
  * This file is part of Astrea.
  * Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License
@@ -21,7 +21,7 @@ using namespace astrea;
 using namespace astro;
 using namespace mp_units;
 
-using mp_units::angular::unit_symbols::deg;
+using mp_units::si::unit_symbols::deg;
 using mp_units::si::unit_symbols::km;
 using mp_units::si::unit_symbols::s;
 
@@ -55,7 +55,7 @@ int main()
     // Build a force model - point mass gravity is always included, but this may be changed in future releases to
     // give users more flexibility.
     ForceModel forces;
-    forces.add<AtmosphericForce>();
+    forces.add<AtmosphericForce, planets::Earth>();
     forces.add<OblatenessForce, planets::Earth, 10, 10>();
 
     // Build EoMs - these can be selected from pre-built options, or users can create their own by inheriting from the

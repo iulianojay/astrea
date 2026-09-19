@@ -1,7 +1,7 @@
 /*
  * The GNU Lesser General Public License (LGPL)
  *
- * Copyright (c) 2025 Jay Iuliano
+ * Copyright (c) 2025-2026 Jay Iuliano
  *
  * This file is part of Astrea.
  * Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License
@@ -21,7 +21,7 @@ using namespace astrea;
 using namespace astro;
 using namespace mp_units;
 
-using mp_units::angular::unit_symbols::deg;
+using mp_units::si::unit_symbols::deg;
 using mp_units::si::unit_symbols::km;
 using mp_units::si::unit_symbols::s;
 
@@ -43,7 +43,7 @@ int main()
     Spacecraft sat;
     Vehicle vehicle(sat);
 
-    // Equations of motion are the basis for dynamic progagation. This class is meant to provide a partial derivative
+    // Equations of motion are the basis for dynamic propagation. This class is meant to provide a partial derivative
     // for some given state and vehicle. Astrea provides several common EoMs, but users can create their own by
     // inheriting from the EquationsOfMotion base class.
     struct MyEquationsOfMotion : public EquationsOfMotion {
@@ -75,7 +75,7 @@ int main()
             const auto v = cartesian.get_velocity();
 
             // Compute the partials
-            CartesianPartial<frames::earth::icrf> partials(v, -mu / (R * R * R) * r + control / vehicle.get_mass());
+            CartesianPartial<frames::earth::icrf> partials(v, -mu / (R * R * R) * r + control / vehicle.get_mass(state));
 
             return partials;
         }

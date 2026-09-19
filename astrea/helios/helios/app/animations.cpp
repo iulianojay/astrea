@@ -1,7 +1,7 @@
 /*
  * The GNU Lesser General Public License (LGPL)
  *
- * Copyright (c) 2026 Jay Iuliano
+ * Copyright (c) 2025-2026 Jay Iuliano
  *
  * This file is part of Astrea.
  * Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License
@@ -31,7 +31,7 @@ namespace helios {
 
 namespace {
 
-static const double EARTH_RADIUS_KM = get_celestial_body_parameters<planets::Earth>().equitorialRadius.numerical_value_in(km);
+static const double EARTH_RADIUS_KM = get_celestial_body_parameters<planets::Earth>().equatorialRadius.numerical_value_in(km);
 
 }
 

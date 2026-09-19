@@ -5,10 +5,10 @@
  *
  * Includes all abstract frame building blocks: type definitions, concepts,
  * registry, and utility helpers.  Does NOT include any concrete frame
- * instances or DCM specialisations — see frames/definitions/definitions.hpp
+ * instances or DCM specializations — see frames/definitions/definitions.hpp
  * for those.
  *
- * @copyright Copyright (c) 2025 Jay Iuliano
+ * @copyright Copyright (c) 2025-2026 Jay Iuliano
  *
  * The GNU Lesser General Public License (LGPL)
  *

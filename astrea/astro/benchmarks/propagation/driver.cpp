@@ -1,7 +1,7 @@
 /*
  * The GNU Lesser General Public License (LGPL)
  *
- * Copyright (c) 2026 Jay Iuliano
+ * Copyright (c) 2025-2026 Jay Iuliano
  *
  * This file is part of Astrea.
  * Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License
@@ -21,7 +21,7 @@ using namespace astrea;
 using namespace astro;
 using namespace mp_units;
 
-using mp_units::angular::unit_symbols::deg;
+using mp_units::si::unit_symbols::deg;
 using mp_units::si::unit_symbols::km;
 
 // EOM type indices
@@ -72,7 +72,12 @@ static void BenchmarkPropagation(benchmark::State& state)
                 forces.add<OblatenessForce, planets::Earth, 70, 70>();
             }
         }
-        if (perturb & kDrag) { forces.add<AtmosphericForce>(); }
+        if (perturb & kDrag) {
+            std::string swFile = std::string(_ASTRO_ROOT_) + "/data/space_weather/SpaceWeather-All-v1.2.txt";
+            SpaceWeatherProvider swProvider(std::in_place, swFile);
+            forces.set_space_weather_provider(swProvider);
+            forces.add<AtmosphericForce, planets::Earth, EarthAtmosphereModel::NRLMSISE00>();
+        }
         if (perturb & kNBody) { forces.add<NBodyForce, planets::Earth, moons::Moon, star::Sun>(); }
         if (perturb & kSRP) { forces.add<SolarRadiationPressure>(); }
     }
@@ -125,26 +130,22 @@ static void BenchmarkPropagation(benchmark::State& state)
 //     perturb sweeps : 0 (none), 1 (drag), 2 (n-body), 4 (srp), 7 (all)
 // -----------------------------------------------------------------------
 BENCHMARK(BenchmarkPropagation)
-    ->ArgsProduct(
-        {
-            { 0, 1 },
-            { 97, 1440 },
-            { 0 },
-            { 0 },
-        }
-    )
+    ->ArgsProduct({
+        { 0, 1 },
+        { 97, 1440 },
+        { 0 },
+        { 0 },
+    })
     ->ArgNames({ "eom", "prop_time_min", "gravity", "perturb" })
     ->Unit(benchmark::kMillisecond);
 
 BENCHMARK(BenchmarkPropagation)
-    ->ArgsProduct(
-        {
-            { 2, 3, 4 },
-            { 97, 1440 },
-            { 2, 20, 70 },
-            { 0, 1, 2, 4, 7 },
-        }
-    )
+    ->ArgsProduct({
+        { 2, 3, 4 },
+        { 97, 1440 },
+        { 2, 20, 70 },
+        { 0, 1, 2, 4, 7 },
+    })
     ->ArgNames({ "eom", "prop_time_min", "gravity", "perturb" })
     ->Unit(benchmark::kMillisecond);
 

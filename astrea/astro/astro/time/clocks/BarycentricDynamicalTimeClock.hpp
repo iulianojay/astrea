@@ -4,7 +4,7 @@
  * @brief A clock implementation for Barycentric Dynamical Time (TDB).
  * @date 2026-06-02
  *
- * @copyright Copyright (c) 2026 Jay Iuliano
+ * @copyright Copyright (c) 2025-2026 Jay Iuliano
  *
  * The GNU Lesser General Public License (LGPL)
  *
@@ -73,7 +73,7 @@ struct BarycentricDynamicalTimeClock {
         const auto jd     = JulianDateClock::from_sys(timePoint).time_since_epoch();
         const auto jdDiff = duration_cast<days>(jd - jdRef).count();
         const auto Me = (357.53 + 0.9856003 * jdDiff) * (std::numbers::pi / 180.0); // Mean anomaly of the Earth in rad
-        return BarycentricDynamicalTimePoint{ tt + duration{ 0.001658 * std::sin(Me) + 0.00001385 * std::sin(2 * Me) } };
+        return BarycentricDynamicalTimePoint<duration>{ tt + duration{ 0.001658 * std::sin(Me) + 0.00001385 * std::sin(2 * Me) } };
     }
 
     /**

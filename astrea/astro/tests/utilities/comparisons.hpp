@@ -96,10 +96,11 @@ bool nearly_equal(
  * @param relTol Relative tolerance for the comparison.
  * @param absTol Absolute tolerance for the comparison.
  */
-template <IsFrame auto _in_frame_, IsFrame auto _out_frame_>
+template <IsFrame auto in_frame, IsFrame auto out_frame, IsFrame auto in_frame_u, IsFrame auto out_frame_u>
+    requires(equivalent(in_frame, in_frame_u) && equivalent(out_frame, out_frame_u))
 bool nearly_equal(
-    const DirectionCosineMatrix<_in_frame_, _out_frame_>& dcm1,
-    const DirectionCosineMatrix<_in_frame_, _out_frame_>& dcm2,
+    const DirectionCosineMatrix<in_frame, out_frame>& dcm1,
+    const DirectionCosineMatrix<in_frame_u, out_frame_u>& dcm2,
     const Unitless& relTol = 0.0 * mp_units::one,
     const Unitless& absTol = 0.0 * mp_units::one
 ) noexcept
@@ -107,8 +108,8 @@ bool nearly_equal(
     for (std::size_t ii = 0; ii < 3; ++ii) {
         for (std::size_t jj = 0; jj < 3; ++jj) {
             if (!math::nearly_equal(dcm1[ii, jj], dcm2[ii, jj], relTol, absTol)) {
-                std::cout << "Input: " << dcm1 << std::endl;
-                std::cout << "Expected: " << dcm2 << std::endl;
+                std::cout << "Input: \n" << dcm1 << std::endl;
+                std::cout << "Expected: \n" << dcm2 << std::endl;
                 std::cout << "Element (" << ii << ", " << jj << ") differs: " << dcm1[ii, jj] << " vs " << dcm2[ii, jj]
                           << std::endl;
                 return false;

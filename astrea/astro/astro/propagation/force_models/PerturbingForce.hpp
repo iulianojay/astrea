@@ -4,7 +4,7 @@
  * @brief Header file for the PerturbingForce class, which defines the interface for force models in astrodynamics.
  * @date 2025-08-02
  *
- * @copyright Copyright (c) 2025 Jay Iuliano
+ * @copyright Copyright (c) 2025-2026 Jay Iuliano
  *
  * The GNU Lesser General Public License (LGPL)
  *
@@ -18,8 +18,11 @@
  */
 #pragma once
 
+#include <memory>
+
 #include <astro/astro.fwd.hpp>
 #include <astro/propagation/force_models/Perturbation.hpp>
+#include <astro/propagation/force_models/space_weather/SpaceWeatherProvider.hpp>
 
 namespace astrea {
 namespace astro {
@@ -56,6 +59,27 @@ class PerturbingForce {
      * @return std::unique_ptr<PerturbingForce> A unique pointer to the cloned PerturbingForce object.
      */
     virtual std::unique_ptr<PerturbingForce> clone() const = 0;
+
+    /**
+     * @brief Binds shared immutable space weather data to this force.
+     */
+    void bind_space_weather_provider(std::shared_ptr<const SpaceWeatherProvider> provider)
+    {
+        _provider = std::move(provider);
+    }
+
+    [[nodiscard]] const std::shared_ptr<const SpaceWeatherProvider>& get_space_weather_provider() const noexcept
+    {
+        return _provider;
+    }
+
+    [[nodiscard]] std::shared_ptr<const SpaceWeatherData> get_space_weather_data() const noexcept
+    {
+        return _provider ? _provider->data() : nullptr;
+    }
+
+  private:
+    std::shared_ptr<const SpaceWeatherProvider> _provider;
 };
 
 } // namespace astro

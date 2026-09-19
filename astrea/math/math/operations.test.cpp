@@ -1,7 +1,7 @@
 /*
  * The GNU Lesser General Public License (LGPL)
  *
- * Copyright (c) 2025 Jay Iuliano
+ * Copyright (c) 2025-2026 Jay Iuliano
  *
  * This file is part of Astrea.
  * Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License
@@ -16,7 +16,6 @@
 #include <gtest/gtest.h>
 
 #include <mp-units/math.h>
-#include <mp-units/systems/angular.h>
 #include <mp-units/systems/si.h>
 
 #include <math/operations.hpp>
@@ -126,7 +125,7 @@ TEST_F(OperationsTest, MaxWithZero)
 
 TEST_F(OperationsTest, MaxAngularQuantities)
 {
-    using mp_units::angular::unit_symbols::rad;
+    using mp_units::si::unit_symbols::rad;
 
     const auto q1 = 1.5 * rad;
     const auto q2 = 2.3 * rad;
@@ -233,7 +232,7 @@ TEST_F(OperationsTest, MinWithZero)
 
 TEST_F(OperationsTest, MinAngularQuantities)
 {
-    using mp_units::angular::unit_symbols::rad;
+    using mp_units::si::unit_symbols::rad;
 
     const auto q1 = 1.5 * rad;
     const auto q2 = 2.3 * rad;

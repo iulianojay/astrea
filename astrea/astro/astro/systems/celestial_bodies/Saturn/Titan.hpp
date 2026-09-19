@@ -4,7 +4,7 @@
  * @brief Header file for the Titan class.
  * @date 2025-10-02
  *
- * @copyright Copyright (c) 2025 Jay Iuliano
+ * @copyright Copyright (c) 2025-2026 Jay Iuliano
  *
  * The GNU Lesser General Public License (LGPL)
  *
@@ -46,9 +46,10 @@ template <>
 inline consteval CelestialBodyParameters get_celestial_body_parameters<moons::Titan>()
 {
     using namespace mp_units;
-    using mp_units::angular::unit_symbols::deg;
+    using astrea::units::unit_symbols::jc;
     using mp_units::iau::unit_symbols::au;
     using mp_units::non_si::day;
+    using mp_units::si::unit_symbols::deg;
     using mp_units::si::unit_symbols::kg;
     using mp_units::si::unit_symbols::km;
     using mp_units::si::unit_symbols::s;
@@ -57,7 +58,7 @@ inline consteval CelestialBodyParameters get_celestial_body_parameters<moons::Ti
              .referenceDate          = Date(J2000),
              .mu                     = GravParam(8978.1 * pow<3>(km) / pow<2>(s)),
              .mass                   = Mass(0.13455 * (mag_power<10, 24> * kg)),
-             .equitorialRadius       = Distance(2575.0 * km),
+             .equatorialRadius       = Distance(2575.0 * km),
              .polarRadius            = Distance(2575.0 * km),
              .crashRadius            = Distance(2575.0 * km),
              .sphereOfInfluence      = Distance(0.004333361603448 * au),
@@ -72,12 +73,12 @@ inline consteval CelestialBodyParameters get_celestial_body_parameters<moons::Ti
              .rightAscension         = Angle(28.060 * deg),
              .longitudeOfPerigee     = Angle(208.592 * deg),
              .meanLongitude          = Angle(371.902 * deg),
-             .semimajorAxisRate      = InterplanetaryVelocity(0.0 * km / JulianCentury),
-             .eccentricityRate       = BodyUnitlessPerTime(0.0 * one / JulianCentury),
-             .inclinationRate        = BodyAngularVelocity(0.0 * deg / JulianCentury),
-             .rightAscensionRate     = BodyAngularVelocity(183934.15 * deg / JulianCentury),
-             .longitudeOfPerigeeRate = BodyAngularVelocity(551990.5 * deg / JulianCentury),
-             .meanLongitudeRate      = BodyAngularVelocity(2969198512.13 * deg / JulianCentury) };
+             .semimajorAxisRate      = InterplanetaryVelocity(0.0 * km / jc),
+             .eccentricityRate       = BodyUnitlessPerTime(0.0 * one / jc),
+             .inclinationRate        = BodyAngularVelocity(0.0 * deg / jc),
+             .rightAscensionRate     = BodyAngularVelocity(183934.15 * deg / jc),
+             .longitudeOfPerigeeRate = BodyAngularVelocity(551990.5 * deg / jc),
+             .meanLongitudeRate      = BodyAngularVelocity(2969198512.13 * deg / jc) };
 }
 
 } // namespace astro

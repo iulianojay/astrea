@@ -1,7 +1,7 @@
 /*
  * The GNU Lesser General Public License (LGPL)
  *
- * Copyright (c) 2025 Jay Iuliano
+ * Copyright (c) 2025-2026 Jay Iuliano
  *
  * This file is part of Astrea.
  * Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License
@@ -18,6 +18,7 @@
 
 #include <astro/platforms/PayloadPlatform.hpp>
 #include <astro/platforms/thrusters/Thruster.hpp>
+#include <astro/state/State.hpp>
 #include <tests/utilities/comparisons.hpp>
 
 using namespace astrea;
@@ -75,6 +76,7 @@ class PayloadPlatformTest : public testing::Test {
     ThrusterParameters params2{ thrust2, boresight2 };
     ThrusterParameters params3{ thrust3 };
     MinimalTestPlatform platform;
+    State state;
 };
 
 int main(int argc, char** argv)
@@ -91,7 +93,7 @@ TEST_F(PayloadPlatformTest, GetId)
 
 TEST_F(PayloadPlatformTest, GetMass)
 {
-    Mass mass = platform.get_mass();
+    Mass mass = platform.get_mass(state);
     ASSERT_EQ(mass.numerical_value_in(kg), 0.0);
 }
 
@@ -284,7 +286,6 @@ TEST_F(PayloadPlatformTest, SelfAssignment)
     platform.attach_payload(params1);
 
 #pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wself-assign-overloaded"
     platform = platform;
 #pragma GCC diagnostic pop
 

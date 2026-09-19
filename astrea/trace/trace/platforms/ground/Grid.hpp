@@ -4,7 +4,7 @@
  * @brief Grid class for managing a grid of ground points.
  * @date 2025-08-03
  *
- * @copyright Copyright (c) 2025 Jay Iuliano
+ * @copyright Copyright (c) 2025-2026 Jay Iuliano
  *
  * The GNU Lesser General Public License (LGPL)
  *
@@ -83,7 +83,7 @@ class Grid {
         const LatRange& latRange,
         const LonRange& lonRange,
         const GridType& gridType,
-        const Angle& spacing   = 5.0 * mp_units::angular::unit_symbols::deg,
+        const Angle& spacing   = 5.0 * mp_units::si::unit_symbols::deg,
         const Unitless& weight = 0.0 * mp_units::one
     ) :
         _groundPoints(build_grid(latRange, lonRange, gridType, spacing, weight)),

@@ -4,7 +4,7 @@
  * @brief Header file for the CelestialBodyParameters class, which represents planetary data in an astrodynamics system.
  * @date 2026-03-01
  *
- * @copyright Copyright (c) 2026 Jay Iuliano
+ * @copyright Copyright (c) 2025-2026 Jay Iuliano
  *
  * The GNU Lesser General Public License (LGPL)
  *
@@ -25,12 +25,18 @@
 namespace astrea {
 namespace astro {
 
+/**
+ * @brief Structure to hold the parameters of a celestial body.
+ *
+ * This structure contains various physical and orbital parameters of a celestial body, such as its type, reference
+ * date, gravitational parameter, mass, etc.
+ */
 struct CelestialBodyParameters {
     CelestialBodyType type;                     //!< Type of the celestial body.
     Date referenceDate;                         //!< Reference date for the celestial body data.
     GravParam mu;                               //!< Gravitational parameter (mu) of the celestial body.
     Mass mass;                                  //!< Mass of the celestial body.
-    Distance equitorialRadius;                  //!< Equatorial radius of the celestial body.
+    Distance equatorialRadius;                  //!< Equatorial radius of the celestial body.
     Distance polarRadius;                       //!< Polar radius of the celestial body.
     Distance crashRadius;                       //!< Crash radius of the celestial body.
     Distance sphereOfInfluence;                 //!< Sphere of influence of the celestial body.
@@ -51,6 +57,7 @@ struct CelestialBodyParameters {
     BodyAngularVelocity rightAscensionRate;     //!< Rate of change of the right ascension.
     BodyAngularVelocity longitudeOfPerigeeRate; //!< Rate of change of the longitude of perigee.
     BodyAngularVelocity meanLongitudeRate;      //!< Rate of change of the mean longitude.
+    const char* gravityCoefficientFile = "";    //!< File containing the full set of gravitational coefficients.
 };
 
 } // namespace astro

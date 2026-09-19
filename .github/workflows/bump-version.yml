@@ -1,7 +1,7 @@
 #
 # The GNU Lesser General Public License (LGPL)
 #
-# Copyright (c) 2025 Jay Iuliano
+# Copyright (c) 2025-2026 Jay Iuliano
 #
 # This file is part of Astrea.
 # Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License
@@ -18,7 +18,7 @@ permissions:
 
 on:
   push:
-    branches: [ "dev" ]
+    branches: [ "main" ]
 
 jobs:
   bump-version:
@@ -33,7 +33,7 @@ jobs:
     steps:
 
     - name: Checkout repository
-      uses: actions/checkout@v4
+      uses: actions/checkout@v7
 
     - name: Mark repository as safe
       run: git config --global --add safe.directory $GITHUB_WORKSPACE

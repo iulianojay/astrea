@@ -4,7 +4,7 @@
  * @brief Header file for the Moon class.
  * @date 2025-10-02
  *
- * @copyright Copyright (c) 2025 Jay Iuliano
+ * @copyright Copyright (c) 2025-2026 Jay Iuliano
  *
  * The GNU Lesser General Public License (LGPL)
  *
@@ -21,11 +21,12 @@
 #include <units/units.hpp>
 
 #include <astro/astro.fwd.hpp>
+#include <astro/astro.macros.hpp>
 #include <astro/systems/CelestialBody.hpp>
 #include <astro/systems/celestial_bodies/Earth/Earth.hpp>
 
 #ifdef ASTREA_BUILD_EARTH_EPHEMERIS
-#include <ephemerides/Earth/MoonEphemerisTable.hpp>
+#include <astro/ephemerides/Earth/MoonEphemerisTable.hpp>
 #endif // ASTREA_BUILD_EARTH_EPHEMERIS
 
 namespace astrea {
@@ -48,9 +49,10 @@ template <>
 inline consteval CelestialBodyParameters get_celestial_body_parameters<moons::Moon>()
 {
     using namespace mp_units;
-    using mp_units::angular::unit_symbols::deg;
+    using astrea::units::unit_symbols::jc;
     using mp_units::iau::unit_symbols::au;
     using mp_units::non_si::day;
+    using mp_units::si::unit_symbols::deg;
     using mp_units::si::unit_symbols::kg;
     using mp_units::si::unit_symbols::km;
     using mp_units::si::unit_symbols::s;
@@ -59,7 +61,7 @@ inline consteval CelestialBodyParameters get_celestial_body_parameters<moons::Mo
              .referenceDate          = Date(J2000),
              .mu                     = GravParam(4902.8 * pow<3>(km) / pow<2>(s)),
              .mass                   = Mass(0.073 * (mag_power<10, 24> * kg)),
-             .equitorialRadius       = Distance(1737.5 * km),
+             .equatorialRadius       = Distance(1737.5 * km),
              .polarRadius            = Distance(1736.0 * km),
              .crashRadius            = Distance(1737.5 * km),
              .sphereOfInfluence      = Distance(0.006602718630998 * au),
@@ -74,12 +76,14 @@ inline consteval CelestialBodyParameters get_celestial_body_parameters<moons::Mo
              .rightAscension         = Angle(98.13908 * deg),
              .longitudeOfPerigee     = Angle(179.16058 * deg),
              .meanLongitude          = Angle(135.89122 * deg),
-             .semimajorAxisRate      = InterplanetaryVelocity(0.0 * km / JulianCentury),
-             .eccentricityRate       = BodyUnitlessPerTime(0.0 * one / JulianCentury),
-             .inclinationRate        = BodyAngularVelocity(0.0 * deg / JulianCentury),
-             .rightAscensionRate     = BodyAngularVelocity(6967741.9 * deg / JulianCentury),
-             .longitudeOfPerigeeRate = BodyAngularVelocity(28578547 * deg / JulianCentury),
-             .meanLongitudeRate      = BodyAngularVelocity(1761137860.75 * deg / JulianCentury) };
+             .semimajorAxisRate      = InterplanetaryVelocity(0.0 * km / jc),
+             .eccentricityRate       = BodyUnitlessPerTime(0.0 * one / jc),
+             .inclinationRate        = BodyAngularVelocity(0.0 * deg / jc),
+             .rightAscensionRate     = BodyAngularVelocity(6967741.9 * deg / jc),
+             .longitudeOfPerigeeRate = BodyAngularVelocity(28578547 * deg / jc),
+             .meanLongitudeRate      = BodyAngularVelocity(1761137860.75 * deg / jc),
+             // https://pds-geosciences.wustl.edu/grail/grail-l-lgrs-5-rdr-v1/grail_1001/shadr/ - normalized?
+             .gravityCoefficientFile = _ASTRO_GRAV_DATA_ROOT_ "/Earth/jggrx_0420a_sha.tab" };
 }
 
 #ifdef ASTREA_BUILD_EARTH_EPHEMERIS

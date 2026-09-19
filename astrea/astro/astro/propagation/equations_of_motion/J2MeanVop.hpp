@@ -4,7 +4,7 @@
  * @brief Header file for the J2 Mean VOP equations of motion class.
  * @date 2025-08-02
  *
- * @copyright Copyright (c) 2025 Jay Iuliano
+ * @copyright Copyright (c) 2025-2026 Jay Iuliano
  *
  * The GNU Lesser General Public License (LGPL)
  *
@@ -78,8 +78,8 @@ class J2MeanVop : public EquationsOfMotion {
     std::unique_ptr<EquationsOfMotion> clone() const override { return std::make_unique<J2MeanVop>(*this); }
 
   private:
-    const Unitless eccTol = 1e-10 * mp_units::one;                        //!< Tolerance for checking eccentricity.
-    const Angle incTol    = 1e-10 * mp_units::angular::unit_symbols::rad; //!< Tolerance for checking inclination.
+    const Unitless eccTol = 1e-10 * mp_units::one;                   //!< Tolerance for checking eccentricity.
+    const Angle incTol    = 1e-10 * mp_units::si::unit_symbols::rad; //!< Tolerance for checking inclination.
 };
 
 } // namespace astro
