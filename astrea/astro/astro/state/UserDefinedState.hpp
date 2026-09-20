@@ -85,7 +85,6 @@ concept IsUserDefinedStateType = requires(T) {
     requires HasMathOperators<T>;
     requires HasInPlaceMathOperators<T>;
     requires HasOutputStreamOperator<T>;
-    requires HasStaticFromDoubleVector<T> || HasMutatingFromDoubleVector<T>;
 };
 
 namespace detail {
@@ -216,6 +215,13 @@ struct UserDefinedStateInner final : public UserDefinedStateInnerBase {
     static void from_double_vector_impl(U& value, const std::vector<double>& vec)
     {
         value = U::from_double_vector(vec);
+    }
+
+    template <typename U>
+        requires(!HasMutatingFromDoubleVector<U> && !HasStaticFromDoubleVector<U>)
+    static void from_double_vector_impl(U& value, const std::vector<double>& vec)
+    {
+        throw std::runtime_error("User-defined state does not support construction from a double vector.");
     }
 
     template <typename U>

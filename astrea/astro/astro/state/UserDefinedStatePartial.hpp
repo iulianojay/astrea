@@ -84,7 +84,6 @@ concept IsUserDefinedStatePartialType = requires(T) {
     requires HasMathOperators<T>;
     requires HasInPlaceMathOperators<T>;
     requires HasOutputStreamOperatorPartial<T>;
-    requires HasStaticFromDoubleVectorPartial<T> || HasMutatingFromDoubleVectorPartial<T>;
 };
 
 namespace detail {
@@ -208,6 +207,13 @@ struct UserDefinedStatePartialInner final : public UserDefinedStatePartialInnerB
     static void from_double_vector_impl(U& value, const std::vector<double>& vec)
     {
         value = U::from_double_vector(vec);
+    }
+
+    template <typename U>
+        requires(!HasMutatingFromDoubleVectorPartial<U> && !HasStaticFromDoubleVectorPartial<U>)
+    static void from_double_vector_impl(U& value, const std::vector<double>& vec)
+    {
+        throw std::runtime_error("User-defined state partial does not support construction from a double vector.");
     }
 
     template <typename U>
