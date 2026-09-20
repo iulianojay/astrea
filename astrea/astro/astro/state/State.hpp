@@ -306,6 +306,20 @@ class State {
      */
     void set_user_defined_state(const UserDefinedState& userDefinedState) { _userDefinedState = userDefinedState; }
 
+    /**
+     * @brief Checks if the state has an attitude.
+     *
+     * @return true if the state has an attitude, false otherwise.
+     */
+    bool has_attitude() const { return _attitude.has_value(); }
+
+    /**
+     * @brief Checks if the state has a user-defined state.
+     *
+     * @return true if the state has a user-defined state, false otherwise.
+     */
+    bool has_user_defined_state() const { return _userDefinedState.has_value(); }
+
   private:
     OrbitalElements _elements; //!< The orbital elements of the state, defining the shape and attitude of the orbit.
     Date _epoch; //!< The epoch of the state, representing the time at which the orbital elements are defined.
