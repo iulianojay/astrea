@@ -36,7 +36,7 @@ jobs:
       with:
         filters: |
           docker:
-          - 'docker/devcontainer/Dockerfile'
+          - 'docker/Dockerfile.dev'
           - '.github/workflows/docker-publish-devcontainer.yml'
 
   wait-for-docker:
@@ -75,7 +75,7 @@ jobs:
         github.event_name != 'pull_request'
       )
     container:
-      image: ghcr.io/iulianojay/astrea:dev
+      image: ghcr.io/iulianojay/astrea:main
       options: --user root
       credentials:
         username: ${{ github.actor }}
@@ -127,7 +127,7 @@ jobs:
         github.event_name != 'pull_request'
       )
     container:
-      image: ghcr.io/iulianojay/astrea:dev
+      image: ghcr.io/iulianojay/astrea:main
       options: --user root
       credentials:
         username: ${{ github.actor }}

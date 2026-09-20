@@ -273,7 +273,7 @@ std::vector<double> extract_raw_attitude_time_data(const StateHistory& trajector
     std::vector<double> time;
     const Date epoch = trajectory.epoch();
     for (const auto& state : trajectory) {
-        if (!state.get_attitude().has_value()) { continue; }
+        if (!state.has_attitude()) { continue; }
         const Time t = state.get_epoch() - epoch;
         time.push_back(t.numerical_value_in(day));
     }
@@ -285,8 +285,8 @@ std::array<std::vector<double>, 6> extract_raw_attitude_data(const StateHistory&
 {
     std::array<std::vector<double>, 6> data;
     for (const auto& state : trajectory) {
+        if (!state.has_attitude()) { continue; }
         const auto& att = state.get_attitude();
-        if (!att.has_value()) { continue; }
 
         const auto angles = att->get_orientation().to_euler_angles<RotationSequence::XYZ, RotationType::INTRINSIC>();
         const auto& omega = att->get_angular_velocity().get_angular_velocities();
@@ -880,7 +880,7 @@ void compare_attitudes(const std::vector<StateHistory>& trajectories, const std:
     h->font(font);
     h->font_size(size + 5.0);
 
-    if (trajectories.empty() || !trajectories[0].first().get_attitude().has_value()) { return; }
+    if (trajectories.empty() || !trajectories[0].first().has_attitude()) { return; }
 
     const std::array<std::string, 6> labels      = { "Roll", "Pitch", "Yaw", "\u03c9x", "\u03c9y", "\u03c9z" };
     const std::array<std::string, 6> units       = { "deg", "deg", "deg", "deg/s", "deg/s", "deg/s" };
@@ -938,7 +938,7 @@ void plot_difference_attitude(
     const std::filesystem::path& outfile
 )
 {
-    if (trajectories.empty() || !trajectories[0].first().get_attitude().has_value()) { return; }
+    if (trajectories.empty() || !trajectories[0].first().has_attitude()) { return; }
 
     const auto font  = "Arial";
     const float size = 20.0;

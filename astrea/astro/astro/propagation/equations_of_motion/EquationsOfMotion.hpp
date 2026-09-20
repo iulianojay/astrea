@@ -31,6 +31,10 @@ namespace astro {
  * @brief Base class for equations of motion in astrodynamics.
  */
 class EquationsOfMotion {
+
+    using UdsPartialFunc =
+        std::function<UserDefinedStatePartial(const State&, const Vehicle&, const Perturbation&, const Perturbation&)>;
+
   public:
     /**
      * @brief Default constructor for the Equations of Motion class.
@@ -92,6 +96,25 @@ class EquationsOfMotion {
     ) const;
 
     /**
+     * @brief Computes the user-defined state partials.
+     *
+     * @param state The current state of the vehicle.
+     * @param vehicle The vehicle for which the user-defined state partials are being computed.
+     * @param perts The perturbations acting on the vehicle.
+     * @param control The control authority produced by the vehicle.
+     * @return UserDefinedStatePartial The computed user-defined state partials.
+     */
+    virtual UserDefinedStatePartial
+        compute_user_defined_state_partials(const State& state, const Vehicle& vehicle, const Perturbation& perts, const Perturbation& control) const;
+
+    /**
+     * @brief Sets the function to compute user-defined state partials.
+     *
+     * @param func The function to compute user-defined state partials.
+     */
+    void set_user_defined_state_partial_function(const UdsPartialFunc& func) { udsPartialFunc = func; }
+
+    /**
      * @brief Computes the state transition matrix (STM).
      *
      * @param date The current date for which the STM is being computed.
@@ -116,7 +139,8 @@ class EquationsOfMotion {
     virtual std::unique_ptr<EquationsOfMotion> clone() const = 0;
 
   protected:
-    ForceModel forces; //!< The force model used in the equations of motion.
+    ForceModel forces;             //!< The force model used in the equations of motion
+    UdsPartialFunc udsPartialFunc; //!< Function to compute user-defined state partials
 };
 
 } // namespace astro
