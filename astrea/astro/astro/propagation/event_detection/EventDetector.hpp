@@ -44,12 +44,12 @@ class EventDetector {
      * @brief A struct for tracking events.
      */
     struct EventTracker {
-        uint_8 id;                     //!< The unique identifier for the Event.
+        uint8_t id;                    //!< The unique identifier for the Event.
         Event event;                   //!< The Event being tracked.
         bool firstMeasurement;         //!< Whether this is the first measurement for the Event.
         Time previousTime;             //!< The previous time the Event was measured.
-        Unitless previousValue;        //!< The previous value the Event was measured at.
         State previousState;           //!< The previous state of the Vehicle when the Event was measured.
+        Unitless previousValue;        //!< The previous value the Event was measured at.
         std::set<Time> detectionTimes; //!< The times at which the Event was detected.
     };
 
@@ -105,7 +105,7 @@ class EventDetector {
      * @param vehicle The Vehicle to check for events.
      * @return EventDetectionResult An object indicating whether a terminal event was detected and whether any event was triggered.
      */
-    EventDetectionResult detect_events(Time& time, State& state, Vehicle& vehicle);
+    EventDetectionResult detect_and_trigger_events(Time& time, State& state, Vehicle& vehicle);
 
     /**
      * @brief Retrieves the event times recorded during propagation.
@@ -117,6 +117,16 @@ class EventDetector {
 
   private:
     std::vector<EventTracker> _eventTrackers; //!< The list of Event trackers.
+
+    /**
+     * @brief Detects events for a given time and vehicle.
+     *
+     * @param time The current time.
+     * @param state The current state.
+     * @param vehicle The Vehicle to check for events.
+     * @return std::vector<EventTracker> A vector of EventTrackers that have detected events.
+     */
+    std::vector<uint8_t> detect_events(const Time& time, const State& state, const Vehicle& vehicle);
 
     /**
      * @brief Detects an event zero-crossing for a given time and value.

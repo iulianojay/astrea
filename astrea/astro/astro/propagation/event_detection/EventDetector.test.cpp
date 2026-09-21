@@ -111,8 +111,9 @@ TEST_F(EventDetectorTest, DetectNonTerminalEvents)
 {
     detector.add_event(event);
     for (int ii = 0; ii < 10; ++ii) {
-        const bool isTerminal = detector.detect_events(Time(ii * s), state, vehicle);
-        ASSERT_EQ(isTerminal, false);
+        Time time         = ii * s;
+        const auto result = detector.detect_and_trigger_events(time, state, vehicle);
+        ASSERT_EQ(result.isTerminal, false);
     }
 }
 
@@ -120,8 +121,9 @@ TEST_F(EventDetectorTest, DetectTerminalEvents)
 {
     detector.add_event(terminalEvent);
     for (int ii = 0; ii < 10; ++ii) {
-        const bool isTerminal = detector.detect_events(Time(ii * s), state, vehicle);
-        ASSERT_EQ(isTerminal, bool(ii > 0));
+        Time time         = ii * s;
+        const auto result = detector.detect_and_trigger_events(time, state, vehicle);
+        ASSERT_EQ(result.isTerminal, bool((ii - 1) % 2 == 0));
     }
 }
 
@@ -129,8 +131,10 @@ TEST_F(EventDetectorTest, RisingDirectionDetectsRisingCrossing)
 {
     detector.add_event(Event{ RisingOnlyEvent() });
 
-    detector.detect_events(Time(0.0 * s), state, vehicle);
-    detector.detect_events(Time(2.0 * s), state, vehicle);
+    Time time = 0.0 * s;
+    detector.detect_and_trigger_events(time, state, vehicle);
+    time = 2.0 * s;
+    detector.detect_and_trigger_events(time, state, vehicle);
 
     const auto eventTimes = detector.get_event_times(Date());
     ASSERT_EQ(eventTimes.at("RisingOnlyEvent").size(), 1);
@@ -141,8 +145,10 @@ TEST_F(EventDetectorTest, FallingDirectionDetectsFallingCrossing)
 {
     detector.add_event(Event{ FallingOnlyEvent() });
 
-    detector.detect_events(Time(0.0 * s), state, vehicle);
-    detector.detect_events(Time(2.0 * s), state, vehicle);
+    Time time = 0.0 * s;
+    detector.detect_and_trigger_events(time, state, vehicle);
+    time = 2.0 * s;
+    detector.detect_and_trigger_events(time, state, vehicle);
 
     const auto eventTimes = detector.get_event_times(Date());
     ASSERT_EQ(eventTimes.at("FallingOnlyEvent").size(), 1);
@@ -153,8 +159,10 @@ TEST_F(EventDetectorTest, RisingDirectionIgnoresFallingCrossing)
 {
     detector.add_event(Event{ RisingOnlyEvent() });
 
-    detector.detect_events(Time(2.0 * s), state, vehicle);
-    detector.detect_events(Time(0.0 * s), state, vehicle);
+    Time time = 2.0 * s;
+    detector.detect_and_trigger_events(time, state, vehicle);
+    time = 0.0 * s;
+    detector.detect_and_trigger_events(time, state, vehicle);
 
     const auto eventTimes = detector.get_event_times(Date());
     ASSERT_TRUE(eventTimes.at("RisingOnlyEvent").empty());
@@ -164,8 +172,10 @@ TEST_F(EventDetectorTest, ExactEventTimeDetectedThroughBisection)
 {
     detector.add_event(Event{ ExactBisectionEvent() });
 
-    detector.detect_events(Time(0.0 * s), state, vehicle);
-    detector.detect_events(Time(10.0 * s), state, vehicle);
+    Time time = 0.0 * s;
+    detector.detect_and_trigger_events(time, state, vehicle);
+    time = 10.0 * s;
+    detector.detect_and_trigger_events(time, state, vehicle);
 
     const auto eventTimes = detector.get_event_times(Date());
     ASSERT_EQ(eventTimes.at("ExactBisectionEvent").size(), 1);

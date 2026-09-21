@@ -499,7 +499,7 @@ bool Integrator::check_error(const Unitless& maxError, const State& stateNew, co
 
 EventDetectionResult Integrator::check_event(Time& time, State& state, Vehicle& vehicle)
 {
-    return _eventDetector.detect_events(time, state, vehicle);
+    return _eventDetector.detect_and_trigger_events(time, state, vehicle);
 }
 
 bool Integrator::validate_state_and_time(const Time& time, const State& state) const

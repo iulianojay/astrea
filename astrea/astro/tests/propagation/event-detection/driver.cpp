@@ -17,7 +17,7 @@
 #include <units/units.hpp>
 
 #include <astro/platforms/vehicles/Spacecraft.hpp>
-#include <astro/propagation/equations_of_motion/TwoBody.hpp>
+#include <astro/propagation/equations_of_motion/KeplerianVop.hpp>
 #include <astro/propagation/event_detection/Event.hpp>
 #include <astro/propagation/event_detection/events/ImpulsiveBurn.hpp>
 #include <astro/propagation/force_models/ForceModel.hpp>
@@ -82,11 +82,15 @@ TEST_F(EventDetectionTest, NoThrust)
     integrator.add_event(impulse);
 
     // Propagate
+    KeplerianVop eoms(forces);
+    integrator.set_equations_of_motion(eoms);
     const auto stateHistory = integrator.propagate(state, propTime, vehicle);
 
     // Validate
+    std::cout << "state0: " << kep0 << std::endl;
     for (const auto& state : stateHistory) {
         const Keplerian<frames::earth::icrf> kep = state.in_element_set<Keplerian<frames::earth::icrf>>();
+        std::cout << "state: " << kep << std::endl;
         ASSERT_NO_FATAL_FAILURE(ASSERT_TRUE(nearly_equal(kep, kep0, true, REL_TOL)));
     }
 }
@@ -108,6 +112,8 @@ TEST_F(EventDetectionTest, ImpulsiveBurn)
     integrator.add_event(impulse);
 
     // Propagate
+    KeplerianVop eoms(forces);
+    integrator.set_equations_of_motion(eoms);
     const auto stateHistory = integrator.propagate(state, propTime, vehicle);
 
     // Validate
