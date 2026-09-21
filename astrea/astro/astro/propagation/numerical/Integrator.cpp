@@ -134,9 +134,15 @@ StateHistory Integrator::propagate_impl(const State& state0, const Time& propTim
     while (_iteration < _MAX_ITER) {
 
         // Check for event
-        if (check_event(time, state, vehicle)) {
+        const EventDetectionResult eventResult = check_event(time, state, vehicle);
+        if (eventResult.isTerminal) {
             std::cerr << "Warning: Terminal conditions detected.";
             break;
+        }
+        if (eventResult.eventTriggered && _store) {
+            // Even triggers may modify the state so remove the last state from the history and replace it with the modified state
+            stateHistory.pop_back();
+            stateHistory.insert(state);
         }
 
         // Make sure state and time are valid
@@ -491,7 +497,7 @@ bool Integrator::check_error(const Unitless& maxError, const State& stateNew, co
     return false;
 }
 
-bool Integrator::check_event(const Time& time, State& state, Vehicle& vehicle)
+EventDetectionResult Integrator::check_event(Time& time, State& state, Vehicle& vehicle)
 {
     return _eventDetector.detect_events(time, state, vehicle);
 }

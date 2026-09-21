@@ -25,13 +25,14 @@ EventDetector::EventDetector(const std::vector<Event>& events) { add_events(even
 
 void EventDetector::add_event(const Event& event)
 {
-    _eventTrackers.push_back({ .event = event, .firstMeasurement = true });
+    _eventTrackers.push_back({ .id = static_cast<uint_8>(_eventTrackers.size()), .event = event, .firstMeasurement = true });
 }
 
 void EventDetector::add_events(const std::vector<Event>& events)
 {
     _eventTrackers.resize(events.size());
     for (std::size_t ii = 0; ii < events.size(); ++ii) {
+        _eventTrackers[ii].id               = static_cast<uint_8>(ii);
         _eventTrackers[ii].event            = events[ii];
         _eventTrackers[ii].firstMeasurement = true;
     }
@@ -61,10 +62,64 @@ gtl::btree_map<std::string, std::vector<Date>> EventDetector::get_event_times(co
     return eventTimes;
 }
 
-bool EventDetector::detect_events(const Time& time, State& state, Vehicle& vehicle)
+EventDetectionResult EventDetector::detect_events(Time& time, State& state, Vehicle& vehicle)
 {
+    /**
+        1. Detect all events
+        2. For each event, find exact time
+        3. Find first event and trigger it
+        3a. If no trigger, just continue until an event has a trigger
+        3b. If event is terminal, just exit
+        4. Remove first triggered events from next check only
+        5. Repeat until no events left
+    */
+
+    // Check for events since last time step
+    auto& triggeredTrackers = detect_events_impl(time, state, vehicle);
+
+    // If no events were detected, exit
+    if (triggeredTrackers.empty()) { return { .isTerminal = false, .eventTriggered = false }; }
+
+    // Sort by latest event detection time
+    std::sort(triggeredTrackers.begin(), triggeredTrackers.end(), [](const EventTracker& a, const EventTracker& b) {
+        return *a.detectionTimes.rbegin() < *b.detectionTimes.rbegin();
+    });
+
+    // Trigger the earliest event
+    for (auto& tracker : triggeredTrackers) {
+        const Event& event = tracker.event;
+
+        // If the event is terminal, exit
+        if (event.is_terminal()) { return { .isTerminal = true, .eventTriggered = false }; }
+
+        // Trigger only the first event with a trigger action and return to the propagation loop to check for events again
+        // TODO: This may end up with a lot of sluggish re-integration over the same times. Need to study and see if it's a
+        // practical concern
+        if (event.has_trigger_action()) {
+            // implicit function sets event crossing time/state to previousTime/previousState
+            // we overwrite the time/state to the previous time/state so that the trigger action is applied at the event crossing time/state
+            time  = tracker.previousTime;
+            state = tracker.previousState;
+            event.trigger_action(time, state, vehicle);
+
+            // Now we need to overwrite all the previous times and states for all trackers to the current time and state
+            // in case this event trigger action changed the state or the vehicle in a way that would affect the other events
+            for (auto& otherTracker : _eventTrackers) {
+                if (otherTracker.id == tracker.id) { continue; }
+                otherTracker.previousTime  = time;
+                otherTracker.previousState = state;
+                otherTracker.previousValue = otherTracker.event.measure_event(time, state, vehicle);
+            }
+            break;
+        }
+    }
+    return { .isTerminal = false, .eventTriggered = true };
+}
+
+std::vector<EventTracker> EventDetector::detect_events_impl(const Time& time, const State& state, const Vehicle& vehicle)
+{
+    std::vector<EventTracker> triggeredTrackers;
     bool isTerminal = false;
-    // TODO: Give precision control to user? Might need more machinery to handle this properly
     for (auto& tracker : _eventTrackers) {
         const Event& event = tracker.event;
 
@@ -74,26 +129,29 @@ bool EventDetector::detect_events(const Time& time, State& state, Vehicle& vehic
         // Test for a zero-crossing
         const bool eventDetected = detect_zero_crossing(time, value, tracker);
 
-        if (eventDetected) {
+        if (eventDetected && value != 0.0) {
             // Find exact event time using bisection method
-            const Time eventTime = (value == 0.0) ? time : find_zero_crossing_time(time, tracker, state, vehicle);
+            auto [eventTime, eventState] = find_zero_crossing_time(time, tracker, state, vehicle);
 
             // Store trigger time
             tracker.detectionTimes.insert(eventTime);
 
-            // Trigger action
-            event.trigger_action(eventTime, state, vehicle);
-
             // Check for termination
             if (event.is_terminal()) { isTerminal = true; }
-        }
+            triggeredTrackers.push_back(tracker);
 
-        // Update the event tracker with the latest time and vehicle data
-        tracker.previousTime  = eventTime;
-        tracker.previousValue = value;
-        tracker.previousState = state;
+            tracker.previousTime  = eventTime;
+            tracker.previousValue = 0.0; // Set to exact zero to avoid rounding issues in future checks
+            tracker.previousState = eventState;
+        }
+        else {
+            // Update the event tracker with the latest time and vehicle data
+            tracker.previousTime  = time;
+            tracker.previousValue = value;
+            tracker.previousState = state;
+        }
     }
-    return isTerminal;
+    return triggeredTrackers;
 }
 
 bool EventDetector::detect_zero_crossing(const Time& time, const Unitless& value, EventTracker& tracker) const
@@ -109,10 +167,10 @@ bool EventDetector::detect_zero_crossing(const Time& time, const Unitless& value
         return false;
     }
     else if (tracker.previousValue == 0.0) {
-        if (value != 0.0) { // Previous time was an exact event time and this one isn't
+        if (value != 0.0) { // Previous time was an exact event time and this one isn't -> Not a crossing
             return false;
         }
-        else { // Previous time was an exact event time and so is this one
+        else { // Previous time was an exact event time and so is this one -> Assume it's a valid crossing
             return true;
         }
     }
@@ -126,7 +184,8 @@ bool EventDetector::detect_zero_crossing(const Time& time, const Unitless& value
     return false;
 }
 
-Time EventDetector::find_zero_crossing_time(const Time& time, const EventTracker& tracker, State& state, Vehicle& vehicle) const
+std::tuple<Time, State>
+    EventDetector::find_zero_crossing_time(const Time& time, const EventTracker& tracker, const State& state, const Vehicle& vehicle) const
 {
     // Settings. Hard coding is fine
     static const Time ZERO_CROSSING_TOL      = 1.0 * s; //!< The tolerance for detecting zero crossings.
@@ -156,7 +215,7 @@ Time EventDetector::find_zero_crossing_time(const Time& time, const EventTracker
         const Unitless midValue = event.measure_event(midPoint, midState, vehicle);
 
         if (midValue == 0.0) {
-            return midPoint; // Exact zero found
+            return { midPoint, midState }; // Exact zero found
         }
         else if ((catchRising && midValue < 0.0) || (catchFalling && midValue > 0.0)) {
             lowerBound = midPoint; // Zero is in the upper half
@@ -172,8 +231,9 @@ Time EventDetector::find_zero_crossing_time(const Time& time, const EventTracker
                   << event.get_name() << ". Returning midpoint as best estimate.\n";
     }
 
-    // Round to seconds to avoid numerical issues
-    return round<s>((lowerBound + upperBound) / 2.0); // Return midpoint as the best estimate of the zero-crossing time
+    const Time bestEstimate = (lowerBound + upperBound) / 2.0;
+    const State bestState   = previousState.interpolate(previousTime, time, state, bestEstimate);
+    return { bestEstimate, bestState }; // Return midpoint as the best estimate of the zero-crossing time
 }
 
 } // namespace astro

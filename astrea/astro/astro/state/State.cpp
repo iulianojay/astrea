@@ -168,11 +168,11 @@ State State::interpolate(const Time& thisTime, const Time& otherTime, const Stat
             std::optional<Attitude>(_attitude.value().interpolate(thisTime, otherTime, other._attitude.value(), targetTime));
     }
     std::optional<UserDefinedState> interpolatedUserDefinedState = std::nullopt; // TODO: Add interpolation for user-defined state
-    if (_userDefinedState.has_value() && other._userDefinedState.has_value()) {
-        interpolatedUserDefinedState = std::optional<UserDefinedState>(
-            _userDefinedState.value().interpolate(thisTime, otherTime, other._userDefinedState.value(), targetTime)
-        );
-    }
+    // if (_userDefinedState.has_value() && other._userDefinedState.has_value()) {
+    //     interpolatedUserDefinedState = std::optional<UserDefinedState>(
+    //         _userDefinedState.value().interpolate(thisTime, otherTime, other._userDefinedState.value(), targetTime)
+    //     );
+    // }
     const Date interpolatedEpoch = _epoch + (targetTime - thisTime);
     return { interpolatedElements, interpolatedEpoch, interpolatedAttitude, interpolatedUserDefinedState };
 }

@@ -30,6 +30,11 @@
 namespace astrea {
 namespace astro {
 
+struct EventDetectionResult {
+    bool isTerminal;     //!< Indicates if a terminal event was detected
+    bool eventTriggered; //!< Indicates if any event was triggered
+};
+
 /**
  * @brief A class for detecting events in the astrea astro platform.
  */
@@ -39,6 +44,7 @@ class EventDetector {
      * @brief A struct for tracking events.
      */
     struct EventTracker {
+        uint_8 id;                     //!< The unique identifier for the Event.
         Event event;                   //!< The Event being tracked.
         bool firstMeasurement;         //!< Whether this is the first measurement for the Event.
         Time previousTime;             //!< The previous time the Event was measured.
@@ -97,10 +103,9 @@ class EventDetector {
      * @param time The current time.
      * @param state The current state.
      * @param vehicle The Vehicle to check for events.
-     * @return true If a terminal event was detected.
-     * @return false If no terminal event was detected.
+     * @return EventDetectionResult An object indicating whether a terminal event was detected and whether any event was triggered.
      */
-    bool detect_events(const Time& time, State& state, Vehicle& vehicle);
+    EventDetectionResult detect_events(Time& time, State& state, Vehicle& vehicle);
 
     /**
      * @brief Retrieves the event times recorded during propagation.
@@ -123,6 +128,18 @@ class EventDetector {
      * @return false If the event was not detected.
      */
     bool detect_zero_crossing(const Time& time, const Unitless& value, EventTracker& tracker) const;
+
+    /**
+     * @brief Finds the zero-crossing time for an event using the bisection method.
+     *
+     * @param time The current time.
+     * @param tracker The Event tracker containing the previous state and time.
+     * @param state The current state.
+     * @param vehicle The Vehicle to check for events.
+     * @return std::tuple<Time, State> The estimated zero-crossing time and the corresponding state.
+     */
+    std::tuple<Time, State>
+        find_zero_crossing_time(const Time& time, const EventTracker& tracker, const State& state, const Vehicle& vehicle) const;
 };
 
 } // namespace astro

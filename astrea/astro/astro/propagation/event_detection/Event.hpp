@@ -147,6 +147,14 @@ struct EventInnerBase {
     virtual void trigger_action(const Time& time, State& state, Vehicle& vehicle) const = 0;
 
     /**
+     * @brief Checks if the Event has a trigger action.
+     *
+     * @return true If the Event has a trigger action.
+     * @return false If the Event does not have a trigger action.
+     */
+    virtual bool has_trigger_action() const = 0;
+
+    /**
      * @brief Clones the Event inner implementation.
      *
      * @return std::unique_ptr<EventInnerBase> A unique pointer to the cloned Event inner implementation.
@@ -339,6 +347,44 @@ struct EventInner final : public EventInnerBase {
     }
 
     /**
+     * @brief Checks if the Event has a trigger action.
+     *
+     * @return true If the Event has a trigger action.
+     * @return false If the Event does not have a trigger action.
+     */
+    bool has_trigger_action() const override final { return has_trigger_action_impl(_value); }
+
+    /**
+     * @brief Implementation of the has_trigger_action function for an Event with a trigger.
+     *
+     * @tparam U The type of the Event implementation.
+     * @param value The Event implementation instance.
+     * @return true If the Event has a trigger action.
+     * @return false If the Event does not have a trigger action.
+     */
+    template <typename U>
+        requires(HasTriggerEvent<U>)
+    bool has_trigger_action_impl(const U& value) const
+    {
+        return true;
+    }
+
+    /**
+     * @brief Implementation of the has_trigger_action function for an Event without a trigger.
+     *
+     * @tparam U The type of the Event implementation.
+     * @param value The Event implementation instance.
+     * @return true If the Event has a trigger action.
+     * @return false If the Event does not have a trigger action.
+     */
+    template <typename U>
+        requires(!HasTriggerEvent<U>)
+    bool has_trigger_action_impl(const U& value) const
+    {
+        return false;
+    }
+
+    /**
      * @brief Clones the Event inner implementation.
      *
      * @return std::unique_ptr<EventInnerBase> A unique pointer to the cloned Event inner implementation.
@@ -527,6 +573,14 @@ class Event {
     {
         return ptr()->trigger_action(time, state, vehicle);
     }
+
+    /**
+     * @brief Checks if the Event has a trigger action.
+     *
+     * @return true If the Event has a trigger action.
+     * @return false If the Event does not have a trigger action.
+     */
+    bool has_trigger_action() const { return ptr()->has_trigger_action(); }
 
     /**
      * @brief Gets the name of the Event.
