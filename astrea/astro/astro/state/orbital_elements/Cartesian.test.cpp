@@ -415,7 +415,7 @@ TEST_F(CartesianTest, Interpolate)
     Time thisTime                         = 0.0 * s;
     Time otherTime                        = 10.0 * s;
     Time targetTime                       = 5.0 * s;
-    Cartesian<frames::earth::icrf> result = state.interpolate(thisTime, otherTime, other, mu, targetTime);
+    Cartesian<frames::earth::icrf> result = state.interpolate(thisTime, otherTime, other, targetTime);
 
     // At t=5s (midpoint), expect average of start and end values
     ASSERT_TRUE(math::nearly_equal(result.get_x(), (x + 14000.0 * km) / 2.0, REL_TOL));

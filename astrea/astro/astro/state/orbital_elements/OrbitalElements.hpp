@@ -334,12 +334,10 @@ class OrbitalElements {
      * @param thisTime Time of the current state
      * @param otherTime Time of the other state
      * @param other Another OrbitalElements object to interpolate with
-     * @param mu The gravitational parameter to use for the interpolation
      * @param targetTime The target time for interpolation
      * @return Interpolated OrbitalElements at the target time.
      */
-    OrbitalElements
-        interpolate(const Time& thisTime, const Time& otherTime, const OrbitalElements& other, const GravParam& mu, const Time& targetTime) const;
+    OrbitalElements interpolate(const Time& thisTime, const Time& otherTime, const OrbitalElements& other, const Time& targetTime) const;
 
     /**
      * @brief Extracts the underlying orbital elements as a variant.

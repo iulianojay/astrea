@@ -327,7 +327,7 @@ Cartesian<_frame_>& Cartesian<_frame_>::operator/=(const Unitless& divisor)
 
 template <IsFrame auto _frame_>
 Cartesian<_frame_>
-    Cartesian<_frame_>::interpolate(const Time& thisTime, const Time& otherTime, const Cartesian<_frame_>& other, const GravParam& mu, const Time& targetTime) const
+    Cartesian<_frame_>::interpolate(const Time& thisTime, const Time& otherTime, const Cartesian<_frame_>& other, const Time& targetTime) const
 {
     const std::array<Time, 2> times = { thisTime, otherTime };
     const Distance interpX          = math::fast_interpolate<Time, Distance>(times, { _r[0], other._r[0] }, targetTime);
