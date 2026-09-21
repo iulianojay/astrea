@@ -27,6 +27,12 @@
 namespace astrea {
 namespace astro {
 
+enum class EventDirection {
+    RISING,  //!< Event is triggered when the value crosses zero in the positive direction.
+    FALLING, //!< Event is triggered when the value crosses zero in the negative direction.
+    ANY      //!< Event is triggered when the value crosses zero in either direction.
+};
+
 /**
  * @brief Concept to check if a type has a method to detect an event.
  *
@@ -45,6 +51,16 @@ concept HasMeasureEvent = requires(const T event, const Time& time, const State&
 template <typename T>
 concept HasIsTerminal = requires(const T event) {
     { event.is_terminal() } -> std::same_as<bool>;
+};
+
+/**
+ * @brief Concept to check the direction of an event.
+ *
+ * @tparam T The type to check.
+ */
+template <typename T>
+concept HasGetEventDirection = requires(const T event) {
+    { event.get_event_direction() } -> std::same_as<EventDirection>;
 };
 
 /**
@@ -104,6 +120,13 @@ struct EventInnerBase {
      * @return false If the Event is not triggered by the Vehicle.
      */
     virtual Unitless measure_event(const Time& time, const State& state, const Vehicle& vehicle) const = 0;
+
+    /**
+     * @brief Gets the direction of the Event.
+     *
+     * @return EventDirection The direction of the Event.
+     */
+    virtual EventDirection get_event_direction() const = 0;
 
     /**
      * @brief Checks if the Event is a terminal Event.
@@ -233,6 +256,41 @@ struct EventInner final : public EventInnerBase {
      * @return false If the Event is not a terminal Event.
      */
     bool is_terminal() const override final { return _value.is_terminal(); }
+
+    /**
+     * @brief Gets the direction of the Event.
+     *
+     * @return EventDirection The direction of the Event.
+     */
+    EventDirection get_event_direction() const override final { return get_event_direction_impl(_value); }
+
+    /**
+     * @brief Helper function to get the event direction of the Event implementation.
+     *
+     * @tparam U The type of the Event implementation.
+     * @param value The Event implementation instance.
+     * @return EventDirection The direction of the Event.
+     */
+    template <typename U>
+        requires(HasGetEventDirection<U>)
+    EventDirection get_event_direction_impl(const U& value) const
+    {
+        return value.get_event_direction();
+    }
+
+    /**
+     * @brief Helper function to get the event direction of the Event without a get_event_direction method.
+     *
+     * @tparam U The type of the Event implementation.
+     * @param value The Event implementation instance.
+     * @return EventDirection The direction of the Event.
+     */
+    template <typename U>
+        requires(!HasGetEventDirection<U>)
+    EventDirection get_event_direction_impl(const U& value) const
+    {
+        return EventDirection::ANY;
+    }
 
     /**
      * @brief Triggers the Event for a Vehicle.
@@ -449,6 +507,13 @@ class Event {
      * @return false If the Event is not a terminal Event.
      */
     bool is_terminal() const { return ptr()->is_terminal(); }
+
+    /**
+     * @brief Gets the direction of the Event.
+     *
+     * @return EventDirection The direction of the Event.
+     */
+    EventDirection get_event_direction() const { return ptr()->get_event_direction(); }
 
     /**
      * @brief Triggers the Event for a Vehicle.

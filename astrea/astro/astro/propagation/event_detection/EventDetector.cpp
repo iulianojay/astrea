@@ -15,6 +15,9 @@
 
 #include <mp-units/math.h>
 
+using namespace mp_units;
+using mp_units::si::unit_symbols::s;
+
 namespace astrea {
 namespace astro {
 
@@ -45,21 +48,36 @@ std::vector<Event> EventDetector::get_events() const
     return events;
 }
 
+gtl::btree_map<std::string, std::vector<Date>> EventDetector::get_event_times(const Date& epoch) const
+{
+    gtl::btree_map<std::string, std::vector<Date>> eventTimes;
+    for (const auto& tracker : _eventTrackers) {
+        std::vector<Date> dates;
+        for (const auto& time : tracker.detectionTimes) {
+            dates.push_back(epoch + time);
+        }
+        eventTimes[tracker.event.get_name()] = dates;
+    }
+    return eventTimes;
+}
+
 bool EventDetector::detect_events(const Time& time, State& state, Vehicle& vehicle)
 {
     bool isTerminal = false;
-    const Time eventTime = mp_units::round<mp_units::si::unit_symbols::s>(time); // Round to seconds to avoid numerical issues
     // TODO: Give precision control to user? Might need more machinery to handle this properly
     for (auto& tracker : _eventTrackers) {
         const Event& event = tracker.event;
 
         // Measure event
-        const Unitless value = event.measure_event(eventTime, state, vehicle);
+        const Unitless value = event.measure_event(time, state, vehicle);
 
         // Test for a zero-crossing
-        const bool eventDetected = detect_event(eventTime, value, tracker);
+        const bool eventDetected = detect_zero_crossing(time, value, tracker);
 
         if (eventDetected) {
+            // Find exact event time using bisection method
+            const Time eventTime = (value == 0.0) ? time : find_zero_crossing_time(time, tracker, state, vehicle);
+
             // Store trigger time
             tracker.detectionTimes.insert(eventTime);
 
@@ -77,16 +95,20 @@ bool EventDetector::detect_events(const Time& time, State& state, Vehicle& vehic
     return isTerminal;
 }
 
-bool EventDetector::detect_event(const Time& time, const Unitless& value, EventTracker& tracker) const
+bool EventDetector::detect_zero_crossing(const Time& time, const Unitless& value, EventTracker& tracker) const
 {
+    // Setup
+    const EventDirection direction = tracker.event.get_event_direction();
+    const bool catchRising         = (direction == EventDirection::RISING || direction == EventDirection::ANY);
+    const bool catchFalling        = (direction == EventDirection::FALLING || direction == EventDirection::ANY);
+
     // Have to ignore first measurement to avoid sign assumptions
-    static const Unitless zero = 0.0 * mp_units::one;
     if (tracker.firstMeasurement) {
         tracker.firstMeasurement = false;
         return false;
     }
-    else if (tracker.previousValue == zero) {
-        if (value != zero) { // Previous time was an exact event time so this one can't be
+    else if (tracker.previousValue == 0.0) {
+        if (value != 0.0) { // Previous time was an exact event time and this one isn't
             return false;
         }
         else { // Previous time was an exact event time and so is this one
@@ -95,24 +117,58 @@ bool EventDetector::detect_event(const Time& time, const Unitless& value, EventT
     }
     else {
         // Check for zero crossing
-        if ((tracker.previousValue > zero && value <= zero) || (tracker.previousValue < zero && value >= zero)) {
+        if ((catchFalling && tracker.previousValue > 0.0 && value <= 0.0) ||
+            (catchRising && tracker.previousValue < 0.0 && value >= 0.0)) {
             return true;
         }
     }
     return false;
 }
 
-gtl::btree_map<std::string, std::vector<Date>> EventDetector::get_event_times(const Date& epoch) const
+Time EventDetector::find_zero_crossing_time(const Time& time, const EventTracker& tracker, State& state, Vehicle& vehicle) const
 {
-    gtl::btree_map<std::string, std::vector<Date>> eventTimes;
-    for (const auto& tracker : _eventTrackers) {
-        std::vector<Date> dates;
-        for (const auto& time : tracker.detectionTimes) {
-            dates.push_back(epoch + time);
+    // Settings. Hard coding is fine
+    static const Time ZERO_CROSSING_TOL      = 1.0 * s; //!< The tolerance for detecting zero crossings.
+    static const unsigned MAX_BISECTION_ITER = 100;     //!< The maximum number of iterations for the bisection method.
+
+    // Setup
+    const Event& event             = tracker.event;
+    const EventDirection direction = event.get_event_direction();
+    const bool catchRising         = (direction == EventDirection::RISING || direction == EventDirection::ANY);
+    const bool catchFalling        = (direction == EventDirection::FALLING || direction == EventDirection::ANY);
+
+    // Bisection method to find the zero-crossing time
+    Time lowerBound = tracker.previousTime;
+    Time upperBound = time;
+    unsigned iter   = 0;
+    while (upperBound - lowerBound > ZERO_CROSSING_TOL && iter < MAX_BISECTION_ITER) {
+        const Time midPoint = (lowerBound + upperBound) / 2.0;
+
+        // Interpolate state at midPoint
+        const State midState = state.interpolate(midPoint);
+
+        // Measure event at midPoint
+        const Unitless midValue = event.measure_event(midPoint, midState, vehicle);
+
+        if (midValue == 0.0) {
+            return midPoint; // Exact zero found
         }
-        eventTimes[tracker.event.get_name()] = dates;
+        else if ((catchRising && midValue < 0.0) || (catchFalling && midValue > 0.0)) {
+            lowerBound = midPoint; // Zero is in the upper half
+        }
+        else {
+            upperBound = midPoint; // Zero is in the lower half
+        }
+        ++iter;
     }
-    return eventTimes;
+
+    if (iter >= MAX_BISECTION_ITER) {
+        std::cerr << "Warning: Maximum bisection iterations reached while finding zero-crossing time of "
+                  << event.get_name() << ". Returning midpoint as best estimate.\n";
+    }
+
+    // Round to seconds to avoid numerical issues
+    return round<s>((lowerBound + upperBound) / 2.0); // Return midpoint as the best estimate of the zero-crossing time
 }
 
 } // namespace astro

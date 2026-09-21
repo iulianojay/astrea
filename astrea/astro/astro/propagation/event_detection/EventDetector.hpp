@@ -113,7 +113,7 @@ class EventDetector {
     std::vector<EventTracker> _eventTrackers; //!< The list of Event trackers.
 
     /**
-     * @brief Detects an event for a given time and value.
+     * @brief Detects an event zero-crossing for a given time and value.
      *
      * @param time The current time.
      * @param value The current value.
@@ -121,7 +121,7 @@ class EventDetector {
      * @return true If the event was detected.
      * @return false If the event was not detected.
      */
-    bool detect_event(const Time& time, const Unitless& value, EventTracker& tracker) const;
+    bool detect_zero_crossing(const Time& time, const Unitless& value, EventTracker& tracker) const;
 };
 
 } // namespace astro
