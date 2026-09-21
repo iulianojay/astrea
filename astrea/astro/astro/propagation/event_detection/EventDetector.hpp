@@ -43,6 +43,7 @@ class EventDetector {
         bool firstMeasurement;         //!< Whether this is the first measurement for the Event.
         Time previousTime;             //!< The previous time the Event was measured.
         Unitless previousValue;        //!< The previous value the Event was measured at.
+        State previousState;           //!< The previous state of the Vehicle when the Event was measured.
         std::set<Time> detectionTimes; //!< The times at which the Event was detected.
     };
 

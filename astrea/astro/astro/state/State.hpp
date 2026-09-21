@@ -320,6 +320,17 @@ class State {
      */
     bool has_user_defined_state() const { return _userDefinedState.has_value(); }
 
+    /**
+     * @brief Interpolates the state to a target time using linear interpolation.
+     *
+     * @param thisTime The current time of the state.
+     * @param otherTime The time of the other state to interpolate with.
+     * @param other The other state to interpolate with.
+     * @param targetTime The target time to interpolate to.
+     * @return State The interpolated state at the target time.
+     */
+    State interpolate(const Time& thisTime, const Time& otherTime, const State& other, const Time& targetTime) const;
+
   private:
     OrbitalElements _elements; //!< The orbital elements of the state, defining the shape and attitude of the orbit.
     Date _epoch; //!< The epoch of the state, representing the time at which the orbital elements are defined.

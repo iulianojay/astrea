@@ -91,6 +91,7 @@ bool EventDetector::detect_events(const Time& time, State& state, Vehicle& vehic
         // Update the event tracker with the latest time and vehicle data
         tracker.previousTime  = eventTime;
         tracker.previousValue = value;
+        tracker.previousState = state;
     }
     return isTerminal;
 }
@@ -133,19 +134,23 @@ Time EventDetector::find_zero_crossing_time(const Time& time, const EventTracker
 
     // Setup
     const Event& event             = tracker.event;
+    const State& previousState     = tracker.previousState;
+    const Time previousTime        = tracker.previousTime;
     const EventDirection direction = event.get_event_direction();
     const bool catchRising         = (direction == EventDirection::RISING || direction == EventDirection::ANY);
     const bool catchFalling        = (direction == EventDirection::FALLING || direction == EventDirection::ANY);
 
     // Bisection method to find the zero-crossing time
-    Time lowerBound = tracker.previousTime;
+    Time lowerBound = previousTime;
     Time upperBound = time;
     unsigned iter   = 0;
     while (upperBound - lowerBound > ZERO_CROSSING_TOL && iter < MAX_BISECTION_ITER) {
         const Time midPoint = (lowerBound + upperBound) / 2.0;
 
-        // Interpolate state at midPoint
-        const State midState = state.interpolate(midPoint);
+        // Interpolate state at midPoint - this should be valid since the integrator is only stepping between states if
+        // they're valid to linearize under whatever stepping scheme. It won't be perfect, but it's miles better than
+        // iterating directly with the integrator steppers (which would be a nightmare to implement and would be very slow).
+        const State midState = previousState.interpolate(previousTime, time, state, midPoint);
 
         // Measure event at midPoint
         const Unitless midValue = event.measure_event(midPoint, midState, vehicle);
