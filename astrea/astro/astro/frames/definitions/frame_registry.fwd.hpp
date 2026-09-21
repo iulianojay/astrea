@@ -18,6 +18,9 @@
  */
 #pragma once
 
+#include <astro/frames/definitions/axes.hpp>
+#include <astro/systems/celestial_bodies.hpp>
+
 #include <tuple>
 
 namespace astrea {
@@ -50,6 +53,31 @@ namespace astro {
 template <typename = void>
 struct ExtraRegisteredFrames {
     using type = std::tuple<>;
+};
+
+/**
+ * @brief Compile-time selection of astrea's primary inertial frame.
+ *
+ * Users may specialize this trait before including headers that depend on
+ * frames::primary (for example frame_registry.hpp / astro.hpp).
+ *
+ * Example:
+ * @code
+ * #include <astro/frames/definitions/frame_registry.fwd.hpp>
+ *
+ * namespace astrea::astro {
+ *   template <>
+ *   struct PrimaryFrameSelection<> {
+ *       static constexpr auto body = planets::Mars;
+ *       static constexpr auto axis = axes::j2000;
+ *   };
+ * }
+ * @endcode
+ */
+template <typename = void>
+struct PrimaryFrameSelection {
+    static constexpr auto body = planets::Earth;
+    static constexpr auto axis = axes::icrf;
 };
 
 } // namespace astro

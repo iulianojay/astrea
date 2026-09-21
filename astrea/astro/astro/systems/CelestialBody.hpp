@@ -24,6 +24,7 @@
 #include <units/units.hpp>
 
 #include <astro/astro.fwd.hpp>
+#include <astro/frames/definitions/axes.hpp>
 #include <astro/frames/framework/Axis.hpp>
 #include <astro/frames/framework/BodyFixedFrame.hpp>
 #include <astro/frames/framework/CartesianVector.hpp>
