@@ -353,12 +353,10 @@ class Equinoctial {
      * @param thisTime Time of the current state
      * @param otherTime Time of the other state
      * @param other Another Equinoctial object to interpolate with
-     * @param mu The gravitational parameter to use for the interpolation
      * @param targetTime Time of the target state
      * @return Equinoctial Interpolated Equinoctial state vector.
      */
-    Equinoctial
-        interpolate(const Time& thisTime, const Time& otherTime, const Equinoctial<_frame_>& other, const GravParam& mu, const Time& targetTime) const;
+    Equinoctial interpolate(const Time& thisTime, const Time& otherTime, const Equinoctial<_frame_>& other, const Time& targetTime) const;
 
   private:
     Distance _semilatus;  //!< Semilatus rectum of the orbit

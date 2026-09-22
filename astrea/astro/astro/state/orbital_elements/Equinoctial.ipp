@@ -239,7 +239,7 @@ Equinoctial<_frame_>& Equinoctial<_frame_>::operator/=(const Unitless& divisor)
 
 template <IsFrame auto _frame_>
 Equinoctial<_frame_>
-    Equinoctial<_frame_>::interpolate(const Time& thisTime, const Time& otherTime, const Equinoctial<_frame_>& other, const GravParam& mu, const Time& targetTime) const
+    Equinoctial<_frame_>::interpolate(const Time& thisTime, const Time& otherTime, const Equinoctial<_frame_>& other, const Time& targetTime) const
 {
     const std::array<Time, 2> times = { thisTime, otherTime };
     const Distance interpSemimajor =

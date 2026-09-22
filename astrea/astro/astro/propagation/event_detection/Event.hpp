@@ -27,6 +27,12 @@
 namespace astrea {
 namespace astro {
 
+enum class EventDirection {
+    RISING,  //!< Event is triggered when the value crosses zero in the positive direction.
+    FALLING, //!< Event is triggered when the value crosses zero in the negative direction.
+    ANY      //!< Event is triggered when the value crosses zero in either direction.
+};
+
 /**
  * @brief Concept to check if a type has a method to detect an event.
  *
@@ -45,6 +51,16 @@ concept HasMeasureEvent = requires(const T event, const Time& time, const State&
 template <typename T>
 concept HasIsTerminal = requires(const T event) {
     { event.is_terminal() } -> std::same_as<bool>;
+};
+
+/**
+ * @brief Concept to check the direction of an event.
+ *
+ * @tparam T The type to check.
+ */
+template <typename T>
+concept HasGetEventDirection = requires(const T event) {
+    { event.get_event_direction() } -> std::same_as<EventDirection>;
 };
 
 /**
@@ -106,6 +122,13 @@ struct EventInnerBase {
     virtual Unitless measure_event(const Time& time, const State& state, const Vehicle& vehicle) const = 0;
 
     /**
+     * @brief Gets the direction of the Event.
+     *
+     * @return EventDirection The direction of the Event.
+     */
+    virtual EventDirection get_event_direction() const = 0;
+
+    /**
      * @brief Checks if the Event is a terminal Event.
      *
      * @return true If the Event is a terminal Event.
@@ -122,6 +145,14 @@ struct EventInnerBase {
      * @return Vehicle The Vehicle after the Event has been triggered.
      */
     virtual void trigger_action(const Time& time, State& state, Vehicle& vehicle) const = 0;
+
+    /**
+     * @brief Checks if the Event has a trigger action.
+     *
+     * @return true If the Event has a trigger action.
+     * @return false If the Event does not have a trigger action.
+     */
+    virtual bool has_trigger_action() const = 0;
 
     /**
      * @brief Clones the Event inner implementation.
@@ -235,6 +266,41 @@ struct EventInner final : public EventInnerBase {
     bool is_terminal() const override final { return _value.is_terminal(); }
 
     /**
+     * @brief Gets the direction of the Event.
+     *
+     * @return EventDirection The direction of the Event.
+     */
+    EventDirection get_event_direction() const override final { return get_event_direction_impl(_value); }
+
+    /**
+     * @brief Helper function to get the event direction of the Event implementation.
+     *
+     * @tparam U The type of the Event implementation.
+     * @param value The Event implementation instance.
+     * @return EventDirection The direction of the Event.
+     */
+    template <typename U>
+        requires(HasGetEventDirection<U>)
+    EventDirection get_event_direction_impl(const U& value) const
+    {
+        return value.get_event_direction();
+    }
+
+    /**
+     * @brief Helper function to get the event direction of the Event without a get_event_direction method.
+     *
+     * @tparam U The type of the Event implementation.
+     * @param value The Event implementation instance.
+     * @return EventDirection The direction of the Event.
+     */
+    template <typename U>
+        requires(!HasGetEventDirection<U>)
+    EventDirection get_event_direction_impl(const U& value) const
+    {
+        return EventDirection::ANY;
+    }
+
+    /**
      * @brief Triggers the Event for a Vehicle.
      *
      * @param time The current time in the integration.
@@ -278,6 +344,44 @@ struct EventInner final : public EventInnerBase {
         requires(!HasTriggerEvent<U>)
     void trigger_action_impl(const U& value, const Time& time, State& state, Vehicle& vehicle) const
     {
+    }
+
+    /**
+     * @brief Checks if the Event has a trigger action.
+     *
+     * @return true If the Event has a trigger action.
+     * @return false If the Event does not have a trigger action.
+     */
+    bool has_trigger_action() const override final { return has_trigger_action_impl(_value); }
+
+    /**
+     * @brief Implementation of the has_trigger_action function for an Event with a trigger.
+     *
+     * @tparam U The type of the Event implementation.
+     * @param value The Event implementation instance.
+     * @return true If the Event has a trigger action.
+     * @return false If the Event does not have a trigger action.
+     */
+    template <typename U>
+        requires(HasTriggerEvent<U>)
+    bool has_trigger_action_impl(const U& value) const
+    {
+        return true;
+    }
+
+    /**
+     * @brief Implementation of the has_trigger_action function for an Event without a trigger.
+     *
+     * @tparam U The type of the Event implementation.
+     * @param value The Event implementation instance.
+     * @return true If the Event has a trigger action.
+     * @return false If the Event does not have a trigger action.
+     */
+    template <typename U>
+        requires(!HasTriggerEvent<U>)
+    bool has_trigger_action_impl(const U& value) const
+    {
+        return false;
     }
 
     /**
@@ -451,6 +555,13 @@ class Event {
     bool is_terminal() const { return ptr()->is_terminal(); }
 
     /**
+     * @brief Gets the direction of the Event.
+     *
+     * @return EventDirection The direction of the Event.
+     */
+    EventDirection get_event_direction() const { return ptr()->get_event_direction(); }
+
+    /**
      * @brief Triggers the Event for a Vehicle.
      *
      * @param time The current time in the integration.
@@ -462,6 +573,14 @@ class Event {
     {
         return ptr()->trigger_action(time, state, vehicle);
     }
+
+    /**
+     * @brief Checks if the Event has a trigger action.
+     *
+     * @return true If the Event has a trigger action.
+     * @return false If the Event does not have a trigger action.
+     */
+    bool has_trigger_action() const { return ptr()->has_trigger_action(); }
 
     /**
      * @brief Gets the name of the Event.

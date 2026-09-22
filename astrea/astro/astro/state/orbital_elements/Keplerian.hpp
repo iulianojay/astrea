@@ -398,11 +398,10 @@ class Keplerian {
      * @param thisTime The time of the first Keplerian state vector.
      * @param otherTime The time of the second Keplerian state vector.
      * @param other The second Keplerian state vector to interpolate with.
-     * @param mu The gravitational parameter of the central body.
      * @param targetTime The target time for interpolation.
      * @return Keplerian Interpolated Keplerian state vector at the target time.
      */
-    Keplerian interpolate(const Time& thisTime, const Time& otherTime, const Keplerian<_frame_>& other, const GravParam& mu, const Time& targetTime) const;
+    Keplerian interpolate(const Time& thisTime, const Time& otherTime, const Keplerian<_frame_>& other, const Time& targetTime) const;
 
     /**
      * @brief Converts the Keplerian state vector to a vector of unitless values.

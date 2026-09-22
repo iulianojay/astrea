@@ -416,8 +416,9 @@ class Integrator {
      * @param time The current time in the integration.
      * @param state The current state of the vehicle represented as orbital elements.
      * @param vehicle The vehicle whose state is being integrated.
+     * @return EventDetectionResult The result of the event detection, indicating if a terminal event occurred or if an event was triggered.
      */
-    bool check_event(const Time& time, State& state, Vehicle& vehicle);
+    EventDetectionResult check_event(Time& time, State& state, Vehicle& vehicle);
 
     /**
      * @brief Validate the current state and time to ensure they are not NaN or infinite.

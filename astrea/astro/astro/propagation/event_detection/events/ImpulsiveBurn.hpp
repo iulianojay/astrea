@@ -25,6 +25,7 @@
 #include <astro/astro.fwd.hpp>
 #include <astro/frames/definitions.hpp>
 #include <astro/frames/definitions/dynamic_frames/tags.hpp>
+#include <astro/propagation/event_detection/Event.hpp>
 #include <astro/utilities/conversions.hpp>
 
 namespace astrea {
@@ -194,6 +195,13 @@ class ImpulsiveBurn {
      * @param vehicle The Vehicle to trigger the action on.
      */
     void trigger_action(const Time& time, State& state, Vehicle& vehicle) const;
+
+    /**
+     * @brief Gets the direction of the Event.
+     *
+     * @return EventDirection The direction of the Event.
+     */
+    EventDirection get_event_direction() const { return EventDirection::RISING; }
 
     /**
      * @brief Checks if the Event is a terminal Event.

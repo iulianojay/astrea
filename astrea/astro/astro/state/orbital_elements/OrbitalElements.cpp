@@ -132,7 +132,7 @@ std::vector<double> OrbitalElements::force_to_double_vector() const
 }
 
 OrbitalElements
-    OrbitalElements::interpolate(const Time& thisTime, const Time& otherTime, const OrbitalElements& other, const GravParam& mu, const Time& targetTime) const
+    OrbitalElements::interpolate(const Time& thisTime, const Time& otherTime, const OrbitalElements& other, const Time& targetTime) const
 {
     return std::visit(
         [&](const auto& x) -> OrbitalElements {
@@ -140,7 +140,7 @@ OrbitalElements
                 throw_mismatched_types();
             }
             const auto& y = std::get<std::remove_cvref_t<decltype(x)>>(other._elements);
-            return x.interpolate(thisTime, otherTime, y, mu, targetTime);
+            return x.interpolate(thisTime, otherTime, y, targetTime);
         },
         _elements
     );

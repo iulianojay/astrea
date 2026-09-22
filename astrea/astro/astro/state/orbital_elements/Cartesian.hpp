@@ -410,11 +410,10 @@ class Cartesian {
      * @param thisTime Time of the current state
      * @param otherTime Time of the other state
      * @param other Other Cartesian state to interpolate with
-     * @param mu Gravitational parameter of the central body
      * @param targetTime Target time for interpolation
      * @return Cartesian Interpolated Cartesian state at the target time.
      */
-    Cartesian interpolate(const Time& thisTime, const Time& otherTime, const Cartesian<_frame_>& other, const GravParam& mu, const Time& targetTime) const;
+    Cartesian interpolate(const Time& thisTime, const Time& otherTime, const Cartesian<_frame_>& other, const Time& targetTime) const;
 
   private:
     RadiusVector<_frame_> _r;   //!< Position vector
