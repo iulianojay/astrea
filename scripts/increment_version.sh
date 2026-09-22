@@ -9,9 +9,14 @@ VNUM2=$(echo "$VERSION" | cut -d"." -f2)
 VNUM3=$(echo "$VERSION" | cut -d"." -f3)
 VNUM1=`echo $VNUM1 | sed 's/v//'`
 
-# Check for #major or #minor in commit message and increment the relevant version number
-MAJOR=`git log --format=%B -n 1 HEAD | grep '#major'`
-MINOR=`git log --format=%B -n 1 HEAD | grep '#minor'`
+# Check commit message markers and increment the relevant version number.
+# Supported markers (case-insensitive):
+#   Major: [MAJOR], [BREAKING]
+#   Minor: [MINOR], [FEATURE], [IMPROVEMENT]
+#   Patch: [PATCH], [BUGFIX], [FIX], [HOTFIX], [CHORE], [DOCS], [REFACTOR], [PERF], [TEST], [CI]
+COMMIT_MSG="$(git log --format=%B -n 1 HEAD)"
+MAJOR=$(printf '%s\n' "$COMMIT_MSG" | grep -Eiq '\[(major|breaking)\]' && echo 1 || true)
+MINOR=$(printf '%s\n' "$COMMIT_MSG" | grep -Eiq '\[(minor|feature|improvement)\]' && echo 1 || true)
 
 if [ "$MAJOR" ]; then
     echo "Update major version"
