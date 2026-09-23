@@ -15,7 +15,12 @@ name: Validate PR
 
 on:
   pull_request:
-    types: [opened, edited, synchronize, reopened]
+    types:
+      - opened
+      - reopened
+      - synchronize
+      - edited
+      - ready_for_review
 
 permissions:
   contents: read
@@ -27,7 +32,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v7
+          uses: actions/checkout@v7
 
       - name: Validate PR title markers and issue reference
         env:
