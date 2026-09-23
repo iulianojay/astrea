@@ -15,7 +15,7 @@ name: Update Changelog
 
 on:
   pull_request:
-    types: [opened, reopened, synchronize, edited, labeled, unlabeled]
+    types: [opened]
     branches: [ "main" ]
 
 jobs:
@@ -30,7 +30,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           ref: ${{ github.event.pull_request.head.ref }}
           token: ${{ secrets.GITHUB_TOKEN }}
