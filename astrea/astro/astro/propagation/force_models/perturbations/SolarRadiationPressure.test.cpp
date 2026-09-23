@@ -18,7 +18,7 @@
 
 #include <astro/platforms/Vehicle.hpp>
 #include <astro/platforms/vehicles/Spacecraft.hpp>
-#include <astro/propagation/force_models/NBodyForce.hpp>
+#include <astro/propagation/force_models/perturbations/SolarRadiationPressure.hpp>
 #include <astro/state/orbital_elements/Cartesian.hpp>
 #include <astro/systems/system_utilities.hpp>
 #include <astro/time/Date.hpp>
@@ -32,9 +32,9 @@ using mp_units::si::unit_symbols::km;
 using mp_units::si::unit_symbols::m;
 using mp_units::si::unit_symbols::s;
 
-class NBodyForceTest : public testing::Test {
+class SolarRadiationPressureTest : public testing::Test {
   public:
-    NBodyForceTest() :
+    SolarRadiationPressureTest() :
         epoch("2020-02-18 15:08:47.23847")
     {
     }
@@ -51,11 +51,11 @@ class NBodyForceTest : public testing::Test {
         sat.set_lift_area(1.0 * m * m);
     }
 
-    const Unitless REL_TOL = 1.0e-5 * one;
+    const Unitless REL_TOL = 1.0e-6 * one;
 
     Spacecraft sat;
     Date epoch;
-    NBodyForce<planets::Earth, moons::Moon, star::Sun> nBodyForce;
+    SolarRadiationPressure srpForce;
 };
 
 
@@ -66,46 +66,46 @@ int main(int argc, char** argv)
 }
 
 
-TEST_F(NBodyForceTest, DefaultConstructor) { ASSERT_NO_THROW(NBodyForce<>()); }
+TEST_F(SolarRadiationPressureTest, DefaultConstructor) { ASSERT_NO_THROW(SolarRadiationPressure()); }
 
 // Vallado, Ex. 8.5
-TEST_F(NBodyForceTest, ComputeForceValladoEx85)
+TEST_F(SolarRadiationPressureTest, ComputeForceValladoEx85)
 {
-    // These two won't match exactly because of numerous numerical differences between this code and Vallado's. Both
-    // results have a similar magnitude and direction, but the values can be different up to 25%. Given that these tests
-    // are meant to be pragmatically approachable estimations, not exact reproductions of Vallado's work, and since
-    // matching them exactly is impractical, the expected values are taken from a run of this code, not Vallado's.
+    // These two won't match exactly because Vallado uses 4.56e-6 as average SRP and we use 4.556485540406757e-6 scaled
+    // to the ratio of 1 AU and the distance from the sat to the Sun. With these values matched, the results are within
+    // 10%. Given the large number of assumptions in this SRP model, the simplicity of the used approximations, and
+    // other numerical differences between this code and Vallado's, this is close enough.
+    // Since matching them exactly is impractical, the expected values are taken from a run of this code, not Vallado's.
 
     Cartesian<frames::earth::icrf> cart{ -605.790796 * km,   -5870.230422 * km,  3493.051916 * km,
                                          -1.568251 * km / s, -3.702348 * km / s, -6.479485 * km / s };
     State state(cart, epoch);
-    const auto [force, torque]                          = nBodyForce.compute_perturbation(state, Vehicle(sat));
+    const auto [force, torque]                          = srpForce.compute_perturbation(state, Vehicle(sat));
     const AccelerationVector<frames::earth::icrf> accel = force / sat.get_mass(state);
+
+    // // Vallado's expected results
+    // const AccelerationVector<frames::earth::icrf> expected{ -1.8791e-10 * km / (s * s),
+    //                                                         1.0298e-10 * km / (s * s),
+    //                                                         4.4651e-11 * km / (s * s) };
 
 #if defined(ASTREA_BUILD_EARTH_EPHEMERIS) && defined(ASTREA_BUILD_SUN_EPHEMERIS)
 
-    // Vallado's expected result:
-    // const AccelerationVector<frames::earth::icrf> expected{ (1.8664e-10 + 9.0459e-11) * km / (s * s),
-    //                                                         (1.5243e-10 + -4.3052e-10) * km / (s * s),
-    //                                                         (-1.8187e-10 + -7.0011e-10) * km / (s * s) };
-
-
-    // These values come from a run of this code, not Vallado's, but they're close
-    const AccelerationVector<frames::earth::icrf> expected{ 2.771e-10 * km / (s * s),
-                                                            -2.78014e-10 * km / (s * s),
-                                                            -8.81891e-10 * km / (s * s) };
+    // These values come from a run of this code, not Vallado's. They're within ~20% of Vallado's
+    const AccelerationVector<frames::earth::icrf> expected{ -1.6020954749490711e-10 * km / (s * s),
+                                                            8.7799006711875608e-11 * km / (s * s),
+                                                            3.8068764763680937e-11 * km / (s * s) };
 
 #elif !defined(ASTREA_BUILD_EARTH_EPHEMERIS) && !defined(ASTREA_BUILD_SUN_EPHEMERIS)
 
-    // These are big bad
-    const AccelerationVector<frames::earth::icrf> expected{ 6.391114272e-10 * km / (s * s),
-                                                            -1.4610138560e-10 * km / (s * s),
-                                                            -8.216647495e-10 * km / (s * s) };
+    // These are kinda bad. Pretty close to ephemeris values, but still off Vallado's
+    const AccelerationVector<frames::earth::icrf> expected{ -1.59324328e-10 * km / (s * s),
+                                                            8.92084894e-11 * km / (s * s),
+                                                            3.86793674e-11 * km / (s * s) };
 #endif
 
     const Acceleration expectedNorm = expected.norm();
     const Acceleration accelNorm    = accel.norm();
 
     ASSERT_TRUE(nearly_equal(accel, expected, REL_TOL));
-    ASSERT_TRUE(math::nearly_equal(accelNorm, expectedNorm, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(accelNorm, expectedNorm, REL_TOL * 1e1));
 }

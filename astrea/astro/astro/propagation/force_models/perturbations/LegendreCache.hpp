@@ -84,4 +84,4 @@ class LegendreCache {
 } // namespace astro
 } // namespace astrea
 
-#include <astro/propagation/force_models/LegendreCache.ipp>
+#include <astro/propagation/force_models/perturbations/LegendreCache.ipp>

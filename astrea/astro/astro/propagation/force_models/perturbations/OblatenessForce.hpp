@@ -25,8 +25,8 @@
 #include <units/units.hpp>
 
 #include <astro/astro.fwd.hpp>
-#include <astro/propagation/force_models/LegendreCache.hpp>
 #include <astro/propagation/force_models/PerturbingForce.hpp>
+#include <astro/propagation/force_models/perturbations/LegendreCache.hpp>
 
 namespace astrea {
 namespace astro {
@@ -82,4 +82,4 @@ class OblatenessForce : public PerturbingForce {
 } // namespace astro
 } // namespace astrea
 
-#include <astro/propagation/force_models/OblatenessForce.ipp>
+#include <astro/propagation/force_models/perturbations/OblatenessForce.ipp>

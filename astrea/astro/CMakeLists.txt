@@ -40,7 +40,7 @@ set(ASTRO_SOURCES
     ${ASTRO_BASE}/propagation/event_detection/events/TurnThrustersOff.cpp
 
     ${ASTRO_BASE}/propagation/force_models/ForceModel.cpp
-    ${ASTRO_BASE}/propagation/force_models/SolarRadiationPressure.cpp
+    ${ASTRO_BASE}/propagation/force_models/perturbations/SolarRadiationPressure.cpp
     
     ${ASTRO_BASE}/propagation/force_models/space_weather/atmosphere/HarrisPriester.cpp
     ${ASTRO_BASE}/propagation/force_models/space_weather/atmosphere/JacchiaRoberts.cpp
@@ -137,15 +137,15 @@ set(ASTRO_HEADERS
     ${ASTRO_BASE}/propagation/event_detection/events/TurnThrustersOn.hpp
     ${ASTRO_BASE}/propagation/event_detection/events/TurnThrustersOff.hpp
 
-    ${ASTRO_BASE}/propagation/force_models/AtmosphericForce.hpp
+    ${ASTRO_BASE}/propagation/force_models/perturbations/AtmosphericForce.hpp
     ${ASTRO_BASE}/propagation/force_models/PerturbingForce.hpp
     ${ASTRO_BASE}/propagation/force_models/ForceModel.hpp
-    ${ASTRO_BASE}/propagation/force_models/LegendreCache.hpp
-    ${ASTRO_BASE}/propagation/force_models/LegendreCache.ipp
-    ${ASTRO_BASE}/propagation/force_models/NBodyForce.hpp
-    ${ASTRO_BASE}/propagation/force_models/OblatenessForce.hpp
-    ${ASTRO_BASE}/propagation/force_models/OblatenessForce.ipp
-    ${ASTRO_BASE}/propagation/force_models/SolarRadiationPressure.hpp
+    ${ASTRO_BASE}/propagation/force_models/perturbations/LegendreCache.hpp
+    ${ASTRO_BASE}/propagation/force_models/perturbations/LegendreCache.ipp
+    ${ASTRO_BASE}/propagation/force_models/perturbations/NBodyForce.hpp
+    ${ASTRO_BASE}/propagation/force_models/perturbations/OblatenessForce.hpp
+    ${ASTRO_BASE}/propagation/force_models/perturbations/OblatenessForce.ipp
+    ${ASTRO_BASE}/propagation/force_models/perturbations/SolarRadiationPressure.hpp
 
     ${ASTRO_BASE}/propagation/force_models/space_weather/atmosphere/JacchiaRoberts.hpp
     ${ASTRO_BASE}/propagation/force_models/space_weather/atmosphere/HarrisPriester.hpp

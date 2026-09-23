@@ -21,7 +21,7 @@
 
 #include <astro/platforms/Vehicle.hpp>
 #include <astro/platforms/vehicles/Spacecraft.hpp>
-#include <astro/propagation/force_models/AtmosphericForce.hpp>
+#include <astro/propagation/force_models/perturbations/AtmosphericForce.hpp>
 #include <astro/propagation/force_models/space_weather/SpaceWeatherData.hpp>
 #include <astro/propagation/force_models/space_weather/SpaceWeatherProvider.hpp>
 #include <astro/state/orbital_elements/Cartesian.hpp>

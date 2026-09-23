@@ -16,7 +16,7 @@
 #include <math/operations.hpp>
 #include <units/units.hpp>
 
-#include <astro/propagation/force_models/LegendreCache.hpp>
+#include <astro/propagation/force_models/perturbations/LegendreCache.hpp>
 
 using namespace astrea;
 using namespace astro;
