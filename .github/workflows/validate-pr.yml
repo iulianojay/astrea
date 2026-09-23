@@ -26,6 +26,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+
       - name: Validate PR title markers and issue reference
         env:
           PR_TITLE: ${{ github.event.pull_request.title }}
