@@ -8,8 +8,8 @@ updates:
       timezone: "Europe/Helsinki"
     target-branch: "main"
     commit-message:
-      prefix: "[dependabot]"
-      prefix-development: "[dependabot]"
+      prefix: "[CHORE]"
+      prefix-development: "[CHORE]"
     target-branch: "main"
     groups:
       all-deps:
@@ -23,8 +23,8 @@ updates:
       timezone: "Europe/Helsinki"
     target-branch: "main"
     commit-message:
-      prefix: "[dependabot]"
-      prefix-development: "[dependabot]"
+      prefix: "[CHORE]"
+      prefix-development: "[CHORE]"
     target-branch: "main"
     groups:
       all-deps:
@@ -38,8 +38,8 @@ updates:
       timezone: "Europe/Helsinki"
     target-branch: "main"
     commit-message:
-      prefix: "[dependabot]"
-      prefix-development: "[dependabot]"
+      prefix: "[CHORE]"
+      prefix-development: "[CHORE]"
     target-branch: "main"
     groups:
       all-deps:

@@ -19,6 +19,7 @@ on:
 
 permissions:
   contents: read
+  pull-requests: write
 
 jobs:
   validate-title:
@@ -28,25 +29,9 @@ jobs:
       - name: Validate PR title markers and issue reference
         env:
           PR_TITLE: ${{ github.event.pull_request.title }}
-        run: |
-          set -euo pipefail
-
-          echo "Validating PR title: $PR_TITLE"
-
-          # Required format:
-          #   [MARKER] short description (#123)
-          # or
-          #   [MARKER] short description #123
-          # Allowed markers come from scripts/increment_version.sh.
-          title_regex='^\[(MAJOR|BREAKING|MINOR|FEATURE|IMPROVEMENT|PATCH|BUGFIX|FIX|HOTFIX|CHORE|DOCS|REFACTOR|PERF|TEST|CI)\].*(\(#[0-9]+\)|#[0-9]+)$'
-
-          if ! printf '%s\n' "$PR_TITLE" | grep -Eiq "$title_regex"; then
-            echo "PR title validation failed."
-            echo "Expected format: [MARKER] description (#123)"
-            echo "Also accepted: [MARKER] description #123"
-            echo "Use (#0) when there is no associated issue."
-            echo "Allowed markers: [MAJOR], [BREAKING], [MINOR], [FEATURE], [IMPROVEMENT], [PATCH], [BUGFIX], [FIX], [HOTFIX], [CHORE], [DOCS], [REFACTOR], [PERF], [TEST], [CI]"
-            exit 1
-          fi
-
-          echo "PR title is valid."
+          PR_AUTHOR: ${{ github.event.pull_request.user.login }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          REPO: ${{ github.repository }}
+          API_URL: ${{ github.api_url }}
+          GITHUB_TOKEN: ${{ github.token }}
+        run: bash scripts/validate_pr_title.sh
