@@ -6,3 +6,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+### Changed
+- [HOTFIX] Changelog workflow now pushes commit to branch with PR  (#0) ([#210](../../pull/210))
