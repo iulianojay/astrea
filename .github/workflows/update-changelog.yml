@@ -14,32 +14,16 @@
 name: Update Changelog
 
 on:
-  workflow_dispatch:
-    inputs:
-      pr_number:
-        description: "PR number (without #)"
-        required: true
-        type: string
-      pr_title:
-        description: "PR title"
-        required: true
-        type: string
-      pr_labels:
-        description: "Comma-separated PR labels"
-        required: false
-        default: ""
-        type: string
-  pull_request_target:
-    types: [closed]
+  pull_request:
+    types: [opened, reopened, synchronize, edited, labeled, unlabeled]
     branches: [ "main" ]
 
 jobs:
   update-changelog:
     if: |
-      github.event_name == 'workflow_dispatch' ||
-      (github.event_name == 'pull_request_target' &&
-       github.event.pull_request.base.ref == 'main' &&
-       github.event.pull_request.merged == true)
+      github.event.pull_request.base.ref == 'main' &&
+      github.event.pull_request.head.repo.full_name == github.repository &&
+      github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -48,7 +32,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          ref: main
+          ref: ${{ github.event.pull_request.head.ref }}
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Mark repository as safe
@@ -61,14 +45,14 @@ jobs:
 
       - name: Update Changelog
         env:
-          PR_NUMBER: ${{ github.event_name == 'workflow_dispatch' && inputs.pr_number || github.event.pull_request.number }}
-          PR_TITLE: ${{ github.event_name == 'workflow_dispatch' && inputs.pr_title || github.event.pull_request.title }}
-          PR_LABELS: ${{ github.event_name == 'workflow_dispatch' && inputs.pr_labels || join(github.event.pull_request.labels.*.name, ',') }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          PR_TITLE: ${{ github.event.pull_request.title }}
+          PR_LABELS: ${{ join(github.event.pull_request.labels.*.name, ',') }}
         run: python3 scripts/update_changelog.py
 
       - name: Commit and push
         run: |
           git add CHANGELOG.md
           git diff --cached --quiet && echo "No changes to commit" && exit 0
-          git commit -m "docs: update changelog for PR #${{ github.event_name == 'workflow_dispatch' && inputs.pr_number || github.event.pull_request.number }} [skip ci]"
-          git push
+          git commit -m "docs: update changelog for PR #${{ github.event.pull_request.number }} [skip ci]"
+          git push origin HEAD:${{ github.event.pull_request.head.ref }}
