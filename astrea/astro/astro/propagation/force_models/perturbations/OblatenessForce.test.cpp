@@ -18,7 +18,7 @@
 
 #include <astro/platforms/Vehicle.hpp>
 #include <astro/platforms/vehicles/Spacecraft.hpp>
-#include <astro/propagation/force_models/OblatenessForce.hpp>
+#include <astro/propagation/force_models/perturbations/OblatenessForce.hpp>
 #include <astro/state/orbital_elements/Cartesian.hpp>
 #include <astro/systems/system_utilities.hpp>
 #include <astro/time/Date.hpp>

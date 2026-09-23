@@ -11,7 +11,7 @@
  * have received a copy of the GNU General Public License along with Astrea. If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include <astro/propagation/force_models/SolarRadiationPressure.hpp>
+#include <astro/propagation/force_models/perturbations/SolarRadiationPressure.hpp>
 
 #include <mp-units/math.h>
 #include <mp-units/systems/iau.h>
