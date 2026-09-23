@@ -21,8 +21,24 @@ on:
   workflow_dispatch:
   push:
     branches: [ "main" ]
+    paths:
+      - 'astrea/**'
+      - 'cmake/**'
+      - 'docker/**'
+      - 'CMakeLists.txt'
+      - 'Makefile'
+      - '.github/workflows/build-and-test.yml'
+      - '.github/workflows/docker-publish-devcontainer.yml'
   pull_request:
     branches: [ "main" ]
+    paths:
+      - 'astrea/**'
+      - 'cmake/**'
+      - 'docker/**'
+      - 'CMakeLists.txt'
+      - 'Makefile'
+      - '.github/workflows/build-and-test.yml'
+      - '.github/workflows/docker-publish-devcontainer.yml'
 
 jobs:
   check-docker-changes:
