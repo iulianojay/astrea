@@ -15,7 +15,7 @@ project(
     DESCRIPTION "Simple Web GUI for Astrea"
     LANGUAGES CXX
 )
-set(CMAKE_CXX_STANDARD 23)
+set(CMAKE_CXX_STANDARD 26)
 
 # Packages only for this
 CPMAddPackage(

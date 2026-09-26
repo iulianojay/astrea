@@ -25,6 +25,7 @@
 #include <astro/frames/framework/CartesianVector.hpp>
 #include <astro/frames/framework/DirectionCosineMatrix.hpp>
 #include <astro/frames/framework/frame_concepts.hpp>
+#include <astro/state/framework/ElementMatrix.hpp>
 #include <astro/types/enums.hpp>
 #include <astro/utilities/conversions.hpp>
 
@@ -83,18 +84,26 @@ constexpr std::array<int, 3> get_sequence_numbers(RotationSequence sequence)
 /**
  * @brief Concept to check if two EulerAngless are the same (same sequence type, same specific sequence, same rotation type, and same frames).
  */
-template <RotationSequence sequence_t, RotationType rotation_t, IsFrame auto _in_frame_, IsFrame auto _out_frame_, RotationSequence sequence_u, RotationType rotation_u, IsFrame auto _in_frame_u_, IsFrame auto _out_frame_u_>
+template <RotationSequence sequence_t, RotationType rotation_t, auto _in_frame_, auto _out_frame_, RotationSequence sequence_u, RotationType rotation_u, auto _in_frame_u_, auto _out_frame_u_>
 concept IsSameEulerAngles =
-    (sequence_t == sequence_u) && // Must both be the same specific sequence (e.g., ZXZ)
-    (rotation_t == rotation_u) && // Must both be the same rotation type (intrinsic or extrinsic)
+    IsFrame<decltype(_in_frame_)> &&    //
+    IsFrame<decltype(_out_frame_)> &&   //
+    IsFrame<decltype(_in_frame_u_)> &&  //
+    IsFrame<decltype(_out_frame_u_)> && //
+    (sequence_t == sequence_u) &&       // Must both be the same specific sequence (e.g., ZXZ)
+    (rotation_t == rotation_u) &&       // Must both be the same rotation type (intrinsic or extrinsic)
     std::is_same_v<decltype(_in_frame_), decltype(_in_frame_u_)> && // Must have the same input frame
     std::is_same_v<decltype(_out_frame_), decltype(_out_frame_u_)>; // Must have the same output frame
 
 /**
  * @brief Concept to check if two EulerAngless are equivalent (same sequence type, reverse specific sequence, opposite rotation type, and same frames).
  */
-template <RotationSequence sequence_t, RotationType rotation_t, IsFrame auto _in_frame_, IsFrame auto _out_frame_, RotationSequence sequence_u, RotationType rotation_u, IsFrame auto _in_frame_u_, IsFrame auto _out_frame_u_>
+template <RotationSequence sequence_t, RotationType rotation_t, auto _in_frame_, auto _out_frame_, RotationSequence sequence_u, RotationType rotation_u, auto _in_frame_u_, auto _out_frame_u_>
 concept IsEquivalentEulerAngles =
+    IsFrame<decltype(_in_frame_)> &&                    //
+    IsFrame<decltype(_out_frame_)> &&                   //
+    IsFrame<decltype(_in_frame_u_)> &&                  //
+    IsFrame<decltype(_out_frame_u_)> &&                 //
     (get_reverse_sequence(sequence_t) == sequence_u) && // Must be the reverse sequence (e.g., ZXZ vs ZXZ with reversed angles)
     (rotation_t != rotation_u) &&                       // Must be opposite rotation types (intrinsic vs extrinsic)
     std::is_same_v<decltype(_in_frame_), decltype(_in_frame_u_)> && // Must have the same input frame
@@ -107,10 +116,14 @@ concept IsEquivalentEulerAngles =
  * want to prevent implicit conversions between sequences that would lead to very non-obvious bugs. If users want to convert
  * between different sequences, they can do so explicitly through the DCM or by converting to the same rotation type and then using the reverse sequence if desired.
  */
-template <RotationSequence sequence_t, RotationType rotation_t, IsFrame auto _in_frame_, IsFrame auto _out_frame_, RotationSequence sequence_u, RotationType rotation_u, IsFrame auto _in_frame_u_, IsFrame auto _out_frame_u_>
+template <RotationSequence sequence_t, RotationType rotation_t, auto _in_frame_, auto _out_frame_, RotationSequence sequence_u, RotationType rotation_u, auto _in_frame_u_, auto _out_frame_u_>
 concept IsCompatibleEulerAngles =
-    IsSameEulerAngles<sequence_t, rotation_t, _in_frame_, _out_frame_, sequence_u, rotation_u, _in_frame_u_, _out_frame_u_> ||
-    IsEquivalentEulerAngles<sequence_t, rotation_t, _in_frame_, _out_frame_, sequence_u, rotation_u, _in_frame_u_, _out_frame_u_>;
+    IsFrame<decltype(_in_frame_)> &&    //
+    IsFrame<decltype(_out_frame_)> &&   //
+    IsFrame<decltype(_in_frame_u_)> &&  //
+    IsFrame<decltype(_out_frame_u_)> && //
+    (IsSameEulerAngles<sequence_t, rotation_t, _in_frame_, _out_frame_, sequence_u, rotation_u, _in_frame_u_, _out_frame_u_> ||
+     IsEquivalentEulerAngles<sequence_t, rotation_t, _in_frame_, _out_frame_, sequence_u, rotation_u, _in_frame_u_, _out_frame_u_>);
 
 /**
  * @brief Class representing a sequence of angles (either Euler or Tait-Bryan) for attitude transformations between frames.
@@ -530,16 +543,11 @@ class EulerAngles {
     Angle norm() const { return _angles.norm(); }
 
     /**
-     * @brief Converts the angle sequence to a vector form for use in numerical integration.
+     * @brief Converts the angle sequence to an element array form for use in numerical integration.
      *
-     * @return A std::vector of Unitless quantities representing the components of the angle sequence, in the order [first, second, third].
+     * @return An ElementMatrix of Angle quantities representing the components of the angle sequence, in the order [first, second, third].
      */
-    std::vector<double> force_to_double_vector() const
-    {
-        return { _angles[0].numerical_value_in(_angles[0].unit),
-                 _angles[1].numerical_value_in(_angles[1].unit),
-                 _angles[2].numerical_value_in(_angles[2].unit) };
-    }
+    UniformElementArray<3, Angle> force_to_element_array() const { return { _angles[0], _angles[1], _angles[2] }; }
 
     /**
      * @brief Interpolates between this angle sequence and another angle sequence at a target time.
@@ -578,24 +586,6 @@ class EulerAngles {
         _angles[0] = wrap_angle(_angles[0]);       // φ - [0, 2π)
         _angles[1] = wrap_angle_to_pi(_angles[1]); // θ - [0, π)
         _angles[2] = wrap_angle(_angles[2]);       // ψ - [0, 2π)
-    }
-
-    /**
-     * @brief Constructs an EulerAngles from a vector of Unitless quantities representing the angle components.
-     *
-     * @param vec A std::vector of Unitless quantities representing the components of the angle sequence, in the order [first, second, third].
-     * @return A new EulerAngles constructed from the given vector.
-     *
-     * @throws std::invalid_argument if the input vector does not have exactly 3 components.
-     */
-    static EulerAngles<sequence, rotation_type, _in_frame_, _out_frame_> from_double_vector(const std::vector<double>& vec)
-    {
-        using mp_units::si::unit_symbols::rad;
-
-        if (vec.size() != 3) {
-            throw std::invalid_argument("Input vector must have exactly 3 components to convert to an EulerAngles.");
-        }
-        return { vec[0] * rad, vec[1] * rad, vec[2] * rad };
     }
 };
 

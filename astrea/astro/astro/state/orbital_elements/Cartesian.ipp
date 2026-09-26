@@ -57,8 +57,12 @@ Cartesian<_frame_>::Cartesian(const Keplerian<_frame_>& elements, const GravPara
     const auto& theta = elements.get_true_anomaly();
 
     if (a == 0.0 * km) {
-        _r = { 0.0 * km, 0.0 * km, 0.0 * km };
-        _v = { 0.0 * km / s, 0.0 * km / s, 0.0 * km / s };
+        get_x()  = 0.0 * km;
+        get_y()  = 0.0 * km;
+        get_z()  = 0.0 * km;
+        get_vx() = 0.0 * km / s;
+        get_vy() = 0.0 * km / s;
+        get_vz() = 0.0 * km / s;
         return;
     }
 
@@ -83,8 +87,15 @@ Cartesian<_frame_>::Cartesian(const Keplerian<_frame_>& elements, const GravPara
     };
 
     // Inertial position and _velocity
-    _r = dcmPeri2Eci * rPeri;
-    _v = dcmPeri2Eci * vPeri;
+    const auto r = dcmPeri2Eci * rPeri;
+    const auto v = dcmPeri2Eci * vPeri;
+
+    get_x()  = r.get_x();
+    get_y()  = r.get_y();
+    get_z()  = r.get_z();
+    get_vx() = v.get_x();
+    get_vy() = v.get_y();
+    get_vz() = v.get_z();
 }
 
 template <IsFrame auto _frame_>
@@ -106,12 +117,12 @@ Cartesian<_frame_>::Cartesian(const Equinoctial<_frame_>& elements, const GravPa
 
     // Catch default/nonsense case
     if (semilatus == 0.0 * km) {
-        _r[0] = 0.0 * km;
-        _r[1] = 0.0 * km;
-        _r[2] = 0.0 * km;
-        _v[0] = 0.0 * km / s;
-        _v[1] = 0.0 * km / s;
-        _v[2] = 0.0 * km / s;
+        get_x()  = 0.0 * km;
+        get_y()  = 0.0 * km;
+        get_z()  = 0.0 * km;
+        get_vx() = 0.0 * km / s;
+        get_vy() = 0.0 * km / s;
+        get_vz() = 0.0 * km / s;
         return;
     }
 
@@ -130,14 +141,14 @@ Cartesian<_frame_>::Cartesian(const Equinoctial<_frame_>& elements, const GravPa
     const auto gamma = 1.0 / sSq * sqrt(mu / semilatus);
 
     // Radius
-    _r[0] = rOverSSq * (cosL * (1.0 + alphaSq) + twoHK * sinL);
-    _r[1] = rOverSSq * (sinL * (1.0 - alphaSq) + twoHK * cosL);
-    _r[2] = 2.0 * rOverSSq * (h * sinL - k * cosL);
+    get_x() = rOverSSq * (cosL * (1.0 + alphaSq) + twoHK * sinL);
+    get_y() = rOverSSq * (sinL * (1.0 - alphaSq) + twoHK * cosL);
+    get_z() = 2.0 * rOverSSq * (h * sinL - k * cosL);
 
     // Velocity
-    _v[0] = -gamma * (sinL * (1.0 + alphaSq) - twoHK * (cosL + f) + g * (1.0 + alphaSq));
-    _v[1] = -gamma * (cosL * (-1.0 + alphaSq) + twoHK * (sinL + g) + f * (-1.0 + alphaSq));
-    _v[2] = 2.0 * gamma * (h * cosL + k * sinL + f * h + g * k);
+    get_vx() = -gamma * (sinL * (1.0 + alphaSq) - twoHK * (cosL + f) + g * (1.0 + alphaSq));
+    get_vy() = -gamma * (cosL * (-1.0 + alphaSq) + twoHK * (sinL + g) + f * (-1.0 + alphaSq));
+    get_vz() = 2.0 * gamma * (h * cosL + k * sinL + f * h + g * k);
 }
 
 template <IsFrame auto _frame_>
@@ -172,8 +183,7 @@ Cartesian<_frame_> Cartesian<_frame_>::GEO(const GravParam& mu)
 
 template <IsFrame auto _frame_>
 Cartesian<_frame_>::Cartesian(const Cartesian<_frame_>& other) :
-    _r(other._r),
-    _v(other._v)
+    _elements(other._elements)
 {
 }
 
@@ -182,10 +192,7 @@ Cartesian<_frame_>::Cartesian(const Cartesian<_frame_>& other) :
 template <IsFrame auto _frame_>
 Cartesian<_frame_>& Cartesian<_frame_>::operator=(Cartesian<_frame_>&& other) noexcept
 {
-    if (this != &other) {
-        _r = std::move(other._r);
-        _v = std::move(other._v);
-    }
+    if (this != &other) { _elements = std::move(other._elements); }
     return *this;
 }
 
@@ -196,187 +203,81 @@ Cartesian<_frame_>& Cartesian<_frame_>::operator=(const Cartesian<_frame_>& othe
     return *this = Cartesian(other);
 }
 
-// Comparitor operators
-template <IsFrame auto _frame_>
-bool Cartesian<_frame_>::operator==(const Cartesian<_frame_>& other) const
-{
-    return (_r == other._r && _v == other._v);
-}
-
-template <IsFrame auto _frame_>
-bool Cartesian<_frame_>::operator!=(const Cartesian<_frame_>& other) const
-{
-    return !(*this == other);
-}
-
 
 // Mathematical operators
 template <IsFrame auto _frame_>
-Cartesian<_frame_> Cartesian<_frame_>::operator+(const Cartesian<_frame_>& other) const
-{
-    return Cartesian(_r + other._r, _v + other._v);
-}
-
-template <IsFrame auto _frame_>
-Cartesian<_frame_>& Cartesian<_frame_>::operator+=(const Cartesian<_frame_>& other)
-{
-    _r += other._r;
-    _v += other._v;
-    return *this;
-}
-
-template <IsFrame auto _frame_>
 Cartesian<_frame_> Cartesian<_frame_>::operator+(const RadiusVector<_frame_>& r) const
 {
-    return Cartesian(_r + r, _v);
+    return Cartesian(get_x() + r[0], get_y() + r[1], get_z() + r[2], get_vx(), get_vy(), get_vz());
 }
 
 template <IsFrame auto _frame_>
 Cartesian<_frame_>& Cartesian<_frame_>::operator+=(const RadiusVector<_frame_>& r)
 {
-    _r += r;
+    get_x() += r[0];
+    get_y() += r[1];
+    get_z() += r[2];
     return *this;
 }
 
 template <IsFrame auto _frame_>
 Cartesian<_frame_> Cartesian<_frame_>::operator+(const VelocityVector<_frame_>& v) const
 {
-    return Cartesian(_r, _v + v);
+    return Cartesian(get_x(), get_y(), get_z(), get_vx() + v[0], get_vy() + v[1], get_vz() + v[2]);
 }
 
 template <IsFrame auto _frame_>
 Cartesian<_frame_>& Cartesian<_frame_>::operator+=(const VelocityVector<_frame_>& v)
 {
-    _v += v;
-    return *this;
-}
-
-template <IsFrame auto _frame_>
-Cartesian<_frame_> Cartesian<_frame_>::operator-(const Cartesian<_frame_>& other) const
-{
-    return Cartesian(_r - other._r, _v - other._v);
-}
-
-template <IsFrame auto _frame_>
-Cartesian<_frame_>& Cartesian<_frame_>::operator-=(const Cartesian<_frame_>& other)
-{
-    _r -= other._r;
-    _v -= other._v;
+    get_vx() += v[0];
+    get_vy() += v[1];
+    get_vz() += v[2];
     return *this;
 }
 
 template <IsFrame auto _frame_>
 Cartesian<_frame_> Cartesian<_frame_>::operator-(const RadiusVector<_frame_>& r) const
 {
-    return Cartesian(_r - r, _v);
+    return Cartesian(get_x() - r[0], get_y() - r[1], get_z() - r[2], get_vx(), get_vy(), get_vz());
 }
 
 template <IsFrame auto _frame_>
 Cartesian<_frame_>& Cartesian<_frame_>::operator-=(const RadiusVector<_frame_>& r)
 {
-    _r -= r;
+    get_x() -= r[0];
+    get_y() -= r[1];
+    get_z() -= r[2];
     return *this;
 }
 
 template <IsFrame auto _frame_>
 Cartesian<_frame_> Cartesian<_frame_>::operator-(const VelocityVector<_frame_>& v) const
 {
-    return Cartesian(_r, _v - v);
+    return Cartesian(get_x(), get_y(), get_z(), get_vx() - v[0], get_vy() - v[1], get_vz() - v[2]);
 }
 
 template <IsFrame auto _frame_>
 Cartesian<_frame_>& Cartesian<_frame_>::operator-=(const VelocityVector<_frame_>& v)
 {
-    _v -= v;
-    return *this;
-}
-
-template <IsFrame auto _frame_>
-Cartesian<_frame_> Cartesian<_frame_>::operator*(const Unitless& multiplier) const
-{
-    return Cartesian(_r * multiplier, _v * multiplier);
-}
-
-template <IsFrame auto _frame_>
-Cartesian<_frame_>& Cartesian<_frame_>::operator*=(const Unitless& multiplier)
-{
-    _r *= multiplier;
-    _v *= multiplier;
-    return *this;
-}
-
-template <IsFrame auto _frame_>
-CartesianPartial<_frame_> Cartesian<_frame_>::operator/(const Time& time) const
-{
-    return CartesianPartial<_frame_>(_r / time, _v / time);
-}
-
-template <IsFrame auto _frame_>
-Cartesian<_frame_> Cartesian<_frame_>::operator/(const Unitless& divisor) const
-{
-    return Cartesian<_frame_>(_r / divisor, _v / divisor);
-}
-
-template <IsFrame auto _frame_>
-Cartesian<_frame_>& Cartesian<_frame_>::operator/=(const Unitless& divisor)
-{
-    _r /= divisor;
-    _v /= divisor;
+    get_vx() -= v[0];
+    get_vy() -= v[1];
+    get_vz() -= v[2];
     return *this;
 }
 
 template <IsFrame auto _frame_>
 Cartesian<_frame_>
-    Cartesian<_frame_>::interpolate(const Time& thisTime, const Time& otherTime, const Cartesian<_frame_>& other, const Time& targetTime) const
+    Cartesian<_frame_>::interpolate(const Time& thisTime, const Time& otherTime, const Cartesian<_frame_>& other, const GravParam& mu, const Time& targetTime) const
 {
     const std::array<Time, 2> times = { thisTime, otherTime };
-    const Distance interpX          = math::fast_interpolate<Time, Distance>(times, { _r[0], other._r[0] }, targetTime);
-    const Distance interpY          = math::fast_interpolate<Time, Distance>(times, { _r[1], other._r[1] }, targetTime);
-    const Distance interpZ          = math::fast_interpolate<Time, Distance>(times, { _r[2], other._r[2] }, targetTime);
-    const Velocity interpVx         = math::fast_interpolate<Time, Velocity>(times, { _v[0], other._v[0] }, targetTime);
-    const Velocity interpVy         = math::fast_interpolate<Time, Velocity>(times, { _v[1], other._v[1] }, targetTime);
-    const Velocity interpVz         = math::fast_interpolate<Time, Velocity>(times, { _v[2], other._v[2] }, targetTime);
+    const Distance interpX  = math::fast_interpolate<Time, Distance>(times, { get_x(), other.get_x() }, targetTime);
+    const Distance interpY  = math::fast_interpolate<Time, Distance>(times, { get_y(), other.get_y() }, targetTime);
+    const Distance interpZ  = math::fast_interpolate<Time, Distance>(times, { get_z(), other.get_z() }, targetTime);
+    const Velocity interpVx = math::fast_interpolate<Time, Velocity>(times, { get_vx(), other.get_vx() }, targetTime);
+    const Velocity interpVy = math::fast_interpolate<Time, Velocity>(times, { get_vy(), other.get_vy() }, targetTime);
+    const Velocity interpVz = math::fast_interpolate<Time, Velocity>(times, { get_vz(), other.get_vz() }, targetTime);
 
     return Cartesian<_frame_>(interpX, interpY, interpZ, interpVx, interpVy, interpVz);
-}
-
-template <IsFrame auto _frame_>
-std::vector<double> Cartesian<_frame_>::force_to_double_vector() const
-{
-    return { _r[0].numerical_value_in(_r[0].unit), _r[1].numerical_value_in(_r[1].unit),
-             _r[2].numerical_value_in(_r[2].unit), _v[0].numerical_value_in(_v[0].unit),
-             _v[1].numerical_value_in(_v[1].unit), _v[2].numerical_value_in(_v[2].unit) };
-}
-
-template <IsFrame auto _frame_>
-Cartesian<_frame_> Cartesian<_frame_>::from_double_vector(const std::vector<double>& vec)
-{
-    if (vec.size() != 6) {
-        throw std::runtime_error("Input vector must have exactly 6 elements to convert to Cartesian.");
-    }
-
-    return Cartesian(
-        vec[0] * astrea::detail::distance_unit,
-        vec[1] * astrea::detail::distance_unit,
-        vec[2] * astrea::detail::distance_unit,
-        vec[3] * astrea::detail::distance_unit / astrea::detail::time_unit,
-        vec[4] * astrea::detail::distance_unit / astrea::detail::time_unit,
-        vec[5] * astrea::detail::distance_unit / astrea::detail::time_unit
-    );
-}
-
-template <IsFrame auto _frame_>
-Cartesian<_frame_> CartesianPartial<_frame_>::operator*(const Time& time) const
-{
-    return Cartesian<_frame_>(_v * time, _a * time);
-}
-
-template <IsFrame auto _frame_>
-std::vector<double> CartesianPartial<_frame_>::force_to_double_vector() const
-{
-    return { _v[0].numerical_value_in(_v[0].unit), _v[1].numerical_value_in(_v[1].unit),
-             _v[2].numerical_value_in(_v[2].unit), _a[0].numerical_value_in(_a[0].unit),
-             _a[1].numerical_value_in(_a[1].unit), _a[2].numerical_value_in(_a[2].unit) };
 }
 
 template <IsFrame auto _frame_>
@@ -397,12 +298,12 @@ template <IsFrame auto _frame_>
 std::ostream& operator<<(std::ostream& os, CartesianPartial<_frame_> const& elements)
 {
     os << "[";
-    os << elements._v[0] << ", ";
-    os << elements._v[1] << ", ";
-    os << elements._v[2] << ", ";
-    os << elements._a[0] << ", ";
-    os << elements._a[1] << ", ";
-    os << elements._a[2];
+    os << elements.get_vx() << ", ";
+    os << elements.get_vy() << ", ";
+    os << elements.get_vz() << ", ";
+    os << elements.get_ax() << ", ";
+    os << elements.get_ay() << ", ";
+    os << elements.get_az();
     os << "] (CartesianPartial)";
     return os;
 }

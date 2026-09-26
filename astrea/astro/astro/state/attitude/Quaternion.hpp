@@ -31,6 +31,7 @@
 #include <astro/frames/framework/DirectionCosineMatrix.hpp>
 #include <astro/frames/framework/frame_concepts.hpp>
 #include <astro/state/attitude/EulerAngles.hpp>
+#include <astro/state/framework/ElementMatrix.hpp>
 #include <astro/types/enums.hpp>
 
 namespace astrea {
@@ -522,17 +523,11 @@ class Quaternion {
     const CartesianVector<Unitless, in_frame>& get_vector_part() const { return _u; }
 
     /**
-     * @brief Converts the quaternion to a vector form for use in numerical integration.
-     *
-     * @return A std::vector of Unitless quantities representing the components of the quaternion, in the order [s, u_x, u_y, u_z].
+     * @brief Converts the quaternion to an element array form for use in numerical integration.
+
+     * @return An ElementMatrix of Unitless quantities representing the components of the quaternion, in the order [s, u_x, u_y, u_z].
      */
-    std::vector<double> force_to_double_vector() const
-    {
-        return { _s.numerical_value_in(_s.unit),
-                 _u[0].numerical_value_in(_u[0].unit),
-                 _u[1].numerical_value_in(_u[1].unit),
-                 _u[2].numerical_value_in(_u[2].unit) };
-    }
+    UniformElementArray<4, Unitless> force_to_element_array() const { return { _s, _u[0], _u[1], _u[2] }; }
 
     /**
      * @brief Computes the dot product between this quaternion and another quaternion.
@@ -611,22 +606,6 @@ class Quaternion {
         _u[1] *= scale;
         _u[2] *= scale;
     }
-
-    /**
-     * @brief Constructs a Quaternion from a vector of Unitless quantities representing the quaternion components.
-     *
-     * @param vec A std::vector of Unitless quantities representing the components of the quaternion, in the order [s, u_x, u_y, u_z].
-     * @return A new Quaternion constructed from the given vector.
-     *
-     * @throws std::invalid_argument if the input vector does not have exactly 4 components.
-     */
-    static Quaternion<in_frame, out_frame> from_double_vector(const std::vector<double>& vec)
-    {
-        if (vec.size() != 4) {
-            throw std::invalid_argument("Input vector must have exactly 4 components to convert to a Quaternion.");
-        }
-        return { vec[0], vec[1], vec[2], vec[3] };
-    }
 };
 
 /**
@@ -687,16 +666,13 @@ class QuaternionPartial {
     }
 
     /**
-     * @brief Converts the quaternion derivative to a vector form for use in numerical integration.
-     *
-     * @return A std::vector of Unitless quantities representing the components of the quaternion derivative, in the order [sDot, uDot_x, uDot_y, uDot_z].
+     * @brief Converts the quaternion derivative to an element array form for use in numerical integration.
+
+     * @return An ElementMatrix of UnitlessPerTime quantities representing the components of the quaternion derivative, in the order [sDot, uDot_x, uDot_y, uDot_z].
      */
-    std::vector<double> force_to_double_vector() const
+    ElementMatrix<4, 1, UnitlessPerTime, UnitlessPerTime, UnitlessPerTime, UnitlessPerTime> force_to_element_array() const
     {
-        return { _sDot.numerical_value_in(_sDot.unit),
-                 _uDot[0].numerical_value_in(_uDot[0].unit),
-                 _uDot[1].numerical_value_in(_uDot[1].unit),
-                 _uDot[2].numerical_value_in(_uDot[2].unit) };
+        return { _sDot, _uDot[0], _uDot[1], _uDot[2] };
     }
 
   private:

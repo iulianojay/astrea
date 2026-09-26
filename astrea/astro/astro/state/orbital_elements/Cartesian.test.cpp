@@ -18,10 +18,10 @@
 
 #include <astro/frames.hpp>
 #include <astro/frames/framework/CartesianVector.hpp>
+#include <astro/state/framework/element_matrix_concepts.hpp>
 #include <astro/state/orbital_elements/Cartesian.hpp>
 #include <astro/state/orbital_elements/Equinoctial.hpp>
 #include <astro/state/orbital_elements/Keplerian.hpp>
-#include <astro/state/orbital_elements/OrbitalElements.hpp>
 #include <astro/systems/system_utilities.hpp>
 #include <astro/time/Date.hpp>
 #include <tests/utilities/comparisons.hpp>
@@ -42,7 +42,7 @@ class CartesianTest : public testing::Test {
 
     const Unitless REL_TOL = 1.0e-6;
 
-    GravParam mu = get_mu<frames::primary.origin>();
+    GravParam mu = get_mu<frames::earth::icrf.origin>();
     Date epoch;
     Distance x  = 7000.0 * km;
     Distance y  = 0.0 * km;
@@ -77,17 +77,6 @@ TEST_F(CartesianTest, DefaultConstructor)
     ASSERT_TRUE(math::nearly_equal(defaultState.get_vx(), Velocity(0.0 * km / s), REL_TOL));
     ASSERT_TRUE(math::nearly_equal(defaultState.get_vy(), Velocity(0.0 * km / s), REL_TOL));
     ASSERT_TRUE(math::nearly_equal(defaultState.get_vz(), Velocity(0.0 * km / s), REL_TOL));
-}
-
-TEST_F(CartesianTest, UnitlessConstructor)
-{
-    Cartesian<frames::earth::icrf> scaledState(2.0 * one);
-    ASSERT_TRUE(math::nearly_equal(scaledState.get_x(), Distance(2.0 * km), REL_TOL));
-    ASSERT_TRUE(math::nearly_equal(scaledState.get_y(), Distance(2.0 * km), REL_TOL));
-    ASSERT_TRUE(math::nearly_equal(scaledState.get_z(), Distance(2.0 * km), REL_TOL));
-    ASSERT_TRUE(math::nearly_equal(scaledState.get_vx(), Velocity(2.0 * km / s), REL_TOL));
-    ASSERT_TRUE(math::nearly_equal(scaledState.get_vy(), Velocity(2.0 * km / s), REL_TOL));
-    ASSERT_TRUE(math::nearly_equal(scaledState.get_vz(), Velocity(2.0 * km / s), REL_TOL));
 }
 
 TEST_F(CartesianTest, VectorConstructor)
@@ -415,7 +404,7 @@ TEST_F(CartesianTest, Interpolate)
     Time thisTime                         = 0.0 * s;
     Time otherTime                        = 10.0 * s;
     Time targetTime                       = 5.0 * s;
-    Cartesian<frames::earth::icrf> result = state.interpolate(thisTime, otherTime, other, targetTime);
+    Cartesian<frames::earth::icrf> result = state.interpolate(thisTime, otherTime, other, mu, targetTime);
 
     // At t=5s (midpoint), expect average of start and end values
     ASSERT_TRUE(math::nearly_equal(result.get_x(), (x + 14000.0 * km) / 2.0, REL_TOL));

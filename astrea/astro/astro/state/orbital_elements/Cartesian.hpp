@@ -30,6 +30,7 @@
 // astro
 #include <astro/astro.fwd.hpp>
 #include <astro/frames/framework/CartesianVector.hpp>
+#include <astro/state/framework/OrbitalElementsInterface.hpp>
 #include <astro/types/typedefs.hpp>
 
 namespace astrea {
@@ -41,29 +42,26 @@ namespace astro {
  * This class encapsulates the position and velocity of a vehicle in Cartesian coordinates.
  */
 template <IsFrame auto _frame_>
-class Cartesian {
+class Cartesian
+    : public OrbitalElementsInterface<Cartesian<_frame_>, Distance, Distance, Distance, Velocity, Velocity, Velocity> {
+
+    using BaseType = OrbitalElementsInterface<Cartesian<_frame_>, Distance, Distance, Distance, Velocity, Velocity, Velocity>;
 
     template <IsFrame auto frame>
     friend std::ostream& operator<<(std::ostream&, Cartesian<frame> const&);
-    friend class OrbitalElements;
 
   public:
     static constexpr auto frame = _frame_; //!< The reference frame of the Cartesian state vector.
     template <IsFrame auto F>
-    using BaseType = Cartesian<F>;
+    using Self = Cartesian<F>;
+    using BaseType::BaseType;
 
     /**
      * @brief Default constructor for Cartesian.
      *
      * Initializes the Cartesian state vector with zero values.
      */
-    Cartesian(Unitless scale = 0.0 * astrea::detail::unitless) :
-        _r(scale * astrea::detail::distance_unit, scale * astrea::detail::distance_unit, scale * astrea::detail::distance_unit),
-        _v(scale * astrea::detail::distance_unit / astrea::detail::time_unit,
-           scale * astrea::detail::distance_unit / astrea::detail::time_unit,
-           scale * astrea::detail::distance_unit / astrea::detail::time_unit)
-    {
-    }
+    Cartesian() = default;
 
     /**
      * @brief Constructor for Cartesian with position and velocity vectors.
@@ -72,24 +70,7 @@ class Cartesian {
      * @param v Velocity vector
      */
     Cartesian(const RadiusVector<_frame_>& r, const VelocityVector<_frame_>& v) :
-        _r(r),
-        _v(v)
-    {
-    }
-
-    /**
-     * @brief Constructor for Cartesian with individual position and velocity components.
-     *
-     * @param x X component of position
-     * @param y Y component of position
-     * @param z Z component of position
-     * @param vx X component of velocity
-     * @param vy Y component of velocity
-     * @param vz Z component of velocity
-     */
-    Cartesian(const Distance& x, const Distance& y, const Distance& z, const Velocity& vx, const Velocity& vy, const Velocity& vz) :
-        _r(x, y, z),
-        _v(vx, vy, vz)
+        BaseType(r[0], r[1], r[2], v[0], v[1], v[2])
     {
     }
 
@@ -206,114 +187,68 @@ class Cartesian {
     ~Cartesian() = default;
 
     /**
-     * @brief Compares two Cartesian objects for equality.
+     * @brief Adds a RadiusVector to the Cartesian state vector.
      *
-     * @param other Another Cartesian object
-     * @return true if the two Cartesian objects are equal
-     * @return false if the two Cartesian objects are not equal
-     */
-    bool operator==(const Cartesian<_frame_>& other) const;
-
-    /**
-     * @brief Compares two Cartesian objects for inequality.
-     *
-     * @param other Another Cartesian object
-     * @return true if the two Cartesian objects are not equal
-     * @return false if the two Cartesian objects are equal
-     */
-    bool operator!=(const Cartesian<_frame_>& other) const;
-
-    /**
-     * @brief Adds two Cartesian objects.
-     *
-     * @param other Another Cartesian object
+     * @param r Radius vector to add
      * @return Resultant Cartesian sum.
      */
-    Cartesian operator+(const Cartesian<_frame_>& other) const;
-
     Cartesian operator+(const RadiusVector<_frame_>& r) const;
+
+    /**
+     * @brief Adds a VelocityVector to the Cartesian state vector.
+     *
+     * @param v Velocity vector to add
+     * @return Resultant Cartesian sum.
+     */
     Cartesian operator+(const VelocityVector<_frame_>& v) const;
 
     /**
-     * @brief Adds another Cartesian object to the current one.
+     * @brief Adds a RadiusVector to the current Cartesian state vector.
      *
-     * @param other Another Cartesian object
+     * @param r Radius vector to add
      * @return Reference to the current Cartesian object after addition.
      */
-    Cartesian& operator+=(const Cartesian<_frame_>& other);
-
     Cartesian& operator+=(const RadiusVector<_frame_>& r);
+
+    /**
+     * @brief Adds a VelocityVector to the current Cartesian state vector.
+     *
+     * @param v Velocity vector to add
+     * @return Reference to the current Cartesian object after addition.
+     */
     Cartesian& operator+=(const VelocityVector<_frame_>& v);
 
     /**
-     * @brief Subtracts another Cartesian object from the current one.
+     * @brief Subtracts a RadiusVector from the Cartesian state vector.
      *
-     * @param other Another Cartesian object
+     * @param r Radius vector to subtract
      * @return Resultant Cartesian difference.
      */
-    Cartesian operator-(const Cartesian<_frame_>& other) const;
-
     Cartesian operator-(const RadiusVector<_frame_>& r) const;
+
+    /**
+     * @brief Subtracts a VelocityVector from the Cartesian state vector.
+     *
+     * @param v Velocity vector to subtract
+     * @return Resultant Cartesian difference.
+     */
     Cartesian operator-(const VelocityVector<_frame_>& v) const;
 
     /**
-     * @brief Subtracts another Cartesian object from the current one.
+     * @brief Subtracts a RadiusVector from the current Cartesian state vector.
      *
-     * @param other Another Cartesian object
+     * @param r Radius vector to subtract
      * @return Reference to the current Cartesian object after subtraction.
      */
-    Cartesian& operator-=(const Cartesian<_frame_>& other);
-
     Cartesian& operator-=(const RadiusVector<_frame_>& r);
+
+    /**
+     * @brief Subtracts a VelocityVector from the current Cartesian state vector.
+     *
+     * @param v Velocity vector to subtract
+     * @return Reference to the current Cartesian object after subtraction.
+     */
     Cartesian& operator-=(const VelocityVector<_frame_>& v);
-
-    /**
-     * @brief Multiplies the Cartesian state vector by a scalar.
-     *
-     * @param multiplier Scalar value to multiply with
-     * @return Resultant Cartesian after multiplication.
-     */
-    Cartesian operator*(const Unitless& multiplier) const; // TODO: Add left-hand version (i.e. scalar * state)
-
-    /**
-     * @brief Multiplies the Cartesian state vector by a scalar.
-     *
-     * @param multiplier Scalar value to multiply with
-     * @return Reference to the current Cartesian object after multiplication.
-     */
-    Cartesian& operator*=(const Unitless& multiplier);
-
-    /**
-     * @brief Divides the Cartesian state vector by a time.
-     *
-     * @param time Time value to divide by
-     * @return Resultant CartesianPartial after division.
-     */
-    CartesianPartial<_frame_> operator/(const Time& time) const;
-
-    /**
-     * @brief Divides the Cartesian state vector by another Cartesian object.
-     *
-     * @param other Another Cartesian object
-     * @return Resultant vector of unitless values after division.
-     */
-    std::vector<Unitless> operator/(const Cartesian<_frame_>& other) const;
-
-    /**
-     * @brief Divides the Cartesian state vector by a scalar.
-     *
-     * @param divisor Scalar value to divide with
-     * @return Resultant Cartesian after division.
-     */
-    Cartesian operator/(const Unitless& divisor) const;
-
-    /**
-     * @brief Divides the Cartesian state vector by a scalar.
-     *
-     * @param divisor Scalar value to divide with
-     * @return Reference to the current Cartesian object after division.
-     */
-    Cartesian& operator/=(const Unitless& divisor);
 
     /**
      * @brief Converts this Cartesian state to an equivalent Cartesian state in a different frame.
@@ -330,15 +265,14 @@ class Cartesian {
     Cartesian<target_frame> in_frame(const Date& epoch) const
     {
         if constexpr (equivalent(frame, target_frame)) { return *this; }
-        const CartesianVector<Distance, target_frame> rTarget = _r.template in_frame<target_frame>(epoch);
-        const CartesianVector<Velocity, target_frame> vTarget = _v.template in_frame<target_frame>(epoch, _r);
-        return Cartesian<target_frame>(rTarget, vTarget);
-    }
 
-    template <IsFrame auto target_frame>
-    Cartesian<target_frame> in_frame(const Date& epoch, const GravParam& /*mu*/) const
-    {
-        return in_frame<target_frame>(epoch);
+        const auto r = get_position();
+        const auto v = get_velocity();
+
+        const CartesianVector<Distance, target_frame> rTarget = r.template in_frame<target_frame>(epoch);
+        const CartesianVector<Velocity, target_frame> vTarget = v.template in_frame<target_frame>(epoch, r);
+
+        return Cartesian<target_frame>(rTarget, vTarget);
     }
 
     /**
@@ -346,63 +280,112 @@ class Cartesian {
      *
      * @return RadiusVector<_frame_> The position vector in Cartesian coordinates.
      */
-    const RadiusVector<_frame_>& get_position() const { return _r; }
+    RadiusVector<_frame_>& get_position() { return { get_x(), get_y(), get_z() }; }
 
     /**
      * @brief Converts the Cartesian state vector to a VelocityVector<_frame_>.
      *
      * @return VelocityVector<_frame_> The velocity vector in Cartesian coordinates.
      */
-    const VelocityVector<_frame_>& get_velocity() const { return _v; }
+    VelocityVector<_frame_>& get_velocity() { return { get_vx(), get_vy(), get_vz() }; }
+
+    /**
+     * @brief Converts the Cartesian state vector to a RadiusVector<_frame_>.
+     *
+     * @return RadiusVector<_frame_> The position vector in Cartesian coordinates.
+     */
+    const RadiusVector<_frame_>& get_position() const { return { get_x(), get_y(), get_z() }; }
+
+    /**
+     * @brief Converts the Cartesian state vector to a VelocityVector<_frame_>.
+     *
+     * @return VelocityVector<_frame_> The velocity vector in Cartesian coordinates.
+     */
+    const VelocityVector<_frame_>& get_velocity() const { return { get_vx(), get_vy(), get_vz() }; }
+
+    /**
+     * @brief Get the x value of the Cartesian state vector.
+     *
+     * @return  Distance& Reference to the x component of the Cartesian state vector.
+     */
+    Distance& get_x() { return this->template get<0>(); }
+
+    /**
+     * @brief Get the y value of the Cartesian state vector.
+     *
+     * @return  Distance& Reference to the y component of the Cartesian state vector.
+     */
+    Distance& get_y() { return this->template get<1>(); }
+
+    /**
+     * @brief Get the z value of the Cartesian state vector.
+     *
+     * @return  Distance& Reference to the z component of the Cartesian state vector.
+     */
+    Distance& get_z() { return this->template get<2>(); }
 
     /**
      * @brief Get the x value of the Cartesian state vector.
      *
      * @return const Distance& Reference to the x component of the Cartesian state vector.
      */
-    const Distance& get_x() const { return _r.get_x(); }
+    const Distance& get_x() const { return this->template get<0>(); }
 
     /**
      * @brief Get the y value of the Cartesian state vector.
      *
      * @return const Distance& Reference to the y component of the Cartesian state vector.
      */
-    const Distance& get_y() const { return _r.get_y(); }
+    const Distance& get_y() const { return this->template get<1>(); }
 
     /**
      * @brief Get the z value of the Cartesian state vector.
      *
      * @return const Distance& Reference to the z component of the Cartesian state vector.
      */
-    const Distance& get_z() const { return _r.get_z(); }
+    const Distance& get_z() const { return this->template get<2>(); }
 
     /**
      * @brief Get the vx value of the Cartesian state vector.
      *
      * @return const Velocity& Reference to the vx component of the Cartesian state vector.
      */
-    const Velocity& get_vx() const { return _v.get_x(); }
+    Velocity& get_vx() { return this->template get<3>(); }
+
+    /**
+     * @brief Get the vy value of the Cartesian state vector.
+     *
+     * @return Velocity& Reference to the vy component of the Cartesian state vector.
+     */
+    Velocity& get_vy() { return this->template get<4>(); }
+
+    /**
+     * @brief Get the vz value of the Cartesian state vector.
+     *
+     * @return Velocity& Reference to the vz component of the Cartesian state vector.
+     */
+    Velocity& get_vz() { return this->template get<5>(); }
+
+    /**
+     * @brief Get the vx value of the Cartesian state vector.
+     *
+     * @return const Velocity& Reference to the vx component of the Cartesian state vector.
+     */
+    const Velocity& get_vx() const { return this->template get<3>(); }
 
     /**
      * @brief Get the vy value of the Cartesian state vector.
      *
      * @return const Velocity& Reference to the vy component of the Cartesian state vector.
      */
-    const Velocity& get_vy() const { return _v.get_y(); }
+    const Velocity& get_vy() const { return this->template get<4>(); }
 
     /**
      * @brief Get the vz value of the Cartesian state vector.
      *
      * @return const Velocity& Reference to the vz component of the Cartesian state vector.
      */
-    const Velocity& get_vz() const { return _v.get_z(); }
-
-    /**
-     * @brief Converts the Cartesian state vector to a vector of unitless values.
-     *
-     * @return std::vector<Unitless> Vector containing the x, y, z, vx, vy, and vz components of the Cartesian state vector.
-     */
-    std::vector<double> force_to_double_vector() const;
+    const Velocity& get_vz() const { return this->template get<5>(); }
 
     /**
      * @brief Interpolates between two Cartesian states at a given time.
@@ -410,22 +393,11 @@ class Cartesian {
      * @param thisTime Time of the current state
      * @param otherTime Time of the other state
      * @param other Other Cartesian state to interpolate with
+     * @param mu Gravitational parameter of the central body
      * @param targetTime Target time for interpolation
      * @return Cartesian Interpolated Cartesian state at the target time.
      */
-    Cartesian interpolate(const Time& thisTime, const Time& otherTime, const Cartesian<_frame_>& other, const Time& targetTime) const;
-
-  private:
-    RadiusVector<_frame_> _r;   //!< Position vector
-    VelocityVector<_frame_> _v; //!< Velocity vector
-
-    /**
-     * @brief Creates a Cartesian object from a vector of unitless values.
-     *
-     * @param vec Vector containing the x, y, z, vx, vy, and vz components of the Cartesian state vector.
-     * @return Cartesian Constructed Cartesian object.
-     */
-    static Cartesian from_double_vector(const std::vector<double>& vec);
+    Cartesian interpolate(const Time& thisTime, const Time& otherTime, const Cartesian<_frame_>& other, const GravParam& mu, const Time& targetTime) const;
 };
 
 /**
@@ -434,34 +406,22 @@ class Cartesian {
  * This class encapsulates the velocity and acceleration components of a vehicle in Cartesian coordinates.
  */
 template <IsFrame auto _frame_>
-class CartesianPartial {
+class CartesianPartial
+    : public OrbitalElementsInterface<CartesianPartial<_frame_>, _frame_, Velocity, Velocity, Velocity, Acceleration, Acceleration, Acceleration> {
+
+    using BaseType =
+        OrbitalElementsInterface<CartesianPartial<_frame_>, _frame_, Velocity, Velocity, Velocity, Acceleration, Acceleration, Acceleration>;
 
     template <IsFrame auto frame>
     friend std::ostream& operator<<(std::ostream&, CartesianPartial<frame> const&);
 
   public:
-    static constexpr auto frame = _frame_; //!< The reference frame of the Cartesian state vector.
+    using BaseType::BaseType;
 
     /**
      * @brief Default constructor for CartesianPartial.
      */
     CartesianPartial() = default;
-
-    /**
-     * @brief Constructor for CartesianPartial with velocity and acceleration components.
-     *
-     * @param vx X component of velocity
-     * @param vy Y component of velocity
-     * @param vz Z component of velocity
-     * @param ax X component of acceleration
-     * @param ay Y component of acceleration
-     * @param az Z component of acceleration
-     */
-    CartesianPartial(const Velocity& vx, const Velocity& vy, const Velocity& vz, const Acceleration& ax, const Acceleration& ay, const Acceleration& az) :
-        _v(vx, vy, vz),
-        _a(ax, ay, az)
-    {
-    }
 
     /**
      * @brief Constructor for CartesianPartial with velocity and acceleration vectors.
@@ -470,8 +430,7 @@ class CartesianPartial {
      * @param a Acceleration vector
      */
     CartesianPartial(const VelocityVector<_frame_>& v, const AccelerationVector<_frame_>& a) :
-        _v(v),
-        _a(a)
+        BaseType(v[0], v[1], v[2], a[0], a[1], a[2])
     {
     }
 
@@ -480,61 +439,63 @@ class CartesianPartial {
      *
      * @return Velocity The vx component of the CartesianPartial state vector.
      */
-    Velocity get_vx() const { return _v.get_x(); }
+    Velocity get_vx() const { return this->template get<0>(); }
 
     /**
      * @brief Get the vy value of the CartesianPartial state vector.
      *
      * @return Velocity The vy component of the CartesianPartial state vector.
      */
-    Velocity get_vy() const { return _v.get_y(); }
+    Velocity get_vy() const { return this->template get<1>(); }
 
     /**
      * @brief Get the vz value of the CartesianPartial state vector.
      *
      * @return Velocity The vz component of the CartesianPartial state vector.
      */
-    Velocity get_vz() const { return _v.get_z(); }
+    Velocity get_vz() const { return this->template get<2>(); }
 
     /**
      * @brief Get the ax value of the CartesianPartial state vector.
      *
      * @return Acceleration The ax component of the CartesianPartial state vector.
      */
-    Acceleration get_ax() const { return _a.get_x(); }
+    const Acceleration& get_ax() const { return this->template get<3>(); }
 
     /**
      * @brief Get the ay value of the CartesianPartial state vector.
      *
      * @return Acceleration The ay component of the CartesianPartial state vector.
      */
-    Acceleration get_ay() const { return _a.get_y(); }
+    const Acceleration& get_ay() const { return this->template get<4>(); }
 
     /**
      * @brief Get the az value of the CartesianPartial state vector.
      *
      * @return Acceleration The az component of the CartesianPartial state vector.
      */
-    Acceleration get_az() const { return _a.get_z(); }
+    const Acceleration& get_az() const { return this->template get<5>(); }
 
     /**
-     * @brief Multiplication operator for CartesianPartial.
+     * @brief Get the ax value of the CartesianPartial state vector.
      *
-     * @param time Time to multiply the CartesianPartial by
-     * @return Cartesian Resulting Cartesian state vector after multiplication.
+     * @return Acceleration The ax component of the CartesianPartial state vector.
      */
-    Cartesian<_frame_> operator*(const Time& time) const;
+    Acceleration& get_ax() { return this->template get<3>(); }
 
     /**
-     * @brief Converts the CartesianPartial state vector to a vector of unitless values.
+     * @brief Get the ay value of the CartesianPartial state vector.
      *
-     * @return std::vector<Unitless> Vector containing the components of the CartesianPartial state vector.
+     * @return Acceleration The ay component of the CartesianPartial state vector.
      */
-    std::vector<double> force_to_double_vector() const;
+    Acceleration& get_ay() { return this->template get<4>(); }
 
-  private:
-    VelocityVector<_frame_> _v;     //!< Velocity vector
-    AccelerationVector<_frame_> _a; //!< Acceleration vector
+    /**
+     * @brief Get the az value of the CartesianPartial state vector.
+     *
+     * @return Acceleration The az component of the CartesianPartial state vector.
+     */
+    Acceleration& get_az() { return this->template get<5>(); }
 };
 
 } // namespace astro

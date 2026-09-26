@@ -18,10 +18,10 @@
 
 #include <astro/frames.hpp>
 #include <astro/frames/framework/CartesianVector.hpp>
+#include <astro/state/framework/element_matrix_concepts.hpp>
 #include <astro/state/orbital_elements/Cartesian.hpp>
 #include <astro/state/orbital_elements/Equinoctial.hpp>
 #include <astro/state/orbital_elements/Keplerian.hpp>
-#include <astro/state/orbital_elements/OrbitalElements.hpp>
 #include <astro/systems/system_utilities.hpp>
 #include <astro/time/Date.hpp>
 #include <tests/utilities/comparisons.hpp>
@@ -43,7 +43,7 @@ class EquinoctialTest : public testing::Test {
     const Unitless REL_TOL = 1.0e-6;
 
     Date epoch;
-    const GravParam mu = get_mu<frames::primary.origin>();
+    const GravParam mu = get_mu<frames::earth::icrf.origin>();
     Distance p         = 7000.0 * km;
     Unitless f         = 0.01 * one;
     Unitless g         = 0.0 * one;
@@ -327,7 +327,7 @@ TEST_F(EquinoctialTest, Interpolate)
     Time thisTime                           = 0.0 * s;
     Time otherTime                          = 10.0 * s;
     Time targetTime                         = 5.0 * s;
-    Equinoctial<frames::earth::icrf> result = state.interpolate(thisTime, otherTime, other, targetTime);
+    Equinoctial<frames::earth::icrf> result = state.interpolate(thisTime, otherTime, other, mu, targetTime);
 
     // At t=5s (midpoint), expect average of start and end values
     ASSERT_TRUE(math::nearly_equal(result.get_semilatus(), (p + 14000.0 * km) / 2.0, REL_TOL));
