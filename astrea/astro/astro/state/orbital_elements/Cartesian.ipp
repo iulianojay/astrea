@@ -33,7 +33,7 @@ namespace astro {
 
 namespace {
 
-// Perifocal Coordinates- we have to use this definition to avoid a log circular dependency issue
+// Perifocal Coordinates- we have to use this definition to avoid a long circular dependency issue
 inline constexpr struct peri : Frame<"fake perifocal frame for this calc only", DynamicOrigin{}, DynamicAxis{}> {
 } peri;
 
@@ -306,12 +306,6 @@ Cartesian<_frame_>& Cartesian<_frame_>::operator*=(const Unitless& multiplier)
 }
 
 template <IsFrame auto _frame_>
-CartesianPartial<_frame_> Cartesian<_frame_>::operator/(const Time& time) const
-{
-    return CartesianPartial<_frame_>(_r / time, _v / time);
-}
-
-template <IsFrame auto _frame_>
 Cartesian<_frame_> Cartesian<_frame_>::operator/(const Unitless& divisor) const
 {
     return Cartesian<_frame_>(_r / divisor, _v / divisor);
@@ -366,20 +360,6 @@ Cartesian<_frame_> Cartesian<_frame_>::from_double_vector(const std::vector<doub
 }
 
 template <IsFrame auto _frame_>
-Cartesian<_frame_> CartesianPartial<_frame_>::operator*(const Time& time) const
-{
-    return Cartesian<_frame_>(_v * time, _a * time);
-}
-
-template <IsFrame auto _frame_>
-std::vector<double> CartesianPartial<_frame_>::force_to_double_vector() const
-{
-    return { _v[0].numerical_value_in(_v[0].unit), _v[1].numerical_value_in(_v[1].unit),
-             _v[2].numerical_value_in(_v[2].unit), _a[0].numerical_value_in(_a[0].unit),
-             _a[1].numerical_value_in(_a[1].unit), _a[2].numerical_value_in(_a[2].unit) };
-}
-
-template <IsFrame auto _frame_>
 std::ostream& operator<<(std::ostream& os, Cartesian<_frame_> const& elements)
 {
     os << "[";
@@ -390,20 +370,6 @@ std::ostream& operator<<(std::ostream& os, Cartesian<_frame_> const& elements)
     os << elements.get_vy() << ", ";
     os << elements.get_vz();
     os << "] (Cartesian)";
-    return os;
-}
-
-template <IsFrame auto _frame_>
-std::ostream& operator<<(std::ostream& os, CartesianPartial<_frame_> const& elements)
-{
-    os << "[";
-    os << elements._v[0] << ", ";
-    os << elements._v[1] << ", ";
-    os << elements._v[2] << ", ";
-    os << elements._a[0] << ", ";
-    os << elements._a[1] << ", ";
-    os << elements._a[2];
-    os << "] (CartesianPartial)";
     return os;
 }
 
