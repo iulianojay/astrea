@@ -128,6 +128,11 @@ concept HasGetControlAuthority = requires(const T& vehicle, const State& state) 
     { vehicle.get_control_authority(state) } -> std::same_as<Perturbation>;
 };
 
+template <typename T>
+concept HasComputeAppliedTorque = requires(const T& vehicle, const State& state, const ForceVector<frames::primary>& force) {
+    { vehicle.compute_applied_torque(state, force) } -> std::same_as<TorqueVector<frames::primary>>;
+};
+
 /**
  * @brief Concept to check if a type is a user-defined vehicle.
  *
@@ -229,6 +234,16 @@ struct VehicleInnerBase {
      * @return Perturbation The control force and torque of the vehicle.
      */
     virtual Perturbation get_control_authority(const State& state) const = 0;
+
+    /**
+     * @brief Computes the applied torque on the vehicle given an evenly distributed force.
+     *
+     * @param state The state of the vehicle for which to compute the applied torque.
+     * @param force The force vector applied to the vehicle.
+     * @return TorqueVector<frames::primary> The computed torque vector.
+     */
+    virtual TorqueVector<frames::primary>
+        compute_applied_torque(const State& state, const ForceVector<frames::primary>& force) const = 0;
 
     /**
      * @brief Clones the vehicle inner implementation.
@@ -682,6 +697,51 @@ struct VehicleInner final : public VehicleInnerBase {
     }
 
     /**
+     * @brief Computes the applied torque on the vehicle given an evenly distributed force.
+     *
+     * @param state The state of the vehicle for which to compute the applied torque.
+     * @param force The force vector applied to the vehicle.
+     * @return TorqueVector<frames::primary> The computed torque vector.
+     */
+    TorqueVector<frames::primary> compute_applied_torque(const State& state, const ForceVector<frames::primary>& force) const final
+    {
+        return compute_applied_torque_impl(_value, state, force);
+    }
+
+    /**
+     * @brief Default implementation for computing the applied torque on the vehicle given an evenly distributed force. Returns a zero torque vector.
+     *
+     * @tparam U The type of the vehicle implementation.
+     * @param value The vehicle instance to compute the applied torque from.
+     * @param state The state of the vehicle for which to compute the applied torque.
+     * @param force The force vector applied to the vehicle.
+     * @return TorqueVector<frames::primary> The computed torque vector.
+     */
+    template <typename U>
+        requires(!HasComputeAppliedTorque<U>)
+    TorqueVector<frames::primary> compute_applied_torque_impl(const U&, const State&, const ForceVector<frames::primary>&) const
+    {
+        return TorqueVector<frames::primary>{};
+    }
+
+    /**
+     * @brief Computes the applied torque on the vehicle given an evenly distributed force.
+     *
+     * @tparam U The type of the vehicle implementation.
+     * @param value The vehicle instance to compute the applied torque from.
+     * @param state The state of the vehicle for which to compute the applied torque.
+     * @param force The force vector applied to the vehicle.
+     * @return TorqueVector<frames::primary> The computed torque vector.
+     */
+    template <typename U>
+        requires(HasComputeAppliedTorque<U>)
+    TorqueVector<frames::primary>
+        compute_applied_torque_impl(const U& value, const State& state, const ForceVector<frames::primary>& force) const
+    {
+        return value.compute_applied_torque(state, force);
+    }
+
+    /**
      * @brief Clones the vehicle inner implementation.
      *
      * @return std::unique_ptr<VehicleInnerBase> A unique pointer to the cloned vehicle inner implementation.
@@ -906,6 +966,17 @@ class Vehicle {
      */
     Perturbation get_control_authority(const State& state) const { return ptr()->get_control_authority(state); }
 
+    /**
+     * @brief Computes the applied torque on the vehicle given an evenly distributed force.
+     *
+     * @param state The state of the vehicle for which to compute the applied torque.
+     * @param force The force vector applied to the vehicle.
+     * @return TorqueVector<frames::primary> The computed torque vector.
+     */
+    TorqueVector<frames::primary> compute_applied_torque(const State& state, const ForceVector<frames::primary>& force) const
+    {
+        return ptr()->compute_applied_torque(state, force);
+    }
 
     /**
      * @brief Gets the name of the vehicle.

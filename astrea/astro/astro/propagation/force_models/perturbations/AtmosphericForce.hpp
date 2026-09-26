@@ -65,6 +65,8 @@ class AtmosphericForce : public PerturbingForce {
         using mp_units::pow;
         using mp_units::si::atan2;
         using mp_units::si::sin;
+        using mp_units::si::unit_symbols::m;
+        using mp_units::si::unit_symbols::N;
         using mp_units::si::unit_symbols::rad;
         using mp_units::si::unit_symbols::s;
 
@@ -110,7 +112,6 @@ class AtmosphericForce : public PerturbingForce {
         const Unitless coefficientOfDrag = vehicle.get_coefficient_of_drag(state);
         const SurfaceArea areaRam        = vehicle.get_ram_area(state);
         const Force dragForceMag         = -0.5 * coefficientOfDrag * areaRam * atmosphericDensity * pow<2>(relVelMag);
-
         const ForceVector<frames::primary> forceDrag = dragForceMag * (relVelocity / relVelMag);
 
         // Accel due to lift
@@ -120,7 +121,16 @@ class AtmosphericForce : public PerturbingForce {
         const Force liftForceMag = 0.5 * coefficientOfLift * areaLift * atmosphericDensity * pow<2>(relVelMag) * sin(angleOfAttack);
         const ForceVector<frames::primary> forceLift = liftForceMag * (r / R); // just assume radial lift for now
 
-        return { .force = forceDrag + forceLift };
+        // Torque on the spacecraft
+        TorqueVector<frames::primary> torqueAtmo{ 0.0 * N * m, 0.0 * N * m, 0.0 * N * m };
+        if (state.has_attitude()) {
+            const TorqueVector<frames::primary> torqueDrag = vehicle.compute_applied_torque(state, forceDrag);
+            const TorqueVector<frames::primary> torqueLift = vehicle.compute_applied_torque(state, forceLift);
+
+            torqueAtmo = torqueDrag + torqueLift;
+        }
+
+        return { .force = forceDrag + forceLift, .torque = torqueAtmo };
     }
 
     /**

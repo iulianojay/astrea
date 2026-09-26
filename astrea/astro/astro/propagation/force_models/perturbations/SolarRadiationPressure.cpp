@@ -99,8 +99,13 @@ Perturbation SolarRadiationPressure::compute_perturbation(const State& state, co
     const Unitless coefficientOfReflectivity = vehicle.get_coefficient_of_reflectivity(state);
     const SurfaceArea areaSun                = vehicle.get_solar_area(state);
     const Force forceRelMag                  = -srp * fractionOfRecievedSunlight * coefficientOfReflectivity * areaSun;
+    const ForceVector<frames::primary> forceSrp = forceRelMag * rVehicleToSun / rMagVehicleToSun;
 
-    return { .force = forceRelMag * rVehicleToSun / rMagVehicleToSun };
+    // Torque on the spacecraft
+    TorqueVector<frames::primary> torqueSrp{ 0.0 * N * m, 0.0 * N * m, 0.0 * N * m };
+    if (state.has_attitude()) { torqueSrp = vehicle.compute_applied_torque(state, forceSrp); }
+
+    return { .force = forceSrp, .torque = torqueSrp };
 }
 
 } // namespace astro
