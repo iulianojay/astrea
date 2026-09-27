@@ -19,7 +19,7 @@
 #pragma once
 
 #include <astro/frames/framework/BodyFixedFrame.hpp>
-#include <astro/systems/celestial_bodies.hpp>
+#include <astro/systems/celestial_bodies_impl.hpp>
 
 namespace astrea {
 namespace astro {

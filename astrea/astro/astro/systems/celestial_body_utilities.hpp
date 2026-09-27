@@ -1,5 +1,5 @@
 /**
- * @file CelestialBodyFunctions.hpp
+ * @file celestial_body_utilities.hpp
  * @author Jay Iuliano (iuliano.jay@gmail.com)
  * @brief Template function definitions for celestial body property accessors and orbital computations.
  * @details Separated from CelestialBody.hpp to break the circular include chain:

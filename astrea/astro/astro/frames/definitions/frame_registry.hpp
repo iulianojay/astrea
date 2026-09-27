@@ -103,16 +103,23 @@ using AllRegisteredFrames = typename tuple_cat_types<AutomaticallyRegisteredFram
 
 
 // Concept: true if frame is one of the types in AllRegisteredFrames
-template <IsFrame auto frame>
+template <auto frame>
 concept IsRegisteredFrame = []<std::size_t... I>(std::index_sequence<I...>) {
     return (std::same_as<decltype(frame), std::tuple_element_t<I, detail::AllRegisteredFrames>> || ...);
 }(std::make_index_sequence<std::tuple_size_v<detail::AllRegisteredFrames>>{});
+
+template <auto frame, auto frame_u>
+concept HasRegisteredFrameTransformation = requires(const Date& date) {
+    { get_dcm<frame, frame_u>(date) };
+} || requires(const Date& date) {
+    { get_dcm<frame_u, frame>(date) };
+};
 
 // Enforce: all ExtraRegisteredFrames can be transformed into frames::primary
 template <typename Tuple, typename Primary, std::size_t... I>
 constexpr bool all_have_valid_transformation_impl(std::index_sequence<I...>)
 {
-    return (frames::HasValidFrameTransformation<std::tuple_element_t<I, Tuple>{}, Primary{}> && ...);
+    return (HasRegisteredFrameTransformation<std::tuple_element_t<I, Tuple>{}, Primary{}> && ...);
 }
 
 template <typename Tuple, typename Primary>
@@ -123,7 +130,7 @@ constexpr bool all_have_valid_transformation()
 
 static_assert(
     all_have_valid_transformation<ExtraRegisteredFrames<>::type, std::decay_t<decltype(frames::primary)>>(),
-    "All ExtraRegisteredFrames must be transformable into frames::primary (HasValidFrameTransformation)."
+    "All ExtraRegisteredFrames must be transformable into frames::primary (direct or inverse get_dcm)."
 );
 
 } // namespace astro

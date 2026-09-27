@@ -24,7 +24,7 @@
 
 #include <astro/astro.macros.hpp>
 #include <astro/systems/celestial_bodies.hpp>
-#include <astro/systems/property_getters.hpp>
+#include <astro/systems/celestial_body_utilities.hpp>
 
 namespace astrea {
 namespace astro {
