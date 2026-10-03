@@ -48,8 +48,9 @@ class Equinoctial
   public:
     static constexpr auto frame = _frame_; //!< The reference frame of the Equinoctial state vector.
     template <IsFrame auto F>
-    using Self = Equinoctial<F>;
-    using BaseType::BaseType;
+    using Self = Equinoctial<F>; // For introspection
+    using BaseType::BaseType;    // Inherit constructors from the base class
+    using BaseType::operator=;   // Inherit assignment operator from the base class
 
     /**
      * @brief Default constructor for Equinoctial.
@@ -135,35 +136,6 @@ class Equinoctial
      * @return Equinoctial Predefined Equinoctial state vector for a GEO orbit.
      */
     static Equinoctial GEO(const GravParam& mu);
-
-    /**
-     * @brief Copy constructor for Equinoctial.
-     *
-     */
-    Equinoctial(const Equinoctial<_frame_>&);
-
-    /**
-     * @brief Move constructor for Equinoctial.
-     *
-     * @param other Another Equinoctial object
-     */
-    Equinoctial(Equinoctial<_frame_>&& other) noexcept;
-
-    /**
-     * @brief Move assignment operator for Equinoctial.
-     *
-     * @param other Another Equinoctial object
-     * @return Equinoctial<_frame_>& Reference to the current object
-     */
-    Equinoctial& operator=(Equinoctial<_frame_>&& other) noexcept;
-
-    /**
-     * @brief Copy assignment operator for Equinoctial.
-     *
-     * @param other Another Equinoctial object
-     * @return Equinoctial& Reference to the current object
-     */
-    Equinoctial& operator=(const Equinoctial<_frame_>& other);
 
     /**
      * @brief Default destructor for Equinoctial.
@@ -253,6 +225,39 @@ class Equinoctial
      * @return const Angle& Reference to the true longitude component of the Equinoctial state vector.
      */
     const Angle& get_true_longitude() const { return this->template get<5>(); }
+
+    /**
+     * @brief Converts this Equinoctial state to an equivalent Equinoctial state in a different frame.
+     *
+     * Translates first to Cartesian elements in the current frame, then transforms to Cartesian elements in the target
+     * frame, and finally converts to Equinoctial elements in the target frame.
+     *
+     * @tparam target_frame The target frame.
+     * @param epoch The epoch at which to evaluate the frame transformation.
+     * @param mu The gravitational parameter of the central body.
+     * @return Equinoctial<target_frame> This state expressed in the target frame.
+     */
+    template <IsFrame auto target_frame>
+    Equinoctial<target_frame> in_frame(const Date& epoch, const GravParam& mu) const
+    {
+        if constexpr (equivalent(frame, target_frame)) { return *this; }
+
+        const Cartesian<frame> cartInThisFrame(*this, mu);
+        const Cartesian<target_frame> cartInTargetFrame = cartInThisFrame.template in_frame<target_frame>(epoch);
+        return Equinoctial<target_frame>(cartInTargetFrame, mu);
+    }
+
+    /**
+     * @brief Interpolates between two Equinoctial states at a given time.
+     *
+     * @param thisTime Time of the current state
+     * @param otherTime Time of the other state
+     * @param other Other Equinoctial state to interpolate with
+     * @param mu Gravitational parameter of the central body
+     * @param targetTime Target time for interpolation
+     * @return Equinoctial Interpolated Equinoctial state at the target time.
+     */
+    Equinoctial interpolate(const Time& thisTime, const Time& otherTime, const Equinoctial& other, const GravParam& mu, const Time& targetTime) const;
 };
 
 /**
@@ -261,10 +266,10 @@ class Equinoctial
  */
 template <IsFrame auto _frame_>
 class EquinoctialPartial
-    : public OrbitalElementsInterface<EquinoctialPartial<_frame_>, _frame_, Velocity, UnitlessPerTime, UnitlessPerTime, UnitlessPerTime, UnitlessPerTime, AngularVelocity> {
+    : public OrbitalElementsInterface<EquinoctialPartial<_frame_>, Velocity, UnitlessPerTime, UnitlessPerTime, UnitlessPerTime, UnitlessPerTime, AngularVelocity> {
 
     using BaseType =
-        OrbitalElementsInterface<EquinoctialPartial<_frame_>, _frame_, Velocity, UnitlessPerTime, UnitlessPerTime, UnitlessPerTime, UnitlessPerTime, AngularVelocity>;
+        OrbitalElementsInterface<EquinoctialPartial<_frame_>, Velocity, UnitlessPerTime, UnitlessPerTime, UnitlessPerTime, UnitlessPerTime, AngularVelocity>;
 
     template <IsFrame auto frame>
     friend std::ostream& operator<<(std::ostream&, EquinoctialPartial<frame> const&);

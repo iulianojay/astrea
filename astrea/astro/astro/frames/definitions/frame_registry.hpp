@@ -108,6 +108,11 @@ concept IsRegisteredFrame = []<std::size_t... I>(std::index_sequence<I...>) {
     return (std::same_as<decltype(frame), std::tuple_element_t<I, detail::AllRegisteredFrames>> || ...);
 }(std::make_index_sequence<std::tuple_size_v<detail::AllRegisteredFrames>>{});
 
+template <auto frame>
+concept IsEquivalentToRegisteredFrame = []<std::size_t... I>(std::index_sequence<I...>) {
+    return (equivalent(frame, std::tuple_element_t<I, detail::AllRegisteredFrames>{}) || ...);
+}(std::make_index_sequence<std::tuple_size_v<detail::AllRegisteredFrames>>{});
+
 template <auto frame, auto frame_u>
 concept HasRegisteredFrameTransformation = requires(const Date& date) {
     { get_dcm<frame, frame_u>(date) };

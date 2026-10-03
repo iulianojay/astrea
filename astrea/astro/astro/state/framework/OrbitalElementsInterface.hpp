@@ -18,28 +18,30 @@
  */
 #pragma once
 
-#include <astro/frames.hpp>
+#include <type_traits>
+
+#include <astro/frames/framework.hpp>
 #include <astro/state/framework/ElementMatrix.hpp>
 
 namespace astrea {
 namespace astro {
 
 template <typename T>
-concept IsOrbitalElements = requires {
+concept IsOrbitalElementsImpl = requires {
     typename T::ArrayType;
     typename T::OrbitalElementsTag;
-    { T::frame } -> IsFrame;
+    requires IsFrame<std::remove_cvref_t<decltype(T::frame)>>;
 };
 
 template <typename Derived_T, typename Derived_U>
-concept IsCompatibleOrbitalElements = IsOrbitalElements<Derived_T> && IsOrbitalElements<Derived_U> &&
+concept IsCompatibleOrbitalElements = IsOrbitalElementsImpl<Derived_T> && IsOrbitalElementsImpl<Derived_U> &&
                                       IsCompatibleElementMatrix<typename Derived_T::ArrayType, typename Derived_U::ArrayType> &&
                                       equivalent(Derived_T::frame, Derived_U::frame);
 
 template <typename Derived_T, typename... Elements_T>
 class OrbitalElementsInterface {
   public:
-    using OrbitalElementsTag = void; //!< Tag type used by IsOrbitalElements concept detection.
+    using OrbitalElementsTag = void; //!< Tag type used by IsOrbitalElementsImpl concept detection.
     using ArrayType = ElementMatrix<sizeof...(Elements_T), 1, Elements_T...>; //!< The underlying array type representing the orbital elements.
 
     /**
@@ -145,7 +147,19 @@ class OrbitalElementsInterface {
      * @return The element at the specified index.
      */
     template <std::size_t idx>
-    inline constexpr auto& get() const
+    inline constexpr auto& get()
+    {
+        return _elements.template get<idx>();
+    }
+
+    /**
+     * @brief Access an element of the array by its flat index (const version).
+     *
+     * @tparam idx The flat index of the element to access.
+     * @return The element at the specified index.
+     */
+    template <std::size_t idx>
+    inline constexpr const auto& get() const
     {
         return _elements.template get<idx>();
     }
@@ -350,7 +364,18 @@ class OrbitalElementsInterface {
      *
      * @return A tuple containing the elements of the array.
      */
-    inline constexpr typename ArrayType::tuple_type force_to_tuple() const { return _elements.to_tuple(); }
+    inline constexpr typename ArrayType::TupleType force_to_tuple() const { return _elements.to_tuple(); }
+
+    /**
+     * @brief Flatten the Derived_T to a 1D vector of doubles.
+     *
+     * @return A std::vector<double> representing the flattened version of the original array.
+     */
+    inline constexpr auto force_to_double_vector() const
+    {
+        const auto& [... a] = _elements.elements; // surely, I'm doing something wrong here
+        return std::vector<double>{ static_cast<double>(a.numerical_value_in(a.unit))... };
+    }
 
   protected:
     ArrayType _elements; //!< The underlying Derived_T representing the orbital elements.

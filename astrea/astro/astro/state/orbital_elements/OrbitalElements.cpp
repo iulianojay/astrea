@@ -136,11 +136,13 @@ OrbitalElements
 {
     return std::visit(
         [&](const auto& x) -> OrbitalElements {
+            using ElementT = std::remove_cvref_t<decltype(x)>;
             if (!std::holds_alternative<std::remove_cvref_t<decltype(x)>>(other._elements)) {
                 throw_mismatched_types();
             }
-            const auto& y = std::get<std::remove_cvref_t<decltype(x)>>(other._elements);
-            return x.interpolate(thisTime, otherTime, y, targetTime);
+            const auto& y      = std::get<ElementT>(other._elements);
+            const GravParam mu = get_mu<ElementT::frame.origin>();
+            return x.interpolate(thisTime, otherTime, y, mu, targetTime);
         },
         _elements
     );
@@ -186,7 +188,21 @@ OrbitalElements OrbitalElements::from_double_vector(const std::vector<double>& v
 
 OrbitalElements OrbitalElementPartials::operator*(const Time& time) const
 {
-    return std::visit([&](const auto& x) -> OrbitalElements { return x * time; }, _elements);
+    return std::visit(
+        [&](const auto& x) -> OrbitalElements {
+            using PartialT = std::remove_cvref_t<decltype(x)>;
+            if constexpr (std::is_same_v<PartialT, CartesianPartial<PartialT::frame>>) {
+                return OrbitalElements(Cartesian<PartialT::frame>(x * time));
+            }
+            else if constexpr (std::is_same_v<PartialT, KeplerianPartial<PartialT::frame>>) {
+                return OrbitalElements(Keplerian<PartialT::frame>(x * time));
+            }
+            else {
+                return OrbitalElements(Equinoctial<PartialT::frame>(x * time));
+            }
+        },
+        _elements
+    );
 }
 
 std::ostream& operator<<(std::ostream& os, const OrbitalElementPartials& elements)

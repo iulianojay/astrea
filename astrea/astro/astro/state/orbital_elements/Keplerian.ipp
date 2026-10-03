@@ -144,11 +144,11 @@ Keplerian<_frame_>::Keplerian(const Cartesian<_frame_>& elements, const GravPara
         _eccentricity very close to 0 be exactly 0 to avoid issues where w and
         anomaly flail around wildly as ecc fluctuates.
     */
-    if (_eccentricity < TOL) { _eccentricity = 0.0 * one; }
+    if (get_eccentricity() < TOL) { get_eccentricity() = 0.0 * one; }
 
     // Inclination (rad)
-    _inclination = acos(hz / normH);
-    if (abs(_inclination - PI) < ANGULAR_TOL) { _inclination = 0.0 * rad; }
+    get_inclination() = acos(hz / normH);
+    if (abs(get_inclination() - PI) < ANGULAR_TOL) { get_inclination() = 0.0 * rad; }
 
     // Right Ascension of Ascending Node (rad)
     if (get_inclination() == 0.0 * rad) { // No nodal line
@@ -156,39 +156,39 @@ Keplerian<_frame_>::Keplerian(const Cartesian<_frame_>& elements, const GravPara
     }
     else {
         const Unitless nxOverNMag = math::clamp_within_floating_point_error(Nx / normN, -1.0 * one, 1.0 * one);
-        _rightAscension           = (Ny > 0.0 * (km * km / s)) ? acos(nxOverNMag) : TWO_PI - acos(nxOverNMag);
-        if (abs(_rightAscension - TWO_PI) < ANGULAR_TOL) { _rightAscension = 0.0 * rad; }
+        get_right_ascension()     = (Ny > 0.0 * (km * km / s)) ? acos(nxOverNMag) : TWO_PI - acos(nxOverNMag);
+        if (abs(get_right_ascension() - TWO_PI) < ANGULAR_TOL) { get_right_ascension() = 0.0 * rad; }
     }
 
     // True Anomaly (rad)
-    if (_eccentricity == 0.0 * one) {    // No argument of perigee, use nodal line
-        if (_inclination == 0.0 * rad) { // No nodal line, use true longitude
+    if (get_eccentricity() == 0.0 * one) {    // No argument of perigee, use nodal line
+        if (get_inclination() == 0.0 * rad) { // No nodal line, use true longitude
             const Unitless xOverR = math::clamp_within_floating_point_error(x / R, -1.0 * one, 1.0 * one);
-            _trueAnomaly          = (vx <= 0.0 * km / s) ? acos(xOverR) : TWO_PI - acos(xOverR);
+            get_true_anomaly()    = (vx <= 0.0 * km / s) ? acos(xOverR) : TWO_PI - acos(xOverR);
         }
         else { // Use argument of latitude
             const Unitless nDotROverMag =
                 math::clamp_within_floating_point_error((Nx * x + Ny * y) / (normN * R), -1.0 * one, 1.0 * one);
-            _trueAnomaly = (z >= 0.0 * km) ? acos(nDotROverMag) : TWO_PI - acos(nDotROverMag);
+            get_true_anomaly() = (z >= 0.0 * km) ? acos(nDotROverMag) : TWO_PI - acos(nDotROverMag);
         }
     }
     else {
         const Unitless eccDotROverMag =
-            math::clamp_within_floating_point_error((eccX * x + eccY * y + eccZ * z) / (_eccentricity * R), -1.0 * one, 1.0 * one);
-        _trueAnomaly = (dotRV >= 0.0 * (km * km / s)) ? acos(eccDotROverMag) : TWO_PI - acos(eccDotROverMag);
+            math::clamp_within_floating_point_error((eccX * x + eccY * y + eccZ * z) / (get_eccentricity() * R), -1.0 * one, 1.0 * one);
+        get_true_anomaly() = (dotRV >= 0.0 * (km * km / s)) ? acos(eccDotROverMag) : TWO_PI - acos(eccDotROverMag);
     }
 
     // Argument of Parigee (rad)
     if (get_eccentricity() == 0.0 * one) { // Ill-defined. Assume zero
         get_argument_of_perigee() = 0.0 * rad;
     }
-    else if (_inclination == 0.0 * rad) { // No nodal line, use ecc vec
-        _argPerigee = (hz > 0.0 * (km * km / s)) ? atan2(eccY, eccX) : 2 * PI - atan2(eccY, eccX);
+    else if (get_inclination() == 0.0 * rad) { // No nodal line, use ecc vec
+        get_argument_of_perigee() = (hz > 0.0 * (km * km / s)) ? atan2(eccY, eccX) : 2 * PI - atan2(eccY, eccX);
     }
     else {
         const Unitless eccDotNOverMag =
-            math::clamp_within_floating_point_error((eccX * Nx + eccY * Ny) / (_eccentricity * normN), -1.0 * one, 1.0 * one);
-        _argPerigee = (eccZ < 0.0 * one) ? TWO_PI - acos(eccDotNOverMag) : acos(eccDotNOverMag);
+            math::clamp_within_floating_point_error((eccX * Nx + eccY * Ny) / (get_eccentricity() * normN), -1.0 * one, 1.0 * one);
+        get_argument_of_perigee() = (eccZ < 0.0 * one) ? TWO_PI - acos(eccDotNOverMag) : acos(eccDotNOverMag);
     }
 
     // Catch garbage
@@ -197,7 +197,7 @@ Keplerian<_frame_>::Keplerian(const Cartesian<_frame_>& elements, const GravPara
         get_argument_of_perigee() = 0.0 * rad;
     }
 
-    if (abs(get_true_anomaly() - twoPiRad) < angularTol) { get_true_anomaly() = 0.0 * rad; }
+    if (abs(get_true_anomaly() - TWO_PI) < ANGULAR_TOL) { get_true_anomaly() = 0.0 * rad; }
 
     wrap_angles();
 }
@@ -239,28 +239,6 @@ Keplerian<_frame_>::Keplerian(const Equinoctial<_frame_>& elements, const GravPa
     wrap_angles();
 }
 
-// Copy constructor
-template <IsFrame auto _frame_>
-Keplerian<_frame_>::Keplerian(const Keplerian<_frame_>& other) :
-    BaseType(other._elements)
-{
-}
-
-// Move constructor
-template <IsFrame auto _frame_>
-Keplerian<_frame_>::Keplerian(Keplerian<_frame_>&& other) noexcept :
-    BaseType(std::move(other._elements))
-{
-}
-
-// Move assignment operator
-template <IsFrame auto _frame_>
-Keplerian<_frame_>& Keplerian<_frame_>::operator=(Keplerian<_frame_>&& other) noexcept
-{
-    if (this != &other) { _elements = std::move(other._elements); }
-    return *this;
-}
-
 template <IsFrame auto _frame_>
 Angle Keplerian<_frame_>::get_mean_anomaly() const
 {
@@ -271,7 +249,7 @@ template <IsFrame auto _frame_>
 MeanMotion Keplerian<_frame_>::get_mean_motion(const GravParam& mu) const
 {
     using mp_units::pow;
-    return sqrt(mu / pow<3>(_semimajor));
+    return sqrt(mu / pow<3>(get_semimajor()));
 }
 
 template <IsFrame auto _frame_>
@@ -285,15 +263,9 @@ template <IsFrame auto _frame_>
 SpecificAngularMomentum Keplerian<_frame_>::get_specific_angular_momentum(const GravParam& mu) const
 {
     using mp_units::pow;
-    return sqrt(mu * _semimajor * (1.0 - pow<2>(_eccentricity)));
+    return sqrt(mu * get_semimajor() * (1.0 - pow<2>(get_eccentricity())));
 }
 
-// Copy assignment operator
-template <IsFrame auto _frame_>
-Keplerian<_frame_>& Keplerian<_frame_>::operator=(const Keplerian<_frame_>& other)
-{
-    return *this = Keplerian(other);
-}
 template <IsFrame auto _frame_>
 Keplerian<_frame_>
     Keplerian<_frame_>::interpolate(const Time& thisTime, const Time& otherTime, const Keplerian<_frame_>& other, const GravParam& mu, const Time& targetTime) const

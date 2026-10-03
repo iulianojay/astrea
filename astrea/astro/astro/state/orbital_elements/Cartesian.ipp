@@ -181,28 +181,6 @@ Cartesian<_frame_> Cartesian<_frame_>::GEO(const GravParam& mu)
     return Cartesian<_frame_>(Keplerian<_frame_>::GEO(), mu);
 }
 
-template <IsFrame auto _frame_>
-Cartesian<_frame_>::Cartesian(const Cartesian<_frame_>& other) :
-    _elements(other._elements)
-{
-}
-
-
-// Move assignment operator
-template <IsFrame auto _frame_>
-Cartesian<_frame_>& Cartesian<_frame_>::operator=(Cartesian<_frame_>&& other) noexcept
-{
-    if (this != &other) { _elements = std::move(other._elements); }
-    return *this;
-}
-
-// Copy assignment operator
-template <IsFrame auto _frame_>
-Cartesian<_frame_>& Cartesian<_frame_>::operator=(const Cartesian<_frame_>& other)
-{
-    return *this = Cartesian(other);
-}
-
 
 // Mathematical operators
 template <IsFrame auto _frame_>

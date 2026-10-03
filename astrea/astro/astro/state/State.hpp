@@ -202,7 +202,7 @@ class State {
     }
 
     /**
-     * @brief Converts the current orbital elements to a specified type.
+     * @brief Converts the current orbital elements to a specified orbital elements type.
      *
      * @param sys The astrodynamics system to use for the conversion.
      * @return The converted orbital elements.
@@ -210,9 +210,9 @@ class State {
     template <IsOrbitalElements T>
     T in_element_set() const
     {
-        using BaseInPrimary = typename T::template BaseType<frames::primary>;
-        const auto mu       = this->get_mu();
-        return _elements.in_element_set<BaseInPrimary>(mu).template in_frame<T::frame>(_epoch, mu);
+        // TODO: You could add support for in place modifications to registered frames
+        // but that's a lot of work and I'm not sure it's really that useful
+        return _elements.template in_element_set<T>(_epoch, get_mu());
     }
 
     /**
@@ -226,19 +226,6 @@ class State {
     }
 
     /**
-     * @brief Converts the state to a specified frame.
-     *
-     * @tparam _frame_ The frame to convert the state to.
-     * @return State A new State object with the converted orbital elements.
-     */
-    template <IsFrame auto _frame_>
-    State& in_frame()
-    {
-        _elements = _elements.in_frame<_frame_>(get_epoch(), get_mu());
-        return *this;
-    }
-
-    /**
      * @brief Gets the position vector in a specified frame from the state.
      *
      * @tparam _frame_ The frame to get the position vector in.
@@ -247,7 +234,7 @@ class State {
     template <IsFrame auto _frame_>
     RadiusVector<_frame_> get_position_in_frame() const
     {
-        return get_position().template in_frame<_frame_>(get_epoch());
+        return get_position().template in_frame<_frame_>(_epoch);
     }
 
     /**
@@ -481,7 +468,7 @@ class StatePartial {
      *
      * @return const Date& Reference to the epoch of the state partial.
      */
-    const Date& get_epoch() const;
+    const Date& get_epoch() const { return _epoch; }
 
     /**
      * @brief Converts the State to a vector of Unitless values.

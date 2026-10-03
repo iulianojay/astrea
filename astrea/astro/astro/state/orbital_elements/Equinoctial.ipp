@@ -83,35 +83,6 @@ Equinoctial<_frame_>::Equinoctial(const Keplerian<_frame_>& elements, const Grav
     get_true_longitude() = wrap_angle(raan + argPer + theta);
 }
 
-// Copy constructor
-template <IsFrame auto _frame_>
-Equinoctial<_frame_>::Equinoctial(const Equinoctial<_frame_>& other) :
-    BaseType(other._elements)
-{
-}
-
-// Move constructor
-template <IsFrame auto _frame_>
-Equinoctial<_frame_>::Equinoctial(Equinoctial<_frame_>&& other) noexcept :
-    BaseType(std::move(other._elements))
-{
-}
-
-// Move assignment operator
-template <IsFrame auto _frame_>
-Equinoctial<_frame_>& Equinoctial<_frame_>::operator=(Equinoctial<_frame_>&& other) noexcept
-{
-    if (this != &other) { _elements = std::move(other._elements); }
-    return *this;
-}
-
-// Copy assignment operator
-template <IsFrame auto _frame_>
-Equinoctial<_frame_>& Equinoctial<_frame_>::operator=(const Equinoctial<_frame_>& other)
-{
-    return *this = Equinoctial(other);
-}
-
 template <IsFrame auto _frame_>
 Equinoctial<_frame_>
     Equinoctial<_frame_>::interpolate(const Time& thisTime, const Time& otherTime, const Equinoctial<_frame_>& other, const GravParam& mu, const Time& targetTime) const

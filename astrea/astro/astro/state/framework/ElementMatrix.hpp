@@ -173,6 +173,18 @@ struct ElementMatrix {
      * @return The element at the specified index.
      */
     template <std::size_t idx>
+    inline constexpr auto& get()
+    {
+        return std::get<idx>(elements);
+    }
+
+    /**
+     * @brief Access an element of the array by its flat index (const version).
+     *
+     * @tparam idx The flat index of the element to access.
+     * @return The element at the specified index.
+     */
+    template <std::size_t idx>
     inline constexpr auto& get() const
     {
         return std::get<idx>(elements);
@@ -180,6 +192,21 @@ struct ElementMatrix {
 
     /**
      * @brief Access an element of the array by its row and column indices.
+     *
+     * @tparam row The row index of the element to access.
+     * @tparam col The column index of the element to access.
+     * @return The element at the specified row and column.
+     */
+    template <std::size_t row, std::size_t col>
+    inline constexpr auto& get()
+    {
+        static_assert(row < n_row, "Row index out of bounds");
+        static_assert(col < n_col, "Column index out of bounds");
+        return std::get<row * n_col + col>(elements);
+    }
+
+    /**
+     * @brief Access an element of the array by its row and column indices (const version).
      *
      * @tparam row The row index of the element to access.
      * @tparam col The column index of the element to access.
@@ -642,21 +669,17 @@ template <std::size_t size, typename... Elements_T>
 using ElementArray = ElementMatrix<size, 1, Elements_T...>; //!< Type representing a column vector of elements
 
 
-template <typename T, std::size_t n, typename Seq = std::make_index_sequence<n>>
-struct repeat_impl;
+template <std::size_t size, typename Element_T, typename Seq = std::make_index_sequence<size>>
+struct uniform_element_array_impl;
 
-template <typename T, std::size_t n, std::size_t... I>
-struct repeat_impl<T, n, std::index_sequence<I...>> {
-    using type = std::type_identity_t<T>...; // expands n times
+template <std::size_t size, typename Element_T, std::size_t... I>
+struct uniform_element_array_impl<size, Element_T, std::index_sequence<I...>> {
+    using type = ElementMatrix<size, 1, std::conditional_t<true, Element_T, std::integral_constant<std::size_t, I>>...>;
 };
-
-// Helper alias
-template <typename T, std::size_t N>
-using repeat_t = typename repeat_impl<T, N>::type;
 
 template <std::size_t size, typename Element_T>
 using UniformElementArray =
-    ElementMatrix<size, 1, repeat_t<Element_T, size>>; //!< Type representing a column vector of uniform elements
+    typename uniform_element_array_impl<size, Element_T>::type; //!< Type representing a column vector of uniform elements
 
 } // namespace astro
 } // namespace astrea

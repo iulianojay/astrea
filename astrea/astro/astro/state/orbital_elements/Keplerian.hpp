@@ -51,8 +51,9 @@ class Keplerian : public OrbitalElementsInterface<Keplerian<_frame_>, Distance, 
     static constexpr auto frame = _frame_; //!< The reference frame of the Keplerian elements.
 
     template <IsFrame auto F>
-    using Self = Keplerian<F>;
-    using BaseType::BaseType;
+    using Self = Keplerian<F>; // For introspection
+    using BaseType::BaseType;  // Inherit constructors from the base class
+    using BaseType::operator=; // Inherit assignment operator from the base class
 
     /**
      * @brief Default constructor for Keplerian.
@@ -135,36 +136,6 @@ class Keplerian : public OrbitalElementsInterface<Keplerian<_frame_>, Distance, 
      * @return Keplerian Predefined Keplerian state vector for a GEO orbit.
      */
     static Keplerian GEO();
-
-    /**
-     * @brief Copy constructor for Keplerian.
-     *
-     * @param other Another Keplerian object
-     */
-    Keplerian(const Keplerian<_frame_>&);
-
-    /**
-     * @brief Move constructor for Keplerian.
-     *
-     * @param other Another Keplerian object
-     */
-    Keplerian(Keplerian<_frame_>&&) noexcept;
-
-    /**
-     * @brief Move assignment operator for Keplerian.
-     *
-     * @param other Another Keplerian object
-     * @return Keplerian& Reference to the current object
-     */
-    Keplerian& operator=(Keplerian<_frame_>&&) noexcept;
-
-    /**
-     * @brief Copy assignment operator for Keplerian.
-     *
-     * @param other Another Keplerian object
-     * @return Keplerian& Reference to the current object
-     */
-    Keplerian& operator=(const Keplerian<_frame_>&);
 
     /**
      * @brief Destructor for Keplerian.
@@ -319,6 +290,27 @@ class Keplerian : public OrbitalElementsInterface<Keplerian<_frame_>, Distance, 
     SpecificAngularMomentum get_specific_angular_momentum(const GravParam& mu) const;
 
     /**
+     * @brief Converts this Keplerian state to an equivalent Keplerian state in a different frame.
+     *
+     * Translates first to Cartesian elements in the current frame, then transforms to Cartesian elements in the target
+     * frame, and finally converts to Keplerian elements in the target frame.
+     *
+     * @tparam target_frame The target frame.
+     * @param epoch The epoch at which to evaluate the frame transformation.
+     * @param mu The gravitational parameter of the central body.
+     * @return Keplerian<target_frame> This state expressed in the target frame.
+     */
+    template <IsFrame auto target_frame>
+    Keplerian<target_frame> in_frame(const Date& epoch, const GravParam& mu) const
+    {
+        if constexpr (equivalent(frame, target_frame)) { return *this; }
+
+        const Cartesian<frame> cartInThisFrame(*this, mu);
+        const Cartesian<target_frame> cartInTargetFrame = cartInThisFrame.template in_frame<target_frame>(epoch);
+        return Keplerian<target_frame>(cartInTargetFrame, mu);
+    }
+
+    /**
      * @brief Interpolates between two Keplerian state vectors.
      *
      * This method performs linear interpolation between two Keplerian state vectors at a specified target time.
@@ -330,7 +322,7 @@ class Keplerian : public OrbitalElementsInterface<Keplerian<_frame_>, Distance, 
      * @param targetTime The target time for interpolation.
      * @return Keplerian Interpolated Keplerian state vector at the target time.
      */
-    Keplerian interpolate(const Time& thisTime, const Time& otherTime, const Keplerian<_frame_>& other, const GravParam& mu, const Time& targetTime) const;
+    Keplerian interpolate(const Time& thisTime, const Time& otherTime, const Keplerian& other, const GravParam& mu, const Time& targetTime) const;
 
   private:
     /**
@@ -361,10 +353,10 @@ class Keplerian : public OrbitalElementsInterface<Keplerian<_frame_>, Distance, 
  */
 template <IsFrame auto _frame_>
 class KeplerianPartial
-    : public OrbitalElementsInterface<KeplerianPartial<_frame_>, _frame_, Velocity, UnitlessPerTime, AngularVelocity, AngularVelocity, AngularVelocity, AngularVelocity> {
+    : public OrbitalElementsInterface<KeplerianPartial<_frame_>, Velocity, UnitlessPerTime, AngularVelocity, AngularVelocity, AngularVelocity, AngularVelocity> {
 
     using BaseType =
-        OrbitalElementsInterface<KeplerianPartial<_frame_>, _frame_, Velocity, UnitlessPerTime, AngularVelocity, AngularVelocity, AngularVelocity, AngularVelocity>;
+        OrbitalElementsInterface<KeplerianPartial<_frame_>, Velocity, UnitlessPerTime, AngularVelocity, AngularVelocity, AngularVelocity, AngularVelocity>;
 
     template <IsFrame auto frame>
     friend std::ostream& operator<<(std::ostream&, KeplerianPartial<frame> const&);

@@ -207,22 +207,37 @@ class OrbitalElements {
     }
 
     /**
-     * @brief Converts the current orbital elements to a specified type.
+     * @brief Converts the current orbital elements to a specified orbital elements type.
+     *
+     * Will convert frames if the target type is in a different frame than the current type.
      *
      * @param mu The gravitational parameter to use for the conversion.
+     * @param epoch The epoch to use for the conversion.
      * @return The converted orbital elements.
      */
     template <IsOrbitalElements T>
-    T in_element_set(const GravParam& mu) const
+    T in_element_set(const Date& epoch, const GravParam& mu) const
     {
-        return std::visit([&](const auto& x) -> T { return T(x, mu); }, _elements);
+        static constexpr auto target_frame = T::frame;
+        const auto frame                   = std::visit([](const auto& x) { return x.frame; }, _elements);
+
+        // Avoid unnecessary conversions if the current frame is equivalent to the target frame
+        if (equivalent(frame, target_frame)) {
+            return std::visit([&](const auto& x) -> T { return T(x, mu); }, _elements);
+        }
+
+        // Convert to Cartesian in the current frame, then to Cartesian in the target frame, and finally to the target type
+        const auto cartInPrimary =
+            std::visit([&](const auto& x) -> Cartesian<frames::primary> { return Cartesian<frames::primary>(x, mu); }, _elements);
+        const auto cartInTarget = cartInPrimary.template in_frame<target_frame>(epoch);
+        return T(cartInTarget, mu);
     }
 
     /**
-     * @brief Converts all held orbital elements to the specified frame.
+     * @brief Returns the held orbital elements in the specified frame.
      *
      * Visits the current element type and calls its in_frame<target_frame>(epoch, mu),
-     * returning a new OrbitalElements holding the converted elements.
+     * returning the base type in the target frame.
      *
      * @tparam target_frame The frame to convert into.
      * @param epoch The epoch at which to evaluate the frame transformation.

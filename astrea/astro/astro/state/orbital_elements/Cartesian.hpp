@@ -53,8 +53,17 @@ class Cartesian
   public:
     static constexpr auto frame = _frame_; //!< The reference frame of the Cartesian state vector.
     template <IsFrame auto F>
-    using Self = Cartesian<F>;
-    using BaseType::BaseType;
+    using Self = Cartesian<F>; // For introspection
+    using BaseType::BaseType;  // Inherit constructors from the base class
+    using BaseType::operator=; // Inherit assignment operator from the base class
+    using BaseType::operator+; // Keep base element-wise arithmetic visible alongside vector overloads
+    using BaseType::operator-;
+    using BaseType::operator*;
+    using BaseType::operator/;
+    using BaseType::operator+=;
+    using BaseType::operator-=;
+    using BaseType::operator*=;
+    using BaseType::operator/=;
 
     /**
      * @brief Default constructor for Cartesian.
@@ -152,36 +161,6 @@ class Cartesian
     static Cartesian GEO(const GravParam& mu);
 
     /**
-     * @brief Copy constructor for Cartesian.
-     *
-     * @param other Another Cartesian object
-     */
-    Cartesian(const Cartesian<_frame_>&);
-
-    /**
-     * @brief Move constructor for Cartesian.
-     *
-     * @param other Another Cartesian object
-     */
-    Cartesian(Cartesian<_frame_>&&) noexcept = default;
-
-    /**
-     * @brief Move assignment operator for Cartesian.
-     *
-     * @param other Another Cartesian object
-     * @return Cartesian& Reference to the current object
-     */
-    Cartesian& operator=(Cartesian<_frame_>&&) noexcept;
-
-    /**
-     * @brief Copy assignment operator for Cartesian.
-     *
-     * @param other Another Cartesian object
-     * @return Cartesian& Reference to the current object
-     */
-    Cartesian& operator=(const Cartesian<_frame_>&);
-
-    /**
      * @brief Default destructor for Cartesian.
      */
     ~Cartesian() = default;
@@ -259,10 +238,11 @@ class Cartesian
      *
      * @tparam target_frame The target frame.
      * @param epoch The epoch at which to evaluate the frame transformation.
+     * @param mu The gravitational parameter of the central body (not used in this function).
      * @return Cartesian<target_frame> This state expressed in the target frame.
      */
     template <IsFrame auto target_frame>
-    Cartesian<target_frame> in_frame(const Date& epoch) const
+    Cartesian<target_frame> in_frame(const Date& epoch, const GravParam& mu = {}) const
     {
         if constexpr (equivalent(frame, target_frame)) { return *this; }
 
@@ -280,28 +260,14 @@ class Cartesian
      *
      * @return RadiusVector<_frame_> The position vector in Cartesian coordinates.
      */
-    RadiusVector<_frame_>& get_position() { return { get_x(), get_y(), get_z() }; }
+    RadiusVector<_frame_> get_position() const { return { get_x(), get_y(), get_z() }; }
 
     /**
      * @brief Converts the Cartesian state vector to a VelocityVector<_frame_>.
      *
      * @return VelocityVector<_frame_> The velocity vector in Cartesian coordinates.
      */
-    VelocityVector<_frame_>& get_velocity() { return { get_vx(), get_vy(), get_vz() }; }
-
-    /**
-     * @brief Converts the Cartesian state vector to a RadiusVector<_frame_>.
-     *
-     * @return RadiusVector<_frame_> The position vector in Cartesian coordinates.
-     */
-    const RadiusVector<_frame_>& get_position() const { return { get_x(), get_y(), get_z() }; }
-
-    /**
-     * @brief Converts the Cartesian state vector to a VelocityVector<_frame_>.
-     *
-     * @return VelocityVector<_frame_> The velocity vector in Cartesian coordinates.
-     */
-    const VelocityVector<_frame_>& get_velocity() const { return { get_vx(), get_vy(), get_vz() }; }
+    VelocityVector<_frame_> get_velocity() const { return { get_vx(), get_vy(), get_vz() }; }
 
     /**
      * @brief Get the x value of the Cartesian state vector.
@@ -397,7 +363,7 @@ class Cartesian
      * @param targetTime Target time for interpolation
      * @return Cartesian Interpolated Cartesian state at the target time.
      */
-    Cartesian interpolate(const Time& thisTime, const Time& otherTime, const Cartesian<_frame_>& other, const GravParam& mu, const Time& targetTime) const;
+    Cartesian interpolate(const Time& thisTime, const Time& otherTime, const Cartesian& other, const GravParam& mu, const Time& targetTime) const;
 };
 
 /**
@@ -407,10 +373,10 @@ class Cartesian
  */
 template <IsFrame auto _frame_>
 class CartesianPartial
-    : public OrbitalElementsInterface<CartesianPartial<_frame_>, _frame_, Velocity, Velocity, Velocity, Acceleration, Acceleration, Acceleration> {
+    : public OrbitalElementsInterface<CartesianPartial<_frame_>, Velocity, Velocity, Velocity, Acceleration, Acceleration, Acceleration> {
 
     using BaseType =
-        OrbitalElementsInterface<CartesianPartial<_frame_>, _frame_, Velocity, Velocity, Velocity, Acceleration, Acceleration, Acceleration>;
+        OrbitalElementsInterface<CartesianPartial<_frame_>, Velocity, Velocity, Velocity, Acceleration, Acceleration, Acceleration>;
 
     template <IsFrame auto frame>
     friend std::ostream& operator<<(std::ostream&, CartesianPartial<frame> const&);
