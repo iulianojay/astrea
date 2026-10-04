@@ -20,6 +20,7 @@ add_compile_definitions(gsl_FEATURE_GSL_COMPATIBILITY_MODE=1)
 
 # ---- CPM-managed packages (not available in ConanCenter) ----
 include(cmake/CPM.cmake)
+
 # Units
 CPMFindPackage(
     NAME mp-units

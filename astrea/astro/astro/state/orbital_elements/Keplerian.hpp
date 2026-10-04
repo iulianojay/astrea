@@ -362,6 +362,7 @@ class KeplerianPartial
     friend std::ostream& operator<<(std::ostream&, KeplerianPartial<frame> const&);
 
   public:
+    static constexpr auto frame = _frame_; //!< The reference frame of the KeplerianPartial state vector.
     using BaseType::BaseType;
 
     /**

@@ -352,6 +352,18 @@ class AngularVelocities {
     }
 
     /**
+     * @brief Converts the angle sequence velocity to a std::vector of doubles for use in numerical integration.
+     *
+     * @return A std::vector of doubles representing the components of the angle sequence velocity, in the order [first, second, third].
+     */
+    std::vector<double> force_to_double_vector() const
+    {
+        return { _angularVelocities[0].numerical_value_in(_angularVelocities[0].unit),
+                 _angularVelocities[1].numerical_value_in(_angularVelocities[1].unit),
+                 _angularVelocities[2].numerical_value_in(_angularVelocities[2].unit) };
+    }
+
+    /**
      * @brief Interpolates between this angle sequence and another angle sequence at a target time.
      *
      * @param thisTime The time corresponding to this angle sequence.
@@ -610,6 +622,18 @@ class AngularAccelerations {
      * @return A std::vector of Unitless quantities representing the components of the angular sequence acceleration, in the order [first, second, third].
      */
     UniformElementArray<3, AngularAcceleration> force_to_element_array() const
+    {
+        return { _angularAccels[0].numerical_value_in(_angularAccels[0].unit),
+                 _angularAccels[1].numerical_value_in(_angularAccels[1].unit),
+                 _angularAccels[2].numerical_value_in(_angularAccels[2].unit) };
+    }
+
+    /**
+     * @brief Converts the angular sequence acceleration to a std::vector of doubles for use in numerical integration.
+     *
+     * @return A std::vector of doubles representing the components of the angular sequence acceleration, in the order [first, second, third].
+     */
+    std::vector<double> force_to_double_vector() const
     {
         return { _angularAccels[0].numerical_value_in(_angularAccels[0].unit),
                  _angularAccels[1].numerical_value_in(_angularAccels[1].unit),

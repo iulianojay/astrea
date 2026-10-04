@@ -382,6 +382,7 @@ class CartesianPartial
     friend std::ostream& operator<<(std::ostream&, CartesianPartial<frame> const&);
 
   public:
+    static constexpr auto frame = _frame_; //!< The reference frame of the CartesianPartial state vector.
     using BaseType::BaseType;
 
     /**

@@ -47,13 +47,13 @@ TEST_F(ElementMatrixTest, DefaultConstructor) { ASSERT_NO_THROW(KeplerianElement
 
 TEST_F(ElementMatrixTest, ElementConstructor)
 {
-    ASSERT_NO_THROW(KeplerianElements(Distance{}, Unitless{}, Angle{}, Angle{}, Angle{}, Angle{}));
+    ASSERT_NO_THROW(KeplerianElements(Distance{}, Unitless{}, Angle(), Angle(), Angle(), Angle()));
 }
 
 TEST_F(ElementMatrixTest, Partial)
 {
     KeplerianElements elements(
-        Distance{ 1.0 * km }, Unitless{ 1.0 * one }, Angle{ 1.0 * deg }, Angle{ 1.0 * deg }, Angle{ 1.0 * deg }, Angle{ 1.0 * deg }
+        Distance{ 1.0 * km }, Unitless{ 1.0 * one }, Angle(1.0 * deg), Angle(1.0 * deg), Angle(1.0 * deg), Angle(1.0 * deg)
     );
     auto partialElements = KeplerianElements::partial_in<Time>(elements / Time{ 1.0 * s });
     auto weirdPartial    = KeplerianElements::partial_in<Distance>(elements / Distance{ 1.0 * km });
@@ -65,44 +65,44 @@ TEST_F(ElementMatrixTest, Partial)
 TEST_F(ElementMatrixTest, CopyConstructor)
 {
     KeplerianElements elements(
-        Distance{ 1.0 * km }, Unitless{ 1.0 * one }, Angle{ 1.0 * deg }, Angle{ 1.0 * deg }, Angle{ 1.0 * deg }, Angle{ 1.0 * deg }
+        Distance{ 1.0 * km }, Unitless{ 1.0 * one }, Angle(1.0 * deg), Angle(1.0 * deg), Angle(1.0 * deg), Angle(1.0 * deg)
     );
     ASSERT_NO_THROW(KeplerianElements copy(elements));
     KeplerianElements copy(elements);
     ASSERT_EQ(copy.get<0>(), Distance{ 1.0 * km });
     ASSERT_EQ(copy.get<1>(), Unitless{ 1.0 * one });
-    ASSERT_EQ(copy.get<2>(), Angle{ 1.0 * deg });
-    ASSERT_EQ(copy.get<3>(), Angle{ 1.0 * deg });
-    ASSERT_EQ(copy.get<4>(), Angle{ 1.0 * deg });
-    ASSERT_EQ(copy.get<5>(), Angle{ 1.0 * deg });
+    ASSERT_EQ(copy.get<2>(), Angle(1.0 * deg));
+    ASSERT_EQ(copy.get<3>(), Angle(1.0 * deg));
+    ASSERT_EQ(copy.get<4>(), Angle(1.0 * deg));
+    ASSERT_EQ(copy.get<5>(), Angle(1.0 * deg));
 }
 
 TEST_F(ElementMatrixTest, MoveConstructor)
 {
     KeplerianElements elements(
-        Distance{ 1.0 * km }, Unitless{ 1.0 * one }, Angle{ 1.0 * deg }, Angle{ 1.0 * deg }, Angle{ 1.0 * deg }, Angle{ 1.0 * deg }
+        Distance{ 1.0 * km }, Unitless{ 1.0 * one }, Angle(1.0 * deg), Angle(1.0 * deg), Angle(1.0 * deg), Angle(1.0 * deg)
     );
     ASSERT_NO_THROW(KeplerianElements moved(std::move(elements)));
     KeplerianElements moved(std::move(elements));
     ASSERT_EQ(moved.get<0>(), Distance{ 1.0 * km });
     ASSERT_EQ(moved.get<1>(), Unitless{ 1.0 * one });
-    ASSERT_EQ(moved.get<2>(), Angle{ 1.0 * deg });
-    ASSERT_EQ(moved.get<3>(), Angle{ 1.0 * deg });
-    ASSERT_EQ(moved.get<4>(), Angle{ 1.0 * deg });
-    ASSERT_EQ(moved.get<5>(), Angle{ 1.0 * deg });
+    ASSERT_EQ(moved.get<2>(), Angle(1.0 * deg));
+    ASSERT_EQ(moved.get<3>(), Angle(1.0 * deg));
+    ASSERT_EQ(moved.get<4>(), Angle(1.0 * deg));
+    ASSERT_EQ(moved.get<5>(), Angle(1.0 * deg));
 }
 
 TEST_F(ElementMatrixTest, ElementAccess)
 {
     KeplerianElements elements(
-        Distance{ 1.0 * km }, Unitless{ 1.0 * one }, Angle{ 1.0 * deg }, Angle{ 1.0 * deg }, Angle{ 1.0 * deg }, Angle{ 1.0 * deg }
+        Distance{ 1.0 * km }, Unitless{ 1.0 * one }, Angle(1.0 * deg), Angle(1.0 * deg), Angle(1.0 * deg), Angle(1.0 * deg)
     );
     ASSERT_EQ(elements.get<0>(), Distance{ 1.0 * km });
     ASSERT_EQ(elements.get<1>(), Unitless{ 1.0 * one });
-    ASSERT_EQ(elements.get<2>(), Angle{ 1.0 * deg });
-    ASSERT_EQ(elements.get<3>(), Angle{ 1.0 * deg });
-    ASSERT_EQ(elements.get<4>(), Angle{ 1.0 * deg });
-    ASSERT_EQ(elements.get<5>(), Angle{ 1.0 * deg });
+    ASSERT_EQ(elements.get<2>(), Angle(1.0 * deg));
+    ASSERT_EQ(elements.get<3>(), Angle(1.0 * deg));
+    ASSERT_EQ(elements.get<4>(), Angle(1.0 * deg));
+    ASSERT_EQ(elements.get<5>(), Angle(1.0 * deg));
 
     const auto firstElement  = elements.get<0, 0>();
     const auto secondElement = elements.get<1, 0>();
@@ -113,16 +113,16 @@ TEST_F(ElementMatrixTest, ElementAccess)
 
     ASSERT_EQ(firstElement, Distance{ 1.0 * km });
     ASSERT_EQ(secondElement, Unitless{ 1.0 * one });
-    ASSERT_EQ(thirdElement, Angle{ 1.0 * deg });
-    ASSERT_EQ(fourthElement, Angle{ 1.0 * deg });
-    ASSERT_EQ(fifthElement, Angle{ 1.0 * deg });
-    ASSERT_EQ(sixthElement, Angle{ 1.0 * deg });
+    ASSERT_EQ(thirdElement, Angle(1.0 * deg));
+    ASSERT_EQ(fourthElement, Angle(1.0 * deg));
+    ASSERT_EQ(fifthElement, Angle(1.0 * deg));
+    ASSERT_EQ(sixthElement, Angle(1.0 * deg));
 }
 
 TEST_F(ElementMatrixTest, RowColumnAccess)
 {
     ElementMatrix<2, 3, Distance, Unitless, Angle, Angle, Angle, Angle> elements(
-        Distance{ 1.0 * km }, Unitless{ 1.0 * one }, Angle{ 1.0 * deg }, Angle{ 1.0 * deg }, Angle{ 1.0 * deg }, Angle{ 1.0 * deg }
+        Distance{ 1.0 * km }, Unitless{ 1.0 * one }, Angle(1.0 * deg), Angle(1.0 * deg), Angle(1.0 * deg), Angle(1.0 * deg)
     );
 
     auto row0 = elements.get_row<0>();
@@ -131,14 +131,14 @@ TEST_F(ElementMatrixTest, RowColumnAccess)
     ASSERT_EQ(row0.n_col, 3);
     ASSERT_EQ(row0.get<0>(), Distance{ 1.0 * km });
     ASSERT_EQ(row0.get<1>(), Unitless{ 1.0 * one });
-    ASSERT_EQ(row0.get<2>(), Angle{ 1.0 * deg });
+    ASSERT_EQ(row0.get<2>(), Angle(1.0 * deg));
 
     auto col0 = elements.get_col<0>();
     ASSERT_EQ(col0.size, 2);
     ASSERT_EQ(col0.n_row, 2);
     ASSERT_EQ(col0.n_col, 1);
     ASSERT_EQ(col0.get<0>(), Distance{ 1.0 * km });
-    ASSERT_EQ(col0.get<1>(), Angle{ 1.0 * deg });
+    ASSERT_EQ(col0.get<1>(), Angle(1.0 * deg));
 }
 
 TEST_F(ElementMatrixTest, GetSubMatrix)
@@ -146,23 +146,23 @@ TEST_F(ElementMatrixTest, GetSubMatrix)
     ElementMatrix<3, 3, Distance, Unitless, Angle, Angle, Angle, Angle, Distance, Unitless, Angle> elements(
         Distance{ 1.0 * km },
         Unitless{ 1.0 * one },
-        Angle{ 1.0 * deg },
-        Angle{ 2.0 * deg },
-        Angle{ 3.0 * deg },
-        Angle{ 4.0 * deg },
+        Angle(1.0 * deg),
+        Angle(2.0 * deg),
+        Angle(3.0 * deg),
+        Angle(4.0 * deg),
         Distance{ 5.0 * km },
         Unitless{ 6.0 * one },
-        Angle{ 7.0 * deg }
+        Angle(7.0 * deg)
     );
 
     auto submatrix = elements.get_submatrix<1, 3, 1, 3>();
     ASSERT_EQ(submatrix.size, 4);
     ASSERT_EQ(submatrix.n_row, 2);
     ASSERT_EQ(submatrix.n_col, 2);
-    ASSERT_EQ(submatrix.get<0>(), Angle{ 3.0 * deg });
-    ASSERT_EQ(submatrix.get<1>(), Angle{ 4.0 * deg });
+    ASSERT_EQ(submatrix.get<0>(), Angle(3.0 * deg));
+    ASSERT_EQ(submatrix.get<1>(), Angle(4.0 * deg));
     ASSERT_EQ(submatrix.get<2>(), Unitless{ 6.0 * one });
-    ASSERT_EQ(submatrix.get<3>(), Angle{ 7.0 * deg });
+    ASSERT_EQ(submatrix.get<3>(), Angle(7.0 * deg));
 }
 
 TEST_F(ElementMatrixTest, Size)
@@ -175,27 +175,27 @@ TEST_F(ElementMatrixTest, Size)
 TEST_F(ElementMatrixTest, AdditionSubtraction)
 {
     KeplerianElements elements1(
-        Distance{ 1.0 * km }, Unitless{ 1.0 * one }, Angle{ 1.0 * deg }, Angle{ 1.0 * deg }, Angle{ 1.0 * deg }, Angle{ 1.0 * deg }
+        Distance{ 1.0 * km }, Unitless{ 1.0 * one }, Angle(1.0 * deg), Angle(1.0 * deg), Angle(1.0 * deg), Angle(1.0 * deg)
     );
     KeplerianElements elements2(
-        Distance{ 1.0 * km }, Unitless{ 1.0 * one }, Angle{ 1.0 * deg }, Angle{ 1.0 * deg }, Angle{ 1.0 * deg }, Angle{ 1.0 * deg }
+        Distance{ 1.0 * km }, Unitless{ 1.0 * one }, Angle(1.0 * deg), Angle(1.0 * deg), Angle(1.0 * deg), Angle(1.0 * deg)
     );
 
     auto elementsPlus = elements1 + elements2;
     ASSERT_EQ(elementsPlus.get<0>(), Distance{ 2.0 * km });
     ASSERT_EQ(elementsPlus.get<1>(), Unitless{ 2.0 * one });
-    ASSERT_EQ(elementsPlus.get<2>(), Angle{ 2.0 * deg });
-    ASSERT_EQ(elementsPlus.get<3>(), Angle{ 2.0 * deg });
-    ASSERT_EQ(elementsPlus.get<4>(), Angle{ 2.0 * deg });
-    ASSERT_EQ(elementsPlus.get<5>(), Angle{ 2.0 * deg });
+    ASSERT_EQ(elementsPlus.get<2>(), Angle(2.0 * deg));
+    ASSERT_EQ(elementsPlus.get<3>(), Angle(2.0 * deg));
+    ASSERT_EQ(elementsPlus.get<4>(), Angle(2.0 * deg));
+    ASSERT_EQ(elementsPlus.get<5>(), Angle(2.0 * deg));
 
     auto elementsMinus = elements1 - elements2;
     ASSERT_EQ(elementsMinus.get<0>(), Distance{ 0.0 * km });
     ASSERT_EQ(elementsMinus.get<1>(), Unitless{ 0.0 * one });
-    ASSERT_EQ(elementsMinus.get<2>(), Angle{ 0.0 * deg });
-    ASSERT_EQ(elementsMinus.get<3>(), Angle{ 0.0 * deg });
-    ASSERT_EQ(elementsMinus.get<4>(), Angle{ 0.0 * deg });
-    ASSERT_EQ(elementsMinus.get<5>(), Angle{ 0.0 * deg });
+    ASSERT_EQ(elementsMinus.get<2>(), Angle(0.0 * deg));
+    ASSERT_EQ(elementsMinus.get<3>(), Angle(0.0 * deg));
+    ASSERT_EQ(elementsMinus.get<4>(), Angle(0.0 * deg));
+    ASSERT_EQ(elementsMinus.get<5>(), Angle(0.0 * deg));
 
     elements1 += elements2;
     ASSERT_EQ(elements1, elementsPlus);
@@ -207,25 +207,25 @@ TEST_F(ElementMatrixTest, AdditionSubtraction)
 TEST_F(ElementMatrixTest, MultiplicationDivisionByArithmeticScalar)
 {
     KeplerianElements elements(
-        Distance{ 1.0 * km }, Unitless{ 1.0 * one }, Angle{ 1.0 * deg }, Angle{ 1.0 * deg }, Angle{ 1.0 * deg }, Angle{ 1.0 * deg }
+        Distance{ 1.0 * km }, Unitless{ 1.0 * one }, Angle(1.0 * deg), Angle(1.0 * deg), Angle(1.0 * deg), Angle(1.0 * deg)
     );
 
     auto elementsTimesScalar = elements * 2.0;
     ASSERT_EQ(elementsTimesScalar.get<0>(), Distance{ 2.0 * km });
     ASSERT_EQ(elementsTimesScalar.get<1>(), Unitless{ 2.0 * one });
-    ASSERT_EQ(elementsTimesScalar.get<2>(), Angle{ 2.0 * deg });
-    ASSERT_EQ(elementsTimesScalar.get<3>(), Angle{ 2.0 * deg });
-    ASSERT_EQ(elementsTimesScalar.get<4>(), Angle{ 2.0 * deg });
-    ASSERT_EQ(elementsTimesScalar.get<5>(), Angle{ 2.0 * deg });
+    ASSERT_EQ(elementsTimesScalar.get<2>(), Angle(2.0 * deg));
+    ASSERT_EQ(elementsTimesScalar.get<3>(), Angle(2.0 * deg));
+    ASSERT_EQ(elementsTimesScalar.get<4>(), Angle(2.0 * deg));
+    ASSERT_EQ(elementsTimesScalar.get<5>(), Angle(2.0 * deg));
     ASSERT_EQ(elementsTimesScalar, 2.0 * elements);
 
     auto elementsDividedByScalar = elements / 2.0;
     ASSERT_EQ(elementsDividedByScalar.get<0>(), Distance{ 0.5 * km });
     ASSERT_EQ(elementsDividedByScalar.get<1>(), Unitless{ 0.5 * one });
-    ASSERT_EQ(elementsDividedByScalar.get<2>(), Angle{ 0.5 * deg });
-    ASSERT_EQ(elementsDividedByScalar.get<3>(), Angle{ 0.5 * deg });
-    ASSERT_EQ(elementsDividedByScalar.get<4>(), Angle{ 0.5 * deg });
-    ASSERT_EQ(elementsDividedByScalar.get<5>(), Angle{ 0.5 * deg });
+    ASSERT_EQ(elementsDividedByScalar.get<2>(), Angle(0.5 * deg));
+    ASSERT_EQ(elementsDividedByScalar.get<3>(), Angle(0.5 * deg));
+    ASSERT_EQ(elementsDividedByScalar.get<4>(), Angle(0.5 * deg));
+    ASSERT_EQ(elementsDividedByScalar.get<5>(), Angle(0.5 * deg));
     ASSERT_EQ(elementsDividedByScalar, elements / 2.0);
 
     elements *= 2.0;
@@ -234,14 +234,14 @@ TEST_F(ElementMatrixTest, MultiplicationDivisionByArithmeticScalar)
     elements /= 2.0;
     ASSERT_EQ(
         elements,
-        KeplerianElements(Distance{ 1.0 * km }, Unitless{ 1.0 * one }, Angle{ 1.0 * deg }, Angle{ 1.0 * deg }, Angle{ 1.0 * deg }, Angle{ 1.0 * deg })
+        KeplerianElements(Distance{ 1.0 * km }, Unitless{ 1.0 * one }, Angle(1.0 * deg), Angle(1.0 * deg), Angle(1.0 * deg), Angle(1.0 * deg))
     );
 }
 
 TEST_F(ElementMatrixTest, MultiplicationDivisionByUnitedScalar)
 {
     KeplerianElements elements(
-        Distance{ 1.0 * km }, Unitless{ 1.0 * one }, Angle{ 1.0 * deg }, Angle{ 1.0 * deg }, Angle{ 1.0 * deg }, Angle{ 1.0 * deg }
+        Distance{ 1.0 * km }, Unitless{ 1.0 * one }, Angle(1.0 * deg), Angle(1.0 * deg), Angle(1.0 * deg), Angle(1.0 * deg)
     );
 
     Distance scale = 2.0 * km;
@@ -249,19 +249,19 @@ TEST_F(ElementMatrixTest, MultiplicationDivisionByUnitedScalar)
     auto elementsTimesScalar = elements * scale;
     ASSERT_EQ(elementsTimesScalar.get<0>(), Distance{ 1.0 * km } * scale);
     ASSERT_EQ(elementsTimesScalar.get<1>(), Unitless{ 1.0 * one } * scale);
-    ASSERT_EQ(elementsTimesScalar.get<2>(), Angle{ 1.0 * deg } * scale);
-    ASSERT_EQ(elementsTimesScalar.get<3>(), Angle{ 1.0 * deg } * scale);
-    ASSERT_EQ(elementsTimesScalar.get<4>(), Angle{ 1.0 * deg } * scale);
-    ASSERT_EQ(elementsTimesScalar.get<5>(), Angle{ 1.0 * deg } * scale);
+    ASSERT_EQ(elementsTimesScalar.get<2>(), Angle(1.0 * deg) * scale);
+    ASSERT_EQ(elementsTimesScalar.get<3>(), Angle(1.0 * deg) * scale);
+    ASSERT_EQ(elementsTimesScalar.get<4>(), Angle(1.0 * deg) * scale);
+    ASSERT_EQ(elementsTimesScalar.get<5>(), Angle(1.0 * deg) * scale);
     ASSERT_EQ(elementsTimesScalar, scale * elements);
 
     auto elementsDividedByScalar = elements / scale;
     ASSERT_EQ(elementsDividedByScalar.get<0>(), Distance{ 1.0 * km } / scale);
     ASSERT_EQ(elementsDividedByScalar.get<1>(), Unitless{ 1.0 * one } / scale);
-    ASSERT_EQ(elementsDividedByScalar.get<2>(), Angle{ 1.0 * deg } / scale);
-    ASSERT_EQ(elementsDividedByScalar.get<3>(), Angle{ 1.0 * deg } / scale);
-    ASSERT_EQ(elementsDividedByScalar.get<4>(), Angle{ 1.0 * deg } / scale);
-    ASSERT_EQ(elementsDividedByScalar.get<5>(), Angle{ 1.0 * deg } / scale);
+    ASSERT_EQ(elementsDividedByScalar.get<2>(), Angle(1.0 * deg) / scale);
+    ASSERT_EQ(elementsDividedByScalar.get<3>(), Angle(1.0 * deg) / scale);
+    ASSERT_EQ(elementsDividedByScalar.get<4>(), Angle(1.0 * deg) / scale);
+    ASSERT_EQ(elementsDividedByScalar.get<5>(), Angle(1.0 * deg) / scale);
     ASSERT_EQ(elementsDividedByScalar, elements / scale);
 }
 

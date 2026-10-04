@@ -294,7 +294,7 @@ class Quaternion {
 
         Angle theta1, theta3;
         static constexpr Angle piOver2 = std::numbers::pi / 2.0 * rad;
-        if (theta2 == 0.0 * rad) {
+        if (theta2 == 0.0) {
             theta1 = 0.0 * rad;
             theta3 = 2 * thetaPlus - theta1;
         }
@@ -530,6 +530,19 @@ class Quaternion {
     UniformElementArray<4, Unitless> force_to_element_array() const { return { _s, _u[0], _u[1], _u[2] }; }
 
     /**
+     * @brief Converts the quaternion to a std::vector of double values for use in numerical integration.
+     *
+     * @return std::vector<double> A vector containing the components of the quaternion as double values, in the order [s, u_x, u_y, u_z].
+     */
+    std::vector<double> force_to_double_vector() const
+    {
+        return { _s.numerical_value_in(_s.unit),
+                 _u[0].numerical_value_in(_u[0].unit),
+                 _u[1].numerical_value_in(_u[1].unit),
+                 _u[2].numerical_value_in(_u[2].unit) };
+    }
+
+    /**
      * @brief Computes the dot product between this quaternion and another quaternion.
      *
      * @param other The other quaternion to compute the dot product with.
@@ -673,6 +686,19 @@ class QuaternionPartial {
     ElementMatrix<4, 1, UnitlessPerTime, UnitlessPerTime, UnitlessPerTime, UnitlessPerTime> force_to_element_array() const
     {
         return { _sDot, _uDot[0], _uDot[1], _uDot[2] };
+    }
+
+    /**
+     * @brief Converts the quaternion derivative to a std::vector of double values for use in numerical integration.
+     *
+     * @return std::vector<double> A vector containing the components of the quaternion derivative as double values, in the order [sDot, uDot_x, uDot_y, uDot_z].
+     */
+    std::vector<double> force_to_double_vector() const
+    {
+        return { _sDot.numerical_value_in(_sDot.unit),
+                 _uDot[0].numerical_value_in(_uDot[0].unit),
+                 _uDot[1].numerical_value_in(_uDot[1].unit),
+                 _uDot[2].numerical_value_in(_uDot[2].unit) };
     }
 
   private:

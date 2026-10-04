@@ -39,7 +39,8 @@ bool OrbitalElements::operator==(const OrbitalElements& other) const
     if (_elements.index() != other.extract().index()) [[unlikely]] { return false; }
     return std::visit(
         [&](const auto& x) -> bool {
-            const auto& y = std::get<std::remove_cvref_t<decltype(x)>>(other._elements);
+            using T       = std::remove_cvref_t<decltype(x)>;
+            const auto& y = std::get<T>(other._elements);
             return x == y;
         },
         _elements
@@ -50,10 +51,9 @@ OrbitalElements OrbitalElements::operator+(const OrbitalElements& other) const
 {
     return std::visit(
         [&](const auto& x) -> OrbitalElements {
-            if (!std::holds_alternative<std::remove_cvref_t<decltype(x)>>(other._elements)) {
-                throw_mismatched_types();
-            }
-            const auto& y = std::get<std::remove_cvref_t<decltype(x)>>(other._elements);
+            using T = std::remove_cvref_t<decltype(x)>;
+            if (!std::holds_alternative<T>(other._elements)) { throw_mismatched_types(); }
+            const auto& y = std::get<T>(other._elements);
             return x + y;
         },
         _elements
@@ -63,10 +63,9 @@ OrbitalElements& OrbitalElements::operator+=(const OrbitalElements& other)
 {
     std::visit(
         [&](auto& x) {
-            if (!std::holds_alternative<std::remove_cvref_t<decltype(x)>>(other._elements)) {
-                throw_mismatched_types();
-            }
-            const auto& y = std::get<std::remove_cvref_t<decltype(x)>>(other._elements);
+            using T = std::remove_cvref_t<decltype(x)>;
+            if (!std::holds_alternative<T>(other._elements)) { throw_mismatched_types(); }
+            const auto& y = std::get<T>(other._elements);
             x += y;
         },
         _elements
@@ -78,10 +77,9 @@ OrbitalElements OrbitalElements::operator-(const OrbitalElements& other) const
 {
     return std::visit(
         [&](const auto& x) -> OrbitalElements {
-            if (!std::holds_alternative<std::remove_cvref_t<decltype(x)>>(other._elements)) {
-                throw_mismatched_types();
-            }
-            const auto& y = std::get<std::remove_cvref_t<decltype(x)>>(other._elements);
+            using T = std::remove_cvref_t<decltype(x)>;
+            if (!std::holds_alternative<T>(other._elements)) { throw_mismatched_types(); }
+            const auto& y = std::get<T>(other._elements);
             return x - y;
         },
         _elements
@@ -91,10 +89,9 @@ OrbitalElements& OrbitalElements::operator-=(const OrbitalElements& other)
 {
     std::visit(
         [&](auto& x) {
-            if (!std::holds_alternative<std::remove_cvref_t<decltype(x)>>(other._elements)) {
-                throw_mismatched_types();
-            }
-            const auto& y = std::get<std::remove_cvref_t<decltype(x)>>(other._elements);
+            using T = std::remove_cvref_t<decltype(x)>;
+            if (!std::holds_alternative<T>(other._elements)) { throw_mismatched_types(); }
+            const auto& y = std::get<T>(other._elements);
             x -= y;
         },
         _elements
@@ -112,9 +109,23 @@ OrbitalElements& OrbitalElements::operator*=(const Unitless& multiplier)
     return *this;
 }
 
-OrbitalElementPartials OrbitalElements::operator/(const Time& divisor) const
+OrbitalElementPartials OrbitalElements::operator/(const Time& time) const
 {
-    return std::visit([&](const auto& x) -> OrbitalElementPartials { return x / divisor; }, _elements);
+    return std::visit(
+        [&](const auto& x) -> OrbitalElementPartials {
+            using T = std::remove_cvref_t<decltype(x)>;
+            if constexpr (std::is_same_v<T, Cartesian<T::frame>>) {
+                return OrbitalElementPartials(CartesianPartial<T::frame>(x / time));
+            }
+            else if constexpr (std::is_same_v<T, Keplerian<T::frame>>) {
+                return OrbitalElementPartials(KeplerianPartial<T::frame>(x / time));
+            }
+            else {
+                return OrbitalElementPartials(EquinoctialPartial<T::frame>(x / time));
+            }
+        },
+        _elements
+    );
 }
 OrbitalElements OrbitalElements::operator/(const Unitless& divisor) const
 {
@@ -136,12 +147,12 @@ OrbitalElements
 {
     return std::visit(
         [&](const auto& x) -> OrbitalElements {
-            using ElementT = std::remove_cvref_t<decltype(x)>;
+            using T = std::remove_cvref_t<decltype(x)>;
             if (!std::holds_alternative<std::remove_cvref_t<decltype(x)>>(other._elements)) {
                 throw_mismatched_types();
             }
-            const auto& y      = std::get<ElementT>(other._elements);
-            const GravParam mu = get_mu<ElementT::frame.origin>();
+            const auto& y      = std::get<T>(other._elements);
+            const GravParam mu = get_mu<T::frame.origin>();
             return x.interpolate(thisTime, otherTime, y, mu, targetTime);
         },
         _elements
@@ -151,23 +162,23 @@ OrbitalElements
 const OrbitalElements::ElementVariant& OrbitalElements::extract() const { return _elements; }
 OrbitalElements::ElementVariant& OrbitalElements::extract() { return _elements; }
 
-OrbitalElements& OrbitalElements::convert_to_set(const std::size_t idx, const GravParam& mu)
+OrbitalElements& OrbitalElements::convert_to_set(const std::size_t idx, const Date& epoch, const GravParam& mu)
 {
-    *this = convert_to_set_impl(idx, mu);
+    *this = convert_to_set_impl(idx, epoch, mu);
     return *this;
 }
 
-OrbitalElements OrbitalElements::convert_to_set(const std::size_t idx, const GravParam& mu) const
+OrbitalElements OrbitalElements::convert_to_set(const std::size_t idx, const Date& epoch, const GravParam& mu) const
 {
-    return convert_to_set_impl(idx, mu);
+    return convert_to_set_impl(idx, epoch, mu);
 }
 
-OrbitalElements OrbitalElements::convert_to_set_impl(const std::size_t idx, const GravParam& mu) const
+OrbitalElements OrbitalElements::convert_to_set_impl(const std::size_t idx, const Date& epoch, const GravParam& mu) const
 {
     return [&]<std::size_t... Is>(std::index_sequence<Is...>) -> OrbitalElements {
         OrbitalElements result;
         bool found =
-            ((Is == idx ? (result = in_element_set<std::variant_alternative_t<Is, ElementVariant>>(mu), true) : false) || ...);
+            ((Is == idx ? (result = in_element_set<std::variant_alternative_t<Is, ElementVariant>>(epoch, mu), true) : false) || ...);
         if (!found) throw std::runtime_error("Unrecognized element set requested.");
         return result;
     }(std::make_index_sequence<std::variant_size_v<ElementVariant>>{});

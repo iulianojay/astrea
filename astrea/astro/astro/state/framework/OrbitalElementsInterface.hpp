@@ -33,6 +33,9 @@ concept IsOrbitalElementsImpl = requires {
     requires IsFrame<std::remove_cvref_t<decltype(T::frame)>>;
 };
 
+template <typename T, typename U>
+concept IsSameUnderlyingType = std::is_same_v<std::remove_cvref_t<T>, std::remove_cvref_t<U>>;
+
 template <typename Derived_T, typename Derived_U>
 concept IsCompatibleOrbitalElements = IsOrbitalElementsImpl<Derived_T> && IsOrbitalElementsImpl<Derived_U> &&
                                       IsCompatibleElementMatrix<typename Derived_T::ArrayType, typename Derived_U::ArrayType> &&
@@ -230,17 +233,25 @@ class OrbitalElementsInterface {
     }
 
     /**
-     * @brief Equality comparison between equivalent Derived_Ts.
+     * @brief Equality comparison between equal Derived_Ts.
      *
-     * @tparam elements_u The types of the elements in the other array.
-     * @param other The other Derived_T to compare.
-     * @return True if all corresponding elements are equal, false otherwise.
+     * Use a hidden-friend non-member to avoid C++20 rewritten-member ambiguity warnings with `x == y`.
+     */
+    friend inline constexpr bool operator==(const Derived_T& lhs, const Derived_T& rhs)
+    {
+        return lhs._elements == rhs._elements;
+    }
+
+    /**
+     * @brief Equality comparison between equivalent orbital element types.
+     *
+     * Use a hidden-friend non-member to keep direct comparability without member-operator rewrite ambiguity.
      */
     template <typename Derived_U>
-        requires(IsCompatibleOrbitalElements<Derived_T, Derived_U>)
-    inline constexpr bool operator==(const Derived_U& other) const
+        requires(IsCompatibleOrbitalElements<Derived_T, Derived_U> && !IsSameUnderlyingType<Derived_T, Derived_U>)
+    friend inline constexpr bool operator==(const Derived_T& lhs, const Derived_U& rhs)
     {
-        return _elements == other._elements;
+        return lhs._elements == rhs._elements;
     }
 
     /**
@@ -316,21 +327,6 @@ class OrbitalElementsInterface {
     }
 
     /**
-     * @brief Matrix multiplication between compatible Derived_Ts.
-     *
-     * @tparam n_row_u The number of rows in the other array.
-     * @tparam n_col_u The number of columns in the other array.
-     * @tparam elements_u The types of the elements in the other array.
-     * @param other The other Derived_T to multiply with.
-     * @return A new Derived_T representing the result of the matrix multiplication.
-     */
-    template <typename Derived_U>
-    inline constexpr auto operator*(const Derived_U& other) const
-    {
-        return _elements * other._elements;
-    }
-
-    /**
      * @brief Dot product between compatible Derived_Ts.
      *
      * @tparam n_row_u The number of rows in the other array.
@@ -371,10 +367,17 @@ class OrbitalElementsInterface {
      *
      * @return A std::vector<double> representing the flattened version of the original array.
      */
-    inline constexpr auto force_to_double_vector() const
+    inline constexpr auto force_to_double_vector() const { return _elements.force_to_double_vector(); }
+
+    /**
+     * @brief Create a Derived_T from a std::vector of doubles.
+     *
+     * @param vec The std::vector<double> to convert.
+     * @return A new Derived_T representing the elements in the vector.
+     */
+    inline constexpr static Derived_T from_double_vector(const std::vector<double>& vec)
     {
-        const auto& [... a] = _elements.elements; // surely, I'm doing something wrong here
-        return std::vector<double>{ static_cast<double>(a.numerical_value_in(a.unit))... };
+        return Derived_T{ ArrayType::from_double_vector(vec) };
     }
 
   protected:

@@ -611,7 +611,39 @@ struct ElementMatrix {
     }
 
     /**
-     * @brief Combine two ElementMatrixs with the same number of columns into a new ElementMatrix with the rows of both arrays.
+     * @brief Flatten the Derived_T to a 1D vector of doubles.
+     *
+     * @return A std::vector<double> representing the flattened version of the original array.
+     */
+    inline constexpr auto force_to_double_vector() const
+    {
+        const auto& [... a] = elements;
+        if constexpr (_is_quantity_array) {
+            return std::vector<double>{ static_cast<double>(a.numerical_value_in(a.unit))... };
+        }
+        else {
+            return std::vector<double>{ static_cast<double>(a)... };
+        }
+    }
+
+    static inline constexpr ElementMatrix from_double_vector(const std::vector<double>& vec)
+    {
+        if (vec.size() != size) { throw std::invalid_argument("Input vector size must match ElementMatrix size"); }
+
+        if constexpr (_is_quantity_array) {
+            return [&]<std::size_t... idx>(std::index_sequence<idx...>) {
+                return ElementMatrix{ Elements_T{ vec[idx] * Elements_T{}.unit }... };
+            }(std::make_index_sequence<size>{});
+        }
+        else {
+            return [&]<std::size_t... idx>(std::index_sequence<idx...>) {
+                return ElementMatrix{ vec[idx]... };
+            }(std::make_index_sequence<size>{});
+        }
+    }
+
+    /**
+     * @brief Combine two ElementMatrix objects with the same number of columns into a new ElementMatrix with the rows of both arrays.
      *
      * @tparam _n_row_u_ The number of rows in the other array.
      * @tparam _n_col_u_ The number of columns in the other array.
@@ -629,7 +661,7 @@ struct ElementMatrix {
     }
 
     /**
-     * @brief Combine two ElementMatrixs with the same number of rows into a new ElementMatrix with the columns of both arrays.
+     * @brief Combine two ElementMatrix objects with the same number of rows into a new ElementMatrix with the columns of both arrays.
      *
      * @tparam _n_row_u_ The number of rows in the other array.
      * @tparam _n_col_u_ The number of columns in the other array.

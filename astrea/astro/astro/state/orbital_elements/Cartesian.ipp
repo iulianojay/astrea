@@ -56,7 +56,7 @@ Cartesian<_frame_>::Cartesian(const Keplerian<_frame_>& elements, const GravPara
     const auto& w     = elements.get_argument_of_perigee();
     const auto& theta = elements.get_true_anomaly();
 
-    if (a == 0.0 * km) {
+    if (a == 0.0) {
         get_x()  = 0.0 * km;
         get_y()  = 0.0 * km;
         get_z()  = 0.0 * km;
@@ -116,7 +116,7 @@ Cartesian<_frame_>::Cartesian(const Equinoctial<_frame_>& elements, const GravPa
     const auto& trueLongitude = elements.get_true_longitude();
 
     // Catch default/nonsense case
-    if (semilatus == 0.0 * km) {
+    if (semilatus == 0.0) {
         get_x()  = 0.0 * km;
         get_y()  = 0.0 * km;
         get_z()  = 0.0 * km;

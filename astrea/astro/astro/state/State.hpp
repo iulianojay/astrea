@@ -162,7 +162,7 @@ class State {
     template <IsOrbitalElements T>
     void convert_to_set()
     {
-        _elements.convert_to_set<T>(get_mu());
+        _elements.convert_to_set<T>(_epoch, get_mu());
     }
 
     /**
@@ -172,7 +172,7 @@ class State {
      */
     State& convert_to_set(const std::size_t idx)
     {
-        _elements.convert_to_set(idx, get_mu());
+        _elements.convert_to_set(idx, _epoch, get_mu());
         return *this;
     }
 
@@ -185,7 +185,7 @@ class State {
     State convert_to_set(const std::size_t idx) const
     {
         State newState = *this;
-        newState._elements.convert_to_set(idx, get_mu());
+        newState._elements.convert_to_set(idx, _epoch, get_mu());
         return newState;
     }
 
@@ -269,7 +269,7 @@ class State {
     {
         std::size_t originalIndex = _elements.index();
         _elements                 = elements;
-        if (convertToOriginal) { _elements.convert_to_set(originalIndex, get_mu()); }
+        if (convertToOriginal) { _elements.convert_to_set(originalIndex, _epoch, get_mu()); }
     }
 
     /**

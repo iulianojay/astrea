@@ -15,14 +15,11 @@ class AstreaConan(ConanFile):
     settings = "os", "compiler", "build_type", "arch"
     generators = "CMakeDeps", "CMakeToolchain"
     default_options = {
-        # Disable C++ modules to avoid module-scan complexity with GCC
-        "mp-units*:cxx_modules": False,
         # Use OpenSSL as the SSL backend for cpr on Linux
         "cpr*:with_ssl": "openssl",
     }
 
     def requirements(self):
-        self.requires("mp-units/2.5.0")
         self.requires("nlohmann_json/3.12.0")
         self.requires("sqlite3/3.47.2")
         self.requires("cpr/1.11.0")

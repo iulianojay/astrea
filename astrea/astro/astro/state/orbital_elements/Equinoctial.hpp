@@ -275,6 +275,7 @@ class EquinoctialPartial
     friend std::ostream& operator<<(std::ostream&, EquinoctialPartial<frame> const&);
 
   public:
+    static constexpr auto frame = _frame_; //!< The reference frame of the EquinoctialPartial state vector.
     using BaseType::BaseType;
 
     /**

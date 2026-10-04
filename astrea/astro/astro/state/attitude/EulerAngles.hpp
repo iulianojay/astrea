@@ -550,6 +550,18 @@ class EulerAngles {
     UniformElementArray<3, Angle> force_to_element_array() const { return { _angles[0], _angles[1], _angles[2] }; }
 
     /**
+     * @brief Converts the angle sequence to a std::vector of double values for use in numerical integration.
+     *
+     * @return std::vector<double> A vector containing the components of the angle sequence as double values, in the order [first, second, third].
+     */
+    std::vector<double> force_to_double_vector() const
+    {
+        return { _angles[0].numerical_value_in(_angles[0].unit),
+                 _angles[1].numerical_value_in(_angles[1].unit),
+                 _angles[2].numerical_value_in(_angles[2].unit) };
+    }
+
+    /**
      * @brief Interpolates between this angle sequence and another angle sequence at a target time.
      *
      * @param thisTime The time corresponding to this angle sequence.
