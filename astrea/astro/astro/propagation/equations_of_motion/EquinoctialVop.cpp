@@ -88,7 +88,7 @@ OrbitalElementPartials EquinoctialVop::compute_dynamics(
     // Derivative functions
     const Velocity dpdt = 2.0 * p / w * sqPOverMu * tangentialPert;
     const UnitlessPerTime dfdt = sqPOverMu * (radialPert * sinL + ((w + 1) * cosL + f) / w * tangentialPert - g * termA);
-    const UnitlessPerTime dgdt = sqPOverMu * (-radialPert * cosL + ((w + 1) * sinL + g) / w * tangentialPert + g * termA); // TODO: My notes say: 'f * termA'. Find a second source
+    const UnitlessPerTime dgdt = sqPOverMu * (-radialPert * cosL + ((w + 1) * sinL + g) / w * tangentialPert + f * termA);
     const UnitlessPerTime dhdt = termB * cosL * normalPert;
     const UnitlessPerTime dkdt = termB * sinL * normalPert;
     const AngularVelocity dLdt = (sqrt(mu * p) * w * w / (p * p) + sqPOverMu * termA) * rad;
