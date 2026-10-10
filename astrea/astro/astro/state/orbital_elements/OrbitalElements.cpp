@@ -151,9 +151,8 @@ OrbitalElements
             if (!std::holds_alternative<std::remove_cvref_t<decltype(x)>>(other._elements)) {
                 throw_mismatched_types();
             }
-            const auto& y      = std::get<T>(other._elements);
-            const GravParam mu = get_mu<T::frame.origin>();
-            return x.interpolate(thisTime, otherTime, y, mu, targetTime);
+            const auto& y = std::get<T>(other._elements);
+            return x.interpolate(thisTime, otherTime, y, targetTime);
         },
         _elements
     );

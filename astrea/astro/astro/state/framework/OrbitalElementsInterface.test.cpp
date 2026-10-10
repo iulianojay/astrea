@@ -22,9 +22,9 @@ using namespace astrea;
 using namespace astro;
 
 using namespace mp_units;
-using mp_units::angular::unit_symbols::deg;
-using mp_units::angular::unit_symbols::rad;
+using mp_units::si::unit_symbols::deg;
 using mp_units::si::unit_symbols::km;
+using mp_units::si::unit_symbols::rad;
 using mp_units::si::unit_symbols::s;
 
 // ---------------------------------------------------------------------------
@@ -38,13 +38,13 @@ using mp_units::si::unit_symbols::s;
  * so that arithmetic operator results (which return Derived_T) are constructible.
  */
 template <IsFrame auto _frame_>
-class TestKeplerian
-    : public OrbitalElementsInterface<TestKeplerian<_frame_>, _frame_, Distance, Unitless, Angle, Angle, Angle, Angle> {
-    using Base = OrbitalElementsInterface<TestKeplerian<_frame_>, _frame_, Distance, Unitless, Angle, Angle, Angle, Angle>;
+class TestKeplerian : public OrbitalElementsInterface<TestKeplerian<_frame_>, Distance, Unitless, Angle, Angle, Angle, Angle> {
+    using BaseType = OrbitalElementsInterface<TestKeplerian<_frame_>, Distance, Unitless, Angle, Angle, Angle, Angle>;
 
   public:
-    using Base::Base;
-    using typename Base::ArrayType;
+    static constexpr auto frame = _frame_;
+    using BaseType::BaseType;
+    using BaseType::operator=;
 
     TestKeplerian() = default;
 };
@@ -55,13 +55,13 @@ class TestKeplerian
  *        IsCompatibleOrbitalElements across distinct derived types.
  */
 template <IsFrame auto _frame_>
-class TestKeplerian2
-    : public OrbitalElementsInterface<TestKeplerian2<_frame_>, _frame_, Distance, Unitless, Angle, Angle, Angle, Angle> {
-    using Base = OrbitalElementsInterface<TestKeplerian2<_frame_>, _frame_, Distance, Unitless, Angle, Angle, Angle, Angle>;
+class TestKeplerian2 : public OrbitalElementsInterface<TestKeplerian2<_frame_>, Distance, Unitless, Angle, Angle, Angle, Angle> {
+    using BaseType = OrbitalElementsInterface<TestKeplerian2<_frame_>, Distance, Unitless, Angle, Angle, Angle, Angle>;
 
   public:
-    using Base::Base;
-    using typename Base::ArrayType;
+    static constexpr auto frame = _frame_;
+    using BaseType::BaseType;
+    using BaseType::operator=;
 
     TestKeplerian2() = default;
 };
@@ -73,12 +73,13 @@ class TestKeplerian2
  * satisfy that constraint, so a separate scalar-element type is used here.
  */
 template <IsFrame auto _frame_>
-class TestUniform3 : public OrbitalElementsInterface<TestUniform3<_frame_>, _frame_, double, double, double> {
-    using Base = OrbitalElementsInterface<TestUniform3<_frame_>, _frame_, double, double, double>;
+class TestUniform3 : public OrbitalElementsInterface<TestUniform3<_frame_>, double, double, double> {
+    using BaseType = OrbitalElementsInterface<TestUniform3<_frame_>, double, double, double>;
 
   public:
-    using Base::Base;
-    using typename Base::ArrayType;
+    static constexpr auto frame = _frame_;
+    using BaseType::BaseType;
+    using BaseType::operator=;
 
     TestUniform3() = default;
 };
@@ -111,9 +112,9 @@ TEST_F(OrbitalElementsTest, DefaultConstructor) { ASSERT_NO_THROW(EarthKeplerian
 
 TEST_F(OrbitalElementsTest, ElementConstructor)
 {
-    ASSERT_NO_THROW(EarthKeplerian(
-        Distance{ 1.0 * km }, Unitless{ 0.01 * one }, Angle(98.0 * deg), Angle(40.0 * deg), Angle(80.0 * deg), Angle(0.0 * deg)
-    ));
+    ASSERT_NO_THROW(
+        EarthKeplerian(Distance{ 1.0 * km }, Unitless{ 0.01 * one }, Angle(98.0 * deg), Angle(40.0 * deg), Angle(80.0 * deg), Angle(0.0 * deg))
+    );
 }
 
 TEST_F(OrbitalElementsTest, CopyConstructor)
@@ -174,9 +175,7 @@ TEST_F(OrbitalElementsTest, ArrayTypeSize)
 
 TEST_F(OrbitalElementsTest, ElementAccess)
 {
-    EarthKeplerian state(
-        Distance{ 7000.0 * km }, Unitless{ 0.01 * one }, Angle(98.0 * deg), Angle(40.0 * deg), Angle(80.0 * deg), Angle(0.0 * deg)
-    );
+    EarthKeplerian state(Distance{ 7000.0 * km }, Unitless{ 0.01 * one }, Angle(98.0 * deg), Angle(40.0 * deg), Angle(80.0 * deg), Angle(0.0 * deg));
 
     ASSERT_EQ(state.get<0>(), Distance{ 7000.0 * km });
     ASSERT_EQ(state.get<1>(), Unitless{ 0.01 * one });
@@ -208,12 +207,8 @@ TEST_F(OrbitalElementsTest, CompatibleTypeConcept)
 
 TEST_F(OrbitalElementsTest, AdditionSubtraction)
 {
-    EarthKeplerian state1(
-        Distance{ 1.0 * km }, Unitless{ 0.1 * one }, Angle(10.0 * deg), Angle(20.0 * deg), Angle(30.0 * deg), Angle(40.0 * deg)
-    );
-    EarthKeplerian state2(
-        Distance{ 1.0 * km }, Unitless{ 0.1 * one }, Angle(10.0 * deg), Angle(20.0 * deg), Angle(30.0 * deg), Angle(40.0 * deg)
-    );
+    EarthKeplerian state1(Distance{ 1.0 * km }, Unitless{ 0.1 * one }, Angle(10.0 * deg), Angle(20.0 * deg), Angle(30.0 * deg), Angle(40.0 * deg));
+    EarthKeplerian state2(Distance{ 1.0 * km }, Unitless{ 0.1 * one }, Angle(10.0 * deg), Angle(20.0 * deg), Angle(30.0 * deg), Angle(40.0 * deg));
 
     auto sum = state1 + state2;
     ASSERT_EQ(sum.get<0>(), Distance{ 2.0 * km });
@@ -240,9 +235,7 @@ TEST_F(OrbitalElementsTest, AdditionSubtraction)
 
 TEST_F(OrbitalElementsTest, UnaryNegation)
 {
-    EarthKeplerian state(
-        Distance{ 1.0 * km }, Unitless{ 0.1 * one }, Angle(10.0 * deg), Angle(20.0 * deg), Angle(30.0 * deg), Angle(40.0 * deg)
-    );
+    EarthKeplerian state(Distance{ 1.0 * km }, Unitless{ 0.1 * one }, Angle(10.0 * deg), Angle(20.0 * deg), Angle(30.0 * deg), Angle(40.0 * deg));
 
     auto negated = -state;
     ASSERT_EQ(negated.get<0>(), Distance{ -1.0 * km });
@@ -321,9 +314,7 @@ TEST_F(OrbitalElementsTest, Equality)
     EarthKeplerian state2(
         Distance{ 7000.0 * km }, Unitless{ 0.01 * one }, Angle(98.0 * deg), Angle(40.0 * deg), Angle(80.0 * deg), Angle(0.0 * deg)
     );
-    EarthKeplerian state3(
-        Distance{ 6371.0 * km }, Unitless{ 0.0 * one }, Angle(0.0 * deg), Angle(0.0 * deg), Angle(0.0 * deg), Angle(0.0 * deg)
-    );
+    EarthKeplerian state3(Distance{ 6371.0 * km }, Unitless{ 0.0 * one }, Angle(0.0 * deg), Angle(0.0 * deg), Angle(0.0 * deg), Angle(0.0 * deg));
 
     ASSERT_EQ(state1, state2);
     ASSERT_NE(state1, state3);
@@ -371,13 +362,11 @@ TEST_F(OrbitalElementsTest, Transpose)
 
 TEST_F(OrbitalElementsTest, ForceToTuple)
 {
-    EarthKeplerian state(
-        Distance{ 7000.0 * km }, Unitless{ 0.01 * one }, Angle(98.0 * deg), Angle(40.0 * deg), Angle(80.0 * deg), Angle(0.0 * deg)
-    );
+    EarthKeplerian state(Distance{ 7000.0 * km }, Unitless{ 0.01 * one }, Angle(98.0 * deg), Angle(40.0 * deg), Angle(80.0 * deg), Angle(0.0 * deg));
 
     auto t = state.force_to_tuple();
 
-    static_assert(std::is_same_v<decltype(t), EarthKeplerian::ArrayType::tuple_type>);
+    static_assert(std::is_same_v<decltype(t), EarthKeplerian::ArrayType::TupleType>);
 
     ASSERT_EQ(std::get<0>(t), Distance{ 7000.0 * km });
     ASSERT_EQ(std::get<1>(t), Unitless{ 0.01 * one });
@@ -389,9 +378,7 @@ TEST_F(OrbitalElementsTest, ForceToTuple)
 
 TEST_F(OrbitalElementsTest, ForceToElementMatrix)
 {
-    EarthKeplerian state(
-        Distance{ 7000.0 * km }, Unitless{ 0.01 * one }, Angle(98.0 * deg), Angle(40.0 * deg), Angle(80.0 * deg), Angle(0.0 * deg)
-    );
+    EarthKeplerian state(Distance{ 7000.0 * km }, Unitless{ 0.01 * one }, Angle(98.0 * deg), Angle(40.0 * deg), Angle(80.0 * deg), Angle(0.0 * deg));
 
     auto arr = state.force_to_element_array();
 

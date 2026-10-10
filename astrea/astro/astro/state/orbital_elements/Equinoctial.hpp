@@ -253,11 +253,10 @@ class Equinoctial
      * @param thisTime Time of the current state
      * @param otherTime Time of the other state
      * @param other Other Equinoctial state to interpolate with
-     * @param mu Gravitational parameter of the central body
      * @param targetTime Target time for interpolation
      * @return Equinoctial Interpolated Equinoctial state at the target time.
      */
-    Equinoctial interpolate(const Time& thisTime, const Time& otherTime, const Equinoctial& other, const GravParam& mu, const Time& targetTime) const;
+    Equinoctial interpolate(const Time& thisTime, const Time& otherTime, const Equinoctial& other, const Time& targetTime) const;
 };
 
 /**

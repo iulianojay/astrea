@@ -79,17 +79,6 @@ TEST_F(EquinoctialTest, DefaultConstructor)
     ASSERT_TRUE(math::nearly_equal(defaultState.get_true_longitude(), Angle(0.0 * rad), REL_TOL));
 }
 
-TEST_F(EquinoctialTest, UnitlessConstructor)
-{
-    Equinoctial<frames::earth::icrf> scaledState(2.0 * one);
-    ASSERT_TRUE(math::nearly_equal(scaledState.get_semilatus(), Distance(2.0 * km), REL_TOL));
-    ASSERT_TRUE(math::nearly_equal(scaledState.get_f(), Unitless(2.0 * one), REL_TOL));
-    ASSERT_TRUE(math::nearly_equal(scaledState.get_g(), Unitless(2.0 * one), REL_TOL));
-    ASSERT_TRUE(math::nearly_equal(scaledState.get_h(), Unitless(2.0 * one), REL_TOL));
-    ASSERT_TRUE(math::nearly_equal(scaledState.get_k(), Unitless(2.0 * one), REL_TOL));
-    ASSERT_TRUE(math::nearly_equal(scaledState.get_true_longitude(), Angle(2.0 * rad), REL_TOL));
-}
-
 TEST_F(EquinoctialTest, ParameterizedConstructor)
 {
     ASSERT_NO_THROW(Equinoctial<frames::earth::icrf>(p, f, g, h, k, L));
@@ -327,7 +316,7 @@ TEST_F(EquinoctialTest, Interpolate)
     Time thisTime                           = 0.0 * s;
     Time otherTime                          = 10.0 * s;
     Time targetTime                         = 5.0 * s;
-    Equinoctial<frames::earth::icrf> result = state.interpolate(thisTime, otherTime, other, mu, targetTime);
+    Equinoctial<frames::earth::icrf> result = state.interpolate(thisTime, otherTime, other, targetTime);
 
     // At t=5s (midpoint), expect average of start and end values
     ASSERT_TRUE(math::nearly_equal(result.get_semilatus(), (p + 14000.0 * km) / 2.0, REL_TOL));

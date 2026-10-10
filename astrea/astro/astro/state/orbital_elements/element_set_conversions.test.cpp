@@ -17,6 +17,7 @@
 #include <units/units.hpp>
 
 #include <astro/state/framework/element_matrix_concepts.hpp>
+#include <astro/state/orbital_elements.hpp>
 #include <astro/systems/system_utilities.hpp>
 #include <tests/utilities/comparisons.hpp>
 
@@ -42,6 +43,7 @@ class OrbitalElementsTest : public testing::Test {
 
     const Unitless REL_TOL = 1.0e-6;
 
+    Date _epoch;
     GravParam _mu;
     OrbitalElements _cartElements;
     OrbitalElements _keplElements;
@@ -92,75 +94,83 @@ TEST_F(OrbitalElementsTest, ConvertInPlace)
 {
     OrbitalElements elements = _cartElements;
     ASSERT_EQ(elements.index(), 0);
-    elements.convert_to_set<Keplerian<frames::earth::icrf>>(_mu);
+    elements.convert_to_set<Keplerian<frames::earth::icrf>>(_epoch, _mu);
     ASSERT_EQ(elements.index(), 1);
-    elements.convert_to_set<Equinoctial<frames::earth::icrf>>(_mu);
+    elements.convert_to_set<Equinoctial<frames::earth::icrf>>(_epoch, _mu);
     ASSERT_EQ(elements.index(), 2);
 }
 
 TEST_F(OrbitalElementsTest, ConvertToSetCartesian)
 {
-    OrbitalElements newElements = _cartElements.convert_to_set<Keplerian<frames::earth::icrf>>(_mu);
+    OrbitalElements newElements = _cartElements.convert_to_set<Keplerian<frames::earth::icrf>>(_epoch, _mu);
     ASSERT_EQ(newElements.index(), OrbitalElements::get_set_id<Keplerian<frames::earth::icrf>>());
-    newElements = _cartElements.convert_to_set(OrbitalElements::get_set_id<Keplerian<frames::earth::icrf>>(), _mu);
+    newElements = _cartElements.convert_to_set(OrbitalElements::get_set_id<Keplerian<frames::earth::icrf>>(), _epoch, _mu);
     ASSERT_EQ(newElements.index(), OrbitalElements::get_set_id<Keplerian<frames::earth::icrf>>());
 
-    newElements = _cartElements.convert_to_set<Equinoctial<frames::earth::icrf>>(_mu);
+    newElements = _cartElements.convert_to_set<Equinoctial<frames::earth::icrf>>(_epoch, _mu);
     ASSERT_EQ(newElements.index(), OrbitalElements::get_set_id<Equinoctial<frames::earth::icrf>>());
-    newElements = _cartElements.convert_to_set(OrbitalElements::get_set_id<Equinoctial<frames::earth::icrf>>(), _mu);
+    newElements = _cartElements.convert_to_set(OrbitalElements::get_set_id<Equinoctial<frames::earth::icrf>>(), _epoch, _mu);
     ASSERT_EQ(newElements.index(), OrbitalElements::get_set_id<Equinoctial<frames::earth::icrf>>());
 
-    ASSERT_NO_THROW(OrbitalElements newElements =
-                        static_cast<const OrbitalElements&>(_cartElements).convert_to_set<Keplerian<frames::earth::icrf>>(_mu););
+    ASSERT_NO_THROW(
+        OrbitalElements newElements =
+            static_cast<const OrbitalElements&>(_cartElements).convert_to_set<Keplerian<frames::earth::icrf>>(_epoch, _mu);
+    );
     ASSERT_NO_THROW(
         newElements = static_cast<const OrbitalElements&>(_cartElements)
-                          .convert_to_set(OrbitalElements::get_set_id<Keplerian<frames::earth::icrf>>(), _mu)
+                          .convert_to_set(OrbitalElements::get_set_id<Keplerian<frames::earth::icrf>>(), _epoch, _mu)
     );
 }
 
 TEST_F(OrbitalElementsTest, ConvertToSetKeplerian)
 {
-    OrbitalElements newElements = _keplElements.convert_to_set<Cartesian<frames::earth::icrf>>(_mu);
+    OrbitalElements newElements = _keplElements.convert_to_set<Cartesian<frames::earth::icrf>>(_epoch, _mu);
     ASSERT_EQ(newElements.index(), OrbitalElements::get_set_id<Cartesian<frames::earth::icrf>>());
-    newElements = _keplElements.convert_to_set(OrbitalElements::get_set_id<Cartesian<frames::earth::icrf>>(), _mu);
+    newElements = _keplElements.convert_to_set(OrbitalElements::get_set_id<Cartesian<frames::earth::icrf>>(), _epoch, _mu);
     ASSERT_EQ(newElements.index(), OrbitalElements::get_set_id<Cartesian<frames::earth::icrf>>());
 
-    newElements = _keplElements.convert_to_set<Equinoctial<frames::earth::icrf>>(_mu);
+    newElements = _keplElements.convert_to_set<Equinoctial<frames::earth::icrf>>(_epoch, _mu);
     ASSERT_EQ(newElements.index(), OrbitalElements::get_set_id<Equinoctial<frames::earth::icrf>>());
-    newElements = _keplElements.convert_to_set(OrbitalElements::get_set_id<Equinoctial<frames::earth::icrf>>(), _mu);
+    newElements = _keplElements.convert_to_set(OrbitalElements::get_set_id<Equinoctial<frames::earth::icrf>>(), _epoch, _mu);
     ASSERT_EQ(newElements.index(), OrbitalElements::get_set_id<Equinoctial<frames::earth::icrf>>());
 
-    ASSERT_NO_THROW(newElements = static_cast<const OrbitalElements&>(_keplElements).convert_to_set<Cartesian<frames::earth::icrf>>(_mu));
+    ASSERT_NO_THROW(
+        newElements = static_cast<const OrbitalElements&>(_keplElements).convert_to_set<Cartesian<frames::earth::icrf>>(_epoch, _mu)
+    );
     ASSERT_NO_THROW(
         newElements = static_cast<const OrbitalElements&>(_keplElements)
-                          .convert_to_set(OrbitalElements::get_set_id<Cartesian<frames::earth::icrf>>(), _mu)
+                          .convert_to_set(OrbitalElements::get_set_id<Cartesian<frames::earth::icrf>>(), _epoch, _mu)
     );
 }
 
 TEST_F(OrbitalElementsTest, ConvertToSetEquinoctial)
 {
-    OrbitalElements newElements = _equiElements.convert_to_set<Keplerian<frames::earth::icrf>>(_mu);
+    OrbitalElements newElements = _equiElements.convert_to_set<Keplerian<frames::earth::icrf>>(_epoch, _mu);
     ASSERT_EQ(newElements.index(), OrbitalElements::get_set_id<Keplerian<frames::earth::icrf>>());
-    newElements = _equiElements.convert_to_set(OrbitalElements::get_set_id<Keplerian<frames::earth::icrf>>(), _mu);
+    newElements = _equiElements.convert_to_set(OrbitalElements::get_set_id<Keplerian<frames::earth::icrf>>(), _epoch, _mu);
     ASSERT_EQ(newElements.index(), OrbitalElements::get_set_id<Keplerian<frames::earth::icrf>>());
 
-    newElements = _equiElements.convert_to_set<Cartesian<frames::earth::icrf>>(_mu);
+    newElements = _equiElements.convert_to_set<Cartesian<frames::earth::icrf>>(_epoch, _mu);
     ASSERT_EQ(newElements.index(), OrbitalElements::get_set_id<Cartesian<frames::earth::icrf>>());
-    newElements = _equiElements.convert_to_set(OrbitalElements::get_set_id<Cartesian<frames::earth::icrf>>(), _mu);
+    newElements = _equiElements.convert_to_set(OrbitalElements::get_set_id<Cartesian<frames::earth::icrf>>(), _epoch, _mu);
     ASSERT_EQ(newElements.index(), OrbitalElements::get_set_id<Cartesian<frames::earth::icrf>>());
 
-    ASSERT_NO_THROW(OrbitalElements newElements =
-                        static_cast<const OrbitalElements&>(_equiElements).convert_to_set<Cartesian<frames::earth::icrf>>(_mu););
+    ASSERT_NO_THROW(
+        OrbitalElements newElements =
+            static_cast<const OrbitalElements&>(_equiElements).convert_to_set<Cartesian<frames::earth::icrf>>(_epoch, _mu);
+    );
     ASSERT_NO_THROW(
         newElements = static_cast<const OrbitalElements&>(_equiElements)
-                          .convert_to_set(OrbitalElements::get_set_id<Cartesian<frames::earth::icrf>>(), _mu)
+                          .convert_to_set(OrbitalElements::get_set_id<Cartesian<frames::earth::icrf>>(), _epoch, _mu)
     );
 }
 
 TEST_F(OrbitalElementsTest, InElementSet)
 {
-    ASSERT_NO_THROW(Keplerian keplerian = _cartElements.in_element_set<Keplerian<frames::earth::icrf>>(_mu));
-    ASSERT_NO_THROW(Equinoctial<frames::earth::icrf> equinoctial = _cartElements.in_element_set<Equinoctial<frames::earth::icrf>>(_mu));
+    ASSERT_NO_THROW(Keplerian keplerian = _cartElements.in_element_set<Keplerian<frames::earth::icrf>>(_epoch, _mu));
+    ASSERT_NO_THROW(
+        Equinoctial<frames::earth::icrf> equinoctial = _cartElements.in_element_set<Equinoctial<frames::earth::icrf>>(_epoch, _mu)
+    );
 }
 
 TEST_F(OrbitalElementsTest, Addition)
@@ -254,12 +264,12 @@ TEST_F(OrbitalElementsTest, InterpolateCartesian)
     Cartesian<frames::earth::icrf> original = Cartesian<frames::earth::icrf>::LEO(_mu);
     Cartesian<frames::earth::icrf> final    = Cartesian<frames::earth::icrf>::LEO(_mu) * Unitless(1.1 * one);
 
-    OrbitalElements result   = _cartElements.interpolate(0.0 * s, 1.0 * s, OrbitalElements(final), _mu, 0.5 * s);
-    OrbitalElements expected = original.interpolate(0.0 * s, 1.0 * s, final, _mu, 0.5 * s);
+    OrbitalElements result   = _cartElements.interpolate(0.0 * s, 1.0 * s, OrbitalElements(final), 0.5 * s);
+    OrbitalElements expected = original.interpolate(0.0 * s, 1.0 * s, final, 0.5 * s);
 
     ASSERT_TRUE(nearly_equal(result, OrbitalElements(expected), false, REL_TOL));
-    ASSERT_ANY_THROW(_cartElements.interpolate(0.0 * s, 1.0 * s, _keplElements, _mu, 0.5 * s));
-    ASSERT_ANY_THROW(_cartElements.interpolate(0.0 * s, 1.0 * s, _equiElements, _mu, 0.5 * s));
+    ASSERT_ANY_THROW(_cartElements.interpolate(0.0 * s, 1.0 * s, _keplElements, 0.5 * s));
+    ASSERT_ANY_THROW(_cartElements.interpolate(0.0 * s, 1.0 * s, _equiElements, 0.5 * s));
 }
 
 TEST_F(OrbitalElementsTest, InterpolateKeplerian)
@@ -267,12 +277,12 @@ TEST_F(OrbitalElementsTest, InterpolateKeplerian)
     Keplerian<frames::earth::icrf> original = Keplerian<frames::earth::icrf>::LEO();
     Keplerian<frames::earth::icrf> final    = Keplerian<frames::earth::icrf>::LEO() * Unitless(1.1 * one);
 
-    OrbitalElements result   = _keplElements.interpolate(0.0 * s, 1.0 * s, OrbitalElements(final), _mu, 0.5 * s);
-    OrbitalElements expected = original.interpolate(0.0 * s, 1.0 * s, final, _mu, 0.5 * s);
+    OrbitalElements result   = _keplElements.interpolate(0.0 * s, 1.0 * s, OrbitalElements(final), 0.5 * s);
+    OrbitalElements expected = original.interpolate(0.0 * s, 1.0 * s, final, 0.5 * s);
 
     ASSERT_TRUE(nearly_equal(result, OrbitalElements(expected), false, REL_TOL));
-    ASSERT_ANY_THROW(_keplElements.interpolate(0.0 * s, 1.0 * s, _cartElements, _mu, 0.5 * s));
-    ASSERT_ANY_THROW(_keplElements.interpolate(0.0 * s, 1.0 * s, _equiElements, _mu, 0.5 * s));
+    ASSERT_ANY_THROW(_keplElements.interpolate(0.0 * s, 1.0 * s, _cartElements, 0.5 * s));
+    ASSERT_ANY_THROW(_keplElements.interpolate(0.0 * s, 1.0 * s, _equiElements, 0.5 * s));
 }
 
 TEST_F(OrbitalElementsTest, InterpolateEquinoctial)
@@ -280,12 +290,12 @@ TEST_F(OrbitalElementsTest, InterpolateEquinoctial)
     Equinoctial<frames::earth::icrf> original = Equinoctial<frames::earth::icrf>::LEO(_mu);
     Equinoctial<frames::earth::icrf> final    = Equinoctial<frames::earth::icrf>::LEO(_mu) * Unitless(1.1 * one);
 
-    OrbitalElements result   = _equiElements.interpolate(0.0 * s, 1.0 * s, OrbitalElements(final), _mu, 0.5 * s);
-    OrbitalElements expected = original.interpolate(0.0 * s, 1.0 * s, final, _mu, 0.5 * s);
+    OrbitalElements result   = _equiElements.interpolate(0.0 * s, 1.0 * s, OrbitalElements(final), 0.5 * s);
+    OrbitalElements expected = original.interpolate(0.0 * s, 1.0 * s, final, 0.5 * s);
 
     ASSERT_TRUE(nearly_equal(result, OrbitalElements(expected), false, REL_TOL));
-    ASSERT_ANY_THROW(_equiElements.interpolate(0.0 * s, 1.0 * s, _cartElements, _mu, 0.5 * s));
-    ASSERT_ANY_THROW(_equiElements.interpolate(0.0 * s, 1.0 * s, _keplElements, _mu, 0.5 * s));
+    ASSERT_ANY_THROW(_equiElements.interpolate(0.0 * s, 1.0 * s, _cartElements, 0.5 * s));
+    ASSERT_ANY_THROW(_equiElements.interpolate(0.0 * s, 1.0 * s, _keplElements, 0.5 * s));
 }
 
 TEST_F(OrbitalElementsTest, Extract)

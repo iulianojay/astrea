@@ -245,7 +245,7 @@ Cartesian<_frame_>& Cartesian<_frame_>::operator-=(const VelocityVector<_frame_>
 
 template <IsFrame auto _frame_>
 Cartesian<_frame_>
-    Cartesian<_frame_>::interpolate(const Time& thisTime, const Time& otherTime, const Cartesian<_frame_>& other, const GravParam& mu, const Time& targetTime) const
+    Cartesian<_frame_>::interpolate(const Time& thisTime, const Time& otherTime, const Cartesian<_frame_>& other, const Time& targetTime) const
 {
     const std::array<Time, 2> times = { thisTime, otherTime };
     const Distance interpX  = math::fast_interpolate<Time, Distance>(times, { get_x(), other.get_x() }, targetTime);

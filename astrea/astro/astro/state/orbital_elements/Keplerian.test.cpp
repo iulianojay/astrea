@@ -79,17 +79,6 @@ TEST_F(KeplerianTest, DefaultConstructor)
     ASSERT_TRUE(math::nearly_equal(defaultState.get_true_anomaly(), Angle(0.0 * rad), REL_TOL));
 }
 
-TEST_F(KeplerianTest, UnitlessConstructor)
-{
-    Keplerian<frames::earth::icrf> scaledState(2.0 * one);
-    ASSERT_TRUE(math::nearly_equal(scaledState.get_semimajor(), Distance(2.0 * km), REL_TOL));
-    ASSERT_TRUE(math::nearly_equal(scaledState.get_eccentricity(), Unitless(2.0 * one), REL_TOL));
-    ASSERT_TRUE(math::nearly_equal(scaledState.get_inclination(), Angle(2.0 * rad), REL_TOL));
-    ASSERT_TRUE(math::nearly_equal(scaledState.get_right_ascension(), Angle(2.0 * rad), REL_TOL));
-    ASSERT_TRUE(math::nearly_equal(scaledState.get_argument_of_perigee(), Angle(2.0 * rad), REL_TOL));
-    ASSERT_TRUE(math::nearly_equal(scaledState.get_true_anomaly(), Angle(2.0 * rad), REL_TOL));
-}
-
 TEST_F(KeplerianTest, ParameterizedConstructor)
 {
     ASSERT_NO_THROW(Keplerian<frames::earth::icrf>(a, ecc, inc, raan, w, theta));
@@ -349,7 +338,7 @@ TEST_F(KeplerianTest, Interpolate)
     Time thisTime                         = 0.0 * s;
     Time otherTime                        = 10.0 * s;
     Time targetTime                       = 5.0 * s;
-    Keplerian<frames::earth::icrf> result = state.interpolate(thisTime, otherTime, other, mu, targetTime);
+    Keplerian<frames::earth::icrf> result = state.interpolate(thisTime, otherTime, other, targetTime);
 
     // At t=5s (midpoint), expect average of start and end values
     ASSERT_TRUE(math::nearly_equal(result.get_semimajor(), (a + 14000.0 * km) / 2.0, REL_TOL));

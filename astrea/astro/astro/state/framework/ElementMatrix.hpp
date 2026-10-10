@@ -673,9 +673,7 @@ struct ElementMatrix {
         requires(_n_row_ == _n_row_u_)
     auto combine_columns(const ElementMatrix<_n_row_u_, _n_col_u_, Elements_T_U...>& other) const
     {
-        const auto& [... a] = elements;
-        const auto& [... b] = other.elements;
-        return ElementMatrix<_n_row_, _n_col_ + _n_col_u_, decltype(a)..., decltype(b)...>{ a..., b... };
+        return this->transpose().combine_rows(other.transpose()).transpose();
     }
 };
 
