@@ -8,7 +8,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Changed
-- Hotfix/ecquinoctial vop error ([#216](../../pull/216))
+- [HOTFIX] ecquinoctial vop error ([#216](../../pull/216))
+- [CHORE]: Bump the all-deps group across 1 directory with 4 updates ([#215](../../pull/215))
 - [CHORE]: Bump the all-deps group with 3 updates ([#212](../../pull/212))
 - [BUGFIX] Update validate-pr workflow to work with dependabot PRs (#0) ([#211](../../pull/211))
 - [HOTFIX] Changelog workflow now pushes commit to branch with PR  (#0) ([#210](../../pull/210))
