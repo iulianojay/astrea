@@ -25,3 +25,4 @@ class AstreaConan(ConanFile):
         self.requires("cpr/1.11.0")
         self.requires("gtest/1.17.0")
         self.requires("benchmark/1.9.5")
+        self.requires("gsl-lite/1.1.0")

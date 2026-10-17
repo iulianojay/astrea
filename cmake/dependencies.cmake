@@ -14,6 +14,7 @@
 find_package(nlohmann_json REQUIRED)
 find_package(SQLite3 REQUIRED)
 find_package(cpr REQUIRED)
+find_package(gsl-lite REQUIRED)
 
 # gsl-lite is a transitive dep of mp-units; keep this define for compatibility
 add_compile_definitions(gsl_FEATURE_GSL_COMPATIBILITY_MODE=1)
@@ -57,6 +58,7 @@ CPMFindPackage(
     "MATPLOTPP_BUILD_EXAMPLES OFF"
     "MATPLOTPP_BUILD_SHARED_LIBS ON"
     "MATPLOTPP_BUILD_TESTS OFF"
+    "MATPLOTPP_BUILD_WITH_PEDANTIC_WARNINGS OFF"
     "BUILD_SHARED_LIBS ON"
     SYSTEM YES
 )
@@ -92,6 +94,7 @@ FetchContent_Declare(
     GIT_REPOSITORY https://github.com/vincentlaucsb/csv-parser.git
     GIT_SHALLOW TRUE
     GIT_TAG 3.1.0
+    SYSTEM
 )
 FetchContent_MakeAvailable(csv)
 
@@ -101,6 +104,7 @@ CPMFindPackage(
     GITHUB_REPOSITORY iulianojay/nrlmsise-00
     GIT_SHALLOW TRUE
     GIT_TAG improvement/remove-pimpl-update-build-system
+    SYSTEM YES
     OPTIONS
     "BUILD_TESTING OFF"
     "BUILD_PYTHON OFF"
@@ -114,6 +118,7 @@ if (${BUILD_TESTS})
         GITHUB_REPOSITORY google/googletest
         GIT_SHALLOW TRUE
         VERSION 1.17.0
+        SYSTEM YES
         OPTIONS
         "INSTALL_GTEST OFF"
     )
@@ -124,4 +129,13 @@ endif()
 
 if(${BUILD_BENCHMARKS})
     find_package(benchmark REQUIRED)
+endif()
+
+# Silence warnings emitted by external dependency source builds
+if(TARGET matplot)
+    target_compile_options(matplot PRIVATE -Wno-deprecated-declarations)
+endif()
+
+if(TARGET webui)
+    target_compile_options(webui PRIVATE -w)
 endif()
