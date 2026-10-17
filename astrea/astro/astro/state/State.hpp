@@ -226,19 +226,6 @@ class State {
     }
 
     /**
-     * @brief Converts the state to a specified frame.
-     *
-     * @tparam _frame_ The frame to convert the state to.
-     * @return State A new State object with the converted orbital elements.
-     */
-    template <IsFrame auto _frame_>
-    State& in_frame()
-    {
-        _elements = _elements.in_frame<_frame_>(get_epoch(), get_mu());
-        return *this;
-    }
-
-    /**
      * @brief Gets the position vector in a specified frame from the state.
      *
      * @tparam _frame_ The frame to get the position vector in.
