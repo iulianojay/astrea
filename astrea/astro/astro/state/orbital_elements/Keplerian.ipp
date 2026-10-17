@@ -398,14 +398,6 @@ Keplerian<_frame_>& Keplerian<_frame_>::operator*=(const Unitless& multiplier)
 }
 
 template <IsFrame auto _frame_>
-KeplerianPartial<_frame_> Keplerian<_frame_>::operator/(const Time& time) const
-{
-    return KeplerianPartial<_frame_>(
-        _semimajor / time, _eccentricity / time, _inclination / time, _rightAscension / time, _argPerigee / time, _trueAnomaly / time
-    );
-}
-
-template <IsFrame auto _frame_>
 Keplerian<_frame_> Keplerian<_frame_>::operator/(const Unitless& divisor) const
 {
     return Keplerian(_semimajor / divisor, _eccentricity / divisor, _inclination / divisor, _rightAscension / divisor, _argPerigee / divisor, _trueAnomaly / divisor);
@@ -485,30 +477,6 @@ Keplerian<_frame_> Keplerian<_frame_>::from_double_vector(const std::vector<doub
 }
 
 template <IsFrame auto _frame_>
-Keplerian<_frame_> KeplerianPartial<_frame_>::operator*(const Time& time) const
-{
-    return Keplerian<_frame_>(
-        _semimajorPartial * time,
-        _eccentricityPartial * time,
-        _inclinationPartial * time,
-        _rightAscensionPartial * time,
-        _argPerigeePartial * time,
-        _trueAnomalyPartial * time
-    );
-}
-
-template <IsFrame auto _frame_>
-std::vector<double> KeplerianPartial<_frame_>::force_to_double_vector() const
-{
-    return { _semimajorPartial.numerical_value_in(_semimajorPartial.unit),
-             _eccentricityPartial.numerical_value_in(_eccentricityPartial.unit),
-             _inclinationPartial.numerical_value_in(_inclinationPartial.unit),
-             _rightAscensionPartial.numerical_value_in(_rightAscensionPartial.unit),
-             _argPerigeePartial.numerical_value_in(_argPerigeePartial.unit),
-             _trueAnomalyPartial.numerical_value_in(_trueAnomalyPartial.unit) };
-}
-
-template <IsFrame auto _frame_>
 std::ostream& operator<<(std::ostream& os, Keplerian<_frame_> const& elements)
 {
     os << "[";
@@ -519,20 +487,6 @@ std::ostream& operator<<(std::ostream& os, Keplerian<_frame_> const& elements)
     os << elements.get_argument_of_perigee() << ", ";
     os << elements.get_true_anomaly();
     os << "] (Keplerian)";
-    return os;
-}
-
-template <IsFrame auto _frame_>
-std::ostream& operator<<(std::ostream& os, KeplerianPartial<_frame_> const& elements)
-{
-    os << "[";
-    os << elements._semimajorPartial << ", ";
-    os << elements._eccentricityPartial << ", ";
-    os << elements._inclinationPartial << ", ";
-    os << elements._rightAscensionPartial << ", ";
-    os << elements._argPerigeePartial << ", ";
-    os << elements._trueAnomalyPartial;
-    os << "] (KeplerianPartial)";
     return os;
 }
 
