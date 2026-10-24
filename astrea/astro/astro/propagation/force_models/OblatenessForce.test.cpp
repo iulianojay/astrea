@@ -96,3 +96,68 @@ TEST_F(OblatenessForceTest, ComputeForceValladoEx85)
     ASSERT_TRUE(math::nearly_equal(accelNorm, expectedNorm, REL_TOL));
     ASSERT_TRUE(nearly_equal(accel, expected, REL_TOL));
 }
+
+TEST_F(OblatenessForceTest, Orbit03A4x4TotalGravityAtT0)
+{
+    const Date checkcaseEpoch("2007/324:00:00:00", "%Y/%j:%H:%M:%S");
+    Cartesian<frames::earth::icrf> cart{ -4292653.40999999 * m,    955168.470000001 * m,      5139356.56999999 * m,
+                                         109.649662999999 * m / s, -7527.72648999999 * m / s, 1484.521489 * m / s };
+
+    State state(cart, checkcaseEpoch);
+    const auto [force, torque] = OblatenessForce<planets::Earth, 4, 4>().compute_perturbation(state, Vehicle(sat));
+    const AccelerationVector<frames::earth::icrf> oblatenessAccel = force / sat.get_mass(state);
+
+    const auto rEci                                            = cart.get_position();
+    const AccelerationVector<frames::earth::icrf> centralAccel = -get_mu<planets::Earth>() / pow<3>(rEci.norm()) * rEci;
+    const AccelerationVector<frames::earth::icrf> totalAccel   = centralAccel + oblatenessAccel;
+
+    const AccelerationVector<frames::earth::icrf> expectedTotalAccel{ 5.51387371235876 * m / (s * s),
+                                                                      -1.22700119262805 * m / (s * s),
+                                                                      -6.62056474851441 * m / (s * s) };
+
+    ASSERT_TRUE(nearly_equal(totalAccel, expectedTotalAccel, REL_TOL));
+}
+
+TEST_F(OblatenessForceTest, Orbit03B8x8TotalGravityAtT0)
+{
+    const Date checkcaseEpoch("2007/324:00:00:00", "%Y/%j:%H:%M:%S");
+    Cartesian<frames::earth::icrf> cart{ -4292653.40999999 * m,    955168.470000001 * m,      5139356.56999999 * m,
+                                         109.649662999999 * m / s, -7527.72648999999 * m / s, 1484.521489 * m / s };
+
+    State state(cart, checkcaseEpoch);
+    const auto [force, torque] = OblatenessForce<planets::Earth, 8, 8>().compute_perturbation(state, Vehicle(sat));
+    const AccelerationVector<frames::earth::icrf> oblatenessAccel = force / sat.get_mass(state);
+
+    const auto rEci                                            = cart.get_position();
+    const AccelerationVector<frames::earth::icrf> centralAccel = -get_mu<planets::Earth>() / pow<3>(rEci.norm()) * rEci;
+    const AccelerationVector<frames::earth::icrf> totalAccel   = centralAccel + oblatenessAccel;
+
+    const AccelerationVector<frames::earth::icrf> expectedTotalAccel{ 5.51382727336929 * m / (s * s),
+                                                                      -1.22706430181432 * m / (s * s),
+                                                                      -6.62051654995019 * m / (s * s) };
+
+    ASSERT_TRUE(nearly_equal(totalAccel, expectedTotalAccel, REL_TOL));
+}
+
+TEST_F(OblatenessForceTest, Orbit03A4x4TotalGravityAtT60s)
+{
+    const Date epoch0("2007/324:00:00:00", "%Y/%j:%H:%M:%S");
+    const Date checkcaseDate = epoch0 + 60.0 * s;
+
+    Cartesian<frames::earth::icrf> cart{ -4276158.38817933 * m,    501645.154952279 * m,      5216446.65330053 * m,
+                                         439.972330892332 * m / s, -7583.89133224093 * m / s, 1084.1548444161 * m / s };
+
+    State state(cart, checkcaseDate);
+    const auto [force, torque] = OblatenessForce<planets::Earth, 4, 4>().compute_perturbation(state, Vehicle(sat));
+    const AccelerationVector<frames::earth::icrf> oblatenessAccel = force / sat.get_mass(state);
+
+    const auto rEci                                            = cart.get_position();
+    const AccelerationVector<frames::earth::icrf> centralAccel = -get_mu<planets::Earth>() / pow<3>(rEci.norm()) * rEci;
+    const AccelerationVector<frames::earth::icrf> totalAccel   = centralAccel + oblatenessAccel;
+
+    const AccelerationVector<frames::earth::icrf> expectedTotalAccel{ 5.49266875931076 * m / (s * s),
+                                                                      -0.644443899684263 * m / (s * s),
+                                                                      -6.7198683790639 * m / (s * s) };
+
+    ASSERT_TRUE(nearly_equal(totalAccel, expectedTotalAccel, REL_TOL));
+}

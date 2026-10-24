@@ -683,6 +683,31 @@ TEST_F(Orbital6DofTest, Checkcase2_Propagation)
     compare_all_propagations_to_checkcases(propagations, "Orbit_02");
 }
 
+TEST_F(Orbital6DofTest, Checkcase3A_InitialStateConsistency)
+{
+    auto checkcases = get_checkcases("Orbit_03A%%");
+    const auto it =
+        std::find_if(checkcases.begin(), checkcases.end(), [](const OrbitalCheckcase& cc) { return cc.sim_num == 1; });
+
+    ASSERT_TRUE(it != checkcases.end());
+
+    const auto rows = get_checkcase_rows(*it);
+    ASSERT_FALSE(rows.empty());
+
+    const State checkcaseState = parse_row_as_state(rows.front());
+    const Cartesian<frames::earth::icrf> checkcaseCartesian = checkcaseState.in_element_set<Cartesian<frames::earth::icrf>>();
+
+    const OrbitalElements initialElements = Keplerian<frames::earth::icrf>(circular, mu);
+    const State initialState(initialElements, epoch);
+    const Cartesian<frames::earth::icrf> initialCartesian = initialState.in_element_set<Cartesian<frames::earth::icrf>>();
+
+    const Distance posDiff = (initialCartesian.get_position() - checkcaseCartesian.get_position()).norm();
+    const Velocity velDiff = (initialCartesian.get_velocity() - checkcaseCartesian.get_velocity()).norm();
+
+    EXPECT_LE(posDiff, 1.0e-3 * m);
+    EXPECT_LE(velDiff, 1.0e-6 * m / s);
+}
+
 
 TEST_F(Orbital6DofTest, Checkcase3A_4x4Oblateness)
 {
