@@ -60,8 +60,6 @@ using namespace sqlite_orm;
 using namespace matplot;
 using namespace mp_units;
 
-using mp_units::international::unit_symbols::ft;
-using mp_units::international::unit_symbols::lbf;
 using mp_units::si::unit_symbols::cm;
 using mp_units::si::unit_symbols::deg;
 using mp_units::si::unit_symbols::kg;
@@ -70,6 +68,8 @@ using mp_units::si::unit_symbols::m;
 using mp_units::si::unit_symbols::rad;
 using mp_units::si::unit_symbols::s;
 using mp_units::si::unit_symbols::µm;
+using mp_units::yard_pound::unit_symbols::ft;
+using mp_units::yard_pound::unit_symbols::lbf;
 
 inline constexpr auto slug = lbf * pow<2>(s) / ft;
 
@@ -84,14 +84,6 @@ enum EomType { TWO_BODY = 0, COWELLS_METHOD = 1, KEPLERIAN_VOP = 2, EQUINOCTIAL_
 enum InitialOrbitType { CIRCULAR = 0, ELLIPTIC = 1 };
 enum VehicleType { ISS = 0, SPHERE = 1, BRICK = 2, CYLINDER = 3 };
 
-namespace astrea::astro {
-template <>
-inline constexpr GravParam get_mu<planets::Earth>()
-{
-    return 398600.436 * pow<3>(km) / pow<2>(s); // different mu value
-}
-} // namespace astrea::astro
-
 
 class Orbital6DofTest : public testing::Test {
 
@@ -105,7 +97,7 @@ class Orbital6DofTest : public testing::Test {
 
   public:
     Orbital6DofTest() :
-        mu(get_mu<frames::primary.origin>()),
+        mu(get_mu<planets::Earth>()),
         epoch("2007/324:00:00:00", "%Y/%j:%H:%M:%S"),
         circular(
             RadiusVector<frames::earth::icrf>(-4292.65341 * km, 955.16847 * km, 5139.35657 * km),
@@ -274,10 +266,13 @@ class Orbital6DofTest : public testing::Test {
     {
         auto ccdb = get_checkcase_database();
         ccdb.sync_schema();
-        return ccdb.get_all<OrbitalCheckcaseRow>(where(
-            c(&OrbitalCheckcaseRow::checkcase_num) == checkcase.checkcase_num &&
-            c(&OrbitalCheckcaseRow::sim_num) == checkcase.sim_num
-        ));
+        return ccdb.get_all<OrbitalCheckcaseRow>(
+            where(
+                c(&OrbitalCheckcaseRow::checkcase_num) == checkcase.checkcase_num &&
+                c(&OrbitalCheckcaseRow::sim_num) == checkcase.sim_num
+            ),
+            multi_order_by(order_by(&OrbitalCheckcaseRow::time), order_by(&OrbitalCheckcaseRow::id))
+        );
     }
 
     State parse_row_as_state(const OrbitalCheckcaseRow& row) const
@@ -761,7 +756,7 @@ TEST_F(Orbital6DofTest, Checkcase5C_SrpSolarMax)
 TEST_F(Orbital6DofTest, Checkcase6A_AtmosFixedSphere)
 {
     ForceModel forces;
-    forces.add<AtmosphericForce, planets::Earth>();
+    forces.add<AtmosphericForce, planets::Earth, EarthAtmosphereModel::NRLMSISE00>();
 
     const auto propagations = run_all_propagations(forces, ELLIPTIC, SPHERE);
 
@@ -772,7 +767,7 @@ TEST_F(Orbital6DofTest, Checkcase6A_AtmosFixedSphere)
 TEST_F(Orbital6DofTest, Checkcase6B_AtmosDynamicSphere)
 {
     ForceModel forces;
-    forces.add<AtmosphericForce, planets::Earth>();
+    forces.add<AtmosphericForce, planets::Earth, EarthAtmosphereModel::NRLMSISE00>();
 
     const auto propagations = run_all_propagations(forces, ELLIPTIC, SPHERE);
 
@@ -829,7 +824,7 @@ TEST_F(Orbital6DofTest, Checkcase7C_4x4Oblateness_NBody_Drag)
     ForceModel forces;
     forces.add<OblatenessForce, planets::Earth, 4, 4>();
     forces.add<NBodyForce, planets::Earth, star::Sun, moons::Moon>();
-    forces.add<AtmosphericForce, planets::Earth>();
+    forces.add<AtmosphericForce, planets::Earth, EarthAtmosphereModel::NRLMSISE00>();
 
     const auto propagations = run_all_propagations(forces, ELLIPTIC, SPHERE);
 
@@ -842,7 +837,7 @@ TEST_F(Orbital6DofTest, Checkcase7D_8x8Oblateness_NBody_Drag)
     ForceModel forces;
     forces.add<OblatenessForce, planets::Earth, 8, 8>();
     forces.add<NBodyForce, planets::Earth, star::Sun, moons::Moon>();
-    forces.add<AtmosphericForce, planets::Earth>();
+    forces.add<AtmosphericForce, planets::Earth, EarthAtmosphereModel::NRLMSISE00>();
 
     const auto propagations = run_all_propagations(forces, ELLIPTIC, SPHERE);
 
