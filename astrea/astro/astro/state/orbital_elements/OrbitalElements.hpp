@@ -238,28 +238,6 @@ class OrbitalElements {
     }
 
     /**
-     * @brief Returns the held orbital elements in the specified frame.
-     *
-     * Visits the current element type and calls its in_frame<target_frame>(epoch, mu),
-     * returning the base type in the target frame.
-     *
-     * @tparam target_frame The frame to convert into.
-     * @param epoch The epoch at which to evaluate the frame transformation.
-     * @param mu The gravitational parameter of the central body.
-     * @return The orbital elements expressed in the target frame.
-     */
-    template <IsFrame auto target_frame>
-    auto in_frame(const Date& epoch, const GravParam& mu) const
-    {
-        return std::visit(
-            [&](const auto& x) -> decltype(x.template in_frame<target_frame>(epoch, mu)) {
-                return x.template in_frame<target_frame>(epoch, mu);
-            },
-            _elements
-        );
-    }
-
-    /**
      * @brief Compares two OrbitalElements objects for equality.
      *
      * @param other Another OrbitalElements object to compare with.
