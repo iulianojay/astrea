@@ -130,8 +130,8 @@ class Orbital6DofTest : public testing::Test {
             switch (eomId) {
                 case TWO_BODY: eomName = "Two_Body"; break;
                 case COWELLS_METHOD: eomName = "Cowells_Method"; break;
-                case KEPLERIAN_VOP: eomName = "Keplerian_VOP"; break;
-                case EQUINOCTIAL_VOP: eomName = "Equinoctial_VOP"; break;
+                case KEPLERIAN_VOP: eomName = "Keplerian_VoP"; break;
+                case EQUINOCTIAL_VOP: eomName = "Equinoctial_VoP"; break;
                 default: throw std::runtime_error("Invalid EOM ID");
             }
             results.push_back({ run_propagation(eomId, forces, orbitType, vehicleType), eomName });
@@ -674,16 +674,7 @@ int main(int argc, char** argv)
 }
 
 
-TEST_F(Orbital6DofTest, Checkcase2_Propagation)
-{
-    ForceModel forces;
-
-    const auto propagations = run_all_propagations(forces, CIRCULAR, ISS, false);
-
-    compare_all_propagations_to_checkcases(propagations, "Orbit_02");
-}
-
-TEST_F(Orbital6DofTest, Checkcase3A_InitialStateConsistency)
+TEST_F(Orbital6DofTest, InitialStateConsistency)
 {
     auto checkcases = get_checkcases("Orbit_03A%%");
     const auto it =
@@ -706,6 +697,16 @@ TEST_F(Orbital6DofTest, Checkcase3A_InitialStateConsistency)
 
     EXPECT_LE(posDiff, 1.0e-3 * m);
     EXPECT_LE(velDiff, 1.0e-6 * m / s);
+}
+
+
+TEST_F(Orbital6DofTest, Checkcase2_Propagation)
+{
+    ForceModel forces;
+
+    const auto propagations = run_all_propagations(forces, CIRCULAR, ISS, false);
+
+    compare_all_propagations_to_checkcases(propagations, "Orbit_02");
 }
 
 
@@ -780,7 +781,8 @@ TEST_F(Orbital6DofTest, Checkcase5C_SrpSolarMax)
 
 TEST_F(Orbital6DofTest, Checkcase6A_AtmosFixedSphere)
 {
-    ForceModel forces;
+    auto data = std::make_shared<const SpaceWeatherData>(get_default_space_weather_data());
+    ForceModel forces(data);
     forces.add<AtmosphericForce, planets::Earth, EarthAtmosphereModel::NRLMSISE00>();
 
     const auto propagations = run_all_propagations(forces, ELLIPTIC, SPHERE);
@@ -791,7 +793,8 @@ TEST_F(Orbital6DofTest, Checkcase6A_AtmosFixedSphere)
 
 TEST_F(Orbital6DofTest, Checkcase6B_AtmosDynamicSphere)
 {
-    ForceModel forces;
+    auto data = std::make_shared<const SpaceWeatherData>(get_default_space_weather_data());
+    ForceModel forces(data);
     forces.add<AtmosphericForce, planets::Earth, EarthAtmosphereModel::NRLMSISE00>();
 
     const auto propagations = run_all_propagations(forces, ELLIPTIC, SPHERE);
@@ -846,7 +849,8 @@ TEST_F(Orbital6DofTest, Checkcase7B_8x8Oblateness_NBody)
 
 TEST_F(Orbital6DofTest, Checkcase7C_4x4Oblateness_NBody_Drag)
 {
-    ForceModel forces;
+    auto data = std::make_shared<const SpaceWeatherData>(get_default_space_weather_data());
+    ForceModel forces(data);
     forces.add<OblatenessForce, planets::Earth, 4, 4>();
     forces.add<NBodyForce, planets::Earth, star::Sun, moons::Moon>();
     forces.add<AtmosphericForce, planets::Earth, EarthAtmosphereModel::NRLMSISE00>();
@@ -859,7 +863,8 @@ TEST_F(Orbital6DofTest, Checkcase7C_4x4Oblateness_NBody_Drag)
 
 TEST_F(Orbital6DofTest, Checkcase7D_8x8Oblateness_NBody_Drag)
 {
-    ForceModel forces;
+    auto data = std::make_shared<const SpaceWeatherData>(get_default_space_weather_data());
+    ForceModel forces(data);
     forces.add<OblatenessForce, planets::Earth, 8, 8>();
     forces.add<NBodyForce, planets::Earth, star::Sun, moons::Moon>();
     forces.add<AtmosphericForce, planets::Earth, EarthAtmosphereModel::NRLMSISE00>();

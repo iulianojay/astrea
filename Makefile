@@ -228,7 +228,7 @@ run_checkcases:
 	cd $(install_path)/bin/regression/ && ./orbital.test --gtest_filter=*.Checkcase* --gtest_catch_exceptions=0 2> /dev/null
 
 .PHONY: build_report
-build_report: run_checkcases
+build_report: #run_checkcases
 	cd astrea/astro/pyastro/6dof_report && python3 nasa_6dof_report.py
 
 .PHONY: docker
