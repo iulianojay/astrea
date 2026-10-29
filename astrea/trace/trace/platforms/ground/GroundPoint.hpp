@@ -26,7 +26,7 @@
 #include <astro/astro.fwd.hpp>
 #include <astro/frames/framework/CartesianVector.hpp>
 #include <astro/state/angular_elements.hpp>
-#include <astro/systems/property_getters.hpp>
+#include <astro/systems/celestial_body_utilities.hpp>
 #include <astro/systems/system_concepts.hpp>
 #include <astro/time/Date.hpp>
 #include <units/units.hpp>

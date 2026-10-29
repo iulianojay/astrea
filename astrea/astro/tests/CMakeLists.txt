@@ -69,3 +69,16 @@ endif()
 # Build
 build_tests(${PROJECT_NAME} "UNIT" "${UNIT_TEST_SOURCES}" "${HELPER_HEADERS}" "${HELPER_SOURCES}")
 build_tests(${PROJECT_NAME} "REGRESSION" "${REGRESSION_TEST_SOURCES}" "${HELPER_HEADERS}" "${HELPER_SOURCES}")
+
+# 6DOF helper sources use sqlite_orm directly, so regression drivers that
+# compile those helpers must also link the SQLite C library.
+if(${BUILD_6DOF_CHECKCASES})
+    foreach(TEST_FILE ${REGRESSION_TEST_SOURCES})
+        cmake_path(GET TEST_FILE PARENT_PATH full_parent_path)
+        get_filename_component(TEST_EXE ${full_parent_path} NAME)
+        set(TEST_EXE ${TEST_EXE}.test)
+        if(TARGET ${TEST_EXE})
+            target_link_libraries(${TEST_EXE} PRIVATE sqlite_orm::sqlite_orm SQLite::SQLite3)
+        endif()
+    endforeach()
+endif()

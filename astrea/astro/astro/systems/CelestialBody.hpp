@@ -62,9 +62,9 @@ struct CelestialBody : Origin<_name_, _parent_>, detail::CelestialBodyBase {
 
 // ---------------------------------------------------------------------------
 // Primary template declarations.
-// These live here (not in property_getters.hpp) so that planet headers
+// These live here (not in celestial_body_utilities.hpp) so that planet headers
 // can specialize them without triggering the heavy State/Keplerian/frames include
-// chain that property_getters.hpp used to pull in.
+// chain that celestial_body_utilities.hpp used to pull in.
 // ---------------------------------------------------------------------------
 
 /// Primary template — must be specialized for each body.
@@ -76,7 +76,7 @@ inline consteval CelestialBodyParameters get_celestial_body_parameters() = delet
 /// Primary template declarations for ephemeris position/velocity (NTTP-based).
 /// Explicit specializations are provided in planet headers (Chebyshev ephemeris).
 /// The primary template definition (Keplerian fallback) is provided by
-/// default_property_getters.hpp, which celestial_bodies.hpp includes after all planet headers.
+/// default_celestial_body_orbits.hpp, which celestial_bodies.hpp includes after all planet headers.
 template <auto _body_>
 inline constexpr CartesianVector<Distance, get_parent_frame(_body_, axes::icrf)> get_position_at(const Date& date);
 
@@ -89,6 +89,6 @@ inline constexpr CartesianVector<Acceleration, get_parent_frame(_body_, axes::ic
 } // namespace astro
 } // namespace astrea
 
-// property_getters.hpp provides lightweight inline helpers (get_mu, get_mass, etc.)
+// celestial_body_utilities.hpp provides lightweight inline helpers (get_mu, get_mass, etc.)
 // and get_position_at_impl / get_velocity_at_impl.  It is lightweight — no State.hpp dependency.
-#include <astro/systems/property_getters.hpp>
+#include <astro/systems/celestial_body_utilities.hpp>

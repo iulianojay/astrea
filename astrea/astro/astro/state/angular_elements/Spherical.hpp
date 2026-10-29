@@ -202,7 +202,7 @@ std::tuple<Distance, Angle, Angle> convert_body_fixed_to_spherical(const RadiusV
     const Distance& y = rFixed.get_y();
 
     Angle azimuth;
-    if (x == 0.0 * km && y == 0.0 * km) { azimuth = 0.0 * rad; }
+    if (x == 0.0 && y == 0.0) { azimuth = 0.0 * rad; }
     else {
         azimuth = acos(x / sqrt(x * x + y * y));
         if (y < 0.0 * km) { azimuth = -azimuth; }

@@ -219,7 +219,7 @@ class LambertSolver {
             // Newton Functions
             const quantity F = pow<3, 2>(y / Cz) * Sz + A * sqrt(y) - sqMU * dt;
             const quantity dF =
-                (z == 0.0 * one) ?
+                (z == 0.0) ?
                     sqrt(2.0 * one) / 40.0 * pow<3, 2>(y) + A / 8 * (sqrt(y) + A * sqrt(1.0 / (2.0 * y))) :
                     (pow<3, 2>(y / Cz) * (1.0 / (2.0 * z) * (Cz - 3.0 * Sz / (2.0 * Cz)) + 3.0 * Sz * Sz / (4.0 * Cz)) +
                      A / 8.0 * (3.0 * Sz / Cz * sqrt(y) + A * sqrt(Cz / y)));
@@ -227,7 +227,7 @@ class LambertSolver {
             // Step
             zn = z - F / dF;
 
-            err = (z == 0.0 * one) ? abs(zn - z) : abs((zn - z) / z);
+            err = (z == 0.0) ? abs(zn - z) : abs((zn - z) / z);
             ++it;
 
             if (err <= TOL) {

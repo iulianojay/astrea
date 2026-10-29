@@ -7,11 +7,10 @@ namespace astrea {
 namespace astro {
 
 
-inline bool planes_are_nearly_equal(const OrbitalElements& elem1, const OrbitalElements& elem2, const Unitless& relTol)
+inline bool planes_are_nearly_equal(const State& elem1, const State& elem2, const Unitless& relTol)
 {
-    static constexpr auto mu = get_mu<frames::primary.origin>();
-    const auto kepl1         = elem1.in_element_set<Keplerian<frames::primary>>(mu);
-    const auto kepl2         = elem2.in_element_set<Keplerian<frames::primary>>(mu);
+    const auto kepl1 = elem1.in_element_set<Keplerian<frames::primary>>();
+    const auto kepl2 = elem2.in_element_set<Keplerian<frames::primary>>();
 
     const auto& a1 = kepl1.get_semimajor();
     const auto& a2 = kepl2.get_semimajor();
@@ -39,14 +38,13 @@ Plane<Spacecraft_T>::Plane(std::vector<Spacecraft_T> _satellites) :
 {
     // Grab first element set as plane set
     const GravParam mu = get_mu<frames::primary.origin>();
-    elements = satellites[0].get_initial_state().get_elements().template in_element_set<Keplerian<frames::primary>>(mu);
+    const auto state0  = satellites[0].get_initial_state();
+    elements           = state0.get_elements();
 
     // Check if other satellites are actually in-plane
     strict = true;
     for (const auto& sat : satellites) {
-        const OrbitalElements satElements =
-            sat.get_initial_state().get_elements().template in_element_set<Keplerian<frames::primary>>(mu);
-        if (!planes_are_nearly_equal(elements, satElements, 1.0e-6 * mp_units::one)) {
+        if (!planes_are_nearly_equal(state0, sat.get_initial_state(), 1.0e-6 * mp_units::one)) {
             strict = false;
             break;
         }

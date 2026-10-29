@@ -45,7 +45,7 @@ concept IsConstructableTo = requires(T elements, const GravParam& mu) {
  * @tparam T The type to check.
  * @tparam frame The frame type to check.
  */
-template <typename T, IsFrame auto frame>
+template <typename T, auto frame>
 concept HasDirectCartesianConversion = requires(const T elements, const GravParam& mu) {
     { elements.to_cartesian(mu) } -> std::same_as<Cartesian<frame>>;
 };
@@ -56,7 +56,7 @@ concept HasDirectCartesianConversion = requires(const T elements, const GravPara
  * @tparam T The type to check.
  * @tparam frame The frame type to check.
  */
-template <typename T, IsFrame auto frame>
+template <typename T, auto frame>
 concept HasDirectKeplerianConversion = requires(const T elements, const GravParam& mu) {
     { elements.to_keplerian(mu) } -> std::same_as<Keplerian<frame>>;
 };
@@ -67,7 +67,7 @@ concept HasDirectKeplerianConversion = requires(const T elements, const GravPara
  * @tparam T The type to check.
  * @tparam frame The frame type to check.
  */
-template <typename T, IsFrame auto frame>
+template <typename T, auto frame>
 concept HasDirectEquinoctialConversion = requires(const T elements, const GravParam& mu) {
     { elements.to_equinoctial(mu) } -> std::same_as<Equinoctial<frame>>;
 };

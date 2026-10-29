@@ -192,12 +192,10 @@ GroundPointRefVec AccessAnalyzer::cache_ground_points(Grid<astro::planets::Earth
 {
     GroundPointRefVec groundPoints;
     groundPoints.reserve(grid.size());
-    std::size_t gpIdx = 0;
     for (auto& groundPoint : grid) {
         groundPoints.push_back(std::make_shared<GroundPoint<astro::planets::Earth>>(groundPoint));
         const std::size_t platformIdx = _positionCache.add_platform(groundPoint.get_id(), 1);
         _positionCache.set_position(platformIdx, 0, groundPoint.get_position());
-        gpIdx++;
     }
     return groundPoints;
 }

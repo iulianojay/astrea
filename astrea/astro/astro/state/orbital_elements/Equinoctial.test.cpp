@@ -18,10 +18,10 @@
 
 #include <astro/frames.hpp>
 #include <astro/frames/framework/CartesianVector.hpp>
+#include <astro/state/framework/element_matrix_concepts.hpp>
 #include <astro/state/orbital_elements/Cartesian.hpp>
 #include <astro/state/orbital_elements/Equinoctial.hpp>
 #include <astro/state/orbital_elements/Keplerian.hpp>
-#include <astro/state/orbital_elements/OrbitalElements.hpp>
 #include <astro/systems/system_utilities.hpp>
 #include <astro/time/Date.hpp>
 #include <tests/utilities/comparisons.hpp>
@@ -43,7 +43,7 @@ class EquinoctialTest : public testing::Test {
     const Unitless REL_TOL = 1.0e-6;
 
     Date epoch;
-    const GravParam mu = get_mu<frames::primary.origin>();
+    const GravParam mu = get_mu<frames::earth::icrf.origin>();
     Distance p         = 7000.0 * km;
     Unitless f         = 0.01 * one;
     Unitless g         = 0.0 * one;
@@ -77,17 +77,6 @@ TEST_F(EquinoctialTest, DefaultConstructor)
     ASSERT_TRUE(math::nearly_equal(defaultState.get_h(), Unitless(0.0 * one), REL_TOL));
     ASSERT_TRUE(math::nearly_equal(defaultState.get_k(), Unitless(0.0 * one), REL_TOL));
     ASSERT_TRUE(math::nearly_equal(defaultState.get_true_longitude(), Angle(0.0 * rad), REL_TOL));
-}
-
-TEST_F(EquinoctialTest, UnitlessConstructor)
-{
-    Equinoctial<frames::earth::icrf> scaledState(2.0 * one);
-    ASSERT_TRUE(math::nearly_equal(scaledState.get_semilatus(), Distance(2.0 * km), REL_TOL));
-    ASSERT_TRUE(math::nearly_equal(scaledState.get_f(), Unitless(2.0 * one), REL_TOL));
-    ASSERT_TRUE(math::nearly_equal(scaledState.get_g(), Unitless(2.0 * one), REL_TOL));
-    ASSERT_TRUE(math::nearly_equal(scaledState.get_h(), Unitless(2.0 * one), REL_TOL));
-    ASSERT_TRUE(math::nearly_equal(scaledState.get_k(), Unitless(2.0 * one), REL_TOL));
-    ASSERT_TRUE(math::nearly_equal(scaledState.get_true_longitude(), Angle(2.0 * rad), REL_TOL));
 }
 
 TEST_F(EquinoctialTest, ParameterizedConstructor)

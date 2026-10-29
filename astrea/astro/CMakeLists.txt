@@ -16,7 +16,7 @@ project(
     LANGUAGES CXX
 )
 
-set(CMAKE_CXX_STANDARD 23)
+set(CMAKE_CXX_STANDARD 26)
 
 # Objects
 set(ASTRO_BASE ${CMAKE_CURRENT_LIST_DIR}/${PROJECT_NAME})
@@ -167,6 +167,9 @@ set(ASTRO_HEADERS
     ${ASTRO_BASE}/state/StateHistory.hpp
     ${ASTRO_BASE}/state/UserDefinedState.hpp
     ${ASTRO_BASE}/state/UserDefinedStatePartial.hpp
+
+    ${ASTRO_BASE}/state/framework/ElementMatrix.hpp
+    ${ASTRO_BASE}/state/framework/OrbitalElementsInterface.hpp
 
     ${ASTRO_BASE}/state/attitude/Attitude.hpp
     ${ASTRO_BASE}/state/attitude/Quaternion.hpp
