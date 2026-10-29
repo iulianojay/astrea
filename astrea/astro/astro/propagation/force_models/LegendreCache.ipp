@@ -67,6 +67,13 @@ LegendreCache<_body_, _degree_, _order_>::LegendreCache()
             lineData.push_back(std::atof(cell.c_str()));
         }
 
+        // File too short for requested degree/order
+        if (lineData.size() < 4) {
+            throw std::runtime_error(
+                std::string("Legendre coefficient file for central body, ") + decltype(_body_)::name.portable().data() + ", is too short for requested degree/order"
+            );
+        }
+
         n = (std::size_t)lineData[0];
         m = (std::size_t)lineData[1];
 

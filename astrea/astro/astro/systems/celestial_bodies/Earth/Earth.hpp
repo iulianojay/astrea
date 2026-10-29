@@ -67,8 +67,8 @@ inline consteval CelestialBodyParameters get_celestial_body_parameters<planets::
     return {
         .type          = CelestialBodyType::PLANET,
         .referenceDate = Date(J2000),
-        // .mu                     = GravParam(398600.44189 * pow<3>(km) / pow<2>(s)), // IAU 2015 value
-        .mu                     = GravParam(398600.436 * pow<3>(km) / pow<2>(s)), // NASA 6DoF Checkcase value
+        .mu            = GravParam(398600.44189 * pow<3>(km) / pow<2>(s)), // IAU 2015 value
+        // .mu                     = GravParam(398600.436 * pow<3>(km) / pow<2>(s)), // NASA 6DoF Checkcase value
         .mass                   = Mass(5.97 * (mag_power<10, 24> * kg)),
         .equatorialRadius       = Distance(6378.137 * km),
         .polarRadius            = Distance(6356.75538082 * km),
@@ -91,9 +91,9 @@ inline consteval CelestialBodyParameters get_celestial_body_parameters<planets::
         .rightAscensionRate     = BodyAngularVelocity(0.0 * deg / jc),
         .longitudeOfPerigeeRate = BodyAngularVelocity(0.32327364 * deg / jc),
         .meanLongitudeRate      = BodyAngularVelocity(35999.37244981 * deg / jc),
-        // .gravityCoefficientFile = _ASTRO_GRAV_DATA_ROOT_ "/Earth/EGM2008_to2190_ZeroTide_mod.txt" // normalized
+        .gravityCoefficientFile = _ASTRO_GRAV_DATA_ROOT_ "/Earth/EGM2008_to2190_ZeroTide_mod.txt" // normalized
         // .gravityCoefficientFile = _ASTRO_GRAV_DATA_ROOT_ "/Earth/WGS84" // normalized
-        .gravityCoefficientFile = _ASTRO_GRAV_DATA_ROOT_ "/Earth/NASA_6DoF" // normalized - only goes to 8x8
+        // .gravityCoefficientFile = _ASTRO_GRAV_DATA_ROOT_ "/Earth/NASA_6DoF" // normalized - only goes to 8x8
     };
 }
 
