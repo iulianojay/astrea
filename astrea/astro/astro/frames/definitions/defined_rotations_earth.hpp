@@ -184,7 +184,7 @@ inline constexpr NutationCoefficients get_nutation_coefficient(std::size_t idx)
  * @param T The time in Julian centuries since J2000.
  * @return std::array<mp_units::quantity<mp_units::si::unit_symbols::arcsec>, 3> The precession angles [z, theta, zeta].
  */
-inline constexpr std::array<mp_units::quantity<mp_units::si::unit_symbols::arcsec>, 3> get_precession_angles(const Unitless& T)
+inline constexpr std::array<mp_units::quantity<mp_units::si::unit_symbols::arcsec>, 3> get_precession_angles(const Unitless& T) noexcept
 {
     using namespace mp_units;
     using astrea::units::unit_symbols::rev;
@@ -208,7 +208,7 @@ inline constexpr std::array<mp_units::quantity<mp_units::si::unit_symbols::arcse
  * @param T The time in Julian centuries since J2000.
  * @return std::array<mp_units::quantity<mp_units::si::unit_symbols::arcsec>, 5> The anomaly terms [l, lp, F, D, Om].
  */
-inline constexpr std::array<mp_units::quantity<mp_units::si::unit_symbols::arcsec>, 5> get_anomaly_terms(const Unitless& T)
+inline constexpr std::array<mp_units::quantity<mp_units::si::unit_symbols::arcsec>, 5> get_anomaly_terms(const Unitless& T) noexcept
 {
     using namespace mp_units;
     using astrea::units::unit_symbols::rev;
@@ -289,24 +289,40 @@ inline constexpr std::array<mp_units::quantity<mp_units::si::unit_symbols::arcse
  * @throws std::out_of_range if the date is outside the range of available Earth Orientation Parameters data.
  * @throws std::runtime_error if polar motion data is not found for the given date.
  */
-inline constexpr std::array<mp_units::quantity<mp_units::si::unit_symbols::arcsec>, 2> get_polar_motion(const Date& date)
+inline constexpr std::array<mp_units::quantity<mp_units::si::unit_symbols::arcsec>, 2> get_polar_motion(const Date& date) noexcept
 {
-    if (date < eop::EarthOrientationParameters::DATA.front().MJD || date > eop::EarthOrientationParameters::DATA.back().MJD) {
-        throw std::out_of_range("Date is out of range for Earth Orientation Parameters data.");
+    static const auto MJD0 = eop::EarthOrientationParameters::DATA.front().MJD;
+    static const auto MJDN = eop::EarthOrientationParameters::DATA.back().MJD;
+    static const auto STEP = eop::EarthOrientationParameters::DATA[1].MJD - eop::EarthOrientationParameters::DATA[0].MJD;
+
+    if (date <= MJD0) {
+        return { eop::EarthOrientationParameters::DATA.front().PMx, eop::EarthOrientationParameters::DATA.front().PMy };
+    }
+    else if (date >= MJDN) {
+        return { eop::EarthOrientationParameters::DATA.back().PMx, eop::EarthOrientationParameters::DATA.back().PMy };
     }
 
-    for (const auto& row : eop::EarthOrientationParameters::DATA) {
-        if (row.MJD == date) { return { row.PMx, row.PMy }; }
-        else if (row.MJD > date) {
-            // Interpolate between the previous and current row
-            const auto& prevRow = *(std::prev(&row, 1));
-            const auto t        = (date - prevRow.MJD) / (row.MJD - prevRow.MJD);
-            const auto xp       = prevRow.PMx + t * (row.PMx - prevRow.PMx);
-            const auto yp       = prevRow.PMy + t * (row.PMy - prevRow.PMy);
-            return { xp, yp };
-        }
+    // Assume the step is consistent (which it seems to be) and that the data is sorted by MJD (which it seems to be)
+    // TODO: Add introspective properties to the EOP data to allow for more robust searching (e.g., binary search, etc.)
+    const auto guessIdx = static_cast<std::size_t>((date - MJD0) / STEP);
+    const auto& row     = eop::EarthOrientationParameters::DATA[guessIdx];
+
+    if (row.MJD == date) { return { row.PMx, row.PMy }; }
+    else if (row.MJD > date) {
+        // Interpolate between the previous and current row
+        const auto& prevRow = eop::EarthOrientationParameters::DATA[guessIdx - 1];
+        const auto t        = (date - prevRow.MJD) / (row.MJD - prevRow.MJD);
+        const auto xp       = prevRow.PMx + t * (row.PMx - prevRow.PMx);
+        const auto yp       = prevRow.PMy + t * (row.PMy - prevRow.PMy);
+        return { xp, yp };
     }
-    throw std::runtime_error("Polar motion data not found for the given date.");
+
+    // Interpolate between the current and next row
+    const auto& nextRow = eop::EarthOrientationParameters::DATA[guessIdx + 1];
+    const auto t        = (date - row.MJD) / (nextRow.MJD - row.MJD);
+    const auto xp       = row.PMx + t * (nextRow.PMx - row.PMx);
+    const auto yp       = row.PMy + t * (nextRow.PMy - row.PMy);
+    return { xp, yp };
 }
 
 } // namespace

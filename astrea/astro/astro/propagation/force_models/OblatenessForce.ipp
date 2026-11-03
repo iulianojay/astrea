@@ -13,6 +13,7 @@
  */
 #pragma once
 
+#include <cstddef>
 #include <iostream>
 #include <string>
 
@@ -205,8 +206,9 @@ Perturbation OblatenessForce<_body_, _degree_, _order_>::compute_perturbation(co
 
             if (m == 0) {
                 // First column recursion: V[n][0] and W[n][0]
-                V[n * stride] = ((2.0 * n - 1.0) / n) * zREqOverRSq * V[(n - 1) * stride];
-                if (n > 1) { V[n * stride] -= ((n - 1.0) / n) * rEqOverRSq * V[(n - 2) * stride]; }
+                const std::size_t idx = n * stride;
+                V[idx]                = ((2.0 * n - 1.0) / n) * zREqOverRSq * V[(n - 1) * stride];
+                if (n > 1) { V[idx] -= ((n - 1.0) / n) * rEqOverRSq * V[(n - 2) * stride]; }
             }
             else if (n == m) {
                 // Diagonal recursion: V[m][m] and W[m][m]
@@ -246,26 +248,30 @@ Perturbation OblatenessForce<_body_, _degree_, _order_>::compute_perturbation(co
             const Unitless Cnm = _legendreCache.get_cosine_coefficient(n, m);
             const Unitless Snm = _legendreCache.get_sine_coefficient(n, m);
 
+            const std::size_t baseIdx = (n + 1) * stride;
             if (m == 0) {
                 // Special case for m = 0 (zonal harmonics)
-                ax += -Cnm * V[(n + 1) * stride + 1];
-                ay += -Cnm * W[(n + 1) * stride + 1];
+                const std::size_t idx = baseIdx + 1;
+                ax += -Cnm * V[idx];
+                ay += -Cnm * W[idx];
             }
             else {
+                const std::size_t idx1 = baseIdx + (m + 1);
+                const std::size_t idx2 = baseIdx + (m - 1);
+
                 // Sectoral and tesseral harmonics (m > 0)
                 const Unitless nmFactor = (n - m + 2.0) * (n - m + 1.0);
 
                 // ax component
-                ax += 0.5 * ((-Cnm * V[(n + 1) * stride + (m + 1)] - Snm * W[(n + 1) * stride + (m + 1)]) +
-                             nmFactor * (Cnm * V[(n + 1) * stride + (m - 1)] + Snm * W[(n + 1) * stride + (m - 1)]));
+                ax += 0.5 * ((-Cnm * V[idx1] - Snm * W[idx1]) + nmFactor * (Cnm * V[idx2] + Snm * W[idx2]));
 
                 // ay component
-                ay += 0.5 * ((-Cnm * W[(n + 1) * stride + (m + 1)] + Snm * V[(n + 1) * stride + (m + 1)]) +
-                             nmFactor * (-Cnm * W[(n + 1) * stride + (m - 1)] + Snm * V[(n + 1) * stride + (m - 1)]));
+                ay += 0.5 * ((-Cnm * W[idx1] + Snm * V[idx1]) + nmFactor * (-Cnm * W[idx2] + Snm * V[idx2]));
             }
 
             // az component
-            az += (n - m + 1.0) * (-Cnm * V[(n + 1) * stride + m] - Snm * W[(n + 1) * stride + m]);
+            const std::size_t idx = baseIdx + m;
+            az += (n - m + 1.0) * (-Cnm * V[idx] - Snm * W[idx]);
         }
     }
 

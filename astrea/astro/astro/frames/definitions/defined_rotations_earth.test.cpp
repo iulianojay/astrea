@@ -231,10 +231,10 @@ TEST(GetPolarMotion, MatchesTabulatedEopValueAtExactGridPoint)
     EXPECT_TRUE(math::nearly_equal(yp, 377.8662 * mp_units::si::milli<mp_units::si::arcsecond>, TIGHT_TOL));
 }
 
-TEST(GetPolarMotion, ThrowsForDateOutsideEopRange)
+TEST(GetPolarMotion, NoThrowForDateOutsideEopRange)
 {
     const Date farFuture = Date(J2000) + 100000.0 * mp_units::non_si::day;
-    EXPECT_THROW(get_polar_motion(farFuture), std::out_of_range);
+    EXPECT_NO_THROW(get_polar_motion(farFuture));
 }
 
 // -------------------------------------------------------------------------------------------
