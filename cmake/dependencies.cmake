@@ -15,6 +15,7 @@ find_package(nlohmann_json REQUIRED)
 find_package(SQLite3 REQUIRED)
 find_package(cpr REQUIRED)
 find_package(gsl-lite REQUIRED)
+find_package(PNG REQUIRED)
 
 # gsl-lite is a transitive dep of mp-units; keep this define for compatibility
 add_compile_definitions(gsl_FEATURE_GSL_COMPATIBILITY_MODE=1)
@@ -134,6 +135,7 @@ endif()
 # Silence warnings emitted by external dependency source builds
 if(TARGET matplot)
     target_compile_options(matplot PRIVATE -Wno-deprecated-declarations)
+    target_link_libraries(matplot PUBLIC PNG::PNG)
 endif()
 
 if(TARGET webui)

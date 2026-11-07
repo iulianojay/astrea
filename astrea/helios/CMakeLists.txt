@@ -27,6 +27,10 @@ CPMAddPackage(
         "WEBUI_BUILD_EXAMPLES OFF"
 )
 
+if(TARGET webui)
+    target_compile_options(webui PRIVATE -w)
+endif()
+
 find_package(OpenMP REQUIRED)
 
 # Objects

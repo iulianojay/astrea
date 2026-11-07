@@ -9,7 +9,6 @@ examples_path := examples
 arch := x86_64
 cc := gcc
 cxx := g++
-cc := gcc
 cxx_std := 26
 cxx_name := $(shell echo $(cxx) | sed 's/g++/gcc/; s/clang++/clang/' | sed 's/-[0-9.]*$$//')
 cxx_ver := $(shell $(cxx) -dumpversion | cut -d. -f1)
