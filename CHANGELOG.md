@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Changed
+- [CHORE]: Bump the all-deps group with 3 updates ([#225](../../pull/225))
 - [IMPROVEMENT] #0 Fixed major speed issue in itrf->icrf conversion ([#224](../../pull/224))
 - [CHORE]: Bump the all-deps group across 1 directory with 6 updates ([#222](../../pull/222))
 - [CHORE]: Bump pymdown-extensions from 12.1 to 12.2 in the all-deps group ([#219](../../pull/219))
