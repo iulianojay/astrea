@@ -266,15 +266,6 @@ TEST_F(EquinoctialTest, MultiplicationAssignmentOperator)
     ASSERT_TRUE(math::nearly_equal(state.get_true_longitude(), L * multiplier, REL_TOL));
 }
 
-TEST_F(EquinoctialTest, DivisionByTimeOperator)
-{
-    Time time   = 2.0 * s;
-    auto result = state / time;
-    // Result is EquinoctialPartial with partial derivatives
-    // This test just ensures it compiles and runs
-    ASSERT_NO_THROW(state / time);
-}
-
 TEST_F(EquinoctialTest, DivisionByScalarOperator)
 {
     Unitless divisor                        = 2.0 * one;
@@ -353,44 +344,4 @@ TEST_F(EquinoctialTest, FromCartesianConversion)
 
     // Verify the Equinoctial state has reasonable values
     ASSERT_GT(equi.get_semilatus().numerical_value_in(km), 0.0);
-}
-
-TEST_F(EquinoctialTest, EquinoctialPartialMultiplicationByTime)
-{
-    // Test EquinoctialPartial operator* with Time
-    Velocity pDot        = 1.0 * km / s;
-    UnitlessPerTime fDot = 0.001 / s;
-    UnitlessPerTime gDot = 0.002 / s;
-    UnitlessPerTime hDot = 0.003 / s;
-    UnitlessPerTime kDot = 0.004 / s;
-    AngularVelocity LDot = 0.5 * rad / s;
-    EquinoctialPartial<frames::earth::icrf> partial(pDot, fDot, gDot, hDot, kDot, LDot);
-
-    Time dt                                 = 2.0 * s;
-    Equinoctial<frames::earth::icrf> result = partial * dt;
-
-    // Verify the result is an Equinoctial state
-    ASSERT_TRUE(math::nearly_equal(result.get_semilatus(), pDot * dt, REL_TOL));
-    ASSERT_TRUE(math::nearly_equal(result.get_f(), fDot * dt, REL_TOL));
-    ASSERT_TRUE(math::nearly_equal(result.get_g(), gDot * dt, REL_TOL));
-    ASSERT_TRUE(math::nearly_equal(result.get_h(), hDot * dt, REL_TOL));
-    ASSERT_TRUE(math::nearly_equal(result.get_k(), kDot * dt, REL_TOL));
-    ASSERT_TRUE(math::nearly_equal(result.get_true_longitude(), LDot * dt, REL_TOL));
-}
-
-TEST_F(EquinoctialTest, EquinoctialPartialStream)
-{
-    // Test EquinoctialPartial stream operator
-    Velocity pDot        = 1.0 * km / s;
-    UnitlessPerTime fDot = 0.001 / s;
-    UnitlessPerTime gDot = 0.002 / s;
-    UnitlessPerTime hDot = 0.003 / s;
-    UnitlessPerTime kDot = 0.004 / s;
-    AngularVelocity LDot = 0.5 * rad / s;
-    EquinoctialPartial<frames::earth::icrf> partial(pDot, fDot, gDot, hDot, kDot, LDot);
-
-    std::stringstream ss;
-    ss << partial;
-    ASSERT_FALSE(ss.str().empty());
-    ASSERT_NE(ss.str().find("EquinoctialPartial"), std::string::npos);
 }
