@@ -30,7 +30,10 @@ function(build_tests CURRENT_PROJECT TEST_TYPE TEST_FILES USE_HELPER_HDRS HELPER
         if (NOT MSVC)
             target_compile_options(${TEST_EXE} PUBLIC -Wno-parentheses -Wno-unused-but-set-variable -Wno-unused-variable -Wno-unused-local-typedefs)
         endif()
-        set_target_properties(${TEST_EXE} PROPERTIES OUTPUT_NAME ${TEST_EXE})
+        set_target_properties(${TEST_EXE} PROPERTIES
+            OUTPUT_NAME ${TEST_EXE}
+            INSTALL_RPATH "\$ORIGIN/../../lib"
+        )
         set(GTEST_CREATE_SHARED_LIBRARY 1)
         set(BUILD_GMOCK OFF)
 

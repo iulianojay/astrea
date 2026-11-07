@@ -41,7 +41,7 @@ namespace frames {
  * @param date The date at which to obtain the DCM.
  * @return true if the specialization of get_dcm has been defined, false otherwise.
  */
-template <IsFrame auto frame, IsFrame auto frame_u>
+template <auto frame, auto frame_u>
 concept HasDcm = requires(const Date& date) { get_dcm<frame, frame_u>(date); };
 
 /**
@@ -52,7 +52,7 @@ concept HasDcm = requires(const Date& date) { get_dcm<frame, frame_u>(date); };
  * @param date The date at which to obtain the DCM rate.
  * @return true if the specialization of get_dcm_rate has been defined, false otherwise.
  */
-template <IsFrame auto frame, IsFrame auto frame_u>
+template <auto frame, auto frame_u>
 concept HasDcmRate = requires(const Date& date) { get_dcm_rate<frame, frame_u>(date); };
 
 /**
@@ -63,7 +63,7 @@ concept HasDcmRate = requires(const Date& date) { get_dcm_rate<frame, frame_u>(d
  * @param date The date at which to obtain the DCM acceleration.
  * @return true if the specialization of get_dcm_accel has been defined, false otherwise.
  */
-template <IsFrame auto frame, IsFrame auto frame_u>
+template <auto frame, auto frame_u>
 concept HasDcmAccel = requires(const Date& date) { get_dcm_accel<frame, frame_u>(date); };
 
 /**
@@ -75,7 +75,7 @@ concept HasDcmAccel = requires(const Date& date) { get_dcm_accel<frame, frame_u>
  * @param date The date at which to obtain the DCM.
  * @return true if the frame class has a member function get_dcm for the target frame, false otherwise.
  */
-template <IsFrame auto frame, IsFrame auto frame_u>
+template <auto frame, auto frame_u>
 concept HasDcmMethod = requires(const Date& date) { frame.template get_dcm<frame, frame_u>(date); };
 
 namespace {
@@ -477,7 +477,7 @@ inline constexpr CartesianVector<Value_T, frame_u> get_offset_impl(const Date& d
  * @param date The date at which to obtain the DCM.
  * @return true if a valid DCM can be obtained between the two frames, false otherwise.
  */
-template <IsFrame auto frame, IsFrame auto frame_u>
+template <auto frame, auto frame_u>
 concept HasValidFrameTransformation = requires(Date date) {
     { get_dcm_impl<frame, frame_u>(date) } -> std::same_as<DCM<frame, frame_u>>;
 } || requires(Date date) {

@@ -18,30 +18,9 @@
  */
 #pragma once
 
-#include <astro/systems/celestial_bodies/Earth/Earth.hpp>
-#include <astro/systems/celestial_bodies/Earth/Moon.hpp>
-#include <astro/systems/celestial_bodies/Jupiter/Callisto.hpp>
-#include <astro/systems/celestial_bodies/Jupiter/Europa.hpp>
-#include <astro/systems/celestial_bodies/Jupiter/Ganymede.hpp>
-#include <astro/systems/celestial_bodies/Jupiter/Io.hpp>
-#include <astro/systems/celestial_bodies/Jupiter/Jupiter.hpp>
-#include <astro/systems/celestial_bodies/Mars/Deimos.hpp>
-#include <astro/systems/celestial_bodies/Mars/Mars.hpp>
-#include <astro/systems/celestial_bodies/Mars/Phobos.hpp>
-#include <astro/systems/celestial_bodies/Mercury/Mercury.hpp>
-#include <astro/systems/celestial_bodies/Neptune/Neptune.hpp>
-#include <astro/systems/celestial_bodies/Neptune/Triton.hpp>
-#include <astro/systems/celestial_bodies/Saturn/Iapetus.hpp>
-#include <astro/systems/celestial_bodies/Saturn/Rhea.hpp>
-#include <astro/systems/celestial_bodies/Saturn/Saturn.hpp>
-#include <astro/systems/celestial_bodies/Saturn/Titan.hpp>
-#include <astro/systems/celestial_bodies/Sun/Sun.hpp>
-#include <astro/systems/celestial_bodies/Uranus/Oberon.hpp>
-#include <astro/systems/celestial_bodies/Uranus/Titania.hpp>
-#include <astro/systems/celestial_bodies/Uranus/Uranus.hpp>
-#include <astro/systems/celestial_bodies/Venus/Venus.hpp>
+#include <astro/systems/celestial_bodies_impl.hpp>
 
 // Keplerian-approximation fallback for get_position_at / get_velocity_at.
 // Included AFTER all planet specializations so the fallback primary-template
 // definition does not shadow any explicit specialization.
-#include <astro/systems/default_property_getters.hpp>
+#include <astro/systems/default_celestial_body_orbits.hpp>

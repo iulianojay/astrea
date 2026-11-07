@@ -29,7 +29,7 @@
 #include <astro/frames/framework/DynamicFrame.hpp>
 #include <astro/frames/framework/Frame.hpp>
 #include <astro/state/angular_elements/Geodetic.hpp>
-#include <astro/systems/celestial_bodies.hpp>
+#include <astro/systems/celestial_bodies_impl.hpp>
 #include <astro/time/Date.hpp>
 
 namespace astrea {

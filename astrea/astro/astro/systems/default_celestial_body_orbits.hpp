@@ -1,5 +1,5 @@
 /**
- * @file default_property_getters.hpp
+ * @file default_celestial_body_orbits.hpp
  * @author Jay Iuliano (iuliano.jay@gmail.com)
  * @brief Keplerian-approximation fallback implementations for get_position_at / get_velocity_at.
  *
@@ -38,7 +38,7 @@
 #include <astro/frames/framework/frame_utilities.hpp>
 #include <astro/state/orbital_elements/Cartesian.hpp>
 #include <astro/state/orbital_elements/Keplerian.hpp>
-#include <astro/systems/property_getters.hpp>
+#include <astro/systems/celestial_body_utilities.hpp>
 
 namespace astrea {
 namespace astro {

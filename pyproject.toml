@@ -30,11 +30,12 @@ dependencies = [
     "pymdown-extensions>=11.0.1",
     "Pygments>=2.20.0",
     "GitPython>=3.1.48",
+    "conan>=2.0.0",
 ]
 
 [dependency-groups]
 dev = [
-    "basemap>=1.3.2",
-    "basemap-data>=1.3.2",
-    "basemap-data-hires>=1.3.2",
+    "basemap>=1.3.2; python_version < '3.14'",
+    "basemap-data>=1.3.2; python_version < '3.14'",
+    "basemap-data-hires>=1.3.2; python_version < '3.14'",
 ]

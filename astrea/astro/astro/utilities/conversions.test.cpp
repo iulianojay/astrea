@@ -81,6 +81,7 @@ class ConversionTest : public testing::Test {
     OrbitalElements _ecefExp;
 
     // Setup
+    Date epoch;
     GravParam mu = get_mu<frames::primary.origin>();
     Distance requatorial;
     Distance rPolar;
@@ -113,13 +114,13 @@ int main(int argc, char** argv)
 TEST_F(ConversionTest, KeplerianToCartesian)
 {
     OrbitalElements elements = _keplExp;
-    elements.convert_to_set<Cartesian<frames::earth::icrf>>(mu);
+    elements.convert_to_set<Cartesian<frames::earth::icrf>>(epoch, mu);
     ASSERT_NO_FATAL_FAILURE(ASSERT_TRUE(nearly_equal(elements, _cartExp, false, REL_TOL)));
 }
 TEST_F(ConversionTest, CartesianToKeplerian)
 {
     OrbitalElements elements = _cartExp;
-    elements.convert_to_set<Keplerian<frames::earth::icrf>>(mu);
+    elements.convert_to_set<Keplerian<frames::earth::icrf>>(epoch, mu);
     ASSERT_NO_FATAL_FAILURE(ASSERT_TRUE(nearly_equal(elements, _keplExp, false, REL_TOL)));
 }
 TEST_F(ConversionTest, CartesianKeplerianCycle)
@@ -129,10 +130,10 @@ TEST_F(ConversionTest, CartesianKeplerianCycle)
         auto elements               = originalElements;
         for (int jj = 0; jj < nConversion; jj++) {
             // Convert to Cartesian
-            elements.convert_to_set<Cartesian<frames::earth::icrf>>(mu);
+            elements.convert_to_set<Cartesian<frames::earth::icrf>>(epoch, mu);
 
             // Convert back
-            elements.convert_to_set<Keplerian<frames::earth::icrf>>(mu);
+            elements.convert_to_set<Keplerian<frames::earth::icrf>>(epoch, mu);
 
             // Compare
             ASSERT_NO_FATAL_FAILURE(ASSERT_TRUE(nearly_equal(elements, originalElements, false, REL_TOL)));
@@ -144,13 +145,13 @@ TEST_F(ConversionTest, CartesianKeplerianCycle)
 TEST_F(ConversionTest, EquinoctialToCartesian)
 {
     OrbitalElements elements = _equiExp;
-    elements.convert_to_set<Cartesian<frames::earth::icrf>>(mu);
+    elements.convert_to_set<Cartesian<frames::earth::icrf>>(epoch, mu);
     ASSERT_NO_FATAL_FAILURE(ASSERT_TRUE(nearly_equal(elements, _cartExp, false, REL_TOL)));
 }
 TEST_F(ConversionTest, CartesianToEquinoctial)
 {
     OrbitalElements elements = _cartExp;
-    elements.convert_to_set<Equinoctial<frames::earth::icrf>>(mu);
+    elements.convert_to_set<Equinoctial<frames::earth::icrf>>(epoch, mu);
     ASSERT_NO_FATAL_FAILURE(ASSERT_TRUE(nearly_equal(elements, _equiExp, false, REL_TOL)));
 }
 TEST_F(ConversionTest, CartesianEquinoctialCycle)
@@ -160,10 +161,10 @@ TEST_F(ConversionTest, CartesianEquinoctialCycle)
         auto elements               = originalElements;
         for (int jj = 0; jj < nConversion; jj++) {
             // Convert to Cartesian
-            elements.convert_to_set<Cartesian<frames::earth::icrf>>(mu);
+            elements.convert_to_set<Cartesian<frames::earth::icrf>>(epoch, mu);
 
             // Convert back
-            elements.convert_to_set<Equinoctial<frames::earth::icrf>>(mu);
+            elements.convert_to_set<Equinoctial<frames::earth::icrf>>(epoch, mu);
 
             // Compare
             ASSERT_NO_FATAL_FAILURE(ASSERT_TRUE(nearly_equal(elements, originalElements, false, REL_TOL)));
@@ -175,13 +176,13 @@ TEST_F(ConversionTest, CartesianEquinoctialCycle)
 TEST_F(ConversionTest, KeplerianToEquinoctial)
 {
     OrbitalElements elements = _keplExp;
-    elements.convert_to_set<Equinoctial<frames::earth::icrf>>(mu);
+    elements.convert_to_set<Equinoctial<frames::earth::icrf>>(epoch, mu);
     ASSERT_NO_FATAL_FAILURE(ASSERT_TRUE(nearly_equal(elements, _equiExp, false, REL_TOL)));
 }
 TEST_F(ConversionTest, EquinoctialToKeplerian)
 {
     OrbitalElements elements = _equiExp;
-    elements.convert_to_set<Keplerian<frames::earth::icrf>>(mu);
+    elements.convert_to_set<Keplerian<frames::earth::icrf>>(epoch, mu);
     ASSERT_NO_FATAL_FAILURE(ASSERT_TRUE(nearly_equal(elements, _keplExp, false, REL_TOL)));
 }
 TEST_F(ConversionTest, EquinoctialKeplerianCycle)
@@ -191,10 +192,10 @@ TEST_F(ConversionTest, EquinoctialKeplerianCycle)
         auto elements               = originalElements;
         for (int jj = 0; jj < nConversion; jj++) {
             // Convert to Equinoctial
-            elements.convert_to_set<Equinoctial<frames::earth::icrf>>(mu);
+            elements.convert_to_set<Equinoctial<frames::earth::icrf>>(epoch, mu);
 
             // Convert back
-            elements.convert_to_set<Keplerian<frames::earth::icrf>>(mu);
+            elements.convert_to_set<Keplerian<frames::earth::icrf>>(epoch, mu);
 
             // Compare
             ASSERT_NO_FATAL_FAILURE(ASSERT_TRUE(nearly_equal(elements, originalElements, false, REL_TOL)));

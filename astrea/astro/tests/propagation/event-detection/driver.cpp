@@ -44,12 +44,12 @@ class EventDetectionTest : public testing::Test {
   public:
     EventDetectionTest() :
         mu(get_mu<frames::primary.origin>()),
-        propTime(weeks(1)),
+        propTime(days(1)),
         epoch(J2000)
     {
     }
 
-    void SetUp() override {}
+    void SetUp() override { integrator.switch_fixed_timestep(true, minutes(5.0)); }
 
     const Unitless REL_TOL = 1.0e-6;
     const Unitless ABS_TOL = 1.0e-2;
@@ -82,7 +82,7 @@ TEST_F(EventDetectionTest, NoThrust)
     integrator.add_event(impulse);
 
     // Propagate
-    KeplerianVop eoms(forces);
+    KeplerianVop eoms(forces, false);
     integrator.set_equations_of_motion(eoms);
     const auto stateHistory = integrator.propagate(state, propTime, vehicle);
 
@@ -112,7 +112,7 @@ TEST_F(EventDetectionTest, ImpulsiveBurn)
     integrator.add_event(impulse);
 
     // Propagate
-    KeplerianVop eoms(forces);
+    KeplerianVop eoms(forces, false);
     integrator.set_equations_of_motion(eoms);
     const auto stateHistory = integrator.propagate(state, propTime, vehicle);
 

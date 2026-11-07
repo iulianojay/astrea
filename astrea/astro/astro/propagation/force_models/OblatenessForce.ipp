@@ -180,9 +180,9 @@ Perturbation OblatenessForce<_body_, _degree_, _order_>::compute_perturbation(co
     const Distance& x = rEcef[0];
     const Distance& y = rEcef[1];
     const Distance& z = rEcef[2];
+    const Distance r  = rEcef.norm();
 
     // Compute derived quantities
-    const Distance r           = rEcef.norm();
     const Unitless xOverR      = x / r;
     const Unitless yOverR      = y / r;
     const Unitless zOverR      = z / r;
@@ -215,8 +215,9 @@ Perturbation OblatenessForce<_body_, _degree_, _order_>::compute_perturbation(co
                 const Unitless factor  = (2.0 * m - 1.0) * rEqOverR;
                 const std::size_t idx  = (m - 1) * stride + (m - 1);
                 const std::size_t mIdx = m * stride + m;
-                V[mIdx]                = factor * (xOverR * V[idx] - yOverR * W[idx]);
-                W[mIdx]                = factor * (xOverR * W[idx] + yOverR * V[idx]);
+
+                V[mIdx] = factor * (xOverR * V[idx] - yOverR * W[idx]);
+                W[mIdx] = factor * (xOverR * W[idx] + yOverR * V[idx]);
             }
             else {
                 // General recursion for n > m
@@ -280,8 +281,7 @@ Perturbation OblatenessForce<_body_, _degree_, _order_>::compute_perturbation(co
     const AccelerationVector<frames::primary_fixed> accelOblatenessEcef = { ax * muOverR2, ay * muOverR2, az * muOverR2 };
 
     // Transform back to inertial frame without aberrations - original values are in ecef, not w.r.t ecef
-    const AccelerationVector<frames::primary> accelOblatenessIcrf =
-        frames::rotate_vector_into_frame<frames::primary>(accelOblatenessEcef, date);
+    const auto accelOblatenessIcrf = frames::rotate_vector_into_frame<frames::primary>(accelOblatenessEcef, date);
     return { .force = (accelOblatenessIcrf * vehicle.get_mass(state)) };
 }
 

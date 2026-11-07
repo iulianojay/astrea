@@ -159,34 +159,37 @@ class OrbitalElements {
      * @brief Converts the current orbital elements to a specific type.
      *
      * @tparam index The index of the orbital element type to convert to.
+     * @param epoch The epoch to use for the conversion.
      * @param mu The gravitational parameter to use for the conversion.
      * @return OrbitalElements& Reference to the current orbital elements after conversion.
      */
-    OrbitalElements& convert_to_set(const std::size_t idx, const GravParam& mu);
+    OrbitalElements& convert_to_set(const std::size_t idx, const Date& epoch, const GravParam& mu);
 
     /**
      * @brief Converts the current orbital elements to a specific type.
      *
      * @tparam index The index of the orbital element type to convert to.
+     * @param epoch The epoch to use for the conversion.
      * @param mu The gravitational parameter to use for the conversion.
      * @return OrbitalElements Orbital elements after conversion.
      */
-    OrbitalElements convert_to_set(const std::size_t idx, const GravParam& mu) const;
+    OrbitalElements convert_to_set(const std::size_t idx, const Date& epoch, const GravParam& mu) const;
 
     /**
      * @brief Converts the current orbital elements to a specific type.
      *
      * @tparam T The type to convert to.
+     * @param epoch The epoch to use for the conversion.
      * @param mu The gravitational parameter to use for the conversion.
      * @return A reference to the current orbital elements after conversion.
      */
     template <IsOrbitalElements T>
-    OrbitalElements& convert_to_set(const GravParam& mu)
+    OrbitalElements& convert_to_set(const Date& epoch, const GravParam& mu)
     {
         if constexpr (!equivalent(T::frame, frames::primary)) {
             static_assert(always_false<BadConversionRequest<T::frame.name.portable(), frames::primary.name.portable()>>, "In-place set conversion requires the target set be in the primary frame.");
         }
-        _elements = in_element_set<T>(mu);
+        _elements = in_element_set<T>(epoch, mu);
         return *this;
     }
 
@@ -194,28 +197,44 @@ class OrbitalElements {
      * @brief Converts the current orbital elements to a specific type.
      *
      * @tparam T The type to convert to.
+     * @param epoch The epoch to use for the conversion.
      * @param mu The gravitational parameter to use for the conversion.
      * @return The converted orbital elements.
      */
     template <IsOrbitalElements T>
-    OrbitalElements convert_to_set(const GravParam& mu) const
+    OrbitalElements convert_to_set(const Date& epoch, const GravParam& mu) const
     {
         if constexpr (!equivalent(T::frame, frames::primary)) {
             static_assert(always_false<BadConversionRequest<T::frame.name.portable(), frames::primary.name.portable()>>, "In-place set conversion requires the target set be in the primary frame.");
         }
-        return in_element_set<T>(mu);
+        return in_element_set<T>(epoch, mu);
     }
 
     /**
-     * @brief Converts the current orbital elements to a specified type.
+     * @brief Converts the current orbital elements to a specified orbital elements type.
+     *
+     * Will convert frames if the target type is in a different frame than the current type.
      *
      * @param mu The gravitational parameter to use for the conversion.
+     * @param epoch The epoch to use for the conversion.
      * @return The converted orbital elements.
      */
     template <IsOrbitalElements T>
-    T in_element_set(const GravParam& mu) const
+    T in_element_set(const Date& epoch, const GravParam& mu) const
     {
-        return std::visit([&](const auto& x) -> T { return T(x, mu); }, _elements);
+        static constexpr auto target_frame = T::frame;
+        const auto frame                   = std::visit([](const auto& x) { return x.frame; }, _elements);
+
+        // Avoid unnecessary conversions if the current frame is equivalent to the target frame
+        if (equivalent(frame, target_frame)) {
+            return std::visit([&](const auto& x) -> T { return T(x, mu); }, _elements);
+        }
+
+        // Convert to Cartesian in the current frame, then to Cartesian in the target frame, and finally to the target type
+        const auto cartInPrimary =
+            std::visit([&](const auto& x) -> Cartesian<frames::primary> { return Cartesian<frames::primary>(x, mu); }, _elements);
+        const auto cartInTarget = cartInPrimary.template in_frame<target_frame>(epoch);
+        return T(cartInTarget, mu);
     }
 
     /**
@@ -357,10 +376,11 @@ class OrbitalElements {
      * @brief Implementation of the conversion to a specific type.
      *
      * @param idx The index of the orbital element type to convert to.
+     * @param epoch The epoch to use for the conversion.
      * @param mu The gravitational parameter to use for the conversion.
      * @return The converted orbital elements.
      */
-    OrbitalElements convert_to_set_impl(const std::size_t idx, const GravParam& mu) const;
+    OrbitalElements convert_to_set_impl(const std::size_t idx, const Date& epoch, const GravParam& mu) const;
 
     /**
      * @brief Creates an OrbitalElements object from a vector of Unitless values.

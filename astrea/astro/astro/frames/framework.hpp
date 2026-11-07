@@ -16,8 +16,6 @@
  */
 #pragma once
 
-#include <astro/frames/definitions/frame_registry.hpp>
-#include <astro/frames/definitions/primary_frame.hpp>
 #include <astro/frames/framework/Axis.hpp>
 #include <astro/frames/framework/BodyFixedFrame.hpp>
 #include <astro/frames/framework/CartesianVector.hpp>

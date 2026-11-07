@@ -83,15 +83,15 @@ OrbitalElementPartials EquinoctialVop::compute_dynamics(
 
     // Common terms
     const quantity termA = (h * sinL - k * cosL) / w * normalPert;
-    const quantity termB = sqPOverMu * sSq / (2.0 * w);
+    const quantity termB = sqPOverMu * sSq / (2.0 * w) * normalPert;
 
     // Derivative functions
     const Velocity dpdt = 2.0 * p / w * sqPOverMu * tangentialPert;
     const UnitlessPerTime dfdt = sqPOverMu * (radialPert * sinL + ((w + 1) * cosL + f) / w * tangentialPert - g * termA);
     const UnitlessPerTime dgdt = sqPOverMu * (-radialPert * cosL + ((w + 1) * sinL + g) / w * tangentialPert + f * termA);
-    const UnitlessPerTime dhdt = termB * cosL * normalPert;
-    const UnitlessPerTime dkdt = termB * sinL * normalPert;
-    const AngularVelocity dLdt = (sqrt(mu * p) * w * w / (p * p) + sqPOverMu * termA) * rad;
+    const UnitlessPerTime dhdt = termB * cosL;
+    const UnitlessPerTime dkdt = termB * sinL;
+    const AngularVelocity dLdt = (sqrt(mu * p) * pow<2>(w / p) + sqPOverMu * termA) * rad;
 
     return EquinoctialPartial<frames::primary>(dpdt, dfdt, dgdt, dhdt, dkdt, dLdt);
 }

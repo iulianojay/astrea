@@ -21,8 +21,8 @@
 #include <astro/state/orbital_elements/OrbitalElements.hpp>
 #include <astro/systems/CelestialBody.hpp>
 #include <astro/systems/celestial_bodies.hpp>
-#include <astro/systems/default_property_getters.hpp>
-#include <astro/systems/property_getters.hpp>
+#include <astro/systems/celestial_body_utilities.hpp>
+#include <astro/systems/default_celestial_body_orbits.hpp>
 #include <astro/systems/system_utilities.hpp>
 #include <astro/time/Date.hpp>
 #include <tests/utilities/comparisons.hpp>

@@ -76,7 +76,8 @@ bool nearly_equal(
         if (!math::nearly_equal(vec[ii], expected[ii], relTol, absTol)) {
             std::cout << "Input: " << vec << std::endl;
             std::cout << "Expected: " << expected << std::endl;
-            std::cout << "Element " << ii << " differs: " << vec[ii] << " vs " << expected[ii] << std::endl;
+            std::cout << "Difference: " << vec - expected << std::endl;
+            std::cout << "Difference Magnitude: " << (vec - expected).norm() << std::endl;
             return false;
         }
     }

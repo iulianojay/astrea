@@ -33,7 +33,23 @@ namespace {
 
 static const double EARTH_RADIUS_KM = get_celestial_body_parameters<planets::Earth>().equatorialRadius.numerical_value_in(km);
 
+std::string
+    build_stats_json(const std::size_t nObjects, const double elapsedMs, const double throughput, const double propMinutes, const double stepMinutes, const std::size_t nFrames)
+{
+    std::ostringstream os;
+    os << "{\"objects\":" << nObjects << ",\"elapsedMs\":" << elapsedMs << ",\"throughput\":" << throughput
+       << ",\"propMinutes\":" << propMinutes << ",\"stepMinutes\":" << stepMinutes << ",\"nFrames\":" << nFrames << "}";
+    return os.str();
 }
+
+std::string build_numeric_json(const double maxRadiusKm)
+{
+    std::ostringstream os;
+    os << "{\"earthRadiusKm\":" << EARTH_RADIUS_KM << ",\"maxRadiusKm\":" << maxRadiusKm << "}";
+    return os.str();
+}
+
+} // namespace
 
 void replace_all(std::string& text, const std::string& from, const std::string& to)
 {
@@ -51,17 +67,8 @@ std::string
     const std::size_t nObjects = frames.empty() ? 0 : frames[0].size();
     const double throughput    = elapsedMs > 0.0 ? (1000.0 * static_cast<double>(nObjects) / elapsedMs) : 0.0;
 
-    nlohmann::json stats;
-    stats["objects"]     = nObjects;
-    stats["elapsedMs"]   = elapsedMs;
-    stats["throughput"]  = throughput;
-    stats["propMinutes"] = propMinutes;
-    stats["stepMinutes"] = stepMinutes;
-    stats["nFrames"]     = frames.size();
-
-    nlohmann::json nums;
-    nums["earthRadiusKm"] = EARTH_RADIUS_KM;
-    nums["maxRadiusKm"]   = maxRadiusKm;
+    const std::string stats = build_stats_json(nObjects, elapsedMs, throughput, propMinutes, stepMinutes, frames.size());
+    const std::string nums = build_numeric_json(maxRadiusKm);
 
     static const std::filesystem::path templatePath = std::string(_HELIOS_ROOT_) + "/templates/index.html";
     std::ifstream templateFile(templatePath);
@@ -71,8 +78,8 @@ std::string
     const std::string htmlTemplate(std::istreambuf_iterator<char>(templateFile), {});
 
     std::string html = htmlTemplate;
-    replace_all(html, "__STATS__", stats.dump());
-    replace_all(html, "__NUMERIC__", nums.dump());
+    replace_all(html, "__STATS__", stats);
+    replace_all(html, "__NUMERIC__", nums);
     replace_all(html, "__FRAMES__", build_frames_js(frames));
     return html;
 }
@@ -82,21 +89,18 @@ std::string build_repropagate_json(const PropagationSettings& settings, const Pr
     const std::size_t nObjects = results.frames.empty() ? 0 : results.frames[0].size();
     const double throughput = results.elapsedMs > 0.0 ? (1000.0 * static_cast<double>(nObjects) / results.elapsedMs) : 0.0;
 
-    nlohmann::json stats;
-    stats["objects"]     = nObjects;
-    stats["elapsedMs"]   = results.elapsedMs;
-    stats["throughput"]  = throughput;
-    stats["propMinutes"] = settings.propTime.numerical_value_in(min);
-    stats["stepMinutes"] = settings.step.numerical_value_in(min);
-    stats["nFrames"]     = results.frames.size();
+    const std::string stats = build_stats_json(
+        nObjects,
+        results.elapsedMs,
+        throughput,
+        settings.propTime.numerical_value_in(min),
+        settings.step.numerical_value_in(min),
+        results.frames.size()
+    );
+    const std::string nums = build_numeric_json(results.maxRadiusKm);
 
-    nlohmann::json nums;
-    nums["earthRadiusKm"] = EARTH_RADIUS_KM;
-    nums["maxRadiusKm"]   = results.maxRadiusKm;
-
-    std::ostringstream json; // nlohmann::json doesn't work here for some reason
-    json << "{\"frames\":" << build_frames_js(results.frames) << ",\"numeric\":" << nums.dump()
-         << ",\"stats\":" << stats.dump() << "}";
+    std::ostringstream json; // Build object manually to keep frames pre-serialized for speed.
+    json << "{\"frames\":" << build_frames_js(results.frames) << ",\"numeric\":" << nums << ",\"stats\":" << stats << "}";
     return json.str();
 }
 
