@@ -262,8 +262,6 @@ Perturbation OblatenessForce<_body_, _degree_, _order_>::compute_perturbation(co
 
                 // Sectoral and tesseral harmonics (m > 0)
                 const Unitless nmFactor = (n - m + 2.0) * (n - m + 1.0);
-                const std::size_t idx1  = idx + (m + 1);
-                const std::size_t idx2  = idx + (m - 1);
 
                 // ax component
                 ax += 0.5 * ((-Cnm * V[idx1] - Snm * W[idx1]) + nmFactor * (Cnm * V[idx2] + Snm * W[idx2]));
