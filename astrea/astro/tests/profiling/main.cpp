@@ -15,6 +15,7 @@
 
 #include <astro/astro.hpp>
 #include <astro/astro.macros.hpp>
+#include <astro/utilities/plotting.hpp>
 
 using namespace astrea;
 using namespace astro;
@@ -37,7 +38,7 @@ int main()
     auto start = std::chrono::steady_clock::now();
 
     // Setup system
-    Date epoch = Date::now();
+    Date epoch;
 
     // Build constellation
     Keplerian<frames::earth::icrf> initialElements = Keplerian<frames::earth::icrf>::LEO();
@@ -71,22 +72,22 @@ int main()
 
     std::cout << "Propagating with Cowell's Method... ";
     integrator.set_equations_of_motion(cm);
-    const auto trajCm = integrator.propagate(state0, propTime, Vehicle(sat), true);
+    const auto trajCm = integrator.propagate(state0, propTime, Vehicle(sat));
     std::cout << "Cowell's Method Complete." << std::endl;
 
     std::cout << "Propagating with Keplerian VOP... ";
     integrator.set_equations_of_motion(kepVop);
-    const auto trajKepVop = integrator.propagate(state0, propTime, Vehicle(sat), true);
+    const auto trajKepVop = integrator.propagate(state0, propTime, Vehicle(sat));
     std::cout << "Keplerian VOP Complete." << std::endl;
 
     std::cout << "Propagating with Equinoctial VOP... ";
     integrator.set_equations_of_motion(eqVop);
-    const auto trajEqVop = integrator.propagate(state0, propTime, Vehicle(sat), true);
+    const auto trajEqVop = integrator.propagate(state0, propTime, Vehicle(sat));
     std::cout << "Equinoctial VOP Complete." << std::endl;
 
     std::cout << "Propagating with Mean J2 VOP... ";
     integrator.set_equations_of_motion(j2);
-    const auto trajJ2 = integrator.propagate(state0, propTime, Vehicle(sat), true);
+    const auto trajJ2 = integrator.propagate(state0, propTime, Vehicle(sat));
     std::cout << "Mean J2 VOP Complete." << std::endl;
 
     auto end  = std::chrono::steady_clock::now();
@@ -105,13 +106,13 @@ int main()
     // plot_trajectory(trajJ2, "mean_j2_vop_trajectory.png");
 
 
-    std::filesystem::path outputDir(std::string(_ASTRO_ROOT_));
-    outputDir /= "tests/profiling/results";
+    // std::filesystem::path outputDir(std::string(_ASTRO_ROOT_));
+    // outputDir /= "tests/profiling/results";
 
-    std::filesystem::path outfile = outputDir / "orbital_elements_comparison.png";
-    compare_orbital_elements({ trajCm, trajKepVop, trajEqVop, trajJ2 }, { "Cowell's Method", "Keplerian VOP", "Equinoctial VOP", "Mean J2 VOP" }, outfile);
+    // std::filesystem::path outfile = outputDir / "orbital_elements_comparison.png";
+    // compare_orbital_elements({ trajCm, trajKepVop, trajEqVop, trajJ2 }, { "Cowell's Method", "Keplerian VOP", "Equinoctial VOP", "Mean J2 VOP" }, outfile);
 
-    outfile = outputDir / "trajectory_comparison.png";
-    compare_trajectories({ trajCm, trajKepVop, trajEqVop, trajJ2 }, { "Cowell's Method", "Keplerian VOP", "Equinoctial VOP", "Mean J2 VOP" }, outfile);
+    // outfile = outputDir / "trajectory_comparison.png";
+    // compare_trajectories({ trajCm, trajKepVop, trajEqVop, trajJ2 }, { "Cowell's Method", "Keplerian VOP", "Equinoctial VOP", "Mean J2 VOP" }, outfile);
     return 0;
 }
