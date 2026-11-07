@@ -348,15 +348,15 @@ TEST_F(ConversionTest, SanitizeAngle)
     // Test angle within [0, 2pi]
     Angle ang       = 1.0 * rad;
     Angle sanitized = wrap_angle(ang);
-    ASSERT_TRUE(math::nearly_equal(sanitized, ang, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(sanitized, ang, REL_TOL)) << "Expected: " << ang << ", actual: " << sanitized;
 
     // Test negative angle
     ang       = -1.0 * rad;
     sanitized = wrap_angle(ang);
-    ASSERT_TRUE(math::nearly_equal(sanitized, ang + TWO_PI, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(sanitized, ang + TWO_PI, REL_TOL)) << "Expected: " << ang + TWO_PI << ", actual: " << sanitized;
 
     // Test angle greater than 2pi
-    ang       = 3.0 * TWO_PI;
+    ang       = 7.0 * rad;
     sanitized = wrap_angle(ang);
-    ASSERT_TRUE(math::nearly_equal(sanitized, ang - TWO_PI, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(sanitized, ang - TWO_PI, REL_TOL)) << "Expected: " << ang - TWO_PI << ", actual: " << sanitized;
 }
