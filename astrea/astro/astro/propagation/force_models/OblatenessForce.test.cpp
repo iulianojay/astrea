@@ -77,7 +77,7 @@ class OblatenessForceTest : public testing::Test {
         return sat;
     }
 
-    const Unitless REL_TOL = 1.0e-6 * one;
+    const Unitless ABS_TOL = 1.0e-7 * one;
 };
 
 
@@ -111,18 +111,13 @@ TEST_F(OblatenessForceTest, ComputeForceValladoEx85)
     const AccelerationVector<frames::earth::icrf> expected =
         frames::rotate_vector_into_frame<frames::earth::icrf>(expectedEcef, epoch);
 
-    // My results - TODO: Figure this out
-    // const AccelerationVector<frames::earth::icrf> expected{ -4.33495448e-08 * km / (s * s),
-    //                                                         -9.20504000e-07 * km / (s * s),
-    //                                                         -6.45221000e-06 * km / (s * s) };
-
     const Acceleration expectedNorm = expected.norm();
     const Acceleration accelNorm    = accel.norm();
 
     // These are much much closer than before, to be expected. They show about the same size error as when comparing
     // to the NASA 6DoF checkcases so it's possible that there remains a small calculation error somewhere.
-    ASSERT_TRUE(math::nearly_equal(accelNorm, expectedNorm, REL_TOL));
-    ASSERT_TRUE(nearly_equal(accel, expected, REL_TOL));
+    ASSERT_TRUE(nearly_equal(accel, expected, 0.0 * one, ABS_TOL));
+    ASSERT_TRUE(math::nearly_equal(accelNorm, expectedNorm, 0.0 * one, ABS_TOL));
 }
 
 // From what I can tell, difference at this level (~1e-8 km or O(10 um)) is due to ecef/icrf rotation differences. The
@@ -147,7 +142,7 @@ TEST_F(OblatenessForceTest, Orbit03A4x4TotalGravityAtT0)
                                                                       -1.22700119262805 * m / (s * s),
                                                                       -6.62056474851441 * m / (s * s) };
 
-    ASSERT_TRUE(nearly_equal(totalAccel, expectedTotalAccel, REL_TOL));
+    ASSERT_TRUE(nearly_equal(totalAccel, expectedTotalAccel, 0.0 * one, ABS_TOL));
 }
 
 TEST_F(OblatenessForceTest, Orbit03B8x8TotalGravityAtT0)
@@ -170,7 +165,7 @@ TEST_F(OblatenessForceTest, Orbit03B8x8TotalGravityAtT0)
                                                                       -1.22706430181432 * m / (s * s),
                                                                       -6.62051654995019 * m / (s * s) };
 
-    ASSERT_TRUE(nearly_equal(totalAccel, expectedTotalAccel, REL_TOL));
+    ASSERT_TRUE(nearly_equal(totalAccel, expectedTotalAccel, 0.0 * one, ABS_TOL));
 }
 
 TEST_F(OblatenessForceTest, Orbit03A4x4TotalGravityAtT60s)
@@ -195,5 +190,5 @@ TEST_F(OblatenessForceTest, Orbit03A4x4TotalGravityAtT60s)
                                                                       -0.644443899684263 * m / (s * s),
                                                                       -6.7198683790639 * m / (s * s) };
 
-    ASSERT_TRUE(nearly_equal(totalAccel, expectedTotalAccel, REL_TOL));
+    ASSERT_TRUE(nearly_equal(totalAccel, expectedTotalAccel, 0.0 * one, ABS_TOL));
 }
