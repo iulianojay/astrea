@@ -91,7 +91,7 @@ jobs:
         github.event_name != 'pull_request'
       )
     container:
-      image: ghcr.io/iulianojay/astrea:main
+      image: ${{ format('ghcr.io/{0}:{1}', github.repository, (github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository && needs.check-docker-changes.outputs.docker-changed == 'true' && format('pr-{0}', github.event.pull_request.number) || 'main')) }}
       options: --user root
       credentials:
         username: ${{ github.actor }}
@@ -119,15 +119,15 @@ jobs:
 
     - name: Build and Install Release
       run: |
-        . .venv/bin/activate && make release all install
+        . .venv/bin/activate && make cc=gcc-16 cxx=g++-16 release all install
 
     - name: Run Tests
       run: |
-        . .venv/bin/activate && make run_tests
+        . .venv/bin/activate && make cc=gcc-16 cxx=g++-16 run_tests
 
     - name: Run Examples
       run: |
-        . .venv/bin/activate && make run_examples
+        . .venv/bin/activate && make cc=gcc-16 cxx=g++-16 run_examples
 
   coverage:
     runs-on: ubuntu-latest
@@ -143,7 +143,7 @@ jobs:
         github.event_name != 'pull_request'
       )
     container:
-      image: ghcr.io/iulianojay/astrea:main
+      image: ${{ format('ghcr.io/{0}:{1}', github.repository, (github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository && needs.check-docker-changes.outputs.docker-changed == 'true' && format('pr-{0}', github.event.pull_request.number) || 'main')) }}
       options: --user root
       credentials:
         username: ${{ github.actor }}
@@ -171,13 +171,13 @@ jobs:
 
     - name: Build and Install Debug
       run: |
-        . .venv/bin/activate && make debug all install
+        . .venv/bin/activate && make cc=gcc-16 cxx=g++-16 debug all install
 
     - name: Run Coverage
       run: |
         mkdir .gcovr
         touch .gcovr/coverage.xml
-        . .venv/bin/activate && make coverage
+        . .venv/bin/activate && make cc=gcc-16 cxx=g++-16 coverage
 
     - name: Extract Coverage Percentage
       run: |
