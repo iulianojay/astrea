@@ -76,7 +76,7 @@ install: build
 
 .PHONY: ensure-conan-profile
 ensure-conan-profile:
-	@if ! $(CONAN) profile show -pr default >/dev/null 2>&1; then \
+	@if ! ( $(CONAN) profile show -pr default >/dev/null 2>&1 ); then \
 		echo "Conan default profile not found. Running 'conan profile detect --force'."; \
 		$(CONAN) profile detect --force; \
 	fi
