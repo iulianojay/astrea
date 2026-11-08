@@ -73,7 +73,15 @@ install: build
 	$(CMAKE) --build $(build_path) --target install -j10
 
 .PHONY: conan-install
-conan-install:
+
+.PHONY: ensure-conan-profile
+ensure-conan-profile:
+	@if ! $(CONAN) profile show -pr default >/dev/null 2>&1; then \
+		echo "Conan default profile not found. Running 'conan profile detect --force'."; \
+		$(CONAN) profile detect --force; \
+	fi
+
+conan-install: ensure-conan-profile
 	mkdir -p $(build_path)
 	$(CONAN) install . \
 	--output-folder=$(build_path) \
