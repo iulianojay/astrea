@@ -440,9 +440,7 @@ Unitless Integrator::get_relative_step_size(const Unitless& maxError) const
     // stupid function for stupid people
 
     // Don't scale if error is zero
-    if (maxError == 0.0 * astrea::detail::unitless || (_iteration > 0 && _maxErrorPrevious == 0.0 * astrea::detail::unitless)) {
-        return 1.0 * astrea::detail::unitless;
-    }
+    if (maxError == 0.0 || (_iteration > 0 && _maxErrorPrevious == 0.0)) { return 1.0 * astrea::detail::unitless; }
 
     // Ignore pi controller on first iteration or if error is large
     const bool ignorePiController = (_iteration == 0 || maxError > 1.0 * astrea::detail::unitless);

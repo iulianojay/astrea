@@ -25,6 +25,7 @@
 // #include <astro/time/Date.hpp>
 // #include <astro/time/Interval.hpp>
 // #include <tests/utilities/comparisons.hpp>
+// #include <tests/utilities/orbit_presets.hpp>
 
 // using namespace astrea;
 // using namespace astro;
@@ -72,7 +73,7 @@
 // TEST_F(Atmospheric6DofTest, GEO)
 // {
 //     // Build constellation
-//     Keplerian state0 = Keplerian<frames::earth::icrf>::GEO();
+//     Keplerian state0 = make_orbit_preset<Keplerian<frames::earth::icrf>>(OrbitPreset::GEO);
 //     Spacecraft geo({ Cartesian(state0, mu), epoch });
 //     Vehicle vehicle{ geo };
 
@@ -90,7 +91,7 @@
 // TEST_F(Atmospheric6DofTest, GPS)
 // {
 //     // Build constellation
-//     Keplerian state0 = Keplerian<frames::earth::icrf>::GPS();
+//     Keplerian state0 = make_orbit_preset<Keplerian<frames::earth::icrf>>(OrbitPreset::GPS);
 //     Spacecraft meo({ Cartesian(state0, mu), epoch });
 //     Vehicle vehicle{ meo };
 
@@ -108,7 +109,7 @@
 // TEST_F(Atmospheric6DofTest, GEO)
 // {
 //     // Build constellation
-//     Keplerian state0 = Keplerian<frames::earth::icrf>::GEO();
+//     Keplerian state0 = make_orbit_preset<Keplerian<frames::earth::icrf>>(OrbitPreset::GEO);
 //     Spacecraft leo({ Cartesian(state0, mu), epoch });
 //     Vehicle vehicle{ leo };
 

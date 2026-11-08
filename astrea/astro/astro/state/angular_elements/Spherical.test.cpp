@@ -215,11 +215,18 @@ TEST_F(SphericalTest, GetPositionEcef)
 
 TEST_F(SphericalTest, GetPositionEci)
 {
-    RadiusVector<frames::earth::icrf> rEci = state.get_position(epoch);
+    // Avoid polar singularity where azimuth is undefined (x=y=0).
+    const Angle expectedInclination = 45.0 * deg;
+    const Angle expectedAzimuth     = 30.0 * deg;
+    Spherical<planets::Earth> testState{ range, expectedInclination, expectedAzimuth };
+
+    RadiusVector<frames::earth::icrf> rEci = testState.get_position(epoch);
     auto [convRange, convInc, convAzimuth] = convert_body_fixed_to_spherical(rEci.in_frame<frames::earth::earth_fixed>(epoch));
-    ASSERT_TRUE(math::nearly_equal(convRange, range, REL_TOL));
-    ASSERT_TRUE(math::nearly_equal(convInc, inclination, REL_TOL));
-    ASSERT_TRUE(math::nearly_equal(convAzimuth, azimuth, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(convRange, range, REL_TOL)) << "Expected range: " << range << ", actual: " << convRange;
+    ASSERT_TRUE(math::nearly_equal(convInc, expectedInclination, REL_TOL))
+        << "Expected inclination: " << expectedInclination << ", actual: " << convInc;
+    ASSERT_TRUE(math::nearly_equal(convAzimuth, expectedAzimuth, REL_TOL))
+        << "Expected azimuth: " << expectedAzimuth << ", actual: " << convAzimuth;
 }
 
 TEST_F(SphericalTest, Interpolate)
@@ -245,9 +252,13 @@ TEST_F(SphericalTest, ConvertEarthFixedToSpherical)
 {
     RadiusVector<frames::earth::earth_fixed> rEcef{ range, 0.0 * km, 0.0 * km };
     auto [convRange, convInc, convAzimuth] = convert_body_fixed_to_spherical(rEcef);
-    ASSERT_TRUE(math::nearly_equal(convRange, range, REL_TOL));
-    ASSERT_TRUE(math::nearly_equal(convInc, inclination, REL_TOL));
-    ASSERT_TRUE(math::nearly_equal(convAzimuth, azimuth, REL_TOL));
+    const Angle expectedInclination        = 90.0 * deg;
+    const Angle expectedAzimuth            = 0.0 * rad;
+    ASSERT_TRUE(math::nearly_equal(convRange, range, REL_TOL)) << "Expected range: " << range << ", actual: " << convRange;
+    ASSERT_TRUE(math::nearly_equal(convInc, expectedInclination, REL_TOL))
+        << "Expected inclination: " << expectedInclination << ", actual: " << convInc;
+    ASSERT_TRUE(math::nearly_equal(convAzimuth, expectedAzimuth, REL_TOL))
+        << "Expected azimuth: " << expectedAzimuth << ", actual: " << convAzimuth;
 }
 
 TEST_F(SphericalTest, ConvertSphericalToEarthFixed)

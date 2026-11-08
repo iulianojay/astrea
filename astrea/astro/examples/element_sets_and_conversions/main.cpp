@@ -72,14 +72,15 @@ int main()
     elements = keplerian;
     std::cout << "OrbitalElements (from Keplerian): " << elements << std::endl;
 
-    // This class can handle conversions internally
-    elements.convert_to_set<Keplerian<frames::earth::icrf>>(mu);
+    // This class can handle conversions internally - these require an epoch in case there's a frame change
+    const Date epoch = J2000;
+    elements.convert_to_set<Keplerian<frames::earth::icrf>>(epoch, mu);
     std::cout << "OrbitalElements converted to Keplerian: " << elements << std::endl;
     const OrbitalElements converted =
-        static_cast<const OrbitalElements&>(elements).convert_to_set<Equinoctial<frames::earth::icrf>>(mu);
+        static_cast<const OrbitalElements&>(elements).convert_to_set<Equinoctial<frames::earth::icrf>>(epoch, mu);
     std::cout << "OrbitalElements converted to Equinoctial: " << converted << std::endl;
 
     // And it can return the desired element set directly
-    const Keplerian<frames::earth::icrf> keplerian2 = elements.in_element_set<Keplerian<frames::earth::icrf>>(mu);
+    const Keplerian<frames::earth::icrf> keplerian2 = elements.in_element_set<Keplerian<frames::earth::icrf>>(epoch, mu);
     std::cout << "Extracted Keplerian conversion: " << keplerian2 << std::endl;
 }

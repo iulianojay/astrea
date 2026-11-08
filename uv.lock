@@ -1,5 +1,5 @@
 version = 1
-revision = 5
+revision = 3
 requires-python = ">=3.12"
 resolution-markers = [
     "python_full_version >= '3.14' and sys_platform == 'win32'",
@@ -8,75 +8,6 @@ resolution-markers = [
     "python_full_version < '3.14' and sys_platform == 'win32'",
     "python_full_version < '3.14' and sys_platform == 'emscripten'",
     "python_full_version < '3.14' and sys_platform != 'emscripten' and sys_platform != 'win32'",
-]
-
-[[package]]
-name = "astrea-python-deps"
-version = "3.5.1"
-source = { virtual = "." }
-dependencies = [
-    { name = "cairosvg" },
-    { name = "cmake" },
-    { name = "fonttools" },
-    { name = "gcovr" },
-    { name = "gitpython" },
-    { name = "gprof2dot" },
-    { name = "graphviz" },
-    { name = "markdown" },
-    { name = "matplotlib" },
-    { name = "mkdocs" },
-    { name = "mkdocs-material", extra = ["imaging"] },
-    { name = "mkdocs-rss-plugin" },
-    { name = "mkdoxy" },
-    { name = "numpy" },
-    { name = "pandas" },
-    { name = "pillow" },
-    { name = "pygments" },
-    { name = "pymdown-extensions" },
-    { name = "requests" },
-    { name = "scipy" },
-    { name = "tabulate" },
-    { name = "urllib3" },
-]
-
-[package.dev-dependencies]
-dev = [
-    { name = "basemap" },
-    { name = "basemap-data" },
-    { name = "basemap-data-hires" },
-]
-
-[package.metadata]
-requires-dist = [
-    { name = "cairosvg", specifier = ">=2.9.0" },
-    { name = "cmake" },
-    { name = "fonttools", specifier = ">=4.60.2" },
-    { name = "gcovr", specifier = ">=5.0" },
-    { name = "gitpython", specifier = ">=3.1.48" },
-    { name = "gprof2dot", specifier = ">=2021.2.0" },
-    { name = "graphviz", specifier = ">=0.20.1" },
-    { name = "markdown", specifier = ">=3.8.1" },
-    { name = "matplotlib", specifier = ">=3.5.0" },
-    { name = "mkdocs", specifier = ">=1.4.0" },
-    { name = "mkdocs-material", extras = ["imaging"], specifier = ">=9.0.0" },
-    { name = "mkdocs-rss-plugin", specifier = ">=0.1.0" },
-    { name = "mkdoxy" },
-    { name = "numpy", specifier = ">=1.21.0" },
-    { name = "pandas", specifier = ">=1.3.0" },
-    { name = "pillow", specifier = ">=12.2.0" },
-    { name = "pygments", specifier = ">=2.20.0" },
-    { name = "pymdown-extensions", specifier = ">=11.0.1" },
-    { name = "requests", specifier = ">=2.33.0" },
-    { name = "scipy", specifier = ">=1.7.0" },
-    { name = "tabulate" },
-    { name = "urllib3", specifier = ">=2.7.0" },
-]
-
-[package.metadata.requires-dev]
-dev = [
-    { name = "basemap", specifier = ">=1.3.2" },
-    { name = "basemap-data", specifier = ">=1.3.2" },
-    { name = "basemap-data-hires", specifier = ">=1.3.2" },
 ]
 
 [[package]]
@@ -106,12 +37,12 @@ name = "basemap"
 version = "2.0.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "basemap-data" },
-    { name = "matplotlib" },
-    { name = "numpy" },
-    { name = "packaging" },
-    { name = "pyproj" },
-    { name = "pyshp" },
+    { name = "basemap-data", marker = "python_full_version < '3.14'" },
+    { name = "matplotlib", marker = "python_full_version < '3.14'" },
+    { name = "numpy", marker = "python_full_version < '3.14'" },
+    { name = "packaging", marker = "python_full_version < '3.14'" },
+    { name = "pyproj", marker = "python_full_version < '3.14'" },
+    { name = "pyshp", marker = "python_full_version < '3.14'" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/50/e1/f097da590e050be87ba0f9073b0e1bd706a5b8bd446347af28e95effc8e5/basemap-2.0.0.tar.gz", hash = "sha256:923a643a26db6e1704fb7ca45a7636fb190dbc123ad8d23401057a8f5b884bd8", size = 150239, upload-time = "2025-06-13T14:38:23.569Z" }
 wheels = [
@@ -388,6 +319,26 @@ wheels = [
 ]
 
 [[package]]
+name = "conan"
+version = "2.34.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "colorama" },
+    { name = "distro", marker = "(platform_system == 'FreeBSD' and sys_platform != 'emscripten' and sys_platform != 'win32') or sys_platform == 'linux'" },
+    { name = "fasteners" },
+    { name = "jinja2" },
+    { name = "patch-ng" },
+    { name = "pyyaml" },
+    { name = "requests" },
+    { name = "truststore" },
+    { name = "urllib3" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/63/d5/d7d5bd89e5870923be85940bf63885fc0b80d2c347ea236325003488a8e1/conan-2.34.0.tar.gz", hash = "sha256:9c65681300550638be20a25908673b8683533e8fc2dbbdac38ea0d9642a8124d", size = 612999, upload-time = "2026-10-28T11:55:47.006Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/e0/12/c1e94f9c47eda7276a4d6c21e757e46a8c77f64e96f652f7f7849a973cf3/conan-2.34.0-py3-none-any.whl", hash = "sha256:4e268bb9ad38614141c7274a769c7226122e3660e4d5eb545a0c7f7170b53272", size = 750722, upload-time = "2026-10-28T11:55:45.076Z" },
+]
+
+[[package]]
 name = "contourpy"
 version = "1.3.3"
 source = { registry = "https://pypi.org/simple" }
@@ -482,6 +433,24 @@ source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/0f/d5/c66da9b79e5bdb124974bfe172b4daf3c984ebd9c2a06e2b8a4dc7331c72/defusedxml-0.7.1.tar.gz", hash = "sha256:1bb3032db185915b62d7c6209c5a8792be6a32ab2fedacc84e01b52c51aa3e69", size = 75520, upload-time = "2021-03-08T10:59:26.269Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/07/6c/aa3f2f849e01cb6a001cd8554a88d4c77c5c1a31c95bdf1cf9301e6d9ef4/defusedxml-0.7.1-py2.py3-none-any.whl", hash = "sha256:a352e7e428770286cc899e2542b6cdaedb2b4953ff269a210103ec58f6198a61", size = 25604, upload-time = "2021-03-08T10:59:24.45Z" },
+]
+
+[[package]]
+name = "distro"
+version = "1.9.0"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/fc/f8/98eea607f65de6527f8a2e8885fc8015d3e6f5775df186e443e0964a11c3/distro-1.9.0.tar.gz", hash = "sha256:2fa77c6fd8940f116ee1d6b94a2f90b13b5ea8d019b98bc8bafdcabcdd9bdbed", size = 60722, upload-time = "2023-12-24T09:54:32.31Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/12/b3/231ffd4ab1fc9d679809f356cebee130ac7daa00d6d6f3206dd4fd137e9e/distro-1.9.0-py3-none-any.whl", hash = "sha256:7bffd925d65168f85027d8da9af6bddab658135b840670a223589bc0c8ef02b2", size = 20277, upload-time = "2023-12-24T09:54:30.421Z" },
+]
+
+[[package]]
+name = "fasteners"
+version = "0.20"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/2d/18/7881a99ba5244bfc82f06017316ffe93217dbbbcfa52b887caa1d4f2a6d3/fasteners-0.20.tar.gz", hash = "sha256:55dce8792a41b56f727ba6e123fcaee77fd87e638a6863cec00007bfea84c8d8", size = 25087, upload-time = "2025-08-11T10:19:37.785Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/51/ac/e5d886f892666d2d1e5cb8c1a41146e1d79ae8896477b1153a21711d3b44/fasteners-0.20-py3-none-any.whl", hash = "sha256:9422c40d1e350e4259f509fb2e608d6bc43c0136f79a00db1b49046029d0b3b7", size = 18702, upload-time = "2025-08-11T10:19:35.716Z" },
 ]
 
 [[package]]
@@ -1270,6 +1239,15 @@ wheels = [
 ]
 
 [[package]]
+name = "patch-ng"
+version = "1.19.1"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/da/b6/8ea8095f964f93567bbe28709298b30104ad418b50d4217538387bf48f7d/patch_ng-1.19.1.tar.gz", hash = "sha256:036a3cc00134ec53f37e92333958ee75e117f2e62a5ec2b85c7122e5e815c29e", size = 18525, upload-time = "2026-04-23T13:36:54.692Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/2c/ef/c60c07b2f9d973672608815e4c176943146c353d3b60fdab914a6dcd44e8/patch_ng-1.19.1-py3-none-any.whl", hash = "sha256:d45fd47b3f74b48c3e336690341876bb26244a077a06f5f7e6e47c19c15c1ca4", size = 17601, upload-time = "2026-04-23T13:36:51.95Z" },
+]
+
+[[package]]
 name = "pathspec"
 version = "1.1.1"
 source = { registry = "https://pypi.org/simple" }
@@ -1364,6 +1342,77 @@ wheels = [
 ]
 
 [[package]]
+name = "pyastrea"
+version = "3.5.1"
+source = { virtual = "." }
+dependencies = [
+    { name = "cairosvg" },
+    { name = "cmake" },
+    { name = "conan" },
+    { name = "fonttools" },
+    { name = "gcovr" },
+    { name = "gitpython" },
+    { name = "gprof2dot" },
+    { name = "graphviz" },
+    { name = "markdown" },
+    { name = "matplotlib" },
+    { name = "mkdocs" },
+    { name = "mkdocs-material", extra = ["imaging"] },
+    { name = "mkdocs-rss-plugin" },
+    { name = "mkdoxy" },
+    { name = "numpy" },
+    { name = "pandas" },
+    { name = "pillow" },
+    { name = "pygments" },
+    { name = "pymdown-extensions" },
+    { name = "requests" },
+    { name = "scipy" },
+    { name = "tabulate" },
+    { name = "urllib3" },
+]
+
+[package.dev-dependencies]
+dev = [
+    { name = "basemap", marker = "python_full_version < '3.14'" },
+    { name = "basemap-data", marker = "python_full_version < '3.14'" },
+    { name = "basemap-data-hires", marker = "python_full_version < '3.14'" },
+]
+
+[package.metadata]
+requires-dist = [
+    { name = "cairosvg", specifier = ">=2.9.0" },
+    { name = "cmake" },
+    { name = "conan", specifier = ">=2.0.0" },
+    { name = "fonttools", specifier = ">=4.60.2" },
+    { name = "gcovr", specifier = ">=5.0" },
+    { name = "gitpython", specifier = ">=3.1.48" },
+    { name = "gprof2dot", specifier = ">=2021.2.0" },
+    { name = "graphviz", specifier = ">=0.20.1" },
+    { name = "markdown", specifier = ">=3.8.1" },
+    { name = "matplotlib", specifier = ">=3.5.0" },
+    { name = "mkdocs", specifier = ">=1.4.0" },
+    { name = "mkdocs-material", extras = ["imaging"], specifier = ">=9.0.0" },
+    { name = "mkdocs-rss-plugin", specifier = ">=0.1.0" },
+    { name = "mkdoxy" },
+    { name = "numpy", specifier = ">=1.21.0" },
+    { name = "pandas", specifier = ">=1.3.0" },
+    { name = "pillow", specifier = ">=12.2.0" },
+    { name = "pygments", specifier = ">=2.20.0" },
+    { name = "pymdown-extensions", specifier = ">=11.0.1" },
+    { name = "requests", specifier = ">=2.33.0" },
+    { name = "scipy", specifier = ">=1.7.0" },
+    { name = "tabulate" },
+    { name = "urllib3", specifier = ">=2.7.0" },
+]
+
+[package.metadata.requires-dev]
+dev = [
+    { name = "basemap", marker = "python_full_version < '3.14'", specifier = ">=1.3.2" },
+    { name = "basemap-data", marker = "python_full_version < '3.14'", specifier = ">=1.3.2" },
+    { name = "basemap-data-hires", marker = "python_full_version < '3.14'", specifier = ">=1.3.2" },
+]
+
+[[package]]
 name = "pycparser"
 version = "3.0"
 source = { registry = "https://pypi.org/simple" }
@@ -1408,7 +1457,7 @@ name = "pyproj"
 version = "3.7.2"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "certifi" },
+    { name = "certifi", marker = "python_full_version < '3.14'" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/04/90/67bd7260b4ea9b8b20b4f58afef6c223ecb3abf368eb4ec5bc2cdef81b49/pyproj-3.7.2.tar.gz", hash = "sha256:39a0cf1ecc7e282d1d30f36594ebd55c9fae1fda8a2622cee5d100430628f88c", size = 226279, upload-time = "2025-08-14T12:05:42.18Z" }
 wheels = [
@@ -1661,6 +1710,15 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/a3/ae/2ca4913e5c0f09781d75482874c3a95db9105462a92ddd303c7d285d3df2/tinycss2-1.5.1.tar.gz", hash = "sha256:d339d2b616ba90ccce58da8495a78f46e55d4d25f9fd71dfd526f07e7d53f957", size = 88195, upload-time = "2025-11-23T10:29:10.082Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/60/45/c7b5c3168458db837e8ceab06dc77824e18202679d0463f0e8f002143a97/tinycss2-1.5.1-py3-none-any.whl", hash = "sha256:3415ba0f5839c062696996998176c4a3751d18b7edaaeeb658c9ce21ec150661", size = 28404, upload-time = "2025-11-23T10:29:08.676Z" },
+]
+
+[[package]]
+name = "truststore"
+version = "0.10.5"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/ee/9f/c5201d42a484c061e528825fc8e2d565f5abd50a4ced6fb7d29c4ec99b2b/truststore-0.10.5.tar.gz", hash = "sha256:30d36967ccaded5cbb38d602c433f53600036c79d502f4533a49b60a03bbefcd", size = 28091, upload-time = "2026-10-12T22:27:31.808Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/51/e9/3a7820be2bb0fe53b6bc9c3be26d3d1158004e4c3ab953aa6840b955b1e9/truststore-0.10.5-py3-none-any.whl", hash = "sha256:9aaaedaefaf06d8b206278cf8b5012bc897f485a874503501e12d776df78951c", size = 19017, upload-time = "2026-10-12T22:27:30.377Z" },
 ]
 
 [[package]]

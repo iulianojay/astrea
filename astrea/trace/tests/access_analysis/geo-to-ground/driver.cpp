@@ -110,7 +110,8 @@ TEST_F(GeoToGroundAccessTest, GeoAlwaysConnected)
 
     // Build out grounds
     SensorParameters groundCone(&fov180deg, { 1.0 * m, 0.0 * m, 0.0 * m });
-    GroundStation<astro::planets::Earth> ground(lat, lon, 0.0 * km, "Test site", { groundCone });
+    GroundStation<astro::planets::Earth> ground(lat, lon, 0.0 * km, "Test site");
+    ground.attach_payload(groundCone);
     GroundArchitecture<astro::planets::Earth> grounds({ ground });
 
     // Propagate

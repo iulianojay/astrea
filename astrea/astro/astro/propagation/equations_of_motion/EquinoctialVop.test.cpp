@@ -23,6 +23,7 @@
 #include <astro/state/orbital_elements/Equinoctial.hpp>
 #include <astro/systems/system_utilities.hpp>
 #include <tests/utilities/comparisons.hpp>
+#include <tests/utilities/orbit_presets.hpp>
 
 using mp_units::si::unit_symbols::km;
 using mp_units::si::unit_symbols::rad;
@@ -65,7 +66,7 @@ TEST_F(EquinoctialTest, GetExpectedSet)
 
 TEST_F(EquinoctialTest, Derivative)
 {
-    Equinoctial<frames::earth::icrf> equi0 = Equinoctial<frames::earth::icrf>::LEO(mu);
+    Equinoctial<frames::earth::icrf> equi0 = make_orbit_preset<Equinoctial<frames::earth::icrf>>(OrbitPreset::LEO, mu);
     EquinoctialPartial<frames::earth::icrf> expected =
         EquinoctialPartial<frames::earth::icrf>(0.0 * km / s, 0.0 * 1 / s, 0.0 * 1 / s, 0.0 * 1 / s, 0.0 * 1 / s, 0.0010780076129942077 * rad / s);
     State state(equi0, epoch);

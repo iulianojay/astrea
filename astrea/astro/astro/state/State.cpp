@@ -157,8 +157,6 @@ State StatePartial::operator*(const Time& time) const
                                                     std::nullopt };
 }
 
-const Date& StatePartial::get_epoch() const { return _epoch; }
-
 State State::interpolate(const Time& thisTime, const Time& otherTime, const State& other, const Time& targetTime) const
 {
     const OrbitalElements interpolatedElements = _elements.interpolate(thisTime, otherTime, other._elements, targetTime);

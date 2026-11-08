@@ -92,7 +92,7 @@ inline consteval auto find_common_ancestor(Axis_T axis, Axis_U axis_u)
     }
 }
 
-template <IsAxis auto axis, IsAxis auto axis_u>
+template <auto axis, auto axis_u>
 concept HasCommonAncestor = requires { find_common_ancestor(axis, axis_u); };
 
 } // namespace astro

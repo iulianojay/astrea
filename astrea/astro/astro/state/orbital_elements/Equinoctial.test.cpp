@@ -18,13 +18,14 @@
 
 #include <astro/frames.hpp>
 #include <astro/frames/framework/CartesianVector.hpp>
+#include <astro/state/framework/element_matrix_concepts.hpp>
 #include <astro/state/orbital_elements/Cartesian.hpp>
 #include <astro/state/orbital_elements/Equinoctial.hpp>
 #include <astro/state/orbital_elements/Keplerian.hpp>
-#include <astro/state/orbital_elements/OrbitalElements.hpp>
 #include <astro/systems/system_utilities.hpp>
 #include <astro/time/Date.hpp>
 #include <tests/utilities/comparisons.hpp>
+#include <tests/utilities/orbit_presets.hpp>
 
 using namespace astrea;
 using namespace astro;
@@ -43,7 +44,7 @@ class EquinoctialTest : public testing::Test {
     const Unitless REL_TOL = 1.0e-6;
 
     Date epoch;
-    const GravParam mu = get_mu<frames::primary.origin>();
+    const GravParam mu = get_mu<frames::earth::icrf.origin>();
     Distance p         = 7000.0 * km;
     Unitless f         = 0.01 * one;
     Unitless g         = 0.0 * one;
@@ -79,17 +80,6 @@ TEST_F(EquinoctialTest, DefaultConstructor)
     ASSERT_TRUE(math::nearly_equal(defaultState.get_true_longitude(), Angle(0.0 * rad), REL_TOL));
 }
 
-TEST_F(EquinoctialTest, UnitlessConstructor)
-{
-    Equinoctial<frames::earth::icrf> scaledState(2.0 * one);
-    ASSERT_TRUE(math::nearly_equal(scaledState.get_semilatus(), Distance(2.0 * km), REL_TOL));
-    ASSERT_TRUE(math::nearly_equal(scaledState.get_f(), Unitless(2.0 * one), REL_TOL));
-    ASSERT_TRUE(math::nearly_equal(scaledState.get_g(), Unitless(2.0 * one), REL_TOL));
-    ASSERT_TRUE(math::nearly_equal(scaledState.get_h(), Unitless(2.0 * one), REL_TOL));
-    ASSERT_TRUE(math::nearly_equal(scaledState.get_k(), Unitless(2.0 * one), REL_TOL));
-    ASSERT_TRUE(math::nearly_equal(scaledState.get_true_longitude(), Angle(2.0 * rad), REL_TOL));
-}
-
 TEST_F(EquinoctialTest, ParameterizedConstructor)
 {
     ASSERT_NO_THROW(Equinoctial<frames::earth::icrf>(p, f, g, h, k, L));
@@ -115,36 +105,36 @@ TEST_F(EquinoctialTest, CartesianConstructor)
 
 TEST_F(EquinoctialTest, LEOStaticMethod)
 {
-    ASSERT_NO_THROW(Equinoctial<frames::earth::icrf>::LEO(mu));
-    auto leo = Equinoctial<frames::earth::icrf>::LEO(mu);
+    ASSERT_NO_THROW(make_orbit_preset<Equinoctial<frames::earth::icrf>>(OrbitPreset::LEO, mu));
+    auto leo = make_orbit_preset<Equinoctial<frames::earth::icrf>>(OrbitPreset::LEO, mu);
     ASSERT_GT(leo.get_semilatus().numerical_value_in(km), 0.0);
 }
 
 TEST_F(EquinoctialTest, LMEOStaticMethod)
 {
-    ASSERT_NO_THROW(Equinoctial<frames::earth::icrf>::LMEO(mu));
-    auto lmeo = Equinoctial<frames::earth::icrf>::LMEO(mu);
+    ASSERT_NO_THROW(make_orbit_preset<Equinoctial<frames::earth::icrf>>(OrbitPreset::LMEO, mu));
+    auto lmeo = make_orbit_preset<Equinoctial<frames::earth::icrf>>(OrbitPreset::LMEO, mu);
     ASSERT_GT(lmeo.get_semilatus().numerical_value_in(km), 0.0);
 }
 
 TEST_F(EquinoctialTest, GPSStaticMethod)
 {
-    ASSERT_NO_THROW(Equinoctial<frames::earth::icrf>::GPS(mu));
-    auto gps = Equinoctial<frames::earth::icrf>::GPS(mu);
+    ASSERT_NO_THROW(make_orbit_preset<Equinoctial<frames::earth::icrf>>(OrbitPreset::GPS, mu));
+    auto gps = make_orbit_preset<Equinoctial<frames::earth::icrf>>(OrbitPreset::GPS, mu);
     ASSERT_GT(gps.get_semilatus().numerical_value_in(km), 0.0);
 }
 
 TEST_F(EquinoctialTest, HMEOStaticMethod)
 {
-    ASSERT_NO_THROW(Equinoctial<frames::earth::icrf>::HMEO(mu));
-    auto hmeo = Equinoctial<frames::earth::icrf>::HMEO(mu);
+    ASSERT_NO_THROW(make_orbit_preset<Equinoctial<frames::earth::icrf>>(OrbitPreset::HMEO, mu));
+    auto hmeo = make_orbit_preset<Equinoctial<frames::earth::icrf>>(OrbitPreset::HMEO, mu);
     ASSERT_GT(hmeo.get_semilatus().numerical_value_in(km), 0.0);
 }
 
 TEST_F(EquinoctialTest, GEOStaticMethod)
 {
-    ASSERT_NO_THROW(Equinoctial<frames::earth::icrf>::GEO(mu));
-    auto geo = Equinoctial<frames::earth::icrf>::GEO(mu);
+    ASSERT_NO_THROW(make_orbit_preset<Equinoctial<frames::earth::icrf>>(OrbitPreset::GEO, mu));
+    auto geo = make_orbit_preset<Equinoctial<frames::earth::icrf>>(OrbitPreset::GEO, mu);
     ASSERT_GT(geo.get_semilatus().numerical_value_in(km), 0.0);
 }
 

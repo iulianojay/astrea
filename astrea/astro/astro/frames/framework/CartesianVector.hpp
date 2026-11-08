@@ -98,9 +98,7 @@ struct CartesianVector {
     inline constexpr CartesianVector& operator=(const CartesianVector&) = default;
     inline constexpr CartesianVector& operator=(CartesianVector&&)      = default;
 
-    // Equivalent-frame copy/move constructors. Uses plain `auto` (not `IsFrame auto`) to avoid
-    // GCC 15 tsubst ICE with constrained auto NTTPs (deduction failure crashes instead of SFINAE).
-    // The `requires(equivalent(...))` clause enforces same-origin/axis/parent at the constraint stage.
+    // Equivalent-frame/unit copy/move constructors. Enforces same-origin/axis/parent at the constraint stage.
     template <typename Value_U, auto frame_u>
         requires((std::is_same_v<Value_T, Value_U> || mp_units::interconvertible(Value_T::unit, Value_U::unit)) && equivalent(frame, frame_u))
     inline constexpr CartesianVector(const CartesianVector<Value_U, frame_u>& other) :
@@ -405,7 +403,7 @@ struct CartesianVector {
         using namespace mp_units;
 
         const Value_T n = norm();
-        if (n == 0.0) {
+        if (n == Value_T::zero()) {
             // Return zero vector if norm is zero
             return CartesianVector<Unitless, frame>(0.0 * mp_units::one, 0.0 * mp_units::one, 0.0 * mp_units::one);
         }
@@ -429,7 +427,7 @@ struct CartesianVector {
         const Value_T v1Mag = norm();
         const Value_U v2Mag = other.norm();
 
-        if (v1Mag == 0.0 || v2Mag == 0.0) {
+        if (v1Mag == Value_T::zero() || v2Mag == Value_U::zero()) {
             throw std::runtime_error("Cannot calculate angle with zero-magnitude vector");
         }
 

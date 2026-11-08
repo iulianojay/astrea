@@ -26,7 +26,7 @@
 #include <astro/frames/framework/DirectionCosineMatrixRate.hpp>
 #include <astro/frames/framework/Frame.hpp>
 #include <astro/frames/framework/frame_concepts.hpp>
-#include <astro/systems/celestial_bodies.hpp>
+#include <astro/systems/celestial_bodies_impl.hpp>
 #include <astro/time/Date.hpp>
 
 namespace astrea {
@@ -120,7 +120,9 @@ template <IsFrame auto parent, IsFrame auto frame>
     requires(IsFixedOffsetFrame<decltype(frame)> && equivalent(frame.parent.axis, parent.axis))
 inline constexpr DirectionCosineMatrix<parent, frame> get_dcm(const Date& date)
 {
-    if constexpr (HasAngularOffset<decltype(frame)>) {
+    // A pure spatial child inherits its parent's axis type; in that case the
+    // child has no *additional* angular misalignment relative to parent.
+    if constexpr (HasAngularOffset<decltype(frame)> && !equivalent(frame.axis, parent.axis)) {
         return DirectionCosineMatrix<parent, frame>::template from_euler_angles<frame.axis.sequence>(
             frame.axis.misalignment.phi, frame.axis.misalignment.theta, frame.axis.misalignment.psi
         );

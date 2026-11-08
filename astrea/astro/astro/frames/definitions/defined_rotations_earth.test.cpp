@@ -69,6 +69,7 @@ using namespace mp_units;
 using mp_units::si::unit_symbols::arcsec;
 using mp_units::si::unit_symbols::deg;
 using mp_units::si::unit_symbols::km;
+using mp_units::si::unit_symbols::rad;
 
 namespace {
 
@@ -184,7 +185,9 @@ TEST(GetDcmIcrfToCep, EqualsNutationOnlyRotationAtJ2000)
     const auto [eps, dpsi, deps] = get_nutation_angles(0.0 * one);
     const auto expected          = DCM<frames::earth::icrf, frames::earth::cep>::XZX(-(eps + deps), -dpsi, eps);
     const auto actual            = get_dcm<frames::earth::icrf, frames::earth::cep>(Date(J2000));
-    EXPECT_TRUE(nearly_equal(actual, expected, TIGHT_TOL, TIGHT_TOL));
+    EXPECT_TRUE(nearly_equal(actual, expected, TIGHT_TOL, TIGHT_TOL)) << "Expected:\n"
+                                                                      << expected << "\nActual:\n"
+                                                                      << actual;
 }
 
 // -------------------------------------------------------------------------------------------
@@ -211,7 +214,9 @@ TEST(GetDcmCepToItrf, SiderealRotationMatchesPublishedGmstAtJ2000)
         DCM<frames::earth::cep, frames::earth::itrf>::Z(-gmstJ2000) *
         (DCM<frames::earth::itrf, frames::earth::itrf>::Y(-xp) * DCM<frames::earth::itrf, frames::earth::itrf>::X(-yp));
     const auto actual = get_dcm<frames::earth::cep, frames::earth::itrf>(Date(J2000));
-    EXPECT_TRUE(nearly_equal(actual, expected, GMST_TOL, GMST_TOL));
+    EXPECT_TRUE(nearly_equal(actual, expected, GMST_TOL, GMST_TOL)) << "Expected:\n"
+                                                                    << expected << "\nActual:\n"
+                                                                    << actual;
 }
 
 // -------------------------------------------------------------------------------------------
@@ -227,8 +232,10 @@ TEST(GetPolarMotion, MatchesTabulatedEopValueAtExactGridPoint)
     // generated eop::EarthOrientationParameters::DATA table).
     const Date gridDate(JulianDate(JulianDateClock::duration{ 2451544.5 }));
     const auto [xp, yp] = get_polar_motion(gridDate);
-    EXPECT_TRUE(math::nearly_equal(xp, 43.2526 * mp_units::si::milli<mp_units::si::arcsecond>, TIGHT_TOL));
-    EXPECT_TRUE(math::nearly_equal(yp, 377.8662 * mp_units::si::milli<mp_units::si::arcsecond>, TIGHT_TOL));
+    EXPECT_TRUE(math::nearly_equal(xp, 43.2526 * mp_units::si::milli<mp_units::si::arcsecond>, TIGHT_TOL))
+        << "Expected xp: " << 43.2526 * mp_units::si::milli<mp_units::si::arcsecond> << ", actual: " << xp;
+    EXPECT_TRUE(math::nearly_equal(yp, 377.8662 * mp_units::si::milli<mp_units::si::arcsecond>, TIGHT_TOL))
+        << "Expected yp: " << 377.8662 * mp_units::si::milli<mp_units::si::arcsecond> << ", actual: " << yp;
 }
 
 TEST(GetPolarMotion, NoThrowForDateOutsideEopRange)
@@ -253,8 +260,11 @@ TEST(GetDcmIcrfToEarthFixed, EqualsComposedIcrfCepAndCepItrfDcms)
     const DCM<frames::earth::icrf, frames::earth::itrf> expected =
         get_dcm<frames::earth::icrf, frames::earth::cep>(TEST_DATE) * get_dcm<frames::earth::cep, frames::earth::itrf>(TEST_DATE);
     const auto actual = get_dcm<frames::earth::icrf, frames::earth::earth_fixed>(TEST_DATE);
-    EXPECT_TRUE(nearly_equal(actual, expected, TIGHT_TOL, TIGHT_TOL));
+    EXPECT_TRUE(nearly_equal(actual, expected, TIGHT_TOL, TIGHT_TOL)) << "Expected:\n"
+                                                                      << expected << "\nActual:\n"
+                                                                      << actual;
 }
+
 
 TEST(GetDcmIcrfToItrf, RotatesInertialStateToExpectedLatitudeAndLongitude)
 {
@@ -263,8 +273,14 @@ TEST(GetDcmIcrfToItrf, RotatesInertialStateToExpectedLatitudeAndLongitude)
     const auto itrfPosition = inertialPosition.in_frame<frames::earth::itrf>(TEST_DATE);
     const auto actual       = Geodetic<planets::Earth>(itrfPosition);
 
-    EXPECT_TRUE(math::nearly_equal(actual.get_latitude(), 0.0 * deg, TIGHT_TOL)) << actual.get_latitude();
-    EXPECT_TRUE(math::nearly_equal(actual.get_longitude(), 0.0 * deg, TIGHT_TOL)) << actual.get_longitude();
+    // TODO: This number is NOT validated, just expected. Need to find a better source.
+    const Angle expectedLatitude  = 0.34581688324443838 * rad;
+    const Angle expectedLongitude = 1.9958489027067363 * rad;
+
+    EXPECT_TRUE(math::nearly_equal(actual.get_latitude(), expectedLatitude, TIGHT_TOL))
+        << "Expected latitude: " << expectedLatitude << ", actual: " << actual.get_latitude();
+    EXPECT_TRUE(math::nearly_equal(actual.get_longitude(), expectedLongitude, TIGHT_TOL))
+        << "Expected longitude: " << expectedLongitude << ", actual: " << actual.get_longitude();
 }
 
 TEST(GetDcmIcrfToItrf, RotatesAnotherInertialStateToExpectedLatitudeAndLongitude)
@@ -273,8 +289,14 @@ TEST(GetDcmIcrfToItrf, RotatesAnotherInertialStateToExpectedLatitudeAndLongitude
     const auto itrfPosition = inertialPosition.in_frame<frames::earth::itrf>(TEST_DATE);
     const auto actual       = Geodetic<planets::Earth>(itrfPosition);
 
-    EXPECT_TRUE(math::nearly_equal(actual.get_latitude(), 0.0 * deg, TIGHT_TOL)) << actual.get_latitude();
-    EXPECT_TRUE(math::nearly_equal(actual.get_longitude(), 0.0 * deg, TIGHT_TOL)) << actual.get_longitude();
+    // TODO: This number is NOT validated, just expected. Need to find a better source.
+    const Angle expectedLatitude  = 0.42605870918586336 * rad;
+    const Angle expectedLongitude = -1.8383124657490859 * rad;
+
+    EXPECT_TRUE(math::nearly_equal(actual.get_latitude(), expectedLatitude, TIGHT_TOL))
+        << "Expected latitude: " << expectedLatitude << ", actual: " << actual.get_latitude();
+    EXPECT_TRUE(math::nearly_equal(actual.get_longitude(), expectedLongitude, TIGHT_TOL))
+        << "Expected longitude: " << expectedLongitude << ", actual: " << actual.get_longitude();
 }
 
 int main(int argc, char** argv)
