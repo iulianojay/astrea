@@ -196,17 +196,6 @@ class Equinoctial
         const Cartesian<target_frame> cartInTargetFrame = cartInThisFrame.template in_frame<target_frame>(epoch);
         return Equinoctial<target_frame>(cartInTargetFrame, mu);
     }
-
-    /**
-     * @brief Interpolates between two Equinoctial states at a given time.
-     *
-     * @param thisTime Time of the current state
-     * @param otherTime Time of the other state
-     * @param other Other Equinoctial state to interpolate with
-     * @param targetTime Target time for interpolation
-     * @return Equinoctial Interpolated Equinoctial state at the target time.
-     */
-    Equinoctial interpolate(const Time& thisTime, const Time& otherTime, const Equinoctial& other, const Time& targetTime) const;
 };
 
 /**

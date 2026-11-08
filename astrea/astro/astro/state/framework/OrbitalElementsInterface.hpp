@@ -20,6 +20,8 @@
 
 #include <type_traits>
 
+#include <math/interpolation.hpp>
+
 #include <astro/frames/framework.hpp>
 #include <astro/state/framework/ElementMatrix.hpp>
 
@@ -378,6 +380,37 @@ class OrbitalElementsInterface {
     inline constexpr static Derived_T from_double_vector(const std::vector<double>& vec)
     {
         return Derived_T{ ArrayType::from_double_vector(vec) };
+    }
+
+    /**
+     * @brief Interpolates between two OrbitalElementsInterface states at a given time.
+     *
+     * @param thisTime Time of the current state
+     * @param otherTime Time of the other state
+     * @param other Other OrbitalElementsInterface state to interpolate with
+     * @param targetTime Target time for interpolation
+     * @return OrbitalElementsInterface Interpolated OrbitalElementsInterface state at the target time.
+     */
+    inline constexpr Derived_T interpolate(const Time& thisTime, const Time& otherTime, const Derived_T& other, const Time& targetTime) const
+    {
+        const std::array<Time, 2> times = { thisTime, otherTime };
+
+        using Type0 = std::remove_cvref_t<decltype(get<0>())>;
+        using Type1 = std::remove_cvref_t<decltype(get<1>())>;
+        using Type2 = std::remove_cvref_t<decltype(get<2>())>;
+        using Type3 = std::remove_cvref_t<decltype(get<3>())>;
+        using Type4 = std::remove_cvref_t<decltype(get<4>())>;
+        using Type5 = std::remove_cvref_t<decltype(get<5>())>;
+
+        auto retval = Derived_T{};
+        retval.template get<0>() = math::fast_interpolate<Time, Type0>(times, { get<0>(), other.template get<0>() }, targetTime);
+        retval.template get<1>() = math::fast_interpolate<Time, Type1>(times, { get<1>(), other.template get<1>() }, targetTime);
+        retval.template get<2>() = math::fast_interpolate<Time, Type2>(times, { get<2>(), other.template get<2>() }, targetTime);
+        retval.template get<3>() = math::fast_interpolate<Time, Type3>(times, { get<3>(), other.template get<3>() }, targetTime);
+        retval.template get<4>() = math::fast_interpolate<Time, Type4>(times, { get<4>(), other.template get<4>() }, targetTime);
+        retval.template get<5>() = math::fast_interpolate<Time, Type5>(times, { get<5>(), other.template get<5>() }, targetTime);
+
+        return retval;
     }
 
   protected:

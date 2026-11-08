@@ -213,21 +213,6 @@ Cartesian<_frame_>& Cartesian<_frame_>::operator-=(const VelocityVector<_frame_>
 }
 
 template <IsFrame auto _frame_>
-Cartesian<_frame_>
-    Cartesian<_frame_>::interpolate(const Time& thisTime, const Time& otherTime, const Cartesian<_frame_>& other, const Time& targetTime) const
-{
-    const std::array<Time, 2> times = { thisTime, otherTime };
-    const Distance interpX  = math::fast_interpolate<Time, Distance>(times, { get_x(), other.get_x() }, targetTime);
-    const Distance interpY  = math::fast_interpolate<Time, Distance>(times, { get_y(), other.get_y() }, targetTime);
-    const Distance interpZ  = math::fast_interpolate<Time, Distance>(times, { get_z(), other.get_z() }, targetTime);
-    const Velocity interpVx = math::fast_interpolate<Time, Velocity>(times, { get_vx(), other.get_vx() }, targetTime);
-    const Velocity interpVy = math::fast_interpolate<Time, Velocity>(times, { get_vy(), other.get_vy() }, targetTime);
-    const Velocity interpVz = math::fast_interpolate<Time, Velocity>(times, { get_vz(), other.get_vz() }, targetTime);
-
-    return Cartesian<_frame_>(interpX, interpY, interpZ, interpVx, interpVy, interpVz);
-}
-
-template <IsFrame auto _frame_>
 std::ostream& operator<<(std::ostream& os, Cartesian<_frame_> const& elements)
 {
     os << "[";

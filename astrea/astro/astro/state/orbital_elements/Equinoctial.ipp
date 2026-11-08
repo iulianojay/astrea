@@ -58,23 +58,6 @@ Equinoctial<_frame_>::Equinoctial(const Keplerian<_frame_>& elements, const Grav
 }
 
 template <IsFrame auto _frame_>
-Equinoctial<_frame_>
-    Equinoctial<_frame_>::interpolate(const Time& thisTime, const Time& otherTime, const Equinoctial<_frame_>& other, const Time& targetTime) const
-{
-    const std::array<Time, 2> times = { thisTime, otherTime };
-    const Distance interpSemimajor =
-        math::fast_interpolate<Time, Distance>(times, { get_semilatus(), other.get_semilatus() }, targetTime);
-    const Unitless interpEcc    = math::fast_interpolate<Time, Unitless>(times, { get_f(), other.get_f() }, targetTime);
-    const Unitless interpInc    = math::fast_interpolate<Time, Unitless>(times, { get_g(), other.get_g() }, targetTime);
-    const Unitless interpRaan   = math::fast_interpolate<Time, Unitless>(times, { get_h(), other.get_h() }, targetTime);
-    const Unitless interpArgPer = math::fast_interpolate<Time, Unitless>(times, { get_k(), other.get_k() }, targetTime);
-    const Angle interpTheta =
-        math::fast_interpolate<Time, Angle>(times, { get_true_longitude(), other.get_true_longitude() }, targetTime);
-
-    return Equinoctial(interpSemimajor, interpEcc, interpInc, interpRaan, interpArgPer, interpTheta);
-}
-
-template <IsFrame auto _frame_>
 std::ostream& operator<<(std::ostream& os, Equinoctial<_frame_> const& elements)
 {
     os << "[";

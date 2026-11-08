@@ -296,17 +296,6 @@ class Cartesian
      * @return const Velocity& Reference to the vz component of the Cartesian state vector.
      */
     const Velocity& get_vz() const { return this->template get<5>(); }
-
-    /**
-     * @brief Interpolates between two Cartesian states at a given time.
-     *
-     * @param thisTime Time of the current state
-     * @param otherTime Time of the other state
-     * @param other Other Cartesian state to interpolate with
-     * @param targetTime Target time for interpolation
-     * @return Cartesian Interpolated Cartesian state at the target time.
-     */
-    Cartesian interpolate(const Time& thisTime, const Time& otherTime, const Cartesian& other, const Time& targetTime) const;
 };
 
 /**
