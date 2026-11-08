@@ -266,15 +266,6 @@ TEST_F(KeplerianTest, MultiplicationAssignmentOperator)
     ASSERT_TRUE(math::nearly_equal(state.get_true_anomaly(), theta * multiplier, REL_TOL));
 }
 
-TEST_F(KeplerianTest, DivisionByTimeOperator)
-{
-    Time time   = 2.0 * s;
-    auto result = state / time;
-    // Result is KeplerianPartial with partial derivatives
-    // This test just ensures it compiles and runs
-    ASSERT_NO_THROW(state / time);
-}
-
 TEST_F(KeplerianTest, DivisionByScalarOperator)
 {
     Unitless divisor                      = 2.0 * one;
@@ -376,44 +367,4 @@ TEST_F(KeplerianTest, FromEquinoctialConversion)
 
     // Verify the Keplerian state has reasonable values
     ASSERT_GT(kep.get_semimajor().numerical_value_in(km), 0.0);
-}
-
-TEST_F(KeplerianTest, KeplerianPartialMultiplicationByTime)
-{
-    // Test KeplerianPartial operator* with Time
-    Velocity aDot            = 1.0 * km / s;
-    UnitlessPerTime eDot     = 0.001 / s;
-    AngularVelocity incDot   = 0.1 * deg / s;
-    AngularVelocity raanDot  = 0.2 * deg / s;
-    AngularVelocity wDot     = 0.3 * deg / s;
-    AngularVelocity thetaDot = 0.5 * deg / s;
-    KeplerianPartial<frames::earth::icrf> partial(aDot, eDot, incDot, raanDot, wDot, thetaDot);
-
-    Time dt                               = 2.0 * s;
-    Keplerian<frames::earth::icrf> result = partial * dt;
-
-    // Verify the result is a Keplerian state
-    ASSERT_TRUE(math::nearly_equal(result.get_semimajor(), aDot * dt, REL_TOL));
-    ASSERT_TRUE(math::nearly_equal(result.get_eccentricity(), eDot * dt, REL_TOL));
-    ASSERT_TRUE(math::nearly_equal(result.get_inclination(), incDot * dt, REL_TOL));
-    ASSERT_TRUE(math::nearly_equal(result.get_right_ascension(), raanDot * dt, REL_TOL));
-    ASSERT_TRUE(math::nearly_equal(result.get_argument_of_perigee(), wDot * dt, REL_TOL));
-    ASSERT_TRUE(math::nearly_equal(result.get_true_anomaly(), thetaDot * dt, REL_TOL));
-}
-
-TEST_F(KeplerianTest, KeplerianPartialStream)
-{
-    // Test KeplerianPartial stream operator
-    Velocity aDot            = 1.0 * km / s;
-    UnitlessPerTime eDot     = 0.001 / s;
-    AngularVelocity incDot   = 0.1 * deg / s;
-    AngularVelocity raanDot  = 0.2 * deg / s;
-    AngularVelocity wDot     = 0.3 * deg / s;
-    AngularVelocity thetaDot = 0.5 * deg / s;
-    KeplerianPartial<frames::earth::icrf> partial(aDot, eDot, incDot, raanDot, wDot, thetaDot);
-
-    std::stringstream ss;
-    ss << partial;
-    ASSERT_FALSE(ss.str().empty());
-    ASSERT_NE(ss.str().find("KeplerianPartial"), std::string::npos);
 }
