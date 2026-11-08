@@ -91,7 +91,7 @@ jobs:
         github.event_name != 'pull_request'
       )
     container:
-      image: ${{ format('ghcr.io/{0}:{1}', github.repository, (github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository && needs.check-docker-changes.outputs.docker-changed == 'true' && format('pr-{0}', github.event.pull_request.number) || 'main')) }}
+      image: ${{ format('ghcr.io/{0}:{1}', github.repository, (github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository && needs.check-docker-changes.outputs.docker-changed == 'true' && needs.wait-for-docker.result == 'success' && format('pr-{0}', github.event.pull_request.number) || 'main')) }}
       options: --user root
       credentials:
         username: ${{ github.actor }}
@@ -143,7 +143,7 @@ jobs:
         github.event_name != 'pull_request'
       )
     container:
-      image: ${{ format('ghcr.io/{0}:{1}', github.repository, (github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository && needs.check-docker-changes.outputs.docker-changed == 'true' && format('pr-{0}', github.event.pull_request.number) || 'main')) }}
+      image: ${{ format('ghcr.io/{0}:{1}', github.repository, (github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository && needs.check-docker-changes.outputs.docker-changed == 'true' && needs.wait-for-docker.result == 'success' && format('pr-{0}', github.event.pull_request.number) || 'main')) }}
       options: --user root
       credentials:
         username: ${{ github.actor }}

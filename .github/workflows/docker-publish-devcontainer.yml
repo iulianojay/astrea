@@ -87,7 +87,7 @@ jobs:
           tags: |
             type=raw,value=main,enable={{is_default_branch}}
             type=sha,prefix=sha-
-            type=raw,value=pr-{{pull_request.number}},enable=${{ github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository }}
+            type=ref,event=pr,enable=${{ github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository }}
 
       # Build and push Docker image with Buildx (don't push on PR)
       # https://github.com/docker/build-push-action
