@@ -151,37 +151,6 @@ Cartesian<_frame_>::Cartesian(const Equinoctial<_frame_>& elements, const GravPa
     get_vz() = 2.0 * gamma * (h * cosL + k * sinL + f * h + g * k);
 }
 
-template <IsFrame auto _frame_>
-Cartesian<_frame_> Cartesian<_frame_>::LEO(const GravParam& mu)
-{
-    return Cartesian<_frame_>(Keplerian<_frame_>::LEO(), mu);
-}
-
-template <IsFrame auto _frame_>
-Cartesian<_frame_> Cartesian<_frame_>::LMEO(const GravParam& mu)
-{
-    return Cartesian<_frame_>(Keplerian<_frame_>::LMEO(), mu);
-}
-
-template <IsFrame auto _frame_>
-Cartesian<_frame_> Cartesian<_frame_>::GPS(const GravParam& mu)
-{
-    return Cartesian<_frame_>(Keplerian<_frame_>::GPS(), mu);
-}
-
-template <IsFrame auto _frame_>
-Cartesian<_frame_> Cartesian<_frame_>::HMEO(const GravParam& mu)
-{
-    return Cartesian<_frame_>(Keplerian<_frame_>::HMEO(), mu);
-}
-
-template <IsFrame auto _frame_>
-Cartesian<_frame_> Cartesian<_frame_>::GEO(const GravParam& mu)
-{
-    return Cartesian<_frame_>(Keplerian<_frame_>::GEO(), mu);
-}
-
-
 // Mathematical operators
 template <IsFrame auto _frame_>
 Cartesian<_frame_> Cartesian<_frame_>::operator+(const RadiusVector<_frame_>& r) const

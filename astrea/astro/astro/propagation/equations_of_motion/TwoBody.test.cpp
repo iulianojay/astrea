@@ -22,6 +22,7 @@
 #include <astro/state/orbital_elements/Cartesian.hpp>
 #include <astro/systems/system_utilities.hpp>
 #include <tests/utilities/comparisons.hpp>
+#include <tests/utilities/orbit_presets.hpp>
 
 using mp_units::si::unit_symbols::km;
 using mp_units::si::unit_symbols::s;
@@ -59,7 +60,7 @@ TEST_F(TwoBodyTest, GetExpectedSet)
 
 TEST_F(TwoBodyTest, Derivative)
 {
-    Cartesian<frames::earth::icrf> cart0           = Cartesian<frames::earth::icrf>::LEO(mu);
+    Cartesian<frames::earth::icrf> cart0 = make_orbit_preset<Cartesian<frames::earth::icrf>>(OrbitPreset::LEO, mu);
     CartesianPartial<frames::earth::icrf> expected = CartesianPartial<frames::earth::icrf>(
         cart0.get_vx(), cart0.get_vy(), cart0.get_vz(), -0.0081347028957142863 * km / (s * s), 0.0 * km / (s * s), 0.0 * km / (s * s)
     );

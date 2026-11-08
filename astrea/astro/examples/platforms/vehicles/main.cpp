@@ -16,6 +16,7 @@
 #include <units/units.hpp>
 
 #include <astro/astro.hpp>
+#include <tests/utilities/orbit_presets.hpp>
 
 using namespace astrea;
 using namespace astro;
@@ -64,7 +65,7 @@ int main()
 
     // All of these can be safely propagated
     Date epoch = Date::now();
-    State state0(Keplerian<frames::earth::icrf>::LEO(), epoch);
+    State state0(make_orbit_preset<Keplerian<frames::earth::icrf>>(OrbitPreset::LEO), epoch);
     Time propTime = hours(1.0);
 
     Integrator integrator; // default to two-body

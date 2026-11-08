@@ -27,47 +27,6 @@ namespace astrea {
 namespace astro {
 
 template <IsFrame auto _frame_>
-Keplerian<_frame_> Keplerian<_frame_>::LEO()
-{
-    using mp_units::one;
-    using mp_units::si::unit_symbols::km;
-    using mp_units::si::unit_symbols::rad;
-    return Keplerian(7000.0 * km, 0.0 * one, 0.0 * rad, 0.0 * rad, 0.0 * rad, 0.0 * rad);
-}
-template <IsFrame auto _frame_>
-Keplerian<_frame_> Keplerian<_frame_>::LMEO()
-{
-    using mp_units::one;
-    using mp_units::si::unit_symbols::km;
-    using mp_units::si::unit_symbols::rad;
-    return Keplerian(10000.0 * km, 0.0 * one, 0.0 * rad, 0.0 * rad, 0.0 * rad, 0.0 * rad);
-}
-template <IsFrame auto _frame_>
-Keplerian<_frame_> Keplerian<_frame_>::GPS()
-{
-    using mp_units::one;
-    using mp_units::si::unit_symbols::km;
-    using mp_units::si::unit_symbols::rad;
-    return Keplerian(22000.0 * km, 0.0 * one, 0.0 * rad, 0.0 * rad, 0.0 * rad, 0.0 * rad);
-}
-template <IsFrame auto _frame_>
-Keplerian<_frame_> Keplerian<_frame_>::HMEO()
-{
-    using mp_units::one;
-    using mp_units::si::unit_symbols::km;
-    using mp_units::si::unit_symbols::rad;
-    return Keplerian(30000.0 * km, 0.0 * one, 0.0 * rad, 0.0 * rad, 0.0 * rad, 0.0 * rad);
-}
-template <IsFrame auto _frame_>
-Keplerian<_frame_> Keplerian<_frame_>::GEO()
-{
-    using mp_units::one;
-    using mp_units::si::unit_symbols::km;
-    using mp_units::si::unit_symbols::rad;
-    return Keplerian(42164.0 * km, 0.0 * one, 0.0 * rad, 0.0 * rad, 0.0 * rad, 0.0 * rad);
-}
-
-template <IsFrame auto _frame_>
 Keplerian<_frame_>::Keplerian(const Cartesian<_frame_>& elements, const GravParam& mu)
 {
     using namespace mp_units;

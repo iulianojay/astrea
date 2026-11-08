@@ -20,14 +20,8 @@
 
 #include <iosfwd>
 
-// // avro
-// #include <avro/Decoder.hh>
-// #include <avro/Encoder.hh>
-// #include <avro/Specific.hh>
-
 #include <units/units.hpp>
 
-// astro
 #include <astro/astro.fwd.hpp>
 #include <astro/frames/framework/CartesianVector.hpp>
 #include <astro/state/framework/OrbitalElementsInterface.hpp>
@@ -109,56 +103,6 @@ class Cartesian
      * @param sys Astrodynamics system containing celestial body data
      */
     Cartesian(const Equinoctial<_frame_>& elements, const GravParam& mu);
-
-    /**
-     * @brief A static method to create Cartesian state vectors for a LEO orbit.
-     *
-     * This method return predefined Cartesian state vectors for various types of orbits.
-     *
-     * @param mu Gravitational parameter of the central body
-     * @return Cartesian Predefined Cartesian state vector for a LEO orbit.
-     */
-    static Cartesian LEO(const GravParam& mu);
-
-    /**
-     * @brief A static method to create Cartesian state vectors for a LMEO orbit.
-     *
-     * This method return predefined Cartesian state vectors for various types of orbits.
-     *
-     * @param mu Gravitational parameter of the central body
-     * @return Cartesian Predefined Cartesian state vector for a LMEO orbit.
-     */
-    static Cartesian LMEO(const GravParam& mu);
-
-    /**
-     * @brief A static method to create Cartesian state vectors for a GPS orbit.
-     *
-     * This method return predefined Cartesian state vectors for various types of orbits.
-     *
-     * @param mu Gravitational parameter of the central body
-     * @return Cartesian Predefined Cartesian state vector for a GPS orbit.
-     */
-    static Cartesian GPS(const GravParam& mu);
-
-    /**
-     * @brief A static method to create Cartesian state vectors for a HMEO orbit.
-     *
-     * This method return predefined Cartesian state vectors for various types of orbits.
-     *
-     * @param mu Gravitational parameter of the central body
-     * @return Cartesian Predefined Cartesian state vector for a HMEO orbit.
-     */
-    static Cartesian HMEO(const GravParam& mu);
-
-    /**
-     * @brief A static method to create Cartesian state vectors for a GEO orbit.
-     *
-     * This method return predefined Cartesian state vectors for various types of orbits.
-     *
-     * @param mu Gravitational parameter of the central body
-     * @return Cartesian Predefined Cartesian state vector for a GEO orbit.
-     */
-    static Cartesian GEO(const GravParam& mu);
 
     /**
      * @brief Default destructor for Cartesian.

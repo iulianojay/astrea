@@ -20,6 +20,7 @@
 #include <astro/state/orbital_elements.hpp>
 #include <astro/systems/system_utilities.hpp>
 #include <tests/utilities/comparisons.hpp>
+#include <tests/utilities/orbit_presets.hpp>
 
 using namespace astrea;
 using namespace astro;
@@ -36,9 +37,9 @@ class OrbitalElementsTest : public testing::Test {
     void SetUp() override
     {
         _mu           = get_mu<planets::Earth>();
-        _cartElements = Cartesian<frames::earth::icrf>::LEO(_mu);
-        _keplElements = Keplerian<frames::earth::icrf>::LEO();
-        _equiElements = Equinoctial<frames::earth::icrf>::LEO(_mu);
+        _cartElements = make_orbit_preset<Cartesian<frames::earth::icrf>>(OrbitPreset::LEO, _mu);
+        _keplElements = make_orbit_preset<Keplerian<frames::earth::icrf>>(OrbitPreset::LEO);
+        _equiElements = make_orbit_preset<Equinoctial<frames::earth::icrf>>(OrbitPreset::LEO, _mu);
     }
 
     const Unitless REL_TOL = 1.0e-6;
@@ -261,8 +262,9 @@ TEST_F(OrbitalElementsTest, ToVector)
 
 TEST_F(OrbitalElementsTest, InterpolateCartesian)
 {
-    Cartesian<frames::earth::icrf> original = Cartesian<frames::earth::icrf>::LEO(_mu);
-    Cartesian<frames::earth::icrf> final    = Cartesian<frames::earth::icrf>::LEO(_mu) * Unitless(1.1 * one);
+    Cartesian<frames::earth::icrf> original = make_orbit_preset<Cartesian<frames::earth::icrf>>(OrbitPreset::LEO, _mu);
+    Cartesian<frames::earth::icrf> final =
+        make_orbit_preset<Cartesian<frames::earth::icrf>>(OrbitPreset::LEO, _mu) * Unitless(1.1 * one);
 
     OrbitalElements result   = _cartElements.interpolate(0.0 * s, 1.0 * s, OrbitalElements(final), 0.5 * s);
     OrbitalElements expected = original.interpolate(0.0 * s, 1.0 * s, final, 0.5 * s);
@@ -274,8 +276,9 @@ TEST_F(OrbitalElementsTest, InterpolateCartesian)
 
 TEST_F(OrbitalElementsTest, InterpolateKeplerian)
 {
-    Keplerian<frames::earth::icrf> original = Keplerian<frames::earth::icrf>::LEO();
-    Keplerian<frames::earth::icrf> final    = Keplerian<frames::earth::icrf>::LEO() * Unitless(1.1 * one);
+    Keplerian<frames::earth::icrf> original = make_orbit_preset<Keplerian<frames::earth::icrf>>(OrbitPreset::LEO);
+    Keplerian<frames::earth::icrf> final =
+        make_orbit_preset<Keplerian<frames::earth::icrf>>(OrbitPreset::LEO) * Unitless(1.1 * one);
 
     OrbitalElements result   = _keplElements.interpolate(0.0 * s, 1.0 * s, OrbitalElements(final), 0.5 * s);
     OrbitalElements expected = original.interpolate(0.0 * s, 1.0 * s, final, 0.5 * s);
@@ -287,8 +290,9 @@ TEST_F(OrbitalElementsTest, InterpolateKeplerian)
 
 TEST_F(OrbitalElementsTest, InterpolateEquinoctial)
 {
-    Equinoctial<frames::earth::icrf> original = Equinoctial<frames::earth::icrf>::LEO(_mu);
-    Equinoctial<frames::earth::icrf> final    = Equinoctial<frames::earth::icrf>::LEO(_mu) * Unitless(1.1 * one);
+    Equinoctial<frames::earth::icrf> original = make_orbit_preset<Equinoctial<frames::earth::icrf>>(OrbitPreset::LEO, _mu);
+    Equinoctial<frames::earth::icrf> final =
+        make_orbit_preset<Equinoctial<frames::earth::icrf>>(OrbitPreset::LEO, _mu) * Unitless(1.1 * one);
 
     OrbitalElements result   = _equiElements.interpolate(0.0 * s, 1.0 * s, OrbitalElements(final), 0.5 * s);
     OrbitalElements expected = original.interpolate(0.0 * s, 1.0 * s, final, 0.5 * s);
@@ -318,19 +322,19 @@ TEST_F(OrbitalElementsTest, Stream)
     std::stringstream exp;
 
     ss << _cartElements;
-    exp << Cartesian<frames::earth::icrf>::LEO(_mu);
+    exp << make_orbit_preset<Cartesian<frames::earth::icrf>>(OrbitPreset::LEO, _mu);
     ASSERT_EQ(ss.str(), exp.str());
 
     ss.str("");
     ss << _keplElements;
     exp.str("");
-    exp << Keplerian<frames::earth::icrf>::LEO();
+    exp << make_orbit_preset<Keplerian<frames::earth::icrf>>(OrbitPreset::LEO);
     ASSERT_EQ(ss.str(), exp.str());
 
     ss.str("");
     ss << _equiElements;
     exp.str("");
-    exp << Equinoctial<frames::earth::icrf>::LEO(_mu);
+    exp << make_orbit_preset<Equinoctial<frames::earth::icrf>>(OrbitPreset::LEO, _mu);
     ASSERT_EQ(ss.str(), exp.str());
 }
 

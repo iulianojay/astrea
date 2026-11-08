@@ -30,32 +30,6 @@ namespace astrea {
 namespace astro {
 
 template <IsFrame auto _frame_>
-Equinoctial<_frame_> Equinoctial<_frame_>::LEO(const GravParam& mu)
-{
-    return Equinoctial(Keplerian<_frame_>::LEO(), mu);
-}
-template <IsFrame auto _frame_>
-Equinoctial<_frame_> Equinoctial<_frame_>::LMEO(const GravParam& mu)
-{
-    return Equinoctial(Keplerian<_frame_>::LMEO(), mu);
-}
-template <IsFrame auto _frame_>
-Equinoctial<_frame_> Equinoctial<_frame_>::GPS(const GravParam& mu)
-{
-    return Equinoctial(Keplerian<_frame_>::GPS(), mu);
-}
-template <IsFrame auto _frame_>
-Equinoctial<_frame_> Equinoctial<_frame_>::HMEO(const GravParam& mu)
-{
-    return Equinoctial(Keplerian<_frame_>::HMEO(), mu);
-}
-template <IsFrame auto _frame_>
-Equinoctial<_frame_> Equinoctial<_frame_>::GEO(const GravParam& mu)
-{
-    return Equinoctial(Keplerian<_frame_>::GEO(), mu);
-}
-
-template <IsFrame auto _frame_>
 Equinoctial<_frame_>::Equinoctial(const Keplerian<_frame_>& elements, const GravParam& mu)
 {
     using namespace mp_units;

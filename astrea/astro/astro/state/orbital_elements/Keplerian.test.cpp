@@ -25,6 +25,7 @@
 #include <astro/systems/system_utilities.hpp>
 #include <astro/time/Date.hpp>
 #include <tests/utilities/comparisons.hpp>
+#include <tests/utilities/orbit_presets.hpp>
 
 using namespace astrea;
 using namespace astro;
@@ -104,36 +105,36 @@ TEST_F(KeplerianTest, EquinoctialConstructor)
 
 TEST_F(KeplerianTest, LEOStaticMethod)
 {
-    ASSERT_NO_THROW(Keplerian<frames::earth::icrf>::LEO());
-    auto leo = Keplerian<frames::earth::icrf>::LEO();
+    ASSERT_NO_THROW(make_orbit_preset<Keplerian<frames::earth::icrf>>(OrbitPreset::LEO));
+    auto leo = make_orbit_preset<Keplerian<frames::earth::icrf>>(OrbitPreset::LEO);
     ASSERT_GT(leo.get_semimajor().numerical_value_in(km), 0.0);
 }
 
 TEST_F(KeplerianTest, LMEOStaticMethod)
 {
-    ASSERT_NO_THROW(Keplerian<frames::earth::icrf>::LMEO());
-    auto lmeo = Keplerian<frames::earth::icrf>::LMEO();
+    ASSERT_NO_THROW(make_orbit_preset<Keplerian<frames::earth::icrf>>(OrbitPreset::LMEO));
+    auto lmeo = make_orbit_preset<Keplerian<frames::earth::icrf>>(OrbitPreset::LMEO);
     ASSERT_GT(lmeo.get_semimajor().numerical_value_in(km), 0.0);
 }
 
 TEST_F(KeplerianTest, GPSStaticMethod)
 {
-    ASSERT_NO_THROW(Keplerian<frames::earth::icrf>::GPS());
-    auto gps = Keplerian<frames::earth::icrf>::GPS();
+    ASSERT_NO_THROW(make_orbit_preset<Keplerian<frames::earth::icrf>>(OrbitPreset::GPS));
+    auto gps = make_orbit_preset<Keplerian<frames::earth::icrf>>(OrbitPreset::GPS);
     ASSERT_GT(gps.get_semimajor().numerical_value_in(km), 0.0);
 }
 
 TEST_F(KeplerianTest, HMEOStaticMethod)
 {
-    ASSERT_NO_THROW(Keplerian<frames::earth::icrf>::HMEO());
-    auto hmeo = Keplerian<frames::earth::icrf>::HMEO();
+    ASSERT_NO_THROW(make_orbit_preset<Keplerian<frames::earth::icrf>>(OrbitPreset::HMEO));
+    auto hmeo = make_orbit_preset<Keplerian<frames::earth::icrf>>(OrbitPreset::HMEO);
     ASSERT_GT(hmeo.get_semimajor().numerical_value_in(km), 0.0);
 }
 
 TEST_F(KeplerianTest, GEOStaticMethod)
 {
-    ASSERT_NO_THROW(Keplerian<frames::earth::icrf>::GEO());
-    auto geo = Keplerian<frames::earth::icrf>::GEO();
+    ASSERT_NO_THROW(make_orbit_preset<Keplerian<frames::earth::icrf>>(OrbitPreset::GEO));
+    auto geo = make_orbit_preset<Keplerian<frames::earth::icrf>>(OrbitPreset::GEO);
     ASSERT_GT(geo.get_semimajor().numerical_value_in(km), 0.0);
 }
 

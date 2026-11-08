@@ -30,6 +30,7 @@
 #include <astro/time/Date.hpp>
 #include <astro/time/Interval.hpp>
 #include <tests/utilities/comparisons.hpp>
+#include <tests/utilities/orbit_presets.hpp>
 
 using namespace astrea;
 using namespace astro;
@@ -57,7 +58,7 @@ class ThrusterSchedulingRegressionTest : public testing::Test {
         vehicle = Vehicle(spacecraft);
 
         // Setup initial LEO orbit
-        initialElements = Keplerian<frames::earth::icrf>::LEO(); // ~500 km circular orbit
+        initialElements = make_orbit_preset<Keplerian<frames::earth::icrf>>(OrbitPreset::LEO); // ~500 km circular orbit
         initialState    = State(initialElements, epoch);
 
         // Calculate orbital period for scheduling

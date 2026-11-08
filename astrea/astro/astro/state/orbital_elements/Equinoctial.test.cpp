@@ -25,6 +25,7 @@
 #include <astro/systems/system_utilities.hpp>
 #include <astro/time/Date.hpp>
 #include <tests/utilities/comparisons.hpp>
+#include <tests/utilities/orbit_presets.hpp>
 
 using namespace astrea;
 using namespace astro;
@@ -104,36 +105,36 @@ TEST_F(EquinoctialTest, CartesianConstructor)
 
 TEST_F(EquinoctialTest, LEOStaticMethod)
 {
-    ASSERT_NO_THROW(Equinoctial<frames::earth::icrf>::LEO(mu));
-    auto leo = Equinoctial<frames::earth::icrf>::LEO(mu);
+    ASSERT_NO_THROW(make_orbit_preset<Equinoctial<frames::earth::icrf>>(OrbitPreset::LEO, mu));
+    auto leo = make_orbit_preset<Equinoctial<frames::earth::icrf>>(OrbitPreset::LEO, mu);
     ASSERT_GT(leo.get_semilatus().numerical_value_in(km), 0.0);
 }
 
 TEST_F(EquinoctialTest, LMEOStaticMethod)
 {
-    ASSERT_NO_THROW(Equinoctial<frames::earth::icrf>::LMEO(mu));
-    auto lmeo = Equinoctial<frames::earth::icrf>::LMEO(mu);
+    ASSERT_NO_THROW(make_orbit_preset<Equinoctial<frames::earth::icrf>>(OrbitPreset::LMEO, mu));
+    auto lmeo = make_orbit_preset<Equinoctial<frames::earth::icrf>>(OrbitPreset::LMEO, mu);
     ASSERT_GT(lmeo.get_semilatus().numerical_value_in(km), 0.0);
 }
 
 TEST_F(EquinoctialTest, GPSStaticMethod)
 {
-    ASSERT_NO_THROW(Equinoctial<frames::earth::icrf>::GPS(mu));
-    auto gps = Equinoctial<frames::earth::icrf>::GPS(mu);
+    ASSERT_NO_THROW(make_orbit_preset<Equinoctial<frames::earth::icrf>>(OrbitPreset::GPS, mu));
+    auto gps = make_orbit_preset<Equinoctial<frames::earth::icrf>>(OrbitPreset::GPS, mu);
     ASSERT_GT(gps.get_semilatus().numerical_value_in(km), 0.0);
 }
 
 TEST_F(EquinoctialTest, HMEOStaticMethod)
 {
-    ASSERT_NO_THROW(Equinoctial<frames::earth::icrf>::HMEO(mu));
-    auto hmeo = Equinoctial<frames::earth::icrf>::HMEO(mu);
+    ASSERT_NO_THROW(make_orbit_preset<Equinoctial<frames::earth::icrf>>(OrbitPreset::HMEO, mu));
+    auto hmeo = make_orbit_preset<Equinoctial<frames::earth::icrf>>(OrbitPreset::HMEO, mu);
     ASSERT_GT(hmeo.get_semilatus().numerical_value_in(km), 0.0);
 }
 
 TEST_F(EquinoctialTest, GEOStaticMethod)
 {
-    ASSERT_NO_THROW(Equinoctial<frames::earth::icrf>::GEO(mu));
-    auto geo = Equinoctial<frames::earth::icrf>::GEO(mu);
+    ASSERT_NO_THROW(make_orbit_preset<Equinoctial<frames::earth::icrf>>(OrbitPreset::GEO, mu));
+    auto geo = make_orbit_preset<Equinoctial<frames::earth::icrf>>(OrbitPreset::GEO, mu);
     ASSERT_GT(geo.get_semilatus().numerical_value_in(km), 0.0);
 }
 

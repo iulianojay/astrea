@@ -16,6 +16,7 @@
 #include <units/units.hpp>
 
 #include <astro/astro.hpp>
+#include <tests/utilities/orbit_presets.hpp>
 
 using namespace astrea;
 using namespace astro;
@@ -47,7 +48,7 @@ static constexpr const char* kEomNames[] = { "TwoBody", "J2MeanVop", "KeplerianV
 static void BenchmarkPropagation(benchmark::State& state)
 {
     const Date epoch{};
-    const State state0{ Keplerian<frames::earth::icrf>::LEO(), epoch };
+    const State state0{ make_orbit_preset<Keplerian<frames::earth::icrf>>(OrbitPreset::LEO), epoch };
     Spacecraft sat{};
     Vehicle vehicle{ sat };
 
@@ -130,22 +131,26 @@ static void BenchmarkPropagation(benchmark::State& state)
 //     perturb sweeps : 0 (none), 1 (drag), 2 (n-body), 4 (srp), 7 (all)
 // -----------------------------------------------------------------------
 BENCHMARK(BenchmarkPropagation)
-    ->ArgsProduct({
-        { 0, 1 },
-        { 97, 1440 },
-        { 0 },
-        { 0 },
-    })
+    ->ArgsProduct(
+        {
+            { 0, 1 },
+            { 97, 1440 },
+            { 0 },
+            { 0 },
+        }
+    )
     ->ArgNames({ "eom", "prop_time_min", "gravity", "perturb" })
     ->Unit(benchmark::kMillisecond);
 
 BENCHMARK(BenchmarkPropagation)
-    ->ArgsProduct({
-        { 2, 3, 4 },
-        { 97, 1440 },
-        { 2, 20, 70 },
-        { 0, 1, 2, 4, 7 },
-    })
+    ->ArgsProduct(
+        {
+            { 2, 3, 4 },
+            { 97, 1440 },
+            { 2, 20, 70 },
+            { 0, 1, 2, 4, 7 },
+        }
+    )
     ->ArgNames({ "eom", "prop_time_min", "gravity", "perturb" })
     ->Unit(benchmark::kMillisecond);
 

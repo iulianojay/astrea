@@ -88,56 +88,6 @@ class Equinoctial
     }
 
     /**
-     * @brief A static method to create Equinoctial state vectors for a LEO orbit.
-     *
-     * This method return predefined Equinoctial state vectors for various types of orbits.
-     *
-     * @param mu Gravitational parameter of the central body
-     * @return Equinoctial Predefined Equinoctial state vector for a LEO orbit.
-     */
-    static Equinoctial LEO(const GravParam& mu);
-
-    /**
-     * @brief A static method to create Equinoctial state vectors for a LMEO orbit.
-     *
-     * This method return predefined Equinoctial state vectors for various types of orbits.
-     *
-     * @param mu Gravitational parameter of the central body
-     * @return Equinoctial Predefined Equinoctial state vector for a LMEO orbit.
-     */
-    static Equinoctial LMEO(const GravParam& mu);
-
-    /**
-     * @brief A static method to create Equinoctial state vectors for a GPS orbit.
-     *
-     * This method return predefined Equinoctial state vectors for various types of orbits.
-     *
-     * @param mu Gravitational parameter of the central body
-     * @return Equinoctial Predefined Equinoctial state vector for a GPS orbit.
-     */
-    static Equinoctial GPS(const GravParam& mu);
-
-    /**
-     * @brief A static method to create Equinoctial state vectors for a HMEO orbit.
-     *
-     * This method return predefined Equinoctial state vectors for various types of orbits.
-     *
-     * @param mu Gravitational parameter of the central body
-     * @return Equinoctial Predefined Equinoctial state vector for a HMEO orbit.
-     */
-    static Equinoctial HMEO(const GravParam& mu);
-
-    /**
-     * @brief A static method to create Equinoctial state vectors for a GEO orbit.
-     *
-     * This method return predefined Equinoctial state vectors for various types of orbits.
-     *
-     * @param mu Gravitational parameter of the central body
-     * @return Equinoctial Predefined Equinoctial state vector for a GEO orbit.
-     */
-    static Equinoctial GEO(const GravParam& mu);
-
-    /**
      * @brief Default destructor for Equinoctial.
      */
     ~Equinoctial() = default;

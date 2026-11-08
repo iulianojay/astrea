@@ -88,56 +88,6 @@ class Keplerian : public OrbitalElementsInterface<Keplerian<_frame_>, Distance, 
     Keplerian(const Equinoctial<_frame_>& elements, const GravParam& mu);
 
     /**
-     * @brief A static method to create Keplerian state vectors for a LEO orbit.
-     *
-     * This method return predefined Keplerian state vectors for various types of orbits.
-     *
-     * @param mu Gravitational parameter of the central body
-     * @return Keplerian Predefined Keplerian state vector for a LEO orbit.
-     */
-    static Keplerian LEO();
-
-    /**
-     * @brief A static method to create Keplerian state vectors for a LMEO orbit.
-     *
-     * This method return predefined Keplerian state vectors for various types of orbits.
-     *
-     * @param mu Gravitational parameter of the central body
-     * @return Keplerian Predefined Keplerian state vector for a LMEO orbit.
-     */
-    static Keplerian LMEO();
-
-    /**
-     * @brief A static method to create Keplerian state vectors for a GPS orbit.
-     *
-     * This method return predefined Keplerian state vectors for various types of orbits.
-     *
-     * @param mu Gravitational parameter of the central body
-     * @return Keplerian Predefined Keplerian state vector for a GPS orbit.
-     */
-    static Keplerian GPS();
-
-    /**
-     * @brief A static method to create Keplerian state vectors for a HMEO orbit.
-     *
-     * This method return predefined Keplerian state vectors for various types of orbits.
-     *
-     * @param mu Gravitational parameter of the central body
-     * @return Keplerian Predefined Keplerian state vector for a HMEO orbit.
-     */
-    static Keplerian HMEO();
-
-    /**
-     * @brief A static method to create Keplerian state vectors for a GEO orbit.
-     *
-     * This method return predefined Keplerian state vectors for various types of orbits.
-     *
-     * @param mu Gravitational parameter of the central body
-     * @return Keplerian Predefined Keplerian state vector for a GEO orbit.
-     */
-    static Keplerian GEO();
-
-    /**
      * @brief Destructor for Keplerian.
      *
      * Cleans up the Keplerian object.

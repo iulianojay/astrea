@@ -27,6 +27,7 @@
 #include <astro/time/Date.hpp>
 #include <astro/time/Interval.hpp>
 #include <tests/utilities/comparisons.hpp>
+#include <tests/utilities/orbit_presets.hpp>
 
 using namespace astrea;
 using namespace astro;
@@ -72,7 +73,7 @@ int main(int argc, char** argv)
 TEST_F(EventDetectionTest, NoThrust)
 {
     // Build constellation
-    Keplerian<frames::earth::icrf> kep0 = Keplerian<frames::earth::icrf>::LEO();
+    Keplerian<frames::earth::icrf> kep0 = make_orbit_preset<Keplerian<frames::earth::icrf>>(OrbitPreset::LEO);
     State state{ kep0, epoch };
     Spacecraft leo;
     Vehicle vehicle{ leo };
@@ -99,7 +100,7 @@ TEST_F(EventDetectionTest, NoThrust)
 TEST_F(EventDetectionTest, ImpulsiveBurn)
 {
     // Build constellation
-    const Keplerian<frames::earth::icrf> kep0 = Keplerian<frames::earth::icrf>::LEO();
+    const Keplerian<frames::earth::icrf> kep0 = make_orbit_preset<Keplerian<frames::earth::icrf>>(OrbitPreset::LEO);
     const ThrusterParameters thrusterParams(1.0e3 * mp_units::si::unit_symbols::kN);
     const State state{ kep0, epoch };
 

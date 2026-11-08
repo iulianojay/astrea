@@ -30,6 +30,7 @@
 #include <astro/state/orbital_elements/OrbitalElements.hpp>
 #include <astro/systems/system_utilities.hpp>
 #include <astro/time/Date.hpp>
+#include <tests/utilities/orbit_presets.hpp>
 
 using mp_units::si::unit_symbols::km;
 using mp_units::si::unit_symbols::m;
@@ -202,7 +203,7 @@ class EquationsOfMotionTest : public testing::Test {
     void SetUp() override
     {
         // Set up test state with basic Cartesian<frames::primary> elements
-        cart  = Cartesian<frames::primary>::LEO(get_mu<frames::primary.origin>());
+        cart  = make_orbit_preset<Cartesian<frames::primary>>(OrbitPreset::LEO, get_mu<frames::primary.origin>());
         state = State(cart, epoch);
     }
 

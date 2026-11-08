@@ -23,6 +23,7 @@
 #include <astro/state/orbital_elements/Keplerian.hpp>
 #include <astro/systems/system_utilities.hpp>
 #include <tests/utilities/comparisons.hpp>
+#include <tests/utilities/orbit_presets.hpp>
 
 using mp_units::si::unit_symbols::km;
 using mp_units::si::unit_symbols::rad;
@@ -64,7 +65,7 @@ TEST_F(KeplerianVopTest, GetExpectedSet)
 
 TEST_F(KeplerianVopTest, Derivative)
 {
-    Keplerian<frames::earth::icrf> kep0            = Keplerian<frames::earth::icrf>::LEO();
+    Keplerian<frames::earth::icrf> kep0 = make_orbit_preset<Keplerian<frames::earth::icrf>>(OrbitPreset::LEO);
     KeplerianPartial<frames::earth::icrf> expected = KeplerianPartial<frames::earth::icrf>(
         0.0 * km / s, 0.0 * 1 / s, 0.0 * rad / s, 0.0 * rad / s, 0.0 * rad / s, 0.0010780076129942077 * rad / s
     );

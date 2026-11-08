@@ -1,5 +1,5 @@
 [project]
-name = "astrea-python-deps"
+name = "pyastrea"
 version = "3.5.1"
 description = "Python dependencies for the Astrea C++ astrodynamics library"
 readme = "README.md"
