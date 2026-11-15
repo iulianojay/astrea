@@ -10,7 +10,7 @@ arch := x86_64
 cc := gcc
 cxx := g++
 cxx_std := 26
-cxx_name := $(shell echo $(cxx) | sed 's/g++/gcc/; s/clang++/clang/' | sed 's/-[0-9.]*$$//')
+cxx_name := $(shell echo $(cxx) | sed 's/clang++/clang/; s/g++/gcc/' | sed 's/-[0-9.]*$$//')
 cxx_ver := $(shell $(cxx) -dumpversion | cut -d. -f1)
 gcov_exec = $(shell dirname "$$(readlink -f "$$(command -v $(cxx))")")/gcov
 comp := $(cxx_name)-$(cxx_ver)-$(cxx_std)
@@ -97,7 +97,7 @@ build: conan-install
 	-DCMAKE_TOOLCHAIN_FILE=$(build_path)/conan_toolchain.cmake \
 	$(toolchain_file) \
 	-DCMAKE_CXX_COMPILER=$(cxx) \
-	-DCMAKE_C_COMPILER=$(shell echo $(cxx) | sed 's/g++/gcc/;s/clang++/clang/') \
+	-DCMAKE_C_COMPILER=$(shell echo $(cxx) | sed 's/clang++/clang/;s/g++/gcc/') \
 	-DCMAKE_BUILD_TYPE=$(build_type) \
 	-DCMAKE_INSTALL_PREFIX:PATH=$(install_path) \
 	-DCPM_SOURCE_CACHE=$(config_path)/.cpm-cache \
@@ -119,28 +119,38 @@ build-gcc: gcc build
 .PHONY: build-mingw
 build-mingw: mingw build
 
-.PHONY: debug
-debug:
-	$(eval build_type = Debug)
+# Build type selection targets
+define refresh_build_paths
 	$(eval build_type_lower := $(shell echo $(build_type) | tr A-Z a-z))
 	$(eval build_path := $(abspath ./build/$(compiler)/$(comp)/$(build_type)))
 	$(eval install_path := $(abspath ./install/$(compiler)/$(comp)/$(build_type)))
+endef
+
+.PHONY: debug
+debug:
+	$(eval build_type = Debug)
+	$(call refresh_build_paths)
 
 .PHONY: release
 release:
 	$(eval build_type = Release)
-	$(eval build_type_lower := $(shell echo $(build_type) | tr A-Z a-z))
-	$(eval build_path := $(abspath ./build/$(compiler)/$(comp)/$(build_type)))
-	$(eval install_path := $(abspath ./install/$(compiler)/$(comp)/$(build_type)))
+	$(call refresh_build_paths)
 
 .PHONY: relwithdebinfo
 relwithdebinfo:
 	$(eval build_type = RelWithDebInfo)
-	$(eval build_type_lower := $(shell echo $(build_type) | tr A-Z a-z))
-	$(eval build_path := $(abspath ./build/$(compiler)/$(comp)/$(build_type)))
-	$(eval install_path := $(abspath ./install/$(compiler)/$(comp)/$(build_type)))
+	$(call refresh_build_paths)
 
 # Compiler selection targets
+define refresh_compiler_paths
+	$(eval cxx_name := $(shell echo $(cxx) | sed 's/clang++/clang/; s/g++/gcc/' | sed 's/-[0-9.]*$$//'))
+	$(eval cxx_ver := $(shell $(cxx) -dumpversion | cut -d. -f1))
+	$(eval gcov_exec = $(shell dirname "$$(readlink -f "$$(command -v $(cxx))")")/gcov)
+	$(eval comp := $(cxx_name)-$(cxx_ver)-$(cxx_std))
+	$(eval build_path := $(abspath ./build/$(compiler)/$(comp)/$(build_type)))
+	$(eval install_path := $(abspath ./install/$(compiler)/$(comp)/$(build_type)))
+endef
+
 .PHONY: gcc
 gcc:
 	$(eval cc := gcc)
@@ -148,8 +158,7 @@ gcc:
 	$(eval compiler = gcc)
 	$(eval toolchain_file = )
 	$(eval toolchain_make = -G Ninja)
-	$(eval build_path := $(abspath ./build/$(compiler)/$(comp)/$(build_type)))
-	$(eval install_path := $(abspath ./install/$(compiler)/$(comp)/$(build_type)))
+	$(call refresh_compiler_paths)
 
 .PHONY: clang
 clang:
@@ -158,24 +167,21 @@ clang:
 	$(eval compiler = clang)
 	$(eval toolchain_file = )
 	$(eval toolchain_make = -G Ninja)
-	$(eval build_path := $(abspath ./build/$(compiler)/$(comp)/$(build_type)))
-	$(eval install_path := $(abspath ./install/$(compiler)/$(comp)/$(build_type)))
+	$(call refresh_compiler_paths)
 
 .PHONY: msvc
 msvc:
 	$(eval compiler = msvc)
 	$(eval toolchain_file = )
 	$(eval toolchain_make = -G "Visual Studio 18 2026" -A x64)
-	$(eval build_path := $(abspath ./build/$(compiler)/$(comp)/$(build_type)))
-	$(eval install_path := $(abspath ./install/$(compiler)/$(comp)/$(build_type)))
+	$(call refresh_compiler_paths)
 
 .PHONY: mingw
 mingw:
 	$(eval compiler = mingw)
 	$(eval toolchain_file = -DCMAKE_TOOLCHAIN_FILE=$(abspath cmake/windows_toolchain.cmake))
 	$(eval toolchain_make = -G "MinGW Makefiles")
-	$(eval build_path := $(abspath ./build/$(compiler)/$(comp)/$(build_type)))
-	$(eval install_path := $(abspath ./install/$(compiler)/$(comp)/$(build_type)))
+	$(call refresh_compiler_paths)
 
 .PHONY: tests
 tests:

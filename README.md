@@ -21,7 +21,7 @@ This library features a comprehensive type system that prevents common errors in
 
 ## Installation
 
-Astrea requires C++23 and uses CMake for building. A conan package is in development and some effort has been put into Windows compatibility, but not much has been tested outside of Linux. Detailed installation instructions are available in our [Getting Started Guide](https://iulianojay.github.io/astrea/getting_started/installation_and_usage/).
+Astrea previously required C++23, but now relies on C++26 features such as reflection, and uses CMake in conjunction with Conan for building. Some effort has been put into Windows compatibility, but not much has been tested outside of Linux. Detailed installation instructions are available in our [Getting Started Guide](https://iulianojay.github.io/astrea/getting_started/installation_and_usage/).
 
 ## Documentation
 

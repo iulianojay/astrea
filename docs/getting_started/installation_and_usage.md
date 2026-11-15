@@ -10,14 +10,11 @@ Before installing Astrea, ensure your development environment meets the followin
 
 ### System Requirements
 
-- **C++ Compiler**: C++23 compatible compiler
-    - GCC 14 or later
+- **C++ Compiler**: C++26 compatible compiler
+    - GCC 16 or later
 - **CMake**: Version 3.20 or later
 - **Python**: Version 3.12 or later (for build scripts and code generation)
 - **Git**: For dependency management and version control
-
-NOTE: It's possible to downgrade to at least GCC 13 but some functionality needs to be replaced or supplanted around the
-inclusion of Howard Hinnat's date library into the official C++ standard chrono library. It's also possible to use earlier versions of Python but a more updated one is used for security.
 
 ### Platform Support
 
@@ -25,7 +22,7 @@ Astrea is tested and supported on the following platforms:
 
 | Platform               | Status         |
 |------------------------|----------------|
-| Ubuntu 20.04+          | ✅ Supported  |
+| Ubuntu 26.04+          | ✅ Supported  |
 | Windows 10/11          | ✅ Supported  |
 | macOS 11.0+            | ❓ Untested   |
 
@@ -33,8 +30,8 @@ Astrea has been tested with the following compilers:
 
 | Compiler               | Version        | Status         |
 |------------------------|----------------|----------------|
-| GCC                    | 14.0+          | ✅ Supported   |
-| Clang                  | 14.0+          | ✅ Supported |
+| GCC                    | 16.0+          | ✅ Supported   |
+| Clang                  | 21.0+          | ✅ Supported |
 | MSVC                   | 19.30+         | ❌ In Progress |
 | Apple Clang            | 14.0+          | ❓ Untested |
 
@@ -192,7 +189,7 @@ add_executable(my_app main.cpp)
 target_link_libraries(my_app PRIVATE astrea::astro)
 
 # Set C++ standard
-target_compile_features(my_app PRIVATE cxx_std_23)
+target_compile_features(my_app PRIVATE cxx_std_26)
 ```
 
 ### Using add_subdirectory
