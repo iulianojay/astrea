@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Changed
+- [CHORE]: Bump the all-deps group with 3 updates ([#227](../../pull/227))
 - Build(deps): Bump the uv group across 1 directory with 3 updates ([#226](../../pull/226))
 - [CHORE]: Bump the all-deps group with 3 updates ([#225](../../pull/225))
 - [IMPROVEMENT] #0 Fixed major speed issue in itrf->icrf conversion ([#224](../../pull/224))
