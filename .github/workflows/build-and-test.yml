@@ -169,6 +169,11 @@ jobs:
     - name: Fetch tags
       run: git fetch --prune --unshallow --tags
 
+    - name: Install OpenMP Runtime
+      run: |
+        brew update
+        brew install libomp
+
     - name: Setup
       run: |
         bash ./scripts/ci_bootstrap.sh

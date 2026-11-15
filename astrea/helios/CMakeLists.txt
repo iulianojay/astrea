@@ -31,7 +31,7 @@ if(TARGET webui)
     target_compile_options(webui PRIVATE -w)
 endif()
 
-find_package(OpenMP REQUIRED)
+find_package(OpenMP REQUIRED COMPONENTS CXX)
 
 # Objects
 set(HELIOS_BASE ${CMAKE_CURRENT_LIST_DIR}/${PROJECT_NAME})

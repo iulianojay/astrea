@@ -22,6 +22,8 @@ class AstreaConan(ConanFile):
     def configure(self):
         if str(self.settings.os) == "Macos":
             self.options["cpr/*"].with_ssl = "darwinssl"
+        elif str(self.settings.os) == "Windows":
+            self.options["cpr/*"].with_ssl = "winssl"
         else:
             self.options["cpr/*"].with_ssl = "openssl"
 
