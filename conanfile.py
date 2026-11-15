@@ -16,7 +16,7 @@ class AstreaConan(ConanFile):
     generators = "CMakeDeps", "CMakeToolchain"
     default_options = {
         # Default to OpenSSL; macOS is overridden to DarwinSSL in configure().
-        "cpr*:with_ssl": "openssl",
+        "cpr/*:with_ssl": "openssl",
     }
 
     def configure(self):
