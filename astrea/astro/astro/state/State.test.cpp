@@ -17,6 +17,8 @@
 #include <units/units.hpp>
 
 #include <astro/state/State.hpp>
+#include <astro/state/StateHistory.hpp>
+#include <astro/state/attitude/Attitude.hpp>
 #include <astro/state/orbital_elements/Cartesian.hpp>
 #include <astro/state/orbital_elements/Equinoctial.hpp>
 #include <astro/state/orbital_elements/Keplerian.hpp>
@@ -36,6 +38,7 @@ class StateTest : public testing::Test {
     State state;
     Date epoch;
     OrbitalElements elements;
+    Attitude attitude;
 };
 
 
@@ -48,7 +51,34 @@ int main(int argc, char** argv)
 
 TEST_F(StateTest, DefaultConstructor) { ASSERT_NO_THROW(State()); }
 
-TEST_F(StateTest, Constructor) { ASSERT_NO_THROW(State(elements)); }
+TEST_F(StateTest, Constructor)
+{
+    State state0(elements, epoch);
+    SUCCEED();
+}
+
+TEST_F(StateTest, ConstructorWithAttitude)
+{
+    State state0(elements, epoch, attitude);
+    SUCCEED();
+}
+
+TEST_F(StateTest, ConstructFromStateHistory)
+{
+    StateHistory history;
+    history.fast_append(state);
+    ASSERT_EQ(State(history), state);
+
+    State newState = state;
+    history.fast_append(newState);
+    ASSERT_ANY_THROW(State{ history });
+}
+
+TEST_F(StateTest, Getters)
+{
+    EXPECT_EQ(state.get_epoch(), epoch);
+    EXPECT_EQ(state.get_elements(), elements);
+}
 
 TEST_F(StateTest, ConvertInPlace)
 {
