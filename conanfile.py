@@ -24,6 +24,7 @@ class AstreaConan(ConanFile):
             self.options["cpr/*"].with_ssl = "darwinssl"
         elif str(self.settings.os) == "Windows":
             self.options["cpr/*"].with_ssl = "winssl"
+            self.options["libcurl/*"].with_ssl = "schannel"
         else:
             self.options["cpr/*"].with_ssl = "openssl"
 
