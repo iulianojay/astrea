@@ -22,9 +22,9 @@ Astrea is tested and supported on the following platforms:
 
 | Platform               | Status         |
 |------------------------|----------------|
-| Ubuntu 26.04+          | ✅ Supported  |
+| Ubuntu 24.04+          | ✅ Supported  |
 | Windows 10/11          | ✅ Supported  |
-| macOS 11.0+            | ❓ Untested   |
+| macOS 11.0+            | ✅ Supported  |
 
 Astrea has been tested with the following compilers:
 
@@ -33,9 +33,9 @@ Astrea has been tested with the following compilers:
 | GCC                    | 16.0+          | ✅ Supported   |
 | Clang                  | 21.0+          | ✅ Supported |
 | MSVC                   | 19.30+         | ❌ In Progress |
-| Apple Clang            | 14.0+          | ❓ Untested |
+| Apple Clang            | 14.0+          | ❌ Unsupported |
 
-MacOS and Apple Clang is currently untested but I expect it works since linux Clang works fine.
+macOS g++-16 is supported, but Apple Clang is currently unsupported due to missing std::chrono support.
 
 Note: I have not extensively tested every compiler version on every platform, so please make an issue if you encounter any problems or have questions about compatibility.
 

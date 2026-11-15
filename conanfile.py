@@ -21,12 +21,12 @@ class AstreaConan(ConanFile):
 
     def configure(self):
         if str(self.settings.os) == "Macos":
-            self.options["cpr/*"].with_ssl = "darwinssl"
+            self.options["cpr/*:with_ssl"] = "darwinssl"
         elif str(self.settings.os) == "Windows":
-            self.options["cpr/*"].with_ssl = "winssl"
-            self.options["libcurl/*"].with_ssl = "schannel"
+            self.options["cpr/*:with_ssl"] = "winssl"
+            self.options["libcurl/*:with_ssl"] = "schannel"
         else:
-            self.options["cpr/*"].with_ssl = "openssl"
+            self.options["cpr/*:with_ssl"] = "openssl"
 
     def requirements(self):
         self.requires("nlohmann_json/3.12.0")

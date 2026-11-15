@@ -70,11 +70,7 @@ else()
     set(CXX_RELWITHDEBINFO_FLAGS "${CXX_RELEASE_FLAGS} -g")
 
     set(C_FLAGS "-Wall")
-    if(APPLE)
-        set(CXX_FLAGS "-Wall -fexperimental-library") # Needed for chrono on Apple Clang
-    else()
-        set(CXX_FLAGS "-Wall")
-    endif()
+    set(CXX_FLAGS "-Wall")
 endif()
 
 set(CMAKE_C_FLAGS_DEBUG            "${C_FLAGS} ${C_DEBUG_FLAGS}")

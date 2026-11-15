@@ -138,6 +138,11 @@ jobs:
       run: |
         bash ./scripts/ci_bootstrap.sh
 
+    - name: Detect Conan Profile For Selected Compiler
+      run: |
+        . .venv/bin/activate
+        CC=${{ matrix.cc }} CXX=${{ matrix.cxx }} conan profile detect --force
+
     - name: Build and Install Release
       run: |
         . .venv/bin/activate && make cc=${{ matrix.cc }} cxx=${{ matrix.cxx }} release all install
@@ -157,9 +162,9 @@ jobs:
       matrix:
         include:
         - os: macos-latest
-          name: apple-clang
-          cc: clang
-          cxx: clang++
+          name: gcc-16
+          cc: gcc-16
+          cxx: g++-16
     name: macOS • ${{ matrix.name }}
     steps:
     - uses: actions/checkout@v7
@@ -175,10 +180,10 @@ jobs:
     - name: Setup uv
       uses: astral-sh/setup-uv@v6
 
-    - name: Install OpenMP Runtime
+    - name: Install GCC Toolchain
       run: |
         brew update
-        brew install libomp
+        brew install gcc
 
     - name: Setup
       run: |

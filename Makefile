@@ -15,6 +15,14 @@ cxx_ver := $(shell $(cxx) -dumpversion | cut -d. -f1)
 gcov_exec = $(shell dirname "$$(readlink -f "$$(command -v $(cxx))")")/gcov
 comp := $(cxx_name)-$(cxx_ver)-$(cxx_std)
 tests_path := tests
+uname_s := $(shell uname -s 2>/dev/null || echo Unknown)
+
+conan_ssl_opts :=
+ifneq (,$(findstring MINGW,$(uname_s)))
+	conan_ssl_opts += -o cpr/*:with_ssl=winssl -o libcurl/*:with_ssl=schannel
+else ifeq ($(uname_s),Darwin)
+	conan_ssl_opts += -o cpr/*:with_ssl=darwinssl
+endif
 
 ifneq (,$(wildcard $(config_path)/.venv/bin/activate))
 	venv_activate := $(config_path)/.venv/bin/activate
@@ -87,7 +95,8 @@ conan-install: ensure-conan-profile
 	$(CONAN) install . \
 	--output-folder=$(build_path) \
 	--build=missing \
-	-s build_type=$(build_type)
+	-s build_type=$(build_type) \
+	$(conan_ssl_opts)
 	rm -f $(build_path)/CMakeCache.txt
 
 .PHONY: build
