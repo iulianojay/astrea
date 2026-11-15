@@ -125,8 +125,10 @@ jobs:
 
     - name: Setup
       run: |
-        export PATH="$HOME/.local/bin:$PATH"
-        make python_env
+        python3 -m venv .venv
+        . .venv/bin/activate
+        python -m pip install --upgrade pip
+        pip install .
 
     - name: Build and Install Release
       run: |
@@ -221,24 +223,24 @@ jobs:
       shell: msys2 {0}
       run: |
         python -m venv .venv
-        . .venv/Scripts/activate
+        . .venv/bin/activate
         python -m pip install --upgrade pip
-        pip install conan
+        pip install .
 
     - name: Build and Install Release
       shell: msys2 {0}
       run: |
-        . .venv/Scripts/activate && make cc=${{ matrix.cc }} cxx=${{ matrix.cxx }} release all install
+        . .venv/bin/activate && make cc=${{ matrix.cc }} cxx=${{ matrix.cxx }} release all install
 
     - name: Run Tests
       shell: msys2 {0}
       run: |
-        . .venv/Scripts/activate && make cc=${{ matrix.cc }} cxx=${{ matrix.cxx }} run_tests
+        . .venv/bin/activate && make cc=${{ matrix.cc }} cxx=${{ matrix.cxx }} run_tests
 
     - name: Run Examples
       shell: msys2 {0}
       run: |
-        . .venv/Scripts/activate && make cc=${{ matrix.cc }} cxx=${{ matrix.cxx }} run_examples
+        . .venv/bin/activate && make cc=${{ matrix.cc }} cxx=${{ matrix.cxx }} run_examples
 
   coverage:
     runs-on: ubuntu-latest
