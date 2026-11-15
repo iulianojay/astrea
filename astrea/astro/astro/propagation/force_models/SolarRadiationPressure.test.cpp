@@ -109,3 +109,15 @@ TEST_F(SolarRadiationPressureTest, ComputeForceValladoEx85)
     ASSERT_TRUE(nearly_equal(accel, expected, REL_TOL));
     ASSERT_TRUE(math::nearly_equal(accelNorm, expectedNorm, REL_TOL * 1e1));
 }
+
+TEST_F(SolarRadiationPressureTest, Clone)
+{
+    const auto clone = srpForce.clone();
+    ASSERT_TRUE(clone != nullptr);
+    ASSERT_TRUE(typeid(*clone) == typeid(srpForce));
+}
+
+TEST_F(SolarRadiationPressureTest, ObjectInShadow)
+{
+    // TODO: This
+}

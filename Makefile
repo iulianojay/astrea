@@ -12,6 +12,7 @@ cxx := g++
 cxx_std := 26
 cxx_name := $(shell echo $(cxx) | sed 's/g++/gcc/; s/clang++/clang/' | sed 's/-[0-9.]*$$//')
 cxx_ver := $(shell $(cxx) -dumpversion | cut -d. -f1)
+gcov_exec = $(shell dirname "$$(readlink -f "$$(command -v $(cxx))")")/gcov
 comp := $(cxx_name)-$(cxx_ver)-$(cxx_std)
 tests_path := tests
 
@@ -277,7 +278,7 @@ coverage-html: debug run_tests run_examples
 	--exclude-unreachable-branches -s \
 	--gcov-ignore-errors=no_working_dir_found \
 	--gcov-ignore-parse-errors=suspicious_hits.warn_once_per_file \
-	--gcov-executable gcov-15
+	--gcov-executable $(gcov_exec)
 
 .PHONY: coverage
 coverage: debug run_tests run_examples
@@ -290,7 +291,7 @@ coverage: debug run_tests run_examples
 	--exclude-unreachable-branches -s \
 	--gcov-ignore-errors=no_working_dir_found \
 	--gcov-ignore-parse-errors=suspicious_hits.warn_once_per_file \
-	--gcov-executable gcov-15
+	--gcov-executable $(gcov_exec)
 
 .PHONY: build_env
 build_env:

@@ -109,3 +109,10 @@ TEST_F(NBodyForceTest, ComputeForceValladoEx85)
     ASSERT_TRUE(nearly_equal(accel, expected, REL_TOL));
     ASSERT_TRUE(math::nearly_equal(accelNorm, expectedNorm, REL_TOL));
 }
+
+TEST_F(NBodyForceTest, Clone)
+{
+    const auto clone = nBodyForce.clone();
+    ASSERT_TRUE(clone != nullptr);
+    ASSERT_TRUE(typeid(*clone) == typeid(nBodyForce));
+}

@@ -88,3 +88,10 @@ TEST_F(CowellsMethodTest, DerivativeValladoEx85)
     OrbitalElementPartials dstate = eom.compute_dynamics(state0, sat, noForce, noForce);
     ASSERT_TRUE(nearly_equal(expected, dstate, REL_TOL));
 }
+
+TEST_F(CowellsMethodTest, Clone)
+{
+    std::unique_ptr<EquationsOfMotion> clone = eom.clone();
+    ASSERT_TRUE(clone != nullptr);
+    ASSERT_EQ(clone->get_expected_set_id(), eom.get_expected_set_id());
+}

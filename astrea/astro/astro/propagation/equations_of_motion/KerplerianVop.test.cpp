@@ -75,3 +75,10 @@ TEST_F(KeplerianVopTest, Derivative)
     OrbitalElementPartials dstate = eom.compute_dynamics(state, sat, noForce, noForce);
     ASSERT_TRUE(nearly_equal(expected, dstate, REL_TOL));
 }
+
+TEST_F(KeplerianVopTest, Clone)
+{
+    std::unique_ptr<EquationsOfMotion> clone = eom.clone();
+    ASSERT_TRUE(clone != nullptr);
+    ASSERT_EQ(clone->get_expected_set_id(), eom.get_expected_set_id());
+}

@@ -121,3 +121,8 @@ TEST_F(EventTest, Extract)
 {
     ASSERT_NO_THROW(const TestEvent* ptr = static_cast<const TestEvent*>(event.extract<TestEvent>()));
 }
+
+TEST_F(EventTest, TriggerActionOnTriggerlessEvent)
+{
+    ASSERT_NO_THROW(const Event triggerlessEvent{ DirectionalTestEvent() }; triggerlessEvent.trigger_action(time, state, vehicle));
+}

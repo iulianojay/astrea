@@ -398,3 +398,10 @@ TEST_F(EquationsOfMotionTest, ComputeUserDefinedStatePartialsCanBeOverridden)
     EXPECT_DOUBLE_EQ(vectorResult[6], 9.0);
     EXPECT_DOUBLE_EQ(vectorResult[7], 7.0);
 }
+
+TEST_F(EquationsOfMotionTest, Clone)
+{
+    std::unique_ptr<EquationsOfMotion> clone = eomDefault.clone();
+    ASSERT_TRUE(clone != nullptr);
+    ASSERT_EQ(clone->get_expected_set_id(), eomDefault.get_expected_set_id());
+}
