@@ -10,24 +10,10 @@ else
   py_bin="python"
 fi
 
-# Ensure uv is available. Prefer an existing binary; otherwise bootstrap via pip.
 if ! command -v uv >/dev/null 2>&1; then
-  "${py_bin}" -m pip install --user uv
+  echo "uv is not available in PATH. Ensure the workflow installs uv before running bootstrap."
+  exit 1
 fi
-
-uv_user_bin="$(${py_bin} - <<'PY'
-import os
-import site
-print(os.path.join(site.USER_BASE, "bin"))
-PY
-)"
-uv_user_scripts="$(${py_bin} - <<'PY'
-import os
-import site
-print(os.path.join(site.USER_BASE, "Scripts"))
-PY
-)"
-export PATH="${uv_user_bin}:${uv_user_scripts}:$PATH"
 
 uv venv .venv --python "${py_bin}"
 
@@ -35,14 +21,16 @@ uv venv .venv --python "${py_bin}"
 # shellcheck disable=SC1091
 source .venv/bin/activate
 
-# Install only CI tooling; do not install repository root as a Python package.
-uv pip install "cmake>=4.3.2" conan numpy
+# Sync project dependencies without attempting to install the repository itself
+# as a Python package (this repo is not laid out as an installable package).
+sync_args=(sync --no-install-project)
 
-# Only coverage jobs need gcovr. Installing it on MSYS2 can require extra
-# native XML deps, so keep it opt-in.
+# Coverage-only dependencies are opted in via dependency groups.
 if [[ "${CI_INSTALL_GCOVR:-0}" == "1" ]]; then
-  uv pip install gcovr
+  sync_args+=(--group coverage)
 fi
+
+uv "${sync_args[@]}"
 
 python --version
 uv --version

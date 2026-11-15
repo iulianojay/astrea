@@ -125,6 +125,9 @@ jobs:
     - name: Fetch tags
       run: git fetch --prune --unshallow --tags
 
+    - name: Setup uv
+      uses: astral-sh/setup-uv@v6
+
     - name: Install Clang Toolchain
       if: matrix.cc == 'clang'
       run: |
@@ -168,6 +171,9 @@ jobs:
 
     - name: Fetch tags
       run: git fetch --prune --unshallow --tags
+
+    - name: Setup uv
+      uses: astral-sh/setup-uv@v6
 
     - name: Install OpenMP Runtime
       run: |
@@ -228,6 +234,9 @@ jobs:
       shell: msys2 {0}
       run: git fetch --prune --unshallow --tags || git fetch --prune --tags
 
+    - name: Setup uv
+      uses: astral-sh/setup-uv@v6
+
     - name: Setup
       shell: msys2 {0}
       run: |
@@ -282,6 +291,9 @@ jobs:
 
     - name: Fetch tags
       run: git fetch --prune --unshallow --tags
+
+    - name: Setup uv
+      uses: astral-sh/setup-uv@v6
 
     - name: Setup
       run: |
