@@ -27,6 +27,7 @@ on:
       - 'docker/**'
       - 'CMakeLists.txt'
       - 'Makefile'
+      - 'scripts/**'
       - '.github/workflows/build-and-test.yml'
       - '.github/workflows/docker-publish-devcontainer.yml'
   pull_request:
@@ -37,6 +38,7 @@ on:
       - 'docker/**'
       - 'CMakeLists.txt'
       - 'Makefile'
+      - 'scripts/**'
       - '.github/workflows/build-and-test.yml'
       - '.github/workflows/docker-publish-devcontainer.yml'
 
@@ -125,10 +127,7 @@ jobs:
 
     - name: Setup
       run: |
-        python3 -m venv .venv
-        . .venv/bin/activate
-        python -m pip install --upgrade pip
-        pip install .
+        bash ./scripts/ci_bootstrap.sh
 
     - name: Build and Install Release
       run: |
@@ -166,8 +165,7 @@ jobs:
 
     - name: Setup
       run: |
-        export PATH="$HOME/.local/bin:$PATH"
-        make python_env
+        bash ./scripts/ci_bootstrap.sh
 
     - name: Build and Install Release
       run: |
@@ -222,10 +220,7 @@ jobs:
     - name: Setup
       shell: msys2 {0}
       run: |
-        python -m venv .venv
-        . .venv/bin/activate
-        python -m pip install --upgrade pip
-        pip install .
+        bash ./scripts/ci_bootstrap.sh
 
     - name: Build and Install Release
       shell: msys2 {0}
@@ -279,8 +274,7 @@ jobs:
 
     - name: Setup
       run: |
-        export PATH="$HOME/.local/bin:$PATH"
-        make python_env
+        bash ./scripts/ci_bootstrap.sh
 
     - name: Build and Install Debug
       run: |
