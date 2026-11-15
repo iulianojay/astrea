@@ -135,6 +135,9 @@ endif()
 # Silence warnings emitted by external dependency source builds
 if(TARGET matplot)
     target_compile_options(matplot PRIVATE -Wno-deprecated-declarations)
+    if(APPLE)
+        target_compile_options(matplot PRIVATE -include cstdlib)
+    endif()
     target_link_libraries(matplot PUBLIC PNG::PNG)
 endif()
 

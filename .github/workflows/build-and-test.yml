@@ -245,17 +245,17 @@ jobs:
     - name: Build and Install Release
       shell: msys2 {0}
       run: |
-        . .venv/bin/activate && make cc=${{ matrix.cc }} cxx=${{ matrix.cxx }} release all install
+        (. .venv/bin/activate || . .venv/Scripts/activate) && make cc=${{ matrix.cc }} cxx=${{ matrix.cxx }} release all install
 
     - name: Run Tests
       shell: msys2 {0}
       run: |
-        . .venv/bin/activate && make cc=${{ matrix.cc }} cxx=${{ matrix.cxx }} run_tests
+        (. .venv/bin/activate || . .venv/Scripts/activate) && make cc=${{ matrix.cc }} cxx=${{ matrix.cxx }} run_tests
 
     - name: Run Examples
       shell: msys2 {0}
       run: |
-        . .venv/bin/activate && make cc=${{ matrix.cc }} cxx=${{ matrix.cxx }} run_examples
+        (. .venv/bin/activate || . .venv/Scripts/activate) && make cc=${{ matrix.cc }} cxx=${{ matrix.cxx }} run_examples
 
   coverage:
     runs-on: ubuntu-latest

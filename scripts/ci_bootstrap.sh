@@ -22,9 +22,17 @@ fi
 
 uv venv .venv --python "${py_bin}"
 
-# MSYS2 and Unix-like shells both use bin/activate for venv activation.
-# shellcheck disable=SC1091
-source .venv/bin/activate
+# Activate virtualenv across Unix and Windows/MSYS2 layouts.
+if [[ -f .venv/bin/activate ]]; then
+  # shellcheck disable=SC1091
+  source .venv/bin/activate
+elif [[ -f .venv/Scripts/activate ]]; then
+  # shellcheck disable=SC1091
+  source .venv/Scripts/activate
+else
+  echo "Unable to find a virtualenv activation script in .venv."
+  exit 1
+fi
 
 # Sync project dependencies without attempting to install the repository itself
 # as a Python package (this repo is not laid out as an installable package).

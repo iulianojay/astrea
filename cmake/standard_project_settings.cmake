@@ -45,7 +45,10 @@ elseif(MINGW)
 elseif(UNIX AND NOT APPLE)
     # Linux GCC flags
     set(COMMON_C_FLAGS "-DWL=64 -m64 -fPIC -mfpmath=sse -DLINUX -fdiagnostics-color=always")
-    set(COMMON_CXX_FLAGS "${COMMON_C_FLAGS} -Wno-interference-size -freflection") # -freport-bug
+    set(COMMON_CXX_FLAGS "${COMMON_C_FLAGS} -Wno-interference-size") # -freport-bug
+    if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
+        set(COMMON_CXX_FLAGS "${COMMON_CXX_FLAGS} -freflection")
+    endif()
     set(C_DEBUG_FLAGS "${COMMON_C_FLAGS} -g -fno-inline -fno-inline-small-functions -fno-default-inline --coverage -O0")
     set(C_RELEASE_FLAGS "${COMMON_C_FLAGS} -O3 -ffinite-loops")
     set(C_RELWITHDEBINFO_FLAGS "${C_RELEASE_FLAGS} -g")
