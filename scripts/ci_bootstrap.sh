@@ -11,8 +11,13 @@ else
 fi
 
 if ! command -v uv >/dev/null 2>&1; then
-  echo "uv is not available in PATH. Ensure the workflow installs uv before running bootstrap."
-  exit 1
+  if command -v curl >/dev/null 2>&1; then
+    curl -LsSf https://astral.sh/uv/install.sh | sh
+    export PATH="$HOME/.local/bin:$PATH"
+  else
+    echo "uv is not available in PATH and curl is missing; cannot install uv automatically."
+    exit 1
+  fi
 fi
 
 uv venv .venv --python "${py_bin}"
