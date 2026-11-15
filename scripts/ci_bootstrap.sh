@@ -22,7 +22,13 @@ export PIP_NO_CACHE_DIR=1
 python -m pip install --upgrade pip setuptools wheel
 
 # Install only CI tooling; do not install repository root as a Python package.
-pip install conan gcovr
+pip install "cmake>=4.3.2" conan
+
+# Only coverage jobs need gcovr. Installing it on MSYS2 can require extra
+# native XML deps, so keep it opt-in.
+if [[ "${CI_INSTALL_GCOVR:-0}" == "1" ]]; then
+  pip install gcovr
+fi
 
 python --version
 pip --version

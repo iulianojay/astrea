@@ -15,9 +15,15 @@ class AstreaConan(ConanFile):
     settings = "os", "compiler", "build_type", "arch"
     generators = "CMakeDeps", "CMakeToolchain"
     default_options = {
-        # Use OpenSSL as the SSL backend for cpr on Linux
+        # Default to OpenSSL; macOS is overridden to DarwinSSL in configure().
         "cpr*:with_ssl": "openssl",
     }
+
+    def configure(self):
+        if str(self.settings.os) == "Macos":
+            self.options["cpr/*"].with_ssl = "darwinssl"
+        else:
+            self.options["cpr/*"].with_ssl = "openssl"
 
     def requirements(self):
         self.requires("nlohmann_json/3.12.0")

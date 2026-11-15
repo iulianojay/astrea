@@ -125,6 +125,12 @@ jobs:
     - name: Fetch tags
       run: git fetch --prune --unshallow --tags
 
+    - name: Install Clang Toolchain
+      if: matrix.cc == 'clang'
+      run: |
+        apt-get update
+        DEBIAN_FRONTEND=noninteractive apt-get install -y clang
+
     - name: Setup
       run: |
         bash ./scripts/ci_bootstrap.sh
@@ -274,6 +280,7 @@ jobs:
 
     - name: Setup
       run: |
+        export CI_INSTALL_GCOVR=1
         bash ./scripts/ci_bootstrap.sh
 
     - name: Build and Install Debug
