@@ -26,22 +26,38 @@ namespace astrea {
 namespace astro {
 
 /**
- * @brief Concept to check if two ElementMatrixs have the same element types.
- *
- * @tparam elements The types of the elements in the first ElementMatrix.
- * @tparam elements_u The types of the elements in the second ElementMatrix.
- */
-template <typename... elements, typename... elements_u>
-concept IsSameElementMatrix = (std::is_same_v<elements, elements_u> && ...);
-
-/**
  * @brief Forward declaration of the ElementMatrix class template.
  */
 template <std::size_t n_row, std::size_t n_col, typename... elements>
 struct ElementMatrix;
 
 /**
- * @brief Helper struct to determine if two ElementMatrixs are compatible for operations.
+ * @brief Helper trait that exposes the ordered element type list for ElementMatrix types.
+ *
+ * For non-ElementMatrix types, is_element_matrix is false.
+ */
+template <typename T>
+struct ElementMatrixElementTypes {
+    static constexpr bool is_element_matrix = false;
+    using type                              = void;
+};
+
+template <std::size_t n_row, std::size_t n_col, typename... elements>
+struct ElementMatrixElementTypes<ElementMatrix<n_row, n_col, elements...>> {
+    static constexpr bool is_element_matrix = true;
+    using type                              = std::tuple<elements...>;
+};
+
+/**
+ * @brief Concept to check if two ElementMatrix types have the same element types in order.
+ */
+template <typename T1, typename T2>
+concept IsSameElementMatrix =
+    ElementMatrixElementTypes<T1>::is_element_matrix && ElementMatrixElementTypes<T2>::is_element_matrix &&
+    std::is_same_v<typename ElementMatrixElementTypes<T1>::type, typename ElementMatrixElementTypes<T2>::type>;
+
+/**
+ * @brief Helper struct to determine if two ElementMatrices are compatible for operations.
  *
  * @tparam T1 The first ElementMatrix type.
  * @tparam T2 The second ElementMatrix type.
@@ -50,7 +66,7 @@ template <typename T1, typename T2>
 struct IsCompatibleElementMatrixImpl : std::false_type {};
 
 /**
- * @brief Specialization of IsCompatibleElementMatrixImpl for two ElementMatrixs.
+ * @brief Specialization of IsCompatibleElementMatrixImpl for two ElementMatrix types.
  *
  * @tparam n_row The number of rows in the first ElementMatrix.
  * @tparam n_col The number of columns in the first ElementMatrix.
@@ -65,7 +81,7 @@ struct IsCompatibleElementMatrixImpl<ElementMatrix<n_row, n_col, elements...>, E
     : std::bool_constant<(std::is_convertible_v<elements, elements_u> && ...)> {};
 
 /**
- * @brief Concept to check if two ElementMatrixs are compatible for operations.
+ * @brief Concept to check if two ElementMatrices are compatible for operations.
  *
  * @tparam T1 The first ElementMatrix type.
  * @tparam T2 The second ElementMatrix type.

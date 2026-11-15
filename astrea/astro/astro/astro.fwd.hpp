@@ -48,7 +48,7 @@ class EquinoctialPartial;
 
 class TwoLineElements;
 class TwoLineElementsPartial;
-class GeneralPerturbations;
+struct GeneralPerturbations;
 class OrbitalElements;
 class OrbitalElementPartials;
 
@@ -96,7 +96,7 @@ struct Perifocal;
 } // namespace frames
 
 template <IsFrame auto _in_frame_, IsFrame auto _out_frame_>
-class DirectionCosineMatrix;
+struct DirectionCosineMatrix;
 
 // Platforms
 template <class Spacecraft_T>
@@ -124,7 +124,7 @@ class Event;
 class EventDetector;
 class Schedule;
 
-class Perturbation;
+struct Perturbation;
 class ForceModel;
 class PerturbingForce;
 class SpaceWeatherProvider;

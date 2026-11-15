@@ -38,7 +38,7 @@ namespace astrea {
 namespace astro {
 
 template <IsFrame auto _in_frame_, IsFrame auto _out_frame_>
-class DirectionCosineMatrixAccel;
+struct DirectionCosineMatrixAccel;
 
 /**
  * @brief Class representing a direction cosine matrix (DCM) for transforming vectors between state/frames.
