@@ -296,9 +296,7 @@ class Integrator {
     Time _timeStepInitial = 60.0 * astrea::detail::time_unit; //!< Initial time step for the integrator
 
     // Run options
-    bool _printOn = false; //!< Flag to control printing of integration details
-    bool _store   = true;  //!< Flag to control whether to store the state history during propagation
-
+    bool _store = true; //!< Flag to control whether to store the state history during propagation
     StepMethod _stepMethod = StepMethod::DOP45; //!< Step method to use for the integration (default is Dormand-Prince RK4(5))
     std::unique_ptr<EquationsOfMotion> _eom; //!< Equations of motion to use for the integration
 

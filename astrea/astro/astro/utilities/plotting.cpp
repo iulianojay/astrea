@@ -343,7 +343,6 @@ void plot_orbital_elements(const StateHistory& trajectory, const std::filesystem
     // Plot
     std::vector<double> time                = extract_raw_time_data(trajectory);
     std::array<std::vector<double>, 6> data = extract_raw_orbital_elements(trajectory);
-    const Date epoch                        = trajectory.epoch();
 
     const auto font             = "Arial";
     const float size            = 20.0;
@@ -401,7 +400,6 @@ void plot_trajectory(const StateHistory& trajectory, const std::filesystem::path
     // Plot
     std::array<std::vector<double>, 6> data = extract_raw_cartesian_elements(trajectory);
     std::vector<double> time                = extract_raw_time_data(trajectory);
-    const Date epoch                        = trajectory.epoch();
 
     std::vector<double> R;
     std::vector<double> V;
@@ -602,7 +600,6 @@ void compare_trajectories(const std::vector<StateHistory>& trajectories, const s
         for (const auto& trajectory : trajectories) {
             std::vector<double> time                = extract_raw_time_data(trajectory);
             std::array<std::vector<double>, 6> data = extract_raw_cartesian_elements(trajectory);
-            const Date epoch                        = trajectory.epoch();
 
             std::vector<double> R;
             std::vector<double> V;
@@ -791,7 +788,6 @@ void plot_difference_trajectories(
         iTraj = 0;
         for (const auto& trajectory : trajectories) {
             std::array<std::vector<double>, 6> data = extract_raw_cartesian_elements_at_times(time, trajectory);
-            const Date epoch                        = trajectory.epoch();
 
             std::vector<double> dR;
             std::vector<double> dV;

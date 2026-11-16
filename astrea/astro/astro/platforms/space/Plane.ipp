@@ -37,9 +37,8 @@ Plane<Spacecraft_T>::Plane(std::vector<Spacecraft_T> _satellites) :
     satellites(_satellites)
 {
     // Grab first element set as plane set
-    const GravParam mu = get_mu<frames::primary.origin>();
-    const auto state0  = satellites[0].get_initial_state();
-    elements           = state0.get_elements();
+    const auto state0 = satellites[0].get_initial_state();
+    elements          = state0.get_elements();
 
     // Check if other satellites are actually in-plane
     strict = true;
