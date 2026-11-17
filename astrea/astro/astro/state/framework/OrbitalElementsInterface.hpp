@@ -24,6 +24,7 @@
 
 #include <astro/frames/framework.hpp>
 #include <astro/state/framework/ElementMatrix.hpp>
+#include <astro/types/concepts.hpp>
 
 namespace astrea {
 namespace astro {
@@ -34,9 +35,6 @@ concept IsOrbitalElementsImpl = requires {
     typename T::OrbitalElementsTag;
     requires IsFrame<std::remove_cvref_t<decltype(T::frame)>>;
 };
-
-template <typename T, typename U>
-concept IsSameUnderlyingType = std::is_same_v<std::remove_cvref_t<T>, std::remove_cvref_t<U>>;
 
 template <typename Derived_T, typename Derived_U>
 concept IsCompatibleOrbitalElements = IsOrbitalElementsImpl<Derived_T> && IsOrbitalElementsImpl<Derived_U> &&

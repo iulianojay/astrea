@@ -130,5 +130,14 @@ concept HasGetName = requires(const T event) {
     { event.get_name() } -> std::same_as<std::string>;
 };
 
+/**
+ * @brief Concept to check if two types have the same underlying type.
+ *
+ * @tparam T The first type to check.
+ * @tparam U The second type to check.
+ */
+template <typename T, typename U>
+concept IsSameUnderlyingType = std::is_same_v<std::remove_cvref_t<T>, std::remove_cvref_t<U>>;
+
 } // namespace astro
 } // namespace astrea
