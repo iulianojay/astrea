@@ -41,11 +41,10 @@ using mp_units::si::unit_symbols::s;
  * so that arithmetic operator results (which return Derived_T) are constructible.
  */
 template <IsCelestialBody auto _body_>
-class TestGeodetic : public AngularElementsInterface<TestGeodetic<_body_>, Angle, Angle, Distance> {
-    using BaseType = AngularElementsInterface<TestGeodetic<_body_>, Angle, Angle, Distance>;
+class TestGeodetic : public AngularElementsInterface<TestGeodetic<_body_>, _body_, Angle, Angle, Distance> {
+    using BaseType = AngularElementsInterface<TestGeodetic<_body_>, _body_, Angle, Angle, Distance>;
 
   public:
-    static constexpr auto body = _body_;
     using BaseType::BaseType;
     using BaseType::operator=;
 
@@ -58,11 +57,10 @@ class TestGeodetic : public AngularElementsInterface<TestGeodetic<_body_>, Angle
  *        IsCompatibleAngularElements across distinct derived types.
  */
 template <IsCelestialBody auto _body_>
-class TestGeodetic2 : public AngularElementsInterface<TestGeodetic2<_body_>, Angle, Angle, Distance> {
-    using BaseType = AngularElementsInterface<TestGeodetic2<_body_>, Angle, Angle, Distance>;
+class TestGeodetic2 : public AngularElementsInterface<TestGeodetic2<_body_>, _body_, Angle, Angle, Distance> {
+    using BaseType = AngularElementsInterface<TestGeodetic2<_body_>, _body_, Angle, Angle, Distance>;
 
   public:
-    static constexpr auto body = _body_;
     using BaseType::BaseType;
     using BaseType::operator=;
 
@@ -76,11 +74,10 @@ class TestGeodetic2 : public AngularElementsInterface<TestGeodetic2<_body_>, Ang
  * satisfy that constraint, so a separate scalar-element type is used here.
  */
 template <IsCelestialBody auto _body_>
-class TestUniform3 : public AngularElementsInterface<TestUniform3<_body_>, double, double, double> {
-    using BaseType = AngularElementsInterface<TestUniform3<_body_>, double, double, double>;
+class TestUniform3 : public AngularElementsInterface<TestUniform3<_body_>, _body_, double, double, double> {
+    using BaseType = AngularElementsInterface<TestUniform3<_body_>, _body_, double, double, double>;
 
   public:
-    static constexpr auto body = _body_;
     using BaseType::BaseType;
     using BaseType::operator=;
 

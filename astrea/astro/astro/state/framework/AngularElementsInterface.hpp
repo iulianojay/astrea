@@ -20,6 +20,9 @@
 
 #include <math/interpolation.hpp>
 
+#include <astro/frames/definitions.hpp>
+#include <astro/frames/framework/CartesianVector.hpp>
+#include <astro/frames/framework/frame_concepts.hpp>
 #include <astro/state/framework/ElementMatrix.hpp>
 #include <astro/systems.hpp>
 #include <astro/types/concepts.hpp>
@@ -39,11 +42,15 @@ concept IsCompatibleAngularElements = IsAngularElementsImpl<Derived_T> && IsAngu
                                       IsCompatibleElementMatrix<typename Derived_T::ArrayType, typename Derived_U::ArrayType> &&
                                       equivalent(Derived_T::body, Derived_U::body);
 
-template <typename Derived_T, typename... Elements_T>
+template <typename Derived_T, IsCelestialBody auto _body_, typename... Elements_T>
 class AngularElementsInterface {
   public:
     using AngularElementsTag = void; //!< Tag type used by IsAngularElementsImpl concept detection.
     using ArrayType = ElementMatrix<sizeof...(Elements_T), 1, Elements_T...>; //!< The underlying array type representing the orbital elements.
+
+    static constexpr auto body          = _body_; //!< The central body of this angular element set
+    static constexpr auto _icrf_frame_  = make_frame(_body_, axes::icrf); //!< Inertial frame for the body.
+    static constexpr auto _fixed_frame_ = get_body_fixed_frame<_body_>(); //!< Body-fixed rotating frame.
 
     /**
      * @brief Default constructor for AngularElements.
@@ -80,6 +87,63 @@ class AngularElementsInterface {
     inline constexpr AngularElementsInterface(ArrayType&& elements) :
         _elements(std::move(elements))
     {
+    }
+
+    /**
+     * @brief Constructor for Derived_T from any inertial radius vector centred on the same body.
+     *
+     * Accepts any frame whose origin matches _body_ and whose axis is the ICRF axis.
+     *
+     * @tparam _frame_ The inertial frame of the radius vector.
+     * @param r Radius vector in an ICRF-axis frame centred on the body.
+     * @param date Date for the frame transformation.
+     */
+    template <auto _frame_>
+        requires(equivalent(_frame_, _icrf_frame_))
+    AngularElementsInterface(const RadiusVector<_frame_>& r, const Date& date)
+    {
+        *this = Derived_T(r.template in_frame<_fixed_frame_>(date));
+    }
+
+    /**
+     * @brief Constructor for Derived_T from a body-fixed radius vector.
+     *
+     * @param r Radius vector in the body-fixed frame
+     */
+    AngularElementsInterface(const RadiusVector<_fixed_frame_>& r)
+    {
+        std::tie(get<0>(), get<1>(), get<2>()) = Derived_T::from_body_fixed(r);
+    }
+
+    /**
+     * @brief Constructor for Derived_T from orbital elements.
+     *
+     * @param elements Orbital elements
+     * @param date Date for the frame transformation
+     */
+    template <IsOrbitalElements T>
+    AngularElementsInterface(const T& elements, const Date& date)
+    {
+        static const GravParam mu = get_mu<Derived_T::body>();
+        *this = Derived_T(Cartesian<T::frame>(elements, mu).get_position().template in_frame<_fixed_frame_>(date));
+    }
+
+    /**
+     * @brief Converts the Derived_T state to a body-fixed radius vector.
+     */
+    RadiusVector<_fixed_frame_> get_position() const
+    {
+        return Derived_T::template to_body_fixed<_fixed_frame_>(get<0>(), get<1>(), get<2>());
+    }
+
+    /**
+     * @brief Converts the Derived_T state to an inertial radius vector.
+     *
+     * @param date Date for the frame transformation
+     */
+    RadiusVector<_icrf_frame_> get_position(const Date& date) const
+    {
+        return get_position().template in_frame<_icrf_frame_>(date);
     }
 
     /**

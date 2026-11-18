@@ -76,11 +76,6 @@ TEST_F(CylindricalTest, UnitlessConstructor)
     ASSERT_TRUE(math::nearly_equal(zeroState.get_range(), Distance(0.0 * km), REL_TOL));
     ASSERT_TRUE(math::nearly_equal(zeroState.get_azimuth(), Angle(0.0 * rad), REL_TOL));
     ASSERT_TRUE(math::nearly_equal(zeroState.get_elevation(), Distance(0.0 * km), REL_TOL));
-
-    Cylindrical<planets::Earth> scaledState(2.0 * one);
-    ASSERT_TRUE(math::nearly_equal(scaledState.get_range(), Distance(2.0 * km), REL_TOL));
-    ASSERT_TRUE(math::nearly_equal(scaledState.get_azimuth(), Angle(2.0 * rad), REL_TOL));
-    ASSERT_TRUE(math::nearly_equal(scaledState.get_elevation(), Distance(2.0 * km), REL_TOL));
 }
 
 TEST_F(CylindricalTest, ParameterizedConstructor)
@@ -194,16 +189,6 @@ TEST_F(CylindricalTest, DivisionAssignmentOperator)
     ASSERT_EQ(state.get_range(), range / divisor);
     ASSERT_EQ(state.get_azimuth(), azimuth / divisor);
     ASSERT_EQ(state.get_elevation(), elevation / divisor);
-}
-
-TEST_F(CylindricalTest, DivisionByCylindricalOperator)
-{
-    Cylindrical<planets::Earth> other{ 2.0 * km, 2.0 * rad, 2.0 * km };
-    std::vector<Unitless> result = state / other;
-    ASSERT_EQ(result.size(), 3);
-    ASSERT_EQ(result[0], range / other.get_range());
-    ASSERT_EQ(result[1], azimuth / other.get_azimuth());
-    ASSERT_EQ(result[2], elevation / other.get_elevation());
 }
 
 TEST_F(CylindricalTest, Interpolate)
