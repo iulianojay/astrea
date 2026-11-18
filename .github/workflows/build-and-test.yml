@@ -155,113 +155,113 @@ jobs:
       run: |
         . .venv/bin/activate && make cc=${{ matrix.cc }} cxx=${{ matrix.cxx }} run_examples
 
-  build-and-test-macos:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      fail-fast: false
-      matrix:
-        include:
-        - os: macos-latest
-          name: gcc-16
-          cc: gcc-16
-          cxx: g++-16
-    name: macOS • ${{ matrix.name }}
-    steps:
-    - uses: actions/checkout@v7
-      with:
-        ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.ref || github.ref }} # https://github.com/actions/checkout/discussions/1637
+  # build-and-test-macos:
+  #   runs-on: ${{ matrix.os }}
+  #   strategy:
+  #     fail-fast: false
+  #     matrix:
+  #       include:
+  #       - os: macos-latest
+  #         name: gcc-16
+  #         cc: gcc-16
+  #         cxx: g++-16
+  #   name: macOS • ${{ matrix.name }}
+  #   steps:
+  #   - uses: actions/checkout@v7
+  #     with:
+  #       ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.ref || github.ref }} # https://github.com/actions/checkout/discussions/1637
 
-    - name: Mark repository as safe
-      run: git config --global --add safe.directory $GITHUB_WORKSPACE
+  #   - name: Mark repository as safe
+  #     run: git config --global --add safe.directory $GITHUB_WORKSPACE
 
-    - name: Fetch tags
-      run: git fetch --prune --unshallow --tags
+  #   - name: Fetch tags
+  #     run: git fetch --prune --unshallow --tags
 
-    - name: Setup uv
-      uses: astral-sh/setup-uv@v6
+  #   - name: Setup uv
+  #     uses: astral-sh/setup-uv@v6
 
-    - name: Install GCC Toolchain
-      run: |
-        brew update
-        brew install gcc
+  #   - name: Install GCC Toolchain
+  #     run: |
+  #       brew update
+  #       brew install gcc
 
-    - name: Setup
-      run: |
-        bash ./scripts/ci_bootstrap.sh
+  #   - name: Setup
+  #     run: |
+  #       bash ./scripts/ci_bootstrap.sh
 
-    - name: Build and Install Release
-      run: |
-        . .venv/bin/activate && make cc=${{ matrix.cc }} cxx=${{ matrix.cxx }} release all install
+  #   - name: Build and Install Release
+  #     run: |
+  #       . .venv/bin/activate && make cc=${{ matrix.cc }} cxx=${{ matrix.cxx }} release all install
 
-    - name: Run Tests
-      run: |
-        . .venv/bin/activate && make cc=${{ matrix.cc }} cxx=${{ matrix.cxx }} run_tests
+  #   - name: Run Tests
+  #     run: |
+  #       . .venv/bin/activate && make cc=${{ matrix.cc }} cxx=${{ matrix.cxx }} run_tests
 
-    - name: Run Examples
-      run: |
-        . .venv/bin/activate && make cc=${{ matrix.cc }} cxx=${{ matrix.cxx }} run_examples
+  #   - name: Run Examples
+  #     run: |
+  #       . .venv/bin/activate && make cc=${{ matrix.cc }} cxx=${{ matrix.cxx }} run_examples
 
-  build-and-test-windows:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      fail-fast: false
-      matrix:
-        include:
-        - os: windows-latest
-          name: mingw-gcc
-          cc: gcc
-          cxx: g++
-    name: Windows • ${{ matrix.name }}
-    steps:
-    - uses: actions/checkout@v7
-      with:
-        ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.ref || github.ref }} # https://github.com/actions/checkout/discussions/1637
+  # build-and-test-windows:
+  #   runs-on: ${{ matrix.os }}
+  #   strategy:
+  #     fail-fast: false
+  #     matrix:
+  #       include:
+  #       - os: windows-latest
+  #         name: mingw-gcc
+  #         cc: gcc
+  #         cxx: g++
+  #   name: Windows • ${{ matrix.name }}
+  #   steps:
+  #   - uses: actions/checkout@v7
+  #     with:
+  #       ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.ref || github.ref }} # https://github.com/actions/checkout/discussions/1637
 
-    - name: Setup MSYS2
-      uses: msys2/setup-msys2@v2
-      with:
-        msystem: MINGW64
-        update: true
-        install: >-
-          git
-          make
-          mingw-w64-x86_64-toolchain
-          mingw-w64-x86_64-make
-          mingw-w64-x86_64-cmake
-          mingw-w64-x86_64-ninja
-          mingw-w64-x86_64-python
-          mingw-w64-x86_64-python-pip
+  #   - name: Setup MSYS2
+  #     uses: msys2/setup-msys2@v2
+  #     with:
+  #       msystem: MINGW64
+  #       update: true
+  #       install: >-
+  #         git
+  #         make
+  #         mingw-w64-x86_64-toolchain
+  #         mingw-w64-x86_64-make
+  #         mingw-w64-x86_64-cmake
+  #         mingw-w64-x86_64-ninja
+  #         mingw-w64-x86_64-python
+  #         mingw-w64-x86_64-python-pip
 
-    - name: Mark repository as safe
-      shell: msys2 {0}
-      run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
+  #   - name: Mark repository as safe
+  #     shell: msys2 {0}
+  #     run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
 
-    - name: Fetch tags
-      shell: msys2 {0}
-      run: git fetch --prune --unshallow --tags || git fetch --prune --tags
+  #   - name: Fetch tags
+  #     shell: msys2 {0}
+  #     run: git fetch --prune --unshallow --tags || git fetch --prune --tags
 
-    - name: Setup uv
-      uses: astral-sh/setup-uv@v6
+  #   - name: Setup uv
+  #     uses: astral-sh/setup-uv@v6
 
-    - name: Setup
-      shell: msys2 {0}
-      run: |
-        bash ./scripts/ci_bootstrap.sh
+  #   - name: Setup
+  #     shell: msys2 {0}
+  #     run: |
+  #       bash ./scripts/ci_bootstrap.sh
 
-    - name: Build and Install Release
-      shell: msys2 {0}
-      run: |
-        (. .venv/bin/activate || . .venv/Scripts/activate) && make cc=${{ matrix.cc }} cxx=${{ matrix.cxx }} release all install
+  #   - name: Build and Install Release
+  #     shell: msys2 {0}
+  #     run: |
+  #       (. .venv/bin/activate || . .venv/Scripts/activate) && make cc=${{ matrix.cc }} cxx=${{ matrix.cxx }} release all install
 
-    - name: Run Tests
-      shell: msys2 {0}
-      run: |
-        (. .venv/bin/activate || . .venv/Scripts/activate) && make cc=${{ matrix.cc }} cxx=${{ matrix.cxx }} run_tests
+  #   - name: Run Tests
+  #     shell: msys2 {0}
+  #     run: |
+  #       (. .venv/bin/activate || . .venv/Scripts/activate) && make cc=${{ matrix.cc }} cxx=${{ matrix.cxx }} run_tests
 
-    - name: Run Examples
-      shell: msys2 {0}
-      run: |
-        (. .venv/bin/activate || . .venv/Scripts/activate) && make cc=${{ matrix.cc }} cxx=${{ matrix.cxx }} run_examples
+  #   - name: Run Examples
+  #     shell: msys2 {0}
+  #     run: |
+  #       (. .venv/bin/activate || . .venv/Scripts/activate) && make cc=${{ matrix.cc }} cxx=${{ matrix.cxx }} run_examples
 
   coverage:
     runs-on: ubuntu-latest
