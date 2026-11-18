@@ -51,8 +51,7 @@ class Cylindrical : public AngularElementsInterface<Cylindrical<_body_>, _body_,
 
     using BaseType = AngularElementsInterface<Cylindrical<_body_>, _body_, Distance, Angle, Distance>;
 
-    template <IsCelestialBody auto body>
-    friend std::ostream& operator<<(std::ostream& os, Cylindrical<body> const& elements)
+    friend std::ostream& operator<<(std::ostream& os, Cylindrical const& elements)
     {
         os << "[";
         os << elements.get_range() << ", ";
@@ -78,21 +77,63 @@ class Cylindrical : public AngularElementsInterface<Cylindrical<_body_>, _body_,
      *
      * @return The range distance.
      */
-    const Distance& get_range() const { return this->template get<0>(); }
+    inline constexpr const Distance& get_range() const { return this->template get<0>(); }
 
     /**
      * @brief Get the azimuth value of the Cylindrical state vector.
      *
      * @return The azimuth angle.
      */
-    const Angle& get_azimuth() const { return this->template get<1>(); }
+    inline constexpr const Angle& get_azimuth() const { return this->template get<1>(); }
 
     /**
      * @brief Get the elevation value of the Cylindrical state vector.
      *
      * @return The elevation angle.
      */
-    const Distance& get_elevation() const { return this->template get<2>(); }
+    inline constexpr const Distance& get_elevation() const { return this->template get<2>(); }
+
+    /**
+     * @brief Get the range value of the Cylindrical state vector.
+     *
+     * @return The range distance.
+     */
+    inline constexpr Distance& get_range() { return this->template get<0>(); }
+
+    /**
+     * @brief Get the azimuth value of the Cylindrical state vector.
+     *
+     * @return The azimuth angle.
+     */
+    inline constexpr Angle& get_azimuth() { return this->template get<1>(); }
+
+    /**
+     * @brief Get the elevation value of the Cylindrical state vector.
+     *
+     * @return The elevation angle.
+     */
+    inline constexpr Distance& get_elevation() { return this->template get<2>(); }
+
+    /**
+     * @brief Set the range value of the Cylindrical state vector.
+     *
+     * @param range The range to set for the Cylindrical state vector.
+     */
+    inline void set_range(const Distance& range) { this->template get<0>() = range; }
+
+    /**
+     * @brief Set the azimuth value of the Cylindrical state vector.
+     *
+     * @param azimuth The azimuth to set for the Cylindrical state vector.
+     */
+    inline void set_azimuth(const Angle& azimuth) { this->template get<1>() = azimuth; }
+
+    /**
+     * @brief Set the elevation value of the Cylindrical state vector.
+     *
+     * @param elevation The elevation to set for the Cylindrical state vector.
+     */
+    inline void set_elevation(const Distance& elevation) { this->template get<2>() = elevation; }
 
     /**
      * @brief Convert a body-fixed radius vector to cylindrical coordinates.
@@ -100,9 +141,9 @@ class Cylindrical : public AngularElementsInterface<Cylindrical<_body_>, _body_,
      * @param rFixed The radius vector in the body-fixed frame.
      * @return The range, azimuth, and elevation as a tuple.
      */
-    template <IsFrame auto _frame_>
-        requires(IsBodyFixedFrame<decltype(_frame_)>)
-    static std::tuple<Distance, Angle, Distance> from_body_fixed(const RadiusVector<_frame_>& rFixed)
+    template <IsFrame auto frame>
+        requires(equivalent(frame, BaseType::_fixed_frame_))
+    static inline constexpr std::tuple<Distance, Angle, Distance> from_body_fixed(const RadiusVector<frame>& rFixed)
     {
         using mp_units::si::acos;
 
@@ -121,14 +162,14 @@ class Cylindrical : public AngularElementsInterface<Cylindrical<_body_>, _body_,
      * @param elevation The elevation.
      * @return The radius vector in the body-fixed frame.
      */
-    template <IsFrame auto _frame_>
-        requires(IsBodyFixedFrame<decltype(_frame_)>)
-    static RadiusVector<_frame_> to_body_fixed(const Distance& range, const Angle& azimuth, const Distance& elevation)
+    template <IsFrame auto frame>
+        requires(equivalent(frame, BaseType::_fixed_frame_))
+    static inline constexpr RadiusVector<frame> to_body_fixed(const Distance& range, const Angle& azimuth, const Distance& elevation)
     {
         using mp_units::si::cos;
         using mp_units::si::sin;
 
-        return RadiusVector<_frame_>(range * cos(azimuth), range * sin(azimuth), elevation);
+        return RadiusVector<frame>(range * cos(azimuth), range * sin(azimuth), elevation);
     }
 };
 

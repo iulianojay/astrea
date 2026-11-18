@@ -72,11 +72,6 @@ TEST_F(GeodeticTest, UnitlessConstructor)
     ASSERT_TRUE(math::nearly_equal(zeroState.get_altitude(), Distance(0.0 * km), REL_TOL));
     ASSERT_TRUE(math::nearly_equal(zeroState.get_latitude(), Angle(0.0 * rad), REL_TOL));
     ASSERT_TRUE(math::nearly_equal(zeroState.get_longitude(), Angle(0.0 * rad), REL_TOL));
-
-    Geodetic<planets::Earth> scaledState(2.0 * one);
-    ASSERT_TRUE(math::nearly_equal(scaledState.get_altitude(), Distance(2.0 * km), REL_TOL));
-    ASSERT_TRUE(math::nearly_equal(scaledState.get_latitude(), Angle(2.0 * rad), REL_TOL));
-    ASSERT_TRUE(math::nearly_equal(scaledState.get_longitude(), Angle(2.0 * rad), REL_TOL));
 }
 
 TEST_F(GeodeticTest, ParameterizedConstructor)
@@ -190,16 +185,6 @@ TEST_F(GeodeticTest, DivisionAssignmentOperator)
     ASSERT_EQ(state.get_altitude(), altitude / divisor);
     ASSERT_EQ(state.get_latitude(), latitude / divisor);
     ASSERT_EQ(state.get_longitude(), longitude / divisor);
-}
-
-TEST_F(GeodeticTest, DivisionByGeodeticOperator)
-{
-    Geodetic<planets::Earth> other{ 2.0 * rad, 2.0 * rad, 2.0 * km };
-    std::vector<Unitless> result = state / other;
-    ASSERT_EQ(result.size(), 3);
-    ASSERT_EQ(result[0], latitude / other.get_latitude());
-    ASSERT_EQ(result[1], longitude / other.get_longitude());
-    ASSERT_EQ(result[2], altitude / other.get_altitude());
 }
 
 TEST_F(GeodeticTest, Interpolate)

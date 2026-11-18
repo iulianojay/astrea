@@ -138,7 +138,7 @@ inline Density find_atmospheric_density<planets::Venus>(const State& state)
     };
 
     const auto& position                       = state.get_position_in_frame<frames::venus::venus_fixed>();
-    const auto [latitude, longitude, altitude] = convert_body_fixed_to_geodetic(position);
+    const auto [latitude, longitude, altitude] = Geodetic<planets::Venus>::from_body_fixed(position);
 
     const auto iter = venusianAtmosphere.upper_bound(altitude);
     return (iter != venusianAtmosphere.end()) ? iter->second : Density::zero();
@@ -178,7 +178,7 @@ inline Density find_atmospheric_density<planets::Mars>(const State& state)
     };
 
     const auto& position                       = state.get_position_in_frame<frames::mars::mars_fixed>();
-    const auto [latitude, longitude, altitude] = convert_body_fixed_to_geodetic(position);
+    const auto [latitude, longitude, altitude] = Geodetic<planets::Mars>::from_body_fixed(position);
 
     const Unitless altitudeValue = altitude / altitude.unit;
     if (altitude <= 80.0 * km) {
@@ -252,7 +252,7 @@ inline Density find_atmospheric_density<moons::Titan>(const State& state)
     };
 
     const auto& position                       = state.get_position_in_frame<frames::titan::titan_fixed>();
-    const auto [latitude, longitude, altitude] = convert_body_fixed_to_geodetic(position);
+    const auto [latitude, longitude, altitude] = Geodetic<moons::Titan>::from_body_fixed(position);
 
     const auto iter = titanicAtmosphere.upper_bound(altitude);
     return (iter != titanicAtmosphere.end()) ? iter->second : 0.0 * g / (cm * cm * cm);

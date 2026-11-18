@@ -24,6 +24,7 @@
 #include <astro/frames/framework/CartesianVector.hpp>
 #include <astro/frames/framework/frame_concepts.hpp>
 #include <astro/state/framework/ElementMatrix.hpp>
+#include <astro/state/orbital_elements.hpp>
 #include <astro/systems.hpp>
 #include <astro/types/concepts.hpp>
 

@@ -86,7 +86,7 @@ struct EastNorthUp : public DynamicFrame<EastNorthUp<_frame_>, _frame_, enu_tag<
         // eci -> ecef -> lat/lon -> n/e/u
         const RadiusVector<frame> r            = this->get_position(date);
         const RadiusVector<fixed_frame> rFixed = r.template in_frame<fixed_frame>(date);
-        const auto [lat, lon, alt]             = convert_body_fixed_to_geodetic(rFixed);
+        const auto [lat, lon, alt]             = Geodetic<fixed_frame.origin>::from_body_fixed(rFixed);
 
         using mp_units::one;
         using mp_units::si::cos;
