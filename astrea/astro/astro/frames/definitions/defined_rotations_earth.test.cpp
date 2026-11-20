@@ -45,6 +45,7 @@
 
 #include <gtest/gtest.h>
 
+#include <algorithm>
 #include <stdexcept>
 
 #include <mp-units/systems/si.h>
@@ -237,15 +238,16 @@ TEST(GetDcmCepToItrf, SiderealRotationMatchesPublishedGmstAtJ2000)
 
 TEST(GetPolarMotion, MatchesTabulatedEopValueAtExactGridPoint)
 {
-    // Row for Julian Date 2451544.5 (2000-01-01 00:00 UT) in the bundled IERS Earth Orientation
-    // Parameters table (eop::EarthOrientationParameters::DATA) gives PMx = 43.2526 mas,
-    // PMy = 377.8662 mas. Interpolating exactly at a tabulated date must reproduce those values
-    // exactly (source: IERS Earth Orientation Parameters, as compiled into this repository's
-    // generated eop::EarthOrientationParameters::DATA table).
+    // Interpolating exactly at a tabulated date (2000-01-01 00:00) must reproduce that row of the
+    // bundled EOP table. Read the expected values from the table, since every JPL EOP2 release
+    // re-smooths the historical values.
     const Date gridDate(JulianDate(JulianDateClock::duration{ 2451544.5 }));
+    const auto& data = eop::EarthOrientationParameters::DATA;
+    const auto row   = std::ranges::find(data, gridDate, &eop::EarthOrientationParameters::EopRow::MJD);
+    ASSERT_NE(row, data.end());
     const auto [xp, yp] = get_polar_motion(gridDate);
-    EXPECT_TRUE(math::nearly_equal(xp, 43.2526 * mp_units::si::milli<mp_units::si::arcsecond>, TIGHT_TOL));
-    EXPECT_TRUE(math::nearly_equal(yp, 377.8662 * mp_units::si::milli<mp_units::si::arcsecond>, TIGHT_TOL));
+    EXPECT_TRUE(math::nearly_equal(xp, row->PMx, TIGHT_TOL));
+    EXPECT_TRUE(math::nearly_equal(yp, row->PMy, TIGHT_TOL));
 }
 
 TEST(GetPolarMotion, NoThrowForDateOutsideEopRange)
