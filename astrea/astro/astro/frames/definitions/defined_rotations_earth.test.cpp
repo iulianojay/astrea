@@ -33,16 +33,14 @@
  *       TT) as 280.46061837504 deg (= 18h 41m 50.54841s); the same value is given in USNO Circular
  *       179 (2005), Eq. 2.13. This is consistent with (and more precise than) the existing
  *       regression value in astro/time/Date.test.cpp's `GMST` test (4.89496 rad).
- *   [4] D. Vallado, "Fundamentals of Astrodynamics and Applications," 4th ed., Example 3-3,
- *       which uses the ECI position (-6045, -3490, 2500) km as a worked frame-conversion input.
+ *   [4] D. Vallado, "Fundamentals of Astrodynamics and Applications," 4th ed., Example 3-15
+ *       (IAU-76/FK5 reduction). On 2004-04-06 07:51:28.386 UTC, r_GCRF = (5102.508958,
+ *       6123.011401, 6378.136928) km maps to r_ITRF = (-1033.4793830, 7901.2952754,
+ *       6380.3565958) km, with nutation dpsi = -0.0034108 deg and deps = 0.0020316 deg.
  *   [5] G. Petit and B. Luzum (eds.), IERS Conventions (2010), IERS Technical Note No. 36,
  *       Chapter 5, "Transformation between the celestial and terrestrial reference systems."
  *       Its precession-nutation, Earth-rotation, and polar-motion conventions define the ITRF
  *       transformation used by these tests.
- *
- * The second Cartesian vector is a supplementary, fixed regression input selected to exercise a
- * different quadrant and nonzero z component. It is local test data, not a published example;
- * the IERS convention in [5] documents the frame-conversion basis for both cases.
  */
 
 #include <gtest/gtest.h>
@@ -57,7 +55,6 @@
 #include <astro/frames.hpp>
 #include <astro/frames/definitions/defined_rotations_earth.hpp>
 #include <astro/frames/framework/CartesianVector.hpp>
-#include <astro/state/angular_elements/Geodetic.hpp>
 #include <astro/systems/celestial_bodies.hpp>
 #include <astro/time/Date.hpp>
 
@@ -80,6 +77,9 @@ const Unitless GMST_TOL  = 1.0e-4 * one; // generous margin around the published
 // J2000 so that precession, nutation, and polar-motion all contribute nonzero terms.
 const Date TEST_DATE = Date(J2000) + 3830.0 * mp_units::non_si::day; // ~2010-06-01
 
+// Vallado Example 3-15 [4]
+const Date VALLADO_DATE{ "2004-04-06 07:51:28.386", "%Y-%m-%d %H:%M:%S" };
+
 /**
  * @brief Verifies that a DirectionCosineMatrix is a proper rotation: orthogonal (R * R^T = I) and
  *        right-handed (determinant = +1). This is the defining mathematical property of any valid
@@ -88,7 +88,7 @@ const Date TEST_DATE = Date(J2000) + 3830.0 * mp_units::non_si::day; // ~2010-06
 template <IsFrame auto in_frame, IsFrame auto out_frame>
 void expect_proper_rotation(const DCM<in_frame, out_frame>& dcm)
 {
-    EXPECT_TRUE(nearly_equal(DCM<in_frame, in_frame>(dcm * dcm.transpose()), DCM<in_frame, in_frame>::identity(), LOOSE_TOL, LOOSE_TOL))
+    EXPECT_TRUE(nearly_equal(DCM<out_frame, out_frame>(dcm * dcm.transpose()), DCM<out_frame, out_frame>::identity(), LOOSE_TOL, LOOSE_TOL))
         << "DCM is not orthogonal (R * R^T != I):\n"
         << dcm;
     EXPECT_TRUE(math::nearly_equal(dcm.determinant(), 1.0 * one, LOOSE_TOL))
@@ -161,6 +161,17 @@ TEST(GetNutationAngles, MeanObliquityAtJ2000MatchesIAU1980Value)
         << "Mean obliquity at J2000 does not match IAU 1980 value: " << eps;
 }
 
+TEST(GetNutationAngles, MatchesValladoExample)
+{
+    using astrea::units::unit_symbols::jc;
+    const Unitless T             = (VALLADO_DATE - J2000) / jc;
+    const auto [eps, dpsi, deps] = get_nutation_angles(T);
+    (void)eps;
+    // Vallado quotes the angles to 1e-7 deg; the remaining difference is the TT-UTC offset.
+    EXPECT_NEAR(dpsi.numerical_value_in(deg), -0.0034108, 2.0e-7);
+    EXPECT_NEAR(deps.numerical_value_in(deg), 0.0020316, 2.0e-7);
+}
+
 // -------------------------------------------------------------------------------------------
 // get_dcm<frames::earth::icrf, frames::earth::cep>
 // -------------------------------------------------------------------------------------------
@@ -178,11 +189,10 @@ TEST(GetDcmIcrfToCep, IsProperRotationAwayFromJ2000)
 TEST(GetDcmIcrfToCep, EqualsNutationOnlyRotationAtJ2000)
 {
     // At T=0 the precession angles are all zero (see GetPrecessionAngles.AllAnglesAreZeroAtJ2000Epoch),
-    // so the precession matrix is the identity and the full ICRF->CEP DCM at J2000 should reduce to
-    // exactly the nutation-only rotation. This is also a regression check for the frame-tagged
-    // composition order `P * N` (a previous bug applied nutation before precession).
+    // so the full ICRF->CEP DCM at J2000 reduces to the mean-of-date -> true-of-date rotation
+    // N^T = R1(eps + deps) R3(dpsi) R1(-eps).
     const auto [eps, dpsi, deps] = get_nutation_angles(0.0 * one);
-    const auto expected          = DCM<frames::earth::icrf, frames::earth::cep>::XZX(-(eps + deps), -dpsi, eps);
+    const auto expected          = DCM<frames::earth::icrf, frames::earth::cep>::XZX(eps + deps, dpsi, -eps);
     const auto actual            = get_dcm<frames::earth::icrf, frames::earth::cep>(Date(J2000));
     EXPECT_TRUE(nearly_equal(actual, expected, TIGHT_TOL, TIGHT_TOL));
 }
@@ -204,12 +214,16 @@ TEST(GetDcmCepToItrf, IsProperRotationAwayFromJ2000)
 TEST(GetDcmCepToItrf, SiderealRotationMatchesPublishedGmstAtJ2000)
 {
     // GMST at the J2000.0 epoch (2000-01-01 12:00:00 TT) is 280.46061837504 deg -- see [3] above.
-    const Angle gmstJ2000 = 280.46061837504 * deg;
+    // The CEP -> ITRF rotation uses apparent sidereal time (GMST + dpsi cos(eps)) followed by
+    // polar motion W^T = R2(xp) R1(yp).
+    const auto [eps, dpsi, deps] = get_nutation_angles(0.0 * one);
+    (void)deps;
+    const Angle gastJ2000 = 280.46061837504 * deg + dpsi * math::cos(eps);
 
     const auto [xp, yp] = get_polar_motion(Date(J2000));
     const DCM<frames::earth::cep, frames::earth::itrf> expected =
-        DCM<frames::earth::cep, frames::earth::itrf>::Z(-gmstJ2000) *
-        (DCM<frames::earth::itrf, frames::earth::itrf>::Y(-xp) * DCM<frames::earth::itrf, frames::earth::itrf>::X(-yp));
+        (DCM<frames::earth::itrf, frames::earth::itrf>::Y(xp) * DCM<frames::earth::itrf, frames::earth::itrf>::X(yp)) *
+        DCM<frames::earth::cep, frames::earth::itrf>::Z(-gastJ2000);
     const auto actual = get_dcm<frames::earth::cep, frames::earth::itrf>(Date(J2000));
     EXPECT_TRUE(nearly_equal(actual, expected, GMST_TOL, GMST_TOL));
 }
@@ -246,35 +260,25 @@ TEST(GetDcmIcrfToEarthFixed, IsProperRotation)
     expect_proper_rotation(get_dcm<frames::earth::icrf, frames::earth::earth_fixed>(TEST_DATE));
 }
 
-TEST(GetDcmIcrfToEarthFixed, EqualsComposedIcrfCepAndCepItrfDcms)
+TEST(GetDcmIcrfToEarthFixed, EqualsCepToItrfAppliedAfterIcrfToCep)
 {
-    // Regression check for the composition wiring `dcmIcrfToCep * dcmCepToItrf` in the constrained
-    // template overload of get_dcm.
+    // v_itrf = M_cep->itrf * (M_icrf->cep * v_icrf): precession-nutation is applied first.
     const DCM<frames::earth::icrf, frames::earth::itrf> expected =
-        get_dcm<frames::earth::icrf, frames::earth::cep>(TEST_DATE) * get_dcm<frames::earth::cep, frames::earth::itrf>(TEST_DATE);
+        get_dcm<frames::earth::cep, frames::earth::itrf>(TEST_DATE) * get_dcm<frames::earth::icrf, frames::earth::cep>(TEST_DATE);
     const auto actual = get_dcm<frames::earth::icrf, frames::earth::earth_fixed>(TEST_DATE);
     EXPECT_TRUE(nearly_equal(actual, expected, TIGHT_TOL, TIGHT_TOL));
 }
 
-TEST(GetDcmIcrfToItrf, RotatesInertialStateToExpectedLatitudeAndLongitude)
+TEST(GetDcmIcrfToItrf, MatchesValladoExample)
 {
-    // Vallado's published ECI test vector: (-6045, -3490, 2500) km.
-    const RadiusVector<frames::earth::icrf> inertialPosition{ -6045.0 * km, -3490.0 * km, 2500.0 * km };
-    const auto itrfPosition = inertialPosition.in_frame<frames::earth::itrf>(TEST_DATE);
-    const auto actual       = Geodetic<planets::Earth>(itrfPosition);
+    // Vallado Example 3-15 [4]. The reference uses dUT1 = -0.4399619 s and TT, which this
+    // implementation does not model; that accounts for roughly 0.2 km of along-equator offset.
+    const RadiusVector<frames::earth::icrf> inertialPosition{ 5102.508958 * km, 6123.011401 * km, 6378.136928 * km };
+    const auto itrfPosition = inertialPosition.in_frame<frames::earth::itrf>(VALLADO_DATE);
 
-    EXPECT_TRUE(math::nearly_equal(actual.get_latitude(), 0.0 * deg, TIGHT_TOL)) << actual.get_latitude();
-    EXPECT_TRUE(math::nearly_equal(actual.get_longitude(), 0.0 * deg, TIGHT_TOL)) << actual.get_longitude();
-}
-
-TEST(GetDcmIcrfToItrf, RotatesAnotherInertialStateToExpectedLatitudeAndLongitude)
-{
-    const RadiusVector<frames::earth::icrf> inertialPosition{ 7000.0 * km, -1200.0 * km, 3200.0 * km };
-    const auto itrfPosition = inertialPosition.in_frame<frames::earth::itrf>(TEST_DATE);
-    const auto actual       = Geodetic<planets::Earth>(itrfPosition);
-
-    EXPECT_TRUE(math::nearly_equal(actual.get_latitude(), 0.0 * deg, TIGHT_TOL)) << actual.get_latitude();
-    EXPECT_TRUE(math::nearly_equal(actual.get_longitude(), 0.0 * deg, TIGHT_TOL)) << actual.get_longitude();
+    EXPECT_NEAR(itrfPosition.get_x().numerical_value_in(km), -1033.4793830, 0.5);
+    EXPECT_NEAR(itrfPosition.get_y().numerical_value_in(km), 7901.2952754, 0.5);
+    EXPECT_NEAR(itrfPosition.get_z().numerical_value_in(km), 6380.3565958, 0.05);
 }
 
 int main(int argc, char** argv)
