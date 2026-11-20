@@ -401,14 +401,17 @@ class Quaternion {
     Quaternion<in_frame, out_frame>& operator/=(const Unitless& scalar) { return *this; }
 
     /**
-     * @brief Multiplication operator for the Quaternion class.
+     * @brief Hamilton product composing two rotations.
      *
-     * @tparam out_frameu_ The output frame type of the other quaternion.
-     * @param other The quaternion to multiply with this quaternion.
-     * @return A new quaternion that is the product of this quaternion and the other quaternion.
+     * Follows the same math-order convention as DirectionCosineMatrix: the right-hand quaternion is
+     * applied first, so Quaternion<B, C> * Quaternion<A, B> -> Quaternion<A, C>.
+     *
+     * @tparam in_frame_u The input frame type of the other quaternion.
+     * @param other The quaternion applied before this one.
+     * @return A new quaternion representing other followed by this rotation.
      */
-    template <IsFrame auto out_frameu_>
-    Quaternion<in_frame, out_frameu_> operator*(const Quaternion<out_frame, out_frameu_>& other) const
+    template <IsFrame auto in_frame_u>
+    Quaternion<in_frame_u, out_frame> operator*(const Quaternion<in_frame_u, in_frame>& other) const
     {
         const auto& x1 = _u.get_x();
         const auto& y1 = _u.get_y();
