@@ -235,6 +235,13 @@ class Date {
     TerrestrialTime tt() const { return in_clock<TerrestrialTimeClock>(); }
 
     /**
+     * @brief Get the Date in Universal Time (UT1) clock format.
+     *
+     * @return UniversalTime The Date in UT1 clock format.
+     */
+    UniversalTime ut1() const { return in_clock<UT1Clock>(); }
+
+    /**
      * @brief Get the Date in Geocentric Coordinate Time (TCG) clock format.
      *
      * @return GeocentricCoordinateTime The Date in TCG clock format.

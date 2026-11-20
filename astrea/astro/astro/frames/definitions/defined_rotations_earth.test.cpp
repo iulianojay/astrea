@@ -214,11 +214,14 @@ TEST(GetDcmCepToItrf, IsProperRotationAwayFromJ2000)
 TEST(GetDcmCepToItrf, SiderealRotationMatchesPublishedGmstAtJ2000)
 {
     // GMST at the J2000.0 epoch (2000-01-01 12:00:00 TT) is 280.46061837504 deg -- see [3] above.
-    // The CEP -> ITRF rotation uses apparent sidereal time (GMST + dpsi cos(eps)) followed by
+    // The CEP -> ITRF rotation evaluates sidereal time at UT1, so Earth rotates an extra
+    // omega * (UT1 - UTC), then uses apparent sidereal time (GMST + dpsi cos(eps)) followed by
     // polar motion W^T = R2(xp) R1(yp).
     const auto [eps, dpsi, deps] = get_nutation_angles(0.0 * one);
     (void)deps;
-    const Angle gastJ2000 = 280.46061837504 * deg + dpsi * math::cos(eps);
+    const Time ut1MinusUtc            = UT1Clock::ut1_minus_utc(Date(J2000).sys()).count() * mp_units::si::second;
+    const Angle earthRotationOverDut1 = get_rotation_rate<planets::Earth>() * ut1MinusUtc;
+    const Angle gastJ2000             = 280.46061837504 * deg + earthRotationOverDut1 + dpsi * math::cos(eps);
 
     const auto [xp, yp] = get_polar_motion(Date(J2000));
     const DCM<frames::earth::cep, frames::earth::itrf> expected =
@@ -271,14 +274,14 @@ TEST(GetDcmIcrfToEarthFixed, EqualsCepToItrfAppliedAfterIcrfToCep)
 
 TEST(GetDcmIcrfToItrf, MatchesValladoExample)
 {
-    // Vallado Example 3-15 [4]. The reference uses dUT1 = -0.4399619 s and TT, which this
-    // implementation does not model; that accounts for roughly 0.2 km of along-equator offset.
+    // Vallado Example 3-15 [4]. The reference also evaluates precession-nutation in TT and applies the
+    // IERS nutation corrections (ddpsi, ddeps), which this implementation does not model.
     const RadiusVector<frames::earth::icrf> inertialPosition{ 5102.508958 * km, 6123.011401 * km, 6378.136928 * km };
     const auto itrfPosition = inertialPosition.in_frame<frames::earth::itrf>(VALLADO_DATE);
 
-    EXPECT_NEAR(itrfPosition.get_x().numerical_value_in(km), -1033.4793830, 0.5);
-    EXPECT_NEAR(itrfPosition.get_y().numerical_value_in(km), 7901.2952754, 0.5);
-    EXPECT_NEAR(itrfPosition.get_z().numerical_value_in(km), 6380.3565958, 0.05);
+    EXPECT_NEAR(itrfPosition.get_x().numerical_value_in(km), -1033.4793830, 0.002);
+    EXPECT_NEAR(itrfPosition.get_y().numerical_value_in(km), 7901.2952754, 0.002);
+    EXPECT_NEAR(itrfPosition.get_z().numerical_value_in(km), 6380.3565958, 0.002);
 }
 
 int main(int argc, char** argv)

@@ -20,18 +20,16 @@
  */
 #pragma once
 
-#include <chrono>
-
 #include <mp-units/systems/si/math.h>
 
 #include <math/trig.hpp>
 #include <units/units.hpp>
 
-#include <astro/eop/EarthOrientationParameters.hpp>
 #include <astro/frames/definitions/body_centered_inertial_frames.hpp>
 #include <astro/frames/definitions/body_fixed_frames.hpp>
 #include <astro/frames/definitions/defined_rotations.hpp>
 #include <astro/systems/celestial_bodies.hpp>
+#include <astro/systems/eop_interpolation.hpp>
 #include <astro/systems/system_utilities.hpp>
 #include <astro/time/Date.hpp>
 
@@ -285,62 +283,6 @@ inline constexpr std::array<mp_units::quantity<mp_units::si::unit_symbols::arcse
 }
 
 /**
- * @brief Pair of bracketing Earth Orientation Parameters rows and the linear interpolation fraction between them.
- */
-struct EopInterpolant {
-    const eop::EarthOrientationParameters::EopRow& lower; //!< Row at or before the requested date
-    const eop::EarthOrientationParameters::EopRow& upper; //!< Row at or after the requested date
-    Unitless fraction;                                    //!< Interpolation fraction from lower to upper
-
-    /**
-     * @brief Linearly interpolate an EOP field at the requested date.
-     *
-     * @param field Pointer to the EOP row member to interpolate.
-     * @return The interpolated value of the field.
-     */
-    template <typename Value_T>
-    constexpr Value_T interpolate(Value_T eop::EarthOrientationParameters::EopRow::* field) const noexcept
-    {
-        return lower.*field + fraction * (upper.*field - lower.*field);
-    }
-};
-
-/**
- * @brief Find the Earth Orientation Parameters rows bracketing a given date.
- *
- * Dates outside the tabulated range are clamped to the first or last row.
- *
- * @param date The date for which to find the bracketing rows.
- * @return EopInterpolant The bracketing rows and interpolation fraction.
- */
-inline constexpr EopInterpolant get_eop_interpolant(const Date& date) noexcept
-{
-    static const auto& DATA = eop::EarthOrientationParameters::DATA;
-    static const auto MJD0  = DATA.front().MJD;
-    static const auto MJDN  = DATA.back().MJD;
-    static const auto STEP  = DATA[1].MJD - DATA[0].MJD;
-
-    if (date <= MJD0) { return { DATA.front(), DATA.front(), 0.0 * mp_units::one }; }
-    else if (date >= MJDN) {
-        return { DATA.back(), DATA.back(), 0.0 * mp_units::one };
-    }
-
-    // Assume the step is consistent (which it seems to be) and that the data is sorted by MJD (which it seems to be)
-    // TODO: Add introspective properties to the EOP data to allow for more robust searching (e.g., binary search, etc.)
-    const auto guessIdx = static_cast<std::size_t>((date - MJD0) / STEP);
-    const auto& row     = DATA[guessIdx];
-
-    if (row.MJD == date) { return { row, row, 0.0 * mp_units::one }; }
-    else if (row.MJD > date) {
-        const auto& prevRow = DATA[guessIdx - 1];
-        return { prevRow, row, (date - prevRow.MJD) / (row.MJD - prevRow.MJD) };
-    }
-
-    const auto& nextRow = DATA[guessIdx + 1];
-    return { row, nextRow, (date - row.MJD) / (nextRow.MJD - row.MJD) };
-}
-
-/**
  * @brief Get the polar motion (xp, yp) for a given date.
  *
  * @param date The date for which to get the polar motion.
@@ -348,36 +290,11 @@ inline constexpr EopInterpolant get_eop_interpolant(const Date& date) noexcept
  *
  * @note Dates outside the range of available Earth Orientation Parameters data use the nearest tabulated value.
  */
-inline constexpr std::array<mp_units::quantity<mp_units::si::unit_symbols::arcsec>, 2> get_polar_motion(const Date& date) noexcept
+inline std::array<mp_units::quantity<mp_units::si::unit_symbols::arcsec>, 2> get_polar_motion(const Date& date) noexcept
 {
     using EopRow             = eop::EarthOrientationParameters::EopRow;
-    const auto eopInterpolant = get_eop_interpolant(date);
+    const auto eopInterpolant = eop::get_eop_interpolant(date);
     return { eopInterpolant.interpolate(&EopRow::PMx), eopInterpolant.interpolate(&EopRow::PMy) };
-}
-
-/**
- * @brief Get UT1 - UTC for a given date.
- *
- * TAI - UT1 is interpolated from the Earth Orientation Parameters rather than UT1 - UTC since it is continuous
- * across leap seconds. TAI - UTC comes from the leap-second table.
- *
- * @param date The date (UTC) for which to get UT1 - UTC.
- * @return Time UT1 - UTC at the given date.
- *
- * @note Dates outside the range of available Earth Orientation Parameters data use the nearest tabulated TAI - UT1.
- * @note TAI - UTC is only exact from 1972 onward, when UTC adopted integer leap seconds.
- */
-inline Time get_ut1_minus_utc(const Date& date)
-{
-    using EopRow = eop::EarthOrientationParameters::EopRow;
-    using mp_units::si::unit_symbols::s;
-
-    const Time taiMinusUt1 = get_eop_interpolant(date).interpolate(&EopRow::TAI_UT1);
-
-    // TAI - UTC was 10 s when integer leap seconds began in 1972, plus every leap second since
-    const Time taiMinusUtc = (10.0 + static_cast<double>(std::chrono::get_leap_second_info(date.utc()).elapsed.count())) * s;
-
-    return taiMinusUtc - taiMinusUt1;
 }
 
 } // namespace
@@ -426,12 +343,11 @@ inline constexpr DirectionCosineMatrix<frames::earth::cep, frames::earth::itrf>
     using astrea::units::unit_symbols::jc;
     using math::cos;
 
-    // Diurnal rotation, using apparent sidereal time (GMST plus the equation of the equinoxes) since cep is true of date.
-    // Sidereal time is a function of UT1, not UTC.
+    // Diurnal rotation, using apparent sidereal time (GMST plus the equation of the equinoxes) since cep is true of
+    // date. Date::gmst() evaluates sidereal time at UT1.
     const Unitless T             = (date - J2000) / jc;
     const auto [eps, dpsi, deps] = get_nutation_angles(T);
-    const Date ut1               = date + get_ut1_minus_utc(date);
-    const Angle gst              = julian_date_to_sidereal_time(ut1.jd()) + dpsi * cos(eps);
+    const Angle gst              = date.gmst() + dpsi * cos(eps);
     const auto Rs                = DCM<frames::earth::cep, frames::earth::itrf>::Z(-gst);
 
     // Polar motion
