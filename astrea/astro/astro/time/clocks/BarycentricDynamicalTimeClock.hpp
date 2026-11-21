@@ -19,10 +19,10 @@
 #pragma once
 
 #include <chrono>
+#include <cmath>
 #include <numbers>
 #include <ratio>
 
-#include <astro/time/clocks/JulianDateClock.hpp>
 #include <astro/time/clocks/TerrestrialTimeClock.hpp>
 
 namespace astrea {
@@ -31,7 +31,7 @@ namespace astro {
 struct BarycentricDynamicalTimeClock; // Forward declaration
 
 /**
- * @brief A time point type for Geocentric Coordinate Time, using the BarycentricDynamicalTimeClock.
+ * @brief A time point type for Barycentric Dynamical Time, using the BarycentricDynamicalTimeClock.
  *
  * @tparam Duration The duration type to use for the time point. This should be a duration type that is compatible with BarycentricDynamicalTimeClock.
  */
@@ -41,9 +41,9 @@ using BarycentricDynamicalTimePoint = std::chrono::time_point<BarycentricDynamic
 /**
  * @brief A clock implementation for Barycentric Dynamical Time (TDB).
  *
- * Geocentric Coordinate Time is a continuous time scale defined by the IAU. It is related to Terrestrial Time (TT) by a
- * linear transformation that accounts for the relativistic effects of Earth's gravitational potential. TCG is commonly
- * used in astrodynamics for high-precision timekeeping in the vicinity of Earth.
+ * Barycentric Dynamical Time is the independent time argument of barycentric ephemerides. It differs from Terrestrial
+ * Time (TT) only by periodic terms caused by the eccentricity of Earth's orbit, the largest of which is ~1.66 ms. This
+ * clock uses the two leading periodic terms, which agree with the full series to ~30 us.
  */
 struct BarycentricDynamicalTimeClock {
     using rep      = double;        //!< The representation type, a double for sub-second precision.
@@ -52,7 +52,6 @@ struct BarycentricDynamicalTimeClock {
     using time_point = std::chrono::time_point<BarycentricDynamicalTimeClock>; //!< The time point type for TDB, using BarycentricDynamicalTimeClock.
 
     static constexpr bool is_steady = false; //!< TDB is not a steady clock; it is anchored to TAI.
-    static constexpr auto jdRef     = JulianDateClock::duration{ 2451545.0 };
 
     /**
      * @brief Converts a system time point to a Barycentric Dynamical Time time point.
@@ -68,18 +67,15 @@ struct BarycentricDynamicalTimeClock {
     template <class Duration>
     static auto from_sys(std::chrono::sys_time<Duration> const& timePoint) noexcept
     {
-        using namespace std::chrono;
-        const auto tt     = duration_cast<duration>(TerrestrialTimeClock::from_sys(timePoint).time_since_epoch());
-        const auto jd     = JulianDateClock::from_sys(timePoint).time_since_epoch();
-        const auto jdDiff = duration_cast<days>(jd - jdRef).count();
-        const auto Me = (357.53 + 0.9856003 * jdDiff) * (std::numbers::pi / 180.0); // Mean anomaly of the Earth in rad
-        return BarycentricDynamicalTimePoint<duration>{ tt + duration{ 0.001658 * std::sin(Me) + 0.00001385 * std::sin(2 * Me) } };
+        const auto tt = TerrestrialTimeClock::from_sys(timePoint).time_since_epoch();
+        return BarycentricDynamicalTimePoint<duration>{ tt + tdb_minus_tt(tt) };
     }
 
     /**
      * @brief Converts a Barycentric Dynamical Time time point to a system time point.
      *
-     * The conversion route is: TDB → TAI (- 32.184 s) → UTC (via clock_cast, handling leap seconds).
+     * The conversion route is: TDB → TT → UTC. The periodic terms are evaluated at TDB rather than TT, which changes
+     * them by less than a nanosecond.
      *
      * @tparam Duration The duration type of the TDB time point.
      * @param timePoint The TDB time point to convert.
@@ -90,12 +86,8 @@ struct BarycentricDynamicalTimeClock {
     template <class Duration>
     static auto to_sys(BarycentricDynamicalTimePoint<Duration> const& timePoint) noexcept
     {
-        using namespace std::chrono;
-        static const auto sysRef = JulianDateClock::to_sys(JulianDateClock::time_point{ jdRef });
-        static const auto tbdRef = BarycentricDynamicalTimeClock::from_sys(sysRef);
-        const auto Me = (357.53 + 0.9856003 * duration_cast<days>(timePoint - tbdRef).count()) * (std::numbers::pi / 180.0); // Mean anomaly of the Earth in rad
-        const auto tt = timePoint.time_since_epoch() - duration{ 0.001658 * std::sin(Me) + 0.00001385 * std::sin(2 * Me) };
-        return TerrestrialTimeClock::to_sys(TerrestrialTimeClock::time_point{ TerrestrialTimeClock::duration{ tt } });
+        const auto tdb = std::chrono::duration_cast<duration>(timePoint.time_since_epoch());
+        return TerrestrialTimeClock::to_sys(TerrestrialTimeClock::time_point{ tdb - tdb_minus_tt(tdb) });
     }
 
     /**
@@ -107,6 +99,21 @@ struct BarycentricDynamicalTimeClock {
     {
         using namespace std::chrono;
         return from_sys(system_clock::now());
+    }
+
+  private:
+    /**
+     * @brief Computes TDB - TT from the mean anomaly of the Earth.
+     *
+     * @param time Time on the TT (or TDB) scale, measured from the TerrestrialTimeClock epoch.
+     * @return duration TDB - TT.
+     */
+    static duration tdb_minus_tt(const TerrestrialTimeClock::duration& time) noexcept
+    {
+        using days_d  = std::chrono::duration<rep, std::chrono::days::period>;
+        const auto dt = std::chrono::duration_cast<days_d>(time - TerrestrialTimeClock::j2000.time_since_epoch());
+        const auto mEarth = (357.53 + 0.9856003 * dt.count()) * (std::numbers::pi / 180.0); // Mean anomaly of the Earth in rad
+        return duration{ 0.001658 * std::sin(mEarth) + 0.00001385 * std::sin(2.0 * mEarth) };
     }
 };
 

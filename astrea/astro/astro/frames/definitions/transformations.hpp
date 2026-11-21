@@ -133,9 +133,9 @@ inline constexpr DCM<frame, root> get_dcm_to_root_frame(const Date& date)
     }
     // current frame is a descendant of root
     else if constexpr (IsDerivedAxis<decltype(axis.parent)>) {
-        // DCM<grandparent, parent> * DCM<parent, child> = DCM<grandparent, child>
+        // DCM<parent, root> * DCM<frame, parent> = DCM<frame, root>
         static constexpr auto parent = make_frame(frame.origin, axis.parent);
-        return get_dcm_impl<frame, parent>(date) * get_dcm_to_root_frame<parent, root>(date);
+        return get_dcm_to_root_frame<parent, root>(date) * get_dcm_impl<frame, parent>(date);
     }
     else {
         static_assert(always_false<NoDcmBetween<frame.name.portable(), root.name.portable()>>, "Frame is not a descendant of root frame.");
@@ -178,9 +178,9 @@ inline constexpr DcmRate<frame, root> get_dcm_rate_to_root_frame(const Date& dat
         const DcmRate<frame, parent> dcmRateToParent    = get_dcm_rate_impl<frame, parent>(date);
         const DcmRate<parent, root> dcmRateParentToRoot = get_dcm_rate_to_root_frame<parent, root>(date);
 
-        // Dcm<grandparent, parent> * DCM<parent, child> = DCM<grandparent, child>
-        // DcmRate<grandparent, parent> * DCM<parent, child> + Dcm<grandparent, parent> * DcmRate<parent, child> = DcmRate<grandparent, child>
-        return dcmToParent * dcmRateParentToRoot + dcmParentToRoot * dcmRateToParent;
+        // DCM<frame, root> = DCM<parent, root> * DCM<frame, parent>
+        // DcmRate<frame, root> = DcmRate<parent, root> * DCM<frame, parent> + DCM<parent, root> * DcmRate<frame, parent>
+        return dcmRateParentToRoot * dcmToParent + dcmParentToRoot * dcmRateToParent;
     }
     else {
         return DcmRate<root, frame>::zero();
@@ -217,7 +217,7 @@ inline constexpr DcmAccel<frame, root> get_dcm_accel_to_root_frame(const Date& d
     }
     // current frame is a descendant of root
     else if constexpr (IsDerivedAxis<decltype(axis.parent)>) {
-        // DCM<grandparent, parent> * DCM<parent, child> = DCM<grandparent, child>
+        // DCM<parent, root> * DCM<frame, parent> = DCM<frame, root>
         static constexpr auto parent = make_frame(frame.origin, axis.parent);
 
         const DCM<frame, parent> dcmToParent              = get_dcm_impl<frame, parent>(date);
@@ -227,10 +227,10 @@ inline constexpr DcmAccel<frame, root> get_dcm_accel_to_root_frame(const Date& d
         const DcmAccel<frame, parent> dcmAccelToParent    = get_dcm_accel_impl<frame, parent>(date);
         const DcmAccel<parent, root> dcmAccelParentToRoot = get_dcm_accel_to_root_frame<parent, root>(date);
 
-        // Dcm<grandparent, parent> * DCM<parent, child> = DCM<grandparent, child>
-        // DcmRate<grandparent, parent> * DCM<parent, child> + Dcm<grandparent, parent> * DcmRate<parent, child> = DcmRate<grandparent, child>
-        // DcmAccel<grandparent, parent> * DCM<parent, child> + 2 * DcmRate<grandparent, parent> * DcmRate<parent, child> + Dcm<grandparent, parent> * DcmAccel<parent, child> = DcmAccel<grandparent, child>
-        return dcmToParent * dcmAccelParentToRoot + 2.0 * dcmRateParentToRoot * dcmRateToParent + dcmParentToRoot * dcmAccelToParent;
+        // DCM<frame, root> = DCM<parent, root> * DCM<frame, parent>
+        // DcmAccel<frame, root> = DcmAccel<parent, root> * DCM<frame, parent> + 2 * DcmRate<parent, root> * DcmRate<frame, parent>
+        //                         + DCM<parent, root> * DcmAccel<frame, parent>
+        return dcmAccelParentToRoot * dcmToParent + 2.0 * (dcmRateParentToRoot * dcmRateToParent) + dcmParentToRoot * dcmAccelToParent;
     }
     else {
         return DcmAccel<root, frame>::zero();
@@ -292,7 +292,7 @@ inline constexpr DCM<frame, frame_u> get_dcm_impl(const Date& date)
         static constexpr auto root      = make_frame(frame.origin, root_axis);
         const DCM<frame, root> dcm1     = get_dcm_to_root_frame<frame, root>(date);
         const DCM<frame_u, root> dcm2   = get_dcm_to_root_frame<frame_u, root>(date);
-        return dcm1 * dcm2.transpose(); // DCM_root->frame_u * DCM_frame->root = DCM_frame->frame_u
+        return dcm2.transpose() * dcm1; // DCM_root->frame_u * DCM_frame->root = DCM_frame->frame_u
     }
     else {
         static_assert(always_false<NoDcmBetween<frame.name.portable(), frame_u.name.portable()>>, "Getting here means something is wrong with the static assertions. Please report this to the developers.");
@@ -333,8 +333,8 @@ inline constexpr DcmRate<frame, frame_u> get_dcm_rate_impl(const Date& date)
         const DcmRate<frame_u, root> dcmRate2 = get_dcm_rate_to_root_frame<frame_u, root>(date);
 
         // DCM_frame->frame_u = DCM_root->frame_u * DCM_frame->root
-        // DCM_rate_frame->frame_u = DCM_rate_frame->root * DCM_root->frame_u + DCM_frame->root * DCM_rate_root->frame_u
-        return dcmRate1 * dcm2.transpose() + dcm1 * dcmRate2.transpose();
+        // DCM_rate_frame->frame_u = DCM_rate_root->frame_u * DCM_frame->root + DCM_root->frame_u * DCM_rate_frame->root
+        return dcmRate2.transpose() * dcm1 + dcm2.transpose() * dcmRate1;
     }
     else {
         // TODO: Trigger warning?
@@ -378,9 +378,9 @@ inline constexpr DcmAccel<frame, frame_u> get_dcm_accel_impl(const Date& date)
         const DcmAccel<frame_u, root> dcmAccel2 = get_dcm_accel_to_root_frame<frame_u, root>(date);
 
         // DCM_frame->frame_u = DCM_root->frame_u * DCM_frame->root
-        // DCM_rate_frame->frame_u = DCM_rate_frame->root * DCM_root->frame_u + DCM_frame->root * DCM_rate_root->frame_u
-        // DCM_accel_frame->frame_u = DCM_accel_frame->root * DCM_root->frame_u + 2 * DCM_rate_frame->root * DCM_rate_root->frame_u + DCM_frame->root * DCM_accel_root->frame_u
-        return dcmAccel1 * dcm2.transpose() + 2.0 * dcmRate1 * dcmRate2.transpose() + dcm1 * dcmAccel2.transpose();
+        // DCM_accel_frame->frame_u = DCM_accel_root->frame_u * DCM_frame->root + 2 * DCM_rate_root->frame_u * DCM_rate_frame->root
+        //                           + DCM_root->frame_u * DCM_accel_frame->root
+        return dcmAccel2.transpose() * dcm1 + 2.0 * (dcmRate2.transpose() * dcmRate1) + dcm2.transpose() * dcmAccel1;
     }
     else {
         // TODO: Trigger warning?
