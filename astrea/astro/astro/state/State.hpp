@@ -26,7 +26,7 @@
 #include <astro/state/attitude/Attitude.hpp>
 #include <astro/state/attitude/Quaternion.hpp>
 #include <astro/state/orbital_elements/OrbitalElements.hpp>
-#include <astro/systems/property_getters.hpp>
+#include <astro/systems/celestial_body_utilities.hpp>
 #include <astro/systems/system_utilities.hpp>
 #include <astro/time/Date.hpp>
 #include <astro/types/typedefs.hpp>
@@ -162,7 +162,7 @@ class State {
     template <IsOrbitalElements T>
     void convert_to_set()
     {
-        _elements.convert_to_set<T>(get_mu());
+        _elements.convert_to_set<T>(_epoch, get_mu());
     }
 
     /**
@@ -172,7 +172,7 @@ class State {
      */
     State& convert_to_set(const std::size_t idx)
     {
-        _elements.convert_to_set(idx, get_mu());
+        _elements.convert_to_set(idx, _epoch, get_mu());
         return *this;
     }
 
@@ -185,7 +185,7 @@ class State {
     State convert_to_set(const std::size_t idx) const
     {
         State newState = *this;
-        newState._elements.convert_to_set(idx, get_mu());
+        newState._elements.convert_to_set(idx, _epoch, get_mu());
         return newState;
     }
 
@@ -202,7 +202,7 @@ class State {
     }
 
     /**
-     * @brief Converts the current orbital elements to a specified type.
+     * @brief Converts the current orbital elements to a specified orbital elements type.
      *
      * @param sys The astrodynamics system to use for the conversion.
      * @return The converted orbital elements.
@@ -210,9 +210,9 @@ class State {
     template <IsOrbitalElements T>
     T in_element_set() const
     {
-        using BaseInPrimary = typename T::template BaseType<frames::primary>;
-        const auto mu       = this->get_mu();
-        return _elements.in_element_set<BaseInPrimary>(mu).template in_frame<T::frame>(_epoch, mu);
+        // TODO: You could add support for in place modifications to registered frames
+        // but that's a lot of work and I'm not sure it's really that useful
+        return _elements.template in_element_set<T>(_epoch, get_mu());
     }
 
     /**
@@ -234,7 +234,7 @@ class State {
     template <IsFrame auto _frame_>
     RadiusVector<_frame_> get_position_in_frame() const
     {
-        return get_position().template in_frame<_frame_>(get_epoch());
+        return get_position().template in_frame<_frame_>(_epoch);
     }
 
     /**
@@ -269,7 +269,7 @@ class State {
     {
         std::size_t originalIndex = _elements.index();
         _elements                 = elements;
-        if (convertToOriginal) { _elements.convert_to_set(originalIndex, get_mu()); }
+        if (convertToOriginal) { _elements.convert_to_set(originalIndex, _epoch, get_mu()); }
     }
 
     /**
@@ -468,7 +468,7 @@ class StatePartial {
      *
      * @return const Date& Reference to the epoch of the state partial.
      */
-    const Date& get_epoch() const;
+    const Date& get_epoch() const { return _epoch; }
 
     /**
      * @brief Converts the State to a vector of Unitless values.

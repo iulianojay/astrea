@@ -33,8 +33,7 @@ State::State(const StateHistory& history)
     if (history.size() != 1) {
         throw std::runtime_error("StateHistory must contain exactly one state to construct a State.");
     }
-    const auto& state = history.first();
-    *this             = state;
+    *this = history.first();
 }
 
 
@@ -156,8 +155,6 @@ State StatePartial::operator*(const Time& time) const
              _userDefinedStatePartial.has_value() ? std::optional<UserDefinedState>(_userDefinedStatePartial.value() * time) :
                                                     std::nullopt };
 }
-
-const Date& StatePartial::get_epoch() const { return _epoch; }
 
 State State::interpolate(const Time& thisTime, const Time& otherTime, const State& other, const Time& targetTime) const
 {

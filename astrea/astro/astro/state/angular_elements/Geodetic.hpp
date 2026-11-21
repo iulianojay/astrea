@@ -27,8 +27,8 @@
 // astro
 #include <astro/astro.fwd.hpp>
 #include <astro/frames/definitions.hpp>
-#include <astro/frames/framework/CartesianVector.hpp>
-#include <astro/frames/framework/frame_concepts.hpp>
+#include <astro/frames/framework.hpp>
+#include <astro/state/framework/AngularElementsInterface.hpp>
 #include <astro/state/orbital_elements/OrbitalElements.hpp>
 #include <astro/systems/system_concepts.hpp>
 #include <astro/systems/system_utilities.hpp>
@@ -46,106 +46,34 @@ namespace astro {
  * @tparam _body_ The celestial body NTTP that defines the reference ellipsoid and frames.
  */
 template <IsCelestialBody auto _body_>
-class Geodetic {
+class Geodetic : public AngularElementsInterface<Geodetic<_body_>, _body_, Angle, Angle, Distance> {
 
-    template <IsCelestialBody auto body>
-    friend std::ostream& operator<<(std::ostream&, Geodetic<body> const&);
+    using BaseType = AngularElementsInterface<Geodetic<_body_>, _body_, Angle, Angle, Distance>;
+
+    friend inline std::ostream& operator<<(std::ostream& os, Geodetic const& elements)
+    {
+        using mp_units::si::unit_symbols::deg;
+        using mp_units::si::unit_symbols::km;
+        os << "[";
+        os << elements.get_latitude().in(deg) << ", ";
+        os << elements.get_longitude().in(deg);
+        if (elements.get_altitude() != 0.0 * km) { os << ", " << elements.get_altitude(); }
+        os << "] (Geodetic)";
+        return os;
+    }
 
   public:
-    static constexpr auto body          = _body_; //!< The celestial body of this Geodetic state.
-    static constexpr auto _icrf_frame_  = make_frame(_body_, axes::icrf); //!< Inertial frame for the body.
-    static constexpr auto _fixed_frame_ = get_body_fixed_frame<_body_>(); //!< Body-fixed rotating frame.
+    template <IsCelestialBody auto B>
+    using Self = Geodetic<B>;  // For introspection
+    using BaseType::BaseType;  // Inherit constructors from the base class
+    using BaseType::operator=; // Inherit assignment operator from the base class
 
     /**
      * @brief Default constructor for Geodetic.
      *
      * Initializes the Geodetic state vector with zero values.
      */
-    Geodetic(Unitless scale = 0.0 * astrea::detail::unitless) :
-        _latitude(scale * astrea::detail::angle_unit),
-        _longitude(scale * astrea::detail::angle_unit),
-        _altitude(scale * astrea::detail::distance_unit)
-    {
-    }
-
-    /**
-     * @brief Constructor for Geodetic with latitude, longitude, and altitude.
-     *
-     * @param latitude Geodetic latitude
-     * @param longitude Longitude
-     * @param altitude Altitude
-     */
-    Geodetic(const Angle& latitude, const Angle& longitude, const Distance& altitude) :
-        _latitude(latitude),
-        _longitude(longitude),
-        _altitude(altitude)
-    {
-    }
-
-    /**
-     * @brief Constructor for Geodetic from a radius vector in any inertial frame centred on the same body.
-     *
-     * Accepts any frame whose origin matches _body_ and whose axis is the ICRF axis, so that both
-     * the canonical named frame (e.g. frames::earth::icrf) and the synthetic frame produced by
-     * make_frame(_body_, axes::icrf) are accepted.
-     *
-     * @tparam _frame_ The inertial frame of the radius vector.
-     * @param r Radius vector in an ICRF-axis frame centred on the body.
-     * @param date Epoch date used to convert inertial to body-fixed.
-     */
-    template <auto _frame_>
-        requires(equivalent(_frame_, make_frame(_body_, axes::icrf)))
-    Geodetic(const RadiusVector<_frame_>& r, const Date& date);
-
-    /**
-     * @brief Constructor for Geodetic from a radius vector in the body-fixed frame.
-     *
-     * @param r Radius vector in the body-fixed frame.
-     */
-    Geodetic(const RadiusVector<_fixed_frame_>& r);
-
-    /**
-     * @brief Constructor for Geodetic from orbital elements.
-     *
-     * @param elements Orbital elements
-     * @param date Epoch date
-     */
-    template <IsOrbitalElements T>
-    Geodetic(const T& elements, const Date& date)
-    {
-        static const GravParam mu = get_mu<_body_>();
-        *this = Geodetic<_body_>(Cartesian<T::frame>(elements, mu).get_position().template in_frame<_fixed_frame_>(date));
-    }
-
-    /**
-     * @brief Copy constructor for Geodetic.
-     *
-     * @param other Another Geodetic object
-     */
-    Geodetic(const Geodetic<_body_>&);
-
-    /**
-     * @brief Move constructor for Geodetic.
-     *
-     * @param other Another Geodetic object
-     */
-    Geodetic(Geodetic<_body_>&&) noexcept;
-
-    /**
-     * @brief Move assignment operator for Geodetic.
-     *
-     * @param other Another Geodetic object
-     * @return Geodetic& Reference to the current object
-     */
-    Geodetic& operator=(Geodetic<_body_>&&) noexcept;
-
-    /**
-     * @brief Copy assignment operator for Geodetic.
-     *
-     * @param other Another Geodetic object
-     * @return Geodetic& Reference to the current object
-     */
-    Geodetic& operator=(const Geodetic<_body_>&);
+    Geodetic() = default;
 
     /**
      * @brief Default destructor for Geodetic.
@@ -153,237 +81,155 @@ class Geodetic {
     ~Geodetic() = default;
 
     /**
-     * @brief Compares two Geodetic objects for equality.
-     *
-     * @param other Another Geodetic object
-     * @return true if the two Geodetic objects are equal
-     * @return false if the two Geodetic objects are not equal
-     */
-    bool operator==(const Geodetic<_body_>& other) const;
-
-    /**
-     * @brief Compares two Geodetic objects for inequality.
-     *
-     * @param other Another Geodetic object
-     * @return true if the two Geodetic objects are not equal
-     * @return false if the two Geodetic objects are equal
-     */
-    bool operator!=(const Geodetic<_body_>& other) const;
-
-    /**
-     * @brief Adds two Geodetic objects.
-     *
-     * @param other Another Geodetic object
-     * @return Resultant Geodetic sum.
-     */
-    Geodetic operator+(const Geodetic<_body_>& other) const;
-
-    /**
-     * @brief Adds another Geodetic object to the current one.
-     *
-     * @param other Another Geodetic object
-     * @return Reference to the current Geodetic object after addition.
-     */
-    Geodetic& operator+=(const Geodetic<_body_>& other);
-
-    /**
-     * @brief Subtracts another Geodetic object from the current one.
-     *
-     * @param other Another Geodetic object
-     * @return Resultant Geodetic difference.
-     */
-    Geodetic operator-(const Geodetic<_body_>& other) const;
-
-    /**
-     * @brief Subtracts another Geodetic object from the current one.
-     *
-     * @param other Another Geodetic object
-     * @return Reference to the current Geodetic object after subtraction.
-     */
-    Geodetic& operator-=(const Geodetic<_body_>& other);
-
-    /**
-     * @brief Multiplies the Geodetic state vector by a scalar.
-     *
-     * @param multiplier Scalar value to multiply with
-     * @return Resultant Geodetic after multiplication.
-     */
-    Geodetic operator*(const Unitless& multiplier) const;
-
-    /**
-     * @brief Multiplies the Geodetic state vector by a scalar.
-     *
-     * @param multiplier Scalar value to multiply with
-     * @return Reference to the current Geodetic object after multiplication.
-     */
-    Geodetic& operator*=(const Unitless& multiplier);
-
-    /**
-     * @brief Divides the Geodetic state vector by another Geodetic object.
-     *
-     * @param other Another Geodetic object
-     * @return Resultant vector of unitless values after division.
-     */
-    std::vector<Unitless> operator/(const Geodetic<_body_>& other) const;
-
-    /**
-     * @brief Divides the Geodetic state vector by a scalar.
-     *
-     * @param divisor Scalar value to divide with
-     * @return Resultant Geodetic after division.
-     */
-    Geodetic operator/(const Unitless& divisor) const;
-
-    /**
-     * @brief Divides the Geodetic state vector by a scalar.
-     *
-     * @param divisor Scalar value to divide with
-     * @return Reference to the current Geodetic object after division.
-     */
-    Geodetic& operator/=(const Unitless& divisor);
-
-    /**
-     * @brief Converts the Geodetic state vector to a position in the body-fixed frame.
-     *
-     * @return RadiusVector in the body-fixed frame.
-     */
-    RadiusVector<_fixed_frame_> get_position() const;
-
-    /**
-     * @brief Converts the Geodetic state vector to a position in the body's inertial frame.
-     *
-     * @param date Epoch date used to convert body-fixed to inertial.
-     * @return RadiusVector in the body's inertial frame.
-     */
-    RadiusVector<_icrf_frame_> get_position(const Date& date) const;
-
-    /**
      * @brief Get the latitude of the Geodetic state vector.
      *
      * @return const Angle& Reference to the latitude component of the Geodetic state vector.
      */
-    const Angle& get_latitude() const { return _latitude; }
+    inline constexpr const Angle& get_latitude() const { return this->template get<0>(); }
 
     /**
      * @brief Get the longitude of the Geodetic state vector.
      *
      * @return const Angle& Reference to the longitude component of the Geodetic state vector.
      */
-    const Angle& get_longitude() const { return _longitude; }
+    inline constexpr const Angle& get_longitude() const { return this->template get<1>(); }
 
     /**
      * @brief Get the altitude of the Geodetic state vector.
      *
      * @return const Distance& Reference to the altitude component of the Geodetic state vector.
      */
-    const Distance& get_altitude() const { return _altitude; }
+    inline constexpr const Distance& get_altitude() const { return this->template get<2>(); }
 
     /**
-     * @brief Interpolates between two Geodetic states at a given time.
+     * @brief Get the latitude of the Geodetic state vector.
      *
-     * @param thisTime Time of the current state
-     * @param otherTime Time of the other state
-     * @param other Other Geodetic state to interpolate with
-     * @param targetTime Target time for interpolation
-     * @return Geodetic Interpolated Geodetic state at the target time.
+     * @return const Angle& Reference to the latitude component of the Geodetic state vector.
      */
-    Geodetic interpolate(const Time& thisTime, const Time& otherTime, const Geodetic<_body_>& other, const Time& targetTime) const;
+    inline constexpr Angle& get_latitude() { return this->template get<0>(); }
 
-  private:
-    Angle _latitude;    //!< Geodetic Latitude
-    Angle _longitude;   //!< Longitude
-    Distance _altitude; //!< Altitude
-};
+    /**
+     * @brief Get the longitude of the Geodetic state vector.
+     *
+     * @return const Angle& Reference to the longitude component of the Geodetic state vector.
+     */
+    inline constexpr Angle& get_longitude() { return this->template get<1>(); }
 
+    /**
+     * @brief Get the altitude of the Geodetic state vector.
+     *
+     * @return const Distance& Reference to the altitude component of the Geodetic state vector.
+     */
+    inline constexpr Distance& get_altitude() { return this->template get<2>(); }
 
-/**
- * @brief Convert a vector from ECEF (Earth-Centered Earth-Fixed) to LLA (Latitude, Longitude, Altitude) coordinates.
- *
- * @param rEcef The radius vector in ECEF coordinates.
- * @param requatorial The equatorial radius of the Earth.
- * @param rPolar The polar radius of the Earth.
- * @return The latitude, longitude, and altitude as a tuple.
- */
-template <IsFrame auto frame>
-    requires(IsBodyFixedFrame<decltype(frame)>)
-inline std::tuple<Angle, Angle, Distance> convert_body_fixed_to_geodetic(const RadiusVector<frame>& rBodyFixed)
-{
-    using mp_units::abs;
-    using mp_units::sqrt;
-    using mp_units::si::atan2;
-    using mp_units::si::unit_symbols::km;
-    using mp_units::si::unit_symbols::mm;
+    /**
+     * @brief Set the latitude of the Geodetic state vector.
+     *
+     * @param latitude The latitude to set for the Geodetic state vector.
+     */
+    inline void set_latitude(const Angle& latitude) { this->template get<0>() = latitude; }
 
-    static const unsigned MAX_ITER  = 1e4;
-    static const Distance MAX_ERROR = 1.0 * mm;
+    /**
+     * @brief Set the longitude of the Geodetic state vector.
+     *
+     * @param longitude The longitude to set for the Geodetic state vector.
+     */
+    inline void set_longitude(const Angle& longitude) { this->template get<1>() = longitude; }
 
-    const Distance& xEcef = rBodyFixed[0];
-    const Distance& yEcef = rBodyFixed[1];
-    const Distance& zEcef = rBodyFixed[2];
+    /**
+     * @brief Set the altitude of the Geodetic state vector.
+     *
+     * @param altitude The altitude to set for the Geodetic state vector.
+     */
+    inline void set_altitude(const Distance& altitude) { this->template get<2>() = altitude; }
 
-    static const Distance requatorial = get_equatorial_radius<decltype(frame)::origin>();
-    static const Distance rPolar      = get_polar_radius<decltype(frame)::origin>();
-    static const Unitless f           = (requatorial - rPolar) / requatorial;
-    static const Unitless eSq         = (2.0 - f) * f;
+    /**
+     * @brief Convert a vector from ECEF (Earth-Centered Earth-Fixed) to LLA (Latitude, Longitude, Altitude) coordinates.
+     *
+     * @param rEcef The radius vector in ECEF coordinates.
+     * @param requatorial The equatorial radius of the Earth.
+     * @param rPolar The polar radius of the Earth.
+     * @return The latitude, longitude, and altitude as a tuple.
+     */
+    template <IsFrame auto frame>
+        requires(equivalent(frame, BaseType::_fixed_frame_))
+    static inline std::tuple<Angle, Angle, Distance> from_body_fixed(const RadiusVector<frame>& rBodyFixed)
+    {
+        using mp_units::abs;
+        using mp_units::sqrt;
+        using mp_units::si::atan2;
+        using mp_units::si::unit_symbols::km;
+        using mp_units::si::unit_symbols::mm;
 
-    const auto xSqYSq = xEcef * xEcef + yEcef * yEcef;
+        static const unsigned MAX_ITER  = 1e4;
+        static const Distance MAX_ERROR = 1.0 * mm;
 
-    Distance dz  = eSq * zEcef;
-    Distance err = 1.0 * km;
-    Distance N   = 0.0 * km;
-    unsigned ii  = 0;
-    while (err > MAX_ERROR && ii < MAX_ITER) {
-        const Unitless s = (zEcef + dz) / sqrt(xSqYSq + (zEcef + dz) * (zEcef + dz));
-        N                = requatorial / sqrt(1 - eSq * s * s);
-        err              = abs(dz - N * eSq * s);
-        dz               = N * eSq * s;
-        ++ii;
+        const Distance& xEcef = rBodyFixed[0];
+        const Distance& yEcef = rBodyFixed[1];
+        const Distance& zEcef = rBodyFixed[2];
+
+        static const Distance requatorial = get_equatorial_radius<decltype(frame)::origin>();
+        static const Distance rPolar      = get_polar_radius<decltype(frame)::origin>();
+        static const Unitless f           = (requatorial - rPolar) / requatorial;
+        static const Unitless eSq         = (2.0 - f) * f;
+
+        const auto xSqYSq = xEcef * xEcef + yEcef * yEcef;
+
+        Distance dz  = eSq * zEcef;
+        Distance err = 1.0 * km;
+        Distance N   = 0.0 * km;
+        unsigned ii  = 0;
+        while (err > MAX_ERROR && ii < MAX_ITER) {
+            const Unitless s = (zEcef + dz) / sqrt(xSqYSq + (zEcef + dz) * (zEcef + dz));
+            N                = requatorial / sqrt(1 - eSq * s * s);
+            err              = abs(dz - N * eSq * s);
+            dz               = N * eSq * s;
+            ++ii;
+        }
+
+        if (ii >= MAX_ITER - 1) { throw std::runtime_error("Conversion from ECEF to LLA failed to converge."); }
+
+        const Angle longitude = atan2(yEcef, xEcef);
+        const Angle latitude  = atan2(zEcef + dz, sqrt(xSqYSq));
+        Distance altitude     = sqrt(xSqYSq + (zEcef + dz) * (zEcef + dz)) - N;
+        if (altitude < 0.0 * km) { altitude = 0.0 * km; }
+
+        return { latitude, longitude, altitude };
     }
 
-    if (ii >= MAX_ITER - 1) { throw std::runtime_error("Conversion from ECEF to LLA failed to converge."); }
 
-    const Angle longitude = atan2(yEcef, xEcef);
-    const Angle latitude  = atan2(zEcef + dz, sqrt(xSqYSq));
-    Distance altitude     = sqrt(xSqYSq + (zEcef + dz) * (zEcef + dz)) - N;
-    if (altitude < 0.0 * km) { altitude = 0.0 * km; }
+    /**
+     * @brief Convert a vector from LLA (Latitude, Longitude, Altitude) to ECEF (Earth-Centered Earth-Fixed) coordinates.
+     *
+     * @param lat The latitude in radians.
+     * @param lon The longitude in radians.
+     * @param alt The altitude in meters.
+     * @param requatorial The equatorial radius of the Earth.
+     * @param rPolar The polar radius of the Earth.
+     * @return The radius vector in ECEF coordinates.
+     */
+    template <IsFrame auto frame>
+        requires(equivalent(frame, BaseType::_fixed_frame_))
+    static inline constexpr RadiusVector<frame> to_body_fixed(const Angle& lat, const Angle& lon, const Distance& alt)
+    {
+        using math::cos;
+        using math::sin;
+        using mp_units::sqrt;
 
-    return { latitude, longitude, altitude };
-}
+        const Unitless sinLat = sin(lat);
+        const Unitless cosLat = cos(lat);
 
+        static constexpr Distance requatorial = get_equatorial_radius<decltype(frame)::origin>();
+        static constexpr Distance rPolar      = get_polar_radius<decltype(frame)::origin>();
+        static constexpr Unitless f           = (requatorial - rPolar) / requatorial;
+        static constexpr Unitless eSq         = (2.0 - f) * f;
 
-/**
- * @brief Convert a vector from LLA (Latitude, Longitude, Altitude) to ECEF (Earth-Centered Earth-Fixed) coordinates.
- *
- * @param lat The latitude in radians.
- * @param lon The longitude in radians.
- * @param alt The altitude in meters.
- * @param requatorial The equatorial radius of the Earth.
- * @param rPolar The polar radius of the Earth.
- * @return The radius vector in ECEF coordinates.
- */
-template <IsFrame auto frame>
-    requires(IsBodyFixedFrame<decltype(frame)>)
-inline constexpr RadiusVector<frame> convert_geodetic_to_body_fixed(const Angle& lat, const Angle& lon, const Distance& alt)
-{
-    using math::cos;
-    using math::sin;
-    using mp_units::sqrt;
+        const Distance N = requatorial / sqrt(1.0 - eSq * sinLat * sinLat);
 
-    const Unitless sinLat = sin(lat);
-    const Unitless cosLat = cos(lat);
-
-    static constexpr Distance requatorial = get_equatorial_radius<decltype(frame)::origin>();
-    static constexpr Distance rPolar      = get_polar_radius<decltype(frame)::origin>();
-    static constexpr Unitless f           = (requatorial - rPolar) / requatorial;
-    static constexpr Unitless eSq         = (2.0 - f) * f;
-
-    const Distance N = requatorial / sqrt(1.0 - eSq * sinLat * sinLat);
-
-    // Ecef coordinates
-    return { (N + alt) * cosLat * cos(lon), (N + alt) * cosLat * sin(lon), ((1.0 - eSq) * N + alt) * sinLat };
-}
+        // Ecef coordinates
+        return { (N + alt) * cosLat * cos(lon), (N + alt) * cosLat * sin(lon), ((1.0 - eSq) * N + alt) * sinLat };
+    }
+};
 
 } // namespace astro
 } // namespace astrea
-
-#include <astro/state/angular_elements/Geodetic.ipp>

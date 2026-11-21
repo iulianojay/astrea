@@ -13,6 +13,9 @@
 
 #include <tests/nasa_6dof_checkcases/helpers/AtmosphericCheckcase.hpp>
 
+#include <cctype>
+#include <regex>
+
 #include <utilities/json_util.hpp>
 #include <utilities/string_util.hpp>
 
@@ -25,6 +28,34 @@ using utilities::extract_from_json;
 using utilities::extract_optional_from_json;
 using utilities::extract_optional_string_from_json;
 using utilities::extract_string_from_json;
+
+namespace {
+
+unsigned parse_atmospheric_checkcase_num(const std::string& token)
+{
+    std::regex pVariantPattern("^([0-9]+)[pP]([0-9]+)$");
+    std::regex letterVariantPattern("^([0-9]+)([A-Za-z])$");
+    std::regex basePattern("^([0-9]+)$");
+    std::smatch match;
+
+    if (std::regex_match(token, match, pVariantPattern)) {
+        const unsigned base    = static_cast<unsigned>(std::stoul(match[1].str()));
+        const unsigned variant = static_cast<unsigned>(std::stoul(match[2].str()));
+        return base * 100 + variant;
+    }
+
+    if (std::regex_match(token, match, letterVariantPattern)) {
+        const unsigned base    = static_cast<unsigned>(std::stoul(match[1].str()));
+        const unsigned variant = static_cast<unsigned>(std::toupper(match[2].str()[0]) - 'A' + 1);
+        return base * 100 + variant;
+    }
+
+    if (std::regex_match(token, match, basePattern)) { return static_cast<unsigned>(std::stoul(match[1].str())); }
+
+    throw std::runtime_error("Invalid atmospheric checkcase token: " + token);
+}
+
+} // namespace
 
 template <typename T>
 std::ostream& operator<<(std::ostream& os, const std::optional<T>& opt)
@@ -41,7 +72,7 @@ AtmosphericCheckcase::AtmosphericCheckcase(const std::filesystem::path& filepath
     // Pull the rest from the filename
     const std::string filename            = filepath.stem().string();
     const std::vector<std::string> tokens = utilities::split(filename, "_");
-    checkcase_num                         = std::stoul(tokens[1]);
+    checkcase_num                         = parse_atmospheric_checkcase_num(tokens[1]);
     sim_num                               = std::stoul(tokens[tokens.size() - 1]);
 }
 

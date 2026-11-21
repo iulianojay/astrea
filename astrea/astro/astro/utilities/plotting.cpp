@@ -40,6 +40,13 @@ namespace plotting {
 
 namespace { // anonymous scoping to hide these functions further
 
+void disable_enhanced_text_for_figure(const figure_handle& fig)
+{
+    if (!fig || !fig->backend() || !fig->backend()->consumes_gnuplot_commands()) { return; }
+
+    fig->backend()->run_command("set termoption noenhanced");
+}
+
 /**
  * @brief Extracts raw time data from a StateHistory object.
  *
@@ -336,7 +343,6 @@ void plot_orbital_elements(const StateHistory& trajectory, const std::filesystem
     // Plot
     std::vector<double> time                = extract_raw_time_data(trajectory);
     std::array<std::vector<double>, 6> data = extract_raw_orbital_elements(trajectory);
-    const Date epoch                        = trajectory.epoch();
 
     const auto font             = "Arial";
     const float size            = 20.0;
@@ -344,6 +350,7 @@ void plot_orbital_elements(const StateHistory& trajectory, const std::filesystem
     const std::size_t nPlots    = plotFastVariable ? 6 : 5;
 
     auto h = figure(true);
+    disable_enhanced_text_for_figure(h);
     h->title("Orbital Element History");
     h->number_title(false);
     h->size(2000, 1500);
@@ -376,12 +383,12 @@ void plot_orbital_elements(const StateHistory& trajectory, const std::filesystem
             xlabel(ax, "Time");
             xtickformat(ax, "%g days");
             ax->x_axis().label_font_size(size);
-            ax->x_axis().label_weight("bold");
+            ax->x_axis().label_weight("normal");
         }
 
         ax->font_size(size);
         ax->y_axis().label_font_size(size);
-        ax->y_axis().label_weight("bold");
+        ax->y_axis().label_weight("normal");
     }
     std::filesystem::create_directories(outfile.parent_path());
     save(outfile.string());
@@ -393,7 +400,6 @@ void plot_trajectory(const StateHistory& trajectory, const std::filesystem::path
     // Plot
     std::array<std::vector<double>, 6> data = extract_raw_cartesian_elements(trajectory);
     std::vector<double> time                = extract_raw_time_data(trajectory);
-    const Date epoch                        = trajectory.epoch();
 
     std::vector<double> R;
     std::vector<double> V;
@@ -414,6 +420,7 @@ void plot_trajectory(const StateHistory& trajectory, const std::filesystem::path
     const float size = 20.0;
 
     auto h = figure(true);
+    disable_enhanced_text_for_figure(h);
     h->title("State History");
     h->number_title(false);
     h->size(2000, 1500);
@@ -442,11 +449,11 @@ void plot_trajectory(const StateHistory& trajectory, const std::filesystem::path
 
         ax->font_size(size);
         ax->x_axis().label_font_size(size);
-        ax->x_axis().label_weight("bold");
+        ax->x_axis().label_weight("normal");
         ax->y_axis().label_font_size(size);
-        ax->y_axis().label_weight("bold");
+        ax->y_axis().label_weight("normal");
         ax->z_axis().label_font_size(size);
-        ax->z_axis().label_weight("bold");
+        ax->z_axis().label_weight("normal");
 
         // magnitude plots
         ax = subplot(2, 2, iPlot + 2);
@@ -464,9 +471,9 @@ void plot_trajectory(const StateHistory& trajectory, const std::filesystem::path
 
         ax->font_size(size);
         ax->x_axis().label_font_size(size);
-        ax->x_axis().label_weight("bold");
+        ax->x_axis().label_weight("normal");
         ax->y_axis().label_font_size(size);
-        ax->y_axis().label_weight("bold");
+        ax->y_axis().label_weight("normal");
     }
     std::filesystem::create_directories(outfile.parent_path());
     save(outfile.string());
@@ -481,6 +488,7 @@ void compare_orbital_elements(const std::vector<StateHistory>& trajectories, con
     const std::size_t nPlots    = plotFastVariable ? 6 : 5;
 
     auto h = figure(true);
+    disable_enhanced_text_for_figure(h);
     h->title("Orbital Element History");
     h->number_title(false);
     h->size(4000, 3000);
@@ -525,12 +533,12 @@ void compare_orbital_elements(const std::vector<StateHistory>& trajectories, con
             xlabel(ax, "Time");
             xtickformat(ax, "%g days");
             ax->x_axis().label_font_size(size);
-            ax->x_axis().label_weight("bold");
+            ax->x_axis().label_weight("normal");
         }
 
         ax->font_size(size);
         ax->y_axis().label_font_size(size);
-        ax->y_axis().label_weight("bold");
+        ax->y_axis().label_weight("normal");
     }
     std::filesystem::create_directories(outfile.parent_path());
     save(outfile.string());
@@ -543,6 +551,7 @@ void compare_trajectories(const std::vector<StateHistory>& trajectories, const s
     const float size = 20.0;
 
     auto h = figure(true);
+    disable_enhanced_text_for_figure(h);
     h->title("State History");
     h->number_title(false);
     h->size(4000, 3000);
@@ -579,11 +588,11 @@ void compare_trajectories(const std::vector<StateHistory>& trajectories, const s
 
         ax->font_size(size);
         ax->x_axis().label_font_size(size);
-        ax->x_axis().label_weight("bold");
+        ax->x_axis().label_weight("normal");
         ax->y_axis().label_font_size(size);
-        ax->y_axis().label_weight("bold");
+        ax->y_axis().label_weight("normal");
         ax->z_axis().label_font_size(size);
-        ax->z_axis().label_weight("bold");
+        ax->z_axis().label_weight("normal");
 
         // magnitude plots
         ax    = subplot(2, 2, iPlot + 2);
@@ -591,7 +600,6 @@ void compare_trajectories(const std::vector<StateHistory>& trajectories, const s
         for (const auto& trajectory : trajectories) {
             std::vector<double> time                = extract_raw_time_data(trajectory);
             std::array<std::vector<double>, 6> data = extract_raw_cartesian_elements(trajectory);
-            const Date epoch                        = trajectory.epoch();
 
             std::vector<double> R;
             std::vector<double> V;
@@ -625,9 +633,9 @@ void compare_trajectories(const std::vector<StateHistory>& trajectories, const s
 
         ax->font_size(size);
         ax->x_axis().label_font_size(size);
-        ax->x_axis().label_weight("bold");
+        ax->x_axis().label_weight("normal");
         ax->y_axis().label_font_size(size);
-        ax->y_axis().label_weight("bold");
+        ax->y_axis().label_weight("normal");
     }
     std::filesystem::create_directories(outfile.parent_path());
     save(outfile.string());
@@ -646,15 +654,16 @@ void plot_difference_orbital_elements(
     const std::size_t nPlots    = plotFastVariable ? 6 : 5;
 
     auto h = figure(true);
+    disable_enhanced_text_for_figure(h);
     h->title("Orbital Element History");
     h->number_title(false);
     h->size(4000, 3000);
     h->font(font);
     h->font_size(size + 5.0);
 
-    const std::array<std::string, 6> labels      = { "Δ Semimajor Axis",  "Δ Eccentricity",    "Δ Inclination",
-                                                     "Δ Right Ascension", "Δ Arg. of Perigee", "Δ True Anomaly" };
-    const std::array<std::string, 6> units       = { "km", " ", "deg", "deg", "deg", "deg" };
+    const std::array<std::string, 6> labels = { "Delta Semimajor Axis",  "Delta Eccentricity",    "Delta Inclination",
+                                                "Delta Right Ascension", "Delta Arg. of Perigee", "Delta True Anomaly" };
+    const std::array<std::string, 6> units  = { "km", " ", "deg", "deg", "deg", "deg" };
     const std::array<std::string, 6> tickformats = { "%0.2e", "%0.2e", "%0.2e", "%0.2e", "%0.2e", "%0.2e" };
 
     tiledlayout(nPlots, 1);
@@ -699,12 +708,12 @@ void plot_difference_orbital_elements(
             xlabel(ax, "Time");
             xtickformat(ax, "%g days");
             ax->x_axis().label_font_size(size);
-            ax->x_axis().label_weight("bold");
+            ax->x_axis().label_weight("normal");
         }
 
         ax->font_size(size);
         ax->y_axis().label_font_size(size);
-        ax->y_axis().label_weight("bold");
+        ax->y_axis().label_weight("normal");
     }
     std::filesystem::create_directories(outfile.parent_path());
     save(outfile.string());
@@ -721,13 +730,14 @@ void plot_difference_trajectories(
     const float size = 20.0;
 
     auto h = figure(true);
+    disable_enhanced_text_for_figure(h);
     h->title("State History");
     h->number_title(false);
     h->size(4000, 3000);
     h->font(font);
     h->font_size(size + 5.0);
 
-    const std::array<std::string, 6> labels = { "ΔX", "ΔY", "ΔZ", "ΔVX", "ΔVY", "ΔVZ" };
+    const std::array<std::string, 6> labels = { "Delta X", "Delta Y", "Delta Z", "Delta VX", "Delta VY", "Delta VZ" };
     const std::array<std::string, 6> units  = { "km", "km/s" };
 
     const std::vector<double> time                        = extract_raw_time_data(expected);
@@ -767,18 +777,17 @@ void plot_difference_trajectories(
 
         ax->font_size(size);
         ax->x_axis().label_font_size(size);
-        ax->x_axis().label_weight("bold");
+        ax->x_axis().label_weight("normal");
         ax->y_axis().label_font_size(size);
-        ax->y_axis().label_weight("bold");
+        ax->y_axis().label_weight("normal");
         ax->z_axis().label_font_size(size);
-        ax->z_axis().label_weight("bold");
+        ax->z_axis().label_weight("normal");
 
         // magnitude plots
         ax    = subplot(2, 2, iPlot + 2);
         iTraj = 0;
         for (const auto& trajectory : trajectories) {
             std::array<std::vector<double>, 6> data = extract_raw_cartesian_elements_at_times(time, trajectory);
-            const Date epoch                        = trajectory.epoch();
 
             std::vector<double> dR;
             std::vector<double> dV;
@@ -803,16 +812,16 @@ void plot_difference_trajectories(
 
         xlabel(ax, "Time");
         xtickformat(ax, "%g days");
-        ylabel(ax, iPlot == 0 ? "Δ Range \\n(km)" : "Δ Velocity \\n(km/s)");
+        ylabel(ax, iPlot == 0 ? "Delta Range \\n(km)" : "Delta Velocity \\n(km/s)");
 
         xtickformat(ax, "%g");
         ytickformat(ax, "%0.2e");
 
         ax->font_size(size);
         ax->x_axis().label_font_size(size);
-        ax->x_axis().label_weight("bold");
+        ax->x_axis().label_weight("normal");
         ax->y_axis().label_font_size(size);
-        ax->y_axis().label_weight("bold");
+        ax->y_axis().label_weight("normal");
     }
     std::filesystem::create_directories(outfile.parent_path());
     save(outfile.string());
@@ -829,13 +838,14 @@ void plot_attitude(const StateHistory& trajectory, const std::filesystem::path& 
     const float size = 20.0;
 
     auto h = figure(true);
+    disable_enhanced_text_for_figure(h);
     h->title("Attitude History");
     h->number_title(false);
     h->size(2000, 1800);
     h->font(font);
     h->font_size(size + 5.0);
 
-    const std::array<std::string, 6> labels      = { "Roll", "Pitch", "Yaw", "\u03c9x", "\u03c9y", "\u03c9z" };
+    const std::array<std::string, 6> labels      = { "Roll", "Pitch", "Yaw", "Omega X", "Omega Y", "Omega Z" };
     const std::array<std::string, 6> units       = { "deg", "deg", "deg", "deg/s", "deg/s", "deg/s" };
     const std::array<std::string, 6> tickformats = { "%0.3f", "%0.3f", "%0.3f", "%0.4f", "%0.4f", "%0.4f" };
 
@@ -856,12 +866,12 @@ void plot_attitude(const StateHistory& trajectory, const std::filesystem::path& 
             xlabel(ax, "Time");
             xtickformat(ax, "%g days");
             ax->x_axis().label_font_size(size);
-            ax->x_axis().label_weight("bold");
+            ax->x_axis().label_weight("normal");
         }
 
         ax->font_size(size);
         ax->y_axis().label_font_size(size);
-        ax->y_axis().label_weight("bold");
+        ax->y_axis().label_weight("normal");
     }
     std::filesystem::create_directories(outfile.parent_path());
     save(outfile.string());
@@ -874,6 +884,7 @@ void compare_attitudes(const std::vector<StateHistory>& trajectories, const std:
     const float size = 20.0;
 
     auto h = figure(true);
+    disable_enhanced_text_for_figure(h);
     h->title("Attitude History");
     h->number_title(false);
     h->size(4000, 3600);
@@ -882,7 +893,7 @@ void compare_attitudes(const std::vector<StateHistory>& trajectories, const std:
 
     if (trajectories.empty() || !trajectories[0].first().has_attitude()) { return; }
 
-    const std::array<std::string, 6> labels      = { "Roll", "Pitch", "Yaw", "\u03c9x", "\u03c9y", "\u03c9z" };
+    const std::array<std::string, 6> labels      = { "Roll", "Pitch", "Yaw", "Omega X", "Omega Y", "Omega Z" };
     const std::array<std::string, 6> units       = { "deg", "deg", "deg", "deg/s", "deg/s", "deg/s" };
     const std::array<std::string, 6> tickformats = { "%0.6f", "%0.6f", "%0.6f", "%0.6f", "%0.6f", "%0.6f" };
 
@@ -919,12 +930,12 @@ void compare_attitudes(const std::vector<StateHistory>& trajectories, const std:
             xlabel(ax, "Time");
             xtickformat(ax, "%g days");
             ax->x_axis().label_font_size(size);
-            ax->x_axis().label_weight("bold");
+            ax->x_axis().label_weight("normal");
         }
 
         ax->font_size(size);
         ax->y_axis().label_font_size(size);
-        ax->y_axis().label_weight("bold");
+        ax->y_axis().label_weight("normal");
     }
     std::filesystem::create_directories(outfile.parent_path());
     save(outfile.string());
@@ -944,14 +955,15 @@ void plot_difference_attitude(
     const float size = 20.0;
 
     auto h = figure(true);
+    disable_enhanced_text_for_figure(h);
     h->title("Attitude History");
     h->number_title(false);
     h->size(4000, 3600);
     h->font(font);
     h->font_size(size + 5.0);
 
-    const std::array<std::string, 6> labels      = { "\u0394 Roll",   "\u0394 Pitch",  "\u0394 Yaw",
-                                                     "\u0394\u03c9x", "\u0394\u03c9y", "\u0394\u03c9z" };
+    const std::array<std::string, 6> labels      = { "Delta Roll",    "Delta Pitch",   "Delta Yaw",
+                                                     "Delta Omega X", "Delta Omega Y", "Delta Omega Z" };
     const std::array<std::string, 6> units       = { "deg", "deg", "deg", "deg/s", "deg/s", "deg/s" };
     const std::array<std::string, 6> tickformats = { "%0.2e", "%0.2e", "%0.2e", "%0.2e", "%0.2e", "%0.2e" };
 
@@ -998,12 +1010,12 @@ void plot_difference_attitude(
             xlabel(ax, "Time");
             xtickformat(ax, "%g days");
             ax->x_axis().label_font_size(size);
-            ax->x_axis().label_weight("bold");
+            ax->x_axis().label_weight("normal");
         }
 
         ax->font_size(size);
         ax->y_axis().label_font_size(size);
-        ax->y_axis().label_weight("bold");
+        ax->y_axis().label_weight("normal");
     }
     std::filesystem::create_directories(outfile.parent_path());
     save(outfile.string());

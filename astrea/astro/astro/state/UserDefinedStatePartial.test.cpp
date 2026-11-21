@@ -273,3 +273,57 @@ TEST(UserDefinedStatePartialTest, TimeConversionRoundTrip)
     auto recovered = partial * dt;
     EXPECT_EQ(recovered.force_to_double_vector(), (std::vector<double>{ 7.0, 8.0, 9.0 }));
 }
+
+TEST(UserDefinedStatePartialTest, HandlesEmptyState)
+{
+    UserDefinedStatePartial state(MockUserDefinedStatePartial{ .values = {} });
+    EXPECT_EQ(state.force_to_double_vector(), std::vector<double>{});
+}
+
+TEST(UserDefinedStatePartialTest, Addition)
+{
+    UserDefinedStatePartial first(MockUserDefinedStatePartial{ .values = { 1.0, 2.0, 3.0 } });
+    UserDefinedStatePartial second(MockUserDefinedStatePartial{ .values = { 4.0, 5.0, 6.0 } });
+    UserDefinedStatePartial result = first + second;
+    EXPECT_EQ(result.force_to_double_vector(), (std::vector<double>{ 5.0, 7.0, 9.0 }));
+}
+
+TEST(UserDefinedStatePartialTest, InPlaceAddition)
+{
+    UserDefinedStatePartial first(MockUserDefinedStatePartial{ .values = { 1.0, 2.0, 3.0 } });
+    UserDefinedStatePartial second(MockUserDefinedStatePartial{ .values = { 4.0, 5.0, 6.0 } });
+    first += second;
+    EXPECT_EQ(first.force_to_double_vector(), (std::vector<double>{ 5.0, 7.0, 9.0 }));
+}
+
+TEST(UserDefinedStatePartialTest, Subtraction)
+{
+    UserDefinedStatePartial first(MockUserDefinedStatePartial{ .values = { 4.0, 5.0, 6.0 } });
+    UserDefinedStatePartial second(MockUserDefinedStatePartial{ .values = { 1.0, 2.0, 3.0 } });
+    UserDefinedStatePartial result = first - second;
+    EXPECT_EQ(result.force_to_double_vector(), (std::vector<double>{ 3.0, 3.0, 3.0 }));
+}
+
+TEST(UserDefinedStatePartialTest, InPlaceSubtraction)
+{
+    UserDefinedStatePartial first(MockUserDefinedStatePartial{ .values = { 4.0, 5.0, 6.0 } });
+    UserDefinedStatePartial second(MockUserDefinedStatePartial{ .values = { 1.0, 2.0, 3.0 } });
+    first -= second;
+    EXPECT_EQ(first.force_to_double_vector(), (std::vector<double>{ 3.0, 3.0, 3.0 }));
+}
+
+TEST(UserDefinedStatePartialTest, MultiplicationByUnitless)
+{
+    UserDefinedStatePartial state(MockUserDefinedStatePartial{ .values = { 1.0, 2.0, 3.0 } });
+    Unitless unitless;
+    UserDefinedStatePartial result = state * unitless;
+    EXPECT_EQ(result.force_to_double_vector(), (std::vector<double>{ 1.0, 2.0, 3.0 }));
+}
+
+TEST(UserDefinedStatePartialTest, DivisionByUnitless)
+{
+    UserDefinedStatePartial state(MockUserDefinedStatePartial{ .values = { 1.0, 2.0, 3.0 } });
+    Unitless unitless;
+    UserDefinedStatePartial result = state / unitless;
+    EXPECT_EQ(result.force_to_double_vector(), (std::vector<double>{ 1.0, 2.0, 3.0 }));
+}

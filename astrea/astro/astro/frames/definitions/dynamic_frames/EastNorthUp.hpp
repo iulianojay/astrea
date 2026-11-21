@@ -29,7 +29,7 @@
 #include <astro/frames/framework/DynamicFrame.hpp>
 #include <astro/frames/framework/Frame.hpp>
 #include <astro/state/angular_elements/Geodetic.hpp>
-#include <astro/systems/celestial_bodies.hpp>
+#include <astro/systems/celestial_bodies_impl.hpp>
 #include <astro/time/Date.hpp>
 
 namespace astrea {
@@ -86,7 +86,7 @@ struct EastNorthUp : public DynamicFrame<EastNorthUp<_frame_>, _frame_, enu_tag<
         // eci -> ecef -> lat/lon -> n/e/u
         const RadiusVector<frame> r            = this->get_position(date);
         const RadiusVector<fixed_frame> rFixed = r.template in_frame<fixed_frame>(date);
-        const auto [lat, lon, alt]             = convert_body_fixed_to_geodetic(rFixed);
+        const auto [lat, lon, alt]             = Geodetic<fixed_frame.origin>::from_body_fixed(rFixed);
 
         using mp_units::one;
         using mp_units::si::cos;

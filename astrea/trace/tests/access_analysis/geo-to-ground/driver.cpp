@@ -88,7 +88,7 @@ TEST_F(GeoToGroundAccessTest, GeoAlwaysConnected)
     const State state0(elem0, epoch);
 
     const auto rEcef           = elem0.get_position().in_frame<frames::earth::earth_fixed>(epoch);
-    const auto [lat, lon, alt] = astro::convert_body_fixed_to_geodetic(rEcef);
+    const auto [lat, lon, alt] = astro::Geodetic<planets::Earth>::from_body_fixed(rEcef);
 
     Viewer geo;
     geo.store_state(state0);
@@ -110,7 +110,8 @@ TEST_F(GeoToGroundAccessTest, GeoAlwaysConnected)
 
     // Build out grounds
     SensorParameters groundCone(&fov180deg, { 1.0 * m, 0.0 * m, 0.0 * m });
-    GroundStation<astro::planets::Earth> ground(lat, lon, 0.0 * km, "Test site", { groundCone });
+    GroundStation<astro::planets::Earth> ground(lat, lon, 0.0 * km, "Test site");
+    ground.attach_payload(groundCone);
     GroundArchitecture<astro::planets::Earth> grounds({ ground });
 
     // Propagate

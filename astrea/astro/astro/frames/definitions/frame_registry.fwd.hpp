@@ -19,7 +19,7 @@
 #pragma once
 
 #include <astro/frames/definitions/axes.hpp>
-#include <astro/systems/celestial_bodies.hpp>
+#include <astro/systems/celestial_bodies_impl.hpp>
 
 #include <tuple>
 

@@ -56,3 +56,13 @@ TEST(LegendreCacheTest, ConstructCacheForUnsupportedMoons)
     ASSERT_THROW(LegendreCache<moons::Rhea>(), std::invalid_argument);
     ASSERT_THROW(LegendreCache<moons::Iapetus>(), std::invalid_argument);
 }
+
+TEST(LegendreCacheTest, ConstructFileNotFound)
+{
+    // TODO: This
+}
+
+TEST(LegendreCacheTest, ConstructFileTooShort)
+{
+    // TODO: This
+}

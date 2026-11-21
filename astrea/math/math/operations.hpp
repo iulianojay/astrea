@@ -53,15 +53,18 @@ template <auto R1, auto R2, typename Rep>
     const auto b = y.in(x.unit);
 
     // Check rel tol
-    if (relTol != 0.0 * mp_units::one) {
-        if (a != 0.0 * R1 && b != 0.0 * R1) {
+    if (relTol != 0.0) {
+        if (a != 0.0 && b != 0.0) {
             if (abs((a - b) / a) > relTol) { return false; }
+        }
+        else if (abs(a - b) / a.unit > relTol) {
+            return false;
         }
     }
 
     // Check abs tol
-    if (absTol != 0.0 * mp_units::one) {
-        if (abs(a - b) > absTol * R1) { return false; }
+    if (absTol != 0.0) {
+        if (abs(a - b) / a.unit > absTol) { return false; }
     }
 
     return true;

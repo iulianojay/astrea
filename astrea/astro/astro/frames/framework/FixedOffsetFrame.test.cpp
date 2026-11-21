@@ -430,9 +430,9 @@ TEST_F(FixedOffsetFrameTest, SpatialChildOfAngularParentPreserversParentDcm)
     // Use an explicit type: spatial offset child of ChainAngular1.
     const auto dcm = get_dcm_from_root_frame<OffsetChildOfAngular>();
     // No own rotation → DCM is that of ChainAngular1 = Rx(pi/2)
-    EXPECT_TRUE(math::nearly_equal(dcm[0, 0], 1.0 * one, ANGULAR_TOL));
-    EXPECT_TRUE(math::nearly_equal(dcm[1, 2], -1.0 * one, ANGULAR_TOL));
-    EXPECT_TRUE(math::nearly_equal(dcm[2, 1], 1.0 * one, ANGULAR_TOL));
+    EXPECT_TRUE(math::nearly_equal(dcm[0, 0], 1.0 * one, ANGULAR_TOL)) << "Expected dcm[0,0] = 1.0, got " << dcm[0, 0];
+    EXPECT_TRUE(math::nearly_equal(dcm[1, 2], -1.0 * one, ANGULAR_TOL)) << "Expected dcm[1,2] = -1.0, got " << dcm[1, 2];
+    EXPECT_TRUE(math::nearly_equal(dcm[2, 1], 1.0 * one, ANGULAR_TOL)) << "Expected dcm[2,1] = 1.0, got " << dcm[2, 1];
 }
 
 // Combined offset+misalignment frame derived from another combined frame.

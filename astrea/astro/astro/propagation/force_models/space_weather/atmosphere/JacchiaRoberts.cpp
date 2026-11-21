@@ -64,7 +64,7 @@ static const std::map<Altitude, std::tuple<Altitude, Density, Altitude>> JACCHIA
 Density JacchiaRobertsAtmosphere::find_atmospheric_density(const State& state, const Distance equatorialRadius, const Distance polarRadius)
 {
     const auto& position                       = state.get_position_in_frame<frames::earth::earth_fixed>();
-    const auto [latitude, longitude, altitude] = convert_body_fixed_to_geodetic(position);
+    const auto [latitude, longitude, altitude] = Geodetic<planets::Earth>::from_body_fixed(position);
 
     Distance referenceAltitude;
     Density referenceDensity;

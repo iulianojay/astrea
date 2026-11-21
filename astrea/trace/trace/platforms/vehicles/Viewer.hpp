@@ -66,7 +66,7 @@ class Viewer : public astro::Spacecraft, public AccessObject, public SensorPlatf
      *
      * @return std::size_t The ID of the viewer.
      */
-    std::size_t get_id() const { return Spacecraft::get_id(); }
+    std::size_t get_id() const override { return Spacecraft::get_id(); }
 
     /**
      * @brief Get the name of the viewer.
@@ -88,7 +88,7 @@ class Viewer : public astro::Spacecraft, public AccessObject, public SensorPlatf
      * @param date The date for which to get the position.
      * @return astro::RadiusVector<astro::frames::earth::icrf> The inertial position of the viewer.
      */
-    astro::RadiusVector<astro::frames::earth::icrf> get_position(const astro::Date& date) const
+    astro::RadiusVector<astro::frames::earth::icrf> get_position(const astro::Date& date) const override
     {
         return Spacecraft::get_position(date);
     }
@@ -99,7 +99,7 @@ class Viewer : public astro::Spacecraft, public AccessObject, public SensorPlatf
      * @param date The date for which to get the velocity.
      * @return astro::RadiusVector<astro::frames::earth::icrf> The inertial velocity of the viewer.
      */
-    astro::VelocityVector<astro::frames::earth::icrf> get_velocity(const astro::Date& date) const
+    astro::VelocityVector<astro::frames::earth::icrf> get_velocity(const astro::Date& date) const override
     {
         return Spacecraft::get_velocity(date);
     }

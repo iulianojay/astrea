@@ -73,7 +73,7 @@ class Spacecraft : public ThrusterPlatform {
      * @param date The date at which to retrieve the position.
      * @return RadiusVector<frames::primary> The inertial position of the spacecraft.
      */
-    RadiusVector<frames::primary> get_position(const Date& date) const;
+    RadiusVector<frames::primary> get_position(const Date& date) const override;
 
     /**
      * @brief Gets the inertial velocity of the spacecraft at a specific date.
@@ -81,7 +81,7 @@ class Spacecraft : public ThrusterPlatform {
      * @param date The date at which to retrieve the velocity.
      * @return VelocityVector<frames::primary> The inertial velocity of the spacecraft.
      */
-    VelocityVector<frames::primary> get_velocity(const Date& date) const;
+    VelocityVector<frames::primary> get_velocity(const Date& date) const override;
 
     /**
      * @brief Stores the state history of the spacecraft.
@@ -194,7 +194,7 @@ class Spacecraft : public ThrusterPlatform {
      *
      * @return std::size_t The unique identifier of the spacecraft.
      */
-    std::size_t get_id() const { return _id; }
+    std::size_t get_id() const override { return _id; }
 
     /**
      * @brief Gets the name of the spacecraft.

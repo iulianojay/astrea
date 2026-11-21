@@ -25,7 +25,7 @@ StateTransitionMatrix::StateTransitionMatrix(const EquationsOfMotion& eom, const
      *
      * It might be possible to use fancy metaprogramming to deduce the units of each element based on the element type but
      * that seems like a huge headache. For now, we force the elements into unitless quantities, converted using their
-     * underlying units, and then force a conversion back. This makes this function implicity unsafe from a unit perspective.
+     * underlying units, and then force a conversion back. This makes this function implicitly unsafe from a unit perspective.
      */
 
     const std::vector<double> s0 = state.force_to_double_vector();
