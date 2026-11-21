@@ -22,3 +22,4 @@
 #include <astro/state/orbital_elements/Equinoctial.hpp>
 #include <astro/state/orbital_elements/Keplerian.hpp>
 #include <astro/state/orbital_elements/OrbitalElements.hpp>
+#include <astro/state/orbital_elements/partials.hpp>

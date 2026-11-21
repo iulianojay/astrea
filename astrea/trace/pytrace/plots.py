@@ -17,6 +17,7 @@ ASTREA_ROOT = os.getenv("ASTREA_ROOT")
 
 
 
+
 def ingest_riseset_csv(infile: str) -> pd.DataFrame:
     # Loop the data lines
     with open(infile, "r") as temp_f:
