@@ -70,6 +70,7 @@ set(ASTRO_SOURCES
     ${ASTRO_BASE}/systems/celestial_bodies/JplEphemerisTable.cpp
 
     ${ASTRO_BASE}/time/Date.cpp
+    ${ASTRO_BASE}/time/clocks/UT1Clock.cpp
 
     ${ASTRO_BASE}/utilities/conversions.cpp
     ${ASTRO_BASE}/utilities/plotting.cpp
@@ -192,6 +193,7 @@ set(ASTRO_HEADERS
     ${ASTRO_BASE}/state/attitude/Quaternion.hpp
 
     ${ASTRO_BASE}/systems/system_utilities.hpp
+    ${ASTRO_BASE}/systems/eop_interpolation.hpp
     ${ASTRO_BASE}/systems/CelestialBody.hpp
     ${ASTRO_BASE}/systems/CelestialBodyParameters.hpp
     ${ASTRO_BASE}/systems/celestial_bodies.hpp
@@ -219,6 +221,7 @@ set(ASTRO_HEADERS
     ${ASTRO_BASE}/time/clocks/JulianDateClock.hpp
     ${ASTRO_BASE}/time/clocks/GeocentricCoordinateTimeClock.hpp
     ${ASTRO_BASE}/time/clocks/TerrestrialTimeClock.hpp
+    ${ASTRO_BASE}/time/clocks/UT1Clock.hpp
     ${ASTRO_BASE}/time/clocks/BarycentricDynamicalTimeClock.hpp
     ${ASTRO_BASE}/time/clocks/BarycentricCoordinateTimeClock.hpp
 

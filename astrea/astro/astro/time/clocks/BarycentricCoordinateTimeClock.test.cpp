@@ -68,3 +68,16 @@ TEST_F(BarycentricCoordinateTimeClockTest, RoundTrip)
     const auto diff = std::chrono::duration_cast<std::chrono::milliseconds>(sys2 - sys);
     ASSERT_EQ(diff.count(), 0);
 }
+
+TEST_F(BarycentricCoordinateTimeClockTest, OffsetFromTTAtJ2000)
+{
+    // J2000.0 TT = 2000-01-01T11:58:55.816 UTC. TCB - TT is ~11.2537 s from the IAU 2006 Resolution B3 definition.
+    using namespace std::chrono;
+    const std::chrono::sys_time<std::chrono::milliseconds> sys{ std::chrono::sys_days{ std::chrono::year{ 2000 } / 1 / 1 } +
+                                                                11h + 58min + 55s + 816ms };
+    const auto tt  = TerrestrialTimeClock::from_sys(sys).time_since_epoch();
+    const auto clk = BarycentricCoordinateTimeClock::from_sys(sys).time_since_epoch();
+    ASSERT_NEAR(duration<double>(clk - tt).count(), 11.2537147, 1e-6);
+    const auto sys2 = BarycentricCoordinateTimeClock::to_sys(BarycentricCoordinateTimeClock::from_sys(sys));
+    ASSERT_NEAR(duration<double>(sys2 - sys).count(), 0.0, 1e-6);
+}

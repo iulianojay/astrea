@@ -465,8 +465,8 @@ inline constexpr auto get_dcm_from_root_frame()
     static constexpr Date dummyDate;
     if constexpr (HasAngularOffset<std::remove_cv_t<decltype(frame)>>) {
         if constexpr (IsDerivedFrame<std::remove_cv_t<decltype(frame.parent)>>) {
-            // DCM<grandparent, parent> * DCM<parent, child> = DCM<grandparent, child>
-            return get_dcm_from_root_frame<frame.parent>() * get_dcm<frame.parent, frame>(dummyDate);
+            // DCM<parent, child> * DCM<root, parent> = DCM<root, child>
+            return get_dcm<frame.parent, frame>(dummyDate) * get_dcm_from_root_frame<frame.parent>();
         }
         else {
             return get_dcm<frame.parent, frame>(dummyDate);

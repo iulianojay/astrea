@@ -289,6 +289,7 @@ function(generate_eop_files PROJECT_SOURCE_DIRECTORY)
         COMMAND ${Python3_EXECUTABLE} ${PROJECT_SOURCE_DIRECTORY}/pyastro/eop_parser.py -o ${CMAKE_CURRENT_BINARY_DIR}/include/astro/eop --infile ${EOP_FILE} --rebuild ${REBUILD_EOP}
         DEPENDS
             ${PROJECT_SOURCE_DIRECTORY}/pyastro/eop_parser.py
+            ${EOP_FILE}
         WORKING_DIRECTORY ${PROJECT_SOURCE_DIRECTORY}
         COMMENT " -- Generating Earth Orientation Parameters from: ${EOP_FILE}"
     )

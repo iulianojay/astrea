@@ -280,7 +280,7 @@ TEST_F(QuaternionTest, MultiplicationOperator)
 
     // Test frame chaining: TestFrame1 -> TestFrame2 -> TestFrame3
     EXPECT_NO_THROW({
-        QFrame13 result = q12 * q23;
+        QFrame13 result = q23 * q12;
         // Result should have unit norm (quaternions are automatically normalized)
         EXPECT_TRUE(math::nearly_equal(result.norm(), 1.0 * one, REL_TOL, ABS_TOL));
 
@@ -293,7 +293,7 @@ TEST_F(QuaternionTest, MultiplicationOperator)
     });
 
     // Since all quaternions have unit norm, |q1 * q2| = 1
-    auto chainResult = q12 * q23;
+    auto chainResult = q23 * q12;
     EXPECT_TRUE(math::nearly_equal(chainResult.norm(), 1.0 * one, REL_TOL, ABS_TOL));
     // Original quaternions also have unit norm
     EXPECT_TRUE(math::nearly_equal(q12.norm(), 1.0 * one, REL_TOL, ABS_TOL));
@@ -303,8 +303,8 @@ TEST_F(QuaternionTest, MultiplicationOperator)
     using QFrame34 = Quaternion<TestFrame3, TestFrame1>; // Close the loop
     QFrame34 q34(0.6 * one, 0.2 * one, 0.1 * one, 0.3 * one);
 
-    auto leftAssoc  = (q12 * q23) * q34; // QFrame11
-    auto rightAssoc = q12 * (q23 * q34); // QFrame11
+    auto leftAssoc  = (q34 * q23) * q12; // QFrame11
+    auto rightAssoc = q34 * (q23 * q12); // QFrame11
     // Both should have unit norm
     EXPECT_TRUE(math::nearly_equal(leftAssoc.norm(), 1.0 * one, REL_TOL, ABS_TOL));
     EXPECT_TRUE(math::nearly_equal(rightAssoc.norm(), 1.0 * one, REL_TOL, ABS_TOL));
@@ -464,7 +464,7 @@ TEST_F(QuaternionTest, FrameTransformationChaining)
 
     // Test two-step chaining: Frame1 -> Frame2 -> Frame3
     EXPECT_NO_THROW({
-        Q13 result13 = q12 * q23;
+        Q13 result13 = q23 * q12;
         EXPECT_GT(result13.norm(), 0.0 * one);
 
         // Chain should preserve composition properties
@@ -474,11 +474,11 @@ TEST_F(QuaternionTest, FrameTransformationChaining)
 
     // Test three-step chaining: Frame1 -> Frame2 -> Frame3 -> Frame1 (full cycle)
     EXPECT_NO_THROW({
-        Q11 fullCycle = (q12 * q23) * q31;
+        Q11 fullCycle = (q31 * q23) * q12;
         EXPECT_GT(fullCycle.norm(), 0.0 * one);
 
         // Test associativity in chaining
-        Q11 alternateCycle = q12 * (q23 * q31);
+        Q11 alternateCycle = q31 * (q23 * q12);
         EXPECT_TRUE(math::nearly_equal(fullCycle.norm(), alternateCycle.norm(), REL_TOL, ABS_TOL));
 
         // Components should be finite and reasonable
@@ -491,17 +491,43 @@ TEST_F(QuaternionTest, FrameTransformationChaining)
 
     // Test that inverse operations work with frame chaining
     EXPECT_NO_THROW({
-        Q13 forward     = q12 * q23;
+        Q13 forward     = q23 * q12;
         auto inverseQ23 = q23.inverse(); // Returns Q32
         auto inverseQ12 = q12.inverse(); // Returns Q21
 
         // The inverse of a chain should be the reverse chain of inverses
-        auto reverseChain = inverseQ23 * inverseQ12; // Q32 * Q21 = Q31
+        auto reverseChain = inverseQ12 * inverseQ23; // Q21 * Q32 = Q31
 
         // Both should have reasonable norms
         EXPECT_GT(forward.norm(), 0.0 * one);
         EXPECT_GT(reverseChain.norm(), 0.0 * one);
     });
+}
+
+/**
+ * @brief Composition must apply the right-hand rotation first, matching DCM math order
+ */
+TEST_F(QuaternionTest, CompositionMatchesSequentialRotationAndDcmProduct)
+{
+    const Q12 q12(scalar1, x1, y1, z1);
+    const Q23 q23(scalar2, x2, y2, z2);
+    const CartesianVector<Unitless, TestFrame1> vec{ 0.2 * one, -0.7 * one, 0.4 * one };
+
+    const Q13 composed = q23 * q12;
+
+    const auto sequential = q23.rotate_vector(q12.rotate_vector(vec));
+    const auto combined   = composed.rotate_vector(vec);
+    EXPECT_TRUE(math::nearly_equal(combined.get_x(), sequential.get_x(), REL_TOL, ABS_TOL));
+    EXPECT_TRUE(math::nearly_equal(combined.get_y(), sequential.get_y(), REL_TOL, ABS_TOL));
+    EXPECT_TRUE(math::nearly_equal(combined.get_z(), sequential.get_z(), REL_TOL, ABS_TOL));
+
+    const DirectionCosineMatrix<TestFrame1, TestFrame3> dcmProduct{ q23.to_dcm() * q12.to_dcm() };
+    const auto composedDcm = composed.to_dcm();
+    for (std::size_t ii = 0; ii < 3; ++ii) {
+        for (std::size_t jj = 0; jj < 3; ++jj) {
+            EXPECT_TRUE(math::nearly_equal(composedDcm[ii, jj], dcmProduct[ii, jj], REL_TOL, ABS_TOL));
+        }
+    }
 }
 
 /**

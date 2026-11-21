@@ -68,3 +68,16 @@ TEST_F(BarycentricDynamicalTimeClockTest, RoundTrip)
     const auto diff = std::chrono::duration_cast<std::chrono::milliseconds>(sys2 - sys);
     ASSERT_EQ(diff.count(), 0);
 }
+
+TEST_F(BarycentricDynamicalTimeClockTest, OffsetFromTTAtJ2000)
+{
+    // J2000.0 TT = 2000-01-01T11:58:55.816 UTC. TDB - TT = 0.001657 sin(M) + 0.00001385 sin(2M) with M = 357.53 deg.
+    using namespace std::chrono;
+    const std::chrono::sys_time<std::chrono::milliseconds> sys{ std::chrono::sys_days{ std::chrono::year{ 2000 } / 1 / 1 } +
+                                                                11h + 58min + 55s + 816ms };
+    const auto tt  = TerrestrialTimeClock::from_sys(sys).time_since_epoch();
+    const auto clk = BarycentricDynamicalTimeClock::from_sys(sys).time_since_epoch();
+    ASSERT_NEAR(duration<double>(clk - tt).count(), -7.26e-5, 2e-6);
+    const auto sys2 = BarycentricDynamicalTimeClock::to_sys(BarycentricDynamicalTimeClock::from_sys(sys));
+    ASSERT_NEAR(duration<double>(sys2 - sys).count(), 0.0, 1e-6);
+}

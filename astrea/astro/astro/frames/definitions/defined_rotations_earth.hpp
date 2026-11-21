@@ -25,11 +25,11 @@
 #include <math/trig.hpp>
 #include <units/units.hpp>
 
-#include <astro/eop/EarthOrientationParameters.hpp>
 #include <astro/frames/definitions/body_centered_inertial_frames.hpp>
 #include <astro/frames/definitions/body_fixed_frames.hpp>
 #include <astro/frames/definitions/defined_rotations.hpp>
 #include <astro/systems/celestial_bodies_impl.hpp>
+#include <astro/systems/eop_interpolation.hpp>
 #include <astro/systems/system_utilities.hpp>
 #include <astro/time/Date.hpp>
 
@@ -39,14 +39,17 @@ namespace astro {
 namespace {
 
 /**
- * @brief Nutation model coefficients for the Earth.
+ * @brief IAU 1980 nutation model coefficients for the Earth.
+ *
+ * dpsi += (a0 + a1 * T) * sin(arg) and deps += (b0 + b1 * T) * cos(arg), where T is in Julian centuries
+ * since J2000 and arg = k . [l, l', F, D, Om].
  */
 struct NutationCoefficients {
     std::array<int8_t, 5> k;
     Time period;
-    mp_units::quantity<mp_units::si::arcminute> a0;
+    mp_units::quantity<mp_units::si::arcsecond> a0;
     mp_units::quantity<mp_units::si::arcsecond> a1;
-    mp_units::quantity<mp_units::si::arcminute> b0;
+    mp_units::quantity<mp_units::si::arcsecond> b0;
     mp_units::quantity<mp_units::si::arcsecond> b1;
 };
 
@@ -63,116 +66,115 @@ inline constexpr NutationCoefficients get_nutation_coefficient(std::size_t idx)
 
     using namespace mp_units;
     using mp_units::non_si::day;
-    using mp_units::si::unit_symbols::arcmin;
     using mp_units::si::unit_symbols::arcsec;
 
     static constexpr std::array<NutationCoefficients, NUTATION_COEFFICIENTS_SIZE> NUTATION_COEFFICIENTS = {
-        NutationCoefficients({ { 0, 0, 0, 0, 1 } }, -6798.4 * day, 1996.0e-4 * arcmin, -174.2 * arcsec, 92025.0e-4 * arcmin, 8.9 * arcsec),
-        NutationCoefficients({ { 0, 0, 2, -2, 2 } }, 182.6 * day, 3187.0e-4 * arcmin, -1.6 * arcsec, 5736.0e-4 * arcmin, -3.1 * arcsec),
-        NutationCoefficients({ { 0, 0, 2, 0, 2 } }, 13.7 * day, 2274.0e-4 * arcmin, -0.2 * arcsec, 977.0e-4 * arcmin, -0.5 * arcsec),
-        NutationCoefficients({ { 0, 0, 0, 0, 2 } }, -3399.2 * day, 2062.0e-4 * arcmin, 0.2 * arcsec, -895.0e-4 * arcmin, 0.5 * arcsec),
-        NutationCoefficients({ { 0, -1, 0, 0, 0 } }, -365.3 * day, 1426.0e-4 * arcmin, 3.4 * arcsec, 54.0e-4 * arcmin, -0.1 * arcsec),
-        NutationCoefficients({ { 1, 0, 0, 0, 0 } }, 27.6 * day, 712.0e-4 * arcmin, 0.1 * arcsec, -7.0e-4 * arcmin, 0.0 * arcsec),
-        NutationCoefficients({ { 0, 1, 2, -2, 2 } }, 121.7 * day, -517.0e-4 * arcmin, 1.2 * arcsec, 224.0e-4 * arcmin, -0.6 * arcsec),
-        NutationCoefficients({ { 0, 0, 2, 0, 1 } }, 13.6 * day, -386.0e-4 * arcmin, -0.4 * arcsec, 200.0e-4 * arcmin, 0.0 * arcsec),
-        NutationCoefficients({ { 1, 0, 2, 0, 2 } }, 9.1 * day, -301.0e-4 * arcmin, 0.0 * arcsec, 129.0e-4 * arcmin, -0.1 * arcsec),
-        NutationCoefficients({ { 0, -1, 2, -2, 2 } }, 365.2 * day, 217.0e-4 * arcmin, -0.5 * arcsec, -95.0e-4 * arcmin, 0.3 * arcsec),
-        NutationCoefficients({ { -1, 0, 0, 2, 0 } }, 31.8 * day, 158.0e-4 * arcmin, 0.0 * arcsec, -1.0e-4 * arcmin, 0.0 * arcsec),
-        NutationCoefficients({ { 0, 0, 2, -2, 1 } }, 177.8 * day, 129.0e-4 * arcmin, 0.1 * arcsec, -70.0e-4 * arcmin, 0.0 * arcsec),
-        NutationCoefficients({ { -1, 0, 2, 0, 2 } }, 27.1 * day, 123.0e-4 * arcmin, 0.0 * arcsec, -53.0e-4 * arcmin, 0.0 * arcsec),
-        NutationCoefficients({ { 1, 0, 0, 0, 1 } }, 27.7 * day, 63.0e-4 * arcmin, 0.1 * arcsec, -33.0e-4 * arcmin, 0.0 * arcsec),
-        NutationCoefficients({ { 0, 0, 0, 2, 0 } }, 14.8 * day, 63.0e-4 * arcmin, 0.0 * arcsec, -2.0e-4 * arcmin, 0.0 * arcsec),
-        NutationCoefficients({ { -1, 0, 2, 2, 2 } }, 9.6 * day, -59.0e-4 * arcmin, 0.0 * arcsec, 26.0e-4 * arcmin, 0.0 * arcsec),
-        NutationCoefficients({ { -1, 0, 0, 0, 1 } }, -27.4 * day, -58.0e-4 * arcmin, -0.1 * arcsec, 32.0e-4 * arcmin, 0.0 * arcsec),
-        NutationCoefficients({ { 1, 0, 2, 0, 1 } }, 9.1 * day, -51.0e-4 * arcmin, 0.0 * arcsec, 27.0e-4 * arcmin, 0.0 * arcsec),
-        NutationCoefficients({ { -2, 0, 0, 2, 0 } }, -205.9 * day, -48.0e-4 * arcmin, 0.0 * arcsec, 1.0e-4 * arcmin, 0.0 * arcsec),
-        NutationCoefficients({ { -2, 0, 2, 0, 1 } }, 1305.5 * day, 46.0e-4 * arcmin, 0.0 * arcsec, -24.0e-4 * arcmin, 0.0 * arcsec),
-        NutationCoefficients({ { 0, 0, 2, 2, 2 } }, 7.1 * day, -38.0e-4 * arcmin, 0.0 * arcsec, 16.0e-4 * arcmin, 0.0 * arcsec),
-        NutationCoefficients({ { 2, 0, 2, 0, 2 } }, 6.9 * day, -31.0e-4 * arcmin, 0.0 * arcsec, 13.0e-4 * arcmin, 0.0 * arcsec),
-        NutationCoefficients({ { 2, 0, 0, 0, 0 } }, 13.8 * day, 29.0e-4 * arcmin, 0.0 * arcsec, -1.0e-4 * arcmin, 0.0 * arcsec),
-        NutationCoefficients({ { 1, 0, 2, -2, 2 } }, 23.9 * day, 29.0e-4 * arcmin, 0.0 * arcsec, -12.0e-4 * arcmin, 0.0 * arcsec),
-        NutationCoefficients({ { 0, 0, 2, 0, 0 } }, 13.6 * day, 26.0e-4 * arcmin, 0.0 * arcsec, -1.0e-4 * arcmin, 0.0 * arcsec),
-        NutationCoefficients({ { 0, 0, 2, -2, 0 } }, 173.3 * day, -22.0e-4 * arcmin, 0.0 * arcsec, 0.0e-4 * arcmin, 0.0 * arcsec),
-        NutationCoefficients({ { -1, 0, 2, 0, 1 } }, 27.0 * day, 21.0e-4 * arcmin, 0.0 * arcsec, -10.0e-4 * arcmin, 0.0 * arcsec),
-        NutationCoefficients({ { 0, 2, 0, 0, 0 } }, 182.6 * day, 17.0e-4 * arcmin, -0.1 * arcsec, 0.0e-4 * arcmin, 0.0 * arcsec),
-        NutationCoefficients({ { 0, 2, 2, -2, 2 } }, 91.3 * day, -16.0e-4 * arcmin, 0.1 * arcsec, 7.0e-4 * arcmin, 0.0 * arcsec),
-        NutationCoefficients({ { -1, 0, 0, 2, 1 } }, 32.0 * day, 16.0e-4 * arcmin, 0.0 * arcsec, -8.0e-4 * arcmin, 0.0 * arcsec),
-        NutationCoefficients({ { 0, 1, 0, 0, 1 } }, 386.0 * day, -15.0e-4 * arcmin, 0.0 * arcsec, 9.0e-4 * arcmin, 0.0 * arcsec),
-        NutationCoefficients({ { 1, 0, 0, -2, 1 } }, -31.7 * day, -13.0e-4 * arcmin, 0.0 * arcsec, 7.0e-4 * arcmin, 0.0 * arcsec),
-        NutationCoefficients({ { 0, -1, 0, 0, 1 } }, -346.6 * day, -12.0e-4 * arcmin, 0.0 * arcsec, 6.0e-4 * arcmin, 0.0 * arcsec),
-        NutationCoefficients({ { 2, 0, -2, 0, 0 } }, -1095.2 * day, 11.0e-4 * arcmin, 0.0 * arcsec, 0.0e-4 * arcmin, 0.0 * arcsec),
-        NutationCoefficients({ { -1, 0, 2, 2, 1 } }, 9.5 * day, -10.0e-4 * arcmin, 0.0 * arcsec, 5.0e-4 * arcmin, 0.0 * arcsec),
-        NutationCoefficients({ { 1, 0, 2, 2, 2 } }, 5.6 * day, -8.0e-4 * arcmin, 0.0 * arcsec, 3.0e-4 * arcmin, 0.0 * arcsec),
-        NutationCoefficients({ { 0, -1, 2, 0, 2 } }, 14.2 * day, -7.0e-4 * arcmin, 0.0 * arcsec, 3.0e-4 * arcmin, 0.0 * arcsec),
-        NutationCoefficients({ { 0, 0, 2, 2, 1 } }, 7.1 * day, -7.0e-4 * arcmin, 0.0 * arcsec, 3.0e-4 * arcmin, 0.0 * arcsec),
-        NutationCoefficients({ { 1, 1, 0, -2, 0 } }, -34.8 * day, -7.0e-4 * arcmin, 0.0 * arcsec, 0.0e-4 * arcmin, 0.0 * arcsec),
-        NutationCoefficients({ { 0, 1, 2, 0, 2 } }, 13.2 * day, 7.0e-4 * arcmin, 0.0 * arcsec, -3.0e-4 * arcmin, 0.0 * arcsec),
-        NutationCoefficients({ { -2, 0, 0, 2, 1 } }, -199.8 * day, -6.0e-4 * arcmin, 0.0 * arcsec, 3.0e-4 * arcmin, 0.0 * arcsec),
-        NutationCoefficients({ { 0, 0, 0, 2, 1 } }, 14.8 * day, -6.0e-4 * arcmin, 0.0 * arcsec, 3.0e-4 * arcmin, 0.0 * arcsec),
-        NutationCoefficients({ { 2, 0, 2, -2, 2 } }, 12.8 * day, 6.0e-4 * arcmin, 0.0 * arcsec, -3.0e-4 * arcmin, 0.0 * arcsec),
-        NutationCoefficients({ { 1, 0, 0, 2, 0 } }, 9.6 * day, 6.0e-4 * arcmin, 0.0 * arcsec, 0.0e-4 * arcmin, 0.0 * arcsec),
-        NutationCoefficients({ { 1, 0, 2, -2, 1 } }, 23.9 * day, 6.0e-4 * arcmin, 0.0 * arcsec, -3.0e-4 * arcmin, 0.0 * arcsec),
-        NutationCoefficients({ { 0, 0, 0, -2, 1 } }, -14.7 * day, -5.0e-4 * arcmin, 0.0 * arcsec, 3.0e-4 * arcmin, 0.0 * arcsec),
-        NutationCoefficients({ { 0, -1, 2, -2, 1 } }, 346.6 * day, -5.0e-4 * arcmin, 0.0 * arcsec, 3.0e-4 * arcmin, 0.0 * arcsec),
-        NutationCoefficients({ { 2, 0, 2, 0, 1 } }, 6.9 * day, -5.0e-4 * arcmin, 0.0 * arcsec, 3.0e-4 * arcmin, 0.0 * arcsec),
-        NutationCoefficients({ { 1, -1, 0, 0, 0 } }, 29.8 * day, 5.0e-4 * arcmin, 0.0 * arcsec, 0.0e-4 * arcmin, 0.0 * arcsec),
-        NutationCoefficients({ { 1, 0, 0, -1, 0 } }, 411.8 * day, -4.0e-4 * arcmin, 0.0 * arcsec, 0.0e-4 * arcmin, 0.0 * arcsec),
-        NutationCoefficients({ { 0, 0, 0, 1, 0 } }, 29.5 * day, -4.0e-4 * arcmin, 0.0 * arcsec, 0.0e-4 * arcmin, 0.0 * arcsec),
-        NutationCoefficients({ { 0, 1, 0, -2, 0 } }, -15.4 * day, -4.0e-4 * arcmin, 0.0 * arcsec, 0.0e-4 * arcmin, 0.0 * arcsec),
-        NutationCoefficients({ { 1, 0, -2, 0, 0 } }, -26.9 * day, 4.0e-4 * arcmin, 0.0 * arcsec, 0.0e-4 * arcmin, 0.0 * arcsec),
-        NutationCoefficients({ { 2, 0, 0, -2, 1 } }, 212.3 * day, 4.0e-4 * arcmin, 0.0 * arcsec, -2.0e-4 * arcmin, 0.0 * arcsec),
-        NutationCoefficients({ { 0, 1, 2, -2, 1 } }, 119.6 * day, 4.0e-4 * arcmin, 0.0 * arcsec, -2.0e-4 * arcmin, 0.0 * arcsec),
-        NutationCoefficients({ { 1, 1, 0, 0, 0 } }, 25.6 * day, -3.0e-4 * arcmin, 0.0 * arcsec, 0.0e-4 * arcmin, 0.0 * arcsec),
-        NutationCoefficients({ { 1, -1, 0, -1, 0 } }, -3232.9 * day, -3.0e-4 * arcmin, 0.0 * arcsec, 0.0e-4 * arcmin, 0.0 * arcsec),
-        NutationCoefficients({ { -1, -1, 2, 2, 2 } }, 9.8 * day, -3.0e-4 * arcmin, 0.0 * arcsec, 1.0e-4 * arcmin, 0.0 * arcsec),
-        NutationCoefficients({ { 0, -1, 2, 2, 2 } }, 7.2 * day, -3.0e-4 * arcmin, 0.0 * arcsec, 1.0e-4 * arcmin, 0.0 * arcsec),
-        NutationCoefficients({ { 1, -1, 2, 0, 2 } }, 9.4 * day, -3.0e-4 * arcmin, 0.0 * arcsec, 1.0e-4 * arcmin, 0.0 * arcsec),
-        NutationCoefficients({ { 3, 0, 2, 0, 2 } }, 5.5 * day, -3.0e-4 * arcmin, 0.0 * arcsec, 1.0e-4 * arcmin, 0.0 * arcsec),
-        NutationCoefficients({ { -2, 0, 2, 0, 2 } }, 1615.7 * day, -3.0e-4 * arcmin, 0.0 * arcsec, 1.0e-4 * arcmin, 0.0 * arcsec),
-        NutationCoefficients({ { 1, 0, 2, 0, 0 } }, 9.1 * day, 3.0e-4 * arcmin, 0.0 * arcsec, 0.0e-4 * arcmin, 0.0 * arcsec),
-        NutationCoefficients({ { -1, 0, 2, 4, 2 } }, 5.8 * day, -2.0e-4 * arcmin, 0.0 * arcsec, 1.0e-4 * arcmin, 0.0 * arcsec),
-        NutationCoefficients({ { 1, 0, 0, 0, 2 } }, 27.8 * day, -2.0e-4 * arcmin, 0.0 * arcsec, 1.0e-4 * arcmin, 0.0 * arcsec),
-        NutationCoefficients({ { -1, 0, 2, -2, 1 } }, -32.6 * day, -2.0e-4 * arcmin, 0.0 * arcsec, 1.0e-4 * arcmin, 0.0 * arcsec),
-        NutationCoefficients({ { 0, -2, 2, -2, 1 } }, 6786.3 * day, -2.0e-4 * arcmin, 0.0 * arcsec, 1.0e-4 * arcmin, 0.0 * arcsec),
-        NutationCoefficients({ { -2, 0, 0, 0, 1 } }, -13.7 * day, -2.0e-4 * arcmin, 0.0 * arcsec, 1.0e-4 * arcmin, 0.0 * arcsec),
-        NutationCoefficients({ { 2, 0, 0, 0, 1 } }, 13.8 * day, 2.0e-4 * arcmin, 0.0 * arcsec, -1.0e-4 * arcmin, 0.0 * arcsec),
-        NutationCoefficients({ { 3, 0, 0, 0, 0 } }, 9.2 * day, 2.0e-4 * arcmin, 0.0 * arcsec, 0.0e-4 * arcmin, 0.0 * arcsec),
-        NutationCoefficients({ { 1, 1, 2, 0, 2 } }, 8.9 * day, 2.0e-4 * arcmin, 0.0 * arcsec, -1.0e-4 * arcmin, 0.0 * arcsec),
-        NutationCoefficients({ { 0, 0, 2, 1, 2 } }, 9.3 * day, 2.0e-4 * arcmin, 0.0 * arcsec, -1.0e-4 * arcmin, 0.0 * arcsec),
-        NutationCoefficients({ { 1, 0, 0, 2, 1 } }, 9.6 * day, -1.0e-4 * arcmin, 0.0 * arcsec, 0.0e-4 * arcmin, 0.0 * arcsec),
-        NutationCoefficients({ { 1, 0, 2, 2, 1 } }, 5.6 * day, -1.0e-4 * arcmin, 0.0 * arcsec, 1.0e-4 * arcmin, 0.0 * arcsec),
-        NutationCoefficients({ { 1, 1, 0, -2, 1 } }, -34.7 * day, -1.0e-4 * arcmin, 0.0 * arcsec, 0.0e-4 * arcmin, 0.0 * arcsec),
-        NutationCoefficients({ { 0, 1, 0, 2, 0 } }, 14.2 * day, -1.0e-4 * arcmin, 0.0 * arcsec, 0.0e-4 * arcmin, 0.0 * arcsec),
-        NutationCoefficients({ { 0, 1, 2, -2, 0 } }, 117.5 * day, -1.0e-4 * arcmin, 0.0 * arcsec, 0.0e-4 * arcmin, 0.0 * arcsec),
-        NutationCoefficients({ { 0, 1, -2, 2, 0 } }, -329.8 * day, -1.0e-4 * arcmin, 0.0 * arcsec, 0.0e-4 * arcmin, 0.0 * arcsec),
-        NutationCoefficients({ { 1, 0, -2, 2, 0 } }, 23.8 * day, -1.0e-4 * arcmin, 0.0 * arcsec, 0.0e-4 * arcmin, 0.0 * arcsec),
-        NutationCoefficients({ { 1, 0, -2, -2, 0 } }, -9.5 * day, -1.0e-4 * arcmin, 0.0 * arcsec, 0.0e-4 * arcmin, 0.0 * arcsec),
-        NutationCoefficients({ { 1, 0, 2, -2, 0 } }, 32.8 * day, -1.0e-4 * arcmin, 0.0 * arcsec, 0.0e-4 * arcmin, 0.0 * arcsec),
-        NutationCoefficients({ { 1, 0, 0, -4, 0 } }, -10.1 * day, -1.0e-4 * arcmin, 0.0 * arcsec, 0.0e-4 * arcmin, 0.0 * arcsec),
-        NutationCoefficients({ { 2, 0, 0, -4, 0 } }, -15.9 * day, -1.0e-4 * arcmin, 0.0 * arcsec, 0.0e-4 * arcmin, 0.0 * arcsec),
-        NutationCoefficients({ { 0, 0, 2, 4, 2 } }, 4.8 * day, -1.0e-4 * arcmin, 0.0 * arcsec, 0.0e-4 * arcmin, 0.0 * arcsec),
-        NutationCoefficients({ { 0, 0, 2, -1, 2 } }, 25.4 * day, -1.0e-4 * arcmin, 0.0 * arcsec, 0.0e-4 * arcmin, 0.0 * arcsec),
-        NutationCoefficients({ { -2, 0, 2, 4, 2 } }, 7.3 * day, -1.0e-4 * arcmin, 0.0 * arcsec, 1.0e-4 * arcmin, 0.0 * arcsec),
-        NutationCoefficients({ { 2, 0, 2, 2, 2 } }, 4.7 * day, -1.0e-4 * arcmin, 0.0 * arcsec, 0.0e-4 * arcmin, 0.0 * arcsec),
-        NutationCoefficients({ { 0, -1, 2, 0, 1 } }, 14.2 * day, -1.0e-4 * arcmin, 0.0 * arcsec, 0.0e-4 * arcmin, 0.0 * arcsec),
-        NutationCoefficients({ { 0, 0, -2, 0, 1 } }, -13.6 * day, -1.0e-4 * arcmin, 0.0 * arcsec, 0.0e-4 * arcmin, 0.0 * arcsec),
-        NutationCoefficients({ { 0, 0, 4, -2, 2 } }, 12.7 * day, 1.0e-4 * arcmin, 0.0 * arcsec, 0.0e-4 * arcmin, 0.0 * arcsec),
-        NutationCoefficients({ { 0, 1, 0, 0, 2 } }, 409.2 * day, 1.0e-4 * arcmin, 0.0 * arcsec, 0.0e-4 * arcmin, 0.0 * arcsec),
-        NutationCoefficients({ { 1, 1, 2, -2, 2 } }, 22.5 * day, 1.0e-4 * arcmin, 0.0 * arcsec, -1.0e-4 * arcmin, 0.0 * arcsec),
-        NutationCoefficients({ { 3, 0, 2, -2, 2 } }, 8.7 * day, 1.0e-4 * arcmin, 0.0 * arcsec, 0.0e-4 * arcmin, 0.0 * arcsec),
-        NutationCoefficients({ { -2, 0, 2, 2, 2 } }, 14.6 * day, 1.0e-4 * arcmin, 0.0 * arcsec, -1.0e-4 * arcmin, 0.0 * arcsec),
-        NutationCoefficients({ { -1, 0, 0, 0, 2 } }, -27.3 * day, 1.0e-4 * arcmin, 0.0 * arcsec, -1.0e-4 * arcmin, 0.0 * arcsec),
-        NutationCoefficients({ { 0, 0, -2, 2, 1 } }, -169.0 * day, 1.0e-4 * arcmin, 0.0 * arcsec, 0.0e-4 * arcmin, 0.0 * arcsec),
-        NutationCoefficients({ { 0, 1, 2, 0, 1 } }, 13.1 * day, 1.0e-4 * arcmin, 0.0 * arcsec, 0.0e-4 * arcmin, 0.0 * arcsec),
-        NutationCoefficients({ { -1, 0, 4, 0, 2 } }, 9.1 * day, 1.0e-4 * arcmin, 0.0 * arcsec, 0.0e-4 * arcmin, 0.0 * arcsec),
-        NutationCoefficients({ { 2, 1, 0, -2, 0 } }, 131.7 * day, 1.0e-4 * arcmin, 0.0 * arcsec, 0.0e-4 * arcmin, 0.0 * arcsec),
-        NutationCoefficients({ { 2, 0, 0, 2, 0 } }, 7.1 * day, 1.0e-4 * arcmin, 0.0 * arcsec, 0.0e-4 * arcmin, 0.0 * arcsec),
-        NutationCoefficients({ { 2, 0, 2, -2, 1 } }, 12.8 * day, 1.0e-4 * arcmin, 0.0 * arcsec, -1.0e-4 * arcmin, 0.0 * arcsec),
-        NutationCoefficients({ { 2, 0, -2, 0, 1 } }, -943.2 * day, 1.0e-4 * arcmin, 0.0 * arcsec, 0.0e-4 * arcmin, 0.0 * arcsec),
-        NutationCoefficients({ { 1, -1, 0, -2, 0 } }, -29.3 * day, 1.0e-4 * arcmin, 0.0 * arcsec, 0.0e-4 * arcmin, 0.0 * arcsec),
-        NutationCoefficients({ { -1, 0, 0, 1, 1 } }, -388.3 * day, 1.0e-4 * arcmin, 0.0 * arcsec, 0.0e-4 * arcmin, 0.0 * arcsec),
-        NutationCoefficients({ { -1, -1, 0, 2, 1 } }, 35.0 * day, 1.0e-4 * arcmin, 0.0 * arcsec, 0.0e-4 * arcmin, 0.0 * arcsec),
-        NutationCoefficients({ { 0, 1, 0, 1, 0 } }, 27.3 * day, 1.0e-4 * arcmin, 0.0 * arcsec, 0.0e-4 * arcmin, 0.0 * arcsec)
+        NutationCoefficients({ { 0, 0, 0, 0, 1 } }, -6798.4 * day, -171996.0e-4 * arcsec, -174.2e-4 * arcsec, 92025.0e-4 * arcsec, 8.9e-4 * arcsec),
+        NutationCoefficients({ { 0, 0, 0, 0, 2 } }, -3399.2 * day, 2062.0e-4 * arcsec, 0.2e-4 * arcsec, -895.0e-4 * arcsec, 0.5e-4 * arcsec),
+        NutationCoefficients({ { -2, 0, 2, 0, 1 } }, 1305.5 * day, 46.0e-4 * arcsec, 0.0e-4 * arcsec, -24.0e-4 * arcsec, 0.0e-4 * arcsec),
+        NutationCoefficients({ { 2, 0, -2, 0, 0 } }, -1095.2 * day, 11.0e-4 * arcsec, 0.0e-4 * arcsec, 0.0e-4 * arcsec, 0.0e-4 * arcsec),
+        NutationCoefficients({ { -2, 0, 2, 0, 2 } }, 1615.7 * day, -3.0e-4 * arcsec, 0.0e-4 * arcsec, 1.0e-4 * arcsec, 0.0e-4 * arcsec),
+        NutationCoefficients({ { 1, -1, 0, -1, 0 } }, -3232.9 * day, -3.0e-4 * arcsec, 0.0e-4 * arcsec, 0.0e-4 * arcsec, 0.0e-4 * arcsec),
+        NutationCoefficients({ { 0, -2, 2, -2, 1 } }, 6786.3 * day, -2.0e-4 * arcsec, 0.0e-4 * arcsec, 1.0e-4 * arcsec, 0.0e-4 * arcsec),
+        NutationCoefficients({ { 2, 0, -2, 0, 1 } }, -943.2 * day, 1.0e-4 * arcsec, 0.0e-4 * arcsec, 0.0e-4 * arcsec, 0.0e-4 * arcsec),
+        NutationCoefficients({ { 0, 0, 2, -2, 2 } }, 182.6 * day, -13187.0e-4 * arcsec, -1.6e-4 * arcsec, 5736.0e-4 * arcsec, -3.1e-4 * arcsec),
+        NutationCoefficients({ { 0, 1, 0, 0, 0 } }, 365.3 * day, 1426.0e-4 * arcsec, -3.4e-4 * arcsec, 54.0e-4 * arcsec, -0.1e-4 * arcsec),
+        NutationCoefficients({ { 0, 1, 2, -2, 2 } }, 121.7 * day, -517.0e-4 * arcsec, 1.2e-4 * arcsec, 224.0e-4 * arcsec, -0.6e-4 * arcsec),
+        NutationCoefficients({ { 0, -1, 2, -2, 2 } }, 365.2 * day, 217.0e-4 * arcsec, -0.5e-4 * arcsec, -95.0e-4 * arcsec, 0.3e-4 * arcsec),
+        NutationCoefficients({ { 0, 0, 2, -2, 1 } }, 177.8 * day, 129.0e-4 * arcsec, 0.1e-4 * arcsec, -70.0e-4 * arcsec, 0.0e-4 * arcsec),
+        NutationCoefficients({ { 2, 0, 0, -2, 0 } }, 205.9 * day, 48.0e-4 * arcsec, 0.0e-4 * arcsec, 1.0e-4 * arcsec, 0.0e-4 * arcsec),
+        NutationCoefficients({ { 0, 0, 2, -2, 0 } }, 173.3 * day, -22.0e-4 * arcsec, 0.0e-4 * arcsec, 0.0e-4 * arcsec, 0.0e-4 * arcsec),
+        NutationCoefficients({ { 0, 2, 0, 0, 0 } }, 182.6 * day, 17.0e-4 * arcsec, -0.1e-4 * arcsec, 0.0e-4 * arcsec, 0.0e-4 * arcsec),
+        NutationCoefficients({ { 0, 1, 0, 0, 1 } }, 386.0 * day, -15.0e-4 * arcsec, 0.0e-4 * arcsec, 9.0e-4 * arcsec, 0.0e-4 * arcsec),
+        NutationCoefficients({ { 0, 2, 2, -2, 2 } }, 91.3 * day, -16.0e-4 * arcsec, 0.1e-4 * arcsec, 7.0e-4 * arcsec, 0.0e-4 * arcsec),
+        NutationCoefficients({ { 0, -1, 0, 0, 1 } }, -346.6 * day, -12.0e-4 * arcsec, 0.0e-4 * arcsec, 6.0e-4 * arcsec, 0.0e-4 * arcsec),
+        NutationCoefficients({ { -2, 0, 0, 2, 1 } }, -199.8 * day, -6.0e-4 * arcsec, 0.0e-4 * arcsec, 3.0e-4 * arcsec, 0.0e-4 * arcsec),
+        NutationCoefficients({ { 0, -1, 2, -2, 1 } }, 346.6 * day, -5.0e-4 * arcsec, 0.0e-4 * arcsec, 3.0e-4 * arcsec, 0.0e-4 * arcsec),
+        NutationCoefficients({ { 2, 0, 0, -2, 1 } }, 212.3 * day, 4.0e-4 * arcsec, 0.0e-4 * arcsec, -2.0e-4 * arcsec, 0.0e-4 * arcsec),
+        NutationCoefficients({ { 0, 1, 2, -2, 1 } }, 119.6 * day, 4.0e-4 * arcsec, 0.0e-4 * arcsec, -2.0e-4 * arcsec, 0.0e-4 * arcsec),
+        NutationCoefficients({ { 1, 0, 0, -1, 0 } }, 411.8 * day, -4.0e-4 * arcsec, 0.0e-4 * arcsec, 0.0e-4 * arcsec, 0.0e-4 * arcsec),
+        NutationCoefficients({ { 2, 1, 0, -2, 0 } }, 131.7 * day, 1.0e-4 * arcsec, 0.0e-4 * arcsec, 0.0e-4 * arcsec, 0.0e-4 * arcsec),
+        NutationCoefficients({ { 0, 0, -2, 2, 1 } }, -169.0 * day, 1.0e-4 * arcsec, 0.0e-4 * arcsec, 0.0e-4 * arcsec, 0.0e-4 * arcsec),
+        NutationCoefficients({ { 0, 1, -2, 2, 0 } }, -329.8 * day, -1.0e-4 * arcsec, 0.0e-4 * arcsec, 0.0e-4 * arcsec, 0.0e-4 * arcsec),
+        NutationCoefficients({ { 0, 1, 0, 0, 2 } }, 409.2 * day, 1.0e-4 * arcsec, 0.0e-4 * arcsec, 0.0e-4 * arcsec, 0.0e-4 * arcsec),
+        NutationCoefficients({ { -1, 0, 0, 1, 1 } }, -388.3 * day, 1.0e-4 * arcsec, 0.0e-4 * arcsec, 0.0e-4 * arcsec, 0.0e-4 * arcsec),
+        NutationCoefficients({ { 0, 1, 2, -2, 0 } }, 117.5 * day, -1.0e-4 * arcsec, 0.0e-4 * arcsec, 0.0e-4 * arcsec, 0.0e-4 * arcsec),
+        NutationCoefficients({ { 0, 0, 2, 0, 2 } }, 13.7 * day, -2274.0e-4 * arcsec, -0.2e-4 * arcsec, 977.0e-4 * arcsec, -0.5e-4 * arcsec),
+        NutationCoefficients({ { 1, 0, 0, 0, 0 } }, 27.6 * day, 712.0e-4 * arcsec, 0.1e-4 * arcsec, -7.0e-4 * arcsec, 0.0e-4 * arcsec),
+        NutationCoefficients({ { 0, 0, 2, 0, 1 } }, 13.6 * day, -386.0e-4 * arcsec, -0.4e-4 * arcsec, 200.0e-4 * arcsec, 0.0e-4 * arcsec),
+        NutationCoefficients({ { 1, 0, 2, 0, 2 } }, 9.1 * day, -301.0e-4 * arcsec, 0.0e-4 * arcsec, 129.0e-4 * arcsec, -0.1e-4 * arcsec),
+        NutationCoefficients({ { 1, 0, 0, -2, 0 } }, -31.8 * day, -158.0e-4 * arcsec, 0.0e-4 * arcsec, -1.0e-4 * arcsec, 0.0e-4 * arcsec),
+        NutationCoefficients({ { -1, 0, 2, 0, 2 } }, 27.1 * day, 123.0e-4 * arcsec, 0.0e-4 * arcsec, -53.0e-4 * arcsec, 0.0e-4 * arcsec),
+        NutationCoefficients({ { 0, 0, 0, 2, 0 } }, 14.8 * day, 63.0e-4 * arcsec, 0.0e-4 * arcsec, -2.0e-4 * arcsec, 0.0e-4 * arcsec),
+        NutationCoefficients({ { 1, 0, 0, 0, 1 } }, 27.7 * day, 63.0e-4 * arcsec, 0.1e-4 * arcsec, -33.0e-4 * arcsec, 0.0e-4 * arcsec),
+        NutationCoefficients({ { -1, 0, 0, 0, 1 } }, -27.4 * day, -58.0e-4 * arcsec, -0.1e-4 * arcsec, 32.0e-4 * arcsec, 0.0e-4 * arcsec),
+        NutationCoefficients({ { -1, 0, 2, 2, 2 } }, 9.6 * day, -59.0e-4 * arcsec, 0.0e-4 * arcsec, 26.0e-4 * arcsec, 0.0e-4 * arcsec),
+        NutationCoefficients({ { 1, 0, 2, 0, 1 } }, 9.1 * day, -51.0e-4 * arcsec, 0.0e-4 * arcsec, 27.0e-4 * arcsec, 0.0e-4 * arcsec),
+        NutationCoefficients({ { 0, 0, 2, 2, 2 } }, 7.1 * day, -38.0e-4 * arcsec, 0.0e-4 * arcsec, 16.0e-4 * arcsec, 0.0e-4 * arcsec),
+        NutationCoefficients({ { 2, 0, 0, 0, 0 } }, 13.8 * day, 29.0e-4 * arcsec, 0.0e-4 * arcsec, -1.0e-4 * arcsec, 0.0e-4 * arcsec),
+        NutationCoefficients({ { 1, 0, 2, -2, 2 } }, 23.9 * day, 29.0e-4 * arcsec, 0.0e-4 * arcsec, -12.0e-4 * arcsec, 0.0e-4 * arcsec),
+        NutationCoefficients({ { 2, 0, 2, 0, 2 } }, 6.9 * day, -31.0e-4 * arcsec, 0.0e-4 * arcsec, 13.0e-4 * arcsec, 0.0e-4 * arcsec),
+        NutationCoefficients({ { 0, 0, 2, 0, 0 } }, 13.6 * day, 26.0e-4 * arcsec, 0.0e-4 * arcsec, -1.0e-4 * arcsec, 0.0e-4 * arcsec),
+        NutationCoefficients({ { -1, 0, 2, 0, 1 } }, 27.0 * day, 21.0e-4 * arcsec, 0.0e-4 * arcsec, -10.0e-4 * arcsec, 0.0e-4 * arcsec),
+        NutationCoefficients({ { -1, 0, 0, 2, 1 } }, 32.0 * day, 16.0e-4 * arcsec, 0.0e-4 * arcsec, -8.0e-4 * arcsec, 0.0e-4 * arcsec),
+        NutationCoefficients({ { 1, 0, 0, -2, 1 } }, -31.7 * day, -13.0e-4 * arcsec, 0.0e-4 * arcsec, 7.0e-4 * arcsec, 0.0e-4 * arcsec),
+        NutationCoefficients({ { -1, 0, 2, 2, 1 } }, 9.5 * day, -10.0e-4 * arcsec, 0.0e-4 * arcsec, 5.0e-4 * arcsec, 0.0e-4 * arcsec),
+        NutationCoefficients({ { 1, 1, 0, -2, 0 } }, -34.8 * day, -7.0e-4 * arcsec, 0.0e-4 * arcsec, 0.0e-4 * arcsec, 0.0e-4 * arcsec),
+        NutationCoefficients({ { 0, 1, 2, 0, 2 } }, 13.2 * day, 7.0e-4 * arcsec, 0.0e-4 * arcsec, -3.0e-4 * arcsec, 0.0e-4 * arcsec),
+        NutationCoefficients({ { 0, -1, 2, 0, 2 } }, 14.2 * day, -7.0e-4 * arcsec, 0.0e-4 * arcsec, 3.0e-4 * arcsec, 0.0e-4 * arcsec),
+        NutationCoefficients({ { 1, 0, 2, 2, 2 } }, 5.6 * day, -8.0e-4 * arcsec, 0.0e-4 * arcsec, 3.0e-4 * arcsec, 0.0e-4 * arcsec),
+        NutationCoefficients({ { 1, 0, 0, 2, 0 } }, 9.6 * day, 6.0e-4 * arcsec, 0.0e-4 * arcsec, 0.0e-4 * arcsec, 0.0e-4 * arcsec),
+        NutationCoefficients({ { 2, 0, 2, -2, 2 } }, 12.8 * day, 6.0e-4 * arcsec, 0.0e-4 * arcsec, -3.0e-4 * arcsec, 0.0e-4 * arcsec),
+        NutationCoefficients({ { 0, 0, 0, 2, 1 } }, 14.8 * day, -6.0e-4 * arcsec, 0.0e-4 * arcsec, 3.0e-4 * arcsec, 0.0e-4 * arcsec),
+        NutationCoefficients({ { 0, 0, 2, 2, 1 } }, 7.1 * day, -7.0e-4 * arcsec, 0.0e-4 * arcsec, 3.0e-4 * arcsec, 0.0e-4 * arcsec),
+        NutationCoefficients({ { 1, 0, 2, -2, 1 } }, 23.9 * day, 6.0e-4 * arcsec, 0.0e-4 * arcsec, -3.0e-4 * arcsec, 0.0e-4 * arcsec),
+        NutationCoefficients({ { 0, 0, 0, -2, 1 } }, -14.7 * day, -5.0e-4 * arcsec, 0.0e-4 * arcsec, 3.0e-4 * arcsec, 0.0e-4 * arcsec),
+        NutationCoefficients({ { 1, -1, 0, 0, 0 } }, 29.8 * day, 5.0e-4 * arcsec, 0.0e-4 * arcsec, 0.0e-4 * arcsec, 0.0e-4 * arcsec),
+        NutationCoefficients({ { 2, 0, 2, 0, 1 } }, 6.9 * day, -5.0e-4 * arcsec, 0.0e-4 * arcsec, 3.0e-4 * arcsec, 0.0e-4 * arcsec),
+        NutationCoefficients({ { 0, 1, 0, -2, 0 } }, -15.4 * day, -4.0e-4 * arcsec, 0.0e-4 * arcsec, 0.0e-4 * arcsec, 0.0e-4 * arcsec),
+        NutationCoefficients({ { 1, 0, -2, 0, 0 } }, -26.9 * day, 4.0e-4 * arcsec, 0.0e-4 * arcsec, 0.0e-4 * arcsec, 0.0e-4 * arcsec),
+        NutationCoefficients({ { 0, 0, 0, 1, 0 } }, 29.5 * day, -4.0e-4 * arcsec, 0.0e-4 * arcsec, 0.0e-4 * arcsec, 0.0e-4 * arcsec),
+        NutationCoefficients({ { 1, 1, 0, 0, 0 } }, 25.6 * day, -3.0e-4 * arcsec, 0.0e-4 * arcsec, 0.0e-4 * arcsec, 0.0e-4 * arcsec),
+        NutationCoefficients({ { 1, 0, 2, 0, 0 } }, 9.1 * day, 3.0e-4 * arcsec, 0.0e-4 * arcsec, 0.0e-4 * arcsec, 0.0e-4 * arcsec),
+        NutationCoefficients({ { 1, -1, 2, 0, 2 } }, 9.4 * day, -3.0e-4 * arcsec, 0.0e-4 * arcsec, 1.0e-4 * arcsec, 0.0e-4 * arcsec),
+        NutationCoefficients({ { -1, -1, 2, 2, 2 } }, 9.8 * day, -3.0e-4 * arcsec, 0.0e-4 * arcsec, 1.0e-4 * arcsec, 0.0e-4 * arcsec),
+        NutationCoefficients({ { -2, 0, 0, 0, 1 } }, -13.7 * day, -2.0e-4 * arcsec, 0.0e-4 * arcsec, 1.0e-4 * arcsec, 0.0e-4 * arcsec),
+        NutationCoefficients({ { 3, 0, 2, 0, 2 } }, 5.5 * day, -3.0e-4 * arcsec, 0.0e-4 * arcsec, 1.0e-4 * arcsec, 0.0e-4 * arcsec),
+        NutationCoefficients({ { 0, -1, 2, 2, 2 } }, 7.2 * day, -3.0e-4 * arcsec, 0.0e-4 * arcsec, 1.0e-4 * arcsec, 0.0e-4 * arcsec),
+        NutationCoefficients({ { 1, 1, 2, 0, 2 } }, 8.9 * day, 2.0e-4 * arcsec, 0.0e-4 * arcsec, -1.0e-4 * arcsec, 0.0e-4 * arcsec),
+        NutationCoefficients({ { -1, 0, 2, -2, 1 } }, -32.6 * day, -2.0e-4 * arcsec, 0.0e-4 * arcsec, 1.0e-4 * arcsec, 0.0e-4 * arcsec),
+        NutationCoefficients({ { 2, 0, 0, 0, 1 } }, 13.8 * day, 2.0e-4 * arcsec, 0.0e-4 * arcsec, -1.0e-4 * arcsec, 0.0e-4 * arcsec),
+        NutationCoefficients({ { 1, 0, 0, 0, 2 } }, 27.8 * day, -2.0e-4 * arcsec, 0.0e-4 * arcsec, 1.0e-4 * arcsec, 0.0e-4 * arcsec),
+        NutationCoefficients({ { 3, 0, 0, 0, 0 } }, 9.2 * day, 2.0e-4 * arcsec, 0.0e-4 * arcsec, 0.0e-4 * arcsec, 0.0e-4 * arcsec),
+        NutationCoefficients({ { 0, 0, 2, 1, 2 } }, 9.3 * day, 2.0e-4 * arcsec, 0.0e-4 * arcsec, -1.0e-4 * arcsec, 0.0e-4 * arcsec),
+        NutationCoefficients({ { -1, 0, 0, 0, 2 } }, -27.3 * day, 1.0e-4 * arcsec, 0.0e-4 * arcsec, -1.0e-4 * arcsec, 0.0e-4 * arcsec),
+        NutationCoefficients({ { 1, 0, 0, -4, 0 } }, -10.1 * day, -1.0e-4 * arcsec, 0.0e-4 * arcsec, 0.0e-4 * arcsec, 0.0e-4 * arcsec),
+        NutationCoefficients({ { -2, 0, 2, 2, 2 } }, 14.6 * day, 1.0e-4 * arcsec, 0.0e-4 * arcsec, -1.0e-4 * arcsec, 0.0e-4 * arcsec),
+        NutationCoefficients({ { -1, 0, 2, 4, 2 } }, 5.8 * day, -2.0e-4 * arcsec, 0.0e-4 * arcsec, 1.0e-4 * arcsec, 0.0e-4 * arcsec),
+        NutationCoefficients({ { 2, 0, 0, -4, 0 } }, -15.9 * day, -1.0e-4 * arcsec, 0.0e-4 * arcsec, 0.0e-4 * arcsec, 0.0e-4 * arcsec),
+        NutationCoefficients({ { 1, 1, 2, -2, 2 } }, 22.5 * day, 1.0e-4 * arcsec, 0.0e-4 * arcsec, -1.0e-4 * arcsec, 0.0e-4 * arcsec),
+        NutationCoefficients({ { 1, 0, 2, 2, 1 } }, 5.6 * day, -1.0e-4 * arcsec, 0.0e-4 * arcsec, 1.0e-4 * arcsec, 0.0e-4 * arcsec),
+        NutationCoefficients({ { -2, 0, 2, 4, 2 } }, 7.3 * day, -1.0e-4 * arcsec, 0.0e-4 * arcsec, 1.0e-4 * arcsec, 0.0e-4 * arcsec),
+        NutationCoefficients({ { -1, 0, 4, 0, 2 } }, 9.1 * day, 1.0e-4 * arcsec, 0.0e-4 * arcsec, 0.0e-4 * arcsec, 0.0e-4 * arcsec),
+        NutationCoefficients({ { 1, -1, 0, -2, 0 } }, -29.3 * day, 1.0e-4 * arcsec, 0.0e-4 * arcsec, 0.0e-4 * arcsec, 0.0e-4 * arcsec),
+        NutationCoefficients({ { 2, 0, 2, -2, 1 } }, 12.8 * day, 1.0e-4 * arcsec, 0.0e-4 * arcsec, -1.0e-4 * arcsec, 0.0e-4 * arcsec),
+        NutationCoefficients({ { 2, 0, 2, 2, 2 } }, 4.7 * day, -1.0e-4 * arcsec, 0.0e-4 * arcsec, 0.0e-4 * arcsec, 0.0e-4 * arcsec),
+        NutationCoefficients({ { 1, 0, 0, 2, 1 } }, 9.6 * day, -1.0e-4 * arcsec, 0.0e-4 * arcsec, 0.0e-4 * arcsec, 0.0e-4 * arcsec),
+        NutationCoefficients({ { 0, 0, 4, -2, 2 } }, 12.7 * day, 1.0e-4 * arcsec, 0.0e-4 * arcsec, 0.0e-4 * arcsec, 0.0e-4 * arcsec),
+        NutationCoefficients({ { 3, 0, 2, -2, 2 } }, 8.7 * day, 1.0e-4 * arcsec, 0.0e-4 * arcsec, 0.0e-4 * arcsec, 0.0e-4 * arcsec),
+        NutationCoefficients({ { 1, 0, 2, -2, 0 } }, 23.8 * day, -1.0e-4 * arcsec, 0.0e-4 * arcsec, 0.0e-4 * arcsec, 0.0e-4 * arcsec),
+        NutationCoefficients({ { 0, 1, 2, 0, 1 } }, 13.1 * day, 1.0e-4 * arcsec, 0.0e-4 * arcsec, 0.0e-4 * arcsec, 0.0e-4 * arcsec),
+        NutationCoefficients({ { -1, -1, 0, 2, 1 } }, 35.0 * day, 1.0e-4 * arcsec, 0.0e-4 * arcsec, 0.0e-4 * arcsec, 0.0e-4 * arcsec),
+        NutationCoefficients({ { 0, 0, -2, 0, 1 } }, -13.6 * day, -1.0e-4 * arcsec, 0.0e-4 * arcsec, 0.0e-4 * arcsec, 0.0e-4 * arcsec),
+        NutationCoefficients({ { 0, 0, 2, -1, 2 } }, 25.4 * day, -1.0e-4 * arcsec, 0.0e-4 * arcsec, 0.0e-4 * arcsec, 0.0e-4 * arcsec),
+        NutationCoefficients({ { 0, 1, 0, 2, 0 } }, 14.2 * day, -1.0e-4 * arcsec, 0.0e-4 * arcsec, 0.0e-4 * arcsec, 0.0e-4 * arcsec),
+        NutationCoefficients({ { 1, 0, -2, -2, 0 } }, -9.5 * day, -1.0e-4 * arcsec, 0.0e-4 * arcsec, 0.0e-4 * arcsec, 0.0e-4 * arcsec),
+        NutationCoefficients({ { 0, -1, 2, 0, 1 } }, 14.2 * day, -1.0e-4 * arcsec, 0.0e-4 * arcsec, 0.0e-4 * arcsec, 0.0e-4 * arcsec),
+        NutationCoefficients({ { 1, 1, 0, -2, 1 } }, -34.7 * day, -1.0e-4 * arcsec, 0.0e-4 * arcsec, 0.0e-4 * arcsec, 0.0e-4 * arcsec),
+        NutationCoefficients({ { 1, 0, -2, 2, 0 } }, 32.8 * day, -1.0e-4 * arcsec, 0.0e-4 * arcsec, 0.0e-4 * arcsec, 0.0e-4 * arcsec),
+        NutationCoefficients({ { 2, 0, 0, 2, 0 } }, 7.1 * day, 1.0e-4 * arcsec, 0.0e-4 * arcsec, 0.0e-4 * arcsec, 0.0e-4 * arcsec),
+        NutationCoefficients({ { 0, 0, 2, 4, 2 } }, 4.8 * day, -1.0e-4 * arcsec, 0.0e-4 * arcsec, 0.0e-4 * arcsec, 0.0e-4 * arcsec),
+        NutationCoefficients({ { 0, 1, 0, 1, 0 } }, 27.3 * day, 1.0e-4 * arcsec, 0.0e-4 * arcsec, 0.0e-4 * arcsec, 0.0e-4 * arcsec)
     };
 
     return NUTATION_COEFFICIENTS[idx];
@@ -286,100 +288,75 @@ inline constexpr std::array<mp_units::quantity<mp_units::si::unit_symbols::arcse
  * @param date The date for which to get the polar motion.
  * @return std::array<mp_units::quantity<mp_units::si::unit_symbols::arcsec>, 2> The polar motion [xp, yp].
  *
- * @throws std::out_of_range if the date is outside the range of available Earth Orientation Parameters data.
- * @throws std::runtime_error if polar motion data is not found for the given date.
+ * @note Dates outside the range of available Earth Orientation Parameters data use the nearest tabulated value.
  */
-inline constexpr std::array<mp_units::quantity<mp_units::si::unit_symbols::arcsec>, 2> get_polar_motion(const Date& date) noexcept
+inline std::array<mp_units::quantity<mp_units::si::unit_symbols::arcsec>, 2> get_polar_motion(const Date& date) noexcept
 {
-    static const auto MJD0 = eop::EarthOrientationParameters::DATA.front().MJD;
-    static const auto MJDN = eop::EarthOrientationParameters::DATA.back().MJD;
-    static const auto STEP = eop::EarthOrientationParameters::DATA[1].MJD - eop::EarthOrientationParameters::DATA[0].MJD;
-
-    if (date <= MJD0) {
-        return { eop::EarthOrientationParameters::DATA.front().PMx, eop::EarthOrientationParameters::DATA.front().PMy };
-    }
-    else if (date >= MJDN) {
-        return { eop::EarthOrientationParameters::DATA.back().PMx, eop::EarthOrientationParameters::DATA.back().PMy };
-    }
-
-    // Assume the step is consistent (which it seems to be) and that the data is sorted by MJD (which it seems to be)
-    // TODO: Add introspective properties to the EOP data to allow for more robust searching (e.g., binary search, etc.)
-    const auto guessIdx = static_cast<std::size_t>((date - MJD0) / STEP);
-    const auto& row     = eop::EarthOrientationParameters::DATA[guessIdx];
-
-    if (row.MJD == date) { return { row.PMx, row.PMy }; }
-    else if (row.MJD > date) {
-        // Interpolate between the previous and current row
-        const auto& prevRow = eop::EarthOrientationParameters::DATA[guessIdx - 1];
-        const auto t        = (date - prevRow.MJD) / (row.MJD - prevRow.MJD);
-        const auto xp       = prevRow.PMx + t * (row.PMx - prevRow.PMx);
-        const auto yp       = prevRow.PMy + t * (row.PMy - prevRow.PMy);
-        return { xp, yp };
-    }
-
-    // Interpolate between the current and next row
-    const auto& nextRow = eop::EarthOrientationParameters::DATA[guessIdx + 1];
-    const auto t        = (date - row.MJD) / (nextRow.MJD - row.MJD);
-    const auto xp       = row.PMx + t * (nextRow.PMx - row.PMx);
-    const auto yp       = row.PMy + t * (nextRow.PMy - row.PMy);
-    return { xp, yp };
+    using EopRow              = eop::EarthOrientationParameters::EopRow;
+    const auto eopInterpolant = eop::get_eop_interpolant(date);
+    return { eopInterpolant.interpolate(&EopRow::PMx), eopInterpolant.interpolate(&EopRow::PMy) };
 }
 
 } // namespace
 
 /**
- * @brief DCM from frames::earth::icrf to frames::earth::cep.
+ * @brief DCM from frames::earth::icrf to frames::earth::cep (true equator and equinox of date).
  *
  * @param date The date at which to compute the DCM.
  * @return DirectionCosineMatrix<frames::earth::icrf, frames::earth::cep> The DCM from frames::earth::icrf to frames::earth::cep at the given date.
  *
- * @note https://gssc.esa.int/navipedia/index.php?title=ICRF_to_CEP
+ * @note D. Vallado, "Fundamentals of Astrodynamics and Applications," 4th ed., Section 3.7 (IAU-76/FK5).
  */
 template <>
 inline constexpr DirectionCosineMatrix<frames::earth::icrf, frames::earth::cep>
     get_dcm<frames::earth::icrf, frames::earth::cep>(const Date& date)
 {
-    using namespace mp_units;
     using astrea::units::unit_symbols::jc;
-    using mp_units::si::unit_symbols::arcmin;
-    using mp_units::si::unit_symbols::arcsec;
-    using mp_units::si::unit_symbols::deg;
 
     // These equations really should give the constants in terms of angular rates, accels, etc., but
     // it's easier to write them as unit-unaware polynomials and since everyone does that, we're just mimicking it here
-    const Unitless T = (date - J2000).numerical_value_in(jc) * one;
+    const Unitless T = (date - J2000) / jc;
 
-    // Precession matrix (icrf -> cep, applied first)
+    // Precession matrix (icrf -> mean of date, applied first)
     const auto [z, theta, zeta] = get_precession_angles(T);
-    const auto P                = DCM<frames::earth::icrf, frames::earth::cep>::ZYZ(-z, theta, -zeta);
+    const auto P                = DCM<frames::earth::icrf, frames::earth::cep>::ZYZ(z, -theta, zeta);
 
-    // Nutation matrix (cep -> cep, applied second, as a correction on top of precession)
+    // Nutation matrix (mean of date -> true of date, applied second)
     const auto [eps, dpsi, deps] = get_nutation_angles(T);
-    const auto N                 = DCM<frames::earth::cep, frames::earth::cep>::XZX(-(eps + deps), -dpsi, eps);
+    const auto N                 = DCM<frames::earth::cep, frames::earth::cep>::XZX(eps + deps, dpsi, -eps);
 
-    return P * N;
+    return N * P;
 }
 
+/**
+ * @brief DCM from frames::earth::cep to frames::earth::itrf.
+ *
+ * @param date The date at which to compute the DCM.
+ * @return DirectionCosineMatrix<frames::earth::cep, frames::earth::itrf> The DCM from frames::earth::cep to frames::earth::itrf at the given date.
+ *
+ * @note D. Vallado, "Fundamentals of Astrodynamics and Applications," 4th ed., Section 3.7 (IAU-76/FK5).
+ */
 template <>
 inline constexpr DirectionCosineMatrix<frames::earth::cep, frames::earth::itrf>
     get_dcm<frames::earth::cep, frames::earth::itrf>(const Date& date)
 {
-    using namespace mp_units;
-    using mp_units::si::unit_symbols::arcmin;
-    using mp_units::si::unit_symbols::arcsec;
-    using mp_units::si::unit_symbols::deg;
+    using astrea::units::unit_symbols::jc;
+    using math::cos;
 
-    // Diurnal rotation
-    const Angle gst = julian_date_to_sidereal_time(date.jd());
-    const auto Rs   = DCM<frames::earth::cep, frames::earth::itrf>::Z(-gst);
+    // Diurnal rotation, using apparent sidereal time (GMST plus the equation of the equinoxes) since cep is true of
+    // date. Date::gmst() evaluates sidereal time at UT1.
+    const Unitless T             = (date - J2000) / jc;
+    const auto [eps, dpsi, deps] = get_nutation_angles(T);
+    const Angle gst              = date.gmst() + dpsi * cos(eps);
+    const auto Rs                = DCM<frames::earth::cep, frames::earth::itrf>::Z(-gst);
 
     // Polar motion
     const auto [xp, yp] = get_polar_motion(date);
-    const auto RX       = DCM<frames::earth::itrf, frames::earth::itrf>::Y(-xp);
-    const auto RY       = DCM<frames::earth::itrf, frames::earth::itrf>::X(-yp);
+    const auto RX       = DCM<frames::earth::itrf, frames::earth::itrf>::Y(xp);
+    const auto RY       = DCM<frames::earth::itrf, frames::earth::itrf>::X(yp);
     const auto Rm       = RX * RY;
 
-    return Rs * Rm;
+    return Rm * Rs;
 }
 
 /**
@@ -400,7 +377,7 @@ inline constexpr DirectionCosineMatrix<in_frame, out_frame> get_dcm(const Date& 
 {
     const auto dcmIcrfToCep = get_dcm<frames::earth::icrf, frames::earth::cep>(date); // rotation due to precession and nutation
     const auto dcmCepToItrf = get_dcm<frames::earth::cep, frames::earth::itrf>(date); // rotation due to Earth rotation and polar motion
-    return DCM<in_frame, out_frame>{ dcmIcrfToCep * dcmCepToItrf };
+    return DCM<in_frame, out_frame>{ dcmCepToItrf * dcmIcrfToCep };
 }
 
 } // namespace astro
