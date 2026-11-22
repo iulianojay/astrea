@@ -45,6 +45,7 @@ void disable_enhanced_text_for_figure(const figure_handle& fig)
     if (!fig || !fig->backend() || !fig->backend()->consumes_gnuplot_commands()) { return; }
 
     fig->backend()->run_command("set termoption noenhanced");
+    fig->backend()->run_command("unset warnings");
 }
 
 /**
