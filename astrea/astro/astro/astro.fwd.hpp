@@ -21,6 +21,7 @@
 #include <concepts>
 
 #include <astro/frames/framework/frame_concepts.hpp>
+#include <astro/systems/system_concepts.hpp>
 #include <astro/types/enums.hpp>
 
 namespace astrea {
@@ -45,6 +46,8 @@ template <IsFrame auto _frame_>
 class KeplerianPartial;
 template <IsFrame auto _frame_>
 class EquinoctialPartial;
+template <IsCelestialBody auto _body_>
+class Geodetic;
 
 class TwoLineElements;
 class TwoLineElementsPartial;
