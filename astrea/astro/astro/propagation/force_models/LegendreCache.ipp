@@ -77,8 +77,10 @@ LegendreCache<_body_, _degree_, _order_>::LegendreCache()
         n = (std::size_t)lineData[0];
         m = (std::size_t)lineData[1];
 
-        _C[n * _span + m] = lineData[2];
-        _S[n * _span + m] = lineData[3];
+        if (n <= _degree_ && m <= _order_) {
+            _C[n * _span + m] = lineData[2];
+            _S[n * _span + m] = lineData[3];
+        }
 
         if (n >= _degree_ && m >= _order_) { break; }
     }

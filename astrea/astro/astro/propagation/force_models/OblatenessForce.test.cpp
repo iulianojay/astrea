@@ -90,6 +90,53 @@ int main(int argc, char** argv)
 
 TEST_F(OblatenessForceTest, DefaultConstructor) { ASSERT_NO_THROW(OblatenessForce<planets::Earth>()); }
 
+template <std::size_t order>
+void check_degree_two_acceleration(const State& state, const Spacecraft& sat)
+{
+    const auto date   = state.get_epoch();
+    const auto r      = state.get_position().in_frame<frames::primary_fixed>(date);
+    const auto x      = r[0];
+    const auto y      = r[1];
+    const auto z      = r[2];
+    const auto radius = r.norm();
+    const LegendreCache<planets::Earth, 2, order> coefficients;
+    const auto c20 = coefficients.get_cosine_coefficient(2, 0);
+    auto f         = c20 * (3.0 * z * z - radius * radius) / 2.0;
+    RadiusVector<frames::primary_fixed> gradient{ -c20 * x, -c20 * y, 2.0 * c20 * z };
+    if constexpr (order >= 1) {
+        const auto c21 = coefficients.get_cosine_coefficient(2, 1);
+        const auto s21 = coefficients.get_sine_coefficient(2, 1);
+        f += 3.0 * (c21 * x * z + s21 * y * z);
+        gradient += RadiusVector<frames::primary_fixed>{ 3.0 * c21 * z, 3.0 * s21 * z, 3.0 * (c21 * x + s21 * y) };
+    }
+    if constexpr (order >= 2) {
+        const auto c22 = coefficients.get_cosine_coefficient(2, 2);
+        const auto s22 = coefficients.get_sine_coefficient(2, 2);
+        f += 3.0 * c22 * (x * x - y * y) + 6.0 * s22 * x * y;
+        gradient +=
+            RadiusVector<frames::primary_fixed>{ 6.0 * (c22 * x + s22 * y), 6.0 * (-c22 * y + s22 * x), Distance::zero() };
+    }
+    const auto expected = get_mu<planets::Earth>() * pow<2>(get_equatorial_radius<planets::Earth>()) / pow<5>(radius) *
+                          (gradient - 5.0 * f / pow<2>(radius) * r);
+    const auto [force, torque] = OblatenessForce<planets::Earth, 2, order>().compute_perturbation(state, Vehicle(sat));
+    const auto actual = frames::rotate_vector_into_frame<frames::primary_fixed>(force / sat.get_mass(state), date);
+    for (std::size_t i = 0; i < 3; ++i) {
+        EXPECT_NEAR(actual[i].numerical_value_in(m / (s * s)), expected[i].numerical_value_in(m / (s * s)), 1e-12);
+    }
+}
+
+TEST_F(OblatenessForceTest, DegreeTwoMatchesAnalyticPotentialAtEachOrder)
+{
+    const auto sat = get_vallado_ex85_satellite();
+    const Date epoch("2020-02-18 15:08:47.23847");
+    const Cartesian<frames::earth::icrf> cart{ -605.790796 * km,   -5870.230422 * km,  3493.051916 * km,
+                                               -1.568251 * km / s, -3.702348 * km / s, -6.479485 * km / s };
+    const State state(cart, epoch);
+    check_degree_two_acceleration<0>(state, sat);
+    check_degree_two_acceleration<1>(state, sat);
+    check_degree_two_acceleration<2>(state, sat);
+}
+
 // Vallado, Ex. 8.5
 TEST_F(OblatenessForceTest, ComputeForceValladoEx85)
 {
@@ -120,8 +167,7 @@ TEST_F(OblatenessForceTest, ComputeForceValladoEx85)
     ASSERT_TRUE(math::nearly_equal(accelNorm, expectedNorm, 0.0 * one, ABS_TOL));
 }
 
-// From what I can tell, difference at this level (~1e-8 km or O(10 um)) is due to ecef/icrf rotation differences. The
-// checkcases don't explicitly list their rotation method so it's hard to know for sure.
+// The NASA checkcases use a different Earth gravitational parameter from Astrea.
 TEST_F(OblatenessForceTest, Orbit03A4x4TotalGravityAtT0)
 {
     Spacecraft sat = get_checkcase_satellite();
@@ -142,7 +188,7 @@ TEST_F(OblatenessForceTest, Orbit03A4x4TotalGravityAtT0)
                                                                       -1.22700119262805 * m / (s * s),
                                                                       -6.62056474851441 * m / (s * s) };
 
-    ASSERT_TRUE(nearly_equal(totalAccel, expectedTotalAccel, 0.0 * one, ABS_TOL));
+    ASSERT_TRUE(nearly_equal(totalAccel, expectedTotalAccel, 0.0 * one, 2.0e-10 * one));
 }
 
 TEST_F(OblatenessForceTest, Orbit03B8x8TotalGravityAtT0)
@@ -165,7 +211,7 @@ TEST_F(OblatenessForceTest, Orbit03B8x8TotalGravityAtT0)
                                                                       -1.22706430181432 * m / (s * s),
                                                                       -6.62051654995019 * m / (s * s) };
 
-    ASSERT_TRUE(nearly_equal(totalAccel, expectedTotalAccel, 0.0 * one, ABS_TOL));
+    ASSERT_TRUE(nearly_equal(totalAccel, expectedTotalAccel, 0.0 * one, 2.0e-10 * one));
 }
 
 TEST_F(OblatenessForceTest, Orbit03A4x4TotalGravityAtT60s)
@@ -190,5 +236,5 @@ TEST_F(OblatenessForceTest, Orbit03A4x4TotalGravityAtT60s)
                                                                       -0.644443899684263 * m / (s * s),
                                                                       -6.7198683790639 * m / (s * s) };
 
-    ASSERT_TRUE(nearly_equal(totalAccel, expectedTotalAccel, 0.0 * one, ABS_TOL));
+    ASSERT_TRUE(nearly_equal(totalAccel, expectedTotalAccel, 0.0 * one, 2.0e-10 * one));
 }

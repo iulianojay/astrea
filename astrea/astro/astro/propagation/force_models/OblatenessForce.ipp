@@ -201,7 +201,7 @@ Perturbation OblatenessForce<_body_, _degree_, _order_>::compute_perturbation(co
     V[0] = rEqOverR;
 
     // Combined recursion for V[n][m] and W[n][m]
-    for (std::size_t m = 0; m <= _order_; ++m) {
+    for (std::size_t m = 0; m <= _order_ + 1; ++m) {
         for (std::size_t n = (m == 0 ? 1 : m); n <= _degree_ + 1; ++n) {
 
             if (m == 0) {
