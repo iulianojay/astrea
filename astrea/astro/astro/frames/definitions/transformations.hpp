@@ -100,6 +100,20 @@ inline constexpr DcmRate<frame, frame_u> get_dcm_rate_impl(const Date& date);
 template <IsFrame auto frame, IsFrame auto frame_u>
 inline constexpr DcmAccel<frame, frame_u> get_dcm_accel_impl(const Date& date);
 
+template <IsFrame auto frame, IsFrame auto frame_u>
+inline constexpr DCM<frame, frame_u> get_dcm_between_roots(const Date& date)
+{
+    if constexpr (equivalent(frame.origin, frame_u.origin)) {
+        return get_dcm_impl<frame, frame_u>(date);
+    }
+    else {
+        constexpr auto inIcrf = make_frame(frame.origin, axes::icrf);
+        constexpr auto outIcrf = make_frame(frame_u.origin, axes::icrf);
+        return get_dcm_impl<outIcrf, frame_u>(date) * DCM<inIcrf, outIcrf>::identity() *
+               get_dcm_impl<frame, inIcrf>(date);
+    }
+}
+
 /**
  * @brief Retrieves the accumulated direction cosine matrix from the root frame to the given FixedOffsetFrame by recursively composing the DCMs along the parent chain.
  *
@@ -270,15 +284,45 @@ inline constexpr DCM<frame, frame_u> get_dcm_impl(const Date& date)
             always_false<NoDcmBetween<frame.name.portable(), frame_u.name.portable()>>,
         "No DCM (get_dcm method) defined between these two frames and no common ancestor found."
     );
+    constexpr auto rootOrigin = [] {
+        if constexpr (IsFixedOffsetFrame<decltype(frame)>) { return get_root_frame<frame>().origin; }
+        else { return frame.origin; }
+    }();
+    constexpr auto rootOrigin_u = [] {
+        if constexpr (IsFixedOffsetFrame<decltype(frame_u)>) { return get_root_frame<frame_u>().origin; }
+        else { return frame_u.origin; }
+    }();
 
     if constexpr (equivalent(frame.axis, frame_u.axis)) {
         return DCM<frame, frame_u>::identity(); // TODO: Make sure to do this earlier to avoid unnecessary matrix math
     }
-    else if constexpr (HasDcm<frame, frame_u>) {
+    else if constexpr (
+        HasDcm<frame, frame_u> &&
+        (!(IsFixedOffsetFrame<decltype(frame)> || IsFixedOffsetFrame<decltype(frame_u)>) ||
+         equivalent(rootOrigin, rootOrigin_u))
+    ) {
         return get_dcm<frame, frame_u>(date);
     }
-    else if constexpr (HasDcm<frame_u, frame>) {
+    else if constexpr (
+        HasDcm<frame_u, frame> &&
+        (!(IsFixedOffsetFrame<decltype(frame)> || IsFixedOffsetFrame<decltype(frame_u)>) ||
+         equivalent(rootOrigin, rootOrigin_u))
+    ) {
         return get_dcm<frame_u, frame>(date).transpose();
+    }
+    else if constexpr (IsFixedOffsetFrame<decltype(frame)> && IsFixedOffsetFrame<decltype(frame_u)>) {
+        constexpr auto root = get_root_frame<frame>();
+        constexpr auto root_u = get_root_frame<frame_u>();
+        return get_dcm_from_root_frame<frame_u>() * get_dcm_between_roots<root, root_u>(date) *
+               get_dcm_from_root_frame<frame>().transpose();
+    }
+    else if constexpr (IsFixedOffsetFrame<decltype(frame)>) {
+        constexpr auto root = get_root_frame<frame>();
+        return get_dcm_between_roots<root, frame_u>(date) * get_dcm_from_root_frame<frame>().transpose();
+    }
+    else if constexpr (IsFixedOffsetFrame<decltype(frame_u)>) {
+        constexpr auto root_u = get_root_frame<frame_u>();
+        return get_dcm_from_root_frame<frame_u>() * get_dcm_between_roots<frame, root_u>(date);
     }
     else if constexpr (HasCommonAncestor<frame.axis, frame_u.axis>) {
         // We can only chain to the ancestor if the frame hooks into the existing graph of frames. We just check for the
@@ -399,7 +443,7 @@ inline constexpr DcmAccel<frame, frame_u> get_dcm_accel_impl(const Date& date)
  * @tparam Value_T The type of the offset vector components (e.g., Distance, Velocity, Acceleration).
  * @tparam frame The first frame type.
  * @param date The date at which to calculate the offset.
- * @return CartesianVector<Value_T, frame_u> The offset vector from frame to frame_u.
+ * @return CartesianVector<Value_T, frame_u> Source origin minus target origin, expressed in target axes.
  * @throws std::logic_error If the offset cannot be determined due to lack of common reference or unsupported frame types.
  */
 template <typename Value_T, IsFrame auto frame, IsFrame auto frame_u>
@@ -436,32 +480,34 @@ inline constexpr CartesianVector<Value_T, frame_u> get_offset_impl(const Date& d
             static_assert(always_false<Value_T>, "Fixed velocity and acceleration offsets are not currently supported.");
         }
 
-        // At least one fixed offset frame in the mix, so we can use the static offsets
-        // We could explicitly write out all these frames to make sure they're correct, but this is more legible and the
-        // forced conversions would be required anyway.
-        if constexpr (IsFixedOffsetFrame<decltype(frame)> && IsFixedOffsetFrame<decltype(frame_u)>) {
-            constexpr auto offset1 = get_offset_from_root_frame<frame>().template force_frame_conversion<frame_u>(); // r_root->frame
-            constexpr auto offset2 = get_offset_from_root_frame<frame_u>().template force_frame_conversion<frame_u>(); // r_root_u->frame_u
-            constexpr auto origin1 = get_root_frame<frame>().origin;
-            constexpr auto origin2 = get_root_frame<frame_u>().origin;
-            const auto rootOffsets = // r_root_u->root
-                get_relative_position<origin1, origin2>(date).template force_frame_conversion<frame_u>();
-            return offset2 - offset1 + rootOffsets;
+        constexpr auto root = [] {
+            if constexpr (IsFixedOffsetFrame<decltype(frame)>) { return get_root_frame<frame>(); }
+            else { return frame; }
+        }();
+        constexpr auto root_u = [] {
+            if constexpr (IsFixedOffsetFrame<decltype(frame_u)>) { return get_root_frame<frame_u>(); }
+            else { return frame_u; }
+        }();
+
+        CartesianVector<Value_T, frame_u> offset;
+        if constexpr (!equivalent(root.origin, root_u.origin)) {
+            constexpr auto icrf = make_frame(root_u.origin, axes::icrf);
+            const auto rootOffset = get_relative_position<root.origin, root_u.origin>(date)
+                                        .template force_frame_conversion<icrf>();
+            offset = get_dcm_impl<icrf, frame_u>(date) * rootOffset;
         }
-        else if constexpr (IsFixedOffsetFrame<decltype(frame)>) {
-            const auto offset1 = get_offset_from_root_frame<frame>().template force_frame_conversion<frame_u>(); // r_root->frame
-            constexpr auto origin1 = get_root_frame<frame>().origin;
-            const auto rootOffsets = // r_root_u->root
-                get_relative_position<origin1, origin_u>(date).template force_frame_conversion<frame_u>();
-            return rootOffsets - offset1;
+        if constexpr (IsFixedOffsetFrame<decltype(frame)>) {
+            if constexpr (IsFixedOffsetFrame<decltype(frame_u)>) {
+                offset = offset + get_dcm_impl<root, frame_u>(date) * get_offset_from_root_frame<frame>();
+            }
+            else {
+                offset = offset + get_dcm_between_roots<root, frame_u>(date) * get_offset_from_root_frame<frame>();
+            }
         }
-        else if constexpr (IsFixedOffsetFrame<decltype(frame_u)>) {
-            const auto offset2 = get_offset_from_root_frame<frame_u>().template force_frame_conversion<frame_u>(); // r_root_u->frame_u
-            constexpr auto origin2 = get_root_frame<frame_u>().origin;
-            const auto rootOffsets = // r_root_u->root
-                get_relative_position<origin, origin2>(date).template force_frame_conversion<frame_u>();
-            return offset2 + rootOffsets;
+        if constexpr (IsFixedOffsetFrame<decltype(frame_u)>) {
+            offset = offset - get_dcm_impl<root_u, frame_u>(date) * get_offset_from_root_frame<frame_u>();
         }
+        return offset;
     }
     // No origins in common and at least one frame is not fixed offset, so we don't have a way to determine the offset
     throw std::logic_error("Cannot determine center offset between these two frames as it is not linked to a common reference.");
@@ -526,8 +572,7 @@ inline constexpr CartesianVector<Value_T, frame_u>
 /**
  * @brief Transform a vector from one frame to another at a given date, accounting for both rotation and translation.
  *
- * This function first translates the vector by the center offset between the two frames, then rotates it using the
- * Direction Cosine Matrix (DCM).
+ * This function rotates the vector into the target axes and adds the source origin minus the target origin in those axes.
  *
  * @tparam frame_u The target frame type.
  * @tparam frame The source frame type.

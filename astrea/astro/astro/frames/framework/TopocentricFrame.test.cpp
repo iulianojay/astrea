@@ -109,3 +109,18 @@ TEST_F(TopocentricFrameTest, ConstexprTransformationToParent)
     ASSERT_TRUE(math::nearly_equal(rParent.norm(), rWashingtonDc.norm() + r.norm(), 1e-2 * one)) // closeish
         << " rParent.norm() = " << rParent.norm() << ", rWashingtonDc.norm() + r.norm() = " << rWashingtonDc.norm() + r.norm();
 }
+
+TEST_F(TopocentricFrameTest, OriginTransformsThroughRotatingRoot)
+{
+    const Date epoch = J2000;
+    const CartesianVector<Distance, WashingtonDcWnu> origin;
+    const auto earthFixed = get_offset_from_frame<WashingtonDcWnu>();
+    const auto expected = get_dcm<frames::earth::icrf, frames::earth::earth_fixed>(epoch).transpose() * earthFixed;
+    const auto inertial = origin.in_frame<frames::earth::icrf>(epoch);
+    EXPECT_NEAR(inertial.get_x().numerical_value_in(km), expected.get_x().numerical_value_in(km), 1e-9);
+    EXPECT_NEAR(inertial.get_y().numerical_value_in(km), expected.get_y().numerical_value_in(km), 1e-9);
+    EXPECT_NEAR(inertial.get_z().numerical_value_in(km), expected.get_z().numerical_value_in(km), 1e-9);
+
+    const auto roundtrip = inertial.in_frame<WashingtonDcWnu>(epoch);
+    EXPECT_NEAR(roundtrip.norm().numerical_value_in(km), 0.0, 1e-9);
+}
