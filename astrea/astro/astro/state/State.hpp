@@ -204,15 +204,24 @@ class State {
     /**
      * @brief Converts the current orbital elements to a specified orbital elements type.
      *
-     * @param sys The astrodynamics system to use for the conversion.
+     * The state is stored in the primary frame. When T is in another frame, the elements are
+     * converted through Cartesian<primary> -> Cartesian<T::frame> -> T, so the result is always
+     * in exactly T::frame. (OrbitalElements::in_element_set deliberately does not change frames.)
+     *
+     * @tparam T The orbital elements type, in any frame, to convert to.
      * @return The converted orbital elements.
      */
     template <IsOrbitalElements T>
     T in_element_set() const
     {
-        // TODO: You could add support for in place modifications to registered frames
-        // but that's a lot of work and I'm not sure it's really that useful
-        return _elements.template in_element_set<T>(_epoch, get_mu());
+        if constexpr (equivalent(T::frame, frames::primary) || equivalent(T::frame, frames::primary_fixed)) {
+            return _elements.template in_element_set<T>(_epoch, get_mu());
+        }
+        else {
+            const auto cartesianPrimary = _elements.template in_element_set<Cartesian<frames::primary>>(_epoch, get_mu());
+            const auto cartesianTarget = cartesianPrimary.template in_frame<T::frame>(_epoch);
+            return T(cartesianTarget, get_mu());
+        }
     }
 
     /**
