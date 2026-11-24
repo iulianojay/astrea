@@ -76,6 +76,10 @@ make
 
 This builds Astrea in Release configuration and installs it to the `install/` directory.
 
+When selecting compilers explicitly, use matching Conan profiles. Conan's recipe
+places generated files in `build/<compiler>/<compiler>-<major>-26/<build_type>`
+relative to the repository root; the Makefile configures CMake in that same directory.
+
 #### Development Build with Tests and Examples
 
 ```bash

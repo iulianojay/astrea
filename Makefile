@@ -32,7 +32,7 @@ else
 	venv_activate :=
 endif
 # Compiler configuration - can be 'gcc' or 'clang' or 'mingw'
-compiler := gcc
+compiler := $(cxx_name)
 toolchain_file :=
 toolchain_make := -G Ninja
 extra_cmake_args :=
@@ -93,7 +93,7 @@ ensure-conan-profile:
 conan-install: ensure-conan-profile
 	mkdir -p $(build_path)
 	$(CONAN) install . \
-	--output-folder=$(build_path) \
+	--output-folder=$(config_path) \
 	--build=missing \
 	-s build_type=$(build_type) \
 	$(conan_ssl_opts)
