@@ -10,6 +10,9 @@ ASTRO_ROOT = pathlib.Path(
 )
 
 
+ROWS_PER_CHUNK = 500
+
+
 def write_to_file(outPath: str, eopData: pd.DataFrame, rebuild: bool) -> None:
     """
     Format and write x, y, z position coefficients to file
@@ -105,34 +108,47 @@ def write_to_file(outPath: str, eopData: pd.DataFrame, rebuild: bool) -> None:
         fID.write(f"namespace eop {{\n\n")
 
         fID.write(f"using namespace mp_units;\n")
-        fID.write(f"using namespace mp_units::si;\n")
+        fID.write(f"using namespace mp_units::si;\n\n")
 
-        # Write the x coefficients to file
-        fID.write(
-            f"const std::array<{className}::EopRow, {nEntries}> {className}::DATA {{\n"
-        )
-        for index, row in eopData.iterrows():
-            fID.write(
-                f"\tEopRow({{ Date(JulianDate(JulianDateClock::duration{{{2400000.5 + row['MJD (TAI)']}}})), "
-            )
-            fID.write(f"{row['PMx (mas)']} * milli<arcsecond>, ")
-            fID.write(f"{row['PMy (mas)']} * milli<arcsecond>, ")
-            fID.write(f"{row['TAI-UT1 (ms)']} * milli<second>, ")
-            fID.write(f"{row['PMxSig (mas)']} * milli<arcsecond>, ")
-            fID.write(f"{row['PMySig (mas)']} * milli<arcsecond>, ")
-            fID.write(f"{row['UTSig (ms)']} * milli<arcsecond>, ")
-            fID.write(f"{row['PMxy']} * one, ")
-            fID.write(f"{row['PMxUT']} * one, ")
-            fID.write(f"{row['PMyUT']} * one, ")
-            fID.write(f"{row['DX (mas)']} * milli<arcsecond>, ")
-            fID.write(f"{row['DY (mas)']} * milli<arcsecond>, ")
-            fID.write(f"{row['DXSig (mas)']} * milli<arcsecond>, ")
-            fID.write(f"{row['DYSig (mas)']} * milli<arcsecond>, ")
-            fID.write(f"{row['Corr DxDy']} * one }})")
-            if index < nEntries - 1:
-                fID.write(",")
-            fID.write("\n")
-        fID.write(f"}};\n\n")
+        # A single huge initializer list compiles in super-linear time and memory (about an hour under clang), so the
+        # table is filled row by row from several smaller functions instead.
+        fID.write(f"namespace {{\n\n")
+        fID.write(f"using EopRow = {className}::EopRow;\n")
+        fID.write(f"using EopTable = std::array<EopRow, {nEntries}>;\n")
+        nChunks = (nEntries + ROWS_PER_CHUNK - 1) // ROWS_PER_CHUNK
+
+        for chunk in range(nChunks):
+            fID.write(f"\nvoid fill_rows_{chunk}(EopTable& rows)\n{{\n")
+            chunkData = eopData.iloc[chunk * ROWS_PER_CHUNK : (chunk + 1) * ROWS_PER_CHUNK]
+            for position, (_, row) in enumerate(chunkData.iterrows()):
+                index = chunk * ROWS_PER_CHUNK + position
+                fID.write(
+                    f"\trows[{index}] = EopRow({{ Date(JulianDate(JulianDateClock::duration{{{2400000.5 + row['MJD (TAI)']}}})), "
+                )
+                fID.write(f"{row['PMx (mas)']} * milli<arcsecond>, ")
+                fID.write(f"{row['PMy (mas)']} * milli<arcsecond>, ")
+                fID.write(f"{row['TAI-UT1 (ms)']} * milli<second>, ")
+                fID.write(f"{row['PMxSig (mas)']} * milli<arcsecond>, ")
+                fID.write(f"{row['PMySig (mas)']} * milli<arcsecond>, ")
+                fID.write(f"{row['UTSig (ms)']} * milli<arcsecond>, ")
+                fID.write(f"{row['PMxy']} * one, ")
+                fID.write(f"{row['PMxUT']} * one, ")
+                fID.write(f"{row['PMyUT']} * one, ")
+                fID.write(f"{row['DX (mas)']} * milli<arcsecond>, ")
+                fID.write(f"{row['DY (mas)']} * milli<arcsecond>, ")
+                fID.write(f"{row['DXSig (mas)']} * milli<arcsecond>, ")
+                fID.write(f"{row['DYSig (mas)']} * milli<arcsecond>, ")
+                fID.write(f"{row['Corr DxDy']} * one }});\n")
+            fID.write(f"}}\n")
+
+        fID.write(f"\nEopTable build_table()\n{{\n")
+        fID.write(f"\tEopTable rows;\n")
+        for chunk in range(nChunks):
+            fID.write(f"\tfill_rows_{chunk}(rows);\n")
+        fID.write(f"\treturn rows;\n}}\n\n")
+        fID.write(f"}} // namespace\n\n")
+
+        fID.write(f"const EopTable {className}::DATA = build_table();\n\n")
 
         fID.write(f"}} // namespace eop \n")
         fID.write(f"}} // namespace astro \n")

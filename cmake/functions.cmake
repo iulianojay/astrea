@@ -276,6 +276,11 @@ function(generate_eop_files PROJECT_SOURCE_DIRECTORY)
     set(EOP_HEADERS "${EOP_BASE}/EarthOrientationParameters.hpp")
     set(EOP_SOURCES "${EOP_BASE}/EarthOrientationParameters.cpp")
 
+    # The generated file is only a data table; optimizing it costs minutes and gigabytes of memory for no benefit.
+    set_source_files_properties(${EOP_SOURCES} PROPERTIES
+        GENERATED TRUE
+        COMPILE_OPTIONS "$<IF:$<CXX_COMPILER_ID:MSVC>,/Od,-O0>"
+    )
     find_package(Python3 COMPONENTS Interpreter)
     if(NOT Python3_FOUND)
         message(FATAL_ERROR "Python 3 is required for eop file generation but was not found")
