@@ -66,6 +66,7 @@ warnings_as_errors := OFF
 username := $(shell whoami)
 eop_file := $(abspath ./astrea/astro/data/earth_orientation_parameters/eop.long)
 rebuild_eop := ON
+eop_start_year := 1990
 
 .DEFAULT_GOAL := install
 
@@ -122,6 +123,7 @@ build: conan-install
 	-DBUILD_6DOF_CHECKCASES=$(run_6dof_checkcases) \
 	-DEOP_FILE=$(eop_file) \
 	-DREBUILD_EOP=$(rebuild_eop) \
+	-DEOP_START_YEAR=$(eop_start_year) \
 
 .PHONY: build-gcc
 build-gcc: gcc build

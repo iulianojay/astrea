@@ -49,7 +49,9 @@ def write_to_file(outPath: str, eopData: pd.DataFrame, rebuild: bool) -> None:
         fID.write(f"\t{className}() = delete;\n")
         fID.write(f"\t~{className}() = delete;\n\n")
 
-        # Build a struct for each line of the EOP data
+        # Build a struct for each line of the EOP data. Only the parameters the library consumes are stored; the
+        # uncertainties, correlations, and celestial pole offsets in the source file are intentionally dropped to keep
+        # the generated table small.
         fID.write(f"\tstatic constexpr int N_PARAM = {nEntries};\n")
         fID.write(f"\tstruct EopRow {{\n")
         fID.write(f"\t\tDate MJD;\n")
@@ -62,31 +64,6 @@ def write_to_file(outPath: str, eopData: pd.DataFrame, rebuild: bool) -> None:
         fID.write(
             f"\t\tmp_units::quantity<mp_units::si::milli<mp_units::si::second>> TAI_UT1;\n"
         )
-        fID.write(
-            f"\t\tmp_units::quantity<mp_units::si::milli<mp_units::si::arcsecond>> PMxSig;\n"
-        )
-        fID.write(
-            f"\t\tmp_units::quantity<mp_units::si::milli<mp_units::si::arcsecond>> PMySig;\n"
-        )
-        fID.write(
-            f"\t\tmp_units::quantity<mp_units::si::milli<mp_units::si::arcsecond>> UTSig;\n"
-        )
-        fID.write(f"\t\tmp_units::quantity<mp_units::one> PMxy;\n")
-        fID.write(f"\t\tmp_units::quantity<mp_units::one> PMxUT;\n")
-        fID.write(f"\t\tmp_units::quantity<mp_units::one> PMyUT;\n")
-        fID.write(
-            f"\t\tmp_units::quantity<mp_units::si::milli<mp_units::si::arcsecond>> DX;\n"
-        )
-        fID.write(
-            f"\t\tmp_units::quantity<mp_units::si::milli<mp_units::si::arcsecond>> DY;\n"
-        )
-        fID.write(
-            f"\t\tmp_units::quantity<mp_units::si::milli<mp_units::si::arcsecond>> DXSig;\n"
-        )
-        fID.write(
-            f"\t\tmp_units::quantity<mp_units::si::milli<mp_units::si::arcsecond>> DYSig;\n"
-        )
-        fID.write(f"\t\tmp_units::quantity<mp_units::one> Corr_DxDy;\n")
         fID.write(f"\t}};\n\n")
 
         # data array
@@ -127,18 +104,7 @@ def write_to_file(outPath: str, eopData: pd.DataFrame, rebuild: bool) -> None:
                 )
                 fID.write(f"{row['PMx (mas)']} * milli<arcsecond>, ")
                 fID.write(f"{row['PMy (mas)']} * milli<arcsecond>, ")
-                fID.write(f"{row['TAI-UT1 (ms)']} * milli<second>, ")
-                fID.write(f"{row['PMxSig (mas)']} * milli<arcsecond>, ")
-                fID.write(f"{row['PMySig (mas)']} * milli<arcsecond>, ")
-                fID.write(f"{row['UTSig (ms)']} * milli<arcsecond>, ")
-                fID.write(f"{row['PMxy']} * one, ")
-                fID.write(f"{row['PMxUT']} * one, ")
-                fID.write(f"{row['PMyUT']} * one, ")
-                fID.write(f"{row['DX (mas)']} * milli<arcsecond>, ")
-                fID.write(f"{row['DY (mas)']} * milli<arcsecond>, ")
-                fID.write(f"{row['DXSig (mas)']} * milli<arcsecond>, ")
-                fID.write(f"{row['DYSig (mas)']} * milli<arcsecond>, ")
-                fID.write(f"{row['Corr DxDy']} * one }});\n")
+                fID.write(f"{row['TAI-UT1 (ms)']} * milli<second> }});\n")
             fID.write(f"}}\n")
 
         fID.write(f"\nEopTable build_table()\n{{\n")
@@ -177,6 +143,12 @@ if __name__ == "__main__":
         type=bool,
         default=False,
         help="Rebuild the ephemeris files even if they already exist. Default is False.",
+    )
+    parser.add_argument(
+        "--start-year",
+        type=int,
+        default=None,
+        help="Discard rows before this calendar year to shrink the generated table. Default is to keep all rows.",
     )
     args = parser.parse_args()
 
@@ -218,5 +190,15 @@ if __name__ == "__main__":
     )
     eopData = eopData.iloc[:, : len(columns)]  # Keep only the first 15 columns
     eopData.columns = columns
+
+    if args.start_year is not None:
+        # MJD 0 is 1858-11-17
+        years = (
+            pd.Timestamp("1858-11-17") + pd.to_timedelta(eopData["MJD (TAI)"], unit="D")
+        ).dt.year
+        eopData = eopData[years >= args.start_year].reset_index(drop=True)
+        if eopData.shape[0] < 2:
+            print(f"Fewer than two EOP rows remain after discarding rows before {args.start_year}.")
+            exit(1)
 
     write_to_file(output_path, eopData, rebuild)

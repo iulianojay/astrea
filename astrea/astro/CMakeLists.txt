@@ -249,6 +249,7 @@ generate_ephemeris_files(${CMAKE_CURRENT_LIST_DIR})
 
 # Build EoP files
 option(BUILD_EOP "Build Earth Orientation Parameters" ON)
+set(EOP_START_YEAR "1990" CACHE STRING "Discard Earth Orientation Parameters before this year (empty keeps all). Earlier dates use the first retained row.")
 generate_eop_files(${CMAKE_CURRENT_LIST_DIR})
 
 # Includes
