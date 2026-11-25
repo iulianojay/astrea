@@ -37,7 +37,7 @@ concept IsOrbitalElementsImpl = requires {
 };
 
 template <typename Derived_T, typename Derived_U>
-concept IsCompatibleOrbitalElements = IsOrbitalElementsImpl<Derived_T> && IsOrbitalElementsImpl<Derived_U> &&
+concept IsCompatibleOrbitalElements = IsOrbitalElementsImpl<Derived_U> && IsOrbitalElementsImpl<Derived_T> &&
                                       IsCompatibleElementMatrix<typename Derived_T::ArrayType, typename Derived_U::ArrayType> &&
                                       equivalent(Derived_T::frame, Derived_U::frame);
 

@@ -21,6 +21,7 @@
 #include <iosfwd>
 
 // units
+#include <math/operations.hpp>
 #include <math/trig.hpp>
 #include <units/units.hpp>
 
@@ -214,7 +215,6 @@ class Geodetic : public AngularElementsInterface<Geodetic<_body_>, _body_, Angle
     {
         using math::cos;
         using math::sin;
-        using mp_units::sqrt;
 
         const Unitless sinLat = sin(lat);
         const Unitless cosLat = cos(lat);
@@ -224,7 +224,7 @@ class Geodetic : public AngularElementsInterface<Geodetic<_body_>, _body_, Angle
         static constexpr Unitless f           = (requatorial - rPolar) / requatorial;
         static constexpr Unitless eSq         = (2.0 - f) * f;
 
-        const Distance N = requatorial / sqrt(1.0 - eSq * sinLat * sinLat);
+        const Distance N = requatorial / math::sqrt(1.0 - eSq * sinLat * sinLat);
 
         // Ecef coordinates
         return { (N + alt) * cosLat * cos(lon), (N + alt) * cosLat * sin(lon), ((1.0 - eSq) * N + alt) * sinLat };

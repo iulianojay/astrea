@@ -21,11 +21,34 @@
 #include <algorithm>
 #include <cmath>
 
+#include <gcem.hpp>
 #include <mp-units/math.h>
 #include <mp-units/systems/si.h>
 
 namespace astrea {
 namespace math {
+
+/**
+ * @brief Square root of a quantity that, unlike mp_units::sqrt, can be evaluated in constant expressions under clang.
+ *
+ * Call it qualified (math::sqrt). An unqualified call is ambiguous with mp_units::sqrt through argument-dependent lookup.
+ * At run time this is exactly mp_units::sqrt; at compile time it uses gcem since clang cannot constant-evaluate std::sqrt.
+ *
+ * @param q The quantity to take the square root of.
+ * @return The square root, with the reference and value square-rooted.
+ */
+template <auto R, typename Rep>
+    requires requires(Rep v) { gcem::sqrt(v); }
+[[nodiscard]] constexpr mp_units::quantity<sqrt(R), Rep> sqrt(const mp_units::quantity<R, Rep>& q) noexcept
+{
+    if consteval {
+        // The sqrt of a reference is a hidden friend, so it is only found through argument-dependent lookup
+        return { static_cast<Rep>(gcem::sqrt(q.numerical_value_ref_in(q.unit))), sqrt(R) };
+    }
+    else {
+        return mp_units::sqrt(q);
+    }
+}
 
 
 /**

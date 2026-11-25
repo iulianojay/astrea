@@ -39,7 +39,7 @@ concept IsAngularElementsImpl = requires {
 };
 
 template <typename Derived_T, typename Derived_U>
-concept IsCompatibleAngularElements = IsAngularElementsImpl<Derived_T> && IsAngularElementsImpl<Derived_U> &&
+concept IsCompatibleAngularElements = IsAngularElementsImpl<Derived_U> && IsAngularElementsImpl<Derived_T> &&
                                       IsCompatibleElementMatrix<typename Derived_T::ArrayType, typename Derived_U::ArrayType> &&
                                       equivalent(Derived_T::body, Derived_U::body);
 
@@ -184,7 +184,7 @@ class AngularElementsInterface {
      * @return A reference to the assigned Derived_T.
      */
     template <typename Derived_U>
-        requires(IsCompatibleAngularElements<Derived_T, Derived_U>)
+        requires(!std::is_same_v<std::remove_cvref_t<Derived_U>, AngularElementsInterface> && IsCompatibleAngularElements<Derived_T, Derived_U>)
     inline constexpr Derived_T& operator=(const Derived_U& other)
     {
         _elements = other._elements;
@@ -199,7 +199,7 @@ class AngularElementsInterface {
      * @return A reference to the assigned Derived_T.
      */
     template <typename Derived_U>
-        requires(IsCompatibleAngularElements<Derived_T, Derived_U>)
+        requires(!std::is_same_v<std::remove_cvref_t<Derived_U>, AngularElementsInterface> && IsCompatibleAngularElements<Derived_T, Derived_U>)
     inline constexpr Derived_T& operator=(Derived_U&& other) noexcept
     {
         _elements = std::move(other._elements);
