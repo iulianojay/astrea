@@ -61,6 +61,7 @@ build_checkcase_db := OFF
 build_static := OFF
 run_6dof_checkcases := OFF
 verbose_makefile := OFF
+jobs := $(shell nproc 2>/dev/null || sysctl -n hw.ncpu 2>/dev/null || echo 6)
 warnings_as_errors := OFF
 username := $(shell whoami)
 eop_file := $(abspath ./astrea/astro/data/earth_orientation_parameters/eop.long)
@@ -79,7 +80,7 @@ profile: profiling install
 
 .PHONY: install
 install: build
-	$(CMAKE) --build $(build_path) --target install -j6
+	$(CMAKE) --build $(build_path) --target install -j$(jobs)
 
 .PHONY: conan-install
 
