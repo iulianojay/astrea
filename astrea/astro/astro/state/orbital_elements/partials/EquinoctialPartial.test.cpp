@@ -32,9 +32,9 @@ using mp_units::si::unit_symbols::km;
 using mp_units::si::unit_symbols::rad;
 using mp_units::si::unit_symbols::s;
 
-class EquinoctialTest : public testing::Test {
+class EquinoctialPartialTest : public testing::Test {
   public:
-    EquinoctialTest() {}
+    EquinoctialPartialTest() {}
 
     void SetUp() override {}
 
@@ -56,7 +56,7 @@ int main(int argc, char** argv)
     return RUN_ALL_TESTS();
 }
 
-TEST_F(EquinoctialTest, DivisionByTimeOperator)
+TEST_F(EquinoctialPartialTest, DivisionByTimeOperator)
 {
     Time time   = 2.0 * s;
     auto result = state / time;
@@ -65,7 +65,7 @@ TEST_F(EquinoctialTest, DivisionByTimeOperator)
     ASSERT_NO_THROW(state / time);
 }
 
-TEST_F(EquinoctialTest, EquinoctialPartialMultiplicationByTime)
+TEST_F(EquinoctialPartialTest, EquinoctialPartialMultiplicationByTime)
 {
     // Test EquinoctialPartial operator* with Time
     Velocity pDot        = 1.0 * km / s;
@@ -88,7 +88,7 @@ TEST_F(EquinoctialTest, EquinoctialPartialMultiplicationByTime)
     ASSERT_TRUE(math::nearly_equal(result.get_true_longitude(), LDot * dt, REL_TOL));
 }
 
-TEST_F(EquinoctialTest, EquinoctialPartialStream)
+TEST_F(EquinoctialPartialTest, EquinoctialPartialStream)
 {
     // Test EquinoctialPartial stream operator
     Velocity pDot        = 1.0 * km / s;

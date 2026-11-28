@@ -18,15 +18,12 @@
  */
 #pragma once
 
-#include <iosfwd>
-
-#include <mp-units/math.h>
-#include <mp-units/systems/si.h>
+#include <iostream>
 
 #include <units/units.hpp>
 
 #include <astro/astro.fwd.hpp>
-#include <astro/state/orbital_elements/Keplerian.hpp>
+#include <astro/state/framework/OrbitalElementsInterface.hpp>
 #include <astro/types/typedefs.hpp>
 
 namespace astrea {
@@ -41,13 +38,28 @@ namespace astro {
  * @note The KeplerianPartial class is typically used in astrodynamics calculations involving orbital mechanics.
  */
 template <IsFrame auto _frame_>
-class KeplerianPartial {
+class KeplerianPartial
+    : public OrbitalElementsInterface<KeplerianPartial<_frame_>, Velocity, UnitlessPerTime, AngularVelocity, AngularVelocity, AngularVelocity, AngularVelocity> {
 
-    template <IsFrame auto frame>
-    friend std::ostream& operator<<(std::ostream&, KeplerianPartial<frame> const&);
+    using BaseType =
+        OrbitalElementsInterface<KeplerianPartial<_frame_>, Velocity, UnitlessPerTime, AngularVelocity, AngularVelocity, AngularVelocity, AngularVelocity>;
+
+    friend std::ostream& operator<<(std::ostream& os, KeplerianPartial const& elements)
+    {
+        os << "[";
+        os << elements.template get<0>() << ", ";
+        os << elements.template get<1>() << ", ";
+        os << elements.template get<2>() << ", ";
+        os << elements.template get<3>() << ", ";
+        os << elements.template get<4>() << ", ";
+        os << elements.template get<5>();
+        os << "] (KeplerianPartial)";
+        return os;
+    }
 
   public:
-    static constexpr auto frame = _frame_; //!< The reference frame of the Keplerian partial derivatives.
+    static constexpr auto frame = _frame_; //!< The reference frame of the KeplerianPartial state vector.
+    using BaseType::BaseType;
 
     /**
      * @brief Default constructor for KeplerianPartial.
@@ -55,61 +67,7 @@ class KeplerianPartial {
      * Initializes the KeplerianPartial with zero values.
      */
     KeplerianPartial() = default;
-
-    /**
-     * @brief Constructor for KeplerianPartial with velocity and acceleration components.
-     *
-     * @param semimajorPartial Semimajor axis partial derivative
-     * @param eccentricityPartial Eccentricity partial derivative
-     * @param inclinationPartial Inclination partial derivative
-     * @param rightAscensionPartial Right ascension partial derivative
-     * @param argPerigeePartial Argument of perigee partial derivative
-     * @param trueAnomalyPartial True anomaly partial derivative
-     */
-    KeplerianPartial(
-        const Velocity& semimajorPartial,
-        const UnitlessPerTime& eccentricityPartial,
-        const AngularVelocity& inclinationPartial,
-        const AngularVelocity& rightAscensionPartial,
-        const AngularVelocity& argPerigeePartial,
-        const AngularVelocity& trueAnomalyPartial
-    ) :
-        _semimajorPartial(semimajorPartial),
-        _eccentricityPartial(eccentricityPartial),
-        _inclinationPartial(inclinationPartial),
-        _rightAscensionPartial(rightAscensionPartial),
-        _argPerigeePartial(argPerigeePartial),
-        _trueAnomalyPartial(trueAnomalyPartial)
-    {
-    }
-
-    /**
-     * @brief Multiplication operator for KeplerianPartial.
-     *
-     * This method multiplies the KeplerianPartial by a time value to obtain a Keplerian state vector.
-     *
-     * @param time Time to multiply the KeplerianPartial by
-     * @return Keplerian Resulting Keplerian state vector after multiplication.
-     */
-    Keplerian<_frame_> operator*(const Time& time) const;
-
-    /**
-     * @brief Converts the KeplerianPartial state vector to a vector of unitless values.
-     *
-     * @return std::vector<Unitless> Vector containing the components of the KeplerianPartial state vector.
-     */
-    std::vector<double> force_to_double_vector() const;
-
-  private:
-    Velocity _semimajorPartial;             //!< Semimajor axis partial derivative
-    UnitlessPerTime _eccentricityPartial;   //!< Eccentricity partial derivative
-    AngularVelocity _inclinationPartial;    //!< Inclination partial derivative
-    AngularVelocity _rightAscensionPartial; //!< Right ascension partial derivative
-    AngularVelocity _argPerigeePartial;     //!< Argument of perigee partial derivative
-    AngularVelocity _trueAnomalyPartial;    //!< True anomaly partial derivative
 };
 
 } // namespace astro
 } // namespace astrea
-
-#include <astro/state/orbital_elements/partials/KeplerianPartial.ipp>

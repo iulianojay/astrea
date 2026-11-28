@@ -29,9 +29,9 @@ using mp_units::si::unit_symbols::km;
 using mp_units::si::unit_symbols::rad;
 using mp_units::si::unit_symbols::s;
 
-class KeplerianTest : public testing::Test {
+class KeplerianPartialTest : public testing::Test {
   public:
-    KeplerianTest() {}
+    KeplerianPartialTest() {}
 
     void SetUp() override {}
 
@@ -53,7 +53,7 @@ int main(int argc, char** argv)
     return RUN_ALL_TESTS();
 }
 
-TEST_F(KeplerianTest, DivisionByTimeOperator)
+TEST_F(KeplerianPartialTest, DivisionByTimeOperator)
 {
     Time time   = 2.0 * s;
     auto result = state / time;
@@ -62,7 +62,7 @@ TEST_F(KeplerianTest, DivisionByTimeOperator)
     ASSERT_NO_THROW(state / time);
 }
 
-TEST_F(KeplerianTest, KeplerianPartialMultiplicationByTime)
+TEST_F(KeplerianPartialTest, KeplerianPartialMultiplicationByTime)
 {
     // Test KeplerianPartial operator* with Time
     Velocity aDot            = 1.0 * km / s;
@@ -85,7 +85,7 @@ TEST_F(KeplerianTest, KeplerianPartialMultiplicationByTime)
     ASSERT_TRUE(math::nearly_equal(result.get_true_anomaly(), thetaDot * dt, REL_TOL));
 }
 
-TEST_F(KeplerianTest, KeplerianPartialStream)
+TEST_F(KeplerianPartialTest, KeplerianPartialStream)
 {
     // Test KeplerianPartial stream operator
     Velocity aDot            = 1.0 * km / s;

@@ -18,12 +18,14 @@
  */
 #pragma once
 
-#include <iosfwd>
+#include <iostream>
 
 #include <units/units.hpp>
 
 #include <astro/astro.fwd.hpp>
-#include <astro/state/orbital_elements/Cartesian.hpp>
+#include <astro/frames/framework/CartesianVector.hpp>
+#include <astro/state/framework/OrbitalElementsInterface.hpp>
+#include <astro/types/typedefs.hpp>
 
 namespace astrea {
 namespace astro {
@@ -34,34 +36,33 @@ namespace astro {
  * This class encapsulates the velocity and acceleration components of a vehicle in Cartesian coordinates.
  */
 template <IsFrame auto _frame_>
-class CartesianPartial {
+class CartesianPartial
+    : public OrbitalElementsInterface<CartesianPartial<_frame_>, Velocity, Velocity, Velocity, Acceleration, Acceleration, Acceleration> {
 
-    template <IsFrame auto frame>
-    friend std::ostream& operator<<(std::ostream&, CartesianPartial<frame> const&);
+    using BaseType =
+        OrbitalElementsInterface<CartesianPartial<_frame_>, Velocity, Velocity, Velocity, Acceleration, Acceleration, Acceleration>;
+
+    friend std::ostream& operator<<(std::ostream& os, CartesianPartial const& elements)
+    {
+        os << "[";
+        os << elements.get_vx() << ", ";
+        os << elements.get_vy() << ", ";
+        os << elements.get_vz() << ", ";
+        os << elements.get_ax() << ", ";
+        os << elements.get_ay() << ", ";
+        os << elements.get_az();
+        os << "] (CartesianPartial)";
+        return os;
+    }
 
   public:
-    static constexpr auto frame = _frame_; //!< The reference frame of the Cartesian state vector.
+    static constexpr auto frame = _frame_; //!< The reference frame of the CartesianPartial state vector.
+    using BaseType::BaseType;
 
     /**
      * @brief Default constructor for CartesianPartial.
      */
     CartesianPartial() = default;
-
-    /**
-     * @brief Constructor for CartesianPartial with velocity and acceleration components.
-     *
-     * @param vx X component of velocity
-     * @param vy Y component of velocity
-     * @param vz Z component of velocity
-     * @param ax X component of acceleration
-     * @param ay Y component of acceleration
-     * @param az Z component of acceleration
-     */
-    CartesianPartial(const Velocity& vx, const Velocity& vy, const Velocity& vz, const Acceleration& ax, const Acceleration& ay, const Acceleration& az) :
-        _v(vx, vy, vz),
-        _a(ax, ay, az)
-    {
-    }
 
     /**
      * @brief Constructor for CartesianPartial with velocity and acceleration vectors.
@@ -70,8 +71,7 @@ class CartesianPartial {
      * @param a Acceleration vector
      */
     CartesianPartial(const VelocityVector<_frame_>& v, const AccelerationVector<_frame_>& a) :
-        _v(v),
-        _a(a)
+        BaseType(v[0], v[1], v[2], a[0], a[1], a[2])
     {
     }
 
@@ -80,64 +80,64 @@ class CartesianPartial {
      *
      * @return Velocity The vx component of the CartesianPartial state vector.
      */
-    Velocity get_vx() const { return _v.get_x(); }
+    Velocity get_vx() const { return this->template get<0>(); }
 
     /**
      * @brief Get the vy value of the CartesianPartial state vector.
      *
      * @return Velocity The vy component of the CartesianPartial state vector.
      */
-    Velocity get_vy() const { return _v.get_y(); }
+    Velocity get_vy() const { return this->template get<1>(); }
 
     /**
      * @brief Get the vz value of the CartesianPartial state vector.
      *
      * @return Velocity The vz component of the CartesianPartial state vector.
      */
-    Velocity get_vz() const { return _v.get_z(); }
+    Velocity get_vz() const { return this->template get<2>(); }
 
     /**
      * @brief Get the ax value of the CartesianPartial state vector.
      *
      * @return Acceleration The ax component of the CartesianPartial state vector.
      */
-    Acceleration get_ax() const { return _a.get_x(); }
+    const Acceleration& get_ax() const { return this->template get<3>(); }
 
     /**
      * @brief Get the ay value of the CartesianPartial state vector.
      *
      * @return Acceleration The ay component of the CartesianPartial state vector.
      */
-    Acceleration get_ay() const { return _a.get_y(); }
+    const Acceleration& get_ay() const { return this->template get<4>(); }
 
     /**
      * @brief Get the az value of the CartesianPartial state vector.
      *
      * @return Acceleration The az component of the CartesianPartial state vector.
      */
-    Acceleration get_az() const { return _a.get_z(); }
+    const Acceleration& get_az() const { return this->template get<5>(); }
 
     /**
-     * @brief Multiplication operator for CartesianPartial.
+     * @brief Get the ax value of the CartesianPartial state vector.
      *
-     * @param time Time to multiply the CartesianPartial by
-     * @return Cartesian Resulting Cartesian state vector after multiplication.
+     * @return Acceleration The ax component of the CartesianPartial state vector.
      */
-    Cartesian<_frame_> operator*(const Time& time) const;
+    Acceleration& get_ax() { return this->template get<3>(); }
 
     /**
-     * @brief Converts the CartesianPartial state vector to a vector of unitless values.
+     * @brief Get the ay value of the CartesianPartial state vector.
      *
-     * @return std::vector<Unitless> Vector containing the components of the CartesianPartial state vector.
+     * @return Acceleration The ay component of the CartesianPartial state vector.
      */
-    std::vector<double> force_to_double_vector() const;
+    Acceleration& get_ay() { return this->template get<4>(); }
 
-  private:
-    VelocityVector<_frame_> _v;     //!< Velocity vector
-    AccelerationVector<_frame_> _a; //!< Acceleration vector
+    /**
+     * @brief Get the az value of the CartesianPartial state vector.
+     *
+     * @return Acceleration The az component of the CartesianPartial state vector.
+     */
+    Acceleration& get_az() { return this->template get<5>(); }
 };
 
 } // namespace astro
 } // namespace astrea
-
-#include <astro/state/orbital_elements/partials/CartesianPartial.ipp>
