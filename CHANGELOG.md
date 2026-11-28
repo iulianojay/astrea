@@ -6,3 +6,17 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+### Changed
+- [CHORE]: Bump the all-deps group with 2 updates ([#228](../../pull/228))
+- [CHORE]: Bump the all-deps group with 3 updates ([#227](../../pull/227))
+- Build(deps): Bump the uv group across 1 directory with 3 updates ([#226](../../pull/226))
+- [CHORE]: Bump the all-deps group with 3 updates ([#225](../../pull/225))
+- [IMPROVEMENT] #0 Fixed major speed issue in itrf->icrf conversion ([#224](../../pull/224))
+- [CHORE]: Bump the all-deps group across 1 directory with 6 updates ([#222](../../pull/222))
+- [CHORE]: Bump pymdown-extensions from 12.1 to 12.2 in the all-deps group ([#219](../../pull/219))
+- [HOTFIX] ecquinoctial vop error ([#216](../../pull/216))
+- [CHORE]: Bump the all-deps group across 1 directory with 4 updates ([#215](../../pull/215))
+- [CHORE]: Bump the all-deps group with 3 updates ([#212](../../pull/212))
+- [BUGFIX] Update validate-pr workflow to work with dependabot PRs (#0) ([#211](../../pull/211))
+- [HOTFIX] Changelog workflow now pushes commit to branch with PR  (#0) ([#210](../../pull/210))

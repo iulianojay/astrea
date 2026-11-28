@@ -21,6 +21,7 @@
 #include <astro/platforms/vehicles/Spacecraft.hpp>
 #include <astro/state/StateHistory.hpp>
 #include <tests/utilities/comparisons.hpp>
+#include <tests/utilities/orbit_presets.hpp>
 
 using namespace astrea;
 using namespace astro;
@@ -47,7 +48,7 @@ class PayloadTest : public testing::Test {
     void SetUp() override
     {
         StateHistory history;
-        history.insert(State(Keplerian<astro::frames::earth::icrf>::LEO(), J2000));
+        history.insert(State(make_orbit_preset<Keplerian<astro::frames::earth::icrf>>(OrbitPreset::LEO), J2000));
         satWithHistory.set_state_history(history);
     }
 

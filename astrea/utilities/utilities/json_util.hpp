@@ -21,6 +21,7 @@
 
 #include <iostream>
 #include <optional>
+#include <sstream>
 #include <string>
 
 #include <nlohmann/json.hpp>

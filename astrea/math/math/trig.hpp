@@ -185,7 +185,7 @@ template <mp_units::ReferenceOf<mp_units::dimensionless> auto R, typename Rep>
  * @param x The second dimensionless quantity (denominator).
  * @return The arctangent of the ratio y/x as an angular measure (radians).
  */
-template <mp_units::Quantity auto R, typename Rep>
+template <mp_units::Reference auto R, typename Rep>
     requires requires(Rep v, Rep w) { atan2(v, w); } || requires(Rep v, Rep w) { gcem::atan2(v, w); }
 [[nodiscard]] inline constexpr mp_units::QuantityOf<mp_units::isq::angular_measure> auto
     atan2(const mp_units::quantity<R, Rep>& y, const mp_units::quantity<R, Rep>& x) noexcept

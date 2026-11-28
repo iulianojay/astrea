@@ -54,11 +54,17 @@ StatePartial EquationsOfMotion::operator()(const State& state, const Vehicle& ve
 
     // Get kinematics
     const std::optional<AttitudePartials> kinematics =
-        state.get_attitude().has_value() ?
+        state.has_attitude() ?
             std::optional<AttitudePartials>(compute_kinematics(state, vehicle, perts.torque, control.torque)) :
             std::nullopt;
 
-    return StatePartial(state.get_epoch(), dynamics, kinematics);
+    // User-defined state partials
+    const std::optional<UserDefinedStatePartial> udsPartial =
+        state.has_user_defined_state() ?
+            std::optional<UserDefinedStatePartial>(compute_user_defined_state_partials(state, vehicle, perts, control)) :
+            std::nullopt;
+
+    return StatePartial(state.get_epoch(), dynamics, kinematics, udsPartial);
 }
 
 AttitudePartials EquationsOfMotion::compute_kinematics(
@@ -86,6 +92,15 @@ AttitudePartials EquationsOfMotion::compute_kinematics(
     const BodyQuaternionRate quaternionRate{ 0.5 * w.dot(u) / rad, 0.5 * (w * s - w.cross(u)) / rad };
 
     return AttitudePartials(quaternionRate, angularAcceleration);
+}
+
+UserDefinedStatePartial
+    EquationsOfMotion::compute_user_defined_state_partials(const State& state, const Vehicle& vehicle, const Perturbation& perts, const Perturbation& control) const
+{
+    if (udsPartialFunc) { return udsPartialFunc(state, vehicle, perts, control); }
+    else {
+        throw std::runtime_error("User-defined state partial function not set.");
+    }
 }
 
 StateTransitionMatrix EquationsOfMotion::compute_stm(const State& state, const Vehicle& vehicle) const

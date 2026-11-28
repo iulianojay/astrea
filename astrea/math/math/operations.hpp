@@ -21,11 +21,34 @@
 #include <algorithm>
 #include <cmath>
 
+#include <gcem.hpp>
 #include <mp-units/math.h>
 #include <mp-units/systems/si.h>
 
 namespace astrea {
 namespace math {
+
+/**
+ * @brief Square root of a quantity that, unlike mp_units::sqrt, can be evaluated in constant expressions under clang.
+ *
+ * Call it qualified (math::sqrt). An unqualified call is ambiguous with mp_units::sqrt through argument-dependent lookup.
+ * At run time this is exactly mp_units::sqrt; at compile time it uses gcem since clang cannot constant-evaluate std::sqrt.
+ *
+ * @param q The quantity to take the square root of.
+ * @return The square root, with the reference and value square-rooted.
+ */
+template <auto R, typename Rep>
+    requires requires(Rep v) { gcem::sqrt(v); }
+[[nodiscard]] constexpr mp_units::quantity<sqrt(R), Rep> sqrt(const mp_units::quantity<R, Rep>& q) noexcept
+{
+    if consteval {
+        // The sqrt of a reference is a hidden friend, so it is only found through argument-dependent lookup
+        return { static_cast<Rep>(gcem::sqrt(q.numerical_value_ref_in(q.unit))), sqrt(R) };
+    }
+    else {
+        return mp_units::sqrt(q);
+    }
+}
 
 
 /**
@@ -53,15 +76,18 @@ template <auto R1, auto R2, typename Rep>
     const auto b = y.in(x.unit);
 
     // Check rel tol
-    if (relTol != 0.0 * mp_units::one) {
-        if (a != 0.0 * R1 && b != 0.0 * R1) {
+    if (relTol != 0.0) {
+        if (a != 0.0 && b != 0.0) {
             if (abs((a - b) / a) > relTol) { return false; }
+        }
+        else if (abs(a - b) / a.unit > relTol) {
+            return false;
         }
     }
 
     // Check abs tol
-    if (absTol != 0.0 * mp_units::one) {
-        if (abs(a - b) > absTol * R1) { return false; }
+    if (absTol != 0.0) {
+        if (abs(a - b) / a.unit > absTol) { return false; }
     }
 
     return true;

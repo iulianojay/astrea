@@ -123,7 +123,8 @@ TEST_F(LeoToGroundAccessTest, LeoThinCone)
         const auto lat   = lla.get_latitude();
         const auto lon   = lla.get_longitude();
 
-        GroundStation<astro::planets::Earth> ground(lat, lon, 0.0 * km, "Test site", { groundCone });
+        GroundStation<astro::planets::Earth> ground(lat, lon, 0.0 * km, "Test site");
+        ground.attach_payload(groundCone);
         groundsVec.push_back(ground);
     }
     GroundArchitecture<astro::planets::Earth> grounds(groundsVec);

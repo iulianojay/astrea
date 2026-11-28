@@ -17,7 +17,7 @@
 #include <units/units.hpp>
 
 #include <astro/platforms/vehicles/Spacecraft.hpp>
-#include <astro/propagation/equations_of_motion/TwoBody.hpp>
+#include <astro/propagation/equations_of_motion/KeplerianVop.hpp>
 #include <astro/propagation/event_detection/Event.hpp>
 #include <astro/propagation/event_detection/events/ImpulsiveBurn.hpp>
 #include <astro/propagation/force_models/ForceModel.hpp>
@@ -27,6 +27,7 @@
 #include <astro/time/Date.hpp>
 #include <astro/time/Interval.hpp>
 #include <tests/utilities/comparisons.hpp>
+#include <tests/utilities/orbit_presets.hpp>
 
 using namespace astrea;
 using namespace astro;
@@ -44,12 +45,12 @@ class EventDetectionTest : public testing::Test {
   public:
     EventDetectionTest() :
         mu(get_mu<frames::primary.origin>()),
-        propTime(weeks(1)),
+        propTime(days(1)),
         epoch(J2000)
     {
     }
 
-    void SetUp() override {}
+    void SetUp() override { integrator.switch_fixed_timestep(true, minutes(5.0)); }
 
     const Unitless REL_TOL = 1.0e-6;
     const Unitless ABS_TOL = 1.0e-2;
@@ -72,7 +73,7 @@ int main(int argc, char** argv)
 TEST_F(EventDetectionTest, NoThrust)
 {
     // Build constellation
-    Keplerian<frames::earth::icrf> kep0 = Keplerian<frames::earth::icrf>::LEO();
+    Keplerian<frames::earth::icrf> kep0 = make_orbit_preset<Keplerian<frames::earth::icrf>>(OrbitPreset::LEO);
     State state{ kep0, epoch };
     Spacecraft leo;
     Vehicle vehicle{ leo };
@@ -82,11 +83,15 @@ TEST_F(EventDetectionTest, NoThrust)
     integrator.add_event(impulse);
 
     // Propagate
+    KeplerianVop eoms(forces, false);
+    integrator.set_equations_of_motion(eoms);
     const auto stateHistory = integrator.propagate(state, propTime, vehicle);
 
     // Validate
+    std::cout << "state0: " << kep0 << std::endl;
     for (const auto& state : stateHistory) {
         const Keplerian<frames::earth::icrf> kep = state.in_element_set<Keplerian<frames::earth::icrf>>();
+        std::cout << "state: " << kep << std::endl;
         ASSERT_NO_FATAL_FAILURE(ASSERT_TRUE(nearly_equal(kep, kep0, true, REL_TOL)));
     }
 }
@@ -95,7 +100,7 @@ TEST_F(EventDetectionTest, NoThrust)
 TEST_F(EventDetectionTest, ImpulsiveBurn)
 {
     // Build constellation
-    const Keplerian<frames::earth::icrf> kep0 = Keplerian<frames::earth::icrf>::LEO();
+    const Keplerian<frames::earth::icrf> kep0 = make_orbit_preset<Keplerian<frames::earth::icrf>>(OrbitPreset::LEO);
     const ThrusterParameters thrusterParams(1.0e3 * mp_units::si::unit_symbols::kN);
     const State state{ kep0, epoch };
 
@@ -108,6 +113,8 @@ TEST_F(EventDetectionTest, ImpulsiveBurn)
     integrator.add_event(impulse);
 
     // Propagate
+    KeplerianVop eoms(forces, false);
+    integrator.set_equations_of_motion(eoms);
     const auto stateHistory = integrator.propagate(state, propTime, vehicle);
 
     // Validate

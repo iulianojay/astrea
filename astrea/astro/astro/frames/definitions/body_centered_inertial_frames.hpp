@@ -18,8 +18,9 @@
  */
 #pragma once
 
+#include <astro/frames/definitions/axes.hpp>
 #include <astro/frames/framework/Frame.hpp>
-#include <astro/systems/celestial_bodies.hpp>
+#include <astro/systems/celestial_bodies_impl.hpp>
 
 namespace astrea {
 namespace astro {

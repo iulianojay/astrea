@@ -73,6 +73,11 @@ class StateHistory {
     void insert(const StateHistory& stateHistory);
 
     /**
+     * @brief Removes the last state from the history.
+     */
+    void pop_back() { _states.pop_back(); }
+
+    /**
      * @brief Appends a state to the end of the history without sorting.
      *
      * This method is faster than insert() but does not maintain sorted order.

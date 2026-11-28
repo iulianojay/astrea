@@ -39,13 +39,13 @@ std::pair<Unitless, Unitless> LambertSolver::evaluate_stumpff(const Unitless& z)
 {
     using namespace math;
     if (z > 0.0 * one) {
-        const Unitless sqz = sqrt(z);
+        const Unitless sqz = math::sqrt(z);
         const Unitless Cz  = (1.0 - cos(sqz * rad)) / z;
         const Unitless Sz  = (sqz - sin(sqz * rad)) / (sqz * sqz * sqz);
         return { Cz, Sz };
     }
     else if (z < 0.0 * one) {
-        const Unitless sqnz = sqrt(-z);
+        const Unitless sqnz = math::sqrt(-z);
         const Unitless Cz   = (1.0 - cosh(sqnz * rad)) / z;
         const Unitless Sz   = (sinh(sqnz * rad) - sqnz) / (sqnz * sqnz * sqnz);
         return { Cz, Sz };

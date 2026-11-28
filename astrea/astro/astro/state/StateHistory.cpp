@@ -113,22 +113,18 @@ State StateHistory::get_state_at(const Date& date, const bool allowApproximation
     }
 
     // Interpolate
-    const Date& postDate                = iter->get_epoch();
-    const OrbitalElements& postElements = iter->get_elements();
+    const Date& postDate   = iter->get_epoch();
+    const State& postState = *iter;
 
-    const Date& preDate                = std::prev(iter)->get_epoch();
-    const State& preState              = *std::prev(iter);
-    const OrbitalElements& preElements = preState.get_elements();
-
-    const auto& mu = get_mu<frames::primary.origin>();
+    const Date& preDate   = std::prev(iter)->get_epoch();
+    const State& preState = *std::prev(iter);
 
     // Normalize to initial date for simplicity
     const Time time0 = 0.0 * astrea::detail::time_unit;
     const Time timef = postDate - preDate;
     const Time time  = date - preDate;
 
-    const OrbitalElements interpolatedElements = preElements.interpolate(time0, timef, postElements, mu, time);
-    return State({ interpolatedElements, date });
+    return preState.interpolate(time0, timef, postState, time);
 
     // // Insert if we want this to store
     // _states[date] = interpolatedState;

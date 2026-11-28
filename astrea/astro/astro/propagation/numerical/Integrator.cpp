@@ -197,9 +197,15 @@ StateHistory Integrator::propagate_impl(const State& state0, const Time& propTim
     while (_iteration < _MAX_ITER) {
 
         // Check for event
-        if (check_event(time, state, vehicle)) {
+        const EventDetectionResult eventResult = check_event(time, state, vehicle);
+        if (eventResult.isTerminal) {
             std::cerr << "Warning: Terminal conditions detected.";
             break;
+        }
+        if (eventResult.eventTriggered && _store) {
+            // Even triggers may modify the state so remove the last state from the history and replace it with the modified state
+            stateHistory.pop_back();
+            stateHistory.insert(state);
         }
 
         // Make sure state and time are valid
@@ -503,9 +509,7 @@ Unitless Integrator::get_relative_step_size(const Unitless& maxError) const
     // stupid function for stupid people
 
     // Don't scale if error is zero
-    if (maxError == 0.0 * astrea::detail::unitless || (_iteration > 0 && _maxErrorPrevious == 0.0 * astrea::detail::unitless)) {
-        return 1.0 * astrea::detail::unitless;
-    }
+    if (maxError == 0.0 || (_iteration > 0 && _maxErrorPrevious == 0.0)) { return 1.0 * astrea::detail::unitless; }
 
     // Ignore pi controller on first iteration or if error is large
     const bool ignorePiController = (_iteration == 0 || maxError > 1.0 * astrea::detail::unitless);
@@ -560,9 +564,9 @@ bool Integrator::check_error(const Unitless& maxError, const State& stateNew, co
     return false;
 }
 
-bool Integrator::check_event(const Time& time, State& state, Vehicle& vehicle)
+EventDetectionResult Integrator::check_event(Time& time, State& state, Vehicle& vehicle)
 {
-    return _eventDetector.detect_events(time, state, vehicle);
+    return _eventDetector.detect_and_trigger_events(time, state, vehicle);
 }
 
 bool Integrator::validate_state_and_time(const Time& time, const State& state) const

@@ -181,15 +181,15 @@ struct DcmInterface {
     /**
      * @brief Compose two direction matrices (matrix multiplication).
      *
-     * Note: This overload is for stacked rotations where mat_1^2 * mat_2^3 -> mat_1^3
+     * Note: This overload is for stacked rotations. Vectors transform as v_out = M * v_in, so the right-hand
+     * matrix is applied first and composition follows mathematical order: mat_2^3 * mat_1^2 -> mat_1^3
      *
-     * @tparam _newout_frame The output frame of the right-hand-side matrix.
-     * @param other The right-hand-side matrix to compose with.
+     * @param other The right-hand-side matrix to compose with (applied first).
      * @return DcmInterface The composed matrix.
      */
     template <typename Value_U, auto in_frame_u, auto out_frame_u>
-        requires(!(equivalent(in_frame, in_frame_u) && equivalent(out_frame, out_frame_u)) && equivalent(out_frame, in_frame_u))
-    inline constexpr DcmInterface<decltype(Value_T{} * Value_U{}), in_frame, out_frame_u>
+        requires(!(equivalent(in_frame, in_frame_u) && equivalent(out_frame, out_frame_u)) && equivalent(in_frame, out_frame_u))
+    inline constexpr DcmInterface<decltype(Value_T{} * Value_U{}), in_frame_u, out_frame>
         operator*(const DcmInterface<Value_U, in_frame_u, out_frame_u>& other) const
     {
         return _multiply(other.data());

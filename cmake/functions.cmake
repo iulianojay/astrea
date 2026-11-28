@@ -30,7 +30,10 @@ function(build_tests CURRENT_PROJECT TEST_TYPE TEST_FILES USE_HELPER_HDRS HELPER
         if (NOT MSVC)
             target_compile_options(${TEST_EXE} PUBLIC -Wno-parentheses -Wno-unused-but-set-variable -Wno-unused-variable -Wno-unused-local-typedefs)
         endif()
-        set_target_properties(${TEST_EXE} PROPERTIES OUTPUT_NAME ${TEST_EXE})
+        set_target_properties(${TEST_EXE} PROPERTIES
+            OUTPUT_NAME ${TEST_EXE}
+            INSTALL_RPATH "\$ORIGIN/../../lib"
+        )
         set(GTEST_CREATE_SHARED_LIBRARY 1)
         set(BUILD_GMOCK OFF)
 
@@ -262,6 +265,7 @@ function(generate_eop_files PROJECT_SOURCE_DIRECTORY)
     message(" ---- BUILD_EOP: ${BUILD_EOP}")
     message(" ---- EOP_FILE: ${EOP_FILE}")
     message(" ---- REBUILD_EOP: ${REBUILD_EOP}")
+    message(" ---- EOP_START_YEAR: ${EOP_START_YEAR}")
 
     if (NOT ${BUILD_EOP})
         return()
@@ -269,10 +273,20 @@ function(generate_eop_files PROJECT_SOURCE_DIRECTORY)
         message(FATAL_ERROR "EOP file, ${EOP_FILE}, not found. Please provide a valid EOP file.")
     endif()
 
+    set(EOP_START_YEAR_ARGS "")
+    if (EOP_START_YEAR)
+        set(EOP_START_YEAR_ARGS --start-year ${EOP_START_YEAR})
+    endif()
+
     set(EOP_BASE ${CMAKE_CURRENT_BINARY_DIR}/include/astro/eop)
     set(EOP_HEADERS "${EOP_BASE}/EarthOrientationParameters.hpp")
     set(EOP_SOURCES "${EOP_BASE}/EarthOrientationParameters.cpp")
 
+    # The generated file is only a data table; optimizing it costs minutes and gigabytes of memory for no benefit.
+    set_source_files_properties(${EOP_SOURCES} PROPERTIES
+        GENERATED TRUE
+        COMPILE_OPTIONS "$<IF:$<CXX_COMPILER_ID:MSVC>,/Od,-O0>"
+    )
     find_package(Python3 COMPONENTS Interpreter)
     if(NOT Python3_FOUND)
         message(FATAL_ERROR "Python 3 is required for eop file generation but was not found")
@@ -283,9 +297,10 @@ function(generate_eop_files PROJECT_SOURCE_DIRECTORY)
         OUTPUT
             ${EOP_HEADERS}
             ${EOP_SOURCES}
-        COMMAND ${Python3_EXECUTABLE} ${PROJECT_SOURCE_DIRECTORY}/pyastro/eop_parser.py -o ${CMAKE_CURRENT_BINARY_DIR}/include/astro/eop --infile ${EOP_FILE} --rebuild ${REBUILD_EOP}
+        COMMAND ${Python3_EXECUTABLE} ${PROJECT_SOURCE_DIRECTORY}/pyastro/eop_parser.py -o ${CMAKE_CURRENT_BINARY_DIR}/include/astro/eop --infile ${EOP_FILE} --rebuild ${REBUILD_EOP} ${EOP_START_YEAR_ARGS}
         DEPENDS
             ${PROJECT_SOURCE_DIRECTORY}/pyastro/eop_parser.py
+            ${EOP_FILE}
         WORKING_DIRECTORY ${PROJECT_SOURCE_DIRECTORY}
         COMMENT " -- Generating Earth Orientation Parameters from: ${EOP_FILE}"
     )

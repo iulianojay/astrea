@@ -14,6 +14,8 @@
 #include <tests/nasa_6dof_checkcases/helpers/OrbitalCheckcase.hpp>
 
 #include <algorithm>
+#include <cctype>
+#include <regex>
 
 #include <utilities/json_util.hpp>
 #include <utilities/string_util.hpp>
@@ -27,6 +29,25 @@ using utilities::extract_from_json;
 using utilities::extract_optional_from_json;
 using utilities::extract_optional_string_from_json;
 using utilities::extract_string_from_json;
+
+namespace {
+
+unsigned parse_orbital_checkcase_num(const std::string& token)
+{
+    std::regex pattern("^([0-9]+)([A-Za-z]?)$");
+    std::smatch match;
+    if (!std::regex_match(token, match, pattern)) {
+        throw std::runtime_error("Invalid orbital checkcase token: " + token);
+    }
+
+    const unsigned base = static_cast<unsigned>(std::stoul(match[1].str()));
+    if (match[2].str().empty()) { return base; }
+
+    const unsigned variant = static_cast<unsigned>(std::toupper(match[2].str()[0]) - 'A' + 1);
+    return base * 100 + variant;
+}
+
+} // namespace
 
 template <typename T>
 std::ostream& operator<<(std::ostream& os, const std::optional<T>& opt)
@@ -44,7 +65,7 @@ OrbitalCheckcase::OrbitalCheckcase(const std::filesystem::path& filepath) :
     // Pull the rest from the filename
     const std::string filename            = filepath.stem().string();
     const std::vector<std::string> tokens = utilities::split(filename, "_");
-    checkcase_num                         = std::stoul(tokens[1]);
+    checkcase_num                         = parse_orbital_checkcase_num(tokens[1]);
 
     // Whatever
     const std::string simLetter = tokens[tokens.size() - 1];

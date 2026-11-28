@@ -22,10 +22,11 @@
 #include <optional>
 
 #include <astro/frames/definitions/dynamic_frames/tags.hpp>
+#include <astro/state/UserDefinedState.hpp>
 #include <astro/state/attitude/Attitude.hpp>
 #include <astro/state/attitude/Quaternion.hpp>
 #include <astro/state/orbital_elements/OrbitalElements.hpp>
-#include <astro/systems/property_getters.hpp>
+#include <astro/systems/celestial_body_utilities.hpp>
 #include <astro/systems/system_utilities.hpp>
 #include <astro/time/Date.hpp>
 #include <astro/types/typedefs.hpp>
@@ -57,10 +58,16 @@ class State {
      * @param epoch The epoch of the state.
      * @param attitude The attitude of the state, represented as a quaternion.
      */
-    State(const OrbitalElements& elements, const Date& epoch, const std::optional<Attitude>& attitude = std::nullopt) :
+    State(
+        const OrbitalElements& elements,
+        const Date& epoch,
+        const std::optional<Attitude>& attitude                 = std::nullopt,
+        const std::optional<UserDefinedState>& userDefinedState = std::nullopt
+    ) :
         _elements(elements),
         _epoch(epoch),
-        _attitude(attitude)
+        _attitude(attitude),
+        _userDefinedState(userDefinedState)
     {
     }
 
@@ -73,10 +80,16 @@ class State {
      * @param attitude The attitude of the state.
      */
     template <IsOrbitalElements T>
-    State(const T& elements, const Date& epoch, const std::optional<Attitude>& attitude = std::nullopt) :
+    State(
+        const T& elements,
+        const Date& epoch,
+        const std::optional<Attitude>& attitude                 = std::nullopt,
+        const std::optional<UserDefinedState>& userDefinedState = std::nullopt
+    ) :
         _elements(elements.template in_frame<frames::primary>(epoch, astrea::astro::get_mu<T::frame.origin>())),
         _epoch(epoch),
-        _attitude(attitude)
+        _attitude(attitude),
+        _userDefinedState(userDefinedState)
     {
     }
 
@@ -120,6 +133,13 @@ class State {
     const Date& get_epoch() const { return _epoch; }
 
     /**
+     * @brief Gets the optional user-defined state payload.
+     *
+     * @return const std::optional<UserDefinedState>& The optional user-defined payload.
+     */
+    const std::optional<UserDefinedState>& get_user_defined_state() const { return _userDefinedState; }
+
+    /**
      * @brief Gets the gravitational parameter (mu) derived from the origin of the current elements' frame.
      *
      * @return GravParam The gravitational parameter of the central body.
@@ -142,7 +162,7 @@ class State {
     template <IsOrbitalElements T>
     void convert_to_set()
     {
-        _elements.convert_to_set<T>(get_mu());
+        _elements.convert_to_set<T>(_epoch, get_mu());
     }
 
     /**
@@ -152,7 +172,7 @@ class State {
      */
     State& convert_to_set(const std::size_t idx)
     {
-        _elements.convert_to_set(idx, get_mu());
+        _elements.convert_to_set(idx, _epoch, get_mu());
         return *this;
     }
 
@@ -165,7 +185,7 @@ class State {
     State convert_to_set(const std::size_t idx) const
     {
         State newState = *this;
-        newState._elements.convert_to_set(idx, get_mu());
+        newState._elements.convert_to_set(idx, _epoch, get_mu());
         return newState;
     }
 
@@ -182,17 +202,26 @@ class State {
     }
 
     /**
-     * @brief Converts the current orbital elements to a specified type.
+     * @brief Converts the current orbital elements to a specified orbital elements type.
      *
-     * @param sys The astrodynamics system to use for the conversion.
+     * The state is stored in the primary frame. When T is in another frame, the elements are
+     * converted through Cartesian<primary> -> Cartesian<T::frame> -> T, so the result is always
+     * in exactly T::frame. (OrbitalElements::in_element_set deliberately does not change frames.)
+     *
+     * @tparam T The orbital elements type, in any frame, to convert to.
      * @return The converted orbital elements.
      */
     template <IsOrbitalElements T>
     T in_element_set() const
     {
-        using BaseInPrimary = typename T::template BaseType<frames::primary>;
-        const auto mu       = this->get_mu();
-        return _elements.in_element_set<BaseInPrimary>(mu).template in_frame<T::frame>(_epoch, mu);
+        if constexpr (equivalent(T::frame, frames::primary) || equivalent(T::frame, frames::primary_fixed)) {
+            return _elements.template in_element_set<T>(_epoch, get_mu());
+        }
+        else {
+            const auto cartesianPrimary = _elements.template in_element_set<Cartesian<frames::primary>>(_epoch, get_mu());
+            const auto cartesianTarget = cartesianPrimary.template in_frame<T::frame>(_epoch);
+            return T(cartesianTarget, get_mu());
+        }
     }
 
     /**
@@ -206,19 +235,6 @@ class State {
     }
 
     /**
-     * @brief Converts the state to a specified frame.
-     *
-     * @tparam _frame_ The frame to convert the state to.
-     * @return State A new State object with the converted orbital elements.
-     */
-    template <IsFrame auto _frame_>
-    State& in_frame()
-    {
-        _elements = _elements.in_frame<_frame_>(get_epoch(), get_mu());
-        return *this;
-    }
-
-    /**
      * @brief Gets the position vector in a specified frame from the state.
      *
      * @tparam _frame_ The frame to get the position vector in.
@@ -227,7 +243,7 @@ class State {
     template <IsFrame auto _frame_>
     RadiusVector<_frame_> get_position_in_frame() const
     {
-        return get_position().template in_frame<_frame_>(get_epoch());
+        return get_position().template in_frame<_frame_>(_epoch);
     }
 
     /**
@@ -262,7 +278,7 @@ class State {
     {
         std::size_t originalIndex = _elements.index();
         _elements                 = elements;
-        if (convertToOriginal) { _elements.convert_to_set(originalIndex, get_mu()); }
+        if (convertToOriginal) { _elements.convert_to_set(originalIndex, _epoch, get_mu()); }
     }
 
     /**
@@ -279,10 +295,43 @@ class State {
      */
     void set_epoch(const Date& epoch) { _epoch = epoch; }
 
+    /**
+     * @brief Sets the user-defined state payload.
+     *
+     * @param userDefinedState The user-defined payload to set.
+     */
+    void set_user_defined_state(const UserDefinedState& userDefinedState) { _userDefinedState = userDefinedState; }
+
+    /**
+     * @brief Checks if the state has an attitude.
+     *
+     * @return true if the state has an attitude, false otherwise.
+     */
+    bool has_attitude() const { return _attitude.has_value(); }
+
+    /**
+     * @brief Checks if the state has a user-defined state.
+     *
+     * @return true if the state has a user-defined state, false otherwise.
+     */
+    bool has_user_defined_state() const { return _userDefinedState.has_value(); }
+
+    /**
+     * @brief Interpolates the state to a target time using linear interpolation.
+     *
+     * @param thisTime The current time of the state.
+     * @param otherTime The time of the other state to interpolate with.
+     * @param other The other state to interpolate with.
+     * @param targetTime The target time to interpolate to.
+     * @return State The interpolated state at the target time.
+     */
+    State interpolate(const Time& thisTime, const Time& otherTime, const State& other, const Time& targetTime) const;
+
   private:
     OrbitalElements _elements; //!< The orbital elements of the state, defining the shape and attitude of the orbit.
     Date _epoch; //!< The epoch of the state, representing the time at which the orbital elements are defined.
-    std::optional<Attitude> _attitude; //!< The attitude of the state, represented as a quaternion.
+    std::optional<Attitude> _attitude;                 //!< The attitude of the state, represented as a quaternion.
+    std::optional<UserDefinedState> _userDefinedState; //!< Optional user-defined state payload.
 
     /**
      * @brief Converts the State to a vector of Unitless values.
@@ -296,6 +345,10 @@ class State {
             const auto& attitudeVector = _attitude->force_to_double_vector();
             retval.insert(retval.end(), attitudeVector.begin(), attitudeVector.end());
         }
+        if (_userDefinedState.has_value()) {
+            const auto& userDefinedVector = _userDefinedState->force_to_double_vector();
+            retval.insert(retval.end(), userDefinedVector.begin(), userDefinedVector.end());
+        }
         return retval;
     }
 
@@ -306,7 +359,7 @@ class State {
      * @param idx The index of the orbital element type to create.
      * @return State The created State object.
      */
-    static State from_double_vector(const std::vector<double>& vec, const std::size_t idx);
+    State from_double_vector(const std::vector<double>& vec, const std::size_t idx) const;
 
     /**
      * @brief Adds two State objects together.
@@ -396,11 +449,18 @@ class StatePartial {
      * @param sys The astrodynamics system associated with the state.
      * @param elementPartials The orbital element partials of the state.
      * @param attitudePartial The attitude partial of the state, represented as a quaternion derivative.
+     * @param userDefinedStatePartial The user-defined state partial of the state.
      */
-    StatePartial(const Date& epoch, const OrbitalElementPartials& elementPartials, const std::optional<AttitudePartials>& attitudePartial = std::nullopt) :
+    StatePartial(
+        const Date& epoch,
+        const OrbitalElementPartials& elementPartials,
+        const std::optional<AttitudePartials>& attitudePartial                = std::nullopt,
+        const std::optional<UserDefinedStatePartial>& userDefinedStatePartial = std::nullopt
+    ) :
         _epoch(epoch),
         _elementPartials(elementPartials),
-        _attitudePartial(attitudePartial)
+        _attitudePartial(attitudePartial),
+        _userDefinedStatePartial(userDefinedStatePartial)
     {
     }
 
@@ -417,7 +477,7 @@ class StatePartial {
      *
      * @return const Date& Reference to the epoch of the state partial.
      */
-    const Date& get_epoch() const;
+    const Date& get_epoch() const { return _epoch; }
 
     /**
      * @brief Converts the State to a vector of Unitless values.
@@ -431,6 +491,10 @@ class StatePartial {
             const auto& attitudeVector = _attitudePartial->force_to_double_vector();
             retval.insert(retval.end(), attitudeVector.begin(), attitudeVector.end());
         }
+        if (_userDefinedStatePartial.has_value()) {
+            const auto& userDefinedVector = _userDefinedStatePartial->force_to_double_vector();
+            retval.insert(retval.end(), userDefinedVector.begin(), userDefinedVector.end());
+        }
         return retval;
     }
 
@@ -438,6 +502,7 @@ class StatePartial {
     Date _epoch; //!< The epoch of the state partial, representing the time at which the orbital elements are defined.
     OrbitalElementPartials _elementPartials; //!< The orbital element partials of the state, defining the shape and attitude of the orbit.
     std::optional<AttitudePartials> _attitudePartial; //!< The attitude partial of the state, represented as a quaternion derivative.
+    std::optional<UserDefinedStatePartial> _userDefinedStatePartial; //!< The user-defined state partial of the state.
 };
 
 } // namespace astro

@@ -24,7 +24,7 @@
 
 #include <astro/astro.macros.hpp>
 #include <astro/systems/celestial_bodies.hpp>
-#include <astro/systems/property_getters.hpp>
+#include <astro/systems/celestial_body_utilities.hpp>
 
 namespace astrea {
 namespace astro {
@@ -67,11 +67,20 @@ LegendreCache<_body_, _degree_, _order_>::LegendreCache()
             lineData.push_back(std::atof(cell.c_str()));
         }
 
+        // File too short for requested degree/order
+        if (lineData.size() < 4) {
+            throw std::runtime_error(
+                std::string("Legendre coefficient file for central body, ") + decltype(_body_)::name.portable().data() + ", is too short for requested degree/order"
+            );
+        }
+
         n = (std::size_t)lineData[0];
         m = (std::size_t)lineData[1];
 
-        _C[n * _span + m] = lineData[2];
-        _S[n * _span + m] = lineData[3];
+        if (n <= _degree_ && m <= _order_) {
+            _C[n * _span + m] = lineData[2];
+            _S[n * _span + m] = lineData[3];
+        }
 
         if (n >= _degree_ && m >= _order_) { break; }
     }

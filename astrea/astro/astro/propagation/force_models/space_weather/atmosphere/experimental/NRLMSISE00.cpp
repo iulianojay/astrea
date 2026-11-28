@@ -979,7 +979,7 @@ Density find_atmospheric_density(const State& state)
 
     // compute geodetic position
     const auto& rEcef          = state.get_position_in_frame<frames::earth::earth_fixed>();
-    const auto [lat, lon, alt] = convert_body_fixed_to_geodetic(rEcef);
+    const auto [lat, lon, alt] = Geodetic<planets::Earth>::from_body_fixed(rEcef);
 
     // compute local solar time
     const Time lst = calculate_local_solar_time(state);

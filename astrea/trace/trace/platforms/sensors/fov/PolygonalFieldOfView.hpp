@@ -83,7 +83,7 @@ class PolygonalFieldOfView : public FieldOfView {
     bool contains(
         const astro::CartesianVector<Distance, astro::frames::earth::icrf>& boresight,
         const astro::CartesianVector<Distance, astro::frames::earth::icrf>& target
-    ) const;
+    ) const override;
 
     Angle max_half_angle() const override { return _maxHalfAngle; }
 

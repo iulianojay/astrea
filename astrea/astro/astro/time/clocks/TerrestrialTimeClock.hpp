@@ -60,6 +60,23 @@ struct TerrestrialTimeClock {
     static constexpr duration tt_tai_offset{ 32.184 };
 
     /**
+     * @brief The J2000.0 epoch (2000-01-01T12:00:00 TT) as a TT time point.
+     *
+     * TT time points share the std::chrono::tai_clock epoch (1958-01-01T00:00:00 TAI), offset by tt_tai_offset.
+     */
+    static constexpr std::chrono::time_point<TerrestrialTimeClock, duration> j2000{
+        std::chrono::sys_days{ std::chrono::year{ 2000 } / 1 / 1 } + std::chrono::hours{ 12 } -
+        std::chrono::sys_days{ std::chrono::year{ 1958 } / 1 / 1 }
+    };
+
+    /**
+     * @brief The epoch T0 = 1977-01-01T00:00:32.184 TT at which TT, TCG, and TCB coincide (IAU 1991 Resolution A4).
+     */
+    static constexpr std::chrono::time_point<TerrestrialTimeClock, duration> t0{
+        std::chrono::sys_days{ std::chrono::year{ 1977 } / 1 / 1 } - std::chrono::sys_days{ std::chrono::year{ 1958 } / 1 / 1 } + tt_tai_offset
+    };
+
+    /**
      * @brief Converts a system time point to a Terrestrial Time time point.
      *
      * The conversion route is: UTC (sys) → TAI (via clock_cast, handling leap seconds) → TT (+ 32.184 s).

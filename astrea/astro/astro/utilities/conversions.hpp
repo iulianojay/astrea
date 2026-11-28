@@ -101,5 +101,20 @@ inline constexpr Angle wrap_angle_to_pi(const Angle& angle) noexcept
     return mp_units::fmod(ang, onePi);
 }
 
+inline constexpr Angle wrap_to_pm_pi(const Angle& angle) noexcept
+{
+    using mp_units::si::unit_symbols::rad;
+    static constexpr Angle onePi = std::numbers::pi * rad;
+
+    Angle ang = angle;
+    while (ang < -onePi) {
+        ang += 2.0 * onePi;
+    }
+    while (ang >= onePi) {
+        ang -= 2.0 * onePi;
+    }
+    return ang;
+}
+
 } // namespace astro
 } // namespace astrea

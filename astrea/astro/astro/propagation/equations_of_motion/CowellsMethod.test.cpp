@@ -23,6 +23,7 @@
 #include <astro/state/orbital_elements/Cartesian.hpp>
 #include <astro/systems/system_utilities.hpp>
 #include <tests/utilities/comparisons.hpp>
+#include <tests/utilities/orbit_presets.hpp>
 
 using namespace astrea;
 using namespace astro;
@@ -63,7 +64,8 @@ TEST_F(CowellsMethodTest, GetExpectedSet)
 
 TEST_F(CowellsMethodTest, Derivative)
 {
-    Cartesian<frames::earth::icrf> cart0           = Cartesian<frames::earth::icrf>::LEO(get_mu<planets::Earth>());
+    Cartesian<frames::earth::icrf> cart0 =
+        make_orbit_preset<Cartesian<frames::earth::icrf>>(OrbitPreset::LEO, get_mu<planets::Earth>());
     CartesianPartial<frames::earth::icrf> expected = CartesianPartial<frames::earth::icrf>(
         cart0.get_vx(), cart0.get_vy(), cart0.get_vz(), -0.0081347028957142863 * km / (s * s), 0.0 * km / (s * s), 0.0 * km / (s * s)
     );
@@ -85,4 +87,11 @@ TEST_F(CowellsMethodTest, DerivativeValladoEx85)
 
     OrbitalElementPartials dstate = eom.compute_dynamics(state0, sat, noForce, noForce);
     ASSERT_TRUE(nearly_equal(expected, dstate, REL_TOL));
+}
+
+TEST_F(CowellsMethodTest, Clone)
+{
+    std::unique_ptr<EquationsOfMotion> clone = eom.clone();
+    ASSERT_TRUE(clone != nullptr);
+    ASSERT_EQ(clone->get_expected_set_id(), eom.get_expected_set_id());
 }

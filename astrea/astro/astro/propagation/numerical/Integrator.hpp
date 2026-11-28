@@ -301,9 +301,7 @@ class Integrator {
     Time _timeStepInitial = 60.0 * astrea::detail::time_unit; //!< Initial time step for the integrator
 
     // Run options
-    bool _printOn = false; //!< Flag to control printing of integration details
-    bool _store   = true;  //!< Flag to control whether to store the state history during propagation
-
+    bool _store = true; //!< Flag to control whether to store the state history during propagation
     StepMethod _stepMethod = StepMethod::DOP45; //!< Step method to use for the integration (default is Dormand-Prince RK4(5))
     std::unique_ptr<EquationsOfMotion> _eom; //!< Equations of motion to use for the integration
 
@@ -421,8 +419,9 @@ class Integrator {
      * @param time The current time in the integration.
      * @param state The current state of the vehicle represented as orbital elements.
      * @param vehicle The vehicle whose state is being integrated.
+     * @return EventDetectionResult The result of the event detection, indicating if a terminal event occurred or if an event was triggered.
      */
-    bool check_event(const Time& time, State& state, Vehicle& vehicle);
+    EventDetectionResult check_event(Time& time, State& state, Vehicle& vehicle);
 
     /**
      * @brief Validate the current state and time to ensure they are not NaN or infinite.

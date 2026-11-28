@@ -37,7 +37,7 @@ inline constexpr auto OutFrame = frames::earth::j2000;
 using TestDcm                  = DCM<InFrame, OutFrame>;
 using TestVec                  = CartesianVector<Unitless, InFrame>;
 
-class DirectionCosineMatrixTest : public testing::Test {
+struct DirectionCosineMatrixTest : public testing::Test {
   public:
     const TestVec x_hat = { 1.0 * one, 0.0 * one, 0.0 * one };
     const TestVec y_hat = { 0.0 * one, 1.0 * one, 0.0 * one };
@@ -307,8 +307,8 @@ TEST_F(DirectionCosineMatrixTest, FromEulerAnglesXYZProducesSameResultAsXYZ)
         EulerAngles<RotationSequence::XYZ, RotationType::INTRINSIC, InFrame, OutFrame>(0.1 * rad, 0.2 * rad, 0.3 * rad);
     const auto dcmi1    = TestDcm::XYZ(intrinsic[0], intrinsic[1], intrinsic[2]);
     const auto dcmi2    = intrinsic.to_dcm();
-    const TestDcm dcmi3 = DCM<InFrame, InFrame>::X(intrinsic[0]) * DCM<InFrame, InFrame>::Y(intrinsic[1]) *
-                          DCM<InFrame, OutFrame>::Z(intrinsic[2]);
+    const TestDcm dcmi3 = DCM<InFrame, OutFrame>::X(intrinsic[0]) * DCM<InFrame, InFrame>::Y(intrinsic[1]) *
+                          DCM<InFrame, InFrame>::Z(intrinsic[2]);
     EXPECT_TRUE(nearly_equal(dcmi1, dcmi2, REL_TOL, ABS_TOL));
     EXPECT_TRUE(nearly_equal(dcmi1, dcmi3, REL_TOL, ABS_TOL));
 
@@ -316,8 +316,8 @@ TEST_F(DirectionCosineMatrixTest, FromEulerAnglesXYZProducesSameResultAsXYZ)
         EulerAngles<RotationSequence::XYZ, RotationType::EXTRINSIC, InFrame, OutFrame>(0.1 * rad, 0.2 * rad, 0.3 * rad);
     const auto dcme1    = TestDcm::ZYX(extrinsic[2], extrinsic[1], extrinsic[0]);
     const auto dcme2    = extrinsic.to_dcm();
-    const TestDcm dcme3 = DCM<InFrame, InFrame>::Z(extrinsic[2]) * DCM<InFrame, InFrame>::Y(extrinsic[1]) *
-                          DCM<InFrame, OutFrame>::X(extrinsic[0]);
+    const TestDcm dcme3 = DCM<InFrame, OutFrame>::Z(extrinsic[2]) * DCM<InFrame, InFrame>::Y(extrinsic[1]) *
+                          DCM<InFrame, InFrame>::X(extrinsic[0]);
     EXPECT_TRUE(nearly_equal(dcme1, dcme2, REL_TOL, ABS_TOL));
     EXPECT_TRUE(nearly_equal(dcme1, dcme3, REL_TOL, ABS_TOL));
 }
@@ -328,8 +328,8 @@ TEST_F(DirectionCosineMatrixTest, FromEulerAnglesZYXProducesSameResultAsZYX)
         EulerAngles<RotationSequence::ZYX, RotationType::INTRINSIC, InFrame, OutFrame>(0.1 * rad, 0.2 * rad, 0.3 * rad);
     const auto dcmi1    = TestDcm::ZYX(intrinsic[0], intrinsic[1], intrinsic[2]);
     const auto dcmi2    = intrinsic.to_dcm();
-    const TestDcm dcmi3 = DCM<InFrame, InFrame>::Z(intrinsic[0]) * DCM<InFrame, InFrame>::Y(intrinsic[1]) *
-                          DCM<InFrame, OutFrame>::X(intrinsic[2]);
+    const TestDcm dcmi3 = DCM<InFrame, OutFrame>::Z(intrinsic[0]) * DCM<InFrame, InFrame>::Y(intrinsic[1]) *
+                          DCM<InFrame, InFrame>::X(intrinsic[2]);
     EXPECT_TRUE(nearly_equal(dcmi1, dcmi2, REL_TOL, ABS_TOL));
     EXPECT_TRUE(nearly_equal(dcmi1, dcmi3, REL_TOL, ABS_TOL));
 
@@ -337,8 +337,8 @@ TEST_F(DirectionCosineMatrixTest, FromEulerAnglesZYXProducesSameResultAsZYX)
         EulerAngles<RotationSequence::ZYX, RotationType::EXTRINSIC, InFrame, OutFrame>(0.1 * rad, 0.2 * rad, 0.3 * rad);
     const auto dcme1    = TestDcm::XYZ(extrinsic[2], extrinsic[1], extrinsic[0]);
     const auto dcme2    = extrinsic.to_dcm();
-    const TestDcm dcme3 = DCM<InFrame, InFrame>::X(extrinsic[2]) * DCM<InFrame, InFrame>::Y(extrinsic[1]) *
-                          DCM<InFrame, OutFrame>::Z(extrinsic[0]);
+    const TestDcm dcme3 = DCM<InFrame, OutFrame>::X(extrinsic[2]) * DCM<InFrame, InFrame>::Y(extrinsic[1]) *
+                          DCM<InFrame, InFrame>::Z(extrinsic[0]);
     EXPECT_TRUE(nearly_equal(dcme1, dcme2, REL_TOL, ABS_TOL));
     EXPECT_TRUE(nearly_equal(dcme1, dcme3, REL_TOL, ABS_TOL));
 }
@@ -349,8 +349,8 @@ TEST_F(DirectionCosineMatrixTest, FromEulerAnglesYXZProducesSameResultAsYXZ)
         EulerAngles<RotationSequence::YXZ, RotationType::INTRINSIC, InFrame, OutFrame>(0.1 * rad, 0.2 * rad, 0.3 * rad);
     const auto dcmi1    = TestDcm::YXZ(intrinsic[0], intrinsic[1], intrinsic[2]);
     const auto dcmi2    = intrinsic.to_dcm();
-    const TestDcm dcmi3 = DCM<InFrame, InFrame>::Y(intrinsic[0]) * DCM<InFrame, InFrame>::X(intrinsic[1]) *
-                          DCM<InFrame, OutFrame>::Z(intrinsic[2]);
+    const TestDcm dcmi3 = DCM<InFrame, OutFrame>::Y(intrinsic[0]) * DCM<InFrame, InFrame>::X(intrinsic[1]) *
+                          DCM<InFrame, InFrame>::Z(intrinsic[2]);
     EXPECT_TRUE(nearly_equal(dcmi1, dcmi2, REL_TOL, ABS_TOL));
     EXPECT_TRUE(nearly_equal(dcmi1, dcmi3, REL_TOL, ABS_TOL));
 
@@ -358,8 +358,8 @@ TEST_F(DirectionCosineMatrixTest, FromEulerAnglesYXZProducesSameResultAsYXZ)
         EulerAngles<RotationSequence::YXZ, RotationType::EXTRINSIC, InFrame, OutFrame>(0.1 * rad, 0.2 * rad, 0.3 * rad);
     const auto dcme1    = TestDcm::ZXY(extrinsic[2], extrinsic[1], extrinsic[0]);
     const auto dcme2    = extrinsic.to_dcm();
-    const TestDcm dcme3 = DCM<InFrame, InFrame>::Z(extrinsic[2]) * DCM<InFrame, InFrame>::X(extrinsic[1]) *
-                          DCM<InFrame, OutFrame>::Y(extrinsic[0]);
+    const TestDcm dcme3 = DCM<InFrame, OutFrame>::Z(extrinsic[2]) * DCM<InFrame, InFrame>::X(extrinsic[1]) *
+                          DCM<InFrame, InFrame>::Y(extrinsic[0]);
     EXPECT_TRUE(nearly_equal(dcme1, dcme2, REL_TOL, ABS_TOL));
     EXPECT_TRUE(nearly_equal(dcme1, dcme3, REL_TOL, ABS_TOL));
 }
@@ -370,8 +370,8 @@ TEST_F(DirectionCosineMatrixTest, FromEulerAnglesXZXProducesSameResultAsXZX)
         EulerAngles<RotationSequence::XZX, RotationType::INTRINSIC, InFrame, OutFrame>(0.1 * rad, 0.2 * rad, 0.3 * rad);
     const auto dcm1    = TestDcm::XZX(intrinsic[0], intrinsic[1], intrinsic[2]);
     const auto dcm2    = intrinsic.to_dcm();
-    const TestDcm dcm3 = DCM<InFrame, InFrame>::X(intrinsic[0]) * DCM<InFrame, InFrame>::Z(intrinsic[1]) *
-                         DCM<InFrame, OutFrame>::X(intrinsic[2]);
+    const TestDcm dcm3 = DCM<InFrame, OutFrame>::X(intrinsic[0]) * DCM<InFrame, InFrame>::Z(intrinsic[1]) *
+                         DCM<InFrame, InFrame>::X(intrinsic[2]);
     EXPECT_TRUE(nearly_equal(dcm1, dcm2, REL_TOL, ABS_TOL));
     EXPECT_TRUE(nearly_equal(dcm1, dcm3, REL_TOL, ABS_TOL));
 
@@ -379,8 +379,8 @@ TEST_F(DirectionCosineMatrixTest, FromEulerAnglesXZXProducesSameResultAsXZX)
         EulerAngles<RotationSequence::XZX, RotationType::EXTRINSIC, InFrame, OutFrame>(0.1 * rad, 0.2 * rad, 0.3 * rad);
     const auto dcm4    = TestDcm::XZX(extrinsic[2], extrinsic[1], extrinsic[0]);
     const auto dcm5    = extrinsic.to_dcm();
-    const TestDcm dcm6 = DCM<InFrame, InFrame>::X(extrinsic[2]) * DCM<InFrame, InFrame>::Z(extrinsic[1]) *
-                         DCM<InFrame, OutFrame>::X(extrinsic[0]);
+    const TestDcm dcm6 = DCM<InFrame, OutFrame>::X(extrinsic[2]) * DCM<InFrame, InFrame>::Z(extrinsic[1]) *
+                         DCM<InFrame, InFrame>::X(extrinsic[0]);
     EXPECT_TRUE(nearly_equal(dcm4, dcm5, REL_TOL, ABS_TOL));
     EXPECT_TRUE(nearly_equal(dcm4, dcm6, REL_TOL, ABS_TOL));
 }
@@ -391,8 +391,8 @@ TEST_F(DirectionCosineMatrixTest, FromEulerAnglesZXYProducesSameResultAsZXY)
         EulerAngles<RotationSequence::ZXY, RotationType::INTRINSIC, InFrame, OutFrame>(0.1 * rad, 0.2 * rad, 0.3 * rad);
     const auto dcm1    = TestDcm::ZXY(intrinsic[0], intrinsic[1], intrinsic[2]);
     const auto dcm2    = intrinsic.to_dcm();
-    const TestDcm dcm3 = DCM<InFrame, InFrame>::Z(intrinsic[0]) * DCM<InFrame, InFrame>::X(intrinsic[1]) *
-                         DCM<InFrame, OutFrame>::Y(intrinsic[2]);
+    const TestDcm dcm3 = DCM<InFrame, OutFrame>::Z(intrinsic[0]) * DCM<InFrame, InFrame>::X(intrinsic[1]) *
+                         DCM<InFrame, InFrame>::Y(intrinsic[2]);
     EXPECT_TRUE(nearly_equal(dcm1, dcm2, REL_TOL, ABS_TOL));
     EXPECT_TRUE(nearly_equal(dcm1, dcm3, REL_TOL, ABS_TOL));
 
@@ -400,8 +400,8 @@ TEST_F(DirectionCosineMatrixTest, FromEulerAnglesZXYProducesSameResultAsZXY)
         EulerAngles<RotationSequence::ZXY, RotationType::EXTRINSIC, InFrame, OutFrame>(0.1 * rad, 0.2 * rad, 0.3 * rad);
     const auto dcm4    = TestDcm::YXZ(extrinsic[2], extrinsic[1], extrinsic[0]);
     const auto dcm5    = extrinsic.to_dcm();
-    const TestDcm dcm6 = DCM<InFrame, InFrame>::Y(extrinsic[2]) * DCM<InFrame, InFrame>::X(extrinsic[1]) *
-                         DCM<InFrame, OutFrame>::Z(extrinsic[0]);
+    const TestDcm dcm6 = DCM<InFrame, OutFrame>::Y(extrinsic[2]) * DCM<InFrame, InFrame>::X(extrinsic[1]) *
+                         DCM<InFrame, InFrame>::Z(extrinsic[0]);
     EXPECT_TRUE(nearly_equal(dcm4, dcm5, REL_TOL, ABS_TOL));
     EXPECT_TRUE(nearly_equal(dcm4, dcm6, REL_TOL, ABS_TOL));
 }
@@ -412,8 +412,8 @@ TEST_F(DirectionCosineMatrixTest, FromEulerAnglesYZYProducesSameResultAsYZY)
         EulerAngles<RotationSequence::YZY, RotationType::INTRINSIC, InFrame, OutFrame>(0.1 * rad, 0.2 * rad, 0.3 * rad);
     const auto dcm1    = TestDcm::YZY(intrinsic[0], intrinsic[1], intrinsic[2]);
     const auto dcm2    = intrinsic.to_dcm();
-    const TestDcm dcm3 = DCM<InFrame, InFrame>::Y(intrinsic[0]) * DCM<InFrame, InFrame>::Z(intrinsic[1]) *
-                         DCM<InFrame, OutFrame>::Y(intrinsic[2]);
+    const TestDcm dcm3 = DCM<InFrame, OutFrame>::Y(intrinsic[0]) * DCM<InFrame, InFrame>::Z(intrinsic[1]) *
+                         DCM<InFrame, InFrame>::Y(intrinsic[2]);
     EXPECT_TRUE(nearly_equal(dcm1, dcm2, REL_TOL, ABS_TOL));
     EXPECT_TRUE(nearly_equal(dcm1, dcm3, REL_TOL, ABS_TOL));
 
@@ -421,8 +421,8 @@ TEST_F(DirectionCosineMatrixTest, FromEulerAnglesYZYProducesSameResultAsYZY)
         EulerAngles<RotationSequence::YZY, RotationType::EXTRINSIC, InFrame, OutFrame>(0.1 * rad, 0.2 * rad, 0.3 * rad);
     const auto dcm4    = TestDcm::YZY(extrinsic[2], extrinsic[1], extrinsic[0]);
     const auto dcm5    = extrinsic.to_dcm();
-    const TestDcm dcm6 = DCM<InFrame, InFrame>::Y(extrinsic[2]) * DCM<InFrame, InFrame>::Z(extrinsic[1]) *
-                         DCM<InFrame, OutFrame>::Y(extrinsic[0]);
+    const TestDcm dcm6 = DCM<InFrame, OutFrame>::Y(extrinsic[2]) * DCM<InFrame, InFrame>::Z(extrinsic[1]) *
+                         DCM<InFrame, InFrame>::Y(extrinsic[0]);
     EXPECT_TRUE(nearly_equal(dcm4, dcm5, REL_TOL, ABS_TOL));
     EXPECT_TRUE(nearly_equal(dcm4, dcm6, REL_TOL, ABS_TOL));
 }
@@ -433,8 +433,8 @@ TEST_F(DirectionCosineMatrixTest, FromEulerAnglesZYZProducesSameResultAsZYZ)
         EulerAngles<RotationSequence::ZYZ, RotationType::INTRINSIC, InFrame, OutFrame>(0.1 * rad, 0.2 * rad, 0.3 * rad);
     const auto dcm1    = TestDcm::ZYZ(intrinsic[0], intrinsic[1], intrinsic[2]);
     const auto dcm2    = intrinsic.to_dcm();
-    const TestDcm dcm3 = DCM<InFrame, InFrame>::Z(intrinsic[0]) * DCM<InFrame, InFrame>::Y(intrinsic[1]) *
-                         DCM<InFrame, OutFrame>::Z(intrinsic[2]);
+    const TestDcm dcm3 = DCM<InFrame, OutFrame>::Z(intrinsic[0]) * DCM<InFrame, InFrame>::Y(intrinsic[1]) *
+                         DCM<InFrame, InFrame>::Z(intrinsic[2]);
     EXPECT_TRUE(nearly_equal(dcm1, dcm2, REL_TOL, ABS_TOL));
     EXPECT_TRUE(nearly_equal(dcm1, dcm3, REL_TOL, ABS_TOL));
 
@@ -442,8 +442,8 @@ TEST_F(DirectionCosineMatrixTest, FromEulerAnglesZYZProducesSameResultAsZYZ)
         EulerAngles<RotationSequence::ZYZ, RotationType::EXTRINSIC, InFrame, OutFrame>(0.1 * rad, 0.2 * rad, 0.3 * rad);
     const auto dcm4    = TestDcm::ZYZ(extrinsic[2], extrinsic[1], extrinsic[0]);
     const auto dcm5    = extrinsic.to_dcm();
-    const TestDcm dcm6 = DCM<InFrame, InFrame>::Z(extrinsic[2]) * DCM<InFrame, InFrame>::Y(extrinsic[1]) *
-                         DCM<InFrame, OutFrame>::Z(extrinsic[0]);
+    const TestDcm dcm6 = DCM<InFrame, OutFrame>::Z(extrinsic[2]) * DCM<InFrame, InFrame>::Y(extrinsic[1]) *
+                         DCM<InFrame, InFrame>::Z(extrinsic[0]);
     EXPECT_TRUE(nearly_equal(dcm4, dcm5, REL_TOL, ABS_TOL));
     EXPECT_TRUE(nearly_equal(dcm4, dcm6, REL_TOL, ABS_TOL));
 }
@@ -454,8 +454,8 @@ TEST_F(DirectionCosineMatrixTest, FromEulerAnglesYXYProducesSameResultAsYXY)
         EulerAngles<RotationSequence::YXY, RotationType::INTRINSIC, InFrame, OutFrame>(0.1 * rad, 0.2 * rad, 0.3 * rad);
     const auto dcm1    = TestDcm::YXY(intrinsic[0], intrinsic[1], intrinsic[2]);
     const auto dcm2    = intrinsic.to_dcm();
-    const TestDcm dcm3 = DCM<InFrame, InFrame>::Y(intrinsic[0]) * DCM<InFrame, InFrame>::X(intrinsic[1]) *
-                         DCM<InFrame, OutFrame>::Y(intrinsic[2]);
+    const TestDcm dcm3 = DCM<InFrame, OutFrame>::Y(intrinsic[0]) * DCM<InFrame, InFrame>::X(intrinsic[1]) *
+                         DCM<InFrame, InFrame>::Y(intrinsic[2]);
     EXPECT_TRUE(nearly_equal(dcm1, dcm2, REL_TOL, ABS_TOL));
     EXPECT_TRUE(nearly_equal(dcm1, dcm3, REL_TOL, ABS_TOL));
 
@@ -463,8 +463,8 @@ TEST_F(DirectionCosineMatrixTest, FromEulerAnglesYXYProducesSameResultAsYXY)
         EulerAngles<RotationSequence::YXY, RotationType::EXTRINSIC, InFrame, OutFrame>(0.1 * rad, 0.2 * rad, 0.3 * rad);
     const auto dcm4    = TestDcm::YXY(extrinsic[2], extrinsic[1], extrinsic[0]);
     const auto dcm5    = extrinsic.to_dcm();
-    const TestDcm dcm6 = DCM<InFrame, InFrame>::Y(extrinsic[2]) * DCM<InFrame, InFrame>::X(extrinsic[1]) *
-                         DCM<InFrame, OutFrame>::Y(extrinsic[0]);
+    const TestDcm dcm6 = DCM<InFrame, OutFrame>::Y(extrinsic[2]) * DCM<InFrame, InFrame>::X(extrinsic[1]) *
+                         DCM<InFrame, InFrame>::Y(extrinsic[0]);
     EXPECT_TRUE(nearly_equal(dcm4, dcm5, REL_TOL, ABS_TOL));
     EXPECT_TRUE(nearly_equal(dcm4, dcm6, REL_TOL, ABS_TOL));
 }
@@ -475,8 +475,8 @@ TEST_F(DirectionCosineMatrixTest, FromEulerAnglesXZYProducesSameResultAsXZY)
         EulerAngles<RotationSequence::XZY, RotationType::INTRINSIC, InFrame, OutFrame>(0.1 * rad, 0.2 * rad, 0.3 * rad);
     const auto dcm1    = TestDcm::XZY(intrinsic[0], intrinsic[1], intrinsic[2]);
     const auto dcm2    = intrinsic.to_dcm();
-    const TestDcm dcm3 = DCM<InFrame, InFrame>::X(intrinsic[0]) * DCM<InFrame, InFrame>::Z(intrinsic[1]) *
-                         DCM<InFrame, OutFrame>::Y(intrinsic[2]);
+    const TestDcm dcm3 = DCM<InFrame, OutFrame>::X(intrinsic[0]) * DCM<InFrame, InFrame>::Z(intrinsic[1]) *
+                         DCM<InFrame, InFrame>::Y(intrinsic[2]);
     EXPECT_TRUE(nearly_equal(dcm1, dcm2, REL_TOL, ABS_TOL));
     EXPECT_TRUE(nearly_equal(dcm1, dcm3, REL_TOL, ABS_TOL));
 
@@ -484,8 +484,8 @@ TEST_F(DirectionCosineMatrixTest, FromEulerAnglesXZYProducesSameResultAsXZY)
         EulerAngles<RotationSequence::XZY, RotationType::EXTRINSIC, InFrame, OutFrame>(0.1 * rad, 0.2 * rad, 0.3 * rad);
     const auto dcm4    = TestDcm::YZX(extrinsic[2], extrinsic[1], extrinsic[0]);
     const auto dcm5    = extrinsic.to_dcm();
-    const TestDcm dcm6 = DCM<InFrame, InFrame>::Y(extrinsic[2]) * DCM<InFrame, InFrame>::Z(extrinsic[1]) *
-                         DCM<InFrame, OutFrame>::X(extrinsic[0]);
+    const TestDcm dcm6 = DCM<InFrame, OutFrame>::Y(extrinsic[2]) * DCM<InFrame, InFrame>::Z(extrinsic[1]) *
+                         DCM<InFrame, InFrame>::X(extrinsic[0]);
     EXPECT_TRUE(nearly_equal(dcm4, dcm5, REL_TOL, ABS_TOL));
     EXPECT_TRUE(nearly_equal(dcm4, dcm6, REL_TOL, ABS_TOL));
 }
@@ -496,8 +496,8 @@ TEST_F(DirectionCosineMatrixTest, FromEulerAnglesXYXProducesSameResultAsXYX)
         EulerAngles<RotationSequence::XYX, RotationType::INTRINSIC, InFrame, OutFrame>(0.1 * rad, 0.2 * rad, 0.3 * rad);
     const auto dcm1    = TestDcm::XYX(intrinsic[0], intrinsic[1], intrinsic[2]);
     const auto dcm2    = intrinsic.to_dcm();
-    const TestDcm dcm3 = DCM<InFrame, InFrame>::X(intrinsic[0]) * DCM<InFrame, InFrame>::Y(intrinsic[1]) *
-                         DCM<InFrame, OutFrame>::X(intrinsic[2]);
+    const TestDcm dcm3 = DCM<InFrame, OutFrame>::X(intrinsic[0]) * DCM<InFrame, InFrame>::Y(intrinsic[1]) *
+                         DCM<InFrame, InFrame>::X(intrinsic[2]);
     EXPECT_TRUE(nearly_equal(dcm1, dcm2, REL_TOL, ABS_TOL));
     EXPECT_TRUE(nearly_equal(dcm1, dcm3, REL_TOL, ABS_TOL));
 
@@ -505,8 +505,8 @@ TEST_F(DirectionCosineMatrixTest, FromEulerAnglesXYXProducesSameResultAsXYX)
         EulerAngles<RotationSequence::XYX, RotationType::EXTRINSIC, InFrame, OutFrame>(0.1 * rad, 0.2 * rad, 0.3 * rad);
     const auto dcm4    = TestDcm::XYX(extrinsic[2], extrinsic[1], extrinsic[0]);
     const auto dcm5    = extrinsic.to_dcm();
-    const TestDcm dcm6 = DCM<InFrame, InFrame>::X(extrinsic[2]) * DCM<InFrame, InFrame>::Y(extrinsic[1]) *
-                         DCM<InFrame, OutFrame>::X(extrinsic[0]);
+    const TestDcm dcm6 = DCM<InFrame, OutFrame>::X(extrinsic[2]) * DCM<InFrame, InFrame>::Y(extrinsic[1]) *
+                         DCM<InFrame, InFrame>::X(extrinsic[0]);
     EXPECT_TRUE(nearly_equal(dcm4, dcm5, REL_TOL, ABS_TOL));
     EXPECT_TRUE(nearly_equal(dcm4, dcm6, REL_TOL, ABS_TOL));
 }
@@ -517,8 +517,8 @@ TEST_F(DirectionCosineMatrixTest, FromEulerAnglesZXZProducesSameResultAsZXZ)
         EulerAngles<RotationSequence::ZXZ, RotationType::INTRINSIC, InFrame, OutFrame>(0.1 * rad, 0.2 * rad, 0.3 * rad);
     const auto dcm1    = TestDcm::ZXZ(intrinsic[0], intrinsic[1], intrinsic[2]);
     const auto dcm2    = intrinsic.to_dcm();
-    const TestDcm dcm3 = DCM<InFrame, InFrame>::Z(intrinsic[0]) * DCM<InFrame, InFrame>::X(intrinsic[1]) *
-                         DCM<InFrame, OutFrame>::Z(intrinsic[2]);
+    const TestDcm dcm3 = DCM<InFrame, OutFrame>::Z(intrinsic[0]) * DCM<InFrame, InFrame>::X(intrinsic[1]) *
+                         DCM<InFrame, InFrame>::Z(intrinsic[2]);
     EXPECT_TRUE(nearly_equal(dcm1, dcm2, REL_TOL, ABS_TOL));
     EXPECT_TRUE(nearly_equal(dcm1, dcm3, REL_TOL, ABS_TOL));
 
@@ -526,8 +526,8 @@ TEST_F(DirectionCosineMatrixTest, FromEulerAnglesZXZProducesSameResultAsZXZ)
         EulerAngles<RotationSequence::ZXZ, RotationType::EXTRINSIC, InFrame, OutFrame>(0.1 * rad, 0.2 * rad, 0.3 * rad);
     const auto dcm4    = TestDcm::ZXZ(extrinsic[2], extrinsic[1], extrinsic[0]);
     const auto dcm5    = extrinsic.to_dcm();
-    const TestDcm dcm6 = DCM<InFrame, InFrame>::Z(extrinsic[2]) * DCM<InFrame, InFrame>::X(extrinsic[1]) *
-                         DCM<InFrame, OutFrame>::Z(extrinsic[0]);
+    const TestDcm dcm6 = DCM<InFrame, OutFrame>::Z(extrinsic[2]) * DCM<InFrame, InFrame>::X(extrinsic[1]) *
+                         DCM<InFrame, InFrame>::Z(extrinsic[0]);
     EXPECT_TRUE(nearly_equal(dcm4, dcm5, REL_TOL, ABS_TOL));
     EXPECT_TRUE(nearly_equal(dcm4, dcm6, REL_TOL, ABS_TOL));
 }
