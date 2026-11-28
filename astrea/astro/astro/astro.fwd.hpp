@@ -21,6 +21,7 @@
 #include <concepts>
 
 #include <astro/frames/framework/frame_concepts.hpp>
+#include <astro/systems/system_concepts.hpp>
 #include <astro/types/enums.hpp>
 
 namespace astrea {
@@ -45,10 +46,12 @@ template <IsFrame auto _frame_>
 class KeplerianPartial;
 template <IsFrame auto _frame_>
 class EquinoctialPartial;
+template <IsCelestialBody auto _body_>
+class Geodetic;
 
 class TwoLineElements;
 class TwoLineElementsPartial;
-class GeneralPerturbations;
+struct GeneralPerturbations;
 class OrbitalElements;
 class OrbitalElementPartials;
 
@@ -96,7 +99,7 @@ struct Perifocal;
 } // namespace frames
 
 template <IsFrame auto _in_frame_, IsFrame auto _out_frame_>
-class DirectionCosineMatrix;
+struct DirectionCosineMatrix;
 
 // Platforms
 template <class Spacecraft_T>
@@ -124,7 +127,7 @@ class Event;
 class EventDetector;
 class Schedule;
 
-class Perturbation;
+struct Perturbation;
 class ForceModel;
 class PerturbingForce;
 class SpaceWeatherProvider;

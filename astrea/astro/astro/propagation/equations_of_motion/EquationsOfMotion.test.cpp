@@ -30,6 +30,7 @@
 #include <astro/state/orbital_elements/OrbitalElements.hpp>
 #include <astro/systems/system_utilities.hpp>
 #include <astro/time/Date.hpp>
+#include <tests/utilities/orbit_presets.hpp>
 
 using mp_units::si::unit_symbols::km;
 using mp_units::si::unit_symbols::m;
@@ -202,7 +203,7 @@ class EquationsOfMotionTest : public testing::Test {
     void SetUp() override
     {
         // Set up test state with basic Cartesian<frames::primary> elements
-        cart  = Cartesian<frames::primary>::LEO(get_mu<frames::primary.origin>());
+        cart  = make_orbit_preset<Cartesian<frames::primary>>(OrbitPreset::LEO, get_mu<frames::primary.origin>());
         state = State(cart, epoch);
     }
 
@@ -396,4 +397,11 @@ TEST_F(EquationsOfMotionTest, ComputeUserDefinedStatePartialsCanBeOverridden)
     ASSERT_EQ(vectorResult.size(), 8);
     EXPECT_DOUBLE_EQ(vectorResult[6], 9.0);
     EXPECT_DOUBLE_EQ(vectorResult[7], 7.0);
+}
+
+TEST_F(EquationsOfMotionTest, Clone)
+{
+    std::unique_ptr<EquationsOfMotion> clone = eomDefault.clone();
+    ASSERT_TRUE(clone != nullptr);
+    ASSERT_EQ(clone->get_expected_set_id(), eomDefault.get_expected_set_id());
 }

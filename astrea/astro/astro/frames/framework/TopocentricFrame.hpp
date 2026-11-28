@@ -50,7 +50,7 @@ namespace astro {
 template <IsBodyFixedFrame auto _parent_, Angle _lat_, Angle _lon_, Distance _alt_>
 inline consteval auto get_x_offset_from_lla()
 {
-    return convert_geodetic_to_body_fixed<_parent_>(_lat_, _lon_, _alt_)[0];
+    return Geodetic<_parent_.origin>::template to_body_fixed<_parent_>(_lat_, _lon_, _alt_)[0];
 }
 
 /**
@@ -65,7 +65,7 @@ inline consteval auto get_x_offset_from_lla()
 template <IsBodyFixedFrame auto _parent_, Angle _lat_, Angle _lon_, Distance _alt_>
 inline consteval auto get_y_offset_from_lla()
 {
-    return convert_geodetic_to_body_fixed<_parent_>(_lat_, _lon_, _alt_)[1];
+    return Geodetic<_parent_.origin>::template to_body_fixed<_parent_>(_lat_, _lon_, _alt_)[1];
 }
 
 /**
@@ -80,7 +80,7 @@ inline consteval auto get_y_offset_from_lla()
 template <IsBodyFixedFrame auto _parent_, Angle _lat_, Angle _lon_, Distance _alt_>
 inline consteval auto get_z_offset_from_lla()
 {
-    return convert_geodetic_to_body_fixed<_parent_>(_lat_, _lon_, _alt_)[2];
+    return Geodetic<_parent_.origin>::template to_body_fixed<_parent_>(_lat_, _lon_, _alt_)[2];
 }
 
 /**

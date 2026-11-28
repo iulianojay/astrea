@@ -16,6 +16,7 @@
 #include <astro/astro.hpp>
 #include <astro/astro.macros.hpp>
 #include <astro/utilities/plotting.hpp>
+#include <tests/utilities/orbit_presets.hpp>
 
 using namespace astrea;
 using namespace astro;
@@ -41,7 +42,7 @@ int main()
     Date epoch;
 
     // Build constellation
-    Keplerian<frames::earth::icrf> initialElements = Keplerian<frames::earth::icrf>::LEO();
+    Keplerian<frames::earth::icrf> initialElements = make_orbit_preset<Keplerian<frames::earth::icrf>>(OrbitPreset::LEO);
     initialElements.set_eccentricity(0.001 * one);
     initialElements.set_inclination(25.0 * deg);
 

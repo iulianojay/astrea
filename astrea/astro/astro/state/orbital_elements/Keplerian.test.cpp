@@ -18,13 +18,14 @@
 
 #include <astro/frames.hpp>
 #include <astro/frames/framework/CartesianVector.hpp>
+#include <astro/state/framework/element_matrix_concepts.hpp>
 #include <astro/state/orbital_elements/Cartesian.hpp>
 #include <astro/state/orbital_elements/Equinoctial.hpp>
 #include <astro/state/orbital_elements/Keplerian.hpp>
-#include <astro/state/orbital_elements/OrbitalElements.hpp>
 #include <astro/systems/system_utilities.hpp>
 #include <astro/time/Date.hpp>
 #include <tests/utilities/comparisons.hpp>
+#include <tests/utilities/orbit_presets.hpp>
 
 using namespace astrea;
 using namespace astro;
@@ -43,7 +44,7 @@ class KeplerianTest : public testing::Test {
     const Unitless REL_TOL = 1.0e-6;
 
     Date epoch;
-    const GravParam mu = get_mu<frames::primary.origin>();
+    const GravParam mu = get_mu<frames::earth::icrf.origin>();
     Distance a         = 7000.0 * km;
     Unitless ecc       = 0.01 * one;
     Angle inc          = 98.0 * deg;
@@ -79,17 +80,6 @@ TEST_F(KeplerianTest, DefaultConstructor)
     ASSERT_TRUE(math::nearly_equal(defaultState.get_true_anomaly(), Angle(0.0 * rad), REL_TOL));
 }
 
-TEST_F(KeplerianTest, UnitlessConstructor)
-{
-    Keplerian<frames::earth::icrf> scaledState(2.0 * one);
-    ASSERT_TRUE(math::nearly_equal(scaledState.get_semimajor(), Distance(2.0 * km), REL_TOL));
-    ASSERT_TRUE(math::nearly_equal(scaledState.get_eccentricity(), Unitless(2.0 * one), REL_TOL));
-    ASSERT_TRUE(math::nearly_equal(scaledState.get_inclination(), Angle(2.0 * rad), REL_TOL));
-    ASSERT_TRUE(math::nearly_equal(scaledState.get_right_ascension(), Angle(2.0 * rad), REL_TOL));
-    ASSERT_TRUE(math::nearly_equal(scaledState.get_argument_of_perigee(), Angle(2.0 * rad), REL_TOL));
-    ASSERT_TRUE(math::nearly_equal(scaledState.get_true_anomaly(), Angle(2.0 * rad), REL_TOL));
-}
-
 TEST_F(KeplerianTest, ParameterizedConstructor)
 {
     ASSERT_NO_THROW(Keplerian<frames::earth::icrf>(a, ecc, inc, raan, w, theta));
@@ -115,36 +105,36 @@ TEST_F(KeplerianTest, EquinoctialConstructor)
 
 TEST_F(KeplerianTest, LEOStaticMethod)
 {
-    ASSERT_NO_THROW(Keplerian<frames::earth::icrf>::LEO());
-    auto leo = Keplerian<frames::earth::icrf>::LEO();
+    ASSERT_NO_THROW(make_orbit_preset<Keplerian<frames::earth::icrf>>(OrbitPreset::LEO));
+    auto leo = make_orbit_preset<Keplerian<frames::earth::icrf>>(OrbitPreset::LEO);
     ASSERT_GT(leo.get_semimajor().numerical_value_in(km), 0.0);
 }
 
 TEST_F(KeplerianTest, LMEOStaticMethod)
 {
-    ASSERT_NO_THROW(Keplerian<frames::earth::icrf>::LMEO());
-    auto lmeo = Keplerian<frames::earth::icrf>::LMEO();
+    ASSERT_NO_THROW(make_orbit_preset<Keplerian<frames::earth::icrf>>(OrbitPreset::LMEO));
+    auto lmeo = make_orbit_preset<Keplerian<frames::earth::icrf>>(OrbitPreset::LMEO);
     ASSERT_GT(lmeo.get_semimajor().numerical_value_in(km), 0.0);
 }
 
 TEST_F(KeplerianTest, GPSStaticMethod)
 {
-    ASSERT_NO_THROW(Keplerian<frames::earth::icrf>::GPS());
-    auto gps = Keplerian<frames::earth::icrf>::GPS();
+    ASSERT_NO_THROW(make_orbit_preset<Keplerian<frames::earth::icrf>>(OrbitPreset::GPS));
+    auto gps = make_orbit_preset<Keplerian<frames::earth::icrf>>(OrbitPreset::GPS);
     ASSERT_GT(gps.get_semimajor().numerical_value_in(km), 0.0);
 }
 
 TEST_F(KeplerianTest, HMEOStaticMethod)
 {
-    ASSERT_NO_THROW(Keplerian<frames::earth::icrf>::HMEO());
-    auto hmeo = Keplerian<frames::earth::icrf>::HMEO();
+    ASSERT_NO_THROW(make_orbit_preset<Keplerian<frames::earth::icrf>>(OrbitPreset::HMEO));
+    auto hmeo = make_orbit_preset<Keplerian<frames::earth::icrf>>(OrbitPreset::HMEO);
     ASSERT_GT(hmeo.get_semimajor().numerical_value_in(km), 0.0);
 }
 
 TEST_F(KeplerianTest, GEOStaticMethod)
 {
-    ASSERT_NO_THROW(Keplerian<frames::earth::icrf>::GEO());
-    auto geo = Keplerian<frames::earth::icrf>::GEO();
+    ASSERT_NO_THROW(make_orbit_preset<Keplerian<frames::earth::icrf>>(OrbitPreset::GEO));
+    auto geo = make_orbit_preset<Keplerian<frames::earth::icrf>>(OrbitPreset::GEO);
     ASSERT_GT(geo.get_semimajor().numerical_value_in(km), 0.0);
 }
 

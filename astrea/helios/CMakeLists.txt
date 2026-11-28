@@ -15,7 +15,7 @@ project(
     DESCRIPTION "Simple Web GUI for Astrea"
     LANGUAGES CXX
 )
-set(CMAKE_CXX_STANDARD 23)
+set(CMAKE_CXX_STANDARD 26)
 
 # Packages only for this
 CPMAddPackage(
@@ -27,7 +27,11 @@ CPMAddPackage(
         "WEBUI_BUILD_EXAMPLES OFF"
 )
 
-find_package(OpenMP REQUIRED)
+if(TARGET webui)
+    target_compile_options(webui PRIVATE -w)
+endif()
+
+find_package(OpenMP COMPONENTS CXX)
 
 # Objects
 set(HELIOS_BASE ${CMAKE_CURRENT_LIST_DIR}/${PROJECT_NAME})
@@ -63,9 +67,14 @@ set(HELIOS_DIRS
 set(HELIOS_LIBS
     mp-units::mp-units 
     webui 
-    OpenMP::OpenMP_CXX
     nlohmann_json::nlohmann_json
 )
+
+if(OpenMP_CXX_FOUND)
+    list(APPEND HELIOS_LIBS OpenMP::OpenMP_CXX)
+else()
+    message(WARNING "OpenMP CXX was not found; building helios without OpenMP support.")
+endif()
 
 # Shared library
 add_library(${PROJECT_NAME}_shared SHARED ${HELIOS_SOURCES} ${HELIOS_HEADERS})

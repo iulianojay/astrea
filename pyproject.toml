@@ -42,3 +42,8 @@ dev = [
     "basemap-data>=1.3.2; python_version < '3.14'",
     "basemap-data-hires>=1.3.2; python_version < '3.14'",
 ]
+
+[[tool.uv.index]]
+name = "pypi"
+url = "https://pypi.org/simple"
+default = true

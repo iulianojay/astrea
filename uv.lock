@@ -1,5 +1,5 @@
 version = 1
-revision = 3
+revision = 5
 requires-python = ">=3.12"
 resolution-markers = [
     "python_full_version >= '3.14' and sys_platform == 'win32'",
@@ -37,12 +37,12 @@ name = "basemap"
 version = "2.0.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "basemap-data", marker = "python_full_version < '3.14'" },
-    { name = "matplotlib", marker = "python_full_version < '3.14'" },
-    { name = "numpy", marker = "python_full_version < '3.14'" },
-    { name = "packaging", marker = "python_full_version < '3.14'" },
-    { name = "pyproj", marker = "python_full_version < '3.14'" },
-    { name = "pyshp", marker = "python_full_version < '3.14'" },
+    { name = "basemap-data" },
+    { name = "matplotlib" },
+    { name = "numpy" },
+    { name = "packaging" },
+    { name = "pyproj" },
+    { name = "pyshp" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/50/e1/f097da590e050be87ba0f9073b0e1bd706a5b8bd446347af28e95effc8e5/basemap-2.0.0.tar.gz", hash = "sha256:923a643a26db6e1704fb7ca45a7636fb190dbc123ad8d23401057a8f5b884bd8", size = 150239, upload-time = "2025-06-13T14:38:23.569Z" }
 wheels = [
@@ -324,7 +324,7 @@ version = "2.34.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "colorama" },
-    { name = "distro", marker = "(platform_system == 'FreeBSD' and sys_platform != 'emscripten' and sys_platform != 'win32') or sys_platform == 'linux'" },
+    { name = "distro", marker = "(platform_system == 'FreeBSD' and sys_platform != 'emscripten' and sys_platform != 'linux' and sys_platform != 'win32') or sys_platform == 'linux'" },
     { name = "fasteners" },
     { name = "jinja2" },
     { name = "patch-ng" },
@@ -1459,7 +1459,7 @@ name = "pyproj"
 version = "3.7.2"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "certifi", marker = "python_full_version < '3.14'" },
+    { name = "certifi" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/04/90/67bd7260b4ea9b8b20b4f58afef6c223ecb3abf368eb4ec5bc2cdef81b49/pyproj-3.7.2.tar.gz", hash = "sha256:39a0cf1ecc7e282d1d30f36594ebd55c9fae1fda8a2622cee5d100430628f88c", size = 226279, upload-time = "2025-08-14T12:05:42.18Z" }
 wheels = [

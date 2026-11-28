@@ -9,12 +9,20 @@ examples_path := examples
 arch := x86_64
 cc := gcc
 cxx := g++
-cc := gcc
-cxx_std := 23
-cxx_name := $(shell echo $(cxx) | sed 's/g++/gcc/; s/clang++/clang/' | sed 's/-[0-9.]*$$//')
+cxx_std := 26
+cxx_name := $(shell echo $(cxx) | sed 's/clang++/clang/; s/g++/gcc/' | sed 's/-[0-9.]*$$//')
 cxx_ver := $(shell $(cxx) -dumpversion | cut -d. -f1)
+gcov_exec = $(shell dirname "$$(readlink -f "$$(command -v $(cxx))")")/gcov
 comp := $(cxx_name)-$(cxx_ver)-$(cxx_std)
 tests_path := tests
+uname_s := $(shell uname -s 2>/dev/null || echo Unknown)
+
+conan_ssl_opts :=
+ifneq (,$(findstring MINGW,$(uname_s)))
+	conan_ssl_opts += -o cpr/*:with_ssl=winssl -o libcurl/*:with_ssl=schannel
+else ifeq ($(uname_s),Darwin)
+	conan_ssl_opts += -o cpr/*:with_ssl=darwinssl
+endif
 
 ifneq (,$(wildcard $(config_path)/.venv/bin/activate))
 	venv_activate := $(config_path)/.venv/bin/activate
@@ -24,7 +32,7 @@ else
 	venv_activate :=
 endif
 # Compiler configuration - can be 'gcc' or 'clang' or 'mingw'
-compiler := gcc
+compiler := $(cxx_name)
 toolchain_file :=
 toolchain_make := -G Ninja
 extra_cmake_args :=
@@ -40,6 +48,7 @@ else ifeq ($(compiler),msvc)
 endif
 
 CMAKE := source $(venv_activate) && cmake
+CONAN := source $(venv_activate) && conan
 build_type := Release
 build_type_lower := $(shell echo $(build_type) | tr A-Z a-z)
 build_path := $(abspath ./build/$(compiler)/$(comp)/$(build_type))
@@ -52,10 +61,12 @@ build_checkcase_db := OFF
 build_static := OFF
 run_6dof_checkcases := OFF
 verbose_makefile := OFF
+jobs := $(shell nproc 2>/dev/null || sysctl -n hw.ncpu 2>/dev/null || echo 6)
 warnings_as_errors := OFF
 username := $(shell whoami)
 eop_file := $(abspath ./astrea/astro/data/earth_orientation_parameters/eop.long)
 rebuild_eop := ON
+eop_start_year := 1990
 
 .DEFAULT_GOAL := install
 
@@ -70,15 +81,34 @@ profile: profiling install
 
 .PHONY: install
 install: build
-	$(CMAKE) --build $(build_path) --target install -j10
+	$(CMAKE) --build $(build_path) --target install -j$(jobs)
+
+.PHONY: conan-install
+
+.PHONY: ensure-conan-profile
+ensure-conan-profile:
+	@if ! ( $(CONAN) profile show -pr default >/dev/null 2>&1 ); then \
+		echo "Conan default profile not found. Running 'conan profile detect --force'."; \
+		$(CONAN) profile detect --force; \
+	fi
+
+conan-install: ensure-conan-profile
+	mkdir -p $(build_path)
+	$(CONAN) install . \
+	--output-folder=$(config_path) \
+	--build=missing \
+	-s build_type=$(build_type) \
+	$(conan_ssl_opts)
+	rm -f $(build_path)/CMakeCache.txt
 
 .PHONY: build
-build:
+build: conan-install
 	$(CMAKE) -S . -B $(build_path) \
 	$(toolchain_make) \
+	-DCMAKE_TOOLCHAIN_FILE=$(build_path)/conan_toolchain.cmake \
 	$(toolchain_file) \
 	-DCMAKE_CXX_COMPILER=$(cxx) \
-	-DCMAKE_C_COMPILER=$(cc) \
+	-DCMAKE_C_COMPILER=$(shell echo $(cxx) | sed 's/clang++/clang/;s/g++/gcc/') \
 	-DCMAKE_BUILD_TYPE=$(build_type) \
 	-DCMAKE_INSTALL_PREFIX:PATH=$(install_path) \
 	-DCPM_SOURCE_CACHE=$(config_path)/.cpm-cache \
@@ -93,6 +123,7 @@ build:
 	-DBUILD_6DOF_CHECKCASES=$(run_6dof_checkcases) \
 	-DEOP_FILE=$(eop_file) \
 	-DREBUILD_EOP=$(rebuild_eop) \
+	-DEOP_START_YEAR=$(eop_start_year) \
 
 .PHONY: build-gcc
 build-gcc: gcc build
@@ -100,28 +131,38 @@ build-gcc: gcc build
 .PHONY: build-mingw
 build-mingw: mingw build
 
-.PHONY: debug
-debug:
-	$(eval build_type = Debug)
+# Build type selection targets
+define refresh_build_paths
 	$(eval build_type_lower := $(shell echo $(build_type) | tr A-Z a-z))
 	$(eval build_path := $(abspath ./build/$(compiler)/$(comp)/$(build_type)))
 	$(eval install_path := $(abspath ./install/$(compiler)/$(comp)/$(build_type)))
+endef
+
+.PHONY: debug
+debug:
+	$(eval build_type = Debug)
+	$(call refresh_build_paths)
 
 .PHONY: release
 release:
 	$(eval build_type = Release)
-	$(eval build_type_lower := $(shell echo $(build_type) | tr A-Z a-z))
-	$(eval build_path := $(abspath ./build/$(compiler)/$(comp)/$(build_type)))
-	$(eval install_path := $(abspath ./install/$(compiler)/$(comp)/$(build_type)))
+	$(call refresh_build_paths)
 
 .PHONY: relwithdebinfo
 relwithdebinfo:
 	$(eval build_type = RelWithDebInfo)
-	$(eval build_type_lower := $(shell echo $(build_type) | tr A-Z a-z))
-	$(eval build_path := $(abspath ./build/$(compiler)/$(comp)/$(build_type)))
-	$(eval install_path := $(abspath ./install/$(compiler)/$(comp)/$(build_type)))
+	$(call refresh_build_paths)
 
 # Compiler selection targets
+define refresh_compiler_paths
+	$(eval cxx_name := $(shell echo $(cxx) | sed 's/clang++/clang/; s/g++/gcc/' | sed 's/-[0-9.]*$$//'))
+	$(eval cxx_ver := $(shell $(cxx) -dumpversion | cut -d. -f1))
+	$(eval gcov_exec = $(shell dirname "$$(readlink -f "$$(command -v $(cxx))")")/gcov)
+	$(eval comp := $(cxx_name)-$(cxx_ver)-$(cxx_std))
+	$(eval build_path := $(abspath ./build/$(compiler)/$(comp)/$(build_type)))
+	$(eval install_path := $(abspath ./install/$(compiler)/$(comp)/$(build_type)))
+endef
+
 .PHONY: gcc
 gcc:
 	$(eval cc := gcc)
@@ -129,8 +170,7 @@ gcc:
 	$(eval compiler = gcc)
 	$(eval toolchain_file = )
 	$(eval toolchain_make = -G Ninja)
-	$(eval build_path := $(abspath ./build/$(compiler)/$(comp)/$(build_type)))
-	$(eval install_path := $(abspath ./install/$(compiler)/$(comp)/$(build_type)))
+	$(call refresh_compiler_paths)
 
 .PHONY: clang
 clang:
@@ -139,24 +179,21 @@ clang:
 	$(eval compiler = clang)
 	$(eval toolchain_file = )
 	$(eval toolchain_make = -G Ninja)
-	$(eval build_path := $(abspath ./build/$(compiler)/$(comp)/$(build_type)))
-	$(eval install_path := $(abspath ./install/$(compiler)/$(comp)/$(build_type)))
+	$(call refresh_compiler_paths)
 
 .PHONY: msvc
 msvc:
 	$(eval compiler = msvc)
 	$(eval toolchain_file = )
 	$(eval toolchain_make = -G "Visual Studio 18 2026" -A x64)
-	$(eval build_path := $(abspath ./build/$(compiler)/$(comp)/$(build_type)))
-	$(eval install_path := $(abspath ./install/$(compiler)/$(comp)/$(build_type)))
+	$(call refresh_compiler_paths)
 
 .PHONY: mingw
 mingw:
 	$(eval compiler = mingw)
 	$(eval toolchain_file = -DCMAKE_TOOLCHAIN_FILE=$(abspath cmake/windows_toolchain.cmake))
 	$(eval toolchain_make = -G "MinGW Makefiles")
-	$(eval build_path := $(abspath ./build/$(compiler)/$(comp)/$(build_type)))
-	$(eval install_path := $(abspath ./install/$(compiler)/$(comp)/$(build_type)))
+	$(call refresh_compiler_paths)
 
 .PHONY: tests
 tests:
@@ -217,7 +254,7 @@ run_checkcases:
 	cd $(install_path)/bin/regression/ && ./orbital.test --gtest_filter=*.Checkcase* --gtest_catch_exceptions=0 2> /dev/null
 
 .PHONY: build_report
-build_report: run_checkcases
+build_report: #run_checkcases
 	cd astrea/astro/pyastro/6dof_report && python3 nasa_6dof_report.py
 
 .PHONY: docker
@@ -242,7 +279,7 @@ new:
 	rm -rf build
 	rm -rf install
 
-CLANG_TIDY_CMD = clang-tidy -p=$(build_path) --extra-arg=-Who-unknown-warning-option --extra-arg=-std=c++23
+CLANG_TIDY_CMD = clang-tidy -p=$(build_path) --extra-arg=-Who-unknown-warning-option --extra-arg=-std=c++26
 .PHONY: check
 check: build
 	find $(source_path) -regex '.*\.\(cpp\|hpp\|c\|h\)' | xargs $(CLANG_TIDY_CMD)
@@ -255,11 +292,11 @@ coverage-html: debug run_tests run_examples
 	-o ../.gcovr/coverage.html \
 	--merge-mode-functions=separate \
 	--filter ".*/astrea/" \
-	--exclude ".*.test.cpp|.*/tests/.*|.*/snapshot/.*|.*plotting.*|.*/plots/.*|.*SpatialIndex.*" \
+	--exclude ".*.test.cpp|.*/tests/.*|.*/snapshot/.*|.*plotting.*|.*/plots/.*|.*/examples/.*|.*SpatialIndex.*" \
 	--exclude-unreachable-branches -s \
 	--gcov-ignore-errors=no_working_dir_found \
 	--gcov-ignore-parse-errors=suspicious_hits.warn_once_per_file \
-	--gcov-executable gcov-15
+	--gcov-executable $(gcov_exec)
 
 .PHONY: coverage
 coverage: debug run_tests run_examples
@@ -268,11 +305,11 @@ coverage: debug run_tests run_examples
 	-o ../.gcovr/coverage.xml  \
 	--merge-mode-functions=separate \
 	--filter ".*/astrea/" \
-	--exclude ".*.test.cpp|.*/tests/.*|.*/snapshot/.*|.*plotting.*|.*/plots/.*|.*SpatialIndex.*" \
+	--exclude ".*.test.cpp|.*/tests/.*|.*/snapshot/.*|.*plotting.*|.*/plots/.*|.*/examples/.*|.*SpatialIndex.*" \
 	--exclude-unreachable-branches -s \
 	--gcov-ignore-errors=no_working_dir_found \
 	--gcov-ignore-parse-errors=suspicious_hits.warn_once_per_file \
-	--gcov-executable gcov-15
+	--gcov-executable $(gcov_exec)
 
 .PHONY: build_env
 build_env:

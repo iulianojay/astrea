@@ -10,6 +10,9 @@ ASTRO_ROOT = pathlib.Path(
 )
 
 
+ROWS_PER_CHUNK = 500
+
+
 def write_to_file(outPath: str, eopData: pd.DataFrame, rebuild: bool) -> None:
     """
     Format and write x, y, z position coefficients to file
@@ -46,7 +49,9 @@ def write_to_file(outPath: str, eopData: pd.DataFrame, rebuild: bool) -> None:
         fID.write(f"\t{className}() = delete;\n")
         fID.write(f"\t~{className}() = delete;\n\n")
 
-        # Build a struct for each line of the EOP data
+        # Build a struct for each line of the EOP data. Only the parameters the library consumes are stored; the
+        # uncertainties, correlations, and celestial pole offsets in the source file are intentionally dropped to keep
+        # the generated table small.
         fID.write(f"\tstatic constexpr int N_PARAM = {nEntries};\n")
         fID.write(f"\tstruct EopRow {{\n")
         fID.write(f"\t\tDate MJD;\n")
@@ -59,31 +64,6 @@ def write_to_file(outPath: str, eopData: pd.DataFrame, rebuild: bool) -> None:
         fID.write(
             f"\t\tmp_units::quantity<mp_units::si::milli<mp_units::si::second>> TAI_UT1;\n"
         )
-        fID.write(
-            f"\t\tmp_units::quantity<mp_units::si::milli<mp_units::si::arcsecond>> PMxSig;\n"
-        )
-        fID.write(
-            f"\t\tmp_units::quantity<mp_units::si::milli<mp_units::si::arcsecond>> PMySig;\n"
-        )
-        fID.write(
-            f"\t\tmp_units::quantity<mp_units::si::milli<mp_units::si::arcsecond>> UTSig;\n"
-        )
-        fID.write(f"\t\tmp_units::quantity<mp_units::one> PMxy;\n")
-        fID.write(f"\t\tmp_units::quantity<mp_units::one> PMxUT;\n")
-        fID.write(f"\t\tmp_units::quantity<mp_units::one> PMyUT;\n")
-        fID.write(
-            f"\t\tmp_units::quantity<mp_units::si::milli<mp_units::si::arcsecond>> DX;\n"
-        )
-        fID.write(
-            f"\t\tmp_units::quantity<mp_units::si::milli<mp_units::si::arcsecond>> DY;\n"
-        )
-        fID.write(
-            f"\t\tmp_units::quantity<mp_units::si::milli<mp_units::si::arcsecond>> DXSig;\n"
-        )
-        fID.write(
-            f"\t\tmp_units::quantity<mp_units::si::milli<mp_units::si::arcsecond>> DYSig;\n"
-        )
-        fID.write(f"\t\tmp_units::quantity<mp_units::one> Corr_DxDy;\n")
         fID.write(f"\t}};\n\n")
 
         # data array
@@ -105,34 +85,36 @@ def write_to_file(outPath: str, eopData: pd.DataFrame, rebuild: bool) -> None:
         fID.write(f"namespace eop {{\n\n")
 
         fID.write(f"using namespace mp_units;\n")
-        fID.write(f"using namespace mp_units::si;\n")
+        fID.write(f"using namespace mp_units::si;\n\n")
 
-        # Write the x coefficients to file
-        fID.write(
-            f"const std::array<{className}::EopRow, {nEntries}> {className}::DATA {{\n"
-        )
-        for index, row in eopData.iterrows():
-            fID.write(
-                f"\tEopRow({{ Date(JulianDate(JulianDateClock::duration{{{2400000.5 + row['MJD (TAI)']}}})), "
-            )
-            fID.write(f"{row['PMx (mas)']} * milli<arcsecond>, ")
-            fID.write(f"{row['PMy (mas)']} * milli<arcsecond>, ")
-            fID.write(f"{row['TAI-UT1 (ms)']} * milli<second>, ")
-            fID.write(f"{row['PMxSig (mas)']} * milli<arcsecond>, ")
-            fID.write(f"{row['PMySig (mas)']} * milli<arcsecond>, ")
-            fID.write(f"{row['UTSig (ms)']} * milli<arcsecond>, ")
-            fID.write(f"{row['PMxy']} * one, ")
-            fID.write(f"{row['PMxUT']} * one, ")
-            fID.write(f"{row['PMyUT']} * one, ")
-            fID.write(f"{row['DX (mas)']} * milli<arcsecond>, ")
-            fID.write(f"{row['DY (mas)']} * milli<arcsecond>, ")
-            fID.write(f"{row['DXSig (mas)']} * milli<arcsecond>, ")
-            fID.write(f"{row['DYSig (mas)']} * milli<arcsecond>, ")
-            fID.write(f"{row['Corr DxDy']} * one }})")
-            if index < nEntries - 1:
-                fID.write(",")
-            fID.write("\n")
-        fID.write(f"}};\n\n")
+        # A single huge initializer list compiles in super-linear time and memory (about an hour under clang), so the
+        # table is filled row by row from several smaller functions instead.
+        fID.write(f"namespace {{\n\n")
+        fID.write(f"using EopRow = {className}::EopRow;\n")
+        fID.write(f"using EopTable = std::array<EopRow, {nEntries}>;\n")
+        nChunks = (nEntries + ROWS_PER_CHUNK - 1) // ROWS_PER_CHUNK
+
+        for chunk in range(nChunks):
+            fID.write(f"\nvoid fill_rows_{chunk}(EopTable& rows)\n{{\n")
+            chunkData = eopData.iloc[chunk * ROWS_PER_CHUNK : (chunk + 1) * ROWS_PER_CHUNK]
+            for position, (_, row) in enumerate(chunkData.iterrows()):
+                index = chunk * ROWS_PER_CHUNK + position
+                fID.write(
+                    f"\trows[{index}] = EopRow({{ Date(JulianDate(JulianDateClock::duration{{{2400000.5 + row['MJD (TAI)']}}})), "
+                )
+                fID.write(f"{row['PMx (mas)']} * milli<arcsecond>, ")
+                fID.write(f"{row['PMy (mas)']} * milli<arcsecond>, ")
+                fID.write(f"{row['TAI-UT1 (ms)']} * milli<second> }});\n")
+            fID.write(f"}}\n")
+
+        fID.write(f"\nEopTable build_table()\n{{\n")
+        fID.write(f"\tEopTable rows;\n")
+        for chunk in range(nChunks):
+            fID.write(f"\tfill_rows_{chunk}(rows);\n")
+        fID.write(f"\treturn rows;\n}}\n\n")
+        fID.write(f"}} // namespace\n\n")
+
+        fID.write(f"const EopTable {className}::DATA = build_table();\n\n")
 
         fID.write(f"}} // namespace eop \n")
         fID.write(f"}} // namespace astro \n")
@@ -161,6 +143,12 @@ if __name__ == "__main__":
         type=bool,
         default=False,
         help="Rebuild the ephemeris files even if they already exist. Default is False.",
+    )
+    parser.add_argument(
+        "--start-year",
+        type=int,
+        default=None,
+        help="Discard rows before this calendar year to shrink the generated table. Default is to keep all rows.",
     )
     args = parser.parse_args()
 
@@ -202,5 +190,15 @@ if __name__ == "__main__":
     )
     eopData = eopData.iloc[:, : len(columns)]  # Keep only the first 15 columns
     eopData.columns = columns
+
+    if args.start_year is not None:
+        # MJD 0 is 1858-11-17
+        years = (
+            pd.Timestamp("1858-11-17") + pd.to_timedelta(eopData["MJD (TAI)"], unit="D")
+        ).dt.year
+        eopData = eopData[years >= args.start_year].reset_index(drop=True)
+        if eopData.shape[0] < 2:
+            print(f"Fewer than two EOP rows remain after discarding rows before {args.start_year}.")
+            exit(1)
 
     write_to_file(output_path, eopData, rebuild)

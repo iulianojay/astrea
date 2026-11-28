@@ -22,6 +22,12 @@
 using namespace astrea;
 using namespace astro;
 
+int main(int argc, char** argv)
+{
+    ::testing::InitGoogleTest(&argc, argv);
+    return RUN_ALL_TESTS();
+}
+
 TEST(SpaceWeatherDataTest, DefaultConstructorCreatesEmptyData)
 {
     SpaceWeatherData data;
@@ -71,8 +77,44 @@ TEST(SpaceWeatherDataTest, AtThrowsWhenOutOfRange)
     EXPECT_THROW((void)data.at(data.size()), std::out_of_range);
 }
 
-int main(int argc, char** argv)
+TEST(SpaceWeatherDataTest, AtReturnsCorrectRow)
 {
-    ::testing::InitGoogleTest(&argc, argv);
-    return RUN_ALL_TESTS();
+    SpaceWeatherData data(get_default_space_weather_data());
+    ASSERT_FALSE(data.empty());
+
+    const auto& row = data.at(0);
+    EXPECT_EQ(row.date, data.data().front().date);
+}
+
+TEST(SpaceWeatherDataTest, SizeReturnsCorrectNumberOfRows)
+{
+    SpaceWeatherData data(get_default_space_weather_data());
+    ASSERT_FALSE(data.empty());
+
+    EXPECT_EQ(data.size(), data.data().size());
+}
+
+TEST(SpaceWeatherDataTest, EmptyReturnsTrueForEmptyData)
+{
+    SpaceWeatherData data;
+    EXPECT_TRUE(data.empty());
+
+    SpaceWeatherData data2(get_default_space_weather_data());
+    EXPECT_FALSE(data2.empty());
+}
+
+TEST(SpaceWeatherDataTest, InfileReturnsCorrectPath)
+{
+    const std::filesystem::path infile = get_default_space_weather_data();
+    SpaceWeatherData data(infile);
+    EXPECT_EQ(data.infile(), infile);
+}
+
+TEST(SpaceWeatherDataTest, AccessOperatorReturnsCorrectRow)
+{
+    SpaceWeatherData data(get_default_space_weather_data());
+    ASSERT_FALSE(data.empty());
+
+    const auto& row = data[0];
+    EXPECT_EQ(row.date, data.data().front().date);
 }

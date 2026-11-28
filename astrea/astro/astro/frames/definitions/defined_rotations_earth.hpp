@@ -28,7 +28,7 @@
 #include <astro/frames/definitions/body_centered_inertial_frames.hpp>
 #include <astro/frames/definitions/body_fixed_frames.hpp>
 #include <astro/frames/definitions/defined_rotations.hpp>
-#include <astro/systems/celestial_bodies.hpp>
+#include <astro/systems/celestial_bodies_impl.hpp>
 #include <astro/systems/eop_interpolation.hpp>
 #include <astro/systems/system_utilities.hpp>
 #include <astro/time/Date.hpp>
@@ -292,7 +292,7 @@ inline constexpr std::array<mp_units::quantity<mp_units::si::unit_symbols::arcse
  */
 inline std::array<mp_units::quantity<mp_units::si::unit_symbols::arcsec>, 2> get_polar_motion(const Date& date) noexcept
 {
-    using EopRow             = eop::EarthOrientationParameters::EopRow;
+    using EopRow              = eop::EarthOrientationParameters::EopRow;
     const auto eopInterpolant = eop::get_eop_interpolant(date);
     return { eopInterpolant.interpolate(&EopRow::PMx), eopInterpolant.interpolate(&EopRow::PMy) };
 }

@@ -29,8 +29,8 @@
 // astro
 #include <astro/astro.fwd.hpp>
 #include <astro/frames/definitions.hpp>
-#include <astro/frames/framework/CartesianVector.hpp>
-#include <astro/frames/framework/frame_concepts.hpp>
+#include <astro/frames/framework.hpp>
+#include <astro/state/framework/AngularElementsInterface.hpp>
 #include <astro/state/orbital_elements/OrbitalElements.hpp>
 #include <astro/systems/system_concepts.hpp>
 #include <astro/systems/system_utilities.hpp>
@@ -47,189 +47,145 @@ namespace astro {
  * @tparam _body_ The celestial body NTTP that defines the reference frames.
  */
 template <IsCelestialBody auto _body_>
-class Spherical {
+class Spherical : public AngularElementsInterface<Spherical<_body_>, _body_, Distance, Angle, Angle> {
 
-    template <IsCelestialBody auto body>
-    friend std::ostream& operator<<(std::ostream&, Spherical<body> const&);
+    using BaseType = AngularElementsInterface<Spherical<_body_>, _body_, Distance, Angle, Angle>;
+
+    friend std::ostream& operator<<(std::ostream& os, Spherical const& elements)
+    {
+        os << "[";
+        os << elements.get_range() << ", ";
+        os << elements.get_inclination() << ", ";
+        os << elements.get_azimuth();
+        os << "] (Spherical)";
+        return os;
+    }
 
   public:
-    static constexpr auto body          = _body_; //!< The celestial body of this Spherical state.
-    static constexpr auto _icrf_frame_  = make_frame(_body_, axes::icrf); //!< Inertial frame for the body.
-    static constexpr auto _fixed_frame_ = get_body_fixed_frame<_body_>(); //!< Body-fixed rotating frame.
+    template <IsCelestialBody auto B>
+    using Self = Spherical<B>; // For introspection
+    using BaseType::BaseType;  // Inherit constructors from the base class
+    using BaseType::operator=; // Inherit assignment operator from the base class
 
     /**
      * @brief Default constructor for Spherical.
      *
      * Initializes the Spherical state vector with zero values.
      */
-    Spherical(Unitless scale = 0.0 * astrea::detail::unitless) :
-        _range(scale * astrea::detail::distance_unit),
-        _inclination(scale * astrea::detail::angle_unit),
-        _azimuth(scale * astrea::detail::angle_unit)
+    Spherical() = default;
+
+    /**
+     * @brief Get the range value of the Spherical state vector.
+     *
+     * @return The range value.
+     */
+    inline constexpr const Distance& get_range() const { return this->template get<0>(); }
+
+    /**
+     * @brief Get the inclination value of the Spherical state vector.
+     *
+     * @return The inclination value.
+     */
+    inline constexpr const Angle& get_inclination() const { return this->template get<1>(); }
+
+    /**
+     * @brief Get the azimuth value of the Spherical state vector.
+     *
+     * @return The azimuth value.
+     */
+    inline constexpr const Angle& get_azimuth() const { return this->template get<2>(); }
+
+    /**
+     * @brief Get the range value of the Spherical state vector.
+     *
+     * @return The range value.
+     */
+    inline constexpr Distance& get_range() { return this->template get<0>(); }
+
+    /**
+     * @brief Get the inclination value of the Spherical state vector.
+     *
+     * @return The inclination value.
+     */
+    inline constexpr Angle& get_inclination() { return this->template get<1>(); }
+
+    /**
+     * @brief Get the azimuth value of the Spherical state vector.
+     *
+     * @return The azimuth value.
+     */
+    inline constexpr Angle& get_azimuth() { return this->template get<2>(); }
+
+    /**
+     * @brief Set the range value of the Spherical state vector.
+     *
+     * @param range The range value.
+     */
+    inline constexpr void set_range(const Distance& range) { this->template get<0>() = range; }
+
+    /**
+     * @brief Set the inclination value of the Spherical state vector.
+     *
+     * @param inclination The inclination value.
+     */
+    inline constexpr void set_inclination(const Angle& inclination) { this->template get<1>() = inclination; }
+
+    /**
+     * @brief Set the azimuth value of the Spherical state vector.
+     *
+     * @param azimuth The azimuth value.
+     */
+    inline constexpr void set_azimuth(const Angle& azimuth) { this->template get<2>() = azimuth; }
+
+
+    /**
+     * @brief Convert a body-fixed radius vector to spherical coordinates.
+     *
+     * @param rFixed The radius vector in the body-fixed frame.
+     * @return The range, inclination, and azimuth as a tuple.
+     */
+    template <IsFrame auto _frame_>
+        requires(IsBodyFixedFrame<decltype(_frame_)>)
+    static inline constexpr std::tuple<Distance, Angle, Angle> from_body_fixed(const RadiusVector<_frame_>& rFixed)
     {
+        using mp_units::sqrt;
+        using mp_units::si::acos;
+        using mp_units::si::unit_symbols::rad;
+
+        const Distance range    = rFixed.norm();
+        const Angle inclination = acos(rFixed.get_z() / range);
+
+        const Distance& x = rFixed.get_x();
+        const Distance& y = rFixed.get_y();
+
+        Angle azimuth;
+        if (x == 0.0 && y == 0.0) { azimuth = 0.0 * rad; }
+        else {
+            azimuth = acos(x / sqrt(x * x + y * y));
+            if (y < 0.0) { azimuth = -azimuth; }
+        }
+        return std::make_tuple(range, inclination, azimuth);
     }
 
+
     /**
-     * @brief Constructor for Spherical with range, inclination, and azimuth.
+     * @brief Convert spherical coordinates to a body-fixed radius vector.
      *
-     * @param range Range
-     * @param inclination Inclination
-     * @param azimuth Azimuth
+     * @param range The range.
+     * @param inclination The inclination in radians.
+     * @param azimuth The azimuth in radians.
+     * @return The radius vector in the body-fixed frame.
      */
-    Spherical(const Distance& range, const Angle& inclination, const Angle& azimuth) :
-        _range(range),
-        _inclination(inclination),
-        _azimuth(azimuth)
+    template <IsFrame auto _frame_>
+        requires(IsBodyFixedFrame<decltype(_frame_)>)
+    static inline constexpr RadiusVector<_frame_> to_body_fixed(const Distance& range, const Angle& inclination, const Angle& azimuth)
     {
+        using mp_units::si::cos;
+        using mp_units::si::sin;
+
+        return RadiusVector<_frame_>(range * sin(inclination) * cos(azimuth), range * sin(inclination) * sin(azimuth), range * cos(inclination));
     }
-
-    /**
-     * @brief Constructor for Spherical from any inertial radius vector centred on the same body.
-     *
-     * Accepts any frame whose origin matches _body_ and whose axis is the ICRF axis.
-     *
-     * @tparam _frame_ The inertial frame of the radius vector.
-     * @param r Radius vector in an ICRF-axis frame centred on the body.
-     * @param date Date for the frame transformation.
-     */
-    template <auto _frame_>
-        requires(equivalent(_frame_, make_frame(_body_, axes::icrf)))
-    Spherical(const RadiusVector<_frame_>& r, const Date& date);
-
-    /**
-     * @brief Constructor for Spherical from a body-fixed radius vector.
-     *
-     * @param r Radius vector in the body-fixed frame
-     */
-    Spherical(const RadiusVector<_fixed_frame_>& r);
-
-    /**
-     * @brief Constructor for Spherical from orbital elements.
-     *
-     * @param elements Orbital elements
-     * @param date Date for the frame transformation
-     */
-    template <IsOrbitalElements T>
-    Spherical(const T& elements, const Date& date)
-    {
-        static const GravParam mu = get_mu<_body_>();
-        *this = Spherical<_body_>(Cartesian<T::frame>(elements, mu).get_position().template in_frame<_fixed_frame_>(date));
-    }
-
-    /**
-     * @brief Copy constructor for Spherical.
-     */
-    Spherical(const Spherical<_body_>&);
-
-    /**
-     * @brief Move constructor for Spherical.
-     */
-    Spherical(Spherical<_body_>&&) noexcept;
-
-    /**
-     * @brief Move assignment operator for Spherical.
-     */
-    Spherical<_body_>& operator=(Spherical<_body_>&&) noexcept;
-
-    /**
-     * @brief Copy assignment operator for Spherical.
-     */
-    Spherical<_body_>& operator=(const Spherical<_body_>&);
-
-    /**
-     * @brief Default destructor for Spherical.
-     */
-    ~Spherical() = default;
-
-    bool operator==(const Spherical<_body_>& other) const;
-    bool operator!=(const Spherical<_body_>& other) const;
-
-    Spherical<_body_> operator+(const Spherical<_body_>& other) const;
-    Spherical<_body_>& operator+=(const Spherical<_body_>& other);
-    Spherical<_body_> operator-(const Spherical<_body_>& other) const;
-    Spherical<_body_>& operator-=(const Spherical<_body_>& other);
-    Spherical<_body_> operator*(const Unitless& multiplier) const;
-    Spherical<_body_>& operator*=(const Unitless& multiplier);
-    std::vector<Unitless> operator/(const Spherical<_body_>& other) const;
-    Spherical<_body_> operator/(const Unitless& divisor) const;
-    Spherical<_body_>& operator/=(const Unitless& divisor);
-
-    /**
-     * @brief Converts the Spherical state to a body-fixed radius vector.
-     */
-    RadiusVector<_fixed_frame_> get_position() const;
-
-    /**
-     * @brief Converts the Spherical state to an inertial radius vector.
-     *
-     * @param date Date for the frame transformation
-     */
-    RadiusVector<_icrf_frame_> get_position(const Date& date) const;
-
-    const Angle& get_azimuth() const { return _azimuth; }
-    const Angle& get_inclination() const { return _inclination; }
-    const Distance& get_range() const { return _range; }
-
-    Spherical<_body_>
-        interpolate(const Time& thisTime, const Time& otherTime, const Spherical<_body_>& other, const Time& targetTime) const;
-
-  private:
-    Distance _range;    //!< Range
-    Angle _inclination; //!< Inclination
-    Angle _azimuth;     //!< Azimuth
 };
-
-
-/**
- * @brief Convert a body-fixed radius vector to spherical coordinates.
- *
- * @param rFixed The radius vector in the body-fixed frame.
- * @return The range, inclination, and azimuth as a tuple.
- */
-template <IsFrame auto _frame_>
-    requires(IsBodyFixedFrame<decltype(_frame_)>)
-std::tuple<Distance, Angle, Angle> convert_body_fixed_to_spherical(const RadiusVector<_frame_>& rFixed)
-{
-    using mp_units::sqrt;
-    using mp_units::si::acos;
-    using mp_units::si::unit_symbols::km;
-    using mp_units::si::unit_symbols::rad;
-
-    const Distance range    = rFixed.norm();
-    const Angle inclination = acos(rFixed.get_z() / range);
-
-    const Distance& x = rFixed.get_x();
-    const Distance& y = rFixed.get_y();
-
-    Angle azimuth;
-    if (x == 0.0 * km && y == 0.0 * km) { azimuth = 0.0 * rad; }
-    else {
-        azimuth = acos(x / sqrt(x * x + y * y));
-        if (y < 0.0 * km) { azimuth = -azimuth; }
-    }
-    return std::make_tuple(range, inclination, azimuth);
-}
-
-
-/**
- * @brief Convert spherical coordinates to a body-fixed radius vector.
- *
- * @param range The range.
- * @param inclination The inclination in radians.
- * @param azimuth The azimuth in radians.
- * @return The radius vector in the body-fixed frame.
- */
-template <IsFrame auto _frame_>
-    requires(IsBodyFixedFrame<decltype(_frame_)>)
-RadiusVector<_frame_> convert_spherical_to_body_fixed(const Distance& range, const Angle& inclination, const Angle& azimuth)
-{
-    using mp_units::si::cos;
-    using mp_units::si::sin;
-
-    return RadiusVector<_frame_>(range * sin(inclination) * cos(azimuth), range * sin(inclination) * sin(azimuth), range * cos(inclination));
-}
 
 } // namespace astro
 } // namespace astrea
-
-#include <astro/state/angular_elements/Spherical.ipp>

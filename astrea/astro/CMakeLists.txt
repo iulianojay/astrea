@@ -16,7 +16,7 @@ project(
     LANGUAGES CXX
 )
 
-set(CMAKE_CXX_STANDARD 23)
+set(CMAKE_CXX_STANDARD 26)
 
 # Objects
 set(ASTRO_BASE ${CMAKE_CURRENT_LIST_DIR}/${PROJECT_NAME})
@@ -169,6 +169,9 @@ set(ASTRO_HEADERS
     ${ASTRO_BASE}/state/UserDefinedState.hpp
     ${ASTRO_BASE}/state/UserDefinedStatePartial.hpp
 
+    ${ASTRO_BASE}/state/framework/ElementMatrix.hpp
+    ${ASTRO_BASE}/state/framework/OrbitalElementsInterface.hpp
+
     ${ASTRO_BASE}/state/attitude/Attitude.hpp
     ${ASTRO_BASE}/state/attitude/Quaternion.hpp
     ${ASTRO_BASE}/state/attitude/AngularVelocities.hpp
@@ -246,6 +249,7 @@ generate_ephemeris_files(${CMAKE_CURRENT_LIST_DIR})
 
 # Build EoP files
 option(BUILD_EOP "Build Earth Orientation Parameters" ON)
+set(EOP_START_YEAR "1990" CACHE STRING "Discard Earth Orientation Parameters before this year (empty keeps all). Earlier dates use the first retained row.")
 generate_eop_files(${CMAKE_CURRENT_LIST_DIR})
 
 # Includes

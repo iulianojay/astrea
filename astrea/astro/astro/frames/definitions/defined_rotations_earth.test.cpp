@@ -67,6 +67,7 @@ using namespace mp_units;
 using mp_units::si::unit_symbols::arcsec;
 using mp_units::si::unit_symbols::deg;
 using mp_units::si::unit_symbols::km;
+using mp_units::si::unit_symbols::rad;
 
 namespace {
 
@@ -195,7 +196,9 @@ TEST(GetDcmIcrfToCep, EqualsNutationOnlyRotationAtJ2000)
     const auto [eps, dpsi, deps] = get_nutation_angles(0.0 * one);
     const auto expected          = DCM<frames::earth::icrf, frames::earth::cep>::XZX(eps + deps, dpsi, -eps);
     const auto actual            = get_dcm<frames::earth::icrf, frames::earth::cep>(Date(J2000));
-    EXPECT_TRUE(nearly_equal(actual, expected, TIGHT_TOL, TIGHT_TOL));
+    EXPECT_TRUE(nearly_equal(actual, expected, TIGHT_TOL, TIGHT_TOL)) << "Expected:\n"
+                                                                      << expected << "\nActual:\n"
+                                                                      << actual;
 }
 
 // -------------------------------------------------------------------------------------------
@@ -229,7 +232,9 @@ TEST(GetDcmCepToItrf, SiderealRotationMatchesPublishedGmstAtJ2000)
         (DCM<frames::earth::itrf, frames::earth::itrf>::Y(xp) * DCM<frames::earth::itrf, frames::earth::itrf>::X(yp)) *
         DCM<frames::earth::cep, frames::earth::itrf>::Z(-gastJ2000);
     const auto actual = get_dcm<frames::earth::cep, frames::earth::itrf>(Date(J2000));
-    EXPECT_TRUE(nearly_equal(actual, expected, GMST_TOL, GMST_TOL));
+    EXPECT_TRUE(nearly_equal(actual, expected, GMST_TOL, GMST_TOL)) << "Expected:\n"
+                                                                    << expected << "\nActual:\n"
+                                                                    << actual;
 }
 
 // -------------------------------------------------------------------------------------------
@@ -271,7 +276,9 @@ TEST(GetDcmIcrfToEarthFixed, EqualsCepToItrfAppliedAfterIcrfToCep)
     const DCM<frames::earth::icrf, frames::earth::itrf> expected =
         get_dcm<frames::earth::cep, frames::earth::itrf>(TEST_DATE) * get_dcm<frames::earth::icrf, frames::earth::cep>(TEST_DATE);
     const auto actual = get_dcm<frames::earth::icrf, frames::earth::earth_fixed>(TEST_DATE);
-    EXPECT_TRUE(nearly_equal(actual, expected, TIGHT_TOL, TIGHT_TOL));
+    EXPECT_TRUE(nearly_equal(actual, expected, TIGHT_TOL, TIGHT_TOL)) << "Expected:\n"
+                                                                      << expected << "\nActual:\n"
+                                                                      << actual;
 }
 
 TEST(GetDcmIcrfToItrf, MatchesValladoExample)

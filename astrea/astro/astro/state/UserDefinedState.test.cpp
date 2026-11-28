@@ -181,3 +181,57 @@ TEST(UserDefinedStateTest, StreamOutput)
     oss << state;
     EXPECT_EQ(oss.str(), "MockUserDefinedState(1, 2, 3)");
 }
+
+TEST(UserDefinedStateTest, HandlesEmptyState)
+{
+    UserDefinedState state(MockUserDefinedState{ .values = {} });
+    EXPECT_EQ(state.force_to_double_vector(), std::vector<double>{});
+}
+
+TEST(UserDefinedStateTest, Addition)
+{
+    UserDefinedState first(MockUserDefinedState{ .values = { 1.0, 2.0, 3.0 } });
+    UserDefinedState second(MockUserDefinedState{ .values = { 4.0, 5.0, 6.0 } });
+    UserDefinedState result = first + second;
+    EXPECT_EQ(result.force_to_double_vector(), (std::vector<double>{ 5.0, 7.0, 9.0 }));
+}
+
+TEST(UserDefinedStateTest, InPlaceAddition)
+{
+    UserDefinedState first(MockUserDefinedState{ .values = { 1.0, 2.0, 3.0 } });
+    UserDefinedState second(MockUserDefinedState{ .values = { 4.0, 5.0, 6.0 } });
+    first += second;
+    EXPECT_EQ(first.force_to_double_vector(), (std::vector<double>{ 5.0, 7.0, 9.0 }));
+}
+
+TEST(UserDefinedStateTest, Subtraction)
+{
+    UserDefinedState first(MockUserDefinedState{ .values = { 4.0, 5.0, 6.0 } });
+    UserDefinedState second(MockUserDefinedState{ .values = { 1.0, 2.0, 3.0 } });
+    UserDefinedState result = first - second;
+    EXPECT_EQ(result.force_to_double_vector(), (std::vector<double>{ 3.0, 3.0, 3.0 }));
+}
+
+TEST(UserDefinedStateTest, InPlaceSubtraction)
+{
+    UserDefinedState first(MockUserDefinedState{ .values = { 4.0, 5.0, 6.0 } });
+    UserDefinedState second(MockUserDefinedState{ .values = { 1.0, 2.0, 3.0 } });
+    first -= second;
+    EXPECT_EQ(first.force_to_double_vector(), (std::vector<double>{ 3.0, 3.0, 3.0 }));
+}
+
+TEST(UserDefinedStateTest, MultiplicationByUnitless)
+{
+    UserDefinedState state(MockUserDefinedState{ .values = { 1.0, 2.0, 3.0 } });
+    Unitless unitless;
+    UserDefinedState result = state * unitless;
+    EXPECT_EQ(result.force_to_double_vector(), (std::vector<double>{ 1.0, 2.0, 3.0 }));
+}
+
+TEST(UserDefinedStateTest, DivisionByUnitless)
+{
+    UserDefinedState state(MockUserDefinedState{ .values = { 1.0, 2.0, 3.0 } });
+    Unitless unitless;
+    UserDefinedState result = state / unitless;
+    EXPECT_EQ(result.force_to_double_vector(), (std::vector<double>{ 1.0, 2.0, 3.0 }));
+}

@@ -37,7 +37,7 @@ inline constexpr auto OutFrame = frames::earth::j2000;
 using TestDcm                  = DCM<InFrame, OutFrame>;
 using TestVec                  = CartesianVector<Unitless, InFrame>;
 
-class DirectionCosineMatrixTest : public testing::Test {
+struct DirectionCosineMatrixTest : public testing::Test {
   public:
     const TestVec x_hat = { 1.0 * one, 0.0 * one, 0.0 * one };
     const TestVec y_hat = { 0.0 * one, 1.0 * one, 0.0 * one };
