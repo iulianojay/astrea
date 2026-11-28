@@ -16,7 +16,7 @@ project(
     LANGUAGES CXX
 )
 
-set(CMAKE_CXX_STANDARD 23)
+set(CMAKE_CXX_STANDARD 26)
 
 # Objects
 set(ASTRO_BASE ${CMAKE_CURRENT_LIST_DIR}/${PROJECT_NAME})
@@ -70,6 +70,7 @@ set(ASTRO_SOURCES
     ${ASTRO_BASE}/systems/celestial_bodies/JplEphemerisTable.cpp
 
     ${ASTRO_BASE}/time/Date.cpp
+    ${ASTRO_BASE}/time/clocks/UT1Clock.cpp
 
     ${ASTRO_BASE}/utilities/conversions.cpp
     ${ASTRO_BASE}/utilities/plotting.cpp
@@ -80,10 +81,15 @@ set(ASTRO_HEADERS
     ${ASTRO_BASE}/astro.hpp
     ${ASTRO_BASE}/astro.fwd.hpp
 
+    ${ASTRO_BASE}/frames/definitions/axes.hpp
     ${ASTRO_BASE}/frames/definitions/body_centered_inertial_frames.hpp
     ${ASTRO_BASE}/frames/definitions/body_fixed_frames.hpp
     ${ASTRO_BASE}/frames/definitions/defined_rotations.hpp
     ${ASTRO_BASE}/frames/definitions/defined_rotations_earth.hpp
+    ${ASTRO_BASE}/frames/definitions/frame_registry.hpp
+    ${ASTRO_BASE}/frames/definitions/primary_frame.hpp
+    ${ASTRO_BASE}/frames/definitions/synodic_frames.hpp
+    ${ASTRO_BASE}/frames/definitions/transformations.hpp
     ${ASTRO_BASE}/frames/definitions/dynamic_frames/EastNorthUp.hpp
     ${ASTRO_BASE}/frames/definitions/dynamic_frames/LocalHorizontalLocalVertical.hpp
     ${ASTRO_BASE}/frames/definitions/dynamic_frames/Perifocal.hpp
@@ -91,7 +97,6 @@ set(ASTRO_HEADERS
     ${ASTRO_BASE}/frames/definitions/dynamic_frames/VelocityNormalBinormal.hpp
     ${ASTRO_BASE}/frames/definitions/dynamic_frames/tags.hpp
     ${ASTRO_BASE}/frames/definitions/dynamic_frames.hpp
-    ${ASTRO_BASE}/frames/definitions/transformations.hpp
 
     ${ASTRO_BASE}/frames/framework/Axis.hpp
     ${ASTRO_BASE}/frames/framework/BodyFixedFrame.hpp
@@ -102,9 +107,7 @@ set(ASTRO_HEADERS
     ${ASTRO_BASE}/frames/framework/Frame.hpp
     ${ASTRO_BASE}/frames/framework/Origin.hpp
     ${ASTRO_BASE}/frames/framework/frame_concepts.hpp
-    ${ASTRO_BASE}/frames/definitions/frame_registry.hpp
     ${ASTRO_BASE}/frames/framework/frame_utilities.hpp
-    ${ASTRO_BASE}/frames/definitions/primary_frame.hpp
 
     ${ASTRO_BASE}/frames/framework.hpp
     ${ASTRO_BASE}/frames/definitions.hpp
@@ -163,6 +166,11 @@ set(ASTRO_HEADERS
 
     ${ASTRO_BASE}/state/State.hpp
     ${ASTRO_BASE}/state/StateHistory.hpp
+    ${ASTRO_BASE}/state/UserDefinedState.hpp
+    ${ASTRO_BASE}/state/UserDefinedStatePartial.hpp
+
+    ${ASTRO_BASE}/state/framework/ElementMatrix.hpp
+    ${ASTRO_BASE}/state/framework/OrbitalElementsInterface.hpp
 
     ${ASTRO_BASE}/state/attitude/Attitude.hpp
     ${ASTRO_BASE}/state/attitude/Quaternion.hpp
@@ -188,6 +196,7 @@ set(ASTRO_HEADERS
     ${ASTRO_BASE}/state/attitude/Quaternion.hpp
 
     ${ASTRO_BASE}/systems/system_utilities.hpp
+    ${ASTRO_BASE}/systems/eop_interpolation.hpp
     ${ASTRO_BASE}/systems/CelestialBody.hpp
     ${ASTRO_BASE}/systems/CelestialBodyParameters.hpp
     ${ASTRO_BASE}/systems/celestial_bodies.hpp
@@ -215,6 +224,7 @@ set(ASTRO_HEADERS
     ${ASTRO_BASE}/time/clocks/JulianDateClock.hpp
     ${ASTRO_BASE}/time/clocks/GeocentricCoordinateTimeClock.hpp
     ${ASTRO_BASE}/time/clocks/TerrestrialTimeClock.hpp
+    ${ASTRO_BASE}/time/clocks/UT1Clock.hpp
     ${ASTRO_BASE}/time/clocks/BarycentricDynamicalTimeClock.hpp
     ${ASTRO_BASE}/time/clocks/BarycentricCoordinateTimeClock.hpp
 
@@ -242,6 +252,7 @@ generate_ephemeris_files(${CMAKE_CURRENT_LIST_DIR})
 
 # Build EoP files
 option(BUILD_EOP "Build Earth Orientation Parameters" ON)
+set(EOP_START_YEAR "1990" CACHE STRING "Discard Earth Orientation Parameters before this year (empty keeps all). Earlier dates use the first retained row.")
 generate_eop_files(${CMAKE_CURRENT_LIST_DIR})
 
 # Includes

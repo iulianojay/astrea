@@ -65,9 +65,10 @@ inline consteval CelestialBodyParameters get_celestial_body_parameters<planets::
     using mp_units::si::unit_symbols::s;
 
     return {
-        .type                   = CelestialBodyType::PLANET,
-        .referenceDate          = Date(J2000),
-        .mu                     = GravParam(398600.44189 * pow<3>(km) / pow<2>(s)),
+        .type          = CelestialBodyType::PLANET,
+        .referenceDate = Date(J2000),
+        .mu            = GravParam(398600.44189 * pow<3>(km) / pow<2>(s)), // IAU 2015 value
+        // .mu                     = GravParam(398600.436 * pow<3>(km) / pow<2>(s)), // NASA 6DoF Checkcase value
         .mass                   = Mass(5.97 * (mag_power<10, 24> * kg)),
         .equatorialRadius       = Distance(6378.137 * km),
         .polarRadius            = Distance(6356.75538082 * km),

@@ -21,7 +21,6 @@
 #include <chrono>
 #include <ratio>
 
-#include <astro/time/clocks/JulianDateClock.hpp>
 #include <astro/time/clocks/TerrestrialTimeClock.hpp>
 
 namespace astrea {
@@ -51,13 +50,12 @@ struct GeocentricCoordinateTimeClock {
     using time_point = std::chrono::time_point<GeocentricCoordinateTimeClock>; //!< The time point type for TCG, using GeocentricCoordinateTimeClock.
 
     static constexpr bool is_steady = false; //!< TCG is not a steady clock; it is anchored to TAI.
-    static constexpr rep Lg{ 6.969290134e-10 }; //!< The dimensionless constant Lg, representing the rate difference between TCG and TT
-    static constexpr JulianDateClock::duration jdRef{ 2443144.5 };
+    static constexpr rep Lg{ 6.969290134e-10 }; //!< The defining rate difference between TCG and TT (IAU 2000 Resolution B1.9)
 
     /**
      * @brief Converts a system time point to a Geocentric Coordinate Time time point.
      *
-     * The conversion route is: UTC → TT → TCG
+     * The conversion route is: UTC → TT → TCG, with TCG - TT = Lg / (1 - Lg) * (TT - T0).
      *
      * @tparam Duration The duration type of the system time point.
      * @param timePoint The system time point to convert.
@@ -69,15 +67,14 @@ struct GeocentricCoordinateTimeClock {
     static auto from_sys(std::chrono::sys_time<Duration> const& timePoint) noexcept
     {
         using namespace std::chrono;
-        const auto tt = TerrestrialTimeClock::from_sys(timePoint).time_since_epoch();
-        const auto jd = JulianDateClock::from_sys(timePoint).time_since_epoch();
-        return GeocentricCoordinateDateTime<duration>{ tt + Lg / (1.0 - Lg) * (jd - jdRef) };
+        const auto tt = TerrestrialTimeClock::from_sys(timePoint);
+        return GeocentricCoordinateDateTime<duration>{ tt.time_since_epoch() + Lg / (1.0 - Lg) * (tt - TerrestrialTimeClock::t0) };
     }
 
     /**
      * @brief Converts a Geocentric Coordinate Time time point to a system time point.
      *
-     * The conversion route is: TCG → TAI (- 32.184 s) → UTC (via clock_cast, handling leap seconds).
+     * The conversion route is: TCG → TT → UTC, with TT = TCG - Lg * (TCG - T0).
      *
      * @tparam Duration The duration type of the TCG time point.
      * @param timePoint The TCG time point to convert.
@@ -89,10 +86,9 @@ struct GeocentricCoordinateTimeClock {
     static auto to_sys(GeocentricCoordinateDateTime<Duration> const& timePoint) noexcept
     {
         using namespace std::chrono;
-        static const auto sysRef = JulianDateClock::to_sys(JulianDateClock::time_point{ jdRef });
-        static const auto tgcRef = GeocentricCoordinateTimeClock::from_sys(sysRef);
-        const auto tt = timePoint.time_since_epoch() - Lg / (1.0 - Lg) * duration_cast<days>(timePoint - tgcRef);
-        return TerrestrialTimeClock::to_sys(TerrestrialTimeClock::time_point{ TerrestrialTimeClock::duration{ tt } });
+        const auto tcg = duration_cast<duration>(timePoint.time_since_epoch());
+        const auto tt  = tcg - Lg * (tcg - TerrestrialTimeClock::t0.time_since_epoch());
+        return TerrestrialTimeClock::to_sys(TerrestrialTimeClock::time_point{ tt });
     }
 
     /**

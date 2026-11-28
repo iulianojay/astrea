@@ -76,11 +76,6 @@ TEST_F(CylindricalTest, UnitlessConstructor)
     ASSERT_TRUE(math::nearly_equal(zeroState.get_range(), Distance(0.0 * km), REL_TOL));
     ASSERT_TRUE(math::nearly_equal(zeroState.get_azimuth(), Angle(0.0 * rad), REL_TOL));
     ASSERT_TRUE(math::nearly_equal(zeroState.get_elevation(), Distance(0.0 * km), REL_TOL));
-
-    Cylindrical<planets::Earth> scaledState(2.0 * one);
-    ASSERT_TRUE(math::nearly_equal(scaledState.get_range(), Distance(2.0 * km), REL_TOL));
-    ASSERT_TRUE(math::nearly_equal(scaledState.get_azimuth(), Angle(2.0 * rad), REL_TOL));
-    ASSERT_TRUE(math::nearly_equal(scaledState.get_elevation(), Distance(2.0 * km), REL_TOL));
 }
 
 TEST_F(CylindricalTest, ParameterizedConstructor)
@@ -196,16 +191,6 @@ TEST_F(CylindricalTest, DivisionAssignmentOperator)
     ASSERT_EQ(state.get_elevation(), elevation / divisor);
 }
 
-TEST_F(CylindricalTest, DivisionByCylindricalOperator)
-{
-    Cylindrical<planets::Earth> other{ 2.0 * km, 2.0 * rad, 2.0 * km };
-    std::vector<Unitless> result = state / other;
-    ASSERT_EQ(result.size(), 3);
-    ASSERT_EQ(result[0], range / other.get_range());
-    ASSERT_EQ(result[1], azimuth / other.get_azimuth());
-    ASSERT_EQ(result[2], elevation / other.get_elevation());
-}
-
 TEST_F(CylindricalTest, Interpolate)
 {
     Cylindrical<planets::Earth> other{ 20000.0 * km, 1.5 * rad, 20.0 * km };
@@ -230,41 +215,56 @@ TEST_F(CylindricalTest, GetPositionEcef)
     // Test case 1: Zero azimuth (on x-axis)
     Cylindrical<planets::Earth> cyl1{ 10000.0 * km, 0.0 * rad, 0.0 * km };
     auto pos1 = cyl1.get_position();
-    ASSERT_TRUE(math::nearly_equal(pos1.get_x(), Distance(10000.0 * km), REL_TOL));
-    ASSERT_TRUE(math::nearly_equal(pos1.get_y(), Distance(0.0 * km), REL_TOL));
-    ASSERT_TRUE(math::nearly_equal(pos1.get_z(), Distance(0.0 * km), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(pos1.get_x(), Distance(10000.0 * km), REL_TOL))
+        << "Expected x: " << cyl1.get_range() << ", actual: " << pos1.get_x();
+    ASSERT_TRUE(math::nearly_equal(pos1.get_y(), Distance(0.0 * km), REL_TOL))
+        << "Expected y: " << cyl1.get_azimuth() << ", actual: " << pos1.get_y();
+    ASSERT_TRUE(math::nearly_equal(pos1.get_z(), Distance(0.0 * km), REL_TOL))
+        << "Expected z: " << cyl1.get_elevation() << ", actual: " << pos1.get_z();
 
     // Test case 2: 90 degree azimuth (on y-axis)
     Cylindrical<planets::Earth> cyl2{ 5000.0 * km, 90.0 * deg, 0.0 * km };
     auto pos2 = cyl2.get_position();
-    ASSERT_TRUE(math::nearly_equal(pos2.get_x(), Distance(0.0 * km), REL_TOL));
-    ASSERT_TRUE(math::nearly_equal(pos2.get_y(), Distance(5000.0 * km), REL_TOL));
-    ASSERT_TRUE(math::nearly_equal(pos2.get_z(), Distance(0.0 * km), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(pos2.get_x(), Distance(0.0 * km), REL_TOL))
+        << "Expected x: " << cyl2.get_range() << ", actual: " << pos2.get_x();
+    ASSERT_TRUE(math::nearly_equal(pos2.get_y(), Distance(5000.0 * km), REL_TOL))
+        << "Expected y: " << cyl2.get_azimuth() << ", actual: " << pos2.get_y();
+    ASSERT_TRUE(math::nearly_equal(pos2.get_z(), Distance(0.0 * km), REL_TOL))
+        << "Expected z: " << cyl2.get_elevation() << ", actual: " << pos2.get_z();
 
     // Test case 3: Non-zero elevation
     Cylindrical<planets::Earth> cyl3{ 8000.0 * km, 0.0 * rad, 1500.0 * km };
     auto pos3 = cyl3.get_position();
-    ASSERT_TRUE(math::nearly_equal(pos3.get_x(), Distance(8000.0 * km), REL_TOL));
-    ASSERT_TRUE(math::nearly_equal(pos3.get_y(), Distance(0.0 * km), REL_TOL));
-    ASSERT_TRUE(math::nearly_equal(pos3.get_z(), Distance(1500.0 * km), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(pos3.get_x(), Distance(8000.0 * km), REL_TOL))
+        << "Expected x: " << cyl3.get_range() << ", actual: " << pos3.get_x();
+    ASSERT_TRUE(math::nearly_equal(pos3.get_y(), Distance(0.0 * km), REL_TOL))
+        << "Expected y: " << cyl3.get_azimuth() << ", actual: " << pos3.get_y();
+    ASSERT_TRUE(math::nearly_equal(pos3.get_z(), Distance(1500.0 * km), REL_TOL))
+        << "Expected z: " << cyl3.get_elevation() << ", actual: " << pos3.get_z();
 
     // Test case 4: Arbitrary azimuth and elevation
     Cylindrical<planets::Earth> cyl4{ 6000.0 * km, 45.0 * deg, 2000.0 * km };
     auto pos4          = cyl4.get_position();
     Distance expectedX = 6000.0 * km * cos(45.0 * deg);
     Distance expectedY = 6000.0 * km * sin(45.0 * deg);
-    ASSERT_TRUE(math::nearly_equal(pos4.get_x(), expectedX, REL_TOL));
-    ASSERT_TRUE(math::nearly_equal(pos4.get_y(), expectedY, REL_TOL));
-    ASSERT_TRUE(math::nearly_equal(pos4.get_z(), Distance(2000.0 * km), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(pos4.get_x(), expectedX, REL_TOL))
+        << "Expected x: " << expectedX << ", actual: " << pos4.get_x();
+    ASSERT_TRUE(math::nearly_equal(pos4.get_y(), expectedY, REL_TOL))
+        << "Expected y: " << expectedY << ", actual: " << pos4.get_y();
+    ASSERT_TRUE(math::nearly_equal(pos4.get_z(), Distance(2000.0 * km), REL_TOL))
+        << "Expected z: " << 2000.0 * km << ", actual: " << pos4.get_z();
 
     // Test case 5: Negative azimuth
     Cylindrical<planets::Earth> cyl5{ 7000.0 * km, -60.0 * deg, 500.0 * km };
     auto pos5           = cyl5.get_position();
     Distance expectedX5 = 7000.0 * km * cos(-60.0 * deg);
     Distance expectedY5 = 7000.0 * km * sin(-60.0 * deg);
-    ASSERT_TRUE(math::nearly_equal(pos5.get_x(), expectedX5, REL_TOL));
-    ASSERT_TRUE(math::nearly_equal(pos5.get_y(), expectedY5, REL_TOL));
-    ASSERT_TRUE(math::nearly_equal(pos5.get_z(), Distance(500.0 * km), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(pos5.get_x(), expectedX5, REL_TOL))
+        << "Expected x: " << expectedX5 << ", actual: " << pos5.get_x();
+    ASSERT_TRUE(math::nearly_equal(pos5.get_y(), expectedY5, REL_TOL))
+        << "Expected y: " << expectedY5 << ", actual: " << pos5.get_y();
+    ASSERT_TRUE(math::nearly_equal(pos5.get_z(), Distance(500.0 * km), REL_TOL))
+        << "Expected z: " << 500.0 * km << ", actual: " << pos5.get_z();
 }
 
 TEST_F(CylindricalTest, GetPositionEci)

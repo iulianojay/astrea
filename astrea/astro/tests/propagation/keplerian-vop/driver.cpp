@@ -25,6 +25,7 @@
 #include <astro/time/Date.hpp>
 #include <astro/time/Interval.hpp>
 #include <tests/utilities/comparisons.hpp>
+#include <tests/utilities/orbit_presets.hpp>
 
 using namespace astrea;
 using namespace astro;
@@ -71,7 +72,7 @@ int main(int argc, char** argv)
 TEST_F(KeplerianVopPropagationTest, GEONoForces)
 {
     // Build constellation
-    Keplerian<frames::earth::icrf> kep0 = Keplerian<frames::earth::icrf>::GEO();
+    Keplerian<frames::earth::icrf> kep0 = make_orbit_preset<Keplerian<frames::earth::icrf>>(OrbitPreset::GEO);
     State state{ kep0, epoch };
     Spacecraft geo;
     Vehicle vehicle{ geo };
@@ -90,7 +91,7 @@ TEST_F(KeplerianVopPropagationTest, GEONoForces)
 TEST_F(KeplerianVopPropagationTest, GPSNoForces)
 {
     // Build constellation
-    Keplerian<frames::earth::icrf> kep0 = Keplerian<frames::earth::icrf>::GPS();
+    Keplerian<frames::earth::icrf> kep0 = make_orbit_preset<Keplerian<frames::earth::icrf>>(OrbitPreset::GPS);
     State state{ kep0, epoch };
     Spacecraft meo;
     Vehicle vehicle{ meo };
@@ -109,7 +110,7 @@ TEST_F(KeplerianVopPropagationTest, GPSNoForces)
 TEST_F(KeplerianVopPropagationTest, LEONoForces)
 {
     // Build constellation
-    Keplerian<frames::earth::icrf> kep0 = Keplerian<frames::earth::icrf>::LEO();
+    Keplerian<frames::earth::icrf> kep0 = make_orbit_preset<Keplerian<frames::earth::icrf>>(OrbitPreset::LEO);
     State state{ kep0, epoch };
     Spacecraft leo;
     Vehicle vehicle{ leo };

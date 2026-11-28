@@ -35,6 +35,16 @@ struct TestEvent {
     void trigger_action(const Time& time, State& state, Vehicle& vehicle) const {}
 };
 
+struct DirectionalTestEvent {
+    std::string get_name() const { return "Directional Test Event"; }
+    Unitless measure_event(const Time& time, const State& state, const Vehicle& vehicle) const
+    {
+        return 0.0 * mp_units::one;
+    }
+    EventDirection get_event_direction() const { return EventDirection::RISING; }
+    bool is_terminal() const { return false; }
+};
+
 class EventTest : public testing::Test {
   public:
     EventTest() = default;
@@ -88,6 +98,17 @@ TEST_F(EventTest, MeasureEvent)
 
 TEST_F(EventTest, IsTerminal) { ASSERT_FALSE(event.is_terminal()); }
 
+TEST_F(EventTest, GetEventDirectionDefaultsToAnyWithoutDirectionMethod)
+{
+    ASSERT_EQ(event.get_event_direction(), EventDirection::ANY);
+}
+
+TEST_F(EventTest, GetEventDirectionUsesUserDefinedDirection)
+{
+    const Event directionalEvent{ DirectionalTestEvent() };
+    ASSERT_EQ(directionalEvent.get_event_direction(), EventDirection::RISING);
+}
+
 TEST_F(EventTest, TriggerAction) { ASSERT_NO_THROW(event.trigger_action(time, state, vehicle)); }
 
 TEST_F(EventTest, GetPtr)
@@ -99,4 +120,9 @@ TEST_F(EventTest, GetPtr)
 TEST_F(EventTest, Extract)
 {
     ASSERT_NO_THROW(const TestEvent* ptr = static_cast<const TestEvent*>(event.extract<TestEvent>()));
+}
+
+TEST_F(EventTest, TriggerActionOnTriggerlessEvent)
+{
+    ASSERT_NO_THROW(const Event triggerlessEvent{ DirectionalTestEvent() }; triggerlessEvent.trigger_action(time, state, vehicle));
 }

@@ -1,10 +1,10 @@
 
 DEBUG=RelWithDebInfo
-PROGRAM=./install/gcc/gcc-15-23/$DEBUG/bin/trace/trace
-BASE_DIR=./astrea/trace/trace/drivers/results
+# PROGRAM=./install/gcc/gcc-15-23/$DEBUG/bin/trace/trace
+# BASE_DIR=./astrea/trace/trace/drivers/results
+PROGRAM=./astrea/astro/tests/profiling/bin/astro_profiler
+BASE_DIR=./astrea/astro/tests/profiling/results
 OUTFILE=$BASE_DIR/callgrind.out
-# PROGRAM=./astrea/astro/tests/profiling/bin/astro_profiler
-# OUTFILE=./astrea/astro/tests/profiling/results/callgrind.out
 
 ######################################
 ## ----- Valgrind / Callgrind ----- ##

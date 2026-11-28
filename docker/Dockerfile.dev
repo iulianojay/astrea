@@ -16,7 +16,9 @@ RUN apt-get update && \
     bash-completion \
     mono-mcs \
     curl \
+    clang \
     clang-format \
+    libomp-dev \
     libsqlite3-dev \
     libssl-dev \
     libgl1-mesa-dev \
@@ -30,9 +32,9 @@ RUN apt-get update && \
     && \
     add-apt-repository ppa:ubuntu-toolchain-r/test && \
     apt-get update && \
-    apt-get -y install gcc-15 g++-15 && \
-    update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-15 100 && \
-    update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-15 100 && \
+    apt-get -y install gcc-16 g++-16 && \
+    update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-16 100 && \
+    update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-16 100 && \
     rm -rf /var/lib/apt/lists/*
 
 # Create a non-root user

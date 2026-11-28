@@ -73,7 +73,8 @@ TEST_F(TopocentricFrameTest, OffsetIsConstexprAccessible)
     // Verifies offset is a constexpr static member
     constexpr auto off = get_offset_from_frame<WashingtonDcWnu>();
 
-    const auto expected = convert_geodetic_to_body_fixed<frames::earth::earth_fixed>(38.895111 * deg, -77.036369 * deg, 0.0 * km);
+    const auto expected =
+        Geodetic<planets::Earth>::to_body_fixed<frames::earth::earth_fixed>(38.895111 * deg, -77.036369 * deg, 0.0 * km);
 
     ASSERT_TRUE(math::nearly_equal(off.get_x(), expected.get_x(), 1e-6 * one));
     ASSERT_TRUE(math::nearly_equal(off.get_y(), expected.get_y(), 1e-6 * one));
@@ -103,8 +104,23 @@ TEST_F(TopocentricFrameTest, ConstexprTransformationToParent)
     constexpr auto rParent = r.template in_frame<frames::earth::earth_fixed>(epoch);
 
     const auto rWashingtonDc =
-        convert_geodetic_to_body_fixed<frames::earth::earth_fixed>(38.895111 * deg, -77.036369 * deg, 0.0 * km);
+        Geodetic<planets::Earth>::to_body_fixed<frames::earth::earth_fixed>(38.895111 * deg, -77.036369 * deg, 0.0 * km);
 
     ASSERT_TRUE(math::nearly_equal(rParent.norm(), rWashingtonDc.norm() + r.norm(), 1e-2 * one)) // closeish
         << " rParent.norm() = " << rParent.norm() << ", rWashingtonDc.norm() + r.norm() = " << rWashingtonDc.norm() + r.norm();
+}
+
+TEST_F(TopocentricFrameTest, OriginTransformsThroughRotatingRoot)
+{
+    const Date epoch = J2000;
+    const CartesianVector<Distance, WashingtonDcWnu> origin;
+    const auto earthFixed = get_offset_from_frame<WashingtonDcWnu>();
+    const auto expected = get_dcm<frames::earth::icrf, frames::earth::earth_fixed>(epoch).transpose() * earthFixed;
+    const auto inertial = origin.in_frame<frames::earth::icrf>(epoch);
+    EXPECT_NEAR(inertial.get_x().numerical_value_in(km), expected.get_x().numerical_value_in(km), 1e-9);
+    EXPECT_NEAR(inertial.get_y().numerical_value_in(km), expected.get_y().numerical_value_in(km), 1e-9);
+    EXPECT_NEAR(inertial.get_z().numerical_value_in(km), expected.get_z().numerical_value_in(km), 1e-9);
+
+    const auto roundtrip = inertial.in_frame<WashingtonDcWnu>(epoch);
+    EXPECT_NEAR(roundtrip.norm().numerical_value_in(km), 0.0, 1e-9);
 }

@@ -46,18 +46,11 @@ Unitless ImpulsiveBurn::measure_anomaly_event(const Time& time, const State& sta
 {
     const Keplerian<frames::primary> elements = state.in_element_set<Keplerian<frames::primary>>();
 
-    const Angle anomaly = (_trigger == BurnTrigger::TRUE_ANOMALY) ? elements.get_true_anomaly() - _triggerAnomaly :
-                                                                    elements.get_mean_anomaly() - _triggerAnomaly;
+    const Angle anomaly = (_trigger == BurnTrigger::TRUE_ANOMALY) ? elements.get_true_anomaly() : elements.get_mean_anomaly();
 
-    // Avoid triggering when the angles wrap around 2π
-    static Angle previousAnomaly = 0.0 * rad;
-    const Unitless deltaAnomaly  = (anomaly - previousAnomaly) / (1.0 * rad);
-    previousAnomaly              = anomaly;
-
-    if (deltaAnomaly < 0.0 * mp_units::one) { return 0.0 * mp_units::one; } // event
-    else {
-        return 1.0 * mp_units::one; // No event
-    }
+    // Wrap the diff to the range [-pi, pi)
+    const Angle deltaAnomaly = wrap_to_pm_pi(anomaly - _triggerAnomaly);
+    return deltaAnomaly / (1.0 * rad);
 }
 
 

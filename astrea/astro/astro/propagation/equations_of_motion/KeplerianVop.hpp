@@ -85,7 +85,6 @@ class KeplerianVop : public EquationsOfMotion {
 
   private:
     const Unitless checkTol = 1e-10 * mp_units::one; //!< Tolerance for checking conditions.
-    GravParam mu;                                    //!< Gravitational parameter of the central body.
     bool doWarn;                                     //!< Flag to indicate whether to warn about degenerate cases.
 
     /**

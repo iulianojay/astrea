@@ -23,7 +23,8 @@ namespace astro {
 std::ostream& operator<<(std::ostream& os, const State& state)
 {
     os << state.get_epoch() << ", " << state.get_elements();
-    if (state.get_attitude().has_value()) { os << ", " << state.get_attitude().value(); }
+    if (state.has_attitude()) { os << ", " << state.get_attitude().value(); }
+    if (state.has_user_defined_state()) { os << ", " << state.get_user_defined_state().value(); }
     return os;
 }
 
@@ -32,24 +33,33 @@ State::State(const StateHistory& history)
     if (history.size() != 1) {
         throw std::runtime_error("StateHistory must contain exactly one state to construct a State.");
     }
-    const auto& state = history.first();
-    *this             = state;
+    *this = history.first();
 }
 
 
-State State::from_double_vector(const std::vector<double>& vec, const std::size_t idx)
+State State::from_double_vector(const std::vector<double>& vec, const std::size_t idx) const
 {
     if (vec.size() == 6) { return State(OrbitalElements::from_double_vector(vec, idx), Date()); }
 
-    const auto elementValues  = std::vector<double>(vec.begin(), vec.begin() + 6);
-    const auto attitudeValues = std::vector<double>(vec.begin() + 6, vec.end());
-    return State(OrbitalElements::from_double_vector(elementValues, idx), Date(), Attitude::from_double_vector(attitudeValues));
+    const auto elementValues = std::vector<double>(vec.begin(), vec.begin() + 6);
+
+    if (vec.size() == 10) {
+        const auto attitudeValues = std::vector<double>(vec.begin() + 6, vec.end());
+        return State(OrbitalElements::from_double_vector(elementValues, idx), Date(), Attitude::from_double_vector(attitudeValues));
+    }
+
+    const auto attitudeValues = std::vector<double>(vec.begin() + 6, vec.begin() + 10);
+    const auto usdValues      = std::vector<double>(vec.begin() + 10, vec.end());
+    auto temp                 = _userDefinedState.value();
+    return State(OrbitalElements::from_double_vector(elementValues, idx), Date(), Attitude::from_double_vector(attitudeValues), temp.from_double_vector(usdValues));
 }
 
 bool State::operator==(const State& other) const
 {
     return _epoch == other._epoch && _elements == other._elements && _attitude.has_value() == other._attitude.has_value() &&
-           (!_attitude.has_value() || _attitude.value() == other._attitude.value());
+           (!_attitude.has_value() || _attitude.value() == other._attitude.value()) &&
+           _userDefinedState.has_value() == other._userDefinedState.has_value() &&
+           (!_userDefinedState.has_value() || _userDefinedState.value() == other._userDefinedState.value());
 }
 
 State State::operator+(const State& other) const
@@ -58,6 +68,9 @@ State State::operator+(const State& other) const
              _epoch,
              _attitude.has_value() && other._attitude.has_value() ?
                  std::optional<Attitude>(_attitude.value() + other._attitude.value()) :
+                 std::nullopt,
+             _userDefinedState.has_value() && other._userDefinedState.has_value() ?
+                 std::optional<UserDefinedState>(_userDefinedState.value() + other._userDefinedState.value()) :
                  std::nullopt };
 }
 
@@ -65,6 +78,9 @@ State& State::operator+=(const State& other)
 {
     _elements += other._elements;
     if (_attitude.has_value() && other._attitude.has_value()) { _attitude.value() += other._attitude.value(); }
+    if (_userDefinedState.has_value() && other._userDefinedState.has_value()) {
+        _userDefinedState.value() += other._userDefinedState.value();
+    }
     return *this;
 }
 
@@ -74,6 +90,9 @@ State State::operator-(const State& other) const
              _epoch,
              _attitude.has_value() && other._attitude.has_value() ?
                  std::optional<Attitude>(_attitude.value() - other._attitude.value()) :
+                 std::nullopt,
+             _userDefinedState.has_value() && other._userDefinedState.has_value() ?
+                 std::optional<UserDefinedState>(_userDefinedState.value() - other._userDefinedState.value()) :
                  std::nullopt };
 }
 
@@ -81,28 +100,41 @@ State& State::operator-=(const State& other)
 {
     _elements -= other._elements;
     if (_attitude.has_value() && other._attitude.has_value()) { _attitude.value() -= other._attitude.value(); }
+    if (_userDefinedState.has_value() && other._userDefinedState.has_value()) {
+        _userDefinedState.value() -= other._userDefinedState.value();
+    }
     return *this;
 }
 
 State State::operator*(const Unitless& scalar) const
 {
-    return { _elements * scalar, _epoch, _attitude }; // attitude shouldn't scale
+    return { _elements * scalar,
+             _epoch,
+             _attitude.has_value() ? std::optional<Attitude>(_attitude.value() * scalar) : std::nullopt,
+             _userDefinedState.has_value() ? std::optional<UserDefinedState>(_userDefinedState.value() * scalar) : std::nullopt };
 }
 
 State& State::operator*=(const Unitless& scalar)
 {
     _elements *= scalar;
+    if (_attitude.has_value()) { _attitude.value() *= scalar; }
+    if (_userDefinedState.has_value()) { _userDefinedState.value() *= scalar; }
     return *this;
 }
 
 State State::operator/(const Unitless& scalar) const
 {
-    return { _elements / scalar, _epoch, _attitude }; // attitude shouldn't scale
+    return { _elements / scalar,
+             _epoch,
+             _attitude.has_value() ? std::optional<Attitude>(_attitude.value() / scalar) : std::nullopt,
+             _userDefinedState.has_value() ? std::optional<UserDefinedState>(_userDefinedState.value() / scalar) : std::nullopt };
 }
 
 State& State::operator/=(const Unitless& scalar)
 {
     _elements /= scalar;
+    if (_attitude.has_value()) { _attitude.value() /= scalar; }
+    if (_userDefinedState.has_value()) { _userDefinedState.value() /= scalar; }
     return *this;
 }
 
@@ -110,17 +142,37 @@ StatePartial State::operator/(const Time& divisor) const
 {
     return { _epoch,
              _elements / divisor,
-             _attitude.has_value() ? std::optional<AttitudePartials>(_attitude.value() / divisor) : std::nullopt };
+             _attitude.has_value() ? std::optional<AttitudePartials>(_attitude.value() / divisor) : std::nullopt,
+             _userDefinedState.has_value() ? std::optional<UserDefinedStatePartial>(_userDefinedState.value() / divisor) :
+                                             std::nullopt };
 }
 
 State StatePartial::operator*(const Time& time) const
 {
     return { _elementPartials * time,
              _epoch + time,
-             _attitudePartial.has_value() ? std::optional<Attitude>(_attitudePartial.value() * time) : std::nullopt };
+             _attitudePartial.has_value() ? std::optional<Attitude>(_attitudePartial.value() * time) : std::nullopt,
+             _userDefinedStatePartial.has_value() ? std::optional<UserDefinedState>(_userDefinedStatePartial.value() * time) :
+                                                    std::nullopt };
 }
 
-const Date& StatePartial::get_epoch() const { return _epoch; }
+State State::interpolate(const Time& thisTime, const Time& otherTime, const State& other, const Time& targetTime) const
+{
+    const OrbitalElements interpolatedElements = _elements.interpolate(thisTime, otherTime, other._elements, targetTime);
+    std::optional<Attitude> interpolatedAttitude = std::nullopt;
+    if (_attitude.has_value() && other._attitude.has_value()) {
+        interpolatedAttitude =
+            std::optional<Attitude>(_attitude.value().interpolate(thisTime, otherTime, other._attitude.value(), targetTime));
+    }
+    std::optional<UserDefinedState> interpolatedUserDefinedState = std::nullopt; // TODO: Add interpolation for user-defined state
+    // if (_userDefinedState.has_value() && other._userDefinedState.has_value()) {
+    //     interpolatedUserDefinedState = std::optional<UserDefinedState>(
+    //         _userDefinedState.value().interpolate(thisTime, otherTime, other._userDefinedState.value(), targetTime)
+    //     );
+    // }
+    const Date interpolatedEpoch = _epoch + (targetTime - thisTime);
+    return { interpolatedElements, interpolatedEpoch, interpolatedAttitude, interpolatedUserDefinedState };
+}
 
 } // namespace astro
 } // namespace astrea

@@ -14,13 +14,16 @@
 name: Update Changelog
 
 on:
-  workflow_dispatch:
-  push:
+  pull_request:
+    types: [opened]
     branches: [ "main" ]
 
 jobs:
   update-changelog:
-    if: github.event.pull_request.base.ref == 'main' && github.event.pull_request.merged == true
+    if: |
+      github.event.pull_request.base.ref == 'main' &&
+      github.event.pull_request.head.repo.full_name == github.repository &&
+      github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -29,7 +32,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v7
         with:
-          ref: main
+          ref: ${{ github.event.pull_request.head.ref }}
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Mark repository as safe
@@ -52,4 +55,4 @@ jobs:
           git add CHANGELOG.md
           git diff --cached --quiet && echo "No changes to commit" && exit 0
           git commit -m "docs: update changelog for PR #${{ github.event.pull_request.number }} [skip ci]"
-          git push
+          git push origin HEAD:${{ github.event.pull_request.head.ref }}

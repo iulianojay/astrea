@@ -26,7 +26,7 @@
 
 #include <astro/platforms/space/Shell.hpp>
 #include <astro/propagation/numerical/Integrator.hpp>
-
+#include <astro/state/orbital_data_formats/GeneralPerturbations.hpp>
 namespace astrea {
 namespace astro {
 

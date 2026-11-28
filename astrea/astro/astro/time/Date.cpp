@@ -73,7 +73,15 @@ std::string Date::epoch() const
     return ss.str();
 }
 
-Angle Date::gmst() const { return julian_date_to_sidereal_time(_julianDate); }
+Angle Date::gmst() const
+{
+    using namespace std::chrono;
+
+    // Sidereal time is a function of UT1. UT1Clock shares the system clock epoch, so reading the UT1 count on the
+    // system clock gives the Julian date on the UT1 scale. Not rounded like in_clock, since 1 ms is ~0.5 m at the equator.
+    const auto ut1 = clock_cast<UT1Clock>(_julianDate);
+    return julian_date_to_sidereal_time(clock_cast<JulianDateClock>(sys_time<UT1Clock::duration>{ ut1.time_since_epoch() }));
+}
 
 // General conversions
 JulianDate epoch_to_julian_date(const std::string& epoch, const std::string format)

@@ -4,12 +4,12 @@ updates:
   - package-ecosystem: "uv"
     directory: "/"
     schedule:
-      interval: "daily"
+      interval: "weekly"
       timezone: "Europe/Helsinki"
     target-branch: "main"
     commit-message:
-      prefix: "[dependabot]"
-      prefix-development: "[dependabot]"
+      prefix: "[CHORE]"
+      prefix-development: "[CHORE]"
     target-branch: "main"
     groups:
       all-deps:
@@ -19,12 +19,12 @@ updates:
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
-      interval: "daily"
+      interval: "weekly"
       timezone: "Europe/Helsinki"
     target-branch: "main"
     commit-message:
-      prefix: "[dependabot]"
-      prefix-development: "[dependabot]"
+      prefix: "[CHORE]"
+      prefix-development: "[CHORE]"
     target-branch: "main"
     groups:
       all-deps:
@@ -34,12 +34,12 @@ updates:
   - package-ecosystem: "docker"
     directory: "/"
     schedule:
-      interval: "daily"
+      interval: "weekly"
       timezone: "Europe/Helsinki"
     target-branch: "main"
     commit-message:
-      prefix: "[dependabot]"
-      prefix-development: "[dependabot]"
+      prefix: "[CHORE]"
+      prefix-development: "[CHORE]"
     target-branch: "main"
     groups:
       all-deps:

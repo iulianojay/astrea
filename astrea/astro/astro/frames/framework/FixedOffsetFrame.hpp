@@ -424,32 +424,12 @@ consteval auto get_root_frame()
 template <IsFixedOffsetFrame auto frame>
 inline constexpr auto get_offset_from_frame()
 {
-    if constexpr (HasSpatialOffset<decltype(frame)>) {
+    if constexpr (
+        HasSpatialOffset<decltype(frame)> &&
+        !std::is_same_v<std::remove_cv_t<decltype(frame.origin)>, std::remove_cv_t<decltype(frame.parent.origin)>>
+    ) {
         constexpr auto& off = frame.origin.offset;
         return CartesianVector<Distance, frame.parent>(off.x, off.y, off.z);
-    }
-    else {
-        return CartesianVector<Distance, frame.parent>{};
-    }
-}
-
-/**
- * @brief Retrieves the accumulated fixed spatial offset from the root frame to the given FixedOffsetFrame by recursively summing the offsets along the parent chain.
- */
-template <IsFixedOffsetFrame auto frame>
-inline constexpr auto get_offset_from_root_frame()
-{
-    if constexpr (HasSpatialOffset<decltype(frame)>) {
-        if constexpr (IsDerivedFrame<std::remove_cv_t<decltype(frame.parent)>>) {
-            // r_grandparent->parent + r_parent->child = r_grandparent->child
-            // Force-convert the accumulated parent offset into frame::parent's frame type so
-            // both operands of operator+ share the same CartesianVector frame parameter.
-            return get_offset_from_root_frame<frame.parent>().template force_frame_conversion<frame.parent>() +
-                   get_offset_from_frame<frame>();
-        }
-        else {
-            return get_offset_from_frame<frame>();
-        }
     }
     else {
         return CartesianVector<Distance, frame.parent>{};
@@ -463,22 +443,27 @@ template <IsFixedOffsetFrame auto frame>
 inline constexpr auto get_dcm_from_root_frame()
 {
     static constexpr Date dummyDate;
-    if constexpr (HasAngularOffset<std::remove_cv_t<decltype(frame)>>) {
-        if constexpr (IsDerivedFrame<std::remove_cv_t<decltype(frame.parent)>>) {
-            // DCM<grandparent, parent> * DCM<parent, child> = DCM<grandparent, child>
-            return get_dcm_from_root_frame<frame.parent>() * get_dcm<frame.parent, frame>(dummyDate);
-        }
-        else {
-            return get_dcm<frame.parent, frame>(dummyDate);
-        }
+    if constexpr (IsDerivedFrame<std::remove_cv_t<decltype(frame.parent)>>) {
+        return get_dcm<frame.parent, frame>(dummyDate) * get_dcm_from_root_frame<frame.parent>();
     }
     else {
-        if constexpr (IsDerivedFrame<std::remove_cv_t<decltype(frame.parent)>>) {
-            return get_dcm_from_root_frame<frame.parent>();
-        }
-        else {
-            return DCM<frame.parent, frame>::identity();
-        }
+        return get_dcm<frame.parent, frame>(dummyDate);
+    }
+}
+
+/**
+ * @brief Retrieves the displacement from the root origin to the frame origin, expressed in root axes.
+ */
+template <IsFixedOffsetFrame auto frame>
+inline constexpr auto get_offset_from_root_frame()
+{
+    if constexpr (IsDerivedFrame<std::remove_cv_t<decltype(frame.parent)>>) {
+        const auto parentOffset = get_offset_from_root_frame<frame.parent>();
+        const auto localOffset = get_offset_from_frame<frame>();
+        return parentOffset + get_dcm_from_root_frame<frame.parent>().transpose() * localOffset;
+    }
+    else {
+        return get_offset_from_frame<frame>();
     }
 }
 

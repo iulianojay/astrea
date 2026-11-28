@@ -100,7 +100,7 @@ Density HarrisPriesterAtmosphere::find_atmospheric_density(const State& state)
 {
     const auto& position                       = state.get_position();
     const auto& positionEcef                   = state.get_position_in_frame<frames::earth::earth_fixed>();
-    const auto [latitude, longitude, altitude] = convert_body_fixed_to_geodetic(positionEcef);
+    const auto [latitude, longitude, altitude] = Geodetic<planets::Earth>::from_body_fixed(positionEcef);
 
     // Diurnal bulge apex direction
     const RadiusVector<frames::solar_system_barycenter::icrf> sun2Earth =

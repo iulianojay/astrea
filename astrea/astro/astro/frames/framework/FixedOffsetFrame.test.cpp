@@ -387,10 +387,10 @@ TEST_F(FixedOffsetFrameTest, SpatialChainRootOffsetZIsZero)
 }
 
 // Pure angular chain: Rx(pi/2) then Rz(pi/2).
-// Composed from root = Rx(pi/2) * Rz(pi/2):
-//   [[0, -1,  0],
-//    [0,  0, -1],
-//    [1,  0,  0]]
+// Composed from root = Rz(pi/2) * Rx(pi/2):
+//   [[0, 0, 1],
+//    [1, 0, 0],
+//    [0, 1, 0]]
 inline constexpr struct ChainAngular1 final
     : FixedOffsetFrame<frames::earth::icrf, HALF_PI_RAD, Angle::zero(), Angle::zero(), RotationSequence::XYZ> {
 } ChainAngular1;
@@ -406,15 +406,15 @@ TEST_F(FixedOffsetFrameTest, AngularChainRootDcmComposes)
     const auto dcm = get_dcm_from_root_frame<ChainAngular2>();
 
     EXPECT_TRUE(math::nearly_equal(dcm[0, 0], 0.0 * one, ANGULAR_TOL));
-    EXPECT_TRUE(math::nearly_equal(dcm[0, 1], -1.0 * one, ANGULAR_TOL));
-    EXPECT_TRUE(math::nearly_equal(dcm[0, 2], 0.0 * one, ANGULAR_TOL));
+    EXPECT_TRUE(math::nearly_equal(dcm[0, 1], 0.0 * one, ANGULAR_TOL));
+    EXPECT_TRUE(math::nearly_equal(dcm[0, 2], 1.0 * one, ANGULAR_TOL));
 
-    EXPECT_TRUE(math::nearly_equal(dcm[1, 0], 0.0 * one, ANGULAR_TOL));
+    EXPECT_TRUE(math::nearly_equal(dcm[1, 0], 1.0 * one, ANGULAR_TOL));
     EXPECT_TRUE(math::nearly_equal(dcm[1, 1], 0.0 * one, ANGULAR_TOL));
-    EXPECT_TRUE(math::nearly_equal(dcm[1, 2], -1.0 * one, ANGULAR_TOL));
+    EXPECT_TRUE(math::nearly_equal(dcm[1, 2], 0.0 * one, ANGULAR_TOL));
 
-    EXPECT_TRUE(math::nearly_equal(dcm[2, 0], 1.0 * one, ANGULAR_TOL));
-    EXPECT_TRUE(math::nearly_equal(dcm[2, 1], 0.0 * one, ANGULAR_TOL));
+    EXPECT_TRUE(math::nearly_equal(dcm[2, 0], 0.0 * one, ANGULAR_TOL));
+    EXPECT_TRUE(math::nearly_equal(dcm[2, 1], 1.0 * one, ANGULAR_TOL));
     EXPECT_TRUE(math::nearly_equal(dcm[2, 2], 0.0 * one, ANGULAR_TOL));
 }
 
@@ -430,17 +430,17 @@ TEST_F(FixedOffsetFrameTest, SpatialChildOfAngularParentPreserversParentDcm)
     // Use an explicit type: spatial offset child of ChainAngular1.
     const auto dcm = get_dcm_from_root_frame<OffsetChildOfAngular>();
     // No own rotation → DCM is that of ChainAngular1 = Rx(pi/2)
-    EXPECT_TRUE(math::nearly_equal(dcm[0, 0], 1.0 * one, ANGULAR_TOL));
-    EXPECT_TRUE(math::nearly_equal(dcm[1, 2], -1.0 * one, ANGULAR_TOL));
-    EXPECT_TRUE(math::nearly_equal(dcm[2, 1], 1.0 * one, ANGULAR_TOL));
+    EXPECT_TRUE(math::nearly_equal(dcm[0, 0], 1.0 * one, ANGULAR_TOL)) << "Expected dcm[0,0] = 1.0, got " << dcm[0, 0];
+    EXPECT_TRUE(math::nearly_equal(dcm[1, 2], -1.0 * one, ANGULAR_TOL)) << "Expected dcm[1,2] = -1.0, got " << dcm[1, 2];
+    EXPECT_TRUE(math::nearly_equal(dcm[2, 1], 1.0 * one, ANGULAR_TOL)) << "Expected dcm[2,1] = 1.0, got " << dcm[2, 1];
 }
 
 // Combined offset+misalignment frame derived from another combined frame.
 // Parent (ChainCombined1): 1 km in X, Rx(pi/2)
 // Child  (ChainCombined2): 2 km in Y (relative to parent), Rz(pi/2)
 //
-// Accumulated offset from root = (1, 2, 0) km (both offsets summed numerically)
-// Composed DCM from root       = Rx(pi/2) * Rz(pi/2) = [[0,-1,0],[0,0,-1],[1,0,0]]
+// Accumulated offset in root axes = (1, 0, -2) km.
+// Composed DCM from root       = Rz(pi/2) * Rx(pi/2) = [[0,0,1],[1,0,0],[0,1,0]]
 inline constexpr struct ChainCombined1 final
     : FixedOffsetFrame<frames::earth::icrf, ONE_KM, Distance::zero(), Distance::zero(), HALF_PI_RAD, Angle::zero(), Angle::zero(), RotationSequence::XYZ> {
 } ChainCombined1;
@@ -464,13 +464,123 @@ TEST_F(FixedOffsetFrameTest, CombinedChainRootOffsetAccumulatesX)
 TEST_F(FixedOffsetFrameTest, CombinedChainRootOffsetAccumulatesY)
 {
     const auto off = get_offset_from_root_frame<ChainCombined2>();
-    EXPECT_DOUBLE_EQ(off.get_y().numerical_value_in(km), 2.0);
+    EXPECT_NEAR(off.get_y().numerical_value_in(km), 0.0, 1e-12);
 }
 
-TEST_F(FixedOffsetFrameTest, CombinedChainRootOffsetZIsZero)
+TEST_F(FixedOffsetFrameTest, CombinedChainRootOffsetAccumulatesZ)
 {
     const auto off = get_offset_from_root_frame<ChainCombined2>();
-    EXPECT_DOUBLE_EQ(off.get_z().numerical_value_in(km), 0.0);
+    EXPECT_NEAR(off.get_z().numerical_value_in(km), -2.0, 1e-12);
+}
+
+inline constexpr struct AngularChildOfCombined final
+    : FixedOffsetFrame<ChainCombined2, HALF_PI_RAD, Angle::zero(), Angle::zero(), RotationSequence::XYZ> {
+} AngularChildOfCombined;
+
+inline constexpr struct SiblingOfCombined final
+    : FixedOffsetFrame<ChainCombined1, Distance::zero(), Distance::zero(), 3.0 * km> {
+} SiblingOfCombined;
+
+inline constexpr struct MarsAngular final
+    : FixedOffsetFrame<frames::mars::icrf, Angle::zero(), Angle::zero(), HALF_PI_RAD, RotationSequence::XYZ> {
+} MarsAngular;
+
+inline constexpr struct PhobosOffset final
+    : FixedOffsetFrame<frames::phobos::icrf, TWO_KM, Distance::zero(), Distance::zero()> {
+} PhobosOffset;
+inline constexpr struct MarsOffset final
+    : FixedOffsetFrame<frames::mars::mars_fixed, Distance::zero(), 3.0 * km, Distance::zero()> {
+} MarsOffset;
+
+TEST_F(FixedOffsetFrameTest, AngularChildPreservesAccumulatedOffset)
+{
+    const auto localOffset = get_offset_from_frame<AngularChildOfCombined>();
+    const auto rootOffset = get_offset_from_root_frame<AngularChildOfCombined>();
+    EXPECT_NEAR(localOffset.norm().numerical_value_in(km), 0.0, 1e-12);
+    EXPECT_NEAR(rootOffset.get_x().numerical_value_in(km), 1.0, 1e-12);
+    EXPECT_NEAR(rootOffset.get_y().numerical_value_in(km), 0.0, 1e-12);
+    EXPECT_NEAR(rootOffset.get_z().numerical_value_in(km), -2.0, 1e-12);
+}
+
+TEST_F(FixedOffsetFrameTest, ChainedOriginsTransformInBothDirections)
+{
+    const Date epoch;
+    const CartesianVector<Distance, ChainCombined2> childOrigin;
+    const auto originInRoot = childOrigin.in_frame<frames::earth::icrf>(epoch);
+    EXPECT_NEAR(originInRoot.get_x().numerical_value_in(km), 1.0, 1e-12);
+    EXPECT_NEAR(originInRoot.get_y().numerical_value_in(km), 0.0, 1e-12);
+    EXPECT_NEAR(originInRoot.get_z().numerical_value_in(km), -2.0, 1e-12);
+
+    const CartesianVector<Distance, frames::earth::icrf> rootOrigin;
+    const auto originInChild = rootOrigin.in_frame<ChainCombined2>(epoch);
+    EXPECT_NEAR(originInChild.get_x().numerical_value_in(km), 2.0, 1e-12);
+    EXPECT_NEAR(originInChild.get_y().numerical_value_in(km), -1.0, 1e-12);
+    EXPECT_NEAR(originInChild.get_z().numerical_value_in(km), 0.0, 1e-12);
+
+    const auto originInParent = childOrigin.in_frame<ChainCombined1>(epoch);
+    EXPECT_NEAR(originInParent.get_x().numerical_value_in(km), 0.0, 1e-12);
+    EXPECT_NEAR(originInParent.get_y().numerical_value_in(km), 2.0, 1e-12);
+    EXPECT_NEAR(originInParent.get_z().numerical_value_in(km), 0.0, 1e-12);
+}
+
+TEST_F(FixedOffsetFrameTest, NonzeroPointTransformsBetweenSiblingsAndBack)
+{
+    const Date epoch;
+    const CartesianVector<Distance, ChainCombined2> point{ 1.0 * km, 2.0 * km, 3.0 * km };
+    const auto siblingPoint = point.in_frame<SiblingOfCombined>(epoch);
+    EXPECT_NEAR(siblingPoint.get_x().numerical_value_in(km), 2.0, 1e-12);
+    EXPECT_NEAR(siblingPoint.get_y().numerical_value_in(km), 1.0, 1e-12);
+    EXPECT_NEAR(siblingPoint.get_z().numerical_value_in(km), 0.0, 1e-12);
+
+    const auto roundtrip = siblingPoint.in_frame<ChainCombined2>(epoch);
+    EXPECT_NEAR(roundtrip.get_x().numerical_value_in(km), 1.0, 1e-12);
+    EXPECT_NEAR(roundtrip.get_y().numerical_value_in(km), 2.0, 1e-12);
+    EXPECT_NEAR(roundtrip.get_z().numerical_value_in(km), 3.0, 1e-12);
+}
+
+TEST_F(FixedOffsetFrameTest, AngularChildSharesParentOrigin)
+{
+    const Date epoch;
+    const CartesianVector<Distance, ChainCombined2> parentOrigin;
+    const auto childPosition = parentOrigin.in_frame<AngularChildOfCombined>(epoch);
+    EXPECT_NEAR(childPosition.norm().numerical_value_in(km), 0.0, 1e-12);
+}
+
+TEST_F(FixedOffsetFrameTest, RotationBetweenDifferentCelestialRootsUsesTargetBodyModel)
+{
+    const Date epoch = J2000;
+    const CartesianVector<Unitless, MarsAngular> direction{ 1.0 * one, 0.0 * one, 0.0 * one };
+    const CartesianVector<Unitless, frames::earth::icrf> inertial{ 0.0 * one, -1.0 * one, 0.0 * one };
+    const auto expected = get_dcm<frames::earth::icrf, frames::earth::earth_fixed>(epoch) * inertial;
+    const auto actual = direction.in_frame<frames::earth::earth_fixed>(epoch);
+    EXPECT_NEAR(actual.get_x().numerical_value_in(one), expected.get_x().numerical_value_in(one), 1e-12);
+    EXPECT_NEAR(actual.get_y().numerical_value_in(one), expected.get_y().numerical_value_in(one), 1e-12);
+    EXPECT_NEAR(actual.get_z().numerical_value_in(one), expected.get_z().numerical_value_in(one), 1e-12);
+
+    const auto roundtrip = actual.in_frame<MarsAngular>(epoch);
+    EXPECT_NEAR(roundtrip.get_x().numerical_value_in(one), 1.0, 1e-12);
+    EXPECT_NEAR(roundtrip.get_y().numerical_value_in(one), 0.0, 1e-12);
+    EXPECT_NEAR(roundtrip.get_z().numerical_value_in(one), 0.0, 1e-12);
+}
+
+TEST_F(FixedOffsetFrameTest, OffsetBetweenDifferentCelestialRootsUsesTargetAxes)
+{
+    const Date epoch = J2000;
+    const CartesianVector<Distance, PhobosOffset> origin;
+    const auto relative = get_relative_position<moons::Phobos, planets::Mars>(epoch);
+    const CartesianVector<Distance, frames::mars::icrf> sourceOffset{ 2.0 * km, 0.0 * km, 0.0 * km };
+    const auto relativeInMars = relative.template force_frame_conversion<frames::mars::icrf>();
+    const auto inMarsFixed = get_dcm<frames::mars::icrf, frames::mars::mars_fixed>(epoch) *
+                             (relativeInMars + sourceOffset);
+    const CartesianVector<Distance, frames::mars::mars_fixed> targetOffset{ 0.0 * km, 3.0 * km, 0.0 * km };
+    const auto expected = inMarsFixed - targetOffset;
+    const auto actual = origin.in_frame<MarsOffset>(epoch);
+    EXPECT_NEAR(actual.get_x().numerical_value_in(km), expected.get_x().numerical_value_in(km), 1e-8);
+    EXPECT_NEAR(actual.get_y().numerical_value_in(km), expected.get_y().numerical_value_in(km), 1e-8);
+    EXPECT_NEAR(actual.get_z().numerical_value_in(km), expected.get_z().numerical_value_in(km), 1e-8);
+
+    const auto roundtrip = actual.in_frame<PhobosOffset>(epoch);
+    EXPECT_NEAR(roundtrip.norm().numerical_value_in(km), 0.0, 1e-8);
 }
 
 TEST_F(FixedOffsetFrameTest, CombinedChainRootDcmComposes)
@@ -478,14 +588,14 @@ TEST_F(FixedOffsetFrameTest, CombinedChainRootDcmComposes)
     const auto dcm = get_dcm_from_root_frame<ChainCombined2>();
 
     EXPECT_TRUE(math::nearly_equal(dcm[0, 0], 0.0 * one, ANGULAR_TOL));
-    EXPECT_TRUE(math::nearly_equal(dcm[0, 1], -1.0 * one, ANGULAR_TOL));
-    EXPECT_TRUE(math::nearly_equal(dcm[0, 2], 0.0 * one, ANGULAR_TOL));
+    EXPECT_TRUE(math::nearly_equal(dcm[0, 1], 0.0 * one, ANGULAR_TOL));
+    EXPECT_TRUE(math::nearly_equal(dcm[0, 2], 1.0 * one, ANGULAR_TOL));
 
-    EXPECT_TRUE(math::nearly_equal(dcm[1, 0], 0.0 * one, ANGULAR_TOL));
+    EXPECT_TRUE(math::nearly_equal(dcm[1, 0], 1.0 * one, ANGULAR_TOL));
     EXPECT_TRUE(math::nearly_equal(dcm[1, 1], 0.0 * one, ANGULAR_TOL));
-    EXPECT_TRUE(math::nearly_equal(dcm[1, 2], -1.0 * one, ANGULAR_TOL));
+    EXPECT_TRUE(math::nearly_equal(dcm[1, 2], 0.0 * one, ANGULAR_TOL));
 
-    EXPECT_TRUE(math::nearly_equal(dcm[2, 0], 1.0 * one, ANGULAR_TOL));
-    EXPECT_TRUE(math::nearly_equal(dcm[2, 1], 0.0 * one, ANGULAR_TOL));
+    EXPECT_TRUE(math::nearly_equal(dcm[2, 0], 0.0 * one, ANGULAR_TOL));
+    EXPECT_TRUE(math::nearly_equal(dcm[2, 1], 1.0 * one, ANGULAR_TOL));
     EXPECT_TRUE(math::nearly_equal(dcm[2, 2], 0.0 * one, ANGULAR_TOL));
 }

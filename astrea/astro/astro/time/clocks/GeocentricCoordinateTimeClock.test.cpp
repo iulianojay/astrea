@@ -66,3 +66,16 @@ TEST_F(GeocentricCoordinateTimeClockTest, RoundTrip)
     auto diff = std::chrono::duration_cast<std::chrono::milliseconds>(sys2 - sys);
     ASSERT_EQ(diff.count(), 0);
 }
+
+TEST_F(GeocentricCoordinateTimeClockTest, OffsetFromTTAtJ2000)
+{
+    // J2000.0 TT = 2000-01-01T11:58:55.816 UTC. TCG - TT = Lg / (1 - Lg) * (TT - T0).
+    using namespace std::chrono;
+    const std::chrono::sys_time<std::chrono::milliseconds> sys{ std::chrono::sys_days{ std::chrono::year{ 2000 } / 1 / 1 } +
+                                                                11h + 58min + 55s + 816ms };
+    const auto tt  = TerrestrialTimeClock::from_sys(sys).time_since_epoch();
+    const auto clk = GeocentricCoordinateTimeClock::from_sys(sys).time_since_epoch();
+    ASSERT_NEAR(duration<double>(clk - tt).count(), 0.5058333, 1e-6);
+    const auto sys2 = GeocentricCoordinateTimeClock::to_sys(GeocentricCoordinateTimeClock::from_sys(sys));
+    ASSERT_NEAR(duration<double>(sys2 - sys).count(), 0.0, 1e-6);
+}

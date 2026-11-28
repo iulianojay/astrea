@@ -13,6 +13,7 @@
  */
 #pragma once
 
+#include <cstddef>
 #include <iostream>
 #include <string>
 
@@ -179,9 +180,9 @@ Perturbation OblatenessForce<_body_, _degree_, _order_>::compute_perturbation(co
     const Distance& x = rEcef[0];
     const Distance& y = rEcef[1];
     const Distance& z = rEcef[2];
+    const Distance r  = rEcef.norm();
 
     // Compute derived quantities
-    const Distance r           = rEcef.norm();
     const Unitless xOverR      = x / r;
     const Unitless yOverR      = y / r;
     const Unitless zOverR      = z / r;
@@ -200,21 +201,23 @@ Perturbation OblatenessForce<_body_, _degree_, _order_>::compute_perturbation(co
     V[0] = rEqOverR;
 
     // Combined recursion for V[n][m] and W[n][m]
-    for (std::size_t m = 0; m <= _order_; ++m) {
-        for (std::size_t n = (m == 0 ? 1 : m); n <= _degree_; ++n) {
+    for (std::size_t m = 0; m <= _order_ + 1; ++m) {
+        for (std::size_t n = (m == 0 ? 1 : m); n <= _degree_ + 1; ++n) {
 
             if (m == 0) {
                 // First column recursion: V[n][0] and W[n][0]
-                V[n * stride] = ((2.0 * n - 1.0) / n) * zREqOverRSq * V[(n - 1) * stride];
-                if (n > 1) { V[n * stride] -= ((n - 1.0) / n) * rEqOverRSq * V[(n - 2) * stride]; }
+                const std::size_t idx = n * stride;
+                V[idx]                = ((2.0 * n - 1.0) / n) * zREqOverRSq * V[(n - 1) * stride];
+                if (n > 1) { V[idx] -= ((n - 1.0) / n) * rEqOverRSq * V[(n - 2) * stride]; }
             }
             else if (n == m) {
                 // Diagonal recursion: V[m][m] and W[m][m]
                 const Unitless factor  = (2.0 * m - 1.0) * rEqOverR;
                 const std::size_t idx  = (m - 1) * stride + (m - 1);
                 const std::size_t mIdx = m * stride + m;
-                V[mIdx]                = factor * (xOverR * V[idx] - yOverR * W[idx]);
-                W[mIdx]                = factor * (xOverR * W[idx] + yOverR * V[idx]);
+
+                V[mIdx] = factor * (xOverR * V[idx] - yOverR * W[idx]);
+                W[mIdx] = factor * (xOverR * W[idx] + yOverR * V[idx]);
             }
             else {
                 // General recursion for n > m
@@ -246,26 +249,30 @@ Perturbation OblatenessForce<_body_, _degree_, _order_>::compute_perturbation(co
             const Unitless Cnm = _legendreCache.get_cosine_coefficient(n, m);
             const Unitless Snm = _legendreCache.get_sine_coefficient(n, m);
 
+            const std::size_t baseIdx = (n + 1) * stride;
             if (m == 0) {
                 // Special case for m = 0 (zonal harmonics)
-                ax += -Cnm * V[(n + 1) * stride + 1];
-                ay += -Cnm * W[(n + 1) * stride + 1];
+                const std::size_t idx = baseIdx + 1;
+                ax += -Cnm * V[idx];
+                ay += -Cnm * W[idx];
             }
             else {
+                const std::size_t idx1 = baseIdx + (m + 1);
+                const std::size_t idx2 = baseIdx + (m - 1);
+
                 // Sectoral and tesseral harmonics (m > 0)
                 const Unitless nmFactor = (n - m + 2.0) * (n - m + 1.0);
 
                 // ax component
-                ax += 0.5 * ((-Cnm * V[(n + 1) * stride + (m + 1)] - Snm * W[(n + 1) * stride + (m + 1)]) +
-                             nmFactor * (Cnm * V[(n + 1) * stride + (m - 1)] + Snm * W[(n + 1) * stride + (m - 1)]));
+                ax += 0.5 * ((-Cnm * V[idx1] - Snm * W[idx1]) + nmFactor * (Cnm * V[idx2] + Snm * W[idx2]));
 
                 // ay component
-                ay += 0.5 * ((-Cnm * W[(n + 1) * stride + (m + 1)] + Snm * V[(n + 1) * stride + (m + 1)]) +
-                             nmFactor * (-Cnm * W[(n + 1) * stride + (m - 1)] + Snm * V[(n + 1) * stride + (m - 1)]));
+                ay += 0.5 * ((-Cnm * W[idx1] + Snm * V[idx1]) + nmFactor * (-Cnm * W[idx2] + Snm * V[idx2]));
             }
 
             // az component
-            az += (n - m + 1.0) * (-Cnm * V[(n + 1) * stride + m] - Snm * W[(n + 1) * stride + m]);
+            const std::size_t idx = baseIdx + m;
+            az += (n - m + 1.0) * (-Cnm * V[idx] - Snm * W[idx]);
         }
     }
 
@@ -274,8 +281,7 @@ Perturbation OblatenessForce<_body_, _degree_, _order_>::compute_perturbation(co
     const AccelerationVector<frames::primary_fixed> accelOblatenessEcef = { ax * muOverR2, ay * muOverR2, az * muOverR2 };
 
     // Transform back to inertial frame without aberrations - original values are in ecef, not w.r.t ecef
-    const AccelerationVector<frames::primary> accelOblatenessIcrf =
-        frames::rotate_vector_into_frame<frames::primary>(accelOblatenessEcef, date);
+    const auto accelOblatenessIcrf = frames::rotate_vector_into_frame<frames::primary>(accelOblatenessEcef, date);
     return { .force = (accelOblatenessIcrf * vehicle.get_mass(state)) };
 }
 

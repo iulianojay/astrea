@@ -63,3 +63,5 @@ TEST_F(AtmosphereTest, FindAtmosphericDensityDefaultToZero)
     const auto densityAtAltitude = find_atmospheric_density<DummyBody>(state0);
     ASSERT_EQ(densityAtAltitude.numerical_value_in(kg / pow<3>(m)), 0.0);
 }
+
+// TODO: Need way more tests here.

@@ -23,3 +23,4 @@
 #include <astro/time/clocks/GeocentricCoordinateTimeClock.hpp>
 #include <astro/time/clocks/JulianDateClock.hpp>
 #include <astro/time/clocks/TerrestrialTimeClock.hpp>
+#include <astro/time/clocks/UT1Clock.hpp>

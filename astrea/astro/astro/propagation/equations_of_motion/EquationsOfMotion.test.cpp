@@ -13,6 +13,9 @@
 
 #include <gtest/gtest.h>
 
+#include <ostream>
+#include <string>
+
 #include <math/operations.hpp>
 #include <units/units.hpp>
 
@@ -27,6 +30,7 @@
 #include <astro/state/orbital_elements/OrbitalElements.hpp>
 #include <astro/systems/system_utilities.hpp>
 #include <astro/time/Date.hpp>
+#include <tests/utilities/orbit_presets.hpp>
 
 using mp_units::si::unit_symbols::km;
 using mp_units::si::unit_symbols::m;
@@ -36,6 +40,112 @@ using mp_units::si::unit_symbols::s;
 
 using namespace astrea;
 using namespace astro;
+
+namespace {
+
+struct MockUserDefinedStatePartialPayload {
+    std::vector<double> values{ 0.0, 0.0 };
+
+    std::vector<double> force_to_double_vector() const { return values; }
+
+    static MockUserDefinedStatePartialPayload from_double_vector(const std::vector<double>& vec)
+    {
+        MockUserDefinedStatePartialPayload out;
+        out.values = vec;
+        return out;
+    }
+
+    MockUserDefinedStatePartialPayload operator+(const MockUserDefinedStatePartialPayload& other) const
+    {
+        return { { values[0] + other.values[0], values[1] + other.values[1] } };
+    }
+
+    MockUserDefinedStatePartialPayload& operator+=(const MockUserDefinedStatePartialPayload& other)
+    {
+        values[0] += other.values[0];
+        values[1] += other.values[1];
+        return *this;
+    }
+
+    MockUserDefinedStatePartialPayload operator-(const MockUserDefinedStatePartialPayload& other) const
+    {
+        return { { values[0] - other.values[0], values[1] - other.values[1] } };
+    }
+
+    MockUserDefinedStatePartialPayload& operator-=(const MockUserDefinedStatePartialPayload& other)
+    {
+        values[0] -= other.values[0];
+        values[1] -= other.values[1];
+        return *this;
+    }
+
+    MockUserDefinedStatePartialPayload operator*(const Unitless&) const { return *this; }
+    MockUserDefinedStatePartialPayload& operator*=(const Unitless&) { return *this; }
+    MockUserDefinedStatePartialPayload operator/(const Unitless&) const { return *this; }
+    MockUserDefinedStatePartialPayload& operator/=(const Unitless&) { return *this; }
+
+    bool operator==(const MockUserDefinedStatePartialPayload& other) const { return values == other.values; }
+
+    friend std::ostream& operator<<(std::ostream& os, const MockUserDefinedStatePartialPayload& payload)
+    {
+        os << "MockUserDefinedStatePartialPayload(" << payload.values[0] << ", " << payload.values[1] << ")";
+        return os;
+    }
+};
+
+struct MockUserDefinedStatePayload {
+    std::vector<double> values{ 1.0, 2.0 };
+
+    std::vector<double> force_to_double_vector() const { return values; }
+
+    static MockUserDefinedStatePayload from_double_vector(const std::vector<double>& vec)
+    {
+        MockUserDefinedStatePayload out;
+        out.values = vec;
+        return out;
+    }
+
+    MockUserDefinedStatePayload operator+(const MockUserDefinedStatePayload& other) const
+    {
+        return { { values[0] + other.values[0], values[1] + other.values[1] } };
+    }
+
+    MockUserDefinedStatePayload& operator+=(const MockUserDefinedStatePayload& other)
+    {
+        values[0] += other.values[0];
+        values[1] += other.values[1];
+        return *this;
+    }
+
+    MockUserDefinedStatePayload operator-(const MockUserDefinedStatePayload& other) const
+    {
+        return { { values[0] - other.values[0], values[1] - other.values[1] } };
+    }
+
+    MockUserDefinedStatePayload& operator-=(const MockUserDefinedStatePayload& other)
+    {
+        values[0] -= other.values[0];
+        values[1] -= other.values[1];
+        return *this;
+    }
+
+    MockUserDefinedStatePayload operator*(const Unitless&) const { return *this; }
+    MockUserDefinedStatePayload& operator*=(const Unitless&) { return *this; }
+    MockUserDefinedStatePayload operator/(const Unitless&) const { return *this; }
+    MockUserDefinedStatePayload& operator/=(const Unitless&) { return *this; }
+
+    MockUserDefinedStatePartialPayload operator/(const Time&) const { return { { 100.0, 200.0 } }; }
+
+    bool operator==(const MockUserDefinedStatePayload& other) const { return values == other.values; }
+
+    friend std::ostream& operator<<(std::ostream& os, const MockUserDefinedStatePayload& payload)
+    {
+        os << "MockUserDefinedStatePayload(" << payload.values[0] << ", " << payload.values[1] << ")";
+        return os;
+    }
+};
+
+} // namespace
 
 /**
  * @brief Mock implementation of EquationsOfMotion for testing purposes.
@@ -70,6 +180,22 @@ class MockEquationsOfMotion : public EquationsOfMotion {
     std::unique_ptr<EquationsOfMotion> clone() const override { return std::make_unique<MockEquationsOfMotion>(*this); }
 };
 
+class OverrideUdsEquationsOfMotion final : public MockEquationsOfMotion {
+  public:
+    using MockEquationsOfMotion::MockEquationsOfMotion;
+
+    UserDefinedStatePartial
+        compute_user_defined_state_partials(const State&, const Vehicle&, const Perturbation&, const Perturbation&) const override
+    {
+        return UserDefinedStatePartial(MockUserDefinedStatePartialPayload{ .values = { 9.0, 7.0 } });
+    }
+
+    std::unique_ptr<EquationsOfMotion> clone() const override
+    {
+        return std::make_unique<OverrideUdsEquationsOfMotion>(*this);
+    }
+};
+
 class EquationsOfMotionTest : public testing::Test {
   public:
     EquationsOfMotionTest() {}
@@ -77,7 +203,7 @@ class EquationsOfMotionTest : public testing::Test {
     void SetUp() override
     {
         // Set up test state with basic Cartesian<frames::primary> elements
-        cart  = Cartesian<frames::primary>::LEO(get_mu<frames::primary.origin>());
+        cart  = make_orbit_preset<Cartesian<frames::primary>>(OrbitPreset::LEO, get_mu<frames::primary.origin>());
         state = State(cart, epoch);
     }
 
@@ -226,4 +352,56 @@ TEST_F(EquationsOfMotionTest, VirtualDestructor)
     // Test that we can properly delete through base class pointer
     std::unique_ptr<EquationsOfMotion> eomPtr = std::make_unique<MockEquationsOfMotion>();
     ASSERT_NO_THROW(eomPtr.reset()); // Should call virtual destructor without issues
+}
+
+TEST_F(EquationsOfMotionTest, ComputeUserDefinedStatePartialsWithInjectedFunction)
+{
+    eomDefault.set_user_defined_state_partial_function([](const State&, const Vehicle&, const Perturbation&, const Perturbation&) {
+        return UserDefinedStatePartial(MockUserDefinedStatePartialPayload{ .values = { 4.0, 5.0 } });
+    });
+
+    State stateWithUDS = state;
+    stateWithUDS.set_user_defined_state(UserDefinedState(MockUserDefinedStatePayload{}));
+
+    StatePartial result;
+    ASSERT_NO_THROW(result = eomDefault(stateWithUDS, vehicle));
+
+    auto vectorResult = result.force_to_double_vector();
+    ASSERT_EQ(vectorResult.size(), 8);
+    EXPECT_DOUBLE_EQ(vectorResult[6], 4.0);
+    EXPECT_DOUBLE_EQ(vectorResult[7], 5.0);
+}
+
+TEST_F(EquationsOfMotionTest, ComputeUserDefinedStatePartialsThrowsWhenFunctionNotSet)
+{
+    State stateWithUDS = state;
+    stateWithUDS.set_user_defined_state(UserDefinedState(MockUserDefinedStatePayload{}));
+
+    EXPECT_THROW((void)eomDefault(stateWithUDS, vehicle), std::runtime_error);
+}
+
+TEST_F(EquationsOfMotionTest, ComputeUserDefinedStatePartialsCanBeOverridden)
+{
+    OverrideUdsEquationsOfMotion overrideEom;
+    overrideEom.set_user_defined_state_partial_function([](const State&, const Vehicle&, const Perturbation&, const Perturbation&) {
+        return UserDefinedStatePartial(MockUserDefinedStatePartialPayload{ .values = { -1.0, -1.0 } });
+    });
+
+    State stateWithUDS = state;
+    stateWithUDS.set_user_defined_state(UserDefinedState(MockUserDefinedStatePayload{}));
+
+    StatePartial result;
+    ASSERT_NO_THROW(result = overrideEom(stateWithUDS, vehicle));
+
+    const auto vectorResult = result.force_to_double_vector();
+    ASSERT_EQ(vectorResult.size(), 8);
+    EXPECT_DOUBLE_EQ(vectorResult[6], 9.0);
+    EXPECT_DOUBLE_EQ(vectorResult[7], 7.0);
+}
+
+TEST_F(EquationsOfMotionTest, Clone)
+{
+    std::unique_ptr<EquationsOfMotion> clone = eomDefault.clone();
+    ASSERT_TRUE(clone != nullptr);
+    ASSERT_EQ(clone->get_expected_set_id(), eomDefault.get_expected_set_id());
 }

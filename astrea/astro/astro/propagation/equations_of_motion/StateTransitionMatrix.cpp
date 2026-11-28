@@ -25,7 +25,7 @@ StateTransitionMatrix::StateTransitionMatrix(const EquationsOfMotion& eom, const
      *
      * It might be possible to use fancy metaprogramming to deduce the units of each element based on the element type but
      * that seems like a huge headache. For now, we force the elements into unitless quantities, converted using their
-     * underlying units, and then force a conversion back. This makes this function implicity unsafe from a unit perspective.
+     * underlying units, and then force a conversion back. This makes this function implicitly unsafe from a unit perspective.
      */
 
     const std::vector<double> s0 = state.force_to_double_vector();
@@ -46,8 +46,8 @@ StateTransitionMatrix::StateTransitionMatrix(const EquationsOfMotion& eom, const
             sMinusDs[ii] -= dsi;
 
             // Convert back to OrbitalElements
-            const State statePlus  = State::from_double_vector(sPlusDs, typeIdx);
-            const State stateMinus = State::from_double_vector(sMinusDs, typeIdx);
+            const State statePlus  = state.from_double_vector(sPlusDs, typeIdx);
+            const State stateMinus = state.from_double_vector(sMinusDs, typeIdx);
 
             // Compute f(s + dsi)
             const std::vector<double> fPerturbedPlus = eom.compute_dynamics(statePlus, vehicle, {}, {}).force_to_double_vector();
