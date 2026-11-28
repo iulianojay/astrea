@@ -33,7 +33,7 @@ namespace astro {
 
 namespace {
 
-// Perifocal Coordinates- we have to use this definition to avoid a log circular dependency issue
+// Perifocal Coordinates- we have to use this definition to avoid a long circular dependency issue
 inline constexpr struct peri : Frame<"fake perifocal frame for this calc only", DynamicOrigin{}, DynamicAxis{}> {
 } peri;
 
@@ -223,20 +223,6 @@ std::ostream& operator<<(std::ostream& os, Cartesian<_frame_> const& elements)
     os << elements.get_vy() << ", ";
     os << elements.get_vz();
     os << "] (Cartesian)";
-    return os;
-}
-
-template <IsFrame auto _frame_>
-std::ostream& operator<<(std::ostream& os, CartesianPartial<_frame_> const& elements)
-{
-    os << "[";
-    os << elements.get_vx() << ", ";
-    os << elements.get_vy() << ", ";
-    os << elements.get_vz() << ", ";
-    os << elements.get_ax() << ", ";
-    os << elements.get_ay() << ", ";
-    os << elements.get_az();
-    os << "] (CartesianPartial)";
     return os;
 }
 

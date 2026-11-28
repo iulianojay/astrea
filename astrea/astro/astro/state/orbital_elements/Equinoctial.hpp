@@ -198,32 +198,6 @@ class Equinoctial
     }
 };
 
-/**
- * @brief Class representing a partial derivative of an Equinoctial state vector.
- *
- */
-template <IsFrame auto _frame_>
-class EquinoctialPartial
-    : public OrbitalElementsInterface<EquinoctialPartial<_frame_>, Velocity, UnitlessPerTime, UnitlessPerTime, UnitlessPerTime, UnitlessPerTime, AngularVelocity> {
-
-    using BaseType =
-        OrbitalElementsInterface<EquinoctialPartial<_frame_>, Velocity, UnitlessPerTime, UnitlessPerTime, UnitlessPerTime, UnitlessPerTime, AngularVelocity>;
-
-    template <IsFrame auto frame>
-    friend std::ostream& operator<<(std::ostream&, EquinoctialPartial<frame> const&);
-
-  public:
-    static constexpr auto frame = _frame_; //!< The reference frame of the EquinoctialPartial state vector.
-    using BaseType::BaseType;
-
-    /**
-     * @brief Default constructor for EquinoctialPartial.
-     *
-     * Initializes the EquinoctialPartial with zero values.
-     */
-    EquinoctialPartial() = default;
-};
-
 } // namespace astro
 } // namespace astrea
 

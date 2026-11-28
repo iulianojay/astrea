@@ -280,19 +280,5 @@ std::ostream& operator<<(std::ostream& os, Keplerian<_frame_> const& elements)
     return os;
 }
 
-template <IsFrame auto _frame_>
-std::ostream& operator<<(std::ostream& os, KeplerianPartial<_frame_> const& elements)
-{
-    os << "[";
-    os << elements.template get<0>() << ", ";
-    os << elements.template get<1>() << ", ";
-    os << elements.template get<2>() << ", ";
-    os << elements.template get<3>() << ", ";
-    os << elements.template get<4>() << ", ";
-    os << elements.template get<5>();
-    os << "] (KeplerianPartial)";
-    return os;
-}
-
 } // namespace astro
 } // namespace astrea

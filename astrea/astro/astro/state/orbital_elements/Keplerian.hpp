@@ -292,36 +292,6 @@ class Keplerian : public OrbitalElementsInterface<Keplerian<_frame_>, Distance, 
     Angle interpolate_angle(const std::array<Time, 2>& times, const std::array<Angle, 2>& angles, const Time& targetTime) const;
 };
 
-/**
- * @brief Class representing a partial derivative of a Keplerian state vector.
- *
- * This class encapsulates the velocity and acceleration components of a vehicle in Keplerian coordinates.
- * It is used to represent the rate of change of the Keplerian elements with respect to time.
- *
- * @note The KeplerianPartial class is typically used in astrodynamics calculations involving orbital mechanics.
- */
-template <IsFrame auto _frame_>
-class KeplerianPartial
-    : public OrbitalElementsInterface<KeplerianPartial<_frame_>, Velocity, UnitlessPerTime, AngularVelocity, AngularVelocity, AngularVelocity, AngularVelocity> {
-
-    using BaseType =
-        OrbitalElementsInterface<KeplerianPartial<_frame_>, Velocity, UnitlessPerTime, AngularVelocity, AngularVelocity, AngularVelocity, AngularVelocity>;
-
-    template <IsFrame auto frame>
-    friend std::ostream& operator<<(std::ostream&, KeplerianPartial<frame> const&);
-
-  public:
-    static constexpr auto frame = _frame_; //!< The reference frame of the KeplerianPartial state vector.
-    using BaseType::BaseType;
-
-    /**
-     * @brief Default constructor for KeplerianPartial.
-     *
-     * Initializes the KeplerianPartial with zero values.
-     */
-    KeplerianPartial() = default;
-};
-
 } // namespace astro
 } // namespace astrea
 
